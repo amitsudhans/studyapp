@@ -126,6 +126,17 @@ class StandardController extends Controller
             foreach ($studentIds as $studentUserId) {
                 $studentUser = User::find($studentUserId);
                 if ($studentUser) {
+                    DB::table('student_standards')->updateOrInsert(
+                        [
+                            'student_id' => $studentUser->id,
+                            'standard_id' => $standard->id,
+                        ],
+                        [
+                            'created_at' => now(),
+                            'updated_at' => now(),
+                        ]
+                    );
+
                     Student::updateOrCreate(
                         ['id' => $studentUser->id],
                         [
@@ -137,12 +148,41 @@ class StandardController extends Controller
             }
 
             if ($request->input('_assign_mode') === 'bulk') {
-                Student::where('standard_id', $standard->id)
-                    ->whereNotIn('id', $studentIds)
-                    ->update(['standard_id' => null]);
+                DB::table('student_standards')
+                    ->where('standard_id', $standard->id)
+                    ->whereNotIn('student_id', $studentIds)
+                    ->delete();
             }
         });
 
         return back()->with('status', 'Students assigned to standard successfully!');
+    }
+
+    /**
+     * Remove the specified standard from storage.
+     */
+    public function destroy(Request $request, Standard $standard): RedirectResponse
+    {
+        $user = $request->user();
+
+        if (! $user->canAssignExams()) {
+            abort(403, 'Only teachers and administrators can delete standards.');
+        }
+
+        if (! $user->isAdmin() && $standard->created_by !== $user->id) {
+            abort(403, 'Teachers can only delete standards created by themselves.');
+        }
+
+        if ($standard->students()->count() > 0) {
+            return back()->with('error', 'Cannot delete standard/group with enrolled students in it. Please remove or reassign all students first.');
+        }
+
+        DB::transaction(function () use ($standard) {
+            $standard->teachers()->detach();
+            $standard->assignedExams()->detach();
+            $standard->delete();
+        });
+
+        return back()->with('status', 'Standard deleted successfully!');
     }
 }

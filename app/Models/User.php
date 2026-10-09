@@ -51,6 +51,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the standards assigned to the user (student).
+     *
+     * @return BelongsToMany<Standard, $this>
+     */
+    public function studentStandards(): BelongsToMany
+    {
+        return $this->belongsToMany(Standard::class, 'student_standards', 'student_id', 'standard_id');
+    }
+
+    /**
      * Get messages sent by this user.
      *
      * @return HasMany<ChatMessage, $this>

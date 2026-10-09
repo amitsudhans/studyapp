@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[Fillable(['name', 'syllabus_id', 'created_by'])]
 class Standard extends Model
@@ -45,13 +44,13 @@ class Standard extends Model
     }
 
     /**
-     * Get the students belonging to this standard.
+     * Get the students (users) belonging to this standard via student_standards table.
      *
-     * @return HasMany<Student, $this>
+     * @return BelongsToMany<User, $this>
      */
-    public function students(): HasMany
+    public function students(): BelongsToMany
     {
-        return $this->hasMany(Student::class);
+        return $this->belongsToMany(User::class, 'student_standards', 'standard_id', 'student_id');
     }
 
     /**

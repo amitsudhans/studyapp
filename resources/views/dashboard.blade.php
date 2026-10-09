@@ -413,7 +413,7 @@
                         <div id="create_teacher_standards_wrapper">
                             <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Assign Standards (Teacher)</label>
                             <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 bg-slate-950 p-3 rounded-lg border border-slate-800 max-h-36 overflow-y-auto">
-                                @foreach($standards as $std)
+                                @foreach($allStandardsForSelect ?? $standards as $std)
                                     <label class="inline-flex items-center space-x-2 text-xs text-slate-300 cursor-pointer hover:text-white">
                                         <input type="checkbox" name="standards[]" value="{{ $std->id }}" {{ in_array($std->id, old('standards', [])) ? 'checked' : '' }} class="rounded bg-slate-900 border-slate-700 text-indigo-600 focus:ring-indigo-500">
                                         <span>{{ $std->name }}</span>
@@ -430,7 +430,7 @@
                             <label for="create_standard_id" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Select Class / Standard (Student) <span class="text-red-400">*</span></label>
                             <select id="create_standard_id" name="standard_id" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm">
                                 <option value="">-- Select Class --</option>
-                                @foreach($standards as $std)
+                                @foreach($allStandardsForSelect ?? $standards as $std)
                                     @php
                                         $count = $std->students_count ?? $std->students->count();
                                         $isFull = $count >= 100;
@@ -583,7 +583,7 @@
                         <div id="edit_teacher_standards_wrapper">
                             <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Assign Standards (Teacher)</label>
                             <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 bg-slate-950 p-3 rounded-lg border border-slate-800 max-h-36 overflow-y-auto">
-                                @foreach($standards as $std)
+                                @foreach($allStandardsForSelect ?? $standards as $std)
                                     <label class="inline-flex items-center space-x-2 text-xs text-slate-300 cursor-pointer hover:text-white">
                                         <input type="checkbox" name="standards[]" value="{{ $std->id }}" class="edit-std-checkbox rounded bg-slate-900 border-slate-700 text-indigo-600 focus:ring-indigo-500">
                                         <span>{{ $std->name }}</span>
@@ -600,7 +600,7 @@
                             <label for="edit_standard_id" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Select Class / Standard (Student)</label>
                             <select id="edit_standard_id" name="standard_id" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm">
                                 <option value="">-- Select Class --</option>
-                                @foreach($standards as $std)
+                                @foreach($allStandardsForSelect ?? $standards as $std)
                                     @php
                                         $count = $std->students_count ?? $std->students->count();
                                     @endphp
@@ -1949,30 +1949,6 @@
                         </p>
                     </div>
                     <div class="shrink-0 flex items-center flex-wrap gap-3">
-                        <button onclick="toggleStandardsDirectory()" class="px-5 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-semibold text-sm transition-all shadow-lg shadow-teal-600/30 flex items-center space-x-2 cursor-pointer">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                            </svg>
-                            <span>Standards Directory</span>
-                        </button>
-                        <button onclick="document.getElementById('createStandardModal').classList.remove('hidden')" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm transition-all shadow-lg shadow-emerald-600/30 flex items-center space-x-2 cursor-pointer">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                            </svg>
-                            <span>Add Standard</span>
-                        </button>
-                        <a href="{{ route('exams.index') }}" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition-all shadow-lg shadow-indigo-600/30 flex items-center space-x-2 cursor-pointer">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            <span>Create / Manage Exams</span>
-                        </a>
-                        <a href="{{ route('questions.index') }}" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold text-sm transition-all shadow-md flex items-center space-x-2 cursor-pointer">
-                            <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Question Bank</span>
-                        </a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-medium text-sm transition-all shadow-md flex items-center space-x-2 cursor-pointer">
@@ -1983,6 +1959,7 @@
                             </button>
                         </form>
                     </div>
+
                 </div>
             </div>
 
@@ -1998,13 +1975,13 @@
                         </div>
                         <div>
                             <h3 class="text-base font-bold text-white">Class Standards</h3>
-                            <p class="text-xs text-slate-300">Create or view standards directory.</p>
+                            <p class="text-xs text-slate-300">Create or manage class standards.</p>
                         </div>
                     </div>
                     <div class="flex items-center space-x-2 shrink-0">
                         <button onclick="toggleStandardsDirectory()" class="px-3.5 py-2 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-semibold text-xs transition-all shadow-md flex items-center space-x-1 cursor-pointer">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-                            <span>Directory</span>
+                            <span>Manage Standards</span>
                         </button>
                         <button onclick="document.getElementById('createStandardModal').classList.remove('hidden')" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition-all shadow-md flex items-center space-x-1 cursor-pointer">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
@@ -2137,6 +2114,8 @@
                                                 <span>{{ $exam->name }}</span>
                                             </h4>
                                             <div class="flex items-center flex-wrap gap-2 mt-1 text-xs text-slate-400">
+                                                <span>Teacher: <strong class="text-sky-300">{{ $exam->creator?->name ?? 'System' }}</strong></span>
+                                                <span>•</span>
                                                 <span>Total Marks: <strong class="text-amber-400 font-mono">{{ $totalExamMarks }}</strong></span>
                                                 <span>•</span>
                                                 <span>Questions: <strong class="text-slate-200">{{ $exam->questions->count() }}</strong></span>
@@ -2403,15 +2382,29 @@
                                             </div>
                                         </td>
                                         <td class="py-3 px-4 sm:py-4 sm:px-6">
-                                            @if($s->student?->standard)
-                                                <span class="inline-flex items-center px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-semibold bg-sky-500/10 text-sky-300 border border-sky-500/20">
-                                                    {{ $s->student->standard->name }}
-                                                </span>
+                                            @php
+                                                $stNames = $s->studentStandards ? $s->studentStandards->pluck('name') : collect();
+                                                if ($s->student?->standard && ! $stNames->contains($s->student->standard->name)) {
+                                                    $stNames->prepend($s->student->standard->name);
+                                                }
+                                            @endphp
+                                            @if($stNames->isNotEmpty())
+                                                <div class="flex flex-wrap gap-1">
+                                                    @foreach($stNames as $stName)
+                                                        <span class="inline-flex items-center px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-semibold bg-sky-500/10 text-sky-300 border border-sky-500/20">
+                                                            {{ $stName }}
+                                                        </span>
+                                                    @endforeach
+                                                </div>
                                             @else
                                                 <span class="text-xs text-slate-500 italic">Unassigned</span>
                                             @endif
                                         </td>
                                         <td class="py-3 px-4 sm:py-4 sm:px-6 text-right whitespace-nowrap space-x-1.5">
+                                            <button type="button" onclick="openStudentPerformanceModal({{ $s->id }})" class="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition-all shadow-md shadow-emerald-600/20 inline-flex items-center space-x-1 sm:space-x-1.5 cursor-pointer">
+                                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                                                <span>Exams Performance</span>
+                                            </button>
                                             <button type="button" onclick="openChatModal({{ $s->id }})" class="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-all shadow-md shadow-indigo-600/20 inline-flex items-center space-x-1 sm:space-x-1.5 cursor-pointer">
                                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
                                                 <span>Chat</span>
@@ -2424,7 +2417,7 @@
                                                 'address' => $s->profile?->address ?? 'N/A',
                                                 'school' => $s->profile?->school ?? 'N/A',
                                                 'designation' => $s->profile?->designation ?? 'Student',
-                                                'standard' => $s->student?->standard?->name ?? 'Unassigned',
+                                                'standard' => $stNames->isNotEmpty() ? $stNames->join(', ') : 'Unassigned',
                                                 'status' => $s->status ?? 1,
                                             ]) }})" class="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold text-xs transition-all shadow-md shadow-sky-600/20 inline-flex items-center space-x-1 sm:space-x-1.5 cursor-pointer">
                                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2615,21 +2608,33 @@
 
         @if ($user->canAssignExams())
             <!-- Standards / Classes Directory Table for Teacher & Admin -->
-            <div id="standardsDirectoryContainer" class="{{ request()->filled('standards_page') ? '' : 'hidden' }} bg-slate-900 border border-slate-800 rounded-2xl shadow-xl overflow-hidden mt-6">
+            <div id="standardsDirectoryContainer" class="{{ (request()->filled('standards_page') || request()->filled('standards_search')) ? '' : 'hidden' }} bg-slate-900 border border-slate-800 rounded-2xl shadow-xl overflow-hidden mt-6">
                 <div class="px-6 py-5 border-b border-slate-800 flex items-center justify-between flex-wrap gap-4">
                     <div>
                         <h3 class="text-lg font-semibold text-white flex items-center space-x-2">
                             <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                             </svg>
-                            <span>Standards / Classes Directory</span>
+                            <span>Manage Standards</span>
                         </h3>
-                        <p class="text-xs text-slate-400 mt-0.5">Manage standards created by you or view all system standards.</p>
+                        <p class="text-xs text-slate-400 mt-0.5">Manage standards created by you or assigned to you.</p>
                     </div>
-                    <button onclick="document.getElementById('createStandardModal').classList.remove('hidden')" class="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow-md transition-all inline-flex items-center space-x-1 cursor-pointer">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-                        <span>Add Standard</span>
-                    </button>
+                    <div class="flex items-center space-x-3 flex-wrap gap-2">
+                        <form method="GET" action="{{ route('dashboard') }}" class="flex items-center space-x-2">
+                            <input type="hidden" name="standards_page" value="1">
+                            <div class="relative">
+                                <input type="text" name="standards_search" value="{{ request('standards_search') }}" placeholder="Search standards..." class="w-40 sm:w-56 pl-8 pr-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-100 placeholder-slate-500 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                <svg class="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                            </div>
+                            @if(request()->filled('standards_search'))
+                                <a href="{{ route('dashboard') }}?standards_page=1" class="px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white text-xs font-semibold">Clear</a>
+                            @endif
+                        </form>
+                        <button onclick="document.getElementById('createStandardModal').classList.remove('hidden')" class="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow-md transition-all inline-flex items-center space-x-1 cursor-pointer">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                            <span>Add Standard</span>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="overflow-x-auto">
@@ -2686,6 +2691,14 @@
                                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
                                                 <span>Edit</span>
                                             </button>
+                                            <form method="POST" action="{{ route('standards.destroy', $std->id) }}" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this standard? This will unassign students and detach exams associated with it.');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="px-3 py-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 hover:text-rose-300 text-xs font-semibold border border-rose-500/20 transition-all inline-flex items-center space-x-1 cursor-pointer">
+                                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                                                    <span>Delete</span>
+                                                </button>
+                                            </form>
                                         @elseif(! ($user->standards->contains($std->id)))
                                             <span class="text-xs text-slate-500 italic font-medium px-2 py-1 rounded bg-slate-800/50 border border-slate-800">Admin Standard</span>
                                         @endif
@@ -2708,112 +2721,7 @@
             </div>
         @endif
 
-        <!-- GLOBAL SUBMISSION DETAILS MODAL FOR STUDENTS AND TEACHERS -->
-        <div id="studentViewSubmissionModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 overflow-hidden">
-            <div class="bg-white rounded-2xl w-full max-w-2xl max-h-[75vh] flex flex-col shadow-2xl border border-slate-200 text-slate-900 overflow-hidden transition-all">
-                
-                <!-- Header (Fixed at top) -->
-                <div class="px-5 py-3.5 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800 shrink-0">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center shrink-0 shadow-inner">
-                            <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 id="modal_top_exam_name" class="text-base sm:text-lg font-extrabold tracking-tight text-white line-clamp-1">Submitted Exam Performance</h3>
-                            <p class="text-[11px] sm:text-xs text-slate-400">Detailed question evaluation & marks breakdown</p>
-                        </div>
-                    </div>
 
-                    <div class="flex items-center space-x-3 shrink-0">
-                        <div class="px-3 py-1 rounded-xl bg-emerald-950 border border-emerald-500/40 text-emerald-300 font-extrabold text-xs sm:text-sm flex items-center space-x-1.5 shadow-md">
-                            <span class="text-[10px] sm:text-xs text-slate-400 font-medium uppercase tracking-wider">Score:</span>
-                            <span id="modal_top_score_badge" class="font-mono text-sm sm:text-base text-emerald-400">0/0</span>
-                        </div>
-
-                        <button type="button" onclick="document.getElementById('studentViewSubmissionModal').classList.add('hidden')" class="text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg p-1.5 transition-colors cursor-pointer" title="Close Modal">
-                            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Scrollable Body -->
-                <div class="p-4 sm:p-5 space-y-4 bg-slate-50/50 flex-1 overflow-y-auto">
-                    
-                    <!-- Top Summary Banner -->
-                    <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm space-y-3">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
-                            <div>
-                                <span class="text-[10px] font-extrabold uppercase tracking-wider text-black">Exam Title</span>
-                                <h4 id="sub_exam_name" class="text-lg font-black text-black mt-0.5"></h4>
-                            </div>
-                            <div class="flex items-center space-x-2.5 shrink-0">
-                                <div class="px-3.5 py-1.5 rounded-xl bg-slate-900 text-white text-center shadow-md">
-                                    <span class="block text-[9px] font-extrabold uppercase tracking-wider text-white">Final Score</span>
-                                    <span id="sub_exam_score_heading" class="text-xl font-black text-emerald-400 font-mono tracking-tight">0/0</span>
-                                </div>
-                                <div id="sub_exam_percentage_badge" class="px-3.5 py-1.5 rounded-xl bg-emerald-100 text-black border border-emerald-300 font-black text-xs sm:text-sm text-center shadow-sm">
-                                    <!-- Dynamic % Badge -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Breakdown Pills -->
-                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-                            <div class="flex items-center space-x-2.5 p-2.5 rounded-lg bg-slate-100 border border-slate-300">
-                                <div class="w-7 h-7 rounded-md bg-slate-900 text-white flex items-center justify-center font-bold text-xs shrink-0">
-                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                </div>
-                                <div>
-                                    <span class="block text-[10px] font-extrabold text-black uppercase">Total Questions</span>
-                                    <span id="sub_summary_total_q" class="text-xs sm:text-sm font-black text-black">0</span>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center space-x-2.5 p-2.5 rounded-lg bg-emerald-100 border border-emerald-300">
-                                <div class="w-7 h-7 rounded-md bg-emerald-700 text-white flex items-center justify-center font-bold text-xs shrink-0">
-                                    ✓
-                                </div>
-                                <div>
-                                    <span class="block text-[10px] font-extrabold text-black uppercase">Correct Answers</span>
-                                    <span id="sub_summary_correct_cnt" class="text-xs sm:text-sm font-black text-black">0</span>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center space-x-2.5 p-2.5 rounded-lg bg-rose-100 border border-rose-300">
-                                <div class="w-7 h-7 rounded-md bg-rose-700 text-white flex items-center justify-center font-bold text-xs shrink-0">
-                                    ✕
-                                </div>
-                                <div>
-                                    <span class="block text-[10px] font-extrabold text-black uppercase">Wrong Answers</span>
-                                    <span id="sub_summary_wrong_cnt" class="text-xs sm:text-sm font-black text-black">0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Question Evaluation Details List -->
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between px-1">
-                            <h4 class="text-xs font-black text-black uppercase tracking-wider">Question Evaluation Details</h4>
-                            <span class="text-xs font-extrabold text-black">Review answers below</span>
-                        </div>
-
-                        <div id="sub_details_list" class="space-y-3 max-h-[380px] overflow-y-auto pr-1" style="max-height: 380px; overflow-y: auto;">
-                            <!-- Populated dynamically via JS -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Footer (Fixed at bottom) -->
-                <div class="p-3.5 bg-slate-100 border-t border-slate-200 flex justify-end shrink-0">
-                    <button type="button" onclick="document.getElementById('studentViewSubmissionModal').classList.add('hidden')" class="px-5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold shadow transition-all cursor-pointer">
-                        Close Evaluation
-                    </button>
-                </div>
-            </div>
-        </div>
 
         <script>
             function openStudentViewSubmissionModal(data) {
@@ -3173,7 +3081,7 @@
                             <label for="single_student_select_standard" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">Select Class Standard <span class="text-red-400">*</span></label>
                             <select id="single_student_select_standard" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm">
                                 <option value="">-- Choose Class Standard --</option>
-                                @foreach($standards as $std)
+                                @foreach($allStandardsForSelect ?? $standards as $std)
                                     @if($isAdmin || $std->created_by === $user->id)
                                         <option value="{{ $std->id }}">{{ $std->name }}</option>
                                     @endif
@@ -3352,8 +3260,277 @@
                     const modal = document.getElementById('assignSingleStudentModal');
                     if (modal) modal.classList.remove('hidden');
                 }
+
+                window.teacherStudentPerformanceMap = @json($teacherStudentPerformanceMap ?? []);
+
+                window.openStudentPerformanceModal = function(studentId) {
+                    const data = (window.teacherStudentPerformanceMap && window.teacherStudentPerformanceMap[studentId])
+                        ? window.teacherStudentPerformanceMap[studentId]
+                        : {
+                            student_id: studentId,
+                            student_name: 'Student #' + studentId,
+                            student_email: 'N/A',
+                            standard_name: 'Unassigned',
+                            total_exams: 0,
+                            completed_exams: 0,
+                            overall_percentage: 0,
+                            total_obtained_marks: 0,
+                            total_possible_marks: 0,
+                            exams: []
+                        };
+
+                    window.currentPerfData = data;
+
+                    document.getElementById('perf_student_name').textContent = (data.student_name || 'Student') + ' - Exams Performance';
+                    document.getElementById('perf_student_subtext').textContent = `Email: ${data.student_email || 'N/A'} | Class: ${data.standard_name || 'Unassigned'}`;
+
+                    document.getElementById('perf_total_exams_badge').textContent = `${data.total_exams || 0} Exam(s)`;
+                    document.getElementById('perf_completed_exams_badge').textContent = `${data.completed_exams || 0} Completed`;
+                    document.getElementById('perf_overall_score_badge').textContent = `${data.overall_percentage || 0}% (${data.total_obtained_marks || 0}/${data.total_possible_marks || 0})`;
+
+                    const container = document.getElementById('perf_exams_container');
+                    const exams = data.exams || [];
+
+                    if (exams.length === 0) {
+                        container.innerHTML = '<div class="p-8 text-center bg-slate-900/60 text-slate-400 text-xs">No exams found for this student.</div>';
+                    } else {
+                        let tableHtml = `
+                            <table class="w-full text-left text-xs text-slate-300">
+                                <thead class="bg-slate-950 text-slate-400 uppercase font-semibold text-[10px] tracking-wider border-b border-slate-800">
+                                    <tr>
+                                        <th class="px-4 py-3">Exam Name</th>
+                                        <th class="px-4 py-3">Status</th>
+                                        <th class="px-4 py-3">Score Obtained</th>
+                                        <th class="px-4 py-3">Percentage</th>
+                                        <th class="px-4 py-3 text-right">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-800/60 bg-slate-900">
+                        `;
+
+                        exams.forEach(ex => {
+                            const isCompleted = ex.status === 'Completed';
+                            const statusBadge = isCompleted
+                                ? '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Completed</span>'
+                                : '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-400 border border-slate-700">Not Attempted</span>';
+
+                            const pctColor = ex.percentage >= 80 ? 'text-emerald-400' : (ex.percentage >= 50 ? 'text-amber-400' : 'text-slate-400');
+
+                            const actionBtn = isCompleted
+                                ? `<button type="button" onclick="viewPerfExamSubmissionDetails(${ex.exam_id})" class="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-all shadow-md inline-flex items-center space-x-1 cursor-pointer">
+                                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                                     <span>View Breakdown</span>
+                                   </button>`
+                                : '<span class="text-[11px] text-slate-500 italic">Pending</span>';
+
+                            tableHtml += `
+                                <tr class="hover:bg-slate-800/40 transition-colors">
+                                    <td class="px-4 py-3.5 font-bold text-white">
+                                        <div>${ex.exam_name}</div>
+                                        <div class="text-[10px] text-slate-400 font-normal">${ex.questions_count} Question(s)</div>
+                                    </td>
+                                    <td class="px-4 py-3.5">${statusBadge}</td>
+                                    <td class="px-4 py-3.5 font-bold text-slate-200">${isCompleted ? ex.obtained_mark + ' / ' + ex.total_mark : '-'}</td>
+                                    <td class="px-4 py-3.5 font-extrabold ${pctColor}">${isCompleted ? ex.percentage + '%' : '-'}</td>
+                                    <td class="px-4 py-3.5 text-right">${actionBtn}</td>
+                                </tr>
+                            `;
+                        });
+
+                        tableHtml += '</tbody></table>';
+                        container.innerHTML = tableHtml;
+                    }
+
+                    const modal = document.getElementById('studentPerformanceModal');
+                    if (modal) {
+                        modal.classList.remove('hidden');
+                    }
+                };
+
+                window.viewPerfExamSubmissionDetails = function(examId) {
+                    if (!window.currentPerfData || !window.currentPerfData.exams) return;
+                    const ex = window.currentPerfData.exams.find(e => e.exam_id == examId);
+                    if (!ex) return;
+
+                    openStudentViewSubmissionModal({
+                        name: ex.exam_name,
+                        student_name: window.currentPerfData.student_name,
+                        obtained_mark: ex.obtained_mark,
+                        total_mark: ex.total_mark,
+                        details: ex.details || []
+                    });
+                };
             </script>
         @endif
+
+        <!-- STUDENT EXAM PERFORMANCE MODAL FOR TEACHERS & ADMIN -->
+        <div id="studentPerformanceModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto" style="z-index: 9000;">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-4xl overflow-hidden shadow-2xl my-8 flex flex-col max-h-[90vh]">
+                <div class="px-6 py-5 border-b border-slate-800 flex items-center justify-between bg-slate-950/60 shrink-0">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold flex items-center justify-center text-base shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                        </div>
+                        <div>
+                            <h3 id="perf_student_name" class="text-lg font-extrabold text-white">Student Exams Performance</h3>
+                            <p class="text-xs text-slate-400" id="perf_student_subtext">Individual exam results across all teacher assigned exams</p>
+                        </div>
+                    </div>
+                    <button type="button" onclick="document.getElementById('studentPerformanceModal').classList.add('hidden')" class="text-slate-400 hover:text-white transition-colors cursor-pointer p-1.5 rounded-lg hover:bg-slate-800">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="p-6 bg-slate-950/40 border-b border-slate-800/80 grid grid-cols-1 sm:grid-cols-3 gap-4 shrink-0">
+                    <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-slate-400 uppercase font-semibold">Exams Conducted</span>
+                            <h4 id="perf_total_exams_badge" class="text-xl font-extrabold text-white mt-1">0 Exams</h4>
+                        </div>
+                        <div class="p-2.5 rounded-lg bg-indigo-500/10 text-indigo-400">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-slate-400 uppercase font-semibold">Exams Completed</span>
+                            <h4 id="perf_completed_exams_badge" class="text-xl font-extrabold text-emerald-400 mt-1">0 Completed</h4>
+                        </div>
+                        <div class="p-2.5 rounded-lg bg-emerald-500/10 text-emerald-400">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-slate-400 uppercase font-semibold">Overall Score</span>
+                            <h4 id="perf_overall_score_badge" class="text-xl font-extrabold text-amber-400 mt-1">0%</h4>
+                        </div>
+                        <div class="p-2.5 rounded-lg bg-amber-500/10 text-amber-400">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 overflow-y-auto space-y-4 flex-1">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300">Exams Performance Breakdown</h4>
+                    <div id="perf_exams_container" class="overflow-x-auto rounded-xl border border-slate-800">
+                    </div>
+                </div>
+
+                <div class="px-6 py-4 bg-slate-950/80 border-t border-slate-800 flex justify-end shrink-0">
+                    <button type="button" onclick="document.getElementById('studentPerformanceModal').classList.add('hidden')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-semibold transition-colors cursor-pointer">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- GLOBAL SUBMISSION DETAILS MODAL FOR STUDENTS AND TEACHERS -->
+        <div id="studentViewSubmissionModal" class="hidden fixed inset-0 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 overflow-hidden" style="z-index: 9999;">
+            <div class="bg-white rounded-2xl w-full max-w-2xl max-h-[75vh] flex flex-col shadow-2xl border border-slate-200 text-slate-900 overflow-hidden transition-all">
+                
+                <!-- Header (Fixed at top) -->
+                <div class="px-5 py-3.5 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800 shrink-0">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center shrink-0 shadow-inner">
+                            <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 id="modal_top_exam_name" class="text-base sm:text-lg font-extrabold tracking-tight text-white line-clamp-1">Submitted Exam Performance</h3>
+                            <p class="text-[11px] sm:text-xs text-slate-400">Detailed question evaluation & marks breakdown</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-3 shrink-0">
+                        <div class="px-3 py-1 rounded-xl bg-emerald-950 border border-emerald-500/40 text-emerald-300 font-extrabold text-xs sm:text-sm flex items-center space-x-1.5 shadow-md">
+                            <span class="text-[10px] sm:text-xs text-slate-400 font-medium uppercase tracking-wider">Score:</span>
+                            <span id="modal_top_score_badge" class="font-mono text-sm sm:text-base text-emerald-400">0/0</span>
+                        </div>
+
+                        <button type="button" onclick="document.getElementById('studentViewSubmissionModal').classList.add('hidden')" class="text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg p-1.5 transition-colors cursor-pointer" title="Close Modal">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Scrollable Body -->
+                <div class="p-4 sm:p-5 space-y-4 bg-slate-50/50 flex-1 overflow-y-auto">
+                    
+                    <!-- Top Summary Banner -->
+                    <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm space-y-3">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
+                            <div>
+                                <span class="text-[10px] font-extrabold uppercase tracking-wider text-black">Exam Title</span>
+                                <h4 id="sub_exam_name" class="text-lg font-black text-black mt-0.5"></h4>
+                            </div>
+                            <div class="flex items-center space-x-2.5 shrink-0">
+                                <div class="px-3.5 py-1.5 rounded-xl bg-slate-900 text-white text-center shadow-md">
+                                    <span class="block text-[9px] font-extrabold uppercase tracking-wider text-white">Final Score</span>
+                                    <span id="sub_exam_score_heading" class="text-xl font-black text-emerald-400 font-mono tracking-tight">0/0</span>
+                                </div>
+                                <div id="sub_exam_percentage_badge" class="px-3.5 py-1.5 rounded-xl bg-emerald-100 text-black border border-emerald-300 font-black text-xs sm:text-sm text-center shadow-sm">
+                                    <!-- Dynamic % Badge -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Breakdown Pills -->
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                            <div class="flex items-center space-x-2.5 p-2.5 rounded-lg bg-slate-100 border border-slate-300">
+                                <div class="w-7 h-7 rounded-md bg-slate-900 text-white flex items-center justify-center font-bold text-xs shrink-0">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                </div>
+                                <div>
+                                    <span class="block text-[10px] font-extrabold text-black uppercase">Total Questions</span>
+                                    <span id="sub_summary_total_q" class="text-xs sm:text-sm font-black text-black">0</span>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-2.5 p-2.5 rounded-lg bg-emerald-100 border border-emerald-300">
+                                <div class="w-7 h-7 rounded-md bg-emerald-700 text-white flex items-center justify-center font-bold text-xs shrink-0">
+                                    ✓
+                                </div>
+                                <div>
+                                    <span class="block text-[10px] font-extrabold text-black uppercase">Correct Answers</span>
+                                    <span id="sub_summary_correct_cnt" class="text-xs sm:text-sm font-black text-black">0</span>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-2.5 p-2.5 rounded-lg bg-rose-100 border border-rose-300">
+                                <div class="w-7 h-7 rounded-md bg-rose-700 text-white flex items-center justify-center font-bold text-xs shrink-0">
+                                    ✕
+                                </div>
+                                <div>
+                                    <span class="block text-[10px] font-extrabold text-black uppercase">Wrong Answers</span>
+                                    <span id="sub_summary_wrong_cnt" class="text-xs sm:text-sm font-black text-black">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question Evaluation Details List -->
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between px-1">
+                            <h4 class="text-xs font-black text-black uppercase tracking-wider">Question Evaluation Details</h4>
+                            <span class="text-xs font-extrabold text-black">Review answers below</span>
+                        </div>
+
+                        <div id="sub_details_list" class="space-y-3 max-h-[380px] overflow-y-auto pr-1" style="max-height: 380px; overflow-y: auto;">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer (Fixed at bottom) -->
+                <div class="p-3.5 bg-slate-100 border-t border-slate-200 flex justify-end shrink-0">
+                    <button type="button" onclick="document.getElementById('studentViewSubmissionModal').classList.add('hidden')" class="px-5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold shadow transition-all cursor-pointer">
+                        Close Evaluation
+                    </button>
+                </div>
+            </div>
+        </div>
 
         <x-exam-leaderboard-modal />
 

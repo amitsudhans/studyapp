@@ -22,10 +22,14 @@ class ExamController extends Controller
     {
         $user = $request->user();
 
-        $exams = Exam::with(['creator', 'questions.standard', 'questions.answers', 'standards'])
-            ->withCount('studentExamDetails')
-            ->latest()
-            ->paginate(10);
+        $examsQuery = Exam::with(['creator', 'questions.standard', 'questions.answers', 'standards'])
+            ->withCount('studentExamDetails');
+
+        if ($user && $user->isTeacher() && ! $user->isAdmin()) {
+            $examsQuery->where('created_by', $user->id);
+        }
+
+        $exams = $examsQuery->latest()->paginate(10);
 
         $availableQuestions = Question::with(['standard', 'subject', 'chapter', 'topic', 'answers', 'creator'])
             ->latest()
@@ -48,6 +52,10 @@ class ExamController extends Controller
     public function show(Exam $exam): View
     {
         $user = request()->user();
+
+        if ($user && $user->isTeacher() && ! $user->isAdmin() && (int) $exam->created_by !== (int) $user->id) {
+            abort(403, 'Teachers can only view exams created by themselves.');
+        }
         $exam->load(['creator', 'questions.standard', 'questions.answers', 'standards']);
         $exam->loadCount('studentExamDetails');
 
@@ -145,6 +153,10 @@ class ExamController extends Controller
     {
         $user = $request->user();
 
+        if ($user && $user->isTeacher() && ! $user->isAdmin() && (int) $exam->created_by !== (int) $user->id) {
+            abort(403, 'Teachers can only modify exams created by themselves.');
+        }
+
         if ($exam->studentExamDetails()->exists()) {
             return back()->withErrors(['name' => 'This exam cannot be modified because students have already taken it.']);
         }
@@ -236,6 +248,11 @@ class ExamController extends Controller
      */
     public function destroy(Exam $exam): RedirectResponse
     {
+        $user = request()->user();
+        if ($user && $user->isTeacher() && ! $user->isAdmin() && (int) $exam->created_by !== (int) $user->id) {
+            abort(403, 'Teachers can only delete exams created by themselves.');
+        }
+
         if ($exam->studentExamDetails()->exists()) {
             return back()->withErrors(['error' => 'This exam cannot be deleted because students have already taken it.']);
         }

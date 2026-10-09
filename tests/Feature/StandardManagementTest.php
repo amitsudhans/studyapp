@@ -227,4 +227,55 @@ class StandardManagementTest extends TestCase
 
         $response->assertStatus(403);
     }
+
+    public function test_admin_can_see_and_manage_all_standards_including_delete_and_search(): void
+    {
+        $syllabus = Syllabus::create(['name' => 'CBSE']);
+
+        $admin = User::factory()->create(['email' => 'admin@example.com']);
+        UserProfile::create(['user_id' => $admin->id, 'type' => 3]);
+
+        $teacher = User::factory()->create();
+        UserProfile::create(['user_id' => $teacher->id, 'type' => 1]);
+
+        $teacherStandard = Standard::create([
+            'name' => 'Teacher Standard For Admin Test',
+            'syllabus_id' => $syllabus->id,
+            'created_by' => $teacher->id,
+        ]);
+
+        $adminStandard = Standard::create([
+            'name' => 'Admin Custom Class',
+            'syllabus_id' => $syllabus->id,
+            'created_by' => $admin->id,
+        ]);
+
+        // 1. Admin dashboard sees all standards
+        $response = $this->actingAs($admin)->get('/dashboard?standards_page=1');
+        $response->assertStatus(200);
+        $response->assertSee('Teacher Standard For Admin Test');
+        $response->assertSee('Admin Custom Class');
+
+        // 2. Admin search filter
+        $searchResponse = $this->actingAs($admin)->get('/dashboard?standards_search=Admin+Custom');
+        $searchResponse->assertStatus(200);
+        $searchResponse->assertSee('Admin Custom Class');
+
+        // 3. Admin can edit teacher created standard
+        $editResponse = $this->actingAs($admin)->put("/standards/{$teacherStandard->id}", [
+            'name' => 'Updated By Admin',
+        ]);
+        $editResponse->assertRedirect();
+        $this->assertDatabaseHas('standards', [
+            'id' => $teacherStandard->id,
+            'name' => 'Updated By Admin',
+        ]);
+
+        // 4. Admin can delete standard
+        $deleteResponse = $this->actingAs($admin)->delete("/standards/{$teacherStandard->id}");
+        $deleteResponse->assertRedirect();
+        $this->assertDatabaseMissing('standards', [
+            'id' => $teacherStandard->id,
+        ]);
+    }
 }

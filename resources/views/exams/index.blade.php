@@ -107,7 +107,11 @@
                                         <h4 class="text-base font-bold text-white group-hover:text-indigo-300 transition-colors flex items-center space-x-2">
                                             <span>{{ $exam->name }}</span>
                                         </h4>
-                                        <p class="text-xs text-slate-400 mt-0.5">Click to view exam details & actions</p>
+                                        <p class="text-xs text-slate-400 mt-0.5">
+                                            Teacher: <strong class="text-sky-300">{{ $exam->creator?->name ?? 'System' }}</strong>
+                                            <span class="text-slate-500 mx-1">&bull;</span>
+                                            Click to view exam details & actions
+                                        </p>
                                     </div>
                                 </div>
 

@@ -92,13 +92,14 @@ class AdminUserController extends Controller
             ]);
 
             if ($type === 2) { // Student: type = 2, don't insert data to teacher_standards
-                $stdId = $validated['standard_id'] ?? ($validated['standards'][0] ?? null);
-                if ($stdId) {
+                $stds = ! empty($validated['standards']) ? $validated['standards'] : (isset($validated['standard_id']) ? [$validated['standard_id']] : []);
+                if (! empty($stds)) {
+                    $user->studentStandards()->sync($stds);
                     Student::updateOrCreate(
                         ['id' => $user->id],
                         [
                             'name' => $validated['name'],
-                            'standard_id' => $stdId,
+                            'standard_id' => $stds[0],
                         ]
                     );
                 }
@@ -185,24 +186,26 @@ class AdminUserController extends Controller
                 ]
             );
 
-            if ($type === 2) { // Student: type = 2
+            if ($type === 2) { // Student: type = 2, don't insert data to teacher_standards
                 $user->standards()->detach();
-
-                $stdId = $validated['standard_id'] ?? ($validated['standards'][0] ?? null);
-                if ($stdId) {
+                $stds = ! empty($validated['standards']) ? $validated['standards'] : (isset($validated['standard_id']) ? [$validated['standard_id']] : []);
+                if (! empty($stds)) {
+                    $user->studentStandards()->sync($stds);
                     Student::updateOrCreate(
                         ['id' => $user->id],
                         [
                             'name' => $validated['name'],
-                            'standard_id' => $stdId,
+                            'standard_id' => $stds[0],
                         ]
                     );
                 }
             } elseif ($type === 1) { // Teacher: type = 1
                 Student::where('id', $user->id)->delete();
+                DB::table('student_standards')->where('student_id', $user->id)->delete();
                 $user->standards()->sync($validated['standards'] ?? []);
             } else { // Administrator: type = 3
                 Student::where('id', $user->id)->delete();
+                DB::table('student_standards')->where('student_id', $user->id)->delete();
                 $user->standards()->detach();
             }
         });

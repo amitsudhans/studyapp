@@ -237,11 +237,45 @@ in question management search also i need search wiht ,subject,standard,chapter,
 
 in adding questions to exam create and edit also i need also i need search with ,
 subject,standard,chapter,topic
+admin should see and mangement all the standards
+in teacher dashboard remove links which aligns to right
+Standards Directory
+
+Add Standard
+Create / Manage Exams
+Question Bank
+Sign Out
+can you tell me what all things
+additionally needed for business proffit in this app dont change code just tell me
+teacher should see individual students performance for that teacher given all Exams for each students
+
+Exams Performance Breakdown - view breakdown is not opening
+inteacher dashboard Class Standards teacher should be able to see assigned to him standards
+and he created standards only
+
+change the directory text in teacher dashboard to manage Standards
+Teacher and admin should not be able to delete group with students in it
+SQLSTATE[23000]: Integrity constraint violation: 1048 Column
+'standard_id' cannot be null (Connection: mysql, Host: 127.0.0.1, Port: 3306,
+Database: study-app, SQL: update `students` set `standard_id` = ?,
+`students`.`updated_at` = 2026-10-09 07:47:50 where `standard_id` = 11 and `id` not in (20, 32, 18, 27, 23, 29, 15, 17))
+
+for every teacher admin creates a standard and assign students
+ok teacher wiull get only that students no other students wull get from dash board anywhere
+
+there shoud be one more table
+student_standards , id,student,standard
+pls dont remove my existing data
+the student can have in multiple standards
+can you do like like this
+dont remove standard_id in students table make it nullabe
+in Students in My Classes if a student
+is assigned more than one standard only one standard is seen now
+each teacher should see his/her exams only
+admin should see all the exams + name of the teacher who conduct the exam
 
 kkskkskkskks
-
-napmkkkvs
-
+napmkkkvs,kdsnpsnkns
 
 
 

@@ -40,10 +40,12 @@ class ChatController extends Controller
 
             $query->where(function ($q) use ($allTeacherStandardIds, $chatUserIds) {
                 if (! empty($allTeacherStandardIds)) {
-                    $q->whereHas('student', fn ($st) => $st->whereIn('standard_id', $allTeacherStandardIds));
+                    $q->where(function ($sub) use ($allTeacherStandardIds) {
+                        $sub->whereHas('studentStandards', fn ($st) => $st->whereIn('standards.id', $allTeacherStandardIds))
+                            ->orWhereHas('student', fn ($st) => $st->whereIn('standard_id', $allTeacherStandardIds));
+                    });
                 } else {
-                    $q->whereHas('profile', fn ($p) => $p->where('type', 2))
-                        ->orWhereHas('student');
+                    $q->whereRaw('1 = 0');
                 }
 
                 $q->orWhereHas('profile', fn ($p) => $p->whereIn('type', [1, 3, 0, 99]))
@@ -51,14 +53,17 @@ class ChatController extends Controller
                     ->orWhereIn('id', $chatUserIds);
             });
         } elseif ($currentUser->isStudent()) {
-            // Students ONLY see teachers assigned to their class standard (or contacts with existing chat history)
-            $studentStandardId = $currentUser->student?->standard_id;
+            // Students ONLY see teachers assigned to their class standards (or contacts with existing chat history)
+            $studentStandardIds = $currentUser->studentStandards->pluck('id')
+                ->merge(array_filter([$currentUser->student?->standard_id]))
+                ->unique()
+                ->toArray();
 
-            $query->where(function ($q) use ($studentStandardId, $chatUserIds) {
-                if ($studentStandardId) {
-                    $q->where(function ($sub) use ($studentStandardId) {
-                        $sub->whereHas('standards', fn ($s) => $s->where('standards.id', $studentStandardId))
-                            ->orWhereIn('id', Standard::where('id', $studentStandardId)->pluck('created_by')->filter()->toArray());
+            $query->where(function ($q) use ($studentStandardIds, $chatUserIds) {
+                if (! empty($studentStandardIds)) {
+                    $q->where(function ($sub) use ($studentStandardIds) {
+                        $sub->whereHas('standards', fn ($s) => $s->whereIn('standards.id', $studentStandardIds))
+                            ->orWhereIn('id', Standard::whereIn('id', $studentStandardIds)->pluck('created_by')->filter()->toArray());
                     });
                 } else {
                     $q->whereHas('profile', fn ($p) => $p->where('type', 1));

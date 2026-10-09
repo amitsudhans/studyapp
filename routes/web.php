@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
     // Standards Management Routes
     Route::post('/standards', [StandardController::class, 'store'])->name('standards.store');
     Route::put('/standards/{standard}', [StandardController::class, 'update'])->name('standards.update');
+    Route::delete('/standards/{standard}', [StandardController::class, 'destroy'])->name('standards.destroy');
     Route::post('/standards/{standard}/assign-students', [StandardController::class, 'assignStudents'])->name('standards.assign-students');
 
     // Questions Management Routes
