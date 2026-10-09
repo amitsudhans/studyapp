@@ -105,35 +105,29 @@ class DashboardController extends Controller
         } else {
             $teacherStandardIds = $user->standards->pluck('id')->toArray();
             if (! empty($teacherStandardIds)) {
-                $hasFilter = $request->filled('search') || $request->filled('standard_id');
+                $query = User::whereHas('student', function ($query) use ($teacherStandardIds) {
+                    $query->whereIn('standard_id', $teacherStandardIds);
+                });
 
-                if ($hasFilter) {
-                    $query = User::whereHas('student', function ($query) use ($teacherStandardIds) {
-                        $query->whereIn('standard_id', $teacherStandardIds);
+                if ($request->filled('search')) {
+                    $search = trim($request->input('search'));
+                    $query->where(function ($q) use ($search) {
+                        $q->where('name', 'like', "%{$search}%")
+                            ->orWhere('email', 'like', "%{$search}%");
                     });
-
-                    if ($request->filled('search')) {
-                        $search = trim($request->input('search'));
-                        $query->where(function ($q) use ($search) {
-                            $q->where('name', 'like', "%{$search}%")
-                                ->orWhere('email', 'like', "%{$search}%");
-                        });
-                    }
-
-                    if ($request->filled('standard_id')) {
-                        $selectedStandardId = (int) $request->input('standard_id');
-                        $query->whereHas('student', function ($q) use ($selectedStandardId) {
-                            $q->where('standard_id', $selectedStandardId);
-                        });
-                    }
-
-                    $teacherStudents = $query->with(['profile', 'student.standard'])
-                        ->latest()
-                        ->paginate(10)
-                        ->appends($request->query());
-                } else {
-                    $teacherStudents = User::whereRaw('1 = 0')->paginate(10);
                 }
+
+                if ($request->filled('standard_id')) {
+                    $selectedStandardId = (int) $request->input('standard_id');
+                    $query->whereHas('student', function ($q) use ($selectedStandardId) {
+                        $q->where('standard_id', $selectedStandardId);
+                    });
+                }
+
+                $teacherStudents = $query->with(['profile', 'student.standard'])
+                    ->latest()
+                    ->paginate(10)
+                    ->appends($request->query());
 
                 $teacherStudentsCount = User::whereHas('student', function ($query) use ($teacherStandardIds) {
                     $query->whereIn('standard_id', $teacherStandardIds);

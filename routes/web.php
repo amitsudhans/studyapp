@@ -2,12 +2,12 @@
 
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\StandardController;
 use App\Http\Controllers\StudentExamController;
-use App\Http\Controllers\ChatController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -47,6 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/exams', [ExamController::class, 'index'])->name('exams.index');
     Route::post('/exams', [ExamController::class, 'store'])->name('exams.store');
     Route::get('/exams/{exam}', [ExamController::class, 'show'])->name('exams.show');
+    Route::get('/exams/{exam}/leaderboard', [ExamController::class, 'leaderboard'])->name('exams.leaderboard');
     Route::put('/exams/{exam}', [ExamController::class, 'update'])->name('exams.update');
     Route::delete('/exams/{exam}', [ExamController::class, 'destroy'])->name('exams.destroy');
     Route::post('/exams/{exam}/questions', [ExamController::class, 'addQuestions'])->name('exams.questions.add');

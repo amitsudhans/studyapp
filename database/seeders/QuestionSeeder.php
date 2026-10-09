@@ -238,6 +238,8 @@ class QuestionSeeder extends Seeder
             $createdCount++;
         }
 
+        (new AssignSubjectChapterTopicToQuestionsSeeder)->run();
+
         $this->command->info("Successfully seeded {$createdCount} questions into the database.");
     }
 }

@@ -13,7 +13,7 @@
                         Questions & Answers Management
                     </h1>
                     <p class="mt-2 text-slate-300 text-sm max-w-xl">
-                        Create, manage, and edit questions with options across standards.
+                        Create, search, and manage questions classified by Standard, Subject, Chapter, and Topic.
                     </p>
                 </div>
 
@@ -35,6 +35,81 @@
             </div>
         </div>
 
+        <!-- Search & Filter Section -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 class="text-base font-bold text-white flex items-center space-x-2">
+                    <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
+                    <span>Search & Filter Question Bank</span>
+                </h3>
+                @if(request()->anyFilled(['search', 'standard_id', 'subject_id', 'chapter_id', 'topic_id']))
+                    <a href="{{ route('questions.index') }}" class="text-xs text-amber-400 hover:text-amber-300 font-semibold underline flex items-center space-x-1">
+                        <span>Clear All Filters</span>
+                    </a>
+                @endif
+            </div>
+
+            <form method="GET" action="{{ route('questions.index') }}" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
+                <!-- Text Search Input -->
+                <div class="lg:col-span-2">
+                    <label for="filter_search" class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Search Prompt</label>
+                    <input type="text" id="filter_search" name="search" value="{{ request('search') }}" placeholder="Search prompt or description..." class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs focus:outline-none focus:border-indigo-500">
+                </div>
+
+                <!-- Standard Filter -->
+                <div>
+                    <label for="filter_standard" class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Standard</label>
+                    <select id="filter_standard" name="standard_id" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs focus:outline-none focus:border-indigo-500">
+                        <option value="">All Standards</option>
+                        @foreach($standards as $std)
+                            <option value="{{ $std->id }}" {{ request('standard_id') == $std->id ? 'selected' : '' }}>{{ $std->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Subject Filter -->
+                <div>
+                    <label for="filter_subject" class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Subject</label>
+                    <select id="filter_subject" name="subject_id" onchange="filterChapters('filter', this.value)" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs focus:outline-none focus:border-indigo-500">
+                        <option value="">All Subjects</option>
+                        @foreach($subjects as $sbj)
+                            <option value="{{ $sbj->id }}" {{ request('subject_id') == $sbj->id ? 'selected' : '' }}>{{ $sbj->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Chapter Filter -->
+                <div>
+                    <label for="filter_chapter" class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Chapter</label>
+                    <select id="filter_chapter" name="chapter_id" onchange="filterTopics('filter', this.value)" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs focus:outline-none focus:border-indigo-500">
+                        <option value="">All Chapters</option>
+                        @foreach($chapters as $ch)
+                            <option value="{{ $ch->id }}" {{ request('chapter_id') == $ch->id ? 'selected' : '' }}>{{ $ch->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Topic Filter -->
+                <div>
+                    <label for="filter_topic" class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Topic</label>
+                    <select id="filter_topic" name="topic_id" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs focus:outline-none focus:border-indigo-500">
+                        <option value="">All Topics</option>
+                        @foreach($topics as $tp)
+                            <option value="{{ $tp->id }}" {{ request('topic_id') == $tp->id ? 'selected' : '' }}>{{ $tp->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Submit Filter Button -->
+                <div class="lg:col-span-6 flex justify-end space-x-2 pt-2">
+                    <button type="submit" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-md transition-all cursor-pointer flex items-center space-x-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        <span>Apply Search Filters</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
         <!-- Questions Listing Directory -->
         <div class="bg-slate-900 border border-slate-800 rounded-2xl shadow-xl overflow-hidden">
             <div class="px-6 py-5 border-b border-slate-800 flex items-center justify-between">
@@ -48,6 +123,8 @@
                         <tr class="bg-slate-950/60 border-b border-slate-800 text-slate-400 uppercase text-[11px] font-semibold tracking-wider">
                             <th class="py-3.5 px-6">Question Name</th>
                             <th class="py-3.5 px-6">Standard</th>
+                            <th class="py-3.5 px-6">Subject & Chapter</th>
+                            <th class="py-3.5 px-6">Topic</th>
                             <th class="py-3.5 px-6">Type</th>
                             <th class="py-3.5 px-6">Marks</th>
                             <th class="py-3.5 px-6">Answers Options</th>
@@ -68,6 +145,32 @@
                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-slate-800 text-slate-200 border border-slate-700">
                                         {{ $q->standard?->name ?? 'N/A' }}
                                     </span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex flex-col space-y-1">
+                                        @if($q->subject)
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 w-max">
+                                                📚 {{ $q->subject->name }}
+                                            </span>
+                                        @else
+                                            <span class="text-xs text-slate-500 italic">No Subject</span>
+                                        @endif
+
+                                        @if($q->chapter)
+                                            <span class="text-xs text-slate-300 font-medium">
+                                                📖 {{ $q->chapter->name }}
+                                            </span>
+                                        @endif
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6">
+                                    @if($q->topic)
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                                            🏷️ {{ $q->topic->name }}
+                                        </span>
+                                    @else
+                                        <span class="text-xs text-slate-500 italic">No Topic</span>
+                                    @endif
                                 </td>
                                 <td class="py-4 px-6">
                                     @if($q->type == 1)
@@ -109,6 +212,9 @@
                                         'name' => $q->name,
                                         'description' => $q->description ?? '',
                                         'standard_id' => $q->standard_id,
+                                        'subject_id' => $q->subject_id,
+                                        'chapter_id' => $q->chapter_id,
+                                        'topic_id' => $q->topic_id,
                                         'type' => $q->type,
                                         'marks' => $q->marks,
                                         'answers' => $q->answers->map(fn($a) => ['id' => $a->id, 'name' => $a->name, 'is_correct' => $a->is_correct])->toArray(),
@@ -129,8 +235,8 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7" class="py-8 text-center text-slate-500">
-                                    No questions created yet. Click "Add Question" to create one.
+                                <td colspan="9" class="py-8 text-center text-slate-500">
+                                    No questions matching your search filters. Try adjusting your filters or click "Add Question" to create one.
                                 </td>
                             </tr>
                         @endforelse
@@ -179,11 +285,12 @@
                         @enderror
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <!-- Subject, Chapter, Topic Selection Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 p-4 rounded-xl bg-slate-950/60 border border-slate-800">
                         <!-- Standard Select (Required) -->
                         <div>
                             <label for="create_q_standard" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Standard <span class="text-red-400">*</span></label>
-                            <select id="create_q_standard" name="standard_id" required class="w-full px-3.5 py-2.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm @error('standard_id') border-red-500 focus:ring-red-500 @enderror">
+                            <select id="create_q_standard" name="standard_id" required class="w-full px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs @error('standard_id') border-red-500 focus:ring-red-500 @enderror">
                                 <option value="" disabled {{ old('standard_id') ? '' : 'selected' }}>Select Standard</option>
                                 @foreach($standards as $std)
                                     <option value="{{ $std->id }}" {{ old('standard_id') == $std->id ? 'selected' : '' }}>{{ $std->name }}</option>
@@ -194,6 +301,50 @@
                             @enderror
                         </div>
 
+                        <!-- Subject Select (Optional) -->
+                        <div>
+                            <label for="create_subject" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Subject</label>
+                            <select id="create_subject" name="subject_id" onchange="filterChapters('create', this.value)" class="w-full px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs @error('subject_id') border-red-500 focus:ring-red-500 @enderror">
+                                <option value="">Select Subject</option>
+                                @foreach($subjects as $sbj)
+                                    <option value="{{ $sbj->id }}" {{ old('subject_id') == $sbj->id ? 'selected' : '' }}>{{ $sbj->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('subject_id')
+                                <p class="mt-1 text-xs text-red-400">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Chapter Select (Optional) -->
+                        <div>
+                            <label for="create_chapter" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Chapter</label>
+                            <select id="create_chapter" name="chapter_id" onchange="filterTopics('create', this.value)" class="w-full px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs @error('chapter_id') border-red-500 focus:ring-red-500 @enderror">
+                                <option value="">Select Chapter</option>
+                                @foreach($chapters as $ch)
+                                    <option value="{{ $ch->id }}" {{ old('chapter_id') == $ch->id ? 'selected' : '' }}>{{ $ch->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('chapter_id')
+                                <p class="mt-1 text-xs text-red-400">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Topic Select (Optional) -->
+                        <div>
+                            <label for="create_topic" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Topic</label>
+                            <select id="create_topic" name="topic_id" class="w-full px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs @error('topic_id') border-red-500 focus:ring-red-500 @enderror">
+                                <option value="">Select Topic</option>
+                                @foreach($topics as $tp)
+                                    <option value="{{ $tp->id }}" {{ old('topic_id') == $tp->id ? 'selected' : '' }}>{{ $tp->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('topic_id')
+                                <p class="mt-1 text-xs text-red-400">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <!-- Type Select (Required) -->
                         <div>
                             <label for="create_q_type" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Question Type <span class="text-red-400">*</span></label>
@@ -295,11 +446,12 @@
                         @enderror
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <!-- Subject, Chapter, Topic Selection Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 p-4 rounded-xl bg-slate-950/60 border border-slate-800">
                         <!-- Standard Select (Required) -->
                         <div>
                             <label for="edit_q_standard" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Standard <span class="text-red-400">*</span></label>
-                            <select id="edit_q_standard" name="standard_id" required class="w-full px-3.5 py-2.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm @error('standard_id') border-red-500 focus:ring-red-500 @enderror">
+                            <select id="edit_q_standard" name="standard_id" required class="w-full px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs @error('standard_id') border-red-500 focus:ring-red-500 @enderror">
                                 @foreach($standards as $std)
                                     <option value="{{ $std->id }}" {{ old('_method') === 'PUT' && old('standard_id') == $std->id ? 'selected' : '' }}>{{ $std->name }}</option>
                                 @endforeach
@@ -309,6 +461,50 @@
                             @enderror
                         </div>
 
+                        <!-- Subject Select (Optional) -->
+                        <div>
+                            <label for="edit_subject" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Subject</label>
+                            <select id="edit_subject" name="subject_id" onchange="filterChapters('edit', this.value)" class="w-full px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs @error('subject_id') border-red-500 focus:ring-red-500 @enderror">
+                                <option value="">Select Subject</option>
+                                @foreach($subjects as $sbj)
+                                    <option value="{{ $sbj->id }}" {{ old('_method') === 'PUT' && old('subject_id') == $sbj->id ? 'selected' : '' }}>{{ $sbj->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('subject_id')
+                                <p class="mt-1 text-xs text-red-400">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Chapter Select (Optional) -->
+                        <div>
+                            <label for="edit_chapter" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Chapter</label>
+                            <select id="edit_chapter" name="chapter_id" onchange="filterTopics('edit', this.value)" class="w-full px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs @error('chapter_id') border-red-500 focus:ring-red-500 @enderror">
+                                <option value="">Select Chapter</option>
+                                @foreach($chapters as $ch)
+                                    <option value="{{ $ch->id }}" {{ old('_method') === 'PUT' && old('chapter_id') == $ch->id ? 'selected' : '' }}>{{ $ch->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('chapter_id')
+                                <p class="mt-1 text-xs text-red-400">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Topic Select (Optional) -->
+                        <div>
+                            <label for="edit_topic" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Topic</label>
+                            <select id="edit_topic" name="topic_id" class="w-full px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs @error('topic_id') border-red-500 focus:ring-red-500 @enderror">
+                                <option value="">Select Topic</option>
+                                @foreach($topics as $tp)
+                                    <option value="{{ $tp->id }}" {{ old('_method') === 'PUT' && old('topic_id') == $tp->id ? 'selected' : '' }}>{{ $tp->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('topic_id')
+                                <p class="mt-1 text-xs text-red-400">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <!-- Type Select (Required) -->
                         <div>
                             <label for="edit_q_type" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Question Type <span class="text-red-400">*</span></label>
@@ -375,6 +571,100 @@
         </div>
 
         <script>
+            const subjectsData = @json($subjectsData);
+            const allChaptersData = @json($chapters);
+            const allTopicsData = @json($topics);
+
+            function filterChapters(prefix, selectedSubjectId, selectedChapterId = null) {
+                const chapterSelect = document.getElementById(prefix + '_chapter');
+                const topicSelect = document.getElementById(prefix + '_topic');
+
+                if (!chapterSelect) return;
+
+                const defaultText = prefix === 'filter' ? 'All Chapters' : 'Select Chapter';
+                chapterSelect.innerHTML = `<option value="">${defaultText}</option>`;
+
+                if (topicSelect) {
+                    const defaultTopicText = prefix === 'filter' ? 'All Topics' : 'Select Topic';
+                    topicSelect.innerHTML = `<option value="">${defaultTopicText}</option>`;
+                }
+
+                if (!selectedSubjectId) {
+                    allChaptersData.forEach(ch => {
+                        const opt = document.createElement('option');
+                        opt.value = ch.id;
+                        opt.textContent = ch.name;
+                        if (selectedChapterId && parseInt(selectedChapterId) === parseInt(ch.id)) opt.selected = true;
+                        chapterSelect.appendChild(opt);
+                    });
+
+                    if (selectedChapterId && topicSelect) {
+                        filterTopics(prefix, selectedChapterId);
+                    }
+                    return;
+                }
+
+                const subject = subjectsData.find(s => parseInt(s.id) === parseInt(selectedSubjectId));
+                if (subject && subject.chapters) {
+                    subject.chapters.forEach(ch => {
+                        const opt = document.createElement('option');
+                        opt.value = ch.id;
+                        opt.textContent = ch.name;
+                        if (selectedChapterId && parseInt(selectedChapterId) === parseInt(ch.id)) opt.selected = true;
+                        chapterSelect.appendChild(opt);
+                    });
+                }
+
+                if (selectedChapterId && topicSelect) {
+                    filterTopics(prefix, selectedChapterId);
+                }
+            }
+
+            function filterTopics(prefix, selectedChapterId, selectedTopicId = null) {
+                const topicSelect = document.getElementById(prefix + '_topic');
+                if (!topicSelect) return;
+
+                const defaultTopicText = prefix === 'filter' ? 'All Topics' : 'Select Topic';
+                topicSelect.innerHTML = `<option value="">${defaultTopicText}</option>`;
+
+                if (!selectedChapterId) {
+                    allTopicsData.forEach(tp => {
+                        const opt = document.createElement('option');
+                        opt.value = tp.id;
+                        opt.textContent = tp.name;
+                        if (selectedTopicId && parseInt(selectedTopicId) === parseInt(tp.id)) opt.selected = true;
+                        topicSelect.appendChild(opt);
+                    });
+                    return;
+                }
+
+                let targetTopics = [];
+                subjectsData.forEach(s => {
+                    if (s.chapters) {
+                        const ch = s.chapters.find(c => parseInt(c.id) === parseInt(selectedChapterId));
+                        if (ch && ch.topics) {
+                            targetTopics = ch.topics;
+                        }
+                    }
+                });
+
+                if (targetTopics.length === 0) {
+                    allTopicsData.forEach(tp => {
+                        if (parseInt(tp.chapter_id) === parseInt(selectedChapterId)) {
+                            targetTopics.push(tp);
+                        }
+                    });
+                }
+
+                targetTopics.forEach(tp => {
+                    const opt = document.createElement('option');
+                    opt.value = tp.id;
+                    opt.textContent = tp.name;
+                    if (selectedTopicId && parseInt(selectedTopicId) === parseInt(tp.id)) opt.selected = true;
+                    topicSelect.appendChild(opt);
+                });
+            }
+
             function toggleAnswersSection(prefix, typeVal) {
                 const container = document.getElementById(prefix + '_answers_container');
                 if (container) {
@@ -396,6 +686,11 @@
                 document.getElementById('edit_q_type').value = data.type || 1;
                 document.getElementById('edit_q_marks').value = data.marks !== undefined ? data.marks : 1;
 
+                // Cascading Subject, Chapter, Topic selections
+                document.getElementById('edit_subject').value = data.subject_id || '';
+                filterChapters('edit', data.subject_id || '', data.chapter_id || '');
+                filterTopics('edit', data.chapter_id || '', data.topic_id || '');
+
                 toggleAnswersSection('edit', data.type || 1);
 
                 // Pre-fill answer slots (up to 4)
@@ -415,15 +710,33 @@
                 document.getElementById('editQuestionModal').classList.remove('hidden');
             }
 
+            // Maintain current filter selections on page load
+            document.addEventListener('DOMContentLoaded', function() {
+                const currentSubj = "{{ request('subject_id') }}";
+                const currentChap = "{{ request('chapter_id') }}";
+                const currentTopic = "{{ request('topic_id') }}";
+
+                if (currentSubj) {
+                    filterChapters('filter', currentSubj, currentChap);
+                }
+                if (currentChap) {
+                    filterTopics('filter', currentChap, currentTopic);
+                }
+            });
+
             @if($isEditModalOpen)
                 document.addEventListener('DOMContentLoaded', function() {
                     toggleAnswersSection('edit', "{{ old('type', 1) }}");
+                    filterChapters('edit', "{{ old('subject_id') }}", "{{ old('chapter_id') }}");
+                    filterTopics('edit', "{{ old('chapter_id') }}", "{{ old('topic_id') }}");
                 });
             @endif
 
             @if($isCreateModalOpen)
                 document.addEventListener('DOMContentLoaded', function() {
                     toggleAnswersSection('create', "{{ old('type', 1) }}");
+                    filterChapters('create', "{{ old('subject_id') }}", "{{ old('chapter_id') }}");
+                    filterTopics('create', "{{ old('chapter_id') }}", "{{ old('topic_id') }}");
                 });
             @endif
         </script>

@@ -216,7 +216,27 @@ There should be a chat option where teacher can chat to students which will come
 student can also give reply
 create tables for this if you are doing migrations dont remove any of existing datas
 teacher side chat message is not ok
+Students only see and send his standard got teachers chats only
+only show his teacher in chat to students
 
+i want leader board for each exams submitted
+Can you create chapter master table named chapters-id,name,subject,syllabus
+and subject master tables named subjects id,name,syllabus
+and topic master table table name topics - id,name,chapter
+and enter some chapters and topics under cbse
+pls dont remove my existing data
+
+can you change question table with stadard_id,
+subject,chapter, topic and give existing questions all of this
+pls dont remove my existing data
+
+
+can you integrate this in design while creating and editing questions also
+in question management search also i need search wiht ,subject,standard,chapter,topic
+
+
+in adding questions to exam create and edit also i need also i need search with ,
+subject,standard,chapter,topic
 
 kkskkskkskks
 

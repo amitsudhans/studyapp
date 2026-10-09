@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['name', 'description', 'standard_id', 'type', 'created_by', 'marks', 'status'])]
+#[Fillable(['name', 'description', 'standard_id', 'subject_id', 'chapter_id', 'topic_id', 'type', 'created_by', 'marks', 'status'])]
 class Question extends Model
 {
     use HasFactory;
@@ -22,6 +22,36 @@ class Question extends Model
     public function standard(): BelongsTo
     {
         return $this->belongsTo(Standard::class);
+    }
+
+    /**
+     * Get the subject associated with the question.
+     *
+     * @return BelongsTo<Subject, $this>
+     */
+    public function subject(): BelongsTo
+    {
+        return $this->belongsTo(Subject::class);
+    }
+
+    /**
+     * Get the chapter associated with the question.
+     *
+     * @return BelongsTo<Chapter, $this>
+     */
+    public function chapter(): BelongsTo
+    {
+        return $this->belongsTo(Chapter::class);
+    }
+
+    /**
+     * Get the topic associated with the question.
+     *
+     * @return BelongsTo<Topic, $this>
+     */
+    public function topic(): BelongsTo
+    {
+        return $this->belongsTo(Topic::class);
     }
 
     /**

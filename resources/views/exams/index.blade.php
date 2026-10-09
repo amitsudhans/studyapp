@@ -228,6 +228,10 @@
                                             <span>View</span>
                                         </button>
 
+                                        <button type="button" onclick="openExamLeaderboardModal({{ $exam->id }}, '{{ addslashes($exam->name) }}')" class="px-3.5 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-bold border border-amber-500/40 transition-colors inline-flex items-center space-x-1 cursor-pointer">
+                                            <span>🏆 Leaderboard</span>
+                                        </button>
+
                                         @if(!$hasCompletions)
                                             <button onclick="openEditExamModal({{ json_encode([
                                                 'id' => $exam->id,
@@ -378,15 +382,29 @@
                                 <input type="text" id="create_search_q_name" oninput="filterModalQuestions('create')" placeholder="Search question name..." class="px-2.5 py-1.5 rounded bg-slate-900 border border-slate-700 text-slate-200 placeholder-slate-500 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500">
                                 <input type="text" id="create_search_q_creator" oninput="filterModalQuestions('create')" placeholder="Search created by..." class="px-2.5 py-1.5 rounded bg-slate-900 border border-slate-700 text-slate-200 placeholder-slate-500 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500">
                             </div>
-                            <div class="grid grid-cols-2 gap-2">
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
                                 <select id="create_search_q_standard" onchange="filterModalQuestions('create')" class="px-2.5 py-1.5 rounded bg-slate-900 border border-slate-700 text-slate-200 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500">
                                     <option value="">All Classes / Standards</option>
                                     @foreach($standards as $std)
                                         <option value="{{ $std->id }}">{{ $std->name }}</option>
                                     @endforeach
                                 </select>
+                                <select id="create_search_q_subject" onchange="onModalSubjectChange('create')" class="px-2.5 py-1.5 rounded bg-slate-900 border border-slate-700 text-slate-200 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                                    <option value="">All Subjects</option>
+                                    @foreach($subjectsData as $subj)
+                                        <option value="{{ $subj->id }}">{{ $subj->name }}</option>
+                                    @endforeach
+                                </select>
+                                <select id="create_search_q_chapter" onchange="onModalChapterChange('create')" class="px-2.5 py-1.5 rounded bg-slate-900 border border-slate-700 text-slate-200 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                                    <option value="">All Chapters</option>
+                                </select>
+                                <select id="create_search_q_topic" onchange="filterModalQuestions('create')" class="px-2.5 py-1.5 rounded bg-slate-900 border border-slate-700 text-slate-200 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                                    <option value="">All Topics</option>
+                                </select>
+                            </div>
+                            <div class="grid grid-cols-1 gap-2">
                                 <select id="create_search_q_type" onchange="filterModalQuestions('create')" class="px-2.5 py-1.5 rounded bg-slate-900 border border-slate-700 text-slate-200 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500">
-                                    <option value="">All Types</option>
+                                    <option value="">All Question Types</option>
                                     <option value="1">1 - Single Option</option>
                                     <option value="2">2 - Multiple Option</option>
                                     <option value="3">3 - Text Entry</option>
@@ -415,6 +433,9 @@
                                      data-creator="{{ strtolower($q->creator?->name ?? 'system') }}"
                                      data-standard="{{ strtolower($q->standard?->name ?? '') }}"
                                      data-standard-id="{{ $q->standard_id }}"
+                                     data-subject-id="{{ $q->subject_id }}"
+                                     data-chapter-id="{{ $q->chapter_id }}"
+                                     data-topic-id="{{ $q->topic_id }}"
                                      data-type="{{ $q->type }}">
                                     <input type="checkbox" name="question_ids[]" value="{{ $q->id }}" id="create_q_add_{{ $q->id }}" {{ in_array($q->id, old('question_ids', [])) ? 'checked' : '' }} class="mt-1 rounded bg-slate-900 border-slate-700 text-indigo-600 focus:ring-indigo-500 cursor-pointer">
                                     <div class="flex-1 text-xs">
@@ -428,6 +449,9 @@
                                                     'marks' => $q->marks,
                                                     'type' => $q->type,
                                                     'standard_name' => $q->standard?->name ?? 'N/A',
+                                                    'subject_name' => $q->subject?->name ?? 'N/A',
+                                                    'chapter_name' => $q->chapter?->name ?? 'N/A',
+                                                    'topic_name' => $q->topic?->name ?? 'N/A',
                                                     'creator_name' => $q->creator?->name ?? 'System',
                                                     'answers' => $q->answers->map(fn($a) => ['id' => $a->id, 'name' => $a->name, 'is_correct' => $a->is_correct])->toArray(),
                                                 ]) }})" class="px-2 py-0.5 rounded bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 text-[11px] font-medium transition-all inline-flex items-center space-x-1 cursor-pointer">
@@ -437,8 +461,20 @@
                                                 <span class="text-amber-400 font-semibold">{{ $q->marks }} mark(s)</span>
                                             </div>
                                         </div>
-                                        <label for="create_q_add_{{ $q->id }}" class="flex items-center space-x-2 mt-1 text-[11px] text-slate-400 cursor-pointer block">
+                                        <label for="create_q_add_{{ $q->id }}" class="flex items-center flex-wrap gap-2 mt-1 text-[11px] text-slate-400 cursor-pointer block">
                                             <span class="text-indigo-400 font-semibold">Class: {{ $q->standard?->name ?? 'N/A' }}</span>
+                                            @if($q->subject)
+                                                <span>&bull;</span>
+                                                <span class="text-emerald-400 font-semibold">Subject: {{ $q->subject->name }}</span>
+                                            @endif
+                                            @if($q->chapter)
+                                                <span>&bull;</span>
+                                                <span class="text-cyan-400">Ch: {{ $q->chapter->name }}</span>
+                                            @endif
+                                            @if($q->topic)
+                                                <span>&bull;</span>
+                                                <span class="text-purple-400">Topic: {{ $q->topic->name }}</span>
+                                            @endif
                                             <span>&bull;</span>
                                             <span>By: {{ $q->creator?->name ?? 'System' }}</span>
                                             <span>&bull;</span>
@@ -572,15 +608,29 @@
                                 <input type="text" id="edit_search_q_name" oninput="filterModalQuestions('edit')" placeholder="Search question name..." class="px-2.5 py-1.5 rounded bg-slate-900 border border-slate-700 text-slate-200 placeholder-slate-500 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500">
                                 <input type="text" id="edit_search_q_creator" oninput="filterModalQuestions('edit')" placeholder="Search created by..." class="px-2.5 py-1.5 rounded bg-slate-900 border border-slate-700 text-slate-200 placeholder-slate-500 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500">
                             </div>
-                            <div class="grid grid-cols-2 gap-2">
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
                                 <select id="edit_search_q_standard" onchange="filterModalQuestions('edit')" class="px-2.5 py-1.5 rounded bg-slate-900 border border-slate-700 text-slate-200 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500">
                                     <option value="">All Classes / Standards</option>
                                     @foreach($standards as $std)
                                         <option value="{{ $std->id }}">{{ $std->name }}</option>
                                     @endforeach
                                 </select>
+                                <select id="edit_search_q_subject" onchange="onModalSubjectChange('edit')" class="px-2.5 py-1.5 rounded bg-slate-900 border border-slate-700 text-slate-200 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                                    <option value="">All Subjects</option>
+                                    @foreach($subjectsData as $subj)
+                                        <option value="{{ $subj->id }}">{{ $subj->name }}</option>
+                                    @endforeach
+                                </select>
+                                <select id="edit_search_q_chapter" onchange="onModalChapterChange('edit')" class="px-2.5 py-1.5 rounded bg-slate-900 border border-slate-700 text-slate-200 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                                    <option value="">All Chapters</option>
+                                </select>
+                                <select id="edit_search_q_topic" onchange="filterModalQuestions('edit')" class="px-2.5 py-1.5 rounded bg-slate-900 border border-slate-700 text-slate-200 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                                    <option value="">All Topics</option>
+                                </select>
+                            </div>
+                            <div class="grid grid-cols-1 gap-2">
                                 <select id="edit_search_q_type" onchange="filterModalQuestions('edit')" class="px-2.5 py-1.5 rounded bg-slate-900 border border-slate-700 text-slate-200 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500">
-                                    <option value="">All Types</option>
+                                    <option value="">All Question Types</option>
                                     <option value="1">1 - Single Option</option>
                                     <option value="2">2 - Multiple Option</option>
                                     <option value="3">3 - Text Entry</option>
@@ -609,6 +659,9 @@
                                      data-creator="{{ strtolower($q->creator?->name ?? 'system') }}"
                                      data-standard="{{ strtolower($q->standard?->name ?? '') }}"
                                      data-standard-id="{{ $q->standard_id }}"
+                                     data-subject-id="{{ $q->subject_id }}"
+                                     data-chapter-id="{{ $q->chapter_id }}"
+                                     data-topic-id="{{ $q->topic_id }}"
                                      data-type="{{ $q->type }}">
                                     <input type="checkbox" name="question_ids[]" value="{{ $q->id }}" id="edit_q_add_{{ $q->id }}" class="edit-exam-q-checkbox mt-1 rounded bg-slate-900 border-slate-700 text-indigo-600 focus:ring-indigo-500 cursor-pointer">
                                     <div class="flex-1 text-xs">
@@ -622,6 +675,9 @@
                                                     'marks' => $q->marks,
                                                     'type' => $q->type,
                                                     'standard_name' => $q->standard?->name ?? 'N/A',
+                                                    'subject_name' => $q->subject?->name ?? 'N/A',
+                                                    'chapter_name' => $q->chapter?->name ?? 'N/A',
+                                                    'topic_name' => $q->topic?->name ?? 'N/A',
                                                     'creator_name' => $q->creator?->name ?? 'System',
                                                     'answers' => $q->answers->map(fn($a) => ['id' => $a->id, 'name' => $a->name, 'is_correct' => $a->is_correct])->toArray(),
                                                 ]) }})" class="px-2 py-0.5 rounded bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 text-[11px] font-medium transition-all inline-flex items-center space-x-1 cursor-pointer">
@@ -631,8 +687,20 @@
                                                 <span class="text-amber-400 font-semibold">{{ $q->marks }} mark(s)</span>
                                             </div>
                                         </div>
-                                        <label for="edit_q_add_{{ $q->id }}" class="flex items-center space-x-2 mt-1 text-[11px] text-slate-400 cursor-pointer block">
+                                        <label for="edit_q_add_{{ $q->id }}" class="flex items-center flex-wrap gap-2 mt-1 text-[11px] text-slate-400 cursor-pointer block">
                                             <span class="text-indigo-400 font-semibold">Class: {{ $q->standard?->name ?? 'N/A' }}</span>
+                                            @if($q->subject)
+                                                <span>&bull;</span>
+                                                <span class="text-emerald-400 font-semibold">Subject: {{ $q->subject->name }}</span>
+                                            @endif
+                                            @if($q->chapter)
+                                                <span>&bull;</span>
+                                                <span class="text-cyan-400">Ch: {{ $q->chapter->name }}</span>
+                                            @endif
+                                            @if($q->topic)
+                                                <span>&bull;</span>
+                                                <span class="text-purple-400">Topic: {{ $q->topic->name }}</span>
+                                            @endif
                                             <span>&bull;</span>
                                             <span>By: {{ $q->creator?->name ?? 'System' }}</span>
                                             <span>&bull;</span>
@@ -855,16 +923,75 @@
                 }
             }
 
+            const subjectsDataExam = @json($subjectsData);
+
+            function onModalSubjectChange(prefix) {
+                const subjectId = document.getElementById(prefix + '_search_q_subject')?.value || '';
+                const chapterSelect = document.getElementById(prefix + '_search_q_chapter');
+                const topicSelect = document.getElementById(prefix + '_search_q_topic');
+
+                if (chapterSelect) {
+                    chapterSelect.innerHTML = '<option value="">All Chapters</option>';
+                }
+                if (topicSelect) {
+                    topicSelect.innerHTML = '<option value="">All Topics</option>';
+                }
+
+                if (subjectId && chapterSelect) {
+                    const selectedSubject = subjectsDataExam.find(s => String(s.id) === String(subjectId));
+                    if (selectedSubject && selectedSubject.chapters) {
+                        selectedSubject.chapters.forEach(ch => {
+                            const opt = document.createElement('option');
+                            opt.value = ch.id;
+                            opt.textContent = ch.name;
+                            chapterSelect.appendChild(opt);
+                        });
+                    }
+                }
+
+                filterModalQuestions(prefix);
+            }
+
+            function onModalChapterChange(prefix) {
+                const subjectId = document.getElementById(prefix + '_search_q_subject')?.value || '';
+                const chapterId = document.getElementById(prefix + '_search_q_chapter')?.value || '';
+                const topicSelect = document.getElementById(prefix + '_search_q_topic');
+
+                if (topicSelect) {
+                    topicSelect.innerHTML = '<option value="">All Topics</option>';
+                }
+
+                if (subjectId && chapterId && topicSelect) {
+                    const selectedSubject = subjectsDataExam.find(s => String(s.id) === String(subjectId));
+                    if (selectedSubject && selectedSubject.chapters) {
+                        const selectedChapter = selectedSubject.chapters.find(c => String(c.id) === String(chapterId));
+                        if (selectedChapter && selectedChapter.topics) {
+                            selectedChapter.topics.forEach(tp => {
+                                const opt = document.createElement('option');
+                                opt.value = tp.id;
+                                opt.textContent = tp.name;
+                                topicSelect.appendChild(opt);
+                            });
+                        }
+                    }
+                }
+
+                filterModalQuestions(prefix);
+            }
+
             const modalState = {
                 create: { currentPage: 1, itemsPerPage: 10, filteredItems: [] },
                 edit: { currentPage: 1, itemsPerPage: 10, filteredItems: [] }
             };
 
             function filterModalQuestions(prefix) {
-                const nameQuery = (document.getElementById(prefix + '_search_q_name').value || '').toLowerCase().trim();
-                const creatorQuery = (document.getElementById(prefix + '_search_q_creator').value || '').toLowerCase().trim();
-                const standardQuery = document.getElementById(prefix + '_search_q_standard').value;
-                const typeQuery = document.getElementById(prefix + '_search_q_type').value;
+                const nameQuery = (document.getElementById(prefix + '_search_q_name')?.value || '').toLowerCase().trim();
+                const creatorQuery = (document.getElementById(prefix + '_search_q_creator')?.value || '').toLowerCase().trim();
+                const standardQuery = document.getElementById(prefix + '_search_q_standard')?.value || '';
+                const subjectQuery = document.getElementById(prefix + '_search_q_subject')?.value || '';
+                const chapterQuery = document.getElementById(prefix + '_search_q_chapter')?.value || '';
+                const topicQuery = document.getElementById(prefix + '_search_q_topic')?.value || '';
+                const typeQuery = document.getElementById(prefix + '_search_q_type')?.value || '';
 
                 const items = Array.from(document.querySelectorAll('.' + prefix + '-q-item'));
                 modalState[prefix].filteredItems = [];
@@ -874,14 +1001,20 @@
                     const qCreator = item.getAttribute('data-creator') || '';
                     const qStandard = item.getAttribute('data-standard') || '';
                     const qStandardId = item.getAttribute('data-standard-id') || '';
+                    const qSubjectId = item.getAttribute('data-subject-id') || '';
+                    const qChapterId = item.getAttribute('data-chapter-id') || '';
+                    const qTopicId = item.getAttribute('data-topic-id') || '';
                     const qType = item.getAttribute('data-type') || '';
 
                     const matchesName = !nameQuery || qName.includes(nameQuery);
                     const matchesCreator = !creatorQuery || qCreator.includes(creatorQuery);
                     const matchesStandard = !standardQuery || qStandardId === standardQuery || qStandard.includes(standardQuery);
+                    const matchesSubject = !subjectQuery || qSubjectId === subjectQuery;
+                    const matchesChapter = !chapterQuery || qChapterId === chapterQuery;
+                    const matchesTopic = !topicQuery || qTopicId === topicQuery;
                     const matchesType = !typeQuery || qType === typeQuery;
 
-                    if (matchesName && matchesCreator && matchesStandard && matchesType) {
+                    if (matchesName && matchesCreator && matchesStandard && matchesSubject && matchesChapter && matchesTopic && matchesType) {
                         modalState[prefix].filteredItems.push(item);
                     }
                 });
@@ -1002,6 +1135,9 @@
                         
                         <div class="flex items-center flex-wrap gap-2 text-xs">
                             <span id="preview_q_standard" class="px-2.5 py-1 rounded-lg bg-indigo-500/10 text-indigo-300 border border-indigo-500/30 font-semibold"></span>
+                            <span id="preview_q_subject" class="hidden px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 font-semibold"></span>
+                            <span id="preview_q_chapter" class="hidden px-2.5 py-1 rounded-lg bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 font-medium"></span>
+                            <span id="preview_q_topic" class="hidden px-2.5 py-1 rounded-lg bg-purple-500/10 text-purple-300 border border-purple-500/30 font-medium"></span>
                             <span id="preview_q_type" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-200 border border-slate-700 font-medium"></span>
                             <span id="preview_q_marks" class="px-2.5 py-1 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/30 font-bold"></span>
                             <span id="preview_q_creator" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 border border-slate-700"></span>
@@ -1033,6 +1169,30 @@
             function openQuestionPreviewModal(data) {
                 document.getElementById('preview_q_name').textContent = data.name || '';
                 document.getElementById('preview_q_standard').textContent = 'Class: ' + (data.standard_name || 'N/A');
+
+                const subjBadge = document.getElementById('preview_q_subject');
+                if (data.subject_name && data.subject_name !== 'N/A') {
+                    subjBadge.textContent = 'Subject: ' + data.subject_name;
+                    subjBadge.classList.remove('hidden');
+                } else {
+                    subjBadge.classList.add('hidden');
+                }
+
+                const chBadge = document.getElementById('preview_q_chapter');
+                if (data.chapter_name && data.chapter_name !== 'N/A') {
+                    chBadge.textContent = 'Ch: ' + data.chapter_name;
+                    chBadge.classList.remove('hidden');
+                } else {
+                    chBadge.classList.add('hidden');
+                }
+
+                const tpBadge = document.getElementById('preview_q_topic');
+                if (data.topic_name && data.topic_name !== 'N/A') {
+                    tpBadge.textContent = 'Topic: ' + data.topic_name;
+                    tpBadge.classList.remove('hidden');
+                } else {
+                    tpBadge.classList.add('hidden');
+                }
                 
                 let typeStr = 'Single Option';
                 if (parseInt(data.type) === 2) typeStr = 'Multiple Option';
@@ -1086,6 +1246,8 @@
                 document.getElementById('questionPreviewModal').classList.remove('hidden');
             }
         </script>
+
+        <x-exam-leaderboard-modal />
 
     </div>
 </x-layouts.app>

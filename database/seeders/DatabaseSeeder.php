@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
             StudentSeeder::class,
             QuestionSeeder::class,
             ExamAssignSeeder::class,
+            CbseSubjectChapterTopicSeeder::class,
+            AssignSubjectChapterTopicToQuestionsSeeder::class,
         ]);
     }
 }

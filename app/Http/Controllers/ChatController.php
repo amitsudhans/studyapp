@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ChatMessage;
+use App\Models\Standard;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -32,20 +33,40 @@ class ChatController extends Controller
         $query = User::query()->where('id', '!=', $currentUser->id);
 
         if ($currentUser->isTeacher()) {
-            // Teachers see students (type 2 or student model), teachers, admins, or existing chat contacts
-            $query->where(function ($q) use ($chatUserIds) {
-                $q->whereHas('profile', fn ($p) => $p->where('type', 2))
-                    ->orWhereHas('student')
-                    ->orWhereHas('profile', fn ($p) => $p->whereIn('type', [1, 3]))
+            // Teachers see students belonging to their assigned/created standards, colleagues, admins, or existing chat contacts
+            $teacherStandardIds = $currentUser->standards->pluck('id')->toArray();
+            $createdStandardIds = Standard::where('created_by', $currentUser->id)->pluck('id')->toArray();
+            $allTeacherStandardIds = array_unique(array_merge($teacherStandardIds, $createdStandardIds));
+
+            $query->where(function ($q) use ($allTeacherStandardIds, $chatUserIds) {
+                if (! empty($allTeacherStandardIds)) {
+                    $q->whereHas('student', fn ($st) => $st->whereIn('standard_id', $allTeacherStandardIds));
+                } else {
+                    $q->whereHas('profile', fn ($p) => $p->where('type', 2))
+                        ->orWhereHas('student');
+                }
+
+                $q->orWhereHas('profile', fn ($p) => $p->whereIn('type', [1, 3, 0, 99]))
                     ->orWhereDoesntHave('profile')
                     ->orWhereIn('id', $chatUserIds);
             });
         } elseif ($currentUser->isStudent()) {
-            // Students see teachers (type 1), admins (type 3), users without profile, or existing chat contacts
-            $query->where(function ($q) use ($chatUserIds) {
-                $q->whereHas('profile', fn ($p) => $p->whereIn('type', [1, 3, 0, 99]))
-                    ->orWhereDoesntHave('profile')
-                    ->orWhereIn('id', $chatUserIds);
+            // Students ONLY see teachers assigned to their class standard (or contacts with existing chat history)
+            $studentStandardId = $currentUser->student?->standard_id;
+
+            $query->where(function ($q) use ($studentStandardId, $chatUserIds) {
+                if ($studentStandardId) {
+                    $q->where(function ($sub) use ($studentStandardId) {
+                        $sub->whereHas('standards', fn ($s) => $s->where('standards.id', $studentStandardId))
+                            ->orWhereIn('id', Standard::where('id', $studentStandardId)->pluck('created_by')->filter()->toArray());
+                    });
+                } else {
+                    $q->whereHas('profile', fn ($p) => $p->where('type', 1));
+                }
+
+                if (! empty($chatUserIds)) {
+                    $q->orWhereIn('id', $chatUserIds);
+                }
             });
         }
 
@@ -107,20 +128,20 @@ class ChatController extends Controller
                 $sub->where('sender_id', $user->id)->where('receiver_id', $currentUser->id);
             });
         })
-        ->orderBy('created_at', 'asc')
-        ->get()
-        ->map(function (ChatMessage $msg) use ($currentUser) {
-            return [
-                'id' => $msg->id,
-                'sender_id' => $msg->sender_id,
-                'receiver_id' => $msg->receiver_id,
-                'message' => $msg->message,
-                'is_me' => $msg->sender_id === $currentUser->id,
-                'is_read' => $msg->is_read,
-                'created_at' => $msg->created_at->format('M d, H:i'),
-                'time_ago' => $msg->created_at->diffForHumans(),
-            ];
-        });
+            ->orderBy('created_at', 'asc')
+            ->get()
+            ->map(function (ChatMessage $msg) use ($currentUser) {
+                return [
+                    'id' => $msg->id,
+                    'sender_id' => $msg->sender_id,
+                    'receiver_id' => $msg->receiver_id,
+                    'message' => $msg->message,
+                    'is_me' => $msg->sender_id === $currentUser->id,
+                    'is_read' => $msg->is_read,
+                    'created_at' => $msg->created_at->format('M d, H:i'),
+                    'time_ago' => $msg->created_at->diffForHumans(),
+                ];
+            });
 
         $role = 'Student';
         if ($user->isTeacher()) {

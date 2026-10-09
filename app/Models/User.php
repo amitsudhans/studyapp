@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -52,9 +53,9 @@ class User extends Authenticatable
     /**
      * Get messages sent by this user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<ChatMessage, $this>
+     * @return HasMany<ChatMessage, $this>
      */
-    public function sentMessages(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function sentMessages(): HasMany
     {
         return $this->hasMany(ChatMessage::class, 'sender_id');
     }
@@ -62,9 +63,9 @@ class User extends Authenticatable
     /**
      * Get messages received by this user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<ChatMessage, $this>
+     * @return HasMany<ChatMessage, $this>
      */
-    public function receivedMessages(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function receivedMessages(): HasMany
     {
         return $this->hasMany(ChatMessage::class, 'receiver_id');
     }
@@ -72,9 +73,9 @@ class User extends Authenticatable
     /**
      * Get unread messages received by this user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<ChatMessage, $this>
+     * @return HasMany<ChatMessage, $this>
      */
-    public function unreadMessages(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function unreadMessages(): HasMany
     {
         return $this->hasMany(ChatMessage::class, 'receiver_id')->where('is_read', false);
     }

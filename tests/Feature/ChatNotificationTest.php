@@ -3,6 +3,9 @@
 namespace Tests\Feature;
 
 use App\Models\ChatMessage;
+use App\Models\Standard;
+use App\Models\Student;
+use App\Models\Syllabus;
 use App\Models\User;
 use App\Models\UserProfile;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -142,5 +145,30 @@ class ChatNotificationTest extends TestCase
         ]);
 
         $response->assertUnauthorized();
+    }
+
+    public function test_student_only_sees_assigned_standard_teachers(): void
+    {
+        $syllabus = Syllabus::firstOrCreate(['id' => 1], ['name' => 'CBSE']);
+        $standardA = Standard::create(['name' => 'Class 10A', 'syllabus_id' => $syllabus->id]);
+        $standardB = Standard::create(['name' => 'Class 10B', 'syllabus_id' => $syllabus->id]);
+
+        $assignedTeacher = User::factory()->create(['name' => 'Teacher Standard A']);
+        UserProfile::create(['user_id' => $assignedTeacher->id, 'type' => 1]);
+        $assignedTeacher->standards()->attach($standardA->id);
+
+        $otherTeacher = User::factory()->create(['name' => 'Teacher Standard B']);
+        UserProfile::create(['user_id' => $otherTeacher->id, 'type' => 1]);
+        $otherTeacher->standards()->attach($standardB->id);
+
+        $studentUser = User::factory()->create(['name' => 'Student User']);
+        UserProfile::create(['user_id' => $studentUser->id, 'type' => 2]);
+        Student::create(['id' => $studentUser->id, 'name' => 'Student User', 'standard_id' => $standardA->id]);
+
+        $response = $this->actingAs($studentUser)->getJson(route('chat.contacts'));
+
+        $response->assertOk()
+            ->assertJsonFragment(['id' => $assignedTeacher->id, 'name' => 'Teacher Standard A'])
+            ->assertJsonMissing(['id' => $otherTeacher->id, 'name' => 'Teacher Standard B']);
     }
 }

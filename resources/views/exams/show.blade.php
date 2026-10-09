@@ -41,6 +41,10 @@
                         <span>Back to Exams</span>
                     </a>
 
+                    <button type="button" onclick="openExamLeaderboardModal({{ $exam->id }}, '{{ addslashes($exam->name) }}')" class="px-4 py-2.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 font-bold text-sm transition-all flex items-center space-x-2 cursor-pointer shadow-md">
+                        <span>🏆 View Leaderboard</span>
+                    </button>
+
                     @php
                         $hasCompletions = ($exam->student_exam_details_count ?? 0) > 0;
                     @endphp
@@ -268,7 +272,7 @@
             @elseif($availableQuestions->isNotEmpty())
                 <div class="p-6 border-b border-slate-800 bg-slate-950/60">
                     <!-- Search & Filter Controls -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
                         <!-- Search by Name -->
                         <div>
                             <label for="search_q_name" class="block text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-1">Question Name</label>
@@ -289,6 +293,33 @@
                                 @foreach($standards as $std)
                                     <option value="{{ $std->id }}">{{ $std->name }}</option>
                                 @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Search by Subject -->
+                        <div>
+                            <label for="search_q_subject" class="block text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-1">Subject</label>
+                            <select id="search_q_subject" onchange="onShowSubjectChange()" class="w-full px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                <option value="">All Subjects</option>
+                                @foreach($subjectsData as $subj)
+                                    <option value="{{ $subj->id }}">{{ $subj->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Search by Chapter -->
+                        <div>
+                            <label for="search_q_chapter" class="block text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-1">Chapter</label>
+                            <select id="search_q_chapter" onchange="onShowChapterChange()" class="w-full px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                <option value="">All Chapters</option>
+                            </select>
+                        </div>
+
+                        <!-- Search by Topic -->
+                        <div>
+                            <label for="search_q_topic" class="block text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-1">Topic</label>
+                            <select id="search_q_topic" onchange="filterQuestionsShowPage()" class="w-full px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                <option value="">All Topics</option>
                             </select>
                         </div>
 
@@ -339,6 +370,9 @@
                                  data-creator="{{ strtolower($q->creator?->name ?? 'system') }}"
                                  data-standard="{{ strtolower($q->standard?->name ?? '') }}"
                                  data-standard-id="{{ $q->standard_id }}"
+                                 data-subject-id="{{ $q->subject_id }}"
+                                 data-chapter-id="{{ $q->chapter_id }}"
+                                 data-topic-id="{{ $q->topic_id }}"
                                  data-type="{{ $q->type }}">
                                 <input type="checkbox" name="question_ids[]" value="{{ $q->id }}" id="q_add_{{ $q->id }}" class="mt-1 rounded bg-slate-900 border-slate-700 text-indigo-600 focus:ring-indigo-500 cursor-pointer">
                                 <div class="flex-1">
@@ -354,6 +388,9 @@
                                                 'marks' => $q->marks,
                                                 'type' => $q->type,
                                                 'standard_name' => $q->standard?->name ?? 'N/A',
+                                                'subject_name' => $q->subject?->name ?? 'N/A',
+                                                'chapter_name' => $q->chapter?->name ?? 'N/A',
+                                                'topic_name' => $q->topic?->name ?? 'N/A',
                                                 'creator_name' => $q->creator?->name ?? 'System',
                                                 'answers' => $q->answers->map(fn($a) => ['id' => $a->id, 'name' => $a->name, 'is_correct' => $a->is_correct])->toArray(),
                                             ]) }})" class="px-2.5 py-1 rounded-lg bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 text-xs font-medium transition-all inline-flex items-center space-x-1 cursor-pointer">
@@ -371,6 +408,21 @@
                                             <span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 font-medium">
                                                 Class: {{ $q->standard?->name ?? 'N/A' }}
                                             </span>
+                                            @if($q->subject)
+                                                <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 font-medium">
+                                                    Subject: {{ $q->subject->name }}
+                                                </span>
+                                            @endif
+                                            @if($q->chapter)
+                                                <span class="px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 font-medium">
+                                                    Ch: {{ $q->chapter->name }}
+                                                </span>
+                                            @endif
+                                            @if($q->topic)
+                                                <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 font-medium">
+                                                    Topic: {{ $q->topic->name }}
+                                                </span>
+                                            @endif
                                             <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
                                                 Created by: <strong class="text-slate-200">{{ $q->creator?->name ?? 'System' }}</strong>
                                             </span>
@@ -419,15 +471,67 @@
         </div>
 
         <script>
+            const subjectsDataExamShow = @json($subjectsData);
             let showCurrentPage = 1;
             let showItemsPerPage = 10;
             let showFilteredItems = [];
 
+            function onShowSubjectChange() {
+                const subjectId = document.getElementById('search_q_subject')?.value || '';
+                const chapterSelect = document.getElementById('search_q_chapter');
+                const topicSelect = document.getElementById('search_q_topic');
+
+                if (chapterSelect) chapterSelect.innerHTML = '<option value="">All Chapters</option>';
+                if (topicSelect) topicSelect.innerHTML = '<option value="">All Topics</option>';
+
+                if (subjectId && chapterSelect) {
+                    const selectedSubject = subjectsDataExamShow.find(s => String(s.id) === String(subjectId));
+                    if (selectedSubject && selectedSubject.chapters) {
+                        selectedSubject.chapters.forEach(ch => {
+                            const opt = document.createElement('option');
+                            opt.value = ch.id;
+                            opt.textContent = ch.name;
+                            chapterSelect.appendChild(opt);
+                        });
+                    }
+                }
+
+                filterQuestionsShowPage();
+            }
+
+            function onShowChapterChange() {
+                const subjectId = document.getElementById('search_q_subject')?.value || '';
+                const chapterId = document.getElementById('search_q_chapter')?.value || '';
+                const topicSelect = document.getElementById('search_q_topic');
+
+                if (topicSelect) topicSelect.innerHTML = '<option value="">All Topics</option>';
+
+                if (subjectId && chapterId && topicSelect) {
+                    const selectedSubject = subjectsDataExamShow.find(s => String(s.id) === String(subjectId));
+                    if (selectedSubject && selectedSubject.chapters) {
+                        const selectedChapter = selectedSubject.chapters.find(c => String(c.id) === String(chapterId));
+                        if (selectedChapter && selectedChapter.topics) {
+                            selectedChapter.topics.forEach(tp => {
+                                const opt = document.createElement('option');
+                                opt.value = tp.id;
+                                opt.textContent = tp.name;
+                                topicSelect.appendChild(opt);
+                            });
+                        }
+                    }
+                }
+
+                filterQuestionsShowPage();
+            }
+
             function filterQuestionsShowPage() {
-                const nameQuery = (document.getElementById('search_q_name').value || '').toLowerCase().trim();
-                const creatorQuery = (document.getElementById('search_q_creator').value || '').toLowerCase().trim();
-                const standardQuery = document.getElementById('search_q_standard').value;
-                const typeQuery = document.getElementById('search_q_type').value;
+                const nameQuery = (document.getElementById('search_q_name')?.value || '').toLowerCase().trim();
+                const creatorQuery = (document.getElementById('search_q_creator')?.value || '').toLowerCase().trim();
+                const standardQuery = document.getElementById('search_q_standard')?.value || '';
+                const subjectQuery = document.getElementById('search_q_subject')?.value || '';
+                const chapterQuery = document.getElementById('search_q_chapter')?.value || '';
+                const topicQuery = document.getElementById('search_q_topic')?.value || '';
+                const typeQuery = document.getElementById('search_q_type')?.value || '';
 
                 const items = Array.from(document.querySelectorAll('.available-q-item'));
                 showFilteredItems = [];
@@ -437,14 +541,20 @@
                     const qCreator = item.getAttribute('data-creator') || '';
                     const qStandard = item.getAttribute('data-standard') || '';
                     const qStandardId = item.getAttribute('data-standard-id') || '';
+                    const qSubjectId = item.getAttribute('data-subject-id') || '';
+                    const qChapterId = item.getAttribute('data-chapter-id') || '';
+                    const qTopicId = item.getAttribute('data-topic-id') || '';
                     const qType = item.getAttribute('data-type') || '';
 
                     const matchesName = !nameQuery || qName.includes(nameQuery);
                     const matchesCreator = !creatorQuery || qCreator.includes(creatorQuery);
                     const matchesStandard = !standardQuery || qStandardId === standardQuery || qStandard.includes(standardQuery);
+                    const matchesSubject = !subjectQuery || qSubjectId === subjectQuery;
+                    const matchesChapter = !chapterQuery || qChapterId === chapterQuery;
+                    const matchesTopic = !topicQuery || qTopicId === topicQuery;
                     const matchesType = !typeQuery || qType === typeQuery;
 
-                    if (matchesName && matchesCreator && matchesStandard && matchesType) {
+                    if (matchesName && matchesCreator && matchesStandard && matchesSubject && matchesChapter && matchesTopic && matchesType) {
                         showFilteredItems.push(item);
                     }
                 });
@@ -581,10 +691,13 @@
             }
 
             function resetQuestionsSearchShowPage() {
-                document.getElementById('search_q_name').value = '';
-                document.getElementById('search_q_creator').value = '';
-                document.getElementById('search_q_standard').value = '';
-                document.getElementById('search_q_type').value = '';
+                if (document.getElementById('search_q_name')) document.getElementById('search_q_name').value = '';
+                if (document.getElementById('search_q_creator')) document.getElementById('search_q_creator').value = '';
+                if (document.getElementById('search_q_standard')) document.getElementById('search_q_standard').value = '';
+                if (document.getElementById('search_q_subject')) document.getElementById('search_q_subject').value = '';
+                if (document.getElementById('search_q_chapter')) document.getElementById('search_q_chapter').innerHTML = '<option value="">All Chapters</option>';
+                if (document.getElementById('search_q_topic')) document.getElementById('search_q_topic').innerHTML = '<option value="">All Topics</option>';
+                if (document.getElementById('search_q_type')) document.getElementById('search_q_type').value = '';
                 filterQuestionsShowPage();
             }
 
@@ -683,6 +796,9 @@
                         
                         <div class="flex items-center flex-wrap gap-2 text-xs">
                             <span id="preview_q_standard" class="px-2.5 py-1 rounded-lg bg-indigo-500/10 text-indigo-300 border border-indigo-500/30 font-semibold"></span>
+                            <span id="preview_q_subject" class="hidden px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 font-semibold"></span>
+                            <span id="preview_q_chapter" class="hidden px-2.5 py-1 rounded-lg bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 font-medium"></span>
+                            <span id="preview_q_topic" class="hidden px-2.5 py-1 rounded-lg bg-purple-500/10 text-purple-300 border border-purple-500/30 font-medium"></span>
                             <span id="preview_q_type" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-200 border border-slate-700 font-medium"></span>
                             <span id="preview_q_marks" class="px-2.5 py-1 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/30 font-bold"></span>
                             <span id="preview_q_creator" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 border border-slate-700"></span>
@@ -714,6 +830,30 @@
             function openQuestionPreviewModal(data) {
                 document.getElementById('preview_q_name').textContent = data.name || '';
                 document.getElementById('preview_q_standard').textContent = 'Class: ' + (data.standard_name || 'N/A');
+
+                const subjBadge = document.getElementById('preview_q_subject');
+                if (data.subject_name && data.subject_name !== 'N/A') {
+                    subjBadge.textContent = 'Subject: ' + data.subject_name;
+                    subjBadge.classList.remove('hidden');
+                } else {
+                    subjBadge.classList.add('hidden');
+                }
+
+                const chBadge = document.getElementById('preview_q_chapter');
+                if (data.chapter_name && data.chapter_name !== 'N/A') {
+                    chBadge.textContent = 'Ch: ' + data.chapter_name;
+                    chBadge.classList.remove('hidden');
+                } else {
+                    chBadge.classList.add('hidden');
+                }
+
+                const tpBadge = document.getElementById('preview_q_topic');
+                if (data.topic_name && data.topic_name !== 'N/A') {
+                    tpBadge.textContent = 'Topic: ' + data.topic_name;
+                    tpBadge.classList.remove('hidden');
+                } else {
+                    tpBadge.classList.add('hidden');
+                }
                 
                 let typeStr = 'Single Option';
                 if (parseInt(data.type) === 2) typeStr = 'Multiple Option';
@@ -767,6 +907,8 @@
                 document.getElementById('questionPreviewModal').classList.remove('hidden');
             }
         </script>
+
+        <x-exam-leaderboard-modal />
 
     </div>
 </x-layouts.app>

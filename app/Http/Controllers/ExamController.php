@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Exam;
 use App\Models\Question;
 use App\Models\Standard;
+use App\Models\StudentExamDetail;
+use App\Models\Subject;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,7 +27,7 @@ class ExamController extends Controller
             ->latest()
             ->paginate(10);
 
-        $availableQuestions = Question::with(['standard', 'answers', 'creator'])
+        $availableQuestions = Question::with(['standard', 'subject', 'chapter', 'topic', 'answers', 'creator'])
             ->latest()
             ->get();
 
@@ -34,7 +37,9 @@ class ExamController extends Controller
             $standards = Standard::orderBy('name')->get();
         }
 
-        return view('exams.index', compact('exams', 'availableQuestions', 'standards'));
+        $subjectsData = Subject::with(['chapters.topics'])->orderBy('name')->get();
+
+        return view('exams.index', compact('exams', 'availableQuestions', 'standards', 'subjectsData'));
     }
 
     /**
@@ -48,7 +53,7 @@ class ExamController extends Controller
 
         $attachedQuestionIds = $exam->questions->pluck('id')->toArray();
 
-        $availableQuestions = Question::with(['standard', 'answers', 'creator'])
+        $availableQuestions = Question::with(['standard', 'subject', 'chapter', 'topic', 'answers', 'creator'])
             ->whereNotIn('id', $attachedQuestionIds)
             ->latest()
             ->get();
@@ -59,7 +64,9 @@ class ExamController extends Controller
             $standards = Standard::orderBy('name')->get();
         }
 
-        return view('exams.show', compact('exam', 'availableQuestions', 'standards'));
+        $subjectsData = Subject::with(['chapters.topics'])->orderBy('name')->get();
+
+        return view('exams.show', compact('exam', 'availableQuestions', 'standards', 'subjectsData'));
     }
 
     /**
@@ -336,5 +343,110 @@ class ExamController extends Controller
         $exam->recalculateTotalMarks();
 
         return back()->with('status', 'Question removed from exam successfully!');
+    }
+
+    /**
+     * Display the leaderboard for a specific exam.
+     */
+    public function leaderboard(Request $request, Exam $exam): View|JsonResponse
+    {
+        $currentUser = $request->user();
+        $exam->load(['creator', 'questions.answers', 'standards']);
+
+        $totalExamMarks = $exam->total_mark > 0 ? $exam->total_mark : $exam->questions->sum('marks');
+
+        $allDetails = StudentExamDetail::where('exam_id', $exam->id)
+            ->with(['student.standard', 'student.user', 'question.answers', 'writtenAnswer'])
+            ->get();
+
+        $studentGroups = $allDetails->groupBy('student_id');
+
+        $rankings = [];
+        $totalObtainedSum = 0;
+
+        foreach ($studentGroups as $studentId => $details) {
+            $studentObj = $details->first()->student;
+            $studentName = $studentObj?->name ?? $studentObj?->user?->name ?? 'Student #'.$studentId;
+            $studentEmail = $studentObj?->user?->email ?? '';
+            $studentClass = $studentObj?->standard?->name ?? 'N/A';
+            $submittedAt = $details->max('created_at');
+
+            $obtainedMarks = 0;
+            $correctCount = 0;
+            $totalQuestions = $details->count();
+
+            foreach ($details as $d) {
+                $qMarks = $d->question?->marks ?? 0;
+                $isCorrect = $d->writtenAnswer && ((int) $d->writtenAnswer->is_correct === 1);
+                if ($isCorrect) {
+                    $obtainedMarks += $qMarks;
+                    $correctCount++;
+                }
+            }
+
+            $totalObtainedSum += $obtainedMarks;
+            $pct = $totalExamMarks > 0 ? (int) round(($obtainedMarks / $totalExamMarks) * 100) : 0;
+
+            $isCurrentUser = ($currentUser && $currentUser->student && (int) $currentUser->student->id === (int) $studentId)
+                             || ($currentUser && (int) $currentUser->id === (int) $studentId);
+
+            $rankings[] = [
+                'student_id' => $studentId,
+                'student_name' => $studentName,
+                'student_email' => $studentEmail,
+                'student_class' => $studentClass,
+                'obtained_marks' => $obtainedMarks,
+                'total_marks' => $totalExamMarks,
+                'correct_count' => $correctCount,
+                'total_questions' => $totalQuestions,
+                'percentage' => $pct,
+                'submitted_at' => $submittedAt ? $submittedAt->format('M d, Y H:i') : null,
+                'submitted_at_timestamp' => $submittedAt ? $submittedAt->timestamp : 0,
+                'is_current_user' => $isCurrentUser,
+            ];
+        }
+
+        // Sort: obtained_marks DESC, submitted_at_timestamp ASC
+        usort($rankings, function ($a, $b) {
+            if ($b['obtained_marks'] !== $a['obtained_marks']) {
+                return $b['obtained_marks'] <=> $a['obtained_marks'];
+            }
+
+            return $a['submitted_at_timestamp'] <=> $b['submitted_at_timestamp'];
+        });
+
+        // Assign rank numbers (1, 2, 3...)
+        foreach ($rankings as $index => &$item) {
+            $item['rank'] = $index + 1;
+        }
+        unset($item);
+
+        $totalSubmissions = count($rankings);
+        $highestMarks = $totalSubmissions > 0 ? $rankings[0]['obtained_marks'] : 0;
+        $averageMarks = $totalSubmissions > 0 ? (int) round($totalObtainedSum / $totalSubmissions) : 0;
+        $topScorer = $totalSubmissions > 0 ? $rankings[0]['student_name'] : 'N/A';
+
+        $summary = [
+            'total_submissions' => $totalSubmissions,
+            'highest_marks' => $highestMarks,
+            'average_marks' => $averageMarks,
+            'top_scorer' => $topScorer,
+        ];
+
+        if ($request->expectsJson() || $request->ajax()) {
+            return response()->json([
+                'exam' => [
+                    'id' => $exam->id,
+                    'name' => $exam->name,
+                    'total_mark' => $totalExamMarks,
+                    'questions_count' => $exam->questions->count(),
+                    'standards' => $exam->standards->pluck('name')->toArray(),
+                ],
+                'summary' => $summary,
+                'leaderboard' => $rankings,
+            ]);
+        }
+
+        return view('exams.leaderboard', compact('exam', 'totalExamMarks', 'rankings', 'summary'));
     }
 }

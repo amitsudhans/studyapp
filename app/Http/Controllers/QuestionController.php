@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Answer;
+use App\Models\Chapter;
 use App\Models\Question;
 use App\Models\Standard;
+use App\Models\Subject;
+use App\Models\Topic;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,17 +17,52 @@ use Illuminate\View\View;
 class QuestionController extends Controller
 {
     /**
-     * Display a listing of questions and manage modal options.
+     * Display a listing of questions with filter options and modal data.
      */
     public function index(Request $request): View
     {
-        $questions = Question::with(['standard', 'creator', 'answers'])
-            ->latest()
-            ->paginate(10);
+        $query = Question::with(['standard', 'subject', 'chapter', 'topic', 'creator', 'answers'])->latest();
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('description', 'like', "%{$search}%");
+            });
+        }
+
+        if ($request->filled('standard_id')) {
+            $query->where('standard_id', $request->standard_id);
+        }
+
+        if ($request->filled('subject_id')) {
+            $query->where('subject_id', $request->subject_id);
+        }
+
+        if ($request->filled('chapter_id')) {
+            $query->where('chapter_id', $request->chapter_id);
+        }
+
+        if ($request->filled('topic_id')) {
+            $query->where('topic_id', $request->topic_id);
+        }
+
+        $questions = $query->paginate(10)->appends($request->query());
 
         $standards = Standard::orderBy('name')->get();
+        $subjects = Subject::orderBy('name')->get();
+        $chapters = Chapter::orderBy('name')->get();
+        $topics = Topic::orderBy('name')->get();
+        $subjectsData = Subject::with(['chapters.topics'])->orderBy('name')->get();
 
-        return view('questions.index', compact('questions', 'standards'));
+        return view('questions.index', compact(
+            'questions',
+            'standards',
+            'subjects',
+            'chapters',
+            'topics',
+            'subjectsData'
+        ));
     }
 
     /**
@@ -36,6 +74,9 @@ class QuestionController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string', 'max:2000'],
             'standard_id' => ['required', 'exists:standards,id'],
+            'subject_id' => ['nullable', 'exists:subjects,id'],
+            'chapter_id' => ['nullable', 'exists:chapters,id'],
+            'topic_id' => ['nullable', 'exists:topics,id'],
             'type' => ['required', 'integer', 'in:1,2,3'],
             'marks' => ['required', 'integer', 'min:0'],
             'answers' => ['nullable', 'array', 'max:4'],
@@ -50,10 +91,13 @@ class QuestionController extends Controller
                 'name' => $validated['name'],
                 'description' => $validated['description'] ?? null,
                 'standard_id' => $validated['standard_id'],
+                'subject_id' => $validated['subject_id'] ?? null,
+                'chapter_id' => $validated['chapter_id'] ?? null,
+                'topic_id' => $validated['topic_id'] ?? null,
                 'type' => (int) $validated['type'],
                 'marks' => (int) $validated['marks'],
                 'created_by' => $request->user()->id,
-                'status' => 1, // Automatically active
+                'status' => 1,
             ]);
 
             // Save answers if type is 1 (Single Option) or 2 (Multiple Option)
@@ -62,7 +106,7 @@ class QuestionController extends Controller
                 foreach ($validated['answers'] as $ans) {
                     if (! empty(trim($ans['name'] ?? ''))) {
                         if ($count >= 4) {
-                            break; // Max 4 answers limit
+                            break;
                         }
                         Answer::create([
                             'question_id' => $question->id,
@@ -88,6 +132,9 @@ class QuestionController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string', 'max:2000'],
             'standard_id' => ['required', 'exists:standards,id'],
+            'subject_id' => ['nullable', 'exists:subjects,id'],
+            'chapter_id' => ['nullable', 'exists:chapters,id'],
+            'topic_id' => ['nullable', 'exists:topics,id'],
             'type' => ['required', 'integer', 'in:1,2,3'],
             'marks' => ['required', 'integer', 'min:0'],
             'answers' => ['nullable', 'array', 'max:4'],
@@ -102,6 +149,9 @@ class QuestionController extends Controller
                 'name' => $validated['name'],
                 'description' => $validated['description'] ?? null,
                 'standard_id' => $validated['standard_id'],
+                'subject_id' => $validated['subject_id'] ?? null,
+                'chapter_id' => $validated['chapter_id'] ?? null,
+                'topic_id' => $validated['topic_id'] ?? null,
                 'type' => (int) $validated['type'],
                 'marks' => (int) $validated['marks'],
             ]);

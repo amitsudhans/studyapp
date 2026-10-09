@@ -987,6 +987,10 @@
                                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                                                         <span>View Submission Details</span>
                                                     </button>
+
+                                                    <button type="button" onclick="openExamLeaderboardModal({{ $exam->id }}, '{{ addslashes($exam->name) }}')" class="px-4 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs font-bold transition-all inline-flex items-center space-x-1.5 cursor-pointer shadow-md">
+                                                        <span>🏆 Leaderboard</span>
+                                                    </button>
                                                 @elseif($exam->status == 1)
                                                     <button onclick="openStartExamModal({{ json_encode([
                                                         'id' => $exam->id,
@@ -2145,6 +2149,10 @@
                                     </div>
 
                                     <div class="flex items-center space-x-3 shrink-0">
+                                        <button type="button" onclick="event.stopPropagation(); openExamLeaderboardModal({{ $exam->id }}, '{{ addslashes($exam->name) }}')" class="px-3 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs font-extrabold transition-all inline-flex items-center space-x-1 cursor-pointer shadow-sm">
+                                            <span>🏆 Leaderboard</span>
+                                        </button>
+
                                         @if($completedStudentCount > 0)
                                             <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-extrabold bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">
                                                 <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
@@ -2167,10 +2175,15 @@
                                 <!-- Collapsible Body with Completed Students Table -->
                                 <div id="details-teacher-exam-{{ $exam->id }}" class="hidden px-6 py-5 bg-slate-950/80 border-t border-slate-800/80 space-y-4">
                                     <div class="flex items-center justify-between pb-2 border-b border-slate-800/60">
-                                        <h5 class="text-xs font-bold uppercase tracking-wider text-slate-300">
-                                            Students Completed This Exam ({{ $completedStudentCount }})
+                                        <h5 class="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center space-x-2">
+                                            <span>Students Completed This Exam ({{ $completedStudentCount }})</span>
                                         </h5>
-                                        <span class="text-[11px] text-slate-400">Click student entry to view question-level marks</span>
+                                        <div class="flex items-center space-x-3">
+                                            <button type="button" onclick="openExamLeaderboardModal({{ $exam->id }}, '{{ addslashes($exam->name) }}')" class="px-3 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs font-bold transition-all inline-flex items-center space-x-1 cursor-pointer">
+                                                <span>🏆 View Full Leaderboard</span>
+                                            </button>
+                                            <span class="text-[11px] text-slate-400 hidden sm:inline">Click student entry to view question-level marks</span>
+                                        </div>
                                     </div>
 
                                     @if($completedStudentCount > 0)
@@ -2436,8 +2449,8 @@
                                 <h3 class="text-sm sm:text-base font-semibold text-slate-300">No Matching Students Found</h3>
                                 <p class="mt-1 text-xs sm:text-sm text-slate-500 max-w-sm mx-auto">No students match your search query or selected class filter.</p>
                             @elseif($user->standards->isNotEmpty())
-                                <h3 class="text-sm sm:text-base font-semibold text-slate-300">Search Students in My Classes</h3>
-                                <p class="mt-1 text-xs sm:text-sm text-slate-500 max-w-sm mx-auto">Enter a student name or select a class filter above to search and display students.</p>
+                                <h3 class="text-sm sm:text-base font-semibold text-slate-300">No Students Found in Assigned Classes</h3>
+                                <p class="mt-1 text-xs sm:text-sm text-slate-500 max-w-sm mx-auto">No students are currently enrolled in your assigned classes.</p>
                             @else
                                 <h3 class="text-sm sm:text-base font-semibold text-slate-300">No Classes Assigned</h3>
                                 <p class="mt-1 text-xs sm:text-sm text-slate-500 max-w-sm mx-auto">Your teacher profile does not have any assigned class standards. Contact system admin to assign standards.</p>
@@ -3341,6 +3354,8 @@
                 }
             </script>
         @endif
+
+        <x-exam-leaderboard-modal />
 
     </div>
 </x-layouts.app>

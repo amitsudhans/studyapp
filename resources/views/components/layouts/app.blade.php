@@ -181,6 +181,16 @@
                         <div id="chat_contacts_list" class="flex-1 overflow-y-auto divide-y divide-slate-900">
                             <div class="p-4 text-center text-slate-500 text-xs">Loading contacts...</div>
                         </div>
+                        <!-- Contacts Pagination Bar (10 per page) -->
+                        <div id="chat_contacts_pagination" class="p-2.5 border-t border-slate-800/80 bg-slate-950 flex items-center justify-between shrink-0 text-xs text-slate-400">
+                            <button type="button" id="chat_contacts_prev" onclick="changeChatContactsPage(-1)" class="px-2.5 py-1 bg-slate-900 border border-slate-800 text-slate-300 font-semibold rounded-lg hover:bg-slate-800 transition-all disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer flex items-center space-x-1 text-[11px]">
+                                <span>&larr; Prev</span>
+                            </button>
+                            <span id="chat_contacts_page_info" class="text-[11px] font-bold text-slate-300 font-mono">Page 1 of 1</span>
+                            <button type="button" id="chat_contacts_next" onclick="changeChatContactsPage(1)" class="px-2.5 py-1 bg-slate-900 border border-slate-800 text-slate-300 font-semibold rounded-lg hover:bg-slate-800 transition-all disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer flex items-center space-x-1 text-[11px]">
+                                <span>Next &rarr;</span>
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Chat Window (Right Panel) -->
@@ -219,8 +229,11 @@
 
         <script>
             let chatContactsData = [];
+            let filteredContactsData = [];
             let activeChatUserId = null;
             let chatPollInterval = null;
+            let chatContactsCurrentPage = 1;
+            const chatContactsPerPage = 10;
 
             function openChatModal(targetUserId = null) {
                 document.getElementById('chatModal').classList.remove('hidden');
@@ -239,26 +252,59 @@
                     .then(res => res.json())
                     .then(data => {
                         chatContactsData = data.contacts || [];
-                        renderChatContacts(chatContactsData);
+                        const query = document.getElementById('chat_contact_search')?.value.toLowerCase() || '';
+                        if (query) {
+                            filteredContactsData = chatContactsData.filter(c => c.name.toLowerCase().includes(query) || c.role.toLowerCase().includes(query));
+                        } else {
+                            filteredContactsData = [...chatContactsData];
+                        }
+
+                        if (autoSelectUserId) {
+                            const targetIdx = filteredContactsData.findIndex(c => c.id == autoSelectUserId);
+                            if (targetIdx !== -1) {
+                                chatContactsCurrentPage = Math.floor(targetIdx / chatContactsPerPage) + 1;
+                            }
+                        }
+
+                        renderChatContacts();
 
                         if (autoSelectUserId) {
                             selectChatContact(autoSelectUserId);
-                        } else if (!activeChatUserId && chatContactsData.length > 0) {
-                            selectChatContact(chatContactsData[0].id);
+                        } else if (!activeChatUserId && filteredContactsData.length > 0) {
+                            selectChatContact(filteredContactsData[0].id);
                         }
                     })
                     .catch(err => console.error('Error loading contacts:', err));
             }
 
-            function renderChatContacts(contacts) {
+            function renderChatContacts() {
                 const container = document.getElementById('chat_contacts_list');
-                if (!contacts || contacts.length === 0) {
+                const pageInfo = document.getElementById('chat_contacts_page_info');
+                const prevBtn = document.getElementById('chat_contacts_prev');
+                const nextBtn = document.getElementById('chat_contacts_next');
+
+                if (!filteredContactsData || filteredContactsData.length === 0) {
                     container.innerHTML = `<div class="p-4 text-center text-slate-500 text-xs">No contacts available.</div>`;
+                    if (pageInfo) pageInfo.textContent = 'Page 1 of 1';
+                    if (prevBtn) prevBtn.disabled = true;
+                    if (nextBtn) nextBtn.disabled = true;
                     return;
                 }
 
+                const totalPages = Math.ceil(filteredContactsData.length / chatContactsPerPage) || 1;
+                if (chatContactsCurrentPage > totalPages) {
+                    chatContactsCurrentPage = totalPages;
+                }
+                if (chatContactsCurrentPage < 1) {
+                    chatContactsCurrentPage = 1;
+                }
+
+                const startIdx = (chatContactsCurrentPage - 1) * chatContactsPerPage;
+                const endIdx = startIdx + chatContactsPerPage;
+                const pageContacts = filteredContactsData.slice(startIdx, endIdx);
+
                 let html = '';
-                contacts.forEach(c => {
+                pageContacts.forEach(c => {
                     const isSelected = activeChatUserId == c.id;
                     const bgClass = isSelected ? 'bg-indigo-950/50 border-l-4 border-indigo-500' : 'hover:bg-slate-900/60';
                     const initial = c.name ? c.name.charAt(0).toUpperCase() : '?';
@@ -279,17 +325,30 @@
                     `;
                 });
                 container.innerHTML = html;
+
+                if (pageInfo) pageInfo.textContent = `Page ${chatContactsCurrentPage} of ${totalPages}`;
+                if (prevBtn) prevBtn.disabled = chatContactsCurrentPage <= 1;
+                if (nextBtn) nextBtn.disabled = chatContactsCurrentPage >= totalPages;
             }
 
             function filterChatContacts() {
                 const q = document.getElementById('chat_contact_search').value.toLowerCase();
-                const filtered = chatContactsData.filter(c => c.name.toLowerCase().includes(q) || c.role.toLowerCase().includes(q));
-                renderChatContacts(filtered);
+                filteredContactsData = chatContactsData.filter(c => c.name.toLowerCase().includes(q) || c.role.toLowerCase().includes(q));
+                chatContactsCurrentPage = 1;
+                renderChatContacts();
+            }
+
+            function changeChatContactsPage(direction) {
+                const totalPages = Math.ceil(filteredContactsData.length / chatContactsPerPage) || 1;
+                chatContactsCurrentPage += direction;
+                if (chatContactsCurrentPage < 1) chatContactsCurrentPage = 1;
+                if (chatContactsCurrentPage > totalPages) chatContactsCurrentPage = totalPages;
+                renderChatContacts();
             }
 
             function selectChatContact(userId) {
                 activeChatUserId = userId;
-                renderChatContacts(chatContactsData);
+                renderChatContacts();
 
                 const contact = chatContactsData.find(c => c.id == userId);
                 if (contact) {
