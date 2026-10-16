@@ -28,4 +28,14 @@ class Syllabus extends Model
     {
         return $this->hasMany(Standard::class, 'syllabus_id');
     }
+
+    /**
+     * Get the subjects for the syllabus.
+     *
+     * @return HasMany<Subject, $this>
+     */
+    public function subjects(): HasMany
+    {
+        return $this->hasMany(Subject::class, 'syllabus_id');
+    }
 }

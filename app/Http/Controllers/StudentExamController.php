@@ -47,23 +47,33 @@ class StudentExamController extends Controller
         // Validate payload
         $validated = $request->validate([
             'answers' => ['nullable', 'array'],
-            'answers.*' => ['nullable', 'integer', 'exists:answers,id'],
+            'answers.*' => ['nullable'],
+            'match_answers' => ['nullable', 'array'],
+            'match_answers.*' => ['nullable', 'array'],
+            'text_answers' => ['nullable', 'array'],
+            'text_answers.*' => ['nullable', 'string', 'max:65535'],
         ]);
 
         $submittedAnswers = $validated['answers'] ?? [];
+        $submittedMatchAnswers = $validated['match_answers'] ?? [];
+        $submittedTextAnswers = $validated['text_answers'] ?? [];
 
         // Load exam questions to save answers for each question
         $exam->load('questions');
 
-        DB::transaction(function () use ($student, $exam, $submittedAnswers) {
+        DB::transaction(function () use ($student, $exam, $submittedAnswers, $submittedMatchAnswers, $submittedTextAnswers) {
             foreach ($exam->questions as $question) {
                 $chosenAnsId = $submittedAnswers[$question->id] ?? null;
+                $chosenMatches = $submittedMatchAnswers[$question->id] ?? null;
+                $chosenText = $submittedTextAnswers[$question->id] ?? null;
 
                 StudentExamDetail::create([
                     'student_id' => $student->id,
                     'exam_id' => $exam->id,
                     'question_id' => $question->id,
                     'student_written_ans_id' => $chosenAnsId ? (int) $chosenAnsId : null,
+                    'match_answers' => $chosenMatches,
+                    'student_text_answer' => $chosenText !== null && trim((string) $chosenText) !== '' ? trim((string) $chosenText) : null,
                 ]);
             }
         });

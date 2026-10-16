@@ -32,6 +32,17 @@
         body {
             font-family: 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
+        .prose img, .question-content img, .ql-editor img {
+            max-width: 100%;
+            max-height: 380px;
+            height: auto;
+            border-radius: 0.5rem;
+            display: inline-block;
+            margin: 0.5rem 0;
+            background: #ffffff;
+            padding: 4px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body class="h-full flex flex-col antialiased bg-slate-950 text-slate-100">
@@ -54,9 +65,20 @@
                             <a href="{{ route('dashboard') }}" class="px-3 py-2 rounded-lg text-sm font-medium {{ Route::is('dashboard') ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/30' : 'text-slate-300 hover:text-white hover:bg-slate-800' }} transition-colors">
                                 Dashboard
                             </a>
-                            <a href="{{ route('questions.index') }}" class="px-3 py-2 rounded-lg text-sm font-medium {{ Route::is('questions.*') ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/30' : 'text-slate-300 hover:text-white hover:bg-slate-800' }} transition-colors">
-                                Questions
-                            </a>
+                            @if(!Auth::user()->isStudent())
+                                <a href="{{ route('standards.index') }}" class="px-3 py-2 rounded-lg text-sm font-medium {{ Route::is('standards.*') ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/30' : 'text-slate-300 hover:text-white hover:bg-slate-800' }} transition-colors">
+                                    Standards
+                                </a>
+                                <a href="{{ route('exams.index') }}" class="px-3 py-2 rounded-lg text-sm font-medium {{ Route::is('exams.*') ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/30' : 'text-slate-300 hover:text-white hover:bg-slate-800' }} transition-colors">
+                                    Exams & Reports
+                                </a>
+                                <a href="{{ route('questions.index') }}" class="px-3 py-2 rounded-lg text-sm font-medium {{ Route::is('questions.*') ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/30' : 'text-slate-300 hover:text-white hover:bg-slate-800' }} transition-colors">
+                                    Question Bank
+                                </a>
+                                <a href="{{ route('students.index') }}" class="px-3 py-2 rounded-lg text-sm font-medium {{ Route::is('students.*') ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/30' : 'text-slate-300 hover:text-white hover:bg-slate-800' }} transition-colors">
+                                    My Students
+                                </a>
+                            @endif
                         </div>
                     @endauth
                 </div>
@@ -118,24 +140,39 @@
                 </svg>
                 <span class="text-[10px]">Dashboard</span>
             </a>
-            <a href="{{ route('questions.index') }}" class="flex flex-col items-center py-1 px-3 rounded-xl transition-colors {{ Route::is('questions.*') ? 'text-indigo-400 font-semibold' : 'text-slate-400 hover:text-slate-200' }}">
-                <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span class="text-[10px]">Questions</span>
-            </a>
-            <a href="{{ route('exams.index') }}" class="flex flex-col items-center py-1 px-3 rounded-xl transition-colors {{ Route::is('exams.*') ? 'text-indigo-400 font-semibold' : 'text-slate-400 hover:text-slate-200' }}">
-                <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                <span class="text-[10px]">Exams</span>
-            </a>
+            @if(!Auth::user()->isStudent())
+                <a href="{{ route('standards.index') }}" class="flex flex-col items-center py-1 px-2 rounded-xl transition-colors {{ Route::is('standards.*') ? 'text-indigo-400 font-semibold' : 'text-slate-400 hover:text-slate-200' }}">
+                    <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                    <span class="text-[10px]">Standards</span>
+                </a>
+                <a href="{{ route('exams.index') }}" class="flex flex-col items-center py-1 px-2 rounded-xl transition-colors {{ Route::is('exams.*') ? 'text-indigo-400 font-semibold' : 'text-slate-400 hover:text-slate-200' }}">
+                    <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <span class="text-[10px]">Exams</span>
+                </a>
+                <a href="{{ route('questions.index') }}" class="flex flex-col items-center py-1 px-2 rounded-xl transition-colors {{ Route::is('questions.*') ? 'text-indigo-400 font-semibold' : 'text-slate-400 hover:text-slate-200' }}">
+                    <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="text-[10px]">Questions</span>
+                </a>
+                <a href="{{ route('students.index') }}" class="flex flex-col items-center py-1 px-2 rounded-xl transition-colors {{ Route::is('students.*') ? 'text-indigo-400 font-semibold' : 'text-slate-400 hover:text-slate-200' }}">
+                    <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                    </svg>
+                    <span class="text-[10px]">Students</span>
+                </a>
+            @endif
         </div>
     @endauth
 
     <!-- Footer -->
     <footer class="border-t border-slate-800/60 py-6 text-center text-xs text-slate-500 mb-12 sm:mb-0">
-        <p>&copy; {{ date('Y') }} {{ config('app.name', 'Laravel') }}. All rights reserved.</p>
+        <p>&copy; {{ date('Y') }} {{ config('app.name', 'Study App') }}. All rights reserved.</p>
     </footer>
 </body>
 </html>

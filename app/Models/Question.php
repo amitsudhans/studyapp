@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['name', 'description', 'standard_id', 'subject_id', 'chapter_id', 'topic_id', 'type', 'created_by', 'marks', 'status'])]
+#[Fillable(['name', 'description', 'hint', 'solution', 'standard_id', 'subject_id', 'chapter_id', 'topic_id', 'type', 'created_by', 'marks', 'status'])]
 class Question extends Model
 {
     use HasFactory;
@@ -98,5 +98,54 @@ class Question extends Model
             'marks' => 'integer',
             'status' => 'integer',
         ];
+    }
+
+    public const TYPE_SINGLE_OPTION = 1;
+
+    public const TYPE_MULTIPLE_OPTION = 2;
+
+    public const TYPE_TEXT_ENTRY = 3;
+
+    public const TYPE_TRUE_FALSE = 4;
+
+    public const TYPE_MATCH_THE_FOLLOWING = 5;
+
+    /**
+     * Determine if the question is Text Entry.
+     */
+    public function isTextEntry(): bool
+    {
+        return (int) $this->type === self::TYPE_TEXT_ENTRY;
+    }
+
+    /**
+     * Determine if the question is True / False.
+     */
+    public function isTrueFalse(): bool
+    {
+        return (int) $this->type === self::TYPE_TRUE_FALSE;
+    }
+
+    /**
+     * Determine if the question is Match the Following.
+     */
+    public function isMatch(): bool
+    {
+        return (int) $this->type === self::TYPE_MATCH_THE_FOLLOWING;
+    }
+
+    /**
+     * Get human-readable question type name.
+     */
+    public function getTypeNameAttribute(): string
+    {
+        return match ((int) $this->type) {
+            self::TYPE_SINGLE_OPTION => 'Single Option',
+            self::TYPE_MULTIPLE_OPTION => 'Multiple Option',
+            self::TYPE_TEXT_ENTRY => 'Text Entry',
+            self::TYPE_TRUE_FALSE => 'True / False',
+            self::TYPE_MATCH_THE_FOLLOWING => 'Match the Following',
+            default => 'Unknown',
+        };
     }
 }

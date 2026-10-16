@@ -4,14 +4,73 @@ namespace App\Http\Controllers;
 
 use App\Models\Standard;
 use App\Models\Student;
+use App\Models\Subject;
 use App\Models\Syllabus;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class StandardController extends Controller
 {
+    /**
+     * Display a listing of standards with filtering, metrics, and modals.
+     */
+    public function index(Request $request): View
+    {
+        $user = $request->user();
+
+        if (! $user->canAssignExams()) {
+            abort(403, 'Only teachers and administrators can view standards.');
+        }
+
+        $query = Standard::with(['creator', 'syllabus', 'students', 'teachers', 'chapters.topics', 'chapters.subject'])->withCount(['students', 'chapters']);
+
+        if ($user->isTeacher() && ! $user->isAdmin()) {
+            $query->where(function ($q) use ($user) {
+                $q->where('created_by', $user->id)
+                    ->orWhereHas('teachers', fn ($tq) => $tq->where('users.id', $user->id));
+            });
+        }
+
+        if ($request->filled('search')) {
+            $search = trim($request->input('search'));
+            $query->where('name', 'like', "%{$search}%");
+        }
+
+        if ($request->filled('syllabus_id')) {
+            $query->where('syllabus_id', (int) $request->input('syllabus_id'));
+        }
+
+        $standards = $query->orderBy('name')->paginate(10)->appends($request->query());
+        $syllabuses = Syllabus::orderBy('name')->get();
+
+        // All active students for assigning to standards
+        $allStudents = User::where(function ($q) {
+            $q->whereHas('profile', fn ($p) => $p->where('type', 2))
+                ->orWhereHas('student');
+        })
+            ->with(['profile', 'standards', 'student.standard'])
+            ->orderBy('name')
+            ->get();
+
+        $totalStandardsCount = $standards->total();
+        $myStandardsCount = $user->isTeacher() && ! $user->isAdmin()
+            ? $user->standards()->count()
+            : $totalStandardsCount;
+        $subjects = Subject::orderBy('name')->get();
+
+        return view('standards.index', compact(
+            'standards',
+            'syllabuses',
+            'allStudents',
+            'totalStandardsCount',
+            'myStandardsCount',
+            'subjects'
+        ));
+    }
+
     /**
      * Store a newly created standard in storage.
      */

@@ -1,5 +1,5 @@
 <!-- EXAM LEADERBOARD REUSABLE MODAL -->
-<div id="examLeaderboardModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+<div id="examLeaderboardModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto" style="z-index: 9999;">
     <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-4xl overflow-hidden shadow-2xl my-8">
         <!-- Modal Header -->
         <div class="px-6 py-5 border-b border-slate-800 flex items-center justify-between bg-gradient-to-r from-amber-950/40 via-slate-950 to-indigo-950/40">

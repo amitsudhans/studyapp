@@ -13,9 +13,18 @@ class Chapter extends Model
 
     protected $fillable = [
         'name',
+        'standard_id',
         'subject_id',
         'syllabus_id',
     ];
+
+    /**
+     * Get the standard associated with the chapter.
+     */
+    public function standard(): BelongsTo
+    {
+        return $this->belongsTo(Standard::class);
+    }
 
     /**
      * Get the subject associated with the chapter.

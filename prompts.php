@@ -273,15 +273,114 @@ in Students in My Classes if a student
 is assigned more than one standard only one standard is seen now
 each teacher should see his/her exams only
 admin should see all the exams + name of the teacher who conduct the exam
-
-kkskkskkskks
-napmkkkvs,kdsnpsnkns
+Can tou write a documentation on what all features in this product
 
 
 
 
+i want to create exams based on syllabus ,subject,class,chapter ,topic ,changes bd also but
+i want my data dont remove my existing data ,pls dont test . I want to change current exam creation
+and edit this is not
+a new feature but currently we
+are creating plain exams modify them to based on syllabus ,subject,class,chapter ,topic
+
+can you make create exam /edit exam modal
+little more compact in my desktop i am to able to see name exam type and all
+i am not able to see from Create New Exam on 100% , i can see only from Curriculum Classification
+i want search exams with syllabus,subject, chapter, topic,and name in All Exams in
+admin and teacher dashboard
+
+when i click on search physics,... chemistry exam has come why
+can you integrate text editor for Question Name / Prompt *
+can you integrate math sympols in that
+can you integrate chemistry symbols in that
+can you make the modal compact becasue on top portion i can t see
+can you make student dashboard design little more proffesional dont change programming codes
+also view submission details for students in student
+and teacher dashbarod also proffesional with same white background
+yes but now it is not scollable i can see top and bottom
+can you change the header color of view submission details for students in student
+and teacher dashboard with the color dark blue without gradient
+make it dark blue wiht white text
+in student dashboard active exams count will be unattended exams
+student dashboard dont need top question bank and exams link 
+
+in teacher dashboard Exam Performance & Submissions Report
+and exam listing i want pagination for 10 nos
+teacher dashboar edit exam is not working
+comment top header Exams from teacher and admin dashboard
+in Exams Listing when we click on manage a screen comes there is another button back to exam there
+rename that button to Back to Dashboard when we click on it it should go to dashboard 
+
+can you integrate manage questions same as in Exams Listing to Exam Performance & Submissions Report
+if atleast one student completed the exam then remove option manage questions from Exam Performance & Submissions Report
+comment Exams Listing section from teacher and admin dashboard
+when i click on Exams & Assessment - manage exams card on top i want same Exam Performance & Submissions Report
+i want one more card My Students in  teacher dashboard when clicked  it should move to 
+Students in My Classes
+Displaying enrolled students linked to your assigned classes
+can you make all the cards in same row make ot smaller and compact
+can you make the class standards and question bank fully clickable
+i want Exam Performance & Submissions Report ,Students in My Classes and Standards 
+in seperate pages like question bank 
+ok but in Exam Performance & Submissions Directory view full leader board ,
+ leaderboard ,view question marks , and view not working---
+comment View all students Leaderboard
+in manage questions page in Exam Performance & Submissions Report
+page add one more button Back to Exam Performance & Submissions Report
+in manage questions page in Exam Performance & Submissions Report remove button leaderboard
+in student dashboard My Assigned Exams  make a pagination of 10 nos
+can you integrate true or false questions also to this project  
+i mean creration and edit of question and students can also do this type of question in exam
+cna you make match the following question also to this project wiht create /edit questions and students 
+can answer the questions you can make db changes but dont remove my existing data
+
+can you make match the following question also to this project wiht create /edit questions and
+ students can answer the questions you can make db changes but dont remove my existing data
+can you give marks to match the following like this if the match the following has 4 questions
+1 mark for each question if the student match all 4 questions then he will get 4 marks if he match 3
+then he will get 3 marks and so on
+Each question can have Hint/Solution option in which teacher can  add hint or spl_autoload_functions
+students can see the hint/solution if they click on that option in exam
+
+Search & Filter Question Bank  not working
+no again not working when i cliked on apply and search filters  in question bank its not working
+Search & Filter Question Bank make it user friendly in mobile view like an modile app
+Exam Performance & Submissions Report make it user friendly in mobile view like a mobile app 
+inside standard i want to create chapter and inside 
+chapter i want to create topic can you create a crud for all this for admin dashboard
+in Questions & Answers Management i want a full view of that question with all detials
+
+CBSE syllabus for Class 9 Mathematics
+ - Number System
+standard -9 cbse
+Unit I: Number System (7 Marks)
+
+according to CBSE syllabus for Class 9 Mathematics - Number System
+• Number System (Real numbers, rational & irrational numbers, laws of exponents)
+
+ pls add 10 CBSE exam point of view single options questions with solutions 
+ in our software class 9-topic number system, chapter number system, subject mathematics, syllabus cbse
+in Questions & Answers Management search add search with syllabus also
+
+I want 1 more question type -text entry in text entry 
+there will be a question only--
+and there will be a text box with sympols math and chemistry for students to write answers--
+there will not no autocorrection for this type of questions-
+pls change db for this dont remove my existing data
+there will be 3 types of exams timed non timed and text entry type exams
+text entry questions can only  be added to  text entry type exams --
+
+in  teacher dashboard Exam Performance & Submissions Directory exam listing i want search with
+exam type
+for text entry exam teacher can manulaly check the answers and give marks to students only for text entry exam
+in manual evaluation if i give 0 marks then one error is coming 
+like this Error saving evaluation: $pct is not defined and not able to save
+
+can you add draw tool like draw triangle square etc in question creation
 
 
+© 2026 Laravel. All rights reserved. at footer to© 2026 Study App  All rights reserved.
 
 flowboard
 is an project mangement software,

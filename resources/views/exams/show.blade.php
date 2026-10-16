@@ -18,8 +18,10 @@
                         <span>Type: 
                             @if($exam->type == 1)
                                 <span class="text-indigo-400 font-semibold">Timed ({{ $exam->duration ? $exam->duration . ' mins' : '1' }})</span>
-                            @else
+                            @elseif($exam->type == 2)
                                 <span class="text-slate-400 font-semibold">Non-Timed (2)</span>
+                            @elseif($exam->type == 3)
+                                <span class="text-amber-400 font-semibold">Text Entry (3)</span>
                             @endif
                         </span>
                         <span>&bull;</span>
@@ -31,19 +33,37 @@
                             @endif
                         </span>
                     </div>
+
+                    <!-- Curriculum Hierarchy Badges -->
+                    <div class="mt-3 flex items-center flex-wrap gap-2 text-xs">
+                        <span class="px-2.5 py-1 rounded-lg bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 font-semibold">Syllabus: {{ $exam->syllabus?->name ?? 'Unset' }}</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-sky-500/20 text-sky-300 border border-sky-500/30 font-semibold">Class: {{ $exam->standard?->name ?? 'Unset' }}</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold">Subject: {{ $exam->subject?->name ?? 'Unset' }}</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-medium">Chapter: {{ $exam->chapter?->name ?? 'Unset' }}</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-purple-500/20 text-purple-300 border border-purple-500/30 font-medium">Topic: {{ $exam->topic?->name ?? 'Unset' }}</span>
+                    </div>
                 </div>
 
                 <div class="flex items-center flex-wrap gap-3">
-                    <a href="{{ route('exams.index') }}" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-medium text-sm transition-all flex items-center space-x-2">
+                    <a href="{{ route('exams.index') }}" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-indigo-300 border border-slate-700 font-medium text-sm transition-all flex items-center space-x-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                         </svg>
-                        <span>Back to Exams</span>
+                        <span>Back to Exam Performance & Submissions Report</span>
                     </a>
 
-                    <button type="button" onclick="openExamLeaderboardModal({{ $exam->id }}, '{{ addslashes($exam->name) }}')" class="px-4 py-2.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 font-bold text-sm transition-all flex items-center space-x-2 cursor-pointer shadow-md">
-                        <span>🏆 View Leaderboard</span>
+                    <a href="{{ route('dashboard') }}" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-medium text-sm transition-all flex items-center space-x-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        <span>Back to Dashboard</span>
+                    </a>
+
+                    <button type="button" onclick="openExamLeaderboardModal({{ $exam->id }}, '{{ addslashes($exam->name) }}')" class="px-4 py-2.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 font-bold text-sm transition-all flex items-center space-x-2 cursor-pointer shadow-md active:scale-95">
+                        <span class="text-base">🏆</span>
+                        <span>View Leaderboard</span>
                     </button>
+
 
                     @php
                         $hasCompletions = ($exam->student_exam_details_count ?? 0) > 0;
@@ -54,7 +74,7 @@
                             <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                             </svg>
-                            <span>Edit Exam Name</span>
+                            <span>Edit Exam Details</span>
                         </button>
                     @else
                         <span class="px-3 py-2 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-semibold inline-flex items-center">
@@ -174,7 +194,7 @@
                                 <span class="w-7 h-7 rounded-lg bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 font-bold flex items-center justify-center text-xs shrink-0">
                                     #{{ $index + 1 }}
                                 </span>
-                                <h4 class="text-base font-semibold text-white">{{ $q->name }}</h4>
+                                <div class="text-base font-semibold text-white prose prose-invert prose-sm max-w-none">{!! $q->name !!}</div>
                             </div>
 
                             @if($q->description)
@@ -190,6 +210,10 @@
                                     <span class="px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-medium">Single Option</span>
                                 @elseif($q->type == 2)
                                     <span class="px-2.5 py-0.5 rounded-full bg-violet-500/10 text-violet-400 border border-violet-500/20 font-medium">Multiple Option</span>
+                                @elseif($q->type == 4)
+                                    <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-medium">True / False</span>
+                                @elseif($q->type == 5)
+                                    <span class="px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-medium">Match the Following</span>
                                 @else
                                     <span class="px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 font-medium">Text Entry</span>
                                 @endif
@@ -197,6 +221,18 @@
                                 <span class="px-2.5 py-0.5 rounded-md bg-amber-500/10 text-amber-300 border border-amber-500/20 font-semibold">
                                     {{ $q->marks }} Mark(s)
                                 </span>
+
+                                @if($q->hint)
+                                    <span class="px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-300 border border-amber-500/20 font-bold text-[10px]">
+                                        💡 Hint
+                                    </span>
+                                @endif
+
+                                @if($q->solution)
+                                    <span class="px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 font-bold text-[10px]">
+                                        📝 Solution
+                                    </span>
+                                @endif
                             </div>
 
                             <!-- Options Preview -->
@@ -204,9 +240,14 @@
                                 <div class="pl-10 pt-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
                                     @foreach($q->answers as $ans)
                                         <div class="text-xs p-2 rounded-lg bg-slate-950/80 border border-slate-800 flex items-center justify-between">
-                                            <span class="text-slate-300 truncate">{{ $ans->name }}</span>
-                                            @if($ans->is_correct == 1)
-                                                <span class="text-[10px] text-emerald-400 font-bold uppercase shrink-0 px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">Correct</span>
+                                            @if($q->type == 5)
+                                                <span class="text-slate-300 font-medium">{{ $ans->name }} <span class="text-indigo-400 font-bold mx-1">⟷</span> {{ $ans->match_answer }}</span>
+                                                <span class="text-[10px] text-indigo-300 font-bold uppercase shrink-0 px-1.5 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/20">Pair</span>
+                                            @else
+                                                <span class="text-slate-300 truncate">{{ $ans->name }}</span>
+                                                @if($ans->is_correct == 1)
+                                                    <span class="text-[10px] text-emerald-400 font-bold uppercase shrink-0 px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">Correct</span>
+                                                @endif
                                             @endif
                                         </div>
                                     @endforeach
@@ -224,7 +265,9 @@
                                 'type' => $q->type,
                                 'standard_name' => $q->standard?->name ?? 'N/A',
                                 'creator_name' => $q->creator?->name ?? 'System',
-                                'answers' => $q->answers->map(fn($a) => ['id' => $a->id, 'name' => $a->name, 'is_correct' => $a->is_correct])->toArray(),
+                                'answers' => $q->answers->map(fn($a) => ['id' => $a->id, 'name' => $a->name, 'match_answer' => $a->match_answer, 'is_correct' => $a->is_correct])->toArray(),
+                                'hint' => $q->hint,
+                                'solution' => $q->solution,
                             ]) }})" class="px-3.5 py-2 rounded-xl bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 text-xs font-semibold transition-colors flex items-center space-x-1.5 cursor-pointer">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                                 <span>View Details</span>
@@ -331,6 +374,8 @@
                                 <option value="1">1 - Single Option</option>
                                 <option value="2">2 - Multiple Option</option>
                                 <option value="3">3 - Text Entry</option>
+                                <option value="4">4 - True / False</option>
+                                <option value="5">5 - Match the Following</option>
                             </select>
                         </div>
                     </div>
@@ -366,7 +411,7 @@
                     <div class="space-y-3 max-h-[500px] overflow-y-auto pr-2" style="max-height: 500px; overflow-y: auto;">
                         @foreach($availableQuestions as $q)
                             <div class="available-q-item p-3.5 rounded-xl bg-slate-950 border border-slate-800/80 hover:border-indigo-500/40 transition-all flex items-start space-x-3"
-                                 data-name="{{ strtolower($q->name) }}"
+                                 data-name="{{ strtolower(strip_tags($q->name)) }}"
                                  data-creator="{{ strtolower($q->creator?->name ?? 'system') }}"
                                  data-standard="{{ strtolower($q->standard?->name ?? '') }}"
                                  data-standard-id="{{ $q->standard_id }}"
@@ -378,7 +423,7 @@
                                 <div class="flex-1">
                                     <div class="flex items-center justify-between gap-2">
                                         <label for="q_add_{{ $q->id }}" class="cursor-pointer flex-1">
-                                            <h5 class="text-sm font-semibold text-white hover:text-indigo-300 transition-colors">{{ $q->name }}</h5>
+                                            <div class="text-sm font-semibold text-white hover:text-indigo-300 transition-colors prose prose-invert prose-sm max-w-none">{!! $q->name !!}</div>
                                         </label>
                                         <div class="flex items-center space-x-2 shrink-0">
                                             <button type="button" onclick="event.preventDefault(); event.stopPropagation(); openQuestionPreviewModal({{ json_encode([
@@ -392,7 +437,7 @@
                                                 'chapter_name' => $q->chapter?->name ?? 'N/A',
                                                 'topic_name' => $q->topic?->name ?? 'N/A',
                                                 'creator_name' => $q->creator?->name ?? 'System',
-                                                'answers' => $q->answers->map(fn($a) => ['id' => $a->id, 'name' => $a->name, 'is_correct' => $a->is_correct])->toArray(),
+                                                'answers' => $q->answers->map(fn($a) => ['id' => $a->id, 'name' => $a->name, 'match_answer' => $a->match_answer, 'is_correct' => $a->is_correct])->toArray(),
                                             ]) }})" class="px-2.5 py-1 rounded-lg bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 text-xs font-medium transition-all inline-flex items-center space-x-1 cursor-pointer">
                                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                                                 <span>View</span>
@@ -428,7 +473,7 @@
                                             </span>
                                             <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
                                                 Type: 
-                                                @if($q->type == 1) Single Option @elseif($q->type == 2) Multiple Option @else Text Entry @endif
+                                                @if($q->type == 1) Single Option @elseif($q->type == 2) Multiple Option @elseif($q->type == 4) True / False @elseif($q->type == 5) Match the Following @else Text Entry @endif
                                             </span>
                                         </div>
                                     </label>
@@ -713,67 +758,312 @@
                 }
             }
 
+            const syllabusesDataShow = @json($syllabusesData);
+            const subjectsDataShow = @json($subjectsData);
+            const standardsDataShow = @json($standards);
+
+            function onShowExamSyllabusChange() {
+                const syllabusId = document.getElementById('show_exam_syllabus')?.value || '';
+                const standardSelect = document.getElementById('show_exam_standard');
+                const subjectSelect = document.getElementById('show_exam_subject');
+                const chapterSelect = document.getElementById('show_exam_chapter');
+                const topicSelect = document.getElementById('show_exam_topic');
+
+                if (standardSelect) {
+                    const curStdVal = standardSelect.value;
+                    standardSelect.innerHTML = '<option value="">Select Class</option>';
+                    standardsDataShow.forEach(std => {
+                        if (!syllabusId || String(std.syllabus_id) === String(syllabusId)) {
+                            const opt = document.createElement('option');
+                            opt.value = std.id;
+                            opt.textContent = std.name;
+                            opt.setAttribute('data-syllabus-id', std.syllabus_id || '');
+                            if (String(std.id) === String(curStdVal)) opt.selected = true;
+                            standardSelect.appendChild(opt);
+                        }
+                    });
+                }
+
+                if (subjectSelect) {
+                    const curSubjVal = subjectSelect.value;
+                    subjectSelect.innerHTML = '<option value="">Select Subject</option>';
+                    subjectsDataShow.forEach(sb => {
+                        if (!syllabusId || String(sb.syllabus_id) === String(syllabusId)) {
+                            const opt = document.createElement('option');
+                            opt.value = sb.id;
+                            opt.textContent = sb.name;
+                            opt.setAttribute('data-syllabus-id', sb.syllabus_id || '');
+                            if (String(sb.id) === String(curSubjVal)) opt.selected = true;
+                            subjectSelect.appendChild(opt);
+                        }
+                    });
+                }
+
+                if (chapterSelect) chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
+                if (topicSelect) topicSelect.innerHTML = '<option value="">Select Topic</option>';
+            }
+
+            function onShowExamStandardChange() {
+                const standardSelect = document.getElementById('show_exam_standard');
+                const standardId = standardSelect?.value || '';
+
+                if (standardId) {
+                    const stdObj = standardsDataShow.find(s => String(s.id) === String(standardId));
+                    if (stdObj && stdObj.syllabus_id) {
+                        const sylSelect = document.getElementById('show_exam_syllabus');
+                        if (sylSelect && !sylSelect.value) {
+                            sylSelect.value = stdObj.syllabus_id;
+                            onShowExamSyllabusChange();
+                            if (standardSelect) standardSelect.value = standardId;
+                        }
+                    }
+                }
+            }
+
+            function onShowExamSubjectChange() {
+                const subjectId = document.getElementById('show_exam_subject')?.value || '';
+                const chapterSelect = document.getElementById('show_exam_chapter');
+                const topicSelect = document.getElementById('show_exam_topic');
+
+                if (chapterSelect) {
+                    chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
+                }
+                if (topicSelect) {
+                    topicSelect.innerHTML = '<option value="">Select Topic</option>';
+                }
+
+                if (subjectId) {
+                    const selectedSubject = subjectsDataShow.find(s => String(s.id) === String(subjectId));
+                    if (selectedSubject) {
+                        if (selectedSubject.syllabus_id) {
+                            const sylSelect = document.getElementById('show_exam_syllabus');
+                            if (sylSelect && !sylSelect.value) {
+                                sylSelect.value = selectedSubject.syllabus_id;
+                            }
+                        }
+
+                        if (chapterSelect && selectedSubject.chapters) {
+                            selectedSubject.chapters.forEach(ch => {
+                                const opt = document.createElement('option');
+                                opt.value = ch.id;
+                                opt.textContent = ch.name;
+                                chapterSelect.appendChild(opt);
+                            });
+                        }
+                    }
+                }
+            }
+
+            function onShowExamChapterChange() {
+                const subjectId = document.getElementById('show_exam_subject')?.value || '';
+                const chapterId = document.getElementById('show_exam_chapter')?.value || '';
+                const topicSelect = document.getElementById('show_exam_topic');
+
+                if (topicSelect) {
+                    topicSelect.innerHTML = '<option value="">Select Topic</option>';
+                }
+
+                if (subjectId && chapterId && topicSelect) {
+                    const selectedSubject = subjectsDataShow.find(s => String(s.id) === String(subjectId));
+                    if (selectedSubject && selectedSubject.chapters) {
+                        const selectedChapter = selectedSubject.chapters.find(c => String(c.id) === String(chapterId));
+                        if (selectedChapter && selectedChapter.topics) {
+                            selectedChapter.topics.forEach(tp => {
+                                const opt = document.createElement('option');
+                                opt.value = tp.id;
+                                opt.textContent = tp.name;
+                                topicSelect.appendChild(opt);
+                            });
+                        }
+                    }
+                }
+            }
+
+            function initShowExamCurriculum() {
+                const initialSyllabusId = @json($exam->syllabus_id);
+                const initialStandardId = @json($exam->standard_id);
+                const initialSubjectId = @json($exam->subject_id);
+                const initialChapterId = @json($exam->chapter_id);
+                const initialTopicId = @json($exam->topic_id);
+
+                if (initialSyllabusId) {
+                    const sylSelect = document.getElementById('show_exam_syllabus');
+                    if (sylSelect) {
+                        sylSelect.value = initialSyllabusId;
+                        onShowExamSyllabusChange();
+                    }
+                }
+
+                if (initialStandardId) {
+                    const stdSelect = document.getElementById('show_exam_standard');
+                    if (stdSelect) stdSelect.value = initialStandardId;
+                }
+
+                if (initialSubjectId) {
+                    const subjSelect = document.getElementById('show_exam_subject');
+                    if (subjSelect) {
+                        subjSelect.value = initialSubjectId;
+                        onShowExamSubjectChange();
+                    }
+                }
+
+                if (initialChapterId) {
+                    const chSelect = document.getElementById('show_exam_chapter');
+                    if (chSelect) {
+                        chSelect.value = initialChapterId;
+                        onShowExamChapterChange();
+                    }
+                }
+
+                if (initialTopicId) {
+                    const tpSelect = document.getElementById('show_exam_topic');
+                    if (tpSelect) tpSelect.value = initialTopicId;
+                }
+            }
+
             document.addEventListener('DOMContentLoaded', () => {
                 filterQuestionsShowPage();
                 const showType = document.getElementById('show_exam_type');
                 if (showType) toggleShowExamDuration(showType.value);
+                initShowExamCurriculum();
             });
         </script>
 
         <!-- EDIT EXAM DETAILS MODAL -->
-        <div id="editExamDetailsModal" class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-4xl overflow-hidden shadow-2xl my-8">
-                <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/50">
-                    <h3 class="text-lg font-bold text-white">Edit Exam Details</h3>
-                    <button onclick="document.getElementById('editExamDetailsModal').classList.add('hidden')" class="text-slate-400 hover:text-white transition-colors cursor-pointer">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        @php
+            $isEditModalOpen = $errors->any();
+        @endphp
+        <div id="editExamDetailsModal" class="{{ $isEditModalOpen ? '' : 'hidden' }} fixed inset-0 z-50 bg-black/70 backdrop-blur-sm overflow-y-auto p-2 sm:p-4 flex justify-center items-start">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-4xl max-h-[92vh] flex flex-col overflow-hidden shadow-2xl my-2 sm:my-4">
+                <div class="px-5 py-3 border-b border-slate-800 flex items-center justify-between bg-slate-950/80 shrink-0">
+                    <h3 class="text-base font-bold text-white flex items-center gap-2">
+                        <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                        <span>Edit Exam Details</span>
+                    </h3>
+                    <button onclick="document.getElementById('editExamDetailsModal').classList.add('hidden')" class="text-slate-400 hover:text-white transition-colors cursor-pointer p-1">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                     </button>
                 </div>
 
-                <form method="POST" action="{{ route('exams.update', $exam) }}" class="p-6 space-y-4">
+                <form method="POST" action="{{ route('exams.update', $exam) }}" class="flex flex-col flex-1 overflow-hidden min-h-0">
                     @csrf
                     @method('PUT')
                     <input type="hidden" name="_redirect_to_show" value="1">
 
-                    <div>
-                        <label for="show_exam_name" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Exam Name <span class="text-red-400">*</span></label>
-                        <input type="text" id="show_exam_name" name="name" required value="{{ old('name', $exam->name) }}" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm">
+                    <div class="p-4 sm:p-5 overflow-y-auto space-y-3 flex-1">
+                        @if ($errors->any())
+                            <div class="p-3 rounded-xl bg-red-950/80 border border-red-500/40 text-red-200 text-xs">
+                                <span class="font-bold flex items-center gap-1 text-red-300">
+                                    <svg class="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    {{ $errors->first() }}
+                                </span>
+                            </div>
+                        @endif
+
+                        <!-- Compact Primary Row: Exam Name, Type, Duration, Status -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-2.5 items-start">
+                            <div class="md:col-span-5">
+                                <label for="show_exam_name" class="block text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-1">Exam Name <span class="text-red-400">*</span></label>
+                                <input type="text" id="show_exam_name" name="name" required value="{{ old('name', $exam->name) }}" class="w-full px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs">
+                            </div>
+
+                            <div class="md:col-span-2">
+                                <label for="show_exam_type" class="block text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-1">Type <span class="text-red-400">*</span></label>
+                                <select id="show_exam_type" name="type" required onchange="toggleShowExamDuration(this.value)" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs">
+                                    <option value="1" {{ old('type', $exam->type) == 1 ? 'selected' : '' }}>1 - Timed</option>
+                                    <option value="2" {{ old('type', $exam->type) == 2 ? 'selected' : '' }}>2 - Non-Timed</option>
+                                    <option value="3" {{ old('type', $exam->type) == 3 ? 'selected' : '' }}>3 - Text Entry</option>
+                                </select>
+                            </div>
+
+                            <div id="show_duration_wrapper" class="md:col-span-2 {{ old('type', $exam->type) != 1 ? 'hidden' : '' }}">
+                                <label for="show_exam_duration" class="block text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-1">Duration (Min) <span class="text-red-400">*</span></label>
+                                <input type="number" id="show_exam_duration" name="duration" min="1" max="1440" value="{{ old('duration', $exam->duration ?? 60) }}" placeholder="60" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs">
+                            </div>
+
+                            <div class="md:col-span-3">
+                                <label for="show_exam_status" class="block text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-1">Status <span class="text-red-400">*</span></label>
+                                <select id="show_exam_status" name="status" required class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs">
+                                    <option value="1" {{ old('status', $exam->status) == 1 ? 'selected' : '' }}>1 - Active</option>
+                                    <option value="2" {{ old('status', $exam->status) == 2 ? 'selected' : '' }}>2 - Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Row 2: Curriculum Hierarchy: Syllabus, Class (Standard), Subject, Chapter, Topic -->
+                        <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <label class="block text-[11px] font-bold text-indigo-300 uppercase tracking-wider flex items-center gap-1.5">
+                                    <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                                    <span>Curriculum Classification</span>
+                                </label>
+                                <span class="text-[10px] text-slate-400">Classify exam by academic curriculum</span>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-2">
+                                <!-- 1. Syllabus -->
+                                <div>
+                                    <label for="show_exam_syllabus" class="block text-[10px] font-semibold text-slate-300 uppercase tracking-wider mb-0.5">Syllabus</label>
+                                    <select id="show_exam_syllabus" name="syllabus_id" onchange="onShowExamSyllabusChange()" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-100 text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                                        <option value="">Select Syllabus</option>
+                                        @foreach($syllabuses as $syl)
+                                            <option value="{{ $syl->id }}" {{ old('syllabus_id', $exam->syllabus_id) == $syl->id ? 'selected' : '' }}>{{ $syl->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <!-- 2. Class / Standard -->
+                                <div>
+                                    <label for="show_exam_standard" class="block text-[10px] font-semibold text-slate-300 uppercase tracking-wider mb-0.5">Class / Standard</label>
+                                    <select id="show_exam_standard" name="standard_id" onchange="onShowExamStandardChange()" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-100 text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                                        <option value="">Select Class</option>
+                                        @foreach($standards as $std)
+                                            <option value="{{ $std->id }}" data-syllabus-id="{{ $std->syllabus_id }}" {{ old('standard_id', $exam->standard_id) == $std->id ? 'selected' : '' }}>{{ $std->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <!-- 3. Subject -->
+                                <div>
+                                    <label for="show_exam_subject" class="block text-[10px] font-semibold text-slate-300 uppercase tracking-wider mb-0.5">Subject</label>
+                                    <select id="show_exam_subject" name="subject_id" onchange="onShowExamSubjectChange()" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-100 text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                                        <option value="">Select Subject</option>
+                                        @foreach($subjectsData as $sb)
+                                            <option value="{{ $sb->id }}" data-syllabus-id="{{ $sb->syllabus_id }}" {{ old('subject_id', $exam->subject_id) == $sb->id ? 'selected' : '' }}>{{ $sb->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <!-- 4. Chapter -->
+                                <div>
+                                    <label for="show_exam_chapter" class="block text-[10px] font-semibold text-slate-300 uppercase tracking-wider mb-0.5">Chapter</label>
+                                    <select id="show_exam_chapter" name="chapter_id" onchange="onShowExamChapterChange()" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-100 text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                                        <option value="">Select Chapter</option>
+                                    </select>
+                                </div>
+
+                                <!-- 5. Topic -->
+                                <div>
+                                    <label for="show_exam_topic" class="block text-[10px] font-semibold text-slate-300 uppercase tracking-wider mb-0.5">Topic</label>
+                                    <select id="show_exam_topic" name="topic_id" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-100 text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                                        <option value="">Select Topic</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <div>
-                            <label for="show_exam_type" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Exam Type <span class="text-red-400">*</span></label>
-                            <select id="show_exam_type" name="type" required onchange="toggleShowExamDuration(this.value)" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm">
-                                <option value="1" {{ old('type', $exam->type) == 1 ? 'selected' : '' }}>1 - Timed</option>
-                                <option value="2" {{ old('type', $exam->type) == 2 ? 'selected' : '' }}>2 - Non-Timed</option>
-                            </select>
-                        </div>
-
-                        <div id="show_duration_wrapper" class="{{ old('type', $exam->type) == 2 ? 'hidden' : '' }}">
-                            <label for="show_exam_duration" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Duration (Minutes) <span class="text-red-400">*</span></label>
-                            <input type="number" id="show_exam_duration" name="duration" min="1" max="1440" value="{{ old('duration', $exam->duration ?? 60) }}" placeholder="e.g. 60" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm">
-                        </div>
-
-                        <div>
-                            <label for="show_exam_status" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Status <span class="text-red-400">*</span></label>
-                            <select id="show_exam_status" name="status" required class="w-full px-3.5 py-2.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm">
-                                <option value="1" {{ old('status', $exam->status) == 1 ? 'selected' : '' }}>1 - Active</option>
-                                <option value="2" {{ old('status', $exam->status) == 2 ? 'selected' : '' }}>2 - Inactive</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="pt-4 flex justify-end space-x-3 border-t border-slate-800">
-                        <button type="button" onclick="document.getElementById('editExamDetailsModal').classList.add('hidden')" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-medium transition-colors cursor-pointer">Cancel</button>
-                        <button type="submit" class="px-5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold shadow-lg shadow-indigo-600/30 transition-all cursor-pointer">Update Exam</button>
+                    <div class="px-5 py-3 border-t border-slate-800 flex justify-end space-x-3 bg-slate-950/80 shrink-0">
+                        <button type="button" onclick="document.getElementById('editExamDetailsModal').classList.add('hidden')" class="px-4 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium transition-colors cursor-pointer">Cancel</button>
+                        <button type="submit" class="px-5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/30 transition-all cursor-pointer">Update Exam</button>
                     </div>
                 </form>
             </div>
         </div>
 
         <!-- QUESTION PREVIEW POPUP MODAL -->
-        <div id="questionPreviewModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-3xl overflow-hidden shadow-2xl my-8">
+        <div id="questionPreviewModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-md overflow-y-auto p-2 sm:p-4 flex justify-center items-start">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-3xl overflow-hidden shadow-2xl my-3 sm:my-6">
                 <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/60">
                     <div class="flex items-center space-x-3">
                         <div class="w-9 h-9 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 font-bold flex items-center justify-center text-sm">
@@ -811,6 +1101,18 @@
                         <p id="preview_q_description" class="text-xs text-slate-300 leading-relaxed"></p>
                     </div>
 
+                    <!-- Hint Container -->
+                    <div id="preview_q_hint_container" class="hidden p-4 rounded-xl bg-amber-950/30 border border-amber-800/40">
+                        <span class="block text-[11px] font-extrabold text-amber-300 uppercase tracking-wider mb-1">💡 Hint</span>
+                        <p id="preview_q_hint" class="text-xs text-amber-200/90 leading-relaxed whitespace-pre-line"></p>
+                    </div>
+
+                    <!-- Solution Container -->
+                    <div id="preview_q_solution_container" class="hidden p-4 rounded-xl bg-emerald-950/30 border border-emerald-800/40">
+                        <span class="block text-[11px] font-extrabold text-emerald-300 uppercase tracking-wider mb-1">📝 Solution / Explanation</span>
+                        <p id="preview_q_solution" class="text-xs text-emerald-200/90 leading-relaxed whitespace-pre-line"></p>
+                    </div>
+
                     <!-- Options Container -->
                     <div>
                         <h5 class="text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2.5">Answer Options</h5>
@@ -828,7 +1130,7 @@
 
         <script>
             function openQuestionPreviewModal(data) {
-                document.getElementById('preview_q_name').textContent = data.name || '';
+                document.getElementById('preview_q_name').innerHTML = data.name || '';
                 document.getElementById('preview_q_standard').textContent = 'Class: ' + (data.standard_name || 'N/A');
 
                 const subjBadge = document.getElementById('preview_q_subject');
@@ -858,6 +1160,8 @@
                 let typeStr = 'Single Option';
                 if (parseInt(data.type) === 2) typeStr = 'Multiple Option';
                 if (parseInt(data.type) === 3) typeStr = 'Text Entry';
+                if (parseInt(data.type) === 4) typeStr = 'True / False';
+                if (parseInt(data.type) === 5) typeStr = 'Match the Following';
                 document.getElementById('preview_q_type').textContent = 'Type: ' + typeStr;
 
                 document.getElementById('preview_q_marks').textContent = (data.marks || 0) + ' Mark(s)';
@@ -872,12 +1176,54 @@
                     descContainer.classList.add('hidden');
                 }
 
+                const hintContainer = document.getElementById('preview_q_hint_container');
+                const hintText = document.getElementById('preview_q_hint');
+                if (hintContainer && hintText) {
+                    if (data.hint && data.hint.trim() !== '') {
+                        hintText.textContent = data.hint;
+                        hintContainer.classList.remove('hidden');
+                    } else {
+                        hintContainer.classList.add('hidden');
+                    }
+                }
+
+                const solutionContainer = document.getElementById('preview_q_solution_container');
+                const solutionText = document.getElementById('preview_q_solution');
+                if (solutionContainer && solutionText) {
+                    if (data.solution && data.solution.trim() !== '') {
+                        solutionText.textContent = data.solution;
+                        solutionContainer.classList.remove('hidden');
+                    } else {
+                        solutionContainer.classList.add('hidden');
+                    }
+                }
+
                 const answersList = document.getElementById('preview_q_answers_list');
                 answersList.innerHTML = '';
 
                 const answers = data.answers || [];
                 if (parseInt(data.type) === 3) {
                     answersList.innerHTML = '<p class="text-xs text-slate-400 italic p-3 rounded-lg bg-slate-950 border border-slate-800">Students will type a written text answer for this question.</p>';
+                } else if (parseInt(data.type) === 5) {
+                    if (answers.length === 0) {
+                        answersList.innerHTML = '<p class="text-xs text-slate-500 italic p-3 rounded-lg bg-slate-950 border border-slate-800">No matching pairs configured.</p>';
+                    } else {
+                        answers.forEach((ans, idx) => {
+                            const itemHtml = `
+                                <div class="p-3 rounded-xl border border-indigo-500/30 bg-slate-950/80 flex items-center justify-between text-xs">
+                                    <div class="flex items-center space-x-2.5">
+                                        <span class="w-6 text-[11px] font-bold text-indigo-400">#${idx + 1}</span>
+                                        <span class="text-white font-medium">${ans.name}</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-indigo-400 font-bold">⟷</span>
+                                        <span class="px-2.5 py-1 rounded-lg bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 font-semibold">${ans.match_answer || 'N/A'}</span>
+                                    </div>
+                                </div>
+                            `;
+                            answersList.innerHTML += itemHtml;
+                        });
+                    }
                 } else if (answers.length === 0) {
                     answersList.innerHTML = '<p class="text-xs text-slate-500 italic p-3 rounded-lg bg-slate-950 border border-slate-800">No answer options configured.</p>';
                 } else {

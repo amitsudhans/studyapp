@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chapter;
 use App\Models\Exam;
 use App\Models\Standard;
 use App\Models\StudentExamDetail;
+use App\Models\Subject;
 use App\Models\Syllabus;
+use App\Models\Topic;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -37,7 +40,11 @@ class DashboardController extends Controller
         $teacherStudents = null;
         $teacherStudentsCount = 0;
         $teacherExams = collect();
+        $teacherExamList = null;
         $teacherExamSubmissions = collect();
+        $studentAssignedCount = 0;
+        $studentActiveCount = 0;
+        $studentTotalMarks = 0;
 
         if ($isAdmin) {
             $adminQuery = User::with(['profile', 'standards', 'student.standard']);
@@ -78,17 +85,46 @@ class DashboardController extends Controller
             $teacherCount = User::whereHas('profile', fn ($q) => $q->where('type', 1))->orWhereDoesntHave('profile')->count();
             $studentCount = User::whereHas('profile', fn ($q) => $q->where('type', 2))->count();
             $adminCount = User::whereHas('profile', fn ($q) => $q->where('type', 3))->count();
+
+            // Admin All Exams Query with Name & Curriculum Filters
+            $adminExamQuery = Exam::query();
+            if ($request->filled('exam_name')) {
+                $name = trim($request->input('exam_name'));
+                $adminExamQuery->where('name', 'like', "%{$name}%");
+            }
+            if ($request->filled('exam_type') || $request->filled('type')) {
+                $typeVal = (int) ($request->input('exam_type') ?: $request->input('type'));
+                $adminExamQuery->where('type', $typeVal);
+            }
+            if ($request->filled('exam_syllabus_id')) {
+                $syllabusId = (int) $request->input('exam_syllabus_id');
+                $adminExamQuery->where(function ($q) use ($syllabusId) {
+                    $q->where('syllabus_id', $syllabusId)
+                        ->orWhere(function ($sq) use ($syllabusId) {
+                            $sq->whereNull('syllabus_id')
+                                ->whereHas('standards', fn ($std) => $std->where('syllabus_id', $syllabusId));
+                        });
+                });
+            }
+            if ($request->filled('exam_subject_id')) {
+                $adminExamQuery->where('subject_id', (int) $request->input('exam_subject_id'));
+            }
+            if ($request->filled('exam_chapter_id')) {
+                $adminExamQuery->where('chapter_id', (int) $request->input('exam_chapter_id'));
+            }
+            if ($request->filled('exam_topic_id')) {
+                $adminExamQuery->where('topic_id', (int) $request->input('exam_topic_id'));
+            }
+
+            $adminExams = $adminExamQuery->withCount('studentExamDetails')->with(['creator', 'questions.answers', 'standards', 'syllabus', 'standard', 'subject', 'chapter', 'topic'])
+                ->latest()
+                ->paginate(10, ['*'], 'admin_exams_page')
+                ->appends($request->query());
+
+            $totalExamsCount = Exam::count();
         } elseif ($isStudent) {
             $studentId = $user->student?->id ?? $user->id;
             $stdIds = $user->studentStandards->pluck('id')->merge(array_filter([$user->student?->standard_id]))->unique()->toArray();
-            if (! empty($stdIds)) {
-                $studentExams = Exam::whereHas('standards', function ($query) use ($stdIds) {
-                    $query->whereIn('standards.id', $stdIds);
-                })
-                    ->with(['creator', 'questions.standard', 'questions.answers', 'standards'])
-                    ->latest()
-                    ->get();
-            }
 
             if ($studentId) {
                 $submittedExamIds = StudentExamDetail::where('student_id', $studentId)
@@ -101,6 +137,27 @@ class DashboardController extends Controller
                     ->get()
                     ->groupBy('exam_id');
             }
+
+            $studentExamsQuery = Exam::query();
+            if (! empty($stdIds)) {
+                $studentExamsQuery->whereHas('standards', function ($query) use ($stdIds) {
+                    $query->whereIn('standards.id', $stdIds);
+                });
+            } else {
+                $studentExamsQuery->whereRaw('1 = 0');
+            }
+
+            $allAssignedExams = (clone $studentExamsQuery)->get(['id', 'status', 'total_mark']);
+            $studentAssignedCount = $allAssignedExams->count();
+            $studentActiveCount = $allAssignedExams->filter(fn ($e) => (int) $e->status === 1 && ! in_array($e->id, $submittedExamIds))->count();
+            $studentTotalMarks = $allAssignedExams->sum('total_mark');
+
+            $pageName = $request->has('assigned_exams_page') ? 'assigned_exams_page' : 'page';
+            $studentExams = $studentExamsQuery
+                ->with(['creator', 'questions.standard', 'questions.answers', 'standards', 'syllabus', 'standard', 'subject', 'chapter', 'topic'])
+                ->latest()
+                ->paginate(10, ['*'], $pageName)
+                ->appends($request->query());
         } else {
             $teacherStandardIds = Standard::where('created_by', $user->id)
                 ->orWhereHas('teachers', fn ($tq) => $tq->where('users.id', $user->id))
@@ -148,19 +205,50 @@ class DashboardController extends Controller
             }
 
             $examQuery = Exam::query();
-            if ($isAdmin) {
-                if (! empty($teacherStandardIds)) {
-                    $examQuery->whereHas('standards', function ($sub) use ($teacherStandardIds) {
-                        $sub->whereIn('standards.id', $teacherStandardIds);
-                    });
-                }
-            } else {
-                $examQuery->where('created_by', $user->id);
+            $examQuery->where('created_by', $user->id);
+
+            // Curriculum & Name search for Teacher's exams
+            if ($request->filled('exam_name')) {
+                $name = trim($request->input('exam_name'));
+                $examQuery->where('name', 'like', "%{$name}%");
+            }
+            if ($request->filled('exam_type') || $request->filled('type')) {
+                $typeVal = (int) ($request->input('exam_type') ?: $request->input('type'));
+                $examQuery->where('type', $typeVal);
+            }
+            if ($request->filled('exam_syllabus_id')) {
+                $syllabusId = (int) $request->input('exam_syllabus_id');
+                $examQuery->where(function ($q) use ($syllabusId) {
+                    $q->where('syllabus_id', $syllabusId)
+                        ->orWhere(function ($sq) use ($syllabusId) {
+                            $sq->whereNull('syllabus_id')
+                                ->whereHas('standards', fn ($std) => $std->where('syllabus_id', $syllabusId));
+                        });
+                });
+            }
+            if ($request->filled('exam_subject_id')) {
+                $examQuery->where('subject_id', (int) $request->input('exam_subject_id'));
+            }
+            if ($request->filled('exam_chapter_id')) {
+                $examQuery->where('chapter_id', (int) $request->input('exam_chapter_id'));
+            }
+            if ($request->filled('exam_topic_id')) {
+                $examQuery->where('topic_id', (int) $request->input('exam_topic_id'));
             }
 
-            $teacherExams = $examQuery->with(['creator', 'questions.answers', 'standards'])
+            $reportPageName = $request->has('exams_page') && ! $request->has('report_page') ? 'exams_page' : 'report_page';
+            $teacherExams = (clone $examQuery)
+                ->withCount('studentExamDetails')
+                ->with(['creator', 'questions.answers', 'standards', 'syllabus', 'standard', 'subject', 'chapter', 'topic'])
                 ->latest()
-                ->paginate(10, ['*'], 'exams_page')
+                ->paginate(10, ['*'], $reportPageName)
+                ->appends($request->query());
+
+            $teacherExamList = (clone $examQuery)
+                ->withCount('studentExamDetails')
+                ->with(['creator', 'questions.answers', 'standards', 'syllabus', 'standard', 'subject', 'chapter', 'topic'])
+                ->latest()
+                ->paginate(10, ['*'], 'exam_list_page')
                 ->appends($request->query());
 
             $examIds = $teacherExams->pluck('id')->toArray();
@@ -226,19 +314,22 @@ class DashboardController extends Controller
                         $qDetailsPayload = [];
 
                         foreach ($studentExamDetails as $d) {
-                            $qMarks = $d->question?->marks ?? 0;
-                            $isCorrect = $d->writtenAnswer && ((int) $d->writtenAnswer->is_correct === 1);
-                            if ($isCorrect) {
-                                $obtained += $qMarks;
-                            }
-                            $correctOption = $d->question?->answers?->firstWhere('is_correct', 1);
+                            $qMarks = $d->getQuestionMarks();
+                            $isCorrect = $d->isCorrect();
+                            $earnedMarks = $d->getEarnedMarks();
+                            $obtained += $earnedMarks;
+
                             $qDetailsPayload[] = [
                                 'question_name' => $d->question?->name ?? 'N/A',
                                 'question_marks' => $qMarks,
-                                'selected_answer' => $d->writtenAnswer?->name ?? 'No Answer Selected',
+                                'selected_answer' => $d->getSelectedAnswerDisplay(),
                                 'is_correct' => $isCorrect,
-                                'earned_marks' => $isCorrect ? $qMarks : 0,
-                                'correct_answer' => $correctOption?->name ?? null,
+                                'is_partially_correct' => $d->isPartiallyCorrect(),
+                                'earned_marks' => $earnedMarks,
+                                'correct_answer' => $d->getCorrectAnswerDisplay(),
+                                'match_pairs' => $d->getMatchPairsReview(),
+                                'hint' => $d->question?->hint,
+                                'solution' => $d->question?->solution,
                             ];
                         }
 
@@ -288,7 +379,8 @@ class DashboardController extends Controller
         }
 
         if ($user->canAssignExams()) {
-            $standardsQuery = Standard::withCount('students')->with('creator.profile');
+            $standardsQuery = Standard::withCount(['students', 'chapters'])
+                ->with(['creator.profile', 'syllabus', 'chapters.topics', 'chapters.subject']);
 
             if (! $isAdmin) {
                 $standardsQuery->where(function ($q) use ($user) {
@@ -321,7 +413,12 @@ class DashboardController extends Controller
             $allStandardsForSelect = Standard::orderBy('name')->get();
         }
 
-        $syllabi = Syllabus::orderBy('id')->get();
+        $syllabi = Syllabus::orderBy('name')->get();
+        $syllabusesData = Syllabus::with(['standards', 'subjects.chapters.topics'])->orderBy('name')->get();
+        $subjects = Subject::orderBy('name')->get();
+        $chapters = Chapter::orderBy('name')->get();
+        $topics = Topic::orderBy('name')->get();
+        $subjectsData = Subject::with(['chapters.topics'])->orderBy('name')->get();
 
         $allStudents = collect();
         if ($user->canAssignExams()) {
@@ -366,16 +463,27 @@ class DashboardController extends Controller
             'users' => $users,
             'standards' => $standards,
             'syllabi' => $syllabi,
+            'syllabusesData' => $syllabusesData,
+            'subjects' => $subjects,
+            'chapters' => $chapters,
+            'topics' => $topics,
+            'subjectsData' => $subjectsData,
             'studentExams' => $studentExams,
+            'studentAssignedCount' => $studentAssignedCount,
+            'studentActiveCount' => $studentActiveCount,
+            'studentTotalMarks' => $studentTotalMarks,
             'submittedExamIds' => $submittedExamIds,
             'submittedDetails' => $submittedDetails,
             'totalUsersCount' => $totalUsersCount,
+            'totalExamsCount' => $totalExamsCount ?? 0,
+            'adminExams' => $adminExams ?? null,
             'teacherCount' => $teacherCount,
             'studentCount' => $studentCount,
             'adminCount' => $adminCount,
             'teacherStudents' => $teacherStudents,
             'teacherStudentsCount' => $teacherStudentsCount,
             'teacherExams' => $teacherExams,
+            'teacherExamList' => $teacherExamList,
             'teacherExamSubmissions' => $teacherExamSubmissions,
             'teacherStudentPerformanceMap' => $teacherStudentPerformanceMap,
             'allStudents' => $allStudents,
