@@ -378,6 +378,12 @@ in manual evaluation if i give 0 marks then one error is coming
 like this Error saving evaluation: $pct is not defined and not able to save
 
 can you add draw tool like draw triangle square etc in question creation
+when i click on draw shapes and geometry a popp up is coming but 
+it is behind the question creation modal pls make it in front of question creation modal
+
+i want to draw like this thne how 
+can can you integrate a drawign system to drow like this
+
 
 
 © 2026 Laravel. All rights reserved. at footer to© 2026 Study App  All rights reserved.
@@ -391,3 +397,4 @@ flowbard has employee login checkin and checkout facility login time and logout 
 we can do meeting details in it
 it has worklog and release log
 user can create task with time estimation after done user can change status from doing to done
+

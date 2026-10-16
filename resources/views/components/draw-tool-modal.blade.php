@@ -1,5 +1,5 @@
 <!-- GEOMETRIC DRAWING & SHAPE BOARD MODAL -->
-<div id="drawToolModal" class="hidden fixed inset-0 z-[60] bg-black/85 backdrop-blur-md overflow-y-auto p-2 sm:p-4 flex justify-center items-start">
+<div id="drawToolModal" style="z-index: 99999;" class="hidden fixed inset-0 bg-black/85 backdrop-blur-md overflow-y-auto p-2 sm:p-4 flex justify-center items-start">
     <div class="bg-slate-900 border border-slate-700/80 rounded-2xl sm:rounded-3xl w-full max-w-5xl max-h-[96vh] flex flex-col overflow-hidden shadow-2xl my-1 sm:my-2">
         <!-- Modal Header -->
         <div class="px-4 sm:px-6 py-3 border-b border-slate-800 flex items-center justify-between bg-slate-950/90 shrink-0">
@@ -39,6 +39,12 @@
 
                 <!-- Secondary Global Actions -->
                 <div class="flex items-center space-x-1.5 ml-auto">
+                    <input type="file" id="draw_image_file_input" accept="image/*" class="hidden" onchange="handleDrawImageUpload(this)">
+                    <button type="button" onclick="document.getElementById('draw_image_file_input').click()" title="Upload or Paste (Ctrl+V) Textbook Diagram" class="px-2.5 py-1 rounded-lg bg-sky-600/20 hover:bg-sky-600/30 text-sky-300 border border-sky-500/30 text-xs font-semibold flex items-center space-x-1 cursor-pointer transition-colors">
+                        <span>📁</span>
+                        <span class="hidden sm:inline">Upload Image</span>
+                        <span class="text-[10px] text-sky-400 font-mono">(Ctrl+V)</span>
+                    </button>
                     <button type="button" onclick="undoDraw()" title="Undo (Ctrl+Z)" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold flex items-center space-x-1 cursor-pointer transition-colors">
                         <span>↩️</span>
                         <span class="hidden sm:inline">Undo</span>
@@ -69,6 +75,13 @@
                 <button type="button" onclick="setDrawTool('isosceles', this)" class="shape-tool-btn px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-indigo-600/50 text-slate-200 border border-slate-700 flex items-center space-x-1 shrink-0">
                     <span class="font-bold">◬</span>
                     <span>Isosceles △</span>
+                </button>
+                <button type="button" onclick="setDrawTool('polyline', this)" class="shape-tool-btn px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-indigo-600/50 text-slate-200 border border-slate-700 flex items-center space-x-1 shrink-0" title="Click point by point to draw any scalene triangle or custom polygon">
+                    <span class="font-bold">☡</span>
+                    <span>Connected Lines (Arbitrary △)</span>
+                </button>
+                <button id="draw_finish_polyline_btn" type="button" onclick="finishPolyline()" class="hidden px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shrink-0 animate-pulse">
+                    ✓ Finish Shape
                 </button>
 
                 <span class="text-slate-700 mx-0.5">|</span>
@@ -140,6 +153,9 @@
             <!-- 2. Presets Sub-toolbar -->
             <div id="draw_tools_presets" class="hidden flex items-center gap-2 flex-wrap overflow-x-auto pb-1 text-xs scrollbar-thin">
                 <span class="text-[10px] uppercase font-bold text-amber-400 mr-1 shrink-0">One-Click Presets:</span>
+                <button type="button" onclick="stampPreset('triangle_pqr_st')" class="px-3 py-1 rounded-lg bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold border border-emerald-400/50 shadow-md transition-all shrink-0">
+                    ⭐ △ PQR with Line ST (20 cm)
+                </button>
                 <button type="button" onclick="stampPreset('right_triangle_abc')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-emerald-600 text-slate-200 hover:text-white border border-slate-700 transition-all shrink-0">
                     ⊿ Right △ (ABC with 90°)
                 </button>
@@ -186,14 +202,21 @@
                 </button>
 
                 <span class="text-slate-700 mx-1">|</span>
-                <span class="text-[10px] uppercase font-bold text-slate-500 mr-1 shrink-0">Quick Vertex & Math Stamps:</span>
+                <span class="text-[10px] uppercase font-bold text-slate-500 mr-1 shrink-0">Quick Click-to-Stamp Labels:</span>
                 <div class="flex items-center space-x-1 overflow-x-auto scrollbar-thin">
+                    <button type="button" onclick="quickSelectLabel('P')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 text-xs font-bold font-mono">P</button>
+                    <button type="button" onclick="quickSelectLabel('Q')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 text-xs font-bold font-mono">Q</button>
+                    <button type="button" onclick="quickSelectLabel('R')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 text-xs font-bold font-mono">R</button>
+                    <button type="button" onclick="quickSelectLabel('S')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 text-xs font-bold font-mono">S</button>
+                    <button type="button" onclick="quickSelectLabel('T')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 text-xs font-bold font-mono">T</button>
+                    <button type="button" onclick="quickSelectLabel('20 cm')" class="px-2 py-0.5 rounded bg-emerald-900/60 hover:bg-emerald-600 text-emerald-300 hover:text-white border border-emerald-500/40 text-xs font-bold font-mono">20 cm</button>
+                    <button type="button" onclick="quickSelectLabel('10 cm')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 text-xs font-bold font-mono">10 cm</button>
+                    <button type="button" onclick="quickSelectLabel('5 cm')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 text-xs font-bold font-mono">5 cm</button>
                     <button type="button" onclick="quickSelectLabel('A')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 text-xs font-bold font-mono">A</button>
                     <button type="button" onclick="quickSelectLabel('B')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 text-xs font-bold font-mono">B</button>
                     <button type="button" onclick="quickSelectLabel('C')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 text-xs font-bold font-mono">C</button>
                     <button type="button" onclick="quickSelectLabel('D')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 text-xs font-bold font-mono">D</button>
                     <button type="button" onclick="quickSelectLabel('O')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 text-xs font-bold font-mono">O</button>
-                    <button type="button" onclick="quickSelectLabel('P')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 text-xs font-bold font-mono">P</button>
                     <button type="button" onclick="quickSelectLabel('x')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 text-xs font-bold font-mono">x</button>
                     <button type="button" onclick="quickSelectLabel('y')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 text-xs font-bold font-mono">y</button>
                     <button type="button" onclick="quickSelectLabel('r')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 text-xs font-bold font-mono">r</button>
@@ -211,7 +234,8 @@
                     <span class="text-[10px] uppercase font-bold text-slate-500 mr-1">Color:</span>
                     <button type="button" onclick="setDrawColor('#0f172a', this)" class="draw-color-swatch active w-5 h-5 rounded-full bg-slate-900 border-2 border-white shadow-sm" title="Black / Dark Slate"></button>
                     <button type="button" onclick="setDrawColor('#3730a3', this)" class="draw-color-swatch w-5 h-5 rounded-full bg-indigo-700 border border-slate-600 shadow-sm" title="Indigo"></button>
-                    <button type="button" onclick="setDrawColor('#0284c7', this)" class="draw-color-swatch w-5 h-5 rounded-full bg-sky-600 border border-slate-600 shadow-sm" title="Blue"></button>
+                    <button type="button" onclick="setDrawColor('#0284c7', this)" class="draw-color-swatch w-5 h-5 rounded-full bg-sky-600 border border-slate-600 shadow-sm" title="Cyan / Sky Blue"></button>
+                    <button type="button" onclick="setDrawColor('#c026d3', this)" class="draw-color-swatch w-5 h-5 rounded-full bg-fuchsia-600 border border-slate-600 shadow-sm" title="Magenta / Purple"></button>
                     <button type="button" onclick="setDrawColor('#059669', this)" class="draw-color-swatch w-5 h-5 rounded-full bg-emerald-600 border border-slate-600 shadow-sm" title="Emerald Green"></button>
                     <button type="button" onclick="setDrawColor('#e11d48', this)" class="draw-color-swatch w-5 h-5 rounded-full bg-rose-600 border border-slate-600 shadow-sm" title="Rose Red"></button>
                     <button type="button" onclick="setDrawColor('#d97706', this)" class="draw-color-swatch w-5 h-5 rounded-full bg-amber-600 border border-slate-600 shadow-sm" title="Amber"></button>
@@ -253,11 +277,40 @@
 
         <!-- Canvas Drawing Surface -->
         <div class="p-3 sm:p-5 bg-slate-950 flex-1 flex flex-col items-center justify-center overflow-auto relative">
+            <!-- Quick Type Length / Side Label Bar -->
+            <div class="w-full max-w-[760px] mb-2 flex items-center justify-between gap-2 flex-wrap bg-slate-900/90 border border-slate-800 px-3 py-1.5 rounded-xl text-xs shadow-inner">
+                <div class="flex items-center space-x-2 flex-wrap">
+                    <span class="text-amber-400 font-bold flex items-center space-x-1">
+                        <span>📏</span>
+                        <span>Side Length / Label:</span>
+                    </span>
+                    <div class="flex items-center space-x-1">
+                        <input type="text" id="quick_side_length_input" value="10 cms" placeholder="e.g. 10 cms, 5 cm"
+                            class="w-24 px-2 py-0.5 rounded-lg bg-slate-950 border border-indigo-500/60 text-white font-mono text-xs focus:ring-1 focus:ring-indigo-400 focus:outline-none font-bold"
+                            onkeydown="if(event.key==='Enter'){stampCustomLength(this.value);}">
+                        <button type="button" onclick="stampCustomLength(document.getElementById('quick_side_length_input').value)"
+                            class="px-2.5 py-0.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-md transition-all cursor-pointer">
+                            Click to Place on Line
+                        </button>
+                    </div>
+                </div>
+                <!-- Quick Chip suggestions -->
+                <div class="flex items-center space-x-1 overflow-x-auto scrollbar-thin">
+                    <span class="text-[10px] text-slate-400">Presets:</span>
+                    <button type="button" onclick="document.getElementById('quick_side_length_input').value='10 cms'; stampCustomLength('10 cms');" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 text-[11px] font-mono font-semibold cursor-pointer">10 cms</button>
+                    <button type="button" onclick="document.getElementById('quick_side_length_input').value='10 cm'; stampCustomLength('10 cm');" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 text-[11px] font-mono font-semibold cursor-pointer">10 cm</button>
+                    <button type="button" onclick="document.getElementById('quick_side_length_input').value='20 cm'; stampCustomLength('20 cm');" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 text-[11px] font-mono font-semibold cursor-pointer">20 cm</button>
+                    <button type="button" onclick="document.getElementById('quick_side_length_input').value='5 cm'; stampCustomLength('5 cm');" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 text-[11px] font-mono font-semibold cursor-pointer">5 cm</button>
+                    <button type="button" onclick="document.getElementById('quick_side_length_input').value='x cm'; stampCustomLength('x cm');" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 text-[11px] font-mono font-semibold cursor-pointer">x cm</button>
+                    <button type="button" onclick="document.getElementById('quick_side_length_input').value='12 cm'; stampCustomLength('12 cm');" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 text-[11px] font-mono font-semibold cursor-pointer">12 cm</button>
+                </div>
+            </div>
+
             <div class="relative bg-white rounded-xl shadow-xl overflow-hidden border border-slate-300 max-w-full">
                 <canvas id="geometryCanvas" width="760" height="460" class="block cursor-crosshair touch-none max-w-full"></canvas>
 
                 <!-- Floating Inline Text Label Input -->
-                <div id="draw_text_input_box" class="hidden absolute z-30 p-2 rounded-xl bg-slate-900/95 border border-indigo-500 shadow-2xl backdrop-blur-sm space-y-1.5 w-60">
+                <div id="draw_text_input_box" style="z-index: 100000;" class="hidden absolute p-2 rounded-xl bg-slate-900/95 border border-indigo-500 shadow-2xl backdrop-blur-sm space-y-1.5 w-60">
                     <div class="flex items-center justify-between text-[11px] text-slate-300">
                         <span class="font-bold">Add Label / Dimension:</span>
                         <button type="button" onclick="cancelTextPlacement()" class="text-slate-400 hover:text-white">✕</button>
@@ -333,6 +386,41 @@
         const MAX_STACK = 25;
 
         let pendingTextCoords = null;
+        let activeStampText = null;
+        let polylinePoints = [];
+        let polylineBaseSnapshot = null;
+
+        window.handleDrawImageUpload = function(input) {
+            if (input && input.files && input.files[0]) {
+                loadImageOntoCanvas(input.files[0]);
+                input.value = '';
+            }
+        };
+
+        function loadImageOntoCanvas(file) {
+            if (!file || !file.type || !file.type.startsWith('image/')) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    if (!ctx || !canvas) return;
+                    clearCanvasInternal();
+                    const maxW = canvas.width - 40;
+                    const maxH = canvas.height - 40;
+                    let scale = Math.min(maxW / img.width, maxH / img.height);
+                    if (scale > 1) scale = 1;
+                    const drawW = img.width * scale;
+                    const drawH = img.height * scale;
+                    const drawX = (canvas.width - drawW) / 2;
+                    const drawY = (canvas.height - drawH) / 2;
+                    ctx.drawImage(img, drawX, drawY, drawW, drawH);
+                    pushUndoState();
+                    showDrawToast('Image diagram loaded! You can annotate or insert it.');
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
 
         function getCanvasPoint(e) {
             if (!canvas) return { x: 0, y: 0 };
@@ -360,6 +448,31 @@
             canvas.addEventListener('touchstart', onPointerDown, { passive: false });
             canvas.addEventListener('touchmove', onPointerMove, { passive: false });
             window.addEventListener('touchend', onPointerUp);
+
+            // Double click to finish polyline
+            canvas.addEventListener('dblclick', function(e) {
+                if (currentDrawTool === 'polyline') {
+                    finishPolyline();
+                }
+            });
+
+            // Clipboard Paste listener (Ctrl+V)
+            window.addEventListener('paste', function(e) {
+                const modal = document.getElementById('drawToolModal');
+                if (!modal || modal.classList.contains('hidden')) return;
+                const clipboardData = e.clipboardData || window.clipboardData;
+                if (!clipboardData) return;
+                const items = clipboardData.items;
+                if (!items) return;
+                for (let i = 0; i < items.length; i++) {
+                    if (items[i].type && items[i].type.indexOf('image') !== -1) {
+                        const file = items[i].getAsFile();
+                        loadImageOntoCanvas(file);
+                        e.preventDefault();
+                        break;
+                    }
+                }
+            });
 
             // Handle keyboard shortcuts
             window.addEventListener('keydown', function(e) {
@@ -449,7 +562,30 @@
         window.clearDrawCanvas = function() {
             if (!confirm('Are you sure you want to clear the drawing canvas?')) return;
             clearCanvasInternal();
+            polylinePoints = [];
+            polylineBaseSnapshot = null;
+            document.getElementById('draw_finish_polyline_btn')?.classList.add('hidden');
             pushUndoState();
+        };
+
+        window.finishPolyline = function() {
+            if (polylinePoints.length >= 2 && polylineBaseSnapshot) {
+                ctx.putImageData(polylineBaseSnapshot, 0, 0);
+                ctx.save();
+                applyDrawStyles(true);
+                ctx.beginPath();
+                ctx.moveTo(polylinePoints[0].x, polylinePoints[0].y);
+                for (let i = 1; i < polylinePoints.length; i++) {
+                    ctx.lineTo(polylinePoints[i].x, polylinePoints[i].y);
+                }
+                if (isFillShape) ctx.fill();
+                ctx.stroke();
+                ctx.restore();
+                pushUndoState();
+            }
+            polylinePoints = [];
+            polylineBaseSnapshot = null;
+            document.getElementById('draw_finish_polyline_btn')?.classList.add('hidden');
         };
 
         function onPointerDown(e) {
@@ -464,6 +600,72 @@
 
             if (currentDrawTool === 'text') {
                 openInlineTextInput(pt.x, pt.y);
+                return;
+            }
+
+            if (currentDrawTool === 'stamp' && activeStampText) {
+                ctx.save();
+                ctx.font = 'bold 16px "Instrument Sans", sans-serif';
+                // Crisp white halo so text placed directly on lines or triangle edges does not get obscured
+                ctx.strokeStyle = '#ffffff';
+                ctx.lineWidth = 6;
+                ctx.lineJoin = 'round';
+                ctx.strokeText(activeStampText, pt.x, pt.y);
+                ctx.fillStyle = currentDrawColor;
+                ctx.fillText(activeStampText, pt.x, pt.y);
+                ctx.restore();
+                pushUndoState();
+                return;
+            }
+
+            if (currentDrawTool === 'polyline') {
+                if (polylinePoints.length === 0) {
+                    polylineBaseSnapshot = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    document.getElementById('draw_finish_polyline_btn')?.classList.remove('hidden');
+                    polylinePoints.push({ x: pt.x, y: pt.y });
+                } else {
+                    const distToFirst = Math.hypot(pt.x - polylinePoints[0].x, pt.y - polylinePoints[0].y);
+                    if (polylinePoints.length >= 3 && distToFirst < 18) {
+                        // Close loop as closed polygon (e.g. custom triangle)
+                        ctx.putImageData(polylineBaseSnapshot, 0, 0);
+                        ctx.save();
+                        applyDrawStyles(true);
+                        ctx.beginPath();
+                        ctx.moveTo(polylinePoints[0].x, polylinePoints[0].y);
+                        for (let i = 1; i < polylinePoints.length; i++) {
+                            ctx.lineTo(polylinePoints[i].x, polylinePoints[i].y);
+                        }
+                        ctx.closePath();
+                        if (isFillShape) ctx.fill();
+                        ctx.stroke();
+                        ctx.restore();
+                        pushUndoState();
+                        polylinePoints = [];
+                        polylineBaseSnapshot = null;
+                        document.getElementById('draw_finish_polyline_btn')?.classList.add('hidden');
+                        return;
+                    }
+                    polylinePoints.push({ x: pt.x, y: pt.y });
+                }
+
+                // Render current polyline state
+                ctx.putImageData(polylineBaseSnapshot, 0, 0);
+                ctx.save();
+                applyDrawStyles(false);
+                ctx.beginPath();
+                ctx.moveTo(polylinePoints[0].x, polylinePoints[0].y);
+                for (let i = 1; i < polylinePoints.length; i++) {
+                    ctx.lineTo(polylinePoints[i].x, polylinePoints[i].y);
+                }
+                ctx.stroke();
+                // Draw vertex dots
+                ctx.fillStyle = currentDrawColor;
+                for (let p of polylinePoints) {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, 3.5, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                ctx.restore();
                 return;
             }
 
@@ -489,8 +691,33 @@
         }
 
         function onPointerMove(e) {
-            if (!isDrawing) return;
             const pt = getCanvasPoint(e);
+
+            if (currentDrawTool === 'polyline' && polylinePoints.length > 0 && polylineBaseSnapshot) {
+                ctx.putImageData(polylineBaseSnapshot, 0, 0);
+                ctx.save();
+                applyDrawStyles(false);
+                ctx.beginPath();
+                ctx.moveTo(polylinePoints[0].x, polylinePoints[0].y);
+                for (let i = 1; i < polylinePoints.length; i++) {
+                    ctx.lineTo(polylinePoints[i].x, polylinePoints[i].y);
+                }
+                ctx.lineTo(pt.x, pt.y);
+                ctx.stroke();
+
+                // Highlight first point if hovering near it to close
+                if (polylinePoints.length >= 2) {
+                    const dist = Math.hypot(pt.x - polylinePoints[0].x, pt.y - polylinePoints[0].y);
+                    ctx.beginPath();
+                    ctx.arc(polylinePoints[0].x, polylinePoints[0].y, dist < 18 ? 7 : 3.5, 0, Math.PI * 2);
+                    ctx.fillStyle = dist < 18 ? '#10b981' : currentDrawColor;
+                    ctx.fill();
+                }
+                ctx.restore();
+                return;
+            }
+
+            if (!isDrawing) return;
 
             if (currentDrawTool === 'pen' || currentDrawTool === 'eraser') {
                 ctx.lineTo(pt.x, pt.y);
@@ -507,6 +734,7 @@
         }
 
         function onPointerUp(e) {
+            if (currentDrawTool === 'polyline') return;
             if (!isDrawing) return;
             isDrawing = false;
 
@@ -988,7 +1216,12 @@
             const text = input.value.trim();
             if (text.length > 0) {
                 ctx.save();
-                ctx.font = 'bold 16px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+                ctx.font = 'bold 16px "Instrument Sans", sans-serif';
+                // Crisp white halo so text placed over lines/edges stays completely readable
+                ctx.strokeStyle = '#ffffff';
+                ctx.lineWidth = 6;
+                ctx.lineJoin = 'round';
+                ctx.strokeText(text, pendingTextCoords.x, pendingTextCoords.y);
                 ctx.fillStyle = currentDrawColor;
                 ctx.fillText(text, pendingTextCoords.x, pendingTextCoords.y);
                 ctx.restore();
@@ -996,6 +1229,21 @@
             }
 
             cancelTextPlacement();
+        };
+
+        window.stampCustomLength = function(val) {
+            const text = (val || '').trim();
+            if (!text) return;
+            currentDrawTool = 'stamp';
+            activeStampText = text;
+            document.querySelectorAll('.shape-tool-btn').forEach(b => {
+                b.classList.remove('active', 'bg-indigo-600', 'text-white');
+                b.classList.add('bg-slate-800', 'text-slate-200');
+            });
+            if (canvas) {
+                canvas.className = 'block cursor-crosshair touch-none max-w-full';
+            }
+            showDrawToast('Click on any line or triangle side to place "' + text + '"');
         };
 
         window.appendInlineText = function(val) {
@@ -1007,9 +1255,16 @@
         };
 
         window.quickSelectLabel = function(label) {
-            setDrawTool('text', null);
-            const input = document.getElementById('draw_text_input_field');
-            if (input) input.value = label;
+            currentDrawTool = 'stamp';
+            activeStampText = label;
+            document.querySelectorAll('.shape-tool-btn').forEach(b => {
+                b.classList.remove('active', 'bg-indigo-600', 'text-white');
+                b.classList.add('bg-slate-800', 'text-slate-200');
+            });
+            if (canvas) {
+                canvas.className = 'block cursor-crosshair touch-none max-w-full';
+            }
+            showDrawToast('Click anywhere on canvas to stamp "' + label + '"');
         };
 
         // UI Selectors
@@ -1037,7 +1292,11 @@
         };
 
         window.setDrawTool = function(tool, btn) {
+            if (currentDrawTool === 'polyline' && tool !== 'polyline') {
+                finishPolyline();
+            }
             currentDrawTool = tool;
+            activeStampText = null;
             document.querySelectorAll('.shape-tool-btn').forEach(b => {
                 b.classList.remove('active', 'bg-indigo-600', 'text-white');
                 b.classList.add('bg-slate-800', 'text-slate-200');
@@ -1103,6 +1362,10 @@
             if (!ctx || !canvas) return;
 
             clearCanvasInternal();
+            polylinePoints = [];
+            polylineBaseSnapshot = null;
+            document.getElementById('draw_finish_polyline_btn')?.classList.add('hidden');
+
             ctx.save();
             ctx.strokeStyle = '#0f172a';
             ctx.fillStyle = '#0f172a';
@@ -1111,6 +1374,65 @@
             ctx.font = 'bold 16px sans-serif';
 
             switch (presetKey) {
+                case 'triangle_pqr_st': {
+                    // Coordinates for textbook diagram: Triangle PQR with transversal ST
+                    const px = 120, py = 390;  // Vertex P (bottom-left)
+                    const qx = 530, qy = 390;  // Vertex Q (bottom-right)
+                    const rx = 640, ry = 80;   // Vertex R (top-right)
+
+                    const sx = 330, sy = 390;  // S on PQ
+                    const tx = 590, ty = 220;  // T on QR
+
+                    // 1. Triangle PQR in Sky Blue
+                    ctx.strokeStyle = '#0284c7';
+                    ctx.lineWidth = 2.8;
+                    ctx.lineJoin = 'round';
+                    ctx.beginPath();
+                    ctx.moveTo(px, py);
+                    ctx.lineTo(qx, qy);
+                    ctx.lineTo(rx, ry);
+                    ctx.closePath();
+                    ctx.stroke();
+
+                    // 2. Transversal ST in Magenta
+                    ctx.strokeStyle = '#c026d3';
+                    ctx.lineWidth = 2.8;
+                    ctx.beginPath();
+                    ctx.moveTo(sx, sy);
+                    ctx.lineTo(tx, ty);
+                    ctx.stroke();
+
+                    // 3. Vertex indicator dots
+                    const pts = [
+                        { x: px, y: py, color: '#0284c7' },
+                        { x: qx, y: qy, color: '#0284c7' },
+                        { x: rx, y: ry, color: '#0284c7' },
+                        { x: sx, y: sy, color: '#c026d3' },
+                        { x: tx, y: ty, color: '#c026d3' }
+                    ];
+                    for (const p of pts) {
+                        ctx.fillStyle = p.color;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+
+                    // 4. Vertex Labels P, Q, R, S, T
+                    ctx.fillStyle = '#0f172a';
+                    ctx.font = 'bold 20px "Instrument Sans", sans-serif';
+                    ctx.fillText('P', px - 28, py + 8);
+                    ctx.fillText('Q', qx + 12, qy + 14);
+                    ctx.fillText('R', rx + 10, ry + 4);
+                    ctx.fillText('S', sx - 8, sy + 26);
+                    ctx.fillText('T', tx + 14, ty + 6);
+
+                    // 5. Dimension "20 cm" alongside side PR
+                    ctx.font = 'bold 18px "Instrument Sans", sans-serif';
+                    ctx.fillStyle = '#0f172a';
+                    ctx.fillText('20 cm', 290, 220);
+                    break;
+                }
+
                 case 'right_triangle_abc': {
                     const ax = 200, ay = 90;
                     const bx = 200, by = 360;
@@ -1560,7 +1882,8 @@
             if (!toast) {
                 toast = document.createElement('div');
                 toast.id = 'draw_tool_toast';
-                toast.className = 'fixed bottom-5 right-5 z-[80] px-4 py-2.5 rounded-xl bg-emerald-600 text-white font-semibold text-xs shadow-2xl flex items-center space-x-2 transition-all duration-300 transform translate-y-20 opacity-0';
+                toast.style.zIndex = '999999';
+                toast.className = 'fixed bottom-5 right-5 px-4 py-2.5 rounded-xl bg-emerald-600 text-white font-semibold text-xs shadow-2xl flex items-center space-x-2 transition-all duration-300 transform translate-y-20 opacity-0';
                 toast.innerHTML = `
                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                     <span id="draw_tool_toast_msg"></span>
