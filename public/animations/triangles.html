@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 10 • Triangles — Multimedia Lab</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    if (typeof tailwind === 'undefined') {
+      document.write('<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"><\/script>');
+    }
+  </script>
+  <style>
+    body { background-color: #020617; color: #f8fafc; }
+    .slide-fade-in {
+      animation: fadeInScale 0.35s ease-out forwards;
+    }
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.15); opacity: 0.4; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .pulse-ring {
+      animation: pulse-ring 2s infinite ease-in-out;
+    }
+    /* Custom scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+  </style>
+</head>
+<body style="background-color: #020617; color: #f8fafc;" class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-sky-500 selection:text-white overflow-x-hidden">
+
+  <!-- TOP HEADER & PROGRESS -->
+  <header style="flex-shrink: 0;" class="border-b border-slate-800 bg-slate-900/95 backdrop-blur sticky top-0 z-50">
+    <!-- Slide Progress Bar -->
+    <div class="w-full bg-slate-800/80 h-1.5 relative overflow-hidden">
+      <div id="slideProgressBar" class="h-full bg-gradient-to-r from-sky-500 via-indigo-500 to-emerald-500 transition-all duration-500" style="width: 10%;"></div>
+      <div id="autoPlayCountdownBar" class="h-full bg-amber-400/80 absolute top-0 left-0 transition-all duration-100" style="width: 0%; opacity: 0;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-500 via-blue-600 to-indigo-600 flex items-center justify-center font-black text-lg text-white shadow-lg shadow-sky-500/25 shrink-0">
+          <span>Δ</span>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="font-black text-sm sm:text-base text-white tracking-tight">NCERT Chapter 6 • Triangles</h1>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-sky-500/20 text-sky-400 border border-sky-500/30">Reprint 2026-27</span>
+          </div>
+          <p id="slideSubtitle" class="text-xs text-slate-400">Slide 1 of 10: Congruence vs. Similarity &amp; Scaled Figures</p>
+        </div>
+      </div>
+
+      <!-- Quick Controls -->
+      <div class="flex items-center space-x-2">
+        <button id="voiceToggleBtn" onclick="toggleVoiceNarration()" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-300 border border-indigo-500/40 flex items-center space-x-1.5 transition-all cursor-pointer" title="Toggle Voice Narration">
+          <span id="voiceIcon">🔊</span>
+          <span id="voiceText" class="hidden sm:inline">Voice: ON</span>
+        </button>
+        <button id="soundToggleBtn" onclick="toggleSoundFx()" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center space-x-1.5 transition-all cursor-pointer" title="Toggle Sound FX">
+          <span id="soundIcon">🎵</span>
+          <span id="soundText" class="hidden sm:inline">SFX: ON</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Narration Subtitles Banner -->
+    <div class="bg-slate-950/80 border-t border-slate-800/80 px-4 py-1.5 flex items-center space-x-2 text-xs">
+      <span class="text-sky-400 shrink-0 font-bold">🎙 Teacher Voiceover:</span>
+      <p id="narrationSubtitlesText" class="text-slate-300 truncate italic">Loading lesson...</p>
+    </div>
+  </header>
+
+  <!-- MAIN SLIDES STAGE -->
+  <main style="flex: 1 1 0%; min-height: 0;" class="max-w-7xl w-full mx-auto p-3 sm:p-5 flex flex-col justify-between overflow-y-auto">
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 1: CONGRUENCE VS SIMILARITY -->
+    <!-- ========================================================================= -->
+    <section id="slide-0" class="slide-pane slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-xs font-bold uppercase mb-2">
+              <span>Section 6.1 &amp; 6.2 • Foundation</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Congruence vs. Similarity: Shapes in Proportion</h2>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+              Two figures are <strong>congruent</strong> if they have the same shape AND the same size. Two figures are <strong>similar (~)</strong> if they have the <strong>same shape, but not necessarily the same size</strong>!
+            </p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center space-x-3 shrink-0">
+            <span class="text-3xl">🔭</span>
+            <div>
+              <div class="text-xs font-bold text-sky-400">Indirect Measurement</div>
+              <div class="text-[11px] text-slate-400">Height of Everest &amp; Distance to Moon</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Golden Rule Banner -->
+        <div class="p-3.5 rounded-xl bg-gradient-to-r from-sky-950/60 to-indigo-950/60 border border-sky-500/30 text-center font-bold text-sky-300 text-xs sm:text-sm">
+          "All congruent figures are similar, but similar figures need NOT be congruent!"
+        </div>
+
+        <!-- 3 Universal Similar Figures -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-center">
+            <div class="text-2xl">⭕ 🔴</div>
+            <h4 class="text-sm font-bold text-white">All Circles are Similar</h4>
+            <p class="text-xs text-slate-400">Every circle has the exact same circular shape, differing only by radius.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-center">
+            <div class="text-2xl">🔲 ⬛</div>
+            <h4 class="text-sm font-bold text-white">All Squares are Similar</h4>
+            <p class="text-xs text-slate-400">All 4 angles are 90° and all 4 sides are in identical 1:1 proportion.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-center">
+            <div class="text-2xl">🔺 🔺</div>
+            <h4 class="text-sm font-bold text-white">All Equilateral Triangles</h4>
+            <p class="text-xs text-slate-400">All angles are strictly 60° and all 3 sides scale equally.</p>
+          </div>
+        </div>
+
+        <!-- Crucial Trap: Why angles alone or sides alone are NOT sufficient -->
+        <div class="p-4 rounded-xl bg-slate-950 border border-amber-500/30 space-y-2 text-xs">
+          <h4 class="font-bold text-amber-400 uppercase tracking-wider">NCERT Counterexamples: Both Conditions are Mandatory!</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+            <div class="p-2.5 rounded bg-slate-900 border border-slate-800">
+              <span class="text-rose-400 font-bold">Square vs Rectangle (Fig 6.6):</span>
+              <p class="text-slate-400 mt-0.5">All angles are equal (90°), but sides are NOT proportional ⟹ <strong>NOT similar!</strong></p>
+            </div>
+            <div class="p-2.5 rounded bg-slate-900 border border-slate-800">
+              <span class="text-rose-400 font-bold">Square vs Rhombus (Fig 6.7):</span>
+              <p class="text-slate-400 mt-0.5">All sides are in equal ratio, but corresponding angles are NOT equal ⟹ <strong>NOT similar!</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 2: THALES & BASIC PROPORTIONALITY THEOREM (BPT) -->
+    <!-- ========================================================================= -->
+    <section id="slide-1" class="slide-pane hidden slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-xs font-bold uppercase mb-2">
+              <span>Section 6.3 • Theorem 6.1 (Thales Theorem)</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">The Basic Proportionality Theorem (BPT)</h2>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+              If a line is drawn parallel to one side of a triangle to intersect the other two sides in distinct points, the other two sides are divided in the same ratio: <span class="text-sky-400 font-mono font-bold">AD / DB = AE / EC</span>.
+            </p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center space-x-3 shrink-0">
+            <span class="text-3xl">🏛️</span>
+            <div>
+              <div class="text-xs font-bold text-sky-400">Thales of Miletus</div>
+              <div class="text-[11px] text-slate-400">640 – 546 B.C. • Greek Geometer</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+          <!-- Interactive BPT Triangle SVG -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 flex flex-col items-center justify-center space-y-3">
+            <svg class="w-72 h-56" viewBox="0 0 240 180">
+              <!-- Triangle ABC -->
+              <polygon points="120,20 30,160 210,160" fill="#0f172a" stroke="#38bdf8" stroke-width="2.5" />
+              <!-- Parallel Line DE -->
+              <line x1="66" y1="104" x2="174" y2="104" stroke="#10b981" stroke-width="2.5" />
+              <!-- Parallel arrows -->
+              <polygon points="120,100 128,104 120,108" fill="#10b981" />
+              <polygon points="120,156 128,160 120,164" fill="#38bdf8" />
+              <!-- Vertex points -->
+              <circle cx="120" cy="20" r="4" fill="#ffffff" />
+              <circle cx="30" cy="160" r="4" fill="#ffffff" />
+              <circle cx="210" cy="160" r="4" fill="#ffffff" />
+              <circle cx="66" cy="104" r="4" fill="#10b981" />
+              <circle cx="174" cy="104" r="4" fill="#10b981" />
+              <!-- Labels -->
+              <text x="115" y="14" fill="#ffffff" font-weight="bold" font-size="12">A</text>
+              <text x="14" y="165" fill="#38bdf8" font-weight="bold" font-size="12">B</text>
+              <text x="216" y="165" fill="#38bdf8" font-weight="bold" font-size="12">C</text>
+              <text x="50" y="104" fill="#10b981" font-weight="bold" font-size="12">D</text>
+              <text x="182" y="104" fill="#10b981" font-weight="bold" font-size="12">E</text>
+              <!-- Side segments -->
+              <text x="78" y="60" fill="#94a3b8" font-size="10">AD</text>
+              <text x="35" y="135" fill="#94a3b8" font-size="10">DB</text>
+              <text x="150" y="60" fill="#94a3b8" font-size="10">AE</text>
+              <text x="195" y="135" fill="#94a3b8" font-size="10">EC</text>
+            </svg>
+            <div class="text-[11px] text-emerald-400 font-mono font-bold">DE ∥ BC  ⟹  AD / DB = AE / EC</div>
+          </div>
+
+          <!-- Ratio Demonstration & Corollaries -->
+          <div class="space-y-3 text-xs font-mono">
+            <div class="p-3.5 rounded-xl bg-slate-950 border border-emerald-500/30 space-y-2">
+              <span class="text-emerald-400 font-bold font-sans">Theorem 6.1 Statement:</span>
+              <div class="text-white text-sm font-bold">AD / DB = AE / EC</div>
+              <p class="text-slate-400 font-sans">Example: If AD = 1.5 cm, DB = 3 cm, and AE = 1 cm ⟹ EC = 2 cm!</p>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
+              <span class="text-sky-400 font-bold font-sans">Important Corollaries (Adding 1 to both sides):</span>
+              <div class="text-slate-300">1. <span class="text-white font-bold">AD / AB = AE / AC</span> (Upper part over whole side)</div>
+              <div class="text-slate-300">2. <span class="text-white font-bold">DB / AB = EC / AC</span> (Lower part over whole side)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 3: COMPLETE PROOF OF BPT (THEOREM 6.1) -->
+    <!-- ========================================================================= -->
+    <section id="slide-2" class="slide-pane hidden slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-xs font-bold uppercase mb-2">
+            <span>NCERT Page 80 • High-Scoring Board Proof</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Step-by-Step Proof of Theorem 6.1</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            Proven using the ratio of triangle areas: <span class="font-mono text-white">Area = (1/2) × base × height</span>.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
+          <!-- Step 1 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <span class="text-sky-400 font-bold font-sans">Step 1: Altitudes &amp; Left Side</span>
+            <p class="text-slate-400 font-sans">Draw EN ⊥ AB and DM ⊥ AC. Join BE &amp; CD.</p>
+            <div class="p-2 rounded bg-slate-900 space-y-1">
+              <div>ar(ADE) = 1/2 × AD × EN</div>
+              <div>ar(BDE) = 1/2 × DB × EN</div>
+              <div class="text-sky-300 font-bold pt-1 border-t border-slate-800">⟹ ar(ADE) / ar(BDE) = AD / DB  --- (1)</div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <span class="text-amber-400 font-bold font-sans">Step 2: Right Side Ratio</span>
+            <p class="text-slate-400 font-sans">Using altitude DM on AC:</p>
+            <div class="p-2 rounded bg-slate-900 space-y-1">
+              <div>ar(ADE) = 1/2 × AE × DM</div>
+              <div>ar(DEC) = 1/2 × EC × DM</div>
+              <div class="text-amber-300 font-bold pt-1 border-t border-slate-800">⟹ ar(ADE) / ar(DEC) = AE / EC  --- (2)</div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-emerald-500/30 space-y-2">
+            <span class="text-emerald-400 font-bold font-sans">Step 3: Equal Area &amp; Conclusion</span>
+            <p class="text-slate-400 font-sans">ΔBDE and ΔDEC share same base DE between parallels DE ∥ BC:</p>
+            <div class="p-2 rounded bg-slate-900 space-y-1">
+              <div>ar(BDE) = ar(DEC)  --- (3)</div>
+              <div class="text-emerald-400 font-bold pt-1 border-t border-slate-800">Therefore: AD / DB = AE / EC !</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 font-bold text-center text-xs">
+          Q.E.D. Hence Proved!
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 4: CONVERSE OF BPT (THEOREM 6.2) -->
+    <!-- ========================================================================= -->
+    <section id="slide-3" class="slide-pane hidden slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-xs font-bold uppercase mb-2">
+            <span>NCERT Section 6.3 • Theorem 6.2</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Converse of BPT: Proving Lines are Parallel</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            If a line divides any two sides of a triangle in the same ratio, then <strong>the line is parallel to the third side</strong>.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs font-mono">
+          <!-- Theorem 6.2 Proof Concept -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <h4 class="font-bold text-white font-sans text-sm">Proof by Contradiction</h4>
+            <div class="p-2.5 rounded bg-slate-900 border border-slate-800 space-y-1 text-slate-300">
+              <div>Given: AD / DB = AE / EC</div>
+              <div>Assume DE is NOT parallel to BC. Draw DE' ∥ BC.</div>
+              <div>By BPT: AD / DB = AE' / E'C</div>
+              <div>⟹ AE / EC = AE' / E'C</div>
+              <div>Adding 1 to both sides: (AE + EC)/EC = (AE' + E'C)/E'C</div>
+              <div class="text-amber-400 font-bold">⟹ AC / EC = AC / E'C  ⟹  EC = E'C!</div>
+              <div class="text-emerald-400 font-bold">Therefore, E and E' must coincide ⟹ DE ∥ BC!</div>
+            </div>
+          </div>
+
+          <!-- Trapezium Application (Example 2) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-sky-500/30 space-y-3">
+            <h4 class="font-bold text-white font-sans text-sm">Application: Trapezium ABCD (Fig 6.14)</h4>
+            <p class="text-slate-300 font-sans">ABCD is a trapezium with AB ∥ DC and EF ∥ AB.</p>
+            <div class="p-2.5 rounded bg-slate-900 border border-slate-800 space-y-1">
+              <div>Join AC to meet EF at point G.</div>
+              <div>In ΔADC: EG ∥ DC ⟹ AE / ED = AG / GC (by BPT)</div>
+              <div>In ΔCAB: GF ∥ AB ⟹ BF / FC = AG / GC (by BPT)</div>
+              <div class="text-emerald-400 font-bold text-sm">⟹ AE / ED = BF / FC!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 5: AAA & AA SIMILARITY CRITERION (THEOREM 6.3) -->
+    <!-- ========================================================================= -->
+    <section id="slide-4" class="slide-pane hidden slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-xs font-bold uppercase mb-2">
+            <span>NCERT Section 6.4 • Theorem 6.3</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">AAA &amp; AA Similarity Criterion</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            If in two triangles, corresponding angles are equal, then their corresponding sides are in the same ratio, and the triangles are similar!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 items-center">
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/20 text-sky-300 uppercase">The AA Corollary</span>
+            <h4 class="text-sm font-bold text-white">Why 2 Angles are Sufficient!</h4>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Since the sum of angles in any triangle is always 180°, if two angles of ΔABC equal two angles of ΔDEF, the third angle is automatically equal!
+            </p>
+            <div class="p-3 rounded-lg bg-slate-900 font-mono text-xs text-emerald-400 font-bold">
+              If ∠A = ∠D and ∠B = ∠E ⟹ ΔABC ~ ΔDEF (by AA)
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3 text-xs font-mono">
+            <span class="text-amber-400 font-bold font-sans">Hourglass Example (Fig 6.29):</span>
+            <p class="text-slate-300 font-sans">If PQ ∥ RS in bowtie/hourglass shape:</p>
+            <div class="p-2.5 rounded bg-slate-900 border border-slate-800 space-y-1">
+              <div>∠P = ∠S (Alternate interior angles)</div>
+              <div>∠Q = ∠R (Alternate interior angles)</div>
+              <div>∠POQ = ∠SOR (Vertically opposite angles)</div>
+              <div class="text-emerald-400 font-bold">⟹ ΔPOQ ~ ΔSOR (by AAA Similarity!)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 6: SSS SIMILARITY CRITERION (THEOREM 6.4) -->
+    <!-- ========================================================================= -->
+    <section id="slide-5" class="slide-pane hidden slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-xs font-bold uppercase mb-2">
+            <span>NCERT Section 6.4 • Theorem 6.4</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">SSS Similarity: Proportional Sides Mean Equal Angles</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            If corresponding sides of two triangles are proportional, then their corresponding angles are equal, and the triangles are similar.
+          </p>
+        </div>
+
+        <!-- Example 5: Finding Angle P -->
+        <div class="p-5 rounded-xl bg-slate-950 border border-slate-800 space-y-3 font-mono text-xs">
+          <div class="text-sm font-bold text-white font-sans flex items-center space-x-2">
+            <span>🔍</span>
+            <span>NCERT Example 5: Find ∠P from Triangles ABC and PQR (Fig 6.30)</span>
+          </div>
+          <p class="text-slate-300 font-sans">Given sides: AB = 3.8, BC = 6, CA = 3√3;  RQ = 7.6, QP = 12, PR = 6√3; and ∠A = 80°, ∠B = 60°.</p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
+            <div class="p-3 rounded bg-slate-900 border border-slate-800">
+              <span class="text-sky-400 font-bold">Compare Ratios:</span>
+              <div class="mt-1">AB / RQ = 3.8 / 7.6 = 1/2</div>
+              <div>BC / QP = 6 / 12 = 1/2</div>
+              <div>CA / PR = 3√3 / 6√3 = 1/2</div>
+            </div>
+            <div class="p-3 rounded bg-slate-900 border border-slate-800">
+              <span class="text-amber-400 font-bold">Symbolic Similarity:</span>
+              <div class="mt-1">All ratios equal 1/2 ⟹</div>
+              <div class="text-white font-bold">ΔABC ~ ΔRQP (by SSS)</div>
+              <div class="text-slate-400 mt-1">⟹ ∠C = ∠P</div>
+            </div>
+            <div class="p-3 rounded bg-slate-900 border border-slate-800">
+              <span class="text-emerald-400 font-bold">Calculate ∠P:</span>
+              <div class="mt-1">∠C = 180° - 80° - 60° = 40°</div>
+              <div class="text-emerald-400 font-bold text-sm mt-1">⟹ ∠P = 40°!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 7: SAS SIMILARITY CRITERION (THEOREM 6.5) -->
+    <!-- ========================================================================= -->
+    <section id="slide-6" class="slide-pane hidden slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-xs font-bold uppercase mb-2">
+            <span>NCERT Section 6.4 • Theorem 6.5</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">SAS Similarity: Side-Angle-Side</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            If one angle of a triangle is equal to one angle of another triangle and the sides including these angles are proportional, then the two triangles are similar!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs font-mono">
+          <!-- Theorem 6.5 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <span class="text-amber-400 font-bold font-sans">Theorem 6.5 Condition:</span>
+            <div class="p-2.5 rounded bg-slate-900 space-y-1">
+              <div>1. AB / DE = AC / DF</div>
+              <div>2. ∠A = ∠D (Included Angle)</div>
+              <div class="text-emerald-400 font-bold pt-1 border-t border-slate-800">⟹ ΔABC ~ ΔDEF (by SAS)</div>
+            </div>
+            <p class="text-[11px] text-slate-400 font-sans">The angle MUST be strictly included between the two proportional sides.</p>
+          </div>
+
+          <!-- Example 6: OA.OB = OC.OD -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-sky-500/30 space-y-2">
+            <span class="text-sky-400 font-bold font-sans">NCERT Example 6:</span>
+            <div class="p-2.5 rounded bg-slate-900 space-y-1">
+              <div>Given: OA · OB = OC · OD</div>
+              <div>⟹ OA / OC = OD / OB</div>
+              <div>Also ∠AOD = ∠COB (Vertically opposite)</div>
+              <div class="text-emerald-400 font-bold">⟹ ΔAOD ~ ΔCOB (by SAS)</div>
+              <div class="text-white">⟹ ∠A = ∠C and ∠B = ∠D!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 8: REAL-WORLD SHADOW PROBLEMS (LAMP-POST & TOWER) -->
+    <!-- ========================================================================= -->
+    <section id="slide-7" class="slide-pane hidden slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-xs font-bold uppercase mb-2">
+            <span>NCERT Page 92-93 • Example 7 &amp; Exercise 6.3 Q15</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Real-World Shadow Modeling: Indirect Measurement</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            Because sun rays and lamp light travel in straight lines, heights and shadow lengths form similar triangles!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs font-mono">
+          <!-- Girl & Lamp-post -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <h4 class="font-bold text-white font-sans text-sm">Example 7: Girl Walking Away from Lamp-Post</h4>
+            <p class="text-slate-300 font-sans">Lamp height = 3.6 m. Girl height = 90 cm = 0.9 m. Speed = 1.2 m/s for 4 s.</p>
+            <div class="p-2.5 rounded bg-slate-900 border border-slate-800 space-y-1">
+              <div>Walking distance BD = 1.2 × 4 = 4.8 m</div>
+              <div>Let shadow length DE = x metres</div>
+              <div>ΔABE ~ ΔCDE (by AA Similarity)</div>
+              <div>BE / DE = AB / CD  ⟹  (4.8 + x) / x = 3.6 / 0.9 = 4</div>
+              <div>4.8 + x = 4x ⟹ 3x = 4.8</div>
+              <div class="text-emerald-400 font-bold text-sm">⟹ x = 1.6 m (Shadow length)</div>
+            </div>
+          </div>
+
+          <!-- Vertical Pole & Tower -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-sky-500/30 space-y-3">
+            <h4 class="font-bold text-white font-sans text-sm">Exercise 6.3 Q15: Tower Height Problem</h4>
+            <p class="text-slate-300 font-sans">A 6 m pole casts a 4 m shadow. At the same time, a tower casts a 28 m shadow.</p>
+            <div class="p-2.5 rounded bg-slate-900 border border-slate-800 space-y-1">
+              <div>Sun angle of elevation is identical for both!</div>
+              <div>Height / Shadow = Constant</div>
+              <div>h / 28 = 6 / 4 = 1.5</div>
+              <div>h = 28 × 1.5 = 28 + 14</div>
+              <div class="text-emerald-400 font-bold text-sm">⟹ Height of Tower = 42 m!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 9: SUMMARY OF SIMILARITY CRITERIA -->
+    <!-- ========================================================================= -->
+    <section id="slide-8" class="slide-pane hidden slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-xs font-bold uppercase mb-2">
+            <span>NCERT Section 6.5 • Complete Reference Matrix</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Summary of Triangle Similarity Theorems</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            All 4 similarity criteria, BPT, and medians/altitudes relationships at a glance.
+          </p>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border border-slate-800 rounded-xl overflow-hidden">
+            <thead class="bg-slate-950 text-slate-300 font-mono">
+              <tr>
+                <th class="p-3 border-b border-slate-800">Criterion / Theorem</th>
+                <th class="p-3 border-b border-slate-800">Required Conditions</th>
+                <th class="p-3 border-b border-slate-800">Result / Conclusion</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800 font-mono text-slate-300">
+              <tr class="bg-slate-900/50">
+                <td class="p-3 text-sky-400 font-bold">Theorem 6.1 (BPT)</td>
+                <td class="p-3 text-white">DE ∥ BC in ΔABC</td>
+                <td class="p-3 text-emerald-300">AD/DB = AE/EC</td>
+              </tr>
+              <tr class="bg-slate-900/30">
+                <td class="p-3 text-amber-400 font-bold">Theorem 6.2 (Converse)</td>
+                <td class="p-3 text-white">AD/DB = AE/EC</td>
+                <td class="p-3 text-emerald-300">DE ∥ BC</td>
+              </tr>
+              <tr class="bg-slate-900/50">
+                <td class="p-3 text-teal-400 font-bold">AAA / AA Criterion</td>
+                <td class="p-3 text-white">∠A=∠D and ∠B=∠E</td>
+                <td class="p-3 text-emerald-300">ΔABC ~ ΔDEF</td>
+              </tr>
+              <tr class="bg-slate-900/30">
+                <td class="p-3 text-cyan-400 font-bold">SSS Criterion</td>
+                <td class="p-3 text-white">AB/DE = BC/EF = CA/FD</td>
+                <td class="p-3 text-emerald-300">ΔABC ~ ΔDEF</td>
+              </tr>
+              <tr class="bg-slate-900/50">
+                <td class="p-3 text-indigo-400 font-bold">SAS Criterion</td>
+                <td class="p-3 text-white">AB/DE = AC/DF and ∠A=∠D</td>
+                <td class="p-3 text-emerald-300">ΔABC ~ ΔDEF</td>
+              </tr>
+              <tr class="bg-slate-900/30">
+                <td class="p-3 text-rose-400 font-bold">RHS Criterion</td>
+                <td class="p-3 text-white">Hypotenuse &amp; 1 side proportional in right Δs</td>
+                <td class="p-3 text-emerald-300">Triangles are similar</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 10: MASTERY QUIZ -->
+    <!-- ========================================================================= -->
+    <section id="slide-9" class="slide-pane hidden slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-xs font-bold uppercase mb-2">
+              <span>Section 6.5 • Final Mastery</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Chapter Mastery Challenge</h2>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+              Test your understanding of similar triangles with instant audio feedback!
+            </p>
+          </div>
+          <div id="quizScoreBadge" class="px-4 py-2 rounded-xl bg-sky-500/20 text-sky-300 border border-sky-500/30 text-sm font-bold font-mono">
+            Score: 0 / 3
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Question 1 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <h4 class="text-xs font-bold text-slate-300">Q1. In ΔABC, DE ∥ BC. If AD = 1.5 cm, DB = 3 cm, and AE = 1 cm, what is the length of EC?</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1 text-xs">
+              <button onclick="checkQuizAns(1, false, this)" class="quiz-btn p-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-left cursor-pointer">A) 1.5 cm</button>
+              <button onclick="checkQuizAns(1, true, this)" class="quiz-btn p-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-left cursor-pointer">B) 2 cm [By BPT: 1.5/3 = 1/EC ⟹ EC = 2]</button>
+              <button onclick="checkQuizAns(1, false, this)" class="quiz-btn p-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-left cursor-pointer">C) 3 cm</button>
+            </div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <h4 class="text-xs font-bold text-slate-300">Q2. Which of the following statements is always true?</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1 text-xs">
+              <button onclick="checkQuizAns(2, false, this)" class="quiz-btn p-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-left cursor-pointer">A) All similar figures are congruent</button>
+              <button onclick="checkQuizAns(2, true, this)" class="quiz-btn p-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-left cursor-pointer">B) All congruent figures are similar</button>
+              <button onclick="checkQuizAns(2, false, this)" class="quiz-btn p-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-left cursor-pointer">C) All isosceles triangles are similar</button>
+            </div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <h4 class="text-xs font-bold text-slate-300">Q3. A vertical pole of length 6 m casts a shadow 4 m long. At the same time, a tower casts a shadow 28 m long. The height of the tower is:</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1 text-xs">
+              <button onclick="checkQuizAns(3, false, this)" class="quiz-btn p-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-left cursor-pointer">A) 24 m</button>
+              <button onclick="checkQuizAns(3, false, this)" class="quiz-btn p-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-left cursor-pointer">B) 36 m</button>
+              <button onclick="checkQuizAns(3, true, this)" class="quiz-btn p-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-left cursor-pointer">C) 42 m [h/28 = 6/4 ⟹ h = 42 m]</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BOTTOM SLIDE CONTROLS BAR -->
+  <footer style="flex-shrink: 0;" class="border-t border-slate-800 bg-slate-900/95 backdrop-blur py-3 px-4 sticky bottom-0 z-50">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      <!-- Slide Pills -->
+      <div class="flex items-center space-x-1.5 overflow-x-auto max-w-full pb-1 sm:pb-0 scrollbar-none text-xs">
+        <button onclick="goToSlide(0)" class="slide-pill px-2.5 py-1 rounded-lg bg-sky-600 text-white font-bold transition-all cursor-pointer">1. Congruence vs Similarity</button>
+        <button onclick="goToSlide(1)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">2. Thales &amp; BPT</button>
+        <button onclick="goToSlide(2)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">3. BPT Proof</button>
+        <button onclick="goToSlide(3)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">4. Converse BPT</button>
+        <button onclick="goToSlide(4)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">5. AAA &amp; AA</button>
+        <button onclick="goToSlide(5)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">6. SSS</button>
+        <button onclick="goToSlide(6)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">7. SAS</button>
+        <button onclick="goToSlide(7)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">8. Shadow Problems</button>
+        <button onclick="goToSlide(8)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">9. Criteria Matrix</button>
+        <button onclick="goToSlide(9)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">10. Quiz</button>
+      </div>
+
+      <!-- Navigation & AutoPlay Buttons -->
+      <div class="flex items-center space-x-2 shrink-0">
+        <button id="autoPlaySlideshowBtn" onclick="toggleAutoPlaySlideshow()" class="px-3.5 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold shadow-lg shadow-sky-600/30 flex items-center space-x-1.5 cursor-pointer transition-all">
+          <span id="autoPlayIcon">▶</span>
+          <span id="autoPlayText">Auto-Play</span>
+        </button>
+
+        <button id="prevSlideBtn" onclick="prevSlide()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold border border-slate-700 flex items-center space-x-1 cursor-pointer transition-all disabled:opacity-40 disabled:cursor-not-allowed">
+          <span>⏮</span>
+          <span>Prev</span>
+        </button>
+
+        <button id="nextSlideBtn" onclick="nextSlide()" class="px-4 py-1.5 rounded-xl bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 text-white text-xs font-bold shadow-lg shadow-sky-600/20 flex items-center space-x-1 cursor-pointer transition-all">
+          <span>Next</span>
+          <span>⏭</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT: AUDIO SYNTHESIZER, SPEECH NARRATION & ENGINE -->
+  <script>
+    const slideData = [
+      {
+        title: "Slide 1 of 10: Congruence vs. Similarity & Scaled Figures",
+        narration: "Welcome to Chapter 6: Triangles. Two figures are congruent if they have the same shape and size. Two figures are similar if they have the same shape, but not necessarily the same size. Remember: all congruent figures are similar, but similar figures need not be congruent!"
+      },
+      {
+        title: "Slide 2 of 10: Thales & The Basic Proportionality Theorem",
+        narration: "Greek philosopher Thales formulated the Basic Proportionality Theorem. If a line is drawn parallel to one side of a triangle, it divides the other two sides in the exact same ratio."
+      },
+      {
+        title: "Slide 3 of 10: Step-by-Step Proof of Theorem 6.1",
+        narration: "We prove Theorem 6.1 using triangle areas. By taking altitudes EN and DM and observing that triangles on the same base between parallel lines have equal area, we establish that AD over DB equals AE over EC."
+      },
+      {
+        title: "Slide 4 of 10: Converse of BPT & Trapezium Applications",
+        narration: "The converse of the Basic Proportionality Theorem states that if a line divides two sides in the same ratio, it must be parallel to the third side."
+      },
+      {
+        title: "Slide 5 of 10: AAA & AA Similarity Criterion",
+        narration: "According to the AAA criterion, if corresponding angles of two triangles are equal, their sides are proportional and they are similar. Since the angle sum of a triangle is 180 degrees, matching just two angles with AA is sufficient."
+      },
+      {
+        title: "Slide 6 of 10: SSS Similarity Criterion",
+        narration: "Under the SSS criterion, if all three corresponding sides are proportional, the corresponding angles are automatically equal, making the triangles similar."
+      },
+      {
+        title: "Slide 7 of 10: SAS Similarity Criterion",
+        narration: "Under the SAS criterion, if one angle equals one angle of another triangle and the sides including that angle are proportional, the two triangles are similar."
+      },
+      {
+        title: "Slide 8 of 10: Real-World Shadow Modeling",
+        narration: "Because light travels in straight lines, heights and shadow lengths form similar right triangles, allowing us to find the girl's shadow length of 1.6 meters and the tower height of 42 meters."
+      },
+      {
+        title: "Slide 9 of 10: Complete Similarity Reference Matrix",
+        narration: "Here is your master reference table comparing BPT, AAA, AA, SSS, SAS, and RHS criteria."
+      },
+      {
+        title: "Slide 10 of 10: Chapter Mastery Quiz",
+        narration: "Test your mastery of similar triangles with this interactive quiz. Click your answers for instant sound feedback!"
+      }
+    ];
+
+    let currentSlide = 0;
+    const totalSlides = slideData.length;
+    let isVoiceEnabled = true;
+    let isSoundFxEnabled = true;
+    let isAutoPlaySlideshow = false;
+    let autoPlayInterval = null;
+    let countdownInterval = null;
+
+    // AUDIO SYNTHESIZER
+    let audioCtx = null;
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, type = 'sine', duration = 0.15, gainVal = 0.08) {
+      if (!isSoundFxEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(gainVal, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {
+        console.warn('Audio not allowed:', e);
+      }
+    }
+
+    function playChime() {
+      playTone(523.25, 'triangle', 0.25, 0.12);
+      setTimeout(() => playTone(659.25, 'triangle', 0.25, 0.12), 100);
+      setTimeout(() => playTone(783.99, 'triangle', 0.35, 0.14), 200);
+    }
+
+    function playBuzzer() {
+      playTone(180, 'sawtooth', 0.35, 0.15);
+    }
+
+    function playSlideTransitionTone() {
+      playTone(540, 'sine', 0.08, 0.06);
+      setTimeout(() => playTone(720, 'sine', 0.1, 0.06), 60);
+    }
+
+    function speakNarration(text) {
+      document.getElementById('narrationSubtitlesText').textContent = text;
+      if (!isVoiceEnabled || !('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 1.0;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    window.toggleVoiceNarration = function() {
+      isVoiceEnabled = !isVoiceEnabled;
+      const icon = document.getElementById('voiceIcon');
+      const txt = document.getElementById('voiceText');
+      if (isVoiceEnabled) {
+        icon.textContent = '🔊';
+        txt.textContent = 'Voice: ON';
+        speakNarration(slideData[currentSlide].narration);
+      } else {
+        window.speechSynthesis.cancel();
+        icon.textContent = '🔇';
+        txt.textContent = 'Voice: OFF';
+      }
+    };
+
+    window.toggleSoundFx = function() {
+      isSoundFxEnabled = !isSoundFxEnabled;
+      const icon = document.getElementById('soundIcon');
+      const txt = document.getElementById('soundText');
+      if (isSoundFxEnabled) {
+        icon.textContent = '🎵';
+        txt.textContent = 'SFX: ON';
+        playTone(600, 'sine', 0.1);
+      } else {
+        icon.textContent = '🔇';
+        txt.textContent = 'SFX: OFF';
+      }
+    };
+
+    // SLIDE NAVIGATION
+    function goToSlide(idx) {
+      if (idx < 0) idx = 0;
+      if (idx >= totalSlides) idx = totalSlides - 1;
+      currentSlide = idx;
+
+      document.getElementById('slideSubtitle').textContent = slideData[currentSlide].title;
+      const pct = ((currentSlide + 1) / totalSlides) * 100;
+      document.getElementById('slideProgressBar').style.width = pct + '%';
+
+      for (let i = 0; i < totalSlides; i++) {
+        const pane = document.getElementById('slide-' + i);
+        if (pane) {
+          if (i === currentSlide) {
+            pane.classList.remove('hidden');
+            pane.classList.add('block');
+          } else {
+            pane.classList.add('hidden');
+            pane.classList.remove('block');
+          }
+        }
+      }
+
+      document.querySelectorAll('.slide-pill').forEach((pill, i) => {
+        if (i === currentSlide) {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-sky-600 text-white font-bold transition-all cursor-pointer';
+        } else {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer';
+        }
+      });
+
+      document.getElementById('prevSlideBtn').disabled = (currentSlide === 0);
+      const nextBtn = document.getElementById('nextSlideBtn');
+      if (currentSlide === totalSlides - 1) {
+        nextBtn.innerHTML = '<span>Restart 🔄</span>';
+      } else {
+        nextBtn.innerHTML = '<span>Next</span><span>⏭</span>';
+      }
+
+      playSlideTransitionTone();
+      speakNarration(slideData[currentSlide].narration);
+
+      if (isAutoPlaySlideshow) {
+        resetAutoPlayCountdown();
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide >= totalSlides - 1) {
+        goToSlide(0);
+      } else {
+        goToSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        goToSlide(currentSlide - 1);
+      }
+    }
+
+    function toggleAutoPlaySlideshow() {
+      const btn = document.getElementById('autoPlaySlideshowBtn');
+      const icon = document.getElementById('autoPlayIcon');
+      const txt = document.getElementById('autoPlayText');
+      const bar = document.getElementById('autoPlayCountdownBar');
+
+      if (isAutoPlaySlideshow) {
+        isAutoPlaySlideshow = false;
+        clearInterval(autoPlayInterval);
+        clearInterval(countdownInterval);
+        icon.textContent = '▶';
+        txt.textContent = 'Auto-Play';
+        btn.className = 'px-3.5 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold shadow-lg shadow-sky-600/30 flex items-center space-x-1.5 cursor-pointer transition-all';
+        bar.style.opacity = '0';
+      } else {
+        isAutoPlaySlideshow = true;
+        icon.textContent = '⏸';
+        txt.textContent = 'Pause';
+        btn.className = 'px-3.5 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold shadow-lg shadow-amber-600/30 flex items-center space-x-1.5 cursor-pointer transition-all';
+        bar.style.opacity = '1';
+        resetAutoPlayCountdown();
+      }
+    }
+
+    function resetAutoPlayCountdown() {
+      clearInterval(countdownInterval);
+      clearInterval(autoPlayInterval);
+
+      const bar = document.getElementById('autoPlayCountdownBar');
+      let elapsed = 0;
+      const durationMs = 10000;
+      const stepMs = 100;
+
+      countdownInterval = setInterval(() => {
+        elapsed += stepMs;
+        const pct = Math.min((elapsed / durationMs) * 100, 100);
+        bar.style.width = pct + '%';
+        if (elapsed >= durationMs) {
+          clearInterval(countdownInterval);
+        }
+      }, stepMs);
+
+      autoPlayInterval = setTimeout(() => {
+        if (isAutoPlaySlideshow) {
+          nextSlide();
+        }
+      }, durationMs);
+    }
+
+    // =========================================================================
+    // SLIDE 10: QUIZ ENGINE
+    // =========================================================================
+    let quizScore = 0;
+    const answeredMap = {};
+
+    function checkQuizAns(qNum, isCorrect, btn) {
+      if (answeredMap[qNum]) return;
+      answeredMap[qNum] = true;
+
+      const parent = btn.parentElement;
+      const allBtns = parent.querySelectorAll('.quiz-btn');
+      allBtns.forEach(b => b.disabled = true);
+
+      if (isCorrect) {
+        btn.classList.remove('bg-slate-900', 'border-slate-700', 'text-slate-300');
+        btn.classList.add('bg-emerald-600', 'border-emerald-400', 'text-white');
+        quizScore++;
+        playChime();
+        speakNarration("Correct! Excellent job.");
+      } else {
+        btn.classList.remove('bg-slate-900', 'border-slate-700', 'text-slate-300');
+        btn.classList.add('bg-rose-600', 'border-rose-400', 'text-white');
+        playBuzzer();
+        speakNarration("Incorrect. Remember the Basic Proportionality Theorem!");
+      }
+      document.getElementById('quizScoreBadge').textContent = `Score: {quizScore} / 3`;
+    }
+
+    // INITIALIZATION
+    document.addEventListener('DOMContentLoaded', () => {
+      goToSlide(0);
+    });
+  </script>
+</body>
+</html>
+

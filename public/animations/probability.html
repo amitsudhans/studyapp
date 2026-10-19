@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCERT Class 10 Chapter 14 — Probability Multimedia Lab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #030712;
+            color: #f3f4f6;
+            user-select: none;
+            overflow-x: hidden;
+        }
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        .slide {
+            display: none;
+            opacity: 0;
+            transform: scale(0.98);
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .slide.active {
+            display: flex;
+            opacity: 1;
+            transform: scale(1);
+        }
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+        }
+        .glass-card {
+            background: rgba(31, 41, 55, 0.55);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(17, 24, 39, 0.5);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(168, 85, 247, 0.4);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(168, 85, 247, 0.8);
+        }
+    </style>
+</head>
+<body class="h-screen w-screen flex flex-col justify-between overflow-hidden bg-slate-950">
+
+    <!-- TOP HEADER -->
+    <header class="h-16 px-6 glass-panel flex items-center justify-between shrink-0 z-20 border-b border-slate-800">
+        <div class="flex items-center space-x-4">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 to-pink-500 flex items-center justify-center text-white shadow-lg shadow-purple-500/30">
+                <i class="fa-solid fa-dice text-lg"></i>
+            </div>
+            <div>
+                <div class="flex items-center space-x-2">
+                    <span class="text-xs font-bold tracking-widest text-purple-400 uppercase">NCERT Class 10 • Chapter 14</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30">Reprint 2026-27</span>
+                </div>
+                <h1 class="text-base font-extrabold text-white tracking-tight flex items-center gap-2">
+                    Probability <span class="text-xs font-normal text-slate-400">| Classical Approach, Dice, Cards & Geometric Chance</span>
+                </h1>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex items-center space-x-5">
+            <div class="hidden md:flex items-center space-x-2 bg-slate-900/80 px-3 py-1.5 rounded-full border border-slate-800">
+                <span class="text-xs font-semibold text-slate-400">Slide</span>
+                <span id="currentSlideDisplay" class="text-sm font-bold text-purple-400 font-mono">1</span>
+                <span class="text-xs text-slate-600">/</span>
+                <span class="text-xs font-semibold text-slate-500 font-mono">10</span>
+            </div>
+
+            <!-- Voiceover Speech Controller -->
+            <div class="flex items-center space-x-2 bg-slate-900/90 px-3 py-1.5 rounded-xl border border-slate-800 shadow-inner">
+                <button id="toggleAudioBtn" onclick="toggleAudioNarration()" title="Play / Pause Voiceover" class="w-8 h-8 rounded-lg bg-purple-600 hover:bg-purple-500 text-white flex items-center justify-center transition-all shadow-md shadow-purple-600/30">
+                    <i id="audioIcon" class="fa-solid fa-volume-high text-xs"></i>
+                </button>
+                <button onclick="replaySlideAudio()" title="Replay Narration" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center transition-all">
+                    <i class="fa-solid fa-rotate-right text-xs"></i>
+                </button>
+                <div class="hidden sm:flex flex-col">
+                    <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Voiceover</span>
+                    <span id="voiceStatus" class="text-[11px] font-semibold text-emerald-400">Active</span>
+                </div>
+            </div>
+
+            <!-- SFX Mute Toggle -->
+            <button onclick="toggleSfx()" id="sfxBtn" title="Toggle Synthesizer Sound Effects" class="w-9 h-9 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 flex items-center justify-center transition-all">
+                <i id="sfxIcon" class="fa-solid fa-bell text-sm text-pink-400"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN SLIDE CONTAINER -->
+    <main class="flex-1 relative overflow-hidden p-3 sm:p-6 flex items-center justify-center">
+
+        <!-- ==========================================
+             SLIDE 1: THEORETICAL PROBABILITY & LAPLACE
+             ========================================== -->
+        <section id="slide-1" class="slide active w-full h-full max-w-7xl flex-col justify-between">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full overflow-y-auto">
+                <!-- Left Column -->
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-purple-500">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-purple-500/20 text-purple-300 uppercase tracking-wider">Section 14.1 Theoretical Approach</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-2 leading-tight">
+                            The Foundations of Chance
+                        </h2>
+                        <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+                            In Class IX, you studied <i>experimental probability</i> (repeating trials). But you cannot repeat satellite launches or earthquakes thousands of times! In Class X, we use <span class="text-purple-400 font-bold">Classical (Theoretical) Probability</span> introduced by Pierre-Simon Laplace in 1795:
+                        </p>
+                        <div class="mt-4 p-4 rounded-xl bg-slate-900 border border-purple-500/30 text-center font-mono">
+                            <div class="text-[11px] text-slate-400 mb-1">Classical Probability Formula</div>
+                            <div class="text-lg sm:text-xl font-bold text-purple-400">
+                                P(E) = (Favourable Outcomes to E) / (Total Possible Outcomes)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pioneers Card -->
+                    <div class="glass-card p-4 rounded-xl border border-slate-700/60 text-xs text-slate-300 space-y-1.5">
+                        <div class="font-bold text-amber-400 flex items-center gap-2">
+                            <i class="fa-solid fa-scroll"></i> Historical Pioneers (Page 204)
+                        </div>
+                        <p class="text-[11px] text-slate-400">
+                            Originated with 16th-century Italian mathematician <b>J. Cardan</b> (<i>The Book on Games of Chance</i>), expanded by James Bernoulli, Abraham de Moivre, and Laplace (<i>Théorie Analytique des Probabilités</i>, 1812).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Coin & Die Toss Simulator -->
+                <div class="lg:col-span-7 glass-panel p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-wand-magic-sparkles text-purple-400"></i> Interactive Fair Trial Simulator
+                                </h3>
+                                <p class="text-xs text-slate-400">Test the assumption of 'Equally Likely Outcomes' live</p>
+                            </div>
+                            <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-800 text-purple-300 border border-slate-700">Random Toss</span>
+                        </div>
+
+                        <!-- Coin & Die Visual Display -->
+                        <div class="grid grid-cols-2 gap-4 my-2">
+                            <!-- Coin Box -->
+                            <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800 flex flex-col items-center justify-between">
+                                <span class="text-xs font-bold text-slate-400 uppercase">Fair Coin (2 Outcomes)</span>
+                                <div id="s1-coin-visual" class="w-16 h-16 rounded-full bg-gradient-to-tr from-amber-500 to-yellow-300 text-slate-950 font-black text-2xl flex items-center justify-center shadow-lg my-3 transition-transform duration-300">
+                                    H
+                                </div>
+                                <button onclick="tossCoin()" class="w-full py-2 rounded-lg bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold transition shadow-md shadow-purple-600/30">
+                                    <i class="fa-solid fa-rotate mr-1"></i> Toss Coin
+                                </button>
+                                <div class="text-[11px] text-slate-400 mt-2 font-mono">
+                                    P(H) = (1) / (2), P(T) = (1) / (2)
+                                </div>
+                            </div>
+
+                            <!-- Die Box -->
+                            <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800 flex flex-col items-center justify-between">
+                                <span class="text-xs font-bold text-slate-400 uppercase">Fair Die (6 Outcomes)</span>
+                                <div id="s1-die-visual" class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-pink-600 to-rose-400 text-white font-black text-3xl flex items-center justify-center shadow-lg my-3 transition-transform duration-300">
+                                    6
+                                </div>
+                                <button onclick="rollDie()" class="w-full py-2 rounded-lg bg-pink-600 hover:bg-pink-500 text-white text-xs font-bold transition shadow-md shadow-pink-600/30">
+                                    <i class="fa-solid fa-dice mr-1"></i> Roll Die
+                                </button>
+                                <div class="text-[11px] text-slate-400 mt-2 font-mono">
+                                    Each face: P = (1) / (6)
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Live Counters -->
+                        <div class="mt-4 p-3 rounded-xl bg-slate-900/60 border border-slate-800 flex items-center justify-around text-xs font-mono">
+                            <div>Coin Tosses: <b id="s1-coin-count" class="text-purple-400">0</b></div>
+                            <div>Heads: <b id="s1-heads-count" class="text-emerald-400">0</b></div>
+                            <div>Tails: <b id="s1-tails-count" class="text-cyan-400">0</b></div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-3 rounded-xl bg-purple-950/30 border border-purple-500/30 text-xs text-purple-200">
+                        <b>Core Definition:</b> Outcomes are <i>equally likely</i> when each outcome has the exact same physical probability of showing up without bias or interference.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 2: AXIOMS, ELEMENTARY & COMPLEMENTARY
+             ========================================== -->
+        <section id="slide-2" class="slide w-full h-full max-w-7xl flex-col justify-between">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full overflow-y-auto">
+                <!-- Left: Axioms & Complement Rule -->
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-emerald-500">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 uppercase tracking-wider">Axioms & Rules</span>
+                        <h2 class="text-2xl font-extrabold text-white mt-2">The Golden Laws of Probability</h2>
+                        
+                        <!-- 3 Pillars of Probability -->
+                        <div class="mt-4 space-y-2 text-xs font-mono">
+                            <div class="p-3 rounded-xl bg-slate-900 border border-emerald-500/30 flex items-center justify-between">
+                                <span class="text-slate-300">1. Absolute Range:</span>
+                                <span class="text-emerald-400 font-bold text-sm">0 ≤ P(E) ≤ 1</span>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-900 border border-emerald-500/30 flex items-center justify-between">
+                                <span class="text-slate-300">2. Impossible Event:</span>
+                                <span class="text-rose-400 font-bold text-sm">P(Rolling 8) = 0</span>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-900 border border-emerald-500/30 flex items-center justify-between">
+                                <span class="text-slate-300">3. Sure / Certain Event:</span>
+                                <span class="text-cyan-400 font-bold text-sm">P(Roll  < 7) = 1</span>
+                            </div>
+                        </div>
+
+                        <!-- Elementary Events Sum Rule -->
+                        <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300">
+                            <span class="text-emerald-300 font-bold block mb-1">Elementary Event Property:</span>
+                            The sum of probabilities of all elementary events is always 1:
+                            <div class="text-center font-mono text-cyan-300 font-bold text-sm mt-1">
+                                P(E_1) + P(E_2) + … + P(E_n) = 1
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Complementary Events & Live Examples -->
+                <div class="lg:col-span-7 glass-panel p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-base font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-yin-yang text-emerald-400"></i> Complementary Events: P(E) + P(Ē) = 1
+                            </h3>
+                            <span class="text-xs font-mono text-emerald-300 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800">
+                                P(not  E) = 1 - P(E)
+                            </span>
+                        </div>
+
+                        <!-- Real-Life NCERT Examples -->
+                        <div class="space-y-3 font-mono text-xs">
+                            <!-- Tennis Match -->
+                            <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
+                                <div class="text-slate-400 font-sans text-xs mb-1 font-semibold text-white">
+                                    <i class="fa-solid fa-baseball text-emerald-400 mr-1"></i> Example 5: Sangeeta vs Reshma Tennis Match
+                                </div>
+                                <div class="text-slate-300">Given P(Sangeeta wins) = 0.62</div>
+                                <div class="text-emerald-400 font-bold mt-1">
+                                    P(Reshma wins) = 1 - 0.62 = 0.38
+                                </div>
+                            </div>
+
+                            <!-- Birthday Paradox -->
+                            <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
+                                <div class="text-slate-400 font-sans text-xs mb-1 font-semibold text-white">
+                                    <i class="fa-solid fa-cake-candles text-pink-400 mr-1"></i> Example 6: Savita & Hamida's Birthday
+                                </div>
+                                <div class="text-slate-300">Different birthdays: 364 / 365</div>
+                                <div class="text-pink-400 font-bold mt-1">
+                                    Same birthday: P = 1 - (364) / (365) = (1) / (365)
+                                </div>
+                            </div>
+
+                            <!-- Candy Bag -->
+                            <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
+                                <div class="text-slate-400 font-sans text-xs mb-1 font-semibold text-white">
+                                    <i class="fa-solid fa-candy-cane text-amber-400 mr-1"></i> Ex 14.1 Q6: Lemon Candies Only Bag
+                                </div>
+                                <div class="text-slate-300">Orange candy: P = 0 (Impossible)</div>
+                                <div class="text-amber-400 font-bold">Lemon candy: P = 1 (Certain)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-xs text-emerald-200">
+                        <b>Core Truth:</b> Probability can never be negative (-1.5 is invalid) and can never exceed 1 or 100\%!
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 3: TWO COINS & THREE COINS HIERARCHY
+             ========================================== -->
+        <section id="slide-3" class="slide w-full h-full max-w-7xl flex-col justify-between">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full overflow-y-auto">
+                <!-- Left: 2 Coins & The Famous Fallacy -->
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-cyan-500">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-cyan-500/20 text-cyan-300 uppercase tracking-wider">Example 9 & Ex 14.1 Q25(i)</span>
+                        <h2 class="text-2xl font-extrabold text-white mt-2">Tossing Two Coins</h2>
+                        <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+                            When two coins are tossed simultaneously, the sample space contains <span class="text-cyan-400 font-bold">2² = 4 equally likely outcomes</span>:
+                        </p>
+                        <div class="mt-3 p-3 rounded-xl bg-slate-900 border border-cyan-500/30 text-center font-mono text-cyan-300 text-sm font-bold">
+                            S = \{(H,H), (H,T), (T,H), (T,T)\}
+                        </div>
+                        
+                        <!-- Debunking the Fallacy -->
+                        <div class="mt-3 p-3.5 rounded-xl bg-rose-950/40 border border-rose-500/40 text-xs text-rose-200 space-y-1">
+                            <span class="font-bold text-rose-300"><i class="fa-solid fa-triangle-exclamation"></i> Debunking the Fallacy (Q25.i):</span>
+                            <p class="text-[11px]">
+                                A common wrong argument claims: "There are 3 outcomes: 2 heads, 2 tails, or one of each → P = 1/3."<br>
+                                <b>FALSE!</b> "One of each" contains <b>two distinct outcomes</b> (H,T) and (T,H), so P(one of each) = (2) / (4) = (1) / (2)!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Three Coins & Hanif's Game (Ex 14.1 Q23) -->
+                <div class="lg:col-span-7 glass-panel p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-base font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-coins text-cyan-400"></i> Three Coins Tossing (2³ = 8 Outcomes)
+                            </h3>
+                            <span class="text-xs font-mono text-cyan-300 bg-cyan-950/60 px-2.5 py-1 rounded border border-cyan-800">
+                                Ex 14.1 Q23
+                            </span>
+                        </div>
+
+                        <!-- 8 Outcomes Grid -->
+                        <div class="grid grid-cols-4 gap-2 text-center text-xs font-mono mb-4">
+                            <div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 font-bold">
+                                HHH <span class="block text-[10px] text-emerald-400 font-sans">Hanif Wins</span>
+                            </div>
+                            <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">HHT</div>
+                            <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">HTH</div>
+                            <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">HTT</div>
+                            <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">THH</div>
+                            <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">THT</div>
+                            <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">TTH</div>
+                            <div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 font-bold">
+                                TTT <span class="block text-[10px] text-emerald-400 font-sans">Hanif Wins</span>
+                            </div>
+                        </div>
+
+                        <!-- Hanif Problem Solution -->
+                        <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 font-mono text-xs space-y-2">
+                            <div class="text-slate-400">Hanif wins if all tosses give the same result (HHH or TTT).</div>
+                            <div class="text-emerald-400 font-bold">P(Hanif Wins) = (2) / (8) = (1) / (4)</div>
+                            <div class="text-rose-400 font-bold text-sm">
+                                P(Hanif Loses) = 1 - (1) / (4) = (6) / (8) = (3) / (4) = 0.75
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 flex justify-end">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-cyan-500 text-slate-950">
+                            Total Outcomes for n Coins = 2ⁿ
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 4: SINGLE DIE & PRIME NUMBER TRAP
+             ========================================== -->
+        <section id="slide-4" class="slide w-full h-full max-w-7xl flex-col justify-between">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full overflow-y-auto">
+                <!-- Left: Single Die Mechanics -->
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-amber-500">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 uppercase tracking-wider">Example 3 & Ex 14.1 Q13</span>
+                        <h2 class="text-2xl font-extrabold text-white mt-2">Single Die Experiments</h2>
+                        <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+                            For a single fair die, S = \{1, 2, 3, 4, 5, 6\}, giving 6 equally likely outcomes.
+                        </p>
+                        
+                        <!-- Prime Number Trap Card -->
+                        <div class="mt-4 p-4 rounded-xl bg-slate-900 border border-amber-500/40 text-xs space-y-2">
+                            <span class="font-bold text-amber-400 flex items-center gap-1.5">
+                                <i class="fa-solid fa-skull-crossbones"></i> The Prime Number Trap (Ex 14.1 Q13.i)
+                            </span>
+                            <p class="text-slate-300">
+                                Students often wrongly include 1 as a prime number! Remember: <span class="text-rose-400 font-bold">1 is neither prime nor composite</span>.
+                            </p>
+                            <div class="p-2 rounded bg-slate-950 font-mono text-[11px] text-amber-300 font-bold">
+                                Primes on a die = \{2, 3, 5\} → P = (3) / (6) = (1) / (2)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Interactive Die Event Filter -->
+                <div class="lg:col-span-7 glass-panel p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-base font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-filter text-amber-400"></i> Interactive Die Event Inspector
+                            </h3>
+                            <span class="text-xs font-mono text-slate-400">Select an event below:</span>
+                        </div>
+
+                        <!-- Event Selector Buttons -->
+                        <div class="grid grid-cols-3 gap-2 mb-4">
+                            <button onclick="inspectDie('prime')" class="py-2 px-3 rounded-lg bg-amber-600/30 border border-amber-500/40 text-amber-300 text-xs font-bold hover:bg-amber-600/50 transition">
+                                (i) Prime Number
+                            </button>
+                            <button onclick="inspectDie('between')" class="py-2 px-3 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 text-xs font-bold hover:bg-slate-700 transition">
+                                (ii) Between 2 & 6
+                            </button>
+                            <button onclick="inspectDie('odd')" class="py-2 px-3 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 text-xs font-bold hover:bg-slate-700 transition">
+                                (iii) Odd Number
+                            </button>
+                        </div>
+
+                        <!-- 6 Faces Visualizer -->
+                        <div class="grid grid-cols-6 gap-2 text-center font-mono font-bold text-lg my-4" id="die-faces-container">
+                            <!-- Injected by JS -->
+                        </div>
+
+                        <!-- Output Calculation Box -->
+                        <div id="die-calc-box" class="p-4 rounded-xl bg-slate-950 border border-slate-800 font-mono text-xs space-y-1">
+                            <div class="text-slate-400">Favourable Outcomes: <span id="die-fav-outcomes" class="text-amber-400 font-bold">{2, 3, 5}</span></div>
+                            <div class="text-white font-bold text-sm">
+                                Probability: P = (3) / (6) = (1) / (2)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Non-Standard Die (Q19) -->
+                    <div class="mt-4 p-3 rounded-xl bg-slate-900 border border-slate-800 text-xs flex items-center justify-between">
+                        <span class="text-slate-400">Alphabet Die (Ex 14.1 Q19: A, B, C, D, E, A):</span>
+                        <span class="font-mono font-bold text-cyan-400">P(A) = (2) / (6) = (1) / (3), P(D) = (1) / (6)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 5: TWO DICE (THE 36-GRID & SUM 7 PEAK)
+             ========================================== -->
+        <section id="slide-5" class="slide w-full h-full max-w-7xl flex-col justify-between">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full overflow-y-auto">
+                <!-- Left: The 36 Outcomes Matrix Concept -->
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-indigo-500">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300 uppercase tracking-wider">Example 13 & Ex 14.1 Q22</span>
+                        <h2 class="text-2xl font-extrabold text-white mt-2">Two Dice (36 Outcomes)</h2>
+                        <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+                            When two dice (blue & grey) are thrown, total outcomes = <span class="text-indigo-400 font-bold">6 × 6 = 36</span>. Notice that (1,4) ≠ (4,1) because the dice are distinguishable!
+                        </p>
+
+                        <!-- Debunking 1/11 fallacy -->
+                        <div class="mt-3 p-3.5 rounded-xl bg-indigo-950/50 border border-indigo-500/40 text-xs space-y-1">
+                            <span class="font-bold text-indigo-300"><i class="fa-solid fa-brain"></i> Ex 14.1 Q22(ii) Student Fallacy:</span>
+                            <p class="text-[11px] text-slate-300">
+                                "The sums are 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 (11 sums), so each has probability 1/11."<br>
+                                <b>FALSE!</b> The 11 sums are <i>not equally likely</i>. Sum 2 has only 1 way (1,1), whereas Sum 7 has 6 ways!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Interactive Sum Distribution & Two-Dice Matrix -->
+                <div class="lg:col-span-7 glass-panel p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-base font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-chart-simple text-indigo-400"></i> Sum on 2 Dice Distribution (Pyramid)
+                            </h3>
+                            <span class="text-xs font-mono text-indigo-300 bg-indigo-950/60 px-2 py-0.5 rounded border border-indigo-800">
+                                Peak at Sum = 7
+                            </span>
+                        </div>
+
+                        <!-- Sum Buttons 2 to 12 -->
+                        <div class="grid grid-cols-11 gap-1 text-center font-mono text-xs my-3">
+                            <button onclick="highlightSum(2, 1)" class="p-1 rounded bg-slate-900 border border-slate-800 hover:border-indigo-500 text-slate-300">2<span class="block text-[9px] text-slate-500">1/36</span></button>
+                            <button onclick="highlightSum(3, 2)" class="p-1 rounded bg-slate-900 border border-slate-800 hover:border-indigo-500 text-slate-300">3<span class="block text-[9px] text-slate-500">2/36</span></button>
+                            <button onclick="highlightSum(4, 3)" class="p-1 rounded bg-slate-900 border border-slate-800 hover:border-indigo-500 text-slate-300">4<span class="block text-[9px] text-slate-500">3/36</span></button>
+                            <button onclick="highlightSum(5, 4)" class="p-1 rounded bg-slate-900 border border-slate-800 hover:border-indigo-500 text-slate-300">5<span class="block text-[9px] text-slate-500">4/36</span></button>
+                            <button onclick="highlightSum(6, 5)" class="p-1 rounded bg-slate-900 border border-slate-800 hover:border-indigo-500 text-slate-300">6<span class="block text-[9px] text-slate-500">5/36</span></button>
+                            <button onclick="highlightSum(7, 6)" class="p-1 rounded bg-indigo-600/40 border border-indigo-500 text-white font-bold">7<span class="block text-[9px] text-indigo-300">6/36</span></button>
+                            <button onclick="highlightSum(8, 5)" class="p-1 rounded bg-slate-900 border border-slate-800 hover:border-indigo-500 text-slate-300">8<span class="block text-[9px] text-slate-500">5/36</span></button>
+                            <button onclick="highlightSum(9, 4)" class="p-1 rounded bg-slate-900 border border-slate-800 hover:border-indigo-500 text-slate-300">9<span class="block text-[9px] text-slate-500">4/36</span></button>
+                            <button onclick="highlightSum(10, 3)" class="p-1 rounded bg-slate-900 border border-slate-800 hover:border-indigo-500 text-slate-300">10<span class="block text-[9px] text-slate-500">3/36</span></button>
+                            <button onclick="highlightSum(11, 2)" class="p-1 rounded bg-slate-900 border border-slate-800 hover:border-indigo-500 text-slate-300">11<span class="block text-[9px] text-slate-500">2/36</span></button>
+                            <button onclick="highlightSum(12, 1)" class="p-1 rounded bg-slate-900 border border-slate-800 hover:border-indigo-500 text-slate-300">12<span class="block text-[9px] text-slate-500">1/36</span></button>
+                        </div>
+
+                        <!-- Dynamic Display Card -->
+                        <div id="sum-info-box" class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 font-mono text-xs space-y-1">
+                            <div class="text-indigo-400 font-bold">Selected Sum = 7 (Most Likely Outcome):</div>
+                            <div class="text-slate-300">Pairs: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1)</div>
+                            <div class="text-white font-bold">P(Sum  = 7) = (6) / (36) = (1) / (6) ≈ 0.1667</div>
+                        </div>
+
+                        <!-- Ex 14.1 Q24 (Number 5 on either die) -->
+                        <div class="mt-3 p-3 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono">
+                            <div class="text-slate-400">Ex 14.1 Q24 (Die thrown twice):</div>
+                            <div class="text-slate-200 mt-0.5">• 5 will not come up either time: (25) / (36)</div>
+                            <div class="text-cyan-400 mt-0.5">• 5 will come up at least once: 1 - (25) / (36) = (11) / (36)</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 flex justify-end">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500 text-white">
+                            Total Grid Pairs = 36
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 6: THE 52-CARD DECK VISUALIZER
+             ========================================== -->
+        <section id="slide-6" class="slide w-full h-full max-w-7xl flex-col justify-between">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full overflow-y-auto">
+                <!-- Left: Complete Deck Anatomy -->
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-rose-500">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 uppercase tracking-wider">Example 4 & Ex 14.1 Q14</span>
+                        <h2 class="text-2xl font-extrabold text-white mt-2">The 52-Card Deck</h2>
+                        <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+                            A standard well-shuffled deck contains 52 cards divided into 4 suits of 13 cards each:
+                        </p>
+
+                        <!-- Suits Breakdown -->
+                        <div class="grid grid-cols-2 gap-2 text-xs font-mono mt-3">
+                            <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 flex items-center justify-between">
+                                <span>Spades ♠</span>
+                                <b class="text-white">13 Black</b>
+                            </div>
+                            <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 flex items-center justify-between">
+                                <span>Clubs ♣</span>
+                                <b class="text-white">13 Black</b>
+                            </div>
+                            <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-rose-400 flex items-center justify-between">
+                                <span>Hearts ♥</span>
+                                <b class="text-rose-400">13 Red</b>
+                            </div>
+                            <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-rose-400 flex items-center justify-between">
+                                <span>Diamonds ♦</span>
+                                <b class="text-rose-400">13 Red</b>
+                            </div>
+                        </div>
+
+                        <!-- Face Cards Card -->
+                        <div class="mt-3 p-3 rounded-xl bg-rose-950/40 border border-rose-500/30 text-xs text-rose-200">
+                            <b>Face Cards (Kings, Queens, Jacks):</b><br>
+                            3 × 4 = 12 face cards in total (6 red face cards, 6 black face cards). Aces are NOT face cards!
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Interactive Card Probability Inspector (Ex 14.1 Q14) -->
+                <div class="lg:col-span-7 glass-panel p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-base font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-layer-group text-rose-400"></i> Ex 14.1 Q14 Card Draw Inspector
+                            </h3>
+                            <span class="text-xs font-mono text-slate-400">Click a test case:</span>
+                        </div>
+
+                        <!-- Interactive Buttons -->
+                        <div class="grid grid-cols-3 gap-2 mb-4 text-xs font-mono">
+                            <button onclick="testCard('red_king')" class="p-2 rounded-lg bg-rose-600/30 border border-rose-500/40 text-rose-300 font-bold hover:bg-rose-600/50 transition">
+                                (i) King of Red
+                            </button>
+                            <button onclick="testCard('face_card')" class="p-2 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 font-bold hover:bg-slate-700 transition">
+                                (ii) Face Card
+                            </button>
+                            <button onclick="testCard('red_face')" class="p-2 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 font-bold hover:bg-slate-700 transition">
+                                (iii) Red Face Card
+                            </button>
+                            <button onclick="testCard('jack_hearts')" class="p-2 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 font-bold hover:bg-slate-700 transition">
+                                (iv) Jack of Hearts
+                            </button>
+                            <button onclick="testCard('spade')" class="p-2 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 font-bold hover:bg-slate-700 transition">
+                                (v) A Spade
+                            </button>
+                            <button onclick="testCard('queen_diamonds')" class="p-2 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 font-bold hover:bg-slate-700 transition">
+                                (vi) Queen of Diamonds
+                            </button>
+                        </div>
+
+                        <!-- Dynamic Card Result Display -->
+                        <div id="card-result-box" class="p-4 rounded-xl bg-slate-950 border border-slate-800 font-mono text-xs space-y-1.5">
+                            <div class="text-rose-400 font-bold text-sm" id="card-title">Case (i): King of Red Colour</div>
+                            <div class="text-slate-300" id="card-desc">Favourable cards: King of Hearts (K♥) and King of Diamonds (K♦) = 2 cards</div>
+                            <div class="text-white font-bold text-sm" id="card-prob">
+                                P = (2) / (52) = (1) / (26)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-3 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-400 flex items-center justify-between font-mono">
+                        <span>Total Deck = 52</span>
+                        <span>Red Cards = 26 (1/2)</span>
+                        <span>Black Cards = 26 (1/2)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 7: MARBLES, CANDIES & PIGGY BANK
+             ========================================== -->
+        <section id="slide-7" class="slide w-full h-full max-w-7xl flex-col justify-between">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full overflow-y-auto">
+                <!-- Left: Discrete Objects & Marbles -->
+                <div class="lg:col-span-6 glass-panel p-6 rounded-2xl flex flex-col justify-between space-y-4 border-l-4 border-emerald-500">
+                    <div>
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 uppercase tracking-wider">Example 8 & Ex 14.1 Q9</span>
+                        <h2 class="text-xl font-extrabold text-white mt-2">Colored Marbles in a Box</h2>
+                        <p class="text-slate-300 text-xs mt-2">
+                            A box contains <span class="text-cyan-400 font-bold">3 Blue</span>, <span class="text-slate-200 font-bold">2 White</span>, and <span class="text-rose-400 font-bold">4 Red</span> marbles. Total = 9 marbles.
+                        </p>
+
+                        <!-- Marble Cards -->
+                        <div class="mt-4 space-y-2 font-mono text-xs">
+                            <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 flex justify-between items-center">
+                                <span class="text-slate-300">White Marble:</span>
+                                <span class="text-white font-bold">P(W) = (2) / (9)</span>
+                            </div>
+                            <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 flex justify-between items-center">
+                                <span class="text-cyan-300">Blue Marble:</span>
+                                <span class="text-cyan-400 font-bold">P(B) = (3) / (9) = (1) / (3)</span>
+                            </div>
+                            <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 flex justify-between items-center">
+                                <span class="text-rose-300">Red Marble:</span>
+                                <span class="text-rose-400 font-bold">P(R) = (4) / (9)</span>
+                            </div>
+                        </div>
+
+                        <!-- Verification of sum -->
+                        <div class="mt-3 text-center text-xs text-emerald-400 font-mono font-bold">
+                            P(W) + P(B) + P(R) = (2) / (9) + (3) / (9) + (4) / (9) = (9) / (9) = 1
+                        </div>
+                    </div>
+
+                    <div class="p-3 rounded-xl bg-emerald-950/30 border border-emerald-500/30 text-[11px] text-emerald-200">
+                        Drawing "at random" mathematically guarantees that every marble has an identical (1) / (9) chance of being picked.
+                    </div>
+                </div>
+
+                <!-- Right: The Piggy Bank (Ex 14.1 Q10) & 8-Sector Spinner (Q12) -->
+                <div class="lg:col-span-6 glass-panel p-6 rounded-2xl flex flex-col justify-between border-l-4 border-amber-500">
+                    <div>
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 uppercase tracking-wider">Ex 14.1 Q10 & Q12</span>
+                        <h2 class="text-xl font-extrabold text-white mt-2">The Piggy Bank & 8-Sector Spinner</h2>
+                        
+                        <!-- Piggy Bank Calculation -->
+                        <div class="mt-3 p-3.5 rounded-xl bg-slate-950 border border-slate-800 font-mono text-xs space-y-1.5">
+                            <div class="text-amber-400 font-bold font-sans">Piggy Bank (Total = 180 Coins):</div>
+                            <div class="text-slate-400">100 (50p) + 50 (₹1) + 20 (₹2) + 10 (₹5) = 180 coins</div>
+                            <div class="text-slate-200 mt-1">• 50p coin: P = (100) / (180) = (5) / (9)</div>
+                            <div class="text-rose-300">• Not a ₹5 coin: P = 1 - (10) / (180) = (170) / (180) = (17) / (18)</div>
+                        </div>
+
+                        <!-- Spinner Box -->
+                        <div class="mt-3 p-3.5 rounded-xl bg-slate-950 border border-slate-800 font-mono text-xs space-y-1">
+                            <div class="text-cyan-400 font-bold font-sans">8-Sector Spinner (Numbers 1 to 8):</div>
+                            <div class="text-slate-300">• Point at 8: P = (1) / (8)</div>
+                            <div class="text-slate-300">• Odd number \{1, 3, 5, 7\}: P = (4) / (8) = (1) / (2)</div>
+                            <div class="text-slate-300">• Number >2 \{3,4,5,6,7,8\}: P = (6) / (8) = (3) / (4)</div>
+                            <div class="text-emerald-400">• Number <9: P = (8) / (8) = 1 (Sure event)</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 flex justify-end">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500 text-slate-950">
+                            Equally Likely Geometry
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 8: SAMPLING WITHOUT REPLACEMENT
+             ========================================== -->
+        <section id="slide-8" class="slide w-full h-full max-w-7xl flex-col justify-between">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full overflow-y-auto">
+                <!-- Left: 5 Cards (Queen Put Aside) -->
+                <div class="lg:col-span-6 glass-panel p-6 rounded-2xl flex flex-col justify-between space-y-4 border-l-4 border-purple-500">
+                    <div>
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-purple-500/20 text-purple-300 uppercase tracking-wider">Ex 14.1 Q15 • Critical Trap</span>
+                        <h2 class="text-xl font-extrabold text-white mt-2">5 Diamond Cards: Queen Put Aside</h2>
+                        <p class="text-slate-300 text-xs mt-2">
+                            Five cards: Ten, Jack, Queen, King, and Ace of diamonds (n = 5).
+                        </p>
+
+                        <!-- Step by step -->
+                        <div class="mt-4 space-y-2 font-mono text-xs">
+                            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800">
+                                <span class="text-slate-400 block mb-0.5">Part (i): Pick the Queen:</span>
+                                <span class="text-purple-400 font-bold">P(Queen) = (1) / (5)</span>
+                            </div>
+                            <div class="p-3 rounded-xl bg-purple-950/40 border border-purple-500/40 text-slate-200">
+                                <span class="text-amber-400 font-bold block mb-1">Part (ii): Queen is DRAWN & PUT ASIDE!</span>
+                                <span class="text-slate-400">Total cards remaining drops to: <b class="text-white">5 - 1 = 4 cards</b> (10, J, K, A)!</span>
+                                <div class="mt-2 text-emerald-400 font-bold">(a) P(Ace) = (1) / (4)</div>
+                                <div class="text-rose-400 font-bold mt-1">(b) P(Queen) = (0) / (4) = 0 (Impossible now!)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-3 rounded-xl bg-purple-950/30 border border-purple-500/30 text-[11px] text-purple-200">
+                        <b>Exam Tip:</b> Whenever an object is "put aside" or "not replaced", you MUST decrease both the total sample space and the favourable count!
+                    </div>
+                </div>
+
+                <!-- Right: Bulbs Without Replacement (Ex 14.1 Q17) -->
+                <div class="lg:col-span-6 glass-panel p-6 rounded-2xl flex flex-col justify-between border-l-4 border-pink-500">
+                    <div>
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-pink-500/20 text-pink-300 uppercase tracking-wider">Ex 14.1 Q17 Quality Testing</span>
+                        <h2 class="text-xl font-extrabold text-white mt-2">Lot of 20 Bulbs (4 Defective)</h2>
+                        
+                        <!-- Bulbs Breakdown -->
+                        <div class="mt-4 space-y-2 font-mono text-xs">
+                            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800">
+                                <div class="text-slate-400">Part (i): Draw 1 bulb from lot:</div>
+                                <div class="text-pink-400 font-bold mt-1">
+                                    P(Defective) = (4) / (20) = (1) / (5) = 0.20
+                                </div>
+                            </div>
+
+                            <div class="p-3.5 rounded-xl bg-pink-950/40 border border-pink-500/40 space-y-1.5">
+                                <div class="text-amber-300 font-bold font-sans">Part (ii): Drawn bulb is NOT defective & NOT replaced!</div>
+                                <div class="text-slate-300">• New total bulbs = 20 - 1 = 19</div>
+                                <div class="text-slate-300">• Non-defective remaining = 16 - 1 = 15</div>
+                                <div class="text-white font-bold text-sm mt-1">
+                                    P(Not Defective) = (15) / (19)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 flex justify-end">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-pink-500 text-white">
+                            Conditioned Sample Space
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 9: GEOMETRIC PROBABILITY (CONTINUOUS)
+             ========================================== -->
+        <section id="slide-9" class="slide w-full h-full max-w-7xl flex-col justify-between">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full overflow-y-auto">
+                <!-- Left: Geometric Probability Concept -->
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-teal-500">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-teal-500/20 text-teal-300 uppercase tracking-wider">Section 14.1 Advanced Extension</span>
+                        <h2 class="text-2xl font-extrabold text-white mt-2">Geometric Probability</h2>
+                        <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+                            When an experiment has infinitely many points (e.g. time or 2D area), you cannot count discrete outcomes. Probability becomes the <span class="text-teal-400 font-bold">ratio of favourable length or area</span>:
+                        </p>
+                        <div class="mt-4 p-4 rounded-xl bg-slate-900 border border-teal-500/30 font-mono text-center">
+                            <div class="text-[11px] text-slate-400 mb-1">Geometric Probability Rule</div>
+                            <div class="text-base sm:text-lg font-bold text-teal-400">
+                                P(E) = (Favourable Length / Area) / (Total Length / Area)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Musical Chair (Example 10) -->
+                    <div class="glass-card p-4 rounded-xl border border-slate-700/60 text-xs font-mono space-y-1">
+                        <span class="font-bold text-cyan-400 font-sans">Example 10: Musical Chair Game</span>
+                        <p class="text-slate-300 text-[11px]">
+                            Music stops within 2 minutes (L_{total} = 2). Probability it stops in first 30 seconds (0.5 min):
+                        </p>
+                        <div class="text-cyan-300 font-bold">P = (0.5) / (2) = (1) / (4)</div>
+                    </div>
+                </div>
+
+                <!-- Right: Helicopter Crash & Circular Die Target (Ex 11 & Q20) -->
+                <div class="lg:col-span-7 glass-panel p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-base font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-helicopter text-teal-400"></i> Example 11 & Ex 14.1 Q20
+                            </h3>
+                            <span class="text-xs font-mono text-teal-300 bg-teal-950/60 px-2.5 py-1 rounded border border-teal-800">
+                                Area Ratios
+                            </span>
+                        </div>
+
+                        <!-- Helicopter In Lake -->
+                        <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 font-mono text-xs space-y-1 mb-3">
+                            <div class="text-teal-300 font-bold font-sans">Example 11: Helicopter Crash in Lake:</div>
+                            <div class="text-slate-400">• Total Forest Area = 9 km × 4.5 km = 40.5 km^2</div>
+                            <div class="text-slate-400">• Lake Area = 3 km × 2.5 km = 7.5 km^2</div>
+                            <div class="text-white font-bold text-sm mt-1">
+                                P(Crashed in Lake) = (7.5) / (40.5) = (75) / (405) = (5) / (27)
+                            </div>
+                        </div>
+
+                        <!-- Circular Die Target (Q20) -->
+                        <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 font-mono text-xs space-y-1">
+                            <div class="text-amber-400 font-bold font-sans">Ex 14.1 Q20: Die on Circular Target:</div>
+                            <div class="text-slate-400">• Rectangular Region = 3m × 2m = 6 m^2</div>
+                            <div class="text-slate-400">• Circular Target (d = 1m → r = 0.5m): Area = π r² = (π) / (4) m^2</div>
+                            <div class="text-emerald-400 font-bold text-sm mt-1">
+                                P(Land in Circle) = (π / 4) / (6) = (π) / (24) ≈ 0.1309
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 flex justify-end">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-teal-500 text-slate-950">
+                            Continuous Sample Spaces
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 10: MASTER LAB & BOARD CHALLENGE
+             ========================================== -->
+        <section id="slide-10" class="slide w-full h-full max-w-7xl flex-col justify-between">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full overflow-y-auto">
+                <!-- Left: Quick Summary of All Axioms -->
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-pink-500">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-pink-500/20 text-pink-300 uppercase tracking-wider">NCERT Chapter 14 Summary</span>
+                        <h2 class="text-2xl font-extrabold text-white mt-2">Chapter Master Cheatsheet</h2>
+                        
+                        <div class="mt-3 space-y-1.5 text-xs font-mono text-slate-300">
+                            <div class="p-2 rounded bg-slate-950 border border-slate-800">
+                                1. P(E) = (Favourable Outcomes) / (Total Possible Outcomes)
+                            </div>
+                            <div class="p-2 rounded bg-slate-950 border border-slate-800">
+                                2. 0 ≤ P(E) ≤ 1 (P(Sure) = 1, P(Imp) = 0)
+                            </div>
+                            <div class="p-2 rounded bg-slate-950 border border-slate-800">
+                                3. P(Ē) = 1 - P(E)
+                            </div>
+                            <div class="p-2 rounded bg-slate-950 border border-slate-800">
+                                4. Two dice: 36 outcomes, peak sum 7 (6/36)
+                            </div>
+                            <div class="p-2 rounded bg-slate-950 border border-slate-800">
+                                5. 52 cards: 12 face cards, 4 aces, 26 red, 26 black
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Interactive Board Quiz with SFX -->
+                <div class="lg:col-span-7 glass-panel p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-base font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-trophy text-amber-400"></i> Board Exam Mastery Quiz
+                            </h3>
+                            <span class="text-xs font-mono text-pink-400 bg-pink-950/60 px-2.5 py-1 rounded border border-pink-800">
+                                Instant Verification
+                            </span>
+                        </div>
+
+                        <!-- Quiz Question -->
+                        <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+                            <span class="text-xs font-bold text-pink-400 uppercase tracking-wider block mb-1">Question 1:</span>
+                            <p class="text-xs text-slate-200 mb-3">
+                                Which of the following CANNOT be the probability of an event? (Ex 14.1 Q4)
+                            </p>
+                            <div class="grid grid-cols-2 gap-2 text-xs font-mono">
+                                <button onclick="checkProbQuiz('A', false)" class="quiz-btn p-2 rounded-lg bg-slate-900 border border-slate-800 hover:border-pink-500 text-slate-300">
+                                    (A) 2/3
+                                </button>
+                                <button onclick="checkProbQuiz('B', true)" class="quiz-btn p-2 rounded-lg bg-slate-900 border border-slate-800 hover:border-pink-500 text-slate-300">
+                                    (B) –1.5
+                                </button>
+                                <button onclick="checkProbQuiz('C', false)" class="quiz-btn p-2 rounded-lg bg-slate-900 border border-slate-800 hover:border-pink-500 text-slate-300">
+                                    (C) 15%
+                                </button>
+                                <button onclick="checkProbQuiz('D', false)" class="quiz-btn p-2 rounded-lg bg-slate-900 border border-slate-800 hover:border-pink-500 text-slate-300">
+                                    (D) 0.7
+                                </button>
+                            </div>
+                            <div id="prob-quiz-feedback" class="mt-2 text-xs font-bold hidden font-mono"></div>
+                        </div>
+
+                        <!-- 90 Discs Box (Ex 14.1 Q18) -->
+                        <div class="mt-3 p-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono">
+                            <span class="text-amber-400 font-bold block mb-1">Ex 14.1 Q18 Box of 90 Discs (1 to 90):</span>
+                            <div class="text-slate-300">• Two-digit numbers (10 to 90): 81 / 90 = (9) / (10)</div>
+                            <div class="text-slate-300">• Perfect square numbers \{1, 4, 9, 16, 25, 36, 49, 64, 81\}: 9 / 90 = (1) / (10)</div>
+                            <div class="text-slate-300">• Divisible by 5 (18 numbers): 18 / 90 = (1) / (5)</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 text-center text-slate-500 text-[11px]">
+                        NCERT Class 10 Mathematics • All 14 Chapters Complete
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- BOTTOM CONTROLS -->
+    <footer class="h-16 px-6 glass-panel flex items-center justify-between shrink-0 z-20 border-t border-slate-800">
+        <button id="prevBtn" onclick="prevSlide()" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-bold flex items-center space-x-2 transition border border-slate-800 disabled:opacity-30 disabled:cursor-not-allowed">
+            <i class="fa-solid fa-chevron-left"></i>
+            <span class="hidden sm:inline">Previous Slide</span>
+        </button>
+
+        <!-- Slide Indicators Dots -->
+        <div class="flex items-center space-x-2" id="slideDots">
+            <!-- 10 dots injected by JS -->
+        </div>
+
+        <button id="nextBtn" onclick="nextSlide()" class="px-5 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white text-xs font-bold flex items-center space-x-2 transition shadow-lg shadow-purple-600/30">
+            <span class="hidden sm:inline">Next Slide</span>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </footer>
+
+        <!-- SCRIPT LOGIC -->
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 10;
+        let sfxEnabled = true;
+        let voiceEnabled = true;
+        let audioSynth = null;
+        let currentUtterance = null;
+
+        // Slide Narration Scripts
+        const narrationScripts = {
+            1: "Welcome to Chapter 14: Probability! In Class 9, you explored empirical probability based on repeated trials. But in Class 10, we establish Classical or Theoretical Probability, formulated by Pierre-Simon Laplace in 1795. When outcomes are equally likely, the probability of an event E is simply the number of outcomes favourable to E divided by the total number of all possible outcomes. Use the simulator to toss a fair coin or roll a die and experience pure chance.",
+            2: "Slide 2 covers the foundational axioms of probability. Probability is bounded between 0 and 1. An impossible event, such as rolling an 8 on a single standard die, has probability 0. A sure or certain event, like rolling a number less than 7, has probability 1. Most importantly, for any event E and its complement not E, their sum is always 1. Thus, if Sangeetas probability of winning a tennis match is 0.62, Reshmas probability of winning is 1 minus 0.62, which equals 0.38.",
+            3: "Slide 3 explores multiple coin tosses. When two coins are flipped, there are 4 equally likely outcomes: HH, HT, TH, and TT. Beware the classic fallacy claiming there are only 3 outcomes; getting one head and one tail has probability 2 over 4, or one half! With three coins, there are 2 cubed or 8 outcomes. In Hanifs game, winning requires all three heads or all three tails; therefore, his probability of losing is 6 over 8, or 3 over 4.",
+            4: "Slide 4 analyzes single die throws and exposes the prime number trap. On a standard die with faces 1 through 6, the prime numbers are 2, 3, and 5. Remember that 1 is neither prime nor composite! Hence, the probability of rolling a prime number is 3 over 6, or one half. For numbers strictly between 2 and 6, the favourable outcomes are 3, 4, and 5, also yielding one half.",
+            5: "Slide 5 examines the famous 6 by 6 grid of two dice. There are 36 distinct pairs from 1 comma 1 to 6 comma 6. The sums range from 2 up to 12 in a pyramid distribution that peaks at Sum 7 with 6 possible combinations. This completely refutes the misconception that each sum has probability 1 over 11. In Exercise 14.1 Question 24, the probability that 5 does not show up on either roll is 25 over 36.",
+            6: "Slide 6 is the complete 52-card deck guide. A deck consists of 4 suits of 13 cards: Spades, Clubs, Hearts, and Diamonds. There are 12 face cards: 4 Kings, 4 Queens, and 4 Jacks, of which 6 are red and 6 are black. Aces are not face cards. The probability of drawing a red king is 2 over 52 or 1 over 26, while drawing any face card is 12 over 52 or 3 over 13.",
+            7: "Slide 7 explores discrete urn models, candies, and piggy banks. When drawing at random, every item has an equal opportunity. In the piggy bank with 180 coins, drawing a 50-paise coin is 100 over 180 or 5 ninths, and drawing not a 5-rupee coin is 170 over 180 or 17 over 18. On an 8-sector wheel, spinning an odd number is 4 over 8, or one half.",
+            8: "Slide 8 tackles sampling without replacement. In Exercise 14.1 Question 15, after the Queen of diamonds is drawn and put aside, the sample space drops to 4 cards. The probability of drawing an Ace becomes 1 over 4, while drawing a Queen is now impossible with probability 0. Similarly, in a lot of 20 bulbs with 4 defectives, drawing a non-defective bulb without replacement leaves 15 non-defectives out of 19 bulbs.",
+            9: "Slide 9 introduces Geometric Probability for continuous time and space. Because there are infinite points in a geometric region, probability is calculated as the ratio of favourable area to total area. For a helicopter crashing in a 40.5 square kilometer forest with a 7.5 square kilometer lake, the probability of landing in the lake is 5 over 27. For a die dropped into a 3-by-2 meter rectangle, landing inside a 1-meter diameter circle has probability pi over 24.",
+            10: "Slide 10 concludes Chapter 14 with the Board Mastery Challenge. Remember that probability can never be negative, making minus 1.5 impossible. In a box of 90 discs numbered 1 to 90, two-digit numbers give 81 over 90 or 9 tenths, while perfect squares give 9 over 90 or 1 tenth. Congratulations on mastering all 14 chapters of Class 10 NCERT Mathematics!"
+        };
+
+        // Synthesizer
+        function initAudio() {
+            if (!audioSynth) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                audioSynth = new AudioContext();
+            }
+        }
+
+        function playTone(freq, type = "sine", duration = 0.15, vol = 0.1) {
+            if (!sfxEnabled) return;
+            try {
+                initAudio();
+                const osc = audioSynth.createOscillator();
+                const gain = audioSynth.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioSynth.currentTime);
+                gain.gain.setValueAtTime(vol, audioSynth.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioSynth.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioSynth.destination);
+                osc.start();
+                osc.stop(audioSynth.currentTime + duration);
+            } catch (e) {
+                console.warn(e);
+            }
+        }
+
+        function playChord() {
+            if (!sfxEnabled) return;
+            playTone(440, "triangle", 0.25, 0.08);
+            setTimeout(() => playTone(554.37, "triangle", 0.25, 0.08), 50);
+            setTimeout(() => playTone(659.25, "triangle", 0.35, 0.08), 100);
+        }
+
+        function playChime() {
+            if (!sfxEnabled) return;
+            playTone(523.25, "sine", 0.2, 0.12);
+            setTimeout(() => playTone(659.25, "sine", 0.2, 0.12), 80);
+            setTimeout(() => playTone(783.99, "sine", 0.35, 0.15), 160);
+            setTimeout(() => playTone(1046.50, "sine", 0.45, 0.18), 240);
+        }
+
+        function playBuzzer() {
+            if (!sfxEnabled) return;
+            playTone(180, "sawtooth", 0.3, 0.15);
+            setTimeout(() => playTone(140, "sawtooth", 0.3, 0.15), 100);
+        }
+
+        function toggleSfx() {
+            sfxEnabled = !sfxEnabled;
+            const icon = document.getElementById("sfxIcon");
+            if (sfxEnabled) {
+                icon.className = "fa-solid fa-bell text-sm text-pink-400";
+                playTone(880, "sine", 0.1, 0.1);
+            } else {
+                icon.className = "fa-solid fa-bell-slash text-sm text-slate-500";
+            }
+        }
+
+        // Web Speech
+        function speakCurrentSlide() {
+            if (!voiceEnabled || !window.speechSynthesis) return;
+            window.speechSynthesis.cancel();
+
+            const text = narrationScripts[currentSlide];
+            if (!text) return;
+
+            currentUtterance = new SpeechSynthesisUtterance(text);
+            currentUtterance.rate = 1.0;
+            currentUtterance.pitch = 1.0;
+
+            const voices = window.speechSynthesis.getVoices();
+            const preferredVoice = voices.find(v => v.lang.includes("en") && (v.name.includes("Natural") || v.name.includes("Google") || v.name.includes("Samantha")));
+            if (preferredVoice) currentUtterance.voice = preferredVoice;
+
+            currentUtterance.onstart = () => {
+                document.getElementById("voiceStatus").textContent = "Speaking...";
+                document.getElementById("voiceStatus").className = "text-[11px] font-semibold text-purple-400";
+            };
+            currentUtterance.onend = () => {
+                document.getElementById("voiceStatus").textContent = "Ready";
+                document.getElementById("voiceStatus").className = "text-[11px] font-semibold text-emerald-400";
+            };
+
+            window.speechSynthesis.speak(currentUtterance);
+        }
+
+        function toggleAudioNarration() {
+            voiceEnabled = !voiceEnabled;
+            const icon = document.getElementById("audioIcon");
+            const status = document.getElementById("voiceStatus");
+            if (voiceEnabled) {
+                icon.className = "fa-solid fa-volume-high text-xs";
+                status.textContent = "Active";
+                status.className = "text-[11px] font-semibold text-emerald-400";
+                speakCurrentSlide();
+            } else {
+                icon.className = "fa-solid fa-volume-xmark text-xs";
+                status.textContent = "Muted";
+                status.className = "text-[11px] font-semibold text-slate-500";
+                window.speechSynthesis.cancel();
+            }
+        }
+
+        function replaySlideAudio() {
+            if (window.speechSynthesis) {
+                window.speechSynthesis.cancel();
+                speakCurrentSlide();
+            }
+        }
+
+        // Navigation
+        function updateSlideUI() {
+            document.querySelectorAll(".slide").forEach((s, idx) => {
+                if (idx + 1 === currentSlide) {
+                    s.classList.add("active");
+                } else {
+                    s.classList.remove("active");
+                }
+            });
+
+            document.getElementById("currentSlideDisplay").textContent = currentSlide;
+            document.getElementById("prevBtn").disabled = (currentSlide === 1);
+            document.getElementById("nextBtn").disabled = (currentSlide === totalSlides);
+
+            // Update Dots
+            const dots = document.querySelectorAll(".slide-dot");
+            dots.forEach((dot, idx) => {
+                if (idx + 1 === currentSlide) {
+                    dot.className = "slide-dot w-6 h-2 rounded-full bg-purple-500 transition-all";
+                } else {
+                    dot.className = "slide-dot w-2 h-2 rounded-full bg-slate-700 hover:bg-slate-600 cursor-pointer transition-all";
+                }
+            });
+
+            playChord();
+            speakCurrentSlide();
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                updateSlideUI();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                currentSlide--;
+                updateSlideUI();
+            }
+        }
+
+        function goToSlide(n) {
+            currentSlide = n;
+            updateSlideUI();
+        }
+
+        function initSlideDots() {
+            const container = document.getElementById("slideDots");
+            container.innerHTML = "";
+            for (let i = 1; i <= totalSlides; i++) {
+                const dot = document.createElement("div");
+                dot.onclick = () => goToSlide(i);
+                dot.className = (i === 1) ? "slide-dot w-6 h-2 rounded-full bg-purple-500 transition-all" : "slide-dot w-2 h-2 rounded-full bg-slate-700 hover:bg-slate-600 cursor-pointer transition-all";
+                container.appendChild(dot);
+            }
+        }
+
+        // Slide 1 Coin & Die Logic
+        let coinTosses = 0;
+        let headsCount = 0;
+        let tailsCount = 0;
+
+        function tossCoin() {
+            playTone(800, "sine", 0.1, 0.1);
+            const isHead = Math.random() < 0.5;
+            coinTosses++;
+            if (isHead) headsCount++; else tailsCount++;
+
+            const coin = document.getElementById("s1-coin-visual");
+            coin.style.transform = "rotateY(720deg) scale(1.1)";
+            setTimeout(() => {
+                coin.textContent = isHead ? "H" : "T";
+                coin.className = isHead ? 
+                    "w-16 h-16 rounded-full bg-gradient-to-tr from-amber-500 to-yellow-300 text-slate-950 font-black text-2xl flex items-center justify-center shadow-lg my-3 transition-transform duration-300" :
+                    "w-16 h-16 rounded-full bg-gradient-to-tr from-slate-400 to-slate-200 text-slate-950 font-black text-2xl flex items-center justify-center shadow-lg my-3 transition-transform duration-300";
+                coin.style.transform = "rotateY(0deg) scale(1)";
+            }, 150);
+
+            document.getElementById("s1-coin-count").textContent = coinTosses;
+            document.getElementById("s1-heads-count").textContent = headsCount;
+            document.getElementById("s1-tails-count").textContent = tailsCount;
+        }
+
+        function rollDie() {
+            playTone(600, "triangle", 0.1, 0.1);
+            const val = Math.floor(Math.random() * 6) + 1;
+            const die = document.getElementById("s1-die-visual");
+            die.style.transform = "rotate(360deg) scale(1.15)";
+            setTimeout(() => {
+                die.textContent = val;
+                die.style.transform = "rotate(0deg) scale(1)";
+            }, 150);
+        }
+
+        // Slide 4 Die Inspector
+        function inspectDie(type) {
+            playTone(700, "sine", 0.12, 0.1);
+            const container = document.getElementById("die-faces-container");
+            const outcomesSpan = document.getElementById("die-fav-outcomes");
+            const calcBox = document.getElementById("die-calc-box");
+
+            let favs = [];
+            let probText = "";
+
+            if (type === "prime") {
+                favs = [2, 3, 5];
+                probText = "P(Prime) = 3/6 = 1/2";
+            } else if (type === "between") {
+                favs = [3, 4, 5];
+                probText = "P(Between 2 and 6) = 3/6 = 1/2";
+            } else if (type === "odd") {
+                favs = [1, 3, 5];
+                probText = "P(Odd) = 3/6 = 1/2";
+            }
+
+            outcomesSpan.textContent = "{" + favs.join(", ") + "}";
+            calcBox.innerHTML = `
+                <div class="text-slate-400">Favourable Outcomes: <span class="text-amber-400 font-bold">{${favs.join(", ")}}</span> (Count: ${favs.length})</div>
+                <div class="text-white font-bold text-sm">Probability: ${probText}</div>
+            `;
+
+            container.innerHTML = [1, 2, 3, 4, 5, 6].map(n => {
+                const isFav = favs.includes(n);
+                return `
+                    <div class="p-3 rounded-xl border ${isFav ? "bg-amber-500/20 border-amber-500 text-amber-300 font-black" : "bg-slate-900 border-slate-800 text-slate-500"} transition-all">
+                        ${n}
+                    </div>
+                `;
+            }).join("");
+        }
+
+        // Slide 5 Sum Highlight
+        function highlightSum(sumVal, count) {
+            playTone(550 + sumVal * 30, "sine", 0.12, 0.1);
+            const box = document.getElementById("sum-info-box");
+            let pairs = [];
+            for (let i = 1; i <= 6; i++) {
+                let j = sumVal - i;
+                if (j >= 1 && j <= 6) pairs.push(`(${i}, ${j})`);
+            }
+            box.innerHTML = `
+                <div class="text-indigo-400 font-bold">Selected Sum = ${sumVal} (${pairs.length} Favourable Outcomes):</div>
+                <div class="text-slate-300">Pairs: ${pairs.join(", ")}</div>
+                <div class="text-white font-bold text-sm">
+                    Probability: P(Sum = ${sumVal}) = ${pairs.length} / 36
+                </div>
+            `;
+        }
+
+        // Slide 6 Card Test
+        function testCard(cardType) {
+            playTone(650, "sine", 0.12, 0.1);
+            const title = document.getElementById("card-title");
+            const desc = document.getElementById("card-desc");
+            const prob = document.getElementById("card-prob");
+
+            if (cardType === "red_king") {
+                title.textContent = "Case (i): King of Red Colour";
+                desc.textContent = "Favourable cards: K♥ and K♦ (2 cards)";
+                prob.innerHTML = "P = 2/52 = 1/26";
+            } else if (cardType === "face_card") {
+                title.textContent = "Case (ii): A Face Card";
+                desc.textContent = "Favourable cards: 4 Kings, 4 Queens, 4 Jacks = 12 cards";
+                prob.innerHTML = "P = 12/52 = 3/13";
+            } else if (cardType === "red_face") {
+                title.textContent = "Case (iii): A Red Face Card";
+                desc.textContent = "Favourable cards: 3 red hearts face cards + 3 red diamonds face cards = 6 cards";
+                prob.innerHTML = "P = 6/52 = 3/26";
+            } else if (cardType === "jack_hearts") {
+                title.textContent = "Case (iv): The Jack of Hearts";
+                desc.textContent = "Favourable cards: J♥ (Only 1 card)";
+                prob.innerHTML = "P = 1/52";
+            } else if (cardType === "spade") {
+                title.textContent = "Case (v): A Spade";
+                desc.textContent = "Favourable cards: Entire suit of Spades = 13 cards";
+                prob.innerHTML = "P = 13/52 = 1/4";
+            } else if (cardType === "queen_diamonds") {
+                title.textContent = "Case (vi): The Queen of Diamonds";
+                desc.textContent = "Favourable cards: Q♦ (Only 1 card)";
+                prob.innerHTML = "P = 1/52";
+            }
+        }
+
+        // Slide 10 Quiz
+        function checkProbQuiz(opt, isCorrect) {
+            const fb = document.getElementById("prob-quiz-feedback");
+            fb.classList.remove("hidden");
+            if (isCorrect) {
+                playChime();
+                fb.className = "mt-2 text-xs font-bold font-mono text-emerald-400";
+                fb.textContent = "Correct! Probability must satisfy 0 ≤ P(E) ≤ 1. Negative numbers like –1.5 are impossible!";
+            } else {
+                playBuzzer();
+                fb.className = "mt-2 text-xs font-bold font-mono text-rose-400";
+                fb.textContent = "Incorrect! 2/3 ≈ 0.67, 15% = 0.15, and 0.7 are all valid. –1.5 is negative, which is strictly prohibited!";
+            }
+        }
+
+        // Initialize
+        window.addEventListener("DOMContentLoaded", () => {
+            initSlideDots();
+            inspectDie("prime");
+
+            window.addEventListener("keydown", (e) => {
+                if (e.key === "ArrowRight" || e.key === " ") {
+                    nextSlide();
+                } else if (e.key === "ArrowLeft") {
+                    prevSlide();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

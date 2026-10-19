@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 10 • Coordinate Geometry — Multimedia Lab</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    if (typeof tailwind === 'undefined') {
+      document.write('<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"><\/script>');
+    }
+  </script>
+  <style>
+    body { background-color: #020617; color: #f8fafc; }
+    .slide-fade-in {
+      animation: fadeInScale 0.35s ease-out forwards;
+    }
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.15); opacity: 0.4; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .pulse-ring {
+      animation: pulse-ring 2s infinite ease-in-out;
+    }
+    /* Custom scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+  </style>
+</head>
+<body style="background-color: #020617; color: #f8fafc;" class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-cyan-500 selection:text-white overflow-x-hidden">
+
+  <!-- TOP HEADER & PROGRESS -->
+  <header style="flex-shrink: 0;" class="border-b border-slate-800 bg-slate-900/95 backdrop-blur sticky top-0 z-50">
+    <!-- Slide Progress Bar -->
+    <div class="w-full bg-slate-800/80 h-1.5 relative overflow-hidden">
+      <div id="slideProgressBar" class="h-full bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500 transition-all duration-500" style="width: 10%;"></div>
+      <div id="autoPlayCountdownBar" class="h-full bg-amber-400/80 absolute top-0 left-0 transition-all duration-100" style="width: 0%; opacity: 0;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-indigo-600 flex items-center justify-center font-black text-lg text-white shadow-lg shadow-cyan-500/25 shrink-0">
+          <span>(x,y)</span>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="font-black text-sm sm:text-base text-white tracking-tight">NCERT Chapter 7 • Coordinate Geometry</h1>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">Reprint 2026-27</span>
+          </div>
+          <p id="slideSubtitle" class="text-xs text-slate-400">Slide 1 of 10: Cartesian Plane, Abscissa &amp; Ordinate</p>
+        </div>
+      </div>
+
+      <!-- Quick Audio Controls -->
+      <div class="flex items-center space-x-2">
+        <button id="voiceToggleBtn" onclick="toggleVoiceNarration()" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-300 border border-indigo-500/40 flex items-center space-x-1.5 transition-all cursor-pointer" title="Toggle Voice Narration">
+          <span id="voiceIcon">🔊</span>
+          <span id="voiceText" class="hidden sm:inline">Voice: ON</span>
+        </button>
+        <button id="soundToggleBtn" onclick="toggleSoundFx()" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center space-x-1.5 transition-all cursor-pointer" title="Toggle Sound FX">
+          <span id="soundIcon">🎵</span>
+          <span id="soundText" class="hidden sm:inline">SFX: ON</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Narration Subtitles Banner -->
+    <div class="bg-slate-950/80 border-t border-slate-800/80 px-4 py-1.5 flex items-center space-x-2 text-xs">
+      <span class="text-cyan-400 shrink-0 font-bold">🎙 Teacher Voiceover:</span>
+      <p id="narrationSubtitlesText" class="text-slate-300 truncate italic">Loading lesson...</p>
+    </div>
+  </header>
+
+  <!-- MAIN SLIDES STAGE -->
+  <main style="flex: 1 1 0%; min-height: 0;" class="max-w-7xl w-full mx-auto p-3 sm:p-5 flex flex-col justify-between overflow-y-auto">
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 1: CARTESIAN PLANE, ABSCISSA & ORDINATE -->
+    <!-- ========================================================================= -->
+    <section id="slide-0" class="slide-pane slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase mb-2">
+              <span>Section 7.1 • Introduction</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">The Cartesian Plane: Connecting Algebra with Geometry</h2>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+              Coordinate geometry, pioneered by René Descartes, bridges algebra and geometry. It allows geometric figures to be analyzed algebraically and algebraic equations to be visualized geometrically.
+            </p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center space-x-3 shrink-0">
+            <span class="text-3xl">📐</span>
+            <div>
+              <div class="text-xs font-bold text-cyan-400">Descartes' Bridge</div>
+              <div class="text-[11px] text-slate-400">GPS, Physics &amp; Computer Graphics</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Core Foundations Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center space-x-2 text-cyan-400 font-bold text-sm">
+              <span class="w-2.5 h-2.5 rounded-full bg-cyan-500"></span>
+              <h4>Abscissa (x-coordinate)</h4>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              The perpendicular distance of a point from the <strong>y-axis</strong>. Points on the x-axis always have the coordinate format <code class="text-cyan-300 font-mono font-bold">(x, 0)</code>.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center space-x-2 text-indigo-400 font-bold text-sm">
+              <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
+              <h4>Ordinate (y-coordinate)</h4>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              The perpendicular distance of a point from the <strong>x-axis</strong>. Points on the y-axis always have the coordinate format <code class="text-indigo-300 font-mono font-bold">(0, y)</code>.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center space-x-2 text-emerald-400 font-bold text-sm">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+              <h4>Origin O(0, 0) &amp; Curves</h4>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              The axes intersect at <code class="text-emerald-300 font-mono font-bold">O(0, 0)</code>. Linear equations <code class="text-emerald-300 font-mono">ax+by+c=0</code> form straight lines; quadratics <code class="text-emerald-300 font-mono">y=ax²+bx+c</code> form parabolas!
+            </p>
+          </div>
+        </div>
+
+        <!-- Interactive Cartesian Plane Explorer -->
+        <div class="p-4 sm:p-5 rounded-2xl bg-slate-950 border border-slate-800/80 space-y-3">
+          <div class="flex items-center justify-between flex-wrap gap-2">
+            <h3 class="text-xs sm:text-sm font-bold text-slate-200 flex items-center space-x-2">
+              <span>🎯</span>
+              <span>Interactive Cartesian Plane Tester</span>
+            </h3>
+            <span class="text-[11px] text-slate-400">Click anywhere on the grid or use buttons below</span>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 items-center">
+            <!-- SVG Grid Display -->
+            <div class="lg:col-span-2 flex justify-center bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+              <svg id="interactivePlaneSvg" viewBox="-120 -120 240 240" class="w-full max-w-[340px] h-64 cursor-crosshair select-none" onclick="handleGridClick(event)">
+                <!-- Grid Lines -->
+                <defs>
+                  <pattern id="gridPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.8"/>
+                  </pattern>
+                </defs>
+                <rect x="-120" y="-120" width="240" height="240" fill="url(#gridPattern)" />
+
+                <!-- Axes -->
+                <line x1="-115" y1="0" x2="115" y2="0" stroke="#475569" stroke-width="1.8" />
+                <line x1="0" y1="-115" x2="0" y2="115" stroke="#475569" stroke-width="1.8" />
+                <!-- Arrows -->
+                <polygon points="115,0 108,-3 108,3" fill="#64748b" />
+                <polygon points="0,-115 -3,-108 3,-108" fill="#64748b" />
+                <text x="105" y="14" fill="#94a3b8" font-size="10" font-weight="bold">X</text>
+                <text x="6" y="-105" fill="#94a3b8" font-size="10" font-weight="bold">Y</text>
+                <text x="-12" y="12" fill="#64748b" font-size="9">O(0,0)</text>
+
+                <!-- Dynamic Projections & Point -->
+                <line id="projYLine" x1="60" y1="0" x2="60" y2="-60" stroke="#06b6d4" stroke-dasharray="3,3" stroke-width="1.5" />
+                <line id="projXLine" x1="0" y1="-60" x2="60" y2="-60" stroke="#6366f1" stroke-dasharray="3,3" stroke-width="1.5" />
+                <circle id="interactivePointCircle" cx="60" cy="-60" r="5" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5" class="transition-all duration-300" />
+                <text id="interactivePointLabel" x="65" y="-68" fill="#38bdf8" font-size="10" font-weight="bold" font-family="monospace">P(3, 3)</text>
+              </svg>
+            </div>
+
+            <!-- Coordinate Live Readout -->
+            <div class="space-y-3 bg-slate-900 p-4 rounded-xl border border-slate-800">
+              <div class="text-center p-3 rounded-xl bg-cyan-950/40 border border-cyan-500/30">
+                <div class="text-[11px] uppercase tracking-wider text-cyan-400 font-bold">Current Point Coordinates</div>
+                <div id="readoutPointText" class="text-2xl font-black text-cyan-300 font-mono mt-0.5">P(3, 3)</div>
+              </div>
+
+              <div class="space-y-1.5 text-xs">
+                <div class="flex justify-between items-center py-1 border-b border-slate-800">
+                  <span class="text-slate-400">Abscissa (from y-axis):</span>
+                  <span id="readoutAbscissa" class="font-bold font-mono text-cyan-400">+3 units</span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-slate-800">
+                  <span class="text-slate-400">Ordinate (from x-axis):</span>
+                  <span id="readoutOrdinate" class="font-bold font-mono text-indigo-400">+3 units</span>
+                </div>
+                <div class="flex justify-between items-center py-1">
+                  <span class="text-slate-400">Quadrant Location:</span>
+                  <span id="readoutQuadrant" class="font-bold font-mono text-emerald-400">Quadrant I (+, +)</span>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2 pt-2">
+                <button onclick="setSamplePoint(4, 3)" class="px-2.5 py-1 text-[11px] bg-slate-800 hover:bg-slate-700 text-slate-200 rounded font-semibold cursor-pointer">Sample (4, 3)</button>
+                <button onclick="setSamplePoint(-3, 4)" class="px-2.5 py-1 text-[11px] bg-slate-800 hover:bg-slate-700 text-slate-200 rounded font-semibold cursor-pointer">Sample (-3, 4)</button>
+                <button onclick="setSamplePoint(-4, -3)" class="px-2.5 py-1 text-[11px] bg-slate-800 hover:bg-slate-700 text-slate-200 rounded font-semibold cursor-pointer">Sample (-4, -3)</button>
+                <button onclick="setSamplePoint(3, -4)" class="px-2.5 py-1 text-[11px] bg-slate-800 hover:bg-slate-700 text-slate-200 rounded font-semibold cursor-pointer">Sample (3, -4)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 2: DISTANCE ON AXES & TOWN A TO TOWN B -->
+    <!-- ========================================================================= -->
+    <section id="slide-1" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase mb-2">
+            <span>Section 7.2 • Real-World Context</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Town A to Town B &amp; Distance Along Axes</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            How do we calculate distances without physical measurement? Consider Town B located <strong>36 km East</strong> and <strong>15 km North</strong> of Town A.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- Town A to B Pythagoras Diagram -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <h4 class="text-xs font-bold text-cyan-400 uppercase tracking-wider flex items-center space-x-1.5">
+              <span>🗺️</span>
+              <span>Town A to Town B (Fig 7.1)</span>
+            </h4>
+            <div class="bg-slate-900/80 rounded-lg p-3 flex justify-center">
+              <svg viewBox="0 0 260 160" class="w-full max-w-[280px] h-48 select-none">
+                <!-- Axes -->
+                <line x1="30" y1="130" x2="240" y2="130" stroke="#475569" stroke-width="1.5" />
+                <line x1="30" y1="130" x2="30" y2="20" stroke="#475569" stroke-width="1.5" />
+                <text x="235" y="145" fill="#94a3b8" font-size="10">East (X)</text>
+                <text x="15" y="25" fill="#94a3b8" font-size="10">North (Y)</text>
+
+                <!-- Triangle A - C - B -->
+                <polygon points="30,130 200,130 200,45" fill="rgba(6, 182, 212, 0.1)" stroke="#06b6d4" stroke-width="2" />
+                <!-- Right angle marker -->
+                <rect x="188" y="118" width="12" height="12" fill="none" stroke="#64748b" stroke-width="1" />
+
+                <!-- Points -->
+                <circle cx="30" cy="130" r="4.5" fill="#38bdf8" />
+                <text x="15" y="145" fill="#38bdf8" font-size="11" font-weight="bold">Town A (0,0)</text>
+
+                <circle cx="200" cy="45" r="4.5" fill="#f59e0b" />
+                <text x="175" y="35" fill="#f59e0b" font-size="11" font-weight="bold">Town B(36, 15)</text>
+
+                <!-- Dimension labels -->
+                <text x="95" y="145" fill="#cbd5e1" font-size="10" font-weight="semibold">36 km (East)</text>
+                <text x="206" y="92" fill="#cbd5e1" font-size="10" font-weight="semibold">15 km</text>
+                <text x="85" y="75" fill="#34d399" font-size="11" font-weight="bold">d = 39 km</text>
+              </svg>
+            </div>
+            <div class="text-xs bg-slate-900 p-2.5 rounded-lg border border-slate-800 text-slate-300 font-mono">
+              d = √(36² + 15²) = √(1296 + 225) = √1521 = <strong class="text-emerald-400">39 km</strong>
+            </div>
+          </div>
+
+          <!-- Distance Along Single Axis -->
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+              <h4 class="text-xs font-bold text-indigo-400 uppercase tracking-wider">1. Distance Along x-axis</h4>
+              <p class="text-xs text-slate-300">
+                When two points lie on the x-axis, say <code class="text-cyan-300 font-mono">A(4, 0)</code> and <code class="text-cyan-300 font-mono">B(6, 0)</code>:
+              </p>
+              <div class="p-2 rounded bg-slate-900 border border-slate-800 font-mono text-xs text-cyan-300">
+                AB = OB - OA = 6 - 4 = <strong>2 units</strong>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+              <h4 class="text-xs font-bold text-indigo-400 uppercase tracking-wider">2. Distance Along y-axis</h4>
+              <p class="text-xs text-slate-300">
+                When two points lie on the y-axis, say <code class="text-indigo-300 font-mono">C(0, 3)</code> and <code class="text-indigo-300 font-mono">D(0, 8)</code>:
+              </p>
+              <div class="p-2 rounded bg-slate-900 border border-slate-800 font-mono text-xs text-indigo-300">
+                CD = OD - OC = 8 - 3 = <strong>5 units</strong>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-gradient-to-r from-cyan-950/40 to-indigo-950/40 border border-cyan-500/30 text-xs text-slate-200">
+              💡 <strong>Cross-Axis Distance:</strong> Distance between <code class="text-cyan-300 font-mono">A(4, 0)</code> and <code class="text-indigo-300 font-mono">C(0, 3)</code> forms a right triangle with legs 4 &amp; 3:
+              <div class="font-mono text-emerald-400 font-bold mt-1">AC = √(4² + 3²) = √(16 + 9) = √25 = 5 units</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 3: DERIVATION OF THE DISTANCE FORMULA -->
+    <!-- ========================================================================= -->
+    <section id="slide-2" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase mb-2">
+            <span>Theorem &amp; Derivation • Section 7.2</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Derivation of the Distance Formula</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            Finding the straight-line Euclidean distance between any two arbitrary points <code class="text-cyan-300 font-mono font-bold">P(x₁, y₁)</code> and <code class="text-cyan-300 font-mono font-bold">Q(x₂, y₂)</code> using the Pythagorean Theorem.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- Geometric Derivation Diagram (Fig 7.5) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <div class="flex items-center justify-between">
+              <h4 class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Proof Geometry (Fig. 7.5)</h4>
+              <span class="text-[11px] font-mono text-slate-400">Δ PTQ is Right-Angled at T</span>
+            </div>
+
+            <div class="bg-slate-900/90 rounded-lg p-2.5 flex justify-center">
+              <svg viewBox="0 0 280 200" class="w-full max-w-[320px] h-52 select-none">
+                <!-- Axes -->
+                <line x1="30" y1="170" x2="265" y2="170" stroke="#475569" stroke-width="1.5" />
+                <line x1="30" y1="170" x2="30" y2="20" stroke="#475569" stroke-width="1.5" />
+                <text x="260" y="185" fill="#94a3b8" font-size="10">X</text>
+                <text x="18" y="25" fill="#94a3b8" font-size="10">Y</text>
+                <text x="18" y="182" fill="#64748b" font-size="10">O</text>
+
+                <!-- Points on x-axis: R(x1, 0) and S(x2, 0) -->
+                <line x1="90" y1="170" x2="90" y2="105" stroke="#64748b" stroke-dasharray="3,3" />
+                <line x1="210" y1="170" x2="210" y2="45" stroke="#64748b" stroke-dasharray="3,3" />
+                <text x="85" y="185" fill="#94a3b8" font-size="10">R(x₁)</text>
+                <text x="205" y="185" fill="#94a3b8" font-size="10">S(x₂)</text>
+
+                <!-- Horizontal line PT parallel to x-axis -->
+                <line x1="90" y1="105" x2="210" y2="105" stroke="#06b6d4" stroke-width="2" />
+                <!-- Vertical line QT -->
+                <line x1="210" y1="105" x2="210" y2="45" stroke="#6366f1" stroke-width="2" />
+                <!-- Hypotenuse PQ -->
+                <line x1="90" y1="105" x2="210" y2="45" stroke="#10b981" stroke-width="2.5" />
+
+                <!-- Right angle at T -->
+                <rect x="198" y="93" width="12" height="12" fill="none" stroke="#94a3b8" stroke-width="1" />
+
+                <!-- Labels -->
+                <circle cx="90" cy="105" r="4.5" fill="#06b6d4" />
+                <text x="50" y="100" fill="#06b6d4" font-size="11" font-weight="bold">P(x₁, y₁)</text>
+
+                <circle cx="210" cy="45" r="4.5" fill="#10b981" />
+                <text x="215" y="45" fill="#10b981" font-size="11" font-weight="bold">Q(x₂, y₂)</text>
+
+                <circle cx="210" cy="105" r="3.5" fill="#64748b" />
+                <text x="218" y="112" fill="#94a3b8" font-size="10">T(x₂, y₁)</text>
+
+                <text x="130" y="122" fill="#06b6d4" font-size="10" font-weight="bold">PT = x₂ - x₁</text>
+                <text x="218" y="80" fill="#6366f1" font-size="10" font-weight="bold">QT = y₂ - y₁</text>
+                <text x="135" y="65" fill="#10b981" font-size="11" font-weight="bold">PQ = d</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Derivation Steps -->
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
+              <div class="flex items-center space-x-2 text-amber-400 font-bold text-sm">
+                <span>⚡</span>
+                <h4>Step-by-Step Proof</h4>
+              </div>
+              <ol class="space-y-1.5 list-decimal list-inside text-slate-300">
+                <li>Draw <code class="text-cyan-300 font-mono">PR ⊥ x-axis</code> and <code class="text-cyan-300 font-mono">QS ⊥ x-axis</code>.</li>
+                <li>Draw <code class="text-cyan-300 font-mono">PT ⊥ QS</code> to create right-angled <code class="text-emerald-300 font-mono">Δ PTQ</code>.</li>
+                <li><code class="text-cyan-300 font-mono">PT = RS = OS - OR = x₂ - x₁</code></li>
+                <li><code class="text-indigo-300 font-mono">QT = SQ - ST = y₂ - y₁</code></li>
+                <li>By Pythagoras Theorem in right triangle <code class="text-emerald-300 font-mono">Δ PTQ</code>:</li>
+              </ol>
+
+              <div class="p-3 rounded-lg bg-slate-900 border border-slate-800 font-mono text-center text-xs text-cyan-300 space-y-1">
+                <div>PQ² = PT² + QT²</div>
+                <div>PQ² = (x₂ - x₁)² + (y₂ - y₁)²</div>
+              </div>
+            </div>
+
+            <!-- The Big Formula Box -->
+            <div class="p-4 rounded-xl bg-gradient-to-r from-cyan-950/70 to-emerald-950/70 border border-cyan-500/40 text-center shadow-lg">
+              <div class="text-[11px] uppercase tracking-wider text-cyan-400 font-bold mb-1">The Distance Formula</div>
+              <div class="text-lg sm:text-xl font-black text-white font-mono">
+                PQ = √[ (x₂ - x₁)² + (y₂ - y₁)² ]
+              </div>
+              <div class="text-[11px] text-slate-300 mt-2">
+                <strong>Crucial Note:</strong> Since distance is always non-negative, we always take the <strong>positive square root</strong>!
+              </div>
+            </div>
+
+            <!-- Remark: Origin -->
+            <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-xs text-slate-300 flex items-center justify-between">
+              <span>Distance from origin <code class="text-cyan-300 font-mono">O(0, 0)</code> to <code class="text-cyan-300 font-mono">P(x, y)</code>:</span>
+              <span class="font-mono font-bold text-emerald-400">OP = √(x² + y²)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 4: TESTING GEOMETRIC SHAPES (EXAMPLES 1 & 2) -->
+    <!-- ========================================================================= -->
+    <section id="slide-3" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase mb-2">
+            <span>Examples 1 &amp; 2 • Geometric Proofs</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Identifying Geometric Shapes with Distance</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            By finding side lengths and diagonals, we can decisively classify triangles (scalene, isosceles, equilateral, right-angled) and quadrilaterals (square, rhombus, rectangle, parallelogram).
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <!-- Example 1: Triangle Test -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">Textbook Example 1</span>
+              <span class="text-xs text-slate-400 font-mono">P(3,2), Q(-2,-3), R(2,3)</span>
+            </div>
+            <h4 class="text-sm font-bold text-white">Do these points form a triangle? What type?</h4>
+
+            <div class="space-y-1.5 text-xs text-slate-300 font-mono bg-slate-900 p-3 rounded-lg border border-slate-800">
+              <div>PQ = √[(3+2)² + (2+3)²] = √50 ≈ <strong>7.07</strong></div>
+              <div>QR = √[(-2-2)² + (-3-3)²] = √52 ≈ <strong>7.21</strong></div>
+              <div>PR = √[(3-2)² + (2-3)²] = √2 ≈ <strong>1.41</strong></div>
+            </div>
+
+            <div class="space-y-2 text-xs">
+              <div class="p-2.5 rounded bg-cyan-950/40 border border-cyan-500/20 text-slate-300">
+                ✔️ <strong>Triangle Inequality:</strong> Sum of any two sides > third side:<br>
+                <span class="font-mono text-cyan-300 font-bold">PQ + PR = 7.07 + 1.41 = 8.48 > 7.21 (QR)</span>
+              </div>
+
+              <div class="p-2.5 rounded bg-emerald-950/40 border border-emerald-500/20 text-slate-300">
+                🎯 <strong>Converse of Pythagoras:</strong><br>
+                <span class="font-mono text-emerald-300 font-bold">PQ² + PR² = 50 + 2 = 52 = QR²</span><br>
+                Therefore, <code class="text-white font-bold">Δ PQR is a Right-Angled Triangle</code> with hypotenuse QR and right angle at P!
+              </div>
+            </div>
+          </div>
+
+          <!-- Example 2: Square Test -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-400 text-[10px] font-bold">Textbook Example 2</span>
+              <span class="text-xs text-slate-400 font-mono">A(1,7), B(4,2), C(-1,-1), D(-4,4)</span>
+            </div>
+            <h4 class="text-sm font-bold text-white">Show that ABCD is a Square</h4>
+
+            <div class="grid grid-cols-2 gap-2 text-xs font-mono">
+              <div class="bg-slate-900 p-2 rounded border border-slate-800">
+                <div class="text-slate-400 text-[10px]">All 4 Sides:</div>
+                <div class="text-cyan-300">AB = √34</div>
+                <div class="text-cyan-300">BC = √34</div>
+                <div class="text-cyan-300">CD = √34</div>
+                <div class="text-cyan-300">DA = √34</div>
+              </div>
+              <div class="bg-slate-900 p-2 rounded border border-slate-800">
+                <div class="text-slate-400 text-[10px]">Both Diagonals:</div>
+                <div class="text-indigo-300">AC = √68</div>
+                <div class="text-indigo-300">BD = √68</div>
+              </div>
+            </div>
+
+            <!-- Shape Decision Matrix -->
+            <div class="p-3 rounded-lg bg-slate-900 border border-slate-800 space-y-1.5 text-xs">
+              <div class="font-bold text-amber-400 text-[11px] uppercase">Quadrilateral Decision Rule:</div>
+              <ul class="space-y-1 text-slate-300 text-[11px]">
+                <li>• <strong>Square:</strong> 4 sides equal AND both diagonals equal (<code class="text-emerald-400">AC = BD</code>).</li>
+                <li>• <strong>Rhombus:</strong> 4 sides equal BUT diagonals unequal.</li>
+                <li>• <strong>Rectangle:</strong> Opposite sides equal AND diagonals equal.</li>
+                <li>• <strong>Parallelogram:</strong> Opposite sides equal BUT diagonals unequal.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 5: COLLINEARITY & EQUIDISTANT POINTS (EXAMPLES 3, 4, 5) -->
+    <!-- ========================================================================= -->
+    <section id="slide-4" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase mb-2">
+            <span>Examples 3, 4 &amp; 5 • Applications</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Collinear Points &amp; Equidistant Loci</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            Testing if three points lie on the same straight line, and deriving the perpendicular bisector equation for points equidistant from two targets.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <!-- Collinearity Card -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <span class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-400 text-[10px] font-bold">Example 3: Classroom Desks</span>
+            <h4 class="text-sm font-bold text-white">Are Ashima, Bharti &amp; Camella in a Line?</h4>
+            <div class="text-xs text-slate-300 space-y-1.5">
+              <div>Seated at <code class="text-cyan-300 font-mono">A(3, 1), B(6, 4), C(8, 6)</code></div>
+              <div class="bg-slate-900 p-2.5 rounded font-mono text-[11px] text-slate-200 space-y-1">
+                <div>AB = √(9+9) = √18 = <strong>3√2</strong></div>
+                <div>BC = √(4+4) = √8 = <strong>2√2</strong></div>
+                <div>AC = √(25+25) = √50 = <strong>5√2</strong></div>
+              </div>
+              <div class="p-2 rounded bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 font-bold text-xs">
+                AB + BC = 3√2 + 2√2 = 5√2 = AC<br>
+                ➔ Yes, points are Collinear!
+              </div>
+            </div>
+          </div>
+
+          <!-- Equidistant Relation (Example 4) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-400 text-[10px] font-bold">Example 4: Perpendicular Bisector</span>
+            <h4 class="text-sm font-bold text-white">Point P(x, y) Equidistant from A(7, 1) &amp; B(3, 5)</h4>
+            <div class="text-xs text-slate-300 space-y-2">
+              <div class="bg-slate-900 p-2.5 rounded font-mono text-[11px] text-slate-200 space-y-1">
+                <div>AP² = BP²</div>
+                <div>(x - 7)² + (y - 1)² = (x - 3)² + (y - 5)²</div>
+                <div class="text-slate-400">Expand &amp; cancel x², y² terms:</div>
+                <div>-14x + 50 - 2y = -6x + 34 - 10y</div>
+                <div>-8x + 8y = -16</div>
+              </div>
+              <div class="p-2 rounded bg-indigo-950/40 border border-indigo-500/30 text-indigo-300 font-bold text-xs text-center font-mono">
+                x - y = 2
+              </div>
+              <p class="text-[11px] text-slate-400">
+                This linear equation is the <strong>perpendicular bisector</strong> of line segment AB!
+              </p>
+            </div>
+          </div>
+
+          <!-- Equidistant on Axis (Example 5) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 text-[10px] font-bold">Example 5: Point on y-axis</span>
+            <h4 class="text-sm font-bold text-white">Find point on y-axis equidistant from A(6, 5) &amp; B(-4, 3)</h4>
+            <div class="text-xs text-slate-300 space-y-2">
+              <p>Any point on the y-axis has coordinates <code class="text-amber-300 font-mono font-bold">P(0, y)</code>.</p>
+              <div class="bg-slate-900 p-2.5 rounded font-mono text-[11px] text-slate-200 space-y-1">
+                <div>(6 - 0)² + (5 - y)² = (-4 - 0)² + (3 - y)²</div>
+                <div>36 + 25 + y² - 10y = 16 + 9 + y² - 6y</div>
+                <div>61 - 10y = 25 - 6y</div>
+                <div>4y = 36 ➔ <span class="text-emerald-400 font-bold">y = 9</span></div>
+              </div>
+              <div class="p-2 rounded bg-amber-950/40 border border-amber-500/30 text-amber-300 font-bold text-xs text-center font-mono">
+                Required Point: (0, 9)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 6: SECTION FORMULA DERIVATION -->
+    <!-- ========================================================================= -->
+    <section id="slide-5" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase mb-2">
+            <span>Section 7.3 • Internal Division</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">The Section Formula: Proof by AA Similarity</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            Finding the coordinates of point <code class="text-cyan-300 font-mono font-bold">P(x, y)</code> dividing the line segment between <code class="text-cyan-300 font-mono">A(x₁, y₁)</code> and <code class="text-cyan-300 font-mono">B(x₂, y₂)</code> internally in the ratio <code class="text-emerald-300 font-mono font-bold">m₁ : m₂</code>.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- AA Similarity Proof Diagram (Fig 7.10) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <h4 class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Similar Triangles Setup (Fig. 7.10)</h4>
+            <div class="bg-slate-900/80 rounded-lg p-2.5 flex justify-center">
+              <svg viewBox="0 0 280 190" class="w-full max-w-[320px] h-48 select-none">
+                <!-- Axes -->
+                <line x1="30" y1="165" x2="265" y2="165" stroke="#475569" stroke-width="1.5" />
+                <line x1="30" y1="165" x2="30" y2="20" stroke="#475569" stroke-width="1.5" />
+                <text x="260" y="178" fill="#94a3b8" font-size="10">X</text>
+                <text x="18" y="25" fill="#94a3b8" font-size="10">Y</text>
+
+                <!-- Line AB -->
+                <line x1="60" y1="125" x2="230" y2="40" stroke="#38bdf8" stroke-width="2.5" />
+
+                <!-- Point P on AB -->
+                <circle cx="120" cy="95" r="4.5" fill="#10b981" />
+                <text x="110" y="85" fill="#10b981" font-size="11" font-weight="bold">P(x, y)</text>
+
+                <!-- Points A and B -->
+                <circle cx="60" cy="125" r="4" fill="#06b6d4" />
+                <text x="35" y="140" fill="#06b6d4" font-size="10" font-weight="bold">A(x₁, y₁)</text>
+                <circle cx="230" cy="40" r="4" fill="#818cf8" />
+                <text x="235" y="42" fill="#818cf8" font-size="10" font-weight="bold">B(x₂, y₂)</text>
+
+                <!-- Similar Triangles: Δ PAQ and Δ BPC -->
+                <line x1="60" y1="125" x2="120" y2="125" stroke="#64748b" stroke-dasharray="2,2" />
+                <line x1="120" y1="125" x2="120" y2="95" stroke="#64748b" stroke-dasharray="2,2" />
+                <text x="122" y="130" fill="#94a3b8" font-size="9">Q</text>
+
+                <line x1="120" y1="95" x2="230" y2="95" stroke="#64748b" stroke-dasharray="2,2" />
+                <line x1="230" y1="95" x2="230" y2="40" stroke="#64748b" stroke-dasharray="2,2" />
+                <text x="233" y="102" fill="#94a3b8" font-size="9">C</text>
+
+                <!-- Ratio labels -->
+                <text x="75" y="105" fill="#f59e0b" font-size="10" font-weight="bold">m₁</text>
+                <text x="165" y="60" fill="#f59e0b" font-size="10" font-weight="bold">m₂</text>
+              </svg>
+            </div>
+            <div class="text-xs text-center text-slate-400">
+              By AA similarity: <code class="text-cyan-300 font-bold">Δ PAQ ~ Δ BPC</code>
+            </div>
+          </div>
+
+          <!-- Derivation & General Formula -->
+          <div class="space-y-3">
+            <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-2">
+              <div class="font-bold text-amber-400">Ratio of Proportional Sides:</div>
+              <div class="font-mono text-cyan-300 bg-slate-900 p-2 rounded text-center">
+                PA / BP = AQ / PC = PQ / BC<br>
+                m₁ / m₂ = (x - x₁) / (x₂ - x) = (y - y₁) / (y₂ - y)
+              </div>
+              <p class="text-slate-300 leading-relaxed text-[11px]">
+                Cross-multiplying <code class="text-cyan-300 font-mono">m₁(x₂ - x) = m₂(x - x₁)</code> isolates x, and identically isolates y:
+              </p>
+            </div>
+
+            <!-- Master Formula Box -->
+            <div class="p-4 rounded-xl bg-gradient-to-r from-cyan-950/70 to-indigo-950/70 border border-cyan-500/40 text-center shadow-lg space-y-2">
+              <div class="text-[11px] uppercase tracking-wider text-cyan-400 font-bold">The Section Formula (Internal Division)</div>
+              <div class="text-base sm:text-lg font-black text-white font-mono bg-slate-950/80 p-2 rounded-lg border border-slate-800">
+                P(x, y) = ( <span class="text-cyan-300">m₁x₂ + m₂x₁</span> / <span class="text-amber-300">m₁ + m₂</span> , <span class="text-indigo-300">m₁y₂ + m₂y₁</span> / <span class="text-amber-300">m₁ + m₂</span> )
+              </div>
+            </div>
+
+            <!-- k : 1 Ratio Variant -->
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300">
+              <strong class="text-emerald-400">The k : 1 Shortcut:</strong> When finding an unknown ratio, let <code class="text-cyan-300 font-mono">m₁/m₂ = k : 1</code>:
+              <div class="font-mono text-center font-bold text-emerald-300 mt-1">
+                P = ( (k x₂ + x₁) / (k + 1) , (k y₂ + y₁) / (k + 1) )
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 7: MID-POINT FORMULA & TRISECTION (EXAMPLE 8) -->
+    <!-- ========================================================================= -->
+    <section id="slide-6" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase mb-2">
+            <span>Special Cases • Trisection &amp; Midpoint</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">The Mid-Point Formula &amp; Points of Trisection</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            When a line is divided equally (1 : 1), we obtain the famous Mid-Point Formula. When divided into three equal parts (1 : 2 and 2 : 1), we obtain Points of Trisection.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <!-- Mid-Point Formula Box -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <div class="flex items-center justify-between">
+              <h4 class="text-xs font-bold text-emerald-400 uppercase tracking-wider">1. The Mid-Point Formula (1 : 1)</h4>
+              <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-mono font-bold">m₁ = m₂ = 1</span>
+            </div>
+
+            <p class="text-xs text-slate-300">
+              The mid-point M divides the line segment joining <code class="text-cyan-300 font-mono">A(x₁, y₁)</code> and <code class="text-cyan-300 font-mono">B(x₂, y₂)</code> exactly in half:
+            </p>
+
+            <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 text-center font-mono text-emerald-400 text-base font-black">
+              M = ( (x₁ + x₂) / 2 , (y₁ + y₂) / 2 )
+            </div>
+
+            <!-- Example 8 Trisection Walkthrough -->
+            <div class="pt-2 border-t border-slate-800 space-y-2">
+              <span class="text-[10px] uppercase font-bold text-cyan-400">Textbook Example 8: Points of Trisection</span>
+              <div class="text-xs text-slate-300">
+                Find points dividing segment <code class="text-cyan-300 font-mono">A(2, -2)</code> to <code class="text-cyan-300 font-mono">B(-7, 4)</code> into 3 equal parts.
+              </div>
+              <div class="bg-slate-900/90 p-2.5 rounded font-mono text-[11px] text-slate-300 space-y-1">
+                <div>• <strong>P divides in 1 : 2</strong> ➔ ( [1(-7)+2(2)]/3 , [1(4)+2(-2)]/3 ) = <span class="text-cyan-300 font-bold">(-1, 0)</span></div>
+                <div>• <strong>Q divides in 2 : 1</strong> ➔ ( [2(-7)+1(2)]/3 , [2(4)+1(-2)]/3 ) = <span class="text-indigo-300 font-bold">(-4, 2)</span></div>
+              </div>
+              <div class="text-[11px] text-slate-400 italic">
+                💡 Note: Q is also simply the midpoint of PB!
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Division Ratio Slider -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <h4 class="text-xs font-bold text-cyan-400 uppercase tracking-wider flex items-center space-x-1.5">
+              <span>🎚️</span>
+              <span>Interactive Segment Divider</span>
+            </h4>
+            <div class="text-xs text-slate-300">
+              Observe how changing ratio <code class="text-amber-400 font-bold font-mono">m₁ : m₂</code> moves point P between <code class="text-cyan-300 font-mono">A(0, 0)</code> and <code class="text-indigo-300 font-mono">B(12, 6)</code>:
+            </div>
+
+            <!-- SVG Line with moveable P -->
+            <div class="bg-slate-900 p-3 rounded-lg border border-slate-800 flex justify-center">
+              <svg viewBox="0 0 260 100" class="w-full max-w-[280px] h-24 select-none">
+                <line x1="30" y1="50" x2="230" y2="50" stroke="#475569" stroke-width="4" stroke-linecap="round" />
+                <line id="segAP" x1="30" y1="50" x2="130" y2="50" stroke="#06b6d4" stroke-width="4" stroke-linecap="round" />
+
+                <!-- Point A -->
+                <circle cx="30" cy="50" r="5" fill="#06b6d4" />
+                <text x="18" y="75" fill="#06b6d4" font-size="10" font-weight="bold">A(0,0)</text>
+
+                <!-- Point B -->
+                <circle cx="230" cy="50" r="5" fill="#818cf8" />
+                <text x="210" y="75" fill="#818cf8" font-size="10" font-weight="bold">B(12,6)</text>
+
+                <!-- Point P -->
+                <circle id="sliderCircleP" cx="130" cy="50" r="7" fill="#f59e0b" stroke="#ffffff" stroke-width="2" />
+                <text id="sliderTextP" x="110" y="32" fill="#f59e0b" font-size="11" font-weight="bold">P(6, 3)</text>
+              </svg>
+            </div>
+
+            <!-- Ratio Slider -->
+            <div class="space-y-2">
+              <div class="flex justify-between text-xs font-mono">
+                <span class="text-slate-400">Division Ratio:</span>
+                <span id="sliderRatioLabel" class="text-amber-400 font-bold">1 : 1 (Midpoint)</span>
+              </div>
+              <input id="ratioRangeInput" type="range" min="0.1" max="5" step="0.1" value="1" oninput="updateInteractiveRatio(this.value)" class="w-full accent-amber-500 cursor-pointer">
+              <div class="flex justify-between gap-2 pt-1">
+                <button onclick="setSliderPreset(1)" class="flex-1 py-1 text-[10px] bg-slate-800 hover:bg-slate-700 rounded text-slate-300 font-semibold cursor-pointer">1:1 (Midpoint)</button>
+                <button onclick="setSliderPreset(0.5)" class="flex-1 py-1 text-[10px] bg-slate-800 hover:bg-slate-700 rounded text-slate-300 font-semibold cursor-pointer">1:2 (Trisection 1)</button>
+                <button onclick="setSliderPreset(2)" class="flex-1 py-1 text-[10px] bg-slate-800 hover:bg-slate-700 rounded text-slate-300 font-semibold cursor-pointer">2:1 (Trisection 2)</button>
+                <button onclick="setSliderPreset(3)" class="flex-1 py-1 text-[10px] bg-slate-800 hover:bg-slate-700 rounded text-slate-300 font-semibold cursor-pointer">3:1 (Ex 6)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 8: FINDING RATIOS, AXIS CUTS & PARALLELOGRAMS (EX 7, 9, 10) -->
+    <!-- ========================================================================= -->
+    <section id="slide-7" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase mb-2">
+            <span>Examples 7, 9 &amp; 10 • Advanced Techniques</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Finding Unknown Ratios &amp; Parallelogram Diagonals</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            Essential board exam questions: determining the ratio in which points and axes divide segments, and solving vertices using parallelogram diagonal properties.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <!-- Example 7: Find Ratio -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-400 text-[10px] font-bold">Example 7: Unknown Ratio</span>
+            <h4 class="text-sm font-bold text-white">In what ratio does (-4, 6) divide A(-6, 10) &amp; B(3, -8)?</h4>
+            <div class="text-xs text-slate-300 space-y-2 font-mono">
+              <div class="bg-slate-900 p-2.5 rounded text-[11px] space-y-1">
+                <div>Let ratio be <code class="text-cyan-300">k : 1</code></div>
+                <div>x = (3k - 6) / (k + 1) = -4</div>
+                <div>-4k - 4 = 3k - 6</div>
+                <div>7k = 2 ➔ <span class="text-emerald-400 font-bold">k = 2/7</span></div>
+              </div>
+              <div class="p-2 rounded bg-indigo-950/40 border border-indigo-500/30 text-indigo-300 text-center font-bold">
+                Ratio = 2 : 7
+              </div>
+              <div class="text-[10px] text-slate-400">
+                Check y: [-8(2/7)+10]/(2/7+1) = 54/9 = 6. Verified!
+              </div>
+            </div>
+          </div>
+
+          <!-- Example 9: Division by y-axis -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <span class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-400 text-[10px] font-bold">Example 9: Division by Axis</span>
+            <h4 class="text-sm font-bold text-white">Ratio in which y-axis divides (5, -6) &amp; (-1, -4)</h4>
+            <div class="text-xs text-slate-300 space-y-2 font-mono">
+              <div class="bg-slate-900 p-2.5 rounded text-[11px] space-y-1">
+                <div class="text-slate-400">On y-axis, x-coordinate is 0!</div>
+                <div>Let ratio be k : 1</div>
+                <div>x = [k(-1) + 5] / (k + 1) = 0</div>
+                <div>-k + 5 = 0 ➔ <span class="text-cyan-300 font-bold">k = 5</span></div>
+                <div class="text-slate-400">y = [-4(5) - 6] / 6 = -26/6 = -13/3</div>
+              </div>
+              <div class="p-2 rounded bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-center font-bold">
+                Ratio = 5 : 1<br>Point = (0, -13/3)
+              </div>
+            </div>
+          </div>
+
+          <!-- Example 10: Parallelogram Diagonals -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 text-[10px] font-bold">Example 10: Missing Vertex p</span>
+            <h4 class="text-sm font-bold text-white">A(6,1), B(8,2), C(9,4), D(p,3) are Parallelogram Vertices</h4>
+            <div class="text-xs text-slate-300 space-y-2 font-mono">
+              <p class="text-[11px] font-sans text-slate-400">
+                <strong>Golden Property:</strong> Diagonals of a parallelogram bisect each other!
+              </p>
+              <div class="bg-slate-900 p-2.5 rounded text-[11px] space-y-1">
+                <div>Midpoint AC = ( (6+9)/2 , (1+4)/2 ) = (15/2 , 5/2)</div>
+                <div>Midpoint BD = ( (8+p)/2 , (2+3)/2 ) = ( (8+p)/2 , 5/2 )</div>
+                <div class="pt-1">15/2 = (8 + p)/2</div>
+                <div>15 = 8 + p ➔ <span class="text-amber-400 font-bold">p = 7</span></div>
+              </div>
+              <div class="p-2 rounded bg-amber-950/40 border border-amber-500/30 text-amber-300 text-center font-bold">
+                Value of p = 7
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 9: REAL-WORLD MODELING: SPORTS DAY FLAG PROBLEM (EX 7.2 Q3) -->
+    <!-- ========================================================================= -->
+    <section id="slide-8" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase mb-2">
+            <span>Exercise 7.2 Q3 • Real-World Case Study</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Sports Day Flag Posting &amp; Rhombus Area</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            Applying distance and midpoint formulas to a school sports ground coordinate layout, plus computing the area of a rhombus via diagonal lengths.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- Ground Graphic (Fig 7.12) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <h4 class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Rectangular Ground ABCD (Fig. 7.12)</h4>
+            <div class="bg-slate-900/80 rounded-lg p-2.5 flex justify-center">
+              <svg viewBox="0 0 280 200" class="w-full max-w-[320px] h-52 select-none">
+                <!-- Ground Boundary -->
+                <rect x="25" y="20" width="230" height="150" fill="rgba(15, 23, 42, 0.6)" stroke="#475569" stroke-width="1.5" />
+                <text x="20" y="185" fill="#94a3b8" font-size="10">A</text>
+                <text x="258" y="185" fill="#94a3b8" font-size="10">B</text>
+                <text x="20" y="15" fill="#94a3b8" font-size="10">D (100 pots)</text>
+                <text x="258" y="15" fill="#94a3b8" font-size="10">C</text>
+
+                <!-- 10 chalk line tracks -->
+                <line x1="45" y1="20" x2="45" y2="170" stroke="#1e293b" stroke-width="1" />
+                <line x1="68" y1="20" x2="68" y2="170" stroke="#334155" stroke-width="1" /> <!-- line 2 -->
+                <line x1="91" y1="20" x2="91" y2="170" stroke="#1e293b" stroke-width="1" />
+                <line x1="114" y1="20" x2="114" y2="170" stroke="#1e293b" stroke-width="1" />
+                <line x1="137" y1="20" x2="137" y2="170" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="2,2" /> <!-- line 5 (Blue) -->
+                <line x1="160" y1="20" x2="160" y2="170" stroke="#1e293b" stroke-width="1" />
+                <line x1="183" y1="20" x2="183" y2="170" stroke="#1e293b" stroke-width="1" />
+                <line x1="206" y1="20" x2="206" y2="170" stroke="#334155" stroke-width="1" /> <!-- line 8 -->
+                <line x1="229" y1="20" x2="229" y2="170" stroke="#1e293b" stroke-width="1" />
+
+                <!-- Line numbers at bottom -->
+                <text x="65" y="182" fill="#94a3b8" font-size="9">2</text>
+                <text x="134" y="182" fill="#38bdf8" font-size="9" font-weight="bold">5</text>
+                <text x="203" y="182" fill="#94a3b8" font-size="9">8</text>
+
+                <!-- Niharika's Green Flag at (2, 25m) => y = 170 - (25*1.5) = 132.5 -->
+                <circle cx="68" cy="132.5" r="4" fill="#22c55e" />
+                <text x="40" y="128" fill="#4ade80" font-size="9" font-weight="bold">Green (2, 25)</text>
+
+                <!-- Preet's Red Flag at (8, 20m) => y = 170 - (20*1.5) = 140 -->
+                <circle cx="206" cy="140" r="4" fill="#ef4444" />
+                <text x="180" y="155" fill="#f87171" font-size="9" font-weight="bold">Red (8, 20)</text>
+
+                <!-- Distance line -->
+                <line x1="68" y1="132.5" x2="206" y2="140" stroke="#f59e0b" stroke-width="2" />
+                <text x="125" y="125" fill="#f59e0b" font-size="10" font-weight="bold">√61 m</text>
+
+                <!-- Rashmi's Blue Flag at Midpoint (5, 22.5m) => y = 136.25 -->
+                <circle cx="137" cy="136.25" r="5" fill="#3b82f6" stroke="#ffffff" stroke-width="1" />
+                <text x="145" y="138" fill="#60a5fa" font-size="9" font-weight="bold">Blue (5, 22.5)</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Problem Calculations -->
+          <div class="space-y-3">
+            <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
+              <h4 class="font-bold text-amber-400">Step 1: Coordinates of Flags</h4>
+              <ul class="space-y-1 text-slate-300">
+                <li>• <strong>Niharika:</strong> 2nd line, 1/4th of 100m = 25m ➔ <code class="text-emerald-300 font-mono font-bold">G(2, 25)</code></li>
+                <li>• <strong>Preet:</strong> 8th line, 1/5th of 100m = 20m ➔ <code class="text-rose-300 font-mono font-bold">R(8, 20)</code></li>
+              </ul>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
+              <h4 class="font-bold text-cyan-400">Step 2: Distance Between Flags</h4>
+              <div class="font-mono text-cyan-300 bg-slate-900 p-2 rounded">
+                d = √[(8 - 2)² + (20 - 25)²] = √[36 + 25] = <strong class="text-white">√61 m</strong> ≈ 7.81 m
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
+              <h4 class="font-bold text-blue-400">Step 3: Rashmi's Blue Flag Location (Halfway)</h4>
+              <div class="font-mono text-blue-300 bg-slate-900 p-2 rounded">
+                M = ( (2 + 8)/2 , (25 + 20)/2 ) = <strong class="text-white">(5, 22.5)</strong>
+              </div>
+              <p class="text-[11px] text-slate-400">
+                Rashmi should post her blue flag on the <strong>5th line</strong> at a distance of <strong>22.5 metres</strong>!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 10: COMPLETE SUMMARY & CHAPTER MASTERY QUIZ -->
+    <!-- ========================================================================= -->
+    <section id="slide-9" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase mb-2">
+              <span>Section 7.4 • Summary &amp; Assessment</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Chapter Mastery Quiz &amp; Formula Matrix</h2>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+              Test your mastery of Coordinate Geometry with interactive instant-feedback questions and review the complete formula cheat sheet.
+            </p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center shrink-0">
+            <span id="quizScoreBadge" class="text-xs font-bold text-emerald-400 font-mono">Score: 0 / 3</span>
+            <div class="text-[10px] text-slate-400">Interactive Test</div>
+          </div>
+        </div>
+
+        <!-- Formula Matrix Cheat Sheet -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-1">
+            <div class="text-[10px] uppercase font-bold text-cyan-400">Distance Formula</div>
+            <div class="font-mono text-xs font-bold text-white">d = √[(x₂-x₁)² + (y₂-y₁)²]</div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-1">
+            <div class="text-[10px] uppercase font-bold text-indigo-400">Origin Distance</div>
+            <div class="font-mono text-xs font-bold text-white">OP = √(x² + y²)</div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-1">
+            <div class="text-[10px] uppercase font-bold text-emerald-400">Section Formula</div>
+            <div class="font-mono text-[11px] font-bold text-white">( (m₁x₂+m₂x₁)/(m₁+m₂) , ... )</div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-1">
+            <div class="text-[10px] uppercase font-bold text-amber-400">Mid-Point Formula</div>
+            <div class="font-mono text-xs font-bold text-white">M = ( (x₁+x₂)/2 , (y₁+y₂)/2 )</div>
+          </div>
+        </div>
+
+        <!-- Interactive Quiz Questions -->
+        <div class="space-y-3 pt-2">
+          <!-- Question 1 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-cyan-400">Question 1: Origin Distance</span>
+              <span class="text-[10px] text-slate-500">Board Exam Classic</span>
+            </div>
+            <p class="text-xs text-slate-200">What is the distance of the point <code class="text-cyan-300 font-mono font-bold">P(-6, 8)</code> from the origin <code class="text-cyan-300 font-mono">O(0, 0)</code>?</p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+              <button onclick="checkQuizAns(1, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">2 units</button>
+              <button onclick="checkQuizAns(1, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">8 units</button>
+              <button onclick="checkQuizAns(1, true, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">10 units</button>
+              <button onclick="checkQuizAns(1, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">14 units</button>
+            </div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-indigo-400">Question 2: Mid-Point</span>
+              <span class="text-[10px] text-slate-500">Exercise 7.2 Foundation</span>
+            </div>
+            <p class="text-xs text-slate-200">The coordinates of the mid-point of the line segment joining <code class="text-indigo-300 font-mono font-bold">(4, -2)</code> and <code class="text-indigo-300 font-mono font-bold">(-2, 6)</code> are:</p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+              <button onclick="checkQuizAns(2, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">(2, 4)</button>
+              <button onclick="checkQuizAns(2, true, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">(1, 2)</button>
+              <button onclick="checkQuizAns(2, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">(3, 2)</button>
+              <button onclick="checkQuizAns(2, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">(6, 8)</button>
+            </div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-emerald-400">Question 3: Parallelograms &amp; Diagonals</span>
+              <span class="text-[10px] text-slate-500">Example 10 Concept</span>
+            </div>
+            <p class="text-xs text-slate-200">To find a missing vertex coordinate in a parallelogram, which property is used most efficiently?</p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1">
+              <button onclick="checkQuizAns(3, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">Sum of all four angles is 360°</button>
+              <button onclick="checkQuizAns(3, true, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">Diagonals bisect each other (equal midpoints)</button>
+              <button onclick="checkQuizAns(3, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">Area of rhombus formula</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BOTTOM SLIDESHOW CONTROLLER & TIMELINE PILLS -->
+  <footer style="flex-shrink: 0;" class="border-t border-slate-800 bg-slate-900/95 backdrop-blur px-4 py-3 sticky bottom-0 z-50">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      <!-- Slide Pills (10 Slides) -->
+      <div class="flex items-center space-x-1.5 overflow-x-auto max-w-full pb-1 sm:pb-0 text-xs font-mono">
+        <button onclick="goToSlide(0)" class="slide-pill px-2.5 py-1 rounded-lg bg-cyan-600 text-white font-bold transition-all cursor-pointer">1</button>
+        <button onclick="goToSlide(1)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">2</button>
+        <button onclick="goToSlide(2)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">3</button>
+        <button onclick="goToSlide(3)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">4</button>
+        <button onclick="goToSlide(4)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">5</button>
+        <button onclick="goToSlide(5)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">6</button>
+        <button onclick="goToSlide(6)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">7</button>
+        <button onclick="goToSlide(7)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">8</button>
+        <button onclick="goToSlide(8)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">9</button>
+        <button onclick="goToSlide(9)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">10</button>
+      </div>
+
+      <!-- Playback Navigation Controls -->
+      <div class="flex items-center space-x-2 shrink-0">
+        <button id="prevSlideBtn" onclick="prevSlide()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center space-x-1 cursor-pointer transition-all disabled:opacity-40 disabled:cursor-not-allowed">
+          <span>⏮</span>
+          <span>Previous</span>
+        </button>
+
+        <button id="autoPlaySlideshowBtn" onclick="toggleAutoPlaySlideshow()" class="px-3.5 py-1.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold shadow-lg shadow-cyan-600/30 flex items-center space-x-1.5 cursor-pointer transition-all">
+          <span id="autoPlayIcon">▶</span>
+          <span id="autoPlayText">Auto-Play</span>
+        </button>
+
+        <button id="nextSlideBtn" onclick="nextSlide()" class="px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 flex items-center space-x-1.5 cursor-pointer transition-all">
+          <span>Next</span>
+          <span>⏭</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT ENGINE: WEB AUDIO, WEB SPEECH & SLIDESHOW MECHANICS -->
+  <script>
+    // =========================================================================
+    // SLIDE DATA & NARRATIONS
+    // =========================================================================
+    const totalSlides = 10;
+    let currentSlide = 0;
+    let isAutoPlaySlideshow = false;
+    let autoPlayInterval = null;
+    let countdownInterval = null;
+
+    let isVoiceActive = true;
+    let isSoundFxActive = true;
+
+    const slideData = [
+      {
+        title: "Slide 1 of 10: Cartesian Plane, Abscissa & Ordinate",
+        narration: "Welcome to NCERT Class 10 Chapter 7: Coordinate Geometry! In this chapter, we bridge algebra and geometry. The distance of a point from the y-axis is its abscissa, and the distance from the x-axis is its ordinate."
+      },
+      {
+        title: "Slide 2 of 10: Distance on Axes & Town A to Town B",
+        narration: "Slide 2. To find distances without measurement, we construct right-angled triangles. For Town A and Town B, 36 kilometres East and 15 kilometres North, Pythagoras gives exactly 39 kilometres."
+      },
+      {
+        title: "Slide 3 of 10: Derivation of the Distance Formula",
+        narration: "Slide 3. The general Distance Formula! Between P of x 1 y 1 and Q of x 2 y 2, the horizontal leg is x 2 minus x 1, and the vertical leg is y 2 minus y 1. The distance is the square root of x 2 minus x 1 squared plus y 2 minus y 1 squared."
+      },
+      {
+        title: "Slide 4 of 10: Identifying Geometric Shapes (Examples 1 & 2)",
+        narration: "Slide 4. Using the distance formula to identify shapes. In Example 1, the three points form a right triangle because the sum of squares equals the square of the hypotenuse. In Example 2, equal sides and equal diagonals prove a square."
+      },
+      {
+        title: "Slide 5 of 10: Collinear Points & Equidistant Loci (Examples 3, 4, 5)",
+        narration: "Slide 5. Three points are collinear if A B plus B C equals A C. Also, points equidistant from two fixed points form their perpendicular bisector line."
+      },
+      {
+        title: "Slide 6 of 10: The Section Formula & Proof by AA Similarity",
+        narration: "Slide 6. The Section Formula! Using A A similarity of right triangles, the point dividing line segment A B in the ratio m 1 to m 2 has coordinates m 1 x 2 plus m 2 x 1 over m 1 plus m 2, and m 1 y 2 plus m 2 y 1 over m 1 plus m 2."
+      },
+      {
+        title: "Slide 7 of 10: The Mid-Point Formula & Points of Trisection",
+        narration: "Slide 7. When the division ratio is 1 to 1, we get the Mid-Point Formula: x 1 plus x 2 over 2, and y 1 plus y 2 over 2. Trisection points divide the line segment into 1 to 2 and 2 to 1."
+      },
+      {
+        title: "Slide 8 of 10: Finding Ratios & Parallelogram Diagonals",
+        narration: "Slide 8. To find an unknown ratio, we use k to 1. On the y-axis, the x coordinate is zero. And for parallelograms, diagonals bisect each other, so their midpoints must be identical."
+      },
+      {
+        title: "Slide 9 of 10: Sports Day Flag Posting (Exercise 7.2 Q3)",
+        narration: "Slide 9. In the Sports Day problem, Niharika posts a green flag at 2 comma 25, and Preet posts a red flag at 8 comma 20. The distance between them is square root of 61 metres, and Rashmi posts her blue flag at the midpoint: 5 comma 22.5."
+      },
+      {
+        title: "Slide 10 of 10: Chapter Mastery Quiz & Complete Summary",
+        narration: "Slide 10. Test your understanding with our chapter mastery quiz, and review the summary matrix of all coordinate geometry formulas!"
+      }
+    ];
+
+    // =========================================================================
+    // WEB AUDIO API SYNTHESIZER
+    // =========================================================================
+    let audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, type, duration, gainVal = 0.1) {
+      if (!isSoundFxActive) return;
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+
+        gain.gain.setValueAtTime(gainVal, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {
+        console.warn('Audio tone error', e);
+      }
+    }
+
+    function playSlideTransitionTone() {
+      playTone(523.25, 'sine', 0.15, 0.08); // C5
+      setTimeout(() => playTone(659.25, 'sine', 0.2, 0.08), 80); // E5
+    }
+
+    function playChime() {
+      playTone(587.33, 'triangle', 0.15, 0.12); // D5
+      setTimeout(() => playTone(880.00, 'triangle', 0.35, 0.12), 120); // A5
+    }
+
+    function playBuzzer() {
+      playTone(180, 'sawtooth', 0.25, 0.12);
+    }
+
+    function toggleSoundFx() {
+      isSoundFxActive = !isSoundFxActive;
+      const icon = document.getElementById('soundIcon');
+      const text = document.getElementById('soundText');
+      const btn = document.getElementById('soundToggleBtn');
+      if (isSoundFxActive) {
+        icon.textContent = '🎵';
+        text.textContent = 'SFX: ON';
+        btn.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center space-x-1.5 transition-all cursor-pointer';
+        playTone(600, 'sine', 0.1);
+      } else {
+        icon.textContent = '🔇';
+        text.textContent = 'SFX: OFF';
+        btn.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-rose-950/40 text-rose-300 border border-rose-800/40 flex items-center space-x-1.5 transition-all cursor-pointer';
+      }
+    }
+
+    // =========================================================================
+    // WEB SPEECH API SYNTHESIZER
+    // =========================================================================
+    function speakNarration(text) {
+      document.getElementById('narrationSubtitlesText').textContent = text;
+      if (!isVoiceActive) return;
+
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 1.0;
+        utterance.pitch = 1.02;
+
+        const voices = window.speechSynthesis.getVoices();
+        const englishVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha')));
+        if (englishVoice) {
+          utterance.voice = englishVoice;
+        }
+
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    function toggleVoiceNarration() {
+      isVoiceActive = !isVoiceActive;
+      const icon = document.getElementById('voiceIcon');
+      const text = document.getElementById('voiceText');
+      const btn = document.getElementById('voiceToggleBtn');
+
+      if (isVoiceActive) {
+        icon.textContent = '🔊';
+        text.textContent = 'Voice: ON';
+        btn.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-300 border border-indigo-500/40 flex items-center space-x-1.5 transition-all cursor-pointer';
+        speakNarration(slideData[currentSlide].narration);
+      } else {
+        icon.textContent = '🔈';
+        text.textContent = 'Voice: OFF';
+        btn.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-rose-950/40 text-rose-300 border border-rose-800/40 flex items-center space-x-1.5 transition-all cursor-pointer';
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+        }
+      }
+    }
+
+    // =========================================================================
+    // SLIDESHOW CONTROLLER & PROGRESS
+    // =========================================================================
+    function goToSlide(index) {
+      if (index < 0 || index >= totalSlides) return;
+      currentSlide = index;
+
+      document.getElementById('slideSubtitle').textContent = slideData[currentSlide].title;
+      document.getElementById('slideProgressBar').style.width = ((currentSlide + 1) / totalSlides * 100) + '%';
+
+      for (let i = 0; i < totalSlides; i++) {
+        const pane = document.getElementById('slide-' + i);
+        if (pane) {
+          if (i === currentSlide) {
+            pane.classList.remove('hidden');
+            pane.classList.add('block');
+          } else {
+            pane.classList.add('hidden');
+            pane.classList.remove('block');
+          }
+        }
+      }
+
+      document.querySelectorAll('.slide-pill').forEach((pill, i) => {
+        if (i === currentSlide) {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-cyan-600 text-white font-bold transition-all cursor-pointer';
+        } else {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer';
+        }
+      });
+
+      document.getElementById('prevSlideBtn').disabled = (currentSlide === 0);
+      const nextBtn = document.getElementById('nextSlideBtn');
+      if (currentSlide === totalSlides - 1) {
+        nextBtn.innerHTML = '<span>Restart 🔄</span>';
+      } else {
+        nextBtn.innerHTML = '<span>Next</span><span>⏭</span>';
+      }
+
+      playSlideTransitionTone();
+      speakNarration(slideData[currentSlide].narration);
+
+      if (isAutoPlaySlideshow) {
+        resetAutoPlayCountdown();
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide >= totalSlides - 1) {
+        goToSlide(0);
+      } else {
+        goToSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        goToSlide(currentSlide - 1);
+      }
+    }
+
+    function toggleAutoPlaySlideshow() {
+      const btn = document.getElementById('autoPlaySlideshowBtn');
+      const icon = document.getElementById('autoPlayIcon');
+      const txt = document.getElementById('autoPlayText');
+      const bar = document.getElementById('autoPlayCountdownBar');
+
+      if (isAutoPlaySlideshow) {
+        isAutoPlaySlideshow = false;
+        clearInterval(autoPlayInterval);
+        clearInterval(countdownInterval);
+        icon.textContent = '▶';
+        txt.textContent = 'Auto-Play';
+        btn.className = 'px-3.5 py-1.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold shadow-lg shadow-cyan-600/30 flex items-center space-x-1.5 cursor-pointer transition-all';
+        bar.style.opacity = '0';
+      } else {
+        isAutoPlaySlideshow = true;
+        icon.textContent = '⏸';
+        txt.textContent = 'Pause';
+        btn.className = 'px-3.5 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold shadow-lg shadow-amber-600/30 flex items-center space-x-1.5 cursor-pointer transition-all';
+        bar.style.opacity = '1';
+        resetAutoPlayCountdown();
+      }
+    }
+
+    function resetAutoPlayCountdown() {
+      clearInterval(countdownInterval);
+      clearInterval(autoPlayInterval);
+
+      const bar = document.getElementById('autoPlayCountdownBar');
+      let elapsed = 0;
+      const durationMs = 10000;
+      const stepMs = 100;
+
+      countdownInterval = setInterval(() => {
+        elapsed += stepMs;
+        const pct = Math.min((elapsed / durationMs) * 100, 100);
+        bar.style.width = pct + '%';
+        if (elapsed >= durationMs) {
+          clearInterval(countdownInterval);
+        }
+      }, stepMs);
+
+      autoPlayInterval = setTimeout(() => {
+        if (isAutoPlaySlideshow) {
+          nextSlide();
+        }
+      }, durationMs);
+    }
+
+    // =========================================================================
+    // SLIDE 1: INTERACTIVE CARTESIAN PLANE
+    // =========================================================================
+    function setSamplePoint(x, y) {
+      updateGridDisplay(x, y);
+    }
+
+    function handleGridClick(e) {
+      const svg = document.getElementById('interactivePlaneSvg');
+      const rect = svg.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const clickY = e.clientY - rect.top;
+
+      // Map SVG pixels (0 to 340 approx) to Cartesian units (-6 to +6)
+      const svgW = rect.width;
+      const svgH = rect.height;
+      const cartX = Math.round(((clickX / svgW) * 240 - 120) / 20);
+      const cartY = Math.round(-(((clickY / svgH) * 240 - 120) / 20));
+
+      const boundedX = Math.max(-5, Math.min(5, cartX));
+      const boundedY = Math.max(-5, Math.min(5, cartY));
+      updateGridDisplay(boundedX, boundedY);
+      playTone(400 + (boundedX + boundedY) * 20, 'sine', 0.1);
+    }
+
+    function updateGridDisplay(x, y) {
+      const svgX = x * 20;
+      const svgY = -y * 20;
+
+      const circle = document.getElementById('interactivePointCircle');
+      const label = document.getElementById('interactivePointLabel');
+      const projX = document.getElementById('projXLine');
+      const projY = document.getElementById('projYLine');
+
+      circle.setAttribute('cx', svgX);
+      circle.setAttribute('cy', svgY);
+
+      label.setAttribute('x', svgX + 6);
+      label.setAttribute('y', svgY - 8);
+      label.textContent = `P(${x}, ${y})`;
+
+      projX.setAttribute('x1', 0);
+      projX.setAttribute('y1', svgY);
+      projX.setAttribute('x2', svgX);
+      projX.setAttribute('y2', svgY);
+
+      projY.setAttribute('x1', svgX);
+      projY.setAttribute('y1', 0);
+      projY.setAttribute('x2', svgX);
+      projY.setAttribute('y2', svgY);
+
+      document.getElementById('readoutPointText').textContent = `P(${x}, ${y})`;
+      document.getElementById('readoutAbscissa').textContent = `${x >= 0 ? '+' : ''}${x} units (dist from y-axis: ${Math.abs(x)})`;
+      document.getElementById('readoutOrdinate').textContent = `${y >= 0 ? '+' : ''}${y} units (dist from x-axis: ${Math.abs(y)})`;
+
+      let quad = "On Axis";
+      if (x > 0 && y > 0) quad = "Quadrant I (+, +)";
+      else if (x < 0 && y > 0) quad = "Quadrant II (-, +)";
+      else if (x < 0 && y < 0) quad = "Quadrant III (-, -)";
+      else if (x > 0 && y < 0) quad = "Quadrant IV (+, -)";
+      else if (x === 0 && y === 0) quad = "Origin O(0, 0)";
+      else if (y === 0) quad = "On X-axis";
+      else if (x === 0) quad = "On Y-axis";
+
+      document.getElementById('readoutQuadrant').textContent = quad;
+    }
+
+    // =========================================================================
+    // SLIDE 7: INTERACTIVE SECTION FORMULA SLIDER
+    // =========================================================================
+    function setSliderPreset(val) {
+      document.getElementById('ratioRangeInput').value = val;
+      updateInteractiveRatio(val);
+    }
+
+    function updateInteractiveRatio(ratio) {
+      ratio = parseFloat(ratio);
+      const m1 = ratio;
+      const m2 = 1;
+
+      // Segment A(0,0) to B(12,6)
+      const x = ((m1 * 12 + m2 * 0) / (m1 + m2)).toFixed(1);
+      const y = ((m1 * 6 + m2 * 0) / (m1 + m2)).toFixed(1);
+
+      // SVG coordinates from 30 to 230 (width = 200)
+      const fraction = m1 / (m1 + m2);
+      const svgX = 30 + fraction * 200;
+
+      document.getElementById('sliderCircleP').setAttribute('cx', svgX);
+      document.getElementById('sliderTextP').setAttribute('x', svgX - 20);
+      document.getElementById('sliderTextP').textContent = `P(${x}, ${y})`;
+      document.getElementById('segAP').setAttribute('x2', svgX);
+
+      let label = `${ratio.toFixed(1)} : 1`;
+      if (Math.abs(ratio - 1) < 0.05) label = "1 : 1 (Midpoint)";
+      else if (Math.abs(ratio - 0.5) < 0.05) label = "1 : 2 (First Trisection)";
+      else if (Math.abs(ratio - 2) < 0.05) label = "2 : 1 (Second Trisection)";
+      else if (Math.abs(ratio - 3) < 0.05) label = "3 : 1 (Example 6)";
+
+      document.getElementById('sliderRatioLabel').textContent = label;
+      playTone(300 + fraction * 300, 'sine', 0.05, 0.03);
+    }
+
+    // =========================================================================
+    // SLIDE 10: QUIZ ENGINE
+    // =========================================================================
+    let quizScore = 0;
+    const answeredMap = {};
+
+    function checkQuizAns(qNum, isCorrect, btn) {
+      if (answeredMap[qNum]) return;
+      answeredMap[qNum] = true;
+
+      const parent = btn.parentElement;
+      const allBtns = parent.querySelectorAll('.quiz-btn');
+      allBtns.forEach(b => b.disabled = true);
+
+      if (isCorrect) {
+        btn.classList.remove('bg-slate-900', 'border-slate-700', 'text-slate-300');
+        btn.classList.add('bg-emerald-600', 'border-emerald-400', 'text-white');
+        quizScore++;
+        playChime();
+        speakNarration("Correct! Excellent understanding of Coordinate Geometry.");
+      } else {
+        btn.classList.remove('bg-slate-900', 'border-slate-700', 'text-slate-300');
+        btn.classList.add('bg-rose-600', 'border-rose-400', 'text-white');
+        playBuzzer();
+        speakNarration("Incorrect. Remember the standard formulas from NCERT.");
+      }
+      document.getElementById('quizScoreBadge').textContent = `Score: ${quizScore} / 3`;
+    }
+
+    // INITIALIZATION
+    document.addEventListener('DOMContentLoaded', () => {
+      goToSlide(0);
+    });
+  </script>
+</body>
+</html>
+

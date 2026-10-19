@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 10 • Areas Related to Circles — Multimedia Lab</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    if (typeof tailwind === 'undefined') {
+      document.write('<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"><\/script>');
+    }
+  </script>
+  <style>
+    body { background-color: #020617; color: #f8fafc; }
+    .slide-fade-in {
+      animation: fadeInScale 0.35s ease-out forwards;
+    }
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.15); opacity: 0.4; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .pulse-ring {
+      animation: pulse-ring 2s infinite ease-in-out;
+    }
+    /* Custom scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+  </style>
+</head>
+<body style="background-color: #020617; color: #f8fafc;" class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-amber-500 selection:text-white overflow-x-hidden">
+
+  <!-- TOP HEADER & PROGRESS -->
+  <header style="flex-shrink: 0;" class="border-b border-slate-800 bg-slate-900/95 backdrop-blur sticky top-0 z-50">
+    <!-- Slide Progress Bar -->
+    <div class="w-full bg-slate-800/80 h-1.5 relative overflow-hidden">
+      <div id="slideProgressBar" class="h-full bg-gradient-to-r from-amber-500 via-orange-500 to-emerald-400 transition-all duration-500" style="width: 10%;"></div>
+      <div id="autoPlayCountdownBar" class="h-full bg-cyan-400/80 absolute top-0 left-0 transition-all duration-100" style="width: 0%; opacity: 0;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-500 via-orange-600 to-emerald-500 flex items-center justify-center font-black text-lg text-white shadow-lg shadow-amber-500/25 shrink-0">
+          <span>🍕</span>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="font-black text-sm sm:text-base text-white tracking-tight">NCERT Chapter 11 • Areas Related to Circles</h1>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">Reprint 2026-27</span>
+          </div>
+          <p id="slideSubtitle" class="text-xs text-slate-400">Slide 1 of 10: Sectors &amp; Segments of a Circle</p>
+        </div>
+      </div>
+
+      <!-- Quick Audio Controls -->
+      <div class="flex items-center space-x-2">
+        <button id="voiceToggleBtn" onclick="toggleVoiceNarration()" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-amber-600/30 hover:bg-amber-600/50 text-amber-300 border border-amber-500/40 flex items-center space-x-1.5 transition-all cursor-pointer" title="Toggle Voice Narration">
+          <span id="voiceIcon">🔊</span>
+          <span id="voiceText" class="hidden sm:inline">Voice: ON</span>
+        </button>
+        <button id="soundToggleBtn" onclick="toggleSoundFx()" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center space-x-1.5 transition-all cursor-pointer" title="Toggle Sound FX">
+          <span id="soundIcon">🎵</span>
+          <span id="soundText" class="hidden sm:inline">SFX: ON</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Narration Subtitles Banner -->
+    <div class="bg-slate-950/80 border-t border-slate-800/80 px-4 py-1.5 flex items-center space-x-2 text-xs">
+      <span class="text-amber-400 shrink-0 font-bold">🎙 Teacher Voiceover:</span>
+      <p id="narrationSubtitlesText" class="text-slate-300 truncate italic">Loading lesson...</p>
+    </div>
+  </header>
+
+  <!-- MAIN SLIDES STAGE -->
+  <main style="flex: 1 1 0%; min-height: 0;" class="max-w-7xl w-full mx-auto p-3 sm:p-5 flex flex-col justify-between overflow-y-auto">
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 1: SECTORS & SEGMENTS OF A CIRCLE (DEFINITIONS & FIG 11.1, 11.2) -->
+    <!-- ========================================================================= -->
+    <section id="slide-0" class="slide-pane slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold uppercase mb-2">
+              <span>Section 11.1 • Geometric Anatomy</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Sectors vs. Segments: Slices vs. Chords</h2>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+              Every circle can be subdivided into two fundamental regions: <strong>Sectors</strong> (enclosed by two radii and an arc) and <strong>Segments</strong> (enclosed between a chord and an arc).
+            </p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center space-x-3 shrink-0">
+            <span class="text-3xl">🎯</span>
+            <div>
+              <div class="text-xs font-bold text-amber-400">Default Convention</div>
+              <div class="text-[11px] text-slate-400">Sector = Minor Sector unless stated</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 Main Cards: Sector vs Segment -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- Sector Card (Fig. 11.1) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-amber-500/40 space-y-3">
+            <div class="flex items-center justify-between">
+              <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider">1. The Sector of a Circle (Fig. 11.1)</h4>
+              <span class="text-[10px] text-slate-400 font-mono">Pizza Slice</span>
+            </div>
+            <div class="flex justify-center bg-slate-900/80 rounded-lg p-2.5">
+              <svg viewBox="0 0 160 120" class="w-36 h-28 select-none">
+                <circle cx="80" cy="60" r="45" fill="none" stroke="#38bdf8" stroke-width="1.5" />
+                <!-- Minor Sector OAPB -->
+                <path d="M 80 60 L 50 95 A 45 45 0 0 0 110 95 Z" fill="rgba(245, 158, 11, 0.25)" stroke="#f59e0b" stroke-width="2" />
+                <circle cx="80" cy="60" r="3.5" fill="#38bdf8" />
+                <text x="80" y="52" fill="#38bdf8" font-size="10" font-weight="bold" text-anchor="middle">O</text>
+                <text x="42" y="105" fill="#f59e0b" font-size="9" font-weight="bold">A</text>
+                <text x="115" y="105" fill="#f59e0b" font-size="9" font-weight="bold">B</text>
+                <text x="80" y="85" fill="#f59e0b" font-size="9" font-weight="bold" text-anchor="middle">Minor Sector (θ)</text>
+                <text x="80" y="30" fill="#94a3b8" font-size="9" text-anchor="middle">Major Sector (360°-θ)</text>
+              </svg>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Enclosed by <strong>two radii OA, OB</strong> and the corresponding arc APB. Central angle is <code class="text-amber-300 font-mono">∠AOB = θ</code>. Major sector angle is <code class="text-slate-400 font-mono">360° - θ</code>.
+            </p>
+          </div>
+
+          <!-- Segment Card (Fig. 11.2) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-emerald-500/40 space-y-3">
+            <div class="flex items-center justify-between">
+              <h4 class="text-xs font-bold text-emerald-400 uppercase tracking-wider">2. The Segment of a Circle (Fig. 11.2)</h4>
+              <span class="text-[10px] text-slate-400 font-mono">Chord Cap</span>
+            </div>
+            <div class="flex justify-center bg-slate-900/80 rounded-lg p-2.5">
+              <svg viewBox="0 0 160 120" class="w-36 h-28 select-none">
+                <circle cx="80" cy="60" r="45" fill="none" stroke="#38bdf8" stroke-width="1.5" />
+                <!-- Minor Segment APB -->
+                <path d="M 45 80 Q 80 80 115 80 A 45 45 0 0 1 45 80 Z" fill="rgba(16, 185, 129, 0.25)" stroke="#10b981" stroke-width="2" />
+                <line x1="45" y1="80" x2="115" y2="80" stroke="#10b981" stroke-width="2" />
+                <circle cx="80" cy="60" r="3" fill="#64748b" />
+                <text x="80" y="55" fill="#64748b" font-size="9" text-anchor="middle">O</text>
+                <text x="36" y="85" fill="#10b981" font-size="9" font-weight="bold">A</text>
+                <text x="120" y="85" fill="#10b981" font-size="9" font-weight="bold">B</text>
+                <text x="80" y="98" fill="#10b981" font-size="8" font-weight="bold" text-anchor="middle">Minor Segment</text>
+                <text x="80" y="35" fill="#94a3b8" font-size="9" text-anchor="middle">Major Segment</text>
+              </svg>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Enclosed between a <strong>chord AB</strong> and the corresponding arc APB. Unshaded region is the major segment AQB!
+            </p>
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-gradient-to-r from-amber-950/50 to-emerald-950/50 border border-amber-500/30 text-xs text-slate-200">
+          💡 <strong>Fundamental Relationship:</strong> Area of Segment = Area of Sector - Area of Triangle OAB!
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 2: UNITARY METHOD DERIVATIONS (SECTOR AREA & ARC LENGTH) -->
+    <!-- ========================================================================= -->
+    <section id="slide-1" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold uppercase mb-2">
+            <span>Formulas &amp; Derivations • Unitary Method</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Derivation of Sector Area &amp; Arc Length</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            By applying the simple Unitary Method to the complete 360° circle, we derive the exact expressions for both sector area and perimeter arc length.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <!-- Sector Area Box -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-amber-500/40 space-y-3">
+            <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider">1. Area of a Sector (Angle θ)</h4>
+            <div class="text-xs text-slate-300 font-mono space-y-1.5 bg-slate-900 p-3 rounded-lg border border-slate-800">
+              <div>When centre angle is 360° ➔ Area = πr²</div>
+              <div>When centre angle is 1° ➔ Area = πr² / 360</div>
+              <div>When centre angle is θ:</div>
+              <div class="text-amber-300 font-bold pt-1 text-sm">
+                Area = (θ / 360°) × πr²
+              </div>
+            </div>
+            <div class="p-2.5 rounded bg-amber-950/30 border border-amber-500/20 text-[11px] text-slate-300">
+              Major Sector Area = <code class="text-amber-400 font-mono">πr² - Minor Sector Area</code> or <code class="text-amber-400 font-mono">[(360° - θ)/360°] × πr²</code>
+            </div>
+          </div>
+
+          <!-- Arc Length Box -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-cyan-500/40 space-y-3">
+            <h4 class="text-xs font-bold text-cyan-400 uppercase tracking-wider">2. Length of an Arc (Angle θ)</h4>
+            <div class="text-xs text-slate-300 font-mono space-y-1.5 bg-slate-900 p-3 rounded-lg border border-slate-800">
+              <div>When centre angle is 360° ➔ Length = 2πr</div>
+              <div>When centre angle is 1° ➔ Length = 2πr / 360</div>
+              <div>When centre angle is θ:</div>
+              <div class="text-cyan-300 font-bold pt-1 text-sm">
+                Arc Length l = (θ / 360°) × 2πr
+              </div>
+            </div>
+            <div class="p-2.5 rounded bg-cyan-950/30 border border-cyan-500/20 text-[11px] text-slate-300">
+              Useful Shortcut: Area of sector can also be expressed as <code class="text-cyan-400 font-mono">Area = ½ × l × r</code>!
+            </div>
+          </div>
+        </div>
+
+        <!-- Master Formula Card -->
+        <div class="p-3.5 rounded-xl bg-gradient-to-r from-amber-950/40 to-cyan-950/40 border border-slate-800 text-center font-mono text-xs sm:text-sm text-slate-200">
+          Exercise 11.1 Q14 MCQ Check: Sector Area of angle p and radius R = <span class="text-emerald-400 font-bold">(p / 720°) × 2πR²</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 3: INTERACTIVE SECTOR & SEGMENT CALCULATOR -->
+    <!-- ========================================================================= -->
+    <section id="slide-2" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold uppercase mb-2">
+            <span>Interactive Simulator • Real-Time Computation</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Interactive Dynamic Sector &amp; Segment Lab</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            Adjust the central angle θ slider to observe how arc length, sector area, triangle area, and segment area evolve live!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- Dynamic SVG Display -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <div class="bg-slate-900/80 rounded-lg p-3 flex justify-center">
+              <svg id="calcSvg" viewBox="0 0 240 200" class="w-full max-w-[280px] h-52 select-none">
+                <!-- Base Circle -->
+                <circle cx="120" cy="100" r="70" fill="none" stroke="#334155" stroke-width="1.5" />
+
+                <!-- Sector Path -->
+                <path id="calcSectorPath" d="M 120 100 L 190 100 A 70 70 0 0 0 155 39 Z" fill="rgba(245, 158, 11, 0.25)" stroke="#f59e0b" stroke-width="2" />
+
+                <!-- Segment Path -->
+                <path id="calcSegmentPath" d="M 190 100 L 155 39 A 70 70 0 0 1 190 100 Z" fill="rgba(16, 185, 129, 0.45)" stroke="#10b981" stroke-width="2" />
+
+                <!-- Chord -->
+                <line id="calcChord" x1="190" y1="100" x2="155" y2="39" stroke="#10b981" stroke-width="2" stroke-dasharray="2,2" />
+
+                <!-- Radii -->
+                <line x1="120" y1="100" x2="190" y2="100" stroke="#f59e0b" stroke-width="2" />
+                <line id="calcMovingRadius" x1="120" y1="100" x2="155" y2="39" stroke="#f59e0b" stroke-width="2" />
+
+                <!-- Centre O -->
+                <circle cx="120" cy="100" r="4" fill="#38bdf8" />
+                <text x="110" y="115" fill="#38bdf8" font-size="10" font-weight="bold">O</text>
+              </svg>
+            </div>
+
+            <!-- Angle Slider -->
+            <div class="space-y-1.5">
+              <div class="flex justify-between text-xs font-mono">
+                <span class="text-slate-400">Angle θ (Degrees):</span>
+                <span id="sliderAngleLabel" class="text-amber-400 font-bold">60°</span>
+              </div>
+              <input type="range" min="15" max="150" step="5" value="60" oninput="updateSectorLab(this.value)" class="w-full accent-amber-500 cursor-pointer">
+              <div class="flex justify-between text-[10px] text-slate-500">
+                <span>30° (Clock 5m)</span>
+                <span>60° (Equilateral)</span>
+                <span>90° (Right Angle)</span>
+                <span>120° (Ex 2)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Readout -->
+          <div class="space-y-2.5 bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs font-mono">
+            <div class="text-[11px] uppercase tracking-wider text-slate-400 font-bold">Circle Dimensions (Radius r = 10 cm)</div>
+            <div class="p-2.5 rounded bg-slate-900 border border-slate-800 flex justify-between">
+              <span class="text-slate-400">Arc Length (l):</span>
+              <span id="readoutArcLen" class="text-cyan-300 font-bold">10.47 cm</span>
+            </div>
+            <div class="p-2.5 rounded bg-slate-900 border border-slate-800 flex justify-between">
+              <span class="text-slate-400">Sector Area (OAPB):</span>
+              <span id="readoutSectorArea" class="text-amber-400 font-bold">52.36 cm²</span>
+            </div>
+            <div class="p-2.5 rounded bg-slate-900 border border-slate-800 flex justify-between">
+              <span class="text-slate-400">Triangle Area (Δ OAB):</span>
+              <span id="readoutTriArea" class="text-indigo-400 font-bold">43.30 cm²</span>
+            </div>
+            <div class="p-2.5 rounded bg-slate-900 border border-slate-800 flex justify-between">
+              <span class="text-slate-400">Segment Area (APB):</span>
+              <span id="readoutSegmentArea" class="text-emerald-400 font-bold">9.06 cm²</span>
+            </div>
+            <p class="text-[10px] font-sans text-slate-400 pt-1">
+              Formula: Segment Area = Sector Area - (½ r² sin θ).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 4: THE 120° SEGMENT PROBLEM (EXAMPLE 2 & EX 11.1 Q7) -->
+    <!-- ========================================================================= -->
+    <section id="slide-3" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold uppercase mb-2">
+            <span>Example 2 • High-Scoring Trigonometric Geometry</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">The 120° Segment: Solving Obtuse Central Angles</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            When the central angle is obtuse (120°), we split the isosceles triangle OAB with perpendicular bisector OM into two 30°-60°-90° right triangles!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- Geometric Diagram (Fig. 11.7) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider">Fig. 11.7 Altitude Splitting (r = 21 cm, θ = 120°)</h4>
+            <div class="bg-slate-900/80 rounded-lg p-3 flex justify-center">
+              <svg viewBox="0 0 280 180" class="w-full max-w-[320px] h-48 select-none">
+                <!-- Triangle OAB -->
+                <polygon points="140,150 40,50 240,50" fill="rgba(245, 158, 11, 0.15)" stroke="#f59e0b" stroke-width="2" />
+                <circle cx="140" cy="150" r="4.5" fill="#38bdf8" />
+                <text x="140" y="168" fill="#38bdf8" font-size="11" font-weight="bold" text-anchor="middle">O</text>
+                <circle cx="40" cy="50" r="4" fill="#f59e0b" />
+                <text x="25" y="45" fill="#f59e0b" font-size="11" font-weight="bold">A</text>
+                <circle cx="240" cy="50" r="4" fill="#f59e0b" />
+                <text x="245" y="45" fill="#f59e0b" font-size="11" font-weight="bold">B</text>
+
+                <!-- Perpendicular OM -->
+                <line x1="140" y1="150" x2="140" y2="50" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3,3" />
+                <circle cx="140" cy="50" r="3.5" fill="#38bdf8" />
+                <text x="140" y="42" fill="#38bdf8" font-size="10" font-weight="bold" text-anchor="middle">M</text>
+                <text x="148" y="105" fill="#38bdf8" font-size="10">OM = x</text>
+
+                <!-- Angles 60° each side -->
+                <text x="120" y="135" fill="#94a3b8" font-size="9">60°</text>
+                <text x="145" y="135" fill="#94a3b8" font-size="9">60°</text>
+
+                <!-- Side 21 cm -->
+                <text x="75" y="115" fill="#f59e0b" font-size="10">21 cm</text>
+                <text x="195" y="115" fill="#f59e0b" font-size="10">21 cm</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Step-by-Step Calculation -->
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
+              <div class="font-mono text-[11px] text-slate-200 bg-slate-900 p-3 rounded-lg border border-slate-800 space-y-1.5">
+                <div class="text-amber-400 font-bold">1. Sector Area OAYB:</div>
+                <div>(120° / 360°) × (22 / 7) × 21 × 21 = <strong class="text-white">462 cm²</strong></div>
+                <div class="text-cyan-400 font-bold pt-1">2. Altitude &amp; Base in Δ OMA:</div>
+                <div>OM = 21 × cos 60° = 21 × ½ = <strong class="text-white">21 / 2 cm</strong></div>
+                <div>AM = 21 × sin 60° = 21√3 / 2 cm ➔ AB = <strong class="text-white">21√3 cm</strong></div>
+                <div class="text-indigo-400 font-bold pt-1">3. Area of Triangle Δ OAB:</div>
+                <div>½ × AB × OM = ½ × 21√3 × (21 / 2) = <strong class="text-white">441√3 / 4 cm²</strong></div>
+                <div class="text-emerald-400 font-bold pt-1">4. Area of Segment AYB:</div>
+                <div>462 - (441√3 / 4) = <span class="text-emerald-300 font-bold">21/4 (88 - 21√3) cm²</span></div>
+              </div>
+            </div>
+
+            <div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-xs text-emerald-300 text-center font-bold font-mono">
+              Area of Segment = 462 - 190.95 = 271.05 cm²
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 5: CLOCK MINUTE HAND SWEEP (EXERCISE 11.1 Q3) -->
+    <!-- ========================================================================= -->
+    <section id="slide-4" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold uppercase mb-2">
+            <span>Exercise 11.1 Q3 • Real-World Time Modeling</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Clock Hands: Area Swept in 5 Minutes</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            "The length of the minute hand of a clock is 14 cm. Find the area swept by the minute hand in 5 minutes."
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- Clock SVG Graphic -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <h4 class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Clock Face Geometry (14 cm Minute Hand)</h4>
+            <div class="bg-slate-900/80 rounded-lg p-3 flex justify-center">
+              <svg viewBox="0 0 200 200" class="w-48 h-48 select-none">
+                <!-- Clock Dial -->
+                <circle cx="100" cy="100" r="85" fill="none" stroke="#475569" stroke-width="3" />
+                <circle cx="100" cy="100" r="4" fill="#38bdf8" />
+
+                <!-- Hour marks -->
+                <text x="100" y="30" fill="#94a3b8" font-size="11" font-weight="bold" text-anchor="middle">12</text>
+                <text x="140" y="42" fill="#f59e0b" font-size="11" font-weight="bold">1</text>
+                <text x="170" y="105" fill="#94a3b8" font-size="11" font-weight="bold">3</text>
+                <text x="100" y="180" fill="#94a3b8" font-size="11" font-weight="bold">6</text>
+                <text x="25" y="105" fill="#94a3b8" font-size="11" font-weight="bold">9</text>
+
+                <!-- Swept Sector from 12 to 1 (30°) -->
+                <path d="M 100 100 L 100 35 A 65 65 0 0 1 132.5 43.7 Z" fill="rgba(245, 158, 11, 0.35)" stroke="#f59e0b" stroke-width="2" />
+
+                <!-- Hand 1 at 12 -->
+                <line x1="100" y1="100" x2="100" y2="35" stroke="#38bdf8" stroke-width="2.5" />
+                <!-- Hand 2 at 1 -->
+                <line x1="100" y1="100" x2="132.5" y2="43.7" stroke="#f59e0b" stroke-width="2.5" />
+
+                <text x="110" y="70" fill="#f59e0b" font-size="10" font-weight="bold">30°</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Mathematical Solution -->
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
+              <div class="font-bold text-amber-400">Step-by-Step Angle &amp; Area Formulation:</div>
+              <div class="bg-slate-900 p-3 rounded-lg border border-slate-800 font-mono space-y-2 text-slate-200">
+                <div>
+                  <span class="text-cyan-400 font-bold">1. Angle in 5 Minutes:</span><br>
+                  In 60 minutes = 360°<br>
+                  In 1 minute = 360° / 60 = 6°<br>
+                  In 5 minutes = 5 × 6° = <strong class="text-white">30°</strong>
+                </div>
+
+                <div class="pt-1 border-t border-slate-800">
+                  <span class="text-amber-400 font-bold">2. Area Swept (Sector of 30°):</span><br>
+                  Area = (30° / 360°) × (22 / 7) × 14 × 14<br>
+                  = (1 / 12) × 22 × 2 × 14<br>
+                  = (1 / 12) × 616 = <strong class="text-emerald-400 text-sm">154 / 3 cm²</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-xs text-emerald-300 text-center font-bold font-mono">
+              Area Swept = 154/3 cm² ≈ 51.33 cm²
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 6: HORSE GRAZING FIELD (EXERCISE 11.1 Q8) -->
+    <!-- ========================================================================= -->
+    <section id="slide-5" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold uppercase mb-2">
+            <span>Exercise 11.1 Q8 • Quadrant Grazing</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Horse in a Square Field: Area &amp; Rope Extension</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            A horse is pegged at one corner of a 15m square field. The grazing boundary forms a <strong>quadrant (90° sector)</strong>!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- Square Field Diagram (Fig. 11.8) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <h4 class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Fig. 11.8 Quadrant Sectors (90°)</h4>
+            <div class="bg-slate-900/80 rounded-lg p-3 flex justify-center">
+              <svg viewBox="0 0 200 200" class="w-48 h-48 select-none">
+                <!-- Square field 15m x 15m -->
+                <rect x="25" y="25" width="150" height="150" fill="rgba(15, 23, 42, 0.6)" stroke="#475569" stroke-width="2" />
+                <text x="90" y="190" fill="#94a3b8" font-size="10">Side = 15 m</text>
+
+                <!-- Corner Peg at (25, 25) -->
+                <circle cx="25" cy="25" r="4.5" fill="#f59e0b" />
+                <text x="15" y="20" fill="#f59e0b" font-size="9" font-weight="bold">Peg</text>
+
+                <!-- Rope 10m quadrant (larger) -->
+                <path d="M 25 25 L 125 25 A 100 100 0 0 1 25 125 Z" fill="rgba(6, 182, 212, 0.2)" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="3,3" />
+
+                <!-- Rope 5m quadrant (smaller) -->
+                <path d="M 25 25 L 75 25 A 50 50 0 0 1 25 75 Z" fill="rgba(16, 185, 129, 0.4)" stroke="#10b981" stroke-width="2" />
+
+                <text x="45" y="55" fill="#10b981" font-size="9" font-weight="bold">r = 5 m</text>
+                <text x="85" y="95" fill="#06b6d4" font-size="9" font-weight="bold">r = 10 m</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Dual Calculation -->
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
+              <div class="bg-slate-900 p-2.5 rounded font-mono text-[11px] text-slate-200 space-y-1.5">
+                <div class="text-emerald-400 font-bold">(i) Area with 5 m rope:</div>
+                <div>A₁ = ¼ × 3.14 × 5² = ¼ × 78.5 = <strong class="text-white">19.625 m²</strong></div>
+
+                <div class="text-cyan-400 font-bold pt-1">(ii) Area with 10 m rope:</div>
+                <div>A₂ = ¼ × 3.14 × 10² = ¼ × 314 = <strong class="text-white">78.5 m²</strong></div>
+
+                <div class="text-amber-400 font-bold pt-1">Increase in Grazing Area:</div>
+                <div>ΔA = 78.5 - 19.625 = <strong class="text-emerald-400 text-sm">58.875 m²</strong></div>
+              </div>
+            </div>
+
+            <div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-xs text-emerald-300 text-center font-bold font-mono">
+              Net Grazing Area Increase = 58.875 m²
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 7: SILVER BROOCH & 10 EQUAL SECTORS (EXERCISE 11.1 Q9) -->
+    <!-- ========================================================================= -->
+    <section id="slide-6" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold uppercase mb-2">
+            <span>Exercise 11.1 Q9 • Symmetry &amp; Wire Length</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">The Silver Brooch: Perimeter Wire &amp; 10 Sectors</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            "A brooch is made with silver wire in the form of a circle with diameter 35 mm. The wire is also used in making 5 diameters dividing into 10 equal sectors."
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- Brooch Graphic (Fig. 11.9) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <h4 class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Fig. 11.9 10-Sector Symmetry</h4>
+            <div class="bg-slate-900/80 rounded-lg p-3 flex justify-center">
+              <svg viewBox="0 0 180 180" class="w-44 h-44 select-none">
+                <circle cx="90" cy="90" r="70" fill="none" stroke="#94a3b8" stroke-width="3" />
+                <!-- 5 diameters (10 spokes, 36° each) -->
+                <line x1="20" y1="90" x2="160" y2="90" stroke="#94a3b8" stroke-width="1.5" />
+                <line x1="33" y1="49" x2="147" y2="131" stroke="#94a3b8" stroke-width="1.5" />
+                <line x1="68" y1="23" x2="112" y2="157" stroke="#94a3b8" stroke-width="1.5" />
+                <line x1="112" y1="23" x2="68" y2="157" stroke="#94a3b8" stroke-width="1.5" />
+                <line x1="147" y1="49" x2="33" y2="131" stroke="#94a3b8" stroke-width="1.5" />
+                <!-- Highlight one sector -->
+                <path d="M 90 90 L 160 90 A 70 70 0 0 0 147 49 Z" fill="rgba(245, 158, 11, 0.4)" stroke="#f59e0b" stroke-width="1.5" />
+                <circle cx="90" cy="90" r="3.5" fill="#38bdf8" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Dual Solution -->
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
+              <div class="bg-slate-900 p-2.5 rounded font-mono text-[11px] text-slate-200 space-y-1.5">
+                <div class="text-cyan-400 font-bold">(i) Total Silver Wire Required:</div>
+                <div>Circumference = πd = (22 / 7) × 35 = 110 mm</div>
+                <div>5 Diameters = 5 × 35 = 175 mm</div>
+                <div class="text-white font-bold pt-0.5">Total Wire = 110 + 175 = <span class="text-cyan-300">285 mm</span></div>
+
+                <div class="text-amber-400 font-bold pt-1.5">(ii) Area of Each of the 10 Sectors:</div>
+                <div>Radius r = 35 / 2 mm</div>
+                <div>Each Sector = (1 / 10) × πr²</div>
+                <div>= (1 / 10) × (22 / 7) × (35 / 2) × (35 / 2)</div>
+                <div class="text-emerald-400 font-bold text-sm pt-0.5">
+                  Area = 385 / 4 mm² = 96.25 mm²
+                </div>
+              </div>
+            </div>
+
+            <div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-xs text-emerald-300 text-center font-bold font-mono">
+              Wire = 285 mm | Sector Area = 96.25 mm²
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 8: ROUND TABLE COVER WITH 6 DESIGNS (EXERCISE 11.1 Q13) -->
+    <!-- ========================================================================= -->
+    <section id="slide-7" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold uppercase mb-2">
+            <span>Exercise 11.1 Q13 • Hexagonal Design Cost</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Round Table Cover: Cost of 6 Equal Segment Designs</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            "A round table cover has 6 equal designs. Radius = 28 cm. Find cost at ₹0.35 per cm² using √3 = 1.7."
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- Table Cover Design (Fig. 11.11) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider">Fig. 11.11 6-Segment Hexagon (θ = 60°)</h4>
+            <div class="bg-slate-900/80 rounded-lg p-3 flex justify-center">
+              <svg viewBox="0 0 180 180" class="w-44 h-44 select-none">
+                <circle cx="90" cy="90" r="70" fill="none" stroke="#64748b" stroke-width="2" />
+                <!-- Regular hexagon vertices -->
+                <polygon points="160,90 125,150.6 55,150.6 20,90 55,29.4 125,29.4" fill="none" stroke="#38bdf8" stroke-width="1.8" />
+                <!-- Highlight outer 6 segments -->
+                <path d="M 160 90 L 125 150.6 A 70 70 0 0 1 160 90 Z" fill="rgba(245, 158, 11, 0.4)" />
+                <path d="M 125 150.6 L 55 150.6 A 70 70 0 0 1 125 150.6 Z" fill="rgba(245, 158, 11, 0.4)" />
+                <path d="M 55 150.6 L 20 90 A 70 70 0 0 1 55 150.6 Z" fill="rgba(245, 158, 11, 0.4)" />
+                <path d="M 20 90 L 55 29.4 A 70 70 0 0 1 20 90 Z" fill="rgba(245, 158, 11, 0.4)" />
+                <path d="M 55 29.4 L 125 29.4 A 70 70 0 0 1 55 29.4 Z" fill="rgba(245, 158, 11, 0.4)" />
+                <path d="M 125 29.4 L 160 90 A 70 70 0 0 1 125 29.4 Z" fill="rgba(245, 158, 11, 0.4)" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Cost Calculation Steps -->
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
+              <div class="bg-slate-900 p-2.5 rounded font-mono text-[11px] text-slate-200 space-y-1.5">
+                <div>Each Sector Angle = 360° / 6 = <strong class="text-amber-400">60°</strong></div>
+                <div>Sector Area = (60° / 360°) × (22 / 7) × 28 × 28 = <strong class="text-white">410.67 cm²</strong></div>
+                <div>Equilateral Δ Area = (√3 / 4) × 28² = (1.7 / 4) × 784 = <strong class="text-white">333.2 cm²</strong></div>
+                <div class="text-cyan-300 font-bold pt-1">One Design Segment = 410.67 - 333.2 = 77.47 cm²</div>
+                <div class="text-white font-bold">Total 6 Designs = 6 × 77.47 = 464.8 cm²</div>
+                <div class="text-emerald-400 font-bold pt-1 text-sm">
+                  Cost = 464.8 × ₹0.35 = ₹162.68
+                </div>
+              </div>
+            </div>
+
+            <div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-xs text-emerald-300 text-center font-bold font-mono">
+              Total Cost of 6 Designs = ₹162.68
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 9: WIPERS, LIGHTHOUSE & UMBRELLA (EX 11.1 Q10, Q11, Q12) -->
+    <!-- ========================================================================= -->
+    <section id="slide-8" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold uppercase mb-2">
+            <span>Everyday Sector Models • Q10, Q11 &amp; Q12</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Umbrella Ribs, Car Wipers &amp; Sea Lighthouse</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            Everyday circular mechanisms modeled through sector formulas: blade sweeps, warning beacons, and umbrella rib spans.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Q10 Umbrella Ribs -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2.5">
+            <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 text-[10px] font-bold">Q10: Umbrella 8 Ribs</span>
+            <h4 class="text-sm font-bold text-white">Flat Circle Radius = 45 cm</h4>
+            <div class="text-xs text-slate-300 font-mono space-y-1 bg-slate-900 p-2.5 rounded border border-slate-800">
+              <div>8 equally spaced ribs</div>
+              <div>Angle = 360° / 8 = 45°</div>
+              <div>Area = (1 / 8) × (22 / 7) × 45²</div>
+              <div class="text-cyan-300 font-bold pt-1">
+                = 22275 / 28 cm²<br>≈ 795.54 cm²
+              </div>
+            </div>
+          </div>
+
+          <!-- Q11 Car Wipers -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2.5">
+            <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 text-[10px] font-bold">Q11: Two Non-overlapping Wipers</span>
+            <h4 class="text-sm font-bold text-white">Blade 25 cm, Angle 115°</h4>
+            <div class="text-xs text-slate-300 font-mono space-y-1 bg-slate-900 p-2.5 rounded border border-slate-800">
+              <div>Total Area = 2 × Sector</div>
+              <div>= 2 × (115/360) × (22/7) × 25²</div>
+              <div class="text-amber-300 font-bold pt-1">
+                = 158125 / 126 cm²<br>≈ 1254.96 cm²
+              </div>
+            </div>
+          </div>
+
+          <!-- Q12 Lighthouse Beacon -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2.5">
+            <span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-400 text-[10px] font-bold">Q12: Lighthouse Warning</span>
+            <h4 class="text-sm font-bold text-white">Angle 80°, Range 16.5 km</h4>
+            <div class="text-xs text-slate-300 font-mono space-y-1 bg-slate-900 p-2.5 rounded border border-slate-800">
+              <div>Area = (80 / 360) × 3.14 × (16.5)²</div>
+              <div>= (2 / 9) × 3.14 × 272.25</div>
+              <div class="text-rose-300 font-bold pt-1">
+                = 189.97 km²
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 10: CHAPTER MASTERY QUIZ & COMPLETE FORMULA SUMMARY -->
+    <!-- ========================================================================= -->
+    <section id="slide-9" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold uppercase mb-2">
+              <span>Section 11.2 • Summary &amp; Assessment</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Chapter Mastery Quiz &amp; Formula Matrix</h2>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+              Verify your mastery of sector areas, arc lengths, and segments with interactive instant-feedback questions.
+            </p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center shrink-0">
+            <span id="quizScoreBadge" class="text-xs font-bold text-emerald-400 font-mono">Score: 0 / 3</span>
+            <div class="text-[10px] text-slate-400">Interactive Test</div>
+          </div>
+        </div>
+
+        <!-- Formula Matrix Cheat Sheet -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-1">
+            <div class="text-[10px] uppercase font-bold text-amber-400">Sector Area</div>
+            <div class="font-mono text-xs font-bold text-white">(θ / 360°) × πr²</div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-1">
+            <div class="text-[10px] uppercase font-bold text-cyan-400">Arc Length</div>
+            <div class="font-mono text-xs font-bold text-white">(θ / 360°) × 2πr</div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-1">
+            <div class="text-[10px] uppercase font-bold text-emerald-400">Segment Area</div>
+            <div class="font-mono text-xs font-bold text-white">Sector Area - Δ Area</div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-1">
+            <div class="text-[10px] uppercase font-bold text-indigo-400">Quadrant (90°)</div>
+            <div class="font-mono text-xs font-bold text-white">¼ × πr²</div>
+          </div>
+        </div>
+
+        <!-- Interactive Quiz Questions -->
+        <div class="space-y-3 pt-2">
+          <!-- Question 1 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-amber-400">Question 1: Minute Hand Angle</span>
+              <span class="text-[10px] text-slate-500">Exercise 11.1 Q3</span>
+            </div>
+            <p class="text-xs text-slate-200">What angle is swept by the minute hand of a clock in 5 minutes?</p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+              <button onclick="checkQuizAns(1, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">15°</button>
+              <button onclick="checkQuizAns(1, true, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">30°</button>
+              <button onclick="checkQuizAns(1, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">45°</button>
+              <button onclick="checkQuizAns(1, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">60°</button>
+            </div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-cyan-400">Question 2: NCERT Official MCQ (Q14)</span>
+              <span class="text-[10px] text-slate-500">Board Exam Classic</span>
+            </div>
+            <p class="text-xs text-slate-200">Area of a sector of angle p (in degrees) of a circle with radius R is:</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+              <button onclick="checkQuizAns(2, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">(p / 180) × 2πR</button>
+              <button onclick="checkQuizAns(2, true, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">(p / 720) × 2πR²</button>
+            </div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-emerald-400">Question 3: Sector to Segment Transition</span>
+              <span class="text-[10px] text-slate-500">Core Definition</span>
+            </div>
+            <p class="text-xs text-slate-200">How is the area of a minor segment calculated from its corresponding sector?</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+              <button onclick="checkQuizAns(3, true, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">Subtract area of triangle OAB from sector area</button>
+              <button onclick="checkQuizAns(3, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">Add area of triangle OAB to sector area</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BOTTOM SLIDESHOW CONTROLLER & TIMELINE PILLS -->
+  <footer style="flex-shrink: 0;" class="border-t border-slate-800 bg-slate-900/95 backdrop-blur px-4 py-3 sticky bottom-0 z-50">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      <!-- Slide Pills (10 Slides) -->
+      <div class="flex items-center space-x-1.5 overflow-x-auto max-w-full pb-1 sm:pb-0 text-xs font-mono">
+        <button onclick="goToSlide(0)" class="slide-pill px-2.5 py-1 rounded-lg bg-amber-600 text-white font-bold transition-all cursor-pointer">1</button>
+        <button onclick="goToSlide(1)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">2</button>
+        <button onclick="goToSlide(2)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">3</button>
+        <button onclick="goToSlide(3)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">4</button>
+        <button onclick="goToSlide(4)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">5</button>
+        <button onclick="goToSlide(5)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">6</button>
+        <button onclick="goToSlide(6)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">7</button>
+        <button onclick="goToSlide(7)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">8</button>
+        <button onclick="goToSlide(8)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">9</button>
+        <button onclick="goToSlide(9)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">10</button>
+      </div>
+
+      <!-- Playback Navigation Controls -->
+      <div class="flex items-center space-x-2 shrink-0">
+        <button id="prevSlideBtn" onclick="prevSlide()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center space-x-1 cursor-pointer transition-all disabled:opacity-40 disabled:cursor-not-allowed">
+          <span>⏮</span>
+          <span>Previous</span>
+        </button>
+
+        <button id="autoPlaySlideshowBtn" onclick="toggleAutoPlaySlideshow()" class="px-3.5 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold shadow-lg shadow-amber-600/30 flex items-center space-x-1.5 cursor-pointer transition-all">
+          <span id="autoPlayIcon">▶</span>
+          <span id="autoPlayText">Auto-Play</span>
+        </button>
+
+        <button id="nextSlideBtn" onclick="nextSlide()" class="px-3.5 py-1.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold shadow-lg shadow-orange-600/30 flex items-center space-x-1.5 cursor-pointer transition-all">
+          <span>Next</span>
+          <span>⏭</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT ENGINE: WEB AUDIO, WEB SPEECH & SLIDESHOW MECHANICS -->
+  <script>
+    // =========================================================================
+    // SLIDE DATA & NARRATIONS
+    // =========================================================================
+    const totalSlides = 10;
+    let currentSlide = 0;
+    let isAutoPlaySlideshow = false;
+    let autoPlayInterval = null;
+    let countdownInterval = null;
+
+    let isVoiceActive = true;
+    let isSoundFxActive = true;
+
+    const slideData = [
+      {
+        title: "Slide 1 of 10: Sectors & Segments of a Circle",
+        narration: "Welcome to NCERT Class 10 Chapter 11: Areas Related to Circles! In this chapter, we discover how to calculate areas of sectors and segments. A sector is enclosed by two radii and an arc, while a segment is enclosed between a chord and an arc."
+      },
+      {
+        title: "Slide 2 of 10: Derivation of Sector Area & Arc Length",
+        narration: "Slide 2. Using the unitary method, when the central angle is 360 degrees, the area is pi r squared. For an angle theta, the sector area is theta over 360 times pi r squared, and the arc length is theta over 360 times 2 pi r."
+      },
+      {
+        title: "Slide 3 of 10: Interactive Dynamic Sector & Segment Lab",
+        narration: "Slide 3. Experience our dynamic sector lab! Drag the angle slider to see how sector area, triangle area, and segment area change in real time."
+      },
+      {
+        title: "Slide 4 of 10: The 120° Segment: Solving Obtuse Angles",
+        narration: "Slide 4. Solving the famous 120 degree segment problem! By dropping an altitude, the 120 degree angle is bisected into two 60 degree angles. Trigonometry yields the base and height, producing an area of 21 over 4 times 88 minus 21 root 3."
+      },
+      {
+        title: "Slide 5 of 10: Clock Minute Hand Sweep",
+        narration: "Slide 5. In 5 minutes, a clock's minute hand rotates through 30 degrees. Sweeping across a radius of 14 centimetres, it cleans exactly 154 over 3 square centimetres."
+      },
+      {
+        title: "Slide 6 of 10: Horse Grazing in a Square Field",
+        narration: "Slide 6. A horse tied at a corner of a square field grazes in a 90 degree quadrant. Lengthening the rope from 5 metres to 10 metres increases the grazing area by 58.875 square metres."
+      },
+      {
+        title: "Slide 7 of 10: The Silver Brooch & 10 Sectors",
+        narration: "Slide 7. The silver brooch problem! The circumference plus 5 diameters requires 285 millimetres of silver wire, and each of the 10 sectors has an area of 96.25 square millimetres."
+      },
+      {
+        title: "Slide 8 of 10: Round Table Cover with 6 Designs",
+        narration: "Slide 8. The round table cover consists of 6 equal design segments around a regular hexagon. The total design area of 464.8 square centimetres costs exactly 162 rupees and 68 paise."
+      },
+      {
+        title: "Slide 9 of 10: Umbrella Ribs, Car Wipers & Lighthouse",
+        narration: "Slide 9. Practical sector models in everyday life: 8 umbrella ribs, dual car wipers sweeping 115 degrees, and a lighthouse beam warning ships across 189.97 square kilometres."
+      },
+      {
+        title: "Slide 10 of 10: Chapter Mastery Quiz & Summary",
+        narration: "Slide 10. Test your understanding with our chapter mastery quiz, and review the summary matrix of all sector and segment formulas!"
+      }
+    ];
+
+    // =========================================================================
+    // WEB AUDIO API SYNTHESIZER
+    // =========================================================================
+    let audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, type, duration, gainVal = 0.1) {
+      if (!isSoundFxActive) return;
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+
+        gain.gain.setValueAtTime(gainVal, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {
+        console.warn('Audio tone error', e);
+      }
+    }
+
+    function playSlideTransitionTone() {
+      playTone(587.33, 'sine', 0.12, 0.08); // D5
+      setTimeout(() => playTone(880.00, 'sine', 0.18, 0.08), 70); // A5
+    }
+
+    function playChime() {
+      playTone(659.25, 'triangle', 0.15, 0.12); // E5
+      setTimeout(() => playTone(987.77, 'triangle', 0.35, 0.12), 110); // B5
+    }
+
+    function playBuzzer() {
+      playTone(160, 'sawtooth', 0.25, 0.12);
+    }
+
+    function toggleSoundFx() {
+      isSoundFxActive = !isSoundFxActive;
+      const icon = document.getElementById('soundIcon');
+      const text = document.getElementById('soundText');
+      const btn = document.getElementById('soundToggleBtn');
+      if (isSoundFxActive) {
+        icon.textContent = '🎵';
+        text.textContent = 'SFX: ON';
+        btn.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center space-x-1.5 transition-all cursor-pointer';
+        playTone(600, 'sine', 0.1);
+      } else {
+        icon.textContent = '🔇';
+        text.textContent = 'SFX: OFF';
+        btn.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-rose-950/40 text-rose-300 border border-rose-800/40 flex items-center space-x-1.5 transition-all cursor-pointer';
+      }
+    }
+
+    // =========================================================================
+    // WEB SPEECH API SYNTHESIZER
+    // =========================================================================
+    function speakNarration(text) {
+      document.getElementById('narrationSubtitlesText').textContent = text;
+      if (!isVoiceActive) return;
+
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 1.0;
+        utterance.pitch = 1.02;
+
+        const voices = window.speechSynthesis.getVoices();
+        const englishVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha')));
+        if (englishVoice) {
+          utterance.voice = englishVoice;
+        }
+
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    function toggleVoiceNarration() {
+      isVoiceActive = !isVoiceActive;
+      const icon = document.getElementById('voiceIcon');
+      const text = document.getElementById('voiceText');
+      const btn = document.getElementById('voiceToggleBtn');
+
+      if (isVoiceActive) {
+        icon.textContent = '🔊';
+        text.textContent = 'Voice: ON';
+        btn.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-amber-600/30 hover:bg-amber-600/50 text-amber-300 border border-amber-500/40 flex items-center space-x-1.5 transition-all cursor-pointer';
+        speakNarration(slideData[currentSlide].narration);
+      } else {
+        icon.textContent = '🔈';
+        text.textContent = 'Voice: OFF';
+        btn.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-rose-950/40 text-rose-300 border border-rose-800/40 flex items-center space-x-1.5 transition-all cursor-pointer';
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+        }
+      }
+    }
+
+    // =========================================================================
+    // SLIDESHOW CONTROLLER & PROGRESS
+    // =========================================================================
+    function goToSlide(index) {
+      if (index < 0 || index >= totalSlides) return;
+      currentSlide = index;
+
+      document.getElementById('slideSubtitle').textContent = slideData[currentSlide].title;
+      document.getElementById('slideProgressBar').style.width = ((currentSlide + 1) / totalSlides * 100) + '%';
+
+      for (let i = 0; i < totalSlides; i++) {
+        const pane = document.getElementById('slide-' + i);
+        if (pane) {
+          if (i === currentSlide) {
+            pane.classList.remove('hidden');
+            pane.classList.add('block');
+          } else {
+            pane.classList.add('hidden');
+            pane.classList.remove('block');
+          }
+        }
+      }
+
+      document.querySelectorAll('.slide-pill').forEach((pill, i) => {
+        if (i === currentSlide) {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-amber-600 text-white font-bold transition-all cursor-pointer';
+        } else {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer';
+        }
+      });
+
+      document.getElementById('prevSlideBtn').disabled = (currentSlide === 0);
+      const nextBtn = document.getElementById('nextSlideBtn');
+      if (currentSlide === totalSlides - 1) {
+        nextBtn.innerHTML = '<span>Restart 🔄</span>';
+      } else {
+        nextBtn.innerHTML = '<span>Next</span><span>⏭</span>';
+      }
+
+      playSlideTransitionTone();
+      speakNarration(slideData[currentSlide].narration);
+
+      if (isAutoPlaySlideshow) {
+        resetAutoPlayCountdown();
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide >= totalSlides - 1) {
+        goToSlide(0);
+      } else {
+        goToSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        goToSlide(currentSlide - 1);
+      }
+    }
+
+    function toggleAutoPlaySlideshow() {
+      const btn = document.getElementById('autoPlaySlideshowBtn');
+      const icon = document.getElementById('autoPlayIcon');
+      const txt = document.getElementById('autoPlayText');
+      const bar = document.getElementById('autoPlayCountdownBar');
+
+      if (isAutoPlaySlideshow) {
+        isAutoPlaySlideshow = false;
+        clearInterval(autoPlayInterval);
+        clearInterval(countdownInterval);
+        icon.textContent = '▶';
+        txt.textContent = 'Auto-Play';
+        btn.className = 'px-3.5 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold shadow-lg shadow-amber-600/30 flex items-center space-x-1.5 cursor-pointer transition-all';
+        bar.style.opacity = '0';
+      } else {
+        isAutoPlaySlideshow = true;
+        icon.textContent = '⏸';
+        txt.textContent = 'Pause';
+        btn.className = 'px-3.5 py-1.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold shadow-lg shadow-cyan-600/30 flex items-center space-x-1.5 cursor-pointer transition-all';
+        bar.style.opacity = '1';
+        resetAutoPlayCountdown();
+      }
+    }
+
+    function resetAutoPlayCountdown() {
+      clearInterval(countdownInterval);
+      clearInterval(autoPlayInterval);
+
+      const bar = document.getElementById('autoPlayCountdownBar');
+      let elapsed = 0;
+      const durationMs = 10000;
+      const stepMs = 100;
+
+      countdownInterval = setInterval(() => {
+        elapsed += stepMs;
+        const pct = Math.min((elapsed / durationMs) * 100, 100);
+        bar.style.width = pct + '%';
+        if (elapsed >= durationMs) {
+          clearInterval(countdownInterval);
+        }
+      }, stepMs);
+
+      autoPlayInterval = setTimeout(() => {
+        if (isAutoPlaySlideshow) {
+          nextSlide();
+        }
+      }, durationMs);
+    }
+
+    // =========================================================================
+    // SLIDE 3: INTERACTIVE DYNAMIC SECTOR LAB
+    // =========================================================================
+    function updateSectorLab(angleDeg) {
+      angleDeg = parseFloat(angleDeg);
+      document.getElementById('sliderAngleLabel').textContent = angleDeg + '°';
+
+      const r = 70; // SVG circle radius
+      const rActual = 10; // 10 cm
+      const cx = 120, cy = 100;
+      const angleRad = (angleDeg * Math.PI) / 180;
+
+      // Start point at (cx + r, cy)
+      const x1 = cx + r;
+      const y1 = cy;
+
+      // End point of arc
+      const x2 = cx + r * Math.cos(angleRad);
+      const y2 = cy - r * Math.sin(angleRad);
+
+      const largeArcFlag = angleDeg > 180 ? 1 : 0;
+
+      // Update Sector path
+      const sectorD = `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${largeArcFlag} 0 ${x2} ${y2} Z`;
+      document.getElementById('calcSectorPath').setAttribute('d', sectorD);
+
+      // Update Segment path
+      const segmentD = `M ${x1} ${y1} L ${x2} ${y2} A ${r} ${r} 0 ${largeArcFlag} 1 ${x1} ${y1} Z`;
+      document.getElementById('calcSegmentPath').setAttribute('d', segmentD);
+
+      // Update Chord
+      const chord = document.getElementById('calcChord');
+      chord.setAttribute('x1', x1);
+      chord.setAttribute('y1', y1);
+      chord.setAttribute('x2', x2);
+      chord.setAttribute('y2', y2);
+
+      // Update Moving Radius
+      const movingRad = document.getElementById('calcMovingRadius');
+      movingRad.setAttribute('x2', x2);
+      movingRad.setAttribute('y2', y2);
+
+      // Mathematical computations for r = 10 cm
+      const arcLen = ((angleDeg / 360) * 2 * Math.PI * rActual).toFixed(2);
+      const sectorArea = ((angleDeg / 360) * Math.PI * rActual * rActual).toFixed(2);
+      const triArea = (0.5 * rActual * rActual * Math.sin(angleRad)).toFixed(2);
+      const segmentArea = (sectorArea - triArea).toFixed(2);
+
+      document.getElementById('readoutArcLen').textContent = arcLen + ' cm';
+      document.getElementById('readoutSectorArea').textContent = sectorArea + ' cm²';
+      document.getElementById('readoutTriArea').textContent = triArea + ' cm²';
+      document.getElementById('readoutSegmentArea').textContent = segmentArea + ' cm²';
+
+      playTone(400 + angleDeg * 2, 'sine', 0.05, 0.03);
+    }
+
+    // =========================================================================
+    // SLIDE 10: QUIZ ENGINE
+    // =========================================================================
+    let quizScore = 0;
+    const answeredMap = {};
+
+    function checkQuizAns(qNum, isCorrect, btn) {
+      if (answeredMap[qNum]) return;
+      answeredMap[qNum] = true;
+
+      const parent = btn.parentElement;
+      const allBtns = parent.querySelectorAll('.quiz-btn');
+      allBtns.forEach(b => b.disabled = true);
+
+      if (isCorrect) {
+        btn.classList.remove('bg-slate-900', 'border-slate-700', 'text-slate-300');
+        btn.classList.add('bg-emerald-600', 'border-emerald-400', 'text-white');
+        quizScore++;
+        playChime();
+        speakNarration("Correct! Excellent understanding of sector and segment areas.");
+      } else {
+        btn.classList.remove('bg-slate-900', 'border-slate-700', 'text-slate-300');
+        btn.classList.add('bg-rose-600', 'border-rose-400', 'text-white');
+        playBuzzer();
+        speakNarration("Incorrect. Remember the sector area formula.");
+      }
+      document.getElementById('quizScoreBadge').textContent = `Score: ${quizScore} / 3`;
+    }
+
+    // INITIALIZATION
+    document.addEventListener('DOMContentLoaded', () => {
+      goToSlide(0);
+      updateSectorLab(60);
+    });
+  </script>
+</body>
+</html>
+

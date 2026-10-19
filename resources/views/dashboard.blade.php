@@ -1031,6 +1031,26 @@
                     </div>
                 </div>
 
+                <!-- Curriculum Tree Access for Students -->
+                <div class="rounded-2xl bg-gradient-to-r from-emerald-950/70 via-slate-900 to-indigo-950/70 border border-emerald-500/30 p-5 shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-2xl shrink-0">
+                            📚
+                        </div>
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <h3 class="text-base font-bold text-white tracking-tight">Curriculum Tree</h3>
+                                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">CBSE &amp; SCERT</span>
+                            </div>
+                            <p class="text-xs text-slate-300 mt-1">Explore textbook syllabus, subjects, classes, and interactive multimedia lessons in an organized tree.</p>
+                        </div>
+                    </div>
+                    <a href="{{ route('multimedia.index') }}" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-indigo-600 hover:from-emerald-500 hover:to-indigo-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center space-x-2 shadow-lg shadow-emerald-600/20 transition-all cursor-pointer shrink-0">
+                        <span>Open Curriculum Tree</span>
+                        <span>&rarr;</span>
+                    </a>
+                </div>
+
                 <!-- Metric Stat Summary for Student -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     <!-- Your Class -->

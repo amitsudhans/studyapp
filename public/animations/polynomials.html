@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 10 • Polynomials — Slide-by-Slide Multimedia Lab</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    if (typeof tailwind === 'undefined') {
+      document.write('<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"><\/script>');
+    }
+  </script>
+  <style>
+    body { background-color: #020617; color: #f8fafc; }
+    .slide-fade-in {
+      animation: fadeInScale 0.35s ease-out forwards;
+    }
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.15); opacity: 0.4; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .pulse-ring {
+      animation: pulse-ring 2s infinite ease-in-out;
+    }
+    /* Custom scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+  </style>
+</head>
+<body style="background-color: #020617; color: #f8fafc;" class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-indigo-500 selection:text-white overflow-x-hidden">
+
+  <!-- TOP HEADER & PROGRESS -->
+  <header style="flex-shrink: 0;" class="border-b border-slate-800 bg-slate-900/95 backdrop-blur sticky top-0 z-50">
+    <!-- Slide Progress Bar -->
+    <div class="w-full bg-slate-800/80 h-1.5 relative overflow-hidden">
+      <div id="slideProgressBar" class="h-full bg-gradient-to-r from-cyan-500 via-indigo-500 to-emerald-500 transition-all duration-500" style="width: 10%;"></div>
+      <div id="autoPlayCountdownBar" class="h-full bg-amber-400/80 absolute top-0 left-0 transition-all duration-100" style="width: 0%; opacity: 0;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 via-indigo-500 to-emerald-600 flex items-center justify-center font-black text-lg text-white shadow-lg shadow-cyan-500/25 shrink-0">
+          <span>P(x)</span>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="font-black text-sm sm:text-base text-white tracking-tight">NCERT Chapter 2 • Polynomials</h1>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">Reprint 2026-27</span>
+          </div>
+          <p id="slideSubtitle" class="text-xs text-slate-400">Slide 1 of 10: Introduction, Degrees &amp; Classification</p>
+        </div>
+      </div>
+
+      <!-- Quick Controls -->
+      <div class="flex items-center space-x-2">
+        <button id="voiceToggleBtn" onclick="toggleVoiceNarration()" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-300 border border-indigo-500/40 flex items-center space-x-1.5 transition-all cursor-pointer" title="Toggle Voice Narration">
+          <span id="voiceIcon">🔊</span>
+          <span id="voiceText" class="hidden sm:inline">Voice: ON</span>
+        </button>
+        <button id="soundToggleBtn" onclick="toggleSoundFx()" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center space-x-1.5 transition-all cursor-pointer" title="Toggle Sound FX">
+          <span id="soundIcon">🎵</span>
+          <span id="soundText" class="hidden sm:inline">SFX: ON</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Narration Subtitles Banner -->
+    <div class="bg-slate-950/80 border-t border-slate-800/80 px-4 py-1.5 flex items-center space-x-2 text-xs">
+      <span class="text-cyan-400 shrink-0 font-bold">🎙 Teacher Voiceover:</span>
+      <p id="narrationSubtitlesText" class="text-slate-300 truncate italic">Loading lesson...</p>
+    </div>
+  </header>
+
+  <!-- MAIN SLIDES STAGE -->
+  <main style="flex: 1 1 0%; min-height: 0;" class="max-w-7xl w-full mx-auto p-3 sm:p-5 flex flex-col justify-between overflow-y-auto">
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 1: INTRODUCTION, DEGREES & CLASSIFICATION -->
+    <!-- ========================================================================= -->
+    <section id="slide-0" class="slide-pane slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase mb-2">
+              <span>Section 2.1 • Introduction</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Degrees of Polynomials &amp; Types</h2>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+              If p(x) is a polynomial in x, the <strong>highest power of x</strong> in p(x) is called the <strong>degree</strong> of the polynomial.
+            </p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center space-x-3 shrink-0">
+            <span class="text-3xl">📐</span>
+            <div>
+              <div class="text-xs font-bold text-cyan-400">Class 10 Foundation</div>
+              <div class="text-[11px] text-slate-400">Linear, Quadratic &amp; Cubic</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Types Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Linear -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-cyan-500/30 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300">Degree 1</span>
+              <span class="text-xs font-mono font-bold text-cyan-400">ax + b (a ≠ 0)</span>
+            </div>
+            <h4 class="text-sm font-bold text-white">Linear Polynomial</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">The highest power of the variable is 1.</p>
+            <div class="pt-2 text-xs font-mono text-cyan-300 space-y-1">
+              <div>• 2x - 3</div>
+              <div>• √3 x + 5</div>
+              <div>• y + √2</div>
+            </div>
+          </div>
+
+          <!-- Quadratic -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-indigo-500/30 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300">Degree 2</span>
+              <span class="text-xs font-mono font-bold text-indigo-400">ax² + bx + c (a ≠ 0)</span>
+            </div>
+            <h4 class="text-sm font-bold text-white">Quadratic Polynomial</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">From <em>quadrate</em> meaning 'square'. Highest power is 2.</p>
+            <div class="pt-2 text-xs font-mono text-indigo-300 space-y-1">
+              <div>• 2x² + 3x - 2/5</div>
+              <div>• y² - 2</div>
+              <div>• 4z² + 1/7</div>
+            </div>
+          </div>
+
+          <!-- Cubic -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-emerald-500/30 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300">Degree 3</span>
+              <span class="text-xs font-mono font-bold text-emerald-400">ax³ + bx² + cx + d</span>
+            </div>
+            <h4 class="text-sm font-bold text-white">Cubic Polynomial</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Highest power is 3.</p>
+            <div class="pt-2 text-xs font-mono text-emerald-300 space-y-1">
+              <div>• 2 - x³</div>
+              <div>• 3x³ - 2x² + x - 1</div>
+              <div>• √2 x³</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Warning Callout: What is NOT a polynomial -->
+        <div class="p-4 rounded-xl bg-rose-950/40 border border-rose-500/30 flex items-start space-x-3">
+          <span class="text-rose-400 text-lg">⚠️</span>
+          <div class="space-y-1">
+            <h4 class="text-xs font-bold text-rose-300 uppercase tracking-wider">Crucial Distinction from NCERT Page 1</h4>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Expressions like <span class="font-mono text-rose-300 font-bold">1 / (x - 1)</span>, <span class="font-mono text-rose-300 font-bold">√x + 2</span>, and <span class="font-mono text-rose-300 font-bold">1 / (x² + 2x + 3)</span> are <strong>NOT polynomials</strong> because the variable has negative or fractional powers!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 2: VALUE OF A POLYNOMIAL & ZEROES DEFINITION -->
+    <!-- ========================================================================= -->
+    <section id="slide-1" class="slide-pane hidden slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase mb-2">
+            <span>NCERT Page 2 • Definition</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Value of p(x) at x = k &amp; What is a Zero?</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            A real number <span class="text-cyan-400 font-bold font-mono">k</span> is said to be a <strong>zero of a polynomial p(x)</strong> if <span class="text-emerald-400 font-mono font-bold">p(k) = 0</span>.
+          </p>
+        </div>
+
+        <!-- Interactive Value & Zero Tester -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="p-5 rounded-xl bg-slate-950 border border-slate-800 space-y-4">
+            <h4 class="text-sm font-bold text-white flex items-center space-x-2">
+              <span>🔬</span>
+              <span>Test Polynomial: p(x) = x² - 3x - 4</span>
+            </h4>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Substitute different values of <span class="font-mono text-cyan-300">x</span> to see the evaluated value of the polynomial:
+            </p>
+            <div class="flex items-center space-x-2">
+              <span class="text-xs text-slate-400 font-mono">x =</span>
+              <input type="number" id="testKInput" value="-1" step="1" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-white font-mono text-sm w-24 focus:outline-none focus:border-cyan-500" oninput="evalPolynomialK()">
+              <button onclick="setTestK(-1)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-200">x = -1</button>
+              <button onclick="setTestK(4)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-200">x = 4</button>
+              <button onclick="setTestK(2)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-200">x = 2</button>
+            </div>
+
+            <!-- Result Box -->
+            <div id="evalResultBox" class="p-4 rounded-xl bg-slate-900 border border-slate-700 space-y-2 font-mono text-xs">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Linear Zero Relationship -->
+          <div class="p-5 rounded-xl bg-slate-950 border border-slate-800 space-y-4">
+            <h4 class="text-sm font-bold text-white flex items-center space-x-2">
+              <span>📏</span>
+              <span>Linear Polynomial Zero: p(x) = ax + b</span>
+            </h4>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              If k is a zero of ax + b, then ak + b = 0 → k = -b/a.
+            </p>
+            <div class="p-4 rounded-xl bg-indigo-950/50 border border-indigo-500/30 space-y-2">
+              <div class="text-center font-mono text-sm font-bold text-indigo-300">
+                Zero of (ax + b) = - (Constant term) / (Coefficient of x) = -b / a
+              </div>
+              <div class="text-xs text-slate-300 text-center">
+                Example: For <span class="font-bold text-white">2x + 3</span>, Zero = <span class="font-bold text-emerald-400 font-mono">-3 / 2</span>.
+              </div>
+            </div>
+            <div class="text-xs text-slate-400">
+              💡 <em>Does a similar relationship hold between zeroes and coefficients of quadratic and cubic polynomials? Yes! We explore this in Slide 7.</em>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 3: GEOMETRICAL MEANING & THE PARABOLA -->
+    <!-- ========================================================================= -->
+    <section id="slide-2" class="slide-pane hidden slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase mb-2">
+              <span>Section 2.2 • Geometrical Meaning</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">The Geometrical Meaning of Zeroes</h2>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+              The zeroes of a polynomial p(x) are precisely the <strong>x-coordinates of the points where the graph of y = p(x) intersects the x-axis</strong>!
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Canvas Plotter -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 flex flex-col items-center justify-center space-y-3">
+            <div class="flex items-center justify-between w-full text-xs">
+              <span class="font-bold text-cyan-400 font-mono" id="currentGraphEquation">y = x² - 3x - 4</span>
+              <span class="text-emerald-400 font-mono font-bold" id="graphZeroesBadge">Zeroes: x = -1, 4</span>
+            </div>
+            <canvas id="parabolaCanvas" width="460" height="280" class="rounded-xl bg-slate-900 border border-slate-800 w-full max-w-[460px] h-[260px] shadow-inner"></canvas>
+            <div class="text-[11px] text-slate-400 text-center">
+              Notice the curve cuts the x-axis exactly at <span class="text-emerald-400 font-bold font-mono">(-1, 0)</span> and <span class="text-emerald-400 font-bold font-mono">(4, 0)</span>.
+            </div>
+          </div>
+
+          <!-- Parabola Rules & Controls -->
+          <div class="space-y-4">
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+              <h4 class="text-sm font-bold text-white flex items-center space-x-2">
+                <span>🔄</span>
+                <span>Shape of Quadratic Graphs: Parabolas</span>
+              </h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                For any quadratic polynomial ax² + bx + c, the graph is a curve called a <strong>parabola</strong>:
+              </p>
+              <div class="grid grid-cols-2 gap-3 pt-1">
+                <button onclick="drawParabolaPreset(1, -3, -4)" class="p-3 rounded-lg bg-slate-900 hover:bg-slate-800 border border-cyan-500/40 text-left transition-all">
+                  <div class="text-xs font-bold text-cyan-300 flex items-center space-x-1.5">
+                    <span class="text-lg">∪</span>
+                    <span>a &gt; 0 : Opens Upwards</span>
+                  </div>
+                  <div class="text-[11px] text-slate-400 mt-1">y = x² - 3x - 4</div>
+                </button>
+                <button onclick="drawParabolaPreset(-1, 2, 3)" class="p-3 rounded-lg bg-slate-900 hover:bg-slate-800 border border-indigo-500/40 text-left transition-all">
+                  <div class="text-xs font-bold text-indigo-300 flex items-center space-x-1.5">
+                    <span class="text-lg">∩</span>
+                    <span>a &lt; 0 : Opens Downwards</span>
+                  </div>
+                  <div class="text-[11px] text-slate-400 mt-1">y = -x² + 2x + 3</div>
+                </button>
+              </div>
+            </div>
+
+            <!-- Table 2.1 Points -->
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+              <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">NCERT Table 2.1 Points: y = x² - 3x - 4</h4>
+              <div class="grid grid-cols-8 gap-1 font-mono text-[11px] text-center">
+                <div class="p-1 bg-slate-900 rounded text-slate-400">x</div>
+                <div class="p-1 bg-slate-900 rounded text-slate-300">-2</div>
+                <div class="p-1 bg-emerald-950/80 border border-emerald-500/40 rounded text-emerald-300 font-bold">-1</div>
+                <div class="p-1 bg-slate-900 rounded text-slate-300">0</div>
+                <div class="p-1 bg-slate-900 rounded text-slate-300">1</div>
+                <div class="p-1 bg-slate-900 rounded text-slate-300">2</div>
+                <div class="p-1 bg-emerald-950/80 border border-emerald-500/40 rounded text-emerald-300 font-bold">4</div>
+                <div class="p-1 bg-slate-900 rounded text-slate-300">5</div>
+
+                <div class="p-1 bg-slate-900 rounded text-slate-400">y</div>
+                <div class="p-1 bg-slate-900 rounded text-slate-300">6</div>
+                <div class="p-1 bg-emerald-950/80 border border-emerald-500/40 rounded text-emerald-300 font-bold">0</div>
+                <div class="p-1 bg-slate-900 rounded text-slate-300">-4</div>
+                <div class="p-1 bg-slate-900 rounded text-slate-300">-6</div>
+                <div class="p-1 bg-slate-900 rounded text-slate-300">-6</div>
+                <div class="p-1 bg-emerald-950/80 border border-emerald-500/40 rounded text-emerald-300 font-bold">0</div>
+                <div class="p-1 bg-slate-900 rounded text-slate-300">6</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 4: THE 3 CASES OF QUADRATICS (AT MOST 2 ZEROES) -->
+    <!-- ========================================================================= -->
+    <section id="slide-3" class="slide-pane hidden slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase mb-2">
+            <span>NCERT Pages 5-6 • Cases (i), (ii), (iii)</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">The 3 Geometric Cases for Quadratic Polynomials</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            A quadratic polynomial can have <strong>either 2 distinct zeroes, 1 zero (2 equal zeroes), or no zero</strong>. Therefore, a polynomial of degree 2 has <strong>at most two zeroes</strong>.
+          </p>
+        </div>
+
+        <!-- 3 Interactive Cases -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Case 1 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-emerald-500/40 space-y-3 flex flex-col justify-between">
+            <div class="space-y-2">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 uppercase">Case (i)</span>
+              <h4 class="text-sm font-bold text-white">2 Distinct Zeroes</h4>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                The graph cuts the x-axis at <strong>two distinct points</strong> A and A'.
+              </p>
+            </div>
+            <div class="h-28 bg-slate-900 rounded-lg border border-slate-800 flex items-center justify-center p-2">
+              <svg class="w-full h-full" viewBox="0 0 160 80">
+                <!-- Axes -->
+                <line x1="10" y1="40" x2="150" y2="40" stroke="#64748b" stroke-width="1.5" />
+                <line x1="80" y1="10" x2="80" y2="70" stroke="#64748b" stroke-width="1.5" />
+                <!-- Parabola cutting twice -->
+                <path d="M 30,15 Q 80,75 130,15" fill="none" stroke="#10b981" stroke-width="2.5" />
+                <!-- Points -->
+                <circle cx="48" cy="40" r="3.5" fill="#34d399" />
+                <circle cx="112" cy="40" r="3.5" fill="#34d399" />
+                <text x="44" y="32" font-size="9" fill="#f8fafc" font-weight="bold">A</text>
+                <text x="110" y="32" font-size="9" fill="#f8fafc" font-weight="bold">A'</text>
+              </svg>
+            </div>
+            <div class="text-[11px] font-mono text-emerald-400 font-bold text-center">Number of Zeroes = 2</div>
+          </div>
+
+          <!-- Case 2 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-cyan-500/40 space-y-3 flex flex-col justify-between">
+            <div class="space-y-2">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 uppercase">Case (ii)</span>
+              <h4 class="text-sm font-bold text-white">1 Zero (Touches x-axis)</h4>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                The graph cuts the x-axis at <strong>exactly one point</strong> (two coincident points A and A' coincide).
+              </p>
+            </div>
+            <div class="h-28 bg-slate-900 rounded-lg border border-slate-800 flex items-center justify-center p-2">
+              <svg class="w-full h-full" viewBox="0 0 160 80">
+                <!-- Axes -->
+                <line x1="10" y1="40" x2="150" y2="40" stroke="#64748b" stroke-width="1.5" />
+                <line x1="80" y1="10" x2="80" y2="70" stroke="#64748b" stroke-width="1.5" />
+                <!-- Parabola touching at vertex -->
+                <path d="M 40,15 Q 80,40 120,15" fill="none" stroke="#06b6d4" stroke-width="2.5" />
+                <!-- Point -->
+                <circle cx="80" cy="40" r="3.5" fill="#22d3ee" />
+                <text x="76" y="32" font-size="9" fill="#f8fafc" font-weight="bold">A</text>
+              </svg>
+            </div>
+            <div class="text-[11px] font-mono text-cyan-400 font-bold text-center">Number of Zeroes = 1 (Equal)</div>
+          </div>
+
+          <!-- Case 3 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-rose-500/40 space-y-3 flex flex-col justify-between">
+            <div class="space-y-2">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-300 uppercase">Case (iii)</span>
+              <h4 class="text-sm font-bold text-white">No Zero</h4>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                The graph is <strong>completely above or completely below</strong> the x-axis, never intersecting it.
+              </p>
+            </div>
+            <div class="h-28 bg-slate-900 rounded-lg border border-slate-800 flex items-center justify-center p-2">
+              <svg class="w-full h-full" viewBox="0 0 160 80">
+                <!-- Axes -->
+                <line x1="10" y1="40" x2="150" y2="40" stroke="#64748b" stroke-width="1.5" />
+                <line x1="80" y1="10" x2="80" y2="70" stroke="#64748b" stroke-width="1.5" />
+                <!-- Parabola floating above -->
+                <path d="M 40,15 Q 80,25 120,15" fill="none" stroke="#f43f5e" stroke-width="2.5" />
+              </svg>
+            </div>
+            <div class="text-[11px] font-mono text-rose-400 font-bold text-center">Number of Zeroes = 0</div>
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300 flex items-center justify-between">
+          <span class="font-bold text-amber-400">💡 Summary Rule:</span>
+          <span>A polynomial of degree 2 can have <strong>at most 2 zeroes</strong>.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 5: CUBIC POLYNOMIALS & GENERAL DEGREE N RULE -->
+    <!-- ========================================================================= -->
+    <section id="slide-4" class="slide-pane hidden slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase mb-2">
+            <span>NCERT Pages 6-8 • Cubics &amp; Degree n</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Cubic Graphs &amp; Degree n Theorem</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            In general, given a polynomial p(x) of degree n, the graph of y = p(x) intersects the x-axis at <strong>at most n points</strong>. Therefore, a polynomial of degree n has <strong>at most n zeroes</strong>.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Cubic 3 zeroes -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300">Fig. 2.6 • 3 Zeroes</span>
+            <h4 class="text-sm font-bold text-white font-mono">y = x³ - 4x</h4>
+            <p class="text-xs text-slate-400">Cuts at <strong>x = -2, 0, and 2</strong>.</p>
+            <div class="h-24 bg-slate-900 rounded border border-slate-800 flex items-center justify-center">
+              <svg class="w-full h-full" viewBox="0 0 160 80">
+                <line x1="10" y1="40" x2="150" y2="40" stroke="#64748b" stroke-width="1.5"/>
+                <line x1="80" y1="10" x2="80" y2="70" stroke="#64748b" stroke-width="1.5"/>
+                <!-- S curve -->
+                <path d="M 25,70 Q 50,15 80,40 T 135,10" fill="none" stroke="#6366f1" stroke-width="2.5"/>
+                <circle cx="45" cy="40" r="3" fill="#818cf8"/>
+                <circle cx="80" cy="40" r="3" fill="#818cf8"/>
+                <circle cx="115" cy="40" r="3" fill="#818cf8"/>
+              </svg>
+            </div>
+            <div class="text-[11px] text-indigo-400 font-mono font-bold text-center">3 Zeroes: {-2, 0, 2}</div>
+          </div>
+
+          <!-- Cubic 2 zeroes -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300">Fig. 2.8 • 2 Zeroes</span>
+            <h4 class="text-sm font-bold text-white font-mono">y = x³ - x² = x²(x - 1)</h4>
+            <p class="text-xs text-slate-400">Touches at <strong>x = 0</strong> and cuts at <strong>x = 1</strong>.</p>
+            <div class="h-24 bg-slate-900 rounded border border-slate-800 flex items-center justify-center">
+              <svg class="w-full h-full" viewBox="0 0 160 80">
+                <line x1="10" y1="40" x2="150" y2="40" stroke="#64748b" stroke-width="1.5"/>
+                <line x1="80" y1="10" x2="80" y2="70" stroke="#64748b" stroke-width="1.5"/>
+                <!-- Curve touching origin then crossing x=1 -->
+                <path d="M 30,65 Q 60,35 80,40 Q 95,45 105,40 T 130,15" fill="none" stroke="#06b6d4" stroke-width="2.5"/>
+                <circle cx="80" cy="40" r="3" fill="#22d3ee"/>
+                <circle cx="105" cy="40" r="3" fill="#22d3ee"/>
+              </svg>
+            </div>
+            <div class="text-[11px] text-cyan-400 font-mono font-bold text-center">2 Zeroes: {0, 1}</div>
+          </div>
+
+          <!-- Cubic 1 zero -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300">Fig. 2.7 • 1 Zero</span>
+            <h4 class="text-sm font-bold text-white font-mono">y = x³</h4>
+            <p class="text-xs text-slate-400">Cuts x-axis only at the origin <strong>(0, 0)</strong>.</p>
+            <div class="h-24 bg-slate-900 rounded border border-slate-800 flex items-center justify-center">
+              <svg class="w-full h-full" viewBox="0 0 160 80">
+                <line x1="10" y1="40" x2="150" y2="40" stroke="#64748b" stroke-width="1.5"/>
+                <line x1="80" y1="10" x2="80" y2="70" stroke="#64748b" stroke-width="1.5"/>
+                <!-- Inflection through origin -->
+                <path d="M 35,70 Q 75,45 80,40 T 125,10" fill="none" stroke="#10b981" stroke-width="2.5"/>
+                <circle cx="80" cy="40" r="3" fill="#34d399"/>
+              </svg>
+            </div>
+            <div class="text-[11px] text-emerald-400 font-mono font-bold text-center">1 Zero: {0}</div>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-gradient-to-r from-indigo-950/60 to-cyan-950/60 border border-indigo-500/30 flex items-center justify-between">
+          <div>
+            <div class="text-xs font-bold text-white uppercase tracking-wider">Universal Degree Theorem</div>
+            <p class="text-xs text-slate-300 mt-0.5">Linear: at most 1 zero • Quadratic: at most 2 zeroes • Cubic: at most 3 zeroes • Degree n: at most n zeroes.</p>
+          </div>
+          <span class="text-2xl">🎓</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 6: EXERCISE 2.1 & EXAMPLE 1 GRAPH INTERACTIVE LAB -->
+    <!-- ========================================================================= -->
+    <section id="slide-5" class="slide-pane hidden slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase mb-2">
+              <span>NCERT Pages 8-9 • Exercise 2.1</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Exercise 2.1: Finding Zeroes from Graphs</h2>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+              Count how many times each graph intersects the <strong>horizontal x-axis</strong>!
+            </p>
+          </div>
+          <div class="text-xs font-mono font-bold text-cyan-300 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800">
+            Interactive Graph Trainer
+          </div>
+        </div>
+
+        <!-- 6 Graph Cards from Exercise 2.1 -->
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+          <!-- Graph 1 -->
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-center">
+            <div class="text-xs font-bold text-slate-300">Graph (i) - Horizontal Line</div>
+            <div class="h-24 bg-slate-900 rounded border border-slate-800 flex items-center justify-center">
+              <svg class="w-full h-full" viewBox="0 0 140 70">
+                <line x1="10" y1="35" x2="130" y2="35" stroke="#64748b" stroke-width="1.5"/>
+                <line x1="70" y1="10" x2="70" y2="60" stroke="#64748b" stroke-width="1.5"/>
+                <line x1="10" y1="18" x2="130" y2="18" stroke="#38bdf8" stroke-width="2.5"/>
+              </svg>
+            </div>
+            <div class="text-xs font-bold text-emerald-400 font-mono">0 Zeroes</div>
+            <div class="text-[10px] text-slate-400">Parallel to x-axis, never intersects!</div>
+          </div>
+
+          <!-- Graph 2 -->
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-center">
+            <div class="text-xs font-bold text-slate-300">Graph (ii) - S-Curve</div>
+            <div class="h-24 bg-slate-900 rounded border border-slate-800 flex items-center justify-center">
+              <svg class="w-full h-full" viewBox="0 0 140 70">
+                <line x1="10" y1="35" x2="130" y2="35" stroke="#64748b" stroke-width="1.5"/>
+                <line x1="70" y1="10" x2="70" y2="60" stroke="#64748b" stroke-width="1.5"/>
+                <path d="M 20,55 Q 50,45 70,35 Q 90,25 120,15" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+                <circle cx="70" cy="35" r="3.5" fill="#f43f5e" class="pulse-ring"/>
+              </svg>
+            </div>
+            <div class="text-xs font-bold text-emerald-400 font-mono">1 Zero</div>
+            <div class="text-[10px] text-slate-400">Intersects x-axis at 1 point.</div>
+          </div>
+
+          <!-- Graph 3 -->
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-center">
+            <div class="text-xs font-bold text-slate-300">Graph (iii) - Wave</div>
+            <div class="h-24 bg-slate-900 rounded border border-slate-800 flex items-center justify-center">
+              <svg class="w-full h-full" viewBox="0 0 140 70">
+                <line x1="10" y1="35" x2="130" y2="35" stroke="#64748b" stroke-width="1.5"/>
+                <line x1="70" y1="10" x2="70" y2="60" stroke="#64748b" stroke-width="1.5"/>
+                <path d="M 20,60 Q 40,10 65,35 Q 90,60 120,10" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+                <circle cx="32" cy="35" r="3" fill="#f43f5e"/>
+                <circle cx="65" cy="35" r="3" fill="#f43f5e"/>
+                <circle cx="106" cy="35" r="3" fill="#f43f5e"/>
+              </svg>
+            </div>
+            <div class="text-xs font-bold text-emerald-400 font-mono">3 Zeroes</div>
+            <div class="text-[10px] text-slate-400">Intersects x-axis at 3 points.</div>
+          </div>
+
+          <!-- Graph 4 -->
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-center">
+            <div class="text-xs font-bold text-slate-300">Graph (iv) - Upward U</div>
+            <div class="h-24 bg-slate-900 rounded border border-slate-800 flex items-center justify-center">
+              <svg class="w-full h-full" viewBox="0 0 140 70">
+                <line x1="10" y1="35" x2="130" y2="35" stroke="#64748b" stroke-width="1.5"/>
+                <line x1="70" y1="10" x2="70" y2="60" stroke="#64748b" stroke-width="1.5"/>
+                <path d="M 35,15 Q 70,55 105,15" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+                <circle cx="48" cy="35" r="3" fill="#f43f5e"/>
+                <circle cx="92" cy="35" r="3" fill="#f43f5e"/>
+              </svg>
+            </div>
+            <div class="text-xs font-bold text-emerald-400 font-mono">2 Zeroes</div>
+            <div class="text-[10px] text-slate-400">Intersects x-axis at 2 points.</div>
+          </div>
+
+          <!-- Graph 5 -->
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-center">
+            <div class="text-xs font-bold text-slate-300">Graph (v) - Double Dip</div>
+            <div class="h-24 bg-slate-900 rounded border border-slate-800 flex items-center justify-center">
+              <svg class="w-full h-full" viewBox="0 0 140 70">
+                <line x1="10" y1="35" x2="130" y2="35" stroke="#64748b" stroke-width="1.5"/>
+                <line x1="70" y1="10" x2="70" y2="60" stroke="#64748b" stroke-width="1.5"/>
+                <path d="M 20,15 Q 35,60 50,35 Q 65,15 80,35 Q 95,60 120,15" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+                <circle cx="28" cy="35" r="3" fill="#f43f5e"/>
+                <circle cx="50" cy="35" r="3" fill="#f43f5e"/>
+                <circle cx="80" cy="35" r="3" fill="#f43f5e"/>
+                <circle cx="108" cy="35" r="3" fill="#f43f5e"/>
+              </svg>
+            </div>
+            <div class="text-xs font-bold text-emerald-400 font-mono">4 Zeroes</div>
+            <div class="text-[10px] text-slate-400">Intersects x-axis at 4 points!</div>
+          </div>
+
+          <!-- Graph 6 -->
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-center">
+            <div class="text-xs font-bold text-slate-300">Graph (vi) - Touches &amp; Cuts</div>
+            <div class="h-24 bg-slate-900 rounded border border-slate-800 flex items-center justify-center">
+              <svg class="w-full h-full" viewBox="0 0 140 70">
+                <line x1="10" y1="35" x2="130" y2="35" stroke="#64748b" stroke-width="1.5"/>
+                <line x1="70" y1="10" x2="70" y2="60" stroke="#64748b" stroke-width="1.5"/>
+                <path d="M 20,55 Q 40,35 55,35 Q 70,35 85,15 Q 100,35 115,35" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+                <circle cx="55" cy="35" r="3" fill="#f43f5e"/>
+                <circle cx="93" cy="35" r="3" fill="#f43f5e"/>
+                <circle cx="115" cy="35" r="3" fill="#f43f5e"/>
+              </svg>
+            </div>
+            <div class="text-xs font-bold text-emerald-400 font-mono">3 Zeroes</div>
+            <div class="text-[10px] text-slate-400">Touches twice and cuts once.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 7: RELATIONSHIP: ZEROES & COEFFICIENTS (QUADRATIC) -->
+    <!-- ========================================================================= -->
+    <section id="slide-6" class="slide-pane hidden slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase mb-2">
+            <span>Section 2.3 • Core Algebraic Relation</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Zeroes &amp; Coefficients of a Quadratic</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            If α and β are the zeroes of the quadratic polynomial p(x) = ax² + bx + c, then (x - α) and (x - β) are factors.
+          </p>
+        </div>
+
+        <!-- The Twin Formulae -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-4 rounded-xl bg-slate-950 border border-emerald-500/30 text-center space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 uppercase">Formula 1</span>
+            <div class="text-xl font-mono font-black text-emerald-400">α + β = -b / a</div>
+            <div class="text-xs text-slate-300">Sum of Zeroes = - (Coefficient of x) / (Coefficient of x²)</div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-950 border border-cyan-500/30 text-center space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 uppercase">Formula 2</span>
+            <div class="text-xl font-mono font-black text-cyan-400">αβ = c / a</div>
+            <div class="text-xs text-slate-300">Product of Zeroes = (Constant term) / (Coefficient of x²)</div>
+          </div>
+        </div>
+
+        <!-- Interactive Splitting the Middle Term Walkthrough -->
+        <div class="p-5 rounded-xl bg-slate-950 border border-slate-800 space-y-4">
+          <div class="flex items-center justify-between">
+            <h4 class="text-sm font-bold text-white flex items-center space-x-2">
+              <span>🔀</span>
+              <span>Splitting the Middle Term &amp; Verification (NCERT Example 2 &amp; Page 18)</span>
+            </h4>
+            <div class="flex items-center space-x-1.5">
+              <button onclick="loadQuadraticExample('p1')" class="px-2.5 py-1 rounded-md text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-200">2x² - 8x + 6</button>
+              <button onclick="loadQuadraticExample('p2')" class="px-2.5 py-1 rounded-md text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-200">x² + 7x + 10</button>
+              <button onclick="loadQuadraticExample('p3')" class="px-2.5 py-1 rounded-md text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-200">x² - 3</button>
+            </div>
+          </div>
+
+          <div id="quadraticStepDisplay" class="p-4 rounded-xl bg-slate-900 border border-slate-800 font-mono text-xs space-y-3">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 8: FORMING QUADRATIC POLYNOMIAL FROM SUM & PRODUCT -->
+    <!-- ========================================================================= -->
+    <section id="slide-7" class="slide-pane hidden slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase mb-2">
+            <span>NCERT Page 21 • Example 4 &amp; Exercise 2.2</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Forming a Quadratic Polynomial</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            When the sum of zeroes S = (α + β) and the product of zeroes P = (αβ) are known, the quadratic polynomial is given by:
+          </p>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-gradient-to-r from-indigo-950/80 via-slate-900 to-cyan-950/80 border border-indigo-500/40 text-center space-y-2">
+          <div class="text-lg sm:text-xl font-mono font-black text-indigo-300">
+            p(x) = k [ x² - (α + β)x + αβ ]
+          </div>
+          <div class="text-xs text-slate-400">where k is any real non-zero constant.</div>
+        </div>
+
+        <!-- Interactive Quadratic Generator -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-4">
+            <h4 class="text-sm font-bold text-white">Interactive Generator</h4>
+            <div class="space-y-3 text-xs">
+              <div>
+                <label class="block text-slate-400 mb-1">Sum of Zeroes (S = α + β):</label>
+                <input type="number" id="inputSumZeroes" value="-3" step="any" class="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white font-mono" oninput="generatePolynomialFromSP()">
+              </div>
+              <div>
+                <label class="block text-slate-400 mb-1">Product of Zeroes (P = αβ):</label>
+                <input type="number" id="inputProdZeroes" value="2" step="any" class="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white font-mono" oninput="generatePolynomialFromSP()">
+              </div>
+            </div>
+            <div class="flex items-center space-x-1.5 flex-wrap gap-y-1 pt-1 text-xs">
+              <span class="text-slate-400">NCERT Presets:</span>
+              <button onclick="setSP(-3, 2)" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200">Ex 4: S=-3, P=2</button>
+              <button onclick="setSP(0.25, -1)" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200">Ex 2.2(i): S=1/4, P=-1</button>
+              <button onclick="setSP(0, 2.236)" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200">Ex 2.2(iii): S=0, P=√5</button>
+            </div>
+          </div>
+
+          <div id="outputSPResult" class="p-5 rounded-xl bg-slate-950 border border-slate-800 flex flex-col justify-center space-y-3 font-mono text-xs">
+            <!-- Dynamically computed -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 9: CUBIC POLYNOMIALS: ZEROES & COEFFICIENTS RELATION -->
+    <!-- ========================================================================= -->
+    <section id="slide-8" class="slide-pane hidden slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase mb-2">
+            <span>NCERT Pages 21-22 • Cubic Zero-Coefficient Relations</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Zeroes &amp; Coefficients for Cubic Polynomials</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            If α, β, γ are the zeroes of the cubic polynomial p(x) = ax³ + bx² + cx + d (a ≠ 0), then:
+          </p>
+        </div>
+
+        <!-- 3 Cubic Formulae -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-4 rounded-xl bg-slate-950 border border-indigo-500/30 text-center space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 uppercase">Sum of Zeroes</span>
+            <div class="text-lg font-mono font-black text-indigo-400">α + β + γ = -b / a</div>
+            <div class="text-[11px] text-slate-400">- (Coefficient of x²) / (Coefficient of x³)</div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-950 border border-cyan-500/30 text-center space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 uppercase">Sum of Products (Two at a time)</span>
+            <div class="text-lg font-mono font-black text-cyan-400">αβ + βγ + γα = c / a</div>
+            <div class="text-[11px] text-slate-400">(Coefficient of x) / (Coefficient of x³)</div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-950 border border-emerald-500/30 text-center space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 uppercase">Product of Zeroes</span>
+            <div class="text-lg font-mono font-black text-emerald-400">αβγ = -d / a</div>
+            <div class="text-[11px] text-slate-400">- (Constant term) / (Coefficient of x³)</div>
+          </div>
+        </div>
+
+        <!-- Verification Example Box (NCERT Example 5) -->
+        <div class="p-5 rounded-xl bg-slate-950 border border-slate-800 space-y-3 font-mono text-xs">
+          <div class="text-sm font-bold text-white font-sans flex items-center space-x-2">
+            <span>✨</span>
+            <span>NCERT Example 5 Verification: p(x) = 3x³ - 5x² - 11x - 3</span>
+          </div>
+          <p class="text-slate-300 font-sans">Zeroes are α = 3, β = -1, γ = -1/3:</p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
+            <div class="p-3 rounded-lg bg-slate-900 border border-slate-800">
+              <div class="text-indigo-400 font-bold">1. Sum α + β + γ:</div>
+              <div class="mt-1 text-slate-300">3 + (-1) + (-1/3) = 5/3</div>
+              <div class="text-emerald-400 mt-1">= -(-5) / 3 = -b / a ✓</div>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-900 border border-slate-800">
+              <div class="text-cyan-400 font-bold">2. Sum of Products:</div>
+              <div class="mt-1 text-slate-300">3(-1) + (-1)(-1/3) + (-1/3)(3) = -11/3</div>
+              <div class="text-emerald-400 mt-1">= -11 / 3 = c / a ✓</div>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-900 border border-slate-800">
+              <div class="text-emerald-400 font-bold">3. Product αβγ:</div>
+              <div class="mt-1 text-slate-300">3 × (-1) × (-1/3) = 1 = 3/3</div>
+              <div class="text-emerald-400 mt-1">= -(-3) / 3 = -d / a ✓</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 10: CHAPTER SUMMARY & MASTERY QUIZ -->
+    <!-- ========================================================================= -->
+    <section id="slide-9" class="slide-pane hidden slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase mb-2">
+              <span>Section 2.4 • Summary &amp; Quiz</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Chapter Mastery Challenge</h2>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+              Test your understanding of the NCERT Polynomials concepts with instant sound feedback!
+            </p>
+          </div>
+          <div id="quizScoreBadge" class="px-4 py-2 rounded-xl bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-sm font-bold font-mono">
+            Score: 0 / 3
+          </div>
+        </div>
+
+        <!-- Quiz Questions -->
+        <div class="space-y-4">
+          <!-- Question 1 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <h4 class="text-xs font-bold text-slate-300">Q1. If the graph of a polynomial cuts the x-axis at 3 points and touches at 1 point, the total number of zeroes is:</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1 text-xs">
+              <button onclick="checkQuizAns(1, false, this)" class="quiz-btn p-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-left cursor-pointer">A) 3 zeroes</button>
+              <button onclick="checkQuizAns(1, true, this)" class="quiz-btn p-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-left cursor-pointer">B) 4 zeroes (3 distinct + 1 equal)</button>
+              <button onclick="checkQuizAns(1, false, this)" class="quiz-btn p-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-left cursor-pointer">C) 1 zero</button>
+            </div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <h4 class="text-xs font-bold text-slate-300">Q2. For the quadratic polynomial x² - 5x + 6, the sum and product of zeroes are:</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1 text-xs">
+              <button onclick="checkQuizAns(2, true, this)" class="quiz-btn p-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-left cursor-pointer">A) Sum = 5, Product = 6</button>
+              <button onclick="checkQuizAns(2, false, this)" class="quiz-btn p-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-left cursor-pointer">B) Sum = -5, Product = 6</button>
+              <button onclick="checkQuizAns(2, false, this)" class="quiz-btn p-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-left cursor-pointer">C) Sum = 6, Product = 5</button>
+            </div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <h4 class="text-xs font-bold text-slate-300">Q3. If the graph of ax² + bx + c is completely below the x-axis, the number of real zeroes is:</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1 text-xs">
+              <button onclick="checkQuizAns(3, false, this)" class="quiz-btn p-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-left cursor-pointer">A) 2 zeroes</button>
+              <button onclick="checkQuizAns(3, false, this)" class="quiz-btn p-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-left cursor-pointer">B) 1 zero</button>
+              <button onclick="checkQuizAns(3, true, this)" class="quiz-btn p-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-left cursor-pointer">C) 0 zeroes (No real zero)</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BOTTOM SLIDE CONTROLS BAR -->
+  <footer style="flex-shrink: 0;" class="border-t border-slate-800 bg-slate-900/95 backdrop-blur py-3 px-4 sticky bottom-0 z-50">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      <!-- Slide Pills -->
+      <div class="flex items-center space-x-1.5 overflow-x-auto max-w-full pb-1 sm:pb-0 scrollbar-none text-xs">
+        <button onclick="goToSlide(0)" class="slide-pill px-2.5 py-1 rounded-lg bg-cyan-600 text-white font-bold transition-all cursor-pointer">1. Intro</button>
+        <button onclick="goToSlide(1)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">2. Values &amp; Zeroes</button>
+        <button onclick="goToSlide(2)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">3. Parabola</button>
+        <button onclick="goToSlide(3)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">4. 3 Cases</button>
+        <button onclick="goToSlide(4)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">5. Cubics</button>
+        <button onclick="goToSlide(5)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">6. Ex 2.1 Lab</button>
+        <button onclick="goToSlide(6)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">7. Relations</button>
+        <button onclick="goToSlide(7)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">8. Quadratic Maker</button>
+        <button onclick="goToSlide(8)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">9. Cubic Relations</button>
+        <button onclick="goToSlide(9)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">10. Quiz</button>
+      </div>
+
+      <!-- Navigation & AutoPlay Buttons -->
+      <div class="flex items-center space-x-2 shrink-0">
+        <button id="autoPlaySlideshowBtn" onclick="toggleAutoPlaySlideshow()" class="px-3.5 py-1.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold shadow-lg shadow-cyan-600/30 flex items-center space-x-1.5 cursor-pointer transition-all">
+          <span id="autoPlayIcon">▶</span>
+          <span id="autoPlayText">Auto-Play</span>
+        </button>
+
+        <button id="prevSlideBtn" onclick="prevSlide()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold border border-slate-700 flex items-center space-x-1 cursor-pointer transition-all disabled:opacity-40 disabled:cursor-not-allowed">
+          <span>⏮</span>
+          <span>Prev</span>
+        </button>
+
+        <button id="nextSlideBtn" onclick="nextSlide()" class="px-4 py-1.5 rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white text-xs font-bold shadow-lg shadow-cyan-600/20 flex items-center space-x-1 cursor-pointer transition-all">
+          <span>Next</span>
+          <span>⏭</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT: AUDIO SYNTHESIZER, SPEECH NARRATION & SLIDESHOW ENGINE -->
+  <script>
+    // SLIDE DATA WITH VOICE NARRATIONS
+    const slideData = [
+      {
+        title: "Slide 1 of 10: Introduction, Degrees & Classification",
+        narration: "Welcome to Chapter 2: Polynomials. The highest power of x in a polynomial is called its degree. A polynomial of degree 1 is linear, degree 2 is quadratic, and degree 3 is cubic. Remember that expressions with variables in denominators or under square roots are not polynomials."
+      },
+      {
+        title: "Slide 2 of 10: Value of a Polynomial & Zeroes",
+        narration: "A real number k is called a zero of the polynomial p of x, if substituting k gives zero. For x squared minus 3x minus 4, both minus 1 and 4 give zero, so minus 1 and 4 are its zeroes."
+      },
+      {
+        title: "Slide 3 of 10: Geometrical Meaning & The Parabola",
+        narration: "Geometrically, the zeroes of a polynomial are the x-coordinates of the points where its graph intersects the x-axis. The graph of a quadratic polynomial is a curve called a parabola. It opens upwards if a is greater than zero, and opens downwards if a is less than zero."
+      },
+      {
+        title: "Slide 4 of 10: The 3 Cases of Quadratic Polynomials",
+        narration: "A parabola can cut the x-axis in three ways: it may cut at two distinct points for two zeroes, touch at one point for two equal zeroes, or stay completely off the axis for no zeroes. Thus, a quadratic polynomial has at most two zeroes."
+      },
+      {
+        title: "Slide 5 of 10: Cubic Graphs & Degree n Theorem",
+        narration: "A cubic polynomial graph can cut the x-axis at at most three points, so it has at most three zeroes. In general, a polynomial of degree n intersects the x-axis at at most n points and has at most n zeroes."
+      },
+      {
+        title: "Slide 6 of 10: Exercise 2.1 Graph Inspection Lab",
+        narration: "In Exercise 2.1, you find the number of zeroes simply by counting how many times the curve intersects the horizontal x-axis."
+      },
+      {
+        title: "Slide 7 of 10: Zeroes & Coefficients Relations",
+        narration: "For any quadratic polynomial ax squared plus bx plus c with zeroes alpha and beta, the sum of zeroes equals minus b over a, and the product of zeroes equals c over a. We verify this by splitting the middle term."
+      },
+      {
+        title: "Slide 8 of 10: Forming Quadratic Polynomial from Sum & Product",
+        narration: "If you know the sum S and product P of the zeroes, the quadratic polynomial is k times x squared minus S times x plus P."
+      },
+      {
+        title: "Slide 9 of 10: Cubic Zero-Coefficient Relationships",
+        narration: "For a cubic polynomial, the sum of zeroes is minus b over a, the sum of products taken two at a time is c over a, and the product of all three zeroes is minus d over a."
+      },
+      {
+        title: "Slide 10 of 10: Chapter Mastery Quiz",
+        narration: "Test your mastery of NCERT Polynomials with this quick quiz. Click your answers to hear instant sound feedback!"
+      }
+    ];
+
+    let currentSlide = 0;
+    const totalSlides = slideData.length;
+    let isVoiceEnabled = true;
+    let isSoundFxEnabled = true;
+    let isAutoPlaySlideshow = false;
+    let autoPlayInterval = null;
+    let countdownInterval = null;
+
+    // WEB AUDIO SYNTHESIZER
+    let audioCtx = null;
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, type = 'sine', duration = 0.15, gainVal = 0.08) {
+      if (!isSoundFxEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(gainVal, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {
+        console.warn('Audio not allowed yet:', e);
+      }
+    }
+
+    function playChime() {
+      playTone(523.25, 'triangle', 0.25, 0.12);
+      setTimeout(() => playTone(659.25, 'triangle', 0.25, 0.12), 100);
+      setTimeout(() => playTone(783.99, 'triangle', 0.35, 0.14), 200);
+    }
+
+    function playBuzzer() {
+      playTone(180, 'sawtooth', 0.35, 0.15);
+    }
+
+    function playSlideTransitionTone() {
+      playTone(440, 'sine', 0.08, 0.06);
+      setTimeout(() => playTone(587.33, 'sine', 0.1, 0.06), 60);
+    }
+
+    function speakNarration(text) {
+      document.getElementById('narrationSubtitlesText').textContent = text;
+      if (!isVoiceEnabled || !('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 1.0;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    window.toggleVoiceNarration = function() {
+      isVoiceEnabled = !isVoiceEnabled;
+      const icon = document.getElementById('voiceIcon');
+      const txt = document.getElementById('voiceText');
+      if (isVoiceEnabled) {
+        icon.textContent = '🔊';
+        txt.textContent = 'Voice: ON';
+        speakNarration(slideData[currentSlide].narration);
+      } else {
+        window.speechSynthesis.cancel();
+        icon.textContent = '🔇';
+        txt.textContent = 'Voice: OFF';
+      }
+    };
+
+    window.toggleSoundFx = function() {
+      isSoundFxEnabled = !isSoundFxEnabled;
+      const icon = document.getElementById('soundIcon');
+      const txt = document.getElementById('soundText');
+      if (isSoundFxEnabled) {
+        icon.textContent = '🎵';
+        txt.textContent = 'SFX: ON';
+        playTone(600, 'sine', 0.1);
+      } else {
+        icon.textContent = '🔇';
+        txt.textContent = 'SFX: OFF';
+      }
+    };
+
+    // SLIDE NAVIGATION
+    function goToSlide(idx) {
+      if (idx < 0) idx = 0;
+      if (idx >= totalSlides) idx = totalSlides - 1;
+      currentSlide = idx;
+
+      document.getElementById('slideSubtitle').textContent = slideData[currentSlide].title;
+      const pct = ((currentSlide + 1) / totalSlides) * 100;
+      document.getElementById('slideProgressBar').style.width = pct + '%';
+
+      for (let i = 0; i < totalSlides; i++) {
+        const pane = document.getElementById('slide-' + i);
+        if (pane) {
+          if (i === currentSlide) {
+            pane.classList.remove('hidden');
+            pane.classList.add('block');
+          } else {
+            pane.classList.add('hidden');
+            pane.classList.remove('block');
+          }
+        }
+      }
+
+      document.querySelectorAll('.slide-pill').forEach((pill, i) => {
+        if (i === currentSlide) {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-cyan-600 text-white font-bold transition-all cursor-pointer';
+        } else {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer';
+        }
+      });
+
+      document.getElementById('prevSlideBtn').disabled = (currentSlide === 0);
+      const nextBtn = document.getElementById('nextSlideBtn');
+      if (currentSlide === totalSlides - 1) {
+        nextBtn.innerHTML = '<span>Restart 🔄</span>';
+      } else {
+        nextBtn.innerHTML = '<span>Next</span><span>⏭</span>';
+      }
+
+      playSlideTransitionTone();
+      speakNarration(slideData[currentSlide].narration);
+
+      // Slide-specific actions
+      if (currentSlide === 1) {
+        evalPolynomialK();
+      } else if (currentSlide === 2) {
+        drawParabolaPreset(1, -3, -4);
+      } else if (currentSlide === 6) {
+        loadQuadraticExample('p1');
+      } else if (currentSlide === 7) {
+        generatePolynomialFromSP();
+      }
+
+      if (isAutoPlaySlideshow) {
+        resetAutoPlayCountdown();
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide >= totalSlides - 1) {
+        goToSlide(0);
+      } else {
+        goToSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        goToSlide(currentSlide - 1);
+      }
+    }
+
+    function toggleAutoPlaySlideshow() {
+      const btn = document.getElementById('autoPlaySlideshowBtn');
+      const icon = document.getElementById('autoPlayIcon');
+      const txt = document.getElementById('autoPlayText');
+      const bar = document.getElementById('autoPlayCountdownBar');
+
+      if (isAutoPlaySlideshow) {
+        isAutoPlaySlideshow = false;
+        clearInterval(autoPlayInterval);
+        clearInterval(countdownInterval);
+        icon.textContent = '▶';
+        txt.textContent = 'Auto-Play';
+        btn.className = 'px-3.5 py-1.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold shadow-lg shadow-cyan-600/30 flex items-center space-x-1.5 cursor-pointer transition-all';
+        bar.style.opacity = '0';
+      } else {
+        isAutoPlaySlideshow = true;
+        icon.textContent = '⏸';
+        txt.textContent = 'Pause';
+        btn.className = 'px-3.5 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold shadow-lg shadow-amber-600/30 flex items-center space-x-1.5 cursor-pointer transition-all';
+        bar.style.opacity = '1';
+        resetAutoPlayCountdown();
+      }
+    }
+
+    function resetAutoPlayCountdown() {
+      clearInterval(countdownInterval);
+      clearInterval(autoPlayInterval);
+
+      const bar = document.getElementById('autoPlayCountdownBar');
+      let elapsed = 0;
+      const durationMs = 10000; // 10 seconds per slide
+      const stepMs = 100;
+
+      countdownInterval = setInterval(() => {
+        elapsed += stepMs;
+        const pct = Math.min((elapsed / durationMs) * 100, 100);
+        bar.style.width = pct + '%';
+        if (elapsed >= durationMs) {
+          clearInterval(countdownInterval);
+        }
+      }, stepMs);
+
+      autoPlayInterval = setTimeout(() => {
+        if (isAutoPlaySlideshow) {
+          nextSlide();
+        }
+      }, durationMs);
+    }
+
+    // =========================================================================
+    // SLIDE 2: EVALUATION HELPER
+    // =========================================================================
+    function setTestK(val) {
+      document.getElementById('testKInput').value = val;
+      evalPolynomialK();
+    }
+
+    function evalPolynomialK() {
+      const k = parseFloat(document.getElementById('testKInput').value) || 0;
+      const val = (k * k) - (3 * k) - 4;
+      const isZero = (Math.abs(val) < 0.0001);
+
+      const box = document.getElementById('evalResultBox');
+      box.innerHTML = `
+        <div class="text-slate-300">p(${k}) = (${k})² - 3(${k}) - 4</div>
+        <div class="text-slate-300">p(${k}) = ${k*k} - (${3*k}) - 4 = <span class="font-bold ${isZero ? 'text-emerald-400 text-sm' : 'text-cyan-300'}">${val}</span></div>
+        <div class="mt-2 pt-2 border-t border-slate-800 ${isZero ? 'text-emerald-400 font-bold' : 'text-slate-400'}">
+          ${isZero ? `🎉 p(${k}) = 0! Therefore, ${k} is a ZERO of p(x)!` : `Since p(${k}) ≠ 0, ${k} is NOT a zero.`}
+        </div>
+      `;
+
+      if (isZero) {
+        playTone(660, 'sine', 0.15);
+      }
+    }
+
+    // =========================================================================
+    // SLIDE 3: PARABOLA CANVAS
+    // =========================================================================
+    function drawParabolaPreset(a, b, c) {
+      const eqEl = document.getElementById('currentGraphEquation');
+      const badgeEl = document.getElementById('graphZeroesBadge');
+
+      if (a === 1 && b === -3 && c === -4) {
+        eqEl.textContent = 'y = x² - 3x - 4';
+        badgeEl.textContent = 'Zeroes: x = -1, 4';
+      } else {
+        eqEl.textContent = 'y = -x² + 2x + 3';
+        badgeEl.textContent = 'Zeroes: x = -1, 3';
+      }
+
+      const canvas = document.getElementById('parabolaCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width;
+      const h = canvas.height;
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Grid origin
+      const ox = w / 2;
+      const oy = h / 2 + 30;
+      const scaleX = 35;
+      const scaleY = 16;
+
+      // Draw grid
+      ctx.strokeStyle = '#1e293b';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < w; x += scaleX) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+      }
+      for (let y = 0; y < h; y += scaleY * 2) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+      }
+
+      // Draw Axes
+      ctx.strokeStyle = '#64748b';
+      ctx.lineWidth = 2;
+      // X axis
+      ctx.beginPath(); ctx.moveTo(10, oy); ctx.lineTo(w - 10, oy); ctx.stroke();
+      // Y axis
+      ctx.beginPath(); ctx.moveTo(ox, 10); ctx.lineTo(ox, h - 10); ctx.stroke();
+
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '10px monospace';
+      ctx.fillText('X', w - 16, oy - 6);
+      ctx.fillText('Y', ox + 6, 18);
+      ctx.fillText('O', ox - 12, oy + 12);
+
+      // Draw Parabola curve
+      ctx.strokeStyle = a > 0 ? '#06b6d4' : '#6366f1';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+
+      let started = false;
+      for (let px = 20; px <= w - 20; px += 2) {
+        const x = (px - ox) / scaleX;
+        const y = a * x * x + b * x + c;
+        const py = oy - y * scaleY;
+        if (py >= 0 && py <= h) {
+          if (!started) {
+            ctx.moveTo(px, py);
+            started = true;
+          } else {
+            ctx.lineTo(px, py);
+          }
+        }
+      }
+      ctx.stroke();
+
+      // Highlight zeroes on x axis
+      // Solve ax² + bx + c = 0
+      const disc = b * b - 4 * a * c;
+      if (disc >= 0) {
+        const r1 = (-b - Math.sqrt(disc)) / (2 * a);
+        const r2 = (-b + Math.sqrt(disc)) / (2 * a);
+
+        [r1, r2].forEach(r => {
+          const rx = ox + r * scaleX;
+          ctx.fillStyle = '#10b981';
+          ctx.beginPath();
+          ctx.arc(rx, oy, 5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+
+          ctx.fillStyle = '#f8fafc';
+          ctx.font = 'bold 10px monospace';
+          ctx.fillText(`({r.toFixed(1)}, 0)`, rx - 16, oy - 10);
+        });
+      }
+    }
+
+    // =========================================================================
+    // SLIDE 7: QUADRATIC MIDDLE TERM SPLITTING
+    // =========================================================================
+    const quadExamples = {
+      p1: {
+        poly: '2x² - 8x + 6',
+        a: 2, b: -8, c: 6,
+        split: '2x² - 6x - 2x + 6 = 2x(x - 3) - 2(x - 3) = 2(x - 1)(x - 3)',
+        roots: [1, 3],
+        sum: '1 + 3 = 4',
+        sumFormula: '-(-8) / 2 = 8 / 2 = 4',
+        prod: '1 × 3 = 3',
+        prodFormula: '6 / 2 = 3'
+      },
+      p2: {
+        poly: 'x² + 7x + 10',
+        a: 1, b: 7, c: 10,
+        split: 'x² + 5x + 2x + 10 = x(x + 5) + 2(x + 5) = (x + 2)(x + 5)',
+        roots: [-2, -5],
+        sum: '-2 + (-5) = -7',
+        sumFormula: '-(7) / 1 = -7',
+        prod: '(-2) × (-5) = 10',
+        prodFormula: '10 / 1 = 10'
+      },
+      p3: {
+        poly: 'x² - 3',
+        a: 1, b: 0, c: -3,
+        split: 'x² - (√3)² = (x - √3)(x + √3)',
+        roots: ['√3', '-√3'],
+        sum: '√3 + (-√3) = 0',
+        sumFormula: '-(0) / 1 = 0',
+        prod: '(√3) × (-√3) = -3',
+        prodFormula: '-3 / 1 = -3'
+      }
+    };
+
+    function loadQuadraticExample(key) {
+      const ex = quadExamples[key];
+      const box = document.getElementById('quadraticStepDisplay');
+      box.innerHTML = `
+        <div class="text-white font-bold text-sm">Polynomial: {ex.poly}</div>
+        <div class="text-slate-400">Step 1: Factorise by splitting middle term:</div>
+        <div class="text-cyan-300 font-bold pl-2 border-l-2 border-cyan-500">{ex.split}</div>
+        <div class="text-slate-400">Step 2: Zeroes are α = {ex.roots[0]}, β = {ex.roots[1]}</div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+          <div class="p-2.5 rounded bg-slate-950 border border-slate-800">
+            <div class="text-emerald-400 font-bold">Sum of Zeroes:</div>
+            <div>Actual: {ex.sum}</div>
+            <div class="text-slate-400">Formula -b/a: {ex.sumFormula} ✓</div>
+          </div>
+          <div class="p-2.5 rounded bg-slate-950 border border-slate-800">
+            <div class="text-cyan-400 font-bold">Product of Zeroes:</div>
+            <div>Actual: {ex.prod}</div>
+            <div class="text-slate-400">Formula c/a: {ex.prodFormula} ✓</div>
+          </div>
+        </div>
+      `;
+      playTone(550, 'sine', 0.1);
+    }
+
+    // =========================================================================
+    // SLIDE 8: FORMING QUADRATIC GENERATOR
+    // =========================================================================
+    function setSP(s, p) {
+      document.getElementById('inputSumZeroes').value = s;
+      document.getElementById('inputProdZeroes').value = p;
+      generatePolynomialFromSP();
+    }
+
+    function generatePolynomialFromSP() {
+      const s = parseFloat(document.getElementById('inputSumZeroes').value) || 0;
+      const p = parseFloat(document.getElementById('inputProdZeroes').value) || 0;
+
+      const signS = s >= 0 ? `- {s}x` : `+ {Math.abs(s)}x`;
+      const signP = p >= 0 ? `+ {p}` : `- {Math.abs(p)}`;
+
+      const out = document.getElementById('outputSPResult');
+      out.innerHTML = `
+        <div class="text-slate-400 font-bold uppercase text-[10px]">Computed Result</div>
+        <div class="text-sm font-bold text-white">p(x) = k [ x² - ({s})x + ({p}) ]</div>
+        <div class="text-cyan-300 text-base font-black">p(x) = x² {signS} {signP}</div>
+        <div class="text-[11px] text-slate-400 pt-2 border-t border-slate-800">
+          Verified with coefficients: -b/a = -({-(s)})/1 = {s}, and c/a = {p}/1 = {p}.
+        </div>
+      `;
+    }
+
+    // =========================================================================
+    // SLIDE 10: QUIZ ENGINE
+    // =========================================================================
+    let quizScore = 0;
+    const answeredMap = {};
+
+    function checkQuizAns(qNum, isCorrect, btn) {
+      if (answeredMap[qNum]) return;
+      answeredMap[qNum] = true;
+
+      const parent = btn.parentElement;
+      const allBtns = parent.querySelectorAll('.quiz-btn');
+      allBtns.forEach(b => b.disabled = true);
+
+      if (isCorrect) {
+        btn.classList.remove('bg-slate-900', 'border-slate-700', 'text-slate-300');
+        btn.classList.add('bg-emerald-600', 'border-emerald-400', 'text-white');
+        quizScore++;
+        playChime();
+        speakNarration("Correct! Excellent job.");
+      } else {
+        btn.classList.remove('bg-slate-900', 'border-slate-700', 'text-slate-300');
+        btn.classList.add('bg-rose-600', 'border-rose-400', 'text-white');
+        playBuzzer();
+        speakNarration("Incorrect. Remember the mathematical theorem!");
+      }
+      document.getElementById('quizScoreBadge').textContent = `Score: {quizScore} / 3`;
+    }
+
+    // INITIALIZATION
+    document.addEventListener('DOMContentLoaded', () => {
+      goToSlide(0);
+    });
+  </script>
+</body>
+</html>
+

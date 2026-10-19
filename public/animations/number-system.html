@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class 9 Mathematics — Number System (Multimedia Animation)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    if (typeof tailwind === 'undefined') {
+      document.write('<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"><\/script>');
+    }
+  </script>
+  <style>
+    body { background-color: #020617; color: #f8fafc; }
+    @keyframes pulse-subtle {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.03); opacity: 0.92; }
+    }
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 15px rgba(99, 102, 241, 0.4); }
+      50% { box-shadow: 0 0 25px rgba(99, 102, 241, 0.8); }
+    }
+    .glow-effect {
+      animation: glow 2s infinite ease-in-out;
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+  </style>
+</head>
+<body style="background-color: #020617; color: #f8fafc;" class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Top Hero Navigation Header -->
+  <header class="border-b border-slate-800 bg-slate-900/90 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-500 flex items-center justify-center font-bold text-lg text-white shadow-lg shadow-indigo-500/25">
+          <span>π</span>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="font-black text-base sm:text-lg text-white tracking-tight">Number System — Class 9 Maths</h1>
+            <span class="px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">NCERT / CBSE</span>
+          </div>
+          <p class="text-xs text-slate-400">Interactive Multimedia Visualizer with Audio Narration &amp; Compass Construction</p>
+        </div>
+      </div>
+
+      <!-- Audio & Voice Narration Controls -->
+      <div class="flex items-center space-x-2.5">
+        <button id="voiceToggleBtn" onclick="toggleVoiceNarration()" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-300 border border-indigo-500/40 flex items-center space-x-1.5 transition-all">
+          <span id="voiceIcon">🔊</span>
+          <span id="voiceText">Voice: ON</span>
+        </button>
+        <button id="soundToggleBtn" onclick="toggleSoundFx()" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center space-x-1.5 transition-all">
+          <span id="soundIcon">🎵</span>
+          <span id="soundText">SFX: ON</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Chapter Section Tabs -->
+    <div class="max-w-7xl mx-auto px-4 flex items-center space-x-2 overflow-x-auto py-2 text-xs font-medium scrollbar-none border-t border-slate-800/60">
+      <button onclick="switchTab(0)" class="tab-btn active px-3.5 py-1.5 rounded-lg bg-indigo-600 text-white font-semibold transition-all shrink-0">
+        🌌 1. The Number Universe
+      </button>
+      <button onclick="switchTab(1)" class="tab-btn px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all shrink-0">
+        📐 2. Square Root Construction (√2, √3, √5)
+      </button>
+      <button onclick="switchTab(2)" class="tab-btn px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all shrink-0">
+        🔄 3. Decimal Expansions &amp; p/q Form
+      </button>
+      <button onclick="switchTab(3)" class="tab-btn px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all shrink-0">
+        ⚡ 4. Rationalizing the Denominator
+      </button>
+      <button onclick="switchTab(4)" class="tab-btn px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all shrink-0">
+        🎯 5. Challenge Quiz &amp; Sorter
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Animation Container -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 flex flex-col gap-6">
+
+    <!-- ==================== TAB 1: THE NUMBER UNIVERSE ==================== -->
+    <section id="tab-0" class="tab-content block space-y-5">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <div>
+            <h2 class="text-lg font-bold text-white flex items-center space-x-2">
+              <span class="text-indigo-400">🌌</span>
+              <span>The Hierarchy of Real Numbers (R)</span>
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">Explore how Natural, Whole, Integers, Rationals, and Irrationals nest together to form the Real Line.</p>
+          </div>
+          <!-- Player Controls for Universe Animation -->
+          <div class="flex items-center space-x-2">
+            <button onclick="prevUniverseStep()" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700">⏮ Prev</button>
+            <button id="universePlayBtn" onclick="toggleUniverseAutoplay()" class="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-md shadow-emerald-600/30">▶ Auto Journey</button>
+            <button onclick="nextUniverseStep()" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700">Next ⏭</button>
+          </div>
+        </div>
+
+        <!-- Interactive Visual Universe Canvas -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+          <!-- Left: Canvas Visualization -->
+          <div class="lg:col-span-7 bg-slate-950 rounded-xl p-4 border border-slate-800/80 flex flex-col items-center justify-center relative overflow-hidden min-h-[360px]">
+            <canvas id="universeCanvas" width="600" height="340" class="w-full h-auto max-w-full block"></canvas>
+            <!-- Timeline Step Indicator -->
+            <div class="flex items-center space-x-2 mt-3">
+              <span id="dot-u-0" class="w-2.5 h-2.5 rounded-full bg-indigo-500 transition-all"></span>
+              <span id="dot-u-1" class="w-2.5 h-2.5 rounded-full bg-slate-700 transition-all"></span>
+              <span id="dot-u-2" class="w-2.5 h-2.5 rounded-full bg-slate-700 transition-all"></span>
+              <span id="dot-u-3" class="w-2.5 h-2.5 rounded-full bg-slate-700 transition-all"></span>
+              <span id="dot-u-4" class="w-2.5 h-2.5 rounded-full bg-slate-700 transition-all"></span>
+            </div>
+          </div>
+
+          <!-- Right: Explanation Card & Live Details -->
+          <div class="lg:col-span-5 flex flex-col justify-between bg-slate-950/60 rounded-xl p-5 border border-slate-800/80 space-y-4">
+            <div>
+              <div class="flex items-center justify-between">
+                <span id="universeCategoryBadge" class="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">
+                  Step 1: Natural Numbers (N)
+                </span>
+                <span id="universeSymbol" class="text-2xl font-black text-indigo-400 font-serif">ℕ</span>
+              </div>
+              <h3 id="universeTitle" class="text-base font-bold text-white mt-3">Counting Numbers We Use in Daily Life</h3>
+              <p id="universeDescription" class="text-xs text-slate-300 mt-2 leading-relaxed">
+                Natural numbers are the positive counting integers beginning from 1, 2, 3, 4, ... up to infinity. You use them when counting apples, books, or chairs.
+              </p>
+
+              <!-- Examples Box -->
+              <div class="mt-4 p-3 rounded-lg bg-slate-900 border border-slate-800">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Examples in this set:</span>
+                <div id="universeExamples" class="mt-1 flex flex-wrap gap-1.5 text-xs font-mono font-bold text-emerald-400">
+                  <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700">1</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700">2</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700">3</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700">100</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700">10,000</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Key Insight Callout -->
+            <div class="p-3 rounded-xl bg-indigo-950/30 border border-indigo-500/30 text-xs text-indigo-200">
+              <strong class="text-indigo-400 font-bold block mb-1">💡 CBSE Key Takeaway:</strong>
+              <span id="universeInsight">Every Natural Number is a Whole Number, an Integer, and a Rational Number!</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 2: SQUARE ROOT CONSTRUCTION ==================== -->
+    <section id="tab-1" class="tab-content hidden space-y-5">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <div>
+            <h2 class="text-lg font-bold text-white flex items-center space-x-2">
+              <span class="text-emerald-400">📐</span>
+              <span>Constructing Irrational Numbers on the Number Line</span>
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">Watch the animated compass and Pythagoras theorem locate √2 (≈1.414) and √5 on the number line.</p>
+          </div>
+
+          <!-- Select Number to Construct -->
+          <div class="flex items-center space-x-2">
+            <span class="text-xs text-slate-400 font-medium">Construct:</span>
+            <button onclick="startRootConstruction(2)" id="btnRoot2" class="px-3 py-1.5 rounded-lg bg-indigo-600 text-white font-bold text-xs shadow-md">√2</button>
+            <button onclick="startRootConstruction(3)" id="btnRoot3" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs border border-slate-700">√3</button>
+            <button onclick="startRootConstruction(5)" id="btnRoot5" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs border border-slate-700">√5</button>
+            <button onclick="replayRootAnimation()" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center space-x-1 shadow-md">
+              <span>🔄</span>
+              <span>Replay Compass Arc</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Canvas for Construction -->
+        <div class="bg-slate-950 rounded-xl p-4 border border-slate-800/80 flex flex-col items-center justify-center relative overflow-hidden">
+          <canvas id="compassCanvas" width="760" height="380" class="w-full h-auto max-w-full block"></canvas>
+          
+          <!-- Live Construction Stage Bar -->
+          <div class="w-full max-w-2xl mt-4 px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between text-xs">
+            <div class="flex items-center space-x-2">
+              <span id="constructionStepBadge" class="w-6 h-6 rounded-full bg-emerald-500 text-slate-950 font-black flex items-center justify-center text-xs">1</span>
+              <span id="constructionStepText" class="font-semibold text-slate-200">Drawing Base OA = 1 unit on the Number Line</span>
+            </div>
+            <span id="constructionPythagoras" class="font-mono text-emerald-400 font-bold">OB² = 1² + 1² = 2 ⇒ OB = √2</span>
+          </div>
+        </div>
+
+        <!-- Step-by-Step Educational Explanation -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+          <div class="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800">
+            <h4 class="font-bold text-indigo-400 text-sm mb-1">Step 1: The Right Triangle</h4>
+            <p class="text-slate-300 leading-relaxed">Take OA = 1 unit on the number line. At A, draw perpendicular AB = 1 unit. Join OB.</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800">
+            <h4 class="font-bold text-emerald-400 text-sm mb-1">Step 2: Pythagoras Theorem</h4>
+            <p class="text-slate-300 leading-relaxed">OB = √(OA^2 + AB^2) = √(1^2 + 1^2) = √(2). The hypotenuse length is exactly √(2).</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800">
+            <h4 class="font-bold text-amber-400 text-sm mb-1">Step 3: Compass Arc</h4>
+            <p class="text-slate-300 leading-relaxed">With center O and radius OB, cut an arc on the number line at point P. Point P represents √(2) ≈ 1.414!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 3: DECIMAL EXPANSIONS & P/Q ==================== -->
+    <section id="tab-2" class="tab-content hidden space-y-5">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-5">
+        <div>
+          <h2 class="text-lg font-bold text-white flex items-center space-x-2">
+            <span class="text-cyan-400">🔄</span>
+            <span>Decimal Expansions: Terminating, Repeating &amp; Conversion to p/q</span>
+          </h2>
+          <p class="text-xs text-slate-400 mt-1">Understand the difference between rational and irrational decimals, and watch step-by-step algebra convert repeating decimals back to fractions.</p>
+        </div>
+
+        <!-- Classification Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Rational Decimals -->
+          <div class="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/30 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-sm text-emerald-400">Rational Numbers (Q)</span>
+              <span class="text-[10px] font-black uppercase px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">Can be p/q</span>
+            </div>
+            <ul class="text-xs text-slate-300 space-y-1 list-disc list-inside">
+              <li><strong>Terminating:</strong> Remainder becomes 0 (e.g. 7/8 = 0.875, 1/2 = 0.5).</li>
+              <li><strong>Non-terminating Recurring:</strong> Digits repeat forever (e.g. 1/3 = 0.333… = 0.3̄, 1/7 = 0.142857̄).</li>
+            </ul>
+          </div>
+
+          <!-- Irrational Decimals -->
+          <div class="p-4 rounded-xl bg-rose-950/20 border border-rose-500/30 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-sm text-rose-400">Irrational Numbers</span>
+              <span class="text-[10px] font-black uppercase px-2 py-0.5 rounded bg-rose-500/20 text-rose-300">Cannot be p/q</span>
+            </div>
+            <ul class="text-xs text-slate-300 space-y-1 list-disc list-inside">
+              <li><strong>Non-terminating &amp; Non-recurring:</strong> Decimal never stops and never repeats in a pattern!</li>
+              <li>Examples: √(2) = 1.41421356…, π = 3.14159265…, 0.1010010001…</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Step-by-Step Interactive p/q Converter -->
+        <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <h3 class="font-bold text-sm text-white flex items-center space-x-2">
+              <span class="text-amber-400">📝</span>
+              <span>Express Repeating Decimal 0.6̄ (0.666…) or 0.47̄ (0.4777…) as p/q</span>
+            </h3>
+            <div class="flex items-center space-x-2">
+              <button onclick="setDecimalExample('0.6bar')" id="btnEx1" class="px-3 py-1 rounded-lg bg-indigo-600 text-white text-xs font-bold">Try 0.6̄</button>
+              <button onclick="setDecimalExample('0.47bar')" id="btnEx2" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold border border-slate-700">Try 0.47̄</button>
+              <button onclick="setDecimalExample('0.001bar')" id="btnEx3" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold border border-slate-700">Try 0.001̄</button>
+            </div>
+          </div>
+
+          <!-- Animated Step Flow -->
+          <div id="decimalSolutionSteps" class="space-y-3 font-mono text-xs">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 4: RATIONALIZING THE DENOMINATOR ==================== -->
+    <section id="tab-3" class="tab-content hidden space-y-5">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-5">
+        <div>
+          <h2 class="text-lg font-bold text-white flex items-center space-x-2">
+            <span class="text-amber-400">⚡</span>
+            <span>Rationalizing the Denominator</span>
+          </h2>
+          <p class="text-xs text-slate-400 mt-1">When an expression contains a square root in the denominator, multiply by its conjugate so the denominator becomes a rational integer.</p>
+        </div>
+
+        <!-- Conjugate Formula Box -->
+        <div class="p-4 rounded-xl bg-indigo-950/20 border border-indigo-500/30 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <span class="text-xs text-indigo-300 font-bold uppercase tracking-wider">The Golden Identity:</span>
+            <div class="text-sm sm:text-base font-black text-white font-mono mt-1">
+              (a + √b)(a - √b) = a² - (√b)² = a² - b
+            </div>
+          </div>
+          <div class="text-xs text-slate-400 max-w-sm">
+            The radical vanishes because the difference of squares eliminates the middle terms!
+          </div>
+        </div>
+
+        <!-- Interactive Walkthrough -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Problem 1 -->
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-indigo-400">Problem 1 (Single Root)</span>
+              <span class="text-xs font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">1 / √2</span>
+            </div>
+            <div class="space-y-2 text-xs font-mono text-slate-200">
+              <div class="p-2 rounded bg-slate-900 border border-slate-800">
+                1 / √2 × (√2 / √2)
+              </div>
+              <div class="p-2 rounded bg-slate-900 border border-slate-800">
+                = (1 × √2) / (√2 × √2)
+              </div>
+              <div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 font-bold">
+                = √2 / 2  ✓
+              </div>
+            </div>
+          </div>
+
+          <!-- Problem 2 (Binomial Conjugate) -->
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-emerald-400">Problem 2 (Conjugate)</span>
+              <span class="text-xs font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">1 / (√7 - √6)</span>
+            </div>
+            <div class="space-y-2 text-xs font-mono text-slate-200">
+              <div class="p-2 rounded bg-slate-900 border border-slate-800">
+                Multiply numerator &amp; denominator by conjugate (√7 + √6):
+              </div>
+              <div class="p-2 rounded bg-slate-900 border border-slate-800">
+                = (√7 + √6) / [(√7)² - (√6)²]
+              </div>
+              <div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 font-bold">
+                = (√7 + √6) / (7 - 6) = √7 + √6  ✓
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 5: CHALLENGE QUIZ & SORTER ==================== -->
+    <section id="tab-4" class="tab-content hidden space-y-5">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-5">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="text-lg font-bold text-white flex items-center space-x-2">
+              <span class="text-pink-400">🎯</span>
+              <span>Test Your Mastery: Rational or Irrational?</span>
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">Classify the numbers given below as Rational or Irrational. Direct CBSE Exam questions!</p>
+          </div>
+          <div class="flex items-center space-x-3">
+            <span class="text-xs text-slate-400">Score:</span>
+            <span id="quizScore" class="px-3 py-1 rounded-xl bg-indigo-600 text-white font-bold text-sm shadow-md">0 / 6</span>
+          </div>
+        </div>
+
+        <!-- Quiz Cards Container -->
+        <div id="quizCardsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+          <!-- Injected via JavaScript -->
+        </div>
+
+        <div class="text-center pt-2">
+          <button onclick="resetQuiz()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold border border-slate-700 transition-all cursor-pointer">
+            🔄 Reset Quiz
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Interactive JavaScript Engine -->
+  <script>
+    // Audio Context Setup for Sound Effects (100% Client-Side Web Audio API)
+    let audioCtx = null;
+    let isSoundFxEnabled = true;
+    let isVoiceEnabled = true;
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    function playTone(freq, type = 'sine', duration = 0.2, gainVal = 0.15) {
+      if (!isSoundFxEnabled) return;
+      try {
+        initAudio();
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(gainVal, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (err) {
+        console.warn('Audio playback error:', err);
+      }
+    }
+
+    function playChime() {
+      playTone(523.25, 'triangle', 0.2, 0.1); // C5
+      setTimeout(() => playTone(659.25, 'triangle', 0.2, 0.1), 80); // E5
+      setTimeout(() => playTone(783.99, 'triangle', 0.35, 0.12), 160); // G5
+    }
+
+    function playSuccess() {
+      playTone(587.33, 'sine', 0.15, 0.15); // D5
+      setTimeout(() => playTone(880.00, 'sine', 0.35, 0.18), 120); // A5
+    }
+
+    function playWrong() {
+      playTone(220, 'sawtooth', 0.25, 0.12);
+    }
+
+    // Speech Narration via Web Speech Synthesis (Client-side, 0 external network calls)
+    function speakNarration(text) {
+      if (!isVoiceEnabled || !('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel(); // Stop any pending speech
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 1.0;
+      utterance.pitch = 1.0;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    window.toggleVoiceNarration = function() {
+      isVoiceEnabled = !isVoiceEnabled;
+      const btn = document.getElementById('voiceToggleBtn');
+      const icon = document.getElementById('voiceIcon');
+      const txt = document.getElementById('voiceText');
+      if (isVoiceEnabled) {
+        icon.textContent = '🔊';
+        txt.textContent = 'Voice: ON';
+        btn.className = 'px-3 py-1.5 rounded-xl text-xs font-semibold bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-300 border border-indigo-500/40 flex items-center space-x-1.5 transition-all';
+      } else {
+        window.speechSynthesis.cancel();
+        icon.textContent = '🔇';
+        txt.textContent = 'Voice: OFF';
+        btn.className = 'px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-400 border border-slate-700 flex items-center space-x-1.5 transition-all';
+      }
+    };
+
+    window.toggleSoundFx = function() {
+      isSoundFxEnabled = !isSoundFxEnabled;
+      const icon = document.getElementById('soundIcon');
+      const txt = document.getElementById('soundText');
+      if (isSoundFxEnabled) {
+        icon.textContent = '🎵';
+        txt.textContent = 'SFX: ON';
+        playTone(600, 'sine', 0.1);
+      } else {
+        icon.textContent = '🔇';
+        txt.textContent = 'SFX: OFF';
+      }
+    };
+
+    // Navigation Tab Switching
+    window.switchTab = function(idx) {
+      playTone(440, 'sine', 0.08, 0.1);
+      document.querySelectorAll('.tab-btn').forEach((b, i) => {
+        if (i === idx) {
+          b.className = 'tab-btn active px-3.5 py-1.5 rounded-lg bg-indigo-600 text-white font-semibold transition-all shrink-0';
+        } else {
+          b.className = 'tab-btn px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all shrink-0';
+        }
+      });
+      document.querySelectorAll('.tab-content').forEach((tc, i) => {
+        if (i === idx) {
+          tc.classList.remove('hidden');
+          tc.classList.add('block');
+        } else {
+          tc.classList.add('hidden');
+          tc.classList.remove('block');
+        }
+      });
+
+      if (idx === 0) {
+        drawUniverseFrame(currentUniverseStep);
+      } else if (idx === 1) {
+        startRootConstruction(2);
+      } else if (idx === 2) {
+        setDecimalExample('0.6bar');
+      }
+    };
+
+    // =========================================================================
+    // 1. THE NUMBER UNIVERSE (ANIMATED VENN & ZOOM)
+    // =========================================================================
+    let currentUniverseStep = 0;
+    let universeAutoplayInterval = null;
+
+    const universeData = [
+      {
+        badge: "Step 1: Natural Numbers (N)",
+        symbol: "ℕ",
+        title: "Counting Numbers (1, 2, 3...)",
+        desc: "Natural numbers are the positive integers you count with in real life: 1, 2, 3, 4, ... up to infinity. Zero is NOT a natural number.",
+        examples: ["1", "2", "3", "45", "100", "999"],
+        insight: "Every natural number is also a whole number, an integer, and a rational number.",
+        narrate: "Natural numbers are the counting numbers beginning with one, two, three, four, and extending to infinity.",
+        color: "#10b981", // Emerald
+        radius: 45
+      },
+      {
+        badge: "Step 2: Whole Numbers (W)",
+        symbol: "𝕎",
+        title: "Natural Numbers + Zero (0, 1, 2, 3...)",
+        desc: "When we include 0 with the natural numbers, we get the set of Whole numbers: {0, 1, 2, 3, ...}. Zero represents the absence of quantity.",
+        examples: ["0", "1", "2", "3", "50", "2026"],
+        insight: "Every natural number is a whole number, but zero is a whole number that is NOT a natural number.",
+        narrate: "Whole numbers include zero along with all the natural numbers.",
+        color: "#06b6d4", // Cyan
+        radius: 75
+      },
+      {
+        badge: "Step 3: Integers (Z)",
+        symbol: "ℤ",
+        title: "Whole Numbers + Negative Numbers (...-3, -2, -1, 0, 1...)",
+        desc: "Integers include positive numbers, zero, and negative numbers. Symbol Z comes from the German word 'Zahlen', meaning numbers.",
+        examples: ["-50", "-3", "-1", "0", "4", "12"],
+        insight: "Integers have no fractional or decimal parts. They mark full steps in both directions on the number line.",
+        narrate: "Integers include all whole numbers plus negative numbers, stretching endlessly in both positive and negative directions.",
+        color: "#6366f1", // Indigo
+        radius: 110
+      },
+      {
+        badge: "Step 4: Rational Numbers (Q)",
+        symbol: "ℚ",
+        title: "Numbers expressible as p / q (where q ≠ 0)",
+        desc: "A number is rational if it can be written as p/q where p and q are integers and q ≠ 0. The word rational comes from 'ratio'.",
+        examples: ["1/2", "3/4", "-7/5", "0.25", "0.333...", "0"],
+        insight: "Zero is rational because 0 = 0/1. Every integer n is rational because n = n/1.",
+        narrate: "Rational numbers are numbers that can be expressed as a ratio of two integers, p over q, where q is not zero.",
+        color: "#f59e0b", // Amber
+        radius: 145
+      },
+      {
+        badge: "Step 5: Real Numbers (R) = Rational + Irrational",
+        symbol: "ℝ",
+        title: "The Complete Continuum: Every Point on the Number Line",
+        desc: "Irrationals (√2, √3, π) fill all remaining gaps between rationals. Together, Rational and Irrational numbers form the Real Number System (R).",
+        examples: ["√2", "√3", "π", "e", "0.101001...", "-1.414..."],
+        insight: "Every real number is represented by a unique point on the number line, and every point represents a unique real number!",
+        narrate: "Real numbers combine all rational numbers and irrational numbers. Together, they populate every single point on the continuous number line.",
+        color: "#ec4899", // Pink
+        radius: 175
+      }
+    ];
+
+    function updateUniverseUI(step) {
+      const data = universeData[step];
+      document.getElementById('universeCategoryBadge').textContent = data.badge;
+      document.getElementById('universeSymbol').textContent = data.symbol;
+      document.getElementById('universeTitle').textContent = data.title;
+      document.getElementById('universeDescription').textContent = data.desc;
+      document.getElementById('universeInsight').textContent = data.insight;
+
+      const exContainer = document.getElementById('universeExamples');
+      exContainer.innerHTML = data.examples.map(ex => `<span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700">{ex}</span>`).join('');
+
+      for (let i = 0; i < 5; i++) {
+        const dot = document.getElementById(`dot-u-{i}`);
+        if (i <= step) {
+          dot.className = "w-2.5 h-2.5 rounded-full bg-indigo-500 transition-all scale-110";
+        } else {
+          dot.className = "w-2.5 h-2.5 rounded-full bg-slate-700 transition-all";
+        }
+      }
+
+      speakNarration(data.narrate);
+      playChime();
+    }
+
+    function drawUniverseFrame(step) {
+      const canvas = document.getElementById('universeCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const cx = canvas.width / 2;
+      const cy = canvas.height / 2;
+
+      // Draw nested concentric circles
+      for (let i = 4; i >= 0; i--) {
+        const d = universeData[i];
+        const isCurrent = (i === step);
+        const isPassed = (i <= step);
+
+        ctx.beginPath();
+        ctx.arc(cx, cy, d.radius, 0, Math.PI * 2);
+
+        if (isPassed) {
+          ctx.fillStyle = hexToRgba(d.color, isCurrent ? 0.25 : 0.08);
+          ctx.fill();
+          ctx.strokeStyle = d.color;
+          ctx.lineWidth = isCurrent ? 3 : 1.5;
+          ctx.stroke();
+
+          // Set label
+          ctx.font = isCurrent ? "bold 15px sans-serif" : "12px sans-serif";
+          ctx.fillStyle = d.color;
+          ctx.fillText(d.symbol, cx - 6, cy - d.radius + 18);
+        } else {
+          ctx.strokeStyle = '#334155';
+          ctx.lineWidth = 1;
+          ctx.setLineDash([4, 4]);
+          ctx.stroke();
+          ctx.setLineDash([]);
+        }
+      }
+
+      // Draw floating examples in active circles
+      ctx.font = "bold 11px monospace";
+      ctx.fillStyle = "#ffffff";
+      if (step >= 0) {
+        ctx.fillText("1, 2, 3", cx - 18, cy + 5);
+      }
+      if (step >= 1) {
+        ctx.fillText("0", cx - 5, cy - 50);
+      }
+      if (step >= 2) {
+        ctx.fillText("-1, -5", cx - 85, cy + 5);
+      }
+      if (step >= 3) {
+        ctx.fillText("½, ¾", cx + 80, cy - 30);
+      }
+      if (step >= 4) {
+        ctx.fillText("√2, π", cx - 120, cy - 60);
+        ctx.fillText("√3, e", cx + 110, cy + 60);
+      }
+    }
+
+    function hexToRgba(hex, alpha) {
+      const c = hex.substring(1);
+      const num = parseInt(c, 16);
+      return `rgba({(num >> 16) & 255}, {(num >> 8) & 255}, {num & 255}, {alpha})`;
+    }
+
+    window.nextUniverseStep = function() {
+      currentUniverseStep = (currentUniverseStep + 1) % universeData.length;
+      updateUniverseUI(currentUniverseStep);
+      drawUniverseFrame(currentUniverseStep);
+    };
+
+    window.prevUniverseStep = function() {
+      currentUniverseStep = (currentUniverseStep - 1 + universeData.length) % universeData.length;
+      updateUniverseUI(currentUniverseStep);
+      drawUniverseFrame(currentUniverseStep);
+    };
+
+    window.toggleUniverseAutoplay = function() {
+      const btn = document.getElementById('universePlayBtn');
+      if (universeAutoplayInterval) {
+        clearInterval(universeAutoplayInterval);
+        universeAutoplayInterval = null;
+        btn.textContent = "▶ Auto Journey";
+        btn.className = "px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-md shadow-emerald-600/30";
+      } else {
+        btn.textContent = "⏸ Pause";
+        btn.className = "px-4 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold shadow-md shadow-amber-600/30";
+        nextUniverseStep();
+        universeAutoplayInterval = setInterval(() => {
+          nextUniverseStep();
+        }, 5000);
+      }
+    };
+
+    // =========================================================================
+    // 2. SQUARE ROOT ON NUMBER LINE (COMPASS ANIMATION)
+    // =========================================================================
+    let rootAnimationReq = null;
+    let currentRootTarget = 2; // 2, 3, or 5
+    let animProgress = 0; // 0 to 1
+
+    window.startRootConstruction = function(n) {
+      currentRootTarget = n;
+      document.querySelectorAll('#btnRoot2, #btnRoot3, #btnRoot5').forEach(b => {
+        b.className = 'px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs border border-slate-700';
+      });
+      document.getElementById(`btnRoot{n}`).className = 'px-3 py-1.5 rounded-lg bg-indigo-600 text-white font-bold text-xs shadow-md';
+
+      if (n === 2) {
+        document.getElementById('constructionPythagoras').textContent = "OB² = 1² + 1² = 2 ⇒ OB = √2 ≈ 1.414";
+        speakNarration("Constructing square root of two on the number line using a right triangle with base one and perpendicular one.");
+      } else if (n === 3) {
+        document.getElementById('constructionPythagoras').textContent = "OC² = (√2)² + 1² = 3 ⇒ OC = √3 ≈ 1.732";
+        speakNarration("Constructing square root of three using square root of two as the base and perpendicular of one unit.");
+      } else if (n === 5) {
+        document.getElementById('constructionPythagoras').textContent = "OB² = 2² + 1² = 5 ⇒ OB = √5 ≈ 2.236";
+        speakNarration("Constructing square root of five on the number line using base of two units and perpendicular of one unit.");
+      }
+
+      replayRootAnimation();
+    };
+
+    window.replayRootAnimation = function() {
+      if (rootAnimationReq) cancelAnimationFrame(rootAnimationReq);
+      animProgress = 0;
+      animateCompass();
+    };
+
+    function animateCompass() {
+      animProgress += 0.008;
+      if (animProgress > 1) animProgress = 1;
+
+      renderCompassCanvas(animProgress);
+
+      if (animProgress < 1) {
+        rootAnimationReq = requestAnimationFrame(animateCompass);
+      } else {
+        playSuccess();
+      }
+    }
+
+    function renderCompassCanvas(t) {
+      const canvas = document.getElementById('compassCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const originX = 120;
+      const originY = 280;
+      const unitScale = 160; // 1 unit = 160 px
+
+      // 1. Draw Number line
+      ctx.strokeStyle = '#64748b';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(40, originY);
+      ctx.lineTo(canvas.width - 40, originY);
+      ctx.stroke();
+
+      // Number line arrows
+      drawArrow(ctx, canvas.width - 40, originY, 'right');
+      drawArrow(ctx, 40, originY, 'left');
+
+      // Ticks & Labels
+      ctx.font = 'bold 13px sans-serif';
+      ctx.fillStyle = '#94a3b8';
+      for (let i = -1; i <= 3; i++) {
+        const tx = originX + i * unitScale;
+        ctx.beginPath();
+        ctx.moveTo(tx, originY - 6);
+        ctx.lineTo(tx, originY + 6);
+        ctx.stroke();
+        ctx.fillText(i.toString(), tx - 4, originY + 24);
+      }
+
+      ctx.fillStyle = '#f8fafc';
+      ctx.fillText("O (0)", originX - 14, originY + 40);
+
+      // 2. Base side on line
+      const baseUnits = currentRootTarget === 5 ? 2 : 1;
+      const baseAx = originX + baseUnits * unitScale;
+      const baseAy = originY;
+
+      // Base phase: t from 0 to 0.3
+      const tBase = Math.min(1, t / 0.3);
+      ctx.strokeStyle = '#0284c7';
+      ctx.lineWidth = 3.5;
+      ctx.beginPath();
+      ctx.moveTo(originX, originY);
+      ctx.lineTo(originX + (baseAx - originX) * tBase, originY);
+      ctx.stroke();
+
+      if (tBase > 0.8) {
+        ctx.fillStyle = '#0284c7';
+        ctx.fillText(`A ({baseUnits})`, baseAx - 6, originY + 40);
+      }
+
+      // 3. Perpendicular side AB: t from 0.3 to 0.6
+      const perpUnits = 1;
+      const perpBx = baseAx;
+      const perpBy = originY - perpUnits * unitScale;
+
+      if (t > 0.3) {
+        const tPerp = Math.min(1, (t - 0.3) / 0.3);
+        ctx.strokeStyle = '#e11d48';
+        ctx.lineWidth = 3.5;
+        ctx.beginPath();
+        ctx.moveTo(baseAx, baseAy);
+        ctx.lineTo(baseAx, baseAy + (perpBy - baseAy) * tPerp);
+        ctx.stroke();
+
+        // Right angle marker
+        if (tPerp > 0.8) {
+          ctx.strokeStyle = '#94a3b8';
+          ctx.lineWidth = 1.5;
+          ctx.strokeRect(baseAx - 16, baseAy - 16, 16, 16);
+          ctx.fillStyle = '#e11d48';
+          ctx.fillText("B", perpBx + 8, perpBy + 4);
+          ctx.fillText("1 unit", perpBx + 10, (baseAy + perpBy) / 2);
+        }
+      }
+
+      // 4. Hypotenuse OB: t from 0.6 to 0.8
+      const rootVal = Math.sqrt(baseUnits * baseUnits + perpUnits * perpUnits);
+      if (t > 0.6) {
+        const tHyp = Math.min(1, (t - 0.6) / 0.2);
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 3.5;
+        ctx.beginPath();
+        ctx.moveTo(originX, originY);
+        ctx.lineTo(originX + (perpBx - originX) * tHyp, originY + (perpBy - originY) * tHyp);
+        ctx.stroke();
+
+        if (tHyp > 0.8) {
+          ctx.fillStyle = '#10b981';
+          const midX = (originX + perpBx) / 2 - 25;
+          const midY = (originY + perpBy) / 2 - 10;
+          ctx.fillText(`√{currentRootTarget}`, midX, midY);
+        }
+      }
+
+      // 5. Compass Arc Swinging Down to Number Line: t from 0.8 to 1.0
+      if (t > 0.8) {
+        const tArc = (t - 0.8) / 0.2;
+        const radius = Math.hypot(perpBx - originX, originY - perpBy);
+        const startAngle = -Math.atan2(originY - perpBy, perpBx - originX);
+        const endAngle = 0; // Hits the positive x axis
+        const currentAngle = startAngle + (endAngle - startAngle) * tArc;
+
+        // Compass Arc in Gold / Amber
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 2.5;
+        ctx.setLineDash([5, 4]);
+        ctx.beginPath();
+        ctx.arc(originX, originY, radius, startAngle, currentAngle);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Compass needle & pencil visual indicator
+        const curX = originX + radius * Math.cos(currentAngle);
+        const curY = originY + radius * Math.sin(currentAngle);
+
+        // Pencil tip dot
+        ctx.fillStyle = '#f59e0b';
+        ctx.beginPath();
+        ctx.arc(curX, curY, 5, 0, Math.PI * 2);
+        ctx.fill();
+
+        // When arc reaches number line
+        if (tArc >= 0.98) {
+          const pointPx = originX + rootVal * unitScale;
+          ctx.fillStyle = '#f59e0b';
+          ctx.beginPath();
+          ctx.arc(pointPx, originY, 6, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.font = 'bold 15px sans-serif';
+          ctx.fillText(`P (√{currentRootTarget} ≈ {rootVal.toFixed(3)})`, pointPx - 30, originY + 45);
+        }
+      }
+    }
+
+    function drawArrow(ctx, x, y, dir) {
+      ctx.save();
+      ctx.fillStyle = '#64748b';
+      ctx.beginPath();
+      if (dir === 'right') {
+        ctx.moveTo(x, y - 5);
+        ctx.lineTo(x + 10, y);
+        ctx.lineTo(x, y + 5);
+      } else {
+        ctx.moveTo(x, y - 5);
+        ctx.lineTo(x - 10, y);
+        ctx.lineTo(x, y + 5);
+      }
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
+
+    // =========================================================================
+    // 3. P / Q CONVERTER (ANIMATED ALGEBRA)
+    // =========================================================================
+    window.setDecimalExample = function(type) {
+      document.querySelectorAll('#btnEx1, #btnEx2, #btnEx3').forEach(b => {
+        b.className = 'px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold border border-slate-700';
+      });
+
+      const container = document.getElementById('decimalSolutionSteps');
+      playTone(520, 'sine', 0.1);
+
+      if (type === '0.6bar') {
+        document.getElementById('btnEx1').className = 'px-3 py-1 rounded-lg bg-indigo-600 text-white text-xs font-bold';
+        container.innerHTML = `
+          <div class="p-3 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">
+            <span class="text-indigo-400 font-bold block mb-1">Step 1: Let x equal the recurring decimal:</span>
+            x = 0.6666...   — (Equation 1)
+          </div>
+          <div class="p-3 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">
+            <span class="text-indigo-400 font-bold block mb-1">Step 2: Since 1 digit repeats, multiply by 10:</span>
+            10x = 6.6666...   — (Equation 2)
+          </div>
+          <div class="p-3 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">
+            <span class="text-indigo-400 font-bold block mb-1">Step 3: Subtract Equation (1) from Equation (2):</span>
+            10x - x = (6.6666...) - (0.6666...)<br>
+            9x = 6
+          </div>
+          <div class="p-3.5 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 font-bold text-sm">
+            x = 6 / 9 = 2 / 3  ✓ (Rational in p/q form!)
+          </div>
+        `;
+        speakNarration("Let x equal zero point six repeating. Multiplying by ten gives ten x equals six point six repeating. Subtracting gives nine x equals six, so x equals two thirds.");
+      } else if (type === '0.47bar') {
+        document.getElementById('btnEx2').className = 'px-3 py-1 rounded-lg bg-indigo-600 text-white text-xs font-bold';
+        container.innerHTML = `
+          <div class="p-3 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">
+            <span class="text-indigo-400 font-bold block mb-1">Step 1: Notice only 7 repeats (not 4):</span>
+            x = 0.47777...   — (Equation 1)
+          </div>
+          <div class="p-3 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">
+            <span class="text-indigo-400 font-bold block mb-1">Step 2: Multiply by 10 to bring non-repeating digit before decimal:</span>
+            10x = 4.7777...   — (Equation 2)
+          </div>
+          <div class="p-3 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">
+            <span class="text-indigo-400 font-bold block mb-1">Step 3: Multiply by 100 to shift one recurring period:</span>
+            100x = 47.7777...   — (Equation 3)
+          </div>
+          <div class="p-3 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">
+            <span class="text-indigo-400 font-bold block mb-1">Step 4: Subtract Eq (2) from Eq (3):</span>
+            100x - 10x = 47.7777... - 4.7777...<br>
+            90x = 43
+          </div>
+          <div class="p-3.5 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 font-bold text-sm">
+            x = 43 / 90  ✓ (Rational in p/q form!)
+          </div>
+        `;
+        speakNarration("For zero point four seven repeating, multiply by ten to get four point seven repeating, and by one hundred to get forty seven point seven repeating. Subtracting gives ninety x equals forty three, so x is forty three over ninety.");
+      } else if (type === '0.001bar') {
+        document.getElementById('btnEx3').className = 'px-3 py-1 rounded-lg bg-indigo-600 text-white text-xs font-bold';
+        container.innerHTML = `
+          <div class="p-3 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">
+            <span class="text-indigo-400 font-bold block mb-1">Step 1: All 3 digits repeat:</span>
+            x = 0.001001001...   — (Equation 1)
+          </div>
+          <div class="p-3 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">
+            <span class="text-indigo-400 font-bold block mb-1">Step 2: Since 3 digits repeat, multiply by 1000:</span>
+            1000x = 1.001001001...   — (Equation 2)
+          </div>
+          <div class="p-3 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">
+            <span class="text-indigo-400 font-bold block mb-1">Step 3: Subtract Equation (1) from Equation (2):</span>
+            1000x - x = 1.001... - 0.001...<br>
+            999x = 1
+          </div>
+          <div class="p-3.5 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 font-bold text-sm">
+            x = 1 / 999  ✓ (Rational in p/q form!)
+          </div>
+        `;
+        speakNarration("Since three digits repeat, multiply by one thousand. Subtracting gives nine hundred ninety nine x equals one, so x equals one over nine hundred ninety nine.");
+      }
+    };
+
+    // =========================================================================
+    // 5. INTERACTIVE CHALLENGE QUIZ (NCERT / CBSE EXAM QUESTIONS)
+    // =========================================================================
+    const quizData = [
+      {
+        question: "√23",
+        hint: "23 is not a perfect square",
+        correct: "irrational",
+        reason: "Since 23 is not a perfect square, √23 is non-terminating and non-recurring. Hence Irrational."
+      },
+      {
+        question: "√225",
+        hint: "Is 225 a square of any integer?",
+        correct: "rational",
+        reason: "√225 = 15 = 15/1, which is in p/q form. Hence Rational."
+      },
+      {
+        question: "0.3796",
+        hint: "Decimal terminates with 4 digits",
+        correct: "rational",
+        reason: "The decimal expansion terminates (3796/10000). Hence Rational."
+      },
+      {
+        question: "7.478478...",
+        hint: "Digits 478 repeat continuously",
+        correct: "rational",
+        reason: "This is non-terminating but recurring (repeats 478). Any recurring decimal is Rational!"
+      },
+      {
+        question: "1.1010010001...",
+        hint: "Look at the pattern of zeroes",
+        correct: "irrational",
+        reason: "The number of zeroes increases (1, 2, 3, 4...). It never terminates and never repeats periodic blocks. Hence Irrational."
+      },
+      {
+        question: "2 - √5",
+        hint: "Difference of rational and irrational",
+        correct: "irrational",
+        reason: "The difference of a non-zero rational number and an irrational number is always Irrational."
+      }
+    ];
+
+    let userAnswers = {};
+
+    function renderQuizCards() {
+      const grid = document.getElementById('quizCardsGrid');
+      grid.innerHTML = quizData.map((q, idx) => `
+        <div id="quiz-card-{idx}" class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3 transition-all">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-400">Question {idx + 1}</span>
+            <span id="quiz-status-{idx}" class="text-xs font-bold text-slate-500">Unanswered</span>
+          </div>
+          <div class="text-center py-2">
+            <span class="text-2xl font-black font-mono text-white tracking-wide">{q.question}</span>
+            <p class="text-[11px] text-slate-400 mt-1">{q.hint}</p>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="answerQuiz({idx}, 'rational')" class="py-1.5 px-3 rounded-lg bg-slate-800 hover:bg-emerald-600 text-slate-200 hover:text-white font-bold text-xs border border-slate-700 transition-all cursor-pointer">
+              Rational
+            </button>
+            <button onclick="answerQuiz({idx}, 'irrational')" class="py-1.5 px-3 rounded-lg bg-slate-800 hover:bg-rose-600 text-slate-200 hover:text-white font-bold text-xs border border-slate-700 transition-all cursor-pointer">
+              Irrational
+            </button>
+          </div>
+          <div id="quiz-feedback-{idx}" class="hidden text-[11px] p-2 rounded bg-slate-900 border border-slate-800 text-slate-300"></div>
+        </div>
+      `).join('');
+    }
+
+    window.answerQuiz = function(idx, choice) {
+      userAnswers[idx] = choice;
+      const q = quizData[idx];
+      const card = document.getElementById(`quiz-card-{idx}`);
+      const status = document.getElementById(`quiz-status-{idx}`);
+      const feedback = document.getElementById(`quiz-feedback-{idx}`);
+
+      feedback.classList.remove('hidden');
+      if (choice === q.correct) {
+        playSuccess();
+        card.className = "p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/50 space-y-3 transition-all";
+        status.textContent = "✓ Correct!";
+        status.className = "text-xs font-bold text-emerald-400";
+        feedback.innerHTML = `<span class="text-emerald-400 font-bold">Right!</span> {q.reason}`;
+      } else {
+        playWrong();
+        card.className = "p-4 rounded-xl bg-rose-950/20 border border-rose-500/50 space-y-3 transition-all";
+        status.textContent = "✕ Incorrect";
+        status.className = "text-xs font-bold text-rose-400";
+        feedback.innerHTML = `<span class="text-rose-400 font-bold">Incorrect!</span> It is {q.correct.toUpperCase()}. {q.reason}`;
+      }
+
+      // Update total score
+      const correctCount = Object.keys(userAnswers).filter(k => userAnswers[k] === quizData[k].correct).length;
+      document.getElementById('quizScore').textContent = `{correctCount} / {quizData.length}`;
+    };
+
+    window.resetQuiz = function() {
+      userAnswers = {};
+      document.getElementById('quizScore').textContent = `0 / {quizData.length}`;
+      renderQuizCards();
+      playTone(400, 'sine', 0.1);
+    };
+
+    // Initial load
+    document.addEventListener('DOMContentLoaded', function() {
+      drawUniverseFrame(0);
+      updateUniverseUI(0);
+      renderQuizCards();
+      setDecimalExample('0.6bar');
+    });
+  </script>
+</body>
+</html>

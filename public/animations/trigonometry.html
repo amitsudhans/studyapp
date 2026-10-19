@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 10 • Introduction to Trigonometry — Multimedia Lab</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    if (typeof tailwind === 'undefined') {
+      document.write('<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"><\/script>');
+    }
+  </script>
+  <style>
+    body { background-color: #020617; color: #f8fafc; }
+    .slide-fade-in {
+      animation: fadeInScale 0.35s ease-out forwards;
+    }
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.15); opacity: 0.4; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .pulse-ring {
+      animation: pulse-ring 2s infinite ease-in-out;
+    }
+    /* Custom scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+  </style>
+</head>
+<body style="background-color: #020617; color: #f8fafc;" class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-purple-500 selection:text-white overflow-x-hidden">
+
+  <!-- TOP HEADER & PROGRESS -->
+  <header style="flex-shrink: 0;" class="border-b border-slate-800 bg-slate-900/95 backdrop-blur sticky top-0 z-50">
+    <!-- Slide Progress Bar -->
+    <div class="w-full bg-slate-800/80 h-1.5 relative overflow-hidden">
+      <div id="slideProgressBar" class="h-full bg-gradient-to-r from-purple-500 via-indigo-500 to-pink-500 transition-all duration-500" style="width: 10%;"></div>
+      <div id="autoPlayCountdownBar" class="h-full bg-amber-400/80 absolute top-0 left-0 transition-all duration-100" style="width: 0%; opacity: 0;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-500 via-indigo-600 to-pink-600 flex items-center justify-center font-black text-lg text-white shadow-lg shadow-purple-500/25 shrink-0">
+          <span>sinθ</span>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="font-black text-sm sm:text-base text-white tracking-tight">NCERT Chapter 8 • Introduction to Trigonometry</h1>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-500/20 text-purple-400 border border-purple-500/30">Reprint 2026-27</span>
+          </div>
+          <p id="slideSubtitle" class="text-xs text-slate-400">Slide 1 of 10: Real-World Motivations, History &amp; Aryabhata</p>
+        </div>
+      </div>
+
+      <!-- Quick Audio Controls -->
+      <div class="flex items-center space-x-2">
+        <button id="voiceToggleBtn" onclick="toggleVoiceNarration()" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-purple-600/30 hover:bg-purple-600/50 text-purple-300 border border-purple-500/40 flex items-center space-x-1.5 transition-all cursor-pointer" title="Toggle Voice Narration">
+          <span id="voiceIcon">🔊</span>
+          <span id="voiceText" class="hidden sm:inline">Voice: ON</span>
+        </button>
+        <button id="soundToggleBtn" onclick="toggleSoundFx()" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center space-x-1.5 transition-all cursor-pointer" title="Toggle Sound FX">
+          <span id="soundIcon">🎵</span>
+          <span id="soundText" class="hidden sm:inline">SFX: ON</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Narration Subtitles Banner -->
+    <div class="bg-slate-950/80 border-t border-slate-800/80 px-4 py-1.5 flex items-center space-x-2 text-xs">
+      <span class="text-purple-400 shrink-0 font-bold">🎙 Teacher Voiceover:</span>
+      <p id="narrationSubtitlesText" class="text-slate-300 truncate italic">Loading lesson...</p>
+    </div>
+  </header>
+
+  <!-- MAIN SLIDES STAGE -->
+  <main style="flex: 1 1 0%; min-height: 0;" class="max-w-7xl w-full mx-auto p-3 sm:p-5 flex flex-col justify-between overflow-y-auto">
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 1: REAL-WORLD MOTIVATIONS, HISTORY & ARYABHATA -->
+    <!-- ========================================================================= -->
+    <section id="slide-0" class="slide-pane slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-bold uppercase mb-2">
+              <span>Section 8.1 • The Middle Position of Mathematics</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Introduction to Trigonometry: Measuring the Inaccessible</h2>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+              "There is perhaps nothing which so occupies the middle position of mathematics as trigonometry." – J.F. Herbart (1890). Derived from Greek <em>tri</em> (three), <em>gon</em> (sides), and <em>metron</em> (measure).
+            </p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center space-x-3 shrink-0">
+            <span class="text-3xl">🏛️</span>
+            <div>
+              <div class="text-xs font-bold text-purple-400">Aryabhata (C.E. 476–550)</div>
+              <div class="text-[11px] text-slate-400">From <em>ardha-jya</em> to modern <em>sine</em></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Classic Real-World Scenarios (Figs 8.1, 8.2, 8.3) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center space-x-2 text-purple-400 font-bold text-sm">
+              <span class="text-lg">🗼</span>
+              <h4>1. Height of Qutub Minar</h4>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              A student looking up at the top of Qutub Minar forms an imaginary right-angled triangle. Knowing the distance to the base and the elevation angle reveals the height without physical climbing!
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center space-x-2 text-indigo-400 font-bold text-sm">
+              <span class="text-lg">🌊</span>
+              <h4>2. Width of a River</h4>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              A girl sitting on a balcony looking down across the river bank at a temple flower pot forms a right triangle. Knowing balcony height and sight angle yields the river width!
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center space-x-2 text-pink-400 font-bold text-sm">
+              <span class="text-lg">🎈</span>
+              <h4>3. Hot Air Balloon Altitude</h4>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              A girl spots a balloon at point A, and when her mother joins her, it has drifted to B. Measuring angular changes calculates the balloon's precise altitude above ground!
+            </p>
+          </div>
+        </div>
+
+        <!-- Historical Evolution Card -->
+        <div class="p-4 rounded-xl bg-gradient-to-r from-purple-950/40 via-indigo-950/40 to-slate-900 border border-purple-500/30 space-y-2">
+          <h4 class="text-xs font-bold text-purple-300 uppercase tracking-wider flex items-center space-x-2">
+            <span>📜</span>
+            <span>The Etymology &amp; Journey of "Sine" and "Cosine"</span>
+          </h4>
+          <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-xs font-mono text-slate-300 pt-1">
+            <div class="bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
+              <strong class="text-purple-400 block text-[11px]">Sanskrit (500 CE)</strong>
+              Aryabhata used <em>ardha-jya</em> (half-chord), shortened to <em>jya</em> or <em>jiva</em>.
+            </div>
+            <div class="bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
+              <strong class="text-indigo-400 block text-[11px]">Arabic Translation</strong>
+              Retained as <em>jiba</em> in Arabic astronomical tables.
+            </div>
+            <div class="bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
+              <strong class="text-cyan-400 block text-[11px]">Latin Translation</strong>
+              Translated into <em>sinus</em> (meaning fold or curve).
+            </div>
+            <div class="bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
+              <strong class="text-emerald-400 block text-[11px]">Modern Notation</strong>
+              Edmund Gunter (1626) coined abbreviation <strong>sin</strong>; Jonas Moore (1674) coined <strong>cos</strong>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 2: THE 6 TRIGONOMETRIC RATIOS & PERSPECTIVE SHIFT -->
+    <!-- ========================================================================= -->
+    <section id="slide-1" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-bold uppercase mb-2">
+            <span>Section 8.2 • Fundamental Definitions</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">The Six Trigonometric Ratios of an Acute Angle</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            In right triangle ABC right-angled at B, side positions depend entirely on which acute angle you observe: <strong class="text-purple-400">Angle A</strong> vs <strong class="text-indigo-400">Angle C</strong>!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- Interactive Diagram with Perspective Toggle -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <div class="flex items-center justify-between">
+              <h4 class="text-xs font-bold text-purple-400 uppercase tracking-wider">Perspective Observer</h4>
+              <div class="flex space-x-1 text-xs">
+                <button id="btnAngleA" onclick="setPerspective('A')" class="px-2.5 py-1 rounded bg-purple-600 text-white font-bold cursor-pointer">Angle A View</button>
+                <button id="btnAngleC" onclick="setPerspective('C')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold cursor-pointer">Angle C View</button>
+              </div>
+            </div>
+
+            <!-- SVG Right Triangle -->
+            <div class="bg-slate-900/80 rounded-lg p-3 flex justify-center">
+              <svg viewBox="0 0 260 200" class="w-full max-w-[300px] h-52 select-none">
+                <!-- Triangle vertices: A(40, 160), B(210, 160), C(210, 40) -->
+                <polygon points="40,160 210,160 210,40" fill="rgba(168, 85, 247, 0.08)" stroke="#a855f7" stroke-width="2.5" />
+                <!-- Right angle at B -->
+                <rect x="196" y="146" width="14" height="14" fill="none" stroke="#64748b" stroke-width="1.5" />
+
+                <!-- Vertices -->
+                <circle cx="40" cy="160" r="5" fill="#38bdf8" />
+                <text x="22" y="178" fill="#38bdf8" font-size="12" font-weight="bold">A</text>
+
+                <circle cx="210" cy="160" r="4.5" fill="#64748b" />
+                <text x="220" y="175" fill="#94a3b8" font-size="12" font-weight="bold">B (90°)</text>
+
+                <circle cx="210" cy="40" r="5" fill="#ec4899" />
+                <text x="218" y="42" fill="#ec4899" font-size="12" font-weight="bold">C</text>
+
+                <!-- Hypotenuse label -->
+                <text x="105" y="90" fill="#f59e0b" font-size="11" font-weight="bold" transform="rotate(-35, 110, 95)">Hypotenuse (AC)</text>
+
+                <!-- Dynamic Side Labels -->
+                <text id="sideABLabel" x="110" y="180" fill="#38bdf8" font-size="11" font-weight="bold">Side Adjacent to A (Base)</text>
+                <text id="sideBCLabel" x="218" y="105" fill="#ec4899" font-size="11" font-weight="bold">Opposite to A</text>
+
+                <!-- Arc for Active Angle -->
+                <path id="angleArc" d="M 65 160 A 25 25 0 0 0 58 145" fill="none" stroke="#38bdf8" stroke-width="2" />
+                <text id="angleSymbol" x="70" y="152" fill="#38bdf8" font-size="11" font-weight="bold">∠A</text>
+              </svg>
+            </div>
+
+            <!-- Caution Note -->
+            <div class="p-2.5 rounded-lg bg-amber-950/40 border border-amber-500/30 text-[11px] text-amber-300">
+              ⚠️ <strong>Common Trap:</strong> <code class="font-mono">sin A</code> is NOT <code class="font-mono">sin × A</code>! Separated from A, the symbol "sin" has no meaning.
+            </div>
+          </div>
+
+          <!-- 6 Ratio Definitions Grid -->
+          <div class="space-y-2 text-xs font-mono">
+            <div class="grid grid-cols-2 gap-2">
+              <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+                <span class="text-purple-400 font-bold font-sans">Sine (sin)</span>
+                <div class="text-white font-bold" id="ratioSinFormula">sin A = BC / AC</div>
+                <div class="text-[10px] text-slate-400 font-sans">Opposite / Hypotenuse</div>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+                <span class="text-indigo-400 font-bold font-sans">Cosine (cos)</span>
+                <div class="text-white font-bold" id="ratioCosFormula">cos A = AB / AC</div>
+                <div class="text-[10px] text-slate-400 font-sans">Adjacent / Hypotenuse</div>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+                <span class="text-pink-400 font-bold font-sans">Tangent (tan)</span>
+                <div class="text-white font-bold" id="ratioTanFormula">tan A = BC / AB</div>
+                <div class="text-[10px] text-slate-400 font-sans">Opposite / Adjacent = sin/cos</div>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+                <span class="text-purple-400 font-bold font-sans">Cosecant (cosec)</span>
+                <div class="text-white font-bold" id="ratioCscFormula">cosec A = AC / BC</div>
+                <div class="text-[10px] text-slate-400 font-sans">1 / sin A (Reciprocal)</div>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+                <span class="text-indigo-400 font-bold font-sans">Secant (sec)</span>
+                <div class="text-white font-bold" id="ratioSecFormula">sec A = AC / AB</div>
+                <div class="text-[10px] text-slate-400 font-sans">1 / cos A (Reciprocal)</div>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+                <span class="text-pink-400 font-bold font-sans">Cotangent (cot)</span>
+                <div class="text-white font-bold" id="ratioCotFormula">cot A = AB / BC</div>
+                <div class="text-[10px] text-slate-400 font-sans">1 / tan A = cos/sin</div>
+              </div>
+            </div>
+
+            <!-- Hypotenuse Bound Note -->
+            <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-[11px] font-sans text-slate-300">
+              💡 <strong>Bound Property:</strong> Since the hypotenuse is always the longest side, <code class="text-emerald-400 font-bold font-mono">sin A ≤ 1</code> and <code class="text-emerald-400 font-bold font-mono">cos A ≤ 1</code>, while <code class="text-amber-400 font-bold font-mono">sec A ≥ 1</code> and <code class="text-amber-400 font-bold font-mono">cosec A ≥ 1</code>!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 3: INVARIANCE BY SIMILARITY & FINDING OTHER RATIOS (EX 1) -->
+    <!-- ========================================================================= -->
+    <section id="slide-2" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-bold uppercase mb-2">
+            <span>Theorem &amp; Example 1 • Scaling Independence</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Ratios Depend ONLY on Angle, Not Triangle Size</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            By AA similarity, if angle A remains constant, enlarging or shrinking the right triangle leaves all trigonometric ratios strictly invariant!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- AA Similarity Proof (Fig 8.6) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <h4 class="text-xs font-bold text-purple-400 uppercase tracking-wider">Geometric Proof (Fig. 8.6)</h4>
+            <div class="bg-slate-900/80 rounded-lg p-2.5 flex justify-center">
+              <svg viewBox="0 0 280 180" class="w-full max-w-[320px] h-48 select-none">
+                <!-- Base line -->
+                <line x1="30" y1="150" x2="260" y2="150" stroke="#475569" stroke-width="2" />
+                <!-- Slanted ray from A -->
+                <line x1="30" y1="150" x2="240" y2="25" stroke="#a855f7" stroke-width="2" />
+
+                <!-- Perpendiculars: PM, CB, QN -->
+                <line x1="100" y1="150" x2="100" y2="108" stroke="#38bdf8" stroke-width="2" />
+                <line x1="170" y1="150" x2="170" y2="67" stroke="#38bdf8" stroke-width="2" />
+                <line x1="230" y1="150" x2="230" y2="31" stroke="#38bdf8" stroke-width="2" stroke-dasharray="2,2" />
+
+                <!-- Points -->
+                <circle cx="30" cy="150" r="4" fill="#a855f7" />
+                <text x="18" y="165" fill="#a855f7" font-size="11" font-weight="bold">A</text>
+
+                <text x="96" y="165" fill="#94a3b8" font-size="10">M</text>
+                <text x="166" y="165" fill="#94a3b8" font-size="10">B</text>
+                <text x="226" y="165" fill="#94a3b8" font-size="10">N</text>
+
+                <circle cx="100" cy="108" r="3.5" fill="#38bdf8" />
+                <text x="90" y="102" fill="#38bdf8" font-size="10" font-weight="bold">P</text>
+                <circle cx="170" cy="67" r="3.5" fill="#38bdf8" />
+                <text x="160" y="60" fill="#38bdf8" font-size="10" font-weight="bold">C</text>
+                <circle cx="230" cy="31" r="3.5" fill="#38bdf8" />
+                <text x="220" y="25" fill="#38bdf8" font-size="10" font-weight="bold">Q</text>
+              </svg>
+            </div>
+            <div class="text-xs bg-slate-900 p-2.5 rounded-lg border border-slate-800 text-slate-300 font-mono space-y-1">
+              <div>Δ PAM ~ Δ CAB ~ Δ QAN (AA criterion)</div>
+              <div class="text-purple-300">MP / AP = BC / AC = QN / AQ = sin A</div>
+            </div>
+          </div>
+
+          <!-- Worked Example 1: Given tan A = 4/3 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 text-[10px] font-bold">Textbook Example 1</span>
+              <span class="text-xs font-mono text-slate-400">tan A = 4 / 3</span>
+            </div>
+            <h4 class="text-sm font-bold text-white">Find All Other Trigonometric Ratios of Angle A</h4>
+
+            <div class="text-xs text-slate-300 space-y-2">
+              <div class="p-2.5 rounded bg-slate-900 border border-slate-800 font-mono space-y-1">
+                <div>Let Opposite BC = 4k, Adjacent AB = 3k</div>
+                <div>By Pythagoras: AC = √[(4k)² + (3k)²] = √25k² = <strong class="text-emerald-400">5k</strong></div>
+              </div>
+
+              <!-- Computed values grid -->
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 font-mono text-[11px] pt-1">
+                <div class="bg-slate-900 p-2 rounded border border-slate-800">
+                  <span class="text-slate-400 block text-[10px]">sin A</span>
+                  <span class="text-purple-300 font-bold">4 / 5</span>
+                </div>
+                <div class="bg-slate-900 p-2 rounded border border-slate-800">
+                  <span class="text-slate-400 block text-[10px]">cos A</span>
+                  <span class="text-indigo-300 font-bold">3 / 5</span>
+                </div>
+                <div class="bg-slate-900 p-2 rounded border border-slate-800">
+                  <span class="text-slate-400 block text-[10px]">cot A</span>
+                  <span class="text-pink-300 font-bold">3 / 4</span>
+                </div>
+                <div class="bg-slate-900 p-2 rounded border border-slate-800">
+                  <span class="text-slate-400 block text-[10px]">cosec A</span>
+                  <span class="text-purple-300 font-bold">5 / 4</span>
+                </div>
+                <div class="bg-slate-900 p-2 rounded border border-slate-800">
+                  <span class="text-slate-400 block text-[10px]">sec A</span>
+                  <span class="text-indigo-300 font-bold">5 / 3</span>
+                </div>
+                <div class="bg-slate-900 p-2 rounded border border-slate-800">
+                  <span class="text-slate-400 block text-[10px]">tan A</span>
+                  <span class="text-pink-300 font-bold">4 / 3</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 4: PYTHAGOREAN IDENTITIES PREVIEW (EXAMPLES 3, 4, 5) -->
+    <!-- ========================================================================= -->
+    <section id="slide-3" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-bold uppercase mb-2">
+            <span>Examples 3, 4 &amp; 5 • Core Board Exam Solved Problems</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Solving Right Triangles &amp; Algebraic Verifications</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            Examining three high-frequency NCERT problems showing how trigonometric ratios interact with quadratic expansions and the Pythagorean theorem.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <!-- Example 3: Triangle with AB=29, BC=21 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2.5">
+            <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 text-[10px] font-bold">Example 3: Triangle (29, 21, θ)</span>
+            <h4 class="text-sm font-bold text-white">Evaluate cos²θ + sin²θ</h4>
+            <div class="text-xs text-slate-300 font-mono space-y-1.5 bg-slate-900 p-2.5 rounded border border-slate-800">
+              <div>AC = √(29² - 21²) = √(50 × 8) = <strong class="text-emerald-400">20</strong></div>
+              <div>sin θ = 20 / 29, cos θ = 21 / 29</div>
+              <div class="pt-1 text-purple-300">cos²θ + sin²θ = (441+400)/841 = <strong class="text-emerald-400">1</strong></div>
+              <div class="text-indigo-300">cos²θ - sin²θ = (441-400)/841 = <strong class="text-white">41 / 841</strong></div>
+            </div>
+            <p class="text-[11px] text-slate-400">
+              Direct numerical verification of the universal identity <code class="text-purple-300 font-bold">sin²θ + cos²θ = 1</code>!
+            </p>
+          </div>
+
+          <!-- Example 4: tan A = 1 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2.5">
+            <span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-400 text-[10px] font-bold">Example 4: 2 sin A cos A</span>
+            <h4 class="text-sm font-bold text-white">If tan A = 1, Verify 2 sin A cos A = 1</h4>
+            <div class="text-xs text-slate-300 font-mono space-y-1.5 bg-slate-900 p-2.5 rounded border border-slate-800">
+              <div>tan A = BC / AB = 1 ➔ BC = AB = k</div>
+              <div>AC = √(k² + k²) = k√2</div>
+              <div>sin A = 1 / √2, cos A = 1 / √2</div>
+              <div class="pt-1 text-emerald-400 font-bold">
+                2 sin A cos A = 2 × (1/√2) × (1/√2) = 1
+              </div>
+            </div>
+            <p class="text-[11px] text-slate-400">
+              Verified! This is also the fundamental double-angle identity preview: <code class="text-indigo-300">sin 2A = 2 sin A cos A</code>.
+            </p>
+          </div>
+
+          <!-- Example 5: Difference of sides OQ - PQ = 1 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2.5">
+            <span class="px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 text-[10px] font-bold">Example 5: Side Difference Trap</span>
+            <h4 class="text-sm font-bold text-white">OP = 7 cm, OQ - PQ = 1 cm</h4>
+            <div class="text-xs text-slate-300 font-mono space-y-1.5 bg-slate-900 p-2.5 rounded border border-slate-800">
+              <div>OQ² = OP² + PQ²</div>
+              <div>(1 + PQ)² = 7² + PQ²</div>
+              <div>1 + 2PQ + PQ² = 49 + PQ²</div>
+              <div>2PQ = 48 ➔ <strong class="text-emerald-400">PQ = 24 cm, OQ = 25 cm</strong></div>
+              <div class="pt-1 text-pink-300">sin Q = 7 / 25, cos Q = 24 / 25</div>
+            </div>
+            <p class="text-[11px] text-slate-400">
+              Classic (7, 24, 25) Pythagorean triplet solved algebraically without guessing!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 5: SPECIFIC ANGLES (45°, 30°, 60°) GEOMETRIC DERIVATIONS -->
+    <!-- ========================================================================= -->
+    <section id="slide-4" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-bold uppercase mb-2">
+            <span>Section 8.3 • Geometric Derivations</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Trigonometric Ratios of 45°, 30° &amp; 60°</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            Never memorize blindly! Learn how these exact values arise geometrically from an isosceles right triangle and an equilateral triangle.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <!-- 45° Derivation (Isosceles Right Triangle) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <div class="flex items-center justify-between">
+              <h4 class="text-xs font-bold text-purple-400 uppercase tracking-wider">1. Derivation for 45° (Fig. 8.14)</h4>
+              <span class="text-[10px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded font-mono font-bold">AB = BC = a</span>
+            </div>
+
+            <p class="text-xs text-slate-300">
+              In right triangle ABC with ∠A = 45°, ∠C is also 45°. Therefore AB = BC = a. By Pythagoras:
+              <span class="font-mono text-purple-300 font-bold"> AC = √(a² + a²) = a√2</span>.
+            </p>
+
+            <div class="grid grid-cols-3 gap-2 font-mono text-xs text-center">
+              <div class="bg-slate-900 p-2.5 rounded-lg border border-slate-800">
+                <span class="text-slate-400 text-[10px] block">sin 45°</span>
+                <span class="text-emerald-400 font-bold">1 / √2</span>
+              </div>
+              <div class="bg-slate-900 p-2.5 rounded-lg border border-slate-800">
+                <span class="text-slate-400 text-[10px] block">cos 45°</span>
+                <span class="text-emerald-400 font-bold">1 / √2</span>
+              </div>
+              <div class="bg-slate-900 p-2.5 rounded-lg border border-slate-800">
+                <span class="text-slate-400 text-[10px] block">tan 45°</span>
+                <span class="text-emerald-400 font-bold">1</span>
+              </div>
+            </div>
+            <div class="text-[11px] text-slate-400">
+              Reciprocals: <code class="text-purple-300 font-mono">cosec 45° = √2</code>, <code class="text-indigo-300 font-mono">sec 45° = √2</code>, <code class="text-pink-300 font-mono">cot 45° = 1</code>.
+            </div>
+          </div>
+
+          <!-- 30° & 60° Derivation (Equilateral Triangle Split) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <div class="flex items-center justify-between">
+              <h4 class="text-xs font-bold text-indigo-400 uppercase tracking-wider">2. Derivation for 30° &amp; 60° (Fig. 8.15)</h4>
+              <span class="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded font-mono font-bold">Side = 2a</span>
+            </div>
+
+            <p class="text-xs text-slate-300">
+              Equilateral triangle with side 2a. Altitude AD bisects base BC (BD = a) and bisects ∠A (∠BAD = 30°, ∠B = 60°). By Pythagoras:
+              <span class="font-mono text-indigo-300 font-bold"> AD = √[(2a)² - a²] = a√3</span>.
+            </p>
+
+            <div class="grid grid-cols-2 gap-2 font-mono text-xs">
+              <div class="bg-slate-900 p-2.5 rounded-lg border border-slate-800 space-y-1">
+                <span class="text-cyan-400 font-bold block text-[11px]">Ratios of 30°:</span>
+                <div>sin 30° = <strong class="text-white">1 / 2</strong></div>
+                <div>cos 30° = <strong class="text-white">√3 / 2</strong></div>
+                <div>tan 30° = <strong class="text-white">1 / √3</strong></div>
+              </div>
+              <div class="bg-slate-900 p-2.5 rounded-lg border border-slate-800 space-y-1">
+                <span class="text-pink-400 font-bold block text-[11px]">Ratios of 60°:</span>
+                <div>sin 60° = <strong class="text-white">√3 / 2</strong></div>
+                <div>cos 60° = <strong class="text-white">1 / 2</strong></div>
+                <div>tan 60° = <strong class="text-white">√3</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 6: THE BOUNDARY ANGLES (0° AND 90°) GEOMETRIC LIMITS -->
+    <!-- ========================================================================= -->
+    <section id="slide-5" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-bold uppercase mb-2">
+            <span>Limits &amp; Continuity • Figs 8.17 &amp; 8.18</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Understanding Boundary Angles: 0° and 90°</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            What happens when an angle shrinks to 0° or expands to 90°? Visualizing geometric limits explains why some ratios become zero, one, or "not defined"!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- As Angle A -> 0° -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <h4 class="text-xs font-bold text-cyan-400 uppercase tracking-wider flex items-center space-x-1.5">
+              <span>📉</span>
+              <span>When ∠A Shrinks to 0° (Fig. 8.17)</span>
+            </h4>
+            <p class="text-xs text-slate-300">
+              As ∠A gets smaller and smaller, opposite side BC collapses toward 0, and hypotenuse AC almost coincides with adjacent AB:
+            </p>
+
+            <div class="bg-slate-900 p-3 rounded-lg border border-slate-800 font-mono text-xs space-y-1 text-slate-200">
+              <div>• sin 0° = BC / AC ➔ 0 / AC = <strong class="text-emerald-400">0</strong></div>
+              <div>• cos 0° = AB / AC ➔ AC / AC = <strong class="text-emerald-400">1</strong></div>
+              <div>• tan 0° = sin 0° / cos 0° = 0 / 1 = <strong class="text-emerald-400">0</strong></div>
+              <div>• sec 0° = 1 / cos 0° = <strong class="text-emerald-400">1</strong></div>
+              <div class="text-rose-400">• cosec 0° = 1 / 0 ➔ <strong>Not Defined (Undefined)</strong></div>
+              <div class="text-rose-400">• cot 0° = 1 / tan 0° ➔ <strong>Not Defined (Undefined)</strong></div>
+            </div>
+          </div>
+
+          <!-- As Angle A -> 90° -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <h4 class="text-xs font-bold text-pink-400 uppercase tracking-wider flex items-center space-x-1.5">
+              <span>📈</span>
+              <span>When ∠A Expands to 90° (Fig. 8.18)</span>
+            </h4>
+            <p class="text-xs text-slate-300">
+              As ∠A approaches 90°, ∠C shrinks to 0°. Adjacent side AB collapses toward 0, and hypotenuse AC almost coincides with opposite BC:
+            </p>
+
+            <div class="bg-slate-900 p-3 rounded-lg border border-slate-800 font-mono text-xs space-y-1 text-slate-200">
+              <div>• sin 90° = BC / AC ➔ AC / AC = <strong class="text-emerald-400">1</strong></div>
+              <div>• cos 90° = AB / AC ➔ 0 / AC = <strong class="text-emerald-400">0</strong></div>
+              <div>• cot 90° = cos 90° / sin 90° = 0 / 1 = <strong class="text-emerald-400">0</strong></div>
+              <div>• cosec 90° = 1 / sin 90° = <strong class="text-emerald-400">1</strong></div>
+              <div class="text-rose-400">• tan 90° = sin 90° / cos 90° = 1 / 0 ➔ <strong>Not Defined</strong></div>
+              <div class="text-rose-400">• sec 90° = 1 / cos 90° = 1 / 0 ➔ <strong>Not Defined</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 7: MASTER TABLE 8.1 & THE FINGER TRICK / ANGLE SOLVER (EX 6, 7, 8) -->
+    <!-- ========================================================================= -->
+    <section id="slide-6" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-bold uppercase mb-1">
+              <span>Table 8.1 • Interactive Master Chart</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">The Master Trigonometric Values Table</h2>
+          </div>
+          <div class="text-xs font-mono text-purple-300 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800">
+            Memory Trick: √(0/4), √(1/4), √(2/4), √(3/4), √(4/4)
+          </div>
+        </div>
+
+        <!-- Interactive Table 8.1 -->
+        <div class="overflow-x-auto rounded-xl border border-slate-800 bg-slate-950">
+          <table class="w-full text-xs text-center border-collapse">
+            <thead>
+              <tr class="bg-slate-900/90 text-slate-300 font-bold border-b border-slate-800">
+                <th class="p-2.5 text-left text-purple-400 font-bold">Angle ∠A</th>
+                <th class="p-2.5 cursor-pointer hover:bg-slate-800" onclick="highlightAngleCol('0')">0°</th>
+                <th class="p-2.5 cursor-pointer hover:bg-slate-800" onclick="highlightAngleCol('30')">30°</th>
+                <th class="p-2.5 cursor-pointer hover:bg-slate-800" onclick="highlightAngleCol('45')">45°</th>
+                <th class="p-2.5 cursor-pointer hover:bg-slate-800" onclick="highlightAngleCol('60')">60°</th>
+                <th class="p-2.5 cursor-pointer hover:bg-slate-800" onclick="highlightAngleCol('90')">90°</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800 font-mono">
+              <tr class="hover:bg-slate-900/50">
+                <td class="p-2 text-left font-bold text-purple-300">sin A</td>
+                <td class="p-2">0</td>
+                <td class="p-2">1/2</td>
+                <td class="p-2">1/√2</td>
+                <td class="p-2">√3/2</td>
+                <td class="p-2">1</td>
+              </tr>
+              <tr class="hover:bg-slate-900/50">
+                <td class="p-2 text-left font-bold text-indigo-300">cos A</td>
+                <td class="p-2">1</td>
+                <td class="p-2">√3/2</td>
+                <td class="p-2">1/√2</td>
+                <td class="p-2">1/2</td>
+                <td class="p-2">0</td>
+              </tr>
+              <tr class="hover:bg-slate-900/50">
+                <td class="p-2 text-left font-bold text-pink-300">tan A</td>
+                <td class="p-2">0</td>
+                <td class="p-2">1/√3</td>
+                <td class="p-2">1</td>
+                <td class="p-2">√3</td>
+                <td class="p-2 text-rose-400">Not def</td>
+              </tr>
+              <tr class="hover:bg-slate-900/50">
+                <td class="p-2 text-left font-bold text-purple-300">cosec A</td>
+                <td class="p-2 text-rose-400">Not def</td>
+                <td class="p-2">2</td>
+                <td class="p-2">√2</td>
+                <td class="p-2">2/√3</td>
+                <td class="p-2">1</td>
+              </tr>
+              <tr class="hover:bg-slate-900/50">
+                <td class="p-2 text-left font-bold text-indigo-300">sec A</td>
+                <td class="p-2">1</td>
+                <td class="p-2">2/√3</td>
+                <td class="p-2">√2</td>
+                <td class="p-2">2</td>
+                <td class="p-2 text-rose-400">Not def</td>
+              </tr>
+              <tr class="hover:bg-slate-900/50">
+                <td class="p-2 text-left font-bold text-pink-300">cot A</td>
+                <td class="p-2 text-rose-400">Not def</td>
+                <td class="p-2">√3</td>
+                <td class="p-2">1</td>
+                <td class="p-2">1/√3</td>
+                <td class="p-2">0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Example 8 Simultaneous Equation Card -->
+        <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 text-xs">
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="font-bold text-amber-400">Textbook Example 8: Solving Unknown Angles</span>
+            <span class="text-[10px] text-slate-400 font-mono">sin(A - B) = 1/2, cos(A + B) = 1/2</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 font-mono text-[11px]">
+            <div class="bg-slate-900 p-2 rounded border border-slate-800">
+              sin(A - B) = 1/2 ➔ <strong class="text-cyan-300">A - B = 30°</strong> (1)
+            </div>
+            <div class="bg-slate-900 p-2 rounded border border-slate-800">
+              cos(A + B) = 1/2 ➔ <strong class="text-pink-300">A + B = 60°</strong> (2)
+            </div>
+            <div class="bg-slate-900 p-2 rounded border border-slate-800 text-emerald-400 font-bold">
+              Adding: 2A = 90° ➔ A = 45°, B = 15°
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 8: DERIVATION OF THE THREE TRIGONOMETRIC IDENTITIES -->
+    <!-- ========================================================================= -->
+    <section id="slide-7" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-bold uppercase mb-2">
+            <span>Section 8.4 • The 3 Pillar Identities</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">The 3 Fundamental Trigonometric Identities</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            Starting from Pythagoras Theorem <code class="text-purple-300 font-mono">AB² + BC² = AC²</code>, dividing by each of the three sides generates the three grand identities!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Identity 1 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-purple-500/40 space-y-2.5">
+            <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 text-[10px] font-bold">Divide by AC²</span>
+            <h4 class="text-base font-black text-white font-mono">cos²A + sin²A = 1</h4>
+            <div class="text-xs text-slate-300 font-mono bg-slate-900 p-2.5 rounded border border-slate-800 space-y-1">
+              <div>(AB/AC)² + (BC/AC)² = (AC/AC)²</div>
+              <div>(cos A)² + (sin A)² = 1</div>
+            </div>
+            <div class="text-[11px] text-slate-300 space-y-1">
+              <div class="text-purple-400 font-bold">Rearrangements:</div>
+              <div>• sin²A = 1 - cos²A</div>
+              <div>• cos²A = 1 - sin²A</div>
+              <div class="text-[10px] text-slate-500">Valid for: 0° ≤ A ≤ 90°</div>
+            </div>
+          </div>
+
+          <!-- Identity 2 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-indigo-500/40 space-y-2.5">
+            <span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-400 text-[10px] font-bold">Divide by AB²</span>
+            <h4 class="text-base font-black text-white font-mono">1 + tan²A = sec²A</h4>
+            <div class="text-xs text-slate-300 font-mono bg-slate-900 p-2.5 rounded border border-slate-800 space-y-1">
+              <div>1 + (BC/AB)² = (AC/AB)²</div>
+              <div>1 + tan²A = sec²A</div>
+            </div>
+            <div class="text-[11px] text-slate-300 space-y-1">
+              <div class="text-indigo-400 font-bold">Rearrangements:</div>
+              <div>• sec²A - tan²A = 1</div>
+              <div>• (sec A - tan A)(sec A + tan A) = 1</div>
+              <div class="text-[10px] text-slate-500">Valid for: 0° ≤ A &lt; 90°</div>
+            </div>
+          </div>
+
+          <!-- Identity 3 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-pink-500/40 space-y-2.5">
+            <span class="px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 text-[10px] font-bold">Divide by BC²</span>
+            <h4 class="text-base font-black text-white font-mono">cot²A + 1 = cosec²A</h4>
+            <div class="text-xs text-slate-300 font-mono bg-slate-900 p-2.5 rounded border border-slate-800 space-y-1">
+              <div>(AB/BC)² + 1 = (AC/BC)²</div>
+              <div>cot²A + 1 = cosec²A</div>
+            </div>
+            <div class="text-[11px] text-slate-300 space-y-1">
+              <div class="text-pink-400 font-bold">Rearrangements:</div>
+              <div>• cosec²A - cot²A = 1</div>
+              <div>• (cosec A - cot A)(cosec A + cot A) = 1</div>
+              <div class="text-[10px] text-slate-500">Valid for: 0° &lt; A ≤ 90°</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 9: MASTERING PROVING IDENTITIES (EXAMPLES 10, 11, 12 & EX 8.3) -->
+    <!-- ========================================================================= -->
+    <section id="slide-8" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-bold uppercase mb-2">
+            <span>High-Yield Proofs • Board Exam Techniques</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Proving Trigonometric Identities: The Winning Playbook</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            Master the standard proof heuristics: convert to sin and cos, multiply by conjugates, or divide by cos to trigger <code class="text-purple-300 font-mono">sec²θ - tan²θ = 1</code>!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <!-- Proof Technique 1: Example 10 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2.5">
+            <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 text-[10px] font-bold">Example 10: sec A (1 - sin A)(sec A + tan A) = 1</span>
+            <div class="text-xs text-slate-300 font-mono bg-slate-900 p-3 rounded-lg border border-slate-800 space-y-1.5">
+              <div>LHS = (1/cos A) (1 - sin A) (1/cos A + sin A/cos A)</div>
+              <div>= (1 - sin A) (1 + sin A) / cos²A</div>
+              <div>= (1 - sin²A) / cos²A</div>
+              <div class="text-emerald-400 font-bold">= cos²A / cos²A = 1 = RHS! ✔️</div>
+            </div>
+            <p class="text-[11px] text-slate-400">
+              Strategy: Turn everything into sines and cosines, then apply difference of squares.
+            </p>
+          </div>
+
+          <!-- Proof Technique 2: Exercise 8.3 Q4 (viii) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2.5">
+            <span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-400 text-[10px] font-bold">Ex 8.3 Q4(viii): (sin+cosec)² + (cos+sec)² = 7 + tan² + cot²</span>
+            <div class="text-xs text-slate-300 font-mono bg-slate-900 p-3 rounded-lg border border-slate-800 space-y-1.5">
+              <div>LHS = (sin²A + 2·sin·cosec + cosec²A) + (cos²A + 2·cos·sec + sec²A)</div>
+              <div>= (sin²A + cos²A) + 2(1) + 2(1) + cosec²A + sec²A</div>
+              <div>= 1 + 4 + (1 + cot²A) + (1 + tan²A)</div>
+              <div class="text-emerald-400 font-bold">= 7 + tan²A + cot²A = RHS! ✔️</div>
+            </div>
+            <p class="text-[11px] text-slate-400">
+              Strategy: Expand binomials and recognize reciprocal products <code class="text-indigo-300">sin A × cosec A = 1</code>!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 10: CHAPTER MASTERY QUIZ & COMPLETE FORMULA SUMMARY -->
+    <!-- ========================================================================= -->
+    <section id="slide-9" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-bold uppercase mb-2">
+              <span>Section 8.5 • Assessment &amp; Summary</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Chapter Mastery Quiz &amp; Formula Matrix</h2>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+              Consolidate your mastery of Trigonometry with interactive instant-feedback questions and review the complete formula cheat sheet.
+            </p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center shrink-0">
+            <span id="quizScoreBadge" class="text-xs font-bold text-emerald-400 font-mono">Score: 0 / 3</span>
+            <div class="text-[10px] text-slate-400">Interactive Test</div>
+          </div>
+        </div>
+
+        <!-- Formula Matrix Cheat Sheet -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-1">
+            <div class="text-[10px] uppercase font-bold text-purple-400">Pythagorean 1</div>
+            <div class="font-mono text-xs font-bold text-white">sin²A + cos²A = 1</div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-1">
+            <div class="text-[10px] uppercase font-bold text-indigo-400">Pythagorean 2</div>
+            <div class="font-mono text-xs font-bold text-white">sec²A - tan²A = 1</div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-1">
+            <div class="text-[10px] uppercase font-bold text-pink-400">Pythagorean 3</div>
+            <div class="font-mono text-xs font-bold text-white">cosec²A - cot²A = 1</div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-1">
+            <div class="text-[10px] uppercase font-bold text-amber-400">Reciprocals</div>
+            <div class="font-mono text-[11px] font-bold text-white">sin = 1/cosec, cos = 1/sec</div>
+          </div>
+        </div>
+
+        <!-- Interactive Quiz Questions -->
+        <div class="space-y-3 pt-2">
+          <!-- Question 1 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-400">Question 1: Standard Evaluation</span>
+              <span class="text-[10px] text-slate-500">Exercise 8.3 Q3(i)</span>
+            </div>
+            <p class="text-xs text-slate-200">What is the exact value of <code class="text-purple-300 font-mono font-bold">9 sec²A - 9 tan²A</code>?</p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+              <button onclick="checkQuizAns(1, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">1</button>
+              <button onclick="checkQuizAns(1, true, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">9</button>
+              <button onclick="checkQuizAns(1, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">8</button>
+              <button onclick="checkQuizAns(1, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">0</button>
+            </div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-indigo-400">Question 2: Specific Angles</span>
+              <span class="text-[10px] text-slate-500">Exercise 8.2 Q2(ii)</span>
+            </div>
+            <p class="text-xs text-slate-200">Evaluate <code class="text-indigo-300 font-mono font-bold">(1 - tan²45°) / (1 + tan²45°)</code>:</p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+              <button onclick="checkQuizAns(2, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">tan 90°</button>
+              <button onclick="checkQuizAns(2, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">1</button>
+              <button onclick="checkQuizAns(2, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">sin 45°</button>
+              <button onclick="checkQuizAns(2, true, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">0</button>
+            </div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-pink-400">Question 3: Trigonometric Bounds</span>
+              <span class="text-[10px] text-slate-500">Section 8.2 Concept</span>
+            </div>
+            <p class="text-xs text-slate-200">Can the sine of an acute angle in a right triangle ever exceed 1?</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+              <button onclick="checkQuizAns(3, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">Yes, when hypotenuse is small</button>
+              <button onclick="checkQuizAns(3, true, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">No, because the hypotenuse is always the longest side</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BOTTOM SLIDESHOW CONTROLLER & TIMELINE PILLS -->
+  <footer style="flex-shrink: 0;" class="border-t border-slate-800 bg-slate-900/95 backdrop-blur px-4 py-3 sticky bottom-0 z-50">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      <!-- Slide Pills (10 Slides) -->
+      <div class="flex items-center space-x-1.5 overflow-x-auto max-w-full pb-1 sm:pb-0 text-xs font-mono">
+        <button onclick="goToSlide(0)" class="slide-pill px-2.5 py-1 rounded-lg bg-purple-600 text-white font-bold transition-all cursor-pointer">1</button>
+        <button onclick="goToSlide(1)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">2</button>
+        <button onclick="goToSlide(2)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">3</button>
+        <button onclick="goToSlide(3)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">4</button>
+        <button onclick="goToSlide(4)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">5</button>
+        <button onclick="goToSlide(5)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">6</button>
+        <button onclick="goToSlide(6)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">7</button>
+        <button onclick="goToSlide(7)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">8</button>
+        <button onclick="goToSlide(8)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">9</button>
+        <button onclick="goToSlide(9)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">10</button>
+      </div>
+
+      <!-- Playback Navigation Controls -->
+      <div class="flex items-center space-x-2 shrink-0">
+        <button id="prevSlideBtn" onclick="prevSlide()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center space-x-1 cursor-pointer transition-all disabled:opacity-40 disabled:cursor-not-allowed">
+          <span>⏮</span>
+          <span>Previous</span>
+        </button>
+
+        <button id="autoPlaySlideshowBtn" onclick="toggleAutoPlaySlideshow()" class="px-3.5 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold shadow-lg shadow-purple-600/30 flex items-center space-x-1.5 cursor-pointer transition-all">
+          <span id="autoPlayIcon">▶</span>
+          <span id="autoPlayText">Auto-Play</span>
+        </button>
+
+        <button id="nextSlideBtn" onclick="nextSlide()" class="px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 flex items-center space-x-1.5 cursor-pointer transition-all">
+          <span>Next</span>
+          <span>⏭</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT ENGINE: WEB AUDIO, WEB SPEECH & SLIDESHOW MECHANICS -->
+  <script>
+    // =========================================================================
+    // SLIDE DATA & NARRATIONS
+    // =========================================================================
+    const totalSlides = 10;
+    let currentSlide = 0;
+    let isAutoPlaySlideshow = false;
+    let autoPlayInterval = null;
+    let countdownInterval = null;
+
+    let isVoiceActive = true;
+    let isSoundFxActive = true;
+
+    const slideData = [
+      {
+        title: "Slide 1 of 10: Real-World Motivations, History & Aryabhata",
+        narration: "Welcome to NCERT Class 10 Chapter 8: Introduction to Trigonometry! Trigonometry is the study of relationships between sides and angles of a triangle. From Qutub Minar to river widths, it allows us to measure heights and distances without climbing."
+      },
+      {
+        title: "Slide 2 of 10: The Six Trigonometric Ratios",
+        narration: "Slide 2. The six trigonometric ratios: sine, cosine, tangent, cosecant, secant, and cotangent. Remember, the side opposite to angle A and side adjacent to angle A swap when you view the triangle from angle C!"
+      },
+      {
+        title: "Slide 3 of 10: Invariance by Similarity & Finding Other Ratios",
+        narration: "Slide 3. By A A similarity, trigonometric ratios depend strictly on the angle, not the size of the triangle! If one ratio is known, such as tangent A equals 4 over 3, all five other ratios can be found using the Pythagorean theorem."
+      },
+      {
+        title: "Slide 4 of 10: Algebraic Right Triangle Verifications",
+        narration: "Slide 4. Examples 3, 4, and 5 illustrate how trigonometry combines with algebraic equations. Notice how cos squared theta plus sin squared theta equals 1 in Example 3, and side difference equations yield integer triplets."
+      },
+      {
+        title: "Slide 5 of 10: Trigonometric Ratios of 45°, 30° & 60°",
+        narration: "Slide 5. The geometric derivations of specific angles! An isosceles right triangle with equal sides gives sin 45 degrees as 1 over root 2. An equilateral triangle split by an altitude gives sin 30 degrees as 1 over 2, and sin 60 degrees as root 3 over 2."
+      },
+      {
+        title: "Slide 6 of 10: Boundary Angles: 0° and 90°",
+        narration: "Slide 6. What happens as an angle shrinks to zero or expands to 90 degrees? As angle A approaches zero, opposite side collapses, making sine 0 zero and cosine 0 one. At 90 degrees, adjacent collapses, making cosine 90 zero and sine 90 one."
+      },
+      {
+        title: "Slide 7 of 10: The Master Trigonometric Table 8.1",
+        narration: "Slide 7. The master values chart! As angle A increases from 0 to 90 degrees, sine increases from 0 to 1, while cosine decreases from 1 to 0."
+      },
+      {
+        title: "Slide 8 of 10: The Three Grand Trigonometric Identities",
+        narration: "Slide 8. The three pillar identities! Derived directly from Pythagoras: sin squared A plus cos squared A equals 1; 1 plus tan squared A equals sec squared A; and 1 plus cot squared A equals cosec squared A."
+      },
+      {
+        title: "Slide 9 of 10: Proving Trigonometric Identities",
+        narration: "Slide 9. Proving identities like a champion! Always convert complex terms to sine and cosine, factorize differences of squares, and look for reciprocal products."
+      },
+      {
+        title: "Slide 10 of 10: Chapter Mastery Quiz & Complete Summary",
+        narration: "Slide 10. Test your knowledge with our chapter quiz, and review the summary matrix of all trigonometry formulas!"
+      }
+    ];
+
+    // =========================================================================
+    // WEB AUDIO API SYNTHESIZER
+    // =========================================================================
+    let audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, type, duration, gainVal = 0.1) {
+      if (!isSoundFxActive) return;
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+
+        gain.gain.setValueAtTime(gainVal, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {
+        console.warn('Audio tone error', e);
+      }
+    }
+
+    function playSlideTransitionTone() {
+      playTone(440, 'sine', 0.12, 0.08); // A4
+      setTimeout(() => playTone(659.25, 'sine', 0.18, 0.08), 70); // E5
+    }
+
+    function playChime() {
+      playTone(659.25, 'triangle', 0.15, 0.12); // E5
+      setTimeout(() => playTone(987.77, 'triangle', 0.35, 0.12), 110); // B5
+    }
+
+    function playBuzzer() {
+      playTone(175, 'sawtooth', 0.25, 0.12);
+    }
+
+    function toggleSoundFx() {
+      isSoundFxActive = !isSoundFxActive;
+      const icon = document.getElementById('soundIcon');
+      const text = document.getElementById('soundText');
+      const btn = document.getElementById('soundToggleBtn');
+      if (isSoundFxActive) {
+        icon.textContent = '🎵';
+        text.textContent = 'SFX: ON';
+        btn.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center space-x-1.5 transition-all cursor-pointer';
+        playTone(600, 'sine', 0.1);
+      } else {
+        icon.textContent = '🔇';
+        text.textContent = 'SFX: OFF';
+        btn.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-rose-950/40 text-rose-300 border border-rose-800/40 flex items-center space-x-1.5 transition-all cursor-pointer';
+      }
+    }
+
+    // =========================================================================
+    // WEB SPEECH API SYNTHESIZER
+    // =========================================================================
+    function speakNarration(text) {
+      document.getElementById('narrationSubtitlesText').textContent = text;
+      if (!isVoiceActive) return;
+
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 1.0;
+        utterance.pitch = 1.02;
+
+        const voices = window.speechSynthesis.getVoices();
+        const englishVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha')));
+        if (englishVoice) {
+          utterance.voice = englishVoice;
+        }
+
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    function toggleVoiceNarration() {
+      isVoiceActive = !isVoiceActive;
+      const icon = document.getElementById('voiceIcon');
+      const text = document.getElementById('voiceText');
+      const btn = document.getElementById('voiceToggleBtn');
+
+      if (isVoiceActive) {
+        icon.textContent = '🔊';
+        text.textContent = 'Voice: ON';
+        btn.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-purple-600/30 hover:bg-purple-600/50 text-purple-300 border border-purple-500/40 flex items-center space-x-1.5 transition-all cursor-pointer';
+        speakNarration(slideData[currentSlide].narration);
+      } else {
+        icon.textContent = '🔈';
+        text.textContent = 'Voice: OFF';
+        btn.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-rose-950/40 text-rose-300 border border-rose-800/40 flex items-center space-x-1.5 transition-all cursor-pointer';
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+        }
+      }
+    }
+
+    // =========================================================================
+    // SLIDESHOW CONTROLLER & PROGRESS
+    // =========================================================================
+    function goToSlide(index) {
+      if (index < 0 || index >= totalSlides) return;
+      currentSlide = index;
+
+      document.getElementById('slideSubtitle').textContent = slideData[currentSlide].title;
+      document.getElementById('slideProgressBar').style.width = ((currentSlide + 1) / totalSlides * 100) + '%';
+
+      for (let i = 0; i < totalSlides; i++) {
+        const pane = document.getElementById('slide-' + i);
+        if (pane) {
+          if (i === currentSlide) {
+            pane.classList.remove('hidden');
+            pane.classList.add('block');
+          } else {
+            pane.classList.add('hidden');
+            pane.classList.remove('block');
+          }
+        }
+      }
+
+      document.querySelectorAll('.slide-pill').forEach((pill, i) => {
+        if (i === currentSlide) {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-purple-600 text-white font-bold transition-all cursor-pointer';
+        } else {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer';
+        }
+      });
+
+      document.getElementById('prevSlideBtn').disabled = (currentSlide === 0);
+      const nextBtn = document.getElementById('nextSlideBtn');
+      if (currentSlide === totalSlides - 1) {
+        nextBtn.innerHTML = '<span>Restart 🔄</span>';
+      } else {
+        nextBtn.innerHTML = '<span>Next</span><span>⏭</span>';
+      }
+
+      playSlideTransitionTone();
+      speakNarration(slideData[currentSlide].narration);
+
+      if (isAutoPlaySlideshow) {
+        resetAutoPlayCountdown();
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide >= totalSlides - 1) {
+        goToSlide(0);
+      } else {
+        goToSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        goToSlide(currentSlide - 1);
+      }
+    }
+
+    function toggleAutoPlaySlideshow() {
+      const btn = document.getElementById('autoPlaySlideshowBtn');
+      const icon = document.getElementById('autoPlayIcon');
+      const txt = document.getElementById('autoPlayText');
+      const bar = document.getElementById('autoPlayCountdownBar');
+
+      if (isAutoPlaySlideshow) {
+        isAutoPlaySlideshow = false;
+        clearInterval(autoPlayInterval);
+        clearInterval(countdownInterval);
+        icon.textContent = '▶';
+        txt.textContent = 'Auto-Play';
+        btn.className = 'px-3.5 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold shadow-lg shadow-purple-600/30 flex items-center space-x-1.5 cursor-pointer transition-all';
+        bar.style.opacity = '0';
+      } else {
+        isAutoPlaySlideshow = true;
+        icon.textContent = '⏸';
+        txt.textContent = 'Pause';
+        btn.className = 'px-3.5 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold shadow-lg shadow-amber-600/30 flex items-center space-x-1.5 cursor-pointer transition-all';
+        bar.style.opacity = '1';
+        resetAutoPlayCountdown();
+      }
+    }
+
+    function resetAutoPlayCountdown() {
+      clearInterval(countdownInterval);
+      clearInterval(autoPlayInterval);
+
+      const bar = document.getElementById('autoPlayCountdownBar');
+      let elapsed = 0;
+      const durationMs = 10000;
+      const stepMs = 100;
+
+      countdownInterval = setInterval(() => {
+        elapsed += stepMs;
+        const pct = Math.min((elapsed / durationMs) * 100, 100);
+        bar.style.width = pct + '%';
+        if (elapsed >= durationMs) {
+          clearInterval(countdownInterval);
+        }
+      }, stepMs);
+
+      autoPlayInterval = setTimeout(() => {
+        if (isAutoPlaySlideshow) {
+          nextSlide();
+        }
+      }, durationMs);
+    }
+
+    // =========================================================================
+    // SLIDE 2: PERSPECTIVE TOGGLE (ANGLE A vs ANGLE C)
+    // =========================================================================
+    function setPerspective(angle) {
+      const btnA = document.getElementById('btnAngleA');
+      const btnC = document.getElementById('btnAngleC');
+      const sideAB = document.getElementById('sideABLabel');
+      const sideBC = document.getElementById('sideBCLabel');
+      const arc = document.getElementById('angleArc');
+      const symb = document.getElementById('angleSymbol');
+
+      if (angle === 'A') {
+        btnA.className = 'px-2.5 py-1 rounded bg-purple-600 text-white font-bold cursor-pointer';
+        btnC.className = 'px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold cursor-pointer';
+
+        sideAB.textContent = 'Side Adjacent to A (Base)';
+        sideBC.textContent = 'Side Opposite to A (Height)';
+        sideAB.setAttribute('fill', '#38bdf8');
+        sideBC.setAttribute('fill', '#ec4899');
+
+        arc.setAttribute('d', 'M 65 160 A 25 25 0 0 0 58 145');
+        symb.setAttribute('x', '70');
+        symb.setAttribute('y', '152');
+        symb.textContent = '∠A';
+
+        document.getElementById('ratioSinFormula').textContent = 'sin A = BC / AC';
+        document.getElementById('ratioCosFormula').textContent = 'cos A = AB / AC';
+        document.getElementById('ratioTanFormula').textContent = 'tan A = BC / AB';
+        document.getElementById('ratioCscFormula').textContent = 'cosec A = AC / BC';
+        document.getElementById('ratioSecFormula').textContent = 'sec A = AC / AB';
+        document.getElementById('ratioCotFormula').textContent = 'cot A = AB / BC';
+
+        playTone(500, 'sine', 0.1);
+      } else {
+        btnC.className = 'px-2.5 py-1 rounded bg-pink-600 text-white font-bold cursor-pointer';
+        btnA.className = 'px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold cursor-pointer';
+
+        sideAB.textContent = 'Side Opposite to C';
+        sideBC.textContent = 'Side Adjacent to C';
+        sideAB.setAttribute('fill', '#ec4899');
+        sideBC.setAttribute('fill', '#38bdf8');
+
+        arc.setAttribute('d', 'M 210 65 A 25 25 0 0 1 195 55');
+        symb.setAttribute('x', '185');
+        symb.setAttribute('y', '75');
+        symb.textContent = '∠C';
+
+        document.getElementById('ratioSinFormula').textContent = 'sin C = AB / AC';
+        document.getElementById('ratioCosFormula').textContent = 'cos C = BC / AC';
+        document.getElementById('ratioTanFormula').textContent = 'tan C = AB / BC';
+        document.getElementById('ratioCscFormula').textContent = 'cosec C = AC / AB';
+        document.getElementById('ratioSecFormula').textContent = 'sec C = AC / BC';
+        document.getElementById('ratioCotFormula').textContent = 'cot C = BC / AB';
+
+        playTone(650, 'sine', 0.1);
+      }
+    }
+
+    // =========================================================================
+    // SLIDE 7: TABLE 8.1 HIGHLIGHT
+    // =========================================================================
+    function highlightAngleCol(ang) {
+      playTone(400 + parseInt(ang) * 4, 'sine', 0.1);
+      speakNarration(`Values for ${ang} degrees selected.`);
+    }
+
+    // =========================================================================
+    // SLIDE 10: QUIZ ENGINE
+    // =========================================================================
+    let quizScore = 0;
+    const answeredMap = {};
+
+    function checkQuizAns(qNum, isCorrect, btn) {
+      if (answeredMap[qNum]) return;
+      answeredMap[qNum] = true;
+
+      const parent = btn.parentElement;
+      const allBtns = parent.querySelectorAll('.quiz-btn');
+      allBtns.forEach(b => b.disabled = true);
+
+      if (isCorrect) {
+        btn.classList.remove('bg-slate-900', 'border-slate-700', 'text-slate-300');
+        btn.classList.add('bg-emerald-600', 'border-emerald-400', 'text-white');
+        quizScore++;
+        playChime();
+        speakNarration("Correct! Excellent mastery of Trigonometry.");
+      } else {
+        btn.classList.remove('bg-slate-900', 'border-slate-700', 'text-slate-300');
+        btn.classList.add('bg-rose-600', 'border-rose-400', 'text-white');
+        playBuzzer();
+        speakNarration("Incorrect. Remember the fundamental identities.");
+      }
+      document.getElementById('quizScoreBadge').textContent = `Score: ${quizScore} / 3`;
+    }
+
+    // INITIALIZATION
+    document.addEventListener('DOMContentLoaded', () => {
+      goToSlide(0);
+    });
+  </script>
+</body>
+</html>
+

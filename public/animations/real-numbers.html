@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 10 • Real Numbers — Slide-by-Slide Multimedia Lab</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    if (typeof tailwind === 'undefined') {
+      document.write('<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"><\/script>');
+    }
+  </script>
+  <style>
+    body { background-color: #020617; color: #f8fafc; }
+    @keyframes pulse-subtle {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.03); opacity: 0.92; }
+    }
+    @keyframes contradiction-shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+    .shake-anim {
+      animation: contradiction-shake 0.5s ease-in-out;
+    }
+    .slide-fade-in {
+      animation: fadeInScale 0.35s ease-out forwards;
+    }
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Custom scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+  </style>
+</head>
+<body style="background-color: #020617; color: #f8fafc;" class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-indigo-500 selection:text-white overflow-x-hidden">
+
+  <!-- TOP HEADER & PROGRESS -->
+  <header style="flex-shrink: 0;" class="border-b border-slate-800 bg-slate-900/95 backdrop-blur sticky top-0 z-50">
+    <!-- Slide Progress Bar -->
+    <div class="w-full bg-slate-800/80 h-1 relative overflow-hidden">
+      <div id="slideProgressBar" class="h-full bg-gradient-to-r from-emerald-500 via-teal-400 to-indigo-500 transition-all duration-500" style="width: 14.28%;"></div>
+      <div id="autoPlayCountdownBar" class="h-full bg-amber-400/80 absolute top-0 left-0 transition-all duration-100" style="width: 0%; opacity: 0;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-indigo-600 flex items-center justify-center font-black text-lg text-white shadow-lg shadow-emerald-500/25 shrink-0">
+          <span>√</span>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="font-black text-sm sm:text-base text-white tracking-tight">NCERT Chapter 1 • Real Numbers</h1>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Reprint 2026-27</span>
+          </div>
+          <p id="slideSubtitle" class="text-xs text-slate-400">Slide 1 of 7: Introduction &amp; The Fundamental Theorem</p>
+        </div>
+      </div>
+
+      <!-- Quick Controls -->
+      <div class="flex items-center space-x-2">
+        <button id="voiceToggleBtn" onclick="toggleVoiceNarration()" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-300 border border-indigo-500/40 flex items-center space-x-1.5 transition-all cursor-pointer" title="Toggle Voice Narration">
+          <span id="voiceIcon">🔊</span>
+          <span id="voiceText" class="hidden sm:inline">Voice: ON</span>
+        </button>
+        <button id="soundToggleBtn" onclick="toggleSoundFx()" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center space-x-1.5 transition-all cursor-pointer" title="Toggle Sound FX">
+          <span id="soundIcon">🎵</span>
+          <span id="soundText" class="hidden sm:inline">SFX: ON</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Narration Subtitles Banner -->
+    <div class="bg-slate-950/80 border-t border-slate-800/80 px-4 py-1.5 flex items-center space-x-2 text-xs">
+      <span class="text-emerald-400 shrink-0 font-bold">🎙 Teacher Note:</span>
+      <p id="narrationSubtitlesText" class="text-slate-300 truncate italic">Loading lesson...</p>
+    </div>
+  </header>
+
+  <!-- MAIN SLIDES STAGE -->
+  <main style="flex: 1 1 0%; min-height: 0;" class="max-w-7xl w-full mx-auto p-3 sm:p-5 flex flex-col justify-between overflow-y-auto">
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 1: INTRODUCTION & CARL FRIEDRICH GAUSS -->
+    <!-- ========================================================================= -->
+    <section id="slide-0" class="slide-pane slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase mb-2">
+              <span>Section 1.1 • Introduction</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">The Fundamental Theorem of Arithmetic</h2>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+              Every natural number can be written as a product of prime numbers in an essentially <strong>unique way</strong>.
+            </p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center space-x-3 shrink-0">
+            <span class="text-3xl">👑</span>
+            <div>
+              <div class="text-xs font-bold text-indigo-400">Carl Friedrich Gauss (1777–1855)</div>
+              <div class="text-[11px] text-slate-400">Prince of Mathematicians • <em>Disquisitiones Arithmeticae</em></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Concept Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/20 text-sky-300">Concept 1</span>
+            <h4 class="text-sm font-bold text-white">Prime Numbers (Building Blocks)</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Numbers greater than 1 whose only divisors are 1 and themselves.</p>
+            <div class="pt-2 flex items-center space-x-1.5 flex-wrap font-mono text-xs text-sky-400 font-bold">
+              <span class="px-2 py-1 rounded bg-slate-900 border border-slate-700">2</span>
+              <span class="px-2 py-1 rounded bg-slate-900 border border-slate-700">3</span>
+              <span class="px-2 py-1 rounded bg-slate-900 border border-slate-700">5</span>
+              <span class="px-2 py-1 rounded bg-slate-900 border border-slate-700">7</span>
+              <span class="px-2 py-1 rounded bg-slate-900 border border-slate-700">11</span>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300">Concept 2</span>
+            <h4 class="text-sm font-bold text-white">Composite Numbers</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Numbers that can be broken into products of smaller primes.</p>
+            <div class="pt-2 font-mono text-xs text-emerald-400 space-y-1">
+              <div>12 = 2 × 2 × 3 = 2² × 3</div>
+              <div>30 = 2 × 3 × 5</div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300">Concept 3</span>
+            <h4 class="text-sm font-bold text-white">Uniqueness of Factorization</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Apart from the order of factors, there is <strong>only one way</strong> to write any composite number as primes!</p>
+            <div class="pt-2 text-xs font-mono text-indigo-300">2 × 3 × 5 ≡ 5 × 2 × 3</div>
+          </div>
+        </div>
+
+        <!-- Interactive Prime Synthesizer Demo -->
+        <div class="p-4 rounded-xl bg-slate-950/60 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="space-y-1">
+            <span class="text-xs font-bold text-slate-200">Interactive: Multiply primes to synthesize a number!</span>
+            <div class="flex items-center space-x-2 pt-1">
+              <button onclick="synthesizeNumber(2)" class="px-3 py-1 rounded-lg bg-sky-600/30 hover:bg-sky-600/50 text-sky-300 border border-sky-500/40 text-xs font-mono font-bold cursor-pointer">× 2</button>
+              <button onclick="synthesizeNumber(3)" class="px-3 py-1 rounded-lg bg-emerald-600/30 hover:bg-emerald-600/50 text-emerald-300 border border-emerald-500/40 text-xs font-mono font-bold cursor-pointer">× 3</button>
+              <button onclick="synthesizeNumber(5)" class="px-3 py-1 rounded-lg bg-amber-600/30 hover:bg-amber-600/50 text-amber-300 border border-amber-500/40 text-xs font-mono font-bold cursor-pointer">× 5</button>
+              <button onclick="resetSynthesizer()" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 text-xs cursor-pointer">Reset</button>
+            </div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-right min-w-[200px]">
+            <div class="text-[10px] text-slate-400 uppercase tracking-wider">Product Result:</div>
+            <div id="synthExpression" class="text-xs font-mono text-slate-300">2 × 3 × 5</div>
+            <div id="synthTotal" class="text-xl font-mono font-black text-emerald-400">= 30</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 2: THE PRIME FACTOR TREE (32760) -->
+    <!-- ========================================================================= -->
+    <section id="slide-1" class="slide-pane hidden slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-xl space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase mb-1">
+              <span>Theorem 1.1 • Factor Tree Algorithm</span>
+            </div>
+            <h2 class="text-lg sm:text-xl font-black text-white flex items-center space-x-2">
+              <span>🌳 Prime Factor Tree of 32760</span>
+            </h2>
+            <p class="text-xs text-slate-400">Watch the number recursively split into a prime divisor (green) and composite remainder.</p>
+          </div>
+
+          <!-- Number Presets -->
+          <div class="flex items-center space-x-1.5 flex-wrap">
+            <span class="text-xs text-slate-400 font-medium">Examples:</span>
+            <button onclick="generateFactorTree(32760)" class="px-2.5 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-mono text-xs font-bold cursor-pointer">32760</button>
+            <button onclick="generateFactorTree(140)" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-mono text-xs font-bold border border-slate-700 cursor-pointer">140</button>
+            <button onclick="generateFactorTree(156)" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-mono text-xs font-bold border border-slate-700 cursor-pointer">156</button>
+            <button onclick="generateFactorTree(3825)" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-mono text-xs font-bold border border-slate-700 cursor-pointer">3825</button>
+          </div>
+        </div>
+
+        <!-- Controls Toolbar -->
+        <div class="flex items-center space-x-2.5 p-2.5 bg-slate-950/60 rounded-xl border border-slate-800 flex-wrap gap-2">
+          <input type="number" id="customTreeInput" value="32760" min="2" max="1000000" class="w-28 px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-700 text-white font-mono text-xs font-bold">
+          <button onclick="generateFactorTree(document.getElementById('customTreeInput').value)" class="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-md cursor-pointer">▶ Generate</button>
+          <button onclick="stepThroughFactorTree()" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold border border-slate-700 cursor-pointer">Step ⏭</button>
+          <button id="autoPlayTreeBtn" onclick="toggleAutoPlayFactorTree()" class="px-3 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-md cursor-pointer flex items-center space-x-1">
+            <span>▶</span>
+            <span>Auto-Branch</span>
+          </button>
+        </div>
+
+        <!-- Tree Canvas & Result Display -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
+          <div class="lg:col-span-8 bg-slate-950 rounded-xl p-3 border border-slate-800 flex flex-col items-center justify-start overflow-auto min-h-[300px] max-h-[360px]">
+            <div id="treeContainer" class="w-full flex flex-col items-center space-y-3 py-2">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 bg-slate-950/60 rounded-xl p-4 border border-slate-800 flex flex-col justify-between space-y-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Exponential Factorization</span>
+              <div id="treeMathResult" class="mt-3 p-3.5 rounded-xl bg-slate-900 border border-slate-800 font-mono text-center">
+                <!-- Result string -->
+              </div>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Writing primes in ascending order gives the <strong>canonical prime factorization</strong> for every composite number.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 3: HCF & LCM VIA PRIME POWERS -->
+    <!-- ========================================================================= -->
+    <section id="slide-2" class="slide-pane hidden slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase mb-1">
+            <span>Section 1.2 • Theorem &amp; Identity</span>
+          </div>
+          <h2 class="text-xl font-black text-white">HCF &amp; LCM by Prime Factorisation</h2>
+          <p class="text-xs text-slate-300 mt-1">Fundamental Identity: <strong class="text-emerald-400 font-mono">HCF(a, b) × LCM(a, b) = a × b</strong></p>
+        </div>
+
+        <!-- Interactive Calculator Input -->
+        <div class="flex items-center space-x-3 p-3 bg-slate-950 rounded-xl border border-slate-800 flex-wrap gap-2">
+          <label class="text-xs text-slate-300 font-bold">Calculate for (a, b):</label>
+          <input type="number" id="hcfNumA" value="6" min="1" max="10000" class="w-20 px-2.5 py-1 rounded bg-slate-900 border border-slate-700 font-mono text-xs text-white">
+          <span class="text-xs text-slate-400">&amp;</span>
+          <input type="number" id="hcfNumB" value="20" min="1" max="10000" class="w-20 px-2.5 py-1 rounded bg-slate-900 border border-slate-700 font-mono text-xs text-white">
+          <button onclick="calculateHcfLcm()" class="px-3.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold cursor-pointer">Calculate</button>
+          
+          <div class="flex items-center space-x-1.5 ml-auto text-xs text-slate-400">
+            <span>Presets:</span>
+            <button onclick="setHcfPair(6, 20)" class="px-2 py-0.5 rounded bg-slate-800 text-slate-200 border border-slate-700 cursor-pointer font-mono">6, 20</button>
+            <button onclick="setHcfPair(96, 404)" class="px-2 py-0.5 rounded bg-slate-800 text-slate-200 border border-slate-700 cursor-pointer font-mono">96, 404</button>
+            <button onclick="setHcfPair(336, 54)" class="px-2 py-0.5 rounded bg-slate-800 text-slate-200 border border-slate-700 cursor-pointer font-mono">336, 54</button>
+          </div>
+        </div>
+
+        <!-- Result Comparison Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- HCF Card -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold uppercase text-sky-400">Highest Common Factor (HCF)</span>
+              <span id="hcfValBadge" class="text-sm font-mono font-black text-sky-300 px-2.5 py-0.5 rounded bg-sky-500/20">HCF = 2</span>
+            </div>
+            <p class="text-xs text-slate-400">Product of the <strong>smallest powers</strong> of each common prime factor.</p>
+            <div id="hcfSteps" class="p-2.5 rounded bg-slate-900 border border-slate-800 font-mono text-xs text-slate-300">
+              6 = 2¹ × 3¹ <br>
+              20 = 2² × 5¹ <br>
+              Common: 2¹ = 2
+            </div>
+          </div>
+
+          <!-- LCM Card -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold uppercase text-indigo-400">Lowest Common Multiple (LCM)</span>
+              <span id="lcmValBadge" class="text-sm font-mono font-black text-indigo-300 px-2.5 py-0.5 rounded bg-indigo-500/20">LCM = 60</span>
+            </div>
+            <p class="text-xs text-slate-400">Product of the <strong>greatest powers</strong> of all prime factors involved.</p>
+            <div id="lcmSteps" class="p-2.5 rounded bg-slate-900 border border-slate-800 font-mono text-xs text-slate-300">
+              Greatest powers: 2² × 3¹ × 5¹ = 4 × 3 × 5 = 60
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Theorem Verification -->
+        <div id="hcfVerificationBox" class="p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-xs font-mono flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-emerald-300">
+          <div>
+            <strong>✓ Identity Proof:</strong> HCF(6, 20) × LCM(6, 20) = 2 × 60 = <strong>120</strong>
+          </div>
+          <div>
+            Product a × b = 6 × 20 = <strong>120</strong> (Both Match!)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 4: WHY 4^n AND 6^n CAN NEVER END IN 0 -->
+    <!-- ========================================================================= -->
+    <section id="slide-3" class="slide-pane hidden slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold uppercase mb-1">
+            <span>Example 1 &amp; Exercise 1.1</span>
+          </div>
+          <h2 class="text-xl font-black text-white">Can 4ⁿ or 6ⁿ Ever End with Digit 0?</h2>
+          <p class="text-xs text-slate-300 mt-1">Applying the Fundamental Theorem of Arithmetic to prove impossible ending digits.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Card 4^n -->
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-rose-400 font-mono">Case 1: 4ⁿ</h3>
+              <span class="text-xs font-bold px-2 py-0.5 rounded bg-rose-500/20 text-rose-300">NEVER 0</span>
+            </div>
+            <div class="space-y-2 text-xs font-mono text-slate-300">
+              <div class="p-2 rounded bg-slate-900 border border-slate-800">1. To end in 0, prime <strong>5</strong> must be a factor (2 × 5 = 10).</div>
+              <div class="p-2 rounded bg-slate-900 border border-slate-800">2. Factor 4ⁿ: <strong class="text-emerald-400">4ⁿ = (2²)ⁿ = 2²ⁿ</strong></div>
+              <div class="p-2 rounded bg-slate-900 border border-slate-800">3. The <em>only</em> prime factor is <strong>2</strong>!</div>
+              <div class="p-2.5 rounded bg-rose-950/40 border border-rose-500/40 text-rose-200">
+                <strong>Conclusion:</strong> Since 5 does not occur in 2²ⁿ, 4ⁿ cannot end in 0 for any natural number n.
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6^n -->
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-amber-400 font-mono">Case 2: 6ⁿ</h3>
+              <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300">NEVER 0</span>
+            </div>
+            <div class="space-y-2 text-xs font-mono text-slate-300">
+              <div class="p-2 rounded bg-slate-900 border border-slate-800">1. Any number ending in 0 is divisible by 5.</div>
+              <div class="p-2 rounded bg-slate-900 border border-slate-800">2. Factor 6ⁿ: <strong class="text-cyan-400">6ⁿ = (2 × 3)ⁿ = 2ⁿ × 3ⁿ</strong></div>
+              <div class="p-2 rounded bg-slate-900 border border-slate-800">3. The only primes present are <strong>2 and 3</strong>.</div>
+              <div class="p-2.5 rounded bg-amber-950/40 border border-amber-500/40 text-amber-200">
+                <strong>Uniqueness Theorem:</strong> No primes other than 2 and 3 can exist. Hence, 6ⁿ can NEVER end in 0.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 5: PROOF BY CONTRADICTION (√2, √3) -->
+    <!-- ========================================================================= -->
+    <section id="slide-4" class="slide-pane hidden slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs font-bold uppercase mb-1">
+              <span>Theorem 1.3 • Proof by Contradiction</span>
+            </div>
+            <h2 class="text-xl font-black text-white">Visual Proof: √2 &amp; √3 are Irrational</h2>
+            <p class="text-xs text-slate-400 mt-1">Theorem 1.2: If prime p divides a², then p divides a.</p>
+          </div>
+
+          <div class="flex items-center space-x-2">
+            <button onclick="setContradictionProof('root2')" id="btnProofRoot2" class="px-3 py-1 rounded-lg bg-rose-600 text-white font-bold text-xs shadow-md cursor-pointer">Prove √2</button>
+            <button onclick="setContradictionProof('root3')" id="btnProofRoot3" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs border border-slate-700 cursor-pointer">Prove √3</button>
+            <button onclick="setContradictionProof('composite')" id="btnProofComp" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs border border-slate-700 cursor-pointer">Prove 5 - √3</button>
+          </div>
+        </div>
+
+        <!-- Animated Steps Container -->
+        <div id="proofStepsContainer" class="space-y-2.5">
+          <!-- Dynamically filled -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 6: CIRCULAR SPORTS TRACK (SONIA & RAVI) -->
+    <!-- ========================================================================= -->
+    <section id="slide-5" class="slide-pane hidden slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-xs font-bold uppercase mb-1">
+              <span>Exercise 1.1 Question 7</span>
+            </div>
+            <h2 class="text-xl font-black text-white">Circular Sports Track Simulation</h2>
+            <p class="text-xs text-slate-300 mt-1">Sonia takes 18 min/lap, Ravi takes 12 min/lap. When will they meet at the start?</p>
+          </div>
+
+          <div class="flex items-center space-x-2">
+            <button id="trackPlayBtn" onclick="toggleTrackAnimation()" class="px-3.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-md cursor-pointer">
+              ▶ Run Race
+            </button>
+            <button onclick="resetTrackAnimation()" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold border border-slate-700 cursor-pointer">
+              Reset 🔄
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+          <div class="lg:col-span-7 bg-slate-950 p-3 rounded-xl border border-slate-800 flex flex-col items-center justify-center">
+            <canvas id="trackCanvas" width="460" height="280" class="w-full h-auto max-w-full block"></canvas>
+            <div class="mt-2 text-xs font-mono text-slate-400 flex items-center space-x-4">
+              <span class="text-rose-400 font-bold">🔴 Sonia (18 min)</span>
+              <span class="text-cyan-400 font-bold">🔵 Ravi (12 min)</span>
+              <span class="text-white font-bold ml-auto">Time: <span id="simTimeDisplay" class="text-emerald-400 font-mono">0.0</span> min</span>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 bg-slate-950/60 p-4 rounded-xl border border-slate-800 space-y-3 font-mono text-xs">
+            <div class="text-emerald-400 font-bold uppercase">Mathematical Solution:</div>
+            <p class="text-slate-300 leading-relaxed">
+              They meet at common multiples of 18 and 12 minutes:
+            </p>
+            <div class="p-2.5 rounded bg-slate-900 border border-slate-800 space-y-1">
+              <div>Sonia (18): 18, <strong>36</strong>, 54, 72...</div>
+              <div>Ravi (12): 12, 24, <strong>36</strong>, 48...</div>
+              <div class="text-emerald-300 font-bold pt-1">LCM(18, 12) = 2² × 3² = 36 min</div>
+            </div>
+            <p class="text-slate-400 text-[11px]">
+              Sonia completes exactly 2 laps (2 × 18 = 36) and Ravi completes 3 laps (3 × 12 = 36) when they meet!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 7: CHAPTER KNOWLEDGE CHECK QUIZ -->
+    <!-- ========================================================================= -->
+    <section id="slide-6" class="slide-pane hidden slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-xs font-bold uppercase mb-1">
+              <span>Chapter Mastery Quiz</span>
+            </div>
+            <h2 class="text-xl font-black text-white">Rapid Concept Check</h2>
+          </div>
+          <div id="quizScoreBadge" class="text-xs font-mono font-bold px-3 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+            Score: 0 / 3
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <!-- Question 1 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <span class="text-xs font-bold text-sky-400">Q1. HCF × LCM Identity</span>
+            <p class="text-xs text-slate-300">If HCF(306, 657) = 9, what is LCM(306, 657)?</p>
+            <div class="space-y-1.5 text-xs">
+              <button onclick="checkQuizAns(1, false, this)" class="quiz-btn w-full p-2 text-left rounded bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300">A) 20114</button>
+              <button onclick="checkQuizAns(1, true, this)" class="quiz-btn w-full p-2 text-left rounded bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 font-bold">B) 22338</button>
+              <button onclick="checkQuizAns(1, false, this)" class="quiz-btn w-full p-2 text-left rounded bg-slate-900 hover:bg-slate-700 border border-slate-700 text-slate-300">C) 18560</button>
+            </div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <span class="text-xs font-bold text-emerald-400">Q2. End Digit Rule</span>
+            <p class="text-xs text-slate-300">Which prime factor MUST a number contain to end with 0?</p>
+            <div class="space-y-1.5 text-xs">
+              <button onclick="checkQuizAns(2, false, this)" class="quiz-btn w-full p-2 text-left rounded bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300">A) 3</button>
+              <button onclick="checkQuizAns(2, true, this)" class="quiz-btn w-full p-2 text-left rounded bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 font-bold">B) 5</button>
+              <button onclick="checkQuizAns(2, false, this)" class="quiz-btn w-full p-2 text-left rounded bg-slate-900 hover:bg-slate-700 border border-slate-700 text-slate-300">C) 7</button>
+            </div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <span class="text-xs font-bold text-amber-400">Q3. Proof by Contradiction</span>
+            <p class="text-xs text-slate-300">In proving √2 is irrational, we assume √2 = a/b where a and b are:</p>
+            <div class="space-y-1.5 text-xs">
+              <button onclick="checkQuizAns(3, false, this)" class="quiz-btn w-full p-2 text-left rounded bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300">A) Even numbers</button>
+              <button onclick="checkQuizAns(3, true, this)" class="quiz-btn w-full p-2 text-left rounded bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 font-bold">B) Co-prime integers</button>
+              <button onclick="checkQuizAns(3, false, this)" class="quiz-btn w-full p-2 text-left rounded bg-slate-900 hover:bg-slate-700 border border-slate-700 text-slate-300">C) Irrational values</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- BOTTOM SLIDE-BY-SLIDE CONTROLLER DOCK -->
+  <!-- ========================================================================= -->
+  <footer style="flex-shrink: 0;" class="border-t border-slate-800/90 bg-slate-950/95 p-3 sm:p-4 z-40">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      
+      <!-- Prev / Next & Auto-Play Controls -->
+      <div class="flex items-center space-x-2">
+        <button id="prevSlideBtn" onclick="prevSlide()" class="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold border border-slate-700 flex items-center space-x-1 cursor-pointer transition-all disabled:opacity-40 disabled:cursor-not-allowed">
+          <span>⏮</span>
+          <span>Previous</span>
+        </button>
+
+        <button id="autoPlaySlideshowBtn" onclick="toggleAutoPlaySlideshow()" class="px-4 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 flex items-center space-x-1.5 cursor-pointer transition-all">
+          <span id="autoPlayIcon">▶</span>
+          <span id="autoPlayText">Auto-Play Slideshow</span>
+        </button>
+
+        <button id="nextSlideBtn" onclick="nextSlide()" class="px-4 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white text-xs font-bold shadow-lg shadow-emerald-600/30 flex items-center space-x-1 cursor-pointer transition-all">
+          <span>Next</span>
+          <span>⏭</span>
+        </button>
+      </div>
+
+      <!-- Slide Jump Pills -->
+      <div class="flex items-center space-x-1 overflow-x-auto max-w-full pb-1 sm:pb-0 text-xs">
+        <button onclick="goToSlide(0)" class="slide-pill px-2.5 py-1 rounded-lg bg-emerald-600 text-white font-bold transition-all cursor-pointer">1. Intro</button>
+        <button onclick="goToSlide(1)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">2. Factor Tree</button>
+        <button onclick="goToSlide(2)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">3. HCF &amp; LCM</button>
+        <button onclick="goToSlide(3)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">4. 4ⁿ / 6ⁿ</button>
+        <button onclick="goToSlide(4)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">5. √2 Proof</button>
+        <button onclick="goToSlide(5)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">6. Track</button>
+        <button onclick="goToSlide(6)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">7. Quiz</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT SLIDE & MULTIMEDIA ENGINE -->
+  <!-- ========================================================================= -->
+  <script>
+    let currentSlide = 0;
+    const totalSlides = 7;
+    let isAutoPlaySlideshow = false;
+    let autoPlayInterval = null;
+    let autoPlayCountdownSec = 9;
+    let countdownInterval = null;
+
+    let isVoiceEnabled = true;
+    let isSoundFxEnabled = true;
+    let audioCtx = null;
+
+    const slideData = [
+      {
+        title: "Slide 1 of 7: Introduction & The Fundamental Theorem",
+        narration: "Welcome to Real Numbers! Carl Friedrich Gauss proved that every composite number can be uniquely decomposed into prime factors, apart from the order of factors."
+      },
+      {
+        title: "Slide 2 of 7: Interactive Factor Tree of 32760",
+        narration: "Here is the factor tree of 32760 from your textbook. Notice how each step divides by the smallest prime factor until reaching one."
+      },
+      {
+        title: "Slide 3 of 7: Finding HCF & LCM by Prime Factorisation",
+        narration: "To find HCF, multiply the smallest powers of common primes. For LCM, multiply the greatest powers of all primes. Notice that HCF times LCM always equals a times b!"
+      },
+      {
+        title: "Slide 4 of 7: Why 4 to the power n and 6 to the power n Can't End in 0",
+        narration: "Can 4 to the power n or 6 to the power n ever end in zero? Never! Any number ending in zero requires prime factor 5, which neither 4 nor 6 contains."
+      },
+      {
+        title: "Slide 5 of 7: Proof by Contradiction that Square Root of 2 is Irrational",
+        narration: "We assume square root of 2 is rational as a over b in co-prime form. Squaring both sides reveals that 2 divides both a and b. This is an impossible contradiction! Hence, square root of 2 is irrational."
+      },
+      {
+        title: "Slide 6 of 7: Exercise 1.1 Circular Sports Track Simulation",
+        narration: "Sonia takes 18 minutes for a lap, and Ravi takes 12 minutes. At 36 minutes, which is the LCM of 18 and 12, both runners meet again at the starting line!"
+      },
+      {
+        title: "Slide 7 of 7: Chapter Summary & Rapid Concept Check",
+        narration: "Great work! Test your mastery with these three quick questions from the chapter."
+      }
+    ];
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    function playTone(freq, type = 'sine', duration = 0.2, gainVal = 0.15) {
+      if (!isSoundFxEnabled) return;
+      try {
+        initAudio();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(gainVal, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (err) {}
+    }
+
+    function playChime() {
+      playTone(523.25, 'triangle', 0.2, 0.1);
+      setTimeout(() => playTone(659.25, 'triangle', 0.2, 0.1), 80);
+      setTimeout(() => playTone(783.99, 'triangle', 0.35, 0.12), 160);
+    }
+
+    function playContradictionBuzzer() {
+      playTone(200, 'sawtooth', 0.4, 0.2);
+      setTimeout(() => playTone(150, 'sawtooth', 0.5, 0.25), 150);
+    }
+
+    function playSlideTransitionTone() {
+      playTone(480, 'sine', 0.08, 0.08);
+      setTimeout(() => playTone(600, 'sine', 0.12, 0.08), 70);
+    }
+
+    function speakNarration(text) {
+      document.getElementById('narrationSubtitlesText').textContent = text;
+      if (!isVoiceEnabled || !('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 1.0;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    window.toggleVoiceNarration = function() {
+      isVoiceEnabled = !isVoiceEnabled;
+      const icon = document.getElementById('voiceIcon');
+      const txt = document.getElementById('voiceText');
+      if (isVoiceEnabled) {
+        icon.textContent = '🔊';
+        txt.textContent = 'Voice: ON';
+        speakNarration(slideData[currentSlide].narration);
+      } else {
+        window.speechSynthesis.cancel();
+        icon.textContent = '🔇';
+        txt.textContent = 'Voice: OFF';
+      }
+    };
+
+    window.toggleSoundFx = function() {
+      isSoundFxEnabled = !isSoundFxEnabled;
+      const icon = document.getElementById('soundIcon');
+      const txt = document.getElementById('soundText');
+      if (isSoundFxEnabled) {
+        icon.textContent = '🎵';
+        txt.textContent = 'SFX: ON';
+        playTone(600, 'sine', 0.1);
+      } else {
+        icon.textContent = '🔇';
+        txt.textContent = 'SFX: OFF';
+      }
+    };
+
+    // =========================================================================
+    // SLIDE NAVIGATION ENGINE
+    // =========================================================================
+    function goToSlide(idx) {
+      if (idx < 0) idx = 0;
+      if (idx >= totalSlides) idx = totalSlides - 1;
+      currentSlide = idx;
+
+      // Update Subtitle & Progress
+      document.getElementById('slideSubtitle').textContent = slideData[currentSlide].title;
+      const pct = ((currentSlide + 1) / totalSlides) * 100;
+      document.getElementById('slideProgressBar').style.width = pct + '%';
+
+      // Update Slide Panes
+      for (let i = 0; i < totalSlides; i++) {
+        const pane = document.getElementById('slide-' + i);
+        if (pane) {
+          if (i === currentSlide) {
+            pane.classList.remove('hidden');
+            pane.classList.add('block');
+          } else {
+            pane.classList.add('hidden');
+            pane.classList.remove('block');
+          }
+        }
+      }
+
+      // Update Pills
+      document.querySelectorAll('.slide-pill').forEach((pill, i) => {
+        if (i === currentSlide) {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-emerald-600 text-white font-bold transition-all cursor-pointer';
+        } else {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer';
+        }
+      });
+
+      // Update Prev / Next button state
+      document.getElementById('prevSlideBtn').disabled = (currentSlide === 0);
+      const nextBtn = document.getElementById('nextSlideBtn');
+      if (currentSlide === totalSlides - 1) {
+        nextBtn.innerHTML = '<span>Restart 🔄</span>';
+      } else {
+        nextBtn.innerHTML = '<span>Next</span><span>⏭</span>';
+      }
+
+      // Sound & Voice
+      playSlideTransitionTone();
+      speakNarration(slideData[currentSlide].narration);
+
+      // Trigger Slide-specific actions
+      if (currentSlide === 1) {
+        generateFactorTree(32760);
+      } else if (currentSlide === 2) {
+        calculateHcfLcm();
+      } else if (currentSlide === 4) {
+        setContradictionProof('root2');
+      } else if (currentSlide === 5) {
+        resetTrackAnimation();
+        // Run race after slight pause
+        setTimeout(() => {
+          if (currentSlide === 5 && !isTrackRunning) {
+            toggleTrackAnimation();
+          }
+        }, 1200);
+      }
+
+      // If autoplay is active, reset countdown timer
+      if (isAutoPlaySlideshow) {
+        resetAutoPlayCountdown();
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide >= totalSlides - 1) {
+        goToSlide(0);
+      } else {
+        goToSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        goToSlide(currentSlide - 1);
+      }
+    }
+
+    function toggleAutoPlaySlideshow() {
+      const btn = document.getElementById('autoPlaySlideshowBtn');
+      const icon = document.getElementById('autoPlayIcon');
+      const txt = document.getElementById('autoPlayText');
+      const bar = document.getElementById('autoPlayCountdownBar');
+
+      if (isAutoPlaySlideshow) {
+        // Stop
+        isAutoPlaySlideshow = false;
+        clearInterval(autoPlayInterval);
+        clearInterval(countdownInterval);
+        icon.textContent = '▶';
+        txt.textContent = 'Auto-Play Slideshow';
+        btn.className = 'px-4 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 flex items-center space-x-1.5 cursor-pointer transition-all';
+        bar.style.opacity = '0';
+      } else {
+        // Start
+        isAutoPlaySlideshow = true;
+        icon.textContent = '⏸';
+        txt.textContent = 'Pause Slideshow';
+        btn.className = 'px-4 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold shadow-lg shadow-amber-600/30 flex items-center space-x-1.5 cursor-pointer transition-all';
+        bar.style.opacity = '1';
+        resetAutoPlayCountdown();
+      }
+    }
+
+    function resetAutoPlayCountdown() {
+      clearInterval(countdownInterval);
+      clearInterval(autoPlayInterval);
+
+      const bar = document.getElementById('autoPlayCountdownBar');
+      let elapsed = 0;
+      const durationMs = 9000; // 9 seconds per slide
+      const stepMs = 100;
+
+      countdownInterval = setInterval(() => {
+        if (!isAutoPlaySlideshow) {
+          clearInterval(countdownInterval);
+          return;
+        }
+        elapsed += stepMs;
+        const progressPct = (elapsed / durationMs) * 100;
+        bar.style.width = progressPct + '%';
+        if (elapsed >= durationMs) {
+          clearInterval(countdownInterval);
+          nextSlide();
+        }
+      }, stepMs);
+    }
+
+    // Keyboard Shortcuts
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+      } else if (e.code === 'Space' && e.target.tagName !== 'INPUT') {
+        e.preventDefault();
+        toggleAutoPlaySlideshow();
+      }
+    });
+
+    // =========================================================================
+    // SLIDE 1: PRIME SYNTHESIZER
+    // =========================================================================
+    let synthPrimes = [2, 3, 5];
+    function synthesizeNumber(prime) {
+      if (synthPrimes.length < 8) {
+        synthPrimes.push(prime);
+      }
+      renderSynth();
+      playTone(prime * 120, 'sine', 0.15);
+    }
+    function resetSynthesizer() {
+      synthPrimes = [2];
+      renderSynth();
+    }
+    function renderSynth() {
+      const total = synthPrimes.reduce((a, b) => a * b, 1);
+      document.getElementById('synthExpression').textContent = synthPrimes.join(' × ');
+      document.getElementById('synthTotal').textContent = '= ' + total;
+    }
+
+    // =========================================================================
+    // SLIDE 2: FACTOR TREE GENERATOR
+    // =========================================================================
+    let activeTreeSteps = [];
+    let treeStepIndex = 0;
+    let factorTreeAutoPlayTimer = null;
+
+    function getPrimeFactors(num) {
+      const factors = [];
+      let d = 2;
+      while (num >= 2) {
+        while (num % d === 0) {
+          factors.push(d);
+          num /= d;
+        }
+        d++;
+        if (d * d > num) {
+          if (num > 1) {
+            factors.push(num);
+            break;
+          }
+        }
+      }
+      return factors;
+    }
+
+    function generateFactorTree(num) {
+      num = parseInt(num) || 32760;
+      document.getElementById('customTreeInput').value = num;
+
+      activeTreeSteps = [];
+      let rem = num;
+      let div = 2;
+      while (rem >= 2) {
+        while (rem % div === 0) {
+          const nextRem = rem / div;
+          activeTreeSteps.push({ parent: rem, prime: div, rem: nextRem });
+          rem = nextRem;
+        }
+        div++;
+        if (div * div > rem) {
+          if (rem > 1) break;
+        }
+      }
+
+      treeStepIndex = activeTreeSteps.length;
+      renderTreeHTML();
+
+      const primeList = getPrimeFactors(num);
+      const countMap = {};
+      primeList.forEach(p => countMap[p] = (countMap[p] || 0) + 1);
+      const expString = Object.keys(countMap).map(p => countMap[p] > 1 ? `${p}<sup>${countMap[p]}</sup>` : `${p}`).join(' × ');
+
+      document.getElementById('treeMathResult').innerHTML = `
+        <div class="text-white text-base font-bold">${num}</div>
+        <div class="text-[11px] text-slate-400 mt-1">${primeList.join(' × ')}</div>
+        <div class="text-emerald-400 mt-1.5 text-sm font-bold">= ${expString}</div>
+      `;
+    }
+
+    function toggleAutoPlayFactorTree() {
+      const btn = document.getElementById('autoPlayTreeBtn');
+      if (factorTreeAutoPlayTimer) {
+        clearInterval(factorTreeAutoPlayTimer);
+        factorTreeAutoPlayTimer = null;
+        if (btn) btn.innerHTML = '<span>▶</span><span>Auto-Branch</span>';
+        return;
+      }
+      treeStepIndex = 0;
+      renderTreeHTML();
+      if (btn) btn.innerHTML = '<span>⏸</span><span>Pause</span>';
+      factorTreeAutoPlayTimer = setInterval(() => {
+        if (treeStepIndex < activeTreeSteps.length) {
+          treeStepIndex++;
+          renderTreeHTML();
+          playTone(360 + (treeStepIndex * 70), 'sine', 0.15);
+        } else {
+          clearInterval(factorTreeAutoPlayTimer);
+          factorTreeAutoPlayTimer = null;
+          if (btn) btn.innerHTML = '<span>🔄</span><span>Replay</span>';
+          playChime();
+        }
+      }, 700);
+    }
+
+    function stepThroughFactorTree() {
+      if (factorTreeAutoPlayTimer) {
+        clearInterval(factorTreeAutoPlayTimer);
+        factorTreeAutoPlayTimer = null;
+        const btn = document.getElementById('autoPlayTreeBtn');
+        if (btn) btn.innerHTML = '<span>▶</span><span>Auto-Branch</span>';
+      }
+      if (treeStepIndex >= activeTreeSteps.length) {
+        treeStepIndex = 1;
+      } else {
+        treeStepIndex++;
+      }
+      renderTreeHTML();
+      playTone(500, 'sine', 0.1);
+    }
+
+    function renderTreeHTML() {
+      const container = document.getElementById('treeContainer');
+      if (!activeTreeSteps.length) {
+        container.innerHTML = '<span class="text-slate-400">Prime number has no composite tree.</span>';
+        return;
+      }
+      let html = '';
+      for (let i = 0; i < treeStepIndex; i++) {
+        const step = activeTreeSteps[i];
+        html += `
+          <div class="flex flex-col items-center">
+            <div class="px-3.5 py-1 rounded-xl bg-slate-800 border border-slate-700 text-white font-mono text-xs font-bold shadow-md">
+              ${step.parent}
+            </div>
+            <div class="w-24 h-4 relative flex items-center justify-between">
+              <div class="w-1/2 h-full border-r border-b border-emerald-500/60 rounded-br"></div>
+              <div class="w-1/2 h-full border-l border-b border-indigo-500/60 rounded-bl"></div>
+            </div>
+            <div class="flex items-center space-x-6">
+              <div class="w-8 h-8 rounded-full bg-emerald-600/90 text-white font-mono font-bold text-xs flex items-center justify-center border-2 border-emerald-400 shadow-lg shadow-emerald-500/30">
+                ${step.prime}
+              </div>
+              <div class="px-3 py-1 rounded-lg bg-indigo-950/80 text-indigo-200 font-mono font-bold text-xs border border-indigo-500/40">
+                ${step.rem}
+              </div>
+            </div>
+            ${i < treeStepIndex - 1 ? '<div class="w-px h-3 bg-slate-700 my-0.5"></div>' : ''}
+          </div>
+        `;
+      }
+      container.innerHTML = html;
+    }
+
+    // =========================================================================
+    // SLIDE 3: HCF & LCM CALCULATOR
+    // =========================================================================
+    function setHcfPair(a, b) {
+      document.getElementById('hcfNumA').value = a;
+      document.getElementById('hcfNumB').value = b;
+      calculateHcfLcm();
+    }
+
+    function gcd(a, b) {
+      while (b) {
+        const t = b;
+        b = a % b;
+        a = t;
+      }
+      return a;
+    }
+
+    function calculateHcfLcm() {
+      const a = parseInt(document.getElementById('hcfNumA').value) || 6;
+      const b = parseInt(document.getElementById('hcfNumB').value) || 20;
+
+      const hcf = gcd(a, b);
+      const lcm = (a * b) / hcf;
+
+      document.getElementById('hcfValBadge').textContent = `HCF = ${hcf}`;
+      document.getElementById('lcmValBadge').textContent = `LCM = ${lcm}`;
+
+      const fA = getPrimeFactors(a);
+      const fB = getPrimeFactors(b);
+
+      document.getElementById('hcfSteps').innerHTML = `
+        ${a} = ${fA.join(' × ')} <br>
+        ${b} = ${fB.join(' × ')} <br>
+        <span class="text-sky-400 font-bold">Smallest common powers = ${hcf}</span>
+      `;
+
+      document.getElementById('lcmSteps').innerHTML = `
+        Highest powers of all primes: <br>
+        <span class="text-indigo-400 font-bold">${a} × ${b} ÷ ${hcf} = ${lcm}</span>
+      `;
+
+      document.getElementById('hcfVerificationBox').innerHTML = `
+        <div>
+          <strong>✓ Theorem Proof:</strong> HCF(${a}, ${b}) × LCM(${a}, ${b}) = ${hcf} × ${lcm} = <strong>${hcf * lcm}</strong>
+        </div>
+        <div>
+          Product a × b = ${a} × ${b} = <strong>${a * b}</strong> (Exact Match!)
+        </div>
+      `;
+      playChime();
+    }
+
+    // =========================================================================
+    // SLIDE 5: PROOF BY CONTRADICTION
+    // =========================================================================
+    function setContradictionProof(type) {
+      const container = document.getElementById('proofStepsContainer');
+      const bRoot2 = document.getElementById('btnProofRoot2');
+      const bRoot3 = document.getElementById('btnProofRoot3');
+      const bComp = document.getElementById('btnProofComp');
+
+      bRoot2.className = 'px-3 py-1 rounded-lg bg-slate-800 text-slate-300 font-bold text-xs border border-slate-700 cursor-pointer';
+      bRoot3.className = 'px-3 py-1 rounded-lg bg-slate-800 text-slate-300 font-bold text-xs border border-slate-700 cursor-pointer';
+      bComp.className = 'px-3 py-1 rounded-lg bg-slate-800 text-slate-300 font-bold text-xs border border-slate-700 cursor-pointer';
+
+      if (type === 'root2') {
+        bRoot2.className = 'px-3 py-1 rounded-lg bg-rose-600 text-white font-bold text-xs shadow-md cursor-pointer';
+        container.innerHTML = `
+          <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300 space-y-1">
+            <span class="text-indigo-400 font-bold">Step 1: Assumption</span><br>
+            Assume to the contrary that <strong>√2 is rational</strong>. Thus, √2 = a/b where a and b are <strong>co-prime integers</strong> (b ≠ 0).
+          </div>
+          <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300 space-y-1">
+            <span class="text-indigo-400 font-bold">Step 2: Squaring</span><br>
+            b√2 = a &implies; <strong>2b² = a²</strong>. Therefore, 2 divides a². By Theorem 1.2, <strong>2 divides a</strong>.
+          </div>
+          <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300 space-y-1">
+            <span class="text-indigo-400 font-bold">Step 3: Substitution</span><br>
+            Write a = 2c. Then 2b² = (2c)² = 4c² &implies; <strong>b² = 2c²</strong>. Therefore, 2 divides b² &implies; <strong>2 divides b</strong>.
+          </div>
+          <div class="shake-anim p-3.5 rounded-lg bg-rose-950/70 border border-rose-500 font-mono text-xs text-rose-200">
+            <strong>⚡ IMPOSSIBLE CONTRADICTION!</strong><br>
+            a and b have at least <strong>2</strong> as a common factor. But this contradicts our fact that a and b are <strong>co-prime</strong>!
+            Hence, our initial assumption was false: <strong>√2 is irrational</strong>.
+          </div>
+        `;
+        playContradictionBuzzer();
+      } else if (type === 'root3') {
+        bRoot3.className = 'px-3 py-1 rounded-lg bg-rose-600 text-white font-bold text-xs shadow-md cursor-pointer';
+        container.innerHTML = `
+          <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300 space-y-1">
+            <span class="text-cyan-400 font-bold">Step 1: Assumption</span><br>
+            Assume √3 is rational &implies; √3 = a/b with a, b co-prime integers.
+          </div>
+          <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300 space-y-1">
+            <span class="text-cyan-400 font-bold">Step 2: Square both sides</span><br>
+            3b² = a² &implies; <strong>3 divides a</strong>. Write a = 3c.
+          </div>
+          <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300 space-y-1">
+            <span class="text-cyan-400 font-bold">Step 3: Substitution</span><br>
+            3b² = 9c² &implies; b² = 3c² &implies; <strong>3 divides b</strong>.
+          </div>
+          <div class="shake-anim p-3.5 rounded-lg bg-rose-950/70 border border-rose-500 font-mono text-xs text-rose-200">
+            <strong>⚡ CONTRADICTION!</strong><br>
+            Both a and b share prime factor <strong>3</strong>, contradicting that a and b are co-prime!
+            Conclusion: <strong>√3 is irrational</strong>.
+          </div>
+        `;
+        playContradictionBuzzer();
+      } else {
+        bComp.className = 'px-3 py-1 rounded-lg bg-rose-600 text-white font-bold text-xs shadow-md cursor-pointer';
+        container.innerHTML = `
+          <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300 space-y-1">
+            <span class="text-amber-400 font-bold">Theorem: 5 - √3 is Irrational</span><br>
+            Assume 5 - √3 is rational &implies; 5 - √3 = a/b where a, b are integers.
+          </div>
+          <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300 space-y-1">
+            <span class="text-amber-400 font-bold">Rearranging:</span><br>
+            √3 = 5 - a/b = (5b - a) / b.
+          </div>
+          <div class="shake-anim p-3.5 rounded-lg bg-rose-950/70 border border-rose-500 font-mono text-xs text-rose-200">
+            <strong>⚡ CONTRADICTION!</strong><br>
+            Since a and b are integers, (5b - a)/b is rational. This means √3 is rational, which contradicts the established theorem that √3 is irrational!<br>
+            Therefore: <strong>5 - √3 is irrational</strong>.
+          </div>
+        `;
+        playContradictionBuzzer();
+      }
+    }
+
+    // =========================================================================
+    // SLIDE 6: CIRCULAR TRACK ENGINE
+    // =========================================================================
+    let isTrackRunning = false;
+    let trackSimTime = 0;
+    let trackAnimReq = null;
+
+    function resetTrackAnimation() {
+      isTrackRunning = false;
+      trackSimTime = 0;
+      cancelAnimationFrame(trackAnimReq);
+      document.getElementById('simTimeDisplay').textContent = '0.0';
+      document.getElementById('trackPlayBtn').textContent = '▶ Run Race';
+      drawTrack(0);
+    }
+
+    function toggleTrackAnimation() {
+      if (isTrackRunning) {
+        isTrackRunning = false;
+        cancelAnimationFrame(trackAnimReq);
+        document.getElementById('trackPlayBtn').textContent = '▶ Resume';
+      } else {
+        isTrackRunning = true;
+        document.getElementById('trackPlayBtn').textContent = '⏸ Pause';
+        runTrackLoop();
+      }
+    }
+
+    function runTrackLoop() {
+      if (!isTrackRunning) return;
+      trackSimTime += 0.09;
+      if (trackSimTime >= 36) {
+        trackSimTime = 36;
+        drawTrack(trackSimTime);
+        document.getElementById('simTimeDisplay').textContent = '36.0 (MET!)';
+        playChime();
+        speakNarration("At exactly thirty-six minutes, Sonia completes 2 laps and Ravi completes 3 laps, meeting at the start!");
+        isTrackRunning = false;
+        document.getElementById('trackPlayBtn').textContent = '🔄 Replay Race';
+        return;
+      }
+      drawTrack(trackSimTime);
+      document.getElementById('simTimeDisplay').textContent = trackSimTime.toFixed(1);
+      trackAnimReq = requestAnimationFrame(runTrackLoop);
+    }
+
+    function drawTrack(time) {
+      const canvas = document.getElementById('trackCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const cx = canvas.width / 2;
+      const cy = canvas.height / 2;
+      const r = 95;
+
+      // Track ring
+      ctx.strokeStyle = '#334155';
+      ctx.lineWidth = 16;
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Dashed lane
+      ctx.strokeStyle = '#64748b';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([5, 5]);
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Start line
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(cx + r - 12, cy);
+      ctx.lineTo(cx + r + 12, cy);
+      ctx.stroke();
+      ctx.font = 'bold 10px sans-serif';
+      ctx.fillStyle = '#f8fafc';
+      ctx.fillText('START', cx + r + 16, cy + 4);
+
+      // Sonia (18 min)
+      const soniaAngle = (time / 18) * (Math.PI * 2);
+      const sx = cx + (r + 4) * Math.cos(soniaAngle);
+      const sy = cy + (r + 4) * Math.sin(soniaAngle);
+
+      // Ravi (12 min)
+      const raviAngle = (time / 12) * (Math.PI * 2);
+      const rx = cx + (r - 4) * Math.cos(raviAngle);
+      const ry = cy + (r - 4) * Math.sin(raviAngle);
+
+      // Draw Sonia (Red)
+      ctx.fillStyle = '#f43f5e';
+      ctx.beginPath();
+      ctx.arc(sx, sy, 7, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Draw Ravi (Cyan)
+      ctx.fillStyle = '#06b6d4';
+      ctx.beginPath();
+      ctx.arc(rx, ry, 7, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Laps text in center
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '11px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText(`Sonia: ${(time / 18).toFixed(1)} laps`, cx, cy - 8);
+      ctx.fillText(`Ravi: ${(time / 12).toFixed(1)} laps`, cx, cy + 12);
+      ctx.textAlign = 'left';
+    }
+
+    // =========================================================================
+    // SLIDE 7: QUIZ ENGINE
+    // =========================================================================
+    let quizScore = 0;
+    const answeredMap = {};
+
+    function checkQuizAns(qNum, isCorrect, btn) {
+      if (answeredMap[qNum]) return;
+      answeredMap[qNum] = true;
+
+      const parent = btn.parentElement;
+      const allBtns = parent.querySelectorAll('.quiz-btn');
+      allBtns.forEach(b => b.disabled = true);
+
+      if (isCorrect) {
+        btn.classList.remove('bg-slate-900', 'border-slate-700', 'text-slate-300');
+        btn.classList.add('bg-emerald-600', 'border-emerald-400', 'text-white');
+        quizScore++;
+        playChime();
+        speakNarration("Correct! Excellent job.");
+      } else {
+        btn.classList.remove('bg-slate-900', 'border-slate-700', 'text-slate-300');
+        btn.classList.add('bg-rose-600', 'border-rose-400', 'text-white');
+        playContradictionBuzzer();
+        speakNarration("Incorrect. Check the mathematical rule!");
+      }
+      document.getElementById('quizScoreBadge').textContent = `Score: ${quizScore} / 3`;
+    }
+
+    // INITIALIZATION
+    document.addEventListener('DOMContentLoaded', () => {
+      goToSlide(0);
+      drawTrack(0);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 10 • Circles — Multimedia Lab</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    if (typeof tailwind === 'undefined') {
+      document.write('<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"><\/script>');
+    }
+  </script>
+  <style>
+    body { background-color: #020617; color: #f8fafc; }
+    .slide-fade-in {
+      animation: fadeInScale 0.35s ease-out forwards;
+    }
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.15); opacity: 0.4; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .pulse-ring {
+      animation: pulse-ring 2s infinite ease-in-out;
+    }
+    /* Custom scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+  </style>
+</head>
+<body style="background-color: #020617; color: #f8fafc;" class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-blue-500 selection:text-white overflow-x-hidden">
+
+  <!-- TOP HEADER & PROGRESS -->
+  <header style="flex-shrink: 0;" class="border-b border-slate-800 bg-slate-900/95 backdrop-blur sticky top-0 z-50">
+    <!-- Slide Progress Bar -->
+    <div class="w-full bg-slate-800/80 h-1.5 relative overflow-hidden">
+      <div id="slideProgressBar" class="h-full bg-gradient-to-r from-blue-500 via-indigo-500 to-cyan-400 transition-all duration-500" style="width: 10%;"></div>
+      <div id="autoPlayCountdownBar" class="h-full bg-amber-400/80 absolute top-0 left-0 transition-all duration-100" style="width: 0%; opacity: 0;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-500 via-indigo-600 to-cyan-500 flex items-center justify-center font-black text-lg text-white shadow-lg shadow-blue-500/25 shrink-0">
+          <span>⭕</span>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="font-black text-sm sm:text-base text-white tracking-tight">NCERT Chapter 10 • Circles</h1>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30">Reprint 2026-27</span>
+          </div>
+          <p id="slideSubtitle" class="text-xs text-slate-400">Slide 1 of 10: Non-Intersecting Lines, Secants &amp; Tangents</p>
+        </div>
+      </div>
+
+      <!-- Quick Audio Controls -->
+      <div class="flex items-center space-x-2">
+        <button id="voiceToggleBtn" onclick="toggleVoiceNarration()" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-blue-600/30 hover:bg-blue-600/50 text-blue-300 border border-blue-500/40 flex items-center space-x-1.5 transition-all cursor-pointer" title="Toggle Voice Narration">
+          <span id="voiceIcon">🔊</span>
+          <span id="voiceText" class="hidden sm:inline">Voice: ON</span>
+        </button>
+        <button id="soundToggleBtn" onclick="toggleSoundFx()" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center space-x-1.5 transition-all cursor-pointer" title="Toggle Sound FX">
+          <span id="soundIcon">🎵</span>
+          <span id="soundText" class="hidden sm:inline">SFX: ON</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Narration Subtitles Banner -->
+    <div class="bg-slate-950/80 border-t border-slate-800/80 px-4 py-1.5 flex items-center space-x-2 text-xs">
+      <span class="text-blue-400 shrink-0 font-bold">🎙 Teacher Voiceover:</span>
+      <p id="narrationSubtitlesText" class="text-slate-300 truncate italic">Loading lesson...</p>
+    </div>
+  </header>
+
+  <!-- MAIN SLIDES STAGE -->
+  <main style="flex: 1 1 0%; min-height: 0;" class="max-w-7xl w-full mx-auto p-3 sm:p-5 flex flex-col justify-between overflow-y-auto">
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 1: NON-INTERSECTING LINES, SECANTS & TANGENTS -->
+    <!-- ========================================================================= -->
+    <section id="slide-0" class="slide-pane slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase mb-2">
+              <span>Section 10.1 • Three Geometric Possibilities</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Circles &amp; Lines: Non-Intersecting, Secant, or Tangent</h2>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+              When a straight line PQ and a circle exist in the same plane, there are exactly three mutually exclusive possibilities for their common points!
+            </p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center space-x-3 shrink-0">
+            <span class="text-3xl">⚙️</span>
+            <div>
+              <div class="text-xs font-bold text-blue-400">Thomas Fineke (1583)</div>
+              <div class="text-[11px] text-slate-400">From Latin <em>tangere</em> (to touch)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Line-Circle Possibilities Grid (Fig. 10.1) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Non-intersecting -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2.5 text-center">
+            <div class="h-28 flex items-center justify-center">
+              <svg viewBox="0 0 120 100" class="w-28 h-24 select-none">
+                <circle cx="50" cy="50" r="32" fill="none" stroke="#38bdf8" stroke-width="2" />
+                <line x1="105" y1="10" x2="105" y2="90" stroke="#64748b" stroke-width="2" />
+                <text x="100" y="8" fill="#94a3b8" font-size="9">P</text>
+                <text x="100" y="98" fill="#94a3b8" font-size="9">Q</text>
+              </svg>
+            </div>
+            <h4 class="text-sm font-bold text-slate-200">1. Non-Intersecting Line</h4>
+            <p class="text-xs text-slate-400">
+              <strong>0 Common Points:</strong> The line passes outside the circle without touching or cutting it.
+            </p>
+          </div>
+
+          <!-- Secant -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2.5 text-center">
+            <div class="h-28 flex items-center justify-center">
+              <svg viewBox="0 0 120 100" class="w-28 h-24 select-none">
+                <circle cx="60" cy="50" r="32" fill="none" stroke="#38bdf8" stroke-width="2" />
+                <line x1="30" y1="10" x2="90" y2="90" stroke="#f59e0b" stroke-width="2" />
+                <circle cx="45" cy="30" r="3" fill="#f59e0b" />
+                <text x="35" y="28" fill="#f59e0b" font-size="9" font-weight="bold">A</text>
+                <circle cx="75" cy="70" r="3" fill="#f59e0b" />
+                <text x="80" y="75" fill="#f59e0b" font-size="9" font-weight="bold">B</text>
+              </svg>
+            </div>
+            <h4 class="text-sm font-bold text-amber-400">2. Secant of Circle</h4>
+            <p class="text-xs text-slate-400">
+              <strong>2 Common Points (A &amp; B):</strong> The line intersects the circle twice, containing a chord AB.
+            </p>
+          </div>
+
+          <!-- Tangent -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-blue-500/40 space-y-2.5 text-center shadow-lg shadow-blue-500/10">
+            <div class="h-28 flex items-center justify-center">
+              <svg viewBox="0 0 120 100" class="w-28 h-24 select-none">
+                <circle cx="50" cy="50" r="32" fill="none" stroke="#38bdf8" stroke-width="2" />
+                <line x1="82" y1="10" x2="82" y2="90" stroke="#10b981" stroke-width="2.5" />
+                <circle cx="82" cy="50" r="3.5" fill="#10b981" />
+                <text x="88" y="54" fill="#10b981" font-size="10" font-weight="bold">Point A</text>
+              </svg>
+            </div>
+            <h4 class="text-sm font-bold text-emerald-400">3. Tangent to Circle</h4>
+            <p class="text-xs text-slate-400">
+              <strong>Exactly 1 Common Point (A):</strong> The line touches the circle at one unique <em>point of contact</em>!
+            </p>
+          </div>
+        </div>
+
+        <!-- Pulley & Rolling Wheel Real-World Context -->
+        <div class="p-4 rounded-xl bg-gradient-to-r from-blue-950/40 via-indigo-950/40 to-slate-900 border border-blue-500/30 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+          <div class="flex items-start space-x-3">
+            <span class="text-2xl">🪣</span>
+            <div>
+              <strong class="text-blue-300 block">Well Pulley Rope (Fig. 10.2)</strong>
+              The taut rope pulling water on both sides of a pulley forms two tangent rays touching the pulley wheel.
+            </div>
+          </div>
+          <div class="flex items-start space-x-3">
+            <span class="text-2xl">🚲</span>
+            <div>
+              <strong class="text-cyan-300 block">Bicycle Rolling Wheel (Fig. 10.4)</strong>
+              The flat road is a tangent to the rolling wheel circle at the instant point of contact, with the spoke perpendicular to the ground!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 2: TANGENT AS A LIMITING CASE OF SECANT (ACTIVITIES 1 & 2) -->
+    <!-- ========================================================================= -->
+    <section id="slide-1" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase mb-2">
+            <span>Section 10.2 • Limiting Process</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">The Tangent: A Secant Whose Endpoints Coincide</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            A tangent is not an isolated object—it is the <strong>limiting position of a secant</strong> when the two endpoints of its corresponding chord move closer and closer until they merge into one single point!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- Rotating Secant Activity 1 (Fig. 10.3(i)) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <div class="flex items-center justify-between">
+              <h4 class="text-xs font-bold text-blue-400 uppercase tracking-wider">Activity 1: Rotating Wire About P</h4>
+              <span class="text-[10px] text-slate-400 font-mono">Fig. 10.3(i)</span>
+            </div>
+            <p class="text-xs text-slate-300">
+              Fix a point P on a circular wire and rotate a line AB around it. The second intersection point Q moves along the circumference until Q coincides with P!
+            </p>
+            <div class="p-3 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-300 space-y-1.5">
+              <div class="text-emerald-400 font-bold">Key Discovery:</div>
+              <p>There is <strong>one and only one tangent</strong> at any given point on a circle!</p>
+            </div>
+          </div>
+
+          <!-- Parallel Tangents Activity 2 (Fig. 10.3(ii)) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <div class="flex items-center justify-between">
+              <h4 class="text-xs font-bold text-indigo-400 uppercase tracking-wider">Activity 2: Parallel Secants</h4>
+              <span class="text-[10px] text-slate-400 font-mono">Fig. 10.3(ii)</span>
+            </div>
+            <p class="text-xs text-slate-300">
+              Draw lines parallel to a secant PQ on both sides. The chord length cut by the lines gradually shrinks to zero at the opposite outer boundaries P'Q' and P''Q''.
+            </p>
+            <div class="p-3 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-300 space-y-1.5">
+              <div class="text-indigo-400 font-bold">Key Discovery:</div>
+              <p>A circle can have at most <strong>two parallel tangents</strong> for any given secant or diameter direction!</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-gradient-to-r from-blue-950/60 to-indigo-950/60 border border-blue-500/30 text-center font-bold text-blue-300 text-xs sm:text-sm">
+          "The tangent to a circle is a special case of the secant, when the two end points of its corresponding chord coincide."
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 3: THEOREM 10.1: RADIUS IS PERPENDICULAR TO TANGENT -->
+    <!-- ========================================================================= -->
+    <section id="slide-2" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase mb-2">
+            <span>Theorem 10.1 • The Perpendicularity Law</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Theorem 10.1: Tangent is Perpendicular to the Radius</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            The tangent at any point of a circle is strictly perpendicular to the radius through the point of contact: <strong class="text-blue-300 font-mono">OP ⊥ XY</strong>.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- Proof Diagram (Fig. 10.5) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <h4 class="text-xs font-bold text-blue-400 uppercase tracking-wider">Proof Geometry (Fig. 10.5)</h4>
+            <div class="bg-slate-900/80 rounded-lg p-3 flex justify-center">
+              <svg viewBox="0 0 280 200" class="w-full max-w-[320px] h-52 select-none">
+                <!-- Circle with centre O(140, 80) and radius r = 60 -->
+                <circle cx="140" cy="80" r="60" fill="none" stroke="#38bdf8" stroke-width="2" />
+                <circle cx="140" cy="80" r="4.5" fill="#38bdf8" />
+                <text x="145" y="75" fill="#38bdf8" font-size="12" font-weight="bold">O</text>
+
+                <!-- Tangent line XY at P(140, 140) -->
+                <line x1="30" y1="140" x2="250" y2="140" stroke="#10b981" stroke-width="2.5" />
+                <text x="25" y="145" fill="#10b981" font-size="11" font-weight="bold">X</text>
+                <text x="255" y="145" fill="#10b981" font-size="11" font-weight="bold">Y</text>
+
+                <!-- Radius OP (vertical) -->
+                <line x1="140" y1="80" x2="140" y2="140" stroke="#38bdf8" stroke-width="2" />
+                <circle cx="140" cy="140" r="4.5" fill="#10b981" />
+                <text x="135" y="158" fill="#10b981" font-size="11" font-weight="bold">P (Point of Contact)</text>
+                <!-- Right angle marker -->
+                <rect x="140" y="128" width="12" height="12" fill="none" stroke="#94a3b8" stroke-width="1.5" />
+
+                <!-- External Point Q on tangent -->
+                <circle cx="210" cy="140" r="4" fill="#f59e0b" />
+                <text x="210" y="158" fill="#f59e0b" font-size="11" font-weight="bold">Q</text>
+
+                <!-- Line OQ -->
+                <line x1="140" y1="80" x2="210" y2="140" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3,3" />
+                <text x="180" y="105" fill="#f59e0b" font-size="10" font-weight="bold">OQ > OP</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Step-by-Step Shortest Distance Proof -->
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
+              <div class="font-bold text-amber-400">The Shortest Distance Principle:</div>
+              <ol class="space-y-1.5 list-decimal list-inside text-slate-300">
+                <li>Let <code class="text-emerald-300 font-mono">XY</code> be the tangent touching the circle at point <code class="text-emerald-300 font-mono">P</code>.</li>
+                <li>Take any point <code class="text-amber-300 font-mono">Q</code> on <code class="text-emerald-300 font-mono">XY</code> other than <code class="text-emerald-300 font-mono">P</code>.</li>
+                <li><code class="text-amber-300 font-mono">Q</code> <strong>must lie outside the circle</strong>! (If Q were inside, XY would be a secant, not a tangent).</li>
+                <li>Therefore, <code class="text-amber-300 font-mono font-bold">OQ > OP</code> (radius).</li>
+                <li>Since this holds for <em>every</em> point on XY except P, <code class="text-blue-300 font-mono font-bold">OP is the shortest distance</code> from O to line XY!</li>
+                <li>In Euclidean geometry, the shortest segment from a point to a line is the perpendicular.</li>
+              </ol>
+
+              <div class="p-2.5 rounded bg-slate-900 border border-slate-800 text-center font-mono text-emerald-400 font-bold text-sm">
+                OP ⊥ XY
+              </div>
+            </div>
+
+            <!-- Normal Definition Remark -->
+            <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 text-xs text-slate-400">
+              💡 <strong>Definition of Normal:</strong> The straight line containing the radius through the point of contact is called the <em>normal</em> to the circle at that point.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 4: NUMBER OF TANGENTS FROM A POINT (CASES 1, 2, 3) -->
+    <!-- ========================================================================= -->
+    <section id="slide-3" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase mb-2">
+            <span>Section 10.3 • Tangent Multiplicity</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Number of Tangents from a Point (Inside, On, or Outside)</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            The position of point P relative to the circle strictly determines how many tangents can be drawn through it.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Case 1: Inside -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3 text-center">
+            <span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-400 text-[10px] font-bold">Case 1: Point P Inside Circle</span>
+            <div class="h-28 flex items-center justify-center">
+              <svg viewBox="0 0 120 100" class="w-28 h-24 select-none">
+                <circle cx="60" cy="50" r="35" fill="none" stroke="#38bdf8" stroke-width="2" />
+                <circle cx="50" cy="45" r="4" fill="#ef4444" />
+                <text x="56" y="48" fill="#ef4444" font-size="10" font-weight="bold">P</text>
+                <!-- Lines through P are secants -->
+                <line x1="20" y1="20" x2="80" y2="70" stroke="#64748b" stroke-width="1.5" />
+                <line x1="25" y1="75" x2="75" y2="15" stroke="#64748b" stroke-width="1.5" />
+              </svg>
+            </div>
+            <h4 class="text-sm font-bold text-rose-400">0 Tangents</h4>
+            <p class="text-xs text-slate-400">
+              Any line through a point inside the circle intersects it at two points, forming a secant. No tangent is possible!
+            </p>
+          </div>
+
+          <!-- Case 2: On Circle -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3 text-center">
+            <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 text-[10px] font-bold">Case 2: Point P on Circle</span>
+            <div class="h-28 flex items-center justify-center">
+              <svg viewBox="0 0 120 100" class="w-28 h-24 select-none">
+                <circle cx="50" cy="50" r="35" fill="none" stroke="#38bdf8" stroke-width="2" />
+                <circle cx="85" cy="50" r="4" fill="#f59e0b" />
+                <text x="90" y="54" fill="#f59e0b" font-size="10" font-weight="bold">P</text>
+                <!-- Single tangent -->
+                <line x1="85" y1="10" x2="85" y2="90" stroke="#10b981" stroke-width="2" />
+              </svg>
+            </div>
+            <h4 class="text-sm font-bold text-amber-400">Exactly 1 Tangent</h4>
+            <p class="text-xs text-slate-400">
+              There is one and only one unique tangent touching the circle at point P, perpendicular to radius OP.
+            </p>
+          </div>
+
+          <!-- Case 3: Outside Circle -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-blue-500/40 space-y-3 text-center shadow-lg shadow-blue-500/10">
+            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">Case 3: Point P Outside Circle</span>
+            <div class="h-28 flex items-center justify-center">
+              <svg viewBox="0 0 130 100" class="w-32 h-24 select-none">
+                <circle cx="45" cy="50" r="30" fill="none" stroke="#38bdf8" stroke-width="2" />
+                <circle cx="115" cy="50" r="4" fill="#10b981" />
+                <text x="120" y="54" fill="#10b981" font-size="10" font-weight="bold">P</text>
+                <!-- Two tangents from P -->
+                <line x1="115" y1="50" x2="55" y2="21" stroke="#38bdf8" stroke-width="1.8" />
+                <line x1="115" y1="50" x2="55" y2="79" stroke="#38bdf8" stroke-width="1.8" />
+                <circle cx="55" cy="21" r="3" fill="#38bdf8" />
+                <text x="50" y="16" fill="#38bdf8" font-size="9">T₁</text>
+                <circle cx="55" cy="79" r="3" fill="#38bdf8" />
+                <text x="50" y="93" fill="#38bdf8" font-size="9">T₂</text>
+              </svg>
+            </div>
+            <h4 class="text-sm font-bold text-emerald-400">Exactly 2 Tangents</h4>
+            <p class="text-xs text-slate-400">
+              From an external point P, exactly two tangents <code class="text-white font-mono">PT₁</code> and <code class="text-white font-mono">PT₂</code> can be drawn!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 5: THEOREM 10.2: EQUALITY OF TANGENTS FROM EXTERNAL POINT -->
+    <!-- ========================================================================= -->
+    <section id="slide-4" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase mb-2">
+            <span>Theorem 10.2 • The Grand Tangent Theorem</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Theorem 10.2: Tangents from an External Point are Equal</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            "The lengths of tangents drawn from an external point to a circle are equal." Proved via RHS Congruence and verified with Pythagoras!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- Geometric Proof Diagram (Fig. 10.7) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <h4 class="text-xs font-bold text-blue-400 uppercase tracking-wider">Fig. 10.7 Setup (RHS Congruence)</h4>
+            <div class="bg-slate-900/80 rounded-lg p-3 flex justify-center">
+              <svg viewBox="0 0 280 200" class="w-full max-w-[320px] h-52 select-none">
+                <!-- Circle centre O(180, 100), radius 50 -->
+                <circle cx="180" cy="100" r="50" fill="none" stroke="#38bdf8" stroke-width="2" />
+                <circle cx="180" cy="100" r="4.5" fill="#38bdf8" />
+                <text x="188" y="105" fill="#38bdf8" font-size="12" font-weight="bold">O</text>
+
+                <!-- External Point P(40, 100) -->
+                <circle cx="40" cy="100" r="4.5" fill="#10b981" />
+                <text x="25" y="105" fill="#10b981" font-size="12" font-weight="bold">P</text>
+
+                <!-- Points of contact Q and R -->
+                <!-- PQ tangent: Q at (150, 60 approx) -->
+                <line x1="40" y1="100" x2="155" y2="60" stroke="#10b981" stroke-width="2.5" />
+                <circle cx="155" cy="60" r="4" fill="#38bdf8" />
+                <text x="155" y="50" fill="#38bdf8" font-size="11" font-weight="bold">Q</text>
+
+                <!-- PR tangent: R at (155, 140) -->
+                <line x1="40" y1="100" x2="155" y2="140" stroke="#10b981" stroke-width="2.5" />
+                <circle cx="155" cy="140" r="4" fill="#38bdf8" />
+                <text x="155" y="155" fill="#38bdf8" font-size="11" font-weight="bold">R</text>
+
+                <!-- Radii OQ and OR -->
+                <line x1="180" y1="100" x2="155" y2="60" stroke="#64748b" stroke-width="1.8" stroke-dasharray="2,2" />
+                <line x1="180" y1="100" x2="155" y2="140" stroke="#64748b" stroke-width="1.8" stroke-dasharray="2,2" />
+
+                <!-- Common line OP -->
+                <line x1="40" y1="100" x2="180" y2="100" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3,3" />
+                <text x="105" y="92" fill="#f59e0b" font-size="10" font-weight="bold">OP (Common)</text>
+
+                <!-- Right angle marks at Q and R -->
+                <path d="M 148 68 L 156 73 L 163 65" fill="none" stroke="#94a3b8" stroke-width="1" />
+                <path d="M 148 132 L 156 127 L 163 135" fill="none" stroke="#94a3b8" stroke-width="1" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Proof Breakdown & Dual Consequences -->
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
+              <div class="font-bold text-emerald-400">Proof via RHS Congruence:</div>
+              <div class="bg-slate-900 p-2.5 rounded font-mono text-[11px] text-slate-200 space-y-1">
+                <div>In right Δ OQP and right Δ ORP:</div>
+                <div>• OQ = OR (Radii of same circle)</div>
+                <div>• OP = OP (Common Hypotenuse)</div>
+                <div>• ∠OQP = ∠ORP = 90° (Theorem 10.1)</div>
+                <div class="text-cyan-300 font-bold pt-1">∴ Δ OQP ≅ Δ ORP (RHS Criterion)</div>
+                <div class="text-emerald-400 font-bold">➔ PQ = PR (CPCT)</div>
+              </div>
+            </div>
+
+            <!-- Two Sub-Theorems from CPCT -->
+            <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
+              <span class="text-amber-400 font-bold uppercase text-[11px]">Two Vital CPCT Properties:</span>
+              <ul class="space-y-1.5 text-slate-300 text-[11px]">
+                <li>
+                  1. <strong class="text-white">∠OPQ = ∠OPR:</strong> Line OP is the angle bisector of ∠QPR (centre lies on the bisector of the angle between tangents).
+                </li>
+                <li>
+                  2. <strong class="text-white">∠POQ = ∠POR:</strong> Line OP bisects the central angle subtended by the chord of contact QR.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 6: SOLVED EXAMPLES: CONCENTRIC CIRCLES & CHORD BISECTION (EX 1, 2) -->
+    <!-- ========================================================================= -->
+    <section id="slide-5" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase mb-2">
+            <span>Examples 1 &amp; 2 • Classical Geometric Deductions</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Concentric Circles &amp; The Angle Relation ∠PTQ = 2∠OPQ</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            Combining circle properties with tangent theorems to prove chord bisection and subtended angle relationships.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <!-- Example 1: Concentric Circles -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 text-[10px] font-bold">Textbook Example 1</span>
+            <h4 class="text-sm font-bold text-white">Chord of Larger Circle Touching Smaller Circle is Bisected</h4>
+
+            <div class="text-xs text-slate-300 space-y-2">
+              <p>Two concentric circles C₁ and C₂ with centre O. Chord AB of C₁ touches C₂ at point P.</p>
+              <div class="bg-slate-900 p-2.5 rounded font-mono text-[11px] text-slate-200 space-y-1">
+                <div>• AB is a tangent to C₂ at P ➔ <strong class="text-cyan-300">OP ⊥ AB</strong> (Thm 10.1)</div>
+                <div>• AB is a chord of larger circle C₁</div>
+                <div>• Perpendicular from centre to chord bisects the chord</div>
+                <div class="text-emerald-400 font-bold pt-1">∴ AP = BP (Bisected at P!)</div>
+              </div>
+            </div>
+            <div class="text-[11px] text-slate-400">
+              Board application: Radii 5 cm and 3 cm ➔ AP = √(5² - 3²) = 4 cm ➔ Chord AB = 8 cm!
+            </div>
+          </div>
+
+          <!-- Example 2: Angle Relation ∠PTQ = 2∠OPQ -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-400 text-[10px] font-bold">Textbook Example 2</span>
+            <h4 class="text-sm font-bold text-white">Prove that ∠PTQ = 2 ∠OPQ (Fig. 10.9)</h4>
+
+            <div class="text-xs text-slate-300 space-y-2 font-mono">
+              <div class="bg-slate-900 p-2.5 rounded text-[11px] space-y-1">
+                <div>Let ∠PTQ = θ</div>
+                <div>Since TP = TQ (Thm 10.2), Δ TPQ is isosceles.</div>
+                <div>∠TPQ = ∠TQP = ½(180° - θ) = 90° - θ/2</div>
+                <div>Since OP ⊥ PT, ∠OPT = 90°</div>
+                <div>∠OPQ = ∠OPT - ∠TPQ = 90° - (90° - θ/2) = θ/2</div>
+                <div class="pt-1 text-emerald-400 font-bold">
+                  ∴ ∠PTQ = 2 ∠OPQ ✔️
+                </div>
+              </div>
+            </div>
+            <div class="text-[11px] text-slate-400">
+              Crucial board exam result: The angle between two tangents is double the angle between chord and radius!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 7: CHORD OF LENGTH 8CM & TANGENTS (EXAMPLE 3) -->
+    <!-- ========================================================================= -->
+    <section id="slide-6" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase mb-2">
+            <span>Example 3 • Similarity &amp; Tangent Length</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Finding Tangent Length TP (Chord 8cm, Radius 5cm)</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            "PQ is a chord of length 8 cm of a circle of radius 5 cm. Tangents at P and Q intersect at T. Find length TP." (Fig. 10.10)
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- Geometric Setup (Fig. 10.10) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <h4 class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Fig. 10.10 Geometry</h4>
+            <div class="bg-slate-900/80 rounded-lg p-3 flex justify-center">
+              <svg viewBox="0 0 280 200" class="w-full max-w-[320px] h-52 select-none">
+                <!-- Circle with centre O(190, 100), radius 50 -->
+                <circle cx="190" cy="100" r="50" fill="none" stroke="#38bdf8" stroke-width="2" />
+                <circle cx="190" cy="100" r="4.5" fill="#38bdf8" />
+                <text x="198" y="105" fill="#38bdf8" font-size="12" font-weight="bold">O</text>
+
+                <!-- Tangents meet at T(50, 100) -->
+                <circle cx="50" cy="100" r="4.5" fill="#10b981" />
+                <text x="35" y="105" fill="#10b981" font-size="12" font-weight="bold">T</text>
+
+                <!-- Points of contact P(150, 60) and Q(150, 140) -->
+                <line x1="50" y1="100" x2="150" y2="60" stroke="#10b981" stroke-width="2.5" />
+                <circle cx="150" cy="60" r="4" fill="#38bdf8" />
+                <text x="150" y="50" fill="#38bdf8" font-size="11" font-weight="bold">P</text>
+
+                <line x1="50" y1="100" x2="150" y2="140" stroke="#10b981" stroke-width="2.5" />
+                <circle cx="150" cy="140" r="4" fill="#38bdf8" />
+                <text x="150" y="155" fill="#38bdf8" font-size="11" font-weight="bold">Q</text>
+
+                <!-- Chord PQ = 8cm -->
+                <line x1="150" y1="60" x2="150" y2="140" stroke="#f59e0b" stroke-width="2" />
+                <!-- Intersection R on OT -->
+                <circle cx="150" cy="100" r="3.5" fill="#f59e0b" />
+                <text x="135" y="95" fill="#f59e0b" font-size="10" font-weight="bold">R</text>
+
+                <!-- Line OT -->
+                <line x1="50" y1="100" x2="190" y2="100" stroke="#64748b" stroke-dasharray="2,2" stroke-width="1.5" />
+
+                <!-- Radius OP = 5 -->
+                <line x1="190" y1="100" x2="150" y2="60" stroke="#38bdf8" stroke-width="2" />
+                <text x="175" y="75" fill="#38bdf8" font-size="10" font-weight="bold">5 cm</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Dual Methods: Similarity vs Pythagoras -->
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
+              <div class="font-bold text-emerald-400">Method 1: By AA Similarity (Fastest)</div>
+              <div class="bg-slate-900 p-2.5 rounded font-mono text-[11px] text-slate-200 space-y-1">
+                <div>OT ⊥ PQ and bisects PQ ➔ <strong class="text-white">PR = RQ = 4 cm</strong></div>
+                <div>In right Δ PRO: OR = √(5² - 4²) = <strong class="text-cyan-300">3 cm</strong></div>
+                <div>∠TPR + ∠RPO = 90° and ∠PTR + ∠TPR = 90°</div>
+                <div>∴ ∠RPO = ∠PTR ➔ <strong class="text-indigo-300">Δ TRP ~ Δ PRO (AA)</strong></div>
+                <div class="pt-1">TP / PO = RP / RO</div>
+                <div>TP / 5 = 4 / 3 ➔ <strong class="text-emerald-400 text-sm">TP = 20 / 3 cm</strong></div>
+              </div>
+            </div>
+
+            <div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-xs text-emerald-300 text-center font-bold font-mono">
+              Length TP = 20/3 cm ≈ 6.67 cm
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 8: CIRCUMSCRIBED QUADRILATERAL (AB + CD = AD + BC) (EX 10.2 Q8, Q11) -->
+    <!-- ========================================================================= -->
+    <section id="slide-7" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase mb-2">
+            <span>Exercise 10.2 Q8 &amp; Q11 • Circumscribed Figures</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Quadrilateral Circumscribing a Circle: AB + CD = AD + BC</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            When a polygon circumscribes a circle, every vertex acts as an external point with two equal tangent segments. Adding all four vertices yields the grand perimeter property!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- Circumscribed Quad Diagram (Fig. 10.12) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider">Fig. 10.12 Tangent Segments</h4>
+            <div class="bg-slate-900/80 rounded-lg p-3 flex justify-center">
+              <svg viewBox="0 0 240 200" class="w-full max-w-[280px] h-48 select-none">
+                <!-- Inscribed Circle -->
+                <circle cx="120" cy="100" r="45" fill="none" stroke="#38bdf8" stroke-width="2" />
+
+                <!-- Quadrilateral ABCD -->
+                <polygon points="40,150 200,160 180,40 50,30" fill="none" stroke="#10b981" stroke-width="2" />
+                <text x="30" y="165" fill="#10b981" font-size="11" font-weight="bold">A</text>
+                <text x="205" y="175" fill="#10b981" font-size="11" font-weight="bold">B</text>
+                <text x="185" y="35" fill="#10b981" font-size="11" font-weight="bold">C</text>
+                <text x="35" y="25" fill="#10b981" font-size="11" font-weight="bold">D</text>
+
+                <!-- Points of contact P, Q, R, S -->
+                <circle cx="120" cy="155" r="3" fill="#f59e0b" />
+                <text x="120" y="170" fill="#f59e0b" font-size="9" font-weight="bold">P</text>
+                <circle cx="190" cy="100" r="3" fill="#f59e0b" />
+                <text x="198" y="105" fill="#f59e0b" font-size="9" font-weight="bold">Q</text>
+                <circle cx="115" cy="35" r="3" fill="#f59e0b" />
+                <text x="115" y="25" fill="#f59e0b" font-size="9" font-weight="bold">R</text>
+                <circle cx="45" cy="90" r="3" fill="#f59e0b" />
+                <text x="30" y="95" fill="#f59e0b" font-size="9" font-weight="bold">S</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Proof Breakdown -->
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
+              <div class="font-bold text-cyan-400">Equal Tangent Segments by Theorem 10.2:</div>
+              <div class="bg-slate-900 p-2.5 rounded font-mono text-[11px] text-slate-200 space-y-1">
+                <div>AP = AS (1)</div>
+                <div>BP = BQ (2)</div>
+                <div>CR = CQ (3)</div>
+                <div>DR = DS (4)</div>
+                <div class="text-slate-400 pt-1">Adding equations (1) + (2) + (3) + (4):</div>
+                <div>(AP + BP) + (CR + DR) = (AS + DS) + (BQ + CQ)</div>
+                <div class="text-emerald-400 font-bold pt-1">
+                  AB + CD = AD + BC ✔️
+                </div>
+              </div>
+            </div>
+
+            <!-- Corollary: Circumscribed Parallelogram is a Rhombus (Q11) -->
+            <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1.5">
+              <strong class="text-amber-400 block text-[11px] uppercase">Q11 Corollary: Parallelogram Circumscribing Circle</strong>
+              <p class="text-slate-300 text-[11px]">
+                In a parallelogram, opposite sides are equal (<code class="text-white font-mono">AB = CD</code> and <code class="text-white font-mono">AD = BC</code>).<br>
+                Substituting into <code class="text-cyan-300 font-mono">AB + CD = AD + BC</code> gives <code class="text-white font-mono">2AB = 2AD ➔ AB = AD</code>.<br>
+                A parallelogram with adjacent sides equal is a <strong class="text-emerald-400">RHOMBUS</strong>!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 9: TRIANGLE CIRCUMSCRIBING CIRCLE OF RADIUS 4CM (EX 10.2 Q12) -->
+    <!-- ========================================================================= -->
+    <section id="slide-8" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase mb-2">
+            <span>Exercise 10.2 Q12 • The Ultimate 5-Mark Question</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Triangle Circumscribing a Circle (r = 4 cm, BD = 8, DC = 6)</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            Finding sides AB and AC of triangle ABC circumscribing a circle of radius 4 cm when BC is split into 8 cm and 6 cm by the point of contact D!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- Diagram (Fig. 10.14) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <h4 class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Fig. 10.14 Setup</h4>
+            <div class="bg-slate-900/80 rounded-lg p-3 flex justify-center">
+              <svg viewBox="0 0 260 200" class="w-full max-w-[300px] h-52 select-none">
+                <!-- Triangle vertices A(130, 25), B(230, 175), C(30, 175) -->
+                <polygon points="130,25 230,175 30,175" fill="none" stroke="#10b981" stroke-width="2" />
+                <text x="125" y="18" fill="#10b981" font-size="12" font-weight="bold">A</text>
+                <text x="235" y="185" fill="#10b981" font-size="12" font-weight="bold">B</text>
+                <text x="18" y="185" fill="#10b981" font-size="12" font-weight="bold">C</text>
+
+                <!-- Inscribed circle centre O(130, 135), radius 40 -->
+                <circle cx="130" cy="135" r="40" fill="none" stroke="#38bdf8" stroke-width="2" />
+                <circle cx="130" cy="135" r="4" fill="#38bdf8" />
+                <text x="135" y="130" fill="#38bdf8" font-size="10" font-weight="bold">O (r=4)</text>
+
+                <!-- Point of contact D on BC at (130, 175) -->
+                <circle cx="130" cy="175" r="3.5" fill="#f59e0b" />
+                <text x="125" y="192" fill="#f59e0b" font-size="11" font-weight="bold">D</text>
+
+                <!-- Dimension labels: CD=6, DB=8 -->
+                <text x="75" y="168" fill="#cbd5e1" font-size="10">6 cm</text>
+                <text x="175" y="168" fill="#cbd5e1" font-size="10">8 cm</text>
+
+                <!-- Tangent segments x from A -->
+                <text x="70" y="90" fill="#f59e0b" font-size="10" font-weight="bold">x</text>
+                <text x="185" y="90" fill="#f59e0b" font-size="10" font-weight="bold">x</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Heron's Area Equated to rs Solution -->
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
+              <div class="font-mono text-[11px] text-slate-200 bg-slate-900 p-3 rounded-lg border border-slate-800 space-y-1.5">
+                <div>Let tangent segments from A be <strong class="text-amber-400">AF = AE = x</strong></div>
+                <div>Sides: a = 14, b = 6 + x, c = 8 + x</div>
+                <div>Semi-perimeter: s = (14 + 6+x + 8+x)/2 = <strong class="text-white">14 + x</strong></div>
+                <div class="pt-1 text-slate-400">Area by Decomposition = Area(OAB) + Area(OBC) + Area(OCA)</div>
+                <div>Area = ½·r·(a + b + c) = r·s = <strong class="text-cyan-300">4(14 + x)</strong></div>
+                <div class="pt-1 text-slate-400">Area by Heron's Formula:</div>
+                <div>√[(14+x)(x)(8)(6)] = 4(14 + x)</div>
+                <div>Square both sides: 48x(14 + x) = 16(14 + x)²</div>
+                <div>3x = 14 + x ➔ 2x = 14 ➔ <strong class="text-emerald-400 font-bold">x = 7 cm</strong></div>
+                <div class="pt-1 text-white font-bold">
+                  AB = 8 + 7 = 15 cm, AC = 6 + 7 = 13 cm
+                </div>
+              </div>
+            </div>
+
+            <div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-xs text-emerald-300 text-center font-bold font-mono">
+              AB = 15 cm &amp; AC = 13 cm
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 10: CHAPTER MASTERY QUIZ & SUMMARY MATRIX -->
+    <!-- ========================================================================= -->
+    <section id="slide-9" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase mb-2">
+              <span>Section 10.4 • Summary &amp; Assessment</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Chapter Mastery Quiz &amp; Tangent Rules Matrix</h2>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+              Consolidate your mastery of Circles with interactive instant-feedback questions and review the complete formula cheat sheet.
+            </p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center shrink-0">
+            <span id="quizScoreBadge" class="text-xs font-bold text-emerald-400 font-mono">Score: 0 / 3</span>
+            <div class="text-[10px] text-slate-400">Interactive Test</div>
+          </div>
+        </div>
+
+        <!-- Formula Matrix Cheat Sheet -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-1">
+            <div class="text-[10px] uppercase font-bold text-blue-400">Theorem 10.1</div>
+            <div class="font-mono text-xs font-bold text-white">Radius ⊥ Tangent</div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-1">
+            <div class="text-[10px] uppercase font-bold text-indigo-400">Theorem 10.2</div>
+            <div class="font-mono text-xs font-bold text-white">PQ = PR (Lengths Equal)</div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-1">
+            <div class="text-[10px] uppercase font-bold text-emerald-400">Circumscribed Quad</div>
+            <div class="font-mono text-[11px] font-bold text-white">AB + CD = AD + BC</div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-1">
+            <div class="text-[10px] uppercase font-bold text-amber-400">Angle Relation</div>
+            <div class="font-mono text-xs font-bold text-white">∠PTQ = 2 ∠OPQ</div>
+          </div>
+        </div>
+
+        <!-- Interactive Quiz Questions -->
+        <div class="space-y-3 pt-2">
+          <!-- Question 1 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-blue-400">Question 1: Tangent Radius Triplet</span>
+              <span class="text-[10px] text-slate-500">Exercise 10.1 Q3</span>
+            </div>
+            <p class="text-xs text-slate-200">A tangent PQ of a circle of radius 5 cm meets a line through centre O at Q such that OQ = 12 cm. What is length PQ?</p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+              <button onclick="checkQuizAns(1, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">12 cm</button>
+              <button onclick="checkQuizAns(1, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">13 cm</button>
+              <button onclick="checkQuizAns(1, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">8.5 cm</button>
+              <button onclick="checkQuizAns(1, true, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">√119 cm</button>
+            </div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-indigo-400">Question 2: Supplementary Tangent Angles</span>
+              <span class="text-[10px] text-slate-500">Exercise 10.2 Q2</span>
+            </div>
+            <p class="text-xs text-slate-200">If TP and TQ are two tangents to a circle with centre O such that ∠POQ = 110°, what is ∠PTQ?</p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+              <button onclick="checkQuizAns(2, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">60°</button>
+              <button onclick="checkQuizAns(2, true, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">70°</button>
+              <button onclick="checkQuizAns(2, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">80°</button>
+              <button onclick="checkQuizAns(2, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">90°</button>
+            </div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-emerald-400">Question 3: Parallel Tangents Limit</span>
+              <span class="text-[10px] text-slate-500">Exercise 10.1 Q2(iii)</span>
+            </div>
+            <p class="text-xs text-slate-200">At most, how many parallel tangents can a circle have for any given direction or secant?</p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+              <button onclick="checkQuizAns(3, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">1</button>
+              <button onclick="checkQuizAns(3, true, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">2</button>
+              <button onclick="checkQuizAns(3, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">4</button>
+              <button onclick="checkQuizAns(3, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">Infinitely many</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BOTTOM SLIDESHOW CONTROLLER & TIMELINE PILLS -->
+  <footer style="flex-shrink: 0;" class="border-t border-slate-800 bg-slate-900/95 backdrop-blur px-4 py-3 sticky bottom-0 z-50">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      <!-- Slide Pills (10 Slides) -->
+      <div class="flex items-center space-x-1.5 overflow-x-auto max-w-full pb-1 sm:pb-0 text-xs font-mono">
+        <button onclick="goToSlide(0)" class="slide-pill px-2.5 py-1 rounded-lg bg-blue-600 text-white font-bold transition-all cursor-pointer">1</button>
+        <button onclick="goToSlide(1)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">2</button>
+        <button onclick="goToSlide(2)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">3</button>
+        <button onclick="goToSlide(3)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">4</button>
+        <button onclick="goToSlide(4)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">5</button>
+        <button onclick="goToSlide(5)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">6</button>
+        <button onclick="goToSlide(6)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">7</button>
+        <button onclick="goToSlide(7)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">8</button>
+        <button onclick="goToSlide(8)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">9</button>
+        <button onclick="goToSlide(9)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">10</button>
+      </div>
+
+      <!-- Playback Navigation Controls -->
+      <div class="flex items-center space-x-2 shrink-0">
+        <button id="prevSlideBtn" onclick="prevSlide()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center space-x-1 cursor-pointer transition-all disabled:opacity-40 disabled:cursor-not-allowed">
+          <span>⏮</span>
+          <span>Previous</span>
+        </button>
+
+        <button id="autoPlaySlideshowBtn" onclick="toggleAutoPlaySlideshow()" class="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shadow-lg shadow-blue-600/30 flex items-center space-x-1.5 cursor-pointer transition-all">
+          <span id="autoPlayIcon">▶</span>
+          <span id="autoPlayText">Auto-Play</span>
+        </button>
+
+        <button id="nextSlideBtn" onclick="nextSlide()" class="px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 flex items-center space-x-1.5 cursor-pointer transition-all">
+          <span>Next</span>
+          <span>⏭</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT ENGINE: WEB AUDIO, WEB SPEECH & SLIDESHOW MECHANICS -->
+  <script>
+    // =========================================================================
+    // SLIDE DATA & NARRATIONS
+    // =========================================================================
+    const totalSlides = 10;
+    let currentSlide = 0;
+    let isAutoPlaySlideshow = false;
+    let autoPlayInterval = null;
+    let countdownInterval = null;
+
+    let isVoiceActive = true;
+    let isSoundFxActive = true;
+
+    const slideData = [
+      {
+        title: "Slide 1 of 10: Non-Intersecting Lines, Secants & Tangents",
+        narration: "Welcome to NCERT Class 10 Chapter 10: Circles! A line can interact with a circle in three ways: non-intersecting with zero common points, a secant with two common points, or a tangent touching at exactly one point."
+      },
+      {
+        title: "Slide 2 of 10: Tangent as a Limiting Case of Secant",
+        narration: "Slide 2. A tangent is the limiting position of a secant when the two endpoints of its chord coincide. At any point on a circle, there is only one unique tangent, and a circle can have at most two parallel tangents."
+      },
+      {
+        title: "Slide 3 of 10: Theorem 10.1: Radius is Perpendicular to Tangent",
+        narration: "Slide 3. Theorem 10.1! The tangent at any point of a circle is perpendicular to the radius through the point of contact. This is proved because the radius is the shortest distance from the centre to the tangent line."
+      },
+      {
+        title: "Slide 4 of 10: Number of Tangents from a Point",
+        narration: "Slide 4. From a point inside the circle, zero tangents can be drawn. From a point on the circle, exactly one tangent exists. And from a point outside the circle, exactly two tangents can be drawn."
+      },
+      {
+        title: "Slide 5 of 10: Theorem 10.2: Tangents from External Point are Equal",
+        narration: "Slide 5. Theorem 10.2! The lengths of tangents drawn from an external point to a circle are equal. This is proved using R H S congruence of right triangles O Q P and O R P."
+      },
+      {
+        title: "Slide 6 of 10: Concentric Circles & Angle Relation ∠PTQ = 2∠OPQ",
+        narration: "Slide 6. In concentric circles, the chord of the larger circle touching the smaller circle is bisected. Furthermore, the angle between two tangents equals twice the angle between the chord and the radius."
+      },
+      {
+        title: "Slide 7 of 10: Tangent Length TP (Chord 8cm, Radius 5cm)",
+        narration: "Slide 7. Finding tangent length T P when a chord is 8 centimetres and radius is 5 centimetres. Using A A triangle similarity gives T P over 5 equals 4 over 3, so T P is 20 over 3 centimetres."
+      },
+      {
+        title: "Slide 8 of 10: Circumscribed Quadrilateral: AB + CD = AD + BC",
+        narration: "Slide 8. For any quadrilateral circumscribing a circle, the sum of opposite sides is equal: A B plus C D equals A D plus B C. When applied to a parallelogram, it proves it is a rhombus!"
+      },
+      {
+        title: "Slide 9 of 10: Triangle Circumscribing Circle (Radius 4cm)",
+        narration: "Slide 9. Triangle A B C circumscribing a circle of radius 4 centimetres. Equating the area from Heron's formula to r times s reveals x equals 7, giving sides of 15 centimetres and 13 centimetres."
+      },
+      {
+        title: "Slide 10 of 10: Chapter Mastery Quiz & Summary",
+        narration: "Slide 10. Test your understanding with our chapter mastery quiz, and review the summary matrix of all circle tangent rules!"
+      }
+    ];
+
+    // =========================================================================
+    // WEB AUDIO API SYNTHESIZER
+    // =========================================================================
+    let audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, type, duration, gainVal = 0.1) {
+      if (!isSoundFxActive) return;
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+
+        gain.gain.setValueAtTime(gainVal, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {
+        console.warn('Audio tone error', e);
+      }
+    }
+
+    function playSlideTransitionTone() {
+      playTone(523.25, 'sine', 0.12, 0.08); // C5
+      setTimeout(() => playTone(783.99, 'sine', 0.18, 0.08), 70); // G5
+    }
+
+    function playChime() {
+      playTone(587.33, 'triangle', 0.15, 0.12); // D5
+      setTimeout(() => playTone(880.00, 'triangle', 0.35, 0.12), 110); // A5
+    }
+
+    function playBuzzer() {
+      playTone(170, 'sawtooth', 0.25, 0.12);
+    }
+
+    function toggleSoundFx() {
+      isSoundFxActive = !isSoundFxActive;
+      const icon = document.getElementById('soundIcon');
+      const text = document.getElementById('soundText');
+      const btn = document.getElementById('soundToggleBtn');
+      if (isSoundFxActive) {
+        icon.textContent = '🎵';
+        text.textContent = 'SFX: ON';
+        btn.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center space-x-1.5 transition-all cursor-pointer';
+        playTone(600, 'sine', 0.1);
+      } else {
+        icon.textContent = '🔇';
+        text.textContent = 'SFX: OFF';
+        btn.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-rose-950/40 text-rose-300 border border-rose-800/40 flex items-center space-x-1.5 transition-all cursor-pointer';
+      }
+    }
+
+    // =========================================================================
+    // WEB SPEECH API SYNTHESIZER
+    // =========================================================================
+    function speakNarration(text) {
+      document.getElementById('narrationSubtitlesText').textContent = text;
+      if (!isVoiceActive) return;
+
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 1.0;
+        utterance.pitch = 1.02;
+
+        const voices = window.speechSynthesis.getVoices();
+        const englishVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha')));
+        if (englishVoice) {
+          utterance.voice = englishVoice;
+        }
+
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    function toggleVoiceNarration() {
+      isVoiceActive = !isVoiceActive;
+      const icon = document.getElementById('voiceIcon');
+      const text = document.getElementById('voiceText');
+      const btn = document.getElementById('voiceToggleBtn');
+
+      if (isVoiceActive) {
+        icon.textContent = '🔊';
+        text.textContent = 'Voice: ON';
+        btn.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-blue-600/30 hover:bg-blue-600/50 text-blue-300 border border-blue-500/40 flex items-center space-x-1.5 transition-all cursor-pointer';
+        speakNarration(slideData[currentSlide].narration);
+      } else {
+        icon.textContent = '🔈';
+        text.textContent = 'Voice: OFF';
+        btn.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-rose-950/40 text-rose-300 border border-rose-800/40 flex items-center space-x-1.5 transition-all cursor-pointer';
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+        }
+      }
+    }
+
+    // =========================================================================
+    // SLIDESHOW CONTROLLER & PROGRESS
+    // =========================================================================
+    function goToSlide(index) {
+      if (index < 0 || index >= totalSlides) return;
+      currentSlide = index;
+
+      document.getElementById('slideSubtitle').textContent = slideData[currentSlide].title;
+      document.getElementById('slideProgressBar').style.width = ((currentSlide + 1) / totalSlides * 100) + '%';
+
+      for (let i = 0; i < totalSlides; i++) {
+        const pane = document.getElementById('slide-' + i);
+        if (pane) {
+          if (i === currentSlide) {
+            pane.classList.remove('hidden');
+            pane.classList.add('block');
+          } else {
+            pane.classList.add('hidden');
+            pane.classList.remove('block');
+          }
+        }
+      }
+
+      document.querySelectorAll('.slide-pill').forEach((pill, i) => {
+        if (i === currentSlide) {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-blue-600 text-white font-bold transition-all cursor-pointer';
+        } else {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer';
+        }
+      });
+
+      document.getElementById('prevSlideBtn').disabled = (currentSlide === 0);
+      const nextBtn = document.getElementById('nextSlideBtn');
+      if (currentSlide === totalSlides - 1) {
+        nextBtn.innerHTML = '<span>Restart 🔄</span>';
+      } else {
+        nextBtn.innerHTML = '<span>Next</span><span>⏭</span>';
+      }
+
+      playSlideTransitionTone();
+      speakNarration(slideData[currentSlide].narration);
+
+      if (isAutoPlaySlideshow) {
+        resetAutoPlayCountdown();
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide >= totalSlides - 1) {
+        goToSlide(0);
+      } else {
+        goToSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        goToSlide(currentSlide - 1);
+      }
+    }
+
+    function toggleAutoPlaySlideshow() {
+      const btn = document.getElementById('autoPlaySlideshowBtn');
+      const icon = document.getElementById('autoPlayIcon');
+      const txt = document.getElementById('autoPlayText');
+      const bar = document.getElementById('autoPlayCountdownBar');
+
+      if (isAutoPlaySlideshow) {
+        isAutoPlaySlideshow = false;
+        clearInterval(autoPlayInterval);
+        clearInterval(countdownInterval);
+        icon.textContent = '▶';
+        txt.textContent = 'Auto-Play';
+        btn.className = 'px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shadow-lg shadow-blue-600/30 flex items-center space-x-1.5 cursor-pointer transition-all';
+        bar.style.opacity = '0';
+      } else {
+        isAutoPlaySlideshow = true;
+        icon.textContent = '⏸';
+        txt.textContent = 'Pause';
+        btn.className = 'px-3.5 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold shadow-lg shadow-amber-600/30 flex items-center space-x-1.5 cursor-pointer transition-all';
+        bar.style.opacity = '1';
+        resetAutoPlayCountdown();
+      }
+    }
+
+    function resetAutoPlayCountdown() {
+      clearInterval(countdownInterval);
+      clearInterval(autoPlayInterval);
+
+      const bar = document.getElementById('autoPlayCountdownBar');
+      let elapsed = 0;
+      const durationMs = 10000;
+      const stepMs = 100;
+
+      countdownInterval = setInterval(() => {
+        elapsed += stepMs;
+        const pct = Math.min((elapsed / durationMs) * 100, 100);
+        bar.style.width = pct + '%';
+        if (elapsed >= durationMs) {
+          clearInterval(countdownInterval);
+        }
+      }, stepMs);
+
+      autoPlayInterval = setTimeout(() => {
+        if (isAutoPlaySlideshow) {
+          nextSlide();
+        }
+      }, durationMs);
+    }
+
+    // =========================================================================
+    // SLIDE 10: QUIZ ENGINE
+    // =========================================================================
+    let quizScore = 0;
+    const answeredMap = {};
+
+    function checkQuizAns(qNum, isCorrect, btn) {
+      if (answeredMap[qNum]) return;
+      answeredMap[qNum] = true;
+
+      const parent = btn.parentElement;
+      const allBtns = parent.querySelectorAll('.quiz-btn');
+      allBtns.forEach(b => b.disabled = true);
+
+      if (isCorrect) {
+        btn.classList.remove('bg-slate-900', 'border-slate-700', 'text-slate-300');
+        btn.classList.add('bg-emerald-600', 'border-emerald-400', 'text-white');
+        quizScore++;
+        playChime();
+        speakNarration("Correct! Excellent mastery of circle theorems.");
+      } else {
+        btn.classList.remove('bg-slate-900', 'border-slate-700', 'text-slate-300');
+        btn.classList.add('bg-rose-600', 'border-rose-400', 'text-white');
+        playBuzzer();
+        speakNarration("Incorrect. Remember Theorem 10.1 and 10.2.");
+      }
+      document.getElementById('quizScoreBadge').textContent = `Score: ${quizScore} / 3`;
+    }
+
+    // INITIALIZATION
+    document.addEventListener('DOMContentLoaded', () => {
+      goToSlide(0);
+    });
+  </script>
+</body>
+</html>
+

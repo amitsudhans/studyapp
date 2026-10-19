@@ -384,7 +384,10 @@ it is behind the question creation modal pls make it in front of question creati
 i want to draw like this thne how 
 can can you integrate a drawign system to drow like this
 
+can you do a multimedia animation on Class 9 Mathematics - Number System
+i want slide by slide with sound and animation 
 
+i want slide by slide with sound and animation pls cover all contents in pdf
 
 © 2026 Laravel. All rights reserved. at footer to© 2026 Study App  All rights reserved.
 
@@ -397,4 +400,5 @@ flowbard has employee login checkin and checkout facility login time and logout 
 we can do meeting details in it
 it has worklog and release log
 user can create task with time estimation after done user can change status from doing to done
+
 

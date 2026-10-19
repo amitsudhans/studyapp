@@ -57,6 +57,10 @@
                             <a href="{{ route('dashboard') }}" class="px-3 py-1.5 rounded-lg text-xs font-semibold {{ Route::is('dashboard') ? 'bg-indigo-600/20 text-indigo-300 border border-indigo-500/30' : 'text-slate-400 hover:text-slate-200' }} transition-colors">
                                 Dashboard
                             </a>
+                            <a href="{{ route('multimedia.index') }}" class="px-3 py-1.5 rounded-lg text-xs font-semibold {{ Route::is('multimedia.*') ? 'bg-emerald-600/20 text-emerald-300 border border-emerald-500/30' : 'text-slate-400 hover:text-slate-200' }} flex items-center space-x-1.5 transition-colors" title="Textbook Multimedia Curriculum Tree">
+                                <span>📚</span>
+                                <span>Curriculum Tree</span>
+                            </a>
                             @if(!Auth::user()->isStudent())
                                 <a href="{{ route('standards.index') }}" class="px-3 py-1.5 rounded-lg text-xs font-semibold {{ Route::is('standards.*') ? 'bg-indigo-600/20 text-indigo-300 border border-indigo-500/30' : 'text-slate-400 hover:text-slate-200' }} transition-colors">
                                     Standards
@@ -152,6 +156,10 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 00-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                 </svg>
                 <span class="text-[10px]">Dashboard</span>
+            </a>
+            <a href="{{ route('multimedia.index') }}" class="flex flex-col items-center py-1 px-3 rounded-xl transition-colors {{ Route::is('multimedia.*') ? 'text-emerald-400 font-semibold' : 'text-slate-400 hover:text-slate-200' }}">
+                <span class="text-base leading-none mb-0.5">📚</span>
+                <span class="text-[10px]">Curriculum</span>
             </a>
             <button type="button" onclick="openChatModal()" class="relative flex flex-col items-center py-1 px-3 rounded-xl text-slate-400 hover:text-slate-200 transition-colors">
                 <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -540,5 +548,158 @@
     <footer class="border-t border-slate-800/60 py-6 text-center text-xs text-slate-500 mb-12 sm:mb-0">
         <p>&copy; {{ date('Y') }} {{ config('app.name', 'Study App') }}. All rights reserved.</p>
     </footer>
+
+    <!-- GLOBAL MULTIMEDIA ANIMATION LAB MODAL (Accessible by Students, Teachers & Admin) -->
+    <div id="studentAnimationModal" style="z-index: 9999999 !important; display: none;" class="hidden fixed inset-0 bg-black/90 backdrop-blur-md p-2 sm:p-4 flex flex-col items-center justify-center">
+        <div style="height: 92vh; max-height: 95vh; min-height: 540px; display: flex; flex-direction: column;" class="bg-slate-900 border border-slate-700/80 rounded-2xl w-full max-w-6xl overflow-hidden shadow-2xl">
+            <!-- Modal Header -->
+            <div style="flex-shrink: 0;" class="px-4 py-3 bg-slate-950 border-b border-slate-800 flex items-center justify-between gap-3">
+                <div class="flex items-center space-x-2.5 min-w-0">
+                    <span class="text-xl">🎬</span>
+                    <span id="studentAnimationTitle" class="font-bold text-white text-sm truncate">NCERT Chapter 1 — Real Numbers</span>
+                    <span id="studentAnimationBadge" class="hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0">NCERT Reprint 2026-27</span>
+                </div>
+
+                <!-- Actions -->
+                <div class="flex items-center space-x-2 shrink-0">
+                    <a id="studentAnimationFullscreenLink" href="{{ asset('animations/real-numbers.html') }}" target="_blank" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs border border-slate-700 flex items-center space-x-1 transition-all" title="Open in dedicated tab">
+                        <span>Fullscreen ↗</span>
+                    </a>
+                    <button type="button" onclick="closeStudentAnimationModal()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-rose-900/60 text-slate-400 hover:text-rose-200 border border-slate-700 flex items-center justify-center cursor-pointer transition-colors" title="Close">✕</button>
+                </div>
+            </div>
+
+            <!-- Modal Iframe Body (Bulletproof relative + absolute container) -->
+            <div style="flex: 1 1 0%; min-height: 0; position: relative; width: 100%; height: 100%;" class="bg-slate-950 overflow-hidden">
+                <iframe id="studentAnimationIframe" src="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" class="block" allow="autoplay; speech"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openStudentAnimationModal(type = 'real-numbers') {
+            const modal = document.getElementById('studentAnimationModal');
+            const iframe = document.getElementById('studentAnimationIframe');
+            const title = document.getElementById('studentAnimationTitle');
+            const badge = document.getElementById('studentAnimationBadge');
+            const fullLink = document.getElementById('studentAnimationFullscreenLink');
+
+            if (modal && iframe) {
+                let fileUrl = "{{ asset('animations/real-numbers.html') }}";
+                let titleText = "NCERT Chapter 1 — Real Numbers (Fundamental Theorem, Irrationals & Track Simulation)";
+                let badgeText = "NCERT Reprint 2026-27 • Class 10";
+                let badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+
+                if (type === 'probability') {
+                    fileUrl = "{{ asset('animations/probability.html') }}";
+                    titleText = "NCERT Chapter 14 — Probability Lab (Theoretical Approach, Dice, Cards & Geometry)";
+                    badgeText = "NCERT Reprint 2026-27 • Class 10";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30 shrink-0";
+                } else if (type === 'statistics') {
+                    fileUrl = "{{ asset('animations/statistics.html') }}";
+                    titleText = "NCERT Chapter 13 — Statistics Lab (Mean, Median, Mode & Cumulative Frequency)";
+                    badgeText = "NCERT Reprint 2026-27 • Class 10";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
+                } else if (type === 'surface-areas-and-volumes') {
+                    fileUrl = "{{ asset('animations/surface-areas-and-volumes.html') }}";
+                    titleText = "NCERT Chapter 12 — Surface Areas and Volumes Lab (Composite Solids & Volumes)";
+                    badgeText = "NCERT Reprint 2026-27 • Class 10";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'areas-related-to-circles') {
+                    fileUrl = "{{ asset('animations/areas-related-to-circles.html') }}";
+                    titleText = "NCERT Chapter 11 — Areas Related to Circles Lab (Sectors & Segments)";
+                    badgeText = "NCERT Reprint 2026-27 • Class 10";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'circles') {
+                    fileUrl = "{{ asset('animations/circles.html') }}";
+                    titleText = "NCERT Chapter 10 — Circles Lab (Tangents, Theorem 10.1 & 10.2)";
+                    badgeText = "NCERT Reprint 2026-27 • Class 10";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 shrink-0";
+                } else if (type === 'applications-of-trigonometry') {
+                    fileUrl = "{{ asset('animations/applications-of-trigonometry.html') }}";
+                    titleText = "NCERT Chapter 9 — Some Applications of Trigonometry Lab (Heights & Distances)";
+                    badgeText = "NCERT Reprint 2026-27 • Class 10";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
+                } else if (type === 'trigonometry') {
+                    fileUrl = "{{ asset('animations/trigonometry.html') }}";
+                    titleText = "NCERT Chapter 8 — Introduction to Trigonometry Lab (Ratios, Table & Identities)";
+                    badgeText = "NCERT Reprint 2026-27 • Class 10";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30 shrink-0";
+                } else if (type === 'coordinate-geometry') {
+                    fileUrl = "{{ asset('animations/coordinate-geometry.html') }}";
+                    titleText = "NCERT Chapter 7 — Coordinate Geometry Lab (Distance & Section Formulas)";
+                    badgeText = "NCERT Reprint 2026-27 • Class 10";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
+                } else if (type === 'triangles') {
+                    fileUrl = "{{ asset('animations/triangles.html') }}";
+                    titleText = "NCERT Chapter 6 — Triangles Lab (Similarity, BPT & Shadow Modeling)";
+                    badgeText = "NCERT Reprint 2026-27 • Class 10";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/20 text-sky-300 border border-sky-500/30 shrink-0";
+                } else if (type === 'arithmetic-progressions') {
+                    fileUrl = "{{ asset('animations/arithmetic-progressions.html') }}";
+                    titleText = "NCERT Chapter 5 — Arithmetic Progressions Lab (nth Term, Sum & Applications)";
+                    badgeText = "NCERT Reprint 2026-27 • Class 10";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
+                } else if (type === 'quadratic-equations') {
+                    fileUrl = "{{ asset('animations/quadratic-equations.html') }}";
+                    titleText = "NCERT Chapter 4 — Quadratic Equations Lab (Formula, Roots & Discriminant)";
+                    badgeText = "NCERT Reprint 2026-27 • Class 10";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30 shrink-0";
+                } else if (type === 'linear-equations') {
+                    fileUrl = "{{ asset('animations/linear-equations.html') }}";
+                    titleText = "NCERT Chapter 3 — Pair of Linear Equations in Two Variables Lab";
+                    badgeText = "NCERT Reprint 2026-27 • Class 10";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'polynomials') {
+                    fileUrl = "{{ asset('animations/polynomials.html') }}";
+                    titleText = "NCERT Chapter 2 — Polynomials (Degrees, Parabolas, Zeroes & Coefficients)";
+                    badgeText = "NCERT Reprint 2026-27 • Class 10";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
+                } else if (type === 'number-system') {
+                    fileUrl = "{{ asset('animations/number-system.html') }}";
+                    titleText = "Class 9 Mathematics — Number System Multimedia Lab";
+                    badgeText = "Class 9 • NCERT / CBSE";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
+                }
+
+                if (iframe.src !== fileUrl) {
+                    iframe.src = fileUrl;
+                }
+                if (fullLink) fullLink.href = fileUrl;
+                if (title) title.textContent = titleText;
+                if (badge) {
+                    badge.textContent = badgeText;
+                    badge.className = badgeClass;
+                }
+
+                modal.classList.remove('hidden');
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeStudentAnimationModal() {
+            const modal = document.getElementById('studentAnimationModal');
+            const iframe = document.getElementById('studentAnimationIframe');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.style.display = 'none';
+            }
+            if (iframe) {
+                iframe.src = "";
+            }
+            document.body.style.overflow = '';
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('studentAnimationModal');
+                if (modal && modal.style.display === 'flex') {
+                    closeStudentAnimationModal();
+                }
+            }
+        });
+    </script>
 </body>
 </html>

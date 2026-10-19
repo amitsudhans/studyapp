@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 10 • Some Applications of Trigonometry — Multimedia Lab</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    if (typeof tailwind === 'undefined') {
+      document.write('<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"><\/script>');
+    }
+  </script>
+  <style>
+    body { background-color: #020617; color: #f8fafc; }
+    .slide-fade-in {
+      animation: fadeInScale 0.35s ease-out forwards;
+    }
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.15); opacity: 0.4; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .pulse-ring {
+      animation: pulse-ring 2s infinite ease-in-out;
+    }
+    /* Custom scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+  </style>
+</head>
+<body style="background-color: #020617; color: #f8fafc;" class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-emerald-500 selection:text-white overflow-x-hidden">
+
+  <!-- TOP HEADER & PROGRESS -->
+  <header style="flex-shrink: 0;" class="border-b border-slate-800 bg-slate-900/95 backdrop-blur sticky top-0 z-50">
+    <!-- Slide Progress Bar -->
+    <div class="w-full bg-slate-800/80 h-1.5 relative overflow-hidden">
+      <div id="slideProgressBar" class="h-full bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 transition-all duration-500" style="width: 10%;"></div>
+      <div id="autoPlayCountdownBar" class="h-full bg-amber-400/80 absolute top-0 left-0 transition-all duration-100" style="width: 0%; opacity: 0;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-600 to-cyan-600 flex items-center justify-center font-black text-lg text-white shadow-lg shadow-emerald-500/25 shrink-0">
+          <span>📐</span>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="font-black text-sm sm:text-base text-white tracking-tight">NCERT Chapter 9 • Applications of Trigonometry</h1>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Reprint 2026-27</span>
+          </div>
+          <p id="slideSubtitle" class="text-xs text-slate-400">Slide 1 of 10: Heights &amp; Distances Core Concepts</p>
+        </div>
+      </div>
+
+      <!-- Quick Audio Controls -->
+      <div class="flex items-center space-x-2">
+        <button id="voiceToggleBtn" onclick="toggleVoiceNarration()" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-600/30 hover:bg-emerald-600/50 text-emerald-300 border border-emerald-500/40 flex items-center space-x-1.5 transition-all cursor-pointer" title="Toggle Voice Narration">
+          <span id="voiceIcon">🔊</span>
+          <span id="voiceText" class="hidden sm:inline">Voice: ON</span>
+        </button>
+        <button id="soundToggleBtn" onclick="toggleSoundFx()" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center space-x-1.5 transition-all cursor-pointer" title="Toggle Sound FX">
+          <span id="soundIcon">🎵</span>
+          <span id="soundText" class="hidden sm:inline">SFX: ON</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Narration Subtitles Banner -->
+    <div class="bg-slate-950/80 border-t border-slate-800/80 px-4 py-1.5 flex items-center space-x-2 text-xs">
+      <span class="text-emerald-400 shrink-0 font-bold">🎙 Teacher Voiceover:</span>
+      <p id="narrationSubtitlesText" class="text-slate-300 truncate italic">Loading lesson...</p>
+    </div>
+  </header>
+
+  <!-- MAIN SLIDES STAGE -->
+  <main style="flex: 1 1 0%; min-height: 0;" class="max-w-7xl w-full mx-auto p-3 sm:p-5 flex flex-col justify-between overflow-y-auto">
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 1: HEIGHTS & DISTANCES: LINE OF SIGHT, ELEVATION & DEPRESSION -->
+    <!-- ========================================================================= -->
+    <section id="slide-0" class="slide-pane slide-fade-in space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase mb-2">
+              <span>Section 9.1 • Foundational Concepts</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Heights and Distances: The Three Core Definitions</h2>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+              Trigonometry transforms surveying and architecture. By observing angles from an eye level, we calculate inaccessible heights and vast distances with simple right-triangle trigonometry.
+            </p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center space-x-3 shrink-0">
+            <span class="text-3xl">🔭</span>
+            <div>
+              <div class="text-xs font-bold text-emerald-400">The Theodolite</div>
+              <div class="text-[11px] text-slate-400">Precision angle measuring instrument</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Fundamental Definitions -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center space-x-2 text-cyan-400 font-bold text-sm">
+              <span class="w-2.5 h-2.5 rounded-full bg-cyan-500"></span>
+              <h4>1. Line of Sight</h4>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              The straight imaginary line drawn directly from the <strong>eye of the observer</strong> to the point on the object viewed by the observer.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center space-x-2 text-emerald-400 font-bold text-sm">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+              <h4>2. Angle of Elevation (Fig. 9.2)</h4>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              The angle formed by the line of sight with the horizontal level when the object is <strong>ABOVE</strong> the horizontal (we raise our head to look up).
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center space-x-2 text-amber-400 font-bold text-sm">
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+              <h4>3. Angle of Depression (Fig. 9.3)</h4>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              The angle formed by the line of sight with the horizontal level when the object is <strong>BELOW</strong> the horizontal (we lower our head to look down).
+            </p>
+          </div>
+        </div>
+
+        <!-- Alternate Interior Angle Property Banner -->
+        <div class="p-4 rounded-xl bg-gradient-to-r from-emerald-950/40 via-slate-900 to-cyan-950/40 border border-emerald-500/30 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+          <div class="space-y-0.5">
+            <span class="text-emerald-400 font-bold uppercase tracking-wider text-[11px]">⚡ The Golden Parallel Line Theorem:</span>
+            <p class="text-slate-200">
+              Because the horizontal line at the top is parallel to the ground horizontal, <strong>Angle of Depression = Angle of Elevation</strong> by Alternate Interior Angles!
+            </p>
+          </div>
+          <span class="px-3 py-1.5 rounded-lg bg-emerald-500/20 text-emerald-300 font-mono font-bold shrink-0 border border-emerald-500/40">∠Depression = ∠Elevation</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 2: THE ANGLE SELECTOR: ELEVATION VS DEPRESSION SIMULATOR -->
+    <!-- ========================================================================= -->
+    <section id="slide-1" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase mb-2">
+            <span>Interactive Laboratory • Section 9.1</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Interactive Inclinometer: Elevation &amp; Depression Visualizer</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            Switch between looking UP at a summit (Elevation) and looking DOWN from a cliff (Depression) to see horizontal baselines and sightlines.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- Interactive Graphic -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <div class="flex items-center justify-between">
+              <h4 class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Sightline Geometry</h4>
+              <div class="flex space-x-1 text-xs">
+                <button id="simElevationBtn" onclick="setSimMode('elevation')" class="px-2.5 py-1 rounded bg-emerald-600 text-white font-bold cursor-pointer">Elevation Mode (Look Up)</button>
+                <button id="simDepressionBtn" onclick="setSimMode('depression')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold cursor-pointer">Depression Mode (Look Down)</button>
+              </div>
+            </div>
+
+            <div class="bg-slate-900/80 rounded-lg p-3 flex justify-center">
+              <svg id="simSvg" viewBox="0 0 280 180" class="w-full max-w-[320px] h-48 select-none">
+                <!-- Ground / Base -->
+                <line x1="30" y1="150" x2="250" y2="150" stroke="#475569" stroke-width="2" />
+                <text x="25" y="165" fill="#64748b" font-size="10">Ground</text>
+
+                <!-- Observer Eye at A(40, 150) in Elevation Mode, or at Cliff top in Depression -->
+                <circle id="simObserver" cx="40" cy="150" r="5" fill="#38bdf8" />
+                <text id="simObserverLabel" x="25" y="140" fill="#38bdf8" font-size="10" font-weight="bold">Eye A</text>
+
+                <!-- Horizontal Line from Eye -->
+                <line id="simHorizLine" x1="40" y1="150" x2="220" y2="150" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3" />
+                <text id="simHorizLabel" x="110" y="165" fill="#94a3b8" font-size="9">Horizontal Level</text>
+
+                <!-- Object Target -->
+                <circle id="simTarget" cx="220" cy="40" r="6" fill="#f59e0b" />
+                <text id="simTargetLabel" x="228" y="42" fill="#f59e0b" font-size="11" font-weight="bold">Object (C)</text>
+
+                <!-- Line of Sight -->
+                <line id="simSightLine" x1="40" y1="150" x2="220" y2="40" stroke="#10b981" stroke-width="2.5" />
+                <text id="simSightLabel" x="115" y="85" fill="#10b981" font-size="10" font-weight="bold" transform="rotate(-30, 120, 90)">Line of Sight</text>
+
+                <!-- Angle Arc -->
+                <path id="simAngleArc" d="M 75 150 A 35 35 0 0 0 70 132" fill="none" stroke="#f59e0b" stroke-width="2" />
+                <text id="simAngleText" x="78" y="142" fill="#f59e0b" font-size="10" font-weight="bold">θ (Elevation)</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Explanatory Box -->
+          <div class="space-y-3">
+            <div id="simDescBox" class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
+              <h4 id="simDescTitle" class="text-sm font-bold text-emerald-400">Angle of Elevation (Looking Up)</h4>
+              <p id="simDescText" class="text-slate-300 leading-relaxed">
+                The observer's head tilts upward. The horizontal baseline starts at the eye level, and the line of sight extends up to the summit of the tower or mountain.
+              </p>
+              <div class="p-2.5 rounded bg-slate-900 border border-slate-800 font-mono text-[11px] text-cyan-300">
+                Formula: tan θ = Height (BC) / Distance (AB)
+              </div>
+            </div>
+
+            <!-- Observer Height Distinction -->
+            <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1.5">
+              <div class="font-bold text-amber-400 text-[11px] uppercase">Observer's Height AE Rule:</div>
+              <p class="text-slate-300 text-[11px]">
+                When the problem specifies the observer's height (e.g. 1.5 m boy or 1.2 m girl), total height = <strong class="text-white">calculated height (BC) + observer height (AE)</strong>!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 3: SINGLE RIGHT TRIANGLE PROBLEMS (EXAMPLES 1, 2, 3) -->
+    <!-- ========================================================================= -->
+    <section id="slide-2" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase mb-2">
+            <span>Examples 1, 2 &amp; 3 • Single Right Triangles</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Direct Heights: Towers, Electrician Ladders &amp; Chimneys</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            In standard problems, one side and one acute angle are known. Choose the trigonometric ratio (sin, cos, or tan) that connects the known side with the required side!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <!-- Example 1: Tower Height -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2.5">
+            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">Example 1: Tower (Fig. 9.4)</span>
+            <h4 class="text-sm font-bold text-white">15 m Away at 60° Elevation</h4>
+            <div class="text-xs text-slate-300 font-mono space-y-1.5 bg-slate-900 p-2.5 rounded border border-slate-800">
+              <div>tan 60° = AB / 15</div>
+              <div>√3 = AB / 15</div>
+              <div class="text-emerald-400 font-bold pt-1">Height AB = 15√3 m</div>
+              <div class="text-[11px] text-slate-400 font-sans">≈ 15 × 1.732 = 25.98 m</div>
+            </div>
+            <p class="text-[11px] text-slate-400">
+              Straightforward tangent ratio problem: Opposite = Adjacent × tan 60°.
+            </p>
+          </div>
+
+          <!-- Example 2: Electrician Ladder -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2.5">
+            <span class="px-2 py-0.5 rounded bg-teal-500/20 text-teal-400 text-[10px] font-bold">Example 2: 5m Pole (Fig. 9.5)</span>
+            <h4 class="text-sm font-bold text-white">Reach 1.3 m Below Top at 60°</h4>
+            <div class="text-xs text-slate-300 font-mono space-y-1 bg-slate-900 p-2.5 rounded border border-slate-800">
+              <div>BD = 5 - 1.3 = 3.7 m</div>
+              <div>sin 60° = 3.7 / Ladder (BC)</div>
+              <div>BC = 3.7 × 2 / √3 = <strong class="text-teal-300">4.28 m</strong></div>
+              <div>cot 60° = Foot / 3.7</div>
+              <div>Foot = 3.7 / √3 = <strong class="text-teal-300">2.14 m</strong></div>
+            </div>
+            <p class="text-[11px] text-slate-400">
+              Must subtract 1.3m clearance before setting up right triangle!
+            </p>
+          </div>
+
+          <!-- Example 3: Chimney & 1.5m Observer -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2.5">
+            <span class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-400 text-[10px] font-bold">Example 3: Chimney (Fig. 9.6)</span>
+            <h4 class="text-sm font-bold text-white">1.5 m Observer, 28.5 m Away, 45°</h4>
+            <div class="text-xs text-slate-300 font-mono space-y-1.5 bg-slate-900 p-2.5 rounded border border-slate-800">
+              <div>tan 45° = AE / DE</div>
+              <div>1 = AE / 28.5 ➔ AE = 28.5 m</div>
+              <div>Total Height = AE + Observer</div>
+              <div class="text-cyan-400 font-bold pt-1">Height = 28.5 + 1.5 = 30 m</div>
+            </div>
+            <p class="text-[11px] text-slate-400">
+              At 45°, opposite equals adjacent! Add observer height for full structure.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 4: THE BROKEN TREE STORM PROBLEM (EXERCISE 9.1 Q2) -->
+    <!-- ========================================================================= -->
+    <section id="slide-3" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase mb-2">
+            <span>Exercise 9.1 Q2 • Board Exam Evergreen</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">The Broken Tree Storm Problem</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            "A tree breaks due to a storm and the broken top bends so that it touches the ground making an angle of 30° with it. The distance from the foot to the touch point is 8 m. Find the height of the tree."
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- Animated SVG Diagram of Broken Tree -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <h4 class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Geometric Model (Broken Part = Hypotenuse)</h4>
+            <div class="bg-slate-900/80 rounded-lg p-3 flex justify-center">
+              <svg viewBox="0 0 280 200" class="w-full max-w-[320px] h-52 select-none">
+                <!-- Ground line -->
+                <line x1="20" y1="170" x2="260" y2="170" stroke="#475569" stroke-width="2" />
+                <circle cx="60" cy="170" r="4" fill="#64748b" />
+                <text x="50" y="185" fill="#94a3b8" font-size="10">Foot B</text>
+
+                <circle cx="200" cy="170" r="4" fill="#f59e0b" />
+                <text x="190" y="185" fill="#f59e0b" font-size="10">Top C</text>
+
+                <!-- Standing trunk AB: from (60, 170) to (60, 90) -->
+                <line x1="60" y1="170" x2="60" y2="90" stroke="#10b981" stroke-width="4" stroke-linecap="round" />
+                <text x="35" y="130" fill="#10b981" font-size="10" font-weight="bold">AB = x</text>
+
+                <!-- Broken trunk AC bent to ground C: from (60, 90) to (200, 170) -->
+                <line x1="60" y1="90" x2="200" y2="170" stroke="#f59e0b" stroke-width="3.5" stroke-linecap="round" />
+                <text x="135" y="120" fill="#f59e0b" font-size="10" font-weight="bold">Broken AC = y</text>
+
+                <!-- Original tree ghost line -->
+                <line x1="60" y1="90" x2="60" y2="20" stroke="#334155" stroke-width="2" stroke-dasharray="3,3" />
+                <text x="65" y="45" fill="#64748b" font-size="9">Original Top</text>
+
+                <!-- Ground distance BC = 8m -->
+                <line x1="60" y1="170" x2="200" y2="170" stroke="#38bdf8" stroke-width="2" />
+                <text x="120" y="165" fill="#38bdf8" font-size="11" font-weight="bold">BC = 8 m</text>
+
+                <!-- Angle 30° at C -->
+                <path d="M 175 170 A 25 25 0 0 1 178 158" fill="none" stroke="#f59e0b" stroke-width="2" />
+                <text x="160" y="152" fill="#f59e0b" font-size="10" font-weight="bold">30°</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Step-by-Step Mathematical Solution -->
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
+              <div class="font-bold text-amber-400">Total Tree Height = Standing Trunk + Broken Slanted Part</div>
+              <p class="text-slate-300">
+                Height of tree = <code class="text-emerald-300 font-mono font-bold">AB + AC</code>
+              </p>
+
+              <div class="bg-slate-900 p-3 rounded-lg border border-slate-800 font-mono space-y-2 text-slate-200">
+                <div>
+                  <span class="text-emerald-400 font-bold">1. Find Standing Part (AB):</span><br>
+                  tan 30° = AB / BC = AB / 8<br>
+                  1/√3 = AB / 8 ➔ <strong class="text-white">AB = 8 / √3 m</strong>
+                </div>
+
+                <div class="pt-1 border-t border-slate-800">
+                  <span class="text-amber-400 font-bold">2. Find Broken Part (AC):</span><br>
+                  cos 30° = BC / AC = 8 / AC<br>
+                  √3/2 = 8 / AC ➔ <strong class="text-white">AC = 16 / √3 m</strong>
+                </div>
+
+                <div class="pt-1 border-t border-slate-800 text-cyan-300 font-bold">
+                  Total Tree Height = AB + AC<br>
+                  = 8/√3 + 16/√3 = 24 / √3 m<br>
+                  = (24 × √3) / 3 = <span class="text-emerald-400 text-sm">8√3 m</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-xs text-emerald-300 text-center font-bold">
+              Tree Height = 8√3 m ≈ 13.86 m
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 5: TWO-ANGLE SETUP: BUILDING WITH FLAGSTAFF (EXAMPLE 4) -->
+    <!-- ========================================================================= -->
+    <section id="slide-4" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase mb-2">
+            <span>Example 4 &amp; Exercise 9.1 Q7/Q8 • Two-Angle Overlap</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Two Angles from Same Point: Building &amp; Flagstaff</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            When observing a pedestal and statue, or a building and flagstaff from a single point P on the ground, solve the shared horizontal baseline first!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- Building + Flag Diagram (Fig. 9.7) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <h4 class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Fig. 9.7 Geometry (Shared Base AP)</h4>
+            <div class="bg-slate-900/80 rounded-lg p-3 flex justify-center">
+              <svg viewBox="0 0 280 200" class="w-full max-w-[320px] h-52 select-none">
+                <!-- Ground AP -->
+                <line x1="30" y1="160" x2="220" y2="160" stroke="#475569" stroke-width="2" />
+                <circle cx="30" cy="160" r="4.5" fill="#38bdf8" />
+                <text x="18" y="175" fill="#38bdf8" font-size="11" font-weight="bold">P</text>
+
+                <!-- Building AB: height = 10m -->
+                <rect x="210" y="90" width="20" height="70" fill="rgba(6, 182, 212, 0.2)" stroke="#06b6d4" stroke-width="1.5" />
+                <text x="235" y="130" fill="#06b6d4" font-size="10" font-weight="bold">10 m</text>
+                <circle cx="210" cy="90" r="4" fill="#06b6d4" />
+                <text x="195" y="95" fill="#06b6d4" font-size="10" font-weight="bold">B</text>
+
+                <!-- Flagstaff BD: height = x -->
+                <line x1="210" y1="90" x2="210" y2="40" stroke="#f59e0b" stroke-width="3" />
+                <!-- Flag shape -->
+                <polygon points="210,40 235,50 210,60" fill="#ef4444" />
+                <circle cx="210" cy="40" r="4" fill="#f59e0b" />
+                <text x="195" y="45" fill="#f59e0b" font-size="10" font-weight="bold">D</text>
+                <text x="235" y="65" fill="#f59e0b" font-size="10" font-weight="bold">x</text>
+
+                <!-- Sightlines from P -->
+                <line x1="30" y1="160" x2="210" y2="90" stroke="#06b6d4" stroke-width="1.5" />
+                <line x1="30" y1="160" x2="210" y2="40" stroke="#f59e0b" stroke-width="1.5" />
+
+                <!-- Elevation angles -->
+                <text x="80" y="152" fill="#06b6d4" font-size="10" font-weight="bold">30°</text>
+                <text x="75" y="132" fill="#f59e0b" font-size="10" font-weight="bold">45°</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Solution Steps -->
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
+              <div class="font-bold text-cyan-400">Step 1: In Δ PAB (Lower Angle 30°)</div>
+              <div class="bg-slate-900 p-2.5 rounded font-mono text-[11px] text-slate-200">
+                tan 30° = AB / AP = 10 / AP<br>
+                1/√3 = 10 / AP ➔ <strong class="text-cyan-300">AP = 10√3 m ≈ 17.32 m</strong>
+              </div>
+
+              <div class="font-bold text-amber-400 pt-1">Step 2: In Δ PAD (Upper Angle 45°)</div>
+              <div class="bg-slate-900 p-2.5 rounded font-mono text-[11px] text-slate-200">
+                tan 45° = AD / AP = (10 + x) / 10√3<br>
+                1 = (10 + x) / 10√3<br>
+                10 + x = 10√3<br>
+                x = 10(√3 - 1) = 10(1.732 - 1) = <strong class="text-amber-300">7.32 m</strong>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-300 flex justify-between font-mono">
+              <span>Distance to Building: <strong class="text-cyan-400">17.32 m</strong></span>
+              <span>Flagstaff Length: <strong class="text-amber-400">7.32 m</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 6: MOVING OBSERVER / SHADOW CHANGE (EXAMPLE 5 & EX 9.1 Q6/Q11) -->
+    <!-- ========================================================================= -->
+    <section id="slide-5" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase mb-2">
+            <span>Example 5 • Shifted Baselines</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Shadow Length &amp; The Sun's Altitude Change</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            "The shadow of a tower is found to be 40 m longer when the Sun's altitude is 30° than when it is 60°. Find the height of the tower."
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- Shadow Graphic (Fig. 9.8) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider">Fig. 9.8 Geometry (Shadow Shift of 40m)</h4>
+            <div class="bg-slate-900/80 rounded-lg p-3 flex justify-center">
+              <svg viewBox="0 0 280 190" class="w-full max-w-[320px] h-48 select-none">
+                <!-- Ground line -->
+                <line x1="20" y1="160" x2="260" y2="160" stroke="#475569" stroke-width="2" />
+
+                <!-- Tower AB: height h -->
+                <line x1="230" y1="160" x2="230" y2="40" stroke="#10b981" stroke-width="3.5" />
+                <circle cx="230" cy="40" r="4.5" fill="#10b981" />
+                <text x="235" y="45" fill="#10b981" font-size="11" font-weight="bold">A</text>
+                <circle cx="230" cy="160" r="4" fill="#64748b" />
+                <text x="235" y="175" fill="#94a3b8" font-size="11">B</text>
+                <text x="240" y="105" fill="#10b981" font-size="11" font-weight="bold">h</text>
+
+                <!-- Shadow tips: C (60°) and D (30°) -->
+                <line x1="160" y1="160" x2="230" y2="40" stroke="#38bdf8" stroke-width="1.8" />
+                <circle cx="160" cy="160" r="4" fill="#38bdf8" />
+                <text x="155" y="175" fill="#38bdf8" font-size="10" font-weight="bold">C (60°)</text>
+                <text x="175" y="152" fill="#38bdf8" font-size="10">60°</text>
+
+                <line x1="50" y1="160" x2="230" y2="40" stroke="#f59e0b" stroke-width="1.8" />
+                <circle cx="50" cy="160" r="4" fill="#f59e0b" />
+                <text x="45" y="175" fill="#f59e0b" font-size="10" font-weight="bold">D (30°)</text>
+                <text x="75" y="152" fill="#f59e0b" font-size="10">30°</text>
+
+                <!-- Distances -->
+                <text x="185" y="175" fill="#94a3b8" font-size="10">x</text>
+                <line x1="50" y1="160" x2="160" y2="160" stroke="#f59e0b" stroke-width="2" />
+                <text x="95" y="152" fill="#f59e0b" font-size="10" font-weight="bold">40 m</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Algebraic Elimination Steps -->
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
+              <div class="font-bold text-emerald-400">Simultaneous Triangle Equations:</div>
+              <div class="bg-slate-900 p-2.5 rounded font-mono text-[11px] text-slate-200 space-y-1.5">
+                <div>From Δ ABC: tan 60° = h / x ➔ <strong class="text-cyan-300">h = x√3</strong> (1)</div>
+                <div>From Δ ABD: tan 30° = h / (x + 40) = 1 / √3 (2)</div>
+                <div class="text-slate-400">Substitute (1) into (2):</div>
+                <div>(x√3) × √3 = x + 40</div>
+                <div>3x = x + 40 ➔ 2x = 40 ➔ <strong class="text-amber-400">x = 20 m</strong></div>
+                <div class="pt-1 text-emerald-400 font-bold">
+                  h = 20√3 m ≈ 34.64 m
+                </div>
+              </div>
+            </div>
+
+            <div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-xs text-emerald-300 text-center font-bold font-mono">
+              Tower Height = 20√3 m ≈ 34.64 m
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 7: MULTI-STOREYED & 8M BUILDING (EXAMPLE 6) -->
+    <!-- ========================================================================= -->
+    <section id="slide-6" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase mb-2">
+            <span>Example 6 • Double Angles of Depression</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Depression from a Multi-Storeyed Building</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            "The angles of depression of the top and bottom of an 8 m tall building from the top of a multi-storeyed building are 30° and 45°, respectively. Find the height of the multi-storeyed building and distance between them."
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- Multi-storeyed SVG (Fig. 9.9) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <h4 class="text-xs font-bold text-indigo-400 uppercase tracking-wider">Fig. 9.9 Structure</h4>
+            <div class="bg-slate-900/80 rounded-lg p-3 flex justify-center">
+              <svg viewBox="0 0 280 200" class="w-full max-w-[320px] h-52 select-none">
+                <!-- Ground AC -->
+                <line x1="30" y1="170" x2="230" y2="170" stroke="#475569" stroke-width="2" />
+                <circle cx="50" cy="170" r="3.5" fill="#64748b" />
+                <text x="45" y="185" fill="#94a3b8" font-size="10">A</text>
+                <circle cx="210" cy="170" r="3.5" fill="#64748b" />
+                <text x="215" y="185" fill="#94a3b8" font-size="10">C</text>
+
+                <!-- 8m Building AB -->
+                <rect x="40" y="100" width="20" height="70" fill="rgba(99, 102, 241, 0.2)" stroke="#6366f1" stroke-width="1.5" />
+                <text x="18" y="135" fill="#6366f1" font-size="10" font-weight="bold">8 m</text>
+                <text x="45" y="95" fill="#6366f1" font-size="10" font-weight="bold">B</text>
+
+                <!-- Multi-storeyed building PC -->
+                <line x1="210" y1="170" x2="210" y2="30" stroke="#10b981" stroke-width="3" />
+                <circle cx="210" cy="30" r="4.5" fill="#10b981" />
+                <text x="215" y="32" fill="#10b981" font-size="11" font-weight="bold">P</text>
+
+                <!-- Horizontal line at top of P -->
+                <line x1="100" y1="30" x2="230" y2="30" stroke="#94a3b8" stroke-dasharray="3,3" />
+                <text x="90" y="25" fill="#94a3b8" font-size="9">Q</text>
+
+                <!-- Intermediate horizontal BD -->
+                <line x1="60" y1="100" x2="210" y2="100" stroke="#94a3b8" stroke-dasharray="3,3" />
+                <circle cx="210" cy="100" r="3" fill="#94a3b8" />
+                <text x="215" y="105" fill="#94a3b8" font-size="9">D</text>
+
+                <!-- Sightlines -->
+                <line x1="210" y1="30" x2="60" y2="100" stroke="#f59e0b" stroke-width="1.5" />
+                <line x1="210" y1="30" x2="50" y2="170" stroke="#38bdf8" stroke-width="1.5" />
+
+                <!-- Alternate angles -->
+                <text x="80" y="95" fill="#f59e0b" font-size="9" font-weight="bold">30°</text>
+                <text x="75" y="165" fill="#38bdf8" font-size="9" font-weight="bold">45°</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Solution Walkthrough -->
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
+              <div class="font-mono text-[11px] text-slate-200 bg-slate-900 p-3 rounded-lg border border-slate-800 space-y-1.5">
+                <div>In Δ PAC: tan 45° = PC / AC = 1 ➔ <strong class="text-cyan-300">AC = PC</strong></div>
+                <div>Since DC = AB = 8m, <strong class="text-white">PC = PD + 8</strong></div>
+                <div>In Δ PBD: tan 30° = PD / BD = 1 / √3</div>
+                <div>BD = PD√3, and BD = AC = PC</div>
+                <div class="text-slate-400">Equating PC expressions:</div>
+                <div>PD + 8 = PD√3 ➔ PD(√3 - 1) = 8</div>
+                <div>PD = 8 / (√3 - 1) = 4(√3 + 1) m</div>
+                <div class="pt-1 text-emerald-400 font-bold">
+                  Total Height PC = 4(√3 + 1) + 8 = 4(3 + √3) m
+                </div>
+              </div>
+            </div>
+
+            <div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-xs text-emerald-300 text-center font-bold font-mono">
+              Height = Distance = 4(3 + √3) m ≈ 18.93 m
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 8: BRIDGE ACROSS A RIVER (EXAMPLE 7) -->
+    <!-- ========================================================================= -->
+    <section id="slide-7" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase mb-2">
+            <span>Example 7 • Opposing Banks</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Width of a River from a Bridge Point</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            "From a point on a bridge across a river, the angles of depression of opposite banks are 30° and 45°. If the bridge is at a height of 3 m, find the width of the river."
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+          <!-- Bridge SVG (Fig. 9.10) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <h4 class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Fig. 9.10 River &amp; Bridge Geometry</h4>
+            <div class="bg-slate-900/80 rounded-lg p-3 flex justify-center">
+              <svg viewBox="0 0 280 180" class="w-full max-w-[320px] h-48 select-none">
+                <!-- River surface / Water -->
+                <rect x="30" y="130" width="220" height="25" fill="rgba(6, 182, 212, 0.15)" />
+                <line x1="20" y1="130" x2="260" y2="130" stroke="#06b6d4" stroke-width="1.5" />
+
+                <!-- Banks A and B -->
+                <circle cx="50" cy="130" r="4.5" fill="#38bdf8" />
+                <text x="35" y="145" fill="#38bdf8" font-size="11" font-weight="bold">Bank A</text>
+                <circle cx="210" cy="130" r="4.5" fill="#38bdf8" />
+                <text x="215" y="145" fill="#38bdf8" font-size="11" font-weight="bold">Bank B</text>
+
+                <!-- Bridge point P -->
+                <circle cx="150" cy="50" r="5" fill="#f59e0b" />
+                <text x="145" y="40" fill="#f59e0b" font-size="11" font-weight="bold">Bridge P</text>
+
+                <!-- Height DP = 3m -->
+                <line x1="150" y1="50" x2="150" y2="130" stroke="#10b981" stroke-width="2" stroke-dasharray="2,2" />
+                <circle cx="150" cy="130" r="3" fill="#10b981" />
+                <text x="155" y="95" fill="#10b981" font-size="11" font-weight="bold">3 m</text>
+                <text x="145" y="145" fill="#94a3b8" font-size="9">D</text>
+
+                <!-- Sightlines -->
+                <line x1="150" y1="50" x2="50" y2="130" stroke="#f59e0b" stroke-width="2" />
+                <line x1="150" y1="50" x2="210" y2="130" stroke="#f59e0b" stroke-width="2" />
+
+                <!-- Angle values -->
+                <text x="75" y="125" fill="#38bdf8" font-size="10" font-weight="bold">30°</text>
+                <text x="180" y="125" fill="#38bdf8" font-size="10" font-weight="bold">45°</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Solution Steps -->
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
+              <div class="font-bold text-cyan-400">River Width = Left Segment (AD) + Right Segment (DB)</div>
+              <div class="bg-slate-900 p-2.5 rounded font-mono text-[11px] text-slate-200 space-y-1.5">
+                <div>In right Δ APD: tan 30° = PD / AD</div>
+                <div>1 / √3 = 3 / AD ➔ <strong class="text-cyan-300">AD = 3√3 m</strong></div>
+                <div class="pt-1 border-t border-slate-800">In right Δ PBD: tan 45° = PD / DB</div>
+                <div>1 = 3 / DB ➔ <strong class="text-teal-300">DB = 3 m</strong></div>
+                <div class="pt-1 border-t border-slate-800 text-emerald-400 font-bold">
+                  Total River Width = AD + DB = 3√3 + 3 = 3(√3 + 1) m
+                </div>
+              </div>
+            </div>
+
+            <div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-xs text-emerald-300 text-center font-bold font-mono">
+              Width of River = 3(√3 + 1) m ≈ 8.20 m
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 9: THE SPEEDING CAR & DRIFTING BALLOON (EX 9.1 Q14 & Q15) -->
+    <!-- ========================================================================= -->
+    <section id="slide-8" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase mb-2">
+            <span>Exercise 9.1 Q14 &amp; Q15 • Advanced Motion Modeling</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Time, Speed &amp; Horizontal Motion Problems</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            Applying trigonometry when objects move over time: balloons drifting with the wind, and cars speeding toward a tower foot.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <!-- Problem 1: Drifting Balloon (Q14) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2.5">
+            <span class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-400 text-[10px] font-bold">Exercise 9.1 Q14: 88.2m Balloon</span>
+            <h4 class="text-sm font-bold text-white">1.2 m Girl Spots Balloon Shifting 60° to 30°</h4>
+            <div class="text-xs text-slate-300 font-mono bg-slate-900 p-3 rounded-lg border border-slate-800 space-y-1.5">
+              <div>Effective Height = 88.2 - 1.2 = <strong class="text-white">87 m</strong></div>
+              <div>Position 1: tan 60° = 87 / d₁ ➔ d₁ = 87 / √3 m</div>
+              <div>Position 2: tan 30° = 87 / d₂ ➔ d₂ = 87√3 m</div>
+              <div class="text-cyan-400 font-bold pt-1">
+                Distance Travelled = d₂ - d₁<br>
+                = 87√3 - 87/√3 = 87(3 - 1)/√3<br>
+                = (87 × 2)/√3 = 58√3 m ≈ 100.46 m
+              </div>
+            </div>
+            <p class="text-[11px] text-slate-400">
+              Subtract observer height 1.2m first, then subtract horizontal projections!
+            </p>
+          </div>
+
+          <!-- Problem 2: Approaching Car Speed (Q15) -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2.5">
+            <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 text-[10px] font-bold">Exercise 9.1 Q15: Car Uniform Speed</span>
+            <h4 class="text-sm font-bold text-white">Depression 30° to 60° in 6 Seconds</h4>
+            <div class="text-xs text-slate-300 font-mono bg-slate-900 p-3 rounded-lg border border-slate-800 space-y-1.5">
+              <div>Let tower height be h, car speed be v.</div>
+              <div>Distance in 6 seconds: CD = 6v</div>
+              <div>In Δ ABC: tan 60° = h / BC ➔ h = BC√3</div>
+              <div>In Δ ABD: tan 30° = h / (BC + 6v) = 1 / √3</div>
+              <div>3·BC = BC + 6v ➔ 2·BC = 6v ➔ <strong class="text-emerald-400">BC = 3v</strong></div>
+              <div class="text-amber-400 font-bold pt-1">
+                Time = Distance / Speed = 3v / v = 3 seconds!
+              </div>
+            </div>
+            <p class="text-[11px] text-slate-400">
+              The remaining distance is exactly half the previously travelled distance, taking exactly 3 seconds!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 10: CHAPTER MASTERY QUIZ & SUMMARY -->
+    <!-- ========================================================================= -->
+    <section id="slide-9" class="slide-pane hidden space-y-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase mb-2">
+              <span>Section 9.2 • Summary &amp; Assessment</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Chapter Mastery Quiz &amp; Practical Playbook</h2>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+              Verify your grasp of heights and distances problems with immediate interactive feedback and audio chimes.
+            </p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center shrink-0">
+            <span id="quizScoreBadge" class="text-xs font-bold text-emerald-400 font-mono">Score: 0 / 3</span>
+            <div class="text-[10px] text-slate-400">Interactive Test</div>
+          </div>
+        </div>
+
+        <!-- Strategy Summary Matrix -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+            <div class="font-bold text-emerald-400 text-[11px] uppercase">1. Observer Height Given</div>
+            <p class="text-slate-300">Always add observer's height to the calculated triangle opposite side: <code class="text-emerald-300 font-mono">Total = h + AE</code>.</p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+            <div class="font-bold text-cyan-400 text-[11px] uppercase">2. Depression Alternate Angles</div>
+            <p class="text-slate-300">Angle of depression from top equals angle of elevation from bottom by alternate interior angles.</p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+            <div class="font-bold text-amber-400 text-[11px] uppercase">3. Two Triangle Stacks</div>
+            <p class="text-slate-300">Express both equations in terms of the shared common side (height or baseline) to eliminate it.</p>
+          </div>
+        </div>
+
+        <!-- Quiz Questions -->
+        <div class="space-y-3 pt-2">
+          <!-- Question 1 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-emerald-400">Question 1: Circus Rope (Ex 9.1 Q1)</span>
+              <span class="text-[10px] text-slate-500">Board Exam Classic</span>
+            </div>
+            <p class="text-xs text-slate-200">A 20 m long rope is tied from the top of a vertical pole to the ground at an angle of 30°. What is the height of the pole?</p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+              <button onclick="checkQuizAns(1, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">20 m</button>
+              <button onclick="checkQuizAns(1, true, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">10 m</button>
+              <button onclick="checkQuizAns(1, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">10√3 m</button>
+              <button onclick="checkQuizAns(1, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">5 m</button>
+            </div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-cyan-400">Question 2: Broken Tree Total Height</span>
+              <span class="text-[10px] text-slate-500">Ex 9.1 Q2 Concept</span>
+            </div>
+            <p class="text-xs text-slate-200">When finding the original height of a tree broken by a storm, which sides of the formed right triangle must be added together?</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+              <button onclick="checkQuizAns(2, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">Adjacent base side + Hypotenuse</button>
+              <button onclick="checkQuizAns(2, true, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">Opposite vertical side + Hypotenuse</button>
+            </div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-amber-400">Question 3: Car Time to Tower (Ex 9.1 Q15)</span>
+              <span class="text-[10px] text-slate-500">Uniform Speed</span>
+            </div>
+            <p class="text-xs text-slate-200">If a car takes 6 seconds for angle of depression to change from 30° to 60°, how many more seconds will it take to reach the tower foot?</p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+              <button onclick="checkQuizAns(3, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">6 seconds</button>
+              <button onclick="checkQuizAns(3, true, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">3 seconds</button>
+              <button onclick="checkQuizAns(3, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">2 seconds</button>
+              <button onclick="checkQuizAns(3, false, this)" class="quiz-btn px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold cursor-pointer transition-all">1.5 seconds</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BOTTOM SLIDESHOW CONTROLLER & TIMELINE PILLS -->
+  <footer style="flex-shrink: 0;" class="border-t border-slate-800 bg-slate-900/95 backdrop-blur px-4 py-3 sticky bottom-0 z-50">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      <!-- Slide Pills (10 Slides) -->
+      <div class="flex items-center space-x-1.5 overflow-x-auto max-w-full pb-1 sm:pb-0 text-xs font-mono">
+        <button onclick="goToSlide(0)" class="slide-pill px-2.5 py-1 rounded-lg bg-emerald-600 text-white font-bold transition-all cursor-pointer">1</button>
+        <button onclick="goToSlide(1)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">2</button>
+        <button onclick="goToSlide(2)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">3</button>
+        <button onclick="goToSlide(3)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">4</button>
+        <button onclick="goToSlide(4)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">5</button>
+        <button onclick="goToSlide(5)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">6</button>
+        <button onclick="goToSlide(6)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">7</button>
+        <button onclick="goToSlide(7)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">8</button>
+        <button onclick="goToSlide(8)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">9</button>
+        <button onclick="goToSlide(9)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">10</button>
+      </div>
+
+      <!-- Playback Navigation Controls -->
+      <div class="flex items-center space-x-2 shrink-0">
+        <button id="prevSlideBtn" onclick="prevSlide()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center space-x-1 cursor-pointer transition-all disabled:opacity-40 disabled:cursor-not-allowed">
+          <span>⏮</span>
+          <span>Previous</span>
+        </button>
+
+        <button id="autoPlaySlideshowBtn" onclick="toggleAutoPlaySlideshow()" class="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-lg shadow-emerald-600/30 flex items-center space-x-1.5 cursor-pointer transition-all">
+          <span id="autoPlayIcon">▶</span>
+          <span id="autoPlayText">Auto-Play</span>
+        </button>
+
+        <button id="nextSlideBtn" onclick="nextSlide()" class="px-3.5 py-1.5 rounded-xl bg-teal-600 hover:bg-teal-500 text-white text-xs font-bold shadow-lg shadow-teal-600/30 flex items-center space-x-1.5 cursor-pointer transition-all">
+          <span>Next</span>
+          <span>⏭</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT ENGINE: WEB AUDIO, WEB SPEECH & SLIDESHOW MECHANICS -->
+  <script>
+    // =========================================================================
+    // SLIDE DATA & NARRATIONS
+    // =========================================================================
+    const totalSlides = 10;
+    let currentSlide = 0;
+    let isAutoPlaySlideshow = false;
+    let autoPlayInterval = null;
+    let countdownInterval = null;
+
+    let isVoiceActive = true;
+    let isSoundFxActive = true;
+
+    const slideData = [
+      {
+        title: "Slide 1 of 10: Heights & Distances Core Concepts",
+        narration: "Welcome to NCERT Class 10 Chapter 9: Some Applications of Trigonometry! In this chapter, we discover how trigonometry solves real-world heights and distances without direct measurement."
+      },
+      {
+        title: "Slide 2 of 10: Interactive Inclinometer: Elevation & Depression",
+        narration: "Slide 2. The angle of elevation is formed when we look up above the horizontal. The angle of depression is formed when we look down below the horizontal. Because the horizontals are parallel, the angle of depression equals the alternate angle of elevation!"
+      },
+      {
+        title: "Slide 3 of 10: Single Right Triangle Problems (Examples 1, 2, 3)",
+        narration: "Slide 3. Direct heights with single right triangles. For a tower 15 metres away with a 60 degree elevation, the height is 15 root 3 metres. Remember, if an observer's height is given, add it to find the total height."
+      },
+      {
+        title: "Slide 4 of 10: The Broken Tree Storm Problem (Exercise 9.1 Q2)",
+        narration: "Slide 4. The broken tree problem! When a storm breaks a tree, the broken upper trunk bends to form the hypotenuse. The original tree height equals the standing opposite side plus the bent hypotenuse, giving 8 root 3 metres."
+      },
+      {
+        title: "Slide 5 of 10: Two-Angle Setup: Building & Flagstaff (Example 4)",
+        narration: "Slide 5. Two angles from a single vantage point. By first solving the shared ground baseline using the lower 30 degree angle, we can then solve for the upper flagstaff height of 7.32 metres using the 45 degree angle."
+      },
+      {
+        title: "Slide 6 of 10: Shadow Length & Sun's Altitude Change (Example 5)",
+        narration: "Slide 6. When the Sun's altitude changes from 60 degrees to 30 degrees, the shadow lengthens by 40 metres. Setting up simultaneous equations eliminates the variable to yield a tower height of 20 root 3 metres."
+      },
+      {
+        title: "Slide 7 of 10: Multi-Storeyed Building & 8m Building (Example 6)",
+        narration: "Slide 7. Angles of depression from a multi-storeyed building! The 30 degree depression gives the top, and the 45 degree depression gives the bottom. Both the building height and distance between them equal 4 times 3 plus root 3 metres."
+      },
+      {
+        title: "Slide 8 of 10: Width of a River from a Bridge Point (Example 7)",
+        narration: "Slide 8. River width from a 3-metre high bridge point. The opposite banks produce 30 degree and 45 degree angles. Adding the left projection 3 root 3 and the right projection 3 gives 3 times root 3 plus 1 metres."
+      },
+      {
+        title: "Slide 9 of 10: Motion Modeling: Drifting Balloon & Approaching Car",
+        narration: "Slide 9. Problems involving motion! A balloon drifting horizontally moves 58 root 3 metres between 60 and 30 degrees. And a car approaching a tower whose depression changes from 30 to 60 degrees in 6 seconds takes exactly 3 more seconds to reach the foot."
+      },
+      {
+        title: "Slide 10 of 10: Chapter Mastery Quiz & Practical Playbook",
+        narration: "Slide 10. Test your understanding with our chapter mastery quiz, and review the practical problem-solving playbook!"
+      }
+    ];
+
+    // =========================================================================
+    // WEB AUDIO API SYNTHESIZER
+    // =========================================================================
+    let audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, type, duration, gainVal = 0.1) {
+      if (!isSoundFxActive) return;
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+
+        gain.gain.setValueAtTime(gainVal, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {
+        console.warn('Audio tone error', e);
+      }
+    }
+
+    function playSlideTransitionTone() {
+      playTone(493.88, 'sine', 0.12, 0.08); // B4
+      setTimeout(() => playTone(659.25, 'sine', 0.18, 0.08), 70); // E5
+    }
+
+    function playChime() {
+      playTone(523.25, 'triangle', 0.15, 0.12); // C5
+      setTimeout(() => playTone(783.99, 'triangle', 0.35, 0.12), 110); // G5
+    }
+
+    function playBuzzer() {
+      playTone(165, 'sawtooth', 0.25, 0.12);
+    }
+
+    function toggleSoundFx() {
+      isSoundFxActive = !isSoundFxActive;
+      const icon = document.getElementById('soundIcon');
+      const text = document.getElementById('soundText');
+      const btn = document.getElementById('soundToggleBtn');
+      if (isSoundFxActive) {
+        icon.textContent = '🎵';
+        text.textContent = 'SFX: ON';
+        btn.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center space-x-1.5 transition-all cursor-pointer';
+        playTone(600, 'sine', 0.1);
+      } else {
+        icon.textContent = '🔇';
+        text.textContent = 'SFX: OFF';
+        btn.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-rose-950/40 text-rose-300 border border-rose-800/40 flex items-center space-x-1.5 transition-all cursor-pointer';
+      }
+    }
+
+    // =========================================================================
+    // WEB SPEECH API SYNTHESIZER
+    // =========================================================================
+    function speakNarration(text) {
+      document.getElementById('narrationSubtitlesText').textContent = text;
+      if (!isVoiceActive) return;
+
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 1.0;
+        utterance.pitch = 1.02;
+
+        const voices = window.speechSynthesis.getVoices();
+        const englishVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha')));
+        if (englishVoice) {
+          utterance.voice = englishVoice;
+        }
+
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    function toggleVoiceNarration() {
+      isVoiceActive = !isVoiceActive;
+      const icon = document.getElementById('voiceIcon');
+      const text = document.getElementById('voiceText');
+      const btn = document.getElementById('voiceToggleBtn');
+
+      if (isVoiceActive) {
+        icon.textContent = '🔊';
+        text.textContent = 'Voice: ON';
+        btn.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-600/30 hover:bg-emerald-600/50 text-emerald-300 border border-emerald-500/40 flex items-center space-x-1.5 transition-all cursor-pointer';
+        speakNarration(slideData[currentSlide].narration);
+      } else {
+        icon.textContent = '🔈';
+        text.textContent = 'Voice: OFF';
+        btn.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-rose-950/40 text-rose-300 border border-rose-800/40 flex items-center space-x-1.5 transition-all cursor-pointer';
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+        }
+      }
+    }
+
+    // =========================================================================
+    // SLIDESHOW CONTROLLER & PROGRESS
+    // =========================================================================
+    function goToSlide(index) {
+      if (index < 0 || index >= totalSlides) return;
+      currentSlide = index;
+
+      document.getElementById('slideSubtitle').textContent = slideData[currentSlide].title;
+      document.getElementById('slideProgressBar').style.width = ((currentSlide + 1) / totalSlides * 100) + '%';
+
+      for (let i = 0; i < totalSlides; i++) {
+        const pane = document.getElementById('slide-' + i);
+        if (pane) {
+          if (i === currentSlide) {
+            pane.classList.remove('hidden');
+            pane.classList.add('block');
+          } else {
+            pane.classList.add('hidden');
+            pane.classList.remove('block');
+          }
+        }
+      }
+
+      document.querySelectorAll('.slide-pill').forEach((pill, i) => {
+        if (i === currentSlide) {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-emerald-600 text-white font-bold transition-all cursor-pointer';
+        } else {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer';
+        }
+      });
+
+      document.getElementById('prevSlideBtn').disabled = (currentSlide === 0);
+      const nextBtn = document.getElementById('nextSlideBtn');
+      if (currentSlide === totalSlides - 1) {
+        nextBtn.innerHTML = '<span>Restart 🔄</span>';
+      } else {
+        nextBtn.innerHTML = '<span>Next</span><span>⏭</span>';
+      }
+
+      playSlideTransitionTone();
+      speakNarration(slideData[currentSlide].narration);
+
+      if (isAutoPlaySlideshow) {
+        resetAutoPlayCountdown();
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide >= totalSlides - 1) {
+        goToSlide(0);
+      } else {
+        goToSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        goToSlide(currentSlide - 1);
+      }
+    }
+
+    function toggleAutoPlaySlideshow() {
+      const btn = document.getElementById('autoPlaySlideshowBtn');
+      const icon = document.getElementById('autoPlayIcon');
+      const txt = document.getElementById('autoPlayText');
+      const bar = document.getElementById('autoPlayCountdownBar');
+
+      if (isAutoPlaySlideshow) {
+        isAutoPlaySlideshow = false;
+        clearInterval(autoPlayInterval);
+        clearInterval(countdownInterval);
+        icon.textContent = '▶';
+        txt.textContent = 'Auto-Play';
+        btn.className = 'px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-lg shadow-emerald-600/30 flex items-center space-x-1.5 cursor-pointer transition-all';
+        bar.style.opacity = '0';
+      } else {
+        isAutoPlaySlideshow = true;
+        icon.textContent = '⏸';
+        txt.textContent = 'Pause';
+        btn.className = 'px-3.5 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold shadow-lg shadow-amber-600/30 flex items-center space-x-1.5 cursor-pointer transition-all';
+        bar.style.opacity = '1';
+        resetAutoPlayCountdown();
+      }
+    }
+
+    function resetAutoPlayCountdown() {
+      clearInterval(countdownInterval);
+      clearInterval(autoPlayInterval);
+
+      const bar = document.getElementById('autoPlayCountdownBar');
+      let elapsed = 0;
+      const durationMs = 10000;
+      const stepMs = 100;
+
+      countdownInterval = setInterval(() => {
+        elapsed += stepMs;
+        const pct = Math.min((elapsed / durationMs) * 100, 100);
+        bar.style.width = pct + '%';
+        if (elapsed >= durationMs) {
+          clearInterval(countdownInterval);
+        }
+      }, stepMs);
+
+      autoPlayInterval = setTimeout(() => {
+        if (isAutoPlaySlideshow) {
+          nextSlide();
+        }
+      }, durationMs);
+    }
+
+    // =========================================================================
+    // SLIDE 2: INCLINOMETER SIMULATOR (ELEVATION VS DEPRESSION)
+    // =========================================================================
+    function setSimMode(mode) {
+      const btnElev = document.getElementById('simElevationBtn');
+      const btnDepr = document.getElementById('simDepressionBtn');
+      const obs = document.getElementById('simObserver');
+      const obsLabel = document.getElementById('simObserverLabel');
+      const target = document.getElementById('simTarget');
+      const targetLabel = document.getElementById('simTargetLabel');
+      const horiz = document.getElementById('simHorizLine');
+      const horizLabel = document.getElementById('simHorizLabel');
+      const sight = document.getElementById('simSightLine');
+      const sightLabel = document.getElementById('simSightLabel');
+      const arc = document.getElementById('simAngleArc');
+      const angleText = document.getElementById('simAngleText');
+
+      const descTitle = document.getElementById('simDescTitle');
+      const descText = document.getElementById('simDescText');
+
+      if (mode === 'elevation') {
+        btnElev.className = 'px-2.5 py-1 rounded bg-emerald-600 text-white font-bold cursor-pointer';
+        btnDepr.className = 'px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold cursor-pointer';
+
+        obs.setAttribute('cx', '40');
+        obs.setAttribute('cy', '150');
+        obsLabel.setAttribute('x', '25');
+        obsLabel.setAttribute('y', '140');
+        obsLabel.textContent = 'Eye A';
+
+        target.setAttribute('cx', '220');
+        target.setAttribute('cy', '40');
+        targetLabel.setAttribute('x', '228');
+        targetLabel.setAttribute('y', '42');
+        targetLabel.textContent = 'Object (C)';
+
+        horiz.setAttribute('x1', '40');
+        horiz.setAttribute('y1', '150');
+        horiz.setAttribute('x2', '220');
+        horiz.setAttribute('y2', '150');
+        horizLabel.setAttribute('x', '110');
+        horizLabel.setAttribute('y', '165');
+
+        sight.setAttribute('x1', '40');
+        sight.setAttribute('y1', '150');
+        sight.setAttribute('x2', '220');
+        sight.setAttribute('y2', '40');
+        sightLabel.setAttribute('x', '115');
+        sightLabel.setAttribute('y', '85');
+        sightLabel.setAttribute('transform', 'rotate(-30, 120, 90)');
+
+        arc.setAttribute('d', 'M 75 150 A 35 35 0 0 0 70 132');
+        angleText.setAttribute('x', '78');
+        angleText.setAttribute('y', '142');
+        angleText.textContent = 'θ (Elevation)';
+
+        descTitle.textContent = 'Angle of Elevation (Looking Up)';
+        descText.textContent = "The observer's head tilts upward. The horizontal baseline starts at the eye level, and the line of sight extends up to the summit of the tower or mountain.";
+
+        playTone(520, 'sine', 0.1);
+      } else {
+        btnDepr.className = 'px-2.5 py-1 rounded bg-amber-600 text-white font-bold cursor-pointer';
+        btnElev.className = 'px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold cursor-pointer';
+
+        obs.setAttribute('cx', '40');
+        obs.setAttribute('cy', '40');
+        obsLabel.setAttribute('x', '25');
+        obsLabel.setAttribute('y', '35');
+        obsLabel.textContent = 'Eye A (Cliff)';
+
+        target.setAttribute('cx', '220');
+        target.setAttribute('cy', '150');
+        targetLabel.setAttribute('x', '228');
+        targetLabel.setAttribute('y', '155');
+        targetLabel.textContent = 'Object (C)';
+
+        horiz.setAttribute('x1', '40');
+        horiz.setAttribute('y1', '40');
+        horiz.setAttribute('x2', '220');
+        horiz.setAttribute('y2', '40');
+        horizLabel.setAttribute('x', '110');
+        horizLabel.setAttribute('y', '32');
+
+        sight.setAttribute('x1', '40');
+        sight.setAttribute('y1', '40');
+        sight.setAttribute('x2', '220');
+        sight.setAttribute('y2', '150');
+        sightLabel.setAttribute('x', '115');
+        sightLabel.setAttribute('y', '105');
+        sightLabel.setAttribute('transform', 'rotate(30, 120, 90)');
+
+        arc.setAttribute('d', 'M 75 40 A 35 35 0 0 1 70 58');
+        angleText.setAttribute('x', '78');
+        angleText.setAttribute('y', '54');
+        angleText.textContent = 'θ (Depression)';
+
+        descTitle.textContent = 'Angle of Depression (Looking Down)';
+        descText.textContent = "The observer's head tilts downward from a high vantage point (e.g. lighthouse or balcony). The horizontal line is drawn at the top, and alternate interior angles make it equal to the angle at the ground!";
+
+        playTone(420, 'sine', 0.1);
+      }
+    }
+
+    // =========================================================================
+    // SLIDE 10: QUIZ ENGINE
+    // =========================================================================
+    let quizScore = 0;
+    const answeredMap = {};
+
+    function checkQuizAns(qNum, isCorrect, btn) {
+      if (answeredMap[qNum]) return;
+      answeredMap[qNum] = true;
+
+      const parent = btn.parentElement;
+      const allBtns = parent.querySelectorAll('.quiz-btn');
+      allBtns.forEach(b => b.disabled = true);
+
+      if (isCorrect) {
+        btn.classList.remove('bg-slate-900', 'border-slate-700', 'text-slate-300');
+        btn.classList.add('bg-emerald-600', 'border-emerald-400', 'text-white');
+        quizScore++;
+        playChime();
+        speakNarration("Correct! Excellent understanding of trigonometry applications.");
+      } else {
+        btn.classList.remove('bg-slate-900', 'border-slate-700', 'text-slate-300');
+        btn.classList.add('bg-rose-600', 'border-rose-400', 'text-white');
+        playBuzzer();
+        speakNarration("Incorrect. Remember how elevation and depression are set up.");
+      }
+      document.getElementById('quizScoreBadge').textContent = `Score: ${quizScore} / 3`;
+    }
+
+    // INITIALIZATION
+    document.addEventListener('DOMContentLoaded', () => {
+      goToSlide(0);
+    });
+  </script>
+</body>
+</html>
+

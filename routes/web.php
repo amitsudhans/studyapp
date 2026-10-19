@@ -6,6 +6,7 @@ use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExamController;
+use App\Http\Controllers\MultimediaController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\StandardController;
 use App\Http\Controllers\StudentController;
@@ -27,6 +28,7 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/multimedia', [MultimediaController::class, 'index'])->name('multimedia.index');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // Admin User Management Routes

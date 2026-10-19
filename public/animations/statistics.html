@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCERT Class 10 Chapter 13 — Statistics Multimedia Lab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #030712;
+            color: #f3f4f6;
+            user-select: none;
+            overflow-x: hidden;
+        }
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        .slide {
+            display: none;
+            opacity: 0;
+            transform: scale(0.98);
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .slide.active {
+            display: flex;
+            opacity: 1;
+            transform: scale(1);
+        }
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+        }
+        .glass-card {
+            background: rgba(31, 41, 55, 0.55);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glow-indigo {
+            box-shadow: 0 0 35px -5px rgba(99, 102, 241, 0.35);
+        }
+        .glow-emerald {
+            box-shadow: 0 0 35px -5px rgba(16, 185, 129, 0.35);
+        }
+        .glow-cyan {
+            box-shadow: 0 0 35px -5px rgba(6, 182, 212, 0.35);
+        }
+        .glow-amber {
+            box-shadow: 0 0 35px -5px rgba(245, 158, 11, 0.35);
+        }
+        .stat-bar {
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(17, 24, 39, 0.5);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(99, 102, 241, 0.4);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(99, 102, 241, 0.8);
+        }
+    </style>
+    
+</head>
+<body class="h-screen w-screen flex flex-col justify-between overflow-hidden bg-slate-950">
+
+    <!-- TOP NAV BAR -->
+    <header class="h-16 px-6 glass-panel flex items-center justify-between shrink-0 z-20 border-b border-slate-800">
+        <div class="flex items-center space-x-4">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/30">
+                <i class="fa-solid fa-chart-column text-lg"></i>
+            </div>
+            <div>
+                <div class="flex items-center space-x-2">
+                    <span class="text-xs font-bold tracking-widest text-indigo-400 uppercase">NCERT Class 10 • Chapter 13</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">Reprint 2026-27</span>
+                </div>
+                <h1 class="text-base font-extrabold text-white tracking-tight flex items-center gap-2">
+                    Statistics <span class="text-xs font-normal text-slate-400">| Mean, Median, Mode & Cumulative Frequency</span>
+                </h1>
+            </div>
+        </div>
+
+        <!-- Slide Progress & Audio Controls -->
+        <div class="flex items-center space-x-5">
+            <div class="hidden md:flex items-center space-x-2 bg-slate-900/80 px-3 py-1.5 rounded-full border border-slate-800">
+                <span class="text-xs font-semibold text-slate-400">Slide</span>
+                <span id="currentSlideDisplay" class="text-sm font-bold text-indigo-400 font-mono">1</span>
+                <span class="text-xs text-slate-600">/</span>
+                <span class="text-xs font-semibold text-slate-500 font-mono">10</span>
+            </div>
+
+            <!-- Voiceover Speech Controller -->
+            <div class="flex items-center space-x-2 bg-slate-900/90 px-3 py-1.5 rounded-xl border border-slate-800 shadow-inner">
+                <button id="toggleAudioBtn" onclick="toggleAudioNarration()" title="Play / Pause Voiceover" class="w-8 h-8 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white flex items-center justify-center transition-all shadow-md shadow-indigo-600/30">
+                    <i id="audioIcon" class="fa-solid fa-volume-high text-xs"></i>
+                </button>
+                <button onclick="replaySlideAudio()" title="Replay Narration" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center transition-all">
+                    <i class="fa-solid fa-rotate-right text-xs"></i>
+                </button>
+                <div class="hidden sm:flex flex-col">
+                    <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Voiceover</span>
+                    <span id="voiceStatus" class="text-[11px] font-semibold text-emerald-400">Active</span>
+                </div>
+            </div>
+
+            <!-- SFX Mute Toggle -->
+            <button onclick="toggleSfx()" id="sfxBtn" title="Toggle Synthesizer Sound Effects" class="w-9 h-9 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 flex items-center justify-center transition-all">
+                <i id="sfxIcon" class="fa-solid fa-bell text-sm text-cyan-400"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN SLIDE CONTAINER -->
+    <main class="flex-1 relative overflow-hidden p-3 sm:p-6 flex items-center justify-center">
+
+        <!-- ==========================================
+             SLIDE 1: INTRODUCTION TO STATISTICS & THE 3 PILLARS
+             ========================================== -->
+        <section id="slide-1" class="slide active w-full h-full max-w-7xl flex-col justify-between">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full overflow-y-auto">
+                <!-- Left Column: Concepts -->
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-indigo-500">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300 uppercase tracking-wider">Section 13.1 Overview</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-2 leading-tight">
+                            The Science of Central Tendency
+                        </h2>
+                        <p class="text-slate-300 text-sm mt-3 leading-relaxed">
+                            In everyday life, raw data is massive and chaotic. Statistics condenses thousands of observations into <span class="text-indigo-400 font-bold">single representative numbers</span> that capture the essence of the entire distribution.
+                        </p>
+                    </div>
+
+                    <!-- 3 Pillars Cards -->
+                    <div class="grid grid-cols-3 gap-3">
+                        <div class="glass-card p-3 rounded-xl border border-indigo-500/30 text-center hover:bg-indigo-950/30 transition-all cursor-pointer" onclick="highlightPillar('mean')">
+                            <div class="w-8 h-8 mx-auto rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center mb-1">
+                                <i class="fa-solid fa-scale-balanced text-sm"></i>
+                            </div>
+                            <h4 class="text-xs font-bold text-white">Mean (x̄)</h4>
+                            <p class="text-[10px] text-slate-400 mt-1">Arithmetic balance point</p>
+                        </div>
+                        <div class="glass-card p-3 rounded-xl border border-emerald-500/30 text-center hover:bg-emerald-950/30 transition-all cursor-pointer" onclick="highlightPillar('median')">
+                            <div class="w-8 h-8 mx-auto rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-1">
+                                <i class="fa-solid fa-arrows-split-up-and-left text-sm"></i>
+                            </div>
+                            <h4 class="text-xs font-bold text-white">Median</h4>
+                            <p class="text-[10px] text-slate-400 mt-1">50th percentile midpoint</p>
+                        </div>
+                        <div class="glass-card p-3 rounded-xl border border-cyan-500/30 text-center hover:bg-cyan-950/30 transition-all cursor-pointer" onclick="highlightPillar('mode')">
+                            <div class="w-8 h-8 mx-auto rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center mb-1">
+                                <i class="fa-solid fa-crown text-sm"></i>
+                            </div>
+                            <h4 class="text-xs font-bold text-white">Mode</h4>
+                            <p class="text-[10px] text-slate-400 mt-1">Most frequent observation</p>
+                        </div>
+                    </div>
+
+                    <!-- From Ungrouped to Grouped -->
+                    <div class="glass-card p-4 rounded-xl border border-slate-700/60 text-xs text-slate-300 space-y-2">
+                        <div class="font-bold text-amber-400 flex items-center gap-2">
+                            <i class="fa-solid fa-lightbulb"></i> Class 9 vs Class 10 Transition
+                        </div>
+                        <p>
+                            In Class IX, observations were listed individually (x₁, x₂, …, xₙ). In Class X, we deal with <span class="text-white font-semibold">Continuous Grouped Classes</span> (e.g. 10-25, 25-40) where exact values are replaced by <span class="text-cyan-300 font-bold">Class Marks</span>!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Dot Plot & Outlier Simulator -->
+                <div class="lg:col-span-7 glass-panel p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-sliders text-indigo-400"></i> Interactive Outlier & Balance Simulator
+                                </h3>
+                                <p class="text-xs text-slate-400">See how extreme values distort Mean vs Median and Mode</p>
+                            </div>
+                            <span class="text-xs font-mono px-2 py-1 rounded bg-slate-800 text-indigo-300 border border-slate-700">Live Physics</span>
+                        </div>
+
+                        <!-- Canvas / SVG representation -->
+                        <div class="mt-4 p-4 rounded-xl bg-slate-950/80 border border-slate-800 relative">
+                            <div class="flex justify-between items-center text-xs text-slate-400 mb-2 font-mono">
+                                <span>Scale: 0</span>
+                                <span>50</span>
+                                <span>100</span>
+                            </div>
+                            <!-- Fulcrum line -->
+                            <div class="h-2 w-full bg-slate-800 rounded-full relative my-8">
+                                <div id="s1-dots-container" class="absolute inset-0 flex items-center">
+                                    <!-- Points injected by JS -->
+                                </div>
+                                <!-- Markers -->
+                                <div id="s1-mean-marker" class="absolute top-4 -translate-x-1/2 flex flex-col items-center transition-all duration-300" style="left: 50%;">
+                                    <div class="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[8px] border-b-indigo-400"></div>
+                                    <span class="text-[10px] font-bold text-indigo-300 mt-1">Mean: <span id="s1-mean-val">50.0</span></span>
+                                </div>
+                                <div id="s1-median-marker" class="absolute -top-7 -translate-x-1/2 flex flex-col items-center transition-all duration-300" style="left: 48%;">
+                                    <span class="text-[10px] font-bold text-emerald-400 mb-1">Median: <span id="s1-median-val">48.0</span></span>
+                                    <div class="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-emerald-400"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Interactive Slider to Add Outlier -->
+                        <div class="mt-4 space-y-2">
+                            <div class="flex justify-between text-xs">
+                                <span class="font-medium text-slate-300">Move Outlier Value:</span>
+                                <span id="s1-outlier-display" class="font-bold text-amber-400 font-mono">95</span>
+                            </div>
+                            <input type="range" id="s1-outlier-slider" min="10" max="100" value="95" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-500" oninput="updateSlide1Simulator(this.value)">
+                        </div>
+                    </div>
+
+                    <!-- Observation Insight -->
+                    <div id="s1-insight-box" class="p-3.5 rounded-xl bg-indigo-950/40 border border-indigo-500/30 text-xs text-indigo-200 mt-4">
+                        <span class="font-bold text-indigo-300"><i class="fa-solid fa-circle-info mr-1"></i> Statistical Truth:</span>
+                        The <span class="text-white font-bold">Mean</span> is sensitive to every single observation and gets heavily pulled by the outlier, whereas the <span class="text-emerald-300 font-bold">Median</span> resists extreme values because it only depends on positional rank!
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 2: MEAN OF GROUPED DATA — DIRECT METHOD
+             ========================================== -->
+        <section id="slide-2" class="slide w-full h-full max-w-7xl flex-col justify-between">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full overflow-y-auto">
+                <!-- Left: Formula & Concept -->
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-emerald-500">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 uppercase tracking-wider">Method 1 • Direct</span>
+                        <h2 class="text-2xl font-extrabold text-white mt-2">The Direct Method</h2>
+                        <div class="mt-4 p-4 rounded-xl bg-slate-900/90 border border-emerald-500/30 font-mono text-center">
+                            <div class="text-xs text-slate-400 mb-1">Direct Mean Formula</div>
+                            <div class="text-xl sm:text-2xl font-bold text-emerald-400">
+                                x̄ = (Σ fᵢ xᵢ) / (Σ fᵢ)
+                            </div>
+                        </div>
+                        <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+                            Since class intervals like 10-25 contain continuous spread, we assume that the frequency is centered at the <span class="text-emerald-400 font-bold">Class Mark (xᵢ)</span>:
+                        </p>
+                        <div class="mt-2 p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-center font-mono text-xs text-cyan-300 font-bold">
+                            xᵢ = (Upper Limit + Lower Limit) / 2
+                        </div>
+                    </div>
+
+                    <!-- Accuracy Comparison Note from NCERT -->
+                    <div class="glass-card p-4 rounded-xl border border-slate-700/70 text-xs text-slate-300 space-y-2">
+                        <div class="font-bold text-amber-400 flex items-center gap-2">
+                            <i class="fa-solid fa-triangle-exclamation"></i> NCERT Critical Observation (Page 174)
+                        </div>
+                        <p>
+                            For the 30-student marks data:<br>
+                            • Exact ungrouped mean = <span class="font-bold text-white font-mono">59.3</span><br>
+                            • Grouped direct mean = <span class="font-bold text-emerald-400 font-mono">62.0</span><br>
+                            <span class="text-slate-400 italic">Why the difference? Because grouping assumes all observations inside each interval are equal to its midpoint xᵢ!</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right: Interactive Table 13.3 -->
+                <div class="lg:col-span-7 glass-panel p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-base font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-table text-emerald-400"></i> Table 13.3 • 30 Students Mathematics Marks
+                            </h3>
+                            <button onclick="playChime()" class="text-xs px-3 py-1 rounded-lg bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-600/50 transition">
+                                Calculate Sums
+                            </button>
+                        </div>
+
+                        <!-- Data Table -->
+                        <div class="overflow-x-auto rounded-xl border border-slate-800 bg-slate-950/60">
+                            <table class="w-full text-left text-xs font-mono">
+                                <thead class="bg-slate-900 text-slate-300 border-b border-slate-800 uppercase tracking-wider text-[11px]">
+                                    <tr>
+                                        <th class="p-2.5">Class Interval</th>
+                                        <th class="p-2.5 text-center">Freq (fᵢ)</th>
+                                        <th class="p-2.5 text-center">Class Mark (xᵢ)</th>
+                                        <th class="p-2.5 text-right">fᵢ xᵢ</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-800/60 text-slate-300">
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="p-2 font-sans font-semibold text-white">10 – 25</td>
+                                        <td class="p-2 text-center text-cyan-300 font-bold">2</td>
+                                        <td class="p-2 text-center text-slate-400">17.5</td>
+                                        <td class="p-2 text-right text-emerald-400 font-bold">35.0</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="p-2 font-sans font-semibold text-white">25 – 40</td>
+                                        <td class="p-2 text-center text-cyan-300 font-bold">3</td>
+                                        <td class="p-2 text-center text-slate-400">32.5</td>
+                                        <td class="p-2 text-right text-emerald-400 font-bold">97.5</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="p-2 font-sans font-semibold text-white">40 – 55</td>
+                                        <td class="p-2 text-center text-cyan-300 font-bold">7</td>
+                                        <td class="p-2 text-center text-slate-400">47.5</td>
+                                        <td class="p-2 text-right text-emerald-400 font-bold">332.5</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="p-2 font-sans font-semibold text-white">55 – 70</td>
+                                        <td class="p-2 text-center text-cyan-300 font-bold">6</td>
+                                        <td class="p-2 text-center text-slate-400">62.5</td>
+                                        <td class="p-2 text-right text-emerald-400 font-bold">375.0</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="p-2 font-sans font-semibold text-white">70 – 85</td>
+                                        <td class="p-2 text-center text-cyan-300 font-bold">6</td>
+                                        <td class="p-2 text-center text-slate-400">77.5</td>
+                                        <td class="p-2 text-right text-emerald-400 font-bold">465.0</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="p-2 font-sans font-semibold text-white">85 – 100</td>
+                                        <td class="p-2 text-center text-cyan-300 font-bold">6</td>
+                                        <td class="p-2 text-center text-slate-400">92.5</td>
+                                        <td class="p-2 text-right text-emerald-400 font-bold">555.0</td>
+                                    </tr>
+                                    <tr class="bg-emerald-950/30 font-bold text-white border-t-2 border-emerald-500/40">
+                                        <td class="p-2.5 font-sans">TOTAL</td>
+                                        <td class="p-2.5 text-center text-cyan-300">Σ fᵢ = 30</td>
+                                        <td class="p-2.5 text-center text-slate-500">—</td>
+                                        <td class="p-2.5 text-right text-emerald-400">Σ fᵢ xᵢ = 1860.0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Final Calculation Step -->
+                    <div class="mt-4 p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/40 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-slate-300 font-medium">Applying Direct Formula:</span>
+                            <div class="text-sm font-bold text-white font-mono mt-0.5">
+                                x̄ = (1860.0) / (30) = 62.0 marks
+                            </div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500 text-slate-950">
+                            Mean = 62
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 3: ASSUMED MEAN METHOD
+             ========================================== -->
+        <section id="slide-3" class="slide w-full h-full max-w-7xl flex-col justify-between">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full overflow-y-auto">
+                <!-- Left: Why Assumed Mean & Derivation -->
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-cyan-500">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-cyan-500/20 text-cyan-300 uppercase tracking-wider">Method 2 • Deviation</span>
+                        <h2 class="text-2xl font-extrabold text-white mt-2">Assumed Mean Method</h2>
+                        <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+                            When numerical values of xᵢ and fᵢ become large, calculating fᵢ xᵢ is tedious. We subtract a constant assumed center <span class="text-cyan-400 font-bold">a</span> from each xᵢ:
+                        </p>
+                        <div class="mt-3 p-3 rounded-xl bg-slate-900 border border-cyan-500/30 text-center font-mono">
+                            <div class="text-xs text-slate-400">Deviation Formula</div>
+                            <div class="text-lg font-bold text-cyan-400">dᵢ = xᵢ - a</div>
+                        </div>
+                        <div class="mt-3 p-3.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono space-y-1 text-slate-300">
+                            <div class="text-indigo-400 font-bold mb-1">Formal Proof:</div>
+                            <div>d̄ = (Σ fᵢ dᵢ) / (Σ fᵢ) = (Σ fᵢ(xᵢ - a) / (Σ fᵢ)</div>
+                            <div>d̄ = (Σ fᵢ xᵢ) / (Σ fᵢ) - (a Σ fᵢ) / (Σ fᵢ) = x̄ - a</div>
+                            <div class="text-emerald-400 font-bold pt-1">→ x̄ = a + (Σ fᵢ dᵢ) / (Σ fᵢ)</div>
+                        </div>
+                    </div>
+
+                    <!-- Choice of 'a' selector -->
+                    <div class="glass-card p-4 rounded-xl border border-slate-700/60 text-xs space-y-2">
+                        <div class="font-bold text-white flex items-center justify-between">
+                            <span>Interactive: Choose Assumed Mean 'a'</span>
+                            <span id="s3-chosen-a" class="text-cyan-400 font-mono font-bold">47.5</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button onclick="setAssumedMean(47.5)" class="py-1.5 px-3 rounded-lg bg-cyan-600/30 border border-cyan-500/40 text-cyan-300 font-mono hover:bg-cyan-600/50 transition">
+                                Choose a = 47.5
+                            </button>
+                            <button onclick="setAssumedMean(62.5)" class="py-1.5 px-3 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 font-mono hover:bg-slate-700 transition">
+                                Choose a = 62.5
+                            </button>
+                        </div>
+                        <p class="text-[11px] text-slate-400 italic">
+                            Activity 1 Note: No matter which xᵢ you choose as a, the final mean will always equal 62!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right: Table 13.4 with Deviations -->
+                <div class="lg:col-span-7 glass-panel p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-base font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-calculator text-cyan-400"></i> Table 13.4 • Deviations from a = 47.5
+                            </h3>
+                            <span class="text-xs font-mono text-cyan-400 bg-cyan-950/60 px-2.5 py-1 rounded border border-cyan-800">
+                                Notice negative cancels positive!
+                            </span>
+                        </div>
+
+                        <!-- Data Table with dᵢ -->
+                        <div class="overflow-x-auto rounded-xl border border-slate-800 bg-slate-950/60">
+                            <table class="w-full text-left text-xs font-mono">
+                                <thead class="bg-slate-900 text-slate-300 border-b border-slate-800 uppercase text-[11px]">
+                                    <tr>
+                                        <th class="p-2">Interval</th>
+                                        <th class="p-2 text-center">fᵢ</th>
+                                        <th class="p-2 text-center">xᵢ</th>
+                                        <th class="p-2 text-center">dᵢ = xᵢ - a</th>
+                                        <th class="p-2 text-right">fᵢ dᵢ</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-800/60 text-slate-300">
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="p-2 font-sans font-semibold text-white">10 – 25</td>
+                                        <td class="p-2 text-center text-cyan-300">2</td>
+                                        <td class="p-2 text-center">17.5</td>
+                                        <td class="p-2 text-center text-rose-400 font-bold">-30</td>
+                                        <td class="p-2 text-right text-rose-400 font-bold">-60</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="p-2 font-sans font-semibold text-white">25 – 40</td>
+                                        <td class="p-2 text-center text-cyan-300">3</td>
+                                        <td class="p-2 text-center">32.5</td>
+                                        <td class="p-2 text-center text-rose-400 font-bold">-15</td>
+                                        <td class="p-2 text-right text-rose-400 font-bold">-45</td>
+                                    </tr>
+                                    <tr class="bg-cyan-950/20 hover:bg-cyan-950/40">
+                                        <td class="p-2 font-sans font-semibold text-cyan-300">40 – 55 [a]</td>
+                                        <td class="p-2 text-center text-cyan-300">7</td>
+                                        <td class="p-2 text-center text-cyan-400 font-bold">47.5</td>
+                                        <td class="p-2 text-center text-slate-400 font-bold">0</td>
+                                        <td class="p-2 text-right text-slate-400 font-bold">0</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="p-2 font-sans font-semibold text-white">55 – 70</td>
+                                        <td class="p-2 text-center text-cyan-300">6</td>
+                                        <td class="p-2 text-center">62.5</td>
+                                        <td class="p-2 text-center text-emerald-400 font-bold">+15</td>
+                                        <td class="p-2 text-right text-emerald-400 font-bold">+90</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="p-2 font-sans font-semibold text-white">70 – 85</td>
+                                        <td class="p-2 text-center text-cyan-300">6</td>
+                                        <td class="p-2 text-center">77.5</td>
+                                        <td class="p-2 text-center text-emerald-400 font-bold">+30</td>
+                                        <td class="p-2 text-right text-emerald-400 font-bold">+180</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="p-2 font-sans font-semibold text-white">85 – 100</td>
+                                        <td class="p-2 text-center text-cyan-300">6</td>
+                                        <td class="p-2 text-center">92.5</td>
+                                        <td class="p-2 text-center text-emerald-400 font-bold">+45</td>
+                                        <td class="p-2 text-right text-emerald-400 font-bold">+270</td>
+                                    </tr>
+                                    <tr class="bg-cyan-950/30 font-bold text-white border-t-2 border-cyan-500/40">
+                                        <td class="p-2.5 font-sans">TOTAL</td>
+                                        <td class="p-2.5 text-center text-cyan-300">Σ fᵢ = 30</td>
+                                        <td class="p-2.5 text-center">—</td>
+                                        <td class="p-2.5 text-center text-slate-500">—</td>
+                                        <td class="p-2.5 text-right text-cyan-300">Σ fᵢ dᵢ = +435</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Step-by-Step Substitution -->
+                    <div class="mt-4 p-4 rounded-xl bg-cyan-950/40 border border-cyan-500/40">
+                        <div class="text-xs text-slate-300">
+                            Mean of deviations d̄ = (Σ fᵢ dᵢ) / (Σ fᵢ) = (435) / (30) = 14.5
+                        </div>
+                        <div class="text-sm font-bold text-white font-mono mt-1 flex items-center justify-between">
+                            <span>x̄ = a + d̄ = 47.5 + 14.5 = 62.0</span>
+                            <span class="px-2.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 text-xs">
+                                Exact Match: 62
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 4: STEP-DEVIATION METHOD
+             ========================================== -->
+        <section id="slide-4" class="slide w-full h-full max-w-7xl flex-col justify-between">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full overflow-y-auto">
+                <!-- Left: Principle & Proof -->
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-purple-500">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-purple-500/20 text-purple-300 uppercase tracking-wider">Method 3 • Scaling</span>
+                        <h2 class="text-2xl font-extrabold text-white mt-2">Step-Deviation Method</h2>
+                        <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+                            Notice in Table 13.4 that all deviations dᵢ ∈ \{-30, -15, 0, 15, 30, 45\} share a common factor <span class="text-purple-400 font-bold">h = 15</span> (the class size). Dividing by h reduces calculations to tiny single-digit integers:
+                        </p>
+                        <div class="mt-3 p-3 rounded-xl bg-slate-900 border border-purple-500/30 text-center font-mono">
+                            <div class="text-xs text-slate-400">Step-Deviation Form</div>
+                            <div class="text-lg font-bold text-purple-400">uᵢ = (xᵢ - a) / (h)</div>
+                        </div>
+                        <div class="mt-3 p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono space-y-1.5 text-slate-300">
+                            <div class="text-purple-300 font-bold">Derivation (Page 177):</div>
+                            <div>ū = (Σ fᵢ uᵢ) / (Σ fᵢ) = (1) / (h)≤ft[(Σ fᵢ xᵢ - a Σ fᵢ) / (Σ fᵢ)] = (x̄ - a) / (h)</div>
+                            <div>h ū = x̄ - a</div>
+                            <div class="text-emerald-400 font-bold pt-1">→ x̄ = a + h ≤ft(Σ fᵢ uᵢ) / (Σ fᵢ)</div>
+                        </div>
+                    </div>
+
+                    <!-- Rule of Thumb Card -->
+                    <div class="glass-card p-4 rounded-xl border border-slate-700/60 text-xs text-slate-300 space-y-1.5">
+                        <span class="font-bold text-amber-400"><i class="fa-solid fa-compass"></i> When to Use Which Method?</span>
+                        <ul class="list-disc list-inside space-y-1 text-[11px] text-slate-400">
+                            <li><b class="text-white">Direct:</b> When xᵢ and fᵢ are small numbers (e.g. single digits).</li>
+                            <li><b class="text-white">Assumed Mean:</b> When numbers are large but no common factor exists.</li>
+                            <li><b class="text-white">Step-Deviation:</b> When all dᵢ share a convenient common divisor h.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right: Table 13.5 with uᵢ -->
+                <div class="lg:col-span-7 glass-panel p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-base font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-table-cells text-purple-400"></i> Table 13.5 • Step-Deviations (a = 47.5, h = 15)
+                            </h3>
+                            <span class="text-xs font-mono text-purple-300 bg-purple-950/60 px-2.5 py-1 rounded border border-purple-800">
+                                Single-Digit Products!
+                            </span>
+                        </div>
+
+                        <!-- Table -->
+                        <div class="overflow-x-auto rounded-xl border border-slate-800 bg-slate-950/60">
+                            <table class="w-full text-left text-xs font-mono">
+                                <thead class="bg-slate-900 text-slate-300 border-b border-slate-800 uppercase text-[11px]">
+                                    <tr>
+                                        <th class="p-2">Interval</th>
+                                        <th class="p-2 text-center">fᵢ</th>
+                                        <th class="p-2 text-center">xᵢ</th>
+                                        <th class="p-2 text-center">dᵢ</th>
+                                        <th class="p-2 text-center">uᵢ = dᵢ / 15</th>
+                                        <th class="p-2 text-right">fᵢ uᵢ</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-800/60 text-slate-300">
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="p-2 font-sans font-semibold text-white">10 – 25</td>
+                                        <td class="p-2 text-center text-cyan-300">2</td>
+                                        <td class="p-2 text-center">17.5</td>
+                                        <td class="p-2 text-center text-slate-400">-30</td>
+                                        <td class="p-2 text-center text-rose-400 font-bold">-2</td>
+                                        <td class="p-2 text-right text-rose-400 font-bold">-4</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="p-2 font-sans font-semibold text-white">25 – 40</td>
+                                        <td class="p-2 text-center text-cyan-300">3</td>
+                                        <td class="p-2 text-center">32.5</td>
+                                        <td class="p-2 text-center text-slate-400">-15</td>
+                                        <td class="p-2 text-center text-rose-400 font-bold">-1</td>
+                                        <td class="p-2 text-right text-rose-400 font-bold">-3</td>
+                                    </tr>
+                                    <tr class="bg-purple-950/20 hover:bg-purple-950/40">
+                                        <td class="p-2 font-sans font-semibold text-purple-300">40 – 55</td>
+                                        <td class="p-2 text-center text-cyan-300">7</td>
+                                        <td class="p-2 text-center text-purple-400 font-bold">47.5</td>
+                                        <td class="p-2 text-center text-slate-400">0</td>
+                                        <td class="p-2 text-center text-slate-400 font-bold">0</td>
+                                        <td class="p-2 text-right text-slate-400 font-bold">0</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="p-2 font-sans font-semibold text-white">55 – 70</td>
+                                        <td class="p-2 text-center text-cyan-300">6</td>
+                                        <td class="p-2 text-center">62.5</td>
+                                        <td class="p-2 text-center text-slate-400">+15</td>
+                                        <td class="p-2 text-center text-emerald-400 font-bold">+1</td>
+                                        <td class="p-2 text-right text-emerald-400 font-bold">+6</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="p-2 font-sans font-semibold text-white">70 – 85</td>
+                                        <td class="p-2 text-center text-cyan-300">6</td>
+                                        <td class="p-2 text-center">77.5</td>
+                                        <td class="p-2 text-center text-slate-400">+30</td>
+                                        <td class="p-2 text-center text-emerald-400 font-bold">+2</td>
+                                        <td class="p-2 text-right text-emerald-400 font-bold">+12</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="p-2 font-sans font-semibold text-white">85 – 100</td>
+                                        <td class="p-2 text-center text-cyan-300">6</td>
+                                        <td class="p-2 text-center">92.5</td>
+                                        <td class="p-2 text-center text-slate-400">+45</td>
+                                        <td class="p-2 text-center text-emerald-400 font-bold">+3</td>
+                                        <td class="p-2 text-right text-emerald-400 font-bold">+18</td>
+                                    </tr>
+                                    <tr class="bg-purple-950/30 font-bold text-white border-t-2 border-purple-500/40">
+                                        <td class="p-2.5 font-sans">TOTAL</td>
+                                        <td class="p-2.5 text-center text-cyan-300">Σ fᵢ = 30</td>
+                                        <td class="p-2.5 text-center">—</td>
+                                        <td class="p-2.5 text-center">—</td>
+                                        <td class="p-2.5 text-center text-slate-500">—</td>
+                                        <td class="p-2.5 text-right text-purple-300">Σ fᵢ uᵢ = 29</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Step Calculation -->
+                    <div class="mt-4 p-4 rounded-xl bg-purple-950/40 border border-purple-500/40 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-slate-300 font-medium">Step-Deviation Calculation:</span>
+                            <div class="text-sm font-bold text-white font-mono mt-0.5">
+                                x̄ = 47.5 + 15 × ≤ft(29) / (30) = 47.5 + 14.5 = 62.0
+                            </div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-purple-500 text-white">
+                            All 3 Methods Yield 62!
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 5: UNEQUAL SIZES & MISSING FREQUENCY (f)
+             ========================================== -->
+        <section id="slide-5" class="slide w-full h-full max-w-7xl flex-col justify-between">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full overflow-y-auto">
+                <!-- Left: Unequal Class Sizes (Example 3) -->
+                <div class="lg:col-span-6 glass-panel p-6 rounded-2xl flex flex-col justify-between space-y-4 border-l-4 border-amber-500">
+                    <div>
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 uppercase tracking-wider">Example 3 Special Case</span>
+                        <h2 class="text-xl font-extrabold text-white mt-2">Unequal Class Sizes (Bowlers' Wickets)</h2>
+                        <p class="text-slate-300 text-xs mt-2 leading-relaxed">
+                            In one-day cricket, class intervals vary widely: 20-60 (width 40), 60-100 (width 40), 100-150 (width 50), 150-250 (width 100), 250-350 (100), 350-450 (100).
+                        </p>
+
+                        <!-- Key Insight Box -->
+                        <div class="mt-3 p-3.5 rounded-xl bg-slate-900 border border-amber-500/30 text-xs text-slate-300 space-y-1.5">
+                            <span class="font-bold text-amber-400"><i class="fa-solid fa-star"></i> NCERT Key Strategy:</span>
+                            <p>
+                                Even when class sizes are unequal, we can still use Step-Deviation! Pick an assumed mean a = 200 and any convenient common divisor for dᵢ, like <span class="text-white font-bold">h = 20</span>.
+                            </p>
+                            <div class="p-2 rounded bg-slate-950 font-mono text-[11px] text-amber-300 font-bold text-center mt-1">
+                                ū = (-106) / (45) → x̄ = 200 + 20≤ft(-106) / (45) = 152.89 wickets
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-3 rounded-xl bg-amber-950/30 border border-amber-500/30 text-[11px] text-amber-200">
+                        <b>Significance:</b> On average, each of the 45 bowlers took approximately <span class="font-bold text-white">153 wickets</span> in their international careers.
+                    </div>
+                </div>
+
+                <!-- Right: Missing Frequency f Problem (Exercise 13.1 Q3) -->
+                <div class="lg:col-span-6 glass-panel p-6 rounded-2xl flex flex-col justify-between border-l-4 border-rose-500">
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 uppercase tracking-wider">Board Favorite • Ex 13.1 Q3</span>
+                            <span class="text-xs font-mono font-bold text-rose-400">Mean Pocket Money = ₹18</span>
+                        </div>
+                        <h2 class="text-xl font-extrabold text-white mt-2">Solving Missing Frequency f</h2>
+                        <p class="text-slate-300 text-xs mt-2">
+                            Daily pocket allowance of children: 11-13 (7), 13-15 (6), 15-17 (9), 17-19 (13), 19-21 (f), 21-23 (5), 23-25 (4). Find f.
+                        </p>
+
+                        <!-- Step-by-Step Solver -->
+                        <div class="mt-4 p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 font-mono text-xs">
+                            <div class="text-slate-400">1. Total Children: Σ fᵢ = 44 + f</div>
+                            <div class="text-slate-400">2. Class marks: xᵢ ∈ \{12, 14, 16, 18, 20, 22, 24\}</div>
+                            <div class="text-slate-400">3. Setting a = 18 → dᵢ ∈ \{-6, -4, -2, 0, 2, 4, 6\}</div>
+                            <div class="text-cyan-300 font-bold">4. Σ fᵢ dᵢ = (-42 - 24 - 18) + 0 + 2f + 20 + 24 = 2f - 40</div>
+                            <div class="text-amber-300 font-bold">5. Since x̄ = a → d̄ = 0:</div>
+                            <div class="p-2 rounded bg-rose-950/60 border border-rose-500/40 text-center text-sm font-bold text-white">
+                                (2f - 40) / (44 + f) = 0 → 2f - 40 = 0 → f = 20
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Verification Button -->
+                    <div class="mt-4 flex items-center justify-between p-3 rounded-xl bg-slate-900 border border-slate-800">
+                        <span class="text-xs text-slate-300">Answer Verified:</span>
+                        <span class="px-3 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold font-mono">
+                            Missing Frequency f = 20 children
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 6: MODE OF GROUPED DATA
+             ========================================== -->
+        <section id="slide-6" class="slide w-full h-full max-w-7xl flex-col justify-between">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full overflow-y-auto">
+                <!-- Left: Mode Concept & Formula Breakdown -->
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-rose-500">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 uppercase tracking-wider">Section 13.3 • The Most Popular Value</span>
+                        <h2 class="text-2xl font-extrabold text-white mt-2">Mode of Grouped Data</h2>
+                        <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+                            In grouped distributions, we cannot pick the mode simply by looking. We first locate the <span class="text-rose-400 font-bold">Modal Class</span> (class with maximum frequency f₁), and then interpolate inside it:
+                        </p>
+                        
+                        <!-- Mode Formula Box -->
+                        <div class="mt-4 p-4 rounded-xl bg-slate-900/90 border border-rose-500/40 font-mono text-center">
+                            <div class="text-[11px] text-slate-400 mb-1">NCERT Grouped Mode Formula</div>
+                            <div class="text-xl font-bold text-rose-400">
+                                Mode = l + ≤ft(f₁ - f₀) / (2f₁ - f₀ - f₂) × h
+                            </div>
+                        </div>
+
+                        <!-- Variable Legend -->
+                        <div class="mt-3 grid grid-cols-2 gap-2 text-[11px] font-mono text-slate-300">
+                            <div class="p-2 rounded bg-slate-950 border border-slate-800">
+                                <b class="text-rose-400">l:</b> Lower limit of modal class
+                            </div>
+                            <div class="p-2 rounded bg-slate-950 border border-slate-800">
+                                <b class="text-rose-400">h:</b> Class size interval
+                            </div>
+                            <div class="p-2 rounded bg-slate-950 border border-slate-800">
+                                <b class="text-rose-400">f₁:</b> Frequency of modal class
+                            </div>
+                            <div class="p-2 rounded bg-slate-950 border border-slate-800">
+                                <b class="text-rose-400">f₀:</b> Preceding frequency
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Geometric Intuition -->
+                    <div class="glass-card p-4 rounded-xl border border-slate-700/60 text-xs text-slate-300 space-y-1.5">
+                        <span class="font-bold text-amber-400"><i class="fa-solid fa-shapes"></i> How does the formula work?</span>
+                        <p class="text-[11px] text-slate-400">
+                            The modal class is the tallest bar in a histogram. The adjacent bars (f₀ on the left and f₂ on the right) pull the true peak toward whichever neighbor has a higher frequency!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right: Example 5 (Family Size) & Example 6 (Marks Mode vs Mean) -->
+                <div class="lg:col-span-7 glass-panel p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-base font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-people-roof text-rose-400"></i> Example 5: 20 Household Family Sizes
+                            </h3>
+                            <span class="text-xs font-mono text-rose-300 bg-rose-950/60 px-2.5 py-1 rounded border border-rose-800">
+                                Max Frequency = 8
+                            </span>
+                        </div>
+
+                        <!-- Family Size Table -->
+                        <div class="overflow-x-auto rounded-xl border border-slate-800 bg-slate-950/60 mb-4">
+                            <table class="w-full text-center text-xs font-mono">
+                                <thead class="bg-slate-900 text-slate-300 border-b border-slate-800 uppercase text-[11px]">
+                                    <tr>
+                                        <th class="p-2">Family Size</th>
+                                        <th class="p-2">1 - 3</th>
+                                        <th class="p-2 bg-rose-950/60 text-rose-300">3 - 5 (Modal)</th>
+                                        <th class="p-2">5 - 7</th>
+                                        <th class="p-2">7 - 9</th>
+                                        <th class="p-2">9 - 11</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-slate-300">
+                                    <tr>
+                                        <td class="p-2 font-sans font-semibold text-white">Families</td>
+                                        <td class="p-2 text-slate-400">f₀ = 7</td>
+                                        <td class="p-2 text-rose-400 font-bold text-sm bg-rose-950/40">f₁ = 8</td>
+                                        <td class="p-2 text-slate-400">f₂ = 2</td>
+                                        <td class="p-2 text-slate-500">2</td>
+                                        <td class="p-2 text-slate-500">1</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Calculation breakdown -->
+                        <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 font-mono text-xs space-y-2">
+                            <div class="text-slate-400">Modal Class = 3 - 5 → l = 3, h = 2, f₁ = 8, f₀ = 7, f₂ = 2</div>
+                            <div class="text-white font-bold">
+                                Mode = 3 + ≤ft(8 - 7) / (2(8) - 7 - 2) × 2 = 3 + ≤ft(1) / (16 - 9) × 2 = 3 + (2) / (7) ≈ 3.286
+                            </div>
+                        </div>
+
+                        <!-- Example 6 Comparison Note -->
+                        <div class="mt-4 p-3.5 rounded-xl bg-rose-950/30 border border-rose-500/30 text-xs space-y-1">
+                            <div class="font-bold text-rose-300 flex items-center gap-2">
+                                <i class="fa-solid fa-code-compare"></i> Example 6: Mode vs Mean Interpretation
+                            </div>
+                            <p class="text-slate-300 text-[11px]">
+                                In the 30-student mathematics exam:<br>
+                                • <span class="text-rose-400 font-bold">Mode = 52 marks:</span> The single most frequent mark obtained by students.<br>
+                                • <span class="text-emerald-400 font-bold">Mean = 62 marks:</span> The average score across the entire classroom.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 flex justify-end">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-500 text-white">
+                            Mode = 3.286 members
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 7: CUMULATIVE FREQUENCY DISTRIBUTIONS
+             ========================================== -->
+        <section id="slide-7" class="slide w-full h-full max-w-7xl flex-col justify-between">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full overflow-y-auto">
+                <!-- Left: Concepts of Less Than & More Than -->
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-blue-500">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 uppercase tracking-wider">Section 13.4 Foundations</span>
+                        <h2 class="text-2xl font-extrabold text-white mt-2">Cumulative Frequency (cf)</h2>
+                        <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+                            Cumulative frequency is the running total of frequencies up to a specified boundary. There are two complementary perspectives:
+                        </p>
+                        <div class="mt-4 space-y-2.5">
+                            <div class="p-3 rounded-xl bg-blue-950/30 border border-blue-500/30 text-xs">
+                                <b class="text-blue-400 block mb-0.5">1. "Less Than" Type (Uses Upper Limits)</b>
+                                <span class="text-slate-300">Accumulates from left to right: How many students scored less than 10, 20, 30...?</span>
+                            </div>
+                            <div class="p-3 rounded-xl bg-cyan-950/30 border border-cyan-500/30 text-xs">
+                                <b class="text-cyan-400 block mb-0.5">2. "More Than or Equal To" Type (Uses Lower Limits)</b>
+                                <span class="text-slate-300">Starts with total n and subtracts: How many students scored ≥ 0, ≥ 10, ≥ 20...?</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ogive Preview Note -->
+                    <div class="glass-card p-4 rounded-xl border border-slate-700/60 text-xs text-slate-300 space-y-1">
+                        <div class="font-bold text-amber-400 flex items-center gap-1.5">
+                            <i class="fa-solid fa-bezier-curve"></i> The Ogive Intersection Property
+                        </div>
+                        <p class="text-[11px] text-slate-400">
+                            If you plot both the "Less than ogive" and "More than ogive" on the same graph, their point of intersection on the x-axis gives the exact <span class="text-white font-bold">Median</span>!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right: Interactive Table 13.13 / 13.14 (53 Students Exam) -->
+                <div class="lg:col-span-7 glass-panel p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-base font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-list-ol text-blue-400"></i> Table 13.15 • 53 Students Cumulative Breakdown
+                            </h3>
+                            <div class="flex items-center space-x-2">
+                                <button onclick="setCfView('less')" id="btn-cf-less" class="text-xs px-2.5 py-1 rounded-lg bg-blue-600 text-white font-semibold">Less Than</button>
+                                <button onclick="setCfView('more')" id="btn-cf-more" class="text-xs px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700">More Than</button>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic CF Table -->
+                        <div class="overflow-x-auto rounded-xl border border-slate-800 bg-slate-950/60">
+                            <table class="w-full text-left text-xs font-mono">
+                                <thead class="bg-slate-900 text-slate-300 border-b border-slate-800 uppercase text-[11px]">
+                                    <tr>
+                                        <th class="p-2.5">Marks Interval</th>
+                                        <th class="p-2.5 text-center">Frequency (fᵢ)</th>
+                                        <th class="p-2.5 text-right" id="cf-col-header">Cumulative Freq (cf)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cf-table-body" class="divide-y divide-slate-800/60 text-slate-300">
+                                    <!-- Injected via JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Key takeaway -->
+                    <div class="mt-4 p-3 rounded-xl bg-blue-950/40 border border-blue-500/30 text-xs text-blue-200 flex items-center justify-between">
+                        <span>Total Students: <b class="text-white font-mono">n = 53</b></span>
+                        <span>Halfway mark: <b class="text-cyan-300 font-mono">n/2 = 26.5</b></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 8: MEDIAN OF GROUPED DATA
+             ========================================== -->
+        <section id="slide-8" class="slide w-full h-full max-w-7xl flex-col justify-between">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full overflow-y-auto">
+                <!-- Left: Median Formula & Step-by-Step Procedure -->
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-indigo-500">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300 uppercase tracking-wider">Section 13.4 • Grouped Median</span>
+                        <h2 class="text-2xl font-extrabold text-white mt-2">Median of Grouped Data</h2>
+                        <div class="mt-4 p-4 rounded-xl bg-slate-900/90 border border-indigo-500/40 font-mono text-center">
+                            <div class="text-[11px] text-slate-400 mb-1">NCERT Grouped Median Formula</div>
+                            <div class="text-xl font-bold text-indigo-400">
+                                Median = l + ≤ft(n) / (2) - cf) / (f) × h
+                            </div>
+                        </div>
+
+                        <!-- 4 Step Procedure -->
+                        <div class="mt-3 space-y-1.5 text-xs text-slate-300">
+                            <div class="p-2 rounded bg-slate-950 border border-slate-800">
+                                <b class="text-indigo-400">Step 1:</b> Find total n = Σ fᵢ and calculate (n) / (2).
+                            </div>
+                            <div class="p-2 rounded bg-slate-950 border border-slate-800">
+                                <b class="text-indigo-400">Step 2:</b> Locate the <b class="text-white">Median Class</b> (cf ≥ (n) / (2).
+                            </div>
+                            <div class="p-2 rounded bg-slate-950 border border-slate-800">
+                                <b class="text-amber-400">CRITICAL TRAP:</b> cf in the formula is the cumulative frequency of the class <span class="text-amber-300 font-bold underline">preceding</span> the median class, while f is the frequency of the median class itself!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Example 7 Walkthrough (51 Girls Heights) -->
+                <div class="lg:col-span-7 glass-panel p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-base font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-ruler-vertical text-indigo-400"></i> Example 7: Heights of 51 Girls (Class X)
+                            </h3>
+                            <span class="text-xs font-mono text-indigo-300 bg-indigo-950/60 px-2.5 py-1 rounded border border-indigo-800">
+                                n = 51 &rarr; n/2 = 25.5
+                            </span>
+                        </div>
+
+                        <!-- Table -->
+                        <div class="overflow-x-auto rounded-xl border border-slate-800 bg-slate-950/60 mb-3">
+                            <table class="w-full text-left text-xs font-mono">
+                                <thead class="bg-slate-900 text-slate-300 border-b border-slate-800 uppercase text-[11px]">
+                                    <tr>
+                                        <th class="p-2">Class Interval</th>
+                                        <th class="p-2 text-center">Frequency (f)</th>
+                                        <th class="p-2 text-right">Cumulative Freq (cf)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-800/60 text-slate-300">
+                                    <tr><td class="p-1.5 font-sans">Below 140</td><td class="p-1.5 text-center">4</td><td class="p-1.5 text-right">4</td></tr>
+                                    <tr class="bg-slate-900/40"><td class="p-1.5 font-sans">140 – 145</td><td class="p-1.5 text-center">7</td><td class="p-1.5 text-right font-bold text-amber-400">11 (cf preceding)</td></tr>
+                                    <tr class="bg-indigo-950/40 border-l-4 border-indigo-500 font-bold text-white">
+                                        <td class="p-1.5 font-sans text-indigo-300">145 – 150 (Median Class)</td>
+                                        <td class="p-1.5 text-center text-indigo-400 text-sm">f = 18</td>
+                                        <td class="p-1.5 text-right text-indigo-300">29 (&ge; 25.5)</td>
+                                    </tr>
+                                    <tr><td class="p-1.5 font-sans">150 – 155</td><td class="p-1.5 text-center">11</td><td class="p-1.5 text-right">40</td></tr>
+                                    <tr><td class="p-1.5 font-sans">155 – 160</td><td class="p-1.5 text-center">6</td><td class="p-1.5 text-right">46</td></tr>
+                                    <tr><td class="p-1.5 font-sans">160 – 165</td><td class="p-1.5 text-center">5</td><td class="p-1.5 text-right">51</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Step by step substitution -->
+                        <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 font-mono text-xs space-y-1.5">
+                            <div class="text-slate-400">Median class = 145 - 150 → l = 145, h = 5, cf = 11, f = 18</div>
+                            <div class="text-white font-bold">
+                                Median = 145 + ≤ft(25.5 - 11) / (18) × 5 = 145 + (14.5 × 5) / (18) = 145 + (72.5) / (18) ≈ 149.03 cm
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-3 rounded-xl bg-indigo-950/40 border border-indigo-500/40 flex items-center justify-between">
+                        <span class="text-xs text-slate-300">Physical Interpretation:</span>
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500 text-white">
+                            Median Height = 149.03 cm (50% shorter, 50% taller)
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 9: DUAL MISSING FREQUENCIES (x & y)
+             ========================================== -->
+        <section id="slide-9" class="slide w-full h-full max-w-7xl flex-col justify-between">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full overflow-y-auto">
+                <!-- Left: Problem Setup -->
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-cyan-500">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-cyan-500/20 text-cyan-300 uppercase tracking-wider">Example 8 • High-Yield Exam Master</span>
+                        <h2 class="text-2xl font-extrabold text-white mt-2">Finding Two Unknowns (x & y)</h2>
+                        <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+                            Given that the <span class="text-cyan-400 font-bold">Median = 525</span> and total frequency <span class="text-white font-bold">n = 100</span>, find the values of missing frequencies x and y.
+                        </p>
+                        
+                        <!-- Equation 1 from Total Frequency -->
+                        <div class="mt-4 p-4 rounded-xl bg-slate-900 border border-cyan-500/30 font-mono text-xs space-y-1.5">
+                            <div class="text-cyan-300 font-bold">Equation (1) from Total Count:</div>
+                            <div>Sum of frequencies = 76 + x + y = 100</div>
+                            <div class="text-white font-bold pt-1 text-sm">→ x + y = 24</div>
+                        </div>
+                    </div>
+
+                    <!-- Discontinuous Classes Note (Page 199 Hint) -->
+                    <div class="glass-card p-4 rounded-xl border border-slate-700/60 text-xs text-slate-300 space-y-1.5">
+                        <span class="font-bold text-amber-400"><i class="fa-solid fa-triangle-exclamation"></i> Discontinuous Classes Rule (Ex 13.3 Q4)</span>
+                        <p class="text-[11px] text-slate-400">
+                            If class intervals are discontinuous (e.g. 118-126, 127-135), you MUST subtract 0.5 from lower limit and add 0.5 to upper limit to make them continuous (117.5-126.5, 126.5-135.5) before applying Median or Mode formulas!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right: Step-by-Step Solver -->
+                <div class="lg:col-span-7 glass-panel p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-base font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-square-root-variable text-cyan-400"></i> The Reverse Median Deduction
+                            </h3>
+                            <span class="text-xs font-mono text-cyan-300 bg-cyan-950/60 px-2.5 py-1 rounded border border-cyan-800">
+                                525 falls in [500 – 600]
+                            </span>
+                        </div>
+
+                        <!-- Solver Cards -->
+                        <div class="space-y-3 font-mono text-xs">
+                            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+                                <div class="text-slate-400">1. Locate Median Class from the Median value itself:</div>
+                                <div class="text-white font-bold">Since Median = 525, the median class is <span class="text-cyan-400">500 – 600</span>!</div>
+                                <div class="text-slate-400 text-[11px] mt-1">l = 500, h = 100, f = 20, cf = 36 + x (class preceding)</div>
+                            </div>
+
+                            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
+                                <div class="text-slate-400">2. Substitute into Median Formula:</div>
+                                <div class="text-cyan-300 font-bold">525 = 500 + ≤ft[(50 - (36 + x) / (20)] × 100</div>
+                                <div class="text-slate-300">525 - 500 = (14 - x) × 5</div>
+                                <div class="text-slate-300">25 = 70 - 5x → 5x = 45 → x = 9</div>
+                            </div>
+
+                            <div class="p-3 rounded-xl bg-cyan-950/40 border border-cyan-500/40 space-y-1">
+                                <div class="text-slate-400">3. Solve for y using Equation (1):</div>
+                                <div class="text-white font-bold">9 + y = 24 → y = 15</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Final Badge Result -->
+                    <div class="mt-4 p-3.5 rounded-xl bg-emerald-950/40 border border-emerald-500/40 flex items-center justify-between">
+                        <span class="text-xs text-slate-300 font-semibold">Solution Confirmed:</span>
+                        <div class="flex items-center space-x-3 font-mono font-bold text-sm">
+                            <span class="text-cyan-400">x = 9</span>
+                            <span class="text-slate-500">•</span>
+                            <span class="text-emerald-400">y = 15</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SLIDE 10: EMPIRICAL RELATIONSHIP & MASTER LAB
+             ========================================== -->
+        <section id="slide-10" class="slide w-full h-full max-w-7xl flex-col justify-between">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full overflow-y-auto">
+                <!-- Left: Empirical Relationship -->
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-amber-500">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 uppercase tracking-wider">The Golden Formula • Page 197</span>
+                        <h2 class="text-2xl font-extrabold text-white mt-2">Empirical Relationship</h2>
+                        <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+                            For moderately skewed frequency distributions, there is a constant connection between the three measures discovered by Karl Pearson:
+                        </p>
+                        <div class="mt-4 p-4 rounded-xl bg-slate-900 border border-amber-500/40 font-mono text-center">
+                            <div class="text-[11px] text-slate-400 mb-1">Empirical Formula</div>
+                            <div class="text-xl sm:text-2xl font-bold text-amber-400">
+                                3 Median = Mode + 2 Mean
+                            </div>
+                            <div class="text-xs text-slate-400 mt-1">or Mode = 3 Median - 2 Mean</div>
+                        </div>
+
+                        <!-- Real World Usage Guide -->
+                        <div class="mt-3 space-y-1.5 text-xs text-slate-300">
+                            <div class="p-2 rounded bg-slate-950 border border-slate-800">
+                                <b class="text-emerald-400">When to use Mean:</b> When all observations carry equal weight and distribution is uniform (e.g. school marks).
+                            </div>
+                            <div class="p-2 rounded bg-slate-950 border border-slate-800">
+                                <b class="text-cyan-400">When to use Median:</b> When extreme outliers exist (e.g. country wages, house prices, worker productivity).
+                            </div>
+                            <div class="p-2 rounded bg-slate-950 border border-slate-800">
+                                <b class="text-rose-400">When to use Mode:</b> When determining the most popular consumer choice (e.g. popular shoe size, TV show ratings).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Interactive Statistics Lab & Quiz -->
+                <div class="lg:col-span-7 glass-panel p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-base font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-flask-vial text-amber-400"></i> Interactive Empirical Tester
+                            </h3>
+                            <span class="text-xs font-mono text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800">Live Calculator</span>
+                        </div>
+
+                        <!-- Live Calculator Inputs -->
+                        <div class="grid grid-cols-2 gap-3 p-3.5 rounded-xl bg-slate-950 border border-slate-800 font-mono text-xs">
+                            <div>
+                                <label class="text-slate-400 block mb-1">Enter Mean (x̄):</label>
+                                <input type="number" id="s10-input-mean" value="62" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-white font-bold focus:border-amber-400 outline-none" oninput="calculateEmpirical()">
+                            </div>
+                            <div>
+                                <label class="text-slate-400 block mb-1">Enter Median:</label>
+                                <input type="number" id="s10-input-median" value="58.7" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-white font-bold focus:border-amber-400 outline-none" oninput="calculateEmpirical()">
+                            </div>
+                        </div>
+
+                        <!-- Computed Output -->
+                        <div class="mt-3 p-4 rounded-xl bg-amber-950/30 border border-amber-500/40 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-slate-400 font-mono">Predicted Mode (Mode = 3Med - 2x̄):</span>
+                                <div id="s10-predicted-mode" class="text-2xl font-extrabold text-amber-400 font-mono mt-0.5">52.10</div>
+                            </div>
+                            <button onclick="playChime()" class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition">
+                                <i class="fa-solid fa-check mr-1"></i> Check Match
+                            </button>
+                        </div>
+
+                        <!-- Quick Knowledge Quiz -->
+                        <div class="mt-4 p-4 rounded-xl bg-slate-950/90 border border-slate-800">
+                            <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider block mb-2">Mastery Check</span>
+                            <p class="text-xs text-slate-200 mb-3">If a dataset has Mean = 20 and Median = 22, what is its empirical Mode?</p>
+                            <div class="grid grid-cols-3 gap-2">
+                                <button onclick="checkQuiz(24, false)" class="quiz-btn py-2 px-3 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-mono text-slate-300">
+                                    A) 24
+                                </button>
+                                <button onclick="checkQuiz(26, true)" class="quiz-btn py-2 px-3 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-mono text-slate-300">
+                                    B) 26
+                                </button>
+                                <button onclick="checkQuiz(22, false)" class="quiz-btn py-2 px-3 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-mono text-slate-300">
+                                    C) 22
+                                </button>
+                            </div>
+                            <div id="quiz-feedback" class="mt-2 text-xs font-bold hidden font-mono"></div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 text-center text-slate-500 text-[11px]">
+                        NCERT Class 10 Mathematics • Complete Statistics Laboratory
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- BOTTOM CONTROL BAR -->
+    <footer class="h-16 px-6 glass-panel flex items-center justify-between shrink-0 z-20 border-t border-slate-800">
+        <button id="prevBtn" onclick="prevSlide()" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-bold flex items-center space-x-2 transition border border-slate-800 disabled:opacity-30 disabled:cursor-not-allowed">
+            <i class="fa-solid fa-chevron-left"></i>
+            <span class="hidden sm:inline">Previous Slide</span>
+        </button>
+
+        <!-- Slide Indicators Dots -->
+        <div class="flex items-center space-x-2" id="slideDots">
+            <!-- 10 dots injected by JS -->
+        </div>
+
+        <button id="nextBtn" onclick="nextSlide()" class="px-5 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white text-xs font-bold flex items-center space-x-2 transition shadow-lg shadow-indigo-600/30">
+            <span class="hidden sm:inline">Next Slide</span>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </footer>
+
+        <!-- SCRIPT LOGIC: SYNTHESIZER, AUDIO, SLIDER & QUIZ -->
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 10;
+        let sfxEnabled = true;
+        let voiceEnabled = true;
+        let audioSynth = null;
+        let synthVoice = window.speechSynthesis;
+        let currentUtterance = null;
+
+        // Slide Narration Scripts
+        const narrationScripts = {
+            1: "Welcome to Chapter 13: Statistics! In Class 9, you dealt with raw ungrouped data. In Class 10, we condense massive distributions into grouped classes and master the three pillars of central tendency: Mean, the arithmetic balance point; Median, the exact 50th percentile midpoint; and Mode, the most frequent value. Notice on the interactive simulator how an extreme outlier shifts the mean dramatically while leaving the median stable.",
+            2: "Slide 2 introduces the Direct Method for finding the Mean of grouped data. Because data in continuous class intervals is clustered, we represent each class by its Class Mark, xi, which is the average of the upper and lower limits. Applying the direct formula sigma f i x i over sigma f i to our 30-student mathematics exam yields a mean of 62. Notice that exact ungrouped mean was 59.3; this small difference arises from assuming all scores in an interval equal the midpoint.",
+            3: "Slide 3 explores the Assumed Mean Method. When frequencies and class marks are large, direct multiplication becomes cumbersome. By choosing an assumed mean a from the center of x i, we calculate deviations d i equals x i minus a. Deviations produce negative and positive values that cancel out, reducing calculation burden. As proved mathematically, adding the mean deviation to a returns the exact same mean of 62.",
+            4: "Slide 4 presents the Step-Deviation Method. When deviations d i share a common factor h, such as class size 15, we divide each deviation to obtain step deviations u i. This reduces products to small single-digit integers like minus 4, minus 3, plus 6, and plus 18. Applying the formula x bar equals a plus h times sigma f i u i over sigma f i again confirms the exact mean of 62.",
+            5: "Slide 5 covers two critical variations: unequal class sizes and missing frequencies. In Example 3, bowlers wickets have varying class widths from 40 to 100, yet Step-Deviation remains effective with common divisor 20, yielding a mean of 152.89 wickets. In Exercise 13.1 Question 3, with mean daily pocket allowance equal to 18 rupees, setting sigma f i d i to zero immediately reveals the missing frequency f equals 20.",
+            6: "Slide 6 moves to the Mode of Grouped Data. In grouped data, the mode cannot be spotted directly; we first identify the modal class possessing the highest frequency f 1. The adjacent frequencies f 0 and f 2 pull the peak towards the heavier side. For 20 households with maximum frequency 8 in class 3 to 5, the formula yields a modal family size of 3.286 members.",
+            7: "Slide 7 introduces Cumulative Frequency distributions. The Less than distribution records the running total up to each upper limit, while the More than or equal to distribution starts with the grand total 53 and subtracts frequencies at each lower limit. Graphically, the intersection of these two ogive curves pinpoints the median on the horizontal axis.",
+            8: "Slide 8 details the Grouped Median procedure. First find n over 2 to locate the median class whose cumulative frequency equals or exceeds n over 2. In Example 7 with 51 girls, n over 2 is 25.5, identifying the class 145 to 150. Remember that c f in the formula is the cumulative frequency of the preceding class. This gives a median height of 149.03 centimeters.",
+            9: "Slide 9 tackles the board favorite: dual missing frequencies x and y. When given the median 525 and total frequency 100, we first form the linear equation x plus y equals 24. Since 525 lies in class 500 to 600, substitution into the median formula isolates x equals 9, which immediately gives y equals 15. Always remember to convert discontinuous classes to continuous boundaries first.",
+            10: "Slide 10 concludes with Karl Pearsons empirical relationship: 3 Median equals Mode plus 2 Mean. This connects all three measures for moderately skewed data. Use Mean for uniform data, Median when extreme outliers exist, and Mode for commercial popularity. Test the live empirical calculator and test your mastery in the quiz!"
+        };
+
+        // Web Audio API Synthesizer
+        function initAudio() {
+            if (!audioSynth) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                audioSynth = new AudioContext();
+            }
+        }
+
+        function playTone(freq, type = "sine", duration = 0.15, vol = 0.1) {
+            if (!sfxEnabled) return;
+            try {
+                initAudio();
+                const osc = audioSynth.createOscillator();
+                const gain = audioSynth.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioSynth.currentTime);
+                gain.gain.setValueAtTime(vol, audioSynth.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioSynth.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioSynth.destination);
+                osc.start();
+                osc.stop(audioSynth.currentTime + duration);
+            } catch (e) {
+                console.warn(e);
+            }
+        }
+
+        function playChord() {
+            if (!sfxEnabled) return;
+            playTone(440, "triangle", 0.25, 0.08);
+            setTimeout(() => playTone(554.37, "triangle", 0.25, 0.08), 50);
+            setTimeout(() => playTone(659.25, "triangle", 0.35, 0.08), 100);
+        }
+
+        function playChime() {
+            if (!sfxEnabled) return;
+            playTone(523.25, "sine", 0.2, 0.12);
+            setTimeout(() => playTone(659.25, "sine", 0.2, 0.12), 80);
+            setTimeout(() => playTone(783.99, "sine", 0.35, 0.15), 160);
+            setTimeout(() => playTone(1046.50, "sine", 0.45, 0.18), 240);
+        }
+
+        function playBuzzer() {
+            if (!sfxEnabled) return;
+            playTone(180, "sawtooth", 0.3, 0.15);
+            setTimeout(() => playTone(140, "sawtooth", 0.3, 0.15), 100);
+        }
+
+        function toggleSfx() {
+            sfxEnabled = !sfxEnabled;
+            const icon = document.getElementById("sfxIcon");
+            if (sfxEnabled) {
+                icon.className = "fa-solid fa-bell text-sm text-cyan-400";
+                playTone(880, "sine", 0.1, 0.1);
+            } else {
+                icon.className = "fa-solid fa-bell-slash text-sm text-slate-500";
+            }
+        }
+
+        // Web Speech API
+        function speakCurrentSlide() {
+            if (!voiceEnabled || !window.speechSynthesis) return;
+            window.speechSynthesis.cancel();
+
+            const text = narrationScripts[currentSlide];
+            if (!text) return;
+
+            currentUtterance = new SpeechSynthesisUtterance(text);
+            currentUtterance.rate = 1.0;
+            currentUtterance.pitch = 1.0;
+
+            const voices = window.speechSynthesis.getVoices();
+            const preferredVoice = voices.find(v => v.lang.includes("en") && (v.name.includes("Natural") || v.name.includes("Google") || v.name.includes("Samantha")));
+            if (preferredVoice) currentUtterance.voice = preferredVoice;
+
+            currentUtterance.onstart = () => {
+                document.getElementById("voiceStatus").textContent = "Speaking...";
+                document.getElementById("voiceStatus").className = "text-[11px] font-semibold text-indigo-400";
+            };
+            currentUtterance.onend = () => {
+                document.getElementById("voiceStatus").textContent = "Ready";
+                document.getElementById("voiceStatus").className = "text-[11px] font-semibold text-emerald-400";
+            };
+
+            window.speechSynthesis.speak(currentUtterance);
+        }
+
+        function toggleAudioNarration() {
+            voiceEnabled = !voiceEnabled;
+            const icon = document.getElementById("audioIcon");
+            const status = document.getElementById("voiceStatus");
+            if (voiceEnabled) {
+                icon.className = "fa-solid fa-volume-high text-xs";
+                status.textContent = "Active";
+                status.className = "text-[11px] font-semibold text-emerald-400";
+                speakCurrentSlide();
+            } else {
+                icon.className = "fa-solid fa-volume-xmark text-xs";
+                status.textContent = "Muted";
+                status.className = "text-[11px] font-semibold text-slate-500";
+                window.speechSynthesis.cancel();
+            }
+        }
+
+        function replaySlideAudio() {
+            if (window.speechSynthesis) {
+                window.speechSynthesis.cancel();
+                speakCurrentSlide();
+            }
+        }
+
+        // Navigation
+        function updateSlideUI() {
+            document.querySelectorAll(".slide").forEach((s, idx) => {
+                if (idx + 1 === currentSlide) {
+                    s.classList.add("active");
+                } else {
+                    s.classList.remove("active");
+                }
+            });
+
+            document.getElementById("currentSlideDisplay").textContent = currentSlide;
+            document.getElementById("prevBtn").disabled = (currentSlide === 1);
+            document.getElementById("nextBtn").disabled = (currentSlide === totalSlides);
+
+            // Update Dots
+            const dots = document.querySelectorAll(".slide-dot");
+            dots.forEach((dot, idx) => {
+                if (idx + 1 === currentSlide) {
+                    dot.className = "slide-dot w-6 h-2 rounded-full bg-indigo-500 transition-all";
+                } else {
+                    dot.className = "slide-dot w-2 h-2 rounded-full bg-slate-700 hover:bg-slate-600 cursor-pointer transition-all";
+                }
+            });
+
+            playChord();
+            speakCurrentSlide();
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                updateSlideUI();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                currentSlide--;
+                updateSlideUI();
+            }
+        }
+
+        function goToSlide(n) {
+            currentSlide = n;
+            updateSlideUI();
+        }
+
+        // Initialize Slide Dots
+        function initSlideDots() {
+            const container = document.getElementById("slideDots");
+            container.innerHTML = "";
+            for (let i = 1; i <= totalSlides; i++) {
+                const dot = document.createElement("div");
+                dot.onclick = () => goToSlide(i);
+                dot.className = (i === 1) ? "slide-dot w-6 h-2 rounded-full bg-indigo-500 transition-all" : "slide-dot w-2 h-2 rounded-full bg-slate-700 hover:bg-slate-600 cursor-pointer transition-all";
+                container.appendChild(dot);
+            }
+        }
+
+        // Slide 1 Outlier Simulator Logic
+        const defaultData = [20, 25, 28, 30, 32, 45, 48, 50, 52, 55, 60, 62];
+        function updateSlide1Simulator(outlierVal) {
+            outlierVal = Number(outlierVal);
+            document.getElementById("s1-outlier-display").textContent = outlierVal;
+
+            const data = [...defaultData, outlierVal];
+            data.sort((a, b) => a - b);
+
+            const sum = data.reduce((acc, v) => acc + v, 0);
+            const mean = (sum / data.length).toFixed(1);
+            const mid = Math.floor(data.length / 2);
+            const median = (data.length % 2 !== 0 ? data[mid] : (data[mid - 1] + data[mid]) / 2).toFixed(1);
+
+            document.getElementById("s1-mean-val").textContent = mean;
+            document.getElementById("s1-median-val").textContent = median;
+
+            document.getElementById("s1-mean-marker").style.left = `${mean}%`;
+            document.getElementById("s1-median-marker").style.left = `${median}%`;
+
+            renderSlide1Dots(data, outlierVal);
+        }
+
+        function renderSlide1Dots(data, outlierVal) {
+            const container = document.getElementById("s1-dots-container");
+            container.innerHTML = "";
+            data.forEach(val => {
+                const dot = document.createElement("div");
+                const isOutlier = (val === outlierVal);
+                dot.className = `absolute w-3 h-3 rounded-full -translate-x-1/2 -translate-y-1/2 ${isOutlier ? "bg-amber-400 ring-4 ring-amber-500/30" : "bg-cyan-400 ring-2 ring-cyan-500/20"}`;
+                dot.style.left = `${val}%`;
+                container.appendChild(dot);
+            });
+        }
+
+        function highlightPillar(pillar) {
+            playTone(600, "sine", 0.15, 0.1);
+            const box = document.getElementById("s1-insight-box");
+            if (pillar === "mean") {
+                box.innerHTML = `<span class="font-bold text-indigo-300">Mean (x̄):</span> The arithmetic center that accounts for every value. Highly vulnerable to extreme outliers!`;
+            } else if (pillar === "median") {
+                box.innerHTML = `<span class="font-bold text-emerald-300">Median:</span> The exact middle score. Splits data into two 50% halves. Highly resilient to skewed tails!`;
+            } else if (pillar === "mode") {
+                box.innerHTML = `<span class="font-bold text-cyan-300">Mode:</span> The most popular observation. Critical for inventory planning, elections, and product sizing!`;
+            }
+        }
+
+        // Slide 3 Assumed Mean Toggle
+        function setAssumedMean(val) {
+            playTone(700, "sine", 0.15, 0.1);
+            document.getElementById("s3-chosen-a").textContent = val;
+        }
+
+        // Slide 7 Cumulative Frequency View Toggle
+        const cfLessData = [
+            { interval: "0 – 10", f: 5, cf: "5" },
+            { interval: "10 – 20", f: 3, cf: "5 + 3 = 8" },
+            { interval: "20 – 30", f: 4, cf: "8 + 4 = 12" },
+            { interval: "30 – 40", f: 3, cf: "12 + 3 = 15" },
+            { interval: "40 – 50", f: 3, cf: "15 + 3 = 18" },
+            { interval: "50 – 60", f: 4, cf: "18 + 4 = 22" },
+            { interval: "60 – 70", f: 7, cf: "22 + 7 = 29" },
+            { interval: "70 – 80", f: 9, cf: "29 + 9 = 38" },
+            { interval: "80 – 90", f: 7, cf: "38 + 7 = 45" },
+            { interval: "90 – 100", f: 8, cf: "45 + 8 = 53" },
+        ];
+
+        const cfMoreData = [
+            { interval: "More than or equal to 0", f: 5, cf: "53 (All students)" },
+            { interval: "More than or equal to 10", f: 3, cf: "53 - 5 = 48" },
+            { interval: "More than or equal to 20", f: 4, cf: "48 - 3 = 45" },
+            { interval: "More than or equal to 30", f: 3, cf: "45 - 4 = 41" },
+            { interval: "More than or equal to 40", f: 3, cf: "41 - 3 = 38" },
+            { interval: "More than or equal to 50", f: 4, cf: "38 - 3 = 35" },
+            { interval: "More than or equal to 60", f: 7, cf: "35 - 4 = 31" },
+            { interval: "More than or equal to 70", f: 9, cf: "31 - 7 = 24" },
+            { interval: "More than or equal to 80", f: 7, cf: "24 - 9 = 15" },
+            { interval: "More than or equal to 90", f: 8, cf: "15 - 7 = 8" },
+        ];
+
+        function setCfView(type) {
+            playTone(650, "sine", 0.12, 0.1);
+            const btnLess = document.getElementById("btn-cf-less");
+            const btnMore = document.getElementById("btn-cf-more");
+            const tableBody = document.getElementById("cf-table-body");
+            const header = document.getElementById("cf-col-header");
+
+            if (type === "less") {
+                btnLess.className = "text-xs px-2.5 py-1 rounded-lg bg-blue-600 text-white font-semibold";
+                btnMore.className = "text-xs px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700";
+                header.textContent = "Cumulative Freq (Less than)";
+                tableBody.innerHTML = cfLessData.map(r => `
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-2 font-sans font-semibold text-white">${r.interval}</td>
+                        <td class="p-2 text-center text-cyan-300">${r.f}</td>
+                        <td class="p-2 text-right text-blue-400 font-bold">${r.cf}</td>
+                    </tr>
+                `).join("");
+            } else {
+                btnMore.className = "text-xs px-2.5 py-1 rounded-lg bg-cyan-600 text-white font-semibold";
+                btnLess.className = "text-xs px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700";
+                header.textContent = "Cumulative Freq (More than)";
+                tableBody.innerHTML = cfMoreData.map(r => `
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-2 font-sans font-semibold text-white">${r.interval}</td>
+                        <td class="p-2 text-center text-cyan-300">${r.f}</td>
+                        <td class="p-2 text-right text-cyan-400 font-bold">${r.cf}</td>
+                    </tr>
+                `).join("");
+            }
+        }
+
+        // Slide 10 Empirical Calculator
+        function calculateEmpirical() {
+            const mean = parseFloat(document.getElementById("s10-input-mean").value) || 0;
+            const median = parseFloat(document.getElementById("s10-input-median").value) || 0;
+            const mode = (3 * median - 2 * mean).toFixed(2);
+            document.getElementById("s10-predicted-mode").textContent = mode;
+        }
+
+        // Slide 10 Quiz
+        function checkQuiz(choice, isCorrect) {
+            const feedback = document.getElementById("quiz-feedback");
+            feedback.classList.remove("hidden");
+            if (isCorrect) {
+                playChime();
+                feedback.className = "mt-2 text-xs font-bold font-mono text-emerald-400";
+                feedback.textContent = "Correct! Mode = 3(Median) - 2(Mean) = 3(22) - 2(20) = 66 - 40 = 26!";
+            } else {
+                playBuzzer();
+                feedback.className = "mt-2 text-xs font-bold font-mono text-rose-400";
+                feedback.textContent = "Incorrect! Remember 3(Median) - 2(Mean) = 3(22) - 2(20) = 66 - 40 = 26.";
+            }
+        }
+
+        // Initialize on Load
+        window.addEventListener("DOMContentLoaded", () => {
+            initSlideDots();
+            updateSlide1Simulator(95);
+            setCfView("less");
+            calculateEmpirical();
+
+            // Keyboard navigation
+            window.addEventListener("keydown", (e) => {
+                if (e.key === "ArrowRight" || e.key === " ") {
+                    nextSlide();
+                } else if (e.key === "ArrowLeft") {
+                    prevSlide();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
