@@ -529,6 +529,31 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertFileExists(public_path('animations/atomic-structure-and-models.html'));
     }
 
+    public function test_ncert_class_9_has_atoms_and_molecules_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=science&class=class9', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'science',
+            'class' => 'class9',
+        ]);
+
+        $view = $controller->index($request);
+        $data = $view->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('science', $data['selectedSubject']);
+        $this->assertEquals('class9', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Atoms and Molecules', $data['activeChapters'][6]['name']);
+        $this->assertTrue($data['activeChapters'][6]['has_multimedia']);
+        $this->assertEquals('class9-atoms-and-molecules', $data['activeChapters'][6]['media_key']);
+        $this->assertFileExists(public_path('animations/class9-atoms-and-molecules.html'));
+        $this->assertFileExists(public_path('animations/chapter7-science-class9.html'));
+        $this->assertFileExists(public_path('animations/atoms-and-molecules.html'));
+        $this->assertFileExists(public_path('animations/chemical-formulae-and-molecular-mass.html'));
+    }
+
     public function test_cbse_syllabus_has_no_contents(): void
     {
         $controller = new MultimediaController;
@@ -916,7 +941,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
     public function test_all_multimedia_files_have_last_slide_message_and_no_next_option(): void
     {
         $files = glob(public_path('animations/*.html'));
-        $this->assertCount(123, $files);
+        $this->assertCount(127, $files);
 
         foreach ($files as $file) {
             $content = file_get_contents($file);

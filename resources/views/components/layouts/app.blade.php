@@ -890,6 +890,11 @@
                     titleText = "NCERT Class 9 Science — Chapter 6: Structure of an Atom Master Lab";
                     badgeText = "Class 9 • NCERT / CBSE Science";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
+                } else if (type === 'class9-atoms-and-molecules' || type === 'chapter7-science-class9' || type === 'atoms-and-molecules' || type === 'chemical-formulae-and-molecular-mass') {
+                    fileUrl = "{{ asset('animations/class9-atoms-and-molecules.html') }}";
+                    titleText = "NCERT Class 9 Science — Chapter 7: Atoms and Molecules Master Lab";
+                    badgeText = "Class 9 • NCERT / CBSE Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 shrink-0";
                 }
 
                 if (iframe.src !== fileUrl) {

@@ -1136,3 +1136,4 @@ if __name__ == "__main__":
     assert checkpoints_count == 32, "Must be exactly 32 checkpoints (2 per content slide)"
     assert quiz_count == 40, "Must be exactly 40 quiz questions across slides 17-20"
     print("All curriculum data validations passed!")
+
