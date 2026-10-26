@@ -1,0 +1,1957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCERT Class 9 Mathematics • Surface Area and Volume Laboratory</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body);"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        @keyframes mouthMove {
+            0%, 100% { transform: scaleY(0.2); }
+            50% { transform: scaleY(1.1); }
+        }
+        .talking #teacherMouth {
+            animation: mouthMove 0.22s infinite alternate ease-in-out;
+            transform-origin: center bottom;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.78);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .glow-indigo {
+            box-shadow: 0 0 25px -5px rgba(99, 102, 241, 0.35);
+        }
+        .glow-emerald {
+            box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.35);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
+
+    <!-- Top Navigation Header -->
+    <header class="border-b border-slate-800/80 bg-slate-900/80 backdrop-blur sticky top-0 z-40 px-4 py-3">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <a href="/multimedia?syllabus=ncert&subject=mathematics&class=class9" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition">
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                </a>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">NCERT CLASS 9</span>
+                        <span class="text-xs text-slate-400 font-medium">Chapter 13</span>
+                    </div>
+                    <h1 class="text-base sm:text-lg font-bold text-white tracking-tight flex items-center gap-2">
+                        <span>Surface Area & Volume</span>
+                        <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-normal">Interactive 3D Lab</span>
+                    </h1>
+                </div>
+            </div>
+
+            <!-- Slide Progress & Navigation Controls -->
+            <div class="flex items-center gap-3">
+                <div class="hidden md:flex flex-col items-end mr-2">
+                    <span id="slideIndicatorText" class="text-xs font-mono font-bold text-indigo-300">Slide 1 of 20</span>
+                    <span id="slideCategoryText" class="text-[10px] text-slate-400">Cuboids & Cubes</span>
+                </div>
+                <button id="prevBtn" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 disabled:opacity-30 disabled:pointer-events-none transition border border-slate-700">
+                    <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                </button>
+                <div class="relative">
+                    <button id="slidePickerBtn" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200 border border-slate-700 flex items-center gap-1.5">
+                        <i data-lucide="layout-grid" class="w-4 h-4 text-indigo-400"></i>
+                        <span id="currentSlideBtnNum">1</span>/20
+                    </button>
+                    <!-- Slide Dropdown / Grid -->
+                    <div id="slidePickerMenu" class="hidden absolute right-0 mt-2 w-72 sm:w-80 p-3 rounded-2xl glass-panel border border-slate-700 shadow-2xl z-50">
+                        <div class="text-xs font-bold text-slate-300 mb-2 px-1 flex items-center justify-between">
+                            <span>JUMP TO SLIDE</span>
+                            <span class="text-[10px] text-indigo-400">20 Total Slides</span>
+                        </div>
+                        <div id="slideGrid" class="grid grid-cols-5 gap-1.5 max-h-60 overflow-y-auto p-1">
+                            <!-- Populated dynamically by JS -->
+                        </div>
+                    </div>
+                </div>
+                <button id="nextBtn" class="p-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white disabled:opacity-30 disabled:pointer-events-none transition shadow-lg shadow-indigo-600/30">
+                    <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Linear Progress Bar -->
+        <div class="w-full bg-slate-800/80 h-1 mt-3 rounded-full overflow-hidden">
+            <div id="progressBar" class="bg-gradient-to-r from-indigo-500 via-sky-400 to-emerald-400 h-full w-[5%] transition-all duration-300"></div>
+        </div>
+    </header>
+
+    <!-- Main Dynamic Workspace Area -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 flex flex-col gap-6">
+
+        <!-- Top Row: Slide Header Banner & Teacher Avatar Control -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
+            <!-- Slide Meta Banner (8 cols) -->
+            <div class="lg:col-span-8 glass-panel rounded-2xl p-5 flex flex-col justify-between border border-slate-800 relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div>
+                    <div class="flex flex-wrap items-center gap-2 mb-2">
+                        <span id="slideBadge" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">Competency CG-5</span>
+                        <span id="slideSubBadge" class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-slate-800 text-slate-300 border border-slate-700">Class 9 Mathematics</span>
+                    </div>
+                    <h2 id="slideTitle" class="text-xl sm:text-2xl font-extrabold text-white tracking-tight mb-1">Cuboids in Real Life: Anatomy & Formulas</h2>
+                    <p id="slideSubtitle" class="text-xs sm:text-sm text-indigo-300 font-medium">Rectangular Prisms, 6 Faces, 12 Edges, 8 Vertices & 3D Interior Capacity</p>
+                </div>
+                <div class="mt-3 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                    <span id="slideFocusLabel" class="flex items-center gap-1.5 text-slate-300">
+                        <i data-lucide="box" class="w-4 h-4 text-emerald-400"></i>
+                        <span>Core Focus: Surface Areas, Volume Extrusions & 3D Metric Invariance</span>
+                    </span>
+                    <span class="font-mono text-[11px] text-slate-400 hidden sm:inline">NCERT Ch 13 • Mensuration</span>
+                </div>
+            </div>
+
+            <!-- Prof. Sophia Voiceover & Avatar Card (4 cols) -->
+            <div class="lg:col-span-4 glass-panel rounded-2xl p-4 flex flex-col justify-between border border-slate-800 relative">
+                <div class="flex items-center gap-3">
+                    <!-- SVG Avatar with animated mouth -->
+                    <div id="avatarContainer" class="relative w-14 h-14 rounded-2xl bg-gradient-to-tr from-indigo-900 via-slate-800 to-indigo-700 border-2 border-indigo-400/30 p-1 flex items-center justify-center shrink-0 shadow-lg shadow-indigo-950/50">
+                        <svg id="teacherSvg" viewBox="0 0 100 100" class="w-full h-full">
+                            <!-- Background / Shoulders -->
+                            <path d="M20,95 Q50,75 80,95 L80,100 L20,100 Z" fill="#4338ca"/>
+                            <!-- Collar / Necklace -->
+                            <path d="M42,78 L50,85 L58,78" fill="none" stroke="#fbbf24" stroke-width="2"/>
+                            <!-- Neck -->
+                            <rect x="44" y="62" width="12" height="18" fill="#fbcfe8" rx="3"/>
+                            <!-- Head -->
+                            <ellipse cx="50" cy="45" rx="22" ry="24" fill="#fdf2f8"/>
+                            <!-- Hair back -->
+                            <path d="M26,45 Q24,20 50,18 Q76,20 74,45 Q75,65 68,70 Q72,40 50,28 Q28,40 32,70 Q25,65 26,45 Z" fill="#312e81"/>
+                            <!-- Hair bangs -->
+                            <path d="M30,35 Q50,22 70,35 Q60,25 50,26 Q40,25 30,35 Z" fill="#4338ca"/>
+                            <!-- Glasses -->
+                            <rect x="33" y="38" width="14" height="10" rx="3" fill="none" stroke="#1e1b4b" stroke-width="2"/>
+                            <rect x="53" y="38" width="14" height="10" rx="3" fill="none" stroke="#1e1b4b" stroke-width="2"/>
+                            <line x1="47" y1="43" x2="53" y2="43" stroke="#1e1b4b" stroke-width="2"/>
+                            <!-- Eyes -->
+                            <circle cx="40" cy="43" r="2.5" fill="#1e293b"/>
+                            <circle cx="60" cy="43" r="2.5" fill="#1e293b"/>
+                            <circle cx="41" cy="42" r="0.8" fill="#ffffff"/>
+                            <circle cx="61" cy="42" r="0.8" fill="#ffffff"/>
+                            <!-- Eyebrows -->
+                            <path d="M34,35 Q40,33 46,36" fill="none" stroke="#312e81" stroke-width="1.8" stroke-linecap="round"/>
+                            <path d="M54,36 Q60,33 66,35" fill="none" stroke="#312e81" stroke-width="1.8" stroke-linecap="round"/>
+                            <!-- Smile / Mouth -->
+                            <path id="teacherMouth" d="M44,57 Q50,62 56,57" fill="#be185d" stroke="#be185d" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <div id="speakingPulse" class="hidden absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-slate-900 animate-ping"></div>
+                        <div id="speakingDot" class="hidden absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-slate-900"></div>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-white tracking-wide">Prof. Sophia</span>
+                            <span id="speechStatus" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">Idle</span>
+                        </div>
+                        <p class="text-[11px] text-indigo-300 truncate">Audio Companion • En-US Narration</p>
+                    </div>
+                </div>
+
+                <!-- Speech Controls -->
+                <div class="mt-3 pt-2.5 border-t border-slate-800 flex items-center justify-between gap-1.5">
+                    <button id="toggleSpeechBtn" class="flex-1 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-md shadow-indigo-600/30">
+                        <i data-lucide="volume-2" class="w-4 h-4"></i>
+                        <span id="speechBtnLabel">Explain Slide</span>
+                    </button>
+                    <button id="pauseSpeechBtn" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 disabled:opacity-30 disabled:pointer-events-none transition border border-slate-700">
+                        <i data-lucide="pause" class="w-4 h-4"></i>
+                    </button>
+                    <button id="stopSpeechBtn" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-rose-300 hover:text-rose-200 transition border border-slate-700">
+                        <i data-lucide="square" class="w-4 h-4"></i>
+                    </button>
+                    <button id="speechSpeedBtn" class="px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-indigo-300 text-[11px] font-mono font-bold transition border border-slate-700">
+                        1.0x
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Row: Interactive Animation / Simulation Canvas + Dynamic Content Area -->
+        <div id="contentSlideContainer" class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            <!-- Left / Main Canvas: Interactive SVG Simulator (7 cols) -->
+            <div class="lg:col-span-7 glass-panel rounded-2xl p-4 sm:p-5 border border-slate-800 flex flex-col gap-3 min-h-[460px]">
+                <div class="flex items-center justify-between border-b border-slate-800/80 pb-2.5">
+                    <div class="flex items-center gap-2">
+                        <div class="p-1.5 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                            <i data-lucide="play-circle" class="w-4 h-4"></i>
+                        </div>
+                        <h3 id="simulatorHeading" class="text-xs sm:text-sm font-bold text-slate-200 uppercase tracking-wider">Interactive 3D Simulator</h3>
+                    </div>
+                    <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded">Live Physics Canvas</span>
+                </div>
+
+                <!-- Simulation Display Viewport -->
+                <div id="simulatorViewport" class="flex-1 w-full min-h-[360px] bg-slate-950/70 rounded-xl border border-slate-800/80 p-2 sm:p-4 relative flex flex-col justify-between overflow-hidden">
+                    <!-- Dynamic Interactive SVG & HTML injected here -->
+                </div>
+            </div>
+
+            <!-- Right Column: Structured Educational Theory + 2 In-Slide Checkpoints (5 cols) -->
+            <div class="lg:col-span-5 flex flex-col gap-4">
+                <!-- Theory & Key Formulas Card -->
+                <div class="glass-panel rounded-2xl p-5 border border-slate-800 flex flex-col gap-3">
+                    <div class="flex items-center gap-2 border-b border-slate-800/80 pb-2.5">
+                        <i data-lucide="book-open" class="w-4 h-4 text-indigo-400"></i>
+                        <h3 class="text-xs sm:text-sm font-bold text-slate-200 uppercase tracking-wider">Concept Summary & Insights</h3>
+                    </div>
+                    <p id="slideSummaryText" class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        <!-- Populated by JS -->
+                    </p>
+
+                    <div class="mt-2">
+                        <h4 class="text-[11px] font-bold text-indigo-300 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-400"></i>
+                            <span>Key Takeaways & Formulas</span>
+                        </h4>
+                        <ul id="slideKeyPointsList" class="space-y-1.5 text-xs text-slate-300">
+                            <!-- Populated by JS -->
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- In-Slide Checkpoints (2 Quick Concept Checks) -->
+                <div class="glass-panel rounded-2xl p-5 border border-slate-800 flex flex-col gap-3">
+                    <div class="flex items-center justify-between border-b border-slate-800/80 pb-2">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="help-circle" class="w-4 h-4 text-amber-400"></i>
+                            <h3 class="text-xs sm:text-sm font-bold text-slate-200 uppercase tracking-wider">In-Slide Checkpoints</h3>
+                        </div>
+                        <span class="text-[10px] font-mono text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded">2 Questions</span>
+                    </div>
+
+                    <div id="checkpointsContainer" class="flex flex-col gap-4">
+                        <!-- Populated dynamically by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dedicated Mastery Quiz Container (Slides 17, 18, 19, 20) -->
+        <div id="quizSlideContainer" class="hidden flex-col gap-6">
+            <!-- Quiz Header Banner -->
+            <div class="glass-panel rounded-2xl p-6 border border-indigo-500/30 bg-gradient-to-r from-indigo-950/40 via-slate-900 to-slate-900">
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                    <div>
+                        <span id="quizBadge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">Mastery Quiz Challenge</span>
+                        <h2 id="quizTitle" class="text-2xl font-black text-white mt-2">Class 9 Surface Area & Volume Challenge</h2>
+                        <p id="quizDesc" class="text-sm text-slate-300 mt-1">10 dedicated questions with instant scoring, feedback, and full step-by-step mathematical solutions.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="p-3 rounded-xl bg-slate-800 border border-slate-700 text-center">
+                            <span class="text-[10px] text-slate-400 block uppercase font-bold">Quiz Score</span>
+                            <span id="quizScoreText" class="text-xl font-black text-emerald-400 font-mono">0 / 10</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Questions Grid (10 Questions) -->
+            <div id="quizQuestionsList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Populated dynamically by JS -->
+            </div>
+        </div>
+
+        <!-- Strict Last Slide Notice on Slide 20 -->
+        <div id="lastSlideNotice" class="hidden glass-panel rounded-2xl p-6 text-center border-2 border-emerald-500/40 bg-gradient-to-r from-emerald-950/40 via-slate-900 to-indigo-950/40 shadow-xl shadow-emerald-950/30">
+            <div class="w-14 h-14 mx-auto rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 mb-3">
+                <i data-lucide="check-check" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white">Congratulations on Completing Chapter 13!</h3>
+            <p class="text-base sm:text-lg text-emerald-300 font-semibold mt-1">You have reached the last slide of this chapter</p>
+            <p class="text-xs sm:text-sm text-slate-400 mt-2 max-w-xl mx-auto">
+                You have mastered the surface areas and volumes of cuboids, cubes, right circular cylinders, hollow pipes, right circular cones, regular pyramids, spheres, and hemispheres, alongside Archimedes' cylinder projection theorems, metal recasting conservation laws, Galileo's Square-Cube Law, and industrial can packaging optimization.
+            </p>
+            <div class="mt-4 flex flex-wrap justify-center gap-3">
+                <a href="/multimedia?syllabus=ncert&subject=mathematics&class=class9" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition flex items-center gap-2">
+                    <i data-lucide="layout-grid" class="w-4 h-4"></i>
+                    <span>Return to Mathematics Curriculum</span>
+                </a>
+                <button onclick="window.location.reload()" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs transition border border-slate-700 flex items-center gap-2">
+                    <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                    <span>Restart Laboratory</span>
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Step-by-Step Pop-up Solution Modal -->
+    <div id="solutionModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="glass-panel w-full max-w-xl rounded-2xl border border-slate-700 shadow-2xl p-6 flex flex-col gap-4 animate-in fade-in zoom-in-95 duration-200">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div class="flex items-center gap-2 text-indigo-400">
+                    <i data-lucide="file-check-2" class="w-5 h-5"></i>
+                    <h3 class="text-base font-bold text-white">Step-by-Step Mathematical Solution</h3>
+                </div>
+                <button onclick="window.closeSolutionModal()" class="p-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div id="modalQuestionText" class="text-xs sm:text-sm font-semibold text-slate-200 bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+                <!-- Question text -->
+            </div>
+            <div id="modalSolutionText" class="text-xs sm:text-sm text-slate-300 font-mono whitespace-pre-wrap leading-relaxed bg-slate-950/80 p-4 rounded-xl border border-slate-800/80 max-h-80 overflow-y-auto">
+                <!-- Solution text -->
+            </div>
+            <div class="flex justify-end pt-2">
+                <button onclick="window.closeSolutionModal()" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition">
+                    Got It, Continue
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Script Data & Controllers -->
+    <script>
+        const SLIDES = [{"id": 1, "title": "Cuboids in Real Life: Anatomy, Surface Area & Volume", "subtitle": "Rectangular Prisms, 6 Faces, 12 Edges, 8 Vertices & 3D Interior Capacity", "category": "Cuboids & Cubes", "badge": "CG-5 \u2022 3D Boundary & Volume", "summary": "A cuboid (rectangular parallelepiped) is a three-dimensional closed solid bounded by six rectangular faces. Any two opposite faces are parallel and congruent. A cuboid has 6 faces, 12 edges, and 8 vertices. If length, breadth, and height are denoted by l, b, and h: (1) Total Surface Area: TSA = 2(lb + bh + hl), measuring the combined area of all 6 faces. (2) Lateral Surface Area (Area of 4 vertical walls): LSA = 2h(l + b). (3) Volume (Interior Capacity): V = l \u00b7 b \u00b7 h, measuring the 3D space enclosed in cubic units ([L\u00b3]). (4) Space Diagonal: d = \u221a(l\u00b2 + b\u00b2 + h\u00b2), representing the longest rigid rod that can fit inside the cuboid. Real-world applications include freight shipping containers, brick masonry, room painting/whitewashing, and water tank capacities.", "key_points": ["Cuboid Anatomy: 6 rectangular faces, 12 straight edges, and 8 vertices; opposite faces are congruent.", "Total Surface Area: TSA = 2(lb + bh + hl) in square units ([L\u00b2]).", "Lateral Surface Area: LSA = 2(l + b)h, equivalent to base perimeter times vertical height.", "Volume of Cuboid: V = l \u00b7 b \u00b7 h in cubic units ([L\u00b3]); measures 3D space occupancy and capacity.", "Internal Space Diagonal: d = \u221a(l\u00b2 + b\u00b2 + h\u00b2), derived via double application of Pythagoras' theorem."], "narration": "Welcome to Surface Area and Volume! We now step from the flat two-dimensional world into three-dimensional space! Think of cereal boxes, brick buildings, and shipping containers\u2014they are all cuboids. To wrap a cuboid, you need its Total Surface Area, two times lb plus bh plus hl. To fill it with grain or water, you need its Volume, length times breadth times height. Explore our 3D box unfurler to see all six faces unroll into a flat net!", "sim_title": "3D Cuboid Unfolder to 2D Net & Volume Unit Cube Meter", "checkpoints": [{"q": "What is the total surface area of a cuboid with length 10 cm, breadth 6 cm, and height 4 cm?", "options": ["124 cm\u00b2", "248 cm\u00b2", "240 cm\u00b2", "312 cm\u00b2"], "ans": 1, "exp": "TSA = 2(lb + bh + hl) = 2(10\u00d76 + 6\u00d74 + 4\u00d710) = 2(60 + 24 + 40) = 2(124) = 248 cm\u00b2.", "explanation": "TSA = 2(lb + bh + hl) = 2(10\u00d76 + 6\u00d74 + 4\u00d710) = 2(60 + 24 + 40) = 2(124) = 248 cm\u00b2."}, {"q": "What is the length of the longest pole that can be placed in a room of dimensions 12 m \u00d7 9 m \u00d7 8 m?", "options": ["15 m", "17 m", "19 m", "21 m"], "ans": 1, "exp": "The longest pole is the space diagonal d = \u221a(l\u00b2 + b\u00b2 + h\u00b2) = \u221a(12\u00b2 + 9\u00b2 + 8\u00b2) = \u221a(144 + 81 + 64) = \u221a289 = 17 m.", "explanation": "The longest pole is the space diagonal d = \u221a(l\u00b2 + b\u00b2 + h\u00b2) = \u221a(12\u00b2 + 9\u00b2 + 8\u00b2) = \u221a(144 + 81 + 64) = \u221a289 = 17 m."}]}, {"id": 2, "title": "The Cube: A Special Case of a Cuboid", "subtitle": "Applying the Equilateral Constraint l = b = h = a to 3D Prisms", "category": "Cuboids & Cubes", "badge": "CG-9 \u2022 Specialisation in 3D", "summary": "A cube is a regular hexahedron where all three linear dimensions are equal: length = breadth = height = a. It is a direct mathematical specialization of the general cuboid. Substituting l = b = h = a into the cuboid formulas yields: (1) Total Surface Area: TSA = 2(a\u00b7a + a\u00b7a + a\u00b7a) = 2(3a\u00b2) = 6a\u00b2 (composed of 6 identical square faces). (2) Lateral Surface Area: LSA = 2a(a + a) = 4a\u00b2 (the 4 vertical square walls). (3) Volume: V = a \u00b7 a \u00b7 a = a\u00b3. (4) Space Diagonal: d = \u221a(a\u00b2 + a\u00b2 + a\u00b2) = a\u221a3. In manufacturing and gaming, dice, Rubik's cubes, and sugar cubes represent uniform cubic geometry where edge symmetries maximize structural and rotational uniformity.", "key_points": ["Cube Definition: A regular cuboid with all 12 edge lengths equal to a (l = b = h = a).", "Surface Area Formulas: Total Surface Area TSA = 6a\u00b2; Lateral Surface Area LSA = 4a\u00b2.", "Volume of Cube: V = a\u00b3; scales cubically with edge length.", "Cube Space Diagonal: d = a\u221a3 \u2248 1.732 a, connecting diametrically opposed opposite vertices.", "Special Case Concept: Demonstrates how setting parameter equality reduces 3-variable formulas to single-variable powers."], "narration": "What happens when you squeeze a rectangular brick until its length, breadth, and height are all perfectly identical? You get a cube! Because all six faces become identical squares of side a, the total surface area simplifies directly to 6 a-squared, and the volume becomes a-cubed. Notice how the space diagonal reduces from the square root of l-squared plus b-squared plus h-squared to a times root 3. Drag our constraint slider to watch a brick morph into a cube!", "sim_title": "Cuboid-to-Cube Constraint Lock Morph & Isometric Dissector", "checkpoints": [{"q": "If the total surface area of a cube is 294 cm\u00b2, what is the length of each edge?", "options": ["6 cm", "7 cm", "8 cm", "9 cm"], "ans": 1, "exp": "TSA = 6a\u00b2 = 294 \u21d2 a\u00b2 = 294 / 6 = 49 \u21d2 a = \u221a49 = 7 cm.", "explanation": "TSA = 6a\u00b2 = 294 \u21d2 a\u00b2 = 294 / 6 = 49 \u21d2 a = \u221a49 = 7 cm."}, {"q": "If the edge of a cube is doubled from a to 2a, by what factor does its volume increase?", "options": ["2 times", "4 times", "6 times", "8 times"], "ans": 3, "exp": "Initial volume V1 = a\u00b3. New volume V2 = (2a)\u00b3 = 8a\u00b3 = 8 V1. The volume increases by a factor of 2\u00b3 = 8.", "explanation": "Initial volume V1 = a\u00b3. New volume V2 = (2a)\u00b3 = 8a\u00b3 = 8 V1. The volume increases by a factor of 2\u00b3 = 8."}]}, {"id": 3, "title": "Right Circular Cylinders: Formation, Radius & Height", "subtitle": "Revolution of a Rectangle, Circular Bases & The Curved Surface Net", "category": "Cylinders", "badge": "CG-5 \u2022 C-5.1 \u2022 Cylinder Geometry", "summary": "A right circular cylinder is a three-dimensional solid generated by revolving a rectangle of dimensions r \u00d7 h through 360\u00b0 around one of its sides (the axis of revolution). It consists of two parallel, congruent circular bases of radius r, separated by perpendicular height h. Slicing the curved lateral boundary vertically and flattening it unrolls into a single rectangle whose length equals the base circumference 2\u03c0r and width equals height h. (1) Curved Surface Area: CSA = 2\u03c0rh. (2) Total Surface Area: TSA = CSA + 2(Base Area) = 2\u03c0rh + 2\u03c0r\u00b2 = 2\u03c0r(h + r). Daily life examples: food cans, oil drums, road rollers (area leveled per revolution = 2\u03c0rh), and architectural columns.", "key_points": ["Axis of Revolution: Generated by revolving a rectangle around one fixed side through a complete 360\u00b0 turn.", "Curved Surface Net: Unfurls into an exact rectangle of dimensions length = 2\u03c0 r and height = h.", "Curved Surface Area (CSA): CSA = 2\u03c0 r h in square units.", "Total Surface Area (TSA): TSA = 2\u03c0 r h + 2\u03c0 r\u00b2 = 2\u03c0 r(h + r), enclosing both flat circular end-caps.", "Kinematics: A road roller of radius r and width h levels an area equal to 2\u03c0 r h in one complete rotation."], "narration": "Look at an ordinary soda can or oil drum: that is a right circular cylinder! How is it formed? Imagine revolving a rectangle of width r and height h around one edge: it sweeps out a solid cylinder! Now, slice the curved label off the can and lay it flat: it becomes a rectangle whose length is the circle's circumference, 2\u03c0r, and height h. That is why the curved surface area is simply 2\u03c0rh. Add the two circular lids to get the total surface area: 2\u03c0r(h + r)!", "sim_title": "Cylinder Revolution Generator & Curved Surface Net Unroller", "checkpoints": [{"q": "A cylindrical pillar has a diameter of 50 cm and height 3.5 m. What is its curved surface area? (Use \u03c0 = 22/7)", "options": ["4.5 m\u00b2", "5.5 m\u00b2", "6.5 m\u00b2", "7.5 m\u00b2"], "ans": 1, "exp": "r = d/2 = 25 cm = 0.25 m = 1/4 m; h = 3.5 m = 7/2 m. CSA = 2\u03c0rh = 2 \u00d7 (22/7) \u00d7 (1/4) \u00d7 (7/2) = 11/2 = 5.5 m\u00b2.", "explanation": "r = d/2 = 25 cm = 0.25 m = 1/4 m; h = 3.5 m = 7/2 m. CSA = 2\u03c0rh = 2 \u00d7 (22/7) \u00d7 (1/4) \u00d7 (7/2) = 11/2 = 5.5 m\u00b2."}, {"q": "When the curved surface of a cylinder of radius r and height h is unrolled, what shape does it form?", "options": ["A circle of radius r", "A rectangle of length 2\u03c0r and width h", "A triangle of base 2\u03c0r and height h", "A sector of central angle 180\u00b0"], "ans": 1, "exp": "The curved boundary unrolls into a rectangle whose length is the circumference of the circular base (2\u03c0r) and whose width is the height of the cylinder (h).", "explanation": "The curved boundary unrolls into a rectangle whose length is the circumference of the circular base (2\u03c0r) and whose width is the height of the cylinder (h)."}]}, {"id": 4, "title": "Volume of Right Circular Cylinders & Hollow Pipes", "subtitle": "Base Area Extrusion, Capacity Metrics & Concentric Hollow Shells", "category": "Cylinders", "badge": "CG-5 \u2022 Cylindrical Capacity", "summary": "The volume of any uniform right cylinder is the area of its cross-sectional base extruded through its perpendicular height: Volume = Base Area \u00d7 Height = \u03c0r\u00b2h. Capacity metric relationships: 1 m\u00b3 = 1,000 litres; 1,000 cm\u00b3 = 1 litre; 1 cm\u00b3 = 1 ml. For a hollow cylinder (such as a metal pipe or drainage conduit) with inner radius r, outer radius R, and length h: (1) Volume of metal material: V = \u03c0(R\u00b2 - r\u00b2)h. (2) Total Surface Area of hollow pipe: TSA = External CSA + Internal CSA + Area of 2 circular end rings = 2\u03c0Rh + 2\u03c0rh + 2\u03c0(R\u00b2 - r\u00b2) = 2\u03c0(R + r)h + 2\u03c0(R\u00b2 - r\u00b2).", "key_points": ["Volume Formula: V = \u03c0 r\u00b2 h, derived as continuous extrusion of circular disc area \u03c0 r\u00b2 along height h.", "Liquid Capacity Conversions: 1 m\u00b3 = 1,000 L; 1 L = 1,000 cm\u00b3 = 1,000 ml; 1 cm\u00b3 = 1 ml.", "Hollow Pipe Metal Volume: V_material = \u03c0(R\u00b2 - r\u00b2)h, subtracting inner hollow cylinder from outer cylinder.", "Hollow Pipe Total Surface: TSA = 2\u03c0(R + r)h + 2\u03c0(R\u00b2 - r\u00b2), including both curved walls and end rings.", "Industrial Application: Calculating water tank storage, pipe weights, and well embankment earth excavation."], "narration": "To find how much liquid a cylindrical tank holds, we use the principle of cross-sectional extrusion: stack infinitely many circular pancakes of area \u03c0r\u00b2 on top of each other up to height h! The volume is \u03c0r\u00b2h. Remember that 1,000 cubic centimeters equals exactly one liter. For hollow pipes, subtract the inner hollow core from the outer cylinder to find the metal volume. Test our interactive liquid capacity filler!", "sim_title": "Cylindrical Liquid Reservoir Filler & Hollow Pipe Material Meter", "checkpoints": [{"q": "A cylindrical water tank has radius 1.4 m and height 5 m. How many litres of water can it hold? (Use \u03c0 = 22/7)", "options": ["15,400 L", "30,800 L", "46,200 L", "61,600 L"], "ans": 1, "exp": "V = \u03c0r\u00b2h = (22/7) \u00d7 (1.4)\u00b2 \u00d7 5 = (22/7) \u00d7 1.96 \u00d7 5 = 22 \u00d7 0.28 \u00d7 5 = 30.8 m\u00b3. Capacity in litres = 30.8 \u00d7 1000 = 30,800 L.", "explanation": "V = \u03c0r\u00b2h = (22/7) \u00d7 (1.4)\u00b2 \u00d7 5 = (22/7) \u00d7 1.96 \u00d7 5 = 22 \u00d7 0.28 \u00d7 5 = 30.8 m\u00b3. Capacity in litres = 30.8 \u00d7 1000 = 30,800 L."}, {"q": "A hollow iron pipe of length 20 cm has an outer diameter of 16 cm and inner diameter of 12 cm. What is the volume of iron in the pipe? (Use \u03c0 = 3.14)", "options": ["1456 cm\u00b3", "1758.4 cm\u00b3", "2198 cm\u00b3", "2480 cm\u00b3"], "ans": 1, "exp": "R = 8 cm, r = 6 cm. V = \u03c0(R\u00b2 - r\u00b2)h = 3.14 \u00d7 (64 - 36) \u00d7 20 = 3.14 \u00d7 28 \u00d7 20 = 3.14 \u00d7 560 = 1758.4 cm\u00b3.", "explanation": "R = 8 cm, r = 6 cm. V = \u03c0(R\u00b2 - r\u00b2)h = 3.14 \u00d7 (64 - 36) \u00d7 20 = 3.14 \u00d7 28 \u00d7 20 = 3.14 \u00d7 560 = 1758.4 cm\u00b3."}]}, {"id": 5, "title": "Right Circular Cones: Daily Life, Slant Height & Apex", "subtitle": "Revolving a Right Triangle: Radius r, Vertical Height h & Slant Hypotenuse l", "category": "Cones", "badge": "CG-5 \u2022 Cone Anatomy", "summary": "A right circular cone is a three-dimensional solid formed by revolving a right-angled triangle around one of its legs through 360\u00b0. The fixed leg forms the vertical height h (axis of the cone), the other leg forms the radius r of the circular base, and the hypotenuse sweeps out the curved lateral boundary, forming the slant height l. By the Pythagorean theorem: l\u00b2 = r\u00b2 + h\u00b2 \u21d2 l = \u221a(r\u00b2 + h\u00b2). The highest single point where the curved lateral surface converges is called the apex (vertex). Daily life occurrences: ice-cream cones, conical traffic cones, funnel filters, clown hats, sharpened pencil tips, and circus canvas tents (shamianas).", "key_points": ["Right Triangle Generator: Formed by revolving a right triangle of legs r and h around vertical leg h.", "Apex & Base: Converges to a single pointed apex directly over the centre of the circular base.", "Slant Height Equation: l = \u221a(r\u00b2 + h\u00b2), derived directly via Pythagoras on cross-sectional triangle \u0394OAP.", "Physical Meaning of Slant Height: The shortest straight line distance along the outer surface from apex to rim.", "Real-World Recognition: Conical party hats, funnels, volcanic cones, conical grain piles, and circus tents."], "narration": "From ice-cream cones to birthday party hats and traffic cones, conical geometry is everywhere! How is a right circular cone born? Take a right-angled triangle with legs r and h, and spin it around its vertical leg: the hypotenuse sweeps out the cone's curved surface, becoming the slant height, l. Because of Pythagoras, l equals the square root of r-squared plus h-squared. Watch our 3D right triangle spin to generate a cone!", "sim_title": "Right Triangle Revolution Simulator & Slant Height Pythagorean Lock", "checkpoints": [{"q": "What is the slant height of a right circular cone whose base radius is 7 cm and vertical height is 24 cm?", "options": ["25 cm", "26 cm", "28 cm", "31 cm"], "ans": 0, "exp": "l = \u221a(r\u00b2 + h\u00b2) = \u221a(7\u00b2 + 24\u00b2) = \u221a(49 + 576) = \u221a625 = 25 cm.", "explanation": "l = \u221a(r\u00b2 + h\u00b2) = \u221a(7\u00b2 + 24\u00b2) = \u221a(49 + 576) = \u221a625 = 25 cm."}, {"q": "If the slant height l of a cone is 10 cm and its base radius r is 6 cm, what is its vertical height h?", "options": ["7 cm", "8 cm", "9 cm", "12 cm"], "ans": 1, "exp": "h = \u221a(l\u00b2 - r\u00b2) = \u221a(10\u00b2 - 6\u00b2) = \u221a(100 - 36) = \u221a64 = 8 cm.", "explanation": "h = \u221a(l\u00b2 - r\u00b2) = \u221a(10\u00b2 - 6\u00b2) = \u221a(100 - 36) = \u221a64 = 8 cm."}]}, {"id": 6, "title": "Surface Area of a Cone: Unrolling the Conical Net", "subtitle": "Dissecting the Curved Wall into a Sector of Radius l (CSA = \u03c0rl)", "badge": "CG-5 \u2022 Cone Surface Area", "summary": "If you slice a cone along its slant height l and unroll its curved surface flat onto a table, it forms a sector of a circle! The radius of this unrolled sector is the slant height l, and its curved outer arc length is exactly equal to the circumference of the cone's circular base, 2\u03c0r. Recall from sector geometry: Area = (1/2) \u00d7 arc length \u00d7 radius = (1/2) \u00d7 (2\u03c0r) \u00d7 l = \u03c0rl! Therefore: (1) Curved Surface Area (CSA): CSA = \u03c0rl. (2) Total Surface Area (TSA): TSA = CSA + Base Area = \u03c0rl + \u03c0r\u00b2 = \u03c0r(l + r). When designing conical tents, only the curved canvas CSA = \u03c0rl is required since the floor is ground.", "key_points": ["Conical Net Dissection: Slicing along slant height l unrolls the curved wall into a circular sector of radius l.", "Arc Length Equality: The unrolled sector's curved boundary equals the base circumference 2\u03c0 r.", "CSA Derivation: Sector Area = (1/2) \u00b7 (2\u03c0 r) \u00b7 l = \u03c0 r l in square units.", "Total Surface Area: TSA = \u03c0 r l + \u03c0 r\u00b2 = \u03c0 r(l + r), adding the flat circular bottom disc.", "Fabric Optimization: Calculating canvas required for conical tents without including the ground floor."], "narration": "How do you calculate the canvas needed for a conical tent? Slice the cone open along its slant height and flatten it out: surprise! It becomes a circular sector with radius l and curved edge equal to the base circle, 2\u03c0r. Using our sector area formula\u2014one half times base arc times radius\u2014we get one half times 2\u03c0r times l, which simplifies to the famous formula: \u03c0rl! Add the bottom circular floor to get the total surface area: \u03c0r(l + r). Watch our cone unfurl into a flat sector!", "sim_title": "Conical Net Unroller to Circular Sector & Fabric Calculator", "checkpoints": [{"q": "What is the curved surface area of a conical tent with base radius 7 m and slant height 10 m? (Use \u03c0 = 22/7)", "options": ["110 m\u00b2", "154 m\u00b2", "220 m\u00b2", "374 m\u00b2"], "ans": 2, "exp": "CSA = \u03c0rl = (22/7) \u00d7 7 \u00d7 10 = 220 m\u00b2.", "explanation": "CSA = \u03c0rl = (22/7) \u00d7 7 \u00d7 10 = 220 m\u00b2."}, {"q": "What is the total surface area of a cone of radius 6 cm and slant height 14 cm? (Use \u03c0 = 22/7)", "options": ["264 cm\u00b2", "377.14 cm\u00b2", "440 cm\u00b2", "528 cm\u00b2"], "ans": 1, "exp": "TSA = \u03c0r(l + r) = (22/7) \u00d7 6 \u00d7 (14 + 6) = (22/7) \u00d7 6 \u00d7 20 = 2640 / 7 \u2248 377.14 cm\u00b2.", "explanation": "TSA = \u03c0r(l + r) = (22/7) \u00d7 6 \u00d7 (14 + 6) = (22/7) \u00d7 6 \u00d7 20 = 2640 / 7 \u2248 377.14 cm\u00b2."}]}, {"id": 7, "title": "Volume of a Cone: The 1/3 Cylinder Relationship", "subtitle": "Experimental Verification: 3 Cones of Water Fill Exactly 1 Matching Cylinder", "category": "Cones", "badge": "CG-5 \u2022 Cone Volume Ratio", "summary": "The volume of a right circular cone is exactly one-third the volume of a right circular cylinder having the same base radius r and vertical height h: Volume = (1/3)\u03c0r\u00b2h. This fundamental relationship can be verified experimentally: taking a hollow cone and a hollow cylinder of identical radius r and height h, filling the cone with water or sand and pouring it into the cylinder requires exactly THREE full cones to fill the cylinder to its brim! Practical applications: granular materials (sand, grain, gravel) dumped from conveyors naturally form conical piles whose volumes are evaluated using V = (1/3)\u03c0r\u00b2h.", "key_points": ["Volume Formula: V = (1/3) \u03c0 r\u00b2 h, one-third of the enclosing cylinder of identical dimensions.", "The 3:1 Pouring Ratio: Exactly 3 full cones of liquid or sand are required to completely fill the matching cylinder.", "Dependence on Vertical Height: Volume depends strictly on perpendicular vertical height h, NOT slant height l.", "Granular Heaps: Stockpiled grain and mining slag naturally form cones dictated by the angle of repose.", "Dimensional Comparison: With equal base and height, Prism : Pyramid = 3 : 1; Cylinder : Cone = 3 : 1."], "narration": "Here is one of the most elegant facts in all of mathematics: a cone has exactly one-third the volume of a cylinder with the same radius and height! If you fill a cone with sand and pour it into a matching cylinder, the cylinder is only one-third full. Pour a second cone, it reaches two-thirds. Pour a third cone, and it fills the cylinder perfectly to the top! That is why the volume of a cone is one-third \u03c0r\u00b2h. Click 'Pour Cone' in our simulator to run this classic experiment!", "sim_title": "Interactive 3-Cone Pouring Experiment to Matching Cylinder", "checkpoints": [{"q": "Find the volume of a right circular cone with radius 6 cm and height 7 cm. (Use \u03c0 = 22/7)", "options": ["132 cm\u00b3", "264 cm\u00b3", "396 cm\u00b3", "792 cm\u00b3"], "ans": 1, "exp": "V = (1/3)\u03c0r\u00b2h = (1/3) \u00d7 (22/7) \u00d7 6\u00b2 \u00d7 7 = (1/3) \u00d7 (22/7) \u00d7 36 \u00d7 7 = (1/3) \u00d7 22 \u00d7 36 = 22 \u00d7 12 = 264 cm\u00b3.", "explanation": "V = (1/3)\u03c0r\u00b2h = (1/3) \u00d7 (22/7) \u00d7 6\u00b2 \u00d7 7 = (1/3) \u00d7 (22/7) \u00d7 36 \u00d7 7 = (1/3) \u00d7 22 \u00d7 36 = 22 \u00d7 12 = 264 cm\u00b3."}, {"q": "A cylindrical vessel and a conical vessel have identical base radius and height. If the cylinder holds 1500 ml of liquid, how much does the cone hold?", "options": ["300 ml", "500 ml", "750 ml", "1000 ml"], "ans": 1, "exp": "V_cone = (1/3) \u00d7 V_cylinder = 1500 / 3 = 500 ml.", "explanation": "V_cone = (1/3) \u00d7 V_cylinder = 1500 / 3 = 500 ml."}]}, {"id": 8, "title": "Pyramids in Architecture: Base, Slant Height & Apex", "subtitle": "Polygonal Bases, Triangular Lateral Faces & Vertical vs Slant Heights", "category": "Pyramids", "badge": "CG-5 \u2022 Pyramid Geometry", "summary": "A pyramid is a three-dimensional polyhedron whose base is a polygon (triangle, square, rectangle, or regular n-gon) and whose lateral faces are triangles meeting at a single common vertex called the apex. In a right regular pyramid, the base is a regular polygon and the apex lies vertically above the centre of the base. Key metric distinctions: (1) Vertical height h: Perpendicular distance from apex to base center. (2) Slant height l: Altitude of each triangular lateral face from apex to base edge midpoint. For a regular square pyramid of base side a: l = \u221a[h\u00b2 + (a/2)\u00b2]. (3) Lateral edge e: Distance from apex to a base corner vertex: e = \u221a[l\u00b2 + (a/2)\u00b2]. Architectural marvels: The Great Pyramid of Giza (Egypt), the Louvre Glass Pyramid (Paris), and pagoda roofs.", "key_points": ["Pyramid Definition: Polyhedron with a polygonal base and triangular lateral faces meeting at a single apex.", "Regular Square Pyramid: Base is a square a \u00d7 a; 4 congruent isosceles triangle lateral faces.", "Slant Height Equation: l = \u221a[h\u00b2 + (a/2)\u00b2], measuring the altitude along the sloping triangular faces.", "Apex Convergence: All lateral edges meet at a single shared summit point.", "Architectural Stability: Pyramidal mass distribution has a low center of gravity, enduring for millennia."], "narration": "Think of the colossal Great Pyramid of Giza, built over 4,500 years ago! A pyramid has a flat polygon base\u2014like a square\u2014and triangular faces that slope upward to meet at a single pointed apex. But be careful not to confuse the vertical height inside the tomb with the slant height along the outside face! Because the slant height is the hypotenuse of the triangle inside, l equals the square root of h-squared plus (a/2)-squared. Explore our 3D pyramid net as its four triangular walls drop open!", "sim_title": "3D Square Pyramid Net Unfolder & Slant Height Geometry", "checkpoints": [{"q": "In a right regular square pyramid with base side a = 12 m and vertical height h = 8 m, what is the slant height l?", "options": ["9 m", "10 m", "12 m", "14 m"], "ans": 1, "exp": "Half-side of base = a/2 = 6 m. Slant height l = \u221a[h\u00b2 + (a/2)\u00b2] = \u221a(8\u00b2 + 6\u00b2) = \u221a(64 + 36) = \u221a100 = 10 m.", "explanation": "Half-side of base = a/2 = 6 m. Slant height l = \u221a[h\u00b2 + (a/2)\u00b2] = \u221a(8\u00b2 + 6\u00b2) = \u221a(64 + 36) = \u221a100 = 10 m."}, {"q": "How many total faces, edges, and vertices does a square pyramid have?", "options": ["4 faces, 6 edges, 4 vertices", "5 faces, 8 edges, 5 vertices", "6 faces, 10 edges, 6 vertices", "6 faces, 12 edges, 8 vertices"], "ans": 1, "exp": "A square pyramid has 1 square base + 4 triangular faces = 5 faces; 4 base edges + 4 lateral edges = 8 edges; 4 base vertices + 1 apex = 5 vertices.", "explanation": "A square pyramid has 1 square base + 4 triangular faces = 5 faces; 4 base edges + 4 lateral edges = 8 edges; 4 base vertices + 1 apex = 5 vertices."}]}, {"id": 9, "title": "Surface Area & Volume of a Pyramid", "subtitle": "Cube Dissection into 6 Pyramids & The Master Formula V = (1/3) B h", "category": "Pyramids", "badge": "CG-5 \u2022 CG-9 \u2022 Pyramid Mensuration", "summary": "For any regular pyramid with base perimeter P, base area B, vertical height h, and slant height l: (1) Lateral Surface Area (LSA): LSA = (1/2) \u00d7 Perimeter of Base \u00d7 slant height = (1/2) P l. For a square pyramid: LSA = 4 \u00d7 [(1/2) a l] = 2al. (2) Total Surface Area (TSA): TSA = Base Area + LSA = a\u00b2 + 2al. (3) Volume of ANY Pyramid: V = (1/3) \u00d7 Base Area \u00d7 Height = (1/3) B h. Geometric Dissection Proof: A solid cube of edge a can be partitioned into exactly SIX congruent square pyramids with their vertices meeting at the cube's central point! Each pyramid has base a\u00b2 and height h = a/2. Total volume of 6 pyramids = a\u00b3, so Volume of 1 pyramid = (1/6)a\u00b3 = (1/6)a\u00b2(2h) = (1/3)a\u00b2h = (1/3) B h!", "key_points": ["Lateral Surface Area: LSA = (1/2) \u00b7 P \u00b7 l, summing the areas of all n triangular lateral faces.", "Total Surface Area: TSA = Base Area + (1/2) \u00b7 P \u00b7 l = a\u00b2 + 2al for a square pyramid.", "Universal Pyramid Volume: V = (1/3) \u00b7 Base Area \u00b7 Height = (1/3) B h for any polygon base.", "Cube Dissection Proof: A cube partitions into 6 identical pyramids meeting at center O, proving V = (1/6) a\u00b3 = (1/3) B h.", "Cross-Discipline Unity: The factor 1/3 applies equally to circular cones and polygonal pyramids."], "narration": "Why is the volume of every pyramid one-third base area times height? Here is a proof that will blow your mind! Take a solid cube and draw diagonals from its center to all eight corners: the cube splits into exactly SIX identical square pyramids! Since all six together make up the cube's volume a-cubed, and the height of each pyramid is half the cube's edge, one pyramid's volume is exactly one-third base area times height! Click 'Disassemble Cube' to watch the cube explode into six pyramids!", "sim_title": "6-Pyramid Cube Dissection Explosion & Volume Equivalence", "checkpoints": [{"q": "What is the volume of a square pyramid with base edge 10 cm and vertical height 12 cm?", "options": ["200 cm\u00b3", "400 cm\u00b3", "600 cm\u00b3", "1200 cm\u00b3"], "ans": 1, "exp": "Base area B = a\u00b2 = 10\u00b2 = 100 cm\u00b2. Volume V = (1/3) B h = (1/3) \u00d7 100 \u00d7 12 = 100 \u00d7 4 = 400 cm\u00b3.", "explanation": "Base area B = a\u00b2 = 10\u00b2 = 100 cm\u00b2. Volume V = (1/3) B h = (1/3) \u00d7 100 \u00d7 12 = 100 \u00d7 4 = 400 cm\u00b3."}, {"q": "What is the total surface area of a square pyramid with base side 10 cm and slant height 13 cm?", "options": ["260 cm\u00b2", "360 cm\u00b2", "420 cm\u00b2", "520 cm\u00b2"], "ans": 1, "exp": "Base area = 10\u00b2 = 100 cm\u00b2. LSA = 2al = 2 \u00d7 10 \u00d7 13 = 260 cm\u00b2. TSA = Base + LSA = 100 + 260 = 360 cm\u00b2.", "explanation": "Base area = 10\u00b2 = 100 cm\u00b2. LSA = 2al = 2 \u00d7 10 \u00d7 13 = 260 cm\u00b2. TSA = Base + LSA = 100 + 260 = 360 cm\u00b2."}]}, {"id": 10, "title": "Spheres in Nature & Geometry: Center and Radius", "subtitle": "The Perfectly Isotropic 3D Surface Equidistant from a Single Point", "category": "Spheres", "badge": "CG-5 \u2022 C-5.1 \u2022 Sphere Geometry", "summary": "A sphere is the set of all points in three-dimensional space situated at a constant distance (radius r) from a fixed interior point (the center O). The distance between any two diametrically opposed surface points passing through O is the diameter d = 2r. The sphere is the most symmetrical geometric object in the universe: it possesses point reflection symmetry through its center, rotational symmetry of every degree around every axis, and reflection symmetry across every plane passing through its center. The cross-section of a sphere cut by a plane passing through its center is called a Great Circle (radius r, area = \u03c0r\u00b2). Nature adopts spheres because surface tension naturally minimizes surface area for a given volume (soap bubbles, raindrops, planets).", "key_points": ["Sphere Definition: The locus of points in 3D space equidistant (r) from a central point O (x\u00b2 + y\u00b2 + z\u00b2 = r\u00b2).", "Universal Isotropic Symmetry: Infinite planes and axes of symmetry; perfectly uniform in all directions.", "Great Circle: The largest possible circle on a sphere, created by slicing through the center (Area = \u03c0 r\u00b2).", "Small Circles: Cross-sections formed by planes that do not pass through the center.", "Physical Optimization: Surface tension pulls liquids into spheres because a sphere encloses maximum volume with minimum surface area."], "narration": "From soap bubbles floating in air to planets and stars orbiting in space, nature loves spheres! Why? Because surface tension always pulls liquids into the shape that has the absolute smallest surface area for a given volume: a sphere! Every single point on its surface is at the exact same distance r from the center. Slicing right through the center produces a Great Circle, like the Earth's equator. Spin our 3D wireframe sphere and slice it with planes!", "sim_title": "3D Wireframe Sphere Rotator & Great Circle Slicer", "checkpoints": [{"q": "What is the cross-section of a sphere cut by any plane passing through its center called?", "options": ["A Small Circle", "A Great Circle", "A Parabola", "An Ellipsoid"], "ans": 1, "exp": "A cross-section through the center of a sphere is called a Great Circle; its radius equals the sphere's radius r and its area is \u03c0r\u00b2.", "explanation": "A cross-section through the center of a sphere is called a Great Circle; its radius equals the sphere's radius r and its area is \u03c0r\u00b2."}, {"q": "Why do raindrops and soap bubbles naturally form spherical shapes?", "options": ["Because spheres weigh less than other shapes", "Because surface tension minimizes surface energy by adopting the shape of minimum surface area for a given volume", "Because gravity pushes only in straight lines", "Because air resistance forces 90\u00b0 angles"], "ans": 1, "exp": "Surface tension pulls liquid molecules together to minimize surface area; the sphere mathematically achieves the lowest surface area per unit volume.", "explanation": "Surface tension pulls liquid molecules together to minimize surface area; the sphere mathematically achieves the lowest surface area per unit volume."}]}, {"id": 11, "title": "Surface Area of a Sphere: Archimedes' Cylinder & 4 Discs", "subtitle": "Archimedes' Hat-Box Theorem: Area Equals Exactly 4 Great Circles (4\u03c0r\u00b2)", "category": "Spheres", "badge": "CG-5 \u2022 Sphere Surface Area", "summary": "The total surface area of a sphere of radius r is given by: TSA = 4\u03c0r\u00b2. Physical Demonstration (The 4 Discs): If you wrap a cord tightly around the curved boundary of a hemisphere and then uncoil it, the cord covers exactly two flat circular discs of radius r; for the entire sphere, it covers exactly FOUR flat circular discs of area \u03c0r\u00b2! Archimedes' Hat-Box Theorem: Archimedes proved that the surface area of a sphere of radius r equals the curved lateral surface area of a circumscribing cylinder with the same radius r and height equal to the sphere's diameter h = 2r: CSA_cylinder = 2\u03c0r \u00d7 h = 2\u03c0r \u00d7 (2r) = 4\u03c0r\u00b2! Any zone of the sphere between two parallel planes has the exact same surface area as the corresponding zone on the cylinder.", "key_points": ["Surface Area Formula: TSA = 4\u03c0 r\u00b2 in square units, exactly four times the area of its great circle.", "The 4-Disc Equivalence: The outer skin of a sphere unwinds to cover four flat circles of radius r.", "Archimedes' Hat-Box Theorem: A sphere has the exact same surface area as the lateral wall of its bounding cylinder (2\u03c0 r \u00b7 2r = 4\u03c0 r\u00b2).", "Zone Projection Invariance: The surface area of any horizontal slice depends only on the slice height \u0394h: Area = 2\u03c0 r \u0394h.", "Coating Costs: Calculating paint or plating required for spherical domes, storage tanks, and ball bearings."], "narration": "How did Archimedes discover the surface area of a sphere without modern calculus? He found something astonishing: if you slide a sphere inside a snug cylinder of height 2r, the surface area of the sphere exactly equals the curved wall of the cylinder! The cylinder's curved area is 2\u03c0r times 2r, which is 4\u03c0r-squared! This means the surface of a sphere is equal to exactly FOUR flat circular discs of radius r. Watch our interactive simulator peel the sphere's skin into four flat circles!", "sim_title": "Archimedes' Hat-Box Projection & 4-Disc Skin Peeling Simulator", "checkpoints": [{"q": "What is the surface area of a sphere of radius 7 cm? (Use \u03c0 = 22/7)", "options": ["154 cm\u00b2", "308 cm\u00b2", "616 cm\u00b2", "1232 cm\u00b2"], "ans": 2, "exp": "TSA = 4\u03c0r\u00b2 = 4 \u00d7 (22/7) \u00d7 7\u00b2 = 4 \u00d7 22 \u00d7 7 = 616 cm\u00b2.", "explanation": "TSA = 4\u03c0r\u00b2 = 4 \u00d7 (22/7) \u00d7 7\u00b2 = 4 \u00d7 22 \u00d7 7 = 616 cm\u00b2."}, {"q": "According to Archimedes, the surface area of a sphere of radius r equals the lateral curved surface area of a cylinder of radius r and height:", "options": ["r", "2r", "\u03c0r", "4r"], "ans": 1, "exp": "The circumscribing cylinder has height equal to the sphere's diameter, h = 2r. Its lateral area is 2\u03c0r(2r) = 4\u03c0r\u00b2.", "explanation": "The circumscribing cylinder has height equal to the sphere's diameter, h = 2r. Its lateral area is 2\u03c0r(2r) = 4\u03c0r\u00b2."}]}, {"id": 12, "title": "Volume of a Sphere: Archimedes\u2019 2/3 Ratio", "subtitle": "The Tombstone Inscription: Sphere Volume is 2/3 of its Circumscribing Cylinder", "category": "Spheres", "badge": "CG-5 \u2022 Sphere Volume", "summary": "The volume of a sphere of radius r is given by: Volume = (4/3)\u03c0r\u00b3. Archimedes considered this his greatest mathematical triumph, requesting a sphere inscribed in a cylinder to be engraved upon his tombstone. He proved that the volume of a sphere is exactly TWO-THIRDS the volume of its circumscribing cylinder: V_cylinder = Base Area \u00d7 Height = (\u03c0r\u00b2) \u00d7 (2r) = 2\u03c0r\u00b3. Therefore: V_sphere = (2/3) \u00d7 V_cylinder = (2/3)(2\u03c0r\u00b3) = (4/3)\u03c0r\u00b3! Infinitesimal Pyramid Summation: We can also imagine partitioning the sphere into millions of microscopic pyramids whose apexes meet at the center O: each has base \u0394A and height r, with volume (1/3) \u0394A \u00b7 r. Summing: V = (1/3) r \u03a3 \u0394A = (1/3) r (4\u03c0r\u00b2) = (4/3)\u03c0r\u00b3.", "key_points": ["Volume Formula: V = (4/3) \u03c0 r\u00b3 in cubic units, proportional to the cube of the radius.", "Archimedes' Tombstone Ratio: Sphere volume is exactly 2/3 of its bounding cylinder (2/3 \u00b7 2\u03c0 r\u00b3 = 4/3 \u03c0 r\u00b3).", "The 1:2:3 Volume Balance: Cone (1/3 \u00b7 2\u03c0r\u00b3 = 2/3 \u03c0r\u00b3) + Sphere (4/3 \u03c0r\u00b3) = Cylinder (2\u03c0r\u00b3).", "Infinitesimal Pyramids: Summing infinite pyramid wedges of height r and base sum 4\u03c0r\u00b2 yields (1/3)r(4\u03c0r\u00b2) = (4/3)\u03c0r\u00b3.", "Weight and Mass: Calculating the payload of weather balloons, planet masses, and steel ball bearing weights."], "narration": "Archimedes was so proud of discovering the volume of a sphere that he asked for a sphere inside a cylinder to be carved onto his gravestone! He proved that a sphere holds exactly two-thirds the volume of the cylinder around it. Two-thirds times 2\u03c0r-cubed gives the famous formula: four-thirds \u03c0r-cubed! Furthermore, a cone plus a sphere equals the cylinder: one plus two equals three! Check out our Archimedean volume balance scale in action.", "sim_title": "Archimedean Tombstone 1:2:3 Volume Balance Scale", "checkpoints": [{"q": "Find the volume of a sphere of radius 3 cm. (Use \u03c0 = 3.14)", "options": ["37.68 cm\u00b3", "84.78 cm\u00b3", "113.04 cm\u00b3", "339.12 cm\u00b3"], "ans": 2, "exp": "V = (4/3)\u03c0r\u00b3 = (4/3) \u00d7 3.14 \u00d7 27 = 4 \u00d7 3.14 \u00d7 9 = 113.04 cm\u00b3.", "explanation": "V = (4/3)\u03c0r\u00b3 = (4/3) \u00d7 3.14 \u00d7 27 = 4 \u00d7 3.14 \u00d7 9 = 113.04 cm\u00b3."}, {"q": "If the diameter of a sphere is reduced by half, what fraction of its original volume remains?", "options": ["1/2", "1/4", "1/6", "1/8"], "ans": 3, "exp": "Halving the diameter halves the radius (r \u2192 r/2). Volume scales cubically: (1/2)\u00b3 = 1/8th of the original volume.", "explanation": "Halving the diameter halves the radius (r \u2192 r/2). Volume scales cubically: (1/2)\u00b3 = 1/8th of the original volume."}]}, {"id": 13, "title": "Hemispheres: Curved Surface, Flat Base & Solid TSA", "subtitle": "Bisection Across a Great Circle: CSA = 2\u03c0r\u00b2, Flat Base = \u03c0r\u00b2 & Solid TSA = 3\u03c0r\u00b2", "category": "Hemispheres", "badge": "CG-5 \u2022 Hemispherical Metrics", "summary": "When a plane cuts a sphere through its center, it divides it into two congruent halves called hemispheres. For a hemisphere of radius r: (1) Curved Surface Area (CSA): CSA = (1/2) \u00d7 4\u03c0r\u00b2 = 2\u03c0r\u00b2. (2) Flat Base: A circular disc of area \u03c0r\u00b2. (3) Total Surface Area of a SOLID Hemisphere: TSA = CSA + Flat Base = 2\u03c0r\u00b2 + \u03c0r\u00b2 = 3\u03c0r\u00b2! (4) Volume of a Hemisphere: V = (1/2) \u00d7 (4/3)\u03c0r\u00b3 = (2/3)\u03c0r\u00b3. For a hollow hemispherical bowl with inner radius r and outer radius R: Internal CSA = 2\u03c0r\u00b2; External CSA = 2\u03c0R\u00b2; Ring Rim Area = \u03c0(R\u00b2 - r\u00b2); Total Surface Area = 2\u03c0R\u00b2 + 2\u03c0r\u00b2 + \u03c0(R\u00b2 - r\u00b2); Material Volume = (2/3)\u03c0(R\u00b3 - r\u00b3). Daily examples: hemispherical bowls, planetarium observatory domes, igloos, and radar domes.", "key_points": ["Hemisphere Definition: Half of a sphere created by bisection across a great circle plane.", "Curved Surface Area: CSA = 2\u03c0 r\u00b2, exactly half of the full sphere's outer skin.", "Solid Total Surface Area: TSA = 2\u03c0 r\u00b2 + \u03c0 r\u00b2 = 3\u03c0 r\u00b2, accounting for the flat circular base.", "Volume of Hemisphere: V = (2/3) \u03c0 r\u00b3 in cubic units, exactly half of the sphere's volume.", "Hollow Bowl Geometry: Accounting for internal curved wall, external wall, circular rim, and shell thickness."], "narration": "What happens when you cut a solid wooden ball right through the middle? You get two hemispheres! Each hemisphere has a dome with curved area 2\u03c0r-squared, plus a flat circular bottom of area \u03c0r-squared. Add them together, and the total surface area of a solid hemisphere is three \u03c0r-squared! But if the hemisphere is a hollow bowl, you must paint both the inside and outside, plus the top circular rim. Toggle between solid and hollow modes on our hemisphere lab!", "sim_title": "Solid vs. Hollow Hemisphere 3D Dissector & Rim Meter", "checkpoints": [{"q": "What is the total surface area of a SOLID hemisphere of radius 7 cm? (Use \u03c0 = 22/7)", "options": ["308 cm\u00b2", "462 cm\u00b2", "616 cm\u00b2", "924 cm\u00b2"], "ans": 1, "exp": "Solid TSA = 3\u03c0r\u00b2 = 3 \u00d7 (22/7) \u00d7 7\u00b2 = 3 \u00d7 22 \u00d7 7 = 462 cm\u00b2.", "explanation": "Solid TSA = 3\u03c0r\u00b2 = 3 \u00d7 (22/7) \u00d7 7\u00b2 = 3 \u00d7 22 \u00d7 7 = 462 cm\u00b2."}, {"q": "A hemispherical bowl has an internal radius of 9 cm. What is the volume of soup it can hold? (Use \u03c0 = 3.14)", "options": ["763.02 cm\u00b3", "1017.36 cm\u00b3", "1526.04 cm\u00b3", "3052.08 cm\u00b3"], "ans": 2, "exp": "Volume = (2/3)\u03c0r\u00b3 = (2/3) \u00d7 3.14 \u00d7 729 = 2 \u00d7 3.14 \u00d7 243 = 1526.04 cm\u00b3.", "explanation": "Volume = (2/3)\u03c0r\u00b3 = (2/3) \u00d7 3.14 \u00d7 729 = 2 \u00d7 3.14 \u00d7 243 = 1526.04 cm\u00b3."}]}, {"id": 14, "title": "Conversion of Solids: Melting & Recasting Conservation", "subtitle": "Invariance of Volume: Transforming Spheres into Wires, Cones & Cylinders", "category": "Volume Conservation", "badge": "CG-9 \u2022 Conservation Principles", "summary": "In industrial casting, metallurgy, and civil engineering, solids of one geometric shape are frequently melted, reshaped, or recast into entirely different geometries. Fundamental Law of Conservation: Assuming no material is added, lost, or vaporized during the process, the TOTAL VOLUME of the original solid(s) equals the TOTAL VOLUME of the newly formed solid(s): V_initial = V_final. Common recasting transformations: (1) Melting a large metallic sphere of radius R into n small spheres of radius r: (4/3)\u03c0R\u00b3 = n \u00d7 (4/3)\u03c0r\u00b3 \u21d2 n = R\u00b3 / r\u00b3. (2) Recasting a sphere into a long thin cylindrical wire of length L and radius r_wire: (4/3)\u03c0R\u00b3 = \u03c0(r_wire)\u00b2 L. (3) Digging a cylindrical well and spreading the excavated earth as an embankment (hollow cylinder).", "key_points": ["Volume Conservation Law: Total mass and volume remain strictly invariant during melting and recasting (V_1 = V_2).", "Surface Area Non-Conservation: While volume remains invariant, the surface area almost always changes dramatically!", "Sphere to Small Spheres: The number of balls formed is n = (R / r)\u00b3.", "Solid to Wire Transformation: Modeled as transforming a solid into an elongated cylinder of cross-sectional area \u03c0 r\u00b2 and length L.", "Well Embankment Excavation: Volume of dug earth \u03c0 r\u00b2 h equals the volume of the hollow embankment ring \u03c0(R\u00b2 - r\u00b2)h_emb."], "narration": "In metal foundries, blacksmiths melt heavy bronze spheres and pour the molten metal into molds to make long wires, hollow pipes, or hundreds of tiny ball bearings! Here is the golden rule: even though the shape changes completely, the total volume of metal remains strictly conserved! However, beware: the surface area does NOT stay the same\u2014making smaller balls dramatically increases the total surface area! Watch our virtual crucible melt a sphere into ball bearings and wires.", "sim_title": "Molten Metal Crucible Recasting & Invariant Volume Engine", "checkpoints": [{"q": "How many small spherical lead shots of radius 1 cm can be made by melting a solid metallic sphere of radius 8 cm?", "options": ["64", "256", "512", "1024"], "ans": 2, "exp": "n = R\u00b3 / r\u00b3 = 8\u00b3 / 1\u00b3 = 512 / 1 = 512 lead shots.", "explanation": "n = R\u00b3 / r\u00b3 = 8\u00b3 / 1\u00b3 = 512 / 1 = 512 lead shots."}, {"q": "A metallic sphere of radius 4.2 cm is melted and recast into the shape of a cylinder of radius 6 cm. What is the height of the cylinder? (Use \u03c0 = 22/7)", "options": ["1.88 cm", "2.74 cm", "3.12 cm", "4.20 cm"], "ans": 1, "exp": "V_cylinder = V_sphere \u21d2 \u03c0 r\u00b2 h = (4/3)\u03c0 R\u00b3 \u21d2 6\u00b2 h = (4/3) \u00d7 (4.2)\u00b3 \u21d2 36 h = (4/3) \u00d7 74.088 = 98.784 \u21d2 h = 98.784 / 36 = 2.744 cm \u2248 2.74 cm.", "explanation": "V_cylinder = V_sphere \u21d2 \u03c0 r\u00b2 h = (4/3)\u03c0 R\u00b3 \u21d2 6\u00b2 h = (4/3) \u00d7 (4.2)\u00b3 \u21d2 36 h = (4/3) \u00d7 74.088 = 98.784 \u21d2 h = 98.784 / 36 = 2.744 cm \u2248 2.74 cm."}]}, {"id": 15, "title": "Surface Area-to-Volume Ratio & Scaling Laws", "subtitle": "Galileo\u2019s Square-Cube Law: Why Cells are Microscopic & Polar Bears are Large", "category": "Scaling Laws", "badge": "CG-9 \u2022 Scaling & Biological Physics", "summary": "The Surface Area-to-Volume ratio (SA/V) governs heat loss, chemical reaction rates, and biological physiology. (1) Cube of edge a: SA/V = (6a\u00b2) / a\u00b3 = 6/a. (2) Sphere of radius r: SA/V = (4\u03c0r\u00b2) / ((4/3)\u03c0r\u00b3) = 3/r. Notice that as an object increases in size, its SA/V ratio decreases inversely! Galileo's Square-Cube Law: When linear dimensions are multiplied by a scale factor k: Linear scale ~ k; Surface Area scales ~ k\u00b2; Volume and Mass scale ~ k\u00b3! Biological Consequences: (1) Living cells cannot grow indefinitely large because volume (which produces waste/heat) grows faster than surface area (which absorbs oxygen/nutrients). (2) Bergmann's Rule: Polar animals (polar bears, walruses) are large and spherical to minimize heat loss per unit mass.", "key_points": ["The Inverted Ratio: For a sphere, SA/V = 3/r; for a cube, SA/V = 6/a. Larger objects have smaller SA/V ratios.", "Galileo's Square-Cube Law: Surface Area \u221d k\u00b2 while Volume \u221d k\u00b3 under linear scaling k.", "Cell Biology Boundary: Cells must stay microscopic (high SA/V) to allow efficient nutrient diffusion across membranes.", "Thermodynamics of Heat Loss: Small animals lose body heat rapidly; large Arctic animals have small SA/V to conserve warmth.", "Chemical Kinetics: Crushed ice or fine powder dissolves/reacts exponentially faster due to vast aggregate surface area."], "narration": "Why are biological cells microscopic? And why are Arctic polar bears so huge and rounded? The answer is Galileo's Square-Cube Law! When you double the size of an animal, its skin area quadruples, but its volume and weight multiply by eight! Because heat is generated by volume and lost through skin, large rounded animals retain heat easily, while tiny mice lose heat so fast they must eat constantly. Drag our scale slider to see the surface area-to-volume ratio plummet as size increases!", "sim_title": "Square-Cube Law Scaling Lab & Biological Heat Loss Curve", "checkpoints": [{"q": "If the radius of a sphere is multiplied by 3, what happens to its Surface Area-to-Volume ratio (SA/V)?", "options": ["It triples", "It is divided by 3 (becomes 1/3 of original)", "It increases by 9 times", "It remains unchanged"], "ans": 1, "exp": "For a sphere, SA/V = 3/r. If r increases to 3r, the ratio becomes 3/(3r) = (1/3)(3/r), which is divided by 3.", "explanation": "For a sphere, SA/V = 3/r. If r increases to 3r, the ratio becomes 3/(3r) = (1/3)(3/r), which is divided by 3."}, {"q": "Why does crushed ice cool a drink much faster than a solid block of ice of the exact same mass?", "options": ["Crushed ice is at a lower temperature", "Crushed ice has a vastly larger aggregate surface area exposed to the liquid, accelerating heat transfer", "Crushed ice has less mass", "Crushed ice floats deeper"], "ans": 1, "exp": "Crushing divides the ice into thousands of tiny pieces, dramatically increasing total surface area (SA/V ratio), which speeds up thermal conduction.", "explanation": "Crushing divides the ice into thousands of tiny pieces, dramatically increasing total surface area (SA/V ratio), which speeds up thermal conduction."}]}, {"id": 16, "title": "Computational Thinking: 3D Mensuration & Optimization", "subtitle": "Composite Polyhedra Decomposition & Optimal Industrial Can Dimensions (h = 2r)", "category": "Computational Optimization", "badge": "CG-9 \u2022 Algorithmic Optimization", "summary": "Computational geometry algorithms compute perimeters, surface areas, and volumes for complex, composite machinery by decomposing them into primitive geometries: V_total = \u03a3 V_primitives. Industrial Packaging Optimization: Consider manufacturing a cylindrical tin can to hold a fixed volume V (e.g., 355 ml). What radius r and height h will MINIMIZE the amount of sheet metal (total surface area TSA = 2\u03c0r\u00b2 + 2\u03c0rh) and minimize production cost? Expressing h in terms of V: h = V / (\u03c0r\u00b2). Substituting gives TSA(r) = 2\u03c0r\u00b2 + (2V / r). Minimizing with respect to r gives: 4\u03c0r - (2V / r\u00b2) = 0 \u21d2 2V = 4\u03c0r\u00b3 \u21d2 2(\u03c0r\u00b2h) = 4\u03c0r\u00b3 \u21d2 h = 2r! Theorem: A cylindrical can minimizes surface area and manufacturing cost precisely when its height equals its diameter (h = 2r)!", "key_points": ["Decomposition Pipeline: Complex 3D CAD assemblies decompose into primitive solids (cuboid, cylinder, cone, sphere).", "Hidden Interface Rule: When two solids are joined, the shared contact faces are subtracted from the total surface area.", "Industrial Cost Optimization: Minimizing material usage (TSA) while maintaining required fluid volume V.", "The Optimal Can Ratio: Minimum surface area occurs when height equals diameter: h = 2r.", "Algorithmic Parameter Sweep: Exploring dimension configurations across 3D simulation spaces."], "narration": "How do industrial software engineers design beverage cans to save millions of dollars in aluminum? They use mathematical optimization! If a can must hold exactly 355 milliliters, what dimensions require the absolute least amount of metal? By setting the surface area derivative to zero, mathematics reveals an astonishing universal rule: the height of the can must equal its diameter: h = 2r! Move the radius slider on our can packaging optimizer to see the total metal cost dip to its perfect minimum!", "sim_title": "Industrial Beverage Can Metal Optimizer & Cost Minimum Graph", "checkpoints": [{"q": "For a cylindrical can of fixed volume V, what ratio of height h to radius r minimizes the total surface area and metal cost?", "options": ["h = r", "h = 2r (height equals diameter)", "h = \u03c0r", "h = 4r"], "ans": 1, "exp": "Minimizing TSA = 2\u03c0r\u00b2 + 2V/r leads to the condition h = 2r, meaning the optimal can has height equal to its diameter.", "explanation": "Minimizing TSA = 2\u03c0r\u00b2 + 2V/r leads to the condition h = 2r, meaning the optimal can has height equal to its diameter."}, {"q": "A toy is in the shape of a cone mounted on a hemisphere of the same radius r = 3.5 cm. In computing its total surface area, which surfaces are included?", "options": ["Cone TSA + Hemisphere TSA", "Cone CSA + Hemisphere CSA (excluding the hidden circular joint)", "Cone Volume + Hemisphere Volume", "Cone CSA only"], "ans": 1, "exp": "Because the circular base is fused internally inside the toy, the exterior total surface area is the sum of the curved surface areas: CSA_cone + CSA_hemisphere = \u03c0rl + 2\u03c0r\u00b2.", "explanation": "Because the circular base is fused internally inside the toy, the exterior total surface area is the sum of the curved surface areas: CSA_cone + CSA_hemisphere = \u03c0rl + 2\u03c0r\u00b2."}]}];
+        const QUIZZES = [{"id": 17, "title": "Mastery Challenge I: Cuboids, Cubes & Rectangular Prisms", "badge": "CG-5 \u2022 Questions 1\u201310", "desc": "Test your mastery on cuboid surface areas, lateral wall whitewashing, cubic edge scaling, space diagonals, and interior storage capacities.", "questions": [{"q": "1. What is the total surface area of a box with dimensions length 8 cm, breadth 5 cm, and height 3 cm?", "options": ["79 cm\u00b2", "120 cm\u00b2", "158 cm\u00b2", "180 cm\u00b2"], "ans": 2, "solution": "Step 1: TSA = 2(lb + bh + hl).\nStep 2: TSA = 2(8\u00d75 + 5\u00d73 + 3\u00d78) = 2(40 + 15 + 24) = 2(79).\nStep 3: TSA = 158 cm\u00b2."}, {"q": "2. Find the cost of whitewashing the 4 walls of a room of length 5 m, breadth 4 m, and height 3 m at the rate of \u20b912 per m\u00b2.", "options": ["\u20b9540", "\u20b9648", "\u20b9720", "\u20b9864"], "ans": 1, "solution": "Step 1: Area of 4 walls = LSA = 2h(l + b).\nStep 2: LSA = 2 \u00d7 3 \u00d7 (5 + 4) = 6 \u00d7 9 = 54 m\u00b2.\nStep 3: Cost = 54 \u00d7 \u20b912 = \u20b9648."}, {"q": "3. The volume of a cube is 512 cm\u00b3. What is its total surface area?", "options": ["256 cm\u00b2", "384 cm\u00b2", "448 cm\u00b2", "512 cm\u00b2"], "ans": 1, "solution": "Step 1: V = a\u00b3 = 512 \u21d2 a = 8 cm.\nStep 2: TSA = 6a\u00b2 = 6 \u00d7 8\u00b2 = 6 \u00d7 64 = 384 cm\u00b2."}, {"q": "4. What is the length of the longest rod that can be placed inside a cubical box of edge 10 cm?", "options": ["10 cm", "10\u221a2 cm", "10\u221a3 cm", "20 cm"], "ans": 2, "solution": "Step 1: The longest rod is the space diagonal of the cube.\nStep 2: Diagonal d = a\u221a3 = 10\u221a3 cm (\u2248 17.32 cm)."}, {"q": "5. A cuboidal water tank is 6 m long, 5 m wide, and 4.5 m deep. How many litres of water can it hold?", "options": ["13,500 L", "27,000 L", "135,000 L", "270,000 L"], "ans": 2, "solution": "Step 1: Volume V = l \u00d7 b \u00d7 h = 6 \u00d7 5 \u00d7 4.5 = 135 m\u00b3.\nStep 2: Since 1 m\u00b3 = 1000 litres, Capacity = 135 \u00d7 1000 = 135,000 litres."}, {"q": "6. If the ratio of the edges of two cubes is 2 : 3, what is the ratio of their total surface areas?", "options": ["2 : 3", "4 : 9", "8 : 27", "16 : 81"], "ans": 1, "solution": "Step 1: TSA of a cube = 6a\u00b2.\nStep 2: Ratio of surface areas = (a1 / a2)\u00b2 = (2 / 3)\u00b2 = 4 / 9 = 4 : 9."}, {"q": "7. The lateral surface area of a cube is 256 cm\u00b2. What is the volume of the cube?", "options": ["256 cm\u00b3", "512 cm\u00b3", "768 cm\u00b3", "1024 cm\u00b3"], "ans": 1, "solution": "Step 1: LSA = 4a\u00b2 = 256 \u21d2 a\u00b2 = 64 \u21d2 a = 8 cm.\nStep 2: Volume = a\u00b3 = 8\u00b3 = 512 cm\u00b3."}, {"q": "8. Three metallic cubes of sides 3 cm, 4 cm, and 5 cm are melted to form a single new cube. What is the edge of the new cube?", "options": ["6 cm", "7 cm", "8 cm", "9 cm"], "ans": 0, "solution": "Step 1: Total volume = 3\u00b3 + 4\u00b3 + 5\u00b3 = 27 + 64 + 125 = 216 cm\u00b3.\nStep 2: New cube volume A\u00b3 = 216 \u21d2 A = \u221b216 = 6 cm."}, {"q": "9. A rectangular diesel tanker has dimensions 4 m \u00d7 2.5 m \u00d7 2 m. If diesel costs \u20b990 per litre, what is the total value of diesel when full?", "options": ["\u20b990,000", "\u20b9180,000", "\u20b9900,000", "\u20b91,800,000"], "ans": 3, "solution": "Step 1: Volume = 4 \u00d7 2.5 \u00d7 2 = 20 m\u00b3.\nStep 2: Volume in litres = 20 \u00d7 1000 = 20,000 litres.\nStep 3: Total value = 20,000 \u00d7 \u20b990 = \u20b91,800,000."}, {"q": "10. In a cuboid, if length, breadth, and height are all doubled, its volume increases by a factor of:", "options": ["2", "4", "6", "8"], "ans": 3, "solution": "Step 1: Initial volume V1 = lbh.\nStep 2: New volume V2 = (2l)(2b)(2h) = 8 lbh = 8 V1.\nStep 3: The volume increases by a factor of 8."}]}, {"id": 18, "title": "Mastery Challenge II: Right Circular Cylinders & Hollow Pipes", "badge": "CG-5 \u2022 C-5.1 \u2022 Questions 11\u201320", "desc": "Solve problems on cylinder curved surface areas, unrolling into rectangular sheets, hollow pipes, road roller rotations, and water storage capacities.", "questions": [{"q": "11. The curved surface area of a right circular cylinder of height 14 cm is 88 cm\u00b2. What is the diameter of the base? (Use \u03c0 = 22/7)", "options": ["1 cm", "2 cm", "3 cm", "4 cm"], "ans": 1, "solution": "Step 1: CSA = 2\u03c0rh = 88 cm\u00b2.\nStep 2: 2 \u00d7 (22/7) \u00d7 r \u00d7 14 = 88 \u21d2 88 r = 88 \u21d2 r = 1 cm.\nStep 3: Diameter d = 2r = 2 \u00d7 1 = 2 cm."}, {"q": "12. A cylindrical road roller of length 1.2 m and diameter 84 cm takes 500 complete revolutions to level a playground. What is the area of the playground? (Use \u03c0 = 22/7)", "options": ["1267.2 m\u00b2", "1584 m\u00b2", "1840 m\u00b2", "2112 m\u00b2"], "ans": 1, "solution": "Step 1: Radius r = 84 / 2 = 42 cm = 0.42 m; Height (length) h = 1.2 m.\nStep 2: Area leveled in 1 rev = CSA = 2\u03c0rh = 2 \u00d7 (22/7) \u00d7 0.42 \u00d7 1.2 = 2 \u00d7 22 \u00d7 0.06 \u00d7 1.2 = 3.168 m\u00b2.\nStep 3: Total area in 500 revs = 500 \u00d7 3.168 = 1584 m\u00b2."}, {"q": "13. What is the total surface area of a closed cylindrical petrol storage tank of diameter 4.2 m and height 4.5 m? (Use \u03c0 = 22/7)", "options": ["72.6 m\u00b2", "87.12 m\u00b2", "98.4 m\u00b2", "105.6 m\u00b2"], "ans": 1, "solution": "Step 1: Radius r = 4.2 / 2 = 2.1 m; Height h = 4.5 m.\nStep 2: TSA = 2\u03c0r(h + r) = 2 \u00d7 (22/7) \u00d7 2.1 \u00d7 (4.5 + 2.1) = 2 \u00d7 22 \u00d7 0.3 \u00d7 6.6 = 13.2 \u00d7 6.6 = 87.12 m\u00b2."}, {"q": "14. A soft drink is available in a cylindrical can with a circular base of diameter 7 cm and height 10 cm. What is its capacity in ml? (Use \u03c0 = 22/7)", "options": ["285 ml", "350 ml", "385 ml", "425 ml"], "ans": 2, "solution": "Step 1: Radius r = 3.5 cm = 7/2 cm; Height h = 10 cm.\nStep 2: Volume = \u03c0r\u00b2h = (22/7) \u00d7 (7/2) \u00d7 (7/2) \u00d7 10 = (22 \u00d7 7 \u00d7 10) / 4 = 1540 / 4 = 385 cm\u00b3.\nStep 3: Since 1 cm\u00b3 = 1 ml, capacity = 385 ml."}, {"q": "15. A hollow garden roller of length 2 m has an outer radius of 28 cm and thickness 7 cm. What is the volume of iron used? (Use \u03c0 = 22/7)", "options": ["1.1 m\u00b3", "0.2156 m\u00b3", "0.452 m\u00b3", "0.684 m\u00b3"], "ans": 1, "solution": "Step 1: Outer radius R = 28 cm = 0.28 m; Inner radius r = 28 - 7 = 21 cm = 0.21 m; Height h = 2 m.\nStep 2: V = \u03c0(R\u00b2 - r\u00b2)h = (22/7) \u00d7 (0.28\u00b2 - 0.21\u00b2) \u00d7 2 = (22/7) \u00d7 (0.0784 - 0.0441) \u00d7 2 = (22/7) \u00d7 0.0343 \u00d7 2 = 22 \u00d7 0.0049 \u00d7 2 = 0.2156 m\u00b3."}, {"q": "16. If the radius of a cylinder is doubled and its height is halved, what happens to its volume?", "options": ["It is halved", "It remains unchanged", "It is doubled", "It is quadrupled"], "ans": 2, "solution": "Step 1: Initial volume V1 = \u03c0 r\u00b2 h.\nStep 2: New volume V2 = \u03c0 (2r)\u00b2 (h/2) = \u03c0 (4r\u00b2) (h/2) = 2 \u03c0 r\u00b2 h = 2 V1.\nStep 3: The volume is doubled."}, {"q": "17. A rectangular sheet of paper 44 cm \u00d7 18 cm is rolled along its length to form a cylinder. What is the volume of the cylinder? (Use \u03c0 = 22/7)", "options": ["1386 cm\u00b3", "2772 cm\u00b3", "3696 cm\u00b3", "4158 cm\u00b3"], "ans": 1, "solution": "Step 1: Rolling along length means base circumference C = 2\u03c0r = 44 cm \u21d2 r = 7 cm.\nStep 2: Height of cylinder h = 18 cm.\nStep 3: Volume = \u03c0r\u00b2h = (22/7) \u00d7 7\u00b2 \u00d7 18 = 22 \u00d7 7 \u00d7 18 = 154 \u00d7 18 = 2772 cm\u00b3."}, {"q": "18. A well of diameter 3 m is dug 14 m deep. What is the volume of earth taken out? (Use \u03c0 = 22/7)", "options": ["49.5 m\u00b3", "99 m\u00b3", "148.5 m\u00b3", "198 m\u00b3"], "ans": 1, "solution": "Step 1: Radius r = 3/2 = 1.5 m; Depth h = 14 m.\nStep 2: Volume = \u03c0r\u00b2h = (22/7) \u00d7 (3/2) \u00d7 (3/2) \u00d7 14 = (22 \u00d7 9 \u00d7 14) / (7 \u00d7 4) = (22 \u00d7 9 \u00d7 2) / 4 = 198 / 2 = 99 m\u00b3."}, {"q": "19. The ratio of the curved surface area to the total surface area of a right circular cylinder is 1 : 2. If its total surface area is 616 cm\u00b2, what is its volume? (Use \u03c0 = 22/7)", "options": ["539 cm\u00b3", "1078 cm\u00b3", "1617 cm\u00b3", "2156 cm\u00b3"], "ans": 1, "solution": "Step 1: CSA / TSA = 2\u03c0rh / [2\u03c0r(h + r)] = h / (h + r) = 1/2 \u21d2 2h = h + r \u21d2 h = r.\nStep 2: TSA = 2\u03c0r(2r) = 4\u03c0r\u00b2 = 616 \u21d2 4 \u00d7 (22/7) \u00d7 r\u00b2 = 616 \u21d2 r\u00b2 = 49 \u21d2 r = 7 cm, h = 7 cm.\nStep 3: Volume = \u03c0r\u00b2h = (22/7) \u00d7 7\u00b2 \u00d7 7 = 22 \u00d7 49 = 1078 cm\u00b3."}, {"q": "20. How many cubic metres of water can a cylindrical pipe of internal diameter 20 cm and length 70 m hold? (Use \u03c0 = 22/7)", "options": ["1.1 m\u00b3", "2.2 m\u00b3", "4.4 m\u00b3", "7.7 m\u00b3"], "ans": 1, "solution": "Step 1: Radius r = 10 cm = 0.1 m; Length h = 70 m.\nStep 2: Volume = \u03c0r\u00b2h = (22/7) \u00d7 (0.1)\u00b2 \u00d7 70 = (22/7) \u00d7 0.01 \u00d7 70 = 22 \u00d7 0.1 = 2.2 m\u00b3."}]}, {"id": 19, "title": "Mastery Challenge III: Right Circular Cones & Pyramids", "badge": "CG-5 \u2022 C-5.1 \u2022 Questions 21\u201330", "desc": "Master calculations of slant heights, conical canvas tents, the 3-to-1 cylinder pouring relationship, and square pyramid volumes and lateral surface areas.", "questions": [{"q": "21. What is the curved surface area of a cone of base diameter 14 cm and slant height 25 cm? (Use \u03c0 = 22/7)", "options": ["275 cm\u00b2", "550 cm\u00b2", "616 cm\u00b2", "1100 cm\u00b2"], "ans": 1, "solution": "Step 1: Radius r = 14 / 2 = 7 cm; Slant height l = 25 cm.\nStep 2: CSA = \u03c0rl = (22/7) \u00d7 7 \u00d7 25 = 22 \u00d7 25 = 550 cm\u00b2."}, {"q": "22. The volume of a right circular cone of height 9 cm is 48\u03c0 cm\u00b3. What is the diameter of its base?", "options": ["4 cm", "6 cm", "8 cm", "12 cm"], "ans": 2, "solution": "Step 1: V = (1/3)\u03c0r\u00b2h = 48\u03c0 \u21d2 (1/3) r\u00b2 (9) = 48 \u21d2 3 r\u00b2 = 48 \u21d2 r\u00b2 = 16 \u21d2 r = 4 cm.\nStep 2: Base diameter d = 2r = 2 \u00d7 4 = 8 cm."}, {"q": "23. A conical tent is 10 m high and the radius of its base is 24 m. Find the cost of canvas required to make the tent at \u20b970 per m\u00b2. (Use \u03c0 = 22/7)", "options": ["\u20b968,400", "\u20b9112,640", "\u20b9137,280", "\u20b9154,000"], "ans": 2, "solution": "Step 1: Slant height l = \u221a(r\u00b2 + h\u00b2) = \u221a(24\u00b2 + 10\u00b2) = \u221a(576 + 100) = \u221a676 = 26 m.\nStep 2: Canvas needed = CSA = \u03c0rl = (22/7) \u00d7 24 \u00d7 26 = 13728 / 7 m\u00b2.\nStep 3: Cost = (13728 / 7) \u00d7 \u20b970 = 13728 \u00d7 10 = \u20b9137,280."}, {"q": "24. A heap of wheat is in the form of a cone whose diameter is 10.5 m and height is 3 m. What is its volume? (Use \u03c0 = 22/7)", "options": ["43.31 m\u00b3", "86.625 m\u00b3", "129.94 m\u00b3", "173.25 m\u00b3"], "ans": 1, "solution": "Step 1: Radius r = 10.5 / 2 = 5.25 m = 21/4 m; Height h = 3 m.\nStep 2: Volume = (1/3)\u03c0r\u00b2h = (1/3) \u00d7 (22/7) \u00d7 (21/4) \u00d7 (21/4) \u00d7 3 = (22/7) \u00d7 (21/4) \u00d7 (21/4) = (22 \u00d7 3 \u00d7 21) / 16 = 1386 / 16 = 86.625 m\u00b3."}, {"q": "25. When the curved surface of a cone of radius r and slant height l is unrolled into a flat sector, what is the radius of the resulting sector?", "options": ["r", "h", "l (slant height)", "r + h"], "ans": 2, "solution": "Step 1: The cone is sliced along its slant edge l.\nStep 2: The straight edges that formed the slant height now form the radius of the unrolled sector, which is l."}, {"q": "26. What is the volume of a regular square pyramid of base edge 6 cm and vertical height 10 cm?", "options": ["60 cm\u00b3", "120 cm\u00b3", "180 cm\u00b3", "360 cm\u00b3"], "ans": 1, "solution": "Step 1: Base area B = a\u00b2 = 6\u00b2 = 36 cm\u00b2.\nStep 2: Volume = (1/3) B h = (1/3) \u00d7 36 \u00d7 10 = 12 \u00d7 10 = 120 cm\u00b3."}, {"q": "27. In a regular square pyramid, the base edge is 16 m and the slant height is 17 m. What is its vertical height h?", "options": ["12 m", "15 m", "18 m", "20 m"], "ans": 1, "solution": "Step 1: The right triangle inside has hypotenuse l = 17 m and base leg = a/2 = 8 m.\nStep 2: Vertical height h = \u221a(l\u00b2 - (a/2)\u00b2) = \u221a(17\u00b2 - 8\u00b2) = \u221a(289 - 64) = \u221a225 = 15 m."}, {"q": "28. If a solid cube of side a is divided into 6 congruent pyramids meeting at the center of the cube, what is the height of each pyramid?", "options": ["a", "a / 2", "a / 3", "a / \u221a2"], "ans": 1, "solution": "Step 1: The apex of each pyramid is at the center of the cube.\nStep 2: The distance from the center of the cube to any face is half the side length: h = a / 2."}, {"q": "29. If the radius of the base of a cone is doubled while keeping its slant height constant, its curved surface area:", "options": ["Is halved", "Remains unchanged", "Is doubled", "Is quadrupled"], "ans": 2, "solution": "Step 1: CSA = \u03c0 r l.\nStep 2: If r becomes 2r, New CSA = \u03c0 (2r) l = 2 (\u03c0 r l) = 2 CSA.\nStep 3: The curved surface area is doubled."}, {"q": "30. A cone, a hemisphere, and a cylinder stand on equal bases and have the same height. What is the ratio of their volumes?", "options": ["1 : 2 : 3", "1 : 3 : 2", "2 : 3 : 1", "3 : 2 : 1"], "ans": 0, "solution": "Step 1: Let base radius be r. For hemisphere to have height r, the cone and cylinder also have height h = r.\nStep 2: V_cone = (1/3)\u03c0r\u00b2(r) = (1/3)\u03c0r\u00b3.\nStep 3: V_hemi = (2/3)\u03c0r\u00b3.\nStep 4: V_cyl = \u03c0r\u00b2(r) = \u03c0r\u00b3.\nStep 5: Ratio = 1/3 : 2/3 : 1 = 1 : 2 : 3."}]}, {"id": 20, "title": "Mastery Challenge IV: Spheres, Hemispheres, Recasting & Scaling", "badge": "CG-5 \u2022 CG-9 \u2022 Questions 31\u201340", "desc": "Tackle challenging problems on sphere and hemisphere surface areas, Archimedes' cylinder theorem, volume conservation during melting, and the Square-Cube Law.", "questions": [{"q": "31. The surface area of a sphere is 154 cm\u00b2. What is the diameter of the sphere? (Use \u03c0 = 22/7)", "options": ["3.5 cm", "7 cm", "10.5 cm", "14 cm"], "ans": 1, "solution": "Step 1: TSA = 4\u03c0r\u00b2 = 154 \u21d2 4 \u00d7 (22/7) \u00d7 r\u00b2 = 154.\nStep 2: r\u00b2 = (154 \u00d7 7) / 88 = (7 \u00d7 7) / 4 = 49 / 4 \u21d2 r = 7 / 2 = 3.5 cm.\nStep 3: Diameter d = 2r = 2 \u00d7 3.5 = 7 cm."}, {"q": "32. What is the total surface area of a solid hemisphere of radius 10 cm? (Use \u03c0 = 3.14)", "options": ["628 cm\u00b2", "942 cm\u00b2", "1256 cm\u00b2", "1570 cm\u00b2"], "ans": 1, "solution": "Step 1: Solid hemisphere TSA = 3\u03c0r\u00b2.\nStep 2: TSA = 3 \u00d7 3.14 \u00d7 10\u00b2 = 3 \u00d7 3.14 \u00d7 100 = 942 cm\u00b2."}, {"q": "33. A sphere, a cylinder of height 2r, and a cone of height 2r all have the same radius r. What is the ratio of their volumes?", "options": ["1 : 2 : 3", "2 : 3 : 1", "Cone : Sphere : Cylinder = 1 : 2 : 3", "Cone : Sphere : Cylinder = 2 : 1 : 3"], "ans": 2, "solution": "Step 1: V_cone = (1/3)\u03c0r\u00b2(2r) = (2/3)\u03c0r\u00b3.\nStep 2: V_sphere = (4/3)\u03c0r\u00b3.\nStep 3: V_cylinder = \u03c0r\u00b2(2r) = 2\u03c0r\u00b3 = (6/3)\u03c0r\u00b3.\nStep 4: Dividing by (2/3)\u03c0r\u00b3 yields ratio 1 : 2 : 3."}, {"q": "34. A metallic sphere of radius 10.5 cm is melted and recast into small cones, each of radius 3.5 cm and height 3 cm. How many cones are obtained?", "options": ["63", "84", "105", "126"], "ans": 3, "solution": "Step 1: Volume of sphere = (4/3) \u00d7 \u03c0 \u00d7 (10.5)\u00b3 = (4/3) \u00d7 \u03c0 \u00d7 (21/2)\u00b3 = (4/3) \u00d7 \u03c0 \u00d7 9261 / 8 = 3087 \u03c0 / 2.\nStep 2: Volume of one cone = (1/3) \u00d7 \u03c0 \u00d7 (3.5)\u00b2 \u00d7 3 = \u03c0 \u00d7 (7/2)\u00b2 = 49 \u03c0 / 4.\nStep 3: Number of cones = (3087 \u03c0 / 2) / (49 \u03c0 / 4) = (3087 / 2) \u00d7 (4 / 49) = 63 \u00d7 2 = 126 cones."}, {"q": "35. If the surface area of a sphere is 4\u03c0r\u00b2, what is the area of the shadow it casts on a screen when illuminated by parallel light rays?", "options": ["\u03c0r\u00b2", "2\u03c0r\u00b2", "3\u03c0r\u00b2", "4\u03c0r\u00b2"], "ans": 0, "solution": "Step 1: Parallel light rays project the maximum cross-sectional silhouette of the sphere.\nStep 2: The maximum cross-section of a sphere is its Great Circle.\nStep 3: Area of great circle = \u03c0r\u00b2 (exactly one-quarter of the sphere's total surface area)."}, {"q": "36. A hemispherical dome of a building needs to be painted outside. If the circumference of the base of the dome is 17.6 m, what is the cost of painting it at \u20b95 per m\u00b2? (Use \u03c0 = 22/7)", "options": ["\u20b9123.20", "\u20b9246.40", "\u20b9492.80", "\u20b9985.60"], "ans": 1, "solution": "Step 1: Base circumference = 2\u03c0r = 17.6 m \u21d2 2 \u00d7 (22/7) \u00d7 r = 17.6 \u21d2 r = (17.6 \u00d7 7) / 44 = 2.8 m.\nStep 2: Exterior area to paint = CSA = 2\u03c0r\u00b2 = 2 \u00d7 (22/7) \u00d7 (2.8)\u00b2 = 2 \u00d7 (22/7) \u00d7 7.84 = 2 \u00d7 22 \u00d7 1.12 = 49.28 m\u00b2.\nStep 3: Cost = 49.28 \u00d7 \u20b95 = \u20b9246.40."}, {"q": "37. According to Galileo's Square-Cube Law, if an animal is scaled up by a factor of 4 in all linear dimensions, its weight increases by how many times?", "options": ["4 times", "8 times", "16 times", "64 times"], "ans": 3, "solution": "Step 1: Weight is proportional to volume (mass = density \u00d7 volume).\nStep 2: Under linear scaling factor k = 4, volume scales by k\u00b3 = 4\u00b3 = 64 times.\nStep 3: Its weight increases by 64 times."}, {"q": "38. For an industrial cylindrical beverage can of fixed volume V, the surface area and manufacturing cost are minimized when:", "options": ["h = r", "h = 2r (height equals diameter)", "h = 3r", "h = 4r"], "ans": 1, "solution": "Step 1: TSA = 2\u03c0r\u00b2 + 2V/r.\nStep 2: Setting derivative d(TSA)/dr = 4\u03c0r - 2V/r\u00b2 = 0 gives 2V = 4\u03c0r\u00b3.\nStep 3: Since V = \u03c0r\u00b2h, 2\u03c0r\u00b2h = 4\u03c0r\u00b3 \u21d2 h = 2r (height equals diameter)."}, {"q": "39. 27 solid iron spheres, each of radius r and surface area S, are melted to form a single large sphere of surface area S'. What is the ratio S' : S?", "options": ["3 : 1", "6 : 1", "9 : 1", "27 : 1"], "ans": 2, "solution": "Step 1: Volume of large sphere = 27 \u00d7 (4/3)\u03c0r\u00b3 = (4/3)\u03c0(3r)\u00b3 \u21d2 radius R = 3r.\nStep 2: Surface area S = 4\u03c0r\u00b2; S' = 4\u03c0R\u00b2 = 4\u03c0(3r)\u00b2 = 9(4\u03c0r\u00b2) = 9 S.\nStep 3: Ratio S' : S = 9 : 1."}, {"q": "40. A solid sphere of radius 6 cm is melted and drawn into a wire of uniform diameter 0.2 cm. What is the length of the wire in meters?", "options": ["144 m", "288 m", "432 m", "576 m"], "ans": 1, "solution": "Step 1: Radius of sphere R = 6 cm. Volume V = (4/3)\u03c0R\u00b3 = (4/3)\u03c0(216) = 288\u03c0 cm\u00b3.\nStep 2: Radius of wire r = 0.2 / 2 = 0.1 cm = 1/10 cm.\nStep 3: Wire volume = \u03c0r\u00b2L = \u03c0(0.01)L = 288\u03c0 \u21d2 0.01 L = 288 \u21d2 L = 28,800 cm = 288 m."}]}];
+
+        let currentSlideIndex = 0; // 0 to 19 (total 20 slides)
+        let speechSynth = window.speechSynthesis;
+        let currentUtterance = null;
+        let isSpeaking = false;
+        let speechRate = 1.0;
+
+        // Fallback Web Audio Synthesizer if Web Speech is unavailable
+        let audioCtx = null;
+        function playTone(freq, duration, type='sine') {
+            try {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {
+                console.warn("Audio Context fallback unavailable:", e);
+            }
+        }
+
+        // Initialize Slide Picker Dropdown
+        function initSlidePicker() {
+            const grid = document.getElementById('slideGrid');
+            grid.innerHTML = '';
+            for (let i = 0; i < 20; i++) {
+                const btn = document.createElement('button');
+                btn.className = `p-2 rounded-lg text-xs font-bold transition flex flex-col items-center justify-center ${
+                    i === currentSlideIndex
+                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/40 ring-2 ring-indigo-400'
+                    : 'bg-slate-800/90 text-slate-300 hover:bg-slate-700'
+                }`;
+                btn.innerHTML = `<span>${i + 1}</span><span class="text-[9px] font-normal opacity-70">${i < 16 ? 'Lab' : 'Quiz'}</span>`;
+                btn.onclick = () => {
+                    goToSlide(i);
+                    document.getElementById('slidePickerMenu').classList.add('hidden');
+                };
+                grid.appendChild(btn);
+            }
+        }
+
+        document.getElementById('slidePickerBtn').addEventListener('click', () => {
+            const menu = document.getElementById('slidePickerMenu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Speech Synthesis Controls
+        function speakCurrentSlideNarration() {
+            if (speechSynth.speaking) {
+                speechSynth.cancel();
+            }
+
+            let text = "";
+            if (currentSlideIndex < 16) {
+                text = SLIDES[currentSlideIndex].narration;
+            } else {
+                const quiz = QUIZZES[currentSlideIndex - 16];
+                text = `Welcome to ${quiz.title}. ${quiz.desc} Answer all ten questions and click View Solution for full steps.`;
+            }
+
+            currentUtterance = new SpeechSynthesisUtterance(text);
+            currentUtterance.rate = speechRate;
+            currentUtterance.lang = 'en-US';
+
+            const speakingPulse = document.getElementById('speakingPulse');
+            const speakingDot = document.getElementById('speakingDot');
+            const avatar = document.getElementById('avatarContainer');
+            const status = document.getElementById('speechStatus');
+            const btnLabel = document.getElementById('speechBtnLabel');
+
+            currentUtterance.onstart = () => {
+                isSpeaking = true;
+                speakingPulse.classList.remove('hidden');
+                speakingDot.classList.remove('hidden');
+                avatar.classList.add('talking');
+                status.textContent = "Speaking";
+                status.className = "text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
+                btnLabel.textContent = "Stop Explaining";
+            };
+
+            currentUtterance.onend = () => {
+                isSpeaking = false;
+                speakingPulse.classList.add('hidden');
+                speakingDot.classList.add('hidden');
+                avatar.classList.remove('talking');
+                status.textContent = "Idle";
+                status.className = "text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400";
+                btnLabel.textContent = "Explain Slide";
+            };
+
+            currentUtterance.onerror = () => {
+                isSpeaking = false;
+                speakingPulse.classList.add('hidden');
+                speakingDot.classList.add('hidden');
+                avatar.classList.remove('talking');
+                status.textContent = "Audio Fallback";
+                status.className = "text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300";
+                btnLabel.textContent = "Explain Slide";
+                playTone(440, 0.3);
+            };
+
+            speechSynth.speak(currentUtterance);
+        }
+
+        document.getElementById('toggleSpeechBtn').addEventListener('click', () => {
+            if (isSpeaking) {
+                speechSynth.cancel();
+                isSpeaking = false;
+                document.getElementById('speakingPulse').classList.add('hidden');
+                document.getElementById('speakingDot').classList.add('hidden');
+                document.getElementById('avatarContainer').classList.remove('talking');
+                document.getElementById('speechStatus').textContent = "Stopped";
+                document.getElementById('speechBtnLabel').textContent = "Explain Slide";
+            } else {
+                speakCurrentSlideNarration();
+            }
+        });
+
+        document.getElementById('pauseSpeechBtn').addEventListener('click', () => {
+            if (speechSynth.speaking) {
+                if (speechSynth.paused) {
+                    speechSynth.resume();
+                    document.getElementById('speechStatus').textContent = "Speaking";
+                } else {
+                    speechSynth.pause();
+                    document.getElementById('speechStatus').textContent = "Paused";
+                }
+            }
+        });
+
+        document.getElementById('stopSpeechBtn').addEventListener('click', () => {
+            if (speechSynth.speaking) {
+                speechSynth.cancel();
+                isSpeaking = false;
+                document.getElementById('speakingPulse').classList.add('hidden');
+                document.getElementById('speakingDot').classList.add('hidden');
+                document.getElementById('avatarContainer').classList.remove('talking');
+                document.getElementById('speechStatus').textContent = "Stopped";
+                document.getElementById('speechBtnLabel').textContent = "Explain Slide";
+            }
+        });
+
+        document.getElementById('speechSpeedBtn').addEventListener('click', () => {
+            if (speechRate === 1.0) speechRate = 1.2;
+            else if (speechRate === 1.2) speechRate = 0.8;
+            else speechRate = 1.0;
+            document.getElementById('speechSpeedBtn').textContent = speechRate.toFixed(1) + 'x';
+            if (isSpeaking) {
+                speechSynth.cancel();
+                speakCurrentSlideNarration();
+            }
+        });
+
+        // Navigation Controllers
+        function goToSlide(index) {
+            if (index < 0 || index >= 20) return;
+            if (speechSynth.speaking) speechSynth.cancel();
+
+            currentSlideIndex = index;
+            renderCurrentSlide();
+            initSlidePicker();
+        }
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            if (currentSlideIndex > 0) goToSlide(currentSlideIndex - 1);
+        });
+
+        const nextBtn = document.getElementById('nextBtn');
+        nextBtn.addEventListener('click', () => {
+            if (currentSlideIndex < 19) goToSlide(currentSlideIndex + 1);
+        });
+
+        // Core Render Function
+        function renderCurrentSlide() {
+            // Update Progress Bar & Counters
+            const percent = ((currentSlideIndex + 1) / 20) * 100;
+            document.getElementById('progressBar').style.width = `${percent}%`;
+            document.getElementById('slideIndicatorText').textContent = `Slide ${currentSlideIndex + 1} of 20`;
+            document.getElementById('currentSlideBtnNum').textContent = currentSlideIndex + 1;
+
+            document.getElementById('prevBtn').disabled = (currentSlideIndex === 0);
+
+            // Handle Slide 20 Specific Requirement
+            const lastSlideNotice = document.getElementById('lastSlideNotice');
+            if (currentSlideIndex === 19) {
+                lastSlideNotice.classList.remove('hidden');
+                nextBtn.style.display = 'none';
+            } else {
+                lastSlideNotice.classList.add('hidden');
+                nextBtn.style.display = 'flex';
+                nextBtn.disabled = false;
+            }
+
+            const contentContainer = document.getElementById('contentSlideContainer');
+            const quizContainer = document.getElementById('quizSlideContainer');
+
+            if (currentSlideIndex < 16) {
+                // Content Slide Mode
+                contentContainer.classList.remove('hidden');
+                quizContainer.classList.add('hidden');
+
+                const slide = SLIDES[currentSlideIndex];
+                document.getElementById('slideCategoryText').textContent = slide.category;
+                document.getElementById('slideBadge').textContent = slide.badge;
+                document.getElementById('slideTitle').textContent = slide.title;
+                document.getElementById('slideSubtitle').textContent = slide.subtitle;
+                document.getElementById('simulatorHeading').textContent = slide.sim_title;
+                document.getElementById('slideSummaryText').textContent = slide.summary;
+
+                // Render Key Points
+                const keyPointsList = document.getElementById('slideKeyPointsList');
+                keyPointsList.innerHTML = slide.key_points.map(pt => `
+                    <li class="flex items-start gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0"></span>
+                        <span>${pt}</span>
+                    </li>
+                `).join('');
+
+                // Render Checkpoints
+                renderCheckpoints(slide.checkpoints);
+
+                // Render Bespoke Interactive Simulator
+                renderSimulator(currentSlideIndex);
+
+            } else {
+                // Quiz Slide Mode (Slides 17 to 20)
+                contentContainer.classList.add('hidden');
+                quizContainer.classList.remove('hidden');
+
+                const quiz = QUIZZES[currentSlideIndex - 16];
+                document.getElementById('slideCategoryText').textContent = "Mastery Assessment";
+                document.getElementById('slideBadge').textContent = quiz.badge;
+                document.getElementById('slideTitle').textContent = quiz.title;
+                document.getElementById('slideSubtitle').textContent = `10 Dedicated Questions • Questions ${ (currentSlideIndex - 16) * 10 + 1 } to ${ (currentSlideIndex - 16 + 1) * 10 }`;
+
+                document.getElementById('quizBadge').textContent = quiz.badge;
+                document.getElementById('quizTitle').textContent = quiz.title;
+                document.getElementById('quizDesc').textContent = quiz.desc;
+
+                renderQuizQuestions(quiz.questions);
+            }
+
+            // Re-render KaTeX math formulas across updated elements
+            if (window.renderMathInElement) {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '$', right: '$', display: false}
+                    ]
+                });
+            }
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+
+        // Render In-Slide Checkpoints
+        function renderCheckpoints(checkpoints) {
+            const container = document.getElementById('checkpointsContainer');
+            container.innerHTML = checkpoints.map((cp, idx) => `
+                <div class="glass-card p-3 rounded-xl border border-slate-700/60 flex flex-col gap-2">
+                    <p class="text-xs font-semibold text-slate-200">
+                        <span class="text-indigo-400 font-bold">Q${idx + 1}:</span> ${cp.q}
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                        ${cp.options.map((opt, oIdx) => `
+                            <button onclick="window.checkAnswer(this, ${currentSlideIndex}, ${idx}, ${oIdx}, ${cp.ans})"
+                                    class="text-left px-2.5 py-1.5 rounded-lg text-[11px] font-medium bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/80 transition flex items-center justify-between">
+                                <span>${String.fromCharCode(65 + oIdx)}. ${opt}</span>
+                                <span class="feedback-icon hidden"></span>
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div id="cp-exp-${idx}" class="hidden p-2 rounded-lg text-[11px] bg-slate-900/90 border border-slate-700 text-slate-300">
+                        <span class="font-bold text-emerald-400">Explanation:</span> ${cp.explanation}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        window.checkAnswer = function(btn, slideIdx, cpIdx, selectedIdx, correctIdx) {
+            const parent = btn.parentElement;
+            const buttons = parent.querySelectorAll('button');
+            buttons.forEach(b => b.disabled = true);
+
+            const expBox = document.getElementById(`cp-exp-${cpIdx}`);
+            if (expBox) expBox.classList.remove('hidden');
+
+            if (selectedIdx === correctIdx) {
+                btn.className = "text-left px-2.5 py-1.5 rounded-lg text-[11px] font-bold bg-emerald-600 text-white border border-emerald-400 shadow-md shadow-emerald-600/30 flex items-center justify-between";
+                playTone(587.33, 0.2);
+            } else {
+                btn.className = "text-left px-2.5 py-1.5 rounded-lg text-[11px] font-bold bg-rose-600 text-white border border-rose-400 flex items-center justify-between";
+                buttons[correctIdx].className = "text-left px-2.5 py-1.5 rounded-lg text-[11px] font-bold bg-emerald-600/80 text-white border border-emerald-400 flex items-center justify-between";
+                playTone(220, 0.25, 'sawtooth');
+            }
+        };
+
+        // Render Quiz Questions (Slides 17–20)
+        let quizAnswersState = {};
+
+        function renderQuizQuestions(questions) {
+            const list = document.getElementById('quizQuestionsList');
+            const quizKey = `quiz_${currentSlideIndex}`;
+            if (!quizAnswersState[quizKey]) quizAnswersState[quizKey] = Array(10).fill(null);
+
+            list.innerHTML = questions.map((qObj, idx) => `
+                <div class="glass-panel p-4 rounded-2xl border border-slate-800 flex flex-col justify-between gap-3">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-bold">Question ${idx + 1}</span>
+                            <button onclick="window.openSolutionModal(${idx})" class="text-[11px] font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1 transition">
+                                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                                <span>View Solution</span>
+                            </button>
+                        </div>
+                        <p class="text-xs sm:text-sm font-semibold text-slate-100">${qObj.q}</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1">
+                        ${qObj.options.map((opt, oIdx) => `
+                            <button onclick="window.selectQuizOption(this, ${idx}, ${oIdx}, ${qObj.ans})"
+                                    class="text-left p-2.5 rounded-xl text-xs font-medium bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
+                                <span class="font-bold text-indigo-400 mr-1">${String.fromCharCode(65 + oIdx)}.</span> ${opt}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+
+            updateQuizScoreDisplay();
+        }
+
+        window.selectQuizOption = function(btn, qIdx, selectedIdx, correctIdx) {
+            const parent = btn.parentElement;
+            const buttons = parent.querySelectorAll('button');
+            buttons.forEach(b => b.disabled = true);
+
+            const quizKey = `quiz_${currentSlideIndex}`;
+            quizAnswersState[quizKey][qIdx] = (selectedIdx === correctIdx);
+
+            if (selectedIdx === correctIdx) {
+                btn.className = "text-left p-2.5 rounded-xl text-xs font-bold bg-emerald-600 text-white border border-emerald-400 shadow-lg shadow-emerald-600/30";
+                playTone(523.25, 0.2);
+            } else {
+                btn.className = "text-left p-2.5 rounded-xl text-xs font-bold bg-rose-600 text-white border border-rose-400";
+                buttons[correctIdx].className = "text-left p-2.5 rounded-xl text-xs font-bold bg-emerald-600/80 text-white border border-emerald-400";
+                playTone(220, 0.3, 'sawtooth');
+            }
+
+            updateQuizScoreDisplay();
+        };
+
+        function updateQuizScoreDisplay() {
+            const quizKey = `quiz_${currentSlideIndex}`;
+            const state = quizAnswersState[quizKey] || [];
+            const correctCount = state.filter(s => s === true).length;
+            const scoreDisplay = document.getElementById('quizScoreText');
+            if (scoreDisplay) {
+                scoreDisplay.textContent = `${correctCount} / 10`;
+            }
+        }
+
+        window.openSolutionModal = function(qIdx) {
+            const quiz = QUIZZES[currentSlideIndex - 16];
+            const qObj = quiz.questions[qIdx];
+            document.getElementById('modalQuestionText').textContent = qObj.q;
+            document.getElementById('modalSolutionText').textContent = qObj.solution;
+            document.getElementById('solutionModal').classList.remove('hidden');
+        };
+
+        window.closeSolutionModal = function() {
+            document.getElementById('solutionModal').classList.add('hidden');
+        };
+
+        // 16 Bespoke Interactive SVG Simulators
+        function renderSimulator(slideIndex) {
+            const vp = document.getElementById('simulatorViewport');
+            vp.innerHTML = '';
+
+            switch(slideIndex) {
+                case 0: renderSim1(vp); break;
+                case 1: renderSim2(vp); break;
+                case 2: renderSim3(vp); break;
+                case 3: renderSim4(vp); break;
+                case 4: renderSim5(vp); break;
+                case 5: renderSim6(vp); break;
+                case 6: renderSim7(vp); break;
+                case 7: renderSim8(vp); break;
+                case 8: renderSim9(vp); break;
+                case 9: renderSim10(vp); break;
+                case 10: renderSim11(vp); break;
+                case 11: renderSim12(vp); break;
+                case 12: renderSim13(vp); break;
+                case 13: renderSim14(vp); break;
+                case 14: renderSim15(vp); break;
+                case 15: renderSim16(vp); break;
+                default: vp.innerHTML = `<div class="p-6 text-center text-slate-400">Simulator ready for Slide ${slideIndex + 1}</div>`;
+            }
+
+            if (window.lucide) lucide.createIcons();
+        }
+
+        // Sim 1: 3D Cuboid Unfolder to 2D Net & Volume Unit Cube Meter
+        function renderSim1(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">l:</label>
+                            <input type="range" id="sim1_l" min="5" max="10" value="8" class="w-16 accent-indigo-500">
+                            <label class="text-slate-300 font-semibold ml-2">b:</label>
+                            <input type="range" id="sim1_b" min="3" max="8" value="5" class="w-16 accent-emerald-500">
+                            <label class="text-slate-300 font-semibold ml-2">h:</label>
+                            <input type="range" id="sim1_h" min="2" max="6" value="4" class="w-16 accent-amber-500">
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Unfold Net:</label>
+                            <input type="range" id="sim1_unfold" min="0" max="100" value="0" class="w-24 accent-pink-500">
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim1_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim1_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-indigo-950/40 border border-indigo-500/40 text-indigo-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            const lS = document.getElementById('sim1_l');
+            const bS = document.getElementById('sim1_b');
+            const hS = document.getElementById('sim1_h');
+            const uS = document.getElementById('sim1_unfold');
+            const svg = document.getElementById('sim1_svg');
+            const readout = document.getElementById('sim1_readout');
+
+            function update() {
+                const l = parseFloat(lS.value);
+                const b = parseFloat(bS.value);
+                const h = parseFloat(hS.value);
+                const unfold = parseFloat(uS.value) / 100;
+
+                const tsa = 2 * (l * b + b * h + h * l);
+                const lsa = 2 * h * (l + b);
+                const vol = l * b * h;
+                const diag = Math.sqrt(l * l + b * b + h * h);
+
+                if (unfold === 0) {
+                    // Isometric 3D Box view
+                    const Ox = 260, Oy = 150;
+                    const scale = 14;
+                    const dx = l * scale * 0.866, dy = l * scale * 0.5;
+                    const bdx = -b * scale * 0.866, bdy = b * scale * 0.5;
+                    const hz = h * scale;
+
+                    svg.innerHTML = `
+                        <!-- Front Face -->
+                        <polygon points="${Ox},${Oy} ${Ox + dx},${Oy - dy} ${Ox + dx},${Oy - dy - hz} ${Ox},${Oy - hz}" fill="rgba(99,102,241,0.4)" stroke="#6366f1" stroke-width="2"/>
+                        <!-- Side Face -->
+                        <polygon points="${Ox},${Oy} ${Ox + bdx},${Oy - bdy} ${Ox + bdx},${Oy - bdy - hz} ${Ox},${Oy - hz}" fill="rgba(16,185,129,0.4)" stroke="#10b981" stroke-width="2"/>
+                        <!-- Top Face -->
+                        <polygon points="${Ox},${Oy - hz} ${Ox + dx},${Oy - dy - hz} ${Ox + dx + bdx},${Oy - dy - bdy - hz} ${Ox + bdx},${Oy - bdy - hz}" fill="rgba(245,158,11,0.4)" stroke="#f59e0b" stroke-width="2"/>
+
+                        <!-- Dimension Labels -->
+                        <text x="${Ox + dx/2 + 10}" y="${Oy - dy/2 + 15}" fill="#a5b4fc" font-size="11" font-weight="bold">l = ${l}</text>
+                        <text x="${Ox + bdx/2 - 25}" y="${Oy - bdy/2 + 15}" fill="#6ee7b7" font-size="11" font-weight="bold">b = ${b}</text>
+                        <text x="${Ox - 20}" y="${Oy - hz/2}" fill="#fcd34d" font-size="11" font-weight="bold">h = ${h}</text>
+                    `;
+                } else {
+                    // 2D Net
+                    const scale = 9;
+                    const cx = 300, cy = 125;
+                    const lw = l * scale, bw = b * scale, hw = h * scale;
+
+                    svg.innerHTML = `
+                        <!-- Bottom Face -->
+                        <rect x="${cx - lw/2}" y="${cy - bw/2}" width="${lw}" height="${bw}" fill="rgba(245,158,11,0.3)" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="${cx}" y="${cy + 4}" fill="#fcd34d" font-size="10" font-weight="bold" text-anchor="middle">Base (lb)</text>
+
+                        <!-- Top Face -->
+                        <rect x="${cx - lw/2}" y="${cy - bw/2 - bw - hw}" width="${lw}" height="${bw}" fill="rgba(245,158,11,0.3)" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="${cx}" y="${cy - bw/2 - hw - bw/2 + 4}" fill="#fcd34d" font-size="10" font-weight="bold" text-anchor="middle">Top (lb)</text>
+
+                        <!-- Front/Back Faces -->
+                        <rect x="${cx - lw/2}" y="${cy + bw/2}" width="${lw}" height="${hw}" fill="rgba(99,102,241,0.3)" stroke="#6366f1" stroke-width="2"/>
+                        <rect x="${cx - lw/2}" y="${cy - bw/2 - hw}" width="${lw}" height="${hw}" fill="rgba(99,102,241,0.3)" stroke="#6366f1" stroke-width="2"/>
+
+                        <!-- Left/Right Faces -->
+                        <rect x="${cx - lw/2 - hw}" y="${cy - bw/2}" width="${hw}" height="${bw}" fill="rgba(16,185,129,0.3)" stroke="#10b981" stroke-width="2"/>
+                        <rect x="${cx + lw/2}" y="${cy - bw/2}" width="${hw}" height="${bw}" fill="rgba(16,185,129,0.3)" stroke="#10b981" stroke-width="2"/>
+                    `;
+                }
+
+                readout.innerHTML = `
+                    TSA = 2(lb+bh+hl) = <b>${tsa} cm²</b> | 4 Walls LSA = <b>${lsa} cm²</b> | 
+                    <b>Volume = ${vol} cm³</b> | Space Diagonal = <b>${diag.toFixed(2)} cm</b>
+                `;
+            }
+
+            lS.oninput = update;
+            bS.oninput = update;
+            hS.oninput = update;
+            uS.oninput = update;
+            update();
+        }
+
+        // Sim 2: Cuboid-to-Cube Constraint Lock Morph & Isometric Dissector
+        function renderSim2(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Side a:</label>
+                            <input type="range" id="sim2_a" min="4" max="10" value="6" class="w-28 accent-indigo-500">
+                            <span id="sim2_a_val" class="text-indigo-400 font-bold font-mono">6 cm</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span id="sim2_badge" class="px-2.5 py-0.5 rounded font-bold font-mono text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Special Case: l = b = h = a</span>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim2_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim2_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            const aSlider = document.getElementById('sim2_a');
+            const aVal = document.getElementById('sim2_a_val');
+            const svg = document.getElementById('sim2_svg');
+            const readout = document.getElementById('sim2_readout');
+
+            function update() {
+                const a = parseFloat(aSlider.value);
+                aVal.textContent = `${a} cm`;
+
+                const tsa = 6 * a * a;
+                const lsa = 4 * a * a;
+                const vol = a * a * a;
+                const diag = a * Math.sqrt(3);
+
+                const Ox = 300, Oy = 160;
+                const scale = 14;
+                const d = a * scale * 0.866;
+                const h = a * scale;
+
+                svg.innerHTML = `
+                    <!-- Isometric Cube -->
+                    <polygon points="${Ox},${Oy} ${Ox + d},${Oy - d/2} ${Ox + d},${Oy - d/2 - h} ${Ox},${Oy - h}" fill="rgba(99,102,241,0.35)" stroke="#6366f1" stroke-width="3"/>
+                    <polygon points="${Ox},${Oy} ${Ox - d},${Oy - d/2} ${Ox - d},${Oy - d/2 - h} ${Ox},${Oy - h}" fill="rgba(16,185,129,0.35)" stroke="#10b981" stroke-width="3"/>
+                    <polygon points="${Ox},${Oy - h} ${Ox + d},${Oy - d/2 - h} ${Ox},${Oy - d - h} ${Ox - d},${Oy - d/2 - h}" fill="rgba(245,158,11,0.35)" stroke="#f59e0b" stroke-width="3"/>
+
+                    <text x="${Ox + d/2 + 10}" y="${Oy - d/4 + 15}" fill="#a5b4fc" font-size="11" font-weight="bold">a = ${a}</text>
+                    <text x="${Ox - d/2 - 25}" y="${Oy - d/4 + 15}" fill="#6ee7b7" font-size="11" font-weight="bold">a = ${a}</text>
+                    <text x="${Ox - 25}" y="${Oy - h/2}" fill="#fcd34d" font-size="11" font-weight="bold">a = ${a}</text>
+                `;
+
+                readout.innerHTML = `
+                    TSA = 6a² = <b>${tsa} cm²</b> | LSA = 4a² = <b>${lsa} cm²</b> | 
+                    <b>Volume = a³ = ${vol} cm³</b> | Space Diagonal = a√3 = <b>${diag.toFixed(2)} cm</b>
+                `;
+            }
+
+            aSlider.oninput = update;
+            update();
+        }
+
+        // Sim 3: Cylinder Revolution Generator & Curved Surface Net Unroller
+        function renderSim3(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Radius r:</label>
+                            <input type="range" id="sim3_r" min="20" max="60" value="40" class="w-16 accent-indigo-500">
+                            <label class="text-slate-300 font-semibold ml-2">Height h:</label>
+                            <input type="range" id="sim3_h" min="50" max="110" value="80" class="w-16 accent-emerald-500">
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Unroll Net:</label>
+                            <input type="range" id="sim3_unroll" min="0" max="100" value="0" class="w-24 accent-pink-500">
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim3_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim3_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            const rS = document.getElementById('sim3_r');
+            const hS = document.getElementById('sim3_h');
+            const uS = document.getElementById('sim3_unroll');
+            const svg = document.getElementById('sim3_svg');
+            const readout = document.getElementById('sim3_readout');
+
+            function update() {
+                const r = parseFloat(rS.value);
+                const h = parseFloat(hS.value);
+                const unfold = parseFloat(uS.value) / 100;
+
+                const csa = 2 * Math.PI * r * h;
+                const tsa = 2 * Math.PI * r * (h + r);
+                const vol = Math.PI * r * r * h;
+
+                if (unfold === 0) {
+                    // 3D Cylinder view
+                    const Ox = 300, topY = 70, botY = topY + h;
+                    const ry = r * 0.35;
+
+                    svg.innerHTML = `
+                        <!-- Body -->
+                        <rect x="${Ox - r}" y="${topY}" width="${2 * r}" height="${h}" fill="rgba(99,102,241,0.25)"/>
+                        <line x1="${Ox - r}" y1="${topY}" x2="${Ox - r}" y2="${botY}" stroke="#6366f1" stroke-width="2.5"/>
+                        <line x1="${Ox + r}" y1="${topY}" x2="${Ox + r}" y2="${botY}" stroke="#6366f1" stroke-width="2.5"/>
+
+                        <!-- Bottom Ellipse -->
+                        <ellipse cx="${Ox}" cy="${botY}" rx="${r}" ry="${ry}" fill="rgba(16,185,129,0.3)" stroke="#10b981" stroke-width="2"/>
+                        <!-- Top Ellipse -->
+                        <ellipse cx="${Ox}" cy="${topY}" rx="${r}" ry="${ry}" fill="rgba(16,185,129,0.5)" stroke="#10b981" stroke-width="2.5"/>
+
+                        <!-- Dimension Markers -->
+                        <line x1="${Ox}" y1="${topY}" x2="${Ox + r}" y2="${topY}" stroke="#ffffff" stroke-width="1.5"/>
+                        <text x="${Ox + r/2}" y="${topY - 6}" fill="#ffffff" font-size="10" font-weight="bold">r = ${r}</text>
+                        <line x1="${Ox + r + 15}" y1="${topY}" x2="${Ox + r + 15}" y2="${botY}" stroke="#fcd34d" stroke-width="2"/>
+                        <text x="${Ox + r + 25}" y="${topY + h/2}" fill="#fcd34d" font-size="11" font-weight="bold">h = ${h}</text>
+                    `;
+                } else {
+                    // Unrolled Net: Rectangle of 2πr × h and 2 circular lids
+                    const netW = 2 * Math.PI * r * 0.6;
+                    const netH = h;
+                    const cx = 300, cy = 125;
+
+                    svg.innerHTML = `
+                        <!-- Unrolled Rectangular Sheet -->
+                        <rect x="${cx - netW/2}" y="${cy - netH/2}" width="${netW}" height="${netH}" fill="rgba(99,102,241,0.3)" stroke="#6366f1" stroke-width="2"/>
+                        <!-- Circular Lids -->
+                        <circle cx="${cx}" cy="${cy - netH/2 - r*0.6}" r="${r*0.6}" fill="rgba(16,185,129,0.4)" stroke="#10b981" stroke-width="2"/>
+                        <circle cx="${cx}" cy="${cy + netH/2 + r*0.6}" r="${r*0.6}" fill="rgba(16,185,129,0.4)" stroke="#10b981" stroke-width="2"/>
+
+                        <text x="${cx}" y="${cy - netH/2 - 8}" fill="#a5b4fc" font-size="11" font-weight="bold" text-anchor="middle">Length = 2πr</text>
+                        <text x="${cx + netW/2 + 10}" y="${cy}" fill="#fcd34d" font-size="11" font-weight="bold">h</text>
+                    `;
+                }
+
+                readout.innerHTML = `
+                    CSA = 2πrh = <b>${csa.toFixed(1)} cm²</b> | 
+                    TSA = 2πr(h+r) = <b>${tsa.toFixed(1)} cm²</b> | 
+                    Volume = πr²h = <b>${vol.toFixed(1)} cm³</b>
+                `;
+            }
+
+            rS.oninput = update;
+            hS.oninput = update;
+            uS.oninput = update;
+            update();
+        }
+
+        // Sim 4: Cylindrical Liquid Reservoir Filler & Hollow Pipe Material Meter
+        function renderSim4(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Liquid Level (%):</label>
+                            <input type="range" id="sim4_fill" min="0" max="100" value="65" class="w-32 accent-sky-500">
+                        </div>
+                        <div class="flex gap-1.5">
+                            <button id="sim4_btn_solid" class="px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition">Water Tank</button>
+                            <button id="sim4_btn_hollow" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold transition">Hollow Metal Pipe</button>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim4_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim4_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            let mode = 'solid';
+            const fSlider = document.getElementById('sim4_fill');
+            const sBtn = document.getElementById('sim4_btn_solid');
+            const hBtn = document.getElementById('sim4_btn_hollow');
+            const svg = document.getElementById('sim4_svg');
+            const readout = document.getElementById('sim4_readout');
+
+            function update() {
+                const fill = parseFloat(fSlider.value) / 100;
+                const r = 50, h = 120;
+                const Ox = 300, topY = 60, botY = topY + h;
+                const ry = r * 0.35;
+
+                if (mode === 'solid') {
+                    sBtn.className = "px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition";
+                    hBtn.className = "px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold transition";
+
+                    const liquidH = h * fill;
+                    const liquidTopY = botY - liquidH;
+                    const maxLitres = (Math.PI * r * r * h / 1000).toFixed(1);
+                    const currLitres = (maxLitres * fill).toFixed(1);
+
+                    svg.innerHTML = `
+                        <!-- Tank Boundary -->
+                        <rect x="${Ox - r}" y="${topY}" width="${2 * r}" height="${h}" fill="rgba(30,41,59,0.4)"/>
+                        <line x1="${Ox - r}" y1="${topY}" x2="${Ox - r}" y2="${botY}" stroke="#64748b" stroke-width="2"/>
+                        <line x1="${Ox + r}" y1="${topY}" x2="${Ox + r}" y2="${botY}" stroke="#64748b" stroke-width="2"/>
+                        <ellipse cx="${Ox}" cy="${topY}" rx="${r}" ry="${ry}" fill="none" stroke="#64748b" stroke-width="2"/>
+                        <ellipse cx="${Ox}" cy="${botY}" rx="${r}" ry="${ry}" fill="none" stroke="#64748b" stroke-width="2"/>
+
+                        <!-- Filled Liquid -->
+                        ${liquidH > 0 ? `
+                            <rect x="${Ox - r}" y="${liquidTopY}" width="${2 * r}" height="${liquidH}" fill="rgba(56,189,248,0.5)"/>
+                            <ellipse cx="${Ox}" cy="${liquidTopY}" rx="${r}" ry="${ry}" fill="rgba(56,189,248,0.8)" stroke="#38bdf8" stroke-width="2"/>
+                            <ellipse cx="${Ox}" cy="${botY}" rx="${r}" ry="${ry}" fill="rgba(56,189,248,0.6)"/>
+                        ` : ''}
+                    `;
+
+                    readout.innerHTML = `
+                        Water Storage Tank: Total Capacity = <b>${maxLitres} L</b> | 
+                        Current Filled Volume: <b>${currLitres} L (${(fill * 100).toFixed(0)}%)</b>
+                    `;
+                } else {
+                    sBtn.className = "px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold transition";
+                    hBtn.className = "px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition";
+
+                    const R = 60, innerR = 40;
+                    const Ry = R * 0.35, innerRy = innerR * 0.35;
+
+                    svg.innerHTML = `
+                        <!-- Outer Cylinder -->
+                        <line x1="${Ox - R}" y1="${topY}" x2="${Ox - R}" y2="${botY}" stroke="#f59e0b" stroke-width="3"/>
+                        <line x1="${Ox + R}" y1="${topY}" x2="${Ox + R}" y2="${botY}" stroke="#f59e0b" stroke-width="3"/>
+                        <ellipse cx="${Ox}" cy="${botY}" rx="${R}" ry="${Ry}" fill="none" stroke="#f59e0b" stroke-width="2"/>
+
+                        <!-- Top Ring Face -->
+                        <ellipse cx="${Ox}" cy="${topY}" rx="${R}" ry="${Ry}" fill="rgba(245,158,11,0.3)" stroke="#f59e0b" stroke-width="2"/>
+                        <ellipse cx="${Ox}" cy="${topY}" rx="${innerR}" ry="${innerRy}" fill="#020617" stroke="#38bdf8" stroke-width="2"/>
+
+                        <!-- Inner Bore lines -->
+                        <line x1="${Ox - innerR}" y1="${topY}" x2="${Ox - innerR}" y2="${botY}" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3,3"/>
+                        <line x1="${Ox + innerR}" y1="${topY}" x2="${Ox + innerR}" y2="${botY}" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3,3"/>
+                    `;
+
+                    readout.innerHTML = `
+                        Hollow Pipe: Metal Volume = <b>π(R² - r²)h</b> | 
+                        Total Surface Area = <b>2π(R + r)h + 2π(R² - r²)</b>
+                    `;
+                }
+            }
+
+            sBtn.onclick = () => { mode = 'solid'; update(); };
+            hBtn.onclick = () => { mode = 'hollow'; update(); };
+            fSlider.oninput = update;
+            update();
+        }
+
+        // Sim 5: Right Triangle Revolution Simulator & Slant Height Pythagorean Lock
+        function renderSim5(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Radius r:</label>
+                            <input type="range" id="sim5_r" min="30" max="80" value="50" class="w-20 accent-indigo-500">
+                            <label class="text-slate-300 font-semibold ml-2">Height h:</label>
+                            <input type="range" id="sim5_h" min="60" max="130" value="100" class="w-20 accent-emerald-500">
+                        </div>
+                        <span class="text-amber-400 font-mono text-[11px] font-bold">l² = r² + h²</span>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim5_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim5_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-indigo-950/40 border border-indigo-500/40 text-indigo-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            const rS = document.getElementById('sim5_r');
+            const hS = document.getElementById('sim5_h');
+            const svg = document.getElementById('sim5_svg');
+            const readout = document.getElementById('sim5_readout');
+
+            function update() {
+                const r = parseFloat(rS.value);
+                const h = parseFloat(hS.value);
+                const l = Math.sqrt(r * r + h * h);
+
+                const Ox = 300, topY = 50, botY = topY + h;
+                const ry = r * 0.35;
+
+                svg.innerHTML = `
+                    <!-- Base Ellipse -->
+                    <ellipse cx="${Ox}" cy="${botY}" rx="${r}" ry="${ry}" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="3,3"/>
+
+                    <!-- Cone Slant Outlines -->
+                    <line x1="${Ox}" y1="${topY}" x2="${Ox - r}" y2="${botY}" stroke="#6366f1" stroke-width="2.5"/>
+                    <line x1="${Ox}" y1="${topY}" x2="${Ox + r}" y2="${botY}" stroke="#6366f1" stroke-width="2.5"/>
+
+                    <!-- Generator Right Triangle (ΔOAP) -->
+                    <polygon points="${Ox},${topY} ${Ox},${botY} ${Ox + r},${botY}" fill="rgba(16,185,129,0.3)" stroke="#10b981" stroke-width="2.5"/>
+
+                    <!-- Right Angle Marker at Center -->
+                    <rect x="${Ox}" y="${botY - 12}" width="12" height="12" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+
+                    <!-- Dimension Labels -->
+                    <text x="${Ox - 18}" y="${topY + h/2}" fill="#ffffff" font-size="11" font-weight="bold">h = ${h}</text>
+                    <text x="${Ox + r/2}" y="${botY + 16}" fill="#6ee7b7" font-size="11" font-weight="bold">r = ${r}</text>
+                    <text x="${Ox + r/2 + 15}" y="${topY + h/2}" fill="#f59e0b" font-size="12" font-weight="bold">l = ${l.toFixed(1)}</text>
+                `;
+
+                readout.innerHTML = `
+                    Right Triangle Generator: r = ${r} cm, h = ${h} cm ⇒ 
+                    <b>Slant Height l = √(r² + h²) = √(${r*r} + ${h*h}) = ${l.toFixed(2)} cm</b>
+                `;
+            }
+
+            rS.oninput = update;
+            hS.oninput = update;
+            update();
+        }
+
+        // Sim 6: Conical Net Unroller to Circular Sector & Fabric Calculator
+        function renderSim6(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <span class="text-slate-300 font-semibold">Unroll Conical Tent Canvas:</span>
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Unfold Net:</label>
+                            <input type="range" id="sim6_unfold" min="0" max="100" value="0" class="w-32 accent-indigo-500">
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim6_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim6_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            const uSlider = document.getElementById('sim6_unfold');
+            const svg = document.getElementById('sim6_svg');
+            const readout = document.getElementById('sim6_readout');
+
+            function update() {
+                const unfold = parseFloat(uSlider.value) / 100;
+                const r = 50, h = 90;
+                const l = Math.sqrt(r * r + h * h); // ~103
+                const csa = Math.PI * r * l;
+
+                if (unfold === 0) {
+                    const Ox = 300, topY = 60, botY = topY + h;
+                    svg.innerHTML = `
+                        <!-- 3D Cone -->
+                        <ellipse cx="${Ox}" cy="${botY}" rx="${r}" ry="${r*0.35}" fill="rgba(16,185,129,0.3)" stroke="#10b981" stroke-width="2"/>
+                        <polygon points="${Ox},${topY} ${Ox - r},${botY} ${Ox + r},${botY}" fill="rgba(99,102,241,0.35)" stroke="#6366f1" stroke-width="2"/>
+                        <text x="${Ox}" y="${topY - 8}" fill="#ffffff" font-size="11" font-weight="bold" text-anchor="middle">Apex</text>
+                    `;
+                } else {
+                    // Unrolled Sector of radius l and arc 2πr
+                    const Ox = 300, Oy = 80;
+                    const sectorAngle = (r / l) * 2 * Math.PI; // In radians
+                    const startA = Math.PI / 2 - sectorAngle / 2;
+                    const endA = Math.PI / 2 + sectorAngle / 2;
+
+                    const Ax = Ox + l * Math.cos(startA);
+                    const Ay = Oy + l * Math.sin(startA);
+                    const Bx = Ox + l * Math.cos(endA);
+                    const By = Oy + l * Math.sin(endA);
+
+                    svg.innerHTML = `
+                        <!-- Unrolled Sector of Canvas -->
+                        <path d="M${Ox},${Oy} L${Ax},${Ay} A${l},${l} 0 0,1 ${Bx},${By} Z" fill="rgba(99,102,241,0.35)" stroke="#6366f1" stroke-width="2"/>
+                        <!-- Radius l marker -->
+                        <line x1="${Ox}" y1="${Oy}" x2="${Ax}" y2="${Ay}" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="${Ox + l/2}" y="${Oy + 30}" fill="#f59e0b" font-size="11" font-weight="bold">Radius = l</text>
+                        <!-- Arc label -->
+                        <text x="${Ox}" y="${Oy + l + 18}" fill="#10b981" font-size="11" font-weight="bold" text-anchor="middle">Curved Arc = 2πr</text>
+                    `;
+                }
+
+                readout.innerHTML = `
+                    Sector Area = (1/2) × (2πr) × l = <b>πrl = ${csa.toFixed(1)} cm²</b> (Curved Surface Area!)
+                `;
+            }
+
+            uSlider.oninput = update;
+            update();
+        }
+
+        // Sim 7: Interactive 3-Cone Pouring Experiment to Matching Cylinder
+        function renderSim7(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <span class="text-slate-300 font-semibold">Volume Experiment (Cone vs Cylinder):</span>
+                        <div class="flex gap-2">
+                            <button id="sim7_pour" class="px-3 py-1 rounded bg-indigo-600 hover:bg-indigo-500 text-white font-bold transition shadow">Pour Cone</button>
+                            <button id="sim7_reset" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold transition">Reset</button>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim7_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim7_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            let pouredCount = 0;
+            const pBtn = document.getElementById('sim7_pour');
+            const rBtn = document.getElementById('sim7_reset');
+            const svg = document.getElementById('sim7_svg');
+            const readout = document.getElementById('sim7_readout');
+
+            function update() {
+                const r = 45, h = 110;
+                const coneX = 200, cylX = 400;
+                const topY = 60, botY = topY + h;
+
+                const cylFillH = (pouredCount / 3) * h;
+                const cylFillTopY = botY - cylFillH;
+
+                svg.innerHTML = `
+                    <!-- Cone Container -->
+                    <polygon points="${coneX},${botY} ${coneX - r},${topY} ${coneX + r},${topY}" fill="rgba(99,102,241,0.2)" stroke="#6366f1" stroke-width="2"/>
+                    <ellipse cx="${coneX}" cy="${topY}" rx="${r}" ry="${r*0.35}" fill="rgba(99,102,241,0.4)" stroke="#6366f1" stroke-width="1.5"/>
+                    <text x="${coneX}" y="${botY + 20}" fill="#a5b4fc" font-size="11" font-weight="bold" text-anchor="middle">Cone (1/3 V)</text>
+
+                    <!-- Matching Cylinder -->
+                    <rect x="${cylX - r}" y="${topY}" width="${2 * r}" height="${h}" fill="rgba(30,41,59,0.3)"/>
+                    <line x1="${cylX - r}" y1="${topY}" x2="${cylX - r}" y2="${botY}" stroke="#64748b" stroke-width="2"/>
+                    <line x1="${cylX + r}" y1="${topY}" x2="${cylX + r}" y2="${botY}" stroke="#64748b" stroke-width="2"/>
+                    <ellipse cx="${cylX}" cy="${botY}" rx="${r}" ry="${r*0.35}" fill="none" stroke="#64748b" stroke-width="2"/>
+                    <ellipse cx="${cylX}" cy="${topY}" rx="${r}" ry="${r*0.35}" fill="none" stroke="#64748b" stroke-width="2"/>
+
+                    <!-- Cylinder Water Levels -->
+                    ${cylFillH > 0 ? `
+                        <rect x="${cylX - r}" y="${cylFillTopY}" width="${2 * r}" height="${cylFillH}" fill="rgba(56,189,248,0.5)"/>
+                        <ellipse cx="${cylX}" cy="${cylFillTopY}" rx="${r}" ry="${r*0.35}" fill="rgba(56,189,248,0.8)" stroke="#38bdf8" stroke-width="2"/>
+                    ` : ''}
+
+                    <!-- 1/3 and 2/3 Guide Lines -->
+                    <line x1="${cylX - r - 5}" y1="${botY - h/3}" x2="${cylX + r + 5}" y2="${botY - h/3}" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="${cylX - r - 5}" y1="${botY - 2*h/3}" x2="${cylX + r + 5}" y2="${botY - 2*h/3}" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3,3"/>
+
+                    <text x="${cylX}" y="${botY + 20}" fill="#38bdf8" font-size="11" font-weight="bold" text-anchor="middle">Cylinder Level: ${pouredCount}/3</text>
+                `;
+
+                if (pouredCount === 3) {
+                    readout.innerHTML = `
+                        <b>3 Full Cones Completely Fill 1 Matching Cylinder!</b> ⇒ 
+                        <b>V_cone = (1/3) × V_cylinder = (1/3)πr²h</b>
+                    `;
+                } else {
+                    readout.innerHTML = `
+                        Poured: <b>${pouredCount} of 3 cones</b> into the cylinder. Click "Pour Cone" to continue!
+                    `;
+                }
+            }
+
+            pBtn.onclick = () => {
+                if (pouredCount < 3) {
+                    pouredCount++;
+                    playTone(400 + pouredCount * 100, 0.2);
+                    update();
+                }
+            };
+            rBtn.onclick = () => {
+                pouredCount = 0;
+                update();
+            };
+            update();
+        }
+
+        // Sim 8: 3D Square Pyramid Net Unfolder & Slant Height Geometry
+        function renderSim8(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <span class="text-slate-300 font-semibold">Square Pyramid Net:</span>
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Unfold Faces:</label>
+                            <input type="range" id="sim8_unfold" min="0" max="100" value="0" class="w-32 accent-indigo-500">
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim8_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim8_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            const uSlider = document.getElementById('sim8_unfold');
+            const svg = document.getElementById('sim8_svg');
+            const readout = document.getElementById('sim8_readout');
+
+            function update() {
+                const unfold = parseFloat(uSlider.value) / 100;
+                const a = 12, h = 8;
+                const l = Math.sqrt(h * h + (a / 2) * (a / 2)); // 10
+
+                if (unfold === 0) {
+                    // 3D wireframe pyramid
+                    const Ox = 300, Oy = 50;
+                    svg.innerHTML = `
+                        <!-- Base -->
+                        <polygon points="230,170 370,170 330,130 190,130" fill="rgba(245,158,11,0.2)" stroke="#f59e0b" stroke-width="2"/>
+                        <!-- Lateral Faces -->
+                        <line x1="${Ox}" y1="${Oy}" x2="230" y2="170" stroke="#6366f1" stroke-width="2.5"/>
+                        <line x1="${Ox}" y1="${Oy}" x2="370" y2="170" stroke="#6366f1" stroke-width="2.5"/>
+                        <line x1="${Ox}" y1="${Oy}" x2="330" y2="130" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="3,3"/>
+                        <line x1="${Ox}" y1="${Oy}" x2="190" y2="130" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="3,3"/>
+
+                        <!-- Apex Point -->
+                        <circle cx="${Ox}" cy="${Oy}" r="5" fill="#ec4899"/>
+                        <text x="${Ox}" y="${Oy - 10}" fill="#f472b6" font-size="11" font-weight="bold" text-anchor="middle">Apex</text>
+                    `;
+                } else {
+                    // 2D Flower Net
+                    const cx = 300, cy = 125, s = 60, lh = 60;
+                    svg.innerHTML = `
+                        <!-- Square Base -->
+                        <rect x="${cx - s/2}" y="${cy - s/2}" width="${s}" height="${s}" fill="rgba(245,158,11,0.4)" stroke="#f59e0b" stroke-width="2"/>
+                        <!-- Top Triangle -->
+                        <polygon points="${cx - s/2},${cy - s/2} ${cx + s/2},${cy - s/2} ${cx},${cy - s/2 - lh}" fill="rgba(99,102,241,0.3)" stroke="#6366f1" stroke-width="2"/>
+                        <!-- Bottom Triangle -->
+                        <polygon points="${cx - s/2},${cy + s/2} ${cx + s/2},${cy + s/2} ${cx},${cy + s/2 + lh}" fill="rgba(99,102,241,0.3)" stroke="#6366f1" stroke-width="2"/>
+                        <!-- Left Triangle -->
+                        <polygon points="${cx - s/2},${cy - s/2} ${cx - s/2},${cy + s/2} ${cx - s/2 - lh},${cy}" fill="rgba(99,102,241,0.3)" stroke="#6366f1" stroke-width="2"/>
+                        <!-- Right Triangle -->
+                        <polygon points="${cx + s/2},${cy - s/2} ${cx + s/2},${cy + s/2} ${cx + s/2 + lh},${cy}" fill="rgba(99,102,241,0.3)" stroke="#6366f1" stroke-width="2"/>
+                    `;
+                }
+
+                readout.innerHTML = `
+                    Slant Height l = √[h² + (a/2)²] = √[8² + 6²] = <b>10 m</b> | 
+                    LSA = 4 × (1/2 al) = <b>2al = 240 m²</b> | TSA = a² + 2al = <b>384 m²</b>
+                `;
+            }
+
+            uSlider.oninput = update;
+            update();
+        }
+
+        // Sim 9: 6-Pyramid Cube Dissection Explosion & Volume Equivalence
+        function renderSim9(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <span class="text-slate-300 font-semibold">Cube Dissection Proof:</span>
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Dissect 6 Pyramids:</label>
+                            <input type="range" id="sim9_burst" min="0" max="100" value="0" class="w-32 accent-indigo-500">
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim9_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim9_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            const bSlider = document.getElementById('sim9_burst');
+            const svg = document.getElementById('sim9_svg');
+            const readout = document.getElementById('sim9_readout');
+
+            function update() {
+                const burst = parseFloat(bSlider.value) / 100;
+                const Ox = 300, Oy = 125, s = 80;
+
+                svg.innerHTML = `
+                    <!-- Center Point of Cube -->
+                    <circle cx="${Ox}" cy="${Oy}" r="4" fill="#ffffff"/>
+
+                    <!-- Radiating Pyramids -->
+                    <polygon points="${Ox},${Oy} ${Ox - s - burst*40},${Oy - s/2} ${Ox},${Oy - s - burst*40}" fill="rgba(99,102,241,0.3)" stroke="#6366f1" stroke-width="2"/>
+                    <polygon points="${Ox},${Oy} ${Ox + s + burst*40},${Oy - s/2} ${Ox},${Oy - s - burst*40}" fill="rgba(16,185,129,0.3)" stroke="#10b981" stroke-width="2"/>
+                    <polygon points="${Ox},${Oy} ${Ox - s - burst*40},${Oy + s/2} ${Ox},${Oy + s + burst*40}" fill="rgba(245,158,11,0.3)" stroke="#f59e0b" stroke-width="2"/>
+                    <polygon points="${Ox},${Oy} ${Ox + s + burst*40},${Oy + s/2} ${Ox},${Oy + s + burst*40}" fill="rgba(236,72,153,0.3)" stroke="#ec4899" stroke-width="2"/>
+                `;
+
+                readout.innerHTML = `
+                    1 Cube divides into <b>6 Congruent Pyramids</b> ⇒ 
+                    V_pyramid = (1/6) a³ = (1/6) a²(2h) = <b>(1/3) Base Area × Height!</b>
+                `;
+            }
+
+            bSlider.oninput = update;
+            update();
+        }
+
+        // Sim 10: 3D Wireframe Sphere Rotator & Great Circle Slicer
+        function renderSim10(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Sphere Radius r:</label>
+                            <input type="range" id="sim10_r" min="50" max="90" value="75" class="w-24 accent-indigo-500">
+                        </div>
+                        <div class="flex gap-1.5">
+                            <button id="sim10_btn_great" class="px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition">Slice Great Circle</button>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim10_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim10_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            let showSlice = false;
+            const rSlider = document.getElementById('sim10_r');
+            const gBtn = document.getElementById('sim10_btn_great');
+            const svg = document.getElementById('sim10_svg');
+            const readout = document.getElementById('sim10_readout');
+
+            function update() {
+                const r = parseFloat(rSlider.value);
+                const Ox = 300, Oy = 125;
+
+                svg.innerHTML = `
+                    <!-- Sphere Outer Silhouette -->
+                    <circle cx="${Ox}" cy="${Oy}" r="${r}" fill="rgba(99,102,241,0.2)" stroke="#6366f1" stroke-width="3"/>
+
+                    <!-- Latitude / Longitude Wireframe Ellipses -->
+                    <ellipse cx="${Ox}" cy="${Oy}" rx="${r}" ry="${r * 0.35}" fill="none" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,4"/>
+                    <ellipse cx="${Ox}" cy="${Oy}" rx="${r * 0.35}" ry="${r}" fill="none" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,4"/>
+
+                    <!-- Great Circle Slicing Disc -->
+                    ${showSlice ? `
+                        <ellipse cx="${Ox}" cy="${Oy}" rx="${r}" ry="${r * 0.35}" fill="rgba(16,185,129,0.5)" stroke="#10b981" stroke-width="3"/>
+                        <text x="${Ox}" y="${Oy - 8}" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Great Circle Area = πr²</text>
+                    ` : ''}
+
+                    <circle cx="${Ox}" cy="${Oy}" r="4" fill="#ffffff"/>
+                `;
+
+                readout.innerHTML = `
+                    Great Circle passes through Center O (Radius = r) ⇒ 
+                    <b>Area = πr² = ${(Math.PI * r * r).toFixed(0)} px²</b> (Exactly 1/4th of sphere surface area!)
+                `;
+            }
+
+            gBtn.onclick = () => { showSlice = !showSlice; gBtn.textContent = showSlice ? "Remove Slice" : "Slice Great Circle"; update(); };
+            rSlider.oninput = update;
+            update();
+        }
+
+        // Sim 11: Archimedes' Hat-Box Projection & 4-Disc Skin Peeling Simulator
+        function renderSim11(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <span class="text-slate-300 font-semibold">Archimedes' Proof (Sphere Surface Area):</span>
+                        <div class="flex gap-1.5">
+                            <button id="sim11_btn_cyl" class="px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition">Hat-Box Cylinder</button>
+                            <button id="sim11_btn_4disc" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold transition">4 Great Discs</button>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim11_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim11_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            let mode = 'cyl';
+            const cBtn = document.getElementById('sim11_btn_cyl');
+            const dBtn = document.getElementById('sim11_btn_4disc');
+            const svg = document.getElementById('sim11_svg');
+            const readout = document.getElementById('sim11_readout');
+
+            function update() {
+                const r = 70;
+                const Ox = 300, Oy = 125;
+
+                if (mode === 'cyl') {
+                    cBtn.className = "px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition";
+                    dBtn.className = "px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold transition";
+
+                    svg.innerHTML = `
+                        <!-- Circumscribing Cylinder of Height 2r -->
+                        <rect x="${Ox - r}" y="${Oy - r}" width="${2 * r}" height="${2 * r}" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="4,4"/>
+
+                        <!-- Sphere Inside -->
+                        <circle cx="${Ox}" cy="${Oy}" r="${r}" fill="rgba(99,102,241,0.3)" stroke="#6366f1" stroke-width="3"/>
+
+                        <text x="${Ox + r + 20}" y="${Oy}" fill="#f59e0b" font-size="11" font-weight="bold">Height = 2r</text>
+                    `;
+
+                    readout.innerHTML = `
+                        Archimedes' Hat-Box Theorem: <b>Surface Area of Sphere = Cylinder Curved Area = 2πr(2r) = 4πr²!</b>
+                    `;
+                } else {
+                    cBtn.className = "px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold transition";
+                    dBtn.className = "px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition";
+
+                    svg.innerHTML = `
+                        <!-- 4 Great Discs -->
+                        <circle cx="150" cy="80" r="45" fill="rgba(16,185,129,0.3)" stroke="#10b981" stroke-width="2"/>
+                        <circle cx="260" cy="80" r="45" fill="rgba(16,185,129,0.3)" stroke="#10b981" stroke-width="2"/>
+                        <circle cx="370" cy="80" r="45" fill="rgba(16,185,129,0.3)" stroke="#10b981" stroke-width="2"/>
+                        <circle cx="480" cy="80" r="45" fill="rgba(16,185,129,0.3)" stroke="#10b981" stroke-width="2"/>
+
+                        <text x="300" y="165" fill="#6ee7b7" font-size="13" font-weight="bold" text-anchor="middle">Sphere Outer Skin = 4 Flat Circular Discs of Radius r</text>
+                    `;
+
+                    readout.innerHTML = `
+                        Peeling the Sphere Skin: πr² + πr² + πr² + πr² = <b>4πr²</b>!
+                    `;
+                }
+            }
+
+            cBtn.onclick = () => { mode = 'cyl'; update(); };
+            dBtn.onclick = () => { mode = 'disc'; update(); };
+            update();
+        }
+
+        // Sim 12: Archimedean Tombstone 1:2:3 Volume Balance Scale
+        function renderSim12(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <span class="text-slate-300 font-semibold">Archimedes' Gravestone Inscription (Ratio 1 : 2 : 3):</span>
+                        <span class="text-amber-400 font-mono text-[11px] font-bold">V_cone + V_sphere = V_cylinder</span>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim12_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim12_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            const svg = document.getElementById('sim12_svg');
+            const readout = document.getElementById('sim12_readout');
+
+            const r = 40, h = 2 * r;
+            svg.innerHTML = `
+                <!-- 1. Cone (h = 2r) -->
+                <polygon points="120,60 80,140 160,140" fill="rgba(99,102,241,0.3)" stroke="#6366f1" stroke-width="2"/>
+                <text x="120" y="170" fill="#a5b4fc" font-size="11" font-weight="bold" text-anchor="middle">Cone: (2/3)πr³</text>
+                <text x="120" y="190" fill="#94a3b8" font-size="10" text-anchor="middle">(Ratio 1)</text>
+
+                <!-- Plus Sign -->
+                <text x="210" y="110" fill="#ffffff" font-size="20" font-weight="bold">+</text>
+
+                <!-- 2. Sphere -->
+                <circle cx="300" cy="100" r="${r}" fill="rgba(16,185,129,0.3)" stroke="#10b981" stroke-width="2.5"/>
+                <text x="300" y="170" fill="#6ee7b7" font-size="11" font-weight="bold" text-anchor="middle">Sphere: (4/3)πr³</text>
+                <text x="300" y="190" fill="#94a3b8" font-size="10" text-anchor="middle">(Ratio 2)</text>
+
+                <!-- Equals Sign -->
+                <text x="390" y="110" fill="#ffffff" font-size="20" font-weight="bold">=</text>
+
+                <!-- 3. Cylinder (h = 2r) -->
+                <rect x="440" y="60" width="${2 * r}" height="${h}" fill="rgba(245,158,11,0.3)" stroke="#f59e0b" stroke-width="2.5"/>
+                <text x="480" y="170" fill="#fcd34d" font-size="11" font-weight="bold" text-anchor="middle">Cylinder: 2πr³</text>
+                <text x="480" y="190" fill="#94a3b8" font-size="10" text-anchor="middle">(Ratio 3)</text>
+            `;
+
+            readout.innerHTML = `
+                Archimedes' Volume Ratio: <b>Cone : Sphere : Cylinder = 1 : 2 : 3</b> | 
+                Sphere is exactly <b>2/3 of Cylinder = (2/3)(2πr³) = (4/3)πr³</b>!
+            `;
+        }
+
+        // Sim 13: Solid vs. Hollow Hemisphere 3D Dissector & Rim Meter
+        function renderSim13(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <span class="text-slate-300 font-semibold">Hemisphere Geometry:</span>
+                        <div class="flex gap-1.5">
+                            <button id="sim13_btn_solid" class="px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition">Solid Hemisphere</button>
+                            <button id="sim13_btn_hollow" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold transition">Hollow Bowl</button>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim13_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim13_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            let mode = 'solid';
+            const sBtn = document.getElementById('sim13_btn_solid');
+            const hBtn = document.getElementById('sim13_btn_hollow');
+            const svg = document.getElementById('sim13_svg');
+            const readout = document.getElementById('sim13_readout');
+
+            function update() {
+                const Ox = 300, Oy = 110, r = 70;
+
+                if (mode === 'solid') {
+                    sBtn.className = "px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition";
+                    hBtn.className = "px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold transition";
+
+                    svg.innerHTML = `
+                        <!-- Curved Dome -->
+                        <path d="M${Ox - r},${Oy} A${r},${r} 0 0,0 ${Ox + r},${Oy} Z" fill="rgba(99,102,241,0.3)" stroke="#6366f1" stroke-width="3"/>
+                        <!-- Flat Top Base Disc -->
+                        <ellipse cx="${Ox}" cy="${Oy}" rx="${r}" ry="${r*0.35}" fill="rgba(16,185,129,0.5)" stroke="#10b981" stroke-width="2.5"/>
+
+                        <text x="${Ox}" y="${Oy - 15}" fill="#6ee7b7" font-size="11" font-weight="bold" text-anchor="middle">Flat Circular Base = πr²</text>
+                        <text x="${Ox}" y="${Oy + 45}" fill="#a5b4fc" font-size="11" font-weight="bold" text-anchor="middle">Curved Dome = 2πr²</text>
+                    `;
+
+                    readout.innerHTML = `
+                        Solid Hemisphere: Curved CSA (2πr²) + Flat Base (πr²) ⇒ 
+                        <b>Total Surface Area (TSA) = 3πr²!</b> | Volume = <b>(2/3)πr³</b>
+                    `;
+                } else {
+                    sBtn.className = "px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold transition";
+                    hBtn.className = "px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition";
+
+                    const R = 75, inR = 55;
+
+                    svg.innerHTML = `
+                        <!-- Outer Bowl -->
+                        <path d="M${Ox - R},${Oy} A${R},${R} 0 0,0 ${Ox + R},${Oy} Z" fill="rgba(245,158,11,0.2)" stroke="#f59e0b" stroke-width="2"/>
+                        <!-- Circular Rim -->
+                        <ellipse cx="${Ox}" cy="${Oy}" rx="${R}" ry="${R*0.35}" fill="rgba(245,158,11,0.4)" stroke="#f59e0b" stroke-width="2"/>
+                        <ellipse cx="${Ox}" cy="${Oy}" rx="${inR}" ry="${inR*0.35}" fill="#020617" stroke="#38bdf8" stroke-width="2"/>
+                    `;
+
+                    readout.innerHTML = `
+                        Hollow Bowl: External CSA (2πR²) + Internal CSA (2πr²) + Rim Area π(R² - r²) | 
+                        Material Volume = <b>(2/3)π(R³ - r³)</b>
+                    `;
+                }
+            }
+
+            sBtn.onclick = () => { mode = 'solid'; update(); };
+            hBtn.onclick = () => { mode = 'hollow'; update(); };
+            update();
+        }
+
+        // Sim 14: Molten Metal Crucible Recasting & Invariant Volume Engine
+        function renderSim14(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <span class="text-slate-300 font-semibold">Melt Solid Sphere into Ball Bearings:</span>
+                        <button id="sim14_melt" class="px-3 py-1 rounded bg-indigo-600 hover:bg-indigo-500 text-white font-bold transition shadow">Melt & Recast</button>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim14_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim14_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            let isMelted = false;
+            const mBtn = document.getElementById('sim14_melt');
+            const svg = document.getElementById('sim14_svg');
+            const readout = document.getElementById('sim14_readout');
+
+            function update() {
+                if (!isMelted) {
+                    svg.innerHTML = `
+                        <!-- Big Sphere (R = 8 cm) -->
+                        <circle cx="300" cy="120" r="70" fill="rgba(245,158,11,0.4)" stroke="#f59e0b" stroke-width="3"/>
+                        <text x="300" y="125" fill="#ffffff" font-size="13" font-weight="bold" text-anchor="middle">Large Sphere R = 8 cm</text>
+                    `;
+                    readout.innerHTML = `Original Solid Sphere: Volume = (4/3)π(8)³ = <b>682.67π cm³</b>. Click 'Melt & Recast'!`;
+                } else {
+                    // Grid of 512 tiny spheres
+                    let dots = "";
+                    for (let row = 0; row < 6; row++) {
+                        for (let col = 0; col < 12; col++) {
+                            dots += `<circle cx="${130 + col * 30}" cy="${50 + row * 25}" r="5" fill="#38bdf8"/>`;
+                        }
+                    }
+                    svg.innerHTML = `
+                        ${dots}
+                        <text x="300" y="215" fill="#38bdf8" font-size="13" font-weight="bold" text-anchor="middle">512 Small Ball Bearings of Radius r = 1 cm!</text>
+                    `;
+                    readout.innerHTML = `
+                        Volume Conserved: n = R³ / r³ = 8³ / 1³ = <b>512 Spheres!</b> | 
+                        Total Surface Area <b>increased by 8 times!</b>
+                    `;
+                }
+            }
+
+            mBtn.onclick = () => { isMelted = !isMelted; mBtn.textContent = isMelted ? "Reset Sphere" : "Melt & Recast"; update(); };
+            update();
+        }
+
+        // Sim 15: Square-Cube Law Scaling Lab & Biological Heat Loss Curve
+        function renderSim15(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Scale Factor (k):</label>
+                            <input type="range" id="sim15_k" min="1" max="5" value="1" step="1" class="w-28 accent-indigo-500">
+                            <span id="sim15_k_val" class="font-bold text-indigo-400 font-mono">1x</span>
+                        </div>
+                        <span class="text-amber-400 font-mono text-[11px] font-bold">Square-Cube Law (Galileo)</span>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim15_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim15_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            const kSlider = document.getElementById('sim15_k');
+            const kVal = document.getElementById('sim15_k_val');
+            const svg = document.getElementById('sim15_svg');
+            const readout = document.getElementById('sim15_readout');
+
+            function update() {
+                const k = parseInt(kSlider.value);
+                kVal.textContent = `${k}x`;
+
+                const sa = 6 * k * k;
+                const vol = k * k * k;
+                const sa_v = (sa / vol).toFixed(2);
+
+                const size = k * 18;
+                const Ox = 300, Oy = 125;
+
+                svg.innerHTML = `
+                    <rect x="${Ox - size/2}" y="${Oy - size/2}" width="${size}" height="${size}" fill="rgba(99,102,241,0.3)" stroke="#6366f1" stroke-width="2"/>
+                    <text x="${Ox}" y="${Oy + 4}" fill="#ffffff" font-size="11" font-weight="bold" text-anchor="middle">${k}a</text>
+                `;
+
+                readout.innerHTML = `
+                    Length = <b>${k}a</b> | Surface Area ∝ k² = <b>${sa}</b> | Volume ∝ k³ = <b>${vol}</b> | 
+                    <b>SA / V Ratio = 6/a = ${sa_v}</b> (Plummets as size increases!)
+                `;
+            }
+
+            kSlider.oninput = update;
+            update();
+        }
+
+        // Sim 16: Industrial Beverage Can Metal Optimizer & Cost Minimum Graph
+        function renderSim16(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Can Radius r:</label>
+                            <input type="range" id="sim16_r" min="20" max="60" value="38" class="w-32 accent-indigo-500">
+                            <span id="sim16_r_val" class="font-bold text-indigo-400 font-mono">3.8 cm</span>
+                        </div>
+                        <span class="text-emerald-400 font-mono text-[11px] font-bold">Fixed Volume = 355 ml</span>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim16_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim16_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            const rSlider = document.getElementById('sim16_r');
+            const rVal = document.getElementById('sim16_r_val');
+            const svg = document.getElementById('sim16_svg');
+            const readout = document.getElementById('sim16_readout');
+
+            function update() {
+                const r = parseFloat(rSlider.value) / 10;
+                rVal.textContent = `${r.toFixed(1)} cm`;
+
+                const V = 355; // cm3
+                const h = V / (Math.PI * r * r);
+                const tsa = 2 * Math.PI * r * r + 2 * Math.PI * r * h;
+                const isOptimal = Math.abs(h - 2 * r) < 0.5;
+
+                const Ox = 300, Oy = 70;
+                const rPx = r * 10;
+                const hPx = Math.min(130, h * 10);
+
+                svg.innerHTML = `
+                    <!-- 3D Can -->
+                    <rect x="${Ox - rPx}" y="${Oy}" width="${2 * rPx}" height="${hPx}" fill="${isOptimal ? 'rgba(16,185,129,0.3)' : 'rgba(99,102,241,0.3)'}" stroke="${isOptimal ? '#10b981' : '#6366f1'}" stroke-width="2.5"/>
+                    <ellipse cx="${Ox}" cy="${Oy}" rx="${rPx}" ry="${rPx * 0.35}" fill="${isOptimal ? '#10b981' : '#6366f1'}"/>
+                    <ellipse cx="${Ox}" cy="${Oy + hPx}" rx="${rPx}" ry="${rPx * 0.35}" fill="${isOptimal ? '#10b981' : '#6366f1'}"/>
+
+                    <text x="${Ox}" y="${Oy + hPx/2}" fill="#ffffff" font-size="11" font-weight="bold" text-anchor="middle">h = ${h.toFixed(1)} cm</text>
+                `;
+
+                if (isOptimal) {
+                    readout.innerHTML = `
+                        <span class="text-emerald-400 font-bold">✓ OPTIMAL MINIMUM METAL COST: h ≈ 2r (${h.toFixed(1)} cm ≈ 2 × ${r.toFixed(1)} cm)!</span>
+                        Total Surface Area = <b>${tsa.toFixed(1)} cm²</b> (Lowest possible packaging metal!)
+                    `;
+                } else {
+                    readout.innerHTML = `
+                        r = ${r.toFixed(1)} cm, h = ${h.toFixed(1)} cm ⇒ TSA = <b>${tsa.toFixed(1)} cm²</b>. Adjust slider until h = 2r for minimum cost!
+                    `;
+                }
+            }
+
+            rSlider.oninput = update;
+            update();
+        }
+
+        // Initialize application on load
+        window.addEventListener('DOMContentLoaded', () => {
+            initSlidePicker();
+            renderCurrentSlide();
+        });
+    </script>
+</body>
+</html>

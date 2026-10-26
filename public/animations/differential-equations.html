@@ -1,0 +1,1892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 12 Mathematics • Part - 2 • Chapter 9: Differential Equations Multimedia Lab</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- KaTeX for beautiful math typesetting -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .slide-section { display: none; }
+    .slide-section.active { display: block; animation: fadeIn 0.35s ease-out forwards; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .custom-scrollbar::-webkit-scrollbar { height: 6px; width: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.6); }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(59, 130, 246, 0.4); border-radius: 4px; }
+    @keyframes modalScaleUp {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .animate-modal { animation: modalScaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-blue-500 selection:text-white">
+
+  <!-- TOP HEADER -->
+  <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <span class="p-2 rounded-xl bg-blue-600/20 text-blue-400 border border-blue-500/30 text-lg">
+          <i class="fas fa-wave-square"></i>
+        </span>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 uppercase tracking-wider">NCERT Class 12</span>
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+            <span class="text-xs text-slate-400 font-medium">Chapter 9</span>
+          </div>
+          <h1 class="text-base sm:text-lg font-bold text-white tracking-tight">Differential Equations Multimedia Lab</h1>
+          <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <!-- Voiceover Narrator Controls -->
+        <button onclick="toggleSpeech()" id="speechToggleBtn" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700 cursor-pointer">
+          <i class="fas fa-volume-up" id="speechIcon"></i>
+          <span id="speechText">Narration On</span>
+        </button>
+
+        <!-- Auto-Play Slideshow -->
+        <button onclick="toggleAutoPlaySlideshow()" id="autoPlaySlideshowBtn" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700 cursor-pointer">
+          <i class="fas fa-play" id="autoPlayIcon"></i>
+          <span id="autoPlayText">Auto-Play</span>
+        </button>
+
+        <!-- Slide Counter -->
+        <div class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-300">
+          Slide <span id="slideCounterCurrent" class="font-bold text-white">1</span> of <span class="font-bold text-slate-400">21</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div id="autoPlayProgressBarContainer" class="w-full bg-slate-900 h-1 overflow-hidden hidden">
+      <div id="autoPlayProgressBar" class="bg-gradient-to-r from-blue-500 to-cyan-500 h-full w-0 transition-all duration-100 ease-linear"></div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
+    
+            <!-- Slide 0: 9.1 & 9.2 Introduction to Differential Equations & Poincaré's Vision -->
+            <div id="slide-0" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Section 9.1 & 9.2</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">9.1 & 9.2 Introduction to Differential Equations & Poincaré's Vision</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Hilbert Quote, Ordinary vs Partial DEs, Henri Poincaré (1854–1912), and Derivative Notations</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(0)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-blue-900/40 via-indigo-900/30 to-purple-900/40 p-5 rounded-2xl border border-blue-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40">§ 9.1 & 9.2 Foundations</span>
+              <span class="text-xs text-slate-400">Henri Poincaré (1854–1912) & The Language of Nature</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">The Language of Dynamic Science</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              &ldquo;He who seeks for methods without having a definite problem in mind seeks for the most part in vain.&rdquo; &mdash; <em>D. Hilbert</em>
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Algebraic Equations vs Differential Equations -->
+            <div class="glass-card p-5 rounded-2xl space-y-4">
+              <div class="flex items-center space-x-2 text-cyan-300 font-bold text-sm">
+                <i class="fas fa-balance-scale"></i>
+                <h4>Algebraic Equations vs Differential Equations</h4>
+              </div>
+              <div class="space-y-2.5 text-xs text-slate-300">
+                <div class="p-3 bg-slate-950/70 rounded-xl border border-slate-800">
+                  <div class="font-bold text-white mb-1">Algebraic Equations:</div>
+                  <div class="font-mono text-slate-400 text-[11px]">x² - 3x + 3 = 0, \quad \sin x + \cos x = 0, \quad x + y = 7</div>
+                  <p class="text-[11px] text-slate-400 mt-1">Involve static variables only. Solutions are discrete numbers (real or complex).</p>
+                </div>
+                <div class="p-3 bg-slate-950/70 rounded-xl border border-slate-800">
+                  <div class="font-bold text-cyan-300 mb-1">Differential Equation:</div>
+                  <div class="font-mono text-cyan-300 text-[11px]">x \frac{dy}{dx} + y = 0 \quad \text{or} \quad \frac{d^2y}{dx^2} + y = 0</div>
+                  <p class="text-[11px] text-slate-400 mt-1">Involves independent variable $x$, dependent variable $y$, and derivatives $\frac{dy}{dx}, \frac{d^2y}{dx^2}$. Solutions are <strong>functions</strong> (integral curves)!</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ODE vs PDE & Notations -->
+            <div class="glass-card p-5 rounded-2xl space-y-4">
+              <div class="flex items-center space-x-2 text-amber-300 font-bold text-sm">
+                <i class="fas fa-pen-nib"></i>
+                <h4>Ordinary vs Partial & Notation Protocol</h4>
+              </div>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs">
+                <div class="font-bold text-white">Ordinary Differential Equation (ODE):</div>
+                <p class="text-slate-300">Involves derivatives of dependent variable with respect to <strong>only one</strong> independent variable.</p>
+                <div class="font-bold text-amber-300 pt-2 border-t border-slate-800">Standard Derivative Notations:</div>
+                <div class="font-mono text-slate-200 space-y-1 text-[11px]">
+                  <div>First derivative: $\frac{dy}{dx} = y'$</div>
+                  <div>Second derivative: $\frac{d^2y}{dx^2} = y''$</div>
+                  <div>Third derivative: $\frac{d^3y}{dx^3} = y'''$</div>
+                  <div>$n$-th derivative: $\frac{d^ny}{dx^n} = y_n$ (supersuffix notation)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 0 Checkpoint Container -->
+            <div id="slide-checkpoints-0" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 1: 9.2.1 Order of a Differential Equation: Definitions & Rules -->
+            <div id="slide-1" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Section 9.2.1 • Order</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">9.2.1 Order of a Differential Equation: Definitions & Rules</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Order of the Highest Derivative Present, First, Second, and Higher Orders, and Visual Inspection</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(1)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-cyan-900/40 via-blue-900/30 to-indigo-900/40 p-5 rounded-2xl border border-cyan-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">§ 9.2.1 Core Metric</span>
+              <span class="text-xs text-slate-400">Order of Highest Derivative Present in the Equation</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Order of a Differential Equation</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              The <strong>order</strong> of a differential equation is defined as the order of the highest-order derivative of the dependent variable with respect to the independent variable involved in the equation.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
+            <div class="glass-card p-4 rounded-2xl space-y-2">
+              <div class="text-cyan-400 font-bold font-sans">Order 1 (First Order):</div>
+              <div class="p-2.5 bg-slate-950/70 rounded-xl border border-slate-800 text-white">
+                \frac{dy}{dx} = e^x
+              </div>
+              <p class="text-slate-400 font-sans text-[11px]">Highest derivative is first order $\frac{dy}{dx}$.</p>
+            </div>
+
+            <div class="glass-card p-4 rounded-2xl space-y-2">
+              <div class="text-amber-400 font-bold font-sans">Order 2 (Second Order):</div>
+              <div class="p-2.5 bg-slate-950/70 rounded-xl border border-slate-800 text-white">
+                \frac{d^2y}{dx^2} + y = 0
+              </div>
+              <p class="text-slate-400 font-sans text-[11px]">Highest derivative is second order $\frac{d^2y}{dx^2}$.</p>
+            </div>
+
+            <div class="glass-card p-4 rounded-2xl space-y-2">
+              <div class="text-purple-400 font-bold font-sans">Order 3 (Third Order):</div>
+              <div class="p-2.5 bg-slate-950/70 rounded-xl border border-slate-800 text-white">
+                \frac{d^3y}{dx^3} + x^2 \left(\frac{d^2y}{dx^2}\right)^3 = 0
+              </div>
+              <p class="text-slate-400 font-sans text-[11px]">Highest derivative is $y'''$. The power 3 on $y''$ does NOT affect order!</p>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 1 Checkpoint Container -->
+            <div id="slide-checkpoints-1" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 2: 9.2.2 Degree of a Differential Equation: Polynomial Condition & Traps -->
+            <div id="slide-2" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Section 9.2.2 • Degree</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">9.2.2 Degree of a Differential Equation: Polynomial Condition & Traps</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Highest Power of Highest Derivative, The Polynomial in Derivatives Prerequisite, and Undefined Degrees</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(2)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-amber-900/40 via-red-900/30 to-purple-900/40 p-5 rounded-2xl border border-amber-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">§ 9.2.2 Core Metric</span>
+              <span class="text-xs text-slate-400">Polynomial in Derivatives Prerequisite & Exam Traps</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Degree of a Differential Equation: The Polynomial Test</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              By the degree of a differential equation, <strong>when it is a polynomial equation in derivatives</strong>, we mean the highest power (positive integral index) of the highest order derivative involved.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 text-xs">
+            <!-- Degree Defined -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-emerald-300 flex items-center space-x-2">
+                <i class="fas fa-check-circle"></i>
+                <span>When Degree IS Defined:</span>
+              </h4>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-2 font-mono text-slate-300">
+                <div class="text-white font-bold">(y''')^2 + 2(y'')^3 - y' + y = 0</div>
+                <div class="text-cyan-300 text-[11px]">Polynomial in $y''', y'', y'$. Highest derivative $y'''$ has power 2 ⟹ <strong>Order = 3, Degree = 2</strong>.</div>
+                <div class="text-white font-bold pt-1 border-t border-slate-800">y'' + (y')^2 + 2y = 0</div>
+                <div class="text-cyan-300 text-[11px]">Highest derivative is $y''$ with power 1 ⟹ <strong>Order = 2, Degree = 1</strong>.</div>
+              </div>
+            </div>
+
+            <!-- Degree NOT Defined -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-rose-300 flex items-center space-x-2">
+                <i class="fas fa-times-circle"></i>
+                <span>When Degree is NOT Defined:</span>
+              </h4>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-2 font-mono text-slate-300">
+                <div class="text-rose-400 font-bold">\frac{dy}{dx} + \sin\left(\frac{dy}{dx}\right) = 0</div>
+                <div class="text-slate-400 text-[11px]">Derivative trapped inside $\sin(\dots)$! Not a polynomial in derivatives ⟹ <strong>Degree NOT Defined</strong>.</div>
+                <div class="text-rose-400 font-bold pt-1 border-t border-slate-800">y''' + y^2 + e^{y'} = 0</div>
+                <div class="text-slate-400 text-[11px]">Derivative trapped in exponential $e^{y'}$ ⟹ <strong>Degree NOT Defined</strong>.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 2 Checkpoint Container -->
+            <div id="slide-checkpoints-2" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 3: 📝 Exercise 9.1 Workshop: Order & Degree Mastery -->
+            <div id="slide-3" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Exercise 9.1 Deep Dive</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">📝 Exercise 9.1 Workshop: Order & Degree Mastery</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Problems 1 to 10, MCQs 11 & 12, Radical Clearing, and The sin(y) vs sin(y') Distinction</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(3)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-purple-900/40 via-violet-900/30 to-indigo-900/40 p-5 rounded-2xl border border-purple-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/40">Exercise 9.1 Deep Dive</span>
+              <span class="text-xs text-slate-400">Classroom Edge Cases & Board Exam Multiple Choice</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Order & Degree Master Table (Exercise 9.1)</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Carefully study the crucial difference between functions of $y$ versus functions of derivatives $y'$:
+            </p>
+          </div>
+
+          <div class="glass-card p-5 rounded-2xl space-y-3 text-xs">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="border-b border-slate-800 text-slate-400 font-mono">
+                    <th class="py-2 px-3">Differential Equation</th>
+                    <th class="py-2 px-3 text-center">Order</th>
+                    <th class="py-2 px-3 text-center">Degree</th>
+                    <th class="py-2 px-3">Key Mathematical Reason</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-800 font-mono text-slate-200">
+                  <tr>
+                    <td class="py-2 px-3 text-cyan-300">$\frac{d^4y}{dx^4} + \sin(y''') = 0$</td>
+                    <td class="py-2 px-3 text-center text-amber-300 font-bold">4</td>
+                    <td class="py-2 px-3 text-center text-rose-400 font-bold">Not defined</td>
+                    <td class="py-2 px-3 text-slate-400 font-sans">$y'''$ inside $\sin(\dots)$ makes it non-polynomial</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-3 text-cyan-300">$(\frac{ds}{dt})^4 + 3s \frac{d^2s}{dt^2} = 0$</td>
+                    <td class="py-2 px-3 text-center text-amber-300 font-bold">2</td>
+                    <td class="py-2 px-3 text-center text-emerald-400 font-bold">1</td>
+                    <td class="py-2 px-3 text-slate-400 font-sans">Highest derivative $\frac{d^2s}{dt^2}$ is power 1</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-3 text-cyan-300">$(\frac{d^2y}{dx^2})^2 + \cos(\frac{dy}{dx}) = 0$</td>
+                    <td class="py-2 px-3 text-center text-amber-300 font-bold">2</td>
+                    <td class="py-2 px-3 text-center text-rose-400 font-bold">Not defined</td>
+                    <td class="py-2 px-3 text-slate-400 font-sans">First derivative is inside $\cos(\dots)$</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-3 text-cyan-300">$y'' + 2y' + \sin y = 0$</td>
+                    <td class="py-2 px-3 text-center text-amber-300 font-bold">2</td>
+                    <td class="py-2 px-3 text-center text-emerald-400 font-bold">1</td>
+                    <td class="py-2 px-3 text-emerald-400 font-sans">$\sin y$ is fine because $y$ is variable, NOT a derivative!</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 3 Checkpoint Container -->
+            <div id="slide-checkpoints-3" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 4: 9.3 General and Particular Solutions of a Differential Equation -->
+            <div id="slide-4" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Section 9.3 • Solutions</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">9.3 General and Particular Solutions of a Differential Equation</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Solution Curves (Integral Curves), n Constants for Order n, and Zero Constants for Particular Solutions</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(4)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-emerald-900/40 via-teal-900/30 to-blue-900/40 p-5 rounded-2xl border border-emerald-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">§ 9.3 Solution Types</span>
+              <span class="text-xs text-slate-400">General Solution (Primitive) vs Particular Solution (Integral Curves)</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">General and Particular Solutions</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              A solution of a differential equation is a function $\phi(x)$ that reduces the equation to an identity. The graph of a solution is called an <strong>integral curve</strong>.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 text-xs">
+            <!-- General Solution -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                <h4 class="font-bold text-cyan-300 text-sm">General Solution (Primitive)</h4>
+                <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-mono text-[10px]">n Constants</span>
+              </div>
+              <p class="text-slate-300">
+                A solution which contains <strong>as many arbitrary constants as the order</strong> of the differential equation.
+              </p>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-1 font-mono text-slate-300">
+                <div>For $\frac{d^2y}{dx^2} + y = 0$ (Order 2):</div>
+                <div class="text-cyan-300 font-bold">y = a \sin(x + b) \quad \text{or} \quad y = A \cos x + B \sin x</div>
+                <div class="text-slate-400 text-[11px]">Contains exactly 2 arbitrary parameters ($a, b$ or $A, B$). Represents a family of sinusoids.</div>
+              </div>
+            </div>
+
+            <!-- Particular Solution -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                <h4 class="font-bold text-emerald-300 text-sm">Particular Solution</h4>
+                <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono text-[10px]">0 Constants</span>
+              </div>
+              <p class="text-slate-300">
+                A solution obtained from the general solution by assigning <strong>specific numerical values</strong> to arbitrary constants based on boundary/initial conditions.
+              </p>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-1 font-mono text-slate-300">
+                <div>Setting $a = 2, b = \pi/4$:</div>
+                <div class="text-emerald-400 font-bold">y = 2 \sin\left(x + \frac{\pi}{4}\right)</div>
+                <div class="text-slate-400 text-[11px]">Free from arbitrary constants! Identifies a unique single curve from the family.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 4 Checkpoint Container -->
+            <div id="slide-checkpoints-4" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 5: 📝 Exercise 9.2 Workshop: Verifying Differential Solutions -->
+            <div id="slide-5" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Exercise 9.2 Deep Dive</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">📝 Exercise 9.2 Workshop: Verifying Differential Solutions</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Examples 2 & 3, Explicit vs Implicit Relations, and Board Exam MCQs 11 & 12</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(5)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-teal-900/40 via-blue-900/30 to-indigo-900/40 p-5 rounded-2xl border border-teal-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/40">Exercise 9.2 Workshop</span>
+              <span class="text-xs text-slate-400">Verifying Solutions & Arbitrary Constants Count</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Verifying Solutions & Constants Count (Exercise 9.2)</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Differentiating candidate functions successively to confirm LHS = RHS, and identifying the number of arbitrary parameters.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 text-xs">
+            <!-- Example 2 Verification -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-cyan-300">Example 2: Verify $y = e^{-3x}$ for $y'' + y' - 6y = 0$</h4>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-1.5 font-mono text-slate-300">
+                <div>y = e^{-3x}</div>
+                <div>y' = -3e^{-3x}</div>
+                <div>y'' = 9e^{-3x}</div>
+                <div>LHS = y'' + y' - 6y = 9e^{-3x} + (-3e^{-3x}) - 6e^{-3x}</div>
+                <div class="text-emerald-400 font-bold">= (9 - 3 - 6)e^{-3x} = 0 = RHS (Verified!)</div>
+              </div>
+            </div>
+
+            <!-- Board MCQs 11 & 12 -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-amber-300">Crucial Board Examination Rules</h4>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-2 text-slate-300">
+                <div class="border-b border-slate-800 pb-1">
+                  <div class="font-bold text-white">MCQ 11: General Solution Arbitrary Constants</div>
+                  <p class="text-[11px] font-mono text-cyan-300">Order n ⟹ Exactly n Arbitrary Constants (Order 4 = 4 constants)</p>
+                </div>
+                <div>
+                  <div class="font-bold text-white">MCQ 12: Particular Solution Arbitrary Constants</div>
+                  <p class="text-[11px] font-mono text-emerald-400">Particular Solution ⟹ ZERO (0) Arbitrary Constants always!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 5 Checkpoint Container -->
+            <div id="slide-checkpoints-5" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 6: 9.4.1 Method 1: Differential Equations with Variables Separable -->
+            <div id="slide-6" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Section 9.4.1 • Separable</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">9.4.1 Method 1: Differential Equations with Variables Separable</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Form dy/dx = h(y)·g(x), Separating Variables (1/h(y)) dy = g(x) dx, and Integrating Both Sides</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(6)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-blue-900/40 via-cyan-900/30 to-teal-900/40 p-5 rounded-2xl border border-blue-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40">§ 9.4.1 Method 1</span>
+              <span class="text-xs text-slate-400">Leibniz's 1691 Separation of Variables Protocol</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Differential Equations with Variables Separable</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              If the right-hand side can be factored as $F(x, y) = h(y) \cdot g(x)$, the differential equation is of <strong>variable separable type</strong>.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 text-xs">
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-cyan-300">The 3-Step Separation Protocol</h4>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-2 font-mono text-slate-300">
+                <div>\frac{dy}{dx} = h(y) \cdot g(x)</div>
+                <div>1. Separate: $\frac{1}{h(y)}\,dy = g(x)\,dx$</div>
+                <div>2. Integrate both sides:</div>
+                <div class="text-cyan-300 font-bold">\int \frac{1}{h(y)}\,dy = \int g(x)\,dx + C</div>
+                <div class="text-emerald-400 font-bold">H(y) = G(x) + C</div>
+                <div class="text-slate-400 text-[11px] font-sans">Where $H(y)$ is anti-derivative of $1/h(y)$ and $G(x)$ of $g(x)$.</div>
+              </div>
+            </div>
+
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-amber-300">Footnote on Leibniz Notation (Page 309)</h4>
+              <p class="text-slate-300 leading-relaxed">
+                The notation $\frac{dy}{dx}$ due to Leibniz is extremely flexible and useful. We can treat $dy$ and $dx$ as separate algebraic entities, giving clean, elegant expressions to calculus operations!
+              </p>
+              <div class="p-2.5 bg-slate-900 rounded-xl text-slate-300 font-mono text-[11px]">
+                e.g. $\frac{dy}{dx} = e^{x+y} = e^x e^y \implies e^{-y}\,dy = e^x\,dx$
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 6 Checkpoint Container -->
+            <div id="slide-checkpoints-6" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 7: 📝 Exercise 9.3 Workshop: Separable Drills & Tangent Curves -->
+            <div id="slide-7" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Exercise 9.3 Workshop</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">📝 Exercise 9.3 Workshop: Separable Drills & Tangent Curves</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Examples 4 to 8: dy/dx = (x+1)/(2-y), Passing Through Points, and Slope Relations dy/dx = 2x/y²</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(7)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-teal-900/40 via-emerald-900/30 to-blue-900/40 p-5 rounded-2xl border border-teal-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/40">Exercise 9.3 Workshop</span>
+              <span class="text-xs text-slate-400">Separable Equations & Tangent Slope Inversion</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Separable Drills & Curve Reconstructions</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Applying separation of variables to geometric curve reconstruction and initial value problems.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 text-xs">
+            <!-- Example 8 -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-cyan-300">Example 8: Curve Through $(-2, 3)$ with Slope $\frac{2x}{y^2}$</h4>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-1.5 font-mono text-slate-300">
+                <div>\frac{dy}{dx} = \frac{2x}{y^2} ⟹ y^2\,dy = 2x\,dx</div>
+                <div>\int y^2\,dy = \int 2x\,dx ⟹ \frac{y^3}{3} = x^2 + C</div>
+                <div>Passes through (-2, 3): $\frac{27}{3} = (-2)^2 + C ⟹ 9 = 4 + C ⟹ C = 5$</div>
+                <div class="text-emerald-400 font-bold">\frac{y^3}{3} = x^2 + 5 \implies y = (3x^2 + 15)^{1/3}</div>
+              </div>
+            </div>
+
+            <!-- Example 5 -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-amber-300">Example 5: $\frac{dy}{dx} = \frac{1 + y^2}{1 + x^2}$</h4>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-1.5 font-mono text-slate-300">
+                <div>\frac{dy}{1 + y^2} = \frac{dx}{1 + x^2}</div>
+                <div>\int \frac{dy}{1 + y^2} = \int \frac{dx}{1 + x^2}</div>
+                <div class="text-amber-300 font-bold">\tan^{-1}y = \tan^{-1}x + C</div>
+                <p class="text-[11px] text-slate-400 font-sans">Using $\tan(A-B)$, this also yields the rational family $\frac{y - x}{1 + xy} = C'$.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 7 Checkpoint Container -->
+            <div id="slide-checkpoints-7" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 8: Mathematical Modeling: Continuous Growth, Decay & Kinematics -->
+            <div id="slide-8" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Real-World Applications</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">Mathematical Modeling: Continuous Growth, Decay & Kinematics</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Example 9: Continuous Compound Interest dP/dt = 0.05P, Doubling Time t = 20 ln 2, Bacteria & Balloons</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(8)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-emerald-900/40 via-teal-900/30 to-cyan-900/40 p-5 rounded-2xl border border-emerald-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">Mathematical Modeling</span>
+              <span class="text-xs text-slate-400">Continuous Compounding, Population Dynamics & Physical Rates</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Modeling Exponential Growth & Decay</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              When the rate of change of a quantity is proportional to its current value, differential equations yield natural exponential curves.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 text-xs">
+            <!-- Example 9: Bank Interest -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-cyan-300">Example 9: Continuous Compound Interest</h4>
+              <p class="text-slate-300">Principal $P$ increases continuously at 5% per year. Find time to double Rs 1000:</p>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-1.5 font-mono text-slate-300">
+                <div>\frac{dP}{dt} = \frac{5}{100}P = \frac{P}{20} ⟹ \frac{dP}{P} = \frac{dt}{20}</div>
+                <div>\log P = \frac{t}{20} + C_1 ⟹ P(t) = C e^{t/20}</div>
+                <div>At $t = 0, P = 1000 ⟹ C = 1000 ⟹ P(t) = 1000 e^{t/20}$</div>
+                <div>Doubling: $2000 = 1000 e^{t/20} ⟹ e^{t/20} = 2$</div>
+                <div class="text-emerald-400 font-bold">t = 20 \log_e 2 \approx 13.86 \text{ years}</div>
+              </div>
+            </div>
+
+            <!-- Other Modeling Drills -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-amber-300">Physical Modeling Archetypes (Exercise 9.3)</h4>
+              <div class="space-y-2 text-slate-300">
+                <div class="p-2.5 bg-slate-950/70 rounded-xl border border-slate-800">
+                  <div class="font-bold text-white">Bacteria Culture Growth (Q22):</div>
+                  <div class="font-mono text-cyan-300 text-[11px]">\frac{dN}{dt} = kN ⟹ N(t) = N_0 e^{kt}</div>
+                </div>
+                <div class="p-2.5 bg-slate-950/70 rounded-xl border border-slate-800">
+                  <div class="font-bold text-white">Inflating Spherical Balloon (Q19):</div>
+                  <div class="font-mono text-amber-300 text-[11px]">\frac{dV}{dt} = k \quad (V = \frac{4}{3}\pi r^3) ⟹ r^3 = r_0^3 + C t</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 8 Checkpoint Container -->
+            <div id="slide-checkpoints-8" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 9: 9.4.2 Method 2: Homogeneous Functions of Degree n -->
+            <div id="slide-9" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Section 9.4.2 • Homogeneity</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">9.4.2 Method 2: Homogeneous Functions of Degree n</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Definition: F(λx, λy) = λⁿ F(x, y), Testing Homogeneity, and Degree Zero Representation g(y/x)</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(9)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-purple-900/40 via-indigo-900/30 to-blue-900/40 p-5 rounded-2xl border border-purple-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/40">§ 9.4.2 Method 2</span>
+              <span class="text-xs text-slate-400">Homogeneous Functions & Degree Zero Criteria</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Homogeneous Functions & Equations</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              A function $F(x, y)$ is homogeneous of degree $n$ if $F(\lambda x, \lambda y) = \lambda^n F(x, y)$. A differential equation is homogeneous when its right-hand side has degree zero!
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 text-xs">
+            <!-- Testing Homogeneity -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-cyan-300">Testing Homogeneity: The $\lambda$ Scaling Test</h4>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-2 font-mono text-slate-300">
+                <div>1. $F_1(x, y) = y^2 + 2xy$:</div>
+                <div class="text-emerald-400">F_1(\lambda x, \lambda y) = \lambda^2(y^2 + 2xy) = \lambda^2 F_1 \quad (n = 2)</div>
+                <div>2. $F_2(x, y) = 2x - 3y$:</div>
+                <div class="text-emerald-400">F_2(\lambda x, \lambda y) = \lambda^1(2x - 3y) = \lambda^1 F_2 \quad (n = 1)</div>
+                <div>3. $F_3(x, y) = \cos(y/x)$:</div>
+                <div class="text-cyan-300">F_3(\lambda x, \lambda y) = \cos(\lambda y / \lambda x) = \lambda^0 F_3 \quad (n = 0)</div>
+                <div>4. $F_4(x, y) = \sin x + \cos y$:</div>
+                <div class="text-rose-400">\ne \lambda^n F_4 \implies \text{NOT homogeneous!}</div>
+              </div>
+            </div>
+
+            <!-- Degree Zero Differential Equation -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-amber-300">Homogeneous Differential Equation Condition</h4>
+              <p class="text-slate-300 leading-relaxed">
+                A differential equation $\frac{dy}{dx} = F(x, y)$ is called <strong>homogeneous</strong> if $F(x, y)$ is a homogeneous function of degree zero.
+              </p>
+              <div class="p-3 bg-slate-900 rounded-xl font-mono text-amber-300 space-y-1">
+                <div>\frac{dy}{dx} = g\left(\frac{y}{x}\right) \quad \text{or} \quad \frac{dx}{dy} = h\left(\frac{x}{y}\right)</div>
+              </div>
+              <p class="text-slate-400 text-[11px]">
+                Because all powers cancel to zero, the function depends solely on the ratio $y/x$ or $x/y$!
+              </p>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 9 Checkpoint Container -->
+            <div id="slide-checkpoints-9" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 10: Solving Homogeneous Differential Equations: Substitution y = vx -->
+            <div id="slide-10" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Homogeneous Protocol</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">Solving Homogeneous Differential Equations: Substitution y = vx</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Derivation: dy/dx = v + x dv/dx, Collapsing into Separable Form dv/(g(v)-v) = dx/x, and Resubstitution</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(10)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-indigo-900/40 via-purple-900/30 to-pink-900/40 p-5 rounded-2xl border border-indigo-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40">Homogeneous Protocol</span>
+              <span class="text-xs text-slate-400">The Substitution y = vx & Product Rule Differential</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Solving via Substitution: $y = vx$</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Substituting $y = vx$ reduces any homogeneous equation $\frac{dy}{dx} = g(y/x)$ into a separable equation in $v$ and $x$.
+            </p>
+          </div>
+
+          <div class="glass-card p-5 rounded-2xl space-y-3 text-xs">
+            <h4 class="font-bold text-cyan-300">The 4-Step Homogeneous Protocol</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-2 font-mono text-slate-300">
+                <div class="font-bold text-white font-sans">Step 1: Substitute $y = vx$</div>
+                <div>\frac{dy}{dx} = v + x\frac{dv}{dx}</div>
+                <div class="font-bold text-white font-sans mt-2">Step 2: Equate to $g(v)$</div>
+                <div>v + x\frac{dv}{dx} = g(v) ⟹ x\frac{dv}{dx} = g(v) - v</div>
+              </div>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-2 font-mono text-slate-300">
+                <div class="font-bold text-white font-sans">Step 3: Separate Variables</div>
+                <div class="text-cyan-300">\frac{dv}{g(v) - v} = \frac{dx}{x}</div>
+                <div class="font-bold text-white font-sans mt-2">Step 4: Integrate & Replace $v = y/x$</div>
+                <div class="text-emerald-400">\int \frac{dv}{g(v) - v} = \log|x| + C</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 10 Checkpoint Container -->
+            <div id="slide-checkpoints-10" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 11: Reverse Homogeneous Form: dx/dy = h(x/y) & Substitution x = vy -->
+            <div id="slide-11" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Reverse Homogeneous</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">Reverse Homogeneous Form: dx/dy = h(x/y) & Substitution x = vy</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Example 12: 2y e^(x/y) dx + (y - 2x e^(x/y)) dy = 0, Particular Solution x(1) = 0, and MCQ 16</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(11)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-teal-900/40 via-cyan-900/30 to-blue-900/40 p-5 rounded-2xl border border-teal-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/40">Reverse Homogeneous</span>
+              <span class="text-xs text-slate-400">Form dx/dy = h(x/y) & Substitution x = vy (Example 12)</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">The Reverse Homogeneous Form: $\frac{dx}{dy} = h\left(\frac{x}{y}\right)$</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              When equations feature functions of $x/y$ (like $e^{x/y}$), solving for $\frac{dx}{dy}$ and putting $x = vy$ is vastly simpler than using $y = vx$.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 text-xs">
+            <!-- Theory & Note -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-cyan-300">The $x = vy$ Protocol</h4>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-2 font-mono text-slate-300">
+                <div>If $\frac{dx}{dy} = h\left(\frac{x}{y}\right)$, put $x = vy$:</div>
+                <div>\frac{dx}{dy} = v + y\frac{dv}{dy}</div>
+                <div>v + y\frac{dv}{dy} = h(v) ⟹ y\frac{dv}{dy} = h(v) - v</div>
+                <div class="text-emerald-400 font-bold">\frac{dv}{h(v) - v} = \frac{dy}{y}</div>
+              </div>
+            </div>
+
+            <!-- Example 12 Demonstration -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-amber-300">Example 12: $2y e^{x/y} dx + (y - 2x e^{x/y}) dy = 0$</h4>
+              <p class="text-slate-400">Given $x = 0$ when $y = 1$:</p>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-1.5 font-mono text-slate-300">
+                <div>\frac{dx}{dy} = \frac{2x e^{x/y} - y}{2y e^{x/y}}</div>
+                <div>Put $x = vy ⟹ 2e^v\,dv = -\frac{dy}{y}$</div>
+                <div>2e^v = -\log|y| + C ⟹ 2e^{x/y} + \log|y| = C</div>
+                <div>Apply $x=0, y=1: 2(1) + 0 = C ⟹ C = 2$</div>
+                <div class="text-emerald-400 font-bold">2 e^{x/y} + \log|y| = 2</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 11 Checkpoint Container -->
+            <div id="slide-checkpoints-11" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 12: 📝 Exercise 9.4 Workshop: Homogeneous Masterpieces -->
+            <div id="slide-12" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Exercise 9.4 Workshop</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">📝 Exercise 9.4 Workshop: Homogeneous Masterpieces</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Examples 10 & 11, Slope dy/dx = (x²+y²)/2xy ⟹ x² - y² = cx, and Angle Trigonometry</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(12)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-purple-900/40 via-violet-900/30 to-indigo-900/40 p-5 rounded-2xl border border-purple-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/40">Exercise 9.4 Workshop</span>
+              <span class="text-xs text-slate-400">Classic Curves: Slope dy/dx = (x²+y²)/2xy ⟹ x² - y² = cx</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Homogeneous Master Problems: Slope & Angles</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Detailed walkthroughs of NCERT Examples 11 and 13 demonstrating trigonometric arguments and hyperbolic integral curve families.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 text-xs">
+            <!-- Example 13 -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-cyan-300">Example 13: Slope $\frac{dy}{dx} = \frac{x^2+y^2}{2xy}$</h4>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-1.5 font-mono text-slate-300">
+                <div>Put $y = vx ⟹ v + x\frac{dv}{dx} = \frac{1 + v^2}{2v}$</div>
+                <div>x\frac{dv}{dx} = \frac{1 - v^2}{2v} ⟹ \frac{2v}{v^2 - 1}\,dv = -\frac{dx}{x}</div>
+                <div>\log|v^2 - 1| = -\log|x| + \log|C_1|</div>
+                <div>(v^2 - 1)x = C ⟹ (y^2/x^2 - 1)x = C</div>
+                <div class="text-emerald-400 font-bold">x^2 - y^2 = cx \quad (\text{Family of Hyperbolas})</div>
+              </div>
+            </div>
+
+            <!-- Example 21 -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-amber-300">Example 21: $(x dy - y dx) y\sin(y/x) = (y dx + x dy) x\cos(y/x)$</h4>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-1.5 font-mono text-slate-300">
+                <div>Rearrange to homogeneous form: $\frac{dy}{dx} = \frac{y\cos(y/x) + (y^2/x)\sin(y/x)}{y\sin(y/x) - x\cos(y/x)}$</div>
+                <div>Put $y = vx ⟹ \tan v\,dv - \frac{1}{v}\,dv = 2\frac{dx}{x}$</div>
+                <div>\log|\sec v| - \log|v| = 2\log|x| + \log|C_1|</div>
+                <div class="text-amber-300 font-bold">\sec\left(\frac{y}{x}\right) = C x y</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 12 Checkpoint Container -->
+            <div id="slide-checkpoints-12" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 13: 9.4.3 Method 3: First Order Linear Differential Equations -->
+            <div id="slide-13" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Section 9.4.3 • Linear Form 1</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">9.4.3 Method 3: First Order Linear Differential Equations</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Standard Form dy/dx + Py = Q, Integrating Factor I.F. = e^(∫P dx), and Solution y·(I.F.) = ∫(Q·I.F.)dx + C</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(13)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-blue-900/40 via-indigo-900/30 to-purple-900/40 p-5 rounded-2xl border border-blue-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40">§ 9.4.3 Method 3</span>
+              <span class="text-xs text-slate-400">First Order Linear Form 1: dy/dx + Py = Q & Integrating Factor</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">First Order Linear Differential Equations</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              A differential equation of the form $\frac{dy}{dx} + P(x) y = Q(x)$ is solved by multiplying through by the <strong>Integrating Factor</strong> $\text{I.F.} = e^{\int P\,dx}$.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 text-xs">
+            <!-- Derivation of I.F. -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-cyan-300">Derivation of the Integrating Factor (Page 323)</h4>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-2 font-mono text-slate-300">
+                <div>Multiply by $g(x)$: $g(x) y' + P g(x) y = Q g(x)$</div>
+                <div>We desire LHS = $\frac{d}{dx}[y \cdot g(x)] = g(x) y' + y g'(x)$</div>
+                <div>⟹ $g'(x) = P(x) g(x) ⟹ \frac{g'}{g} = P(x)$</div>
+                <div>\log(g(x)) = \int P\,dx ⟹ g(x) = e^{\int P\,dx}</div>
+                <div class="text-emerald-400 font-bold">\text{Integrating Factor (I.F.) } = e^{\int P\,dx}</div>
+              </div>
+            </div>
+
+            <!-- The Solution Formula -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-amber-300">Universal Solution Formula & Example 15</h4>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-2 font-mono text-slate-300">
+                <div class="text-cyan-300 font-bold">y \cdot (\text{I.F.}) = \int (Q \cdot \text{I.F.})\,dx + C</div>
+                <div class="border-t border-slate-800 pt-2 text-white font-bold">Example 15: $x \frac{dy}{dx} + 2y = x^2$</div>
+                <div>Divide by x: $y' + \frac{2}{x}y = x ⟹ P = 2/x, Q = x$</div>
+                <div>\text{I.F.} = e^{\int (2/x)dx} = e^{2\log x} = x^2</div>
+                <div>y \cdot x^2 = \int x \cdot x^2\,dx + C = \frac{x^4}{4} + C</div>
+                <div class="text-emerald-400 font-bold">y = \frac{x^2}{4} + C x^{-2}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 13 Checkpoint Container -->
+            <div id="slide-checkpoints-13" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 14: Linear Form 2: dx/dy + P₁x = Q₁ & Integrating Factors in y -->
+            <div id="slide-14" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Section 9.4.3 • Linear Form 2</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">Linear Form 2: dx/dy + P₁x = Q₁ & Integrating Factors in y</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Examples 16 & 22: y dx - (x + 2y²) dy = 0, (tan⁻¹y - x) dy = (1+y²) dx, and MCQs 18 & 19</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(14)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-teal-900/40 via-cyan-900/30 to-blue-900/40 p-5 rounded-2xl border border-teal-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/40">Linear Form 2</span>
+              <span class="text-xs text-slate-400">dx/dy + P₁x = Q₁ & Integrating Factors in y</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Linear Form 2: $\frac{dx}{dy} + P_1(y) x = Q_1(y)$</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              When $x$ is the dependent variable and $y$ is the independent variable, the equation is linear in $x$.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 text-xs">
+            <!-- Theory & Formula -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-cyan-300">Form 2 Solution Protocol</h4>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-2 font-mono text-slate-300">
+                <div>\frac{dx}{dy} + P_1(y) x = Q_1(y)</div>
+                <div class="text-cyan-300">\text{I.F.} = e^{\int P_1(y)\,dy}</div>
+                <div class="text-emerald-400 font-bold">x \cdot (\text{I.F.}) = \int (Q_1 \cdot \text{I.F.})\,dy + C</div>
+              </div>
+              <p class="text-[11px] text-slate-400">Notice the symmetric duality: interchange $x \leftrightarrow y$ and $P \leftrightarrow P_1$!</p>
+            </div>
+
+            <!-- Example 16 -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-amber-300">Example 16: $y dx - (x + 2y^2) dy = 0$</h4>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-1.5 font-mono text-slate-300">
+                <div>Divide by $y dy$: $\frac{dx}{dy} - \frac{1}{y}x = 2y$</div>
+                <div>P_1 = -1/y, \quad Q_1 = 2y</div>
+                <div>\text{I.F.} = e^{\int (-1/y)dy} = e^{-\log y} = \frac{1}{y}</div>
+                <div>x \left(\frac{1}{y}\right) = \int (2y)\left(\frac{1}{y}\right)\,dy + C = 2y + C</div>
+                <div class="text-emerald-400 font-bold">x = 2y^2 + Cy</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 14 Checkpoint Container -->
+            <div id="slide-checkpoints-14" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 15: 📝 Exercise 9.5 Workshop & Miscellaneous Masterpieces -->
+            <div id="slide-15" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Exercise 9.5 Deep Dive</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">📝 Exercise 9.5 Workshop & Miscellaneous Masterpieces</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Example 14: dy/dx - y = cos x, Example 17: Particular Solution y(π/2) = 0, and MCQs 13 to 15</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(15)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-purple-900/40 via-pink-900/30 to-indigo-900/40 p-5 rounded-2xl border border-purple-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/40">Exercise 9.5 & Misc</span>
+              <span class="text-xs text-slate-400">Examples 14, 17, 22 & Exact Differential Forms</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Linear Workshop & Exact Differential Shortcuts</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Mastering initial conditions and recognizing exact differentials like $d(y e^x)$ or $d(x/y)$ for instant evaluation.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 text-xs">
+            <!-- Example 17 -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-cyan-300">Example 17: $\frac{dy}{dx} + y\cot x = 2x + x^2\cot x$</h4>
+              <p class="text-slate-400">Particular solution with $y(\pi/2) = 0$:</p>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-1 font-mono text-slate-300">
+                <div>\text{I.F.} = e^{\int \cot x\,dx} = e^{\log\sin x} = \sin x</div>
+                <div>y \sin x = \int (2x\sin x + x^2\cos x)\,dx + C = x^2\sin x + C</div>
+                <div>At $x = \pi/2, y = 0: 0 = (\pi/2)^2(1) + C ⟹ C = -\pi^2/4$</div>
+                <div class="text-emerald-400 font-bold">y = x^2 - \frac{\pi^2}{4\sin x}</div>
+              </div>
+            </div>
+
+            <!-- Exact Differential MCQ 15 -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-amber-300">Misc MCQ 15: Exact Differential Inspection</h4>
+              <p class="text-slate-400">Solve $e^x dy + (y e^x + 2x) dx = 0$:</p>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-1.5 font-mono text-slate-300">
+                <div>Regroup: $(e^x\,dy + y e^x\,dx) + 2x\,dx = 0</div>
+                <div>d(y e^x) + d(x^2) = 0</div>
+                <div>\int d(y e^x + x^2) = 0</div>
+                <div class="text-emerald-400 font-bold">y e^x + x^2 = C \quad (\text{Option C})</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 15 Checkpoint Container -->
+            <div id="slide-checkpoints-15" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 16: Historical Note: 350 Years of Differential Equations -->
+            <div id="slide-16" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Historical Note</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">Historical Note: 350 Years of Differential Equations</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Nov 11, 1675: Leibniz's Invention, James & John Bernoulli (1690, 1715), Lagrange, and x²y'' = 2y</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(16)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-amber-900/40 via-yellow-900/30 to-orange-900/40 p-5 rounded-2xl border border-amber-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">Historical Note</span>
+              <span class="text-xs text-slate-400">Pages 336–337: November 11, 1675 to Modern Qualitative Analysis</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Historical Note: 350 Years of Differential Equations</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Tracing the birth and rapid evolution of differential equations from Leibniz and the Bernoulli brothers to Lagrange and Henri Poincaré.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            <div class="glass-card p-4 rounded-2xl space-y-2">
+              <h4 class="font-bold text-cyan-300 border-b border-slate-800 pb-1">Date of Birth: November 11, 1675</h4>
+              <p class="text-slate-300 leading-relaxed">
+                Gottfried Wilhelm Leibniz first penned the identity $\int y\,dy = \frac{1}{2}y^2$, creating both $\int$ and $dy$. Within 25 years, Leibniz discovered separation of variables (1691), homogeneous methods (1692), and first-order linear solutions!
+              </p>
+            </div>
+            <div class="glass-card p-4 rounded-2xl space-y-2">
+              <h4 class="font-bold text-amber-300 border-b border-slate-800 pb-1">John Bernoulli & $x^2 y'' = 2y$ (1715)</h4>
+              <p class="text-slate-300 leading-relaxed">
+                In a famous 1715 letter to Leibniz, John Bernoulli revealed that the innocent equation $x^2 y'' = 2y$ generates three diverse classes of curves: parabolas, hyperbolas, and cubic curves, initiating modern qualitative analysis!
+              </p>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 16 Checkpoint Container -->
+            <div id="slide-checkpoints-16" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 17: 🎯 Quiz Challenge 1: Order, Degree & Solution Types -->
+            <div id="slide-17" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Quiz Set 1</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">🎯 Quiz Challenge 1: Order, Degree & Solution Types</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Questions 1–10: Test order, degree, polynomial conditions, and general vs particular solutions.</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-300">
+                    <span id="quiz-score-1">0</span> / 10 Solved
+                  </span>
+                </div>
+              </div>
+
+              <!-- Quiz Questions Grid -->
+              <div id="quiz-container-1" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <!-- Rendered dynamically by JavaScript -->
+              </div>
+            </div>
+            
+
+            <!-- Slide 18: 🎯 Quiz Challenge 2: Variables Separable & Growth Modeling -->
+            <div id="slide-18" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Quiz Set 2</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">🎯 Quiz Challenge 2: Variables Separable & Growth Modeling</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Questions 11–20: Master separable integration, initial value problems, and continuous exponential growth.</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-300">
+                    <span id="quiz-score-2">0</span> / 10 Solved
+                  </span>
+                </div>
+              </div>
+
+              <!-- Quiz Questions Grid -->
+              <div id="quiz-container-2" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <!-- Rendered dynamically by JavaScript -->
+              </div>
+            </div>
+            
+
+            <!-- Slide 19: 🎯 Quiz Challenge 3: Homogeneous Equations (y = vx & x = vy) -->
+            <div id="slide-19" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Quiz Set 3</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">🎯 Quiz Challenge 3: Homogeneous Equations (y = vx & x = vy)</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Questions 21–30: Test homogeneous function degrees, standard substitutions, and angle-ratio differential equations.</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-300">
+                    <span id="quiz-score-3">0</span> / 10 Solved
+                  </span>
+                </div>
+              </div>
+
+              <!-- Quiz Questions Grid -->
+              <div id="quiz-container-3" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <!-- Rendered dynamically by JavaScript -->
+              </div>
+            </div>
+            
+
+            <!-- Slide 20: 🎯 Quiz Challenge 4: Linear Equations & Integrating Factors -->
+            <div id="slide-20" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Quiz Set 4</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">🎯 Quiz Challenge 4: Linear Equations & Integrating Factors</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Questions 31–40: Master linear differential equations, integrating factors, and particular solutions.</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-300">
+                    <span id="quiz-score-4">0</span> / 10 Solved
+                  </span>
+                </div>
+              </div>
+
+              <!-- Quiz Questions Grid -->
+              <div id="quiz-container-4" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <!-- Rendered dynamically by JavaScript -->
+              </div>
+            </div>
+            
+  </main>
+
+  <!-- BOTTOM BAR (FOOTER CONTROLLER DOCK WITH SHORT HEADING PILLS) -->
+  <footer style="flex-shrink: 0;" class="border-t border-slate-800/90 bg-slate-950/95 p-3 sm:p-4 z-40 sticky bottom-0">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+      <!-- Left: Audio Effects Toggle -->
+      <div class="flex items-center space-x-2">
+        <button onclick="toggleAudioFx()" id="audioFxToggleBtn" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 text-xs hover:text-white transition flex items-center space-x-1.5 cursor-pointer">
+          <i class="fas fa-music text-blue-400"></i>
+          <span id="audioFxStatus">SFX: On</span>
+        </button>
+      </div>
+
+      <!-- Center: Slide Navigation Pills with Short Topic Headings -->
+      <div class="flex items-center space-x-1 overflow-x-auto max-w-full md:max-w-2xl py-1 custom-scrollbar px-2">
+        <button onclick="goToSlide(0)" id="pill-0" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="9.1 & 9.2 Introduction to Differential Equations & Poincaré's Vision">1. Intro & Poincaré</button>
+<button onclick="goToSlide(1)" id="pill-1" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="9.2.1 Order of a Differential Equation: Definitions & Rules">2. Order Definition</button>
+<button onclick="goToSlide(2)" id="pill-2" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="9.2.2 Degree of a Differential Equation: Polynomial Condition & Traps">3. Degree & Poly Test</button>
+<button onclick="goToSlide(3)" id="pill-3" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="📝 Exercise 9.1 Workshop: Order & Degree Mastery">4. Ex 9.1 Traps</button>
+<button onclick="goToSlide(4)" id="pill-4" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="9.3 General and Particular Solutions of a Differential Equation">5. General vs Part</button>
+<button onclick="goToSlide(5)" id="pill-5" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="📝 Exercise 9.2 Workshop: Verifying Differential Solutions">6. Verifying Solutions</button>
+<button onclick="goToSlide(6)" id="pill-6" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="9.4.1 Method 1: Differential Equations with Variables Separable">7. Separable Method</button>
+<button onclick="goToSlide(7)" id="pill-7" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="📝 Exercise 9.3 Workshop: Separable Drills & Tangent Curves">8. Tangent Curves</button>
+<button onclick="goToSlide(8)" id="pill-8" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="Mathematical Modeling: Continuous Growth, Decay & Kinematics">9. Growth & Decay</button>
+<button onclick="goToSlide(9)" id="pill-9" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="9.4.2 Method 2: Homogeneous Functions of Degree n">10. Homogeneous Test</button>
+<button onclick="goToSlide(10)" id="pill-10" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="Solving Homogeneous Differential Equations: Substitution y = vx">11. Sub y = vx</button>
+<button onclick="goToSlide(11)" id="pill-11" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="Reverse Homogeneous Form: dx/dy = h(x/y) & Substitution x = vy">12. Reverse Sub x=vy</button>
+<button onclick="goToSlide(12)" id="pill-12" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="📝 Exercise 9.4 Workshop: Homogeneous Masterpieces">13. Homogeneous Ex</button>
+<button onclick="goToSlide(13)" id="pill-13" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="9.4.3 Method 3: First Order Linear Differential Equations">14. Linear Form 1</button>
+<button onclick="goToSlide(14)" id="pill-14" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="Linear Form 2: dx/dy + P₁x = Q₁ & Integrating Factors in y">15. Linear Form 2</button>
+<button onclick="goToSlide(15)" id="pill-15" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="📝 Exercise 9.5 Workshop & Miscellaneous Masterpieces">16. Ex 9.5 & Exact</button>
+<button onclick="goToSlide(16)" id="pill-16" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="Historical Note: 350 Years of Differential Equations">17. 350 Yrs History</button>
+<button onclick="goToSlide(17)" id="pill-17" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="🎯 Quiz Challenge 1: Order, Degree & Solution Types">18. Quiz 1: Basics</button>
+<button onclick="goToSlide(18)" id="pill-18" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="🎯 Quiz Challenge 2: Variables Separable & Growth Modeling">19. Quiz 2: Separable</button>
+<button onclick="goToSlide(19)" id="pill-19" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="🎯 Quiz Challenge 3: Homogeneous Equations (y = vx & x = vy)">20. Quiz 3: Homogeneous</button>
+<button onclick="goToSlide(20)" id="pill-20" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="🎯 Quiz Challenge 4: Linear Equations & Integrating Factors">21. Quiz 4: Linear DE</button>
+      </div>
+
+      <!-- Right: Navigation Buttons & Last Slide Notice Container -->
+      <div class="flex items-center space-x-2">
+        <button onclick="prevSlide()" id="prevBtn" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold transition flex items-center space-x-1.5 border border-slate-700 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed">
+          <i class="fas fa-chevron-left"></i>
+          <span>Prev</span>
+        </button>
+        <button onclick="nextSlide()" id="nextBtn" class="px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white text-xs font-bold shadow-lg shadow-blue-600/30 transition flex items-center space-x-1.5 cursor-pointer">
+          <span>Next</span>
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- REQUIRED LAST SLIDE NOTICE -->
+    <div id="lastSlideNotice" class="hidden max-w-7xl mx-auto mt-2 p-2.5 rounded-xl bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 text-center text-xs font-bold shadow-lg">
+      <i class="fas fa-check-circle mr-1.5"></i>
+      <span>You have reached the last slide of this chapter</span>
+    </div>
+  </footer>
+
+  <!-- POPUP MODAL FOR QUIZ SOLUTIONS -->
+  <div id="solutionModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="glass-card max-w-xl w-full rounded-2xl p-6 border border-slate-700/80 shadow-2xl space-y-4 animate-modal bg-slate-900/95 max-h-[85vh] overflow-y-auto custom-scrollbar">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center space-x-2 text-cyan-300 font-bold text-base">
+          <i class="fas fa-lightbulb text-amber-400"></i>
+          <span id="solutionModalTitle">Solution & Mathematical Derivation</span>
+        </div>
+        <button onclick="closeSolutionModal()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition flex items-center justify-center cursor-pointer">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div id="solutionModalBody" class="text-xs sm:text-sm text-slate-200 leading-relaxed space-y-3 font-sans">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <div class="pt-2 border-t border-slate-800/80 flex justify-end">
+        <button onclick="closeSolutionModal()" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition cursor-pointer">
+          Close Solution
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EMBEDDED DATA & SCRIPT -->
+  <script>
+    const SLIDES_COUNT = 21;
+    const SLIDES_METADATA = [{"index": 0, "title": "9.1 & 9.2 Introduction to Differential Equations & Poincar\u00e9's Vision", "subtitle": "Hilbert Quote, Ordinary vs Partial DEs, Henri Poincar\u00e9 (1854\u20131912), and Derivative Notations", "badge": "Section 9.1 & 9.2", "narration": "Welcome to Chapter 9: Differential Equations! As David Hilbert wisely remarked, 'He who seeks for methods without having a definite problem in mind seeks for the most part in vain.' In differential calculus, we computed derivatives; in integral calculus, we solved the basic differential equation dy/dx = g(x). An equation involving derivatives of a dependent variable with respect to an independent variable is called a differential equation. When derivatives depend on only one variable, it is an Ordinary Differential Equation. Differential equations form the foundational language of physics, astronomy, engineering, and biology."}, {"index": 1, "title": "9.2.1 Order of a Differential Equation: Definitions & Rules", "subtitle": "Order of the Highest Derivative Present, First, Second, and Higher Orders, and Visual Inspection", "badge": "Section 9.2.1 \u2022 Order", "narration": "The order of a differential equation is defined as the order of the highest-order derivative of the dependent variable with respect to the independent variable occurring in the equation. For example, dy/dx = e^x has order 1. d\u00b2y/dx\u00b2 + y = 0 has order 2. Even if a first derivative is raised to the tenth power, the order is determined strictly by the highest order of differentiation present, never by the exponent."}, {"index": 2, "title": "9.2.2 Degree of a Differential Equation: Polynomial Condition & Traps", "subtitle": "Highest Power of Highest Derivative, The Polynomial in Derivatives Prerequisite, and Undefined Degrees", "badge": "Section 9.2.2 \u2022 Degree", "narration": "Degree requires extreme care! To define degree, the differential equation must be expressible as a polynomial equation in its derivatives: y prime, y double prime, and so on. If it is a polynomial in derivatives, the degree is the highest positive integral power of the highest-order derivative. If any derivative is trapped inside a transcendental function\u2014such as sine of dy/dx or e to the power y prime\u2014the degree is NOT defined! Remember: order is always defined, but degree may not be defined."}, {"index": 3, "title": "\ud83d\udcdd Exercise 9.1 Workshop: Order & Degree Mastery", "subtitle": "Problems 1 to 10, MCQs 11 & 12, Radical Clearing, and The sin(y) vs sin(y') Distinction", "badge": "Exercise 9.1 Deep Dive", "narration": "In Exercise 9.1, we analyze classic exam traps. For d\u2074y/dx\u2074 + sin(y''') = 0, the order is 4, but because y''' is inside sine, the degree is not defined! Notice the subtle contrast in Problem 10: y'' + 2y' + sin y = 0. Here, y is the dependent variable, not a derivative, so it remains a polynomial in derivatives with order 2 and degree 1! In MCQ 11, sin(dy/dx) renders the degree undefined."}, {"index": 4, "title": "9.3 General and Particular Solutions of a Differential Equation", "subtitle": "Solution Curves (Integral Curves), n Constants for Order n, and Zero Constants for Particular Solutions", "badge": "Section 9.3 \u2022 Solutions", "narration": "Unlike algebraic equations whose solutions are numbers, the solution of a differential equation is a function y = phi(x) that identically satisfies the equation. Geometrically, it represents an integral curve. The general solution contains as many arbitrary constants as the order of the differential equation. A particular solution is obtained by assigning specific numerical values to these constants, containing exactly zero arbitrary constants."}, {"index": 5, "title": "\ud83d\udcdd Exercise 9.2 Workshop: Verifying Differential Solutions", "subtitle": "Examples 2 & 3, Explicit vs Implicit Relations, and Board Exam MCQs 11 & 12", "badge": "Exercise 9.2 Deep Dive", "narration": "In Exercise 9.2, we verify whether explicit or implicit relations satisfy given differential equations by successive differentiation. Multiple-choice question 11 asks for the number of arbitrary constants in the general solution of a fourth-order differential equation: the answer is 4. Question 12 asks for the arbitrary constants in a particular solution of order 3: the answer is always 0."}, {"index": 6, "title": "9.4.1 Method 1: Differential Equations with Variables Separable", "subtitle": "Form dy/dx = h(y)\u00b7g(x), Separating Variables (1/h(y)) dy = g(x) dx, and Integrating Both Sides", "badge": "Section 9.4.1 \u2022 Separable", "narration": "Our first major solving technique is separation of variables. If the derivative dy/dx can be factored as a product of g(x) and h(y), we rewrite the equation so that all terms containing y stay with dy, and all terms containing x stay with dx. Integrating both sides yields H(y) = G(x) + C. This fundamental method was first discovered by Gottfried Leibniz in 1691."}, {"index": 7, "title": "\ud83d\udcdd Exercise 9.3 Workshop: Separable Drills & Tangent Curves", "subtitle": "Examples 4 to 8: dy/dx = (x+1)/(2-y), Passing Through Points, and Slope Relations dy/dx = 2x/y\u00b2", "badge": "Exercise 9.3 Workshop", "narration": "In Exercise 9.3, we solve algebraic, trigonometric, and exponential separable equations. In Example 8, we find the curve passing through (-2, 3) whose tangent slope is 2x over y squared. Separating variables gives y squared dy = 2x dx, which integrates to y cubed over 3 = x squared + C. Substituting (-2, 3) yields C = 5, giving y cubed = 3x squared + 15."}, {"index": 8, "title": "Mathematical Modeling: Continuous Growth, Decay & Kinematics", "subtitle": "Example 9: Continuous Compound Interest dP/dt = 0.05P, Doubling Time t = 20 ln 2, Bacteria & Balloons", "badge": "Real-World Applications", "narration": "Differential equations model dynamic real-world phenomena. In banking, when principal grows continuously at 5% per year, dP/dt equals P over 20, leading to the exponential formula P(t) = 1000 e^(t/20). To double the investment to 2000 rupees requires exactly 20 natural log of 2 years, approximately 13.86 years. Similar differential equations govern radioactive decay, bacterial growth, and inflating spherical balloons."}, {"index": 9, "title": "9.4.2 Method 2: Homogeneous Functions of Degree n", "subtitle": "Definition: F(\u03bbx, \u03bby) = \u03bb\u207f F(x, y), Testing Homogeneity, and Degree Zero Representation g(y/x)", "badge": "Section 9.4.2 \u2022 Homogeneity", "narration": "A function F(x, y) is homogeneous of degree n if replacing x and y by lambda x and lambda y scales the entire function by lambda to the power n. A differential equation dy/dx = F(x, y) is called homogeneous if F is a homogeneous function of degree zero. In that case, F can always be expressed purely as a function of the single ratio y over x."}, {"index": 10, "title": "Solving Homogeneous Differential Equations: Substitution y = vx", "subtitle": "Derivation: dy/dx = v + x dv/dx, Collapsing into Separable Form dv/(g(v)-v) = dx/x, and Resubstitution", "badge": "Homogeneous Protocol", "narration": "To solve a homogeneous differential equation dy/dx = g(y/x), we substitute y = v times x. By the product rule, dy/dx equals v plus x dv/dx. Equating this to g(v) transforms the equation into the separable form: dv over (g(v) minus v) equals dx over x. After integrating both sides, we replace v by y over x to obtain the final general solution."}, {"index": 11, "title": "Reverse Homogeneous Form: dx/dy = h(x/y) & Substitution x = vy", "subtitle": "Example 12: 2y e^(x/y) dx + (y - 2x e^(x/y)) dy = 0, Particular Solution x(1) = 0, and MCQ 16", "badge": "Reverse Homogeneous", "narration": "When a homogeneous differential equation contains ratios of x over y\u2014such as exponential terms e^(x/y)\u2014solving for dy/dx becomes cumbersome. Instead, express it as dx/dy = h(x/y) and substitute x = v times y! Then dx/dy equals v plus y dv/dy. In Example 12, this elegant substitution integrates smoothly to 2 e^(x/y) + log|y| = 2."}, {"index": 12, "title": "\ud83d\udcdd Exercise 9.4 Workshop: Homogeneous Masterpieces", "subtitle": "Examples 10 & 11, Slope dy/dx = (x\u00b2+y\u00b2)/2xy \u27f9 x\u00b2 - y\u00b2 = cx, and Angle Trigonometry", "badge": "Exercise 9.4 Workshop", "narration": "In Exercise 9.4, we master advanced homogeneous problems. In Example 13, a curve whose tangent slope is (x squared + y squared) over 2xy leads to dv times 2v over (1 minus v squared) = dx over x, which integrates cleanly to the family of hyperbolas x squared minus y squared = cx. Multiple-choice question 16 confirms that dx/dy = h(x/y) is solved by x = vy."}, {"index": 13, "title": "9.4.3 Method 3: First Order Linear Differential Equations", "subtitle": "Standard Form dy/dx + Py = Q, Integrating Factor I.F. = e^(\u222bP dx), and Solution y\u00b7(I.F.) = \u222b(Q\u00b7I.F.)dx + C", "badge": "Section 9.4.3 \u2022 Linear Form 1", "narration": "A first-order differential equation of the form dy/dx + P(x) y = Q(x) is called a linear differential equation. To solve it, we multiply throughout by an Integrating Factor, I.F. equals e to the integral of P dx. This condenses the left-hand side into the exact derivative of y times I.F.! Integrating both sides gives the universal solution: y times I.F. equals the integral of Q times I.F. dx plus C."}, {"index": 14, "title": "Linear Form 2: dx/dy + P\u2081x = Q\u2081 & Integrating Factors in y", "subtitle": "Examples 16 & 22: y dx - (x + 2y\u00b2) dy = 0, (tan\u207b\u00b9y - x) dy = (1+y\u00b2) dx, and MCQs 18 & 19", "badge": "Section 9.4.3 \u2022 Linear Form 2", "narration": "When a linear equation has x as the dependent variable and y as the independent variable, it takes the form dx/dy + P1(y) x = Q1(y). The integrating factor is e to the integral of P1 dy, and the solution is x times I.F. equals the integral of Q1 times I.F. dy plus C. In Example 16, dividing by dy gives dx/dy minus x/y = 2y, with I.F. = 1/y, yielding x = 2y squared + Cy."}, {"index": 15, "title": "\ud83d\udcdd Exercise 9.5 Workshop & Miscellaneous Masterpieces", "subtitle": "Example 14: dy/dx - y = cos x, Example 17: Particular Solution y(\u03c0/2) = 0, and MCQs 13 to 15", "badge": "Exercise 9.5 Deep Dive", "narration": "In Exercise 9.5 and the Miscellaneous Exercise, we solve linear equations with trigonometric and algebraic terms. In Example 14, dy/dx minus y = cos x has I.F. = e^(-x), solved by integration by parts. In MCQ 18, x dy/dx minus y = 2x squared has integrating factor 1/x. In MCQ 15, e^x dy + (y e^x + 2x) dx = 0 is an exact differential d(y e^x) + d(x squared) = 0, giving y e^x + x squared = C."}, {"index": 16, "title": "Historical Note: 350 Years of Differential Equations", "subtitle": "Nov 11, 1675: Leibniz's Invention, James & John Bernoulli (1690, 1715), Lagrange, and x\u00b2y'' = 2y", "badge": "Historical Note", "narration": "The historical note on pages 336-337 commemorates the birth of differential equations: November 11, 1675, when Gottfried Wilhelm Leibniz first wrote the identity integral y dy = half y squared. Within 25 years, Leibniz created separation of variables, homogeneous solutions, and first-order linear methods! In 1690, James Bernoulli coined the term 'integral', while Lagrange in 1774 and Henri Poincar\u00e9 championed 'solution'. In 1715, John Bernoulli revealed that the innocent equation x squared y double prime = 2y generates parabolas, hyperbolas, and cubic curves."}, {"index": 17, "title": "\ud83c\udfaf Quiz Challenge 1: Order, Degree & Solution Types", "subtitle": "Questions 1\u201310: Test order, degree, polynomial conditions, and general vs particular solutions.", "badge": "Quiz Set 1", "narration": "Welcome to Quiz Challenge 1! Test your fundamentals on order, degree, polynomial conditions in derivatives, and distinguishing general solutions from particular solutions. Click any answer to test your skills, and use the View Solution button for a full step-by-step popup explanation."}, {"index": 18, "title": "\ud83c\udfaf Quiz Challenge 2: Variables Separable & Growth Modeling", "subtitle": "Questions 11\u201320: Method of separation of variables, initial value problems, and exponential growth.", "badge": "Quiz Set 2", "narration": "Welcome to Quiz Challenge 2! Tackle separation of variables, exponential population growth, continuous compound interest, and particular solutions satisfying initial conditions. Click any option and consult the Solution popup for complete derivations."}, {"index": 19, "title": "\ud83c\udfaf Quiz Challenge 3: Homogeneous Equations (y = vx & x = vy)", "subtitle": "Questions 21\u201330: Degree of homogeneity, standard substitution y = vx, and dx/dy = h(x/y) substitution x = vy.", "badge": "Quiz Set 3", "narration": "Welcome to Quiz Challenge 3! Sharpen your mastery of homogeneous differential equations. Test your recognition of degree zero homogeneous functions, substitutions y = vx and x = vy, and log-algebra simplifications. View full step-by-step solutions with the Solution button."}, {"index": 20, "title": "\ud83c\udfaf Quiz Challenge 4: Linear Equations & Integrating Factors", "subtitle": "Questions 31\u201340: Standard forms dy/dx + Py = Q and dx/dy + P\u2081x = Q\u2081, integrating factors, and historical milestones.", "badge": "Quiz Set 4", "narration": "Welcome to Quiz Challenge 4, our culminating championship! Solve first-order linear differential equations, calculate integrating factors e to the integral P dx, and celebrate the 350-year legacy of Leibniz and Bernoulli. Click any answer and view the step-by-step popup solution for every question."}];
+    const CHECKPOINTS_DATA = [{"slideIdx": 0, "questions": [{"id": 1, "question": "What defines an Ordinary Differential Equation (ODE) according to Section 9.1 & 9.2?", "options": ["A) An equation involving partial derivatives with multiple independent variables", "B) An equation involving derivatives of the dependent variable with respect to only one independent variable", "C) An algebraic equation involving purely numerical polynomials", "D) An integral equation containing no derivatives"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Section 9.1 & 9.2 defines: 'An equation involving derivatives of the dependent variable with respect to only one independent variable is called an ordinary differential equation (ODE)' (NCERT Page 300)."}, {"id": 2, "question": "Which French mathematician is featured on page 300 of NCERT Chapter 9 for developing the qualitative theory of differential equations?", "options": ["A) David Hilbert", "B) Henri Poincar\u00e9 (1854\u20131912)", "C) Isaac Newton", "D) Gottfried Wilhelm Leibniz"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Henri Poincar\u00e9 (1854\u20131912) is featured on page 300. His qualitative analysis and topological methods founded modern dynamic systems and chaos theory (NCERT Page 300)."}]}, {"slideIdx": 1, "questions": [{"id": 1, "question": "What is the order of the differential equation: y''' + 2(y'')\u2074 + (y')\u2075 + y = 0?", "options": ["A) 5", "B) 4", "C) 3", "D) 1"], "correct": 2, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Order is defined strictly by the order of the highest derivative present in the equation.<br>\u2022 Here, the highest derivative is y''' (the third derivative), so Order = 3. Exponents on lower derivatives do not alter the order (NCERT Page 301)."}, {"id": 2, "question": "What is the order of the differential equation: d\u00b2y/dx\u00b2 + y = 0?", "options": ["A) 1", "B) 2", "C) 0", "D) Undefined"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 The highest order derivative present is d\u00b2y/dx\u00b2, which is of second order, so Order = 2 (NCERT Example 1(ii), Page 301)."}]}, {"slideIdx": 2, "questions": [{"id": 1, "question": "Why is the degree of d\u00b3y/dx\u00b3 + sin(dy/dx) = 0 not defined?", "options": ["A) The order is 3", "B) The equation cannot be expressed as a polynomial in its derivatives due to sin(dy/dx)", "C) The coefficient of d\u00b3y/dx\u00b3 is zero", "D) The dependent variable y is absent"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Section 9.2.2 explains that degree is only defined when the differential equation can be written as a polynomial in derivatives.<br>\u2022 Because dy/dx is an argument inside the transcendental sine function, it cannot be written as a polynomial in derivatives, so Degree is NOT defined (NCERT Page 301-302)."}, {"id": 2, "question": "What are the order and degree of (d\u00b2y/dx\u00b2)\u00b3 + (dy/dx)\u00b2 + y = 0?", "options": ["A) Order 2, Degree 3", "B) Order 3, Degree 2", "C) Order 2, Degree 2", "D) Order 1, Degree 3"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 The highest order derivative is d\u00b2y/dx\u00b2 (Order = 2).<br>\u2022 The equation is a polynomial in its derivatives, and the highest power of d\u00b2y/dx\u00b2 is 3, so Degree = 3 (NCERT Page 301)."}]}, {"slideIdx": 3, "questions": [{"id": 1, "question": "For Exercise 9.1 Question 10: y'' + 2y' + sin y = 0, what is the degree?", "options": ["A) Not defined because of sin y", "B) 1", "C) 2", "D) 0"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Watch out for this classic exam trap! The argument of sine is y (the dependent variable itself), NOT a derivative.<br>\u2022 The derivatives y'' and y' appear algebraically. Highest derivative y'' has exponent 1, so Degree = 1 (Exercise 9.1 Q10, Page 304)."}, {"id": 2, "question": "In Exercise 9.1 Question 4: (dy/dx)\u2074 + 3y(d\u00b2y/dx\u00b2) = 0, what is the degree?", "options": ["A) 4", "B) 1", "C) 3", "D) Undefined"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 The highest order derivative is d\u00b2y/dx\u00b2 (Order = 2).<br>\u2022 Degree is the power of the HIGHEST order derivative, which is 1 (not 4). Hence Degree = 1 (Exercise 9.1 Q4, Page 303)."}]}, {"slideIdx": 4, "questions": [{"id": 1, "question": "How many arbitrary constants are present in the general solution of a 3rd order differential equation?", "options": ["A) 0", "B) 1", "C) 2", "D) 3"], "correct": 3, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 By Section 9.3: The general solution of an n-th order differential equation contains exactly n arbitrary constants. For order 3, there are 3 arbitrary constants (Exercise 9.2 Q11, Page 306)."}, {"id": 2, "question": "How many arbitrary constants are present in any particular solution of a differential equation?", "options": ["A) 0 (zero constants)", "B) Equal to the order of the differential equation", "C) 1", "D) Infinitely many"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 A particular solution is free from arbitrary constants because specific numerical values are assigned from initial or boundary conditions. Hence 0 constants (Exercise 9.2 Q12, Page 306)."}]}, {"slideIdx": 5, "questions": [{"id": 1, "question": "Verify whether y = e^(-3x) is a solution of d\u00b2y/dx\u00b2 + dy/dx - 6y = 0:", "options": ["A) Yes, it satisfies the differential equation identically", "B) No, the LHS evaluates to 12 e^(-3x)", "C) Valid only at x = 0", "D) It is an imaginary solution"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Differentiate: y' = -3e^(-3x) and y'' = 9e^(-3x).<br>\u2022 Substitute: y'' + y' - 6y = 9e^(-3x) - 3e^(-3x) - 6e^(-3x) = (9 - 3 - 6)e^(-3x) = 0. Yes, it is a solution (NCERT Example 2, Page 305)."}, {"id": 2, "question": "Verify if y = cos x + C satisfies y' + sin x = 0:", "options": ["A) No, y' = sin x", "B) Yes, y' = -sin x, so -sin x + sin x = 0", "C) Only when C = 0", "D) Only when x = \u03c0/2"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Differentiate y = cos x + C to get y' = -sin x.<br>\u2022 Substituting into y' + sin x gives -sin x + sin x = 0 for all x and any constant C (NCERT Example 3, Page 305)."}]}, {"slideIdx": 6, "questions": [{"id": 1, "question": "In Exercise 9.2 Question 6, verify y = x sin x satisfies x y' = y + x\u221a(x\u00b2 - y\u00b2) for x > 0:", "options": ["A) Differentiating gives y' = sin x + x cos x, so LHS = x sin x + x\u00b2 cos x = RHS", "B) No, LHS and RHS differ by a factor of 2", "C) Valid only when x is a multiple of \u03c0", "D) The radical cannot be evaluated"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 y' = sin x + x cos x \u27f9 LHS = x y' = x sin x + x\u00b2 cos x.<br>\u2022 RHS = y + x\u221a(x\u00b2 - x\u00b2 sin\u00b2x) = x sin x + x \u00b7 x cos x = x sin x + x\u00b2 cos x = LHS! (Exercise 9.2 Q6, Page 306)."}, {"id": 2, "question": "In Exercise 9.2 Question 9, verify x + y = tan\u207b\u00b9y satisfies y\u00b2 y' + y' + 1 = 0:", "options": ["A) Differentiating gives 1 + y' = y'/(1 + y\u00b2), multiplying by (1 + y\u00b2) yields y\u00b2 y' + y' + 1 = 0", "B) It does not satisfy the differential equation", "C) Only holds if y = 0", "D) Differentiating gives 1 + y' = 1/(1 + y\u00b2)"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Differentiate with respect to x: 1 + y' = [1/(1 + y\u00b2)] \u00b7 y' = y'/(1 + y\u00b2).<br>\u2022 Multiply by (1 + y\u00b2): (1 + y')(1 + y\u00b2) = y' \u27f9 1 + y\u00b2 + y' + y\u00b2 y' = y' \u27f9 y\u00b2 y' + y' + 1 = 0 (Exercise 9.2 Q9, Page 306)."}]}, {"slideIdx": 7, "questions": [{"id": 1, "question": "Solve the differential equation dy/dx = (1 + y\u00b2)/(1 + x\u00b2):", "options": ["A) tan\u207b\u00b9y = tan\u207b\u00b9x + C", "B) y = x + C", "C) log(1 + y\u00b2) = log(1 + x\u00b2) + C", "D) y(1 + x\u00b2) = x(1 + y\u00b2) + C"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Separate variables: dy/(1 + y\u00b2) = dx/(1 + x\u00b2).<br>\u2022 Integrate both sides: \u222b dy/(1 + y\u00b2) = \u222b dx/(1 + x\u00b2) \u27f9 tan\u207b\u00b9y = tan\u207b\u00b9x + C (NCERT Example 5, Page 308)."}, {"id": 2, "question": "Separate variables to find the general solution of dy/dx = -4x y\u00b2:", "options": ["A) y = 2x\u00b2 + C", "B) -1/y = -2x\u00b2 + C (or y = 1/(2x\u00b2 - C))", "C) y\u00b3 = -6x\u00b2 + C", "D) log y = -2x\u00b2 + C"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 dy/y\u00b2 = -4x dx \u27f9 \u222b y\u207b\u00b2 dy = -4 \u222b x dx.<br>\u2022 -1/y = -2x\u00b2 + C \u27f9 y = 1/(2x\u00b2 - C) (NCERT Example 6, Page 308)."}]}, {"slideIdx": 8, "questions": [{"id": 1, "question": "For dy/dx = -4x y\u00b2 with initial condition y(0) = 1, find the particular solution:", "options": ["A) y = 1 / (2x\u00b2 + 1)", "B) y = 1 / (2x\u00b2 - 1)", "C) y = 2x\u00b2 + 1", "D) y = e^(-2x\u00b2)"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 General solution: -1/y = -2x\u00b2 + C.<br>\u2022 At x = 0, y = 1: -1/1 = 0 + C \u27f9 C = -1.<br>\u2022 -1/y = -2x\u00b2 - 1 \u27f9 1/y = 2x\u00b2 + 1 \u27f9 y = 1/(2x\u00b2 + 1) (NCERT Example 6, Page 308)."}, {"id": 2, "question": "Find the curve through (1, -1) whose slope is dy/dx = 2x/y:", "options": ["A) y\u00b2 - 2x\u00b2 = -1", "B) y\u00b2 - x\u00b2 = 0", "C) x\u00b2 + y\u00b2 = 2", "D) 2y\u00b2 - x\u00b2 = 1"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 y dy = 2x dx \u27f9 y\u00b2/2 = x\u00b2 + C\u2081 \u27f9 y\u00b2 - 2x\u00b2 = C.<br>\u2022 Substitute (1, -1): (-1)\u00b2 - 2(1)\u00b2 = 1 - 2 = -1 = C. Equation is y\u00b2 - 2x\u00b2 = -1 (Exercise 9.3 Q16, Page 311)."}]}, {"slideIdx": 9, "questions": [{"id": 1, "question": "In a bank, principal increases continuously at 5% per year. What is the differential equation for principal P?", "options": ["A) dP/dt = 0.05", "B) dP/dt = P / 20 (or 0.05 P)", "C) dP/dt = 5 P", "D) dP/dt = 20 / P"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 The rate of increase dP/dt is 5% of P: dP/dt = (5/100) P = P/20 (NCERT Example 9, Page 310)."}, {"id": 2, "question": "In how many years will \u20b91000 double itself at 5% continuous compounding (Example 9)?", "options": ["A) 10 log\u2091 2 years", "B) 20 log\u2091 2 years", "C) 5 log\u2091 2 years", "D) 20 years"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 dP/P = dt/20 \u27f9 P(t) = P\u2080 e^(t/20).<br>\u2022 When P doubles, 2P\u2080 = P\u2080 e^(t/20) \u27f9 e^(t/20) = 2 \u27f9 t/20 = log\u2091 2 \u27f9 t = 20 log\u2091 2 years (NCERT Example 9, Page 310)."}]}, {"slideIdx": 10, "questions": [{"id": 1, "question": "Solve Exercise 9.3 Question 1: dy/dx = (1 - cos x)/(1 + cos x):", "options": ["A) y = 2 tan(x/2) - x + C", "B) y = tan(x/2) + C", "C) y = 2 cot(x/2) + x + C", "D) y = sec\u00b2(x/2) + C"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 (1 - cos x)/(1 + cos x) = [2 sin\u00b2(x/2)] / [2 cos\u00b2(x/2)] = tan\u00b2(x/2) = sec\u00b2(x/2) - 1.<br>\u2022 Integrating dy = [sec\u00b2(x/2) - 1] dx gives y = 2 tan(x/2) - x + C (Exercise 9.3 Q1, Page 310)."}, {"id": 2, "question": "Solve Exercise 9.3 Question 2: dy/dx = \u221a(4 - y\u00b2) for -2 < y < 2:", "options": ["A) sin\u207b\u00b9(y/2) = x + C", "B) cos\u207b\u00b9(y/2) = x + C", "C) tan\u207b\u00b9(y/2) = x + C", "D) y = 2 sin(x) + C"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Separate variables: dy/\u221a(4 - y\u00b2) = dx.<br>\u2022 Integrate both sides: \u222b dy/\u221a(2\u00b2 - y\u00b2) = \u222b dx \u27f9 sin\u207b\u00b9(y/2) = x + C (Exercise 9.3 Q2, Page 310)."}]}, {"slideIdx": 11, "questions": [{"id": 1, "question": "What is the formal definition of a homogeneous function F(x, y) of degree n?", "options": ["A) F(\u03bbx, \u03bby) = \u03bb\u207f F(x, y) for any non-zero real scalar \u03bb", "B) F(x + \u03bb, y + \u03bb) = F(x, y)", "C) F(x, y) = x\u207f + y\u207f", "D) The sum of all coefficients is zero"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Section 9.4.2 Definition 4: A function F(x, y) is homogeneous of degree n if F(\u03bbx, \u03bby) = \u03bb\u207f F(x, y) for any non-zero constant \u03bb (NCERT Page 312)."}, {"id": 2, "question": "What is the degree of homogeneity of F(x, y) = (x\u00b2 + 2xy) / (x - y)?", "options": ["A) 0", "B) 1", "C) 2", "D) Not homogeneous"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 F(\u03bbx, \u03bby) = [\u03bb\u00b2(x\u00b2 + 2xy)] / [\u03bb(x - y)] = \u03bb^(2-1) F(x, y) = \u03bb\u00b9 F(x, y). Degree = 1 (NCERT Page 312)."}]}, {"slideIdx": 12, "questions": [{"id": 1, "question": "When solving dy/dx = F(x, y) = g(y/x), what substitution is made and what does dy/dx become?", "options": ["A) y = vx and dy/dx = v + x dv/dx", "B) y = v + x and dy/dx = 1 + dv/dx", "C) x = vy and dy/dx = v", "D) y = v\u00b2 x and dy/dx = 2v x"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Let y = vx. By product rule: dy/dx = v(1) + x(dv/dx) = v + x(dv/dx). This reduces the equation to separable variables v and x (NCERT Page 313-314)."}, {"id": 2, "question": "Solve the homogeneous differential equation (x - y) dy - (x + y) dx = 0:", "options": ["A) tan\u207b\u00b9(y/x) - (1/2)log(x\u00b2 + y\u00b2) = C", "B) y = x log x + C", "C) x\u00b2 - y\u00b2 = C", "D) y = x tan(x + C)"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 dy/dx = (x + y)/(x - y) = (1 + v)/(1 - v).<br>\u2022 v + x dv/dx = (1 + v)/(1 - v) \u27f9 x dv/dx = (1 + v\u00b2)/(1 - v).<br>\u2022 Separate: (1 - v)/(1 + v\u00b2) dv = dx/x \u27f9 tan\u207b\u00b9v - (1/2)log(1 + v\u00b2) = log|x| + C', which simplifies to tan\u207b\u00b9(y/x) - (1/2)log(x\u00b2 + y\u00b2) = C (NCERT Example 10, Page 314-315)."}]}, {"slideIdx": 13, "questions": [{"id": 1, "question": "Why is the reverse substitution x = vy used for equations like 2y e^(x/y) dx + (y - 2x e^(x/y)) dy = 0?", "options": ["A) Because x/y appears inside the exponential function e^(x/y), so isolating dx/dy = h(x/y) and setting x = vy makes it directly integrable", "B) Because x cannot be negative", "C) Because the degree is 2", "D) It is an arbitrary choice with identical algebra"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 When variables occur as x/y inside transcendental terms like e^(x/y), writing dx/dy = h(x/y) and substituting x = vy (where dx/dy = v + y dv/dy) makes the equation separable and directly integrable (NCERT Example 12, Page 317-318)."}, {"id": 2, "question": "For x = vy, what is the derivative dx/dy with respect to y?", "options": ["A) v + y dv/dy", "B) v + x dv/dx", "C) dv/dy", "D) y dv/dy"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Differentiating x = vy with respect to y using product rule: dx/dy = v(dy/dy) + y(dv/dy) = v + y dv/dy (NCERT Page 314 & 317)."}]}, {"slideIdx": 14, "questions": [{"id": 1, "question": "What is the standard Form 1 of a first-order linear differential equation, and what is its Integrating Factor?", "options": ["A) dy/dx + Py = Q, with I.F. = e^(\u222b P dx)", "B) dy/dx + Px = Q, with I.F. = e^P", "C) y' + y\u00b2 = Q, with I.F. = \u222b P dx", "D) dy/dx = Py + Q, with I.F. = e^(-\u222b P dx)"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Section 9.4.3 Form 1: dy/dx + Py = Q, where P and Q are constants or functions of x only. Integrating factor is I.F. = e^(\u222b P dx) (NCERT Page 321-322)."}, {"id": 2, "question": "What is the general solution formula for dy/dx + Py = Q?", "options": ["A) y \u00b7 (I.F.) = \u222b [Q \u00b7 (I.F.)] dx + C", "B) y = \u222b Q dx + I.F.", "C) y \u00b7 (I.F.) = Q \u00b7 (I.F.) + C", "D) y = Q / (I.F.) + C"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Multiplying by e^(\u222b P dx) yields d/dx [y \u00b7 e^(\u222b P dx)] = Q \u00b7 e^(\u222b P dx). Integrating both sides gives y \u00b7 (I.F.) = \u222b [Q \u00b7 (I.F.)] dx + C (NCERT Page 322-323)."}]}, {"slideIdx": 15, "questions": [{"id": 1, "question": "What is the Form 2 first-order linear differential equation, its Integrating Factor, and solution formula?", "options": ["A) dx/dy + P\u2081 x = Q\u2081, I.F. = e^(\u222b P\u2081 dy), and x \u00b7 (I.F.) = \u222b [Q\u2081 \u00b7 (I.F.)] dy + C", "B) dx/dy + P\u2081 y = Q\u2081", "C) dy/dx + P\u2081 x = Q\u2081", "D) x' + x = Q\u2081 y"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Section 9.4.3 Form 2: dx/dy + P\u2081 x = Q\u2081, where P\u2081 and Q\u2081 are constants or functions of y only. I.F. = e^(\u222b P\u2081 dy), and general solution is x \u00b7 (I.F.) = \u222b [Q\u2081 \u00b7 (I.F.)] dy + C (NCERT Page 323)."}, {"id": 2, "question": "In Exercise 9.5 Question 19, what is the Integrating Factor of (1 - y\u00b2) dx/dy + yx = ay?", "options": ["A) 1 / \u221a(1 - y\u00b2)", "B) 1 / (1 - y\u00b2)", "C) \u221a(1 - y\u00b2)", "D) 1 - y\u00b2"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Dividing by (1 - y\u00b2): dx/dy + [y/(1 - y\u00b2)] x = ay/(1 - y\u00b2).<br>\u2022 Here P\u2081 = y/(1 - y\u00b2). \u222b P\u2081 dy = -(1/2) log(1 - y\u00b2) = log[(1 - y\u00b2)^(-1/2)].<br>\u2022 I.F. = e^(log[(1 - y\u00b2)^(-1/2)]) = 1 / \u221a(1 - y\u00b2) (Exercise 9.5 Q19, Page 329)."}]}, {"slideIdx": 16, "questions": [{"id": 1, "question": "On what date did Gottfried Wilhelm Leibniz write the identity \u222b y dy = (1/2)y\u00b2, marking the birth of differential equations?", "options": ["A) November 11, 1675", "B) October 20, 1680", "C) July 4, 1690", "D) January 1, 1700"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 The Historical Note states: 'The date of birth of differential equations is taken to be November 11, 1675, when Gottfried Wilhelm Freiherr Leibniz first put in black and white the identity \u222b y dy = (1/2)y\u00b2' (NCERT Page 336)."}, {"id": 2, "question": "Which mathematician coined the word 'integral' in 1690?", "options": ["A) James Bernoulli", "B) John Bernoulli", "C) Henri Poincar\u00e9", "D) David Hilbert"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Historical Note records: 'In 1690, James Bernoulli used the word \"integral\" which Leibniz had previously named calculus summatorius' (NCERT Page 336)."}]}];
+    const QUIZ_SETS = [{"id": 1, "title": "\ud83c\udfaf Quiz Challenge 1: Order, Degree & Solution Types", "description": "Questions 1\u201310: Test order, degree, polynomial conditions, and general vs particular solutions.", "questions": [{"id": 1, "question": "1. Find the order and degree (if defined) of the differential equation: (d\u00b2y/dx\u00b2)\u00b3 + (dy/dx)\u00b2 + sin(dy/dx) + 1 = 0:", "options": ["A) Order 2, Degree 3", "B) Order 2, Degree 2", "C) Order 2, Degree not defined", "D) Order 3, Degree 2"], "correct": 2, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 The highest order derivative is d\u00b2y/dx\u00b2, so Order = 2.<br>\u2022 However, the term sin(dy/dx) means the equation is not a polynomial in its derivatives.<br>\u2022 Therefore, the degree is NOT defined (Exercise 9.1 Q11, Page 304)."}, {"id": 2, "question": "2. What is the order of the differential equation: 2x\u00b2 (d\u00b2y/dx\u00b2) - 3(dy/dx) + y = 0?", "options": ["A) 2", "B) 1", "C) 0", "D) Not defined"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 The highest order derivative is d\u00b2y/dx\u00b2, which is of order 2 (Exercise 9.1 Q12, Page 304)."}, {"id": 3, "question": "3. Find the order and degree of: y'' + 2y' + sin y = 0:", "options": ["A) Order 2, Degree not defined", "B) Order 2, Degree 1", "C) Order 1, Degree 2", "D) Order 2, Degree 2"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Highest derivative is y'', so Order = 2.<br>\u2022 Notice sin y contains the variable y, NOT a derivative! The equation is purely polynomial in y'' and y'.<br>\u2022 Power of y'' is 1, so Degree = 1 (Exercise 9.1 Q10, Page 304)."}, {"id": 4, "question": "4. Find the order and degree of: (y''')\u00b2 + (y'')\u00b3 + (y')\u2074 + y\u2075 = 0:", "options": ["A) Order 3, Degree 5", "B) Order 3, Degree 2", "C) Order 2, Degree 3", "D) Order 1, Degree 4"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Highest order derivative is y''', so Order = 3.<br>\u2022 The power raised to y''' is 2, so Degree = 2 (Exercise 9.1 Q6, Page 303)."}, {"id": 5, "question": "5. How many arbitrary constants are present in the general solution of a differential equation of 4th order?", "options": ["A) 0", "B) 2", "C) 3", "D) 4"], "correct": 3, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 By theorem in Section 9.3: The general solution of an n-th order differential equation contains exactly n arbitrary constants. For order 4, there are 4 constants (Exercise 9.2 Q11, Page 306)."}, {"id": 6, "question": "6. How many arbitrary constants are present in a particular solution of a differential equation of 3rd order?", "options": ["A) 3", "B) 2", "C) 1", "D) 0"], "correct": 3, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 A particular solution is obtained by giving specific values to arbitrary constants, so it contains ZERO arbitrary constants (Exercise 9.2 Q12, Page 306)."}, {"id": 7, "question": "7. What is the degree of d\u2074y/dx\u2074 + sin(y''') = 0?", "options": ["A) 4", "B) 1", "C) 3", "D) Not defined"], "correct": 3, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Order is 4. However, the presence of sin(y''') means it is not a polynomial in derivatives, so degree is not defined (Exercise 9.1 Q1, Page 303)."}, {"id": 8, "question": "8. What is the order and degree of (ds/dt)\u2074 + 3s (d\u00b2s/dt\u00b2) = 0?", "options": ["A) Order 1, Degree 4", "B) Order 2, Degree 1", "C) Order 2, Degree 4", "D) Order 4, Degree 2"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Highest derivative is d\u00b2s/dt\u00b2 (Order = 2).<br>\u2022 The power of d\u00b2s/dt\u00b2 is 1, so Degree = 1 (Exercise 9.1 Q3, Page 303)."}, {"id": 9, "question": "9. Verify which differential equation has y = e^x + 1 as its solution:", "options": ["A) y'' - y' = 0", "B) y'' + y' = 0", "C) y' - y = 0", "D) y'' - y = 0"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 y = e^x + 1 \u27f9 y' = e^x \u27f9 y'' = e^x.<br>\u2022 y'' - y' = e^x - e^x = 0 (Exercise 9.2 Q1, Page 306)."}, {"id": 10, "question": "10. In a differential equation, order and degree (if defined) are always:", "options": ["A) Any real numbers", "B) Positive integers", "C) Rational numbers", "D) Non-zero complex numbers"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Section 9.2.2 Note explicitly states: 'Order and degree (if defined) of a differential equation are always positive integers' (NCERT Page 302)."}]}, {"id": 2, "title": "\ud83c\udfaf Quiz Challenge 2: Variables Separable & Growth Modeling", "description": "Questions 11\u201320: Master separable integration, initial value problems, and continuous exponential growth.", "questions": [{"id": 11, "question": "11. Find the general solution of dy/dx = e^(x + y):", "options": ["A) e^x + e^(-y) = C", "B) e^x + e^y = C", "C) e^(-x) + e^y = C", "D) e^(-x) + e^(-y) = C"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Rewrite: dy/dx = e^x \u00b7 e^y.<br>\u2022 Separate variables: e^(-y) dy = e^x dx.<br>\u2022 Integrate: -e^(-y) = e^x + C' \u27f9 e^x + e^(-y) = C (Exercise 9.3 Q23, Page 312)."}, {"id": 12, "question": "12. Find the general solution of dy/dx = (1 + y\u00b2) / (1 + x\u00b2):", "options": ["A) y = x + C", "B) tan\u207b\u00b9y = tan\u207b\u00b9x + C", "C) log(1 + y\u00b2) = log(1 + x\u00b2) + C", "D) y(1 + x\u00b2) = x(1 + y\u00b2) + C"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Separate: dy / (1 + y\u00b2) = dx / (1 + x\u00b2).<br>\u2022 Integrate: \u222b dy/(1 + y\u00b2) = \u222b dx/(1 + x\u00b2) \u27f9 tan\u207b\u00b9y = tan\u207b\u00b9x + C (NCERT Example 5, Page 308)."}, {"id": 13, "question": "13. Find the particular solution of dy/dx = -4xy\u00b2 given that y = 1 when x = 0:", "options": ["A) y = 1 / (2x\u00b2 + 1)", "B) y = 1 / (2x\u00b2 - 1)", "C) y = -2x\u00b2 + 1", "D) y = e^(-2x\u00b2)"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Separate: dy / y\u00b2 = -4x dx.<br>\u2022 Integrate: -1/y = -2x\u00b2 + C \u27f9 y = 1 / (2x\u00b2 - C).<br>\u2022 Apply y(0) = 1: 1 = 1 / (-C) \u27f9 C = -1.<br>\u2022 Hence, y = 1 / (2x\u00b2 + 1) (NCERT Example 6, Page 308)."}, {"id": 14, "question": "14. Find the curve passing through (-2, 3) whose tangent slope is dy/dx = 2x / y\u00b2:", "options": ["A) y\u00b3 = 3x\u00b2 + 15", "B) y\u00b3 = 3x\u00b2 - 15", "C) y\u00b2 = 2x\u00b2 + 1", "D) y\u00b3 = x\u00b2 + 23"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Separate: y\u00b2 dy = 2x dx \u27f9 y\u00b3/3 = x\u00b2 + C.<br>\u2022 Substitute x = -2, y = 3: 27/3 = 4 + C \u27f9 9 = 4 + C \u27f9 C = 5.<br>\u2022 y\u00b3/3 = x\u00b2 + 5 \u27f9 y\u00b3 = 3x\u00b2 + 15 (NCERT Example 8, Page 309-310)."}, {"id": 15, "question": "15. In a bank, principal increases continuously at 5% per year. In how many years will Rs 1000 double itself?", "options": ["A) 10 years", "B) 20 log\u2091 2 years", "C) 5 log\u2091 2 years", "D) 50 years"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 dP/dt = 0.05 P = P/20 \u27f9 dP/P = dt/20 \u27f9 P(t) = P\u2080 e^(t/20).<br>\u2022 For doubling: 2P\u2080 = P\u2080 e^(t/20) \u27f9 e^(t/20) = 2 \u27f9 t/20 = log\u2091 2 \u27f9 t = 20 log\u2091 2 (NCERT Example 9, Page 310)."}, {"id": 16, "question": "16. Solve the differential equation: dy/dx = (1 - cos x) / (1 + cos x):", "options": ["A) y = 2 tan(x/2) - x + C", "B) y = tan(x/2) + C", "C) y = 2 cot(x/2) + x + C", "D) y = x tan(x/2) + C"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 (1 - cos x)/(1 + cos x) = (2 sin\u00b2(x/2))/(2 cos\u00b2(x/2)) = tan\u00b2(x/2) = sec\u00b2(x/2) - 1.<br>\u2022 dy = [sec\u00b2(x/2) - 1] dx \u27f9 y = 2 tan(x/2) - x + C (Exercise 9.3 Q1, Page 310)."}, {"id": 17, "question": "17. Solve the differential equation: dy/dx = \u221a(4 - y\u00b2) for -2 < y < 2:", "options": ["A) sin\u207b\u00b9(y/2) = x + C", "B) sin\u207b\u00b9y = 2x + C", "C) cos\u207b\u00b9(y/2) = x + C", "D) y = 2 sin x + C"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Separate: dy / \u221a(4 - y\u00b2) = dx.<br>\u2022 Integrate: sin\u207b\u00b9(y/2) = x + C (Exercise 9.3 Q2, Page 310)."}, {"id": 18, "question": "18. Find the particular solution of log(dy/dx) = 3x + 4y given that y(0) = 0:", "options": ["A) 4 e^(3x) + 3 e^(-4y) - 7 = 0", "B) 3 e^(3x) + 4 e^(-4y) - 7 = 0", "C) 4 e^(3x) - 3 e^(-4y) = 1", "D) e^(3x) + e^(-4y) = 2"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 dy/dx = e^(3x + 4y) = e^(3x) e^(4y) \u27f9 e^(-4y) dy = e^(3x) dx.<br>\u2022 -e^(-4y)/4 = e^(3x)/3 + C \u27f9 4 e^(3x) + 3 e^(-4y) + 12C = 0.<br>\u2022 At x = 0, y = 0: 4(1) + 3(1) + 12C = 0 \u27f9 12C = -7.<br>\u2022 4 e^(3x) + 3 e^(-4y) - 7 = 0 (NCERT Example 20, Page 330-331)."}, {"id": 19, "question": "19. Solve: dy/dx = (x + 1) / (2 - y) (y \u2260 2):", "options": ["A) x\u00b2 + y\u00b2 + 2x - 4y + C = 0", "B) x\u00b2 - y\u00b2 + 2x + 4y + C = 0", "C) (x + 1)\u00b2 + (y - 2)\u00b2 = C", "D) x\u00b2 + y\u00b2 = C"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 (2 - y) dy = (x + 1) dx.<br>\u2022 2y - y\u00b2/2 = x\u00b2/2 + x + C\u2081.<br>\u2022 Multiply by 2 and rearrange: x\u00b2 + y\u00b2 + 2x - 4y + C = 0 (NCERT Example 4, Page 307)."}, {"id": 20, "question": "20. Find the curve through (1, 1) with x dy = (2x\u00b2 + 1) dx (x \u2260 0):", "options": ["A) y = x\u00b2 + log|x|", "B) y = x\u00b2 + log|x| + 1", "C) y = 2x\u00b2 + log|x| - 1", "D) y = x\u00b2 - log|x|"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 dy = (2x + 1/x) dx \u27f9 y = x\u00b2 + log|x| + C.<br>\u2022 Pass through (1, 1): 1 = 1\u00b2 + log(1) + C \u27f9 1 = 1 + 0 + C \u27f9 C = 0.<br>\u2022 Curve is y = x\u00b2 + log|x| (NCERT Example 7, Page 308-309)."}]}, {"id": 3, "title": "\ud83c\udfaf Quiz Challenge 3: Homogeneous Equations (y = vx & x = vy)", "description": "Questions 21\u201330: Test homogeneous function degrees, standard substitutions, and angle-ratio differential equations.", "questions": [{"id": 21, "question": "21. A differential equation dy/dx = F(x, y) is homogeneous if F(x, y) is a homogeneous function of degree:", "options": ["A) 1", "B) 0", "C) 2", "D) Any integer"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 By definition in Section 9.4.2: dy/dx = F(x, y) is homogeneous if F(x, y) is a homogeneous function of degree ZERO, so F(\u03bbx, \u03bby) = \u03bb\u2070 F(x, y) = F(x, y) = g(y/x) (NCERT Page 313)."}, {"id": 22, "question": "22. Which substitution is used to solve dy/dx = g(y/x)?", "options": ["A) y = v / x", "B) y = v x", "C) x = v / y", "D) y = v + x"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Setting y = vx gives dy/dx = v + x (dv/dx), which transforms the equation into separable variables v and x (NCERT Page 313)."}, {"id": 23, "question": "23. A homogeneous differential equation of the form dx/dy = h(x/y) is solved by making the substitution:", "options": ["A) y = vx", "B) v = yx", "C) x = vy", "D) x = v"], "correct": 2, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 When dx/dy is a function of (x/y), put x = vy so that dx/dy = v + y (dv/dy) (Exercise 9.4 Q16, Page 321)."}, {"id": 24, "question": "24. Which of the following is a homogeneous differential equation?", "options": ["A) (4x + 6y + 5) dy - (3y + 2x + 4) dx = 0", "B) (xy) dx - (x\u00b3 + y\u00b3) dy = 0", "C) (x\u00b3 + 2y\u00b2) dx + 2xy dy = 0", "D) y\u00b2 dx + (x\u00b2 - xy - y\u00b2) dy = 0"], "correct": 3, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 In Option D, every single term (y\u00b2, x\u00b2, xy, y\u00b2) has degree exactly 2! Thus dy/dx = -y\u00b2 / (x\u00b2 - xy - y\u00b2) is homogeneous of degree 0 (Exercise 9.4 Q17, Page 322)."}, {"id": 25, "question": "25. Solve the homogeneous differential equation: dy/dx = (x + y) / x:", "options": ["A) y = x log|x| + Cx", "B) y = log|x| + C", "C) y = x\u00b2 + C", "D) y = x log|y| + C"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 dy/dx = 1 + y/x. Put y = vx \u27f9 v + x(dv/dx) = 1 + v \u27f9 x(dv/dx) = 1.<br>\u2022 dv = dx/x \u27f9 v = log|x| + C.<br>\u2022 Replace v = y/x \u27f9 y/x = log|x| + C \u27f9 y = x log|x| + Cx (Exercise 9.4 Q2, Page 321)."}, {"id": 26, "question": "26. Find the family of curves for which the tangent slope is dy/dx = (x\u00b2 + y\u00b2) / 2xy:", "options": ["A) x\u00b2 + y\u00b2 = Cx", "B) x\u00b2 - y\u00b2 = Cx", "C) x\u00b2 - y\u00b2 = Cy", "D) xy = C"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Put y = vx \u27f9 v + x(dv/dx) = (1 + v\u00b2)/(2v) \u27f9 x(dv/dx) = (1 - v\u00b2)/(2v).<br>\u2022 [2v / (v\u00b2 - 1)] dv = -dx/x \u27f9 log|v\u00b2 - 1| = -log|x| + log|C\u2081|.<br>\u2022 (v\u00b2 - 1)x = C \u27f9 (y\u00b2/x\u00b2 - 1)x = C \u27f9 y\u00b2 - x\u00b2 = Cx or x\u00b2 - y\u00b2 = Cx (NCERT Example 13, Page 319-320)."}, {"id": 27, "question": "27. Solve: x cos(y/x) dy/dx = y cos(y/x) + x:", "options": ["A) sin(y/x) = log|Cx|", "B) cos(y/x) = log|Cx|", "C) tan(y/x) = Cx", "D) y = x sin(Cx)"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 dy/dx = (y/x) + sec(y/x).<br>\u2022 Put y = vx \u27f9 v + x(dv/dx) = v + sec v \u27f9 cos v dv = dx/x.<br>\u2022 Integrating: sin v = log|x| + C' = log|Cx|.<br>\u2022 Replace v = y/x: sin(y/x) = log|Cx| (NCERT Example 11, Page 316-318)."}, {"id": 28, "question": "28. What is the degree of the homogeneous function F(x, y) = (x\u00b2 + 2xy) / (x - y)?", "options": ["A) 2", "B) 1", "C) 0", "D) Not homogeneous"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 F(\u03bbx, \u03bby) = [\u03bb\u00b2(x\u00b2 + 2xy)] / [\u03bb(x - y)] = \u03bb\u00b9 F(x, y).<br>\u2022 The degree is 2 - 1 = 1 (NCERT Page 312)."}, {"id": 29, "question": "29. Solve: (x - y) dy - (x + y) dx = 0:", "options": ["A) tan\u207b\u00b9(y/x) - (1/2) log(x\u00b2 + y\u00b2) = C", "B) tan\u207b\u00b9(y/x) + log(x\u00b2 + y\u00b2) = C", "C) x\u00b2 + y\u00b2 = C(x - y)", "D) y/x = C"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 dy/dx = (x + y)/(x - y) = (1 + v)/(1 - v).<br>\u2022 v + x(dv/dx) = (1 + v)/(1 - v) \u27f9 x(dv/dx) = (1 + v\u00b2)/(1 - v).<br>\u2022 [(1 - v)/(1 + v\u00b2)] dv = dx/x \u27f9 tan\u207b\u00b9v - (1/2)log(1 + v\u00b2) = log|x| + C.<br>\u2022 tan\u207b\u00b9(y/x) - (1/2)log(x\u00b2 + y\u00b2) = C (Exercise 9.4 Q3, Page 321)."}, {"id": 30, "question": "30. The general solution of y dx - x dy = 0 is:", "options": ["A) y = Cx", "B) xy = C", "C) x\u00b2 + y\u00b2 = C", "D) y = C/x"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 y dx = x dy \u27f9 dy/y = dx/x \u27f9 log|y| = log|x| + log|C| \u27f9 y = Cx (Misc Exercise Q13, Page 335)."}]}, {"id": 4, "title": "\ud83c\udfaf Quiz Challenge 4: Linear Equations & Integrating Factors", "description": "Questions 31\u201340: Master linear differential equations, integrating factors, and particular solutions.", "questions": [{"id": 31, "question": "31. What is the Integrating Factor (I.F.) for the linear equation dy/dx + P(x) y = Q(x)?", "options": ["A) \u222b P dx", "B) e^(\u222b P dx)", "C) e^(-\u222b P dx)", "D) e^(\u222b Q dx)"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Section 9.4.3 proves: Multiplying by g(x) = e^(\u222b P dx) turns the LHS into the exact product derivative d/dx [y \u00b7 e^(\u222b P dx)] (NCERT Page 323)."}, {"id": 32, "question": "32. What is the Integrating Factor of: x (dy/dx) - y = 2x\u00b2?", "options": ["A) e^(-x)", "B) e^(-y)", "C) 1/x", "D) x"], "correct": 2, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Divide by x: dy/dx - (1/x) y = 2x. Here P = -1/x.<br>\u2022 I.F. = e^(\u222b -1/x dx) = e^(-log x) = e^(log x\u207b\u00b9) = 1/x (Exercise 9.5 Q18, Page 329)."}, {"id": 33, "question": "33. What is the general solution of dy/dx + P y = Q?", "options": ["A) y \u00b7 (I.F.) = \u222b (Q \u00b7 I.F.) dx + C", "B) y = Q \u00b7 (I.F.) + C", "C) y \u00b7 (I.F.) = \u222b Q dx + C", "D) y + I.F. = Q + C"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Integrating d/dx [y \u00b7 I.F.] = Q \u00b7 I.F. yields y \u00b7 (I.F.) = \u222b (Q \u00b7 I.F.) dx + C (NCERT Page 324)."}, {"id": 34, "question": "34. What is the Integrating Factor of (1 - y\u00b2) (dx/dy) + yx = ay (-1 < y < 1)?", "options": ["A) 1 / (y\u00b2 - 1)", "B) 1 / \u221a(y\u00b2 - 1)", "C) 1 / (1 - y\u00b2)", "D) 1 / \u221a(1 - y\u00b2)"], "correct": 3, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Divide by (1 - y\u00b2): dx/dy + [y/(1 - y\u00b2)] x = ay/(1 - y\u00b2). Here P\u2081(y) = y/(1 - y\u00b2).<br>\u2022 \u222b P\u2081 dy = -(1/2) log(1 - y\u00b2) = log(1 - y\u00b2)^(-1/2).<br>\u2022 I.F. = e^(log(1 - y\u00b2)^(-1/2)) = 1 / \u221a(1 - y\u00b2) (Exercise 9.5 Q19, Page 329)."}, {"id": 35, "question": "35. Find the general solution of dy/dx - y = cos x:", "options": ["A) y = (sin x - cos x)/2 + C e^x", "B) y = (sin x + cos x)/2 + C e^x", "C) y = sin x + C e^(-x)", "D) y = cos x + C e^x"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 P = -1, Q = cos x \u27f9 I.F. = e^(-x).<br>\u2022 y e^(-x) = \u222b e^(-x) cos x dx + C = [e^(-x)(sin x - cos x)]/2 + C.<br>\u2022 y = (sin x - cos x)/2 + C e^x (NCERT Example 14, Page 324-325)."}, {"id": 36, "question": "36. Find the general solution of x (dy/dx) + 2y = x\u00b2 (x \u2260 0):", "options": ["A) y = x\u00b2/4 + C x\u207b\u00b2", "B) y = x\u2074/4 + C", "C) y = x\u00b2/3 + C/x", "D) y = x\u00b3 + C x\u207b\u00b2"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 dy/dx + (2/x) y = x \u27f9 I.F. = e^(2 log x) = x\u00b2.<br>\u2022 y x\u00b2 = \u222b x \u00b7 x\u00b2 dx + C = \u222b x\u00b3 dx + C = x\u2074/4 + C.<br>\u2022 y = x\u00b2/4 + C x\u207b\u00b2 (NCERT Example 15, Page 325)."}, {"id": 37, "question": "37. What is the general solution of a differential equation of the type dx/dy + P\u2081 x = Q\u2081?", "options": ["A) x \u00b7 e^(\u222b P\u2081 dy) = \u222b (Q\u2081 \u00b7 e^(\u222b P\u2081 dy)) dy + C", "B) y \u00b7 e^(\u222b P\u2081 dx) = \u222b (Q\u2081 \u00b7 e^(\u222b P\u2081 dx)) dx + C", "C) x \u00b7 e^(\u222b P\u2081 dx) = \u222b (Q\u2081 \u00b7 e^(\u222b P\u2081 dx)) dx + C", "D) y \u00b7 e^(\u222b P\u2081 dy) = \u222b (Q\u2081 \u00b7 e^(\u222b P\u2081 dy)) dy + C"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 For dx/dy + P\u2081 x = Q\u2081, integrating factor is e^(\u222b P\u2081 dy) and the solution is x \u00b7 e^(\u222b P\u2081 dy) = \u222b (Q\u2081 \u00b7 e^(\u222b P\u2081 dy)) dy + C (Misc Exercise Q14, Page 335)."}, {"id": 38, "question": "38. Find the general solution of e^x dy + (y e^x + 2x) dx = 0:", "options": ["A) x e^y + x\u00b2 = C", "B) x e^y + y\u00b2 = C", "C) y e^x + x\u00b2 = C", "D) y e^y + x\u00b2 = C"], "correct": 2, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Regroup: (e^x dy + y e^x dx) + 2x dx = 0.<br>\u2022 d(y e^x) + d(x\u00b2) = 0 \u27f9 y e^x + x\u00b2 = C (Misc Exercise Q15, Page 335)."}, {"id": 39, "question": "39. Solve: dy/dx + y cot x = 2x + x\u00b2 cot x given y(\u03c0/2) = 0:", "options": ["A) y = x\u00b2 - \u03c0\u00b2 / (4 sin x)", "B) y = x\u00b2 + \u03c0\u00b2 / 4", "C) y = x\u00b2 sin x", "D) y = 2x - \u03c0"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 P = cot x \u27f9 I.F. = e^(\u222b cot x dx) = e^(log sin x) = sin x.<br>\u2022 y sin x = \u222b (2x sin x + x\u00b2 cos x) dx + C = x\u00b2 sin x + C.<br>\u2022 Apply y(\u03c0/2) = 0: 0 = (\u03c0/2)\u00b2 \u00b7 1 + C \u27f9 C = -\u03c0\u00b2/4.<br>\u2022 y sin x = x\u00b2 sin x - \u03c0\u00b2/4 \u27f9 y = x\u00b2 - \u03c0\u00b2 / (4 sin x) (NCERT Example 17, Page 326-327)."}, {"id": 40, "question": "40. According to the Historical Note on page 336, what is regarded as the exact 'date of birth' of differential equations?", "options": ["A) November 11, 1675 (Leibniz writing \u222b y dy = (1/2) y\u00b2)", "B) July 4, 1776", "C) January 1, 1700", "D) May 20, 1715"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Historical Note states: 'The date of birth of differential equations is taken to be November 11, 1675, when Gottfried Wilhelm Freiherr Leibniz first put in black and white the identity \u222b y dy = (1/2)y\u00b2, thereby introducing both the symbols \u222b and dy' (NCERT Page 336)."}]}];
+
+    let currentSlide = 0;
+    let speechEnabled = true;
+    let sfxEnabled = true;
+    let isAutoPlaying = false;
+    let autoPlayTimer = null;
+    let autoPlayProgressInterval = null;
+    const SLIDE_DURATION_MS = 14000;
+
+    // Web Audio Synthesizer
+    let audioCtx = null;
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, type = 'sine', duration = 0.15, vol = 0.1) {
+      if (!sfxEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(vol, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {
+        console.warn('Audio tone error', e);
+      }
+    }
+
+    function playSuccessChord() {
+      if (!sfxEnabled) return;
+      setTimeout(() => playTone(523.25, 'sine', 0.25, 0.12), 0);   // C5
+      setTimeout(() => playTone(659.25, 'sine', 0.25, 0.12), 80);  // E5
+      setTimeout(() => playTone(783.99, 'sine', 0.35, 0.14), 160); // G5
+    }
+
+    function playErrorBeep() {
+      if (!sfxEnabled) return;
+      playTone(220, 'sawtooth', 0.25, 0.1);
+    }
+
+    function playSlideTurnClick() {
+      if (!sfxEnabled) return;
+      playTone(440, 'triangle', 0.08, 0.06);
+    }
+
+    function toggleAudioFx() {
+      sfxEnabled = !sfxEnabled;
+      document.getElementById('audioFxStatus').textContent = sfxEnabled ? 'SFX: On' : 'SFX: Off';
+      playTone(600, 'sine', 0.1, 0.08);
+    }
+
+    // Web Speech API Narrator
+    function toggleSpeech() {
+      speechEnabled = !speechEnabled;
+      const text = document.getElementById('speechText');
+      const icon = document.getElementById('speechIcon');
+      if (speechEnabled) {
+        text.textContent = 'Narration On';
+        icon.className = 'fas fa-volume-up';
+        speakSlideNarration(currentSlide);
+      } else {
+        text.textContent = 'Narration Off';
+        icon.className = 'fas fa-volume-mute';
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
+      }
+    }
+
+    function speakSlideNarration(slideIdx) {
+      if (!speechEnabled || !window.speechSynthesis) return;
+      window.speechSynthesis.cancel();
+      const meta = SLIDES_METADATA[slideIdx];
+      if (!meta || !meta.narration) return;
+      const utterance = new SpeechSynthesisUtterance(meta.narration);
+      utterance.rate = 1.0;
+      utterance.pitch = 1.0;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // Slides Navigation
+    function showSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= SLIDES_COUNT) index = SLIDES_COUNT - 1;
+      currentSlide = index;
+
+      document.querySelectorAll('.slide-section').forEach((el, i) => {
+        if (i === currentSlide) {
+          el.classList.add('active');
+        } else {
+          el.classList.remove('active');
+        }
+      });
+
+      document.querySelectorAll('.slide-pill').forEach((pill, i) => {
+        if (i === currentSlide) {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-blue-600 text-white shadow-md shadow-blue-500/30 transition cursor-pointer';
+          pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        } else {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer';
+        }
+      });
+
+      document.getElementById('slideCounterCurrent').textContent = currentSlide + 1;
+      document.getElementById('prevBtn').disabled = (currentSlide === 0);
+
+      const nextBtn = document.getElementById('nextBtn');
+      const lastSlideNotice = document.getElementById('lastSlideNotice');
+
+      if (currentSlide === SLIDES_COUNT - 1) {
+        nextBtn.style.display = 'none';
+        lastSlideNotice.classList.remove('hidden');
+      } else {
+        nextBtn.style.display = 'flex';
+        lastSlideNotice.classList.add('hidden');
+      }
+
+      speakSlideNarration(currentSlide);
+      if (window.renderMathInElement) {
+        renderMathInElement(document.getElementById(`slide-${currentSlide}`), {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide < SLIDES_COUNT - 1) {
+        playSlideTurnClick();
+        showSlide(currentSlide + 1);
+        if (isAutoPlaying) resetAutoPlayTimer();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        playSlideTurnClick();
+        showSlide(currentSlide - 1);
+        if (isAutoPlaying) resetAutoPlayTimer();
+      }
+    }
+
+    function goToSlide(i) {
+      playSlideTurnClick();
+      showSlide(i);
+      if (isAutoPlaying) resetAutoPlayTimer();
+    }
+
+    // Auto Play Slideshow
+    function toggleAutoPlaySlideshow() {
+      isAutoPlaying = !isAutoPlaying;
+      const btn = document.getElementById('autoPlaySlideshowBtn');
+      const text = document.getElementById('autoPlayText');
+      const icon = document.getElementById('autoPlayIcon');
+      const barContainer = document.getElementById('autoPlayProgressBarContainer');
+
+      if (isAutoPlaying) {
+        text.textContent = 'Pause';
+        icon.className = 'fas fa-pause';
+        btn.classList.add('bg-blue-600', 'text-white');
+        barContainer.classList.remove('hidden');
+        startAutoPlayTimer();
+      } else {
+        text.textContent = 'Auto-Play';
+        icon.className = 'fas fa-play';
+        btn.classList.remove('bg-blue-600', 'text-white');
+        barContainer.classList.add('hidden');
+        clearInterval(autoPlayTimer);
+        clearInterval(autoPlayProgressInterval);
+      }
+    }
+
+    function startAutoPlayTimer() {
+      clearInterval(autoPlayTimer);
+      clearInterval(autoPlayProgressInterval);
+      const bar = document.getElementById('autoPlayProgressBar');
+      let start = Date.now();
+
+      autoPlayProgressInterval = setInterval(() => {
+        let elapsed = Date.now() - start;
+        let pct = Math.min(100, (elapsed / SLIDE_DURATION_MS) * 100);
+        bar.style.width = pct + '%';
+      }, 50);
+
+      autoPlayTimer = setInterval(() => {
+        if (currentSlide < SLIDES_COUNT - 1) {
+          showSlide(currentSlide + 1);
+          start = Date.now();
+        } else {
+          toggleAutoPlaySlideshow();
+        }
+      }, SLIDE_DURATION_MS);
+    }
+
+    function resetAutoPlayTimer() {
+      if (isAutoPlaying) startAutoPlayTimer();
+    }
+
+    // Render Checkpoints
+    function renderCheckpoints() {
+      CHECKPOINTS_DATA.forEach(cd => {
+        const container = document.getElementById(`slide-checkpoints-${cd.slideIdx}`);
+        if (!container) return;
+
+        let html = `
+          <div class="glass-card p-5 rounded-2xl space-y-4 border border-blue-500/20 bg-slate-900/60">
+            <div class="flex items-center space-x-2 text-cyan-300 font-bold text-sm">
+              <i class="fas fa-chalkboard-teacher text-amber-400"></i>
+              <span>Slide Checkpoints: Teacher's Topic Questions (2 Questions with Solutions)</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        `;
+
+        cd.questions.forEach((q, qIndex) => {
+          html += `
+            <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-800 space-y-3">
+              <div class="text-xs font-bold text-white leading-relaxed">
+                <span class="text-blue-400 font-mono">Q${qIndex + 1}:</span> ${q.question}
+              </div>
+              <div class="grid grid-cols-1 gap-1.5 font-mono text-xs">
+          `;
+
+          q.options.forEach((opt, optIdx) => {
+            html += `
+              <button onclick="handleCheckpointAnswer(${cd.slideIdx}, ${q.id}, ${optIdx}, ${q.correct})"
+                      id="cp-btn-${cd.slideIdx}-${q.id}-${optIdx}"
+                      class="text-left px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white transition border border-slate-800/80 cursor-pointer">
+                ${opt}
+              </button>
+            `;
+          });
+
+          html += `
+              </div>
+              <div id="cp-solution-${cd.slideIdx}-${q.id}" class="hidden p-3 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-200 leading-relaxed font-sans">
+                ${q.solution}
+              </div>
+            </div>
+          `;
+        });
+
+        html += `
+            </div>
+          </div>
+        `;
+        container.innerHTML = html;
+      });
+    }
+
+    function handleCheckpointAnswer(slideIdx, qId, chosenIdx, correctIdx) {
+      const solDiv = document.getElementById(`cp-solution-${slideIdx}-${qId}`);
+      const buttons = [0, 1, 2, 3].map(i => document.getElementById(`cp-btn-${slideIdx}-${qId}-${i}`)).filter(Boolean);
+
+      buttons.forEach((btn, i) => {
+        btn.disabled = true;
+        btn.classList.remove('bg-slate-900', 'hover:bg-slate-800');
+        if (i === correctIdx) {
+          btn.classList.add('bg-emerald-950', 'border-emerald-500', 'text-emerald-300', 'font-bold');
+        } else if (i === chosenIdx) {
+          btn.classList.add('bg-rose-950', 'border-rose-500', 'text-rose-300');
+        } else {
+          btn.classList.add('opacity-40');
+        }
+      });
+
+      if (chosenIdx === correctIdx) {
+        playSuccessChord();
+      } else {
+        playErrorBeep();
+      }
+
+      if (solDiv) {
+        solDiv.classList.remove('hidden');
+        if (window.renderMathInElement) {
+          renderMathInElement(solDiv, {
+            delimiters: [
+              {left: "$$", right: "$$", display: true},
+              {left: "$", right: "$", display: false}
+            ],
+            throwOnError: false
+          });
+        }
+      }
+    }
+
+    // Render Quizzes
+    const quizScores = { 1: 0, 2: 0, 3: 0, 4: 0 };
+    const quizAnswered = { 1: new Set(), 2: new Set(), 3: new Set(), 4: new Set() };
+
+    function renderQuizzes() {
+      QUIZ_SETS.forEach(qs => {
+        const container = document.getElementById(`quiz-container-${qs.id}`);
+        if (!container) return;
+
+        let html = '';
+        qs.questions.forEach(q => {
+          html += `
+            <div class="glass-card p-4 rounded-xl space-y-3 border border-slate-800 bg-slate-900/60 flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-start justify-between gap-2">
+                  <h4 class="text-xs sm:text-sm font-bold text-white">${q.question}</h4>
+                  <button onclick="openSolutionModal(${qs.id}, ${q.id})"
+                          class="px-2.5 py-1 rounded-lg bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/30 text-[11px] font-bold transition flex items-center space-x-1 shrink-0 cursor-pointer"
+                          title="View detailed mathematical solution">
+                    <i class="fas fa-eye text-[10px]"></i>
+                    <span>Solution</span>
+                  </button>
+                </div>
+                <div class="grid grid-cols-1 gap-1.5 font-mono text-xs">
+          `;
+
+          q.options.forEach((opt, optIdx) => {
+            html += `
+              <button onclick="handleQuizAnswer(${qs.id}, ${q.id}, ${optIdx}, ${q.correct})"
+                      id="quiz-btn-${qs.id}-${q.id}-${optIdx}"
+                      class="text-left px-3 py-2 rounded-lg bg-slate-950/70 hover:bg-slate-800 text-slate-300 hover:text-white transition border border-slate-800/80 cursor-pointer">
+                ${opt}
+              </button>
+            `;
+          });
+
+          html += `
+                </div>
+              </div>
+            </div>
+          `;
+        });
+        container.innerHTML = html;
+      });
+    }
+
+    function handleQuizAnswer(quizId, qId, chosenIdx, correctIdx) {
+      const buttons = [0, 1, 2, 3].map(i => document.getElementById(`quiz-btn-${quizId}-${qId}-${i}`)).filter(Boolean);
+      buttons.forEach((btn, i) => {
+        btn.disabled = true;
+        btn.classList.remove('bg-slate-950/70', 'hover:bg-slate-800');
+        if (i === correctIdx) {
+          btn.classList.add('bg-emerald-950', 'border-emerald-500', 'text-emerald-300', 'font-bold');
+        } else if (i === chosenIdx) {
+          btn.classList.add('bg-rose-950', 'border-rose-500', 'text-rose-300');
+        } else {
+          btn.classList.add('opacity-40');
+        }
+      });
+
+      if (!quizAnswered[quizId].has(qId)) {
+        quizAnswered[quizId].add(qId);
+        if (chosenIdx === correctIdx) {
+          quizScores[quizId]++;
+          document.getElementById(`quiz-score-${quizId}`).textContent = quizScores[quizId];
+          playSuccessChord();
+        } else {
+          playErrorBeep();
+        }
+      }
+    }
+
+    // Solution Pop-Up Modal
+    function openSolutionModal(quizId, qId) {
+      const qs = QUIZ_SETS.find(s => s.id === quizId);
+      if (!qs) return;
+      const q = qs.questions.find(item => item.id === qId);
+      if (!q) return;
+
+      playTone(550, 'sine', 0.12, 0.08);
+      document.getElementById('solutionModalTitle').innerHTML = `Question ${q.id} Solution`;
+      document.getElementById('solutionModalBody').innerHTML = `
+        <div class="p-3 bg-slate-950/70 rounded-xl border border-slate-800 text-xs font-mono text-cyan-300 mb-3">
+          ${q.question}
+        </div>
+        <div class="space-y-2">
+          ${q.solution}
+        </div>
+      `;
+
+      const modal = document.getElementById('solutionModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+
+      if (window.renderMathInElement) {
+        renderMathInElement(document.getElementById('solutionModalBody'), {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    function closeSolutionModal() {
+      const modal = document.getElementById('solutionModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeSolutionModal();
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    // Initialize On Load
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCheckpoints();
+      renderQuizzes();
+      showSlide(0);
+
+      document.body.addEventListener('click', () => {
+        if (!audioCtx) getAudioContext();
+      }, { once: true });
+    });
+  </script>
+</body>
+</html>

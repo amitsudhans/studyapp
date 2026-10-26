@@ -1,0 +1,2291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 12 Mathematics • Chapter 5: Continuity and Differentiability Multimedia Lab</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- KaTeX for beautiful math typesetting -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .slide-section { display: none; }
+    .slide-section.active { display: block; animation: fadeIn 0.35s ease-out forwards; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .custom-scrollbar::-webkit-scrollbar { height: 6px; width: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.6); }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(139, 92, 246, 0.4); border-radius: 4px; }
+    @keyframes modalScaleUp {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .animate-modal { animation: modalScaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-violet-500 selection:text-white">
+
+  <!-- TOP HEADER -->
+  <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <span class="p-2 rounded-xl bg-violet-600/20 text-violet-400 border border-violet-500/30 text-lg">
+          <i class="fas fa-wave-square"></i>
+        </span>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 uppercase tracking-wider">NCERT Class 12</span>
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+            <span class="text-xs text-slate-400 font-medium">Chapter 5</span>
+          </div>
+          <h1 class="text-base sm:text-lg font-bold text-white tracking-tight">Continuity and Differentiability Multimedia Lab</h1>
+          <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <!-- Voiceover Narrator Controls -->
+        <button onclick="toggleSpeech()" id="speechToggleBtn" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700 cursor-pointer">
+          <i class="fas fa-volume-up" id="speechIcon"></i>
+          <span id="speechText">Narration On</span>
+        </button>
+
+        <!-- Auto-Play Slideshow -->
+        <button onclick="toggleAutoPlaySlideshow()" id="autoPlaySlideshowBtn" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700 cursor-pointer">
+          <i class="fas fa-play" id="autoPlayIcon"></i>
+          <span id="autoPlayText">Auto-Play</span>
+        </button>
+
+        <!-- Slide Counter -->
+        <div class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-violet-300">
+          Slide <span id="slideCounterCurrent" class="font-bold text-white">1</span> of <span class="font-bold text-slate-400">21</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div id="autoPlayProgressBarContainer" class="w-full bg-slate-900 h-1 overflow-hidden hidden">
+      <div id="autoPlayProgressBar" class="bg-gradient-to-r from-violet-500 to-fuchsia-500 h-full w-0 transition-all duration-100 ease-linear"></div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
+    
+            <!-- Slide 0: 5.1 Introduction & The Intuitive Meaning of Continuity -->
+            <div id="slide-0" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/30 uppercase tracking-wider">Section 5.1 & 5.2</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">5.1 Introduction & The Intuitive Meaning of Continuity</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Informal Pen-Lifting Concept, Isaac Newton, Albert Einstein & Fig 5.1/5.2</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(0)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-violet-900/40 via-purple-900/30 to-indigo-900/40 p-5 rounded-2xl border border-violet-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/40">§ 5.1 & 5.2 Foundations</span>
+              <span class="text-xs text-slate-400">Class 12 NCERT Mathematics Part 1</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Intuitive Meaning: The "Pen-Lifting" Principle</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              In everyday language, <em>continuous</em> means uninterrupted without breaks or abrupt jumps. In mathematics, as Sir Isaac Newton and Gottfried Wilhelm Leibniz formulated, we study dynamic quantities in continuous variation. Albert Einstein famously remarked: <em>"The whole of science is nothing more than a refinement of everyday thinking."</em>
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Left: Informal Examples -->
+            <div class="glass-card p-5 rounded-2xl space-y-4">
+              <h4 class="font-bold text-white text-sm flex items-center space-x-2 text-violet-300">
+                <span>🎨</span>
+                <span>The Two Classic Textbook Curves (Fig 5.1 & Fig 5.2)</span>
+              </h4>
+              <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-800 space-y-3 text-xs leading-relaxed">
+                <div>
+                  <strong class="text-rose-400 block mb-1">Figure 5.1: Discontinuous Jump at Origin</strong>
+                  <div class="p-2.5 rounded-lg bg-slate-900 font-mono text-[11px] text-amber-300 border border-slate-800">
+                    f(x) = { 1, if x ≤ 0 ; 2, if x > 0 }
+                  </div>
+                  <p class="text-slate-300 mt-2">
+                    To draw the graph across x = 0, you <span class="text-rose-300 font-semibold underline">must lift your pen</span> from the paper because the function leaps from height 1 to height 2 without passing through intermediate values.
+                  </p>
+                </div>
+                <div class="pt-3 border-t border-slate-800/80">
+                  <strong class="text-emerald-400 block mb-1">Figure 5.2: Continuous Smooth Curve</strong>
+                  <div class="p-2.5 rounded-lg bg-slate-900 font-mono text-[11px] text-emerald-300 border border-slate-800">
+                    f(x) = { 1, if x ≤ 0 ; 1 + x, if x > 0 }
+                  </div>
+                  <p class="text-slate-300 mt-2">
+                    Here, as x approaches 0 from either side, the curve joins seamlessly at point (0, 1). You can trace this entire curve in one unbroken stroke!
+                  </p>
+                </div>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-violet-950/30 border border-violet-500/20 text-xs text-violet-200">
+                <strong class="text-violet-300 block mb-1">💡 Teacher's Core Insight:</strong>
+                A function is continuous at a point if nearby inputs produce nearby outputs. No sudden teleportations or missing points!
+              </div>
+            </div>
+
+            <!-- Right: Interactive Canvas -->
+            <div class="glass-card p-5 rounded-2xl flex flex-col justify-between space-y-4">
+              <div class="flex items-center justify-between">
+                <h4 class="font-bold text-white text-sm flex items-center space-x-2">
+                  <span>📈</span>
+                  <span>Interactive Jump Simulation</span>
+                </h4>
+                <div class="flex items-center space-x-2">
+                  <button onclick="switchCurveMode('discontinuous')" id="btnCurveDisc" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-violet-600 text-white transition">Fig 5.1 (Jump)</button>
+                  <button onclick="switchCurveMode('continuous')" id="btnCurveCont" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Fig 5.2 (Joined)</button>
+                </div>
+              </div>
+
+              <div class="relative bg-slate-950 rounded-xl p-2 border border-slate-800 flex items-center justify-center min-h-[220px]">
+                <canvas id="introCanvas" width="460" height="200" class="max-w-full rounded-lg"></canvas>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-[11px] text-slate-300 flex items-center justify-between">
+                <span id="canvasCaption">Tracing Fig 5.1: Jump at x = 0 requires lifting pen!</span>
+                <span class="text-violet-400 font-mono text-[10px]">Canvas Live 60fps</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 0 Checkpoint Container -->
+            <div id="slide-checkpoints-0" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 1: 5.2 Formal Definition of Continuity at a Point -->
+            <div id="slide-1" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/30 uppercase tracking-wider">Section 5.2 • Definition 1</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">5.2 Formal Definition of Continuity at a Point</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Limit equals Function Value: LHL = RHL = f(c), Examples 1 to 6</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(1)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-blue-900/40 via-indigo-900/30 to-violet-900/40 p-5 rounded-2xl border border-blue-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40">§ 5.2 Definition 1</span>
+              <span class="text-xs text-slate-400">The 3-Pillar Continuity Test</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Formal Definition of Continuity at a Point</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Suppose $f$ is a real function on a subset of the real numbers and let $c$ be a point in the domain of $f$. Then $f$ is continuous at $c$ if and only if:
+            </p>
+            <div class="mt-3 p-3 rounded-xl bg-slate-950/80 border border-blue-500/40 font-mono text-center text-blue-300 text-sm">
+              lim_{x → c} f(x) = f(c) &nbsp;⟺&nbsp; lim_{x → c⁻} f(x) = lim_{x → c⁺} f(x) = f(c)
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="glass-card p-4 rounded-xl border-l-4 border-l-cyan-400 space-y-2">
+              <span class="text-xs font-bold text-cyan-300">Pillar 1: Defined at Point</span>
+              <p class="text-xs text-slate-300">
+                $f(c)$ must be a well-defined real number. If $f(c)$ is division by zero or imaginary, continuity fails immediately!
+              </p>
+            </div>
+            <div class="glass-card p-4 rounded-xl border-l-4 border-l-violet-400 space-y-2">
+              <span class="text-xs font-bold text-violet-300">Pillar 2: Two-Sided Limit Exists</span>
+              <p class="text-xs text-slate-300">
+                Both one-sided limits must exist and match: $\text{LHL} = \lim_{x \to c^-} f(x) = \lim_{x \to c^+} f(x) = \text{RHL}$.
+              </p>
+            </div>
+            <div class="glass-card p-4 rounded-xl border-l-4 border-l-emerald-400 space-y-2">
+              <span class="text-xs font-bold text-emerald-300">Pillar 3: Limit Matches Value</span>
+              <p class="text-xs text-slate-300">
+                The target limit must land exactly on the function value $f(c)$. No isolated punctures or displaced dots!
+              </p>
+            </div>
+          </div>
+
+          <!-- Deep Dives: Examples 1 to 4 -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-cyan-300">Example 3: Absolute Value Function f(x) = |x|</h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                By definition, $|x| = -x$ for $x < 0$ and $|x| = x$ for $x \ge 0$.
+              </p>
+              <div class="p-3 bg-slate-950/70 rounded-xl font-mono text-[11px] text-slate-200 space-y-1">
+                <div>• LHL = lim_{x→0⁻} (-x) = -0 = 0</div>
+                <div>• RHL = lim_{x→0⁺} (x) = +0 = 0</div>
+                <div>• f(0) = |0| = 0</div>
+                <div class="text-emerald-400 font-bold pt-1">⟹ LHL = RHL = f(0) = 0. Continuous everywhere!</div>
+              </div>
+              <div class="p-2.5 rounded-lg bg-amber-950/30 border border-amber-500/30 text-[11px] text-amber-200">
+                ⚠️ <strong>Student Trap:</strong> A sharp "V-corner" does NOT break continuity! It only breaks differentiability.
+              </div>
+            </div>
+
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-emerald-300">Example 2 & 4: Polynomials & Constants</h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                • <strong>Constant Function:</strong> $f(x) = k$. For every $c$, $\lim_{x \to c} k = k = f(c)$. Continuous everywhere.<br>
+                • <strong>Identity Function:</strong> $f(x) = x$. For every $c$, $\lim_{x \to c} x = c = f(c)$. Continuous on all of $\mathbb{R}$.<br>
+                • <strong>Polynomial Function:</strong> $P(x) = a_n x^n + ... + a_0$. Limits evaluate by direct substitution, so all polynomials are continuous everywhere!
+              </p>
+              <div class="p-3 bg-slate-950/70 rounded-xl font-mono text-[11px] text-emerald-300 border border-emerald-500/20">
+                lim_{x→c} P(x) = P(c) &nbsp;∀ c ∈ ℝ
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 1 Checkpoint Container -->
+            <div id="slide-checkpoints-1" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 2: 5.2 Continuity on Intervals, Rational Functions & [x] -->
+            <div id="slide-2" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/30 uppercase tracking-wider">Section 5.2 • Definition 2</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">5.2 Continuity on Intervals, Rational Functions & [x]</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Open & Closed Intervals, 1/x at Origin, Tables 5.1 & 5.2, Greatest Integer Function</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(2)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-emerald-900/40 via-teal-900/30 to-cyan-900/40 p-5 rounded-2xl border border-emerald-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">§ 5.2 Definition 2</span>
+              <span class="text-xs text-slate-400">Intervals & Pathological Discontinuities</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Continuity on Closed Intervals & The [x] Function</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              A real function $f$ is continuous on a closed interval $[a, b]$ if it is continuous on $(a, b)$, right-continuous at $a$ ($\lim_{x 	o a^+} f(x) = f(a)$), and left-continuous at $b$ ($\lim_{x 	o b^-} f(x) = f(b)$).
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Left: 1/x and Infinity -->
+            <div class="glass-card p-5 rounded-2xl space-y-4">
+              <h4 class="font-bold text-white text-sm flex items-center space-x-2 text-cyan-300">
+                <span>⚡</span>
+                <span>The Rational Function f(x) = 1/x (Tables 5.1 & 5.2)</span>
+              </h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                The domain of $f(x) = 1/x$ is $D = \mathbb{R} \setminus \{0\}$. At every non-zero point $c \in D$:
+                $$\lim_{x \to c} \frac{1}{x} = \frac{1}{c} = f(c)$$
+                Therefore, <strong>$f(x) = 1/x$ is continuous on its entire domain!</strong>
+              </p>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-2 text-xs">
+                <div class="font-mono text-cyan-300 text-[11px] border-b border-slate-800 pb-1">Behavior Near Zero (Not in domain):</div>
+                <div class="grid grid-cols-2 gap-2 text-[11px] font-mono">
+                  <div class="p-2 rounded bg-slate-900 border border-slate-800 text-rose-300">
+                    x → 0⁻ : f(x) → -∞<br>
+                    -0.1 ⟹ -10<br>
+                    -0.001 ⟹ -1000
+                  </div>
+                  <div class="p-2 rounded bg-slate-900 border border-slate-800 text-emerald-300">
+                    x → 0⁺ : f(x) → +∞<br>
+                    +0.1 ⟹ +10<br>
+                    +0.001 ⟹ +1000
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Greatest Integer Function [x] -->
+            <div class="glass-card p-5 rounded-2xl space-y-4">
+              <h4 class="font-bold text-white text-sm flex items-center space-x-2 text-amber-300">
+                <span>🪜</span>
+                <span>The Greatest Integer Function f(x) = [x] (Example 15)</span>
+              </h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                $[x]$ denotes the largest integer less than or equal to $x$. At any integer $k \in \mathbb{Z}$:
+              </p>
+              <div class="p-3 bg-slate-950/70 rounded-xl font-mono text-[11px] text-slate-200 space-y-1.5">
+                <div>• LHL = lim_{x→k⁻} [x] = k - 1 (e.g. [2.999] = 2)</div>
+                <div>• RHL = lim_{x→k⁺} [x] = k &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(e.g. [3.001] = 3)</div>
+                <div class="text-rose-400 font-bold">⟹ LHL ≠ RHL ! The limit does not exist.</div>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-900 border border-amber-500/30 text-xs text-amber-200">
+                📌 <strong>Takeaway:</strong> $[x]$ is discontinuous at <strong>every single integer</strong> $k \in \mathbb{Z}$, but is continuous on every open interval $(k, k+1)$!
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 2 Checkpoint Container -->
+            <div id="slide-checkpoints-2" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 3: 5.2.1 Algebra of Continuous Functions & Composite Theorem -->
+            <div id="slide-3" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/30 uppercase tracking-wider">Section 5.2.1 • Theorems 1 & 2</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">5.2.1 Algebra of Continuous Functions & Composite Theorem</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Theorems 1 & 2: Sum, Difference, Product, Quotient, and Composite (f o g)</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(3)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-purple-900/40 via-violet-900/30 to-indigo-900/40 p-5 rounded-2xl border border-purple-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/40">§ 5.2.1 Theorems 1 & 2</span>
+              <span class="text-xs text-slate-400">Algebraic Operations & Composite Continuity</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Theorems on Algebra & Composite Functions</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Continuity is preserved under arithmetic combinations and functional compositions. These two master theorems allow us to effortlessly prove the continuity of complex expressions without computing epsilon-delta limits!
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Theorem 1 -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-violet-300">Theorem 1: Arithmetic Combinations</h4>
+              <p class="text-xs text-slate-300">If $f$ and $g$ are continuous at a real point $c$, then:</p>
+              <ul class="p-3 bg-slate-950/70 rounded-xl space-y-2 text-xs text-slate-200 font-mono">
+                <li>1. (f + g)(x) is continuous at c</li>
+                <li>2. (f - g)(x) is continuous at c</li>
+                <li>3. (f · g)(x) is continuous at c</li>
+                <li>4. (f / g)(x) is continuous at c &nbsp;(provided g(c) ≠ 0)</li>
+              </ul>
+              <div class="p-3 rounded-xl bg-violet-950/40 border border-violet-500/20 text-xs text-violet-200">
+                <strong>Trigonometric Functions:</strong> Since $\sin x$ and $\cos x$ are continuous everywhere, $\tan x = \frac{\sin x}{\cos x}$, $\cot x$, $\sec x$, $\csc x$ are continuous everywhere in their respective domains!
+              </div>
+            </div>
+
+            <!-- Theorem 2 -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-cyan-300">Theorem 2: Composite Functions (f ∘ g)</h4>
+              <p class="text-xs text-slate-300">
+                Suppose $f$ and $g$ are real-valued functions such that $(f \circ g)$ is defined at $c$. If $g$ is continuous at $c$ and $f$ is continuous at $g(c)$, then $(f \circ g)$ is continuous at $c$.
+              </p>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs">
+                <div class="font-bold text-white">Classic Textbook Applications:</div>
+                <div class="p-2 rounded bg-slate-900 border border-slate-800 text-slate-300">
+                  • <strong>Example 19:</strong> $h(x) = \sin(x^2)$. Let $g(x) = x^2$ and $f(u) = \sin u$. Both are continuous everywhere ⟹ $h(x)$ is continuous everywhere on $\mathbb{R}$.
+                </div>
+                <div class="p-2 rounded bg-slate-900 border border-slate-800 text-slate-300">
+                  • <strong>Example 20:</strong> $h(x) = |1 - x + |x||$. Composed of nested absolute values and polynomials ⟹ continuous on all of $\mathbb{R}$.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 3 Checkpoint Container -->
+            <div id="slide-checkpoints-3" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 4: 📝 Exercise 5.1 Workshop: Piecewise Functions & Finding Parameters -->
+            <div id="slide-4" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/30 uppercase tracking-wider">Exercise 5.1 Deep Dive</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">📝 Exercise 5.1 Workshop: Piecewise Functions & Finding Parameters</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Determining Constants k, a, b so that f(x) is Continuous Everywhere</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(4)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-amber-900/40 via-orange-900/30 to-yellow-900/40 p-5 rounded-2xl border border-amber-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">Exercise 5.1 Deep Dive</span>
+              <span class="text-xs text-slate-400">Solving for Unknown Constants k, a, b</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Mastering Piecewise Continuity Problems</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Board exam questions consistently ask you to find parameters so that a piecewise function is continuous at its transition point. The key: equate LHL, RHL, and $f(c)$ at the boundary!
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Q26 / Q28 -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-amber-300">Problem 1: Finding k (Exercise 5.1 Q26)</h4>
+              <p class="text-xs text-slate-300 font-mono bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+                f(x) = { k cos(x) / (π - 2x) &nbsp;(x ≠ π/2) ; 3 &nbsp;(x = π/2) }
+              </p>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl text-xs space-y-2 text-slate-300">
+                <div>1. Compute $\lim_{x \to \pi/2} \frac{k \cos x}{\pi - 2x}$. Substitute $x = \pi/2 + h$.</div>
+                <div>2. As $x \to \pi/2$, $h \to 0$. $\cos(\pi/2 + h) = -\sin h$.</div>
+                <div>3. $\pi - 2(\pi/2 + h) = -2h$.</div>
+                <div>4. Limit = $\lim_{h \to 0} \frac{k(-\sin h)}{-2h} = \frac{k}{2} \lim_{h \to 0} \frac{\sin h}{h} = \frac{k}{2}$.</div>
+                <div class="p-2 rounded bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 font-bold">
+                  Equate to f(π/2) = 3: &nbsp; k/2 = 3 ⟹ k = 6!
+                </div>
+              </div>
+            </div>
+
+            <!-- Q30: Finding a and b -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-cyan-300">Problem 2: Dual Boundaries (Exercise 5.1 Q30)</h4>
+              <p class="text-xs text-slate-300 font-mono bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+                f(x) = { 5 (x ≤ 2) ; ax + b (2 < x < 10) ; 21 (x ≥ 10) }
+              </p>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl text-xs space-y-2 text-slate-300">
+                <div>• At $x = 2$: LHL = 5, RHL = $2a + b$ ⟹ <span class="text-amber-300 font-mono font-bold">2a + b = 5</span> (Eq 1)</div>
+                <div>• At $x = 10$: LHL = $10a + b$, RHL = 21 ⟹ <span class="text-amber-300 font-mono font-bold">10a + b = 21</span> (Eq 2)</div>
+                <div>• Subtract (Eq 1) from (Eq 2): $8a = 16 \implies \mathbf{a = 2}$.</div>
+                <div>• Substitute into (Eq 1): $2(2) + b = 5 \implies \mathbf{b = 1}$.</div>
+                <div class="p-2 rounded bg-cyan-950/40 border border-cyan-500/40 text-cyan-300 font-bold">
+                  Final Solution: a = 2, b = 1 makes f(x) continuous on ℝ!
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 4 Checkpoint Container -->
+            <div id="slide-checkpoints-4" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 5: 5.3 Differentiability: The Tangent Slope & Fundamental Theorem -->
+            <div id="slide-5" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/30 uppercase tracking-wider">Section 5.3 • Theorem 3</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">5.3 Differentiability: The Tangent Slope & Fundamental Theorem</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Definition of f'(c), LHD & RHD, Theorem 3: Differentiability Implies Continuity</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(5)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-rose-900/40 via-red-900/30 to-pink-900/40 p-5 rounded-2xl border border-rose-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40">§ 5.3 Theorem 3</span>
+              <span class="text-xs text-slate-400">Slope of Tangent & Fundamental Relation</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Differentiability & The Asymmetry Theorem</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Suppose $f$ is a real function and $c$ is a point in its domain. The derivative of $f$ at $c$ is defined by:
+            </p>
+            <div class="mt-2 p-3 rounded-xl bg-slate-950/80 border border-rose-500/40 font-mono text-center text-rose-300 text-sm">
+              f'(c) = lim_{h → 0} \frac{f(c + h) - f(c)}{h}
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Left: Theorem 3 & Proof -->
+            <div class="glass-card p-5 rounded-2xl space-y-4">
+              <h4 class="font-bold text-white text-sm text-emerald-300">Theorem 3: Differentiability ⟹ Continuity</h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                If a function $f$ is differentiable at a point $c$, then it is also continuous at $c$.
+              </p>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-300">
+                <div class="text-slate-400">// Proof Sketch:</div>
+                <div>f(x) - f(c) = \frac{f(x) - f(c)}{x - c} · (x - c)</div>
+                <div>lim_{x→c} [f(x) - f(c)] = lim_{x→c} [\frac{f(x) - f(c)}{x - c}] · lim_{x→c} (x - c)</div>
+                <div>lim_{x→c} [f(x) - f(c)] = f'(c) · 0 = 0</div>
+                <div class="text-emerald-400 font-bold">⟹ lim_{x→c} f(x) = f(c) &nbsp;[Continuous!]</div>
+              </div>
+            </div>
+
+            <!-- Right: Converse Fails (f(x) = |x|) -->
+            <div class="glass-card p-5 rounded-2xl space-y-4">
+              <h4 class="font-bold text-white text-sm text-rose-300">⚠️ Converse is FALSE: The |x| Counterexample</h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                A function can be continuous everywhere, yet fail to be differentiable at sharp points! Consider $f(x) = |x|$ at $c = 0$:
+              </p>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono">
+                <div class="text-rose-300">LHD: lim_{h→0⁻} \frac{|0+h| - 0}{h} = lim_{h→0⁻} \frac{-h}{h} = -1</div>
+                <div class="text-emerald-300">RHD: lim_{h→0⁺} \frac{|0+h| - 0}{h} = lim_{h→0⁺} \frac{+h}{h} = +1</div>
+                <div class="p-2 rounded bg-rose-950/40 border border-rose-500/40 text-rose-200 font-bold">
+                  LHD (-1) ≠ RHD (+1) ⟹ f'(0) DOES NOT EXIST!
+                </div>
+              </div>
+              <p class="text-[11px] text-slate-400">
+                Geometrically, the slope abruptly pivots from -1 to +1 at the sharp corner. There is no unique tangent line at $x = 0$.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 5 Checkpoint Container -->
+            <div id="slide-checkpoints-5" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 6: 5.3.1 Chain Rule for Composite Functions -->
+            <div id="slide-6" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/30 uppercase tracking-wider">Section 5.3.1 • Theorem 4</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">5.3.1 Chain Rule for Composite Functions</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Theorem 4: dy/dx = (dy/dt) * (dt/dx), Multi-Layer Chain Rule</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(6)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-indigo-900/40 via-blue-900/30 to-cyan-900/40 p-5 rounded-2xl border border-indigo-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40">§ 5.3.1 Theorem 4</span>
+              <span class="text-xs text-slate-400">Russian Doll Principle of Calculus</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Chain Rule for Composite Functions</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Let $f$ be a real valued function which is a composite of two functions $u$ and $v$, i.e. $f = v \circ u$. If $t = u(x)$ and both $\frac{dt}{dx}$ and $\frac{dv}{dt}$ exist, then:
+            </p>
+            <div class="mt-2 p-3 rounded-xl bg-slate-950/80 border border-indigo-500/40 font-mono text-center text-indigo-300 text-base font-bold">
+              \frac{df}{dx} = \frac{dv}{dt} · \frac{dt}{dx}
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-cyan-300">Multi-Layer Nesting Chain</h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                If $y = f(u)$, $u = g(v)$, and $v = h(x)$, differentiate layer by layer from the outermost shell to the innermost core:
+              </p>
+              <div class="p-3 bg-slate-950/70 rounded-xl font-mono text-[11px] text-cyan-300 border border-cyan-500/20">
+                \frac{dy}{dx} = \frac{dy}{du} · \frac{du}{dv} · \frac{dv}{dx}
+              </div>
+              <p class="text-xs text-slate-300">
+                <strong>Example:</strong> For $y = \sin(x^2 + 5)$:<br>
+                1. Differentiate outer $\sin(t) \implies \cos(t)$<br>
+                2. Differentiate inner $x^2 + 5 \implies 2x$<br>
+                3. Multiply: $\frac{dy}{dx} = 2x \cos(x^2 + 5)$.
+              </p>
+            </div>
+
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-violet-300">Essential Standard Derivatives</h4>
+              <div class="grid grid-cols-2 gap-2 text-xs font-mono">
+                <div class="p-2 rounded bg-slate-950 border border-slate-800 text-slate-300">
+                  d/dx(x^n) = n x^{n-1}<br>
+                  d/dx(sin x) = cos x<br>
+                  d/dx(cos x) = -sin x
+                </div>
+                <div class="p-2 rounded bg-slate-950 border border-slate-800 text-slate-300">
+                  d/dx(tan x) = sec² x<br>
+                  d/dx(sec x) = sec x tan x<br>
+                  d/dx(cot x) = -csc² x
+                </div>
+              </div>
+              <div class="p-2.5 rounded-lg bg-indigo-950/30 border border-indigo-500/30 text-[11px] text-indigo-200">
+                💡 <strong>Teacher's Tip:</strong> Every "co" function ($\cos, \cot, \csc$) produces a <strong>negative</strong> derivative sign!
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 6 Checkpoint Container -->
+            <div id="slide-checkpoints-6" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 7: 📝 Exercise 5.2 Workshop: Composite Derivatives & Non-Differentiability -->
+            <div id="slide-7" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/30 uppercase tracking-wider">Exercise 5.2 Deep Dive</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">📝 Exercise 5.2 Workshop: Composite Derivatives & Non-Differentiability</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Chain Rule Drills and Proving |x-1| & [x] Fail Differentiability</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(7)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-blue-900/40 via-cyan-900/30 to-teal-900/40 p-5 rounded-2xl border border-blue-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40">Exercise 5.2 Deep Dive</span>
+              <span class="text-xs text-slate-400">Multi-Stage Chains & Non-Differentiability Proofs</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">High-Precision Chain Rule & Proof Drills</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Exercise 5.2 combines trigonometric arguments, radical operations, and formal non-differentiability calculations for modulus and step functions.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Q4 & Q7 -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-cyan-300">3-Stage Chain Rule: sec(tan(√x))</h4>
+              <p class="text-xs text-slate-300">Let $y = \sec(u)$, where $u = \tan(v)$ and $v = \sqrt{x}$:</p>
+              <div class="p-3 bg-slate-950/70 rounded-xl font-mono text-[11px] space-y-1.5 text-slate-200">
+                <div>• dy/du = sec(u) tan(u) = sec(tan √x) tan(tan √x)</div>
+                <div>• du/dv = sec²(v) = sec²(√x)</div>
+                <div>• dv/dx = 1 / (2√x)</div>
+                <div class="text-emerald-400 font-bold pt-1">
+                  dy/dx = \frac{\sec(\tan \sqrt{x}) \tan(\tan \sqrt{x}) \sec^2(\sqrt{x})}{2\sqrt{x}}
+                </div>
+              </div>
+            </div>
+
+            <!-- Q9 & Q10: Proving Non-Differentiability -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-rose-300">Proof: f(x) = |x - 1| is Not Differentiable at 1</h4>
+              <p class="text-xs text-slate-300">Exercise 5.2 Q9 requires calculating one-sided derivatives at $c = 1$:</p>
+              <div class="p-3 bg-slate-950/70 rounded-xl font-mono text-[11px] space-y-1 text-slate-200">
+                <div>LHD = lim_{h→0⁻} \frac{|1+h - 1| - 0}{h} = lim_{h→0⁻} \frac{|h|}{h} = \frac{-h}{h} = -1</div>
+                <div>RHD = lim_{h→0⁺} \frac{|1+h - 1| - 0}{h} = lim_{h→0⁺} \frac{|h|}{h} = \frac{+h}{h} = +1</div>
+                <div class="text-rose-400 font-bold pt-1">Since LHD ≠ RHD, f'(1) does not exist! Q.E.D.</div>
+              </div>
+              <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-[11px] text-slate-300">
+                Similarly, for $f(x) = [x]$ at integers $x = 1, 2$ (Q10), the difference quotient limit does not exist, proving step functions are not differentiable at integers.
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 7 Checkpoint Container -->
+            <div id="slide-checkpoints-7" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 8: 5.3.2 Derivatives of Implicit Functions -->
+            <div id="slide-8" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/30 uppercase tracking-wider">Section 5.3.2 • Implicit Form</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">5.3.2 Derivatives of Implicit Functions</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Explicit y = f(x) vs Implicit F(x, y) = 0, Examples 22 & 23</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(8)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-teal-900/40 via-emerald-900/30 to-green-900/40 p-5 rounded-2xl border border-teal-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/40">§ 5.3.2 Implicit Forms</span>
+              <span class="text-xs text-slate-400">Explicit vs Implicit Relations</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Derivatives of Implicit Functions</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              When an equation links $x$ and $y$ such that isolating $y$ explicitly as $y = f(x)$ is difficult or impossible, we differentiate every term with respect to $x$, applying the chain rule to terms with $y$, and collect all $\frac{dy}{dx}$ factors.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Algorithm -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-teal-300">The 4-Step Implicit Algorithm</h4>
+              <ol class="p-3 bg-slate-950/70 rounded-xl space-y-2 text-xs text-slate-200">
+                <li><strong class="text-white">1. Differentiate:</strong> Apply $\frac{d}{dx}$ to both sides of the equation.</li>
+                <li><strong class="text-white">2. Attach dy/dx:</strong> Whenever differentiating any $y$-term, multiply by $\frac{dy}{dx}$ (e.g. $\frac{d}{dx}(y^3) = 3y^2 \frac{dy}{dx}$).</li>
+                <li><strong class="text-white">3. Collect Terms:</strong> Move all terms containing $\frac{dy}{dx}$ to the left-hand side, and all other terms to the right.</li>
+                <li><strong class="text-white">4. Factor & Divide:</strong> Factor out $\frac{dy}{dx}$ and divide by its coefficient.</li>
+              </ol>
+            </div>
+
+            <!-- Example 23 -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-emerald-300">Textbook Example 23: y + sin y = cos x</h4>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl font-mono text-[11px] space-y-2 text-slate-200">
+                <div>d/dx(y) + d/dx(sin y) = d/dx(cos x)</div>
+                <div>\frac{dy}{dx} + (\cos y) \frac{dy}{dx} = -\sin x</div>
+                <div>\frac{dy}{dx} (1 + \cos y) = -\sin x</div>
+                <div class="text-teal-300 font-bold">
+                  \frac{dy}{dx} = \frac{-\sin x}{1 + \cos y} &nbsp;\text{(for } y \neq (2n+1)\pi\text{)}
+                </div>
+              </div>
+              <p class="text-xs text-slate-400">
+                Notice that the derivative expression contains both $x$ and $y$, which is natural and standard for implicit equations.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 8 Checkpoint Container -->
+            <div id="slide-checkpoints-8" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 9: 5.3.3 Derivatives of Inverse Trigonometric Functions -->
+            <div id="slide-9" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/30 uppercase tracking-wider">Section 5.3.3 • Inverse Trig</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">5.3.3 Derivatives of Inverse Trigonometric Functions</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Derivations for sin⁻¹x, cos⁻¹x, tan⁻¹x, sec⁻¹x and the Master Table</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(9)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-violet-900/40 via-purple-900/30 to-fuchsia-900/40 p-5 rounded-2xl border border-violet-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/40">§ 5.3.3 Inverse Trigonometry</span>
+              <span class="text-xs text-slate-400">Derivation via Implicit Differentiation</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Derivatives of Inverse Trigonometric Functions</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              We find the derivatives of inverse trigonometric functions by inverting the relation and using implicit differentiation combined with the fundamental Pythagorean identities.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Derivation of sin^-1(x) -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-fuchsia-300">Derivation: y = sin⁻¹(x)</h4>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl font-mono text-[11px] space-y-2 text-slate-200">
+                <div>1. y = sin⁻¹(x) ⟹ sin y = x &nbsp;for y ∈ (-π/2, π/2)</div>
+                <div>2. Differentiate w.r.t x: cos y · (dy/dx) = 1</div>
+                <div>3. dy/dx = 1 / cos y</div>
+                <div>4. Since y ∈ (-π/2, π/2), cos y > 0: cos y = √(1 - sin²y) = √(1 - x²)</div>
+                <div class="p-2 rounded bg-violet-950/40 border border-violet-500/40 text-violet-300 font-bold">
+                  \frac{d}{dx}(\sin^{-1}x) = \frac{1}{\sqrt{1 - x^2}} &nbsp;\text{for } x \in (-1, 1)
+                </div>
+              </div>
+            </div>
+
+            <!-- Master Table of 6 Inverse Trig Derivatives -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-violet-300">The Inverse Trig Derivatives Master Table</h4>
+              <div class="space-y-1.5 text-xs font-mono">
+                <div class="flex justify-between p-2 rounded bg-slate-950 border border-slate-800">
+                  <span class="text-slate-300">d/dx(sin⁻¹x)</span>
+                  <span class="text-emerald-300 font-bold">1 / √(1 - x²)</span>
+                </div>
+                <div class="flex justify-between p-2 rounded bg-slate-950 border border-slate-800">
+                  <span class="text-slate-300">d/dx(cos⁻¹x)</span>
+                  <span class="text-rose-300 font-bold">-1 / √(1 - x²)</span>
+                </div>
+                <div class="flex justify-between p-2 rounded bg-slate-950 border border-slate-800">
+                  <span class="text-slate-300">d/dx(tan⁻¹x)</span>
+                  <span class="text-cyan-300 font-bold">1 / (1 + x²)</span>
+                </div>
+                <div class="flex justify-between p-2 rounded bg-slate-950 border border-slate-800">
+                  <span class="text-slate-300">d/dx(cot⁻¹x)</span>
+                  <span class="text-rose-300 font-bold">-1 / (1 + x²)</span>
+                </div>
+                <div class="flex justify-between p-2 rounded bg-slate-950 border border-slate-800">
+                  <span class="text-slate-300">d/dx(sec⁻¹x)</span>
+                  <span class="text-purple-300 font-bold">1 / (|x| √(x² - 1))</span>
+                </div>
+                <div class="flex justify-between p-2 rounded bg-slate-950 border border-slate-800">
+                  <span class="text-slate-300">d/dx(csc⁻¹x)</span>
+                  <span class="text-rose-300 font-bold">-1 / (|x| √(x² - 1))</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 9 Checkpoint Container -->
+            <div id="slide-checkpoints-9" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 10: 📝 Exercise 5.3 Workshop: Implicit Systems & Trigonometric Substitutions -->
+            <div id="slide-10" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/30 uppercase tracking-wider">Exercise 5.3 Deep Dive</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">📝 Exercise 5.3 Workshop: Implicit Systems & Trigonometric Substitutions</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Mastering Substitutions: x = tan θ, x = sin θ, and Double-Angle Identities</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(10)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-pink-900/40 via-purple-900/30 to-violet-900/40 p-5 rounded-2xl border border-pink-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-pink-500/20 text-pink-300 border border-pink-500/40">Exercise 5.3 Deep Dive</span>
+              <span class="text-xs text-slate-400">Trigonometric Substitutions</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Simplifying Inverse Trig via Substitutions</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Differentiating bulky algebraic fractions inside inverse trig functions directly results in massive expressions. By making smart trigonometric substitutions, the expression collapses into a simple multiple of $\theta$!
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="glass-card p-4 rounded-xl space-y-2">
+              <span class="text-xs font-bold text-pink-300">Substitution 1: x = tan θ</span>
+              <p class="text-[11px] text-slate-300 font-mono">
+                • (2x)/(1 + x²) ⟹ sin(2θ)<br>
+                • (1 - x²)/(1 + x²) ⟹ cos(2θ)<br>
+                • (3x - x³)/(1 - 3x²) ⟹ tan(3θ)
+              </p>
+              <div class="text-[11px] text-pink-200 pt-1">
+                Yields derivatives proportional to $\frac{1}{1 + x^2}$.
+              </div>
+            </div>
+
+            <div class="glass-card p-4 rounded-xl space-y-2">
+              <span class="text-xs font-bold text-purple-300">Substitution 2: x = sin θ</span>
+              <p class="text-[11px] text-slate-300 font-mono">
+                • 2x √(1 - x²) ⟹ sin(2θ)<br>
+                • 3x - 4x³ ⟹ sin(3θ)
+              </p>
+              <div class="text-[11px] text-purple-200 pt-1">
+                Yields derivatives proportional to $\frac{1}{\sqrt{1 - x^2}}$.
+              </div>
+            </div>
+
+            <div class="glass-card p-4 rounded-xl space-y-2">
+              <span class="text-xs font-bold text-cyan-300">Substitution 3: x = cos θ</span>
+              <p class="text-[11px] text-slate-300 font-mono">
+                • 2x² - 1 ⟹ cos(2θ)<br>
+                • 4x³ - 3x ⟹ cos(3θ)
+              </p>
+              <div class="text-[11px] text-cyan-200 pt-1">
+                Used in Q15: $y = \sec^{-1}(\frac{1}{2x^2 - 1}) = 2\cos^{-1}x$.
+              </div>
+            </div>
+          </div>
+
+          <!-- Walkthrough Box -->
+          <div class="glass-card p-5 rounded-2xl space-y-3">
+            <h4 class="font-bold text-white text-sm text-amber-300">Step-by-Step Walkthrough: Exercise 5.3 Q10</h4>
+            <div class="p-3.5 bg-slate-950/70 rounded-xl font-mono text-xs space-y-2 text-slate-300">
+              <div>Problem: Find dy/dx for y = tan⁻¹((3x - x³) / (1 - 3x²)), &nbsp;-1/√3 < x < 1/√3.</div>
+              <div>Step 1: Put x = tan θ ⟹ θ = tan⁻¹x. For -1/√3 < x < 1/√3, -π/6 < θ < π/6 ⟹ -π/2 < 3θ < π/2.</div>
+              <div>Step 2: y = tan⁻¹(tan 3θ) = 3θ = 3 tan⁻¹x.</div>
+              <div>Step 3: Differentiate w.r.t x: dy/dx = 3 · d/dx(tan⁻¹x) = 3 / (1 + x²).</div>
+              <div class="text-emerald-400 font-bold">Solved in 3 lines without messy quotient rules!</div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 10 Checkpoint Container -->
+            <div id="slide-checkpoints-10" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 11: 5.4 Exponential & Logarithmic Functions -->
+            <div id="slide-11" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/30 uppercase tracking-wider">Section 5.4 • e and ln(x)</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">5.4 Exponential & Logarithmic Functions</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Base b^x, Natural Base e, Definition of log_b(x), Reflection across y = x</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(11)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-emerald-900/40 via-cyan-900/30 to-blue-900/40 p-5 rounded-2xl border border-emerald-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">§ 5.4 Exponential & Logarithm</span>
+              <span class="text-xs text-slate-400">The Natural Invariant e and Reflection across y = x</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Exponential & Logarithmic Functions</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              The exponential function $f(x) = b^x$ ($b > 1$) models explosive growth. The natural base $e = \lim_{n \to \infty} (1 + 1/n)^n \approx 2.71828...$ possesses the unique property that its rate of change equals its value. The natural logarithm $\ln x = \log_e x$ is its inverse.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Left: Properties & Derivatives -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-cyan-300">Derivatives of e^x and ln(x)</h4>
+              <div class="space-y-2 text-xs font-mono">
+                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-emerald-300">
+                  \frac{d}{dx}(e^x) = e^x &nbsp;\text{(Self-reproducing derivative!)}
+                </div>
+                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-cyan-300">
+                  \frac{d}{dx}(\ln x) = \frac{1}{x} &nbsp;\text{for } x > 0
+                </div>
+                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-amber-300">
+                  \frac{d}{dx}(a^x) = a^x \ln a &nbsp;\text{for } a > 0
+                </div>
+              </div>
+              <div class="p-2.5 rounded-lg bg-emerald-950/30 border border-emerald-500/30 text-[11px] text-emerald-200">
+                ⭐ <strong>Growth Comparison:</strong> As $x \to \infty$, $e^x$ grows faster than any polynomial $x^n$. Conversely, $\log x$ grows slower than any root $x^{1/n}$!
+              </div>
+            </div>
+
+            <!-- Right: Log Laws -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-emerald-300">Master Laws of Logarithms</h4>
+              <ul class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs text-slate-200 font-mono">
+                <li>• log(xy) = log x + log y &nbsp;(Products ⟹ Sums)</li>
+                <li>• log(x/y) = log x - log y &nbsp;(Quotients ⟹ Differences)</li>
+                <li>• log(xⁿ) = n log x &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Powers ⟹ Multipliers)</li>
+                <li>• log_a(x) = \frac{\log_b x}{\log_b a} &nbsp;&nbsp;&nbsp;&nbsp;(Change of Base)</li>
+              </ul>
+              <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-[11px] text-slate-400">
+                Notice: $\log(1) = 0$, $\ln(e) = 1$, and $\log x$ is only defined for strictly positive arguments ($x > 0$).
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 11 Checkpoint Container -->
+            <div id="slide-checkpoints-11" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 12: 📝 Exercise 5.4 Workshop: Exponential & Logarithmic Chains -->
+            <div id="slide-12" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/30 uppercase tracking-wider">Exercise 5.4 Deep Dive</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">📝 Exercise 5.4 Workshop: Exponential & Logarithmic Chains</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Differentiating e^(sin⁻¹x), log(cos(e^x)), and Multi-Tier Exponentials</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(12)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-teal-900/40 via-blue-900/30 to-indigo-900/40 p-5 rounded-2xl border border-teal-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/40">Exercise 5.4 Deep Dive</span>
+              <span class="text-xs text-slate-400">Chain Rule with Exponentials & Logarithms</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Exponential & Logarithmic Chains</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Exercise 5.4 tests the synthesis of exponential and logarithmic differentiation rules with the chain rule and quotient rule.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Q1: Quotient Rule with e^x -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-cyan-300">Problem 1: y = e^x / sin x (Exercise 5.4 Q1)</h4>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl font-mono text-xs space-y-2 text-slate-200">
+                <div>Apply Quotient Rule: [v u' - u v'] / v²</div>
+                <div>u = e^x ⟹ u' = e^x</div>
+                <div>v = sin x ⟹ v' = cos x</div>
+                <div class="text-cyan-300 font-bold">
+                  \frac{dy}{dx} = \frac{(\sin x)(e^x) - (e^x)(\cos x)}{\sin^2 x} = \frac{e^x(\sin x - \cos x)}{\sin^2 x}
+                </div>
+              </div>
+            </div>
+
+            <!-- Q5: 3-Tier Chain -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-teal-300">Problem 2: y = log(cos(e^x)) (Exercise 5.4 Q5)</h4>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl font-mono text-xs space-y-2 text-slate-200">
+                <div>Layer 1: d/du [log u] = 1/u &nbsp;(where u = cos(e^x))</div>
+                <div>Layer 2: d/dv [cos v] = -sin v &nbsp;(where v = e^x)</div>
+                <div>Layer 3: d/dx [e^x] = e^x</div>
+                <div class="text-emerald-400 font-bold">
+                  \frac{dy}{dx} = \frac{1}{\cos(e^x)} · (-\sin(e^x)) · e^x = -e^x \tan(e^x)
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 12 Checkpoint Container -->
+            <div id="slide-checkpoints-12" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 13: 5.5 Logarithmic Differentiation: Power Tower Functions -->
+            <div id="slide-13" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/30 uppercase tracking-wider">Section 5.5 • Log Differentiation</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">5.5 Logarithmic Differentiation: Power Tower Functions</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Handling [u(x)]^[v(x)], Radical Quotients & Products, Examples 27 to 30</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(13)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-amber-900/40 via-yellow-900/30 to-orange-900/40 p-5 rounded-2xl border border-amber-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">§ 5.5 Variable Exponents</span>
+              <span class="text-xs text-slate-400">Power Tower Functions [u(x)]^[v(x)]</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Logarithmic Differentiation Technique</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              When BOTH the base and exponent are functions of $x$, i.e. $y = [u(x)]^{v(x)}$, neither the power rule nor the exponential rule applies! Taking the natural logarithm of both sides brings the variable exponent down as a multiplier.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Algorithm -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-amber-300">The 4-Step Log Differentiation Protocol</h4>
+              <ol class="p-3 bg-slate-950/70 rounded-xl space-y-2 text-xs text-slate-200">
+                <li><strong class="text-white">1. Take Log:</strong> Apply $\ln$ to both sides: $\ln y = v(x) \ln(u(x))$.</li>
+                <li><strong class="text-white">2. Differentiate w.r.t x:</strong> The left side becomes $\frac{1}{y} \frac{dy}{dx}$.</li>
+                <li><strong class="text-white">3. Product Rule on Right:</strong> Differentiate $v(x) \ln(u(x))$ using standard product and chain rules.</li>
+                <li><strong class="text-white">4. Multiply by y:</strong> $\frac{dy}{dx} = y [\text{RHS expression}]$, then substitute back $y = [u(x)]^{v(x)}$.</li>
+              </ol>
+            </div>
+
+            <!-- Archetype: x^x -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-yellow-300">The Grand Classic: y = x^x</h4>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl font-mono text-xs space-y-2 text-slate-200">
+                <div>Step 1: ln y = ln(x^x) = x ln x</div>
+                <div>Step 2: \frac{1}{y} \frac{dy}{dx} = (1)·(\ln x) + x·(\frac{1}{x}) = \ln x + 1</div>
+                <div>Step 3: \frac{dy}{dx} = y (1 + \ln x)</div>
+                <div class="p-2 rounded bg-amber-950/40 border border-amber-500/40 text-amber-300 font-bold">
+                  \frac{d}{dx}(x^x) = x^x (1 + \log x)
+                </div>
+              </div>
+              <p class="text-[11px] text-slate-400">
+                Notice: Setting $1 + \log x = 0 \implies x = 1/e$, which is the exact minimum point of $y = x^x$!
+              </p>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 13 Checkpoint Container -->
+            <div id="slide-checkpoints-13" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 14: 📝 Exercise 5.5 Workshop: Advanced Tower Functions & Sum Equations -->
+            <div id="slide-14" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/30 uppercase tracking-wider">Exercise 5.5 Deep Dive</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">📝 Exercise 5.5 Workshop: Advanced Tower Functions & Sum Equations</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Handling u + v Sums where y = u(x) + v(x), and Implicit Equations x^y + y^x = 1</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(14)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-red-900/40 via-orange-900/30 to-amber-900/40 p-5 rounded-2xl border border-red-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-red-500/20 text-red-300 border border-red-500/40">Exercise 5.5 Deep Dive</span>
+              <span class="text-xs text-slate-400">Avoiding the Fatal Log-of-a-Sum Trap</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Advanced Towers & Sum Equations</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              When a function is a sum of two tower functions, e.g. $y = u(x) + v(x)$, you <strong>CANNOT</strong> take the log of both sides directly, because $\log(u + v) \neq \log u + \log v$!
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Teacher Protocol -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-rose-300">The "Split into Auxiliary Variables" Protocol</h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                For $y = x^{\sin x} + (\sin x)^{\cos x}$ (Exercise 5.5 Q9):
+              </p>
+              <div class="p-3 bg-slate-950/70 rounded-xl font-mono text-[11px] space-y-2 text-slate-200">
+                <div>1. Set y = u + v &nbsp;⟹&nbsp; \frac{dy}{dx} = \frac{du}{dx} + \frac{dv}{dx}</div>
+                <div>2. For u = x^(sin x): ln u = sin x ln x<br>
+                &nbsp;&nbsp;du/dx = x^(sin x) [ \frac{\sin x}{x} + \cos x \ln x ]</div>
+                <div>3. For v = (sin x)^(cos x): ln v = cos x ln(sin x)<br>
+                &nbsp;&nbsp;dv/dx = (sin x)^(cos x) [ \cos x \cot x - \sin x \ln(\sin x) ]</div>
+                <div class="text-emerald-400 font-bold pt-1">4. Add du/dx and dv/dx together!</div>
+              </div>
+            </div>
+
+            <!-- Implicit Tower: x^y + y^x = 1 -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-amber-300">Implicit Power Equations: x^y + y^x = 1 (Q12)</h4>
+              <div class="p-3 bg-slate-950/70 rounded-xl font-mono text-[11px] space-y-1.5 text-slate-200">
+                <div>Let u = x^y and v = y^x, so u + v = 1 ⟹ du/dx + dv/dx = 0.</div>
+                <div>• du/dx = x^y [ \frac{y}{x} + (\ln x) \frac{dy}{dx} ]</div>
+                <div>• dv/dx = y^x [ (\ln y) + \frac{x}{y} \frac{dy}{dx} ]</div>
+                <div>Collect dy/dx:</div>
+                <div class="text-amber-300 font-bold">
+                  \frac{dy}{dx} = -\frac{y x^{y-1} + y^x \ln y}{x^y \ln x + x y^{x-1}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 14 Checkpoint Container -->
+            <div id="slide-checkpoints-14" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 15: 5.6 Derivatives of Functions in Parametric Forms -->
+            <div id="slide-15" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/30 uppercase tracking-wider">Section 5.6 • Parametric Curves</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">5.6 Derivatives of Functions in Parametric Forms</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">x = f(t), y = g(t) ⟹ dy/dx = (dy/dt) / (dx/dt), The Cycloid & Astroid</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(15)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-blue-900/40 via-indigo-900/30 to-purple-900/40 p-5 rounded-2xl border border-blue-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40">§ 5.6 & Exercise 5.6</span>
+              <span class="text-xs text-slate-400">Parameter t or θ</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Derivatives of Functions in Parametric Forms</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              When coordinates $x$ and $y$ are both expressed in terms of an auxiliary parameter $t$, i.e. $x = f(t)$ and $y = g(t)$, we can obtain $\frac{dy}{dx}$ directly without eliminating the parameter!
+            </p>
+            <div class="mt-2 p-3 rounded-xl bg-slate-950/80 border border-blue-500/40 font-mono text-center text-blue-300 text-sm font-bold">
+              \frac{dy}{dx} = \frac{dy / dt}{dx / dt} &nbsp;\text{(provided } \frac{dx}{dt} \neq 0\text{)}
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Cycloid Example -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-cyan-300">The Cycloid Curve (Exercise 5.6 Q7)</h4>
+              <p class="text-xs text-slate-300 font-mono bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+                x = a(θ + sin θ), &nbsp; y = a(1 - cos θ)
+              </p>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl font-mono text-xs space-y-1.5 text-slate-200">
+                <div>• dx/dθ = a(1 + cos θ) = 2a cos²(θ/2)</div>
+                <div>• dy/dθ = a(sin θ) = 2a sin(θ/2) cos(θ/2)</div>
+                <div>• dy/dx = \frac{2a \sin(\theta/2) \cos(\theta/2)}{2a \cos^2(\theta/2)} = \tan(\theta/2)</div>
+                <div class="text-emerald-400 font-bold pt-1">
+                  Remarkably elegant: The slope is simply tan(θ/2)!
+                </div>
+              </div>
+            </div>
+
+            <!-- Astroid & Symmetrical Cancellation -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-purple-300">The Astroid: x = a cos³t, y = a sin³t</h4>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl font-mono text-xs space-y-1.5 text-slate-200">
+                <div>• dx/dt = -3a cos²t sin t</div>
+                <div>• dy/dt = 3a sin²t cos t</div>
+                <div>• dy/dx = \frac{3a \sin^2 t \cos t}{-3a \cos^2 t \sin t} = -\frac{\sin t}{\cos t} = -\tan t</div>
+                <div class="text-purple-300 font-bold pt-1">
+                  At t = π/4: Slope dy/dx = -tan(π/4) = -1.
+                </div>
+              </div>
+              <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-[11px] text-slate-300">
+                💡 <strong>Exam Pro-Tip:</strong> In Exercise 5.6 Q11 ($x = \sqrt{a^{\sin^{-1}t}}, y = \sqrt{a^{\cos^{-1}t}}$), multiply $xy = \sqrt{a^{\pi/2}} = \text{const}$ to find $\frac{dy}{dx} = -\frac{y}{x}$ in 10 seconds!
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 15 Checkpoint Container -->
+            <div id="slide-checkpoints-15" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 16: 5.7 Second Order Derivatives & Differential Verifications -->
+            <div id="slide-16" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/30 uppercase tracking-wider">Section 5.7 • Second Order</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">5.7 Second Order Derivatives & Differential Verifications</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">d²y/dx² = d/dx(dy/dx), Parametric Pitfalls, and Proving Differential Relations</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(16)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-violet-900/40 via-purple-900/30 to-rose-900/40 p-5 rounded-2xl border border-violet-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/40">§ 5.7 & Exercise 5.7</span>
+              <span class="text-xs text-slate-400">Curvature & Differential Equations</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Second Order Derivatives & Proving Differential Relations</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Let $y = f(x)$. If $f'(x)$ is differentiable, its derivative is called the second order derivative of $y$ with respect to $x$, denoted by $\frac{d^2y}{dx^2}$, $y''$, or $y_2$.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Parametric Second Derivative Trap -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-rose-300">⚠️ Fatal Parametric Trap for d²y/dx²</h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Many students incorrectly divide second derivatives: $\frac{d^2y}{dx^2} \neq \frac{d^2y/dt^2}{d^2x/dt^2}$.
+              </p>
+              <div class="p-3 bg-slate-950/70 rounded-xl font-mono text-[11px] space-y-2 text-rose-200 border border-rose-500/30">
+                <div class="text-slate-300 font-bold">The Correct Chain Formula:</div>
+                <div>\frac{d^2y}{dx^2} = \frac{d}{dx}\left(\frac{dy}{dx}\right) = \frac{d}{dt}\left(\frac{dy}{dx}\right) · \frac{dt}{dx} = \frac{\frac{d}{dt}(\frac{dy}{dx})}{\frac{dx}{dt}}</div>
+              </div>
+              <p class="text-[11px] text-slate-400">
+                For $x = at^2, y = 2at$: $\frac{dy}{dx} = \frac{1}{t}$. Then $\frac{d^2y}{dx^2} = \frac{-1/t^2}{2at} = \frac{-1}{2at^3}$.
+              </p>
+            </div>
+
+            <!-- Proving Differential Equations -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-emerald-300">Classic Board Question: y = sin⁻¹x</h4>
+              <div class="p-3 bg-slate-950/70 rounded-xl font-mono text-[11px] space-y-1.5 text-slate-200">
+                <div>1. y₁ = 1 / √(1 - x²) ⟹ √(1 - x²) y₁ = 1</div>
+                <div>2. Square both sides: (1 - x²)(y₁)² = 1</div>
+                <div>3. Differentiate w.r.t x:</div>
+                <div>&nbsp;&nbsp;(-2x)(y₁)² + (1 - x²) · 2y₁ y₂ = 0</div>
+                <div>4. Divide by 2y₁ (since y₁ ≠ 0):</div>
+                <div class="text-emerald-400 font-bold pt-1">
+                  (1 - x²) y₂ - x y₁ = 0 &nbsp;[Q.E.D.!]
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 16 Checkpoint Container -->
+            <div id="slide-checkpoints-16" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 17: 🎯 Quiz Challenge 1: Continuity, Limits & Foundational Theorems -->
+            <div id="slide-17" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Quiz 1 of 4 • 10 Questions</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">🎯 Quiz Challenge 1: Continuity, Limits & Foundational Theorems</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Questions 1–10: Test your understanding of LHL, RHL, piecewise continuity, and greatest integer properties.</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-violet-300">
+                    <span id="quiz-score-1">0</span> / 10 Solved
+                  </span>
+                </div>
+              </div>
+
+              <!-- Quiz Questions Grid -->
+              <div id="quiz-container-1" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <!-- Rendered dynamically by JavaScript -->
+              </div>
+            </div>
+            
+
+            <!-- Slide 18: 🎯 Quiz Challenge 2: Differentiability, Chain Rule & Implicit Differentiation -->
+            <div id="slide-18" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Quiz 2 of 4 • 10 Questions</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">🎯 Quiz Challenge 2: Differentiability, Chain Rule & Implicit Differentiation</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Questions 11–20: Master one-sided derivatives, Theorem 3, composite chains, and implicit forms.</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-violet-300">
+                    <span id="quiz-score-2">0</span> / 10 Solved
+                  </span>
+                </div>
+              </div>
+
+              <!-- Quiz Questions Grid -->
+              <div id="quiz-container-2" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <!-- Rendered dynamically by JavaScript -->
+              </div>
+            </div>
+            
+
+            <!-- Slide 19: 🎯 Quiz Challenge 3: Inverse Trig, Exponential & Logarithmic Differentiation -->
+            <div id="slide-19" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Quiz 3 of 4 • 10 Questions</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">🎯 Quiz Challenge 3: Inverse Trig, Exponential & Logarithmic Differentiation</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Questions 21–30: Master inverse trig shortcuts, exponential rules, and variable power tower techniques.</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-violet-300">
+                    <span id="quiz-score-3">0</span> / 10 Solved
+                  </span>
+                </div>
+              </div>
+
+              <!-- Quiz Questions Grid -->
+              <div id="quiz-container-3" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <!-- Rendered dynamically by JavaScript -->
+              </div>
+            </div>
+            
+
+            <!-- Slide 20: 🎯 Quiz Challenge 4: Parametric Forms, Second Derivatives & Advanced Calculus -->
+            <div id="slide-20" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Quiz 4 of 4 • 10 Questions</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">🎯 Quiz Challenge 4: Parametric Forms, Second Derivatives & Advanced Calculus</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Questions 31–40: Master parametric derivatives, avoid second-order traps, and verify differential equations.</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-violet-300">
+                    <span id="quiz-score-4">0</span> / 10 Solved
+                  </span>
+                </div>
+              </div>
+
+              <!-- Quiz Questions Grid -->
+              <div id="quiz-container-4" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <!-- Rendered dynamically by JavaScript -->
+              </div>
+            </div>
+            
+  </main>
+
+  <!-- BOTTOM BAR (FOOTER CONTROLLER DOCK WITH S1, S2, ETC. SLIDE PILLS) -->
+  <footer style="flex-shrink: 0;" class="border-t border-slate-800/90 bg-slate-950/95 p-3 sm:p-4 z-40 sticky bottom-0">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+
+      <!-- LEFT: Previous & Auto-Play Controls -->
+      <div class="flex items-center space-x-2 shrink-0">
+        <button onclick="prevSlide()" id="prevSlideBtn" class="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold border border-slate-700 flex items-center space-x-1 cursor-pointer transition-all disabled:opacity-40 disabled:cursor-not-allowed">
+          <span>⏮</span>
+          <span>Previous</span>
+        </button>
+
+        <button onclick="toggleAutoPlaySlideshow()" id="autoPlaySlideshowBtn" class="px-4 py-1.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white text-xs font-bold shadow-lg shadow-violet-600/30 flex items-center space-x-1.5 cursor-pointer transition-all">
+          <span id="autoPlayIcon">▶</span>
+          <span id="autoPlayText">Auto-Play</span>
+        </button>
+      </div>
+
+      <!-- CENTER: Slide Jump Pills (S1, S2, S3 ... S17, Q1, Q2, Q3, Q4) ON FOOTER -->
+      <div class="flex items-center space-x-1 overflow-x-auto max-w-full pb-1 md:pb-0 text-xs custom-scrollbar">
+        <button onclick="goToSlide(0)" id="pill-0" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="5.1 Introduction & The Intuitive Meaning of Continuity">1. Intro</button>
+<button onclick="goToSlide(1)" id="pill-1" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="5.2 Formal Definition of Continuity at a Point">2. Continuity Def</button>
+<button onclick="goToSlide(2)" id="pill-2" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="5.2 Continuity on Intervals, Rational Functions & [x]">3. Intervals & [x]</button>
+<button onclick="goToSlide(3)" id="pill-3" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="5.2.1 Algebra of Continuous Functions & Composite Theorem">4. Algebra & Comp</button>
+<button onclick="goToSlide(4)" id="pill-4" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="📝 Exercise 5.1 Workshop: Piecewise Functions & Finding Parameters">5. Ex 5.1</button>
+<button onclick="goToSlide(5)" id="pill-5" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="5.3 Differentiability: The Tangent Slope & Fundamental Theorem">6. Differentiability</button>
+<button onclick="goToSlide(6)" id="pill-6" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="5.3.1 Chain Rule for Composite Functions">7. Chain Rule</button>
+<button onclick="goToSlide(7)" id="pill-7" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="📝 Exercise 5.2 Workshop: Composite Derivatives & Non-Differentiability">8. Ex 5.2</button>
+<button onclick="goToSlide(8)" id="pill-8" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="5.3.2 Derivatives of Implicit Functions">9. Implicit Deriv</button>
+<button onclick="goToSlide(9)" id="pill-9" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="5.3.3 Derivatives of Inverse Trigonometric Functions">10. Inverse Trig</button>
+<button onclick="goToSlide(10)" id="pill-10" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="📝 Exercise 5.3 Workshop: Implicit Systems & Trigonometric Substitutions">11. Ex 5.3</button>
+<button onclick="goToSlide(11)" id="pill-11" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="5.4 Exponential & Logarithmic Functions">12. e^x & log x</button>
+<button onclick="goToSlide(12)" id="pill-12" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="📝 Exercise 5.4 Workshop: Exponential & Logarithmic Chains">13. Ex 5.4</button>
+<button onclick="goToSlide(13)" id="pill-13" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="5.5 Logarithmic Differentiation: Power Tower Functions">14. Log Diff & x^x</button>
+<button onclick="goToSlide(14)" id="pill-14" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="📝 Exercise 5.5 Workshop: Advanced Tower Functions & Sum Equations">15. Ex 5.5</button>
+<button onclick="goToSlide(15)" id="pill-15" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="5.6 Derivatives of Functions in Parametric Forms">16. Parametric Form</button>
+<button onclick="goToSlide(16)" id="pill-16" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="5.7 Second Order Derivatives & Differential Verifications">17. 2nd Derivative</button>
+<button onclick="goToSlide(17)" id="pill-17" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="🎯 Quiz Challenge 1: Continuity, Limits & Foundational Theorems">18. Quiz 1</button>
+<button onclick="goToSlide(18)" id="pill-18" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="🎯 Quiz Challenge 2: Differentiability, Chain Rule & Implicit Differentiation">19. Quiz 2</button>
+<button onclick="goToSlide(19)" id="pill-19" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="🎯 Quiz Challenge 3: Inverse Trig, Exponential & Logarithmic Differentiation">20. Quiz 3</button>
+<button onclick="goToSlide(20)" id="pill-20" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="🎯 Quiz Challenge 4: Parametric Forms, Second Derivatives & Advanced Calculus">21. Quiz 4</button>
+      </div>
+
+      <!-- RIGHT: Next Slide Button & Last Slide Message -->
+      <div class="flex items-center space-x-2 shrink-0 justify-end">
+        <div id="lastSlideNotice" style="display: none;" class="px-3.5 py-1.5 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold flex items-center space-x-1.5 shadow-lg animate-pulse">
+          <span>🎉</span>
+          <span>You have reached the last slide of this chapter</span>
+        </div>
+
+        <button onclick="nextSlide()" id="nextSlideBtn" class="px-5 py-2 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-500 hover:from-violet-500 hover:to-indigo-400 text-white text-xs font-bold shadow-lg shadow-violet-600/30 flex items-center space-x-1.5 cursor-pointer transition-all active:scale-95">
+          <span>Next Slide</span>
+          <span>⏭</span>
+        </button>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- DEDICATED POPUP MODAL FOR QUIZ SOLUTIONS -->
+  <div id="solutionModal" class="fixed inset-0 z-50 hidden bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-violet-500/50 rounded-2xl max-w-2xl w-full p-6 shadow-2xl overflow-y-auto max-h-[90vh] relative animate-modal">
+      <!-- Close Button -->
+      <button onclick="closeSolutionPopup()" class="absolute top-4 right-4 p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition cursor-pointer">
+        <i class="fas fa-times text-base"></i>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="flex items-center space-x-2.5 pb-4 border-b border-slate-800">
+        <span class="p-2 rounded-xl bg-violet-600/20 text-violet-400 border border-violet-500/30 text-base">
+          💡
+        </span>
+        <div>
+          <span id="modalQuizBadge" class="text-[10px] font-bold text-violet-400 uppercase tracking-wider font-mono">Quiz Solution</span>
+          <h3 id="modalQuizTitle" class="text-base font-bold text-white">Detailed Step-by-Step Teacher Solution</h3>
+        </div>
+      </div>
+
+      <!-- Question Box -->
+      <div class="mt-4 p-4 rounded-xl bg-slate-950/80 border border-slate-800">
+        <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider block mb-1">Question</span>
+        <div id="modalQuestionText" class="text-sm font-semibold text-slate-100 leading-relaxed"></div>
+      </div>
+
+      <!-- Correct Answer Badge -->
+      <div class="mt-4 flex items-center justify-between p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/40">
+        <span class="text-xs font-bold text-emerald-300 flex items-center space-x-2">
+          <i class="fas fa-check-circle"></i>
+          <span>Correct Answer</span>
+        </span>
+        <span id="modalCorrectOption" class="text-xs font-mono font-bold text-emerald-300 bg-emerald-900/60 px-2.5 py-1 rounded-lg border border-emerald-500/30"></span>
+      </div>
+
+      <!-- Step-by-Step Solution Body -->
+      <div class="mt-4 space-y-2">
+        <span class="text-[10px] uppercase font-bold text-violet-400 tracking-wider block">Mathematical Walkthrough</span>
+        <div id="modalExplanationContent" class="p-4 rounded-xl bg-slate-950/90 border border-violet-500/30 text-xs sm:text-sm text-slate-200 leading-relaxed font-sans space-y-2">
+          <!-- Rendered explanation -->
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="mt-6 pt-4 border-t border-slate-800 flex justify-end">
+        <button onclick="closeSolutionPopup()" class="px-5 py-2 rounded-xl bg-violet-600 hover:bg-violet-500 text-white text-xs font-bold transition cursor-pointer shadow-lg shadow-violet-600/30">
+          Close Solution
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // Embedded Data
+    const slidesData = [{"index": 0, "title": "5.1 Introduction & The Intuitive Meaning of Continuity", "subtitle": "Informal Pen-Lifting Concept, Isaac Newton, Albert Einstein & Fig 5.1/5.2", "badge": "Section 5.1 & 5.2", "narration": "Welcome to Chapter 5: Continuity and Differentiability. As Albert Einstein noted, 'The whole of science is nothing more than a refinement of everyday thinking.' Intuitively, a function is continuous at a point if you can draw its graph without lifting your pen from the paper! If there is a jump, a break, or a hole, the function is discontinuous. Let us explore the fundamental building blocks of calculus introduced by Sir Isaac Newton."}, {"index": 1, "title": "5.2 Formal Definition of Continuity at a Point", "subtitle": "Limit equals Function Value: LHL = RHL = f(c), Examples 1 to 6", "badge": "Section 5.2 \u2022 Definition 1", "narration": "A function f is continuous at a real point c in its domain if the limit of f of x as x approaches c equals f of c. This means both the left-hand limit and right-hand limit exist and are equal to the exact value of the function at that point. We examine the absolute value function f(x) = |x|, polynomial functions, and the identity function."}, {"index": 2, "title": "5.2 Continuity on Intervals, Rational Functions & [x]", "subtitle": "Open & Closed Intervals, 1/x at Origin, Tables 5.1 & 5.2, Greatest Integer Function", "badge": "Section 5.2 \u2022 Definition 2", "narration": "A function is continuous in a closed interval [a, b] if it is continuous on the open interval (a, b) and possesses right-continuity at a and left-continuity at b. We analyze the rational function 1/x approaching positive and negative infinity, and the greatest integer function [x], which breaks at every single integer."}, {"index": 3, "title": "5.2.1 Algebra of Continuous Functions & Composite Theorem", "subtitle": "Theorems 1 & 2: Sum, Difference, Product, Quotient, and Composite (f o g)", "badge": "Section 5.2.1 \u2022 Theorems 1 & 2", "narration": "Theorem 1 states that if f and g are continuous at c, then their sum, difference, product, and quotient are also continuous. Theorem 2 extends this to composite functions: if g is continuous at c and f is continuous at g of c, then their composite f o g is continuous at c! This guarantees functions like sin(x squared) and |1 - x + |x|| are continuous everywhere."}, {"index": 4, "title": "\ud83d\udcdd Exercise 5.1 Workshop: Piecewise Functions & Finding Parameters", "subtitle": "Determining Constants k, a, b so that f(x) is Continuous Everywhere", "badge": "Exercise 5.1 Deep Dive", "narration": "In this exercise workshop, we master the board exam standard problems: equating left-hand limit and right-hand limit at transition boundaries to solve for unknown parameters k, a, and b. We also inspect the difference of two absolute value functions, |x| minus |x + 1|, proving it has no points of discontinuity."}, {"index": 5, "title": "5.3 Differentiability: The Tangent Slope & Fundamental Theorem", "subtitle": "Definition of f'(c), LHD & RHD, Theorem 3: Differentiability Implies Continuity", "badge": "Section 5.3 \u2022 Theorem 3", "narration": "A function f is differentiable at c if the limit as h approaches 0 of [f(c+h) - f(c)] / h exists finitely. Theorem 3 establishes that every differentiable function is continuous! However, the converse is FALSE: the absolute value function f(x) = |x| is continuous at x = 0, but has a sharp corner where the left and right derivatives disagree, so it is not differentiable at zero."}, {"index": 6, "title": "5.3.1 Chain Rule for Composite Functions", "subtitle": "Theorem 4: dy/dx = (dy/dt) * (dt/dx), Multi-Layer Chain Rule", "badge": "Section 5.3.1 \u2022 Theorem 4", "narration": "When differentiating composite functions, Theorem 4 gives us the Chain Rule: dy by dx equals dy by dt times dt by dx. Think of it as opening Russian nesting dolls: differentiate the outer function evaluated at the inner function, then multiply by the derivative of the inner layer!"}, {"index": 7, "title": "\ud83d\udcdd Exercise 5.2 Workshop: Composite Derivatives & Non-Differentiability", "subtitle": "Chain Rule Drills and Proving |x-1| & [x] Fail Differentiability", "badge": "Exercise 5.2 Deep Dive", "narration": "In Exercise 5.2, we practice high-speed multi-stage chain rule calculations like sec(tan(sqrt(x))) and 2*sqrt(cot(x^2)). We also formally calculate the Left Hand Derivative and Right Hand Derivative of |x - 1| at x = 1, showing that -1 does not equal +1, proving it is not differentiable."}, {"index": 8, "title": "5.3.2 Derivatives of Implicit Functions", "subtitle": "Explicit y = f(x) vs Implicit F(x, y) = 0, Examples 22 & 23", "badge": "Section 5.3.2 \u2022 Implicit Form", "narration": "When an equation interlocks x and y so that y cannot be cleanly isolated, we differentiate both sides with respect to x treating y as an implicit function of x. Every time we differentiate a term containing y, the chain rule attaches a factor of dy by dx. We then collect all dy by dx terms on one side and solve."}, {"index": 9, "title": "5.3.3 Derivatives of Inverse Trigonometric Functions", "subtitle": "Derivations for sin\u207b\u00b9x, cos\u207b\u00b9x, tan\u207b\u00b9x, sec\u207b\u00b9x and the Master Table", "badge": "Section 5.3.3 \u2022 Inverse Trig", "narration": "Using implicit differentiation on y = sin\u207b\u00b9(x), we write sin y = x. Differentiating both sides gives cos y * dy/dx = 1, yielding dy/dx = 1 / sqrt(1 - x\u00b2). We derive the entire family of inverse trigonometric derivatives, observing the beautiful symmetry where co-functions merely differ by a minus sign."}, {"index": 10, "title": "\ud83d\udcdd Exercise 5.3 Workshop: Implicit Systems & Trigonometric Substitutions", "subtitle": "Mastering Substitutions: x = tan \u03b8, x = sin \u03b8, and Double-Angle Identities", "badge": "Exercise 5.3 Deep Dive", "narration": "In Exercise 5.3, direct differentiation of complicated inverse trig expressions leads to algebraic nightmares. Instead, we use smart trigonometric substitutions such as x = tan \u03b8 to collapse expressions like (3x - x\u00b3) / (1 - 3x\u00b2) into tan(3\u03b8), making differentiation effortless."}, {"index": 11, "title": "5.4 Exponential & Logarithmic Functions", "subtitle": "Base b^x, Natural Base e, Definition of log_b(x), Reflection across y = x", "badge": "Section 5.4 \u2022 e and ln(x)", "narration": "Exponential functions grow faster than any polynomial. The natural exponential e^x has the magical property of being its own derivative! The natural logarithm ln(x) is the reflection of e^x across the diagonal line y = x. Its derivative is simply 1/x for all x > 0."}, {"index": 12, "title": "\ud83d\udcdd Exercise 5.4 Workshop: Exponential & Logarithmic Chains", "subtitle": "Differentiating e^(sin\u207b\u00b9x), log(cos(e^x)), and Multi-Tier Exponentials", "badge": "Exercise 5.4 Deep Dive", "narration": "Exercise 5.4 challenges our mastery of combining exponential and logarithmic rules with the chain rule and quotient rule. We methodically unpack functions like e^x / sin(x) and log(log(x)), maintaining precise domain awareness."}, {"index": 13, "title": "5.5 Logarithmic Differentiation: Power Tower Functions", "subtitle": "Handling [u(x)]^[v(x)], Radical Quotients & Products, Examples 27 to 30", "badge": "Section 5.5 \u2022 Log Differentiation", "narration": "Standard power rules fail when BOTH the base and exponent are functions of x, like x raised to power x. By taking natural logs of both sides, we convert exponents into products! This powerful technique also tames massive products and fractions involving multiple radicals."}, {"index": 14, "title": "\ud83d\udcdd Exercise 5.5 Workshop: Advanced Tower Functions & Sum Equations", "subtitle": "Handling u + v Sums where y = u(x) + v(x), and Implicit Equations x^y + y^x = 1", "badge": "Exercise 5.5 Deep Dive", "narration": "A critical student pitfall is taking log of a sum: log(u + v) is NOT log u + log v! In Exercise 5.5, we learn the proper teacher protocol: split the expression into separate auxiliary variables u and v, compute du/dx and dv/dx individually, and combine them. We also conquer implicit power equations like y^x + x^y = a^b."}, {"index": 15, "title": "5.6 Derivatives of Functions in Parametric Forms", "subtitle": "x = f(t), y = g(t) \u27f9 dy/dx = (dy/dt) / (dx/dt), The Cycloid & Astroid", "badge": "Section 5.6 \u2022 Parametric Curves", "narration": "In mechanics and geometry, coordinates x and y are often linked through an independent parameter t, such as time or angle. The parametric differentiation theorem allows us to find dy by dx directly by dividing dy/dt by dx/dt without ever eliminating the parameter! We explore circular motion, ellipses, astroids, and cycloids."}, {"index": 16, "title": "5.7 Second Order Derivatives & Differential Verifications", "subtitle": "d\u00b2y/dx\u00b2 = d/dx(dy/dx), Parametric Pitfalls, and Proving Differential Relations", "badge": "Section 5.7 \u2022 Second Order", "narration": "The second derivative represents the rate of change of the slope, physically corresponding to acceleration and geometrically to curvature. We practice verifying that given functions satisfy differential equations such as (1 - x\u00b2)y\u2082 - xy\u2081 = 0, and beware of the fatal parametric pitfall: d\u00b2y/dx\u00b2 is NOT d\u00b2y/dt\u00b2 divided by d\u00b2x/dt\u00b2!"}, {"index": 17, "title": "\ud83c\udfaf Quiz Challenge 1: Continuity, Limits & Foundational Theorems", "subtitle": "10 CBSE Board & Competitive Questions with Step-by-Step Solution Popups", "badge": "Quiz 1 of 4 \u2022 10 Questions", "narration": "Test your mastery on Continuity and Limits! Read each question carefully, select your answer, and click the \ud83d\udca1 Solution button to view the full teacher derivation in the popup modal."}, {"index": 18, "title": "\ud83c\udfaf Quiz Challenge 2: Differentiability, Chain Rule & Implicit Differentiation", "subtitle": "10 Targeted Questions on Tangents, Composite Layers & Implicit Relations", "badge": "Quiz 2 of 4 \u2022 10 Questions", "narration": "Test your skills on Differentiability, Chain Rule, and Implicit Differentiation! Complete all 10 questions and examine the popup solutions to master board exam scoring techniques."}, {"index": 19, "title": "\ud83c\udfaf Quiz Challenge 3: Inverse Trig, Exponential & Logarithmic Differentiation", "subtitle": "10 Questions on Inverse Trig Substitutions, Tower Functions & Log Rules", "badge": "Quiz 3 of 4 \u2022 10 Questions", "narration": "Welcome to Quiz 3! This set tests inverse trigonometric formulas, exponential rates, logarithmic transformations, and tower differentiation. Use the Solution button for in-depth mathematical walkthroughs."}, {"index": 20, "title": "\ud83c\udfaf Quiz Challenge 4: Parametric Forms, Second Derivatives & Advanced Calculus", "subtitle": "10 Rigorous Questions on Parametric Slopes, Curvature & Differential Equations", "badge": "Quiz 4 of 4 \u2022 10 Questions", "narration": "Congratulations on reaching the final Quiz Challenge! Test your expertise in parametric derivatives, second order differentiation, and differential verifications. On this final slide, review all your solutions and celebrate completing Chapter 5!"}];
+    const slideCheckpoints = [{"slideIdx": 0, "questions": [{"id": 1, "question": "Which of the following functions has a graph that CANNOT be drawn without lifting the pen from the paper at x = 0?", "options": ["A) f(x) = x\u00b2 + 2", "B) f(x) = sin(x)", "C) f(x) = 1 for x \u2264 0, and f(x) = 2 for x > 0", "D) f(x) = |x|"], "correct": 2, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 For option C: As x approaches 0 from the left, f(x) = 1, so LHL = 1. As x approaches 0 from the right, f(x) = 2, so RHL = 2.<br>\u2022 Since LHL \u2260 RHL, there is an abrupt jump of height 1 at x = 0.<br>\u2022 To draw the graph from negative x to positive x, one is forced to lift the pen at x = 0. All other options are unbroken continuous curves everywhere."}, {"id": 2, "question": "Albert Einstein's quote cited at the beginning of Chapter 5 emphasizes that:", "options": ["A) Science is purely abstract and disconnected from common sense", "B) Science is nothing more than a refinement of everyday thinking", "C) Only differential equations can explain nature", "D) Discontinuous functions do not exist in reality"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 As stated on page 104 of NCERT Class 12 Part 1: 'The whole of science is nothing more than a refinement of everyday thinking.' \u2014 Albert Einstein.<br>\u2022 This underscores that formal calculus rigor refines intuitive ideas like smooth motion and unbroken curves."}]}, {"slideIdx": 1, "questions": [{"id": 1, "question": "A function f is defined by f(x) = |x|. At x = 0, which statement is mathematically correct?", "options": ["A) f is not continuous because it has a sharp corner", "B) f is continuous because lim(x\u21920) f(x) = f(0) = 0", "C) LHL = -1 and RHL = +1 at x = 0", "D) The limit does not exist at x = 0"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Recall Definition 1: f is continuous at c if lim(x\u2192c) f(x) = f(c).<br>\u2022 LHL: lim(x\u21920\u207b) (-x) = 0.<br>\u2022 RHL: lim(x\u21920\u207a) (+x) = 0.<br>\u2022 Value at origin: f(0) = |0| = 0.<br>\u2022 Since LHL = RHL = f(0) = 0, f(x) is fully continuous at x = 0! (Sharp corners affect differentiability, NOT continuity)."}, {"id": 2, "question": "For f(x) = x\u00b3 + 3 at x = 0, what is lim(x\u21920) f(x) and is f continuous at 0?", "options": ["A) Limit is 3; f is continuous at x = 0", "B) Limit is 0; f is not continuous at x = 0", "C) Limit does not exist; f is discontinuous", "D) Limit is 3; but f is discontinuous because it is cubic"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Compute lim(x\u21920) (x\u00b3 + 3) = 0\u00b3 + 3 = 3.<br>\u2022 Compute f(0) = 0\u00b3 + 3 = 3.<br>\u2022 Since lim(x\u21920) f(x) = f(0) = 3, f is continuous at x = 0 (as proved in NCERT Example 2)."}]}, {"slideIdx": 2, "questions": [{"id": 1, "question": "Consider the greatest integer function f(x) = [x]. At any integer k \u2208 \u2124, what are the LHL and RHL?", "options": ["A) LHL = k, RHL = k", "B) LHL = k - 1, RHL = k", "C) LHL = k, RHL = k + 1", "D) LHL = 0, RHL = 1"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 For x slightly less than k (e.g. k - 0.01), [x] = k - 1. Thus LHL = lim(x\u2192k\u207b) [x] = k - 1.<br>\u2022 For x slightly greater than k (e.g. k + 0.01), [x] = k. Thus RHL = lim(x\u2192k\u207a) [x] = k.<br>\u2022 Since LHL \u2260 RHL, lim(x\u2192k) [x] does not exist, and f(x) is discontinuous at every integer!"}, {"id": 2, "question": "Why is the function f(x) = 1/x continuous on its domain \u211d \\ {0}?", "options": ["A) Because 1/0 is defined as infinity", "B) Because every point c \u2260 0 belongs to the domain, and lim(x\u2192c) 1/x = 1/c = f(c)", "C) Because it is a polynomial", "D) It is actually discontinuous at all real numbers"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Continuity is only evaluated at points in the function's domain D.<br>\u2022 The domain of f(x) = 1/x is all non-zero real numbers: \u211d \\ {0}.<br>\u2022 For any c \u2260 0, lim(x\u2192c) (1/x) = 1/c = f(c). Hence f is continuous at every point of its domain."}]}, {"slideIdx": 3, "questions": [{"id": 1, "question": "If f(x) = sin(x) and g(x) = x\u00b2, why is h(x) = sin(x\u00b2) continuous for all x \u2208 \u211d?", "options": ["A) By Theorem 1, because it is the product of two functions", "B) By Theorem 2, because h = (f o g)(x) is the composition of continuous functions", "C) Because all trigonometric functions are polynomials", "D) It is only continuous for x \u2265 0"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Theorem 2 (NCERT \u00a7 5.2.1): If g is continuous at c and f is continuous at g(c), then (f o g) is continuous at c.<br>\u2022 g(x) = x\u00b2 is a polynomial, continuous on \u211d.<br>\u2022 f(u) = sin(u) is continuous on \u211d.<br>\u2022 Therefore, (f o g)(x) = sin(x\u00b2) is continuous on \u211d."}, {"id": 2, "question": "At what points is the tangent function f(x) = tan(x) discontinuous in \u211d?", "options": ["A) At all integer multiples of \u03c0: x = n\u03c0", "B) At odd multiples of \u03c0/2: x = (2n + 1)\u03c0/2, where n \u2208 \u2124", "C) Nowhere, tan(x) is continuous on all of \u211d", "D) Only at x = 0"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 tan(x) = sin(x) / cos(x). By Theorem 1(4), a quotient is continuous wherever the denominator \u2260 0.<br>\u2022 cos(x) = 0 at x = (2n + 1)\u03c0/2 for n \u2208 \u2124.<br>\u2022 These points are excluded from the domain of tan(x). Across \u211d, tan(x) is undefined and discontinuous at x = (2n + 1)\u03c0/2."}]}, {"slideIdx": 4, "questions": [{"id": 1, "question": "Find k such that f(x) = { kx + 1 (if x \u2264 5), 3x - 5 (if x > 5) } is continuous at x = 5:", "options": ["A) k = 2", "B) k = 9/5", "C) k = 3", "D) k = 10"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 For continuity at x = 5, LHL = RHL = f(5).<br>\u2022 LHL = lim(x\u21925\u207b) (kx + 1) = 5k + 1.<br>\u2022 RHL = lim(x\u21925\u207a) (3x - 5) = 3(5) - 5 = 10.<br>\u2022 Equate them: 5k + 1 = 10 \u27f9 5k = 9 \u27f9 k = 9/5."}, {"id": 2, "question": "How many points of discontinuity does the function f(x) = |x| - |x + 1| have in \u211d?", "options": ["A) Exactly 2 points (at x = 0 and x = -1)", "B) Exactly 1 point (at x = 0)", "C) Zero (it is continuous everywhere on \u211d)", "D) Infinitely many"], "correct": 2, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Let g(x) = |x| and h(x) = |x + 1|.<br>\u2022 Both g(x) and h(x) are known to be continuous everywhere on \u211d.<br>\u2022 By Theorem 1 (Difference of two continuous functions), f(x) = g(x) - h(x) is continuous on all of \u211d.<br>\u2022 Hence, there are 0 points of discontinuity!"}]}, {"slideIdx": 5, "questions": [{"id": 1, "question": "Theorem 3 states that every differentiable function is continuous. Is the converse true?", "options": ["A) Yes, continuity always guarantees differentiability", "B) No, f(x) = |x| is continuous at x = 0 but not differentiable at x = 0", "C) No, f(x) = x\u00b2 is continuous but not differentiable", "D) Yes, proved by Isaac Newton"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Theorem 3: Differentiability \u27f9 Continuity.<br>\u2022 The converse is FALSE.<br>\u2022 Counterexample: f(x) = |x| at x = 0.<br>\u2022 LHD = lim(h\u21920\u207b) [|0+h| - 0]/h = lim(h\u21920\u207b) (-h)/h = -1.<br>\u2022 RHD = lim(h\u21920\u207a) [|0+h| - 0]/h = lim(h\u21920\u207a) (+h)/h = +1.<br>\u2022 Since LHD \u2260 RHD, f is not differentiable at 0, despite being continuous there."}, {"id": 2, "question": "What is the Left Hand Derivative (LHD) of f(x) = |x - 1| at x = 1?", "options": ["A) +1", "B) -1", "C) 0", "D) Does not exist"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 LHD = lim(h\u21920\u207b) [f(1 + h) - f(1)] / h.<br>\u2022 For h < 0, 1 + h < 1, so |1 + h - 1| = |h| = -h.<br>\u2022 Thus LHD = lim(h\u21920\u207b) [-h - 0] / h = -1."}]}, {"slideIdx": 6, "questions": [{"id": 1, "question": "If y = sin(x\u00b2 + 5), what is dy/dx using the chain rule?", "options": ["A) cos(x\u00b2 + 5)", "B) 2x \u00b7 cos(x\u00b2 + 5)", "C) -2x \u00b7 cos(x\u00b2 + 5)", "D) 2x \u00b7 sin(x\u00b2 + 5)"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Let t = x\u00b2 + 5, so y = sin(t).<br>\u2022 dy/dt = cos(t) and dt/dx = 2x.<br>\u2022 By Chain Rule: dy/dx = (dy/dt) \u00b7 (dt/dx) = cos(x\u00b2 + 5) \u00b7 2x = 2x cos(x\u00b2 + 5)."}, {"id": 2, "question": "What is the derivative of y = tan(2x + 3) with respect to x?", "options": ["A) sec\u00b2(2x + 3)", "B) 2 sec\u00b2(2x + 3)", "C) 2 tan(2x + 3)", "D) sec(2x + 3) tan(2x + 3)"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Derivative of outer function tan(u) is sec\u00b2(u).<br>\u2022 Derivative of inner function (2x + 3) is 2.<br>\u2022 Multiply together: dy/dx = 2 sec\u00b2(2x + 3)."}]}, {"slideIdx": 7, "questions": [{"id": 1, "question": "Find the derivative of y = cos(sin x):", "options": ["A) -sin(sin x) \u00b7 cos x", "B) cos(cos x) \u00b7 sin x", "C) -cos(sin x) \u00b7 sin x", "D) -sin(cos x)"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Outer function: cos(u) \u27f9 derivative is -sin(u).<br>\u2022 Inner function: u = sin x \u27f9 derivative is cos x.<br>\u2022 By Chain Rule: dy/dx = -sin(sin x) \u00b7 cos x."}, {"id": 2, "question": "In Exercise 5.2 Q9, we prove f(x) = |x - 1|, x \u2208 \u211d is not differentiable at x = 1 because:", "options": ["A) f(1) is undefined", "B) LHD = -1 and RHD = 1, so LHD \u2260 RHD", "C) f(x) is discontinuous at x = 1", "D) The limit of f(x) as x \u2192 1 is 0"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 LHD at 1 = lim(h\u21920\u207b) [|1+h - 1| - 0]/h = lim(h\u21920\u207b) (-h)/h = -1.<br>\u2022 RHD at 1 = lim(h\u21920\u207a) [|1+h - 1| - 0]/h = lim(h\u21920\u207a) (h)/h = +1.<br>\u2022 Since -1 \u2260 +1, the two one-sided derivatives do not match, proving f is not differentiable at x = 1."}]}, {"slideIdx": 8, "questions": [{"id": 1, "question": "If x - y = \u03c0, find dy/dx:", "options": ["A) 1", "B) -1", "C) \u03c0", "D) 0"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Differentiating both sides with respect to x:<br>\u2022 d/dx(x) - d/dx(y) = d/dx(\u03c0).<br>\u2022 1 - dy/dx = 0 \u27f9 dy/dx = 1."}, {"id": 2, "question": "If y + sin y = cos x, what is dy/dx?", "options": ["A) -sin x / (1 + cos y)", "B) cos x / (1 + cos y)", "C) -sin x / cos y", "D) (cos x + sin y) / x"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Differentiate both sides w.r.t x:<br>\u2022 dy/dx + (cos y) \u00b7 dy/dx = -sin x.<br>\u2022 Factor out dy/dx: dy/dx (1 + cos y) = -sin x.<br>\u2022 Divide: dy/dx = -sin x / (1 + cos y) (for y \u2260 (2n+1)\u03c0)."}]}, {"slideIdx": 9, "questions": [{"id": 1, "question": "What is the derivative of y = tan\u207b\u00b9(x) with respect to x for all x \u2208 \u211d?", "options": ["A) 1 / (1 + x\u00b2)", "B) 1 / \u221a(1 - x\u00b2)", "C) -1 / (1 + x\u00b2)", "D) 1 / (x \u221a(x\u00b2 - 1))"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Let y = tan\u207b\u00b9x \u27f9 tan y = x.<br>\u2022 Differentiate w.r.t x: sec\u00b2y (dy/dx) = 1.<br>\u2022 dy/dx = 1 / sec\u00b2y = 1 / (1 + tan\u00b2y) = 1 / (1 + x\u00b2)."}, {"id": 2, "question": "How do the derivatives of sin\u207b\u00b9x and cos\u207b\u00b9x relate?", "options": ["A) They are identical: both are 1 / \u221a(1 - x\u00b2)", "B) d/dx(cos\u207b\u00b9x) = - d/dx(sin\u207b\u00b9x) = -1 / \u221a(1 - x\u00b2)", "C) Their product is 1", "D) d/dx(cos\u207b\u00b9x) = 1 / (1 + x\u00b2)"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Since sin\u207b\u00b9x + cos\u207b\u00b9x = \u03c0/2 for x \u2208 [-1, 1], differentiating both sides w.r.t x gives:<br>\u2022 d/dx(sin\u207b\u00b9x) + d/dx(cos\u207b\u00b9x) = 0.<br>\u2022 Therefore, d/dx(cos\u207b\u00b9x) = - d/dx(sin\u207b\u00b9x) = -1 / \u221a(1 - x\u00b2)."}]}, {"slideIdx": 10, "questions": [{"id": 1, "question": "Find dy/dx if y = tan\u207b\u00b9((3x - x\u00b3) / (1 - 3x\u00b2)), -1/\u221a3 < x < 1/\u221a3:", "options": ["A) 3 / (1 + x\u00b2)", "B) 1 / (1 + 9x\u00b2)", "C) 3 / \u221a(1 - x\u00b2)", "D) (3 - 3x\u00b2) / (1 - 3x\u00b2)"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Substitute x = tan \u03b8 (where -\u03c0/6 < \u03b8 < \u03c0/6).<br>\u2022 Then (3 tan \u03b8 - tan\u00b3\u03b8)/(1 - 3 tan\u00b2\u03b8) = tan(3\u03b8).<br>\u2022 So y = tan\u207b\u00b9(tan 3\u03b8) = 3\u03b8 = 3 tan\u207b\u00b9x.<br>\u2022 Differentiating w.r.t x: dy/dx = 3 \u00b7 (1 / (1 + x\u00b2)) = 3 / (1 + x\u00b2)."}, {"id": 2, "question": "For 2x + 3y = sin y, what is dy/dx?", "options": ["A) 2 / (cos y - 3)", "B) -2 / (3 - cos y)", "C) Both A and B are equivalent", "D) 2 / (3 + cos y)"], "correct": 2, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Differentiate w.r.t x: 2 + 3(dy/dx) = cos y (dy/dx).<br>\u2022 2 = (cos y - 3) dy/dx \u27f9 dy/dx = 2 / (cos y - 3).<br>\u2022 Note: 2 / (cos y - 3) = -2 / (3 - cos y), so both representations A and B are valid!"}]}, {"slideIdx": 11, "questions": [{"id": 1, "question": "Why is e^x considered unique among all real functions in calculus?", "options": ["A) It is the only function whose graph never crosses the y-axis", "B) Its derivative with respect to x is identical to the function itself: d/dx(e^x) = e^x", "C) It equals zero at x = 0", "D) It decreases as x increases"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 For natural base e \u2248 2.71828..., the rate of growth at every single point exactly equals its current value.<br>\u2022 Hence d/dx(e^x) = e^x, making it invariant under differentiation!"}, {"id": 2, "question": "If y = log_a(x), where a > 0 and a \u2260 1, what is dy/dx?", "options": ["A) 1 / x", "B) 1 / (x ln a)", "C) (ln a) / x", "D) a^x / x"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Use change of base formula: log_a(x) = ln(x) / ln(a).<br>\u2022 Since ln(a) is a constant: dy/dx = (1 / ln a) \u00b7 d/dx(ln x) = 1 / (x ln a)."}]}, {"slideIdx": 12, "questions": [{"id": 1, "question": "Find the derivative of y = e^(sin\u207b\u00b9x):", "options": ["A) e^(sin\u207b\u00b9x) / \u221a(1 - x\u00b2)", "B) e^(sin\u207b\u00b9x) \u00b7 cos\u207b\u00b9x", "C) e^(cos\u207b\u00b9x) / \u221a(1 - x\u00b2)", "D) -e^(sin\u207b\u00b9x) / \u221a(1 - x\u00b2)"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Let u = sin\u207b\u00b9x, so y = e^u.<br>\u2022 By Chain Rule: dy/dx = (dy/du) \u00b7 (du/dx) = e^u \u00b7 (1 / \u221a(1 - x\u00b2)) = e^(sin\u207b\u00b9x) / \u221a(1 - x\u00b2)."}, {"id": 2, "question": "Find the derivative of y = log(cos(e^x)):", "options": ["A) -e^x tan(e^x)", "B) e^x cot(e^x)", "C) -tan(e^x)", "D) -e^x sec(e^x)"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Layer 1: d/du(log u) = 1/u where u = cos(e^x).<br>\u2022 Layer 2: d/dv(cos v) = -sin v where v = e^x.<br>\u2022 Layer 3: d/dx(e^x) = e^x.<br>\u2022 Product: (1 / cos(e^x)) \u00b7 (-sin(e^x)) \u00b7 e^x = -e^x tan(e^x)."}]}, {"slideIdx": 13, "questions": [{"id": 1, "question": "Why can we NOT use the power rule d/dx(x^n) = n x^(n-1) directly to differentiate y = x^x?", "options": ["A) Because x is negative", "B) Because the power rule only applies when the exponent is a constant, whereas in x^x the exponent is a variable", "C) Because x^x is not continuous", "D) Because x^x has no tangent"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 The power rule requires a CONSTANT exponent: d/dx(x^n) = n x^(n-1).<br>\u2022 The exponential rule requires a CONSTANT base: d/dx(a^x) = a^x ln a.<br>\u2022 For tower functions [u(x)]^[v(x)], BOTH base and exponent vary, requiring Logarithmic Differentiation."}, {"id": 2, "question": "What is the derivative of y = x^x for x > 0?", "options": ["A) x \u00b7 x^(x-1) = x^x", "B) x^x (1 + log x)", "C) x^x \u00b7 log x", "D) x^(x-1)"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Take natural log: ln y = x ln x.<br>\u2022 Differentiate w.r.t x: (1/y)(dy/dx) = (1)\u00b7(ln x) + x\u00b7(1/x) = ln x + 1.<br>\u2022 Multiply by y: dy/dx = y (1 + ln x) = x^x (1 + log x)."}]}, {"slideIdx": 14, "questions": [{"id": 1, "question": "If y = (log x)^x, what is dy/dx?", "options": ["A) (log x)^x [ 1/log x + log(log x) ]", "B) x (log x)^(x-1)", "C) (log x)^x / x", "D) (log x)^x \u00b7 log(log x)"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 ln y = ln[(log x)^x] = x ln(log x).<br>\u2022 Differentiate w.r.t x: (1/y) dy/dx = 1 \u00b7 ln(log x) + x \u00b7 [1 / log x] \u00b7 (1/x) = ln(log x) + 1/log x.<br>\u2022 dy/dx = y [ 1/log x + log(log x) ] = (log x)^x [ 1/log x + log(log x) ]."}, {"id": 2, "question": "If y = x^(sin x) + (sin x)^x, what is the correct first step?", "options": ["A) Take log of both sides directly: log y = log(x^(sin x)) + log((sin x)^x)", "B) Set u = x^(sin x) and v = (sin x)^x so y = u + v, then dy/dx = du/dx + dv/dx", "C) Use product rule on the whole expression", "D) Differentiate both exponents directly"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 \u26a0\ufe0f CRITICAL PITFALL: log(u + v) \u2260 log u + log v! Taking log across a sum is algebraically invalid.<br>\u2022 Correct Protocol: Split into u and v: y = u + v.<br>\u2022 Compute du/dx and dv/dx separately using log differentiation, then add them: dy/dx = du/dx + dv/dx."}]}, {"slideIdx": 15, "questions": [{"id": 1, "question": "If x = a cos \u03b8 and y = a sin \u03b8, find dy/dx:", "options": ["A) tan \u03b8", "B) -cot \u03b8", "C) cot \u03b8", "D) -tan \u03b8"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 dx/d\u03b8 = -a sin \u03b8.<br>\u2022 dy/d\u03b8 = a cos \u03b8.<br>\u2022 Parametric theorem: dy/dx = (dy/d\u03b8) / (dx/d\u03b8) = (a cos \u03b8) / (-a sin \u03b8) = -cot \u03b8."}, {"id": 2, "question": "If x = 2at\u00b2 and y = 4at, find dy/dx at t = 2:", "options": ["A) 1/2", "B) 1", "C) 2", "D) 4"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 dx/dt = 4at.<br>\u2022 dy/dt = 4a.<br>\u2022 dy/dx = (dy/dt) / (dx/dt) = 4a / (4at) = 1/t.<br>\u2022 At t = 2: dy/dx = 1/2."}]}, {"slideIdx": 16, "questions": [{"id": 1, "question": "If y = x\u00b3 + tan x, what is d\u00b2y/dx\u00b2?", "options": ["A) 3x\u00b2 + sec\u00b2x", "B) 6x + 2 sec\u00b2x tan x", "C) 6x + sec\u2074x", "D) 6x + 2 tan x"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 First derivative: dy/dx = 3x\u00b2 + sec\u00b2x.<br>\u2022 Second derivative: d/dx(3x\u00b2 + sec\u00b2x) = 6x + 2 sec x \u00b7 (sec x tan x) = 6x + 2 sec\u00b2x tan x."}, {"id": 2, "question": "If y = A sin x + B cos x, then y'' + y equals:", "options": ["A) 2y", "B) 0", "C) -y", "D) A + B"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 y' = A cos x - B sin x.<br>\u2022 y'' = -A sin x - B cos x = -(A sin x + B cos x) = -y.<br>\u2022 Thus, y'' + y = -y + y = 0. (Simple Harmonic Motion equation)."}]}];
+    const quizSets = [{"id": 1, "title": "\ud83c\udfaf Quiz Challenge 1: Continuity, Limits & Foundational Theorems", "description": "Questions 1\u201310: Test your understanding of LHL, RHL, piecewise continuity, and greatest integer properties.", "questions": [{"id": 1, "question": "1. What is the condition for a function f(x) to be continuous at an interior point c of its domain?", "options": ["A) f(c) must exist and lim(x\u2192c) f(x) = f(c)", "B) f'(c) must equal 0", "C) f(x) must be strictly increasing at c", "D) LHL and RHL must both equal infinity"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 By Definition 1 of NCERT Class 12 Chapter 5: A function f is continuous at x = c if:<br>&nbsp;&nbsp;1. f(c) is well-defined.<br>&nbsp;&nbsp;2. lim(x\u2192c) f(x) exists finitely (i.e. lim(x\u2192c\u207b) f(x) = lim(x\u2192c\u207a) f(x)).<br>&nbsp;&nbsp;3. lim(x\u2192c) f(x) = f(c).<br>\u2022 Therefore, Option A is the rigorous mathematical definition."}, {"id": 2, "question": "2. Determine whether f(x) = |x| / x (for x \u2260 0) and f(0) = 0 is continuous at x = 0:", "options": ["A) Yes, because f(0) = 0", "B) No, because LHL = -1 while RHL = +1, so the limit does not exist", "C) Yes, because |x| is continuous", "D) No, because the function is undefined at x = 0"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 For x < 0, |x| = -x \u27f9 f(x) = -x / x = -1. Thus LHL = lim(x\u21920\u207b) (-1) = -1.<br>\u2022 For x > 0, |x| = +x \u27f9 f(x) = x / x = +1. Thus RHL = lim(x\u21920\u207a) (+1) = +1.<br>\u2022 Since LHL (-1) \u2260 RHL (+1), lim(x\u21920) f(x) does not exist.<br>\u2022 Hence, f is discontinuous at x = 0 (jump discontinuity)."}, {"id": 3, "question": "3. The polynomial function P(x) = a\u2080 + a\u2081x + a\u2082x\u00b2 + ... + a\u2099x\u207f is:", "options": ["A) Continuous only for x \u2265 0", "B) Discontinuous at its roots", "C) Continuous at every real number x \u2208 \u211d", "D) Continuous only when n is an even integer"], "correct": 2, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 For any real number c, lim(x\u2192c) P(x) = a\u2080 + a\u2081c + a\u2082c\u00b2 + ... + a\u2099c\u207f = P(c) by standard limit algebra.<br>\u2022 Since limit equals the value for all c \u2208 \u211d, every polynomial function is continuous everywhere on the real line \u211d."}, {"id": 4, "question": "4. If f(x) = (x\u00b2 - 16) / (x - 4) for x \u2260 4, what value must be assigned to f(4) to make f continuous at x = 4?", "options": ["A) 0", "B) 4", "C) 8", "D) 16"], "correct": 2, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 For continuity at x = 4, we must have f(4) = lim(x\u21924) f(x).<br>\u2022 Compute lim(x\u21924) (x\u00b2 - 16)/(x - 4) = lim(x\u21924) [(x - 4)(x + 4)] / (x - 4).<br>\u2022 Cancelling the non-zero factor (x - 4): lim(x\u21924) (x + 4) = 4 + 4 = 8.<br>\u2022 Therefore, defining f(4) = 8 removes the hole and makes f continuous."}, {"id": 5, "question": "5. What is the value of lim(x\u21920\u207a) (1/x) and lim(x\u21920\u207b) (1/x)?", "options": ["A) +\u221e and -\u221e respectively", "B) Both are 0", "C) Both are +\u221e", "D) 1 and -1 respectively"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 As x approaches 0 through positive values (e.g. 0.1, 0.01, 0.001), 1/x becomes 10, 100, 1000, heading towards +\u221e.<br>\u2022 As x approaches 0 through negative values (e.g. -0.1, -0.01), 1/x heads towards -\u221e.<br>\u2022 As detailed in NCERT Tables 5.1 and 5.2, 1/x has opposite infinite limits on either side of 0."}, {"id": 6, "question": "6. If f(x) and g(x) are continuous at x = c, which of the following is guaranteed to be continuous at c?", "options": ["A) f(x) / g(x) unconditionally", "B) f(x) + g(x), f(x) - g(x), and f(x) \u00b7 g(x)", "C) 1 / (f(x) - g(x))", "D) \u221a[f(x)] even if f(c) < 0"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Theorem 1 (Algebra of Continuous Functions) guarantees that:<br>&nbsp;&nbsp;1. (f + g) is continuous at c.<br>&nbsp;&nbsp;2. (f - g) is continuous at c.<br>&nbsp;&nbsp;3. (f \u00b7 g) is continuous at c.<br>\u2022 Note: f/g requires the non-zero condition g(c) \u2260 0, so it is not unconditional."}, {"id": 7, "question": "7. At how many points in the interval (0, 3) is the greatest integer function f(x) = [x] discontinuous?", "options": ["A) 0", "B) 1", "C) 2 (at x = 1 and x = 2)", "D) Infinitely many"], "correct": 2, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 [x] is discontinuous at every integer.<br>\u2022 The integers strictly inside the open interval (0, 3) are x = 1 and x = 2.<br>\u2022 At x = 1: LHL = 0, RHL = 1.<br>\u2022 At x = 2: LHL = 1, RHL = 2.<br>\u2022 Hence, there are exactly 2 points of discontinuity."}, {"id": 8, "question": "8. Find the relationship between a and b so that f(x) = { ax + 1 (x \u2264 3), bx + 3 (x > 3) } is continuous at x = 3:", "options": ["A) 3a - 3b = 2 \u27f9 a - b = 2/3", "B) a + b = 3", "C) 3a + 3b = 2", "D) a = b"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 For continuity at x = 3, LHL = RHL = f(3).<br>\u2022 LHL = lim(x\u21923\u207b) (ax + 1) = 3a + 1.<br>\u2022 RHL = lim(x\u21923\u207a) (bx + 3) = 3b + 3.<br>\u2022 Equate: 3a + 1 = 3b + 3 \u27f9 3a - 3b = 2 \u27f9 a - b = 2/3 (or a = b + 2/3). This is Exercise 5.1 Q17."}, {"id": 9, "question": "9. Which function is continuous for ALL real numbers x \u2208 \u211d?", "options": ["A) f(x) = tan(x)", "B) f(x) = sec(x)", "C) f(x) = |cos x|", "D) f(x) = 1 / (x\u00b2 - 4)"], "correct": 2, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 cos(x) is continuous on all of \u211d.<br>\u2022 The absolute value function |u| is continuous on \u211d.<br>\u2022 By Theorem 2 (composite of continuous functions), |cos x| is continuous everywhere on \u211d.<br>\u2022 Meanwhile, tan x and sec x are undefined at (2n+1)\u03c0/2, and 1/(x\u00b2-4) blows up at x = \u00b12."}, {"id": 10, "question": "10. If f(x) = (sin 2x) / x for x \u2260 0, what value of f(0) makes f continuous at x = 0?", "options": ["A) 1", "B) 2", "C) 1/2", "D) 0"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 lim(x\u21920) f(x) = lim(x\u21920) [sin(2x) / x] = lim(x\u21920) 2 \u00b7 [sin(2x) / (2x)] = 2 \u00b7 1 = 2.<br>\u2022 For continuity, f(0) must equal this limit.<br>\u2022 Therefore, f(0) = 2."}]}, {"id": 2, "title": "\ud83c\udfaf Quiz Challenge 2: Differentiability, Chain Rule & Implicit Differentiation", "description": "Questions 11\u201320: Master one-sided derivatives, Theorem 3, composite chains, and implicit forms.", "questions": [{"id": 11, "question": "11. If a function f is differentiable at point c, which statement MUST be true?", "options": ["A) f is continuous at c", "B) f'(c) must be positive", "C) f''(c) exists", "D) f has a local maximum at c"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Theorem 3 (NCERT \u00a7 5.3): If a function f is differentiable at a point c, then it is also continuous at that point.<br>\u2022 Proof: f(x) - f(c) = [(f(x) - f(c))/(x - c)] \u00b7 (x - c). Taking limit as x \u2192 c gives f'(c) \u00b7 0 = 0 \u27f9 lim(x\u2192c) f(x) = f(c)."}, {"id": 12, "question": "12. Why is f(x) = |x - 2| NOT differentiable at x = 2?", "options": ["A) It is discontinuous at x = 2", "B) LHD = -1 while RHD = +1, so the derivative limit does not exist", "C) f(2) is undefined", "D) The function approaches infinity at x = 2"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 At x = 2, f(2) = 0.<br>\u2022 LHD: lim(h\u21920\u207b) [|2+h - 2| - 0]/h = lim(h\u21920\u207b) (-h)/h = -1.<br>\u2022 RHD: lim(h\u21920\u207a) [|2+h - 2| - 0]/h = lim(h\u21920\u207a) (+h)/h = +1.<br>\u2022 Since LHD (-1) \u2260 RHD (+1), f is not differentiable at x = 2."}, {"id": 13, "question": "13. Differentiate y = sin(cos(x\u00b2)) with respect to x:", "options": ["A) -2x \u00b7 sin(x\u00b2) \u00b7 cos(cos(x\u00b2))", "B) 2x \u00b7 cos(x\u00b2) \u00b7 cos(cos(x\u00b2))", "C) -sin(x\u00b2) \u00b7 cos(x\u00b2)", "D) -2x \u00b7 cos(cos(x\u00b2))"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Apply 3-stage chain rule:<br>&nbsp;&nbsp;1. Outer: d/du(sin u) = cos u, where u = cos(x\u00b2).<br>&nbsp;&nbsp;2. Middle: d/dv(cos v) = -sin v, where v = x\u00b2.<br>&nbsp;&nbsp;3. Inner: d/dx(x\u00b2) = 2x.<br>\u2022 Multiply: cos(cos(x\u00b2)) \u00b7 (-sin(x\u00b2)) \u00b7 (2x) = -2x sin(x\u00b2) cos(cos(x\u00b2))."}, {"id": 14, "question": "14. If y = 2\u221a(cot(x\u00b2)), what is dy/dx?", "options": ["A) -2x csc\u00b2(x\u00b2) / \u221a(cot(x\u00b2))", "B) -2x / \u221a(cot(x\u00b2))", "C) 2x csc\u00b2(x\u00b2) \u221a(cot(x\u00b2))", "D) -4x csc(x\u00b2)"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 y = 2 [cot(x\u00b2)]^(1/2).<br>\u2022 dy/dx = 2 \u00b7 (1/2) [cot(x\u00b2)]^(-1/2) \u00b7 d/dx[cot(x\u00b2)].<br>\u2022 d/dx[cot(x\u00b2)] = -csc\u00b2(x\u00b2) \u00b7 2x = -2x csc\u00b2(x\u00b2).<br>\u2022 Combining: dy/dx = -2x csc\u00b2(x\u00b2) / \u221a(cot(x\u00b2)). This is Exercise 5.2 Q7."}, {"id": 15, "question": "15. If x\u00b2 + xy + y\u00b2 = 100, find dy/dx:", "options": ["A) -(2x + y) / (x + 2y)", "B) -(2x + 2y) / (x + y)", "C) (2x + y) / (x + 2y)", "D) -2x / (2y)"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Differentiate w.r.t x: d/dx(x\u00b2) + d/dx(xy) + d/dx(y\u00b2) = d/dx(100).<br>\u2022 2x + [1\u00b7y + x\u00b7y'] + 2y\u00b7y' = 0.<br>\u2022 y'(x + 2y) = -(2x + y).<br>\u2022 y' = -(2x + y) / (x + 2y)."}, {"id": 16, "question": "16. If sin\u00b2x + cos\u00b2y = 1, find dy/dx:", "options": ["A) sin 2x / sin 2y", "B) -sin 2x / sin 2y", "C) cos 2x / cos 2y", "D) sin x / cos y"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Differentiate w.r.t x:<br>\u2022 2 sin x cos x + 2 cos y (-sin y) \u00b7 dy/dx = 0.<br>\u2022 sin 2x - sin 2y \u00b7 dy/dx = 0.<br>\u2022 sin 2y \u00b7 dy/dx = sin 2x \u27f9 dy/dx = sin 2x / sin 2y. This is Exercise 5.3 Q8."}, {"id": 17, "question": "17. What is the derivative of f(x) = [x] at x = 1.5?", "options": ["A) 1", "B) 0", "C) 1.5", "D) Does not exist"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 On the open interval (1, 2), [x] = 1 (a constant function!).<br>\u2022 The derivative of any constant function is 0.<br>\u2022 Since 1.5 lies strictly between integers 1 and 2, f'(1.5) = 0.<br>\u2022 Note: f'(x) does not exist at integer points, but is 0 everywhere in between!"}, {"id": 18, "question": "18. If y = cos(\u221ax), what is dy/dx?", "options": ["A) -sin(\u221ax) / (2\u221ax)", "B) -sin(\u221ax)", "C) -sin(1 / (2\u221ax))", "D) cos(\u221ax) / (2\u221ax)"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Outer function: cos(u) with derivative -sin(u).<br>\u2022 Inner function: u = \u221ax = x^(1/2) with derivative 1/(2\u221ax).<br>\u2022 By Chain Rule: dy/dx = -sin(\u221ax) \u00b7 (1/(2\u221ax)) = -sin(\u221ax) / (2\u221ax)."}, {"id": 19, "question": "19. If xy = c\u00b2, what is dy/dx?", "options": ["A) -y / x", "B) y / x", "C) -x / y", "D) 0"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Differentiate using product rule: 1\u00b7y + x\u00b7y' = 0.<br>\u2022 x y' = -y \u27f9 y' = -y / x (or equivalently -c\u00b2/x\u00b2 since y = c\u00b2/x)."}, {"id": 20, "question": "20. Differentiate y = sec(tan(\u221ax)):", "options": ["A) sec(tan \u221ax) tan(tan \u221ax) \u00b7 sec\u00b2(\u221ax) / (2\u221ax)", "B) sec\u00b2(tan \u221ax) / (2\u221ax)", "C) sec(tan \u221ax) \u00b7 sec\u00b2(\u221ax)", "D) tan(tan \u221ax) / \u221ax"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Stage 1: d/du(sec u) = sec u tan u, with u = tan(\u221ax).<br>\u2022 Stage 2: d/dv(tan v) = sec\u00b2v, with v = \u221ax.<br>\u2022 Stage 3: d/dx(\u221ax) = 1/(2\u221ax).<br>\u2022 Multiply all 3 factors: sec(tan \u221ax) tan(tan \u221ax) \u00b7 sec\u00b2(\u221ax) \u00b7 (1/(2\u221ax)). This is Exercise 5.2 Q4."}]}, {"id": 3, "title": "\ud83c\udfaf Quiz Challenge 3: Inverse Trig, Exponential & Logarithmic Differentiation", "description": "Questions 21\u201330: Master inverse trig shortcuts, exponential rules, and variable power tower techniques.", "questions": [{"id": 21, "question": "21. Differentiate y = sin\u207b\u00b9(2x \u221a(1 - x\u00b2)) for -1/\u221a2 < x < 1/\u221a2:", "options": ["A) 2 / \u221a(1 - x\u00b2)", "B) 1 / \u221a(1 - x\u00b2)", "C) -2 / \u221a(1 - x\u00b2)", "D) 2x / (1 - x\u00b2)"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Let x = sin \u03b8, so \u03b8 = sin\u207b\u00b9x. Since -1/\u221a2 < x < 1/\u221a2, -\u03c0/4 < \u03b8 < \u03c0/4.<br>\u2022 2x \u221a(1 - x\u00b2) = 2 sin \u03b8 cos \u03b8 = sin 2\u03b8.<br>\u2022 Then y = sin\u207b\u00b9(sin 2\u03b8) = 2\u03b8 = 2 sin\u207b\u00b9x.<br>\u2022 Differentiating w.r.t x: dy/dx = 2 / \u221a(1 - x\u00b2). This is Exercise 5.3 Q14."}, {"id": 22, "question": "22. What is the derivative of y = cos\u207b\u00b9((1 - x\u00b2) / (1 + x\u00b2)) for 0 < x < 1?", "options": ["A) 2 / (1 + x\u00b2)", "B) -2 / (1 + x\u00b2)", "C) 1 / (1 + x\u00b2)", "D) 2x / (1 + x\u00b2)"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Substitute x = tan \u03b8, so \u03b8 = tan\u207b\u00b9x. For 0 < x < 1, 0 < \u03b8 < \u03c0/4.<br>\u2022 (1 - tan\u00b2\u03b8) / (1 + tan\u00b2\u03b8) = cos 2\u03b8.<br>\u2022 Thus y = cos\u207b\u00b9(cos 2\u03b8) = 2\u03b8 = 2 tan\u207b\u00b9x.<br>\u2022 Differentiating w.r.t x: dy/dx = 2 / (1 + x\u00b2). This is Exercise 5.3 Q11."}, {"id": 23, "question": "23. If y = e^(-x), what is dy/dx?", "options": ["A) e^(-x)", "B) -e^(-x)", "C) -e^x", "D) -1 / e^x"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 By Chain Rule: d/dx(e^u) = e^u \u00b7 (du/dx).<br>\u2022 Here u = -x \u27f9 du/dx = -1.<br>\u2022 Hence dy/dx = e^(-x) \u00b7 (-1) = -e^(-x)."}, {"id": 24, "question": "24. Differentiate y = log(log x) for x > 1:", "options": ["A) 1 / (x log x)", "B) 1 / (log x)", "C) 1 / x\u00b2", "D) (log x) / x"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Outer: d/du(log u) = 1/u, with u = log x.<br>\u2022 Inner: d/dx(log x) = 1/x.<br>\u2022 By Chain Rule: dy/dx = (1 / log x) \u00b7 (1 / x) = 1 / (x log x). This is Exercise 5.4 Q8."}, {"id": 25, "question": "25. If y = (sin x)^x, what is dy/dx?", "options": ["A) (sin x)^x [ x cot x + log(sin x) ]", "B) x (sin x)^(x-1) cos x", "C) (sin x)^x \u00b7 cos x", "D) (sin x)^x [ log(cos x) ]"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Take log: ln y = x ln(sin x).<br>\u2022 Differentiate w.r.t x: (1/y) dy/dx = 1 \u00b7 ln(sin x) + x \u00b7 [cos x / sin x] = ln(sin x) + x cot x.<br>\u2022 Multiply by y: dy/dx = (sin x)^x [ x cot x + log(sin x) ]. This is Exercise 5.5 Q4."}, {"id": 26, "question": "26. What is the derivative of y = x^(log x) for x > 0?", "options": ["A) 2 x^(log x - 1) log x", "B) (log x) x^(log x - 1)", "C) x^(log x) / x", "D) 2 log x"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Take log: ln y = ln[x^(log x)] = (log x) \u00b7 (log x) = (log x)\u00b2.<br>\u2022 Differentiate: (1/y) y' = 2 (log x) \u00b7 (1/x).<br>\u2022 y' = y \u00b7 [2 log x / x] = x^(log x) \u00b7 [2 log x / x] = 2 x^(log x - 1) log x. This is Exercise 5.5 Q7."}, {"id": 27, "question": "27. For y = e^(x\u00b3), what is dy/dx?", "options": ["A) 3x\u00b2 e^(x\u00b3)", "B) e^(3x\u00b2)", "C) 3x\u00b2 e^x", "D) x\u00b3 e^(x\u00b3 - 1)"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Let u = x\u00b3, so y = e^u.<br>\u2022 dy/dx = e^u \u00b7 (du/dx) = e^(x\u00b3) \u00b7 (3x\u00b2) = 3x\u00b2 e^(x\u00b3). This is Exercise 5.4 Q3."}, {"id": 28, "question": "28. Find the derivative of y = 10^(x\u00b2):", "options": ["A) 2x \u00b7 10^(x\u00b2) \u00b7 ln(10)", "B) 10^(x\u00b2) \u00b7 ln(10)", "C) 2x \u00b7 10^(x\u00b2)", "D) x\u00b2 \u00b7 10^(x\u00b2 - 1)"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 General exponential rule: d/du(a^u) = a^u ln(a).<br>\u2022 With u = x\u00b2, du/dx = 2x.<br>\u2022 dy/dx = 10^(x\u00b2) \u00b7 ln(10) \u00b7 (2x) = 2x \u00b7 10^(x\u00b2) \u00b7 ln(10)."}, {"id": 29, "question": "29. If x^y = e^(x - y), then dy/dx is:", "options": ["A) log x / (1 + log x)\u00b2", "B) 1 / (1 + log x)", "C) (1 + log x) / log x", "D) (log x)\u00b2 / (1 + log x)"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Take ln of both sides: y ln x = x - y.<br>\u2022 y + y ln x = x \u27f9 y(1 + ln x) = x \u27f9 y = x / (1 + ln x).<br>\u2022 Differentiate using quotient rule:<br>&nbsp;&nbsp;dy/dx = [(1 + ln x)\u00b71 - x\u00b7(1/x)] / (1 + ln x)\u00b2 = [1 + ln x - 1] / (1 + ln x)\u00b2 = log x / (1 + log x)\u00b2.<br>\u2022 This is a classic CBSE Board Exam proof problem!"}, {"id": 30, "question": "30. What is d/dx (sec\u207b\u00b9x + csc\u207b\u00b9x) for |x| \u2265 1?", "options": ["A) 0", "B) 1 / [x \u221a(x\u00b2 - 1)]", "C) 2 / [x \u221a(x\u00b2 - 1)]", "D) \u03c0/2"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 From inverse trigonometry identities, sec\u207b\u00b9x + csc\u207b\u00b9x = \u03c0/2 (a constant!).<br>\u2022 The derivative of any constant is identically 0.<br>\u2022 Therefore, d/dx(\u03c0/2) = 0."}]}, {"id": 4, "title": "\ud83c\udfaf Quiz Challenge 4: Parametric Forms, Second Derivatives & Advanced Calculus", "description": "Questions 31\u201340: Master parametric derivatives, avoid second-order traps, and verify differential equations.", "questions": [{"id": 31, "question": "31. If x = a(\u03b8 + sin \u03b8) and y = a(1 - cos \u03b8), find dy/dx at \u03b8 = \u03c0/2:", "options": ["A) 1", "B) 0", "C) -1", "D) 1/2"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 dx/d\u03b8 = a(1 + cos \u03b8).<br>\u2022 dy/d\u03b8 = a(0 - (-sin \u03b8)) = a sin \u03b8.<br>\u2022 dy/dx = (a sin \u03b8) / [a(1 + cos \u03b8)] = (2 sin(\u03b8/2) cos(\u03b8/2)) / (2 cos\u00b2(\u03b8/2)) = tan(\u03b8/2).<br>\u2022 At \u03b8 = \u03c0/2: tan((\u03c0/2)/2) = tan(\u03c0/4) = 1. This is Exercise 5.6 Q7."}, {"id": 32, "question": "32. If x = a cos\u00b3t and y = a sin\u00b3t (Astroid), find dy/dx:", "options": ["A) -tan t", "B) -cot t", "C) tan t", "D) cot t"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 dx/dt = 3a cos\u00b2t (-sin t) = -3a cos\u00b2t sin t.<br>\u2022 dy/dt = 3a sin\u00b2t (cos t) = 3a sin\u00b2t cos t.<br>\u2022 dy/dx = (3a sin\u00b2t cos t) / (-3a cos\u00b2t sin t) = -sin t / cos t = -tan t. (NCERT Example 33)."}, {"id": 33, "question": "33. What is the fundamental trap in computing d\u00b2y/dx\u00b2 for parametric functions x(t), y(t)?", "options": ["A) d\u00b2y/dx\u00b2 is NOT equal to (d\u00b2y/dt\u00b2) / (d\u00b2x/dt\u00b2)", "B) Second derivatives do not exist for parametric curves", "C) The parameter t must always be negative", "D) d\u00b2y/dx\u00b2 is always constant"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 \u26a0\ufe0f CRITICAL PITFALL: Students mistakenly divide the second derivatives: (d\u00b2y/dt\u00b2) / (d\u00b2x/dt\u00b2). This is completely false!<br>\u2022 The correct formula is: d\u00b2y/dx\u00b2 = d/dt(dy/dx) \u00b7 (dt/dx) = [d/dt(dy/dx)] / (dx/dt)."}, {"id": 34, "question": "34. If x = at\u00b2 and y = 2at, what is d\u00b2y/dx\u00b2?", "options": ["A) -1 / (2at\u00b3)", "B) 1 / (2at\u00b3)", "C) -1 / t\u00b2", "D) 0"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 dx/dt = 2at, dy/dt = 2a \u27f9 dy/dx = 2a / (2at) = 1/t.<br>\u2022 Now compute d\u00b2y/dx\u00b2 = d/dx(1/t) = [d/dt(1/t)] \u00b7 (dt/dx).<br>\u2022 d/dt(1/t) = -1/t\u00b2.<br>\u2022 dt/dx = 1 / (dx/dt) = 1 / (2at).<br>\u2022 Multiply: (-1/t\u00b2) \u00b7 (1 / (2at)) = -1 / (2at\u00b3)."}, {"id": 35, "question": "35. If y = 5 cos x - 3 sin x, then d\u00b2y/dx\u00b2 equals:", "options": ["A) -y", "B) y", "C) 0", "D) -5 sin x - 3 cos x"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 dy/dx = -5 sin x - 3 cos x.<br>\u2022 d\u00b2y/dx\u00b2 = -5 cos x + 3 sin x = -(5 cos x - 3 sin x) = -y.<br>\u2022 Hence d\u00b2y/dx\u00b2 + y = 0. This is Exercise 5.7 Q11."}, {"id": 36, "question": "36. If y = sin\u207b\u00b9x, which differential equation does y satisfy?", "options": ["A) (1 - x\u00b2) y\u2082 - x y\u2081 = 0", "B) (1 - x\u00b2) y\u2082 + x y\u2081 = 0", "C) (1 - x\u00b2) y\u2082 - y = 0", "D) y\u2082 + y\u2081 = 0"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 y\u2081 = 1 / \u221a(1 - x\u00b2) \u27f9 \u221a(1 - x\u00b2) y\u2081 = 1.<br>\u2022 Square both sides: (1 - x\u00b2)(y\u2081)\u00b2 = 1.<br>\u2022 Differentiate w.r.t x: (-2x)(y\u2081)\u00b2 + (1 - x\u00b2) \u00b7 2y\u2081 y\u2082 = 0.<br>\u2022 Divide by 2y\u2081: -x y\u2081 + (1 - x\u00b2) y\u2082 = 0 \u27f9 (1 - x\u00b2) y\u2082 - x y\u2081 = 0. This is Exercise 5.7 Q13."}, {"id": 37, "question": "37. If y = 500 e^(7x) + 600 e^(-7x), then d\u00b2y/dx\u00b2 is:", "options": ["A) 49 y", "B) -49 y", "C) 7 y", "D) 0"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 dy/dx = 500(7) e^(7x) + 600(-7) e^(-7x) = 7 [500 e^(7x) - 600 e^(-7x)].<br>\u2022 d\u00b2y/dx\u00b2 = 7 [500(7) e^(7x) - 600(-7) e^(-7x)] = 49 [500 e^(7x) + 600 e^(-7x)] = 49y. This is Exercise 5.7 Q15."}, {"id": 38, "question": "38. If y = (tan\u207b\u00b9x)\u00b2, show that (x\u00b2 + 1)\u00b2 y\u2082 + 2x(x\u00b2 + 1) y\u2081 equals:", "options": ["A) 2", "B) 0", "C) 4", "D) 1"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 y = (tan\u207b\u00b9x)\u00b2 \u27f9 y\u2081 = 2(tan\u207b\u00b9x) / (1 + x\u00b2).<br>\u2022 (1 + x\u00b2) y\u2081 = 2 tan\u207b\u00b9x.<br>\u2022 Differentiate again: (1 + x\u00b2) y\u2082 + 2x y\u2081 = 2 / (1 + x\u00b2).<br>\u2022 Multiply throughout by (1 + x\u00b2): (1 + x\u00b2)\u00b2 y\u2082 + 2x(1 + x\u00b2) y\u2081 = 2. This is Exercise 5.7 Q17."}, {"id": 39, "question": "39. If x = \u221a(a^(sin\u207b\u00b9t)) and y = \u221a(a^(cos\u207b\u00b9t)), find dy/dx:", "options": ["A) -y / x", "B) y / x", "C) -x / y", "D) 1"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Brilliant Shortcut: Multiply x and y!<br>\u2022 x y = \u221a[ a^(sin\u207b\u00b9t + cos\u207b\u00b9t) ] = \u221a[ a^(\u03c0/2) ] = constant C.<br>\u2022 Since xy = C, differentiating w.r.t x gives: y + x(dy/dx) = 0 \u27f9 dy/dx = -y / x. This is Exercise 5.6 Q11."}, {"id": 40, "question": "40. What is the value of d\u00b2y/dx\u00b2 at x = 0 for y = e^(2x)?", "options": ["A) 4", "B) 2", "C) 1", "D) 0"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 First derivative: y' = 2 e^(2x).<br>\u2022 Second derivative: y'' = 4 e^(2x).<br>\u2022 At x = 0: y''(0) = 4 e\u2070 = 4(1) = 4."}]}];
+
+    let currentSlide = 0;
+    const totalSlides = slidesData.length;
+
+    // User responses state
+    const userCheckpointAnswers = {};
+    const userQuizAnswers = {};
+
+    // Audio & Narration State
+    let isNarrationEnabled = true;
+    let isAutoPlaySlideshow = false;
+    let autoPlayTimer = null;
+    let audioCtx = null;
+
+    // Web Audio Synthesizer
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, type = 'sine', duration = 0.12, gainValue = 0.08) {
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(gainValue, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {
+        console.warn('Web Audio error:', e);
+      }
+    }
+
+    function playSuccessTone() {
+      playTone(523.25, 'triangle', 0.1, 0.08);
+      setTimeout(() => playTone(659.25, 'triangle', 0.12, 0.08), 80);
+      setTimeout(() => playTone(783.99, 'triangle', 0.2, 0.08), 160);
+    }
+
+    function playWrongTone() {
+      playTone(260.00, 'sawtooth', 0.15, 0.08);
+      setTimeout(() => playTone(220.00, 'sawtooth', 0.25, 0.08), 120);
+    }
+
+    function playSlideTransitionTone() {
+      playTone(440, 'sine', 0.06, 0.04);
+    }
+
+    function playPopupTone() {
+      playTone(440, 'sine', 0.06, 0.05);
+      setTimeout(() => playTone(880, 'sine', 0.12, 0.06), 60);
+    }
+
+    // Web Speech API Voiceover
+    function speakNarration(text) {
+      if (!isNarrationEnabled || !('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 1.0;
+      utterance.pitch = 1.05;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function speakSlideNarration(slideIdx) {
+      const s = slidesData[slideIdx];
+      if (s && s.narration) {
+        speakNarration(s.narration);
+      }
+    }
+
+    function toggleSpeech() {
+      isNarrationEnabled = !isNarrationEnabled;
+      const icon = document.getElementById('speechIcon');
+      const text = document.getElementById('speechText');
+      if (isNarrationEnabled) {
+        icon.className = 'fas fa-volume-up text-violet-400';
+        text.textContent = 'Narration On';
+        speakSlideNarration(currentSlide);
+      } else {
+        icon.className = 'fas fa-volume-mute text-slate-500';
+        text.textContent = 'Narration Off';
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+        }
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // Slide Navigation
+    // -------------------------------------------------------------------------
+    function goToSlide(idx) {
+      if (idx < 0 || idx >= totalSlides) return;
+      currentSlide = idx;
+      updateSlideUI();
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        goToSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        goToSlide(currentSlide - 1);
+      }
+    }
+
+    function updateSlideUI() {
+      // Update Slide sections
+      document.querySelectorAll('.slide-section').forEach((sec, i) => {
+        if (i === currentSlide) {
+          sec.classList.add('active');
+        } else {
+          sec.classList.remove('active');
+        }
+      });
+
+      // Update Slide Counter
+      document.getElementById('slideCounterCurrent').textContent = currentSlide + 1;
+
+      // Update Pills
+      document.querySelectorAll('.slide-pill').forEach((pill, i) => {
+        if (i === currentSlide) {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-violet-600 text-white font-bold transition cursor-pointer';
+        } else {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer';
+        }
+      });
+
+      // Update Prev Button
+      document.getElementById('prevSlideBtn').disabled = (currentSlide === 0);
+
+      // STANDING RULE: On the LAST slide (Slide 21, Index 20), Next Slide is HIDDEN and lastSlideNotice is shown!
+      const nextBtn = document.getElementById('nextSlideBtn');
+      const lastNotice = document.getElementById('lastSlideNotice');
+      if (currentSlide === totalSlides - 1) {
+        if (nextBtn) nextBtn.style.display = 'none';
+        if (lastNotice) lastNotice.style.display = 'inline-flex';
+        if (isAutoPlaySlideshow) {
+          toggleAutoPlaySlideshow();
+        }
+      } else {
+        if (nextBtn) nextBtn.style.display = 'inline-flex';
+        if (lastNotice) lastNotice.style.display = 'none';
+      }
+
+      playSlideTransitionTone();
+      speakSlideNarration(currentSlide);
+
+      // Trigger Canvas Re-render if on Slide 0
+      if (currentSlide === 0) {
+        requestAnimationFrame(drawIntroCanvas);
+      }
+
+      // Re-render KaTeX if available
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    // Auto-Play Slideshow Timer
+    function toggleAutoPlaySlideshow() {
+      const btn = document.getElementById('autoPlaySlideshowBtn');
+      const icon = document.getElementById('autoPlayIcon');
+      const txt = document.getElementById('autoPlayText');
+      const bar = document.getElementById('autoPlayProgressBarContainer');
+
+      if (isAutoPlaySlideshow) {
+        isAutoPlaySlideshow = false;
+        clearInterval(autoPlayTimer);
+        icon.className = 'fas fa-play';
+        txt.textContent = 'Auto-Play';
+        bar.classList.add('hidden');
+      } else {
+        if (currentSlide === totalSlides - 1) {
+          goToSlide(0);
+        }
+        isAutoPlaySlideshow = true;
+        icon.className = 'fas fa-pause text-amber-400';
+        txt.textContent = 'Pause';
+        bar.classList.remove('hidden');
+
+        let progress = 0;
+        const duration = 12000; // 12 seconds per slide
+        const interval = 100;
+        const step = (interval / duration) * 100;
+
+        autoPlayTimer = setInterval(() => {
+          progress += step;
+          document.getElementById('autoPlayProgressBar').style.width = `${progress}%`;
+          if (progress >= 100) {
+            progress = 0;
+            if (currentSlide < totalSlides - 1) {
+              nextSlide();
+            } else {
+              toggleAutoPlaySlideshow();
+            }
+          }
+        }, interval);
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // Render Checkpoints on Slides 0 to 16
+    // -------------------------------------------------------------------------
+    function renderSlideCheckpoints() {
+      slideCheckpoints.forEach(chk => {
+        const container = document.getElementById(`slide-checkpoints-${chk.slideIdx}`);
+        if (!container) return;
+
+        let qCardsHtml = '';
+        chk.questions.forEach((q, qIdx) => {
+          let optionsHtml = '';
+          q.options.forEach((opt, optIdx) => {
+            optionsHtml += `
+              <button onclick="handleCheckpointAnswer(${chk.slideIdx}, ${qIdx}, ${optIdx}, this)"
+                      class="chk-opt-btn-${chk.slideIdx}-${qIdx} w-full text-left p-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-300 font-medium transition cursor-pointer flex items-center justify-between text-xs">
+                <span>${opt}</span>
+                <span class="chk-check font-bold"></span>
+              </button>
+            `;
+          });
+
+          qCardsHtml += `
+            <div id="chk-card-${chk.slideIdx}-${qIdx}" class="glass-card p-4 rounded-2xl border border-slate-800/80 space-y-3">
+              <div class="flex items-start justify-between gap-2">
+                <div class="font-bold text-white text-xs leading-relaxed flex-1">
+                  <span class="text-violet-400 font-mono mr-1">Q${qIdx + 1}:</span>${q.question}
+                </div>
+                <button onclick="toggleCheckpointSolution(${chk.slideIdx}, ${qIdx})"
+                        id="chk-sol-btn-${chk.slideIdx}-${qIdx}"
+                        class="px-2.5 py-1 rounded-xl bg-violet-950/70 hover:bg-violet-900 border border-violet-500/40 text-violet-300 hover:text-violet-100 text-[11px] font-bold flex items-center space-x-1 shrink-0 transition cursor-pointer">
+                  <span>💡</span>
+                  <span id="chk-sol-btn-text-${chk.slideIdx}-${qIdx}">Solution</span>
+                </button>
+              </div>
+              <div class="space-y-1.5">${optionsHtml}</div>
+              <div id="chk-feedback-${chk.slideIdx}-${qIdx}" class="hidden p-2.5 rounded-xl text-[11px]"></div>
+              <div id="chk-solution-${chk.slideIdx}-${qIdx}" class="hidden p-3.5 rounded-xl bg-slate-950/95 border border-violet-500/40 text-slate-200 text-[11px] space-y-1">
+                <div class="font-bold text-violet-300 border-b border-slate-800 pb-1 mb-1">Teacher's Step-by-Step Solution:</div>
+                <div class="leading-relaxed text-slate-300">${q.solution}</div>
+              </div>
+            </div>
+          `;
+        });
+
+        container.innerHTML = `
+          <div class="space-y-3">
+            <div class="flex items-center space-x-2 text-xs font-bold text-violet-400 uppercase tracking-wider">
+              <span>✍️</span>
+              <span>Slide Knowledge Checkpoint (2 Exam Questions)</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              ${qCardsHtml}
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function handleCheckpointAnswer(slideIdx, qIdx, selectedIdx, btn) {
+      const key = `${slideIdx}-${qIdx}`;
+      if (userCheckpointAnswers[key] !== undefined) return;
+      userCheckpointAnswers[key] = selectedIdx;
+
+      const item = slideCheckpoints.find(s => s.slideIdx === slideIdx);
+      const q = item.questions[qIdx];
+      const isCorrect = (selectedIdx === q.correct);
+
+      const feedback = document.getElementById(`chk-feedback-${slideIdx}-${qIdx}`);
+      const card = document.getElementById(`chk-card-${slideIdx}-${qIdx}`);
+      const allBtns = card.querySelectorAll(`.chk-opt-btn-${slideIdx}-${qIdx}`);
+
+      allBtns.forEach((b, idx) => {
+        b.disabled = true;
+        if (idx === q.correct) {
+          b.classList.remove('bg-slate-950', 'border-slate-800');
+          b.classList.add('bg-emerald-950/60', 'border-emerald-500/60', 'text-emerald-300');
+          b.querySelector('.chk-check').textContent = '✓';
+        } else if (idx === selectedIdx && !isCorrect) {
+          b.classList.remove('bg-slate-950', 'border-slate-800');
+          b.classList.add('bg-rose-950/60', 'border-rose-500/60', 'text-rose-300');
+          b.querySelector('.chk-check').textContent = '✕';
+        }
+      });
+
+      feedback.classList.remove('hidden');
+      if (isCorrect) {
+        playSuccessTone();
+        feedback.className = 'p-2.5 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 text-[11px]';
+        feedback.innerHTML = `<strong>✓ Correct!</strong> Great job! Click 💡 Solution to view the teacher's derivation.`;
+      } else {
+        playWrongTone();
+        feedback.className = 'p-2.5 rounded-xl bg-rose-950/40 border border-rose-500/40 text-rose-300 text-[11px]';
+        feedback.innerHTML = `<strong>✕ Incorrect!</strong> Correct answer is <strong>${q.options[q.correct]}</strong>. Click 💡 Solution to review.`;
+      }
+    }
+
+    function toggleCheckpointSolution(slideIdx, qIdx) {
+      const solDiv = document.getElementById(`chk-solution-${slideIdx}-${qIdx}`);
+      const btnText = document.getElementById(`chk-sol-btn-text-${slideIdx}-${qIdx}`);
+      const btn = document.getElementById(`chk-sol-btn-${slideIdx}-${qIdx}`);
+      if (!solDiv) return;
+
+      const isHidden = solDiv.classList.contains('hidden');
+      if (isHidden) {
+        solDiv.classList.remove('hidden');
+        if (btnText) btnText.textContent = 'Hide';
+        if (btn) {
+          btn.classList.remove('bg-violet-950/70', 'text-violet-300');
+          btn.classList.add('bg-violet-700', 'text-white', 'border-violet-400');
+        }
+        playTone(659.25, 'sine', 0.08, 0.06);
+      } else {
+        solDiv.classList.add('hidden');
+        if (btnText) btnText.textContent = 'Solution';
+        if (btn) {
+          btn.classList.remove('bg-violet-700', 'text-white', 'border-violet-400');
+          btn.classList.add('bg-violet-950/70', 'text-violet-300');
+        }
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // Render Quizzes on Slides 17 to 20 & The Dedicated POPUP Modal Logic
+    // -------------------------------------------------------------------------
+    function renderAllQuizzes() {
+      quizSets.forEach(set => {
+        const container = document.getElementById(`quiz-container-${set.id}`);
+        if (!container) return;
+
+        container.innerHTML = '';
+        set.questions.forEach((q, qIndex) => {
+          const card = document.createElement('div');
+          card.id = `quiz-card-${set.id}-${q.id}`;
+          card.className = 'glass-card p-4 rounded-2xl border border-slate-800 space-y-3';
+
+          let optionsHtml = '';
+          q.options.forEach((opt, optIdx) => {
+            optionsHtml += `
+              <button onclick="handleQuizAnswer(${set.id}, ${q.id}, ${optIdx}, this)"
+                      class="quiz-opt-btn-${set.id}-${q.id} w-full text-left p-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-300 font-medium transition cursor-pointer flex items-center justify-between text-xs">
+                <span>${opt}</span>
+                <span class="quiz-opt-check font-bold"></span>
+              </button>
+            `;
+          });
+
+          card.innerHTML = `
+            <div class="flex items-start justify-between gap-2">
+              <div class="font-bold text-white text-xs leading-relaxed flex-1">${q.question}</div>
+              <!-- USER REQUIREMENT: A dedicated Solution button that opens solution in a POPUP modal -->
+              <button onclick="openSolutionPopup(${set.id}, ${q.id})"
+                      id="sol-btn-${set.id}-${q.id}"
+                      title="Click to view full step-by-step solution in a popup"
+                      class="px-2.5 py-1 rounded-xl bg-violet-950/70 hover:bg-violet-900 border border-violet-500/40 text-violet-300 hover:text-violet-100 text-[11px] font-bold flex items-center space-x-1 shrink-0 transition cursor-pointer shadow-sm">
+                <span>💡</span>
+                <span>Solution</span>
+              </button>
+            </div>
+            <div class="space-y-1.5">${optionsHtml}</div>
+            <div id="quiz-feedback-${set.id}-${q.id}" class="hidden p-2.5 rounded-xl text-[11px]"></div>
+          `;
+
+          container.appendChild(card);
+        });
+      });
+    }
+
+    function handleQuizAnswer(setId, qId, selectedIdx, btn) {
+      const key = `${setId}-${qId}`;
+      if (userQuizAnswers[key] !== undefined) return;
+      userQuizAnswers[key] = selectedIdx;
+
+      const set = quizSets.find(s => s.id === setId);
+      const q = set.questions.find(item => item.id === qId);
+      const isCorrect = (selectedIdx === q.correct);
+
+      const feedback = document.getElementById(`quiz-feedback-${setId}-${qId}`);
+      const card = document.getElementById(`quiz-card-${setId}-${qId}`);
+      const allBtns = card.querySelectorAll(`.quiz-opt-btn-${setId}-${qId}`);
+
+      allBtns.forEach((b, idx) => {
+        b.disabled = true;
+        if (idx === q.correct) {
+          b.classList.remove('bg-slate-950', 'border-slate-800');
+          b.classList.add('bg-emerald-950/60', 'border-emerald-500/60', 'text-emerald-300');
+          b.querySelector('.quiz-opt-check').textContent = '✓';
+        } else if (idx === selectedIdx && !isCorrect) {
+          b.classList.remove('bg-slate-950', 'border-slate-800');
+          b.classList.add('bg-rose-950/60', 'border-rose-500/60', 'text-rose-300');
+          b.querySelector('.quiz-opt-check').textContent = '✕';
+        }
+      });
+
+      feedback.classList.remove('hidden');
+      if (isCorrect) {
+        playSuccessTone();
+        feedback.className = 'p-2.5 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 text-[11px]';
+        feedback.innerHTML = `<strong>✓ Correct!</strong> Click 💡 Solution to view the popup walkthrough.`;
+      } else {
+        playWrongTone();
+        feedback.className = 'p-2.5 rounded-xl bg-rose-950/40 border border-rose-500/40 text-rose-300 text-[11px]';
+        feedback.innerHTML = `<strong>✕ Incorrect!</strong> Correct answer is <strong>${q.options[q.correct]}</strong>. Click 💡 Solution for the popup solution.`;
+      }
+
+      // Update quiz score counter
+      let solvedCount = 0;
+      set.questions.forEach(item => {
+        if (userQuizAnswers[`${setId}-${item.id}`] !== undefined) solvedCount++;
+      });
+      const scoreElem = document.getElementById(`quiz-score-${setId}`);
+      if (scoreElem) scoreElem.textContent = solvedCount;
+    }
+
+    // POPUP MODAL CONTROLS FOR SOLUTIONS
+    function openSolutionPopup(setId, qId) {
+      const set = quizSets.find(s => s.id === setId);
+      if (!set) return;
+      const q = set.questions.find(item => item.id === qId);
+      if (!q) return;
+
+      document.getElementById('modalQuizBadge').textContent = `${set.title} • Question ${q.id}`;
+      document.getElementById('modalQuizTitle').textContent = `Step-by-Step Teacher Solution`;
+      document.getElementById('modalQuestionText').textContent = q.question;
+      document.getElementById('modalCorrectOption').textContent = q.options[q.correct];
+      document.getElementById('modalExplanationContent').innerHTML = q.solution;
+
+      const modal = document.getElementById('solutionModal');
+      modal.classList.remove('hidden');
+
+      playPopupTone();
+
+      // Render math inside popup if KaTeX available
+      if (window.renderMathInElement) {
+        renderMathInElement(document.getElementById('modalExplanationContent'), {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    function closeSolutionPopup() {
+      const modal = document.getElementById('solutionModal');
+      modal.classList.add('hidden');
+    }
+
+    // Close on backdrop click
+    document.addEventListener('click', (e) => {
+      const modal = document.getElementById('solutionModal');
+      if (e.target === modal) {
+        closeSolutionPopup();
+      }
+    });
+
+    // Close on Escape key press
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeSolutionPopup();
+      }
+    });
+
+    // -------------------------------------------------------------------------
+    // Canvas Animation for Slide 0 (Jump vs Joined Continuity)
+    // -------------------------------------------------------------------------
+    let curveMode = 'discontinuous';
+    let animT = 0;
+
+    function switchCurveMode(mode) {
+      curveMode = mode;
+      const btnDisc = document.getElementById('btnCurveDisc');
+      const btnCont = document.getElementById('btnCurveCont');
+      const caption = document.getElementById('canvasCaption');
+
+      if (mode === 'discontinuous') {
+        btnDisc.className = 'px-2.5 py-1 rounded-lg text-xs font-bold bg-violet-600 text-white transition';
+        btnCont.className = 'px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition';
+        caption.textContent = 'Tracing Fig 5.1: Jump at x = 0 requires lifting pen!';
+      } else {
+        btnCont.className = 'px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-600 text-white transition';
+        btnDisc.className = 'px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition';
+        caption.textContent = 'Tracing Fig 5.2: Joined at (0, 1), drawn continuously in one stroke!';
+      }
+    }
+
+    function drawIntroCanvas() {
+      const canvas = document.getElementById('introCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width;
+      const h = canvas.height;
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Axes
+      ctx.strokeStyle = '#334155';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(40, h / 2);
+      ctx.lineTo(w - 20, h / 2); // X-axis
+      ctx.moveTo(w / 2, 20);
+      ctx.lineTo(w / 2, h - 20); // Y-axis
+      ctx.stroke();
+
+      // Axis labels
+      ctx.fillStyle = '#64748b';
+      ctx.font = '10px JetBrains Mono';
+      ctx.fillText('x', w - 16, h / 2 - 6);
+      ctx.fillText('y', w / 2 + 6, 26);
+      ctx.fillText('0', w / 2 - 12, h / 2 + 14);
+
+      const midX = w / 2;
+      const midY = h / 2;
+      const scaleX = 70;
+      const scaleY = 40;
+
+      animT = (animT + 0.02) % (Math.PI * 2);
+
+      if (curveMode === 'discontinuous') {
+        // Branch 1: x <= 0, y = 1
+        ctx.strokeStyle = '#f43f5e';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(midX - 2 * scaleX, midY - 1 * scaleY);
+        ctx.lineTo(midX, midY - 1 * scaleY);
+        ctx.stroke();
+
+        // Solid dot at (0, 1)
+        ctx.fillStyle = '#f43f5e';
+        ctx.beginPath();
+        ctx.arc(midX, midY - 1 * scaleY, 4.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Branch 2: x > 0, y = 2
+        ctx.strokeStyle = '#38bdf8';
+        ctx.beginPath();
+        ctx.moveTo(midX, midY - 2 * scaleY);
+        ctx.lineTo(midX + 2 * scaleX, midY - 2 * scaleY);
+        ctx.stroke();
+
+        // Open circle at (0, 2)
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 2.5;
+        ctx.fillStyle = '#020617';
+        ctx.beginPath();
+        ctx.arc(midX, midY - 2 * scaleY, 4.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        // Jump arrow and text
+        ctx.strokeStyle = '#a855f7';
+        ctx.setLineDash([3, 3]);
+        ctx.beginPath();
+        ctx.moveTo(midX, midY - 1 * scaleY);
+        ctx.lineTo(midX, midY - 2 * scaleY);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.fillStyle = '#c084fc';
+        ctx.fillText('Jump = 1', midX + 8, midY - 1.5 * scaleY);
+
+      } else {
+        // Continuous: y = 1 for x <= 0, y = 1 + x for x > 0
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(midX - 2 * scaleX, midY - 1 * scaleY);
+        ctx.lineTo(midX, midY - 1 * scaleY);
+        ctx.lineTo(midX + 1.5 * scaleX, midY - (1 + 1.5) * scaleY);
+        ctx.stroke();
+
+        // Solid dot at (0, 1)
+        ctx.fillStyle = '#10b981';
+        ctx.beginPath();
+        ctx.arc(midX, midY - 1 * scaleY, 4.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#34d399';
+        ctx.fillText('(0, 1) Joined', midX + 8, midY - 1 * scaleY + 12);
+      }
+
+      if (currentSlide === 0) {
+        requestAnimationFrame(drawIntroCanvas);
+      }
+    }
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', () => {
+      renderSlideCheckpoints();
+      renderAllQuizzes();
+      updateSlideUI();
+    });
+  </script>
+</body>
+</html>

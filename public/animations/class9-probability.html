@@ -1,0 +1,1977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCERT Class 9 Mathematics • Introduction to Probability Laboratory</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body);"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        @keyframes mouthMove {
+            0%, 100% { transform: scaleY(0.2); }
+            50% { transform: scaleY(1.1); }
+        }
+        .talking #teacherMouth {
+            animation: mouthMove 0.22s infinite alternate ease-in-out;
+            transform-origin: center bottom;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.78);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .glow-amber {
+            box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.35);
+        }
+        .glow-indigo {
+            box-shadow: 0 0 25px -5px rgba(99, 102, 241, 0.35);
+        }
+        .glow-emerald {
+            box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.35);
+        }
+        .glow-cyan {
+            box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.35);
+        }
+        @keyframes coinFlip {
+            0% { transform: rotateY(0deg) scale(1); }
+            50% { transform: rotateY(720deg) scale(1.2); }
+            100% { transform: rotateY(1440deg) scale(1); }
+        }
+        .animate-coin {
+            animation: coinFlip 0.6s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-amber-500 selection:text-white">
+
+    <!-- Header Navigation Bar -->
+    <header class="border-b border-slate-800 bg-slate-900/90 backdrop-blur-md sticky top-0 z-40 px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 via-indigo-600 to-cyan-500 flex items-center justify-center shadow-lg shadow-amber-500/25">
+                <i data-lucide="dice-5" class="w-6 h-6 text-white"></i>
+            </div>
+            <div>
+                <div class="flex items-center gap-2">
+                    <span class="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30">NCERT Class 9</span>
+                    <span class="text-xs text-slate-400">Chapter 15 • Competencies CG-6, C-6.2, CG-9</span>
+                </div>
+                <h1 class="text-base sm:text-lg font-extrabold text-white tracking-tight flex items-center gap-2">
+                    Introduction to Probability Laboratory
+                </h1>
+            </div>
+        </div>
+
+        <!-- Controls: Slide Counter, Prev/Next Buttons -->
+        <div class="flex items-center gap-2 sm:gap-3">
+            <div class="flex items-center bg-slate-800/80 rounded-lg p-1 border border-slate-700 text-xs font-medium">
+                <button id="prevBtn" onclick="window.navSlide(-1)" class="px-2.5 py-1.5 rounded hover:bg-slate-700 text-slate-200 disabled:opacity-30 disabled:pointer-events-none transition flex items-center gap-1">
+                    <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Prev</span>
+                </button>
+                <div class="px-3 py-1 font-mono text-amber-400 font-bold border-x border-slate-700 text-xs">
+                    Slide <span id="currentSlideNum">1</span> / 20
+                </div>
+                <button id="nextBtn" onclick="window.navSlide(1)" class="px-2.5 py-1.5 rounded hover:bg-slate-700 text-slate-200 disabled:opacity-30 disabled:pointer-events-none transition flex items-center gap-1">
+                    <span class="hidden sm:inline">Next</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- Slide Menu Quick Jump Dropdown -->
+            <div class="relative">
+                <button id="slideMenuBtn" onclick="window.toggleSlideMenu()" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 transition">
+                    <i data-lucide="grid" class="w-5 h-5"></i>
+                </button>
+                <div id="slideMenuDropdown" class="hidden absolute right-0 mt-2 w-72 max-h-96 overflow-y-auto glass-panel rounded-xl shadow-2xl p-2 z-50 border border-slate-700">
+                    <div class="text-xs font-bold text-slate-400 px-2 py-1 uppercase tracking-wider border-b border-slate-800 mb-1">Curriculum Navigator</div>
+                    <div id="slideListItems" class="space-y-1">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dynamic Content Grid -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-5">
+
+        <!-- Left Column: Pedagogical Knowledge, Formulas & Checkpoints (Col 1-5) -->
+        <div class="lg:col-span-5 flex flex-col gap-4">
+
+            <!-- Teacher Avatar Card with Audio Narration -->
+            <div class="glass-panel rounded-2xl p-4 border border-amber-500/20 relative overflow-hidden">
+                <div class="flex items-center gap-3.5">
+                    <!-- SVG Avatar -->
+                    <div id="avatarContainer" class="relative w-14 h-14 shrink-0 rounded-2xl bg-gradient-to-b from-amber-950 via-slate-900 to-slate-950 border border-amber-500/30 flex items-center justify-center shadow-inner overflow-hidden">
+                        <svg class="w-12 h-12" viewBox="0 0 100 100">
+                            <!-- Body / Shoulders -->
+                            <path d="M20,95 Q50,75 80,95 L80,100 L20,100 Z" fill="#d97706"/>
+                            <path d="M35,85 L50,92 L65,85 L50,98 Z" fill="#f59e0b"/>
+                            <!-- Neck -->
+                            <rect x="44" y="62" width="12" height="18" fill="#fbcfe8" rx="3"/>
+                            <!-- Head -->
+                            <ellipse cx="50" cy="45" rx="22" ry="24" fill="#fdf2f8"/>
+                            <!-- Hair back -->
+                            <path d="M26,45 Q24,20 50,18 Q76,20 74,45 Q75,65 68,70 Q72,40 50,28 Q28,40 32,70 Q25,65 26,45 Z" fill="#312e81"/>
+                            <!-- Hair bangs -->
+                            <path d="M30,35 Q50,22 70,35 Q60,25 50,26 Q40,25 30,35 Z" fill="#4338ca"/>
+                            <!-- Glasses -->
+                            <rect x="33" y="38" width="14" height="10" rx="3" fill="none" stroke="#1e1b4b" stroke-width="2"/>
+                            <rect x="53" y="38" width="14" height="10" rx="3" fill="none" stroke="#1e1b4b" stroke-width="2"/>
+                            <line x1="47" y1="43" x2="53" y2="43" stroke="#1e1b4b" stroke-width="2"/>
+                            <!-- Eyes -->
+                            <circle cx="40" cy="43" r="2.5" fill="#1e293b"/>
+                            <circle cx="60" cy="43" r="2.5" fill="#1e293b"/>
+                            <circle cx="41" cy="42" r="0.8" fill="#ffffff"/>
+                            <circle cx="61" cy="42" r="0.8" fill="#ffffff"/>
+                            <!-- Eyebrows -->
+                            <path d="M34,35 Q40,33 46,36" fill="none" stroke="#312e81" stroke-width="1.8" stroke-linecap="round"/>
+                            <path d="M54,36 Q60,33 66,35" fill="none" stroke="#312e81" stroke-width="1.8" stroke-linecap="round"/>
+                            <!-- Smile / Mouth -->
+                            <path id="teacherMouth" d="M44,57 Q50,62 56,57" fill="#be185d" stroke="#be185d" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <div id="speakingPulse" class="hidden absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-slate-900 animate-ping"></div>
+                        <div id="speakingDot" class="hidden absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-slate-900"></div>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-white tracking-wide">Prof. Sophia</span>
+                            <span id="speechStatus" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">Idle</span>
+                        </div>
+                        <p class="text-[11px] text-amber-300 truncate">Audio Companion • En-US Narration</p>
+                    </div>
+                </div>
+
+                <!-- Speech Controls -->
+                <div class="mt-3 pt-2.5 border-t border-slate-800 flex items-center justify-between gap-1.5">
+                    <button id="toggleSpeechBtn" class="flex-1 px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-md shadow-amber-600/30">
+                        <i data-lucide="volume-2" class="w-4 h-4"></i>
+                        <span id="speechBtnLabel">Explain Slide</span>
+                    </button>
+                    <button id="pauseSpeechBtn" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 disabled:opacity-30 disabled:pointer-events-none transition border border-slate-700">
+                        <i data-lucide="pause" class="w-4 h-4"></i>
+                    </button>
+                    <button id="stopSpeechBtn" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 disabled:opacity-30 disabled:pointer-events-none transition border border-slate-700">
+                        <i data-lucide="square" class="w-4 h-4"></i>
+                    </button>
+                    <select id="speechRateSelect" class="bg-slate-800 border border-slate-700 rounded-lg text-[11px] px-2 py-1 text-slate-300">
+                        <option value="0.85">0.85x</option>
+                        <option value="1.0" selected>1.0x</option>
+                        <option value="1.2">1.2x</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Slide Core Theory Card -->
+            <div class="glass-panel rounded-2xl p-5 border border-slate-800 flex-1 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                        <span id="slideCategoryText" class="text-xs font-bold uppercase tracking-wider text-amber-400 font-mono">Category</span>
+                        <span id="slideBadge" class="text-[11px] px-2 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-slate-300">Badge</span>
+                    </div>
+                    <h2 id="slideTitle" class="text-xl sm:text-2xl font-black text-white leading-tight mb-1">Slide Title</h2>
+                    <h3 id="slideSubtitle" class="text-xs sm:text-sm text-amber-300/90 font-medium mb-3">Subtitle</h3>
+                    <p id="slideSummary" class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">Summary text...</p>
+
+                    <!-- Key Bullet Points -->
+                    <div class="border-t border-slate-800 pt-3">
+                        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1.5">
+                            <i data-lucide="key" class="w-3.5 h-3.5 text-amber-400"></i>
+                            Key Concepts & Formulas
+                        </div>
+                        <ul id="slideKeyPoints" class="space-y-1.5 text-xs text-slate-300">
+                            <!-- Populated dynamically -->
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Progress Pill Bar -->
+                <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+                    <span>Progress: Slide <span id="slideProgressRatio">1 / 20</span></span>
+                    <div class="w-32 bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                        <div id="slideProgressBar" class="bg-gradient-to-r from-amber-500 via-indigo-500 to-cyan-500 h-1.5 rounded-full transition-all duration-300" style="width: 5%"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Column: Interactive Simulator & Live Laboratory (Col 6-12) -->
+        <div class="lg:col-span-7 flex flex-col gap-4">
+
+            <!-- Simulator Container -->
+            <div id="contentSlideContainer" class="flex flex-col gap-4">
+                <div class="glass-panel rounded-2xl p-4 sm:p-5 border border-slate-800 glow-amber">
+                    <div class="flex items-center justify-between border-b border-slate-800/80 pb-3 mb-4">
+                        <div class="flex items-center gap-2">
+                            <div class="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center">
+                                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                            </div>
+                            <h3 id="simulatorTitle" class="text-sm font-bold text-white tracking-wide">Interactive Laboratory</h3>
+                        </div>
+                        <span class="text-[11px] font-mono text-amber-400 px-2 py-0.5 rounded bg-amber-950/60 border border-amber-800/40">Real-time Simulation</span>
+                    </div>
+
+                    <!-- Simulator Canvas / Interactive Viewport -->
+                    <div id="simulatorViewport" class="min-h-[380px] flex flex-col justify-center items-center rounded-xl bg-slate-950/80 border border-slate-800/70 p-4 relative overflow-hidden">
+                        <!-- Rendered dynamically by active simulator function -->
+                    </div>
+                </div>
+
+                <!-- In-Slide Checkpoints (2 Interactive Questions per Slide) -->
+                <div class="glass-panel rounded-2xl p-4 sm:p-5 border border-slate-800">
+                    <div class="flex items-center gap-2 border-b border-slate-800 pb-2.5 mb-3">
+                        <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300">Concept Checkpoints</h4>
+                        <span class="text-[10px] text-slate-500 ml-auto">Immediate Feedback</span>
+                    </div>
+                    <div id="checkpointsContainer" class="space-y-4">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dedicated Quiz Challenge Container (Slides 17 to 20) -->
+            <div id="quizSlideContainer" class="hidden flex flex-col gap-4">
+                <div class="glass-panel rounded-2xl p-5 border border-indigo-500/30 glow-indigo">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-8 h-8 rounded-xl bg-indigo-600/30 text-indigo-400 border border-indigo-500/40 flex items-center justify-center">
+                                <i data-lucide="award" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h3 id="quizTitle" class="text-base font-extrabold text-white">Mastery Assessment</h3>
+                                <p class="text-xs text-slate-400">10 Comprehensive Questions with Step-by-Step Pop-up Solutions</p>
+                            </div>
+                        </div>
+                        <div id="quizScoreBadge" class="font-mono text-xs font-bold px-3 py-1 rounded-lg bg-slate-800 border border-slate-700 text-indigo-300">
+                            Score: <span id="quizScoreVal">0</span> / 10
+                        </div>
+                    </div>
+
+                    <!-- 10 Quiz Questions List -->
+                    <div id="quizQuestionsList" class="space-y-5 max-h-[640px] overflow-y-auto pr-1">
+                        <!-- Populated dynamically by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strict Last Slide Notice on Slide 20 -->
+            <div id="lastSlideNotice" class="hidden glass-panel rounded-2xl p-6 text-center border-2 border-emerald-500/40 bg-gradient-to-r from-emerald-950/40 via-slate-900 to-amber-950/40 shadow-xl shadow-emerald-950/30">
+                <div class="w-14 h-14 mx-auto rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 mb-3">
+                    <i data-lucide="check-check" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white">Congratulations on Completing Chapter 15!</h3>
+                <p class="text-base sm:text-lg text-emerald-300 font-semibold mt-1">You have reached the last slide of this chapter</p>
+                <p class="text-xs text-slate-400 mt-2 max-w-md mx-auto">You have mastered the foundations of randomness, the universal probability scale, empirical relative frequencies, the Law of Large Numbers, sample spaces, Laplace's theoretical ratio formula, complementary events, two-way contingency tables, dice sums, multi-coin binomial trees, sequential tree diagrams, sampling with/without replacement, 52-card combinatorics, geometric continuous probability, and Monte Carlo computational algorithms.</p>
+                <div class="mt-4 flex justify-center gap-3">
+                    <button onclick="window.navSlide(-19)" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold border border-slate-700 transition">
+                        Review Chapter From Start
+                    </button>
+                    <button onclick="window.navSlide(-3)" class="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold shadow-lg shadow-amber-600/30 transition">
+                        Retake Mastery Quizzes
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Step-by-Step Pop-up Solution Modal -->
+    <div id="solutionModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+        <div class="glass-panel w-full max-w-lg rounded-2xl p-5 border border-indigo-500/40 shadow-2xl space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div class="flex items-center gap-2 text-indigo-400 font-bold text-sm">
+                    <i data-lucide="book-open" class="w-4 h-4"></i>
+                    <span>Step-by-Step Solution & Pedagogical Explanation</span>
+                </div>
+                <button onclick="window.closeSolutionModal()" class="p-1 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div class="space-y-3 text-xs leading-relaxed text-slate-200">
+                <div>
+                    <span class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Question:</span>
+                    <p id="modalQuestionText" class="mt-0.5 font-medium text-white"></p>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800">
+                    <span class="text-amber-400 font-bold uppercase tracking-wider text-[10px]">Detailed Derivation:</span>
+                    <pre id="modalSolutionText" class="mt-1 font-mono text-[11px] text-slate-300 whitespace-pre-wrap leading-relaxed"></pre>
+                </div>
+            </div>
+            <div class="flex justify-end pt-2">
+                <button onclick="window.closeSolutionModal()" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition">
+                    Got It, Continue
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Script Data & Controllers -->
+    <script>
+        const SLIDES = [{"id": 1, "title": "Chance, Uncertainty & The Concept of Randomness", "subtitle": "From 17th Century Gambling Puzzles to Modern Mathematical Foundations of Uncertainty", "category": "Foundations of Probability", "badge": "CG-6 \u2022 Random Experiments", "summary": "Probability is the mathematical quantification of uncertainty and likelihood. In daily life, we constantly encounter unpredictable events\u2014'It will probably rain today', 'India has a high chance of winning the match', or 'I doubt he will pass'. A Deterministic Experiment is one where all conditions are fully known and the outcome is strictly predictable (e.g., heating pure water to 100\u00b0C at sea level always causes boiling). In contrast, a Random Experiment satisfies two cardinal criteria: (1) It has more than one possible outcome; and (2) It is impossible to predict the exact specific outcome in advance, even when performed under identical conditions. A single performance of a random experiment is called a Trial, and the result obtained is an Outcome. Elementary events are the simplest possible individual results of a trial.", "key_points": ["Random Experiment Criteria: Has multiple possible outcomes, and the specific outcome cannot be predicted in advance.", "Deterministic vs Random: Deterministic yields a fixed certain outcome; random produces stochastic variation.", "Trial & Outcome: A Trial is a single execution of the experiment; an Outcome is the specific result observed.", "Historical Roots: Founded in 1654 through correspondence between Blaise Pascal and Pierre de Fermat regarding gambling puzzles.", "Elementary Events: The atomic, indivisible outcomes of a single trial (e.g., getting a '4' on a rolled die)."], "narration": "Welcome to Introduction to Probability! In life, nothing is more constant than uncertainty. When a scientist heats water to one hundred degrees Celsius, it will definitely boil\u2014that is a deterministic experiment. But when you flip a coin or roll a die, you cannot predict the exact outcome in advance\u2014that is a random experiment. In 1654, two brilliant mathematicians, Blaise Pascal and Pierre de Fermat, created the mathematical laws of chance. Try our interactive experiment to explore the clear contrast between deterministic laws and genuine randomness!", "sim_title": "Interactive Randomness vs Determinism Lab & Streak Tester", "checkpoints": [{"q": "Which of the following is the defining characteristic of a random experiment?", "options": ["It always produces the exact same outcome every time", "It has more than one possible outcome and the specific outcome cannot be predicted beforehand", "It can only be performed once in a laboratory", "The outcomes are always numbers"], "ans": 1, "exp": "A random experiment must have more than one possible outcome, and its specific outcome cannot be predicted in advance even under identical experimental conditions.", "explanation": "A random experiment must have more than one possible outcome, and its specific outcome cannot be predicted in advance even under identical experimental conditions."}, {"q": "Which of the following is a deterministic experiment?", "options": ["Tossing an unbiased coin", "Drawing a card from a shuffled deck", "Dropping an iron ball in a vacuum to measure its gravitational acceleration", "Rolling a pair of standard dice"], "ans": 2, "exp": "Dropping a ball in a vacuum follows deterministic physics (g = 9.8 m/s\u00b2), producing a completely predictable result, unlike coin tosses, dice rolls, or card draws which are random experiments.", "explanation": "Dropping a ball in a vacuum follows deterministic physics (g = 9.8 m/s\u00b2), producing a completely predictable result, unlike coin tosses, dice rolls, or card draws which are random experiments."}]}, {"id": 2, "title": "The Universal Probability Scale: From Impossible to Certain", "subtitle": "Mapping Likelihood from Absolute Impossibility (0) to Inevitable Certainty (1)", "category": "Foundations of Probability", "badge": "C-6.2 \u2022 Probability Scale", "summary": "The probability of any event E, denoted by P(E), is a real number strictly bounded on the closed interval between 0 and 1: 0 \u2264 P(E) \u2264 1 (or equivalently 0% \u2264 P(E) \u2264 100%). Key Landmarks on the Probability Scale: (1) Impossible Event: An event that can never occur under any circumstance has P(E) = 0 (e.g., rolling an 8 on a standard 6-sided die, or the sun rising in the west); (2) Certain (or Sure) Event: An event that is guaranteed to occur in every single trial has P(E) = 1 (e.g., rolling a number less than 7 on a standard die); (3) Even Chance: An event with P(E) = 0.5 (or 1/2, 50%), where occurrence and non-occurrence are equally likely (e.g., getting Heads on a fair coin). Qualitative likelihood terms map systematically to this continuum: Impossible (0.0) \u2192 Highly Unlikely (0.1) \u2192 Unlikely (0.25) \u2192 Even Chance (0.5) \u2192 Likely (0.75) \u2192 Highly Likely (0.9) \u2192 Certain (1.0). A probability can NEVER be negative, nor can it ever exceed 1.", "key_points": ["The Fundamental Inequality: 0 \u2264 P(E) \u2264 1; probability is never negative and never greater than 1.", "Impossible Event: P(E) = 0; the event cannot occur under the defined experiment.", "Certain / Sure Event: P(E) = 1; the event is guaranteed to happen in every trial.", "Even Chance: P(E) = 0.5 (1/2 or 50%); equal likelihood of happening versus not happening.", "Equivalent Expressions: Can be represented interchangeably as fractions (3/4), decimals (0.75), or percentages (75%)."], "narration": "Every probability in the universe lives on a scale between zero and one! Zero means impossible\u2014like rolling an eight on a six-sided die. One means absolute certainty\u2014like rolling a number less than seven. Right in the center sits zero point five, an even fifty-fifty chance, like tossing heads on a fair coin. Notice that a probability can never be negative, and it can never be greater than one! Drag different real-world scenarios on our interactive probability scale to see how everyday language maps directly into mathematical values.", "sim_title": "The Interactive Probability Spectrum Slider & Verbal Mapper", "checkpoints": [{"q": "Which of the following numbers CANNOT represent the probability of an event?", "options": ["2/3", "-1.5", "15%", "0.7"], "ans": 1, "exp": "By the fundamental probability axiom, 0 \u2264 P(E) \u2264 1. A probability can never be negative (-1.5 < 0) or greater than 1.", "explanation": "By the fundamental probability axiom, 0 \u2264 P(E) \u2264 1. A probability can never be negative (-1.5 < 0) or greater than 1."}, {"q": "What is the probability of an impossible event?", "options": ["-1", "0", "0.5", "1"], "ans": 1, "exp": "An impossible event can never occur under any circumstances; hence its probability is identically 0.", "explanation": "An impossible event can never occur under any circumstances; hence its probability is identically 0."}]}, {"id": 3, "title": "Empirical (Experimental) Probability: Real-World Trials", "subtitle": "Estimating Probabilities from Observed Relative Frequencies in Actual Experiments", "category": "Empirical Probability", "badge": "C-6.2 \u2022 Empirical Trials", "summary": "Empirical Probability (also known as Experimental Probability) is determined by conducting actual physical trials and recording observed outcomes. It is defined as the relative frequency of the event: P_n(E) = (Number of trials in which event E occurred) / (Total number of trials conducted) = f_n / n. Unlike theoretical probability which relies on idealized symmetry, empirical probability reflects real-world data collection. Celebrated Historical Experiments: (1) Comte de Buffon (18th century): Tossed a coin 4,040 times, recording 2,048 Heads (Empirical P(H) = 2,048 / 4,040 \u2248 0.5069); (2) John Edmund Kerrich (1940s): While interned in Denmark during WWII, tossed a coin 10,000 times, recording 5,067 Heads (Empirical P(H) = 5,067 / 10,000 = 0.5067); (3) Karl Pearson: Tossed a coin 24,000 times, recording 12,012 Heads (Empirical P(H) = 12,012 / 24,000 = 0.5005). As the number of trials increases, empirical probability converges toward the true theoretical value.", "key_points": ["Empirical Probability Formula: P(E) = (Number of trials in which E happened) / (Total trials n).", "Data-Driven: Based strictly on recorded historical data, observations, or laboratory experiments.", "Sample Size Dependency: In small samples (e.g. n = 10), empirical probability can deviate significantly from 0.5.", "Historical Milestones: Buffon (4,040 tosses \u2192 0.5069), Kerrich (10,000 tosses \u2192 0.5067), Pearson (24,000 tosses \u2192 0.5005).", "Practical Application: Indispensable when theoretical symmetry is absent (e.g., weather forecasting, medical drug trials)."], "narration": "How do we find probabilities when we cannot calculate them purely from geometry or symmetry? We perform experiments! Empirical probability is the relative frequency: the number of times an event actually happened divided by the total number of trials. During World War Two, the mathematician John Kerrich was trapped in an internment camp. To pass the time, he tossed a coin ten thousand times, recording five thousand and sixty-seven heads! Watch his famous experiment come alive in our simulator as you flip coins and watch the empirical ratio update in real time.", "sim_title": "Live Kerrich & Buffon Coin Tossing Experiment & Relative Frequency Tracker", "checkpoints": [{"q": "A coin is tossed 500 times with the following frequencies: Head: 245, Tail: 255. What is the empirical probability of getting a Head?", "options": ["0.49", "0.50", "0.51", "0.52"], "ans": 0, "exp": "Empirical P(Head) = Number of Heads / Total Tosses = 245 / 500 = 49 / 100 = 0.49.", "explanation": "Empirical P(Head) = Number of Heads / Total Tosses = 245 / 500 = 49 / 100 = 0.49."}, {"q": "In a medical study, 160 out of 200 patients recovered after taking a new medication. What is the empirical probability that a patient will recover?", "options": ["0.60", "0.75", "0.80", "0.85"], "ans": 2, "exp": "Empirical P(Recovery) = Number of recoveries / Total patients = 160 / 200 = 16 / 20 = 4 / 5 = 0.80 (or 80%).", "explanation": "Empirical P(Recovery) = Number of recoveries / Total patients = 160 / 200 = 16 / 20 = 4 / 5 = 0.80 (or 80%)."}]}, {"id": 4, "title": "The Law of Large Numbers: Convergence to Theoretical Truth", "subtitle": "Jacob Bernoulli\u2019s 1713 Masterpiece \u2014 Why Randomness Becomes Orderly at Scale", "category": "Empirical Probability", "badge": "CG-9 \u2022 Law of Large Numbers", "summary": "The Law of Large Numbers (LLN), first rigorously proven by Swiss mathematician Jacob Bernoulli in his 1713 treatise Ars Conjectandi, establishes the bridge between empirical observation and theoretical truth. The Theorem: As the number of independent repetitions of a random experiment approaches infinity (n \u2192 \u221e), the empirical relative frequency of an event approaches its theoretical probability: lim_{n \u2192 \u221e} P_n(E) = P(E). In a small sample (say, n = 6 coin tosses), getting 5 Heads and 1 Tail (P_n(H) = 0.833) is not uncommon. However, over 10,000 tosses, random fluctuations cancel each other out, squeezing the relative frequency into an infinitesimally narrow band around 0.500. Crucial Warning \u2014 The Gambler's Fallacy: The LLN operates through dilution of past anomalies, NOT compensation. A coin has no memory; tossing 5 consecutive Heads does NOT increase the probability of getting Tails on the 6th toss!", "key_points": ["Bernoulli's Theorem (1713): Relative frequency converges to theoretical probability as sample size n grows large.", "Short-Term Chaos vs Long-Term Order: Small samples exhibit high variance; large samples demonstrate stable consistency.", "Dilution, Not Compensation: Rare streaks are diluted by thousands of future trials, not corrected by 'due' outcomes.", "The Gambler's Fallacy: Falsely believing past random independent outcomes influence future independent trials.", "Foundation of Actuarial Science: Enables insurance firms and casinos to operate with near-deterministic financial security."], "narration": "Here is the great wonder of probability: individual trials are unpredictable chaos, but millions of trials produce mathematical certainty! This is Jacob Bernoulli's Law of Large Numbers. If you flip a coin four times, you might easily get four heads. But if you flip it ten thousand times, the percentage of heads will stay within a whisker of fifty percent! Beware the gambler's fallacy: the coin has no brain or memory. A streak of heads doesn't mean tails is due next! Watch our convergence graph smooth out into a razor-thin line as you increase the trial count.", "sim_title": "Interactive Law of Large Numbers Oscillation & Convergence Graph", "checkpoints": [{"q": "A gambler tosses a fair coin 6 times and gets Heads every single time. What is the probability that the 7th toss will land on Tails?", "options": ["1/7", "1/2", "6/7", "Almost 1.0 (Tails is 'due')"], "ans": 1, "exp": "Each coin toss is an independent event. The coin has no memory of past outcomes. The probability of getting Tails on the 7th toss remains strictly 1/2 (the belief that Tails is 'due' is the Gambler's Fallacy).", "explanation": "Each coin toss is an independent event. The coin has no memory of past outcomes. The probability of getting Tails on the 7th toss remains strictly 1/2 (the belief that Tails is 'due' is the Gambler's Fallacy)."}, {"q": "According to the Law of Large Numbers, what happens to the difference between empirical relative frequency and theoretical probability as trials n increase?", "options": ["The difference increases indefinitely", "The difference remains constant", "The difference approaches zero", "The difference oscillates wildly between 0 and 1"], "ans": 2, "exp": "As the number of trials n approaches infinity, the empirical relative frequency converges toward the theoretical probability, so their difference approaches 0.", "explanation": "As the number of trials n approaches infinity, the empirical relative frequency converges toward the theoretical probability, so their difference approaches 0."}]}, {"id": 5, "title": "Sample Space & Equally Likely Outcomes", "subtitle": "Enumerating the Universe of Possibilities (S) and Verifying Physical Symmetry", "category": "Theoretical Probability", "badge": "C-6.2 \u2022 Sample Space", "summary": "The Sample Space (denoted by S or \u03a9) of a random experiment is the complete set of all possible distinct outcomes. The total number of outcomes is denoted by n(S). An Event E is any subset of the sample space (E \u2286 S). Outcomes are said to be Equally Likely if, given the physical symmetry and conditions of the experiment, no outcome has any preference or greater likelihood of occurring over any other. Examples of Equally Likely Outcomes: (1) Tossing a balanced, symmetrical coin: S = {H, T}, with n(S) = 2, where P(H) = P(T) = 1/2; (2) Rolling a fair 6-sided die: S = {1, 2, 3, 4, 5, 6}, with n(S) = 6, where each face has probability 1/6. Counter-Examples (Non-Equally Likely): (a) Dropping a thumbtack: landing point-up vs point-down are not equally likely due to asymmetrical center of mass; (b) A basketball player attempting a free throw (Success vs Failure) depends on skill, not 50/50 symmetry.", "key_points": ["Sample Space (S): The set containing every possible distinct outcome of a random experiment.", "Event Definition: Any subset E \u2286 S; an event occurs if the realized outcome belongs to E.", "Equally Likely Condition: All elementary outcomes possess identical probability due to geometric/physical symmetry.", "Fair vs Biased: Symmetrical coins/dice yield equally likely outcomes; weighted or asymmetric objects do not.", "Prerequisite for Classical Probability: Laplace's theoretical probability formula ONLY applies when outcomes are equally likely!"], "narration": "Before we calculate any probability, we must map out the entire universe of what can happen\u2014this set is called the Sample Space, S. For a single coin, S is Heads and Tails. For a six-sided die, S has the numbers one through six. When a die is fair and symmetrical, every single face has the exact same chance of appearing\u2014we say these outcomes are equally likely. But be careful: dropping a thumbtack or shooting a basketball does NOT have equally likely outcomes! Test fair dice against loaded dice in our sample space lab to see the difference.", "sim_title": "Interactive Sample Space Visualizer & Symmetry / Fairness Tester", "checkpoints": [{"q": "Which of the following random experiments produces equally likely outcomes?", "options": ["Tossing a fair, balanced, unbiased coin", "A student attempting a true/false exam question without studying", "Dropping a thumbtack to see if it lands point-up or point-down", "A bowler taking a wicket on the next delivery"], "ans": 0, "exp": "A fair, balanced coin possesses physical and geometric symmetry, ensuring that landing on Heads or Tails has the exact same likelihood (1/2 each).", "explanation": "A fair, balanced coin possesses physical and geometric symmetry, ensuring that landing on Heads or Tails has the exact same likelihood (1/2 each)."}, {"q": "What is the sample space S when rolling a standard fair six-sided die?", "options": ["S = {0, 1, 2, 3, 4, 5, 6}", "S = {1, 2, 3, 4, 5, 6}", "S = {even, odd}", "S = {prime, composite}"], "ans": 1, "exp": "A standard die has six faces numbered 1, 2, 3, 4, 5, and 6. The complete sample space is S = {1, 2, 3, 4, 5, 6}, with n(S) = 6.", "explanation": "A standard die has six faces numbered 1, 2, 3, 4, 5, and 6. The complete sample space is S = {1, 2, 3, 4, 5, 6}, with n(S) = 6."}]}, {"id": 6, "title": "Theoretical (Classical) Probability: The Laplace Model", "subtitle": "Pierre-Simon Laplace's 1812 Ratio Formulation for Symmetrical Random Systems", "category": "Theoretical Probability", "badge": "C-6.2 \u2022 Classical Probability", "summary": "The Theoretical Probability (or Classical Probability) of an event E, formulated by Pierre-Simon Laplace in 1812, is defined as the ratio of the number of outcomes favorable to E to the total number of equally likely outcomes in the sample space S: P(E) = n(E) / n(S) = (Number of outcomes favorable to E) / (Total number of possible equally likely outcomes). Standard Computation Algorithm: (1) Step 1: Write down the complete sample space S and count total outcomes n(S); (2) Step 2: Identify and list all elementary outcomes that satisfy event E and count them: n(E); (3) Step 3: Compute the fraction P(E) = n(E) / n(S) and simplify to lowest terms. Example: When rolling a single fair die (n(S) = 6): (a) Event of getting a prime number E = {2, 3, 5} \u2192 n(E) = 3 \u2192 P(Prime) = 3/6 = 1/2; (b) Event of getting a number greater than 4 E = {5, 6} \u2192 n(E) = 2 \u2192 P(X > 4) = 2/6 = 1/3; (c) Event of getting an odd number E = {1, 3, 5} \u2192 n(E) = 3 \u2192 P(Odd) = 3/6 = 1/2.", "key_points": ["Laplace's Formula: P(E) = n(E) / n(S); valid ONLY when all outcomes in S are equally likely.", "Favorable Outcomes n(E): The count of elementary outcomes that satisfy the defining criteria of event E.", "Total Sample Space Size n(S): The total count of all elementary outcomes in the experiment.", "Fraction Simplification: Probabilities should be expressed as reduced fractions (e.g., 3/6 \u2192 1/2) or exact decimals.", "No Empirical Data Needed: Computed entirely a priori using mathematical reasoning and symmetry before any trial occurs."], "narration": "In 1812, the French mathematician Pierre-Simon Laplace gave us the classical formula for probability: P of E equals n of E divided by n of S. That is simply the number of winning outcomes divided by the total number of possible outcomes! Take rolling a die: the total outcomes are six. How many are prime numbers? Two, three, and five\u2014that's three winning outcomes! So the probability is three over six, which simplifies to one half. Use our classical probability tool to select any event on a die or spinner and watch the favorable fraction calculate instantly!", "sim_title": "Classical Probability Calculator & Venn Diagram Circle Engine", "checkpoints": [{"q": "A standard fair die is rolled once. What is the theoretical probability of obtaining a prime number?", "options": ["1/6", "1/3", "1/2", "2/3"], "ans": 2, "exp": "Sample space S = {1, 2, 3, 4, 5, 6} (n(S) = 6). Prime numbers in S are {2, 3, 5} (n(E) = 3). Notice 1 is NOT prime! P(Prime) = 3 / 6 = 1/2.", "explanation": "Sample space S = {1, 2, 3, 4, 5, 6} (n(S) = 6). Prime numbers in S are {2, 3, 5} (n(E) = 3). Notice 1 is NOT prime! P(Prime) = 3 / 6 = 1/2."}, {"q": "A box contains 5 red balls, 3 green balls, and 2 blue balls. A ball is drawn at random. What is the probability that the ball drawn is green?", "options": ["3/10", "1/3", "3/8", "1/2"], "ans": 0, "exp": "Total balls n(S) = 5 + 3 + 2 = 10. Favorable green balls n(E) = 3. Therefore, P(Green) = n(E) / n(S) = 3/10 (or 0.3).", "explanation": "Total balls n(S) = 5 + 3 + 2 = 10. Favorable green balls n(E) = 3. Therefore, P(Green) = n(E) / n(S) = 3/10 (or 0.3)."}]}, {"id": 7, "title": "Complementary Events & The Fundamental Sum Property", "subtitle": "Event E and 'Not E' (\u0112) \u2014 The Invariant Conservation Rule P(E) + P(\u0112) = 1", "category": "Theoretical Probability", "badge": "C-6.2 \u2022 Complementary Events", "summary": "For every event E defined on a sample space S, there exists a unique Complementary Event, denoted by \u0112, E', or 'not E'. The complement \u0112 consists of all outcomes in S that do NOT belong to E. Because an outcome must either belong to E or belong to \u0112, but cannot belong to both, E and \u0112 are mutually exclusive (E \u2229 \u0112 = \u2205) and collectively exhaustive (E \u222a \u0112 = S). The Fundamental Complement Theorem: P(E) + P(\u0112) = 1, which provides the indispensable working formulas: P(\u0112) = 1 - P(E) and P(E) = 1 - P(\u0112). The Power of Complementary Thinking: In many complex multi-stage problems, computing the probability of 'at least one success' directly requires calculating and summing dozens of combinations. By using the complement rule, P(At least one) = 1 - P(None), the problem reduces to a single trivial multiplication! Sum of All Elementary Events: If e_1, e_2, ..., e_k are all the elementary events of a trial, then \u2211_{i=1}^k P(e_i) = 1.", "key_points": ["Complementary Event Definition: \u0112 ('not E') contains all outcomes in sample space S that are not in E.", "The Fundamental Identity: P(E) + P(\u0112) = 1; the sum of probabilities of an event and its complement is always 1.", "Subtraction Rule: P(\u0112) = 1 - P(E); allows instantaneous computation of negative events.", "The 'At Least One' Strategy: P(At least one success) = 1 - P(Zero successes); simplifies complex problems.", "Elementary Exhaustion: The sum of the probabilities of all elementary outcomes in a sample space equals exactly 1."], "narration": "Here is one of the most powerful shortcuts in all of mathematics: the Complement Rule! For any event E, 'not E' is its exact opposite. Either E happens, or not E happens\u2014there is no third option! Therefore, P of E plus P of not E always equals exactly one. If the probability that it rains today is zero point seven, the probability that it does NOT rain is one minus zero point seven, which is zero point three. When faced with a complicated problem like 'at least one', always flip it upside down and find the complement! Test this balance in our complementary pie engine.", "sim_title": "Interactive Pie Slice & Complementary Balance Engine", "checkpoints": [{"q": "If the probability of winning a game is 0.68, what is the probability of losing the game (assuming no ties)?", "options": ["0.22", "0.32", "0.42", "0.52"], "ans": 1, "exp": "Losing is the complementary event of winning. P(Losing) = 1 - P(Winning) = 1 - 0.68 = 0.32.", "explanation": "Losing is the complementary event of winning. P(Losing) = 1 - P(Winning) = 1 - 0.68 = 0.32."}, {"q": "A bag contains letters spelling the word 'PROBABILITY'. A letter is chosen at random. What is the probability that the letter chosen is NOT a vowel?", "options": ["4/11", "7/11", "5/11", "6/11"], "ans": 1, "exp": "Total letters in 'PROBABILITY' = 11. Vowels are O, A, I, I (4 vowels). P(Vowel) = 4/11. P(Not a vowel) = 1 - P(Vowel) = 1 - 4/11 = 7/11.", "explanation": "Total letters in 'PROBABILITY' = 11. Vowels are O, A, I, I (4 vowels). P(Vowel) = 4/11. P(Not a vowel) = 1 - P(Vowel) = 1 - 4/11 = 7/11."}]}, {"id": 8, "title": "Compound Experiments & Two-Way Contingency Tables", "subtitle": "Cross-Tabulating Multi-Attribute Categorical Data to Compute Joint and Marginal Chances", "category": "Compound Probability", "badge": "CG-6 \u2022 Contingency Tables", "summary": "When an experiment or observational study involves two distinct categorical variables simultaneously, a Two-Way Contingency Table (Cross-Tabulation Table) organizes data into rows and columns. Rows represent levels of Attribute A (e.g., Grade 9 vs Grade 10), columns represent levels of Attribute B (e.g., Preferred Activity: Sports, Music, Coding), and internal cells hold joint frequencies f_{ij}. Key Structural Features: (1) Marginal Totals: The sum of each row represents the marginal total for that row category, and the sum of each column represents the marginal total for that column category; (2) Grand Total (N): The sum of all cell frequencies (or the sum of all row marginals) equals the total population N; (3) Probability Calculations: (a) Joint Probability (both A_i and B_j occur): P(A_i \u2229 B_j) = f_{ij} / N; (b) Marginal Probability (any outcome in row A_i): P(A_i) = Row Total / N. Contingency tables are universally used in public health (clinical trials, disease vs exposure) and demographic analytics.", "key_points": ["Contingency Table Architecture: Rows and columns cross-classify experimental units across two attributes simultaneously.", "Joint Frequency Cells: Each internal cell (i, j) represents the count of units possessing BOTH characteristics.", "Marginal Totals: Row totals and column totals yield the overall distribution of each single variable independently.", "Joint Probability Formula: P(Row i AND Column j) = Cell Count f_{ij} / Grand Total N.", "Marginal Probability Formula: P(Row i) = Row Total / Grand Total N; P(Column j) = Column Total / Grand Total N."], "narration": "What happens when an experiment has two characteristics at the same time? We use a Two-Way Contingency Table! Imagine surveying two hundred students across Grade Nine and Grade Ten about their favorite activity: Sports, Music, or Coding. Rows show the grades, columns show the activities, and each cell shows how many students fit both criteria. Want to know the probability of picking a Grade Nine student who loves Coding? Just take that specific cell and divide by the grand total! Try editing cell numbers in our interactive studio to see joint and marginal probabilities update live.", "sim_title": "Interactive Two-Way Contingency Table Studio & Joint Probability Calculator", "checkpoints": [{"q": "In a school of 100 students, 60 are in Grade 9 (of which 25 play football) and 40 are in Grade 10 (of which 15 play football). If a student is picked at random, what is the probability of selecting a Grade 9 student who plays football?", "options": ["0.15", "0.25", "0.40", "0.60"], "ans": 1, "exp": "Grand total N = 100. Favorable joint count for (Grade 9 AND plays football) = 25. Therefore, Joint P = 25 / 100 = 0.25 (or 1/4).", "explanation": "Grand total N = 100. Favorable joint count for (Grade 9 AND plays football) = 25. Therefore, Joint P = 25 / 100 = 0.25 (or 1/4)."}, {"q": "Referring to the same table of 100 students (25 Grade 9 football players + 15 Grade 10 football players = 40 total football players), what is the probability that a randomly chosen student plays football?", "options": ["0.25", "0.35", "0.40", "0.50"], "ans": 2, "exp": "Total football players (marginal column total) = 25 + 15 = 40. P(Football) = Column Total / Grand Total = 40 / 100 = 0.40.", "explanation": "Total football players (marginal column total) = 25 + 15 = 40. P(Football) = Column Total / Grand Total = 40 / 100 = 0.40."}]}, {"id": 9, "title": "Rolling Two Dice: The 6\u00d76 Grid & Sum Distributions", "subtitle": "The 36 Equally Likely Ordered Pairs and the Symmetrical Sum Probability Pyramid", "category": "Compound Probability", "badge": "C-6.2 \u2022 Dice Distributions", "summary": "When two standard fair six-sided dice (e.g., a Blue die and a Red die) are rolled simultaneously, the compound sample space S consists of ordered pairs (x, y), where x is the outcome on the first die and y on the second die: S = {(1,1), (1,2), ..., (6,6)}. By the Fundamental Counting Principle, total possible outcomes are n(S) = 6 \u00d7 6 = 36. Crucial Distinction: The ordered pair (1, 2) is distinct from (2, 1); order matters! The Sum of the Two Dice (X = x + y) can take any integer value from 2 (minimum: 1+1) to 12 (maximum: 6+6). The Sum Frequency Pyramid: Sum 2: {(1,1)} \u2192 1/36; Sum 3: {(1,2),(2,1)} \u2192 2/36; Sum 4: {(1,3),(2,2),(3,1)} \u2192 3/36; Sum 5: {(1,4),(2,3),(3,2),(4,1)} \u2192 4/36; Sum 6: {(1,5),(2,4),(3,3),(4,2),(5,1)} \u2192 5/36; Sum 7 (Apex Peak): {(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)} \u2192 6/36 = 1/6; Sum 8: 5/36; Sum 9: 4/36; Sum 10: 3/36; Sum 11: 2/36; Sum 12: 1/36. Doublets (identical faces): {(1,1),(2,2),(3,3),(4,4),(5,5),(6,6)} \u2192 6/36 = 1/6.", "key_points": ["Total Sample Space: n(S) = 6 \u00d7 6 = 36 equally likely ordered pairs (x, y).", "Order Matters: (1, 5) and (5, 1) are distinct outcomes; treating them as one is a classic error.", "Range of Sums: Sum can vary from 2 to 12; distribution is perfectly symmetric around 7.", "Most Probable Sum: Sum = 7 has 6 favorable outcomes, giving maximum probability P(Sum 7) = 6/36 = 1/6.", "Doublets Probability: Six possible doublets {(1,1), ..., (6,6)}, giving P(Doublet) = 6/36 = 1/6."], "narration": "When you roll two dice together, how many outcomes are possible? Six times six equals thirty-six! Always remember: rolling a one on the first die and a six on the second is completely distinct from rolling a six first and a one second. Look at the thirty-six cells in our grid. If you sum the two numbers, seven is the champion! There are six different ways to roll a seven, making it the most likely sum with a probability of one in six. Click any sum in our six-by-six matrix to light up its diagonal line and view its exact probability!", "sim_title": "Interactive 6\u00d76 Dual Dice Matrix & Symmetrical Sum Pyramid", "checkpoints": [{"q": "Two fair dice are rolled simultaneously. What is the probability of getting a doublet (both dice showing the same number)?", "options": ["1/36", "1/12", "1/6", "1/4"], "ans": 2, "exp": "Doublets are {(1,1), (2,2), (3,3), (4,4), (5,5), (6,6)}, giving 6 favorable outcomes out of 36. P(Doublet) = 6/36 = 1/6.", "explanation": "Doublets are {(1,1), (2,2), (3,3), (4,4), (5,5), (6,6)}, giving 6 favorable outcomes out of 36. P(Doublet) = 6/36 = 1/6."}, {"q": "What is the probability of obtaining a sum of 9 when rolling two fair dice?", "options": ["1/9", "1/12", "5/36", "1/6"], "ans": 0, "exp": "Favorable outcomes for sum 9 are: (3,6), (4,5), (5,4), (6,3) \u2192 4 outcomes. P(Sum 9) = 4 / 36 = 1/9.", "explanation": "Favorable outcomes for sum 9 are: (3,6), (4,5), (5,4), (6,3) \u2192 4 outcomes. P(Sum 9) = 4 / 36 = 1/9."}]}, {"id": 10, "title": "Tossing Multiple Coins: Systematic Encodings & Binomial Trees", "subtitle": "Binary Exponential Growth 2^k and Overcoming D'Alembert's Historical Fallacy", "category": "Compound Probability", "badge": "CG-9 \u2022 Binary Trees", "summary": "When multiple coins are tossed (or one coin is tossed repeatedly k times), the total number of outcomes grows exponentially as n(S) = 2^k. (1) One Coin (k=1): S = {H, T}, n(S) = 2^1 = 2; (2) Two Coins (k=2): S = {HH, HT, TH, TT}, n(S) = 2^2 = 4. Notice that HT (Head first, Tail second) and TH (Tail first, Head second) are two distinct outcomes! D'Alembert's Famous Mistake (1754): The French encyclopedist Jean le Rond d'Alembert argued that tossing two coins has only 3 outcomes (Two Heads, Two Tails, One of Each) and claimed each had probability 1/3. He failed to see that 'One of Each' encompasses TWO distinct ordered outcomes {HT, TH}, making its true probability 2/4 = 1/2!; (3) Three Coins (k=3): S = {HHH, HHT, HTH, HTT, THH, THT, TTH, TTT}, n(S) = 2^3 = 8. The distribution of heads follows Pascal's triangle coefficients: 0 Heads (1), 1 Head (3), 2 Heads (3), 3 Heads (1).", "key_points": ["Exponential Sample Space: For k coins, total sample space size is n(S) = 2^k.", "Two Coins: S = {HH, HT, TH, TT} (4 outcomes). P(Exactly 1 Head) = 2/4 = 1/2.", "Three Coins: S = {HHH, HHT, HTH, HTT, THH, THT, TTH, TTT} (8 outcomes).", "D'Alembert's Error (1754): Erroneously treated {HT, TH} as a single outcome, claiming P = 1/3 instead of 1/2.", "Pascal's Triangle Connection: Outcome combinations for k coins match row k of Pascal's triangle (e.g. 1, 3, 3, 1 for k=3)."], "narration": "Flip one coin: two outcomes. Flip two coins: four outcomes. Flip three coins: eight outcomes! Every coin doubles the possibilities\u2014two to the power of k. In 1754, the famous French philosopher Jean d'Alembert made a legendary blunder: he claimed that tossing two coins had only three outcomes: two heads, two tails, or one of each, so each was one-third. But he forgot that 'one of each' can happen two ways: head-tail OR tail-head! So the true probability is two out of four, or one half! Explore all two to the k branches in our coin permutation tree.", "sim_title": "Multi-Coin Permutation Explorer & Pascal Pyramid Visualizer", "checkpoints": [{"q": "Three unbiased coins are tossed together. What is the probability of getting exactly two Heads?", "options": ["1/8", "1/4", "3/8", "1/2"], "ans": 2, "exp": "Total outcomes n(S) = 2\u00b3 = 8. Favorable outcomes with exactly 2 Heads are: {HHT, HTH, THH} (3 outcomes). P(Exactly 2 Heads) = 3/8.", "explanation": "Total outcomes n(S) = 2\u00b3 = 8. Favorable outcomes with exactly 2 Heads are: {HHT, HTH, THH} (3 outcomes). P(Exactly 2 Heads) = 3/8."}, {"q": "Two coins are tossed simultaneously. What is the probability of getting at least one Head?", "options": ["1/4", "1/2", "3/4", "1"], "ans": 2, "exp": "Sample space S = {HH, HT, TH, TT} (4 outcomes). Favorable outcomes with at least one Head are {HH, HT, TH} (3 outcomes). Alternatively: P(At least 1 H) = 1 - P(0 H) = 1 - P(TT) = 1 - 1/4 = 3/4.", "explanation": "Sample space S = {HH, HT, TH, TT} (4 outcomes). Favorable outcomes with at least one Head are {HH, HT, TH} (3 outcomes). Alternatively: P(At least 1 H) = 1 - P(0 H) = 1 - P(TT) = 1 - 1/4 = 3/4."}]}, {"id": 11, "title": "Tree Diagrams: Multi-Stage Sequential Pathways", "subtitle": "Visualising Successive Stages with Branch Multiplication and Terminal Path Addition", "category": "Compound Probability", "badge": "C-6.2 \u2022 Tree Diagrams", "summary": "A Tree Diagram is a powerful graphic tool used to systematically break down and calculate probabilities for multi-stage sequential random experiments. It begins at a single root node and branches outward into chronological decision or chance stages. Foundational Principles of Tree Diagrams: (1) Branch Probabilities: Each branch emanating from a node is labeled with its respective conditional probability; the sum of probabilities of all branches leaving any single node MUST equal exactly 1; (2) The Multiplication Principle (Along a Branch Pathway): The probability of traversing a complete path from root to a specific terminal leaf node equals the product of the probabilities along all segments of that branch pathway: P(Path) = P(Stage 1) \u00d7 P(Stage 2 | Stage 1); (3) The Addition Principle (Across Alternative Terminal Pathways): To find the probability of a compound event comprising multiple distinct terminal leaf nodes, sum the individual probabilities of those pathways: P(E) = \u2211 P(Path_i); (4) The Sum of All Terminal Leaf Probabilities across the entire tree is always identically 1.0.", "key_points": ["Structure: Root node branches outward sequentially through successive temporal stages.", "Node Conservation: Probabilities on all branches exiting any single junction must sum to 1.", "Multiplication Along Paths: P(Branch 1 AND Branch 2) = P(Branch 1) \u00d7 P(Branch 2).", "Addition Across Paths: P(Event E) = Sum of all individual path probabilities that satisfy E.", "Total Tree Conservation: The sum of all terminal pathway probabilities across the tree equals 1.000."], "narration": "When an experiment happens in steps\u2014like weather today followed by the outcome of tomorrow's soccer match\u2014a Tree Diagram is your best friend! Start at the root and trace each possibility along its branches. Here is the golden rule: multiply along the path to find the probability of that sequence, and add across the endpoints to combine different paths! Notice that the probabilities leaving any branch point must sum to one. Use our interactive tree builder to adjust branch odds and watch terminal probabilities compute automatically!", "sim_title": "Interactive Multi-Stage Tree Diagram Builder & Path Multiplier", "checkpoints": [{"q": "On a tree diagram, if Stage 1 branches into Path A with probability 0.4, and from Path A Stage 2 branches into Path B with probability 0.3, what is the probability of the combined path (A and B)?", "options": ["0.12", "0.70", "0.35", "0.012"], "ans": 0, "exp": "By the multiplication principle along a path: P(A and B) = P(A) \u00d7 P(B) = 0.4 \u00d7 0.3 = 0.12.", "explanation": "By the multiplication principle along a path: P(A and B) = P(A) \u00d7 P(B) = 0.4 \u00d7 0.3 = 0.12."}, {"q": "What must the sum of probabilities on all branches emanating from any single node in a valid probability tree equal?", "options": ["0", "0.5", "1.0", "Depends on the number of branches"], "ans": 2, "exp": "The branches leaving any single node represent a complete, mutually exclusive and exhaustive set of outcomes for that stage; hence their probabilities must sum to exactly 1.0.", "explanation": "The branches leaving any single node represent a complete, mutually exclusive and exhaustive set of outcomes for that stage; hence their probabilities must sum to exactly 1.0."}]}, {"id": 12, "title": "Sampling With vs Without Replacement", "subtitle": "Independent Stationary Trials vs Dependent Dynamic Depletion in Finite Populations", "category": "Compound Probability", "badge": "CG-9 \u2022 Replacement Dynamics", "summary": "When selecting multiple items sequentially from a finite population (such as drawing marbles from an urn or cards from a deck), the experimental protocol fundamentally dictates whether successive trials are independent or dependent: (1) Sampling WITH Replacement: After each draw, the selected item is inspected, recorded, and returned to the container before the next draw. Characteristics: (a) The total population size N and composition remain identical on every draw; (b) Successive draws are strictly Independent Events: P(2nd draw) is completely unaffected by the 1st draw; (2) Sampling WITHOUT Replacement: Once an item is drawn, it is set aside and NOT returned. Characteristics: (a) Both the total population count (N decreases to N - 1) and the count of the chosen category decrease by 1; (b) Successive draws are Dependent Events. Classical Urn Example: An urn contains 5 Red and 3 Blue marbles (Total N = 8): (i) With Replacement: P(Two Reds) = (5/8) \u00d7 (5/8) = 25/64 \u2248 0.3906; (ii) Without Replacement: P(Two Reds) = (5/8) \u00d7 (4/7) = 20/56 = 5/14 \u2248 0.3571.", "key_points": ["With Replacement (Independent): Item is returned; sample size N and category proportions stay constant.", "Without Replacement (Dependent): Item is removed; both total size N and category count decrease by 1.", "Urn Formula (With): P(Red then Red) = (R / N) \u00d7 (R / N).", "Urn Formula (Without): P(Red then Red) = (R / N) \u00d7 ((R - 1) / (N - 1)).", "Industrial Application: Quality control batch testing (testing a fuse destroys it, mandating without-replacement sampling)."], "narration": "Pay close attention to these three words: 'with' or 'without' replacement! If you pull a marble from a bag, look at it, and put it back, the bag stays unchanged for the next turn\u2014that's independent sampling with replacement. But if you keep the marble in your pocket, the bag now has one fewer marble! The odds for the next turn have changed. In quality control testing, if testing a light bulb destroys it, you can never put it back! Toggle between with and without replacement in our urn simulator to watch the fractions update dynamically.", "sim_title": "Interactive Marbles Urn: Replacement Switcher & Dependency Engine", "checkpoints": [{"q": "A bag contains 6 red balls and 4 blue balls (total 10). Two balls are drawn successively WITHOUT replacement. What is the probability that both balls drawn are red?", "options": ["36/100 (9/25)", "30/100 (3/10)", "30/90 (1/3)", "24/90 (4/15)"], "ans": 2, "exp": "First draw: P(1st Red) = 6/10. Since it is NOT replaced, 9 balls remain with 5 red balls. Second draw: P(2nd Red) = 5/9. Combined P = (6/10) \u00d7 (5/9) = 30/90 = 1/3.", "explanation": "First draw: P(1st Red) = 6/10. Since it is NOT replaced, 9 balls remain with 5 red balls. Second draw: P(2nd Red) = 5/9. Combined P = (6/10) \u00d7 (5/9) = 30/90 = 1/3."}, {"q": "If the same two balls are drawn WITH replacement (each ball returned before the next draw), what is the probability that both balls are red?", "options": ["9/25", "1/3", "4/15", "1/2"], "ans": 0, "exp": "With replacement, both draws are independent with 6 red out of 10 total. P = (6/10) \u00d7 (6/10) = 36/100 = 9/25 (or 0.36).", "explanation": "With replacement, both draws are independent with 6 red out of 10 total. P = (6/10) \u00d7 (6/10) = 36/100 = 9/25 (or 0.36)."}]}, {"id": 13, "title": "Standard 52-Card Deck: Anatomy & Combinatorial Chances", "subtitle": "Deconstructing Suits, Ranks, Court Face Cards, and Compound Selection Rules", "category": "Compound Probability", "badge": "C-6.2 \u2022 Playing Cards", "summary": "A standard deck of playing cards contains exactly 52 cards divided into 4 suits of 13 cards each, providing a rich, symmetrical discrete sample space (n(S) = 52). Complete Anatomical Breakdown: (1) Colors: 26 Red Cards (13 Hearts \u2665, 13 Diamonds \u2666) and 26 Black Cards (13 Spades \u2660, 13 Clubs \u2663); (2) Ranks per Suit: Ace, 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King; (3) Face Cards (Court Cards): Kings, Queens, and Jacks possess illustrated human faces: 3 per suit \u00d7 4 suits = 12 Face Cards total (6 Red Face Cards, 6 Black Face Cards); (4) Number (Pip) Cards: 2 through 10 = 9 ranks \u00d7 4 suits = 36 Number Cards total; (5) Aces: Exactly 4 Aces in the deck (2 Red Aces, 2 Black Aces; an Ace is NOT a face card); (6) Key Probability Landmarks: (a) P(Ace) = 4/52 = 1/13; (b) P(Face Card) = 12/52 = 3/13; (c) P(Red King) = 2/52 = 1/26; (d) P(Black Card or a Queen) = (26 + 2) / 52 = 28/52 = 7/13.", "key_points": ["Deck Total: n(S) = 52 cards; partitioned into 26 Red (Hearts, Diamonds) and 26 Black (Spades, Clubs).", "Suits: 4 suits (Spades \u2660, Clubs \u2663, Hearts \u2665, Diamonds \u2666), each containing exactly 13 cards.", "Face Cards (Court Cards): Exactly 12 cards (4 Kings, 4 Queens, 4 Jacks); 6 are red and 6 are black.", "Aces: Exactly 4 Aces in the deck (not classified as face cards).", "Non-Face Cards: 52 - 12 = 40 cards (36 number cards + 4 aces)."], "narration": "Playing cards have been the mathematician's favorite playground for centuries! A standard deck has exactly fifty-two cards, split fifty-fifty into twenty-six red cards and twenty-six black cards. There are four suits: hearts, diamonds, spades, and clubs. Each suit has thirteen cards. The twelve cards with human pictures\u2014kings, queens, and jacks\u2014are called Face Cards. Note that an ace is NOT a face card! If you draw one card at random, the chance of a face card is twelve out of fifty-two, or three in thirteen. Explore our full fifty-two card interactive table to illuminate any card combination!", "sim_title": "Interactive 52-Card Deck Grid & Probability Filter Engine", "checkpoints": [{"q": "One card is drawn from a well-shuffled deck of 52 cards. What is the probability of getting a face card?", "options": ["1/13", "3/13", "4/13", "12/52"], "ans": 1, "exp": "There are 12 face cards (4 Jacks, 4 Queens, 4 Kings) in a 52-card deck. P(Face Card) = 12 / 52 = 3/13.", "explanation": "There are 12 face cards (4 Jacks, 4 Queens, 4 Kings) in a 52-card deck. P(Face Card) = 12 / 52 = 3/13."}, {"q": "What is the probability of drawing either a King or a Queen from a standard deck of 52 cards?", "options": ["1/13", "2/13", "1/26", "4/13"], "ans": 1, "exp": "There are 4 Kings and 4 Queens in the deck, giving 4 + 4 = 8 favorable cards. P(King or Queen) = 8 / 52 = 2/13.", "explanation": "There are 4 Kings and 4 Queens in the deck, giving 4 + 4 = 8 favorable cards. P(King or Queen) = 8 / 52 = 2/13."}]}, {"id": 14, "title": "Geometric (Continuous) Probability: Length & Area Models", "subtitle": "Extending Probability from Discrete Counting to Continuous Metric Spaces", "category": "Continuous Probability", "badge": "CG-9 \u2022 Geometric Probability", "summary": "In many physical scenarios, outcomes cannot be counted discretely because the sample space is an uncountably infinite continuum of points in space or time. In such cases, we use Geometric (Continuous) Probability, where probability is proportional to geometric measure (length, area, or volume): (1) 1-Dimensional Length Model: For a point chosen uniformly at random along a line segment L, the probability that it falls inside sub-segment l is: P(E) = Length(l) / Length(L); (2) 2-Dimensional Area Model: For a point landing uniformly at random inside a planar region of total area A, the probability that it lands inside a specific target sub-region of area a is: P(E) = Area(a) / Area(A). Classical Target Example: A circular dartboard has radius R (Area = \u03c0R\u00b2). A circular bullseye at the center has radius r (Area = \u03c0r\u00b2). If a dart hits the board at random, P(Hitting Bullseye) = (\u03c0r\u00b2) / (\u03c0R\u00b2) = (r / R)\u00b2. Notice that the constant \u03c0 cancels out, leaving pure quadratic scaling of the radius ratio!", "key_points": ["Continuous Measure: Used when outcomes form an uncountably infinite continuum (time intervals, spatial areas).", "1D Length Formula: P(E) = Length of favorable interval / Total length of sample space interval.", "2D Area Formula: P(E) = Area of target region / Total area of sample space region.", "Dartboard Principle: P(Bullseye) = (\u03c0r\u00b2) / (\u03c0R\u00b2) = (r/R)\u00b2; independent of units or scaling.", "Uniform Density Assumption: Assumes points land with uniform, equal likelihood across every unit of area."], "narration": "What if you are throwing a dart at a circular target? You can't count individual points because there are infinite points on the board! This brings us to Geometric Probability. Instead of counting outcomes, we measure lengths and areas! The probability of hitting the bullseye is simply the area of the small bullseye circle divided by the total area of the entire board. Notice that pi cancels out completely\u2014the probability depends purely on the square of the radius ratio! Try throwing virtual darts in our interactive archery simulator to watch continuous geometric probability in action.", "sim_title": "Interactive Archery Dartboard & Geometric Area Calculator", "checkpoints": [{"q": "A dart is thrown at a square board of side 20 cm. Inside the board is a circular bullseye of radius 7 cm. What is the probability that the dart lands inside the circular bullseye? (Use \u03c0 = 22/7)", "options": ["0.250", "0.385", "0.450", "0.500"], "ans": 1, "exp": "Area of square board = 20 \u00d7 20 = 400 cm\u00b2. Area of circular bullseye = \u03c0r\u00b2 = (22/7) \u00d7 7 \u00d7 7 = 154 cm\u00b2. P(Bullseye) = 154 / 400 = 0.385 (or 38.5%).", "explanation": "Area of square board = 20 \u00d7 20 = 400 cm\u00b2. Area of circular bullseye = \u03c0r\u00b2 = (22/7) \u00d7 7 \u00d7 7 = 154 cm\u00b2. P(Bullseye) = 154 / 400 = 0.385 (or 38.5%)."}, {"q": "A phone call arrives uniformly at random between 2:00 PM and 3:00 PM (a 60-minute window). What is the probability that the call arrives between 2:15 PM and 2:35 PM?", "options": ["1/4", "1/3", "1/2", "2/5"], "ans": 1, "exp": "Total interval length = 60 minutes. Favorable interval length = 2:35 - 2:15 = 20 minutes. P = 20 / 60 = 1/3.", "explanation": "Total interval length = 60 minutes. Favorable interval length = 2:35 - 2:15 = 20 minutes. P = 20 / 60 = 1/3."}]}, {"id": 15, "title": "Computational Thinking: Monte Carlo Simulations & Random Seeds", "subtitle": "Stanislaw Ulam & John von Neumann\u2019s Algorithmic Revolution \u2014 Solving Equations by Chance", "category": "Computational Thinking", "badge": "CG-9 \u2022 Monte Carlo", "summary": "In computational science, Monte Carlo Methods are algorithms that solve deterministic mathematical and physical problems through massive repeated pseudo-random sampling. Invented during the Manhattan Project by Stanislaw Ulam and John von Neumann (named after the Monte Carlo Casino in Monaco), these methods harness computational thinking: (1) Estimating Pi (\u03c0) by Chance: Inscribe a quarter circle of radius r inside a square of side r. Area of quarter circle = (\u03c0 r\u00b2) / 4; Area of square = r\u00b2. The theoretical ratio of areas is \u03c0 / 4. A computer generates N pairs of random coordinates (x, y) uniformly distributed between 0 and 1. By the Pythagorean theorem, a point lies inside the circle if x\u00b2 + y\u00b2 \u2264 1. If N_in points land inside the curve, then N_in / N \u2248 \u03c0 / 4, yielding the computational formula: \u03c0 \u2248 4 \u00d7 (N_in / N); (2) Pseudo-Random Number Generators (PRNGs): Computers generate deterministic sequences of numbers that mimic statistical randomness using algorithmic seeds.", "key_points": ["Monte Carlo Concept: Solving complex deterministic problems through massive repeated random computational sampling.", "Estimating Pi Formula: \u03c0 \u2248 4 \u00d7 (Points inside quarter circle N_in) / (Total random points N).", "Pythagorean In-Circle Test: An (x, y) coordinate pair lies inside the quarter circle if and only if x\u00b2 + y\u00b2 \u2264 1.", "Algorithmic Convergence: Accuracy improves proportional to 1 / \u221aN; running 100,000 trials yields high precision.", "Modern Applications: Spacecraft orbital modeling, climate change projections, financial portfolio risk analysis."], "narration": "Can you calculate the digits of Pi just by throwing thousands of random darts? Yes! During the Manhattan Project, mathematicians Stanislaw Ulam and John von Neumann invented the Monte Carlo method. Imagine a square with a quarter circle inside it. The ratio of their areas is pi over four! A computer tosses thousands of random points into the square. Test whether each point falls inside the curve using x squared plus y squared less than or equal to one. Four times the inside fraction gives you pi! Click our simulator to fire thousands of random points and watch pi emerge before your eyes.", "sim_title": "Interactive Monte Carlo Pi Estimator & Dartboard Simulation", "checkpoints": [{"q": "In a Monte Carlo simulation to estimate \u03c0, 1,000 random points are generated inside a unit square. Exactly 785 points fall inside the quarter circle (x\u00b2 + y\u00b2 \u2264 1). What is the estimated value of \u03c0?", "options": ["3.00", "3.14", "3.20", "3.28"], "ans": 1, "exp": "Monte Carlo formula: \u03c0 \u2248 4 \u00d7 (N_in / N_total) = 4 \u00d7 (785 / 1000) = 4 \u00d7 0.785 = 3.14.", "explanation": "Monte Carlo formula: \u03c0 \u2248 4 \u00d7 (N_in / N_total) = 4 \u00d7 (785 / 1000) = 4 \u00d7 0.785 = 3.14."}, {"q": "Why do computers use 'Pseudo-Random' Number Generators (PRNGs) rather than purely physical random generators for scientific simulations?", "options": ["They are slower than physical coin tossing", "They allow simulations to be precisely reproduced and debugged using the same random seed", "They always produce the number 0", "They cannot handle decimal numbers"], "ans": 1, "exp": "PRNGs use mathematical algorithms with a seed value, ensuring that scientific simulations can be identically reproduced, verified, and debugged by other researchers.", "explanation": "PRNGs use mathematical algorithms with a seed value, ensuring that scientific simulations can be identically reproduced, verified, and debugged by other researchers."}]}, {"id": 16, "title": "Probability in Real Life: Risk Analysis, Weather & Decision Trees", "subtitle": "Navigating Atmospheric Forecasting, Medical Diagnostics, and Expected Monetary Value", "category": "Decision-Making Strategy", "badge": "C-6.2 \u2022 Real-World Risk", "summary": "Probability is the premier decision-making instrument used by actuaries, meteorologists, doctors, and financial analysts to evaluate risk under uncertainty: (1) Weather Forecasting: A '70% chance of rain' does not mean it will rain over 70% of the city, nor that it will rain for 70% of the day. It means that given identical atmospheric pressure and humidity measurements in historical records, precipitation occurred on 70 out of 100 occasions; (2) Medical Diagnostics & False Positives: A diagnostic test with 99% accuracy can still yield surprising results in rare diseases due to base-rate probabilities; (3) Expected Monetary Value (EMV): In business investments, Expected Value represents the long-run average outcome: EV = \u2211 (P_i \u00d7 V_i), where P_i is the probability and V_i is the financial payoff of outcome i; (4) Insurance Actuarial Science: Premiums are calculated by multiplying probability of damage by repair costs plus administrative margins.", "key_points": ["Meteorology Definition: '70% probability of rain' means rain occurred in 70 of 100 historically identical atmospheric states.", "Expected Value Formula: EV = \u2211 (Probability P_i \u00d7 Monetary Value V_i); guides rational risk-reward decisions.", "Insurance Pricing: Actuaries price premiums by matching expected payout liabilities: Premium = P(Accident) \u00d7 Claim Cost.", "Medical Diagnostic Risk: Evaluating test sensitivity vs disease prevalence to prevent misinterpreting false positives.", "Synthesis of Unit: Probability equips citizens to replace emotional superstition with rigorous, evidence-based reasoning."], "narration": "When the morning news says there is a seventy percent chance of rain, what does that actually mean? It means out of one hundred days in history with the exact same temperature, pressure, and humidity, it rained seventy times! Insurance companies use probability to set car policy prices, doctors use it to interpret diagnostic tests, and financial investors use it to calculate Expected Value. Probability is not just an exam topic\u2014it is your intellectual armor against superstition and misleading claims! Explore our real-world decision tree in the simulator.", "sim_title": "Interactive Real-World Decision Tree & Risk Payoff Analyzer", "checkpoints": [{"q": "An investor faces a venture with two possible outcomes: a 60% chance of making \u20b950,000 profit and a 40% chance of losing \u20b920,000. What is the Expected Monetary Value (EV) of this venture?", "options": ["\u20b918,000", "\u20b922,000", "\u20b926,000", "\u20b930,000"], "ans": 1, "exp": "EV = (P_1 \u00d7 V_1) + (P_2 \u00d7 V_2) = (0.60 \u00d7 \u20b950,000) + (0.40 \u00d7 -\u20b920,000) = \u20b930,000 - \u20b98,000 = \u20b922,000.", "explanation": "EV = (P_1 \u00d7 V_1) + (P_2 \u00d7 V_2) = (0.60 \u00d7 \u20b950,000) + (0.40 \u00d7 -\u20b920,000) = \u20b930,000 - \u20b98,000 = \u20b922,000."}, {"q": "What does a weather meteorologist mean when stating an '80% Probability of Precipitation'?", "options": ["It will rain continuously for 80% of the day", "80% of the geographic area will be covered in water", "In 100 historical days with identical atmospheric indicators, rain was recorded on 80 days", "There is an 80% chance the meteorologist made a mistake"], "ans": 2, "exp": "Probability of precipitation reflects historical frequency: under the exact atmospheric conditions observed today, rain occurred on 80 out of 100 occasions in meteorological records.", "explanation": "Probability of precipitation reflects historical frequency: under the exact atmospheric conditions observed today, rain occurred on 80 out of 100 occasions in meteorological records."}]}];
+        const QUIZZES = [{"id": 1, "title": "Mastery Challenge 1: Probability Scale, Empirical Trials & LLN", "badge": "Quiz 1 \u2022 Foundations & Scale", "questions": [{"q": "1. Which of the following values can NEVER be the probability of an event?", "options": ["0.001", "4/5", "-0.2", "1.0"], "ans": 2, "solution": "Step 1: By the fundamental probability axiom, the probability of any event E satisfies 0 \u2264 P(E) \u2264 1.\nStep 2: A negative number such as -0.2 violates this rule.\nStep 3: Therefore, -0.2 cannot represent a probability."}, {"q": "2. In a statistical experiment, a tire manufacturing company tracked 1,000 tires before they needed replacement: 20 tires lasted < 4,000 km, 210 lasted 4,000 to 9,000 km, 325 lasted 9,001 to 14,000 km, and 445 lasted > 14,000 km. What is the empirical probability that a tire will last more than 9,000 km?", "options": ["0.445", "0.535", "0.770", "0.980"], "ans": 2, "solution": "Step 1: Tires lasting > 9,000 km include the (9,001 to 14,000 km) bracket and the (> 14,000 km) bracket.\nStep 2: Favorable count = 325 + 445 = 770 tires.\nStep 3: Total tires = 1,000.\nStep 4: Empirical P = 770 / 1,000 = 0.770 (or 77%)."}, {"q": "3. The probability of an event that is certain to occur is:", "options": ["0", "0.5", "1", "Infinity"], "ans": 2, "solution": "Step 1: A certain (or sure) event is guaranteed to happen in every single trial.\nStep 2: Its favorable outcomes equal the entire sample space: n(E) = n(S).\nStep 3: P(E) = n(S) / n(S) = 1."}, {"q": "4. A coin is tossed 1,000 times and Head occurs 455 times. What is the empirical probability of getting a Tail?", "options": ["0.455", "0.500", "0.545", "0.555"], "ans": 2, "solution": "Step 1: Number of Tails = Total tosses - Number of Heads = 1,000 - 455 = 545.\nStep 2: Empirical P(Tail) = 545 / 1,000 = 0.545."}, {"q": "5. According to the Law of Large Numbers, as the number of trials in a coin-tossing experiment increases toward infinity, the relative frequency of heads:", "options": ["Approaches 1.0", "Approaches 0.5", "Oscillates uncontrollably", "Approaches 0"], "ans": 1, "solution": "Step 1: The Law of Large Numbers states that empirical relative frequency converges to theoretical probability as n \u2192 \u221e.\nStep 2: For a fair coin, theoretical P(Head) = 0.5.\nStep 3: Hence, the relative frequency converges to 0.5."}, {"q": "6. A player rolls a fair six-sided die 5 times and gets a '6' on every single roll. What is the probability of getting a '6' on the 6th roll?", "options": ["1/6", "1/36", "5/6", "(1/6)\u2076"], "ans": 0, "solution": "Step 1: Each roll of a fair die is an independent event.\nStep 2: The die has no physical mechanism or memory of prior outcomes.\nStep 3: The probability on the 6th roll remains exactly 1/6."}, {"q": "7. In a survey of 364 children aged 19-36 months, 91 were found to be receiving supplementary nutrition. What is the empirical probability that a randomly chosen child is NOT receiving supplementary nutrition?", "options": ["0.25", "0.50", "0.75", "0.80"], "ans": 2, "solution": "Step 1: Children receiving nutrition = 91. P(Receiving) = 91 / 364 = 1/4 = 0.25.\nStep 2: Children NOT receiving nutrition = 364 - 91 = 273.\nStep 3: P(Not receiving) = 273 / 364 = 3/4 = 0.75."}, {"q": "8. If an event has a probability of 0.005, its likelihood is best described qualitatively as:", "options": ["Impossible", "Highly Unlikely", "Even Chance", "Likely"], "ans": 1, "solution": "Step 1: P = 0 corresponds to Impossible.\nStep 2: P = 0.005 is strictly greater than 0 but extremely close to 0 (0.5% chance).\nStep 3: It is best described as 'Highly Unlikely'."}, {"q": "9. In John Kerrich's famous 10,000 coin tosses during WWII, he recorded 5,067 Heads. What was his observed empirical probability of Heads?", "options": ["0.5000", "0.5067", "0.5670", "0.4933"], "ans": 1, "solution": "Step 1: Empirical P = Favorable outcomes / Total trials.\nStep 2: P = 5,067 / 10,000 = 0.5067."}, {"q": "10. An experiment has only two possible outcomes, A and B. If P(A) = 0.63, what is P(B)?", "options": ["0.27", "0.37", "0.47", "0.63"], "ans": 1, "solution": "Step 1: Since A and B are the only outcomes, they are complementary: P(A) + P(B) = 1.\nStep 2: P(B) = 1 - P(A) = 1 - 0.63 = 0.37."}]}, {"id": 2, "title": "Mastery Challenge 2: Theoretical Probability, Sample Spaces & Complements", "badge": "Quiz 2 \u2022 Theoretical & Complements", "questions": [{"q": "11. A single fair die is rolled. What is the theoretical probability of getting a number strictly greater than 2?", "options": ["1/3", "1/2", "2/3", "5/6"], "ans": 2, "solution": "Step 1: Sample space S = {1, 2, 3, 4, 5, 6} (n(S) = 6).\nStep 2: Favorable outcomes strictly > 2 are {3, 4, 5, 6} (4 outcomes).\nStep 3: P(X > 2) = 4/6 = 2/3."}, {"q": "12. In a lottery, there are 10 prizes and 25 blank tickets. What is the probability of winning a prize when drawing one ticket at random?", "options": ["10/25", "2/7", "5/7", "10/35"], "ans": 1, "solution": "Step 1: Total tickets n(S) = 10 (prizes) + 25 (blanks) = 35.\nStep 2: Favorable winning tickets n(E) = 10.\nStep 3: P(Winning) = 10 / 35 = 2/7."}, {"q": "13. If P(E) = 0.05, what is the probability of the complementary event 'not E' (P(\u0112))?", "options": ["0.05", "0.50", "0.90", "0.95"], "ans": 3, "solution": "Step 1: Complement rule: P(\u0112) = 1 - P(E).\nStep 2: P(\u0112) = 1 - 0.05 = 0.95."}, {"q": "14. A bag contains 3 red balls, 5 black balls, and 4 white balls. A ball is drawn at random. What is the probability that the ball drawn is NOT black?", "options": ["5/12", "7/12", "1/2", "3/4"], "ans": 1, "solution": "Step 1: Total balls n(S) = 3 + 5 + 4 = 12.\nStep 2: Black balls = 5 \u2192 P(Black) = 5/12.\nStep 3: P(Not black) = 1 - P(Black) = 1 - 5/12 = 7/12 (or (3 red + 4 white)/12 = 7/12)."}, {"q": "15. A number x is chosen at random from the numbers -3, -2, -1, 0, 1, 2, 3. What is the probability that |x| < 2?", "options": ["2/7", "3/7", "4/7", "5/7"], "ans": 1, "solution": "Step 1: Sample space has 7 numbers: {-3, -2, -1, 0, 1, 2, 3} (n(S) = 7).\nStep 2: |x| < 2 means -2 < x < 2.\nStep 3: Favorable values are {-1, 0, 1} (3 numbers).\nStep 4: P(|x| < 2) = 3/7."}, {"q": "16. Which of the following conditions is required for Laplace's classical formula P(E) = n(E) / n(S) to be valid?", "options": ["The number of trials must be greater than 1,000", "All outcomes in the sample space must be equally likely", "The sample space must be infinite", "The probability of E must equal 0.5"], "ans": 1, "solution": "Step 1: Laplace's ratio definition relies fundamentally on symmetry.\nStep 2: It is mathematically valid if and only if all elementary outcomes in S are equally likely."}, {"q": "17. A letter is chosen at random from the word 'MATHEMATICS'. What is the probability that the letter chosen is 'M'?", "options": ["1/11", "2/11", "3/11", "4/11"], "ans": 1, "solution": "Step 1: Total letters in 'MATHEMATICS' = 11 (M-A-T-H-E-M-A-T-I-C-S).\nStep 2: The letter 'M' appears 2 times.\nStep 3: P('M') = 2/11."}, {"q": "18. A box contains 90 discs numbered 1 to 90. If one disc is drawn at random, what is the probability that it bears a perfect square number?", "options": ["1/10", "9/90", "1/9", "8/90"], "ans": 0, "solution": "Step 1: Total discs n(S) = 90.\nStep 2: Perfect squares from 1 to 90 are: 1, 4, 9, 16, 25, 36, 49, 64, 81 (9 numbers: 1\u00b2 through 9\u00b2).\nStep 3: P(Perfect Square) = 9 / 90 = 1/10 (or 0.1)."}, {"q": "19. The sum of the probabilities of all elementary events of an experiment is:", "options": ["0", "0.5", "1", "Depends on the number of events"], "ans": 2, "solution": "Step 1: Elementary events partition the sample space completely without overlap.\nStep 2: By the axiom of total probability, \u2211 P(e_i) = P(S) = 1."}, {"q": "20. What is the probability of rolling a number less than or equal to 6 on a standard six-sided die?", "options": ["5/6", "1", "0", "6/5"], "ans": 1, "solution": "Step 1: All faces on a die are {1, 2, 3, 4, 5, 6}.\nStep 2: Every single face satisfies 'less than or equal to 6' (6 favorable outcomes).\nStep 3: P = 6/6 = 1 (this is a Certain Event)."}]}, {"id": 3, "title": "Mastery Challenge 3: Dice, Coins, Tree Diagrams & Cards", "badge": "Quiz 3 \u2022 Compound Systems", "questions": [{"q": "21. Two fair dice are rolled simultaneously. What is the probability that the sum of the numbers appearing on the two dice is 7?", "options": ["1/12", "1/6", "5/36", "7/36"], "ans": 1, "solution": "Step 1: Total outcomes for two dice n(S) = 6 \u00d7 6 = 36.\nStep 2: Outcomes with sum 7 are: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1) \u2192 6 outcomes.\nStep 3: P(Sum 7) = 6/36 = 1/6."}, {"q": "22. Two fair dice are rolled. What is the probability that the sum of the numbers is at least 10?", "options": ["1/6", "1/12", "5/36", "1/4"], "ans": 0, "solution": "Step 1: 'At least 10' means sum = 10, 11, or 12.\nStep 2: Sum 10: (4,6), (5,5), (6,4) [3]; Sum 11: (5,6), (6,5) [2]; Sum 12: (6,6) [1].\nStep 3: Total favorable = 3 + 2 + 1 = 6 outcomes.\nStep 4: P(Sum \u2265 10) = 6/36 = 1/6."}, {"q": "23. Three fair coins are tossed simultaneously. What is the probability of getting at most two Heads?", "options": ["3/8", "1/2", "5/8", "7/8"], "ans": 3, "solution": "Step 1: Total outcomes for 3 coins n(S) = 2\u00b3 = 8.\nStep 2: 'At most 2 Heads' means 0, 1, or 2 Heads (all outcomes except 3 Heads {HHH}).\nStep 3: Using complement rule: P(At most 2 H) = 1 - P(3 H) = 1 - 1/8 = 7/8."}, {"q": "24. One card is drawn at random from a standard 52-card deck. What is the probability of drawing a black face card?", "options": ["3/52", "6/52 (3/26)", "12/52 (3/13)", "1/2"], "ans": 1, "solution": "Step 1: Total face cards = 12 (6 red, 6 black).\nStep 2: Black face cards are Jack, Queen, King of Spades, and Jack, Queen, King of Clubs (6 cards).\nStep 3: P(Black Face Card) = 6/52 = 3/26."}, {"q": "25. From a standard pack of 52 cards, all four Kings are removed. A card is then drawn at random from the remaining cards. What is the probability of drawing an Ace?", "options": ["4/52", "4/48 (1/12)", "1/13", "3/48"], "ans": 1, "solution": "Step 1: After removing 4 Kings, remaining cards n(S') = 52 - 4 = 48 cards.\nStep 2: All 4 Aces remain intact in the deck.\nStep 3: P(Ace) = 4 / 48 = 1/12."}, {"q": "26. What was Jean le Rond d'Alembert's famous 1754 error when analyzing the toss of two coins?", "options": ["He believed coin tosses were deterministic", "He treated {HT, TH} as a single outcome, falsely claiming P(one head, one tail) was 1/3 instead of 1/2", "He claimed tails was impossible", "He thought two coins had 8 outcomes"], "ans": 1, "solution": "Step 1: D'Alembert listed only 3 outcomes: two heads, two tails, and one of each.\nStep 2: He failed to realize that 'one of each' comprises two distinct ordered outcomes (HT and TH).\nStep 3: This caused him to incorrectly claim the probability was 1/3 instead of 2/4 = 1/2."}, {"q": "27. In a 2-stage tree diagram, the probability of rain on Day 1 is 0.6. If it rains, the probability of school closing is 0.8. If it does not rain, school closing is 0.1. What is the probability that it rains AND school closes?", "options": ["0.48", "0.56", "0.14", "0.08"], "ans": 0, "solution": "Step 1: Along the branch (Rain \u2192 Closes), multiply the probabilities.\nStep 2: P(Rain AND Closes) = P(Rain) \u00d7 P(Closes | Rain) = 0.6 \u00d7 0.8 = 0.48."}, {"q": "28. An urn contains 4 red and 6 green marbles (total 10). Two marbles are drawn one after another WITHOUT replacement. What is the probability that the first is red and the second is green?", "options": ["24/100", "24/90 (4/15)", "20/90", "16/90"], "ans": 1, "solution": "Step 1: First draw: P(1st Red) = 4/10.\nStep 2: Since it is NOT replaced, 9 marbles remain, of which 6 are green. P(2nd Green) = 6/9.\nStep 3: Joint P = (4/10) \u00d7 (6/9) = 24/90 = 4/15."}, {"q": "29. Two dice are rolled. What is the probability that the product of the two numbers is 12?", "options": ["1/9", "4/36", "1/6", "5/36"], "ans": 0, "solution": "Step 1: Pairs (x, y) with product x \u00d7 y = 12 are: (2,6), (3,4), (4,3), (6,2) \u2192 4 pairs.\nStep 2: P(Product 12) = 4/36 = 1/9."}, {"q": "30. A card is drawn from a 52-card deck. What is the probability that it is a Spade OR an Ace?", "options": ["13/52", "16/52 (4/13)", "17/52", "1/4"], "ans": 1, "solution": "Step 1: There are 13 Spades and 4 Aces.\nStep 2: The Ace of Spades is shared by both (counted twice).\nStep 3: Favorable cards = 13 (Spades) + 3 (other Aces) = 16 cards.\nStep 4: P(Spade or Ace) = 16/52 = 4/13."}]}, {"id": 4, "title": "Mastery Challenge 4: Two-Way Tables, Geometric Probability & Monte Carlo", "badge": "Quiz 4 \u2022 Advanced Synthesis", "questions": [{"q": "31. A rectangular field has dimensions 60 m \u00d7 40 m. Inside the field is a circular pond of radius 7 m. A model airplane crashes randomly into the field. What is the probability that it crashes into the pond? (Use \u03c0 = 22/7)", "options": ["154/2400 \u2248 0.064", "154/1200 \u2248 0.128", "49/2400", "77/1200"], "ans": 0, "solution": "Step 1: Total area of rectangular field = 60 \u00d7 40 = 2,400 m\u00b2.\nStep 2: Area of circular pond = \u03c0r\u00b2 = (22/7) \u00d7 7 \u00d7 7 = 154 m\u00b2.\nStep 3: Geometric P(Pond) = 154 / 2,400 = 77 / 1,200 \u2248 0.0642 (or 6.42%)."}, {"q": "32. In a Monte Carlo experiment to estimate \u03c0, 10,000 random points are generated in a unit square. 7,854 points satisfy x\u00b2 + y\u00b2 \u2264 1. What is the resulting estimate of \u03c0?", "options": ["3.1400", "3.1416", "3.1450", "3.1500"], "ans": 1, "solution": "Step 1: Monte Carlo ratio: \u03c0 \u2248 4 \u00d7 (N_in / N_total).\nStep 2: \u03c0 \u2248 4 \u00d7 (7,854 / 10,000) = 4 \u00d7 0.7854 = 3.1416."}, {"q": "33. A 2-way table records 200 patients: 120 received Treatment A (80 cured, 40 uncured) and 80 received Treatment B (60 cured, 20 uncured). What is the probability that a randomly chosen patient received Treatment A AND was cured?", "options": ["0.40", "0.60", "0.70", "0.80"], "ans": 0, "solution": "Step 1: Grand total N = 200.\nStep 2: Favorable cell (Treatment A AND cured) = 80.\nStep 3: Joint P = 80 / 200 = 4/10 = 0.40 (or 40%)."}, {"q": "34. Referring to the same 200 patients (80 cured under A + 60 cured under B = 140 total cured), what is the probability that a randomly selected patient was cured?", "options": ["0.60", "0.70", "0.75", "0.80"], "ans": 1, "solution": "Step 1: Total cured patients (marginal sum) = 80 + 60 = 140.\nStep 2: Grand total = 200.\nStep 3: Marginal P(Cured) = 140 / 200 = 7/10 = 0.70."}, {"q": "35. A square dartboard has side length 2R. An inscribed circle touches all four edges of the square. If a dart hits the square at random, what is the probability that it lands INSIDE the inscribed circle?", "options": ["\u03c0 / 2", "\u03c0 / 4", "\u03c0 / 6", "1 / \u03c0"], "ans": 1, "solution": "Step 1: Side of square = 2R \u2192 Area of square = (2R)\u00b2 = 4R\u00b2.\nStep 2: Radius of inscribed circle = R \u2192 Area of circle = \u03c0R\u00b2.\nStep 3: P(Inside circle) = (\u03c0R\u00b2) / (4R\u00b2) = \u03c0 / 4 \u2248 0.7854 (or 78.5%)."}, {"q": "36. A bus arrives at a stop at a random time between 8:00 AM and 8:30 AM. A commuter arrives at 8:10 AM and can wait at most 10 minutes (until 8:20 AM). What is the probability that the commuter catches the bus?", "options": ["1/6", "1/4", "1/3", "1/2"], "ans": 2, "solution": "Step 1: Total arrival window = 30 minutes (8:00 to 8:30 AM).\nStep 2: Favorable window when commuter is waiting = 8:10 to 8:20 AM (10 minutes).\nStep 3: P = 10 / 30 = 1/3."}, {"q": "37. An insurance company determines that a driver has a 0.04 (4%) probability of an accident causing \u20b950,000 in damage, and a 0.96 probability of no accident. What is the actuarial expected payout per driver?", "options": ["\u20b91,500", "\u20b92,000", "\u20b92,500", "\u20b93,000"], "ans": 1, "solution": "Step 1: Expected Payout = (P_accident \u00d7 Damage) + (P_none \u00d7 0).\nStep 2: Expected Payout = (0.04 \u00d7 \u20b950,000) + 0 = \u20b92,000."}, {"q": "38. In a circular target of outer radius 10 cm, an inner bullseye has radius 2 cm. What is the probability that a randomly landing dart hits the bullseye?", "options": ["2/10 = 0.20", "(2/10)\u00b2 = 0.04", "1/5 = 0.20", "4/10 = 0.40"], "ans": 1, "solution": "Step 1: Geometric probability for concentric circles: P = (\u03c0 r\u00b2) / (\u03c0 R\u00b2) = (r / R)\u00b2.\nStep 2: P = (2 / 10)\u00b2 = (1/5)\u00b2 = 1/25 = 0.04 (or 4%)."}, {"q": "39. Why was the Monte Carlo algorithm named after the city of Monte Carlo in Monaco?", "options": ["Stanislaw Ulam was born in Monaco", "The algorithms rely on repeated random chance, evoking the famous Monte Carlo Casino", "Monaco funded the research", "The first supercomputer was built in Monte Carlo"], "ans": 1, "solution": "Step 1: Stanislaw Ulam's uncle frequently gambled at the Monte Carlo Casino.\nStep 2: Because the algorithm solved complex equations through random sampling, Nicholas Metropolis proposed the code-name 'Monte Carlo'."}, {"q": "40. If an event E satisfies P(E) = P(\u0112), what is the value of P(E)?", "options": ["0", "0.25", "0.50", "1.0"], "ans": 2, "solution": "Step 1: Complement theorem: P(E) + P(\u0112) = 1.\nStep 2: Since P(\u0112) = P(E), substitute: P(E) + P(E) = 1 \u21d2 2 P(E) = 1.\nStep 3: P(E) = 1/2 = 0.50 (an Even Chance)."}]}];
+
+        let currentSlideIndex = 0; // 0 to 19 (total 20 slides)
+        let speechSynth = window.speechSynthesis;
+        let currentUtterance = null;
+        let isSpeaking = false;
+        let speechRate = 1.0;
+
+        // Fallback Web Audio Synthesizer if Web Speech is unavailable
+        let audioCtx = null;
+        function playTone(freq, duration, type='sine') {
+            try {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) {
+                console.warn("Audio Context fallback unavailable", e);
+            }
+        }
+
+        // Initialize App on DOM Ready
+        document.addEventListener('DOMContentLoaded', () => {
+            initSlideDropdown();
+            renderSlide(0);
+            initSpeechControls();
+            lucide.createIcons();
+        });
+
+        // Populate Slide Jump Menu
+        function initSlideDropdown() {
+            const list = document.getElementById('slideListItems');
+            list.innerHTML = '';
+
+            for (let i = 0; i < 20; i++) {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left px-2.5 py-1.5 rounded-lg text-xs hover:bg-slate-800 transition flex items-center justify-between";
+                let title = (i < 16) ? SLIDES[i].title : QUIZZES[i - 16].title;
+                let badge = (i < 16) ? `Slide ${i+1}` : `Quiz ${i-15}`;
+
+                btn.innerHTML = `
+                    <span class="truncate pr-2">${i+1}. ${title}</span>
+                    <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-amber-400 shrink-0">${badge}</span>
+                `;
+                btn.onclick = () => {
+                    window.renderSlide(i);
+                    window.toggleSlideMenu();
+                };
+                list.appendChild(btn);
+            }
+        }
+
+        window.toggleSlideMenu = function() {
+            const dd = document.getElementById('slideMenuDropdown');
+            dd.classList.toggle('hidden');
+        };
+
+        // Navigation Controller
+        window.navSlide = function(delta) {
+            const nextIndex = currentSlideIndex + delta;
+            if (nextIndex >= 0 && nextIndex < 20) {
+                stopSpeech();
+                renderSlide(nextIndex);
+            }
+        };
+
+        // Render Active Slide
+        window.renderSlide = function(index) {
+            currentSlideIndex = index;
+            document.getElementById('currentSlideNum').textContent = currentSlideIndex + 1;
+            document.getElementById('slideProgressRatio').textContent = `${currentSlideIndex + 1} / 20`;
+            document.getElementById('slideProgressBar').style.width = `${((currentSlideIndex + 1) / 20) * 100}%`;
+
+            document.getElementById('prevBtn').disabled = (currentSlideIndex === 0);
+
+            // Handle Slide 20 Specific Requirement
+            const lastSlideNotice = document.getElementById('lastSlideNotice');
+            const nextBtn = document.getElementById('nextBtn');
+            if (currentSlideIndex === 19) {
+                lastSlideNotice.classList.remove('hidden');
+                nextBtn.style.display = 'none';
+            } else {
+                lastSlideNotice.classList.add('hidden');
+                nextBtn.style.display = 'flex';
+                nextBtn.disabled = false;
+            }
+
+            const contentContainer = document.getElementById('contentSlideContainer');
+            const quizContainer = document.getElementById('quizSlideContainer');
+
+            if (currentSlideIndex < 16) {
+                // Content Slide Mode (Slides 1 to 16)
+                contentContainer.classList.remove('hidden');
+                quizContainer.classList.add('hidden');
+
+                const slide = SLIDES[currentSlideIndex];
+                document.getElementById('slideCategoryText').textContent = slide.category;
+                document.getElementById('slideBadge').textContent = slide.badge;
+                document.getElementById('slideTitle').textContent = slide.title;
+                document.getElementById('slideSubtitle').textContent = slide.subtitle;
+                document.getElementById('slideSummary').textContent = slide.summary;
+                document.getElementById('simulatorTitle').textContent = slide.sim_title;
+
+                // Render Key Points
+                const kpList = document.getElementById('slideKeyPoints');
+                kpList.innerHTML = slide.key_points.map(pt => `
+                    <li class="flex items-start gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0"></span>
+                        <span>${pt}</span>
+                    </li>
+                `).join('');
+
+                // Render Checkpoints
+                renderCheckpoints(slide.checkpoints);
+
+                // Render Bespoke Interactive Simulator
+                renderSimulator(currentSlideIndex);
+
+            } else {
+                // Quiz Slide Mode (Slides 17 to 20)
+                contentContainer.classList.add('hidden');
+                quizContainer.classList.remove('hidden');
+
+                const quiz = QUIZZES[currentSlideIndex - 16];
+                document.getElementById('slideCategoryText').textContent = "Mastery Assessment";
+                document.getElementById('slideBadge').textContent = quiz.badge;
+                document.getElementById('slideTitle').textContent = quiz.title;
+                document.getElementById('slideSubtitle').textContent = "10 Question Comprehensive Synthesis & Examination Challenge";
+                document.getElementById('slideSummary').textContent = "Test your deep mastery across all aspects of this chapter. Answer each multiple-choice question to receive instant validation and open the detailed step-by-step solution derivation popup.";
+
+                document.getElementById('slideKeyPoints').innerHTML = `
+                    <li class="flex items-start gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0"></span>
+                        <span>Answer all 10 questions to achieve full mastery of this section.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0"></span>
+                        <span>Click "View Solution" for detailed mathematical proofs and formulas.</span>
+                    </li>
+                `;
+
+                document.getElementById('quizTitle').textContent = quiz.title;
+                renderQuizQuestions(quiz.questions);
+            }
+
+            // Trigger KaTeX math render
+            setTimeout(() => {
+                if (window.renderMathInElement) {
+                    renderMathInElement(document.body, {
+                        delimiters: [
+                            {left: '$$', right: '$$', display: true},
+                            {left: '$', right: '$', display: false}
+                        ]
+                    });
+                }
+                lucide.createIcons();
+            }, 50);
+        };
+
+        // Checkpoints Renderer (2 questions per slide)
+        function renderCheckpoints(checkpoints) {
+            const container = document.getElementById('checkpointsContainer');
+            container.innerHTML = '';
+
+            checkpoints.forEach((cp, qIdx) => {
+                const card = document.createElement('div');
+                card.className = "p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2.5";
+
+                const qHeader = document.createElement('div');
+                qHeader.className = "text-xs font-semibold text-white flex items-start gap-2";
+                qHeader.innerHTML = `
+                    <span class="w-5 h-5 rounded-full bg-slate-800 text-amber-400 flex items-center justify-center text-[10px] font-mono shrink-0 font-bold border border-slate-700">Q${qIdx+1}</span>
+                    <span class="flex-1">${cp.q}</span>
+                `;
+                card.appendChild(qHeader);
+
+                const optsGrid = document.createElement('div');
+                optsGrid.className = "grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1";
+
+                const feedbackDiv = document.createElement('div');
+                feedbackDiv.className = "hidden text-[11px] p-2.5 rounded-lg font-medium leading-relaxed mt-2 border";
+
+                cp.options.forEach((opt, oIdx) => {
+                    const btn = document.createElement('button');
+                    btn.className = "text-left px-3 py-2 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 text-xs text-slate-300 border border-slate-700/60 transition flex items-center gap-2";
+                    btn.innerHTML = `
+                        <span class="w-4 h-4 rounded text-[9px] font-mono font-bold bg-slate-900 text-slate-400 flex items-center justify-center shrink-0 border border-slate-700">${String.fromCharCode(65 + oIdx)}</span>
+                        <span class="truncate">${opt}</span>
+                    `;
+
+                    btn.onclick = () => {
+                        optsGrid.querySelectorAll('button').forEach(b => b.disabled = true);
+                        if (oIdx === cp.ans) {
+                            btn.classList.remove('bg-slate-800/80', 'text-slate-300', 'border-slate-700/60');
+                            btn.classList.add('bg-emerald-950/80', 'text-emerald-300', 'border-emerald-500/50', 'font-bold');
+                            feedbackDiv.classList.remove('hidden');
+                            feedbackDiv.classList.add('bg-emerald-950/40', 'border-emerald-500/30', 'text-emerald-300');
+                            feedbackDiv.innerHTML = `<strong>Correct!</strong> ${cp.exp || cp.explanation}`;
+                            playTone(587.33, 0.12, 'triangle');
+                        } else {
+                            btn.classList.remove('bg-slate-800/80', 'text-slate-300', 'border-slate-700/60');
+                            btn.classList.add('bg-rose-950/80', 'text-rose-300', 'border-rose-500/50', 'font-bold');
+                            feedbackDiv.classList.remove('hidden');
+                            feedbackDiv.classList.add('bg-rose-950/40', 'border-rose-500/30', 'text-rose-300');
+                            feedbackDiv.innerHTML = `<strong>Incorrect.</strong> ${cp.exp || cp.explanation}`;
+                            playTone(220, 0.2, 'sawtooth');
+                        }
+                    };
+                    optsGrid.appendChild(btn);
+                });
+
+                card.appendChild(optsGrid);
+                card.appendChild(feedbackDiv);
+                container.appendChild(card);
+            });
+        }
+
+        // Quiz Questions Renderer (10 questions per quiz slide)
+        function renderQuizQuestions(questions) {
+            const list = document.getElementById('quizQuestionsList');
+            list.innerHTML = '';
+            let score = 0;
+            document.getElementById('quizScoreVal').textContent = score;
+
+            questions.forEach((qObj, qIdx) => {
+                const card = document.createElement('div');
+                card.className = "p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-3";
+
+                const header = document.createElement('div');
+                header.className = "flex items-start justify-between gap-2";
+                header.innerHTML = `
+                    <div class="text-xs font-semibold text-white flex items-start gap-2">
+                        <span class="w-6 h-6 rounded-lg bg-indigo-950 text-indigo-400 border border-indigo-800/50 flex items-center justify-center text-xs font-mono font-bold shrink-0">${qIdx+1}</span>
+                        <span class="mt-0.5">${qObj.q}</span>
+                    </div>
+                `;
+                card.appendChild(header);
+
+                const optsGrid = document.createElement('div');
+                optsGrid.className = "grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1";
+
+                const resultBar = document.createElement('div');
+                resultBar.className = "hidden flex items-center justify-between text-xs pt-1";
+
+                qObj.options.forEach((opt, oIdx) => {
+                    const btn = document.createElement('button');
+                    btn.className = "text-left px-3 py-2 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 text-xs text-slate-300 border border-slate-700/60 transition flex items-center gap-2";
+                    btn.innerHTML = `
+                        <span class="w-4 h-4 rounded text-[9px] font-mono font-bold bg-slate-900 text-slate-400 flex items-center justify-center shrink-0 border border-slate-700">${String.fromCharCode(65 + oIdx)}</span>
+                        <span>${opt}</span>
+                    `;
+
+                    btn.onclick = () => {
+                        optsGrid.querySelectorAll('button').forEach(b => b.disabled = true);
+                        resultBar.classList.remove('hidden');
+
+                        if (oIdx === qObj.ans) {
+                            btn.classList.add('bg-emerald-950/80', 'text-emerald-300', 'border-emerald-500/50', 'font-bold');
+                            score++;
+                            document.getElementById('quizScoreVal').textContent = score;
+                            resultBar.innerHTML = `
+                                <span class="text-emerald-400 font-bold flex items-center gap-1">
+                                    <i data-lucide="check" class="w-4 h-4"></i> Correct Answer
+                                </span>
+                                <button onclick="window.openSolutionModal(${currentSlideIndex - 16}, ${qIdx})" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-indigo-300 border border-slate-700 text-[11px] font-semibold transition">
+                                    View Solution
+                                </button>
+                            `;
+                            playTone(587.33, 0.12, 'triangle');
+                        } else {
+                            btn.classList.add('bg-rose-950/80', 'text-rose-300', 'border-rose-500/50', 'font-bold');
+                            resultBar.innerHTML = `
+                                <span class="text-rose-400 font-bold flex items-center gap-1">
+                                    <i data-lucide="x" class="w-4 h-4"></i> Incorrect (Correct: ${String.fromCharCode(65 + qObj.ans)})
+                                </span>
+                                <button onclick="window.openSolutionModal(${currentSlideIndex - 16}, ${qIdx})" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-indigo-300 border border-slate-700 text-[11px] font-semibold transition">
+                                    View Solution
+                                </button>
+                            `;
+                            playTone(220, 0.2, 'sawtooth');
+                        }
+                        lucide.createIcons();
+                    };
+                    optsGrid.appendChild(btn);
+                });
+
+                card.appendChild(optsGrid);
+                card.appendChild(resultBar);
+                list.appendChild(card);
+            });
+        }
+
+        // Solution Modal Handlers
+        window.openSolutionModal = function(quizIdx, qIdx) {
+            const qObj = QUIZZES[quizIdx].questions[qIdx];
+            document.getElementById('modalQuestionText').textContent = qObj.q;
+            document.getElementById('modalSolutionText').textContent = qObj.solution;
+            document.getElementById('solutionModal').classList.remove('hidden');
+        };
+
+        window.closeSolutionModal = function() {
+            document.getElementById('solutionModal').classList.add('hidden');
+        };
+
+        // 16 Bespoke Interactive SVG Simulators
+        function renderSimulator(slideIndex) {
+            const vp = document.getElementById('simulatorViewport');
+            vp.innerHTML = '';
+
+            switch(slideIndex) {
+                case 0: renderSim1(vp); break;
+                case 1: renderSim2(vp); break;
+                case 2: renderSim3(vp); break;
+                case 3: renderSim4(vp); break;
+                case 4: renderSim5(vp); break;
+                case 5: renderSim6(vp); break;
+                case 6: renderSim7(vp); break;
+                case 7: renderSim8(vp); break;
+                case 8: renderSim9(vp); break;
+                case 9: renderSim10(vp); break;
+                case 10: renderSim11(vp); break;
+                case 11: renderSim12(vp); break;
+                case 12: renderSim13(vp); break;
+                case 13: renderSim14(vp); break;
+                case 14: renderSim15(vp); break;
+                case 15: renderSim16(vp); break;
+                default: vp.innerHTML = `<div class="text-slate-400 text-xs">Simulator ready.</div>`;
+            }
+        }
+
+        // SIMULATOR 1: Interactive Randomness vs Determinism Lab & Streak Tester
+        function renderSim1(vp) {
+            let flips = ['H', 'T', 'H', 'H', 'T'];
+            let mode = 'random'; // 'random' or 'deterministic'
+
+            function draw() {
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-3">
+                        <!-- Mode Tabs -->
+                        <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800">
+                            <span class="text-xs font-bold text-white">Experimental Model:</span>
+                            <div class="flex gap-2">
+                                <button onclick="window.sim1SetMode('deterministic')" class="px-3 py-1 rounded-lg text-xs font-bold transition ${mode === 'deterministic' ? 'bg-indigo-600 text-white shadow' : 'bg-slate-800 text-slate-400'}">
+                                    Deterministic Physics
+                                </button>
+                                <button onclick="window.sim1SetMode('random')" class="px-3 py-1 rounded-lg text-xs font-bold transition ${mode === 'random' ? 'bg-amber-600 text-white shadow' : 'bg-slate-800 text-slate-400'}">
+                                    Random Coin Flip
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Visual Canvas -->
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 min-h-[170px] flex flex-col justify-center items-center">
+                            ${mode === 'deterministic' ? `
+                                <div class="text-center space-y-2">
+                                    <div class="w-16 h-16 mx-auto rounded-full bg-indigo-950 border-2 border-indigo-500 flex items-center justify-center text-indigo-400 text-xl font-bold shadow-lg">
+                                        100°C
+                                    </div>
+                                    <div class="text-xs text-white font-bold">Heating Water at Sea Level (1 atm)</div>
+                                    <p class="text-[11px] text-slate-400 max-w-sm">Strictly deterministic! Outcome is 100% predictable: water boils into steam every single time. No chance involved.</p>
+                                </div>
+                            ` : `
+                                <div class="w-full flex flex-col items-center gap-3">
+                                    <div class="flex items-center gap-2">
+                                        <button onclick="window.sim1Flip()" class="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs shadow-lg shadow-amber-600/30 transition flex items-center gap-1.5">
+                                            <i data-lucide="rotate-cw" class="w-4 h-4"></i>
+                                            <span>Flip Coin (Random Trial)</span>
+                                        </button>
+                                        <button onclick="window.sim1Reset()" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 text-xs border border-slate-700">
+                                            Clear
+                                        </button>
+                                    </div>
+
+                                    <!-- Streak Tape -->
+                                    <div class="flex items-center gap-1.5 p-2 bg-slate-900 rounded-xl border border-slate-800 overflow-x-auto max-w-full">
+                                        ${flips.slice(-12).map((res, i) => `
+                                            <div class="w-8 h-8 rounded-lg flex items-center justify-center font-mono font-black text-xs shrink-0 shadow
+                                                        ${res === 'H' ? 'bg-amber-500/20 text-amber-400 border border-amber-500/40' : 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/40'}">
+                                                ${res}
+                                            </div>
+                                        `).join('')}
+                                    </div>
+
+                                    <div class="text-[11px] text-slate-400 font-mono">
+                                        Trials: <span class="text-white font-bold">${flips.length}</span> |
+                                        Heads: <span class="text-amber-400 font-bold">${flips.filter(f=>f==='H').length}</span> |
+                                        Tails: <span class="text-cyan-400 font-bold">${flips.filter(f=>f==='T').length}</span>
+                                    </div>
+                                </div>
+                            `}
+                        </div>
+
+                        <div class="text-[11px] text-center text-slate-400 font-mono">
+                            ${mode === 'deterministic' ?
+                                '<span class="text-indigo-400 font-bold">Deterministic:</span> Exact laws guarantee identical results.' :
+                                '<span class="text-amber-400 font-bold">Random:</span> Individual trial outcome cannot be known in advance!'}
+                        </div>
+                    </div>
+                `;
+                lucide.createIcons();
+            }
+
+            window.sim1SetMode = function(m) {
+                mode = m;
+                playTone(m === 'random' ? 440 : 330, 0.1, 'sine');
+                draw();
+            };
+            window.sim1Flip = function() {
+                const outcome = Math.random() < 0.5 ? 'H' : 'T';
+                flips.push(outcome);
+                playTone(outcome === 'H' ? 587.33 : 440, 0.08, 'triangle');
+                draw();
+            };
+            window.sim1Reset = function() {
+                flips = [];
+                draw();
+            };
+            draw();
+        }
+
+        // SIMULATOR 2: The Interactive Probability Spectrum Slider & Verbal Mapper
+        function renderSim2(vp) {
+            let pVal = 0.5;
+
+            const benchmarks = [
+                { p: 0.0, label: "Impossible", color: "rose", desc: "Rolling an 8 on standard 6-sided die" },
+                { p: 0.1, label: "Highly Unlikely", color: "orange", desc: "Snowing in Chennai today" },
+                { p: 0.25, label: "Unlikely", color: "amber", desc: "Drawing a Heart suit from 52 cards" },
+                { p: 0.5, label: "Even Chance (50/50)", color: "cyan", desc: "Tossing Heads on an unbiased coin" },
+                { p: 0.75, label: "Likely", color: "indigo", desc: "Drawing a non-Spade card" },
+                { p: 0.9, label: "Highly Likely", color: "teal", desc: "Newborn baby will breathe air" },
+                { p: 1.0, label: "Certain / Sure", color: "emerald", desc: "Rolling a number ≤ 6 on standard die" }
+            ];
+
+            function getActiveLabel(p) {
+                if (p === 0) return { label: "Impossible", color: "text-rose-400" };
+                if (p < 0.2) return { label: "Highly Unlikely", color: "text-orange-400" };
+                if (p < 0.4) return { label: "Unlikely", color: "text-amber-400" };
+                if (p >= 0.4 && p <= 0.6) return { label: "Even Chance", color: "text-cyan-400" };
+                if (p < 0.85) return { label: "Likely", color: "text-indigo-400" };
+                if (p < 1.0) return { label: "Highly Likely", color: "text-teal-400" };
+                return { label: "Certain (Sure Event)", color: "text-emerald-400" };
+            }
+
+            function draw() {
+                const info = getActiveLabel(pVal);
+
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-3">
+                        <!-- Numeric Display Cards -->
+                        <div class="grid grid-cols-3 gap-2 text-center">
+                            <div class="p-2 rounded-xl bg-slate-900 border border-slate-800">
+                                <span class="text-[10px] text-slate-400 font-mono">Decimal P(E)</span>
+                                <div class="text-base font-black text-amber-400 font-mono">${pVal.toFixed(2)}</div>
+                            </div>
+                            <div class="p-2 rounded-xl bg-slate-900 border border-slate-800">
+                                <span class="text-[10px] text-cyan-400 font-mono">Percentage</span>
+                                <div class="text-base font-black text-cyan-300 font-mono">${(pVal * 100).toFixed(0)}%</div>
+                            </div>
+                            <div class="p-2 rounded-xl bg-slate-900 border border-slate-800">
+                                <span class="text-[10px] text-slate-400 font-mono">Likelihood</span>
+                                <div class="text-xs font-bold font-mono mt-0.5 truncate ${info.color}">${info.label}</div>
+                            </div>
+                        </div>
+
+                        <!-- Probability Slider -->
+                        <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800 space-y-2">
+                            <input type="range" min="0" max="1" step="0.01" value="${pVal}"
+                                   oninput="window.sim2Set(this.value)"
+                                   class="w-full accent-amber-500 h-2 bg-gradient-to-r from-rose-500 via-amber-500 to-emerald-500 rounded-lg cursor-pointer">
+                            <div class="flex justify-between text-[10px] font-mono text-slate-500">
+                                <span class="text-rose-400 font-bold">0.0 (Impossible)</span>
+                                <span class="text-cyan-400 font-bold">0.5 (Even Chance)</span>
+                                <span class="text-emerald-400 font-bold">1.0 (Certain)</span>
+                            </div>
+                        </div>
+
+                        <!-- Real-World Benchmarks Grid -->
+                        <div class="grid grid-cols-2 gap-1.5 text-[10px]">
+                            ${benchmarks.map(b => `
+                                <button onclick="window.sim2Set(${b.p})" class="p-1.5 rounded-lg text-left bg-slate-900/60 hover:bg-slate-800 border border-slate-800/80 flex items-center justify-between">
+                                    <div class="truncate pr-1">
+                                        <span class="font-bold text-white">${b.label}</span>
+                                        <p class="text-slate-400 truncate text-[9px]">${b.desc}</p>
+                                    </div>
+                                    <span class="font-mono text-amber-400 font-bold shrink-0">${b.p.toFixed(2)}</span>
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim2Set = function(val) {
+                pVal = parseFloat(val);
+                draw();
+            };
+            draw();
+        }
+
+        // SIMULATOR 3: Live Kerrich & Buffon Coin Tossing Experiment & Relative Frequency Tracker
+        function renderSim3(vp) {
+            let total = 0;
+            let heads = 0;
+
+            function draw() {
+                const tails = total - heads;
+                const relFreq = total > 0 ? (heads / total) : 0.5000;
+
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-3">
+                        <!-- Buttons Toolbar -->
+                        <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 flex-wrap gap-2">
+                            <div class="flex gap-1.5">
+                                <button onclick="window.sim3Toss(1)" class="px-2.5 py-1 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs shadow">
+                                    +1 Toss
+                                </button>
+                                <button onclick="window.sim3Toss(10)" class="px-2.5 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow">
+                                    +10
+                                </button>
+                                <button onclick="window.sim3Toss(100)" class="px-2.5 py-1 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs shadow">
+                                    +100
+                                </button>
+                            </div>
+                            <div class="flex gap-1.5">
+                                <button onclick="window.sim3SetHistoric(4040, 2048)" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-amber-300 text-[10px] border border-slate-700">
+                                    Buffon (4,040)
+                                </button>
+                                <button onclick="window.sim3SetHistoric(10000, 5067)" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 text-[10px] border border-slate-700">
+                                    Kerrich (10,000)
+                                </button>
+                                <button onclick="window.sim3Reset()" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-400 text-[10px] border border-slate-700">
+                                    Reset
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Live Stats Bar -->
+                        <div class="grid grid-cols-4 gap-2 text-center">
+                            <div class="p-2 rounded-xl bg-slate-900 border border-slate-800">
+                                <span class="text-[10px] text-slate-400 font-mono">Total Trials (n)</span>
+                                <div class="text-base font-bold text-white font-mono">${total}</div>
+                            </div>
+                            <div class="p-2 rounded-xl bg-slate-900 border border-slate-800">
+                                <span class="text-[10px] text-amber-400 font-mono">Heads (H)</span>
+                                <div class="text-base font-bold text-amber-400 font-mono">${heads}</div>
+                            </div>
+                            <div class="p-2 rounded-xl bg-slate-900 border border-slate-800">
+                                <span class="text-[10px] text-cyan-400 font-mono">Tails (T)</span>
+                                <div class="text-base font-bold text-cyan-400 font-mono">${tails}</div>
+                            </div>
+                            <div class="p-2 rounded-xl bg-indigo-950/60 border border-indigo-500/40 glow-indigo">
+                                <span class="text-[10px] text-emerald-400 font-mono">Relative Freq</span>
+                                <div class="text-base font-black text-emerald-300 font-mono">${relFreq.toFixed(4)}</div>
+                            </div>
+                        </div>
+
+                        <!-- Visual Coin & Deviation Meter -->
+                        <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-amber-500 to-yellow-300 border-2 border-yellow-200 text-slate-950 flex items-center justify-center font-serif font-black text-xl shadow-lg">
+                                    H
+                                </div>
+                                <div class="text-xs">
+                                    <div class="font-bold text-white">Theoretical Target: 0.5000</div>
+                                    <p class="text-slate-400 text-[10px]">Deviation: |${(relFreq - 0.5).toFixed(4)}|</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-[11px] font-mono text-cyan-300 font-bold">${(relFreq * 100).toFixed(2)}% Heads</span>
+                                <div class="w-32 bg-slate-800 rounded-full h-2 mt-1 overflow-hidden">
+                                    <div class="bg-amber-400 h-2 rounded-full transition-all duration-300" style="width: ${relFreq * 100}%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim3Toss = function(count) {
+                for (let i = 0; i < count; i++) {
+                    total++;
+                    if (Math.random() < 0.5) heads++;
+                }
+                playTone(count > 1 ? 600 : 480, 0.08, 'sine');
+                draw();
+            };
+            window.sim3SetHistoric = function(t, h) {
+                total = t;
+                heads = h;
+                playTone(520, 0.1, 'triangle');
+                draw();
+            };
+            window.sim3Reset = function() {
+                total = 0;
+                heads = 0;
+                draw();
+            };
+            draw();
+        }
+
+        // SIMULATOR 4: Interactive Law of Large Numbers Oscillation & Convergence Graph
+        function renderSim4(vp) {
+            let history = [0.5];
+
+            function generateRun(maxN = 100) {
+                let h = 0;
+                history = [];
+                for (let i = 1; i <= maxN; i++) {
+                    if (Math.random() < 0.5) h++;
+                    history.push(h / i);
+                }
+            }
+            generateRun(100);
+
+            function draw() {
+                const svgW = 440;
+                const svgH = 200;
+                const baseY = 100; // 0.5 is at y = 100
+                const maxN = history.length;
+
+                const points = history.map((val, idx) => {
+                    const x = 40 + (idx / maxN) * 370;
+                    // val ranges from 0.0 to 1.0; 1.0 at y=20, 0.0 at y=180
+                    const y = 180 - (val * 160);
+                    return `${x},${y}`;
+                }).join(' ');
+
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-3">
+                        <div class="flex items-center justify-between bg-slate-900/80 p-2 rounded-xl border border-slate-800 text-xs">
+                            <span class="font-bold text-white">Law of Large Numbers: n = ${maxN} trials</span>
+                            <div class="flex gap-2">
+                                <button onclick="window.sim4Run(50)" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700 text-[11px]">n = 50</button>
+                                <button onclick="window.sim4Run(200)" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 text-[11px]">n = 200</button>
+                                <button onclick="window.sim4Run(500)" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-slate-700 text-[11px]">n = 500</button>
+                            </div>
+                        </div>
+
+                        <!-- SVG Convergence Graph -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex justify-center">
+                            <svg width="${svgW}" height="${svgH}" viewBox="0 0 ${svgW} ${svgH}" class="w-full max-w-lg">
+                                <!-- Horizontal Theoretical 0.5 line -->
+                                <line x1="40" y1="${baseY}" x2="410" y2="${baseY}" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4,3"/>
+                                <text x="415" y="${baseY + 3}" fill="#10b981" font-size="8" font-family="monospace">P=0.5</text>
+
+                                <!-- Y Axis Ticks -->
+                                <line x1="40" y1="20" x2="40" y2="180" stroke="#64748b" stroke-width="1.5"/>
+                                <text x="35" y="24" fill="#64748b" font-size="8" font-family="monospace" text-anchor="end">1.0</text>
+                                <text x="35" y="104" fill="#64748b" font-size="8" font-family="monospace" text-anchor="end">0.5</text>
+                                <text x="35" y="184" fill="#64748b" font-size="8" font-family="monospace" text-anchor="end">0.0</text>
+
+                                <!-- X Axis -->
+                                <line x1="40" y1="180" x2="410" y2="180" stroke="#64748b" stroke-width="1.5"/>
+                                <text x="40" y="194" fill="#64748b" font-size="8" font-family="monospace">1</text>
+                                <text x="410" y="194" fill="#64748b" font-size="8" font-family="monospace" text-anchor="end">${maxN}</text>
+
+                                <!-- Dynamic Trajectory Polyline -->
+                                <polyline points="${points}" fill="none" stroke="#f59e0b" stroke-width="2" class="transition-all duration-300"/>
+                            </svg>
+                        </div>
+                        <div class="text-[11px] text-center font-mono text-emerald-400">
+                            <strong>Bernoulli Invariant:</strong> Wild oscillations at small $n$ settle into a stable narrow ribbon around $0.5$ as $n \to \infty$.
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim4Run = function(n) {
+                generateRun(n);
+                playTone(500, 0.08, 'sine');
+                draw();
+            };
+            draw();
+        }
+
+        // SIMULATOR 5: Interactive Sample Space Visualizer & Symmetry / Fairness Tester
+        function renderSim5(vp) {
+            let dieType = 'fair'; // 'fair' or 'loaded'
+            let rollCounts = [0, 0, 0, 0, 0, 0];
+
+            function draw() {
+                const totalRolls = rollCounts.reduce((a,b)=>a+b, 0);
+
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-3">
+                        <!-- Die Selector -->
+                        <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                            <span class="font-bold text-white">Physical Symmetry:</span>
+                            <div class="flex gap-2">
+                                <button onclick="window.sim5SetType('fair')" class="px-3 py-1 rounded-lg text-xs font-bold transition ${dieType === 'fair' ? 'bg-cyan-600 text-white shadow' : 'bg-slate-800 text-slate-400'}">
+                                    Fair Symmetrical Die
+                                </button>
+                                <button onclick="window.sim5SetType('loaded')" class="px-3 py-1 rounded-lg text-xs font-bold transition ${dieType === 'loaded' ? 'bg-rose-600 text-white shadow' : 'bg-slate-800 text-slate-400'}">
+                                    Loaded Die (Weighted 6)
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Action Toolbar -->
+                        <div class="flex items-center justify-between bg-slate-900/60 p-2 rounded-xl border border-slate-800 text-xs">
+                            <button onclick="window.sim5Roll(60)" class="px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-bold transition shadow">
+                                Roll 60 Times
+                            </button>
+                            <span class="font-mono text-slate-300">Total Rolls: ${totalRolls}</span>
+                            <button onclick="window.sim5Reset()" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-400 text-xs border border-slate-700">
+                                Reset
+                            </button>
+                        </div>
+
+                        <!-- 6 Frequency Bars -->
+                        <div class="grid grid-cols-6 gap-2">
+                            ${[1, 2, 3, 4, 5, 6].map((face, idx) => {
+                                const c = rollCounts[idx];
+                                const pct = totalRolls > 0 ? (c / totalRolls) * 100 : 16.6;
+                                return `
+                                    <div class="bg-slate-900/80 p-2 rounded-xl border border-slate-800 flex flex-col items-center gap-1.5">
+                                        <div class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center font-mono font-bold text-sm text-white">
+                                            ${face}
+                                        </div>
+                                        <span class="font-mono text-xs font-bold text-amber-400">${c}</span>
+                                        <div class="w-full bg-slate-800 rounded-full h-12 flex items-end overflow-hidden p-0.5">
+                                            <div class="w-full rounded-b bg-cyan-500 transition-all duration-300" style="height: ${Math.min(pct * 2, 100)}%"></div>
+                                        </div>
+                                        <span class="text-[9px] font-mono text-slate-400">${pct.toFixed(0)}%</span>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+
+                        <div class="text-[11px] text-center font-mono ${dieType === 'fair' ? 'text-emerald-400' : 'text-rose-400'}">
+                            ${dieType === 'fair' ?
+                                'Equally Likely: Each face has identical 1/6 (16.7%) chance.' :
+                                'Non-Equally Likely: Face 6 is weighted with 45% probability; classical ratio does NOT apply!'}
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim5SetType = function(t) {
+                dieType = t;
+                rollCounts = [0, 0, 0, 0, 0, 0];
+                draw();
+            };
+            window.sim5Roll = function(n) {
+                for (let i = 0; i < n; i++) {
+                    let face;
+                    if (dieType === 'fair') {
+                        face = Math.floor(Math.random() * 6);
+                    } else {
+                        // Weighted die: 6 has 45% chance, others ~11%
+                        const r = Math.random();
+                        if (r < 0.45) face = 5;
+                        else face = Math.floor((r - 0.45) / 0.11);
+                    }
+                    if (face >= 0 && face < 6) rollCounts[face]++;
+                }
+                playTone(550, 0.08, 'sine');
+                draw();
+            };
+            window.sim5Reset = function() {
+                rollCounts = [0, 0, 0, 0, 0, 0];
+                draw();
+            };
+            draw();
+        }
+
+        // SIMULATOR 6: Classical Probability Calculator & Venn Diagram Circle Engine
+        function renderSim6(vp) {
+            let activeFilter = 'prime'; // 'even', 'prime', 'gt4', 'all'
+
+            const sampleSpace = [1, 2, 3, 4, 5, 6];
+
+            function isFavorable(val) {
+                if (activeFilter === 'even') return val % 2 === 0;
+                if (activeFilter === 'prime') return [2, 3, 5].includes(val);
+                if (activeFilter === 'gt4') return val > 4;
+                return true;
+            }
+
+            function draw() {
+                const favorable = sampleSpace.filter(isFavorable);
+                const nE = favorable.length;
+                const nS = 6;
+
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-3">
+                        <!-- Filter Chips -->
+                        <div class="grid grid-cols-4 gap-1.5 text-xs">
+                            <button onclick="window.sim6Set('prime')" class="p-2 rounded-xl border transition ${activeFilter === 'prime' ? 'bg-amber-950/80 border-amber-500 text-amber-300 font-bold' : 'bg-slate-900 border-slate-800 text-slate-400 hover:bg-slate-800'}">
+                                Prime Numbers
+                            </button>
+                            <button onclick="window.sim6Set('even')" class="p-2 rounded-xl border transition ${activeFilter === 'even' ? 'bg-cyan-950/80 border-cyan-500 text-cyan-300 font-bold' : 'bg-slate-900 border-slate-800 text-slate-400 hover:bg-slate-800'}">
+                                Even Numbers
+                            </button>
+                            <button onclick="window.sim6Set('gt4')" class="p-2 rounded-xl border transition ${activeFilter === 'gt4' ? 'bg-indigo-950/80 border-indigo-500 text-indigo-300 font-bold' : 'bg-slate-900 border-slate-800 text-slate-400 hover:bg-slate-800'}">
+                                Greater than 4
+                            </button>
+                            <button onclick="window.sim6Set('all')" class="p-2 rounded-xl border transition ${activeFilter === 'all' ? 'bg-emerald-950/80 border-emerald-500 text-emerald-300 font-bold' : 'bg-slate-900 border-slate-800 text-slate-400 hover:bg-slate-800'}">
+                                Number ≤ 6
+                            </button>
+                        </div>
+
+                        <!-- Venn Diagram Visualization -->
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex items-center justify-around">
+                            <!-- Sample Space Circle -->
+                            <div class="w-48 h-48 rounded-full border-2 border-slate-700 bg-slate-900/60 p-3 relative flex items-center justify-center">
+                                <span class="absolute top-2 left-4 text-[10px] font-mono font-bold text-slate-500">S = {1..6}</span>
+
+                                <!-- Favorable Inner Event Loop -->
+                                <div class="w-36 h-36 rounded-full border-2 border-dashed border-amber-500/60 bg-amber-950/20 flex flex-wrap items-center justify-center p-2 gap-2">
+                                    ${sampleSpace.map(val => {
+                                        const fav = isFavorable(val);
+                                        return `
+                                            <div class="w-8 h-8 rounded-lg flex items-center justify-center font-mono font-bold text-xs shadow transition-all duration-300
+                                                        ${fav ? 'bg-amber-500 text-slate-950 scale-110 ring-2 ring-amber-300 glow-amber' : 'bg-slate-800/60 text-slate-500'}">
+                                                ${val}
+                                            </div>
+                                        `;
+                                    }).join('')}
+                                </div>
+                            </div>
+
+                            <!-- Calculation Panel -->
+                            <div class="space-y-2 text-xs">
+                                <div>
+                                    <span class="text-slate-400 text-[10px] uppercase font-mono">Favorable Count n(E):</span>
+                                    <div class="text-sm font-bold text-amber-400 font-mono">${nE} (${favorable.join(', ')})</div>
+                                </div>
+                                <div>
+                                    <span class="text-slate-400 text-[10px] uppercase font-mono">Sample Space n(S):</span>
+                                    <div class="text-sm font-bold text-white font-mono">${nS}</div>
+                                </div>
+                                <div class="pt-2 border-t border-slate-800">
+                                    <span class="text-emerald-400 text-[10px] font-bold uppercase font-mono">Laplace's Formula:</span>
+                                    <div class="text-lg font-black text-emerald-300 font-mono">
+                                        P(E) = ${nE}/${nS} = ${(nE/nS).toFixed(3)}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim6Set = function(f) {
+                activeFilter = f;
+                playTone(480, 0.08, 'sine');
+                draw();
+            };
+            draw();
+        }
+
+        // SIMULATOR 7: Interactive Pie Slice & Complementary Balance Engine
+        function renderSim7(vp) {
+            let pE = 0.70;
+
+            function draw() {
+                const pNotE = 1.0 - pE;
+
+                const svgW = 440;
+                const svgH = 200;
+                const cx = 130;
+                const cy = 100;
+                const r = 70;
+
+                // Arc calculation for Event E
+                const angleE = pE * 360;
+                const radE = (angleE - 90) * (Math.PI / 180);
+                const xE = cx + r * Math.cos(radE);
+                const yE = cy + r * Math.sin(radE);
+                const largeArc = angleE > 180 ? 1 : 0;
+
+                const pathE = angleE >= 360 ?
+                    `M ${cx},${cy - r} A ${r},${r} 0 1,1 ${cx - 0.01},${cy - r} Z` :
+                    `M ${cx},${cy} L ${cx},${cy - r} A ${r},${r} 0 ${largeArc},1 ${xE},${yE} Z`;
+
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-3">
+                        <!-- Probability Slider -->
+                        <div class="bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 space-y-1.5">
+                            <div class="flex justify-between text-xs font-mono">
+                                <span class="text-cyan-400 font-bold">P(Event E): ${(pE * 100).toFixed(0)}%</span>
+                                <span class="text-rose-400 font-bold">P(Not E): ${(pNotE * 100).toFixed(0)}%</span>
+                            </div>
+                            <input type="range" min="0" max="1" step="0.05" value="${pE}"
+                                   oninput="window.sim7Set(this.value)"
+                                   class="w-full accent-cyan-500 h-1.5 bg-slate-700 rounded-lg cursor-pointer">
+                        </div>
+
+                        <!-- Pie Chart & Formula Invariant -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-around">
+                            <svg width="260" height="${svgH}" viewBox="0 0 260 ${svgH}">
+                                <!-- Base Circle for Not E (Rose) -->
+                                <circle cx="${cx}" cy="${cy}" r="${r}" fill="#f43f5e" fill-opacity="0.8"/>
+                                <!-- Arc for Event E (Cyan) -->
+                                <path d="${pathE}" fill="#06b6d4" fill-opacity="0.85"/>
+                                <!-- Center core -->
+                                <circle cx="${cx}" cy="${cy}" r="22" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+                                <text x="${cx}" y="${cy + 3}" fill="#ffffff" font-size="8" font-family="monospace" font-weight="bold" text-anchor="middle">1.0</text>
+                            </svg>
+
+                            <div class="space-y-3 text-xs">
+                                <div class="p-2.5 rounded-xl bg-cyan-950/40 border border-cyan-500/40">
+                                    <span class="text-cyan-400 font-bold font-mono">P(E) = ${pE.toFixed(2)}</span>
+                                </div>
+                                <div class="p-2.5 rounded-xl bg-rose-950/40 border border-rose-500/40">
+                                    <span class="text-rose-400 font-bold font-mono">P(Ē) = 1 - P(E) = ${pNotE.toFixed(2)}</span>
+                                </div>
+                                <div class="text-[11px] font-mono text-emerald-400 font-bold">
+                                    Sum: ${pE.toFixed(2)} + ${pNotE.toFixed(2)} ≡ 1.00
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim7Set = function(val) {
+                pE = parseFloat(val);
+                draw();
+            };
+            draw();
+        }
+
+        // SIMULATOR 8: Interactive Two-Way Contingency Table Studio & Joint Probability Calculator
+        function renderSim8(vp) {
+            let tableData = [
+                [25, 20, 15], // Grade 9: Sports, Music, Coding
+                [15, 10, 15]  // Grade 10: Sports, Music, Coding
+            ];
+
+            let selectedCell = { r: 0, c: 2 }; // default Grade 9 Coding
+
+            function draw() {
+                const rowTotals = [
+                    tableData[0].reduce((a,b)=>a+b, 0),
+                    tableData[1].reduce((a,b)=>a+b, 0)
+                ];
+                const colTotals = [
+                    tableData[0][0] + tableData[1][0],
+                    tableData[0][1] + tableData[1][1],
+                    tableData[0][2] + tableData[1][2]
+                ];
+                const grandTotal = rowTotals[0] + rowTotals[1];
+
+                const selVal = tableData[selectedCell.r][selectedCell.c];
+                const jointP = selVal / grandTotal;
+
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-bold text-white">Student Cross-Tabulation (N = ${grandTotal}):</span>
+                            <span class="text-[10px] text-slate-400">Click any cell to inspect joint probability</span>
+                        </div>
+
+                        <!-- Two-Way Table -->
+                        <div class="overflow-hidden rounded-xl border border-slate-800 bg-slate-900/90 text-xs">
+                            <table class="w-full text-center">
+                                <thead class="bg-slate-800 text-[10px] font-mono text-slate-300">
+                                    <tr>
+                                        <th class="p-2 text-left">Cohort</th>
+                                        <th class="p-2">Sports</th>
+                                        <th class="p-2">Music</th>
+                                        <th class="p-2">Coding</th>
+                                        <th class="p-2 bg-slate-850 font-bold text-amber-400">Row Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-800 font-mono text-xs">
+                                    ${['Grade 9', 'Grade 10'].map((g, r) => `
+                                        <tr>
+                                            <td class="p-2 text-left font-bold text-white">${g}</td>
+                                            ${[0, 1, 2].map(c => `
+                                                <td onclick="window.sim8Select(${r}, ${c})" class="p-2 cursor-pointer transition ${selectedCell.r === r && selectedCell.c === c ? 'bg-amber-500 text-slate-950 font-black' : 'hover:bg-slate-800 text-cyan-300'}">
+                                                    ${tableData[r][c]}
+                                                </td>
+                                            `).join('')}
+                                            <td class="p-2 bg-slate-900 text-amber-400 font-bold">${rowTotals[r]}</td>
+                                        </tr>
+                                    `).join('')}
+                                    <tr class="bg-slate-850 font-bold text-amber-400 border-t-2 border-slate-700">
+                                        <td class="p-2 text-left">Col Total</td>
+                                        <td class="p-2">${colTotals[0]}</td>
+                                        <td class="p-2">${colTotals[1]}</td>
+                                        <td class="p-2">${colTotals[2]}</td>
+                                        <td class="p-2 text-emerald-400 font-black">${grandTotal}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Selected Joint Probability Card -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between text-xs">
+                            <div>
+                                <span class="text-slate-400 text-[10px]">Selected Joint Event:</span>
+                                <div class="font-bold text-white">
+                                    P(${selectedCell.r === 0 ? 'Grade 9' : 'Grade 10'} AND ${selectedCell.c === 0 ? 'Sports' : selectedCell.c === 1 ? 'Music' : 'Coding'})
+                                </div>
+                            </div>
+                            <div class="text-right font-mono">
+                                <span class="text-amber-400 font-bold">${selVal} / ${grandTotal}</span>
+                                <div class="text-sm font-black text-emerald-400">= ${jointP.toFixed(3)} (${(jointP * 100).toFixed(1)}%)</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim8Select = function(r, c) {
+                selectedCell = { r, c };
+                playTone(500, 0.08, 'sine');
+                draw();
+            };
+            draw();
+        }
+
+        // SIMULATOR 9: Interactive 6×6 Dual Dice Matrix & Symmetrical Sum Pyramid
+        function renderSim9(vp) {
+            let activeSum = 7;
+
+            function draw() {
+                let favorableCount = 0;
+
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-3">
+                        <!-- Sum Selector Buttons -->
+                        <div class="flex items-center justify-between bg-slate-900/80 p-2 rounded-xl border border-slate-800 text-xs flex-wrap gap-1">
+                            <span class="font-bold text-white">Target Sum:</span>
+                            <div class="flex gap-1 flex-wrap">
+                                ${[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(s => `
+                                    <button onclick="window.sim9SetSum(${s})" class="w-6 h-6 rounded font-mono text-[11px] font-bold transition ${activeSum === s ? 'bg-amber-500 text-slate-950 font-black glow-amber' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}">
+                                        ${s}
+                                    </button>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- 6x6 Matrix View -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex justify-center">
+                            <div class="grid grid-cols-6 gap-1 p-1">
+                                ${[1, 2, 3, 4, 5, 6].map(d1 => `
+                                    ${[1, 2, 3, 4, 5, 6].map(d2 => {
+                                        const sum = d1 + d2;
+                                        const isMatch = (sum === activeSum);
+                                        if (isMatch) favorableCount++;
+                                        return `
+                                            <div class="w-8 h-8 rounded flex items-center justify-center font-mono text-[10px] font-bold transition-all duration-300
+                                                        ${isMatch ? 'bg-amber-500 text-slate-950 scale-110 shadow glow-amber font-black' : 'bg-slate-900 text-slate-400 border border-slate-800'}">
+                                                ${d1},${d2}
+                                            </div>
+                                        `;
+                                    }).join('')}
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Sum Odds Badge -->
+                        <div class="p-2 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between text-xs font-mono">
+                            <span class="text-slate-300 font-bold">Sum ${activeSum} Favorable: ${favorableCount} pairs</span>
+                            <span class="text-emerald-400 font-black">P(Sum ${activeSum}) = ${favorableCount} / 36 = ${(favorableCount/36).toFixed(4)}</span>
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim9SetSum = function(s) {
+                activeSum = s;
+                playTone(400 + s * 30, 0.08, 'triangle');
+                draw();
+            };
+            draw();
+        }
+
+        // SIMULATOR 10: Multi-Coin Permutation Explorer & Pascal Pyramid Visualizer
+        function renderSim10(vp) {
+            let coinsCount = 3;
+
+            function draw() {
+                const total = Math.pow(2, coinsCount);
+
+                // Generate binary strings
+                const outcomes = [];
+                for (let i = 0; i < total; i++) {
+                    let bin = i.toString(2).padStart(coinsCount, '0');
+                    outcomes.push(bin.replace(/0/g, 'H').replace(/1/g, 'T'));
+                }
+
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-3">
+                        <!-- Coin Count Selector -->
+                        <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                            <span class="font-bold text-white">Number of Coins:</span>
+                            <div class="flex gap-2">
+                                ${[1, 2, 3, 4].map(c => `
+                                    <button onclick="window.sim10Set(${c})" class="px-3 py-1 rounded-lg text-xs font-bold transition ${coinsCount === c ? 'bg-amber-500 text-slate-950 font-black shadow' : 'bg-slate-800 text-slate-400'}">
+                                        ${c} Coin${c > 1 ? 's' : ''} (2^${c}=${Math.pow(2, c)})
+                                    </button>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Permutations Grid -->
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 max-h-[170px] overflow-y-auto flex flex-wrap gap-1.5 justify-center">
+                            ${outcomes.map(out => `
+                                <div class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono font-bold tracking-widest text-cyan-300">
+                                    ${out}
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        <!-- D'Alembert Alert Note -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] text-slate-300 font-mono text-center">
+                            ${coinsCount === 2 ?
+                                '<span class="text-amber-400 font-bold">D&apos;Alembert Alert:</span> HT and TH are 2 distinct outcomes! P(1 Head, 1 Tail) = 2/4 = 1/2 (NOT 1/3).' :
+                                `Pascal Row ${coinsCount}: Total sample space size is strictly $2^{${coinsCount}} = ${total}$ equally likely outcomes.`}
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim10Set = function(c) {
+                coinsCount = c;
+                playTone(450 + c * 50, 0.08, 'sine');
+                draw();
+            };
+            draw();
+        }
+
+        // SIMULATOR 11: Interactive Multi-Stage Tree Diagram Builder & Path Multiplier
+        function renderSim11(vp) {
+            let pRain = 0.6; // P(Rain)
+            let pWinRain = 0.8; // P(Win | Rain)
+            let pWinDry = 0.4;  // P(Win | Dry)
+
+            function draw() {
+                const pDry = 1.0 - pRain;
+                const pLossRain = 1.0 - pWinRain;
+                const pLossDry = 1.0 - pWinDry;
+
+                const path1 = pRain * pWinRain;
+                const path2 = pRain * pLossRain;
+                const path3 = pDry * pWinDry;
+                const path4 = pDry * pLossDry;
+
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-3">
+                        <!-- Branch Sliders -->
+                        <div class="grid grid-cols-2 gap-2 text-[10px]">
+                            <div class="bg-slate-900/80 p-2 rounded border border-slate-800">
+                                <div class="flex justify-between font-mono">
+                                    <span class="text-slate-400">P(Rain):</span>
+                                    <span class="text-cyan-400 font-bold">${pRain.toFixed(2)}</span>
+                                </div>
+                                <input type="range" min="0.1" max="0.9" step="0.1" value="${pRain}"
+                                       oninput="window.sim11Set('rain', this.value)"
+                                       class="w-full accent-cyan-500 h-1 bg-slate-700 rounded cursor-pointer mt-1">
+                            </div>
+                            <div class="bg-slate-900/80 p-2 rounded border border-slate-800">
+                                <div class="flex justify-between font-mono">
+                                    <span class="text-slate-400">P(Win | Rain):</span>
+                                    <span class="text-amber-400 font-bold">${pWinRain.toFixed(2)}</span>
+                                </div>
+                                <input type="range" min="0.1" max="0.9" step="0.1" value="${pWinRain}"
+                                       oninput="window.sim11Set('winRain', this.value)"
+                                       class="w-full accent-amber-500 h-1 bg-slate-700 rounded cursor-pointer mt-1">
+                            </div>
+                        </div>
+
+                        <!-- 4 Terminal Leaf Outcomes -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-center text-xs">
+                            <div class="p-2 rounded-xl bg-slate-900 border border-slate-800">
+                                <span class="text-[9px] text-slate-400 font-mono">Rain → Win</span>
+                                <div class="font-mono text-cyan-300 font-bold mt-0.5">${path1.toFixed(3)}</div>
+                            </div>
+                            <div class="p-2 rounded-xl bg-slate-900 border border-slate-800">
+                                <span class="text-[9px] text-slate-400 font-mono">Rain → Loss</span>
+                                <div class="font-mono text-slate-400 font-bold mt-0.5">${path2.toFixed(3)}</div>
+                            </div>
+                            <div class="p-2 rounded-xl bg-slate-900 border border-slate-800">
+                                <span class="text-[9px] text-slate-400 font-mono">Dry → Win</span>
+                                <div class="font-mono text-amber-300 font-bold mt-0.5">${path3.toFixed(3)}</div>
+                            </div>
+                            <div class="p-2 rounded-xl bg-slate-900 border border-slate-800">
+                                <span class="text-[9px] text-slate-400 font-mono">Dry → Loss</span>
+                                <div class="font-mono text-slate-400 font-bold mt-0.5">${path4.toFixed(3)}</div>
+                            </div>
+                        </div>
+
+                        <div class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-center text-emerald-400">
+                            <strong>Sum of Leaves:</strong> ${(path1+path2+path3+path4).toFixed(3)} ≡ 1.000. Overall P(Win) = ${(path1 + path3).toFixed(3)}.
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim11Set = function(key, val) {
+                if (key === 'rain') pRain = parseFloat(val);
+                if (key === 'winRain') pWinRain = parseFloat(val);
+                draw();
+            };
+            draw();
+        }
+
+        // SIMULATOR 12: Interactive Marbles Urn: Replacement Switcher & Dependency Engine
+        function renderSim12(vp) {
+            let withReplacement = false;
+            let urn = { red: 5, blue: 3 };
+
+            function draw() {
+                const total = urn.red + urn.blue;
+                const pRedRed = withReplacement ?
+                    ((5/8) * (5/8)) :
+                    ((5/8) * (4/7));
+
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-3">
+                        <!-- Mode Toggle -->
+                        <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                            <span class="font-bold text-white">Sampling Protocol:</span>
+                            <div class="flex gap-2">
+                                <button onclick="window.sim12Toggle(true)" class="px-3 py-1 rounded-lg text-xs font-bold transition ${withReplacement ? 'bg-cyan-600 text-white shadow' : 'bg-slate-800 text-slate-400'}">
+                                    With Replacement
+                                </button>
+                                <button onclick="window.sim12Toggle(false)" class="px-3 py-1 rounded-lg text-xs font-bold transition ${!withReplacement ? 'bg-amber-600 text-white shadow' : 'bg-slate-800 text-slate-400'}">
+                                    Without Replacement
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Urn Display -->
+                        <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 flex items-center justify-around">
+                            <div class="text-center">
+                                <div class="text-[10px] text-slate-400 font-mono mb-1">Urn Contents (N = 8)</div>
+                                <div class="flex gap-1 justify-center flex-wrap max-w-[140px]">
+                                    ${Array(5).fill(0).map(()=>`<span class="w-5 h-5 rounded-full bg-rose-500 shadow"></span>`).join('')}
+                                    ${Array(3).fill(0).map(()=>`<span class="w-5 h-5 rounded-full bg-cyan-500 shadow"></span>`).join('')}
+                                </div>
+                            </div>
+
+                            <div class="space-y-1.5 text-xs font-mono">
+                                <div>1st Red Draw: <span class="text-rose-400 font-bold">5 / 8</span></div>
+                                <div>2nd Red Draw: <span class="${withReplacement ? 'text-rose-400' : 'text-amber-400'} font-bold">${withReplacement ? '5 / 8' : '4 / 7'}</span></div>
+                                <div class="pt-1 border-t border-slate-800 text-emerald-400 font-black">
+                                    P(Two Reds) = ${withReplacement ? '25/64 ≈ 0.391' : '20/56 = 5/14 ≈ 0.357'}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-[11px] text-center font-mono text-slate-400">
+                            ${withReplacement ?
+                                'Independent Trials: Urn resets to 8 marbles every draw.' :
+                                'Dependent Trials: Total drops from 8 to 7, and red drops from 5 to 4!'}
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim12Toggle = function(flag) {
+                withReplacement = flag;
+                playTone(flag ? 500 : 400, 0.1, 'sine');
+                draw();
+            };
+            draw();
+        }
+
+        // SIMULATOR 13: Interactive 52-Card Deck Grid & Probability Filter Engine
+        function renderSim13(vp) {
+            let filter = 'face';
+
+            function isMatch(suit, rank) {
+                if (filter === 'all') return true;
+                if (filter === 'face') return ['J', 'Q', 'K'].includes(rank);
+                if (filter === 'redFace') return ['♥', '♦'].includes(suit) && ['J', 'Q', 'K'].includes(rank);
+                if (filter === 'aces') return rank === 'A';
+                if (filter === 'spades') return suit === '♠';
+                return true;
+            }
+
+            const suits = ['♠', '♣', '♥', '♦'];
+            const ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+
+            function draw() {
+                let count = 0;
+                suits.forEach(s => ranks.forEach(r => { if (isMatch(s, r)) count++; }));
+
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <!-- Filters -->
+                        <div class="flex items-center gap-1.5 flex-wrap text-[11px]">
+                            ${[
+                                { id: 'face', label: 'Face Cards (12)' },
+                                { id: 'redFace', label: 'Red Face (6)' },
+                                { id: 'aces', label: 'Aces (4)' },
+                                { id: 'spades', label: 'Spades (13)' },
+                                { id: 'all', label: 'All 52 Cards' }
+                            ].map(btn => `
+                                <button onclick="window.sim13Set('${btn.id}')" class="px-2.5 py-1 rounded-lg border transition ${filter === btn.id ? 'bg-amber-500 text-slate-950 font-bold' : 'bg-slate-900 border-slate-800 text-slate-300 hover:bg-slate-800'}">
+                                    ${btn.label}
+                                </button>
+                            `).join('')}
+                        </div>
+
+                        <!-- Mini Deck Grid -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 overflow-x-auto">
+                            <div class="grid grid-rows-4 gap-1 min-w-[380px]">
+                                ${suits.map(s => `
+                                    <div class="flex gap-1">
+                                        ${ranks.map(r => {
+                                            const match = isMatch(s, r);
+                                            const isRed = ['♥', '♦'].includes(s);
+                                            return `
+                                                <div class="w-6 h-8 rounded border flex flex-col items-center justify-center text-[9px] font-mono font-bold transition-all
+                                                            ${match ? (isRed ? 'bg-rose-950 border-rose-500 text-rose-300 scale-105' : 'bg-cyan-950 border-cyan-500 text-cyan-300 scale-105') : 'bg-slate-900/40 border-slate-800 text-slate-600 opacity-30'}">
+                                                    <span>${r}</span>
+                                                    <span class="text-[8px]">${s}</span>
+                                                </div>
+                                            `;
+                                        }).join('')}
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Result -->
+                        <div class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-center">
+                            <span class="text-amber-400 font-bold">P(${filter}) = ${count} / 52</span>
+                            <span class="text-emerald-400 font-black ml-2">= ${(count/52).toFixed(4)} (${(count/52*100).toFixed(1)}%)</span>
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim13Set = function(f) {
+                filter = f;
+                playTone(520, 0.08, 'sine');
+                draw();
+            };
+            draw();
+        }
+
+        // SIMULATOR 14: Interactive Archery Dartboard & Geometric Area Calculator
+        function renderSim14(vp) {
+            let bullseyeR = 30; // outer board radius is 80
+
+            function draw() {
+                const boardR = 80;
+                const pBullseye = (bullseyeR * bullseyeR) / (boardR * boardR);
+
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-3">
+                        <div class="bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 space-y-1">
+                            <div class="flex justify-between text-xs font-mono">
+                                <span class="text-slate-300">Bullseye Radius: ${bullseyeR}px (Board = 80px)</span>
+                                <span class="text-amber-400 font-bold">P = ${(pBullseye * 100).toFixed(1)}%</span>
+                            </div>
+                            <input type="range" min="10" max="70" value="${bullseyeR}"
+                                   oninput="window.sim14Set(this.value)"
+                                   class="w-full accent-amber-500 h-1.5 bg-slate-700 rounded cursor-pointer">
+                        </div>
+
+                        <!-- SVG Dartboard -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex justify-center">
+                            <svg width="220" height="170" viewBox="0 0 220 170">
+                                <!-- Outer Board -->
+                                <circle cx="110" cy="85" r="${boardR}" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+                                <!-- Inner Bullseye -->
+                                <circle cx="110" cy="85" r="${bullseyeR}" fill="#f59e0b" fill-opacity="0.85" stroke="#fbbf24" stroke-width="2" class="transition-all duration-300"/>
+                                <text x="110" y="88" fill="#0f172a" font-size="9" font-family="monospace" font-weight="black" text-anchor="middle">Target</text>
+                            </svg>
+                        </div>
+
+                        <div class="text-[11px] text-center font-mono text-emerald-400">
+                            <strong>Geometric Ratio:</strong> $P = \frac{\pi r^2}{\pi R^2} = (\frac{${bullseyeR}}{80})^2 = ${pBullseye.toFixed(3)}$. $\pi$ cancels out!
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim14Set = function(r) {
+                bullseyeR = parseInt(r);
+                draw();
+            };
+            draw();
+        }
+
+        // SIMULATOR 15: Interactive Monte Carlo Pi Estimator & Dartboard Simulation
+        function renderSim15(vp) {
+            let totalPts = 0;
+            let insidePts = 0;
+            let samplePoints = [];
+
+            function draw() {
+                const piEst = totalPts > 0 ? (4 * (insidePts / totalPts)) : 3.1416;
+
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-3">
+                        <!-- Buttons -->
+                        <div class="flex items-center justify-between bg-slate-900/80 p-2 rounded-xl border border-slate-800 text-xs">
+                            <span class="font-bold text-white">Monte Carlo Pi</span>
+                            <div class="flex gap-2">
+                                <button onclick="window.sim15Throw(100)" class="px-2.5 py-1 rounded bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs shadow">+100</button>
+                                <button onclick="window.sim15Throw(1000)" class="px-2.5 py-1 rounded bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow">+1,000</button>
+                                <button onclick="window.sim15Reset()" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-400 text-xs border border-slate-700">Reset</button>
+                            </div>
+                        </div>
+
+                        <!-- Canvas & Stats -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-around">
+                            <!-- SVG Quarter Circle Square -->
+                            <svg width="150" height="150" viewBox="0 0 150 150" class="border border-slate-700 bg-slate-900 rounded">
+                                <!-- Quarter Arc -->
+                                <path d="M 0,150 A 150,150 0 0,0 150,0 L 0,0 Z" fill="rgba(6, 182, 212, 0.15)" stroke="#06b6d4" stroke-width="2"/>
+
+                                <!-- Random Dots -->
+                                ${samplePoints.slice(-150).map(pt => `
+                                    <circle cx="${pt.x * 150}" cy="${(1 - pt.y) * 150}" r="1.5" fill="${pt.inside ? '#10b981' : '#f43f5e'}"/>
+                                `).join('')}
+                            </svg>
+
+                            <div class="space-y-1.5 text-xs font-mono">
+                                <div>Total Points: <span class="text-white font-bold">${totalPts}</span></div>
+                                <div>Inside Arc: <span class="text-emerald-400 font-bold">${insidePts}</span></div>
+                                <div class="pt-1 border-t border-slate-800">
+                                    <span class="text-[10px] text-slate-400">Formula: 4 × (N_in / N)</span>
+                                    <div class="text-base font-black text-amber-400">π ≈ ${piEst.toFixed(4)}</div>
+                                    <span class="text-[9px] text-slate-500">True π = 3.14159...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim15Throw = function(n) {
+                for (let i = 0; i < n; i++) {
+                    const x = Math.random();
+                    const y = Math.random();
+                    const inside = (x * x + y * y <= 1.0);
+                    totalPts++;
+                    if (inside) insidePts++;
+                    if (samplePoints.length < 200) samplePoints.push({ x, y, inside });
+                }
+                playTone(587.33, 0.08, 'triangle');
+                draw();
+            };
+            window.sim15Reset = function() {
+                totalPts = 0;
+                insidePts = 0;
+                samplePoints = [];
+                draw();
+            };
+            draw();
+        }
+
+        // SIMULATOR 16: Interactive Real-World Decision Tree & Risk Payoff Analyzer
+        function renderSim16(vp) {
+            let pIncident = 0.05; // 5% chance of crash/damage
+            let damageCost = 100000;
+            let insuranceCost = 6000;
+
+            function draw() {
+                const evUninsured = pIncident * damageCost;
+                const isInsuredBetter = insuranceCost < evUninsured;
+
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-3">
+                        <!-- Risk Slider -->
+                        <div class="bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 space-y-1">
+                            <div class="flex justify-between text-xs font-mono">
+                                <span class="text-slate-300">Accident Probability:</span>
+                                <span class="text-rose-400 font-bold">${(pIncident * 100).toFixed(1)}%</span>
+                            </div>
+                            <input type="range" min="0.01" max="0.20" step="0.01" value="${pIncident}"
+                                   oninput="window.sim16Set(this.value)"
+                                   class="w-full accent-rose-500 h-1.5 bg-slate-700 rounded cursor-pointer">
+                        </div>
+
+                        <!-- Expected Value Comparison -->
+                        <div class="grid grid-cols-2 gap-3 text-center text-xs">
+                            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+                                <span class="text-[10px] text-slate-400 font-mono">Fixed Insurance Premium</span>
+                                <div class="text-lg font-black text-cyan-300 font-mono mt-1">₹${insuranceCost}</div>
+                                <span class="text-[9px] text-slate-500">Certain, known cost</span>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+                                <span class="text-[10px] text-slate-400 font-mono">Expected Loss (Uninsured)</span>
+                                <div class="text-lg font-black text-rose-400 font-mono mt-1">₹${Math.round(evUninsured)}</div>
+                                <span class="text-[9px] text-slate-500">P(Crash) × ₹1,00,000</span>
+                            </div>
+                        </div>
+
+                        <!-- Rational Decision Badge -->
+                        <div class="p-2.5 rounded-xl border text-center text-xs font-mono ${isInsuredBetter ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-300' : 'bg-amber-950/40 border-amber-500/40 text-amber-300'}">
+                            <strong>Actuarial Recommendation:</strong> ${isInsuredBetter ?
+                                'Buy Insurance! Expected risk loss (₹' + Math.round(evUninsured) + ') exceeds premium (₹6,000).' :
+                                'Self-Insure / Drive Cautiously: Premium is higher than mathematical expected risk loss.'}
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim16Set = function(val) {
+                pIncident = parseFloat(val);
+                draw();
+            };
+            draw();
+        }
+
+        // Web Speech API Voiceover Narration Logic
+        function initSpeechControls() {
+            const toggleBtn = document.getElementById('toggleSpeechBtn');
+            const pauseBtn = document.getElementById('pauseSpeechBtn');
+            const stopBtn = document.getElementById('stopSpeechBtn');
+            const rateSelect = document.getElementById('speechRateSelect');
+
+            toggleBtn.onclick = toggleSpeech;
+            pauseBtn.onclick = pauseSpeech;
+            stopBtn.onclick = stopSpeech;
+            rateSelect.onchange = (e) => {
+                speechRate = parseFloat(e.target.value);
+                if (isSpeaking) {
+                    stopSpeech();
+                    speakCurrentSlide();
+                }
+            };
+        }
+
+        function toggleSpeech() {
+            if (isSpeaking) {
+                stopSpeech();
+            } else {
+                speakCurrentSlide();
+            }
+        }
+
+        function pauseSpeech() {
+            if (speechSynth && speechSynth.speaking) {
+                if (speechSynth.paused) {
+                    speechSynth.resume();
+                    setSpeakingState(true);
+                } else {
+                    speechSynth.pause();
+                    setSpeakingState(false, true);
+                }
+            }
+        }
+
+        function stopSpeech() {
+            if (speechSynth) {
+                speechSynth.cancel();
+            }
+            setSpeakingState(false);
+        }
+
+        function speakCurrentSlide() {
+            if (!('speechSynthesis' in window)) {
+                alert("Speech Synthesis not supported in this browser. Please use a modern browser.");
+                return;
+            }
+
+            stopSpeech();
+
+            let narrationText = "";
+            if (currentSlideIndex < 16) {
+                narrationText = SLIDES[currentSlideIndex].narration;
+            } else {
+                narrationText = `Mastery Assessment Quiz ${currentSlideIndex - 15}. Test your understanding across probability scale, empirical trials, theoretical sample spaces, tree diagrams, and Monte Carlo algorithms.`;
+            }
+
+            currentUtterance = new SpeechSynthesisUtterance(narrationText);
+            currentUtterance.lang = 'en-US';
+            currentUtterance.rate = speechRate;
+
+            currentUtterance.onstart = () => {
+                setSpeakingState(true);
+            };
+
+            currentUtterance.onend = () => {
+                setSpeakingState(false);
+            };
+
+            currentUtterance.onerror = (e) => {
+                console.warn("Speech synthesis error", e);
+                setSpeakingState(false);
+            };
+
+            speechSynth.speak(currentUtterance);
+        }
+
+        function setSpeakingState(speaking, paused = false) {
+            isSpeaking = speaking;
+            const avatar = document.getElementById('avatarContainer');
+            const pulse = document.getElementById('speakingPulse');
+            const dot = document.getElementById('speakingDot');
+            const status = document.getElementById('speechStatus');
+            const label = document.getElementById('speechBtnLabel');
+
+            if (speaking) {
+                avatar.classList.add('talking');
+                pulse.classList.remove('hidden');
+                dot.classList.remove('hidden');
+                status.textContent = "Speaking";
+                status.className = "text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800";
+                label.textContent = "Stop Audio";
+            } else if (paused) {
+                avatar.classList.remove('talking');
+                pulse.classList.add('hidden');
+                dot.classList.remove('hidden');
+                status.textContent = "Paused";
+                status.className = "text-[10px] font-mono px-2 py-0.5 rounded bg-amber-950 text-amber-400 border border-amber-800";
+                label.textContent = "Resume";
+            } else {
+                avatar.classList.remove('talking');
+                pulse.classList.add('hidden');
+                dot.classList.add('hidden');
+                status.textContent = "Idle";
+                status.className = "text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400";
+                label.textContent = "Explain Slide";
+            }
+        }
+    </script>
+</body>
+</html>

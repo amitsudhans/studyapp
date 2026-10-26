@@ -481,28 +481,21 @@
   <!-- BOTTOM SLIDE-BY-SLIDE CONTROLLER DOCK -->
   <!-- ========================================================================= -->
   <footer style="flex-shrink: 0;" class="border-t border-slate-800/90 bg-slate-950/95 p-3 sm:p-4 z-40">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-      
-      <!-- Prev / Next & Auto-Play Controls -->
-      <div class="flex items-center space-x-2">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+      <!-- LEFT: Previous & Auto-Play Controls -->
+      <div class="flex items-center space-x-2 shrink-0">
         <button id="prevSlideBtn" onclick="prevSlide()" class="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold border border-slate-700 flex items-center space-x-1 cursor-pointer transition-all disabled:opacity-40 disabled:cursor-not-allowed">
           <span>⏮</span>
           <span>Previous</span>
         </button>
-
         <button id="autoPlaySlideshowBtn" onclick="toggleAutoPlaySlideshow()" class="px-4 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 flex items-center space-x-1.5 cursor-pointer transition-all">
           <span id="autoPlayIcon">▶</span>
           <span id="autoPlayText">Auto-Play Slideshow</span>
         </button>
-
-        <button id="nextSlideBtn" onclick="nextSlide()" class="px-4 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white text-xs font-bold shadow-lg shadow-emerald-600/30 flex items-center space-x-1 cursor-pointer transition-all">
-          <span>Next</span>
-          <span>⏭</span>
-        </button>
       </div>
 
-      <!-- Slide Jump Pills -->
-      <div class="flex items-center space-x-1 overflow-x-auto max-w-full pb-1 sm:pb-0 text-xs">
+      <!-- CENTER: Slide Jump Pills -->
+      <div class="flex items-center space-x-1 overflow-x-auto max-w-full pb-1 md:pb-0 text-xs">
         <button onclick="goToSlide(0)" class="slide-pill px-2.5 py-1 rounded-lg bg-emerald-600 text-white font-bold transition-all cursor-pointer">1. Intro</button>
         <button onclick="goToSlide(1)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">2. Factor Tree</button>
         <button onclick="goToSlide(2)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">3. HCF &amp; LCM</button>
@@ -510,6 +503,18 @@
         <button onclick="goToSlide(4)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">5. √2 Proof</button>
         <button onclick="goToSlide(5)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">6. Track</button>
         <button onclick="goToSlide(6)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer">7. Quiz</button>
+      </div>
+
+      <!-- RIGHT (LAST IN RIGHT SIDE): Next Slide Button & Last Slide Message -->
+      <div class="flex items-center space-x-2 shrink-0 justify-end">
+        <div id="lastSlideNotice" style="display: none;" class="px-3.5 py-1.5 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold flex items-center space-x-1.5 shadow-lg animate-pulse">
+          <span>🎉</span>
+          <span>You have reached the last slide of this chapter</span>
+        </div>
+        <button id="nextSlideBtn" onclick="nextSlide()" class="px-4 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white text-xs font-bold shadow-lg shadow-emerald-600/30 flex items-center space-x-1 cursor-pointer transition-all">
+          <span>Next</span>
+          <span>⏭</span>
+        </button>
       </div>
     </div>
   </footer>
@@ -677,10 +682,16 @@
       // Update Prev / Next button state
       document.getElementById('prevSlideBtn').disabled = (currentSlide === 0);
       const nextBtn = document.getElementById('nextSlideBtn');
+      const lastNotice = document.getElementById('lastSlideNotice');
       if (currentSlide === totalSlides - 1) {
-        nextBtn.innerHTML = '<span>Restart 🔄</span>';
+        if (nextBtn) nextBtn.style.display = 'none';
+        if (lastNotice) lastNotice.style.display = 'inline-flex';
+        if (typeof isAutoPlaySlideshow !== 'undefined' && isAutoPlaySlideshow) {
+          toggleAutoPlaySlideshow();
+        }
       } else {
-        nextBtn.innerHTML = '<span>Next</span><span>⏭</span>';
+        if (nextBtn) nextBtn.style.display = 'inline-flex';
+        if (lastNotice) lastNotice.style.display = 'none';
       }
 
       // Sound & Voice
@@ -711,9 +722,7 @@
     }
 
     function nextSlide() {
-      if (currentSlide >= totalSlides - 1) {
-        goToSlide(0);
-      } else {
+      if (currentSlide < totalSlides - 1) {
         goToSlide(currentSlide + 1);
       }
     }

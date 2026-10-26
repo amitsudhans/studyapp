@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCERT Class 9 Mathematics • Introduction to Euclid's Geometry Lab</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body);"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        .mouth-talking {
+            animation: mouthTalk 0.25s infinite alternate ease-in-out;
+            transform-origin: 50% 65%;
+        }
+        @keyframes mouthTalk {
+            0% { transform: scaleY(0.2); }
+            100% { transform: scaleY(1.4); }
+        }
+        .slide-fade-in {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-amber-500 selection:text-white">
+
+    <!-- Top Navigation Header -->
+    <header class="bg-slate-900/90 backdrop-blur-md border-b border-slate-800 sticky top-0 z-40 px-4 py-2.5">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-600 to-rose-500 flex items-center justify-center shadow-lg shadow-amber-500/30">
+                    <i data-lucide="compass" class="w-5 h-5 text-white"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">Class 9 Maths • Chapter 7</span>
+                        <span id="currentBadge" class="hidden sm:inline-block text-xs text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded border border-rose-500/20 font-semibold">CG-7 • Ancient Origins</span>
+                    </div>
+                    <h1 class="text-sm sm:text-base font-extrabold text-white tracking-tight">Introduction to Euclid's Geometry Lab</h1>
+                </div>
+            </div>
+
+            <!-- Central Slide Indicator -->
+            <div class="flex items-center gap-2 bg-slate-950/80 px-3 py-1.5 rounded-xl border border-slate-800">
+                <span class="text-xs text-slate-400">Slide</span>
+                <span id="slideCounter" class="text-sm font-bold text-amber-400 font-mono">1 / 20</span>
+                <div class="w-20 sm:w-28 bg-slate-800 h-2 rounded-full overflow-hidden ml-1">
+                    <div id="progressBar" class="bg-gradient-to-r from-amber-500 to-rose-500 h-full w-[5%] transition-all duration-300"></div>
+                </div>
+            </div>
+
+            <!-- Voice Controls & Speed -->
+            <div class="flex items-center gap-2">
+                <div class="flex items-center bg-slate-800/80 rounded-lg p-0.5 border border-slate-700">
+                    <button onclick="changeSpeed(0.8)" id="spd08" class="px-2 py-1 text-[11px] rounded font-medium text-slate-300 hover:text-white transition">0.8x</button>
+                    <button onclick="changeSpeed(1.0)" id="spd10" class="px-2 py-1 text-[11px] rounded font-bold bg-amber-600 text-white transition">1.0x</button>
+                    <button onclick="changeSpeed(1.2)" id="spd12" class="px-2 py-1 text-[11px] rounded font-medium text-slate-300 hover:text-white transition">1.2x</button>
+                </div>
+                <button onclick="toggleAudio()" id="voiceToggleBtn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-600 hover:bg-amber-500 text-white transition shadow-md shadow-amber-600/30">
+                    <i data-lucide="volume-2" class="w-4 h-4"></i>
+                    <span id="voiceBtnText">Voice On</span>
+                </button>
+                <button onclick="replayAudio()" title="Replay Audio" class="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition">
+                    <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Teacher Avatar & Live Narration Banner -->
+    <div class="bg-slate-900/60 border-b border-slate-800/80 px-4 py-2.5">
+        <div class="max-w-7xl mx-auto flex items-center gap-3">
+            <div class="relative shrink-0">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-amber-500 to-rose-600 p-0.5 shadow-md shadow-amber-500/20">
+                    <svg viewBox="0 0 100 100" class="w-full h-full rounded-full bg-slate-900">
+                        <circle cx="50" cy="50" r="48" fill="#1e293b"/>
+                        <path d="M50 18 C32 18 24 32 24 48 C24 64 34 82 50 82 C66 82 76 64 76 48 C76 32 68 18 50 18 Z" fill="#fed7aa"/>
+                        <path d="M22 38 C22 20 34 12 50 12 C66 12 78 20 78 38 C78 44 74 46 72 38 C68 22 32 22 28 38 C26 46 22 44 22 38 Z" fill="#334155"/>
+                        <ellipse cx="38" cy="46" rx="4" ry="5" fill="#0f172a"/>
+                        <ellipse cx="62" cy="46" rx="4" ry="5" fill="#0f172a"/>
+                        <circle cx="39" cy="44" r="1.5" fill="#ffffff"/>
+                        <circle cx="63" cy="44" r="1.5" fill="#ffffff"/>
+                        <circle cx="38" cy="46" r="8" fill="none" stroke="#64748b" stroke-width="2"/>
+                        <circle cx="62" cy="46" r="8" fill="none" stroke="#64748b" stroke-width="2"/>
+                        <line x1="46" y1="46" x2="54" y2="46" stroke="#64748b" stroke-width="2"/>
+                        <path d="M48 50 L52 50 L50 56 Z" fill="#fbcfe8"/>
+                        <g id="teacherMouth">
+                            <ellipse cx="50" cy="65" rx="5" ry="2.5" fill="#be123c"/>
+                        </g>
+                    </svg>
+                </div>
+                <div id="speakingPulse" class="hidden absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-slate-900 animate-ping"></div>
+            </div>
+            <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2">
+                    <span class="text-xs font-bold text-amber-400">Prof. Sophia</span>
+                    <span class="text-[10px] text-slate-400">• Ancient Mathematics & Logic Guide</span>
+                </div>
+                <p id="narrationText" class="text-xs sm:text-sm text-slate-200 truncate font-normal">
+                    Welcome to Euclid's Geometry! Discover how geometry grew from the flooded Nile and Vedic altars into Euclid's axioms.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Workspace Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-between">
+        <div id="slideContentContainer">
+            <!-- Dynamically populated slide content -->
+        </div>
+
+        <!-- Universal Pop-up Solution Modal -->
+        <div id="solutionModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+            <div class="bg-slate-900 border border-amber-500/30 rounded-2xl max-w-xl w-full p-5 sm:p-6 shadow-2xl relative max-h-[85vh] overflow-y-auto">
+                <div class="flex items-start justify-between gap-3 border-b border-slate-800 pb-3 mb-4">
+                    <div class="flex items-center gap-2">
+                        <div class="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center">
+                            <i data-lucide="book-marked" class="w-4 h-4"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-bold text-white">Step-by-Step Mathematical Solution</h3>
+                            <span id="modalQSubtitle" class="text-xs text-amber-400 font-mono"></span>
+                        </div>
+                    </div>
+                    <button onclick="closeSolutionModal()" class="p-1 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+                <div class="mb-4 p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs sm:text-sm text-slate-300 font-medium leading-relaxed" id="modalQuestionText">
+                    <!-- Question text -->
+                </div>
+                <div class="p-4 bg-amber-950/20 rounded-xl border border-amber-500/20 text-xs sm:text-sm text-amber-200 leading-relaxed font-mono space-y-2" id="modalSolutionText">
+                    <!-- Solution derivation -->
+                </div>
+                <div class="mt-5 flex justify-end">
+                    <button onclick="closeSolutionModal()" class="px-4 py-2 rounded-xl text-xs font-bold bg-amber-600 hover:bg-amber-500 text-white transition">
+                        Understood & Close
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Last Slide Notice Banner -->
+        <div id="lastSlideNotice" class="hidden mt-6 p-4 rounded-xl bg-gradient-to-r from-emerald-950/60 via-slate-900 to-amber-950/60 border border-emerald-500/40 text-center">
+            <div class="flex items-center justify-center gap-2 text-emerald-400 font-bold text-sm sm:text-base">
+                <i data-lucide="check-circle" class="w-5 h-5"></i>
+                <span>You have reached the last slide of this chapter</span>
+            </div>
+            <p class="text-xs text-slate-300 mt-1">
+                Outstanding accomplishment! You have mastered the historical origins of geometry, Harappan urban ratios, Baudhayana's Sulbasutras, Euclid's 23 definitions, 7 common notions, 5 postulates, Playfair's parallel axiom, and non-Euclidean geometries.
+            </p>
+        </div>
+
+        <!-- Bottom Navigation Bar -->
+        <footer class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between gap-3">
+            <button onclick="prevSlide()" id="prevBtn" class="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 hover:border-slate-700 transition">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                Previous Slide
+            </button>
+
+            <!-- Slide Thumbnails Indicator -->
+            <div class="hidden md:flex items-center gap-1" id="thumbnailTrack">
+                <!-- 20 mini dot indicators -->
+            </div>
+
+            <button onclick="nextSlide()" id="nextBtn" class="flex items-center gap-2 px-5 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-amber-600 to-rose-600 hover:from-amber-500 hover:to-rose-500 text-white shadow-lg shadow-amber-600/30 transition">
+                Next Slide
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+        </footer>
+    </main>
+
+    <script>
+        // --- DATA STRUCTURES ---
+        const SLIDES = [{"id": 1, "title": "Practical Origins of Geometry & Ancient Civilisations", "subtitle": "Land Surveying, River Nile Floods & The Roots of Measurement", "category": "Historical Origins", "badge": "CG-7 \u2022 C-7.1 \u2022 Ancient Origins", "summary": "The word 'Geometry' originates from the Greek words 'Geo' (meaning Earth) and 'Metrein' or 'Metron' (meaning to measure). In ancient times, geometry developed out of practical necessity rather than abstract theory. In ancient Egypt, annual flooding of the River Nile regularly washed away agricultural boundary marks between farmland plots. The Pharaoh's land surveyors, known as 'harpedonaptai' (rope-stretchers), used knotted measuring ropes to re-establish property boundaries and calculate land areas for taxation. Similarly, building massive monuments, irrigation canals, and pyramids required practical rules for computing lengths, areas, and volumes.", "key_points": ["Etymology: Greek 'Geo' (Earth) + 'Metrein' (to measure) = measurement of the Earth.", "Egyptian origins: Annual River Nile floods necessitated re-surveying boundaries using knotted cords.", "Egyptian surveyors were called 'harpedonaptai' (rope-stretchers).", "Geometric rules in Egypt, Babylonia, and China were empirical rules of thumb without formal deductive proofs.", "Pyramids of Egypt demonstrated early mastery of spatial geometry (square bases, triangular faces meeting at an apex)."], "narration": "Welcome to Introduction to Euclid's Geometry! Did you know the word geometry means 'Earth measurement'? Thousands of years ago, annual floods of the River Nile washed away farm boundaries in Egypt. Surveyors with knotted ropes had to measure and redraw the land. Geometry began not as abstract equations, but as a practical necessity!", "sim_title": "Nile Flood & Land Re-Surveyor Simulator", "checkpoints": [{"q": "What is the literal meaning of the Greek word 'Geometry'?", "options": ["Sky Mapping", "Earth Measurement", "Building Design", "Stone Carving"], "ans": 1, "exp": "Geometry comes from Greek 'Geo' (Earth) and 'Metrein' (to measure), meaning Earth measurement.", "explanation": "Geometry comes from Greek 'Geo' (Earth) and 'Metrein' (to measure), meaning Earth measurement."}, {"q": "What practical necessity drove the early development of geometry in ancient Egypt?", "options": ["Re-establishing boundary lines washed away by the annual Nile floods", "Navigating across oceans at night", "Designing mechanical clocks", "Predicting solar eclipses"], "ans": 0, "exp": "The annual flooding of the River Nile erased boundary markers, requiring surveyors to remeasure farm fields.", "explanation": "The annual flooding of the River Nile erased boundary markers, requiring surveyors to remeasure farm fields."}]}, {"id": 2, "title": "Geometry in Ancient India: Harappa & Vedic Altars", "subtitle": "Town Planning, Standardized Bricks & Sacred Ritual Geometries", "category": "Ancient India", "badge": "CG-7 \u2022 C-7.1 \u2022 Indian Contributions", "summary": "Excavations at Harappa and Mohenjo-daro (Indus Valley Civilisation, c. 2500 BCE) reveal that ancient India possessed extraordinary geometric town planning: wide streets arranged in parallel grids intersecting at precise right angles, sophisticated underground drainage systems, and standardized kiln-burnt building bricks manufactured in the fixed dimensional ratio of Length : Breadth : Thickness = 4 : 2 : 1. In the later Vedic period (c. 1500\u2013500 BCE), elaborate fire altars ('Vedi') were constructed for sacred religious rituals, demanding exact geometric shapes with strictly preserved areas.", "key_points": ["Indus Valley Civilisation (c. 2500 BCE): Planned cities with orthogonal street grids intersecting at 90\u00b0.", "Standardized Harappan brick ratio: Length : Breadth : Thickness = 4 : 2 : 1.", "Vedic sacred fire altars ('Vedi') required precise geometric shapes for domestic and public rituals.", "Domestic household altars: Square ('Ahavaniya') and Circular ('Garhapatya').", "Public altars: Complex shapes such as 'Syenaciti' (falcon/hawk shaped), tortoise, and chariot wheel."], "narration": "In ancient India, geometry flourished in town planning and sacred rituals! In Harappa and Mohenjo-daro, streets intersected at precise right angles, and kiln-burnt bricks followed the standard ratio of 4 is to 2 is to 1. In the Vedic period, priests constructed sacred fire altars in shapes of squares, circles, and soaring falcons!", "sim_title": "Harappan Standard Brick & City Grid Planner", "checkpoints": [{"q": "What was the standardized dimensional ratio of bricks used in the Harappan Civilisation?", "options": ["3 : 2 : 1", "4 : 2 : 1", "5 : 3 : 1", "2 : 2 : 1"], "ans": 1, "exp": "Harappan bricks were standardized in the dimensional ratio of Length : Breadth : Thickness = 4 : 2 : 1.", "explanation": "Harappan bricks were standardized in the dimensional ratio of Length : Breadth : Thickness = 4 : 2 : 1."}, {"q": "Which shape was used for the domestic Garhapatya fire altar in Vedic rituals?", "options": ["Circular", "Square", "Hexagonal", "Octagonal"], "ans": 0, "exp": "The Garhapatya altar was circular, whereas the Ahavaniya altar was square; both were required to have equal areas.", "explanation": "The Garhapatya altar was circular, whereas the Ahavaniya altar was square; both were required to have equal areas."}]}, {"id": 3, "title": "Baudhayana\u2019s Sulbasutras & Sacred Fire Altars", "subtitle": "Rope Geometry, Area Preservation & The Sri Yantra Masterpiece", "category": "Vedic Geometry", "badge": "CG-7 \u2022 C-7.1 \u2022 Sulbasutras", "summary": "The 'Sulbasutras' (manuals of the cord, c. 800\u2013500 BCE) composed by Baudhayana, Apastamba, Katyayana, and Manava are the oldest known Indian mathematical texts on geometry. The word 'Sulba' means rope or cord, and 'Sutra' means an aphorism. Vedic geometry focused on constructing altars of specific areas: converting a square altar into a circular altar of equal area, doubling a square's area, and designing intricate geometric diagrams like the 'Sri Yantra' consisting of 9 interwoven isosceles triangles producing 43 subordinate triangles.", "key_points": ["Sulbasutras ('manuals of the cord') are ancient Indian treatises on geometric rope constructions.", "Renowned authors: Baudhayana (c. 800 BCE), Apastamba (c. 600 BCE), and Katyayana (c. 200 BCE).", "Sacred rule of Vedi: Household altars of different shapes (square, circle, semicircle) must have identical surface area.", "The Sri Yantra: 9 interwoven isosceles triangles arranged around a central point (Bindu) creating 43 small triangles.", "Anticipated key theorems including the relation between the diagonal and sides of a rectangle."], "narration": "The Sulbasutras are ancient Indian texts dedicated to rope geometry! 'Sulba' means rope, which was used like a modern compass and straightedge. Priests had to solve complex challenges, like transforming a square altar into a circle of the exact same area, or constructing the famous Sri Yantra with 9 interwoven triangles!", "sim_title": "Vedic Sacred Altar Transformer & Area Balancer", "checkpoints": [{"q": "What does the Sanskrit word 'Sulba' in Sulbasutras mean?", "options": ["Fire altar", "Rope or cord", "Stone chisel", "Golden rule"], "ans": 1, "exp": "'Sulba' means a rope or cord, which was the fundamental tool for geometric constructions in ancient India.", "explanation": "'Sulba' means a rope or cord, which was the fundamental tool for geometric constructions in ancient India."}, {"q": "How many interwoven isosceles triangles form the ancient geometric diagram known as the Sri Yantra?", "options": ["7 triangles", "9 triangles", "12 triangles", "43 triangles"], "ans": 1, "exp": "The Sri Yantra is formed by 9 interwoven isosceles triangles, which intersect to produce 43 smaller triangles.", "explanation": "The Sri Yantra is formed by 9 interwoven isosceles triangles, which intersect to produce 43 smaller triangles."}]}, {"id": 4, "title": "Constructing a Square in Baudhayana\u2019s Sulbasutras", "subtitle": "Rope-and-Peg Algorithm for Erecting Perpendiculars & Baudhayana's Theorem", "category": "Sulbasutra Constructions", "badge": "CG-7 \u2022 C-7.3 \u2022 Square Construction", "summary": "Baudhayana described an ingenious method to construct a square using only a rope and wooden pegs: To construct a square of side 'a', first stretch a rope of length 'a' along the East-West line (Praci) between pegs A and B. Mark the midpoint. Sweep arcs of radius greater than half with the cord to construct the North-South perpendicular line (Udici). Measure length 'a' along both perpendiculars at A and B, fixing pegs C and D. Connecting the pegs yields a perfect square. Baudhayana also recorded the theorem: 'The rope stretched along the diagonal of a rectangle produces an area equal to the sum of areas produced by its sides.'", "key_points": ["Baudhayana's Sulbasutra gives the earliest explicit geometric construction of a square using a rope and pegs.", "The baseline was aligned with the East-West celestial direction ('Praci').", "The perpendicular was erected using intersecting circular cord arcs, creating the North-South axis ('Udici').", "Baudhayana's Theorem (pre-dating Pythagoras): The diagonal of a rectangle produces area equal to the sum of areas of both sides.", "Diagonal of a square of side a: d\u00b2 = a\u00b2 + a\u00b2 = 2a\u00b2 \u21d2 d = a\u221a2 (Baudhayana gave \u221a2 \u2248 1 + 1/3 + 1/(3\u00d74) - 1/(3\u00d74\u00d734))."], "narration": "Let's see how ancient Indian geometers constructed a perfect square using only a rope and pegs! Baudhayana laid out an East-West line called Praci, used intersecting cord arcs to erect the North-South perpendicular called Udici, and tied off four equal sides. Baudhayana also stated that the diagonal of a rectangle produces an area equal to the sum of both sides!", "sim_title": "Baudhayana Sulba Rope-and-Peg Square Constructor", "checkpoints": [{"q": "In Baudhayana's Sulbasutra, what was the primary tool used to construct perpendiculars and squares?", "options": ["A magnetic compass", "A rope (cord) and wooden pegs", "A calibrated metal ruler", "A protractor"], "ans": 1, "exp": "Baudhayana's constructions relied entirely on cords (ropes) and pegs driven into the ground.", "explanation": "Baudhayana's constructions relied entirely on cords (ropes) and pegs driven into the ground."}, {"q": "What did Baudhayana's theorem state regarding the diagonal of a rectangle?", "options": ["The diagonal is always double the shorter side", "The area produced by the diagonal equals the sum of areas produced by the two sides", "The diagonal divides the rectangle into unequal areas", "The diagonal length is equal to the perimeter"], "ans": 1, "exp": "Baudhayana stated: 'The rope stretched along the length of the diagonal of a rectangle produces an area which the vertical and horizontal sides make together.'", "explanation": "Baudhayana stated: 'The rope stretched along the length of the diagonal of a rectangle produces an area which the vertical and horizontal sides make together.'"}]}, {"id": 5, "title": "Greek Geometry: The Transition to Logical Deductive Proofs", "subtitle": "Thales of Miletus, Pythagoras & The Birth of Abstract Mathematical Reason", "category": "Greek Mathematics", "badge": "CG-7 \u2022 C-7.1 \u2022 Deductive Reasoning", "summary": "While ancient Egypt, Babylonia, and India used geometry for practical applications, the Greeks transformed geometry into an abstract, deductive science. Thales of Miletus (c. 624\u2013546 BCE) is universally recognized as the father of deductive geometry: he was the first mathematician to prove mathematical statements logically rather than merely asserting empirical observations. Thales proved that a circle is bisected by its diameter and that angles opposite equal sides of an isosceles triangle are equal. His pupil Pythagoras (c. 570\u2013495 BCE) and his secret brotherhood elevated geometry into a study of pure logical truths.", "key_points": ["Shift from empirical geometry (Egypt, Babylonia) to deductive mathematical proof (Greece).", "Thales of Miletus is credited with the very first recorded mathematical proofs in human history.", "Thales' theorems: A circle is bisected by any diameter; base angles of an isosceles triangle are equal.", "Pythagoras and his school proved the universal geometric property of right-angled triangles.", "Discovery of incommensurable lengths (irrational numbers like \u221a2) forced Greeks to prioritize pure geometry over arithmetic."], "narration": "The Greeks brought a revolutionary change to geometry: they demanded proof! Thales of Miletus was the first person in history recorded to logically prove a theorem, showing that a diameter bisects a circle into two equal halves. Geometry moved from measuring fields to discovering timeless logical truths!", "sim_title": "Thales' Circle Bisection & Inscribed Angle Theorem Visualizer", "checkpoints": [{"q": "Who is credited with being the first mathematician in history to provide a formal deductive geometric proof?", "options": ["Euclid", "Thales of Miletus", "Archimedes", "Aristotle"], "ans": 1, "exp": "Thales of Miletus (c. 624\u2013546 BCE) is credited with providing the first deductive geometric proofs.", "explanation": "Thales of Miletus (c. 624\u2013546 BCE) is credited with providing the first deductive geometric proofs."}, {"q": "Which fundamental theorem did Thales prove regarding circles?", "options": ["A circle has an area equal to \u03c0r\u00b2", "A circle is bisected by any of its diameters", "All chords in a circle have the same length", "A circle cannot be drawn with a rope"], "ans": 1, "exp": "Thales proved that any diameter divides a circle into two equal congruent halves.", "explanation": "Thales proved that any diameter divides a circle into two equal congruent halves."}]}, {"id": 6, "title": "Euclid of Alexandria and 'The Elements'", "subtitle": "Systematizing Human Knowledge into 13 Books of Pure Deductive Logic", "category": "Euclid & Elements", "badge": "CG-7 \u2022 C-7.1 \u2022 The Elements", "summary": "Around 300 BCE, Euclid, a Greek mathematician teaching at Alexandria in Egypt, accomplished one of the greatest intellectual feats in human history: he gathered, refined, and logically structured all known geometry of his era into a single master treatise in 13 books called 'The Elements' (Stoicheia). Euclid organized mathematics hierarchically: starting with basic Definitions, self-evident Axioms and Postulates, and then rigorously proving 465 Propositions (theorems) step by step, where every theorem rests strictly on preceding proofs.", "key_points": ["Euclid of Alexandria (c. 300 BCE) compiled all ancient geometric knowledge into 'The Elements'.", "'The Elements' consists of 13 books and is the most influential mathematical textbook ever written.", "Book I starts with 23 Definitions, 5 Postulates, and 5 Common Notions (Axioms).", "Deductive hierarchy: Undefined Terms \u2192 Definitions \u2192 Axioms / Postulates \u2192 Theorems \u2192 Proofs.", "Proposition 47 of Book I is Euclid's celebrated proof of the Pythagorean Theorem ('Windmill Proof')."], "narration": "Around 300 BCE, Euclid of Alexandria revolutionized mathematics by writing 'The Elements'. He organized geometry into a logical pyramid: starting with basic definitions, axioms, and postulates, and systematically proving 465 theorems! For over two thousand years, 'The Elements' was the ultimate textbook of truth.", "sim_title": "Euclid's 13 Books of Elements Explorer & Logic Tree", "checkpoints": [{"q": "How many individual books make up Euclid's master treatise, 'The Elements'?", "options": ["5 books", "7 books", "13 books", "23 books"], "ans": 2, "exp": "Euclid's 'The Elements' is divided into 13 distinct books covering plane geometry, number theory, and 3D solid geometry.", "explanation": "Euclid's 'The Elements' is divided into 13 distinct books covering plane geometry, number theory, and 3D solid geometry."}, {"q": "What is the correct logical sequence of Euclid's deductive mathematical system?", "options": ["Theorems \u2192 Proofs \u2192 Definitions \u2192 Axioms", "Definitions & Axioms \u2192 Postulates \u2192 Propositions (Theorems) \u2192 Proofs", "Calculations \u2192 Graphs \u2192 Rules \u2192 Conjectures", "Experiments \u2192 Measurements \u2192 Approximations \u2192 Rules"], "ans": 1, "exp": "Euclid begins with definitions, axioms, and postulates, from which propositions (theorems) are proven deductively.", "explanation": "Euclid begins with definitions, axioms, and postulates, from which propositions (theorems) are proven deductively."}]}, {"id": 7, "title": "Euclid's Definitions & The Need for Undefined Terms", "subtitle": "Points, Lines, Surfaces & Why Modern Geometry Accepts Undefined Terms", "category": "Definitions", "badge": "CG-7 \u2022 C-7.1 \u2022 Undefined Terms", "summary": "In Book I of 'The Elements', Euclid began by giving 23 definitions for basic geometric terms: (1) A point is that which has no part; (2) A line is breadthless length; (3) The ends of a line are points; (4) A straight line is a line which lies evenly with the points on itself; (5) A surface is that which has length and breadth only; (6) The edges of a surface are lines; (7) A plane surface is a surface which lies evenly with straight lines on itself. However, defining 'point' using 'part' requires defining 'part', leading to an endless circular loop. Hence, modern geometry takes Point, Line, and Plane as intuitive 'Undefined Terms'.", "key_points": ["Dimensional hierarchy: Solid (3D) \u2192 Surface (2D) \u2192 Line (1D) \u2192 Point (0D).", "A solid has shape, size, position, and can be moved; its boundaries are surfaces (2D).", "The boundaries of surfaces are lines (1D); the boundaries of lines are points (0D).", "Circular definitions: Attempting to define every word leads to an infinite circular chain of definitions.", "Modern resolution: Point, Line, and Plane are accepted as foundational Undefined Terms with intuitive physical representations."], "narration": "Euclid defined a point as 'that which has no part' and a line as 'breadthless length'. But wait! What is a 'part'? What is 'breadth'? If we try to define every word, we end up in an infinite loop! That's why in modern mathematics, we accept point, line, and plane as intuitive undefined terms.", "sim_title": "Dimensional Hierarchy & Boundary Peeler Simulator", "checkpoints": [{"q": "How did Euclid define a 'point' in Book I of The Elements?", "options": ["A tiny dot on paper", "That which has no part", "The intersection of two circles", "A unit of length"], "ans": 1, "exp": "Euclid's Definition 1 states: 'A point is that which has no part.'", "explanation": "Euclid's Definition 1 states: 'A point is that which has no part.'"}, {"q": "Why does modern mathematics treat Point, Line, and Plane as 'Undefined Terms'?", "options": ["Because mathematicians do not know what they mean", "To prevent an endless circular chain of definitions", "Because they cannot be drawn on paper", "Because they only exist in three dimensions"], "ans": 1, "exp": "To define a term, we must use simpler terms. To avoid infinite circular definitions, foundational terms like point and line are left undefined.", "explanation": "To define a term, we must use simpler terms. To avoid infinite circular definitions, foundational terms like point and line are left undefined."}]}, {"id": 8, "title": "Axioms vs. Postulates: Self-Evident Truths", "subtitle": "Universal Assumptions in Mathematics vs. Domain-Specific Geometric Rules", "category": "Axioms & Postulates", "badge": "CG-7 \u2022 C-7.1 \u2022 Axioms vs Postulates", "summary": "Euclid divided his foundational unproven assumptions into two distinct categories: (1) Postulates: Assumptions that are specific strictly to geometry (e.g. drawing straight lines, describing circles, equality of right angles). (2) Axioms (Common Notions): Assumptions that are common and self-evidently true across ALL branches of mathematics, including arithmetic, algebra, and geometry (e.g. 'the whole is greater than the part'). Today, the terms 'axiom' and 'postulate' are often used interchangeably, representing statements accepted as true without proof.", "key_points": ["Axioms (Common Notions): Universal self-evident mathematical truths applied across arithmetic, algebra, and geometry.", "Postulates: Specific assumptions tied exclusively to geometric constructions and figures.", "Neither axioms nor postulates are proven; they are the starting rules of the mathematical game.", "Theorems: Mathematical propositions whose truth is established through rigorous deductive logic using axioms.", "In modern mathematics, axioms and postulates are regarded as synonymous starting premises."], "narration": "What is the difference between an axiom and a postulate? In Euclid's world, an axiom is a universal truth used throughout all mathematics, like 'the whole is greater than the part'. A postulate is an assumption specific only to geometry, like 'you can draw a circle with any center and radius'!", "sim_title": "Axiom vs. Postulate Categorizer & Truth Balancer", "checkpoints": [{"q": "In Euclid's geometry, how does a Postulate differ from an Axiom?", "options": ["Postulates are proven while Axioms are unproven", "Postulates are specific to geometry, while Axioms apply across all mathematics", "Axioms are only for triangles, while Postulates are for circles", "Postulates are written in Latin, while Axioms are in Greek"], "ans": 1, "exp": "Postulates are assumptions specific to geometry, whereas Axioms (Common Notions) are universal mathematical truths.", "explanation": "Postulates are assumptions specific to geometry, whereas Axioms (Common Notions) are universal mathematical truths."}, {"q": "Which of the following is an example of an Axiom rather than a Postulate?", "options": ["A circle can be described with any center and radius", "All right angles are equal to one another", "If equals are added to equals, the wholes are equal", "A straight line can be drawn from any point to any other point"], "ans": 2, "exp": "'If equals are added to equals, the wholes are equal' applies to numbers, algebra, and geometry, making it a universal Axiom.", "explanation": "'If equals are added to equals, the wholes are equal' applies to numbers, algebra, and geometry, making it a universal Axiom."}]}, {"id": 9, "title": "Euclid's 7 Common Notions (Axioms)", "subtitle": "Transitivity, Addition, Subtraction, Superposition & The Whole vs. Part", "category": "Axioms", "badge": "CG-7 \u2022 C-7.1 \u2022 7 Common Notions", "summary": "Euclid listed 5 Common Notions in Book I, which commentators expanded to 7 fundamental axioms: (1) Things equal to the same thing are equal to one another (Transitivity: a = c and b = c \u21d2 a = b); (2) If equals are added to equals, the wholes are equal (a = b \u21d2 a + c = b + c); (3) If equals are subtracted from equals, the remainders are equal (a = b \u21d2 a - c = b - c); (4) Things which coincide with one another are equal to one another (Principle of Superposition); (5) The whole is greater than the part (if b is a proper part of a, then a > b); (6) Things which are double of the same things are equal to one another; (7) Things which are halves of the same things are equal to one another.", "key_points": ["Axiom 1 (Transitivity of equality): If a = c and b = c, then a = b.", "Axiom 2 (Addition of equals): If a = b, then a + c = b + c.", "Axiom 3 (Subtraction of equals): If a = b, then a - c = b - c.", "Axiom 4 (Principle of Superposition): If figure A exactly covers figure B, they are congruent and equal.", "Axiom 5 (Whole is greater than part): Defines the fundamental concept of 'greater than' (A = B + C, C > 0 \u21d2 A > B).", "Axioms 6 & 7: Equal scaling by doubling (2a = 2b) and halving (a/2 = b/2) preserves equality."], "narration": "Euclid's 7 axioms are the bedrock of logical deduction. If A equals C and B equals C, then A must equal B! If you add equals to equals, the totals remain equal. And Axiom 5 gives us common sense: the whole is always greater than any of its parts!", "sim_title": "Euclid's 7 Axioms Interactive Balance Scale", "checkpoints": [{"q": "If line segment AB = CD and CD = EF, which Euclid's axiom proves that AB = EF?", "options": ["Axiom 1: Things equal to the same thing are equal to one another", "Axiom 4: Things which coincide with one another are equal", "Axiom 5: The whole is greater than the part", "Axiom 2: If equals are added to equals, the wholes are equal"], "ans": 0, "exp": "Axiom 1 states that things equal to the same thing are equal to one another (transitive property of equality).", "explanation": "Axiom 1 states that things equal to the same thing are equal to one another (transitive property of equality)."}, {"q": "Which Euclid's axiom justifies the geometric method of 'Superposition' (placing one figure over another to test congruence)?", "options": ["Axiom 2", "Axiom 4", "Axiom 5", "Axiom 7"], "ans": 1, "exp": "Axiom 4 states: 'Things which coincide with one another are equal to one another' (the principle of superposition).", "explanation": "Axiom 4 states: 'Things which coincide with one another are equal to one another' (the principle of superposition)."}]}, {"id": 10, "title": "Euclid's Postulates 1 & 2: Straight Lines & Extensions", "subtitle": "Connecting Two Points & Infinite Line Segments (Axiom 5.1)", "category": "Postulates", "badge": "CG-7 \u2022 C-7.1 \u2022 Postulates 1 & 2", "summary": "Postulate 1: 'A straight line may be drawn from any one point to any other point.' Euclid assumed that through two distinct points, a unique line can be drawn. In modern NCERT geometry, this is stated as Axiom 5.1: 'Given two distinct points, there is a unique line that passes through them.' While an infinite number of lines can pass through a single point P, exactly one unique straight line passes through both point P and point Q. Postulate 2: 'A terminated line can be produced indefinitely.' In Euclid's terminology, a 'terminated line' corresponds to what we call a line segment today; it can be continuously extended in both directions to form a line.", "key_points": ["Postulate 1: A straight line can be drawn joining any two points.", "NCERT Axiom 5.1: Given two distinct points, there exists a unique line passing through them.", "Points collinearity: If a line passes through points A, B, and C, the points are collinear.", "Infinitely many lines pass through 1 point; exactly 1 line passes through 2 distinct points.", "Postulate 2: A line segment ('terminated line') can be extended endlessly in either direction."], "narration": "Postulate 1 says that you can always draw a straight line between any two points. Even more importantly: only one unique line can connect them! Postulate 2 tells us that any line segment can be extended forever in both directions, turning a finite segment into an infinite line.", "sim_title": "Unique Line & Infinite Extension Ray Gun Simulator", "checkpoints": [{"q": "How many straight lines can pass through two distinct points P and Q?", "options": ["Infinitely many", "Exactly one", "Two", "Zero"], "ans": 1, "exp": "Axiom 5.1 / Postulate 1 establishes that exactly one unique straight line passes through two distinct points.", "explanation": "Axiom 5.1 / Postulate 1 establishes that exactly one unique straight line passes through two distinct points."}, {"q": "In modern geometric terminology, what did Euclid mean by a 'terminated line' in Postulate 2?", "options": ["A ray", "A line segment", "A curve", "An angle"], "ans": 1, "exp": "Euclid called a line segment with two endpoints a 'terminated line', which can be produced indefinitely.", "explanation": "Euclid called a line segment with two endpoints a 'terminated line', which can be produced indefinitely."}]}, {"id": 11, "title": "Euclid's Postulates 3 & 4: Circles & Universal Right Angles", "subtitle": "The Idealized Compass & The Invariance of Perpendicularity", "category": "Postulates", "badge": "CG-7 \u2022 C-7.1 \u2022 Postulates 3 & 4", "summary": "Postulate 3: 'A circle can be described with any centre and any radius.' This postulate authorizes the use of a compass as an idealized geometric drawing tool: given any point as center and any line segment length as radius, a perfect circle exists. Postulate 4: 'All right angles are equal to one another.' While this statement may seem obvious (every right angle equals 90\u00b0), it is a profound declaration about the geometry of the plane: it guarantees that space is uniform and homogeneous. No matter where a right angle is drawn, or how it is rotated, its magnitude is universally identical.", "key_points": ["Postulate 3: Any point can serve as the center of a circle of arbitrary radius.", "Euclidean collapsible compass: Once lifted from paper, the compass collapsed, ensuring radius transfer required proof.", "Postulate 4: All right angles are equal to one another (congruence of all 90\u00b0 angles).", "Homogeneity of Euclidean space: Space is isotropic; figures do not change size or shape upon translation or rotation.", "Perpendicularity is a universal constant throughout the plane."], "narration": "Postulate 3 gives us the power of the compass: you can draw a circle with any center and any radius. Postulate 4 states that all right angles are equal to one another! This ensures that our geometry is flat and uniform\u2014a 90-degree angle here is identical to a 90-degree angle anywhere in the universe!", "sim_title": "Universal Circle Compass & Right-Angle Superposition Tool", "checkpoints": [{"q": "Which Euclid's postulate authorizes the construction of a circle with any center and any radius?", "options": ["Postulate 1", "Postulate 2", "Postulate 3", "Postulate 4"], "ans": 2, "exp": "Postulate 3 states: 'A circle can be described with any centre and any radius.'", "explanation": "Postulate 3 states: 'A circle can be described with any centre and any radius.'"}, {"q": "What fundamental property of flat Euclidean space does Postulate 4 ('All right angles are equal') establish?", "options": ["Space is curved like a sphere", "Space is uniform and homogeneous (angles are invariant under rotation and translation)", "Triangles always have three right angles", "Lines cannot intersect"], "ans": 1, "exp": "Postulate 4 establishes that Euclidean space is uniform, so orientation and position do not alter the magnitude of right angles.", "explanation": "Postulate 4 establishes that Euclidean space is uniform, so orientation and position do not alter the magnitude of right angles."}]}, {"id": 12, "title": "Euclid's Famous Fifth Postulate (The Parallel Postulate)", "subtitle": "Interior Consecutive Angles & The Historic Criterion for Intersection", "category": "Fifth Postulate", "badge": "CG-7 \u2022 C-7.1 \u2022 Postulate 5", "summary": "Postulate 5 is the most celebrated and analyzed postulate in mathematics: 'If a straight line falling on two straight lines makes the interior angles on the same side of it taken together less than two right angles, the two straight lines, if produced indefinitely, meet on that side on which the sum of angles is less than two right angles.' In modern notation: if a transversal line t intersects lines l and m such that interior consecutive angles \u22201 and \u22202 satisfy \u22201 + \u22202 < 180\u00b0, lines l and m are guaranteed to intersect on that side if extended far enough.", "key_points": ["Verbatim: Interior angles on the same side sum to less than two right angles (< 180\u00b0).", "Consequence: The two lines will intersect on the side where the interior angle sum is < 180\u00b0.", "Divergence: On the opposite side where the angle sum is > 180\u00b0, the lines diverge further apart.", "Boundary condition: If interior angles sum exactly to 180\u00b0 on both sides (\u22201 + \u22202 = 180\u00b0), the lines NEVER meet (Parallel lines!).", "Unlike the first four brief postulates, Postulate 5 reads like a complex theorem."], "narration": "Here is the famous Fifth Postulate! When a transversal cuts two lines, look at the interior angles on one side. If their sum is less than 180 degrees (two right angles), the lines will eventually crash into each other on that side! But if the sum is exactly 180 degrees, they will never meet\u2014they are parallel!", "sim_title": "Euclid's 5th Postulate Transversal & Intersection Engine", "checkpoints": [{"q": "According to Euclid's Fifth Postulate, two straight lines will intersect on the side where the sum of interior angles is:", "options": ["Greater than two right angles (> 180\u00b0)", "Equal to two right angles (= 180\u00b0)", "Less than two right angles (< 180\u00b0)", "Zero"], "ans": 2, "exp": "Euclid's Postulate 5 states that lines meet on that side where the interior angles taken together are less than two right angles (< 180\u00b0).", "explanation": "Euclid's Postulate 5 states that lines meet on that side where the interior angles taken together are less than two right angles (< 180\u00b0)."}, {"q": "If a transversal intersects two lines such that interior angles on one side sum to exactly 180\u00b0, what can be concluded?", "options": ["The two lines are parallel and will never intersect", "The lines intersect immediately", "The lines are perpendicular", "The lines form an equilateral triangle"], "ans": 0, "exp": "When the sum of interior consecutive angles equals 180\u00b0 on both sides, the lines never intersect and are strictly parallel.", "explanation": "When the sum of interior consecutive angles equals 180\u00b0 on both sides, the lines never intersect and are strictly parallel."}]}, {"id": 13, "title": "Equivalent Versions of the Fifth Postulate & Parallelism", "subtitle": "Playfair's Axiom & The Fundamental Definition of Parallel Lines", "category": "Parallelism", "badge": "CG-7 \u2022 C-7.1 \u2022 Playfair's Axiom", "summary": "Because Euclid's Fifth Postulate was long and cumbersome, mathematicians formulated simpler, equivalent statements. The most famous equivalent version is Playfair's Axiom (Scottish mathematician John Playfair, 1795): 'For every line l and for every point P not lying on l, there exists a unique line m passing through P and parallel to l.' An immediate equivalent consequence: 'Two distinct intersecting lines cannot be parallel to the same line.' Definition of Parallel Lines: Two coplanar straight lines that do not intersect, no matter how far they are produced in both directions, maintaining a constant perpendicular distance throughout.", "key_points": ["Playfair's Axiom (1795): Through a given point P not on line l, exactly one line parallel to l can be drawn.", "Equivalent corollary: Two intersecting lines cannot both be parallel to the same line.", "Definition of parallel lines: Coplanar lines having no common point of intersection.", "Equidistant property: The perpendicular distance between two parallel lines is constant everywhere.", "Playfair's axiom is logically completely equivalent to Euclid's 5th postulate."], "narration": "In 1795, John Playfair gave us a much cleaner way to state the fifth postulate: take a line l and a point P not on it. Through point P, there is exactly one line that never touches l! That's Playfair's Axiom. This also means two lines that cross each other can never be parallel to the same line!", "sim_title": "Playfair's Parallel Line Beam Generator", "checkpoints": [{"q": "What does Playfair's Axiom state regarding a line l and a point P not lying on l?", "options": ["Infinitely many lines through P are parallel to l", "No line can be drawn through P parallel to l", "There exists a unique line passing through P parallel to l", "All lines passing through P intersect line l perpendicularly"], "ans": 2, "exp": "Playfair's Axiom states that through a point not on a given line, there exists a unique line parallel to the given line.", "explanation": "Playfair's Axiom states that through a point not on a given line, there exists a unique line parallel to the given line."}, {"q": "Can two distinct lines that intersect each other at a point both be parallel to a third line?", "options": ["Yes, always", "No, two intersecting lines cannot be parallel to the same line", "Only if they are perpendicular to each other", "Only in spherical geometry"], "ans": 1, "exp": "By Playfair's Axiom, two intersecting lines cannot both be parallel to the same third line.", "explanation": "By Playfair's Axiom, two intersecting lines cannot both be parallel to the same third line."}]}, {"id": 14, "title": "Justifying Constructions Using Axioms & Postulates", "subtitle": "Proposition 1: Constructing an Equilateral Triangle on a Given Segment", "category": "Geometric Proofs", "badge": "CG-7 \u2022 C-7.3 \u2022 Justifying Constructions", "summary": "Euclid demonstrated that every geometric construction must be strictly justified using axioms and postulates. Consider Proposition 1 of Book I: 'To construct an equilateral triangle on a given finite line segment AB': (1) Using center A and radius AB, draw circle C\u2081 (Postulate 3); (2) Using center B and radius BA, draw circle C\u2082 (Postulate 3); (3) Let circles intersect at point C; draw segments AC and BC (Postulate 1); (4) AC = AB (radii of circle C\u2081) and BC = AB (radii of circle C\u2082); (5) By Axiom 1 ('things equal to the same thing are equal to one another'), AC = BC = AB. Hence, triangle ABC is proven to be equilateral!", "key_points": ["Proposition 1 of Book I constructs an equilateral triangle on a segment AB.", "Step 1: Draw circle with center A and radius AB (justified by Postulate 3).", "Step 2: Draw circle with center B and radius BA (justified by Postulate 3).", "Step 3: Connect intersection point C to A and B (justified by Postulate 1).", "Step 4: Prove AC = AB and BC = AB by definition of circle radii.", "Step 5: Conclude AC = BC = AB by Euclid's Axiom 1 (Transitivity of equality)."], "narration": "In Euclid's world, you cannot just draw a shape and say 'it looks equilateral'\u2014you must prove it! In Proposition 1, Euclid used Postulate 3 to draw two intersecting circles, Postulate 1 to connect the vertices, and Axiom 1 to prove all three sides are equal. That is the beauty of deductive proof!", "sim_title": "Euclid Proposition 1 Step-by-Step Triangle Prover", "checkpoints": [{"q": "In Euclid's proof of Proposition 1 (equilateral triangle), which axiom proves that AC = BC?", "options": ["Axiom 1: Things equal to the same thing are equal to one another", "Axiom 2: If equals are added to equals, the wholes are equal", "Axiom 5: The whole is greater than the part", "Axiom 4: Things which coincide are equal"], "ans": 0, "exp": "Since AC = AB (circle 1) and BC = AB (circle 2), Axiom 1 proves AC = BC, making all three sides equal.", "explanation": "Since AC = AB (circle 1) and BC = AB (circle 2), Axiom 1 proves AC = BC, making all three sides equal."}, {"q": "Which postulate authorizes drawing the two intersecting circles in Proposition 1?", "options": ["Postulate 1", "Postulate 2", "Postulate 3", "Postulate 5"], "ans": 2, "exp": "Postulate 3 allows describing a circle with any center and radius.", "explanation": "Postulate 3 allows describing a circle with any center and radius."}]}, {"id": 15, "title": "The Quest to Prove Postulate 5 & Non-Euclidean Geometries", "subtitle": "2,000 Years of Attempts, Saccheri, Lobachevsky, Bolyai & Riemann", "category": "Non-Euclidean Horizons", "badge": "CG-7 \u2022 C-7.1 \u2022 Non-Euclidean Geometry", "summary": "For over two millennia, mathematicians believed the Fifth Postulate was too complicated to be an axiom and tried to prove it as a theorem from Postulates 1\u20134. Renowned scholars including Ptolemy, Proclus, Ibn al-Haytham, Omar Khayyam, and Saccheri attempted proofs, but all unwittingly assumed an equivalent statement (like Playfair's axiom). In the 19th century, Gauss, Lobachevsky, Bolyai, and Riemann made an astonishing discovery: Postulate 5 CANNOT be proven because it is independent! Denying Postulate 5 created valid, consistent 'Non-Euclidean Geometries': (1) Spherical Geometry (no parallels, triangle sum > 180\u00b0); (2) Hyperbolic Geometry (infinite parallels, triangle sum < 180\u00b0).", "key_points": ["2000-year quest: Mathematicians tried to prove Postulate 5 from the first four postulates.", "All historical attempts failed because they relied on circular reasoning (hidden assumptions).", "19th-century revolution: Gauss, Lobachevsky (1829), Bolyai (1832), and Riemann (1854).", "Hyperbolic Geometry: Infinitely many lines parallel to l pass through P; triangle angle sum < 180\u00b0.", "Spherical / Elliptic Geometry (Riemann): No parallel lines exist (great circles always intersect); triangle angle sum > 180\u00b0.", "Einstein's General Relativity proved our physical universe's spacetime is curved (Non-Euclidean)!"], "narration": "For 2,000 years, mathematicians tried to prove the Fifth Postulate. They all failed! In the 1800s, Gauss, Lobachevsky, and Riemann realized why: on a curved surface like a sphere or a saddle, Euclid's 5th postulate is false! This opened up Non-Euclidean geometry, which Einstein later used to describe the curved spacetime of gravity!", "sim_title": "Euclidean vs. Spherical vs. Hyperbolic Universe Comparer", "checkpoints": [{"q": "In Spherical Geometry (geometry on the surface of a sphere), how many parallel lines pass through a point not on a given line?", "options": ["Zero (no parallel lines exist; all great circles intersect)", "Exactly one", "Infinitely many", "Exactly two"], "ans": 0, "exp": "On a sphere, lines are great circles (like the equator). Any two great circles intersect, so no parallel lines exist.", "explanation": "On a sphere, lines are great circles (like the equator). Any two great circles intersect, so no parallel lines exist."}, {"q": "What is the sum of angles of a triangle in Hyperbolic (saddle-shaped) Geometry?", "options": ["Strictly less than 180\u00b0", "Exactly equal to 180\u00b0", "Strictly greater than 180\u00b0", "Always 360\u00b0"], "ans": 0, "exp": "In hyperbolic geometry, the sum of angles of any triangle is strictly less than 180\u00b0.", "explanation": "In hyperbolic geometry, the sum of angles of any triangle is strictly less than 180\u00b0."}]}, {"id": 16, "title": "Comprehensive Synthesis & The Axiomatic Method", "subtitle": "Connecting Practical Needs, Vedic Ropes, Euclid's Logic & Modern AI", "category": "Mastery Synthesis", "badge": "CG-7 \u2022 C-7.1 \u2022 C-7.3 \u2022 Synthesis", "summary": "Euclid's greatest gift to human civilization was not just geometry, but the 'Axiomatic Method'\u2014the idea that an entire domain of knowledge can be built upon a tiny foundation of clear definitions and self-evident axioms through pure deductive reasoning. From the muddy banks of the River Nile and the sacred altar ropes of the Sulbasutras, geometry evolved into the logical bedrock of science. Today, the axiomatic method powers modern mathematics, computer science algorithms, formal software verification, and automated theorem proving in Artificial Intelligence.", "key_points": ["Evolutionary arc: Practical land surveying \u2192 Vedic sacrificial ropes \u2192 Greek deductive proofs \u2192 Axiomatic foundations.", "Axiomatic Method: Start with minimal axioms; deduce all truths through rigorous logic.", "Euclid's 5 Postulates define the geometry of flat planes; modifying them yields curved spacetime.", "Proof standards: Observation suggests a conjecture, but only formal deductive proof establishes mathematical truth.", "Modern impact: Powers computer graphics, CAD engineering, robotics, cryptography, and AI theorem provers."], "narration": "Congratulations on exploring Euclid's Geometry! From the flooded banks of the Nile and the rope mathematics of ancient India, to Euclid's 13 books and curved non-Euclidean space, you now understand the power of axioms and proof. Let's test your knowledge in our mastery quiz challenges!", "sim_title": "Axiomatic Sandbox & Logic Chain Verifier", "checkpoints": [{"q": "What is the core idea of the 'Axiomatic Method' introduced by Euclid?", "options": ["Measuring shapes with physical instruments", "Deducing all mathematical truths logically from a small set of unproven axioms and postulates", "Accepting mathematical statements based on authority", "Only using computer simulations to verify facts"], "ans": 1, "exp": "The axiomatic method establishes all theorems through deductive logic starting from a minimal set of accepted axioms.", "explanation": "The axiomatic method establishes all theorems through deductive logic starting from a minimal set of accepted axioms."}, {"q": "Which statement best summarizes why a mathematical conjecture requires a proof?", "options": ["Observations can be misleading; only logical deduction from axioms guarantees universal truth", "Proofs make textbooks longer", "A theorem is only true if verified on a computer", "Conjectures are never true"], "ans": 0, "exp": "Empirical observation can reveal patterns, but only a formal deductive proof ensures a statement is true in all cases.", "explanation": "Empirical observation can reveal patterns, but only a formal deductive proof ensures a statement is true in all cases."}]}];
+        const QUIZZES = [{"id": 17, "title": "Mastery Challenge Part 1: History of Geometry & Sulbasutras", "subtitle": "10 Questions on Ancient Civilisations, Harappa, Vedic Altars & Baudhayana", "category": "Quiz Challenge", "badge": "Quiz Part 1 \u2022 Historical Foundations", "questions": [{"id": 1, "q": "The word 'Geometry' is derived from two Greek words meaning:", "options": ["Sky measurement", "Earth measurement", "Triangle study", "Building construction"], "ans": 1, "solution": "Geometry comes from Greek words 'Geo' (Earth) and 'Metrein' (to measure), signifying 'Earth measurement'."}, {"id": 2, "q": "In ancient Egypt, surveyors who re-established agricultural land boundaries were known as:", "options": ["Harpedonaptai (rope-stretchers)", "Scribes", "Geometers", "Mason-builders"], "ans": 0, "solution": "Egyptian surveyors were called 'harpedonaptai', meaning 'rope-stretchers', because they used knotted ropes to measure field boundaries after the Nile floods."}, {"id": 3, "q": "The bricks used for construction in the Indus Valley (Harappan) Civilisation had dimensions in the ratio:", "options": ["3 : 2 : 1", "4 : 2 : 1", "5 : 3 : 2", "4 : 3 : 1"], "ans": 1, "solution": "Harappan bricks exhibited a standardized ratio of Length : Breadth : Thickness = 4 : 2 : 1."}, {"id": 4, "q": "The ancient Indian mathematical texts detailing geometric constructions using ropes are called:", "options": ["Vedas", "Sulbasutras", "Upanishads", "Puranas"], "ans": 1, "solution": "The 'Sulbasutras' (manuals of the cord/rope) are ancient Indian treatises containing rules for geometric constructions."}, {"id": 5, "q": "Which Vedic fire altar was constructed in the shape of a soaring falcon or hawk?", "options": ["Garhapatya", "Ahavaniya", "Syenaciti", "Dakshinagni"], "ans": 2, "solution": "The 'Syenaciti' was a massive public altar constructed in the intricate geometric shape of a falcon or hawk in flight."}, {"id": 6, "q": "In Vedic rituals, the domestic Garhapatya altar was circular and the Ahavaniya altar was square. What was the mandatory condition connecting them?", "options": ["They had to have identical perimeters", "They were required to have the exact same surface area", "The circular altar had to be twice as large", "The square altar had to be twice as large"], "ans": 1, "solution": "Vedic ritual rules strictly mandated that the circular Garhapatya and square Ahavaniya altars must have identical surface area."}, {"id": 7, "q": "How many small subordinate triangles are formed by the 9 interwoven isosceles triangles in the Sri Yantra?", "options": ["27", "36", "43", "49"], "ans": 2, "solution": "The Sri Yantra consists of 9 interwoven isosceles triangles that intersect to create 43 smaller subsidiary triangles surrounding the central Bindu."}, {"id": 8, "q": "Baudhayana's Sulbasutra is celebrated for stating an ancient Indian theorem equivalent to:", "options": ["Pythagorean Theorem", "Thales Theorem", "Euler's Formula", "Fermat's Last Theorem"], "ans": 0, "solution": "Baudhayana stated that the diagonal of a rectangle produces an area equal to the sum of areas produced by its sides, anticipating the Pythagorean theorem."}, {"id": 9, "q": "In Baudhayana's square construction, what was the baseline aligned with the East-West direction called?", "options": ["Praci", "Udici", "Sulba", "Vedi"], "ans": 0, "solution": "The East-West baseline was called 'Praci', while the North-South perpendicular line was called 'Udici'."}, {"id": 10, "q": "Who was the Greek mathematician from Miletus credited with providing the first recorded deductive proofs in history?", "options": ["Euclid", "Thales", "Archimedes", "Pythagoras"], "ans": 1, "solution": "Thales of Miletus (c. 624\u2013546 BCE) is universally credited with introducing deductive proofs into geometry, proving that a circle is bisected by its diameter."}]}, {"id": 18, "title": "Mastery Challenge Part 2: Euclid's Definitions & Common Notions", "subtitle": "10 Questions on Undefined Terms, 23 Definitions & The 7 Axioms", "category": "Quiz Challenge", "badge": "Quiz Part 2 \u2022 Definitions & Axioms", "questions": [{"id": 11, "q": "In Euclid's 'The Elements', a line is defined as:", "options": ["A collection of dots", "Breadthless length", "A path between two points", "A surface of zero area"], "ans": 1, "solution": "Definition 2 of Book I states: 'A line is breadthless length.'"}, {"id": 12, "q": "According to Euclid, the boundaries or ends of a surface are:", "options": ["Points", "Lines", "Angles", "Solids"], "ans": 1, "solution": "Definition 6 of Book I states: 'The edges of a surface are lines.'"}, {"id": 13, "q": "How many dimensions does a geometric 'point' have?", "options": ["0", "1", "2", "3"], "ans": 0, "solution": "A point has no length, breadth, or height; it is zero-dimensional (0D)."}, {"id": 14, "q": "Why does modern mathematics treat Point, Line, and Plane as 'Undefined Terms'?", "options": ["To avoid an infinite regress of circular definitions", "Because they cannot be visualized", "Because Euclid forgot to define them", "Because they change in 3D space"], "ans": 0, "solution": "Every definition relies on other words. To avoid an infinite regress of circular definitions, foundational concepts like Point, Line, and Plane are taken as undefined starting terms."}, {"id": 15, "q": "If x = z and y = z, which Euclid's axiom implies that x = y?", "options": ["Axiom 1: Things equal to the same thing are equal to one another", "Axiom 2: If equals are added to equals, wholes are equal", "Axiom 5: The whole is greater than the part", "Axiom 4: Things which coincide are equal"], "ans": 0, "solution": "Axiom 1 states: 'Things which are equal to the same thing are equal to one another' (the transitive property of equality)."}, {"id": 16, "q": "If a = b, then a + 7 = b + 7. Which axiom justifies this statement?", "options": ["Axiom 2: If equals are added to equals, the wholes are equal", "Axiom 3: If equals are subtracted from equals, remainders are equal", "Axiom 5: The whole is greater than the part", "Axiom 6: Things double of same things are equal"], "ans": 0, "solution": "Axiom 2 states: 'If equals are added to equals, the wholes are equal.'"}, {"id": 17, "q": "A cake is cut into 8 equal slices. Which axiom mathematically proves that the whole cake is larger than any single slice?", "options": ["Axiom 1", "Axiom 4", "Axiom 5: The whole is greater than the part", "Axiom 7: Things halves of same things are equal"], "ans": 2, "solution": "Axiom 5 states: 'The whole is greater than the part.'"}, {"id": 18, "q": "Which Euclid's axiom provides the logical foundation for testing geometric congruence by placing one shape over another (Superposition)?", "options": ["Axiom 1", "Axiom 3", "Axiom 4: Things which coincide with one another are equal to one another", "Axiom 6"], "ans": 2, "solution": "Axiom 4 states: 'Things which coincide with one another are equal to one another'\u2014this is the principle of superposition."}, {"id": 19, "q": "If a = b, then a - 5 = b - 5. This is justified by:", "options": ["Axiom 1", "Axiom 2", "Axiom 3: If equals are subtracted from equals, the remainders are equal", "Axiom 5"], "ans": 2, "solution": "Axiom 3 states: 'If equals are subtracted from equals, the remainders are equal.'"}, {"id": 20, "q": "How many propositions (theorems) did Euclid prove throughout the 13 books of The Elements?", "options": ["23", "48", "465", "1000"], "ans": 2, "solution": "Euclid systematically proved 465 propositions (theorems) across the 13 books of 'The Elements'."}]}, {"id": 19, "title": "Mastery Challenge Part 3: Euclid's Five Postulates", "subtitle": "10 Questions on Straight Lines, Rays, Circles, Right Angles & Postulate 5", "category": "Quiz Challenge", "badge": "Quiz Part 3 \u2022 The 5 Postulates", "questions": [{"id": 21, "q": "Which of Euclid's postulates asserts that 'A straight line may be drawn from any one point to any other point'?", "options": ["Postulate 1", "Postulate 2", "Postulate 3", "Postulate 4"], "ans": 0, "solution": "Postulate 1 states that a straight line may be drawn from any one point to any other point."}, {"id": 22, "q": "NCERT Axiom 5.1, based on Postulate 1, states that given two distinct points, there exists:", "options": ["Infinitely many lines passing through them", "A unique line passing through them", "At least two lines passing through them", "No straight line"], "ans": 1, "solution": "Axiom 5.1 states: 'Given two distinct points, there is a unique line that passes through them.'"}, {"id": 23, "q": "Postulate 2 states that 'A terminated line can be produced indefinitely.' Today, a 'terminated line' is called:", "options": ["A ray", "A line segment", "An arc", "A polygon"], "ans": 1, "solution": "A 'terminated line' in Euclid's terminology is what we call a 'line segment' today."}, {"id": 24, "q": "Which postulate authorizes the use of a compass to construct a circle of any size anywhere in the plane?", "options": ["Postulate 1", "Postulate 2", "Postulate 3", "Postulate 4"], "ans": 2, "solution": "Postulate 3 states: 'A circle can be described with any centre and any radius.'"}, {"id": 25, "q": "What does Euclid's Postulate 4 state?", "options": ["All equilateral triangles are congruent", "All right angles are equal to one another", "All straight lines have infinite length", "Parallel lines never intersect"], "ans": 1, "solution": "Postulate 4 states: 'All right angles are equal to one another.'"}, {"id": 26, "q": "In Euclid's Fifth Postulate, on which side will two lines intersect when cut by a transversal?", "options": ["On the side where the interior angles sum to more than two right angles", "On the side where the interior angles sum to less than two right angles (< 180\u00b0)", "On both sides simultaneously", "They will never intersect on any side"], "ans": 1, "solution": "The Fifth Postulate states that the lines meet on that side on which the sum of the interior angles is less than two right angles (< 180\u00b0)."}, {"id": 27, "q": "A transversal cuts lines l and m. If the consecutive interior angles on one side are 85\u00b0 and 92\u00b0, what will happen if l and m are produced indefinitely on that side?", "options": ["They will intersect because 85\u00b0 + 92\u00b0 = 177\u00b0 < 180\u00b0", "They will never intersect because they are parallel", "They will diverge and move further apart", "They will form a circle"], "ans": 0, "solution": "The sum of interior angles is 85\u00b0 + 92\u00b0 = 177\u00b0. Since 177\u00b0 < 180\u00b0 (less than two right angles), Euclid's Postulate 5 guarantees that the lines will intersect on that side."}, {"id": 28, "q": "If the interior angles on one side of a transversal sum to exactly 180\u00b0, what is the relationship between the two lines?", "options": ["They are perpendicular", "They are parallel", "They coincide", "They intersect at 90\u00b0"], "ans": 1, "solution": "When interior angles sum to exactly 180\u00b0 (two right angles) on both sides, the lines never meet and are parallel."}, {"id": 29, "q": "What is Playfair's Axiom, the most famous equivalent form of Euclid's Fifth Postulate?", "options": ["For every line l and point P not on l, there exists a unique line passing through P parallel to l", "Two lines parallel to a third line intersect each other", "All triangles have angles summing to 180\u00b0", "Parallel lines meet at infinity"], "ans": 0, "solution": "Playfair's Axiom (1795) states: 'For every line l and for every point P not lying on l, there exists a unique line m passing through P and parallel to l.'"}, {"id": 30, "q": "Which logical deduction directly follows from Playfair's Axiom?", "options": ["Two distinct intersecting lines cannot be parallel to the same line", "All parallel lines have equal length", "A point has length and breadth", "Every triangle is right-angled"], "ans": 0, "solution": "If two intersecting lines could both be parallel to the same line, there would be two parallels through the intersection point, violating Playfair's Axiom."}]}, {"id": 20, "title": "Mastery Challenge Part 4: Proofs, Constructions & Non-Euclidean Horizons", "subtitle": "10 Questions on Proposition 1, Equilateral Triangles & Curved Geometries", "category": "Quiz Challenge", "badge": "Quiz Part 4 \u2022 Advanced Concepts", "questions": [{"id": 31, "q": "In Proposition 1 of Book I, Euclid constructs which geometric figure on a given segment AB?", "options": ["A Square", "An Equilateral Triangle", "A Regular Hexagon", "A Right Triangle"], "ans": 1, "solution": "Proposition 1 of Book I is the classic construction of an equilateral triangle on a given finite line segment AB."}, {"id": 32, "q": "In Euclid's construction of an equilateral triangle on segment AB, what is the radius of the two intersecting circles?", "options": ["AB / 2", "AB", "2 AB", "AB \u221a2"], "ans": 1, "solution": "Both circles are drawn with radius equal to the segment length AB (one centered at A and the other at B)."}, {"id": 33, "q": "If AC = AB (radii of circle 1) and BC = AB (radii of circle 2), which axiom justifies concluding that AC = BC?", "options": ["Axiom 1: Things equal to the same thing are equal to one another", "Axiom 2: If equals are added to equals, wholes are equal", "Axiom 4: Things coinciding are equal", "Axiom 5: The whole is greater than the part"], "ans": 0, "solution": "Since both AC and BC equal the same length AB, by Axiom 1 (transitivity), AC = BC. Therefore, AB = BC = CA."}, {"id": 34, "q": "Why were 2,000 years of mathematical attempts to prove Postulate 5 from Postulates 1\u20134 unsuccessful?", "options": ["Ancient mathematicians made arithmetic errors", "Postulate 5 is completely independent and cannot be deduced from Postulates 1 to 4", "Geometry was not studied during the Renaissance", "Postulate 5 is false on a flat plane"], "ans": 1, "solution": "Postulate 5 is logically independent of the first four postulates; it cannot be proven from them without introducing an equivalent unproven assumption."}, {"id": 35, "q": "Which 19th-century mathematicians are celebrated for discovering Non-Euclidean Geometry?", "options": ["Gauss, Lobachevsky, Bolyai, and Riemann", "Newton, Leibniz, and Descartes", "Euler, Fermat, and Pascal", "Galileo, Kepler, and Copernicus"], "ans": 0, "solution": "Carl Friedrich Gauss, Nikolai Lobachevsky (1829), J\u00e1nos Bolyai (1832), and Bernhard Riemann (1854) independently developed Non-Euclidean geometries."}, {"id": 36, "q": "What are 'lines' on the surface of a sphere in Spherical Geometry?", "options": ["Straight line segments", "Great Circles (like the Equator)", "Parabolas", "Hyperbolas"], "ans": 1, "solution": "On a sphere, the shortest path between two points ('straight line') is an arc of a Great Circle whose center coincides with the center of the sphere."}, {"id": 37, "q": "On the surface of the Earth (a sphere), consider a triangle formed by the North Pole, (0\u00b0N, 0\u00b0E) on the Equator, and (0\u00b0N, 90\u00b0E) on the Equator. What is the sum of its three interior angles?", "options": ["180\u00b0", "270\u00b0 (90\u00b0 + 90\u00b0 + 90\u00b0)", "360\u00b0", "120\u00b0"], "ans": 1, "solution": "Each meridian meets the equator at 90\u00b0, and the two meridians meet at the North Pole at 90\u00b0. Thus, 90\u00b0 + 90\u00b0 + 90\u00b0 = 270\u00b0 > 180\u00b0, proving spherical triangles have angle sums > 180\u00b0."}, {"id": 38, "q": "In Hyperbolic Geometry (developed by Lobachevsky and Bolyai), how many lines parallel to line l can be drawn through a point P not on l?", "options": ["Zero", "Exactly one", "Infinitely many", "Exactly three"], "ans": 2, "solution": "In hyperbolic geometry, through any point P not on line l, there exist infinitely many lines that never intersect line l."}, {"id": 39, "q": "Albert Einstein's General Theory of Relativity describes gravity using which type of geometry?", "options": ["Flat Euclidean Geometry", "Curved Non-Euclidean Geometry (Riemannian spacetime)", "Vedic Sulba geometry", "Coordinate geometry with only whole numbers"], "ans": 1, "solution": "Einstein showed that mass and energy curve spacetime, so gravity is modeled using curved Riemannian (Non-Euclidean) geometry."}, {"id": 40, "q": "If point C lies between A and B on a line, and AC = BC, what is point C called, and what does AC + BC equal?", "options": ["C is the midpoint of AB, and AC + BC = AB", "C is an external point, and AC + BC > AB", "C is a vertex, and AC + BC = 2AB", "C is the origin, and AC + BC = 0"], "ans": 0, "solution": "When C is between A and B with AC = BC, C is the midpoint of segment AB, and by segment addition (Axiom 4/5), AC + BC = AB."}]}];
+        const ALL_SLIDES = [...SLIDES, ...QUIZZES];
+
+        let currentSlideIndex = 0;
+        let speechRate = 1.0;
+        let isAudioMuted = false;
+        let synth = window.speechSynthesis;
+        let activeUtterance = null;
+        let audioCtx = null;
+
+        function initAudioContext() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) {
+                    audioCtx = new AudioContext();
+                }
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playTone(freq, type = 'sine', duration = 0.2) {
+            try {
+                initAudioContext();
+                if (!audioCtx) return;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {
+                console.warn('Audio tone error:', e);
+            }
+        }
+
+        function playSuccessSound() {
+            playTone(523.25, 'triangle', 0.15);
+            setTimeout(() => playTone(659.25, 'triangle', 0.15), 100);
+            setTimeout(() => playTone(783.99, 'triangle', 0.25), 200);
+        }
+
+        function playErrorSound() {
+            playTone(220.00, 'sawtooth', 0.2);
+            setTimeout(() => playTone(196.00, 'sawtooth', 0.25), 150);
+        }
+
+        function speakCurrentSlide() {
+            if (isAudioMuted || !('speechSynthesis' in window)) return;
+            synth.cancel();
+
+            const slide = ALL_SLIDES[currentSlideIndex];
+            const textToSpeak = slide.narration || (slide.title + ". " + slide.subtitle);
+
+            const mouth = document.getElementById('teacherMouth');
+            const pulse = document.getElementById('speakingPulse');
+
+            activeUtterance = new SpeechSynthesisUtterance(textToSpeak);
+            activeUtterance.rate = speechRate;
+            activeUtterance.lang = 'en-US';
+
+            activeUtterance.onstart = () => {
+                if (mouth) mouth.classList.add('mouth-talking');
+                if (pulse) pulse.classList.remove('hidden');
+            };
+
+            activeUtterance.onend = () => {
+                if (mouth) mouth.classList.remove('mouth-talking');
+                if (pulse) pulse.classList.add('hidden');
+            };
+
+            activeUtterance.onerror = () => {
+                if (mouth) mouth.classList.remove('mouth-talking');
+                if (pulse) pulse.classList.add('hidden');
+            };
+
+            synth.speak(activeUtterance);
+        }
+
+        function toggleAudio() {
+            initAudioContext();
+            isAudioMuted = !isAudioMuted;
+            const btnText = document.getElementById('voiceBtnText');
+            const btn = document.getElementById('voiceToggleBtn');
+
+            if (isAudioMuted) {
+                synth.cancel();
+                btnText.textContent = "Voice Muted";
+                btn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-400 hover:text-white transition";
+                const mouth = document.getElementById('teacherMouth');
+                if (mouth) mouth.classList.remove('mouth-talking');
+            } else {
+                btnText.textContent = "Voice On";
+                btn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-600 hover:bg-amber-500 text-white transition shadow-md shadow-amber-600/30";
+                speakCurrentSlide();
+            }
+        }
+
+        function replayAudio() {
+            initAudioContext();
+            speakCurrentSlide();
+        }
+
+        function changeSpeed(rate) {
+            speechRate = rate;
+            ['spd08', 'spd10', 'spd12'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.className = "px-2 py-1 text-[11px] rounded font-medium text-slate-400 hover:text-white transition";
+                }
+            });
+            const activeId = rate === 0.8 ? 'spd08' : (rate === 1.0 ? 'spd10' : 'spd12');
+            const activeEl = document.getElementById(activeId);
+            if (activeEl) {
+                activeEl.className = "px-2 py-1 text-[11px] rounded font-bold bg-amber-600 text-white transition";
+            }
+            speakCurrentSlide();
+        }
+
+        function renderCurrentSlide() {
+            const slide = ALL_SLIDES[currentSlideIndex];
+            const total = ALL_SLIDES.length;
+            const currNum = currentSlideIndex + 1;
+
+            // Update Progress & Badges
+            document.getElementById('slideCounter').textContent = `${currNum} / ${total}`;
+            document.getElementById('progressBar').style.width = `${(currNum / total) * 100}%`;
+            document.getElementById('currentBadge').textContent = slide.badge || "Euclid's Geometry";
+            document.getElementById('narrationText').textContent = slide.narration || slide.summary || slide.subtitle;
+
+            // Render Thumbnails
+            renderThumbnails();
+
+            const container = document.getElementById('slideContentContainer');
+            const lastNotice = document.getElementById('lastSlideNotice');
+            const nextBtn = document.getElementById('nextBtn');
+            const prevBtn = document.getElementById('prevBtn');
+
+            // Handle Previous button state
+            prevBtn.disabled = (currentSlideIndex === 0);
+            prevBtn.style.opacity = (currentSlideIndex === 0) ? '0.5' : '1';
+
+            if (currentSlideIndex < 16) {
+                // Content Slide (1 - 16)
+                lastNotice.classList.add('hidden');
+                nextBtn.style.display = 'flex';
+
+                container.innerHTML = `
+                    <div class="slide-fade-in space-y-6">
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+                            <div>
+                                <span class="text-xs font-bold text-amber-400 font-mono">CONCEPT #${currNum}</span>
+                                <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">${slide.title}</h2>
+                                <p class="text-xs sm:text-sm text-slate-400 font-medium mt-0.5">${slide.subtitle}</p>
+                            </div>
+                            <span class="text-xs px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 font-semibold">${slide.category}</span>
+                        </div>
+
+                        <!-- 2-Column Split: Theory on Left, Simulator on Right -->
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+                            <!-- Left: Theory & Checkpoints -->
+                            <div class="space-y-4">
+                                <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800/90 shadow-lg">
+                                    <h3 class="text-xs font-bold uppercase tracking-wider text-amber-400 mb-2 flex items-center gap-1.5">
+                                        <i data-lucide="book-open" class="w-4 h-4"></i>
+                                        Conceptual Overview
+                                    </h3>
+                                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                                        ${slide.summary}
+                                    </p>
+                                </div>
+
+                                <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800/90 shadow-lg">
+                                    <h3 class="text-xs font-bold uppercase tracking-wider text-rose-400 mb-2.5 flex items-center gap-1.5">
+                                        <i data-lucide="sparkles" class="w-4 h-4"></i>
+                                        Key Mathematical Insights
+                                    </h3>
+                                    <ul class="text-xs text-slate-300 space-y-2">
+                                        ${slide.key_points.map(kp => `
+                                            <li class="flex items-start gap-2">
+                                                <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5"></i>
+                                                <span>${kp}</span>
+                                            </li>
+                                        `).join('')}
+                                    </ul>
+                                </div>
+
+                                <!-- In-Slide 2 Checkpoint Questions -->
+                                <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800/90 shadow-lg space-y-4">
+                                    <h3 class="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+                                        <i data-lucide="help-circle" class="w-4 h-4"></i>
+                                        Slide Checkpoints (2 Questions)
+                                    </h3>
+                                    <div class="space-y-4">
+                                        ${slide.checkpoints.map((cp, cIdx) => `
+                                            <div class="p-3 bg-slate-950/80 rounded-xl border border-slate-800">
+                                                <div class="text-xs font-semibold text-slate-200 mb-2">Q${cIdx + 1}: ${cp.q}</div>
+                                                <div class="space-y-1.5 mb-2">
+                                                    ${cp.options.map((opt, oIdx) => `
+                                                        <button onclick="checkCheckpoint(${cIdx}, ${oIdx}, ${cp.ans})" id="cp_${cIdx}_${oIdx}" class="w-full text-left text-xs px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-amber-500/50 text-slate-300 transition flex items-center justify-between">
+                                                            <span>${opt}</span>
+                                                            <span id="cp_ind_${cIdx}_${oIdx}" class="hidden font-bold text-xs"></span>
+                                                        </button>
+                                                    `).join('')}
+                                                </div>
+                                                <div id="cp_exp_${cIdx}" class="hidden text-[11px] p-2.5 rounded-lg bg-amber-950/40 border border-amber-500/30 text-amber-200">
+                                                    ${cp.explanation}
+                                                </div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right: Bespoke Interactive Simulator -->
+                            <div class="p-5 rounded-2xl bg-slate-900/90 border border-amber-500/30 shadow-xl flex flex-col justify-between min-h-[460px]">
+                                <div>
+                                    <div class="flex items-center justify-between mb-3 border-b border-slate-800 pb-2">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></div>
+                                            <h4 class="text-xs sm:text-sm font-bold text-amber-300">${slide.sim_title}</h4>
+                                        </div>
+                                        <span class="text-[10px] text-slate-400 font-mono">Interactive Model</span>
+                                    </div>
+                                    <div id="simContainer_${currNum}" class="w-full flex flex-col items-center justify-center">
+                                        <!-- Interactive Simulator Injected Here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                // Initialize specific slide simulator
+                setTimeout(() => {
+                    initSlideSimulator(currNum);
+                    if (window.renderMathInElement) renderMathInElement(container);
+                    if (window.lucide) lucide.createIcons();
+                }, 50);
+
+            } else {
+                // Quiz Slide (17 - 20)
+                const isLast = (currentSlideIndex === total - 1);
+                if (isLast) {
+                    lastNotice.classList.remove('hidden');
+                    nextBtn.style.display = 'none';
+                } else {
+                    lastNotice.classList.add('hidden');
+                    nextBtn.style.display = 'flex';
+                }
+
+                container.innerHTML = `
+                    <div class="slide-fade-in space-y-5">
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+                            <div>
+                                <span class="text-xs font-bold text-amber-400 font-mono">MASTERY CHALLENGE</span>
+                                <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">${slide.title}</h2>
+                                <p class="text-xs sm:text-sm text-slate-400 font-medium">${slide.subtitle}</p>
+                            </div>
+                            <span class="text-xs px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold">10 Multi-Step Questions</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            ${slide.questions.map((q, qIdx) => `
+                                <div class="p-4 bg-slate-900/80 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-md">
+                                    <div>
+                                        <div class="flex items-center justify-between gap-2 mb-2">
+                                            <span class="text-xs font-bold text-amber-400 font-mono">Question ${q.id}</span>
+                                            <button onclick="showSolution(${currentSlideIndex}, ${qIdx})" class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 transition flex items-center gap-1.5 shadow-sm">
+                                                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                                                View Solution
+                                            </button>
+                                        </div>
+                                        <p class="text-xs sm:text-sm text-slate-200 font-medium mb-3">${q.q}</p>
+                                        <div class="space-y-1.5 mb-2">
+                                            ${q.options.map((opt, oIdx) => `
+                                                <button onclick="answerQuiz(${q.id}, ${oIdx}, ${q.ans})" id="quiz_${q.id}_${oIdx}" class="w-full text-left text-xs px-3 py-2 rounded-xl bg-slate-950/80 border border-slate-800 hover:border-amber-500/50 text-slate-300 transition flex items-center justify-between">
+                                                    <span>${opt}</span>
+                                                    <span id="quiz_ind_${q.id}_${oIdx}" class="hidden font-bold"></span>
+                                                </button>
+                                            `).join('')}
+                                        </div>
+                                    </div>
+                                    <div id="quiz_sol_preview_${q.id}" class="hidden mt-2 p-2 rounded-lg bg-slate-950 text-[10px] text-slate-400 border border-slate-800 flex items-center justify-between">
+                                        <span class="text-emerald-400 font-bold">Answered</span>
+                                        <button onclick="showSolution(${currentSlideIndex}, ${qIdx})" class="text-amber-400 hover:underline">Click to view derivation</button>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+
+                setTimeout(() => {
+                    if (window.renderMathInElement) renderMathInElement(container);
+                    if (window.lucide) lucide.createIcons();
+                }, 50);
+            }
+
+            speakCurrentSlide();
+        }
+
+        function renderThumbnails() {
+            const track = document.getElementById('thumbnailTrack');
+            if (!track) return;
+            track.innerHTML = ALL_SLIDES.map((s, idx) => {
+                const isActive = (idx === currentSlideIndex);
+                const isQuiz = (idx >= 16);
+                let colorClass = isActive
+                    ? (isQuiz ? 'bg-rose-400 ring-2 ring-rose-400/50 scale-125' : 'bg-amber-400 ring-2 ring-amber-400/50 scale-125')
+                    : (isQuiz ? 'bg-rose-900/60 hover:bg-rose-600' : 'bg-slate-700 hover:bg-slate-500');
+                return `
+                    <button onclick="goToSlide(${idx})" title="Slide ${idx + 1}" class="w-2.5 h-2.5 rounded-full transition-all duration-200 ${colorClass}"></button>
+                `;
+            }).join('');
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < ALL_SLIDES.length - 1) {
+                currentSlideIndex++;
+                renderCurrentSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                renderCurrentSlide();
+            }
+        }
+
+        function goToSlide(idx) {
+            if (idx >= 0 && idx < ALL_SLIDES.length) {
+                currentSlideIndex = idx;
+                renderCurrentSlide();
+            }
+        }
+
+        function checkCheckpoint(cIdx, oIdx, ans) {
+            initAudioContext();
+            const slide = ALL_SLIDES[currentSlideIndex];
+            const numOpts = slide.checkpoints[cIdx].options.length;
+
+            for (let i = 0; i < numOpts; i++) {
+                const btn = document.getElementById(`cp_${cIdx}_${i}`);
+                const ind = document.getElementById(`cp_ind_${cIdx}_${i}`);
+                if (!btn || !ind) continue;
+                btn.disabled = true;
+
+                if (i === ans) {
+                    btn.classList.add('border-emerald-500', 'bg-emerald-950/30', 'text-emerald-300');
+                    ind.textContent = '✓';
+                    ind.classList.remove('hidden');
+                    ind.classList.add('text-emerald-400');
+                } else if (i === oIdx && oIdx !== ans) {
+                    btn.classList.add('border-rose-500', 'bg-rose-950/30', 'text-rose-300');
+                    ind.textContent = '✗';
+                    ind.classList.remove('hidden');
+                    ind.classList.add('text-rose-400');
+                }
+            }
+
+            const exp = document.getElementById(`cp_exp_${cIdx}`);
+            if (exp) exp.classList.remove('hidden');
+
+            if (oIdx === ans) playSuccessSound();
+            else playErrorSound();
+        }
+
+        function answerQuiz(qId, oIdx, ans) {
+            initAudioContext();
+            const slide = ALL_SLIDES[currentSlideIndex];
+            const qObj = slide.questions.find(q => q.id === qId);
+            if (!qObj) return;
+
+            for (let i = 0; i < qObj.options.length; i++) {
+                const btn = document.getElementById(`quiz_${qId}_${i}`);
+                const ind = document.getElementById(`quiz_ind_${qId}_${i}`);
+                if (!btn || !ind) continue;
+                btn.disabled = true;
+
+                if (i === ans) {
+                    btn.classList.add('border-emerald-500', 'bg-emerald-950/30', 'text-emerald-300');
+                    ind.textContent = '✓ Correct';
+                    ind.classList.remove('hidden');
+                    ind.classList.add('text-emerald-400');
+                } else if (i === oIdx && oIdx !== ans) {
+                    btn.classList.add('border-rose-500', 'bg-rose-950/30', 'text-rose-300');
+                    ind.textContent = '✗';
+                    ind.classList.remove('hidden');
+                    ind.classList.add('text-rose-400');
+                }
+            }
+
+            const preview = document.getElementById(`quiz_sol_preview_${qId}`);
+            if (preview) preview.classList.remove('hidden');
+
+            if (oIdx === ans) playSuccessSound();
+            else playErrorSound();
+        }
+
+        function showSolution(slideIdx, qIdx) {
+            initAudioContext();
+            const slide = ALL_SLIDES[slideIdx];
+            const qObj = slide.questions[qIdx];
+            if (!qObj) return;
+
+            document.getElementById('modalQSubtitle').textContent = `Slide ${slideIdx + 1} • Question ${qObj.id}`;
+            document.getElementById('modalQuestionText').textContent = qObj.q;
+
+            const solEl = document.getElementById('modalSolutionText');
+            solEl.innerHTML = qObj.solution;
+
+            document.getElementById('solutionModal').classList.remove('hidden');
+            if (window.renderMathInElement) renderMathInElement(solEl);
+            if (window.lucide) lucide.createIcons();
+            playTone(440, 'sine', 0.1);
+        }
+
+        function closeSolutionModal() {
+            document.getElementById('solutionModal').classList.add('hidden');
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'Escape') closeSolutionModal();
+        });
+
+        // --- 16 BESPOKE SIMULATORS LOGIC ---
+
+        function initSlideSimulator(sNum) {
+            const container = document.getElementById(`simContainer_${sNum}`);
+            if (!container) return;
+
+            if (sNum === 1) renderSim1(container);
+            else if (sNum === 2) renderSim2(container);
+            else if (sNum === 3) renderSim3(container);
+            else if (sNum === 4) renderSim4(container);
+            else if (sNum === 5) renderSim5(container);
+            else if (sNum === 6) renderSim6(container);
+            else if (sNum === 7) renderSim7(container);
+            else if (sNum === 8) renderSim8(container);
+            else if (sNum === 9) renderSim9(container);
+            else if (sNum === 10) renderSim10(container);
+            else if (sNum === 11) renderSim11(container);
+            else if (sNum === 12) renderSim12(container);
+            else if (sNum === 13) renderSim13(container);
+            else if (sNum === 14) renderSim14(container);
+            else if (sNum === 15) renderSim15(container);
+            else if (sNum === 16) renderSim16(container);
+        }
+
+        // SIMULATOR 1: Nile Flood & Land Re-Surveyor
+        function renderSim1(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="nileSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div class="flex items-center justify-between gap-2">
+                        <button onclick="floodNile()" class="flex-1 px-3 py-1.5 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white transition">
+                            🌊 Trigger Nile Flood
+                        </button>
+                        <button onclick="surveyNile()" class="flex-1 px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-600 hover:bg-amber-500 text-white transition">
+                            📏 Stretch Surveyor Ropes
+                        </button>
+                    </div>
+                    <div id="nileStatus" class="p-2.5 rounded-xl border border-amber-500/30 bg-slate-950 text-xs font-mono text-center text-amber-300">
+                        Fields marked with pegs. Press 'Trigger Nile Flood' to wash away boundaries!
+                    </div>
+                </div>
+            `;
+            window.nileState = 'dry';
+            drawNile();
+        }
+
+        function floodNile() {
+            window.nileState = 'flooded';
+            document.getElementById('nileStatus').innerHTML = `<span class="text-blue-400 font-bold">The Nile flooded!</span> All farm boundaries washed away. Surveyors needed!`;
+            drawNile();
+            playTone(180, 'sine', 0.4);
+        }
+
+        function surveyNile() {
+            window.nileState = 'surveyed';
+            document.getElementById('nileStatus').innerHTML = `<span class="text-emerald-400 font-bold">Ropes stretched!</span> 4 square plots restored: 100 royal cubits × 100 cubits each.`;
+            drawNile();
+            playSuccessSound();
+        }
+
+        function drawNile() {
+            const svg = document.getElementById('nileSvg');
+            if (!svg) return;
+            const state = window.nileState;
+
+            let waterOverlay = '';
+            let boundaries = '';
+
+            if (state === 'flooded') {
+                waterOverlay = `<rect x="0" y="0" width="300" height="300" fill="#0284c7" fill-opacity="0.6"/>
+                    <path d="M0 100 Q 75 80 150 100 T 300 100 L 300 300 L 0 300 Z" fill="#0369a1" fill-opacity="0.8"/>
+                    <text x="70" y="150" fill="#ffffff" font-size="14" font-weight="bold">NILE INUNDATION</text>`;
+            } else if (state === 'surveyed' || state === 'dry') {
+                boundaries = `
+                    <!-- 4 Farm Plots -->
+                    <rect x="30" y="30" width="110" height="110" fill="#15803d" fill-opacity="0.2" stroke="#eab308" stroke-width="2" stroke-dasharray="${state === 'surveyed' ? 'none' : '4'}"/>
+                    <rect x="160" y="30" width="110" height="110" fill="#15803d" fill-opacity="0.2" stroke="#eab308" stroke-width="2" stroke-dasharray="${state === 'surveyed' ? 'none' : '4'}"/>
+                    <rect x="30" y="160" width="110" height="110" fill="#15803d" fill-opacity="0.2" stroke="#eab308" stroke-width="2" stroke-dasharray="${state === 'surveyed' ? 'none' : '4'}"/>
+                    <rect x="160" y="160" width="110" height="110" fill="#15803d" fill-opacity="0.2" stroke="#eab308" stroke-width="2" stroke-dasharray="${state === 'surveyed' ? 'none' : '4'}"/>
+
+                    <!-- Pegs -->
+                    <circle cx="30" cy="30" r="4" fill="#f59e0b"/>
+                    <circle cx="140" cy="30" r="4" fill="#f59e0b"/>
+                    <circle cx="30" cy="140" r="4" fill="#f59e0b"/>
+                    <circle cx="140" cy="140" r="4" fill="#f59e0b"/>
+                    <text x="65" y="90" fill="#fef08a" font-size="11" font-weight="bold">Plot 1</text>
+                    <text x="195" y="90" fill="#fef08a" font-size="11" font-weight="bold">Plot 2</text>
+                    <text x="65" y="220" fill="#fef08a" font-size="11" font-weight="bold">Plot 3</text>
+                    <text x="195" y="220" fill="#fef08a" font-size="11" font-weight="bold">Plot 4</text>
+                `;
+            }
+
+            svg.innerHTML = `
+                <!-- Sand Background -->
+                <rect width="300" height="300" fill="#78350f" fill-opacity="0.4"/>
+                ${boundaries}
+                ${waterOverlay}
+            `;
+        }
+
+        // SIMULATOR 2: Harappan Standard Brick & City Grid Planner
+        function renderSim2(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="harappaSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="text-slate-400">View Mode:</span>
+                        <div class="flex gap-2">
+                            <button onclick="setHarappaMode('brick')" id="hBrickBtn" class="px-2.5 py-1 rounded bg-amber-600 text-white font-bold">Standard 4:2:1 Brick</button>
+                            <button onclick="setHarappaMode('city')" id="hCityBtn" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300">Harappan City Grid</button>
+                        </div>
+                    </div>
+                    <div id="harappaInfo" class="p-2.5 bg-slate-950 rounded-xl border border-amber-500/30 text-xs font-mono text-center text-amber-300">
+                        Harappan Brick: Length (28cm) : Breadth (14cm) : Height (7cm) = 4 : 2 : 1
+                    </div>
+                </div>
+            `;
+            window.harappaMode = 'brick';
+            drawHarappa();
+        }
+
+        function setHarappaMode(m) {
+            window.harappaMode = m;
+            document.getElementById('hBrickBtn').className = m === 'brick' ? 'px-2.5 py-1 rounded bg-amber-600 text-white font-bold' : 'px-2.5 py-1 rounded bg-slate-800 text-slate-300';
+            document.getElementById('hCityBtn').className = m === 'city' ? 'px-2.5 py-1 rounded bg-amber-600 text-white font-bold' : 'px-2.5 py-1 rounded bg-slate-800 text-slate-300';
+            drawHarappa();
+        }
+
+        function drawHarappa() {
+            const svg = document.getElementById('harappaSvg');
+            if (!svg) return;
+            const mode = window.harappaMode || 'brick';
+
+            if (mode === 'brick') {
+                document.getElementById('harappaInfo').innerHTML = `
+                    <div class="text-amber-400 font-bold">Kiln-Burnt Brick: 28 cm × 14 cm × 7 cm</div>
+                    <div class="text-slate-400 text-[11px]">Ratio = 4 : 2 : 1 (Enables interlocking header-stretcher masonry)</div>
+                `;
+                svg.innerHTML = `
+                    <!-- 3D Isometric Brick -->
+                    <g transform="translate(60, 80)">
+                        <!-- Front Face (Length x Height = 4 x 1) -->
+                        <rect x="0" y="40" width="160" height="40" fill="#b45309" stroke="#d97706" stroke-width="2"/>
+                        <text x="60" y="65" fill="#fef3c7" font-size="12" font-weight="bold">Length: 4u</text>
+
+                        <!-- Top Face (Length x Breadth = 4 x 2) -->
+                        <polygon points="0,40 50,0 210,0 160,40" fill="#d97706" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="90" y="25" fill="#ffffff" font-size="11" font-weight="bold">Breadth: 2u</text>
+
+                        <!-- Right Side Face (Breadth x Height = 2 x 1) -->
+                        <polygon points="160,40 210,0 210,40 160,80" fill="#78350f" stroke="#b45309" stroke-width="2"/>
+                        <text x="175" y="55" fill="#fef3c7" font-size="10" font-weight="bold">1u</text>
+                    </g>
+                `;
+            } else {
+                document.getElementById('harappaInfo').innerHTML = `
+                    <div class="text-amber-400 font-bold">Mohenjo-daro Orthogonal City Grid</div>
+                    <div class="text-slate-400 text-[11px]">Streets intersect at strict 90° right angles with covered drains</div>
+                `;
+                svg.innerHTML = `
+                    <!-- City Blocks -->
+                    <rect x="30" y="30" width="70" height="70" fill="#334155" stroke="#64748b"/>
+                    <rect x="115" y="30" width="70" height="70" fill="#334155" stroke="#64748b"/>
+                    <rect x="200" y="30" width="70" height="70" fill="#334155" stroke="#64748b"/>
+
+                    <rect x="30" y="115" width="70" height="70" fill="#334155" stroke="#64748b"/>
+                    <rect x="115" y="115" width="70" height="70" fill="#334155" stroke="#64748b"/>
+                    <rect x="200" y="115" width="70" height="70" fill="#334155" stroke="#64748b"/>
+
+                    <rect x="30" y="200" width="70" height="70" fill="#334155" stroke="#64748b"/>
+                    <rect x="115" y="200" width="70" height="70" fill="#334155" stroke="#64748b"/>
+                    <rect x="200" y="200" width="70" height="70" fill="#334155" stroke="#64748b"/>
+
+                    <!-- 90° Intersecting Streets -->
+                    <line x1="107" y1="20" x2="107" y2="280" stroke="#f59e0b" stroke-width="3"/>
+                    <line x1="192" y1="20" x2="192" y2="280" stroke="#f59e0b" stroke-width="3"/>
+                    <line x1="20" y1="107" x2="280" y2="107" stroke="#f59e0b" stroke-width="3"/>
+                    <line x1="20" y1="192" x2="280" y2="192" stroke="#f59e0b" stroke-width="3"/>
+
+                    <text x="112" y="103" fill="#ef4444" font-size="10" font-weight="bold">90°</text>
+                `;
+            }
+        }
+
+        // SIMULATOR 3: Vedic Sacred Altar Transformer
+        function renderSim3(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="altarSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div class="text-xs">
+                        <label class="text-slate-400 flex justify-between">
+                            <span>Square Altar Side (a):</span>
+                            <span id="altarSideVal" class="text-amber-400 font-bold">10 units</span>
+                        </label>
+                        <input type="range" min="6" max="14" value="10" step="1" id="altarSideSlider" oninput="updateAltar()" class="w-full accent-amber-500">
+                    </div>
+                    <div id="altarCalc" class="p-2.5 bg-slate-950 rounded-xl border border-amber-500/30 text-xs font-mono grid grid-cols-2 gap-2 text-center">
+                        <!-- Populated by updateAltar() -->
+                    </div>
+                </div>
+            `;
+            updateAltar();
+        }
+
+        function updateAltar() {
+            const a = parseFloat(document.getElementById('altarSideSlider').value);
+            document.getElementById('altarSideVal').textContent = `${a} units`;
+
+            const area = a * a;
+            const r = Math.sqrt(area / Math.PI).toFixed(2);
+
+            document.getElementById('altarCalc').innerHTML = `
+                <div class="p-1.5 rounded bg-slate-900 border border-slate-800">
+                    <span class="text-slate-400 block text-[10px]">Ahavaniya (Square):</span>
+                    <span class="text-amber-300 font-bold">Area = a² = ${area}</span>
+                </div>
+                <div class="p-1.5 rounded bg-slate-900 border border-slate-800">
+                    <span class="text-slate-400 block text-[10px]">Garhapatya (Circle):</span>
+                    <span class="text-rose-300 font-bold">r = a/√π = ${r} (Equal Area!)</span>
+                </div>
+            `;
+
+            const svg = document.getElementById('altarSvg');
+            if (!svg) return;
+
+            const sc = 8;
+            const sqSize = a * sc;
+            const ox = 150 - sqSize / 2;
+            const oy = 150 - sqSize / 2;
+            const rPx = r * sc;
+
+            svg.innerHTML = `
+                <!-- Square Altar (Ahavaniya) -->
+                <rect x="${ox}" y="${oy}" width="${sqSize}" height="${sqSize}" fill="#b45309" fill-opacity="0.3" stroke="#f59e0b" stroke-width="2.5"/>
+                <text x="${ox + 10}" y="${oy + 20}" fill="#f59e0b" font-size="11" font-weight="bold">Ahavaniya (Square)</text>
+
+                <!-- Circle Altar (Garhapatya of equal area) -->
+                <circle cx="150" cy="150" r="${rPx}" fill="#be123c" fill-opacity="0.25" stroke="#f43f5e" stroke-width="2.5" stroke-dasharray="4"/>
+                <text x="110" y="155" fill="#f43f5e" font-size="11" font-weight="bold">Garhapatya (Circle)</text>
+
+                <!-- Flame in Center -->
+                <circle cx="150" cy="150" r="8" fill="#fbbf24" class="animate-ping" opacity="0.6"/>
+                <circle cx="150" cy="150" r="5" fill="#f59e0b"/>
+            `;
+        }
+
+        // SIMULATOR 4: Baudhayana Sulba Rope-and-Peg Square Constructor
+        function renderSim4(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="baudhayanaSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="text-slate-400">Construction Step:</span>
+                        <div class="flex gap-1.5">
+                            <button onclick="setBaudhStep(1)" id="bStep1" class="px-2 py-0.5 rounded bg-amber-600 text-white font-bold">1. Praci</button>
+                            <button onclick="setBaudhStep(2)" id="bStep2" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">2. Arcs</button>
+                            <button onclick="setBaudhStep(3)" id="bStep3" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">3. Udici</button>
+                            <button onclick="setBaudhStep(4)" id="bStep4" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">4. Square</button>
+                        </div>
+                    </div>
+                    <div id="baudhayanaDesc" class="p-2.5 bg-slate-950 rounded-xl border border-amber-500/30 text-xs font-mono text-center text-amber-300">
+                        <!-- Step description -->
+                    </div>
+                </div>
+            `;
+            window.baudhStep = 1;
+            drawBaudhayana();
+        }
+
+        function setBaudhStep(st) {
+            window.baudhStep = st;
+            [1, 2, 3, 4].forEach(i => {
+                document.getElementById(`bStep${i}`).className = (i === st) ? 'px-2 py-0.5 rounded bg-amber-600 text-white font-bold' : 'px-2 py-0.5 rounded bg-slate-800 text-slate-300';
+            });
+            drawBaudhayana();
+            playTone(400 + st * 60, 'triangle', 0.15);
+        }
+
+        function drawBaudhayana() {
+            const svg = document.getElementById('baudhayanaSvg');
+            if (!svg) return;
+            const st = window.baudhStep || 1;
+            const desc = document.getElementById('baudhayanaDesc');
+
+            const p1 = {x: 80, y: 190}, p2 = {x: 220, y: 190};
+            const p3 = {x: 220, y: 50}, p4 = {x: 80, y: 50};
+
+            if (st === 1) {
+                desc.textContent = "Step 1: Stretch baseline rope AB along East-West line ('Praci'). Fix wooden pegs at A and B.";
+                svg.innerHTML = `
+                    <line x1="80" y1="190" x2="220" y2="190" stroke="#f59e0b" stroke-width="3"/>
+                    <circle cx="80" cy="190" r="5" fill="#f59e0b"/>
+                    <text x="65" y="210" fill="#f59e0b" font-size="11" font-weight="bold">Peg A</text>
+                    <circle cx="220" cy="190" r="5" fill="#f59e0b"/>
+                    <text x="210" y="210" fill="#f59e0b" font-size="11" font-weight="bold">Peg B</text>
+                    <text x="130" y="180" fill="#fef08a" font-size="10">Praci (East-West)</text>
+                `;
+            } else if (st === 2) {
+                desc.textContent = "Step 2: Sweep circular cord arcs from A and B with rope to construct perpendicular line ('Udici').";
+                svg.innerHTML = `
+                    <line x1="80" y1="190" x2="220" y2="190" stroke="#f59e0b" stroke-width="2"/>
+                    <path d="M 80 190 A 100 100 0 0 1 180 90" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3"/>
+                    <path d="M 220 190 A 100 100 0 0 0 120 90" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3"/>
+                    <circle cx="150" cy="120" r="4" fill="#38bdf8"/>
+                    <text x="160" y="120" fill="#38bdf8" font-size="10">Arc Intersection</text>
+                `;
+            } else if (st === 3) {
+                desc.textContent = "Step 3: Erect perpendiculars along Udici (North-South) and measure length 'a' upwards.";
+                svg.innerHTML = `
+                    <line x1="80" y1="190" x2="220" y2="190" stroke="#f59e0b" stroke-width="2"/>
+                    <line x1="80" y1="190" x2="80" y2="50" stroke="#34d399" stroke-width="2.5"/>
+                    <line x1="220" y1="190" x2="220" y2="50" stroke="#34d399" stroke-width="2.5"/>
+                    <circle cx="80" cy="50" r="5" fill="#34d399"/>
+                    <text x="60" y="45" fill="#34d399" font-size="11" font-weight="bold">Peg D</text>
+                    <circle cx="220" cy="50" r="5" fill="#34d399"/>
+                    <text x="225" y="45" fill="#34d399" font-size="11" font-weight="bold">Peg C</text>
+                `;
+            } else {
+                desc.textContent = "Step 4: Connect pegs to complete square ABCD! Rope diagonal AC produces area equal to AB² + BC².";
+                svg.innerHTML = `
+                    <!-- Completed Square -->
+                    <polygon points="80,190 220,190 220,50 80,50" fill="#b45309" fill-opacity="0.25" stroke="#f59e0b" stroke-width="3"/>
+                    <!-- Diagonal -->
+                    <line x1="80" y1="190" x2="220" y2="50" stroke="#f43f5e" stroke-width="2" stroke-dasharray="4"/>
+                    <text x="125" y="125" fill="#f43f5e" font-size="10" font-weight="bold">Diagonal d = a√2</text>
+                    <circle cx="80" cy="190" r="4" fill="#f59e0b"/>
+                    <circle cx="220" cy="190" r="4" fill="#f59e0b"/>
+                    <circle cx="220" cy="50" r="4" fill="#f59e0b"/>
+                    <circle cx="80" cy="50" r="4" fill="#f59e0b"/>
+                `;
+            }
+        }
+
+        // SIMULATOR 5: Thales' Circle Bisection & Inscribed Angle Theorem
+        function renderSim5(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="thalesSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div class="text-xs">
+                        <label class="text-slate-400 flex justify-between">
+                            <span>Rotate Point C along Semicircle:</span>
+                            <span id="thalesAngleVal" class="text-amber-400 font-bold">Inscribed Angle = 90°</span>
+                        </label>
+                        <input type="range" min="20" max="160" value="70" step="5" id="thalesAngleSlider" oninput="updateThales()" class="w-full accent-amber-500">
+                    </div>
+                    <div class="p-2.5 bg-slate-950 rounded-xl border border-amber-500/30 text-xs font-mono text-center text-emerald-400 font-bold">
+                        Thales' Theorem: Angle subtended by a diameter at the circumference is ALWAYS 90°!
+                    </div>
+                </div>
+            `;
+            updateThales();
+        }
+
+        function updateThales() {
+            const ang = parseFloat(document.getElementById('thalesAngleSlider').value);
+            const rad = (ang * Math.PI) / 180;
+
+            const cx = 150, cy = 150, r = 100;
+            const ax = cx - r, ay = cy;
+            const bx = cx + r, by = cy;
+            const cX = cx - r * Math.cos(rad);
+            const cY = cy - r * Math.sin(rad);
+
+            const svg = document.getElementById('thalesSvg');
+            if (!svg) return;
+
+            svg.innerHTML = `
+                <!-- Circle -->
+                <circle cx="${cx}" cy="${cy}" r="${r}" fill="#0f172a" stroke="#475569" stroke-width="2"/>
+
+                <!-- Top Semicircle Shading -->
+                <path d="M ${ax} ${ay} A ${r} ${r} 0 0 1 ${bx} ${by} Z" fill="#0284c7" fill-opacity="0.1"/>
+
+                <!-- Diameter AB (Bisects Circle) -->
+                <line x1="${ax}" y1="${ay}" x2="${bx}" y2="${by}" stroke="#f59e0b" stroke-width="2.5"/>
+                <circle cx="${cx}" cy="${cy}" r="3" fill="#f8fafc"/>
+                <text x="${cx - 5}" y="${cy + 15}" fill="#94a3b8" font-size="9">O</text>
+
+                <!-- Inscribed Triangle ABC -->
+                <polygon points="${ax},${ay} ${bx},${by} ${cX},${cY}" fill="#10b981" fill-opacity="0.15" stroke="#10b981" stroke-width="2"/>
+
+                <!-- 90° Angle Marker at C -->
+                <circle cx="${cX}" cy="${cY}" r="6" fill="#f43f5e"/>
+                <text x="${cX - 5}" y="${cY - 10}" fill="#f43f5e" font-size="11" font-weight="bold">C (90°)</text>
+
+                <text x="${ax - 15}" y="${ay + 4}" fill="#f59e0b" font-size="10" font-weight="bold">A</text>
+                <text x="${bx + 8}" y="${by + 4}" fill="#f59e0b" font-size="10" font-weight="bold">B</text>
+            `;
+        }
+
+        // SIMULATOR 6: Euclid's 13 Books of Elements Explorer
+        function renderSim6(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="grid grid-cols-4 gap-1.5 text-[11px] font-mono">
+                        <button onclick="setElemBook(1)" id="bBtn1" class="p-1.5 rounded bg-amber-600 text-white font-bold">Book I</button>
+                        <button onclick="setElemBook(2)" id="bBtn2" class="p-1.5 rounded bg-slate-800 text-slate-300">Book II</button>
+                        <button onclick="setElemBook(3)" id="bBtn3" class="p-1.5 rounded bg-slate-800 text-slate-300">Book III</button>
+                        <button onclick="setElemBook(4)" id="bBtn4" class="p-1.5 rounded bg-slate-800 text-slate-300">Book IV-VI</button>
+                    </div>
+                    <div class="p-4 bg-slate-950 rounded-xl border border-slate-800 min-h-[170px] space-y-2 text-xs" id="elemBookDetails">
+                        <!-- Populated by setElemBook() -->
+                    </div>
+                    <div class="p-2.5 bg-slate-950 rounded-xl border border-amber-500/30 text-[11px] font-mono text-center text-amber-300">
+                        Total 13 Books: 23 Definitions, 5 Postulates, 5 Axioms & 465 Propositions!
+                    </div>
+                </div>
+            `;
+            setElemBook(1);
+        }
+
+        function setElemBook(b) {
+            [1, 2, 3, 4].forEach(i => {
+                const btn = document.getElementById(`bBtn${i}`);
+                if (btn) btn.className = (i === b) ? 'p-1.5 rounded bg-amber-600 text-white font-bold' : 'p-1.5 rounded bg-slate-800 text-slate-300';
+            });
+
+            const det = document.getElementById('elemBookDetails');
+            if (!det) return;
+
+            if (b === 1) {
+                det.innerHTML = `
+                    <div class="text-amber-400 font-bold text-sm">Book I: Fundamentals of Plane Geometry</div>
+                    <div class="text-slate-300 leading-relaxed">Contains 23 Definitions, 5 Postulates, and 5 Common Notions. Ends with Proposition 47 (Pythagorean Theorem) and Proposition 48 (its converse).</div>
+                    <div class="text-emerald-400 font-mono text-[11px] mt-1">Key: Congruence of triangles, parallel lines, sum of angles in triangle = 180°.</div>
+                `;
+            } else if (b === 2) {
+                det.innerHTML = `
+                    <div class="text-amber-400 font-bold text-sm">Book II: Geometric Algebra</div>
+                    <div class="text-slate-300 leading-relaxed">Translates algebraic identities into geometric rectangle areas: (a + b)², difference of squares, and the golden ratio.</div>
+                    <div class="text-emerald-400 font-mono text-[11px] mt-1">Key: Law of cosines formulated geometrically without trigonometry.</div>
+                `;
+            } else if (b === 3) {
+                det.innerHTML = `
+                    <div class="text-amber-400 font-bold text-sm">Book III: Properties of Circles</div>
+                    <div class="text-slate-300 leading-relaxed">37 propositions regarding circles, chords, tangents, inscribed angles, and intersecting chord powers.</div>
+                    <div class="text-emerald-400 font-mono text-[11px] mt-1">Key: Angle at center is double the angle at circumference.</div>
+                `;
+            } else {
+                det.innerHTML = `
+                    <div class="text-amber-400 font-bold text-sm">Books IV – XIII: Advanced Geometry & Number Theory</div>
+                    <div class="text-slate-300 leading-relaxed">Book IV: Inscribed/circumscribed polygons. Book V-VI: Eudoxus' proportion theory. Books VII-IX: Number theory (infinitude of primes). Books X-XIII: 3D solids and the 5 Platonic Solids.</div>
+                    <div class="text-emerald-400 font-mono text-[11px] mt-1">Culmination: Proof that exactly 5 regular convex polyhedra exist.</div>
+                `;
+            }
+        }
+
+        // SIMULATOR 7: Dimensional Hierarchy & Boundary Peeler Simulator
+        function renderSim7(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="text-slate-400">Select Dimension:</span>
+                        <div class="flex gap-1">
+                            <button onclick="setDimension(3)" id="dim3Btn" class="px-2 py-0.5 rounded bg-amber-600 text-white font-bold">3D Solid</button>
+                            <button onclick="setDimension(2)" id="dim2Btn" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">2D Surface</button>
+                            <button onclick="setDimension(1)" id="dim1Btn" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">1D Line</button>
+                            <button onclick="setDimension(0)" id="dim0Btn" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">0D Point</button>
+                        </div>
+                    </div>
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="dimSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div id="dimDesc" class="p-2.5 bg-slate-950 rounded-xl border border-amber-500/30 text-xs font-mono text-center text-amber-300">
+                        <!-- Populated by setDimension() -->
+                    </div>
+                </div>
+            `;
+            setDimension(3);
+        }
+
+        function setDimension(d) {
+            [0, 1, 2, 3].forEach(i => {
+                const btn = document.getElementById(`dim${i}Btn`);
+                if (btn) btn.className = (i === d) ? 'px-2 py-0.5 rounded bg-amber-600 text-white font-bold' : 'px-2 py-0.5 rounded bg-slate-800 text-slate-300';
+            });
+
+            const svg = document.getElementById('dimSvg');
+            const desc = document.getElementById('dimDesc');
+            if (!svg || !desc) return;
+
+            if (d === 3) {
+                desc.innerHTML = `<span class="text-amber-400 font-bold">SOLID (3D):</span> Has length, breadth, and thickness. Boundaries are 2D Surfaces.`;
+                svg.innerHTML = `
+                    <g transform="translate(60, 60)">
+                        <rect x="0" y="40" width="120" height="120" fill="#b45309" fill-opacity="0.3" stroke="#f59e0b" stroke-width="2"/>
+                        <polygon points="0,40 50,0 170,0 120,40" fill="#d97706" fill-opacity="0.4" stroke="#f59e0b" stroke-width="2"/>
+                        <polygon points="120,40 170,0 170,120 120,160" fill="#78350f" fill-opacity="0.5" stroke="#f59e0b" stroke-width="2"/>
+                    </g>
+                `;
+            } else if (d === 2) {
+                desc.innerHTML = `<span class="text-rose-400 font-bold">SURFACE (2D):</span> Has length and breadth only. Boundaries are 1D Lines.`;
+                svg.innerHTML = `
+                    <g transform="translate(60, 60)">
+                        <rect x="0" y="40" width="120" height="120" fill="#f43f5e" fill-opacity="0.25" stroke="#f43f5e" stroke-width="3"/>
+                        <text x="35" y="105" fill="#f43f5e" font-size="12" font-weight="bold">2D Face</text>
+                    </g>
+                `;
+            } else if (d === 1) {
+                desc.innerHTML = `<span class="text-cyan-400 font-bold">LINE (1D):</span> Breadthless length. Boundaries/ends are 0D Points.`;
+                svg.innerHTML = `
+                    <g transform="translate(60, 60)">
+                        <line x1="0" y1="100" x2="160" y2="100" stroke="#06b6d4" stroke-width="4"/>
+                        <circle cx="0" cy="100" r="4" fill="#f8fafc"/>
+                        <circle cx="160" cy="100" r="4" fill="#f8fafc"/>
+                        <text x="30" y="85" fill="#06b6d4" font-size="12" font-weight="bold">1D Line Segment</text>
+                    </g>
+                `;
+            } else {
+                desc.innerHTML = `<span class="text-emerald-400 font-bold">POINT (0D):</span> 'That which has no part'—zero dimensions, only position.`;
+                svg.innerHTML = `
+                    <g transform="translate(150, 150)">
+                        <circle cx="0" cy="0" r="7" fill="#10b981"/>
+                        <circle cx="0" cy="0" r="16" fill="none" stroke="#10b981" stroke-width="2" class="animate-ping" opacity="0.6"/>
+                        <text x="12" y="4" fill="#10b981" font-size="12" font-weight="bold">Point P (0D)</text>
+                    </g>
+                `;
+            }
+        }
+
+        // SIMULATOR 8: Axiom vs Postulate Categorizer
+        function renderSim8(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs text-center">
+                        <span class="text-slate-400 block mb-1">Classify this statement:</span>
+                        <div id="sim8Statement" class="text-amber-300 font-bold font-mono">
+                            "A circle can be described with any centre and any radius."
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button onclick="testSim8Choice('postulate')" class="flex-1 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition">
+                            Geometric Postulate
+                        </button>
+                        <button onclick="testSim8Choice('axiom')" class="flex-1 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition">
+                            Universal Axiom
+                        </button>
+                    </div>
+                    <div id="sim8Result" class="p-2.5 rounded-xl border border-amber-500/30 bg-slate-950 text-xs font-mono text-center">
+                        Click a button to test your classification!
+                    </div>
+                </div>
+            `;
+            window.sim8Index = 0;
+            loadSim8Card();
+        }
+
+        function loadSim8Card() {
+            const cards = [
+                { q: "A circle can be described with any centre and any radius.", type: "postulate", exp: "Specific to geometry = Postulate 3." },
+                { q: "The whole is greater than the part.", type: "axiom", exp: "Applies to numbers, volumes, and geometry = Axiom 5." },
+                { q: "All right angles are equal to one another.", type: "postulate", exp: "Geometric assumption = Postulate 4." },
+                { q: "If equals are added to equals, the wholes are equal.", type: "axiom", exp: "Universal mathematical truth = Axiom 2." }
+            ];
+            const item = cards[window.sim8Index % cards.length];
+            document.getElementById('sim8Statement').textContent = `"${item.q}"`;
+            window.currentSim8Item = item;
+        }
+
+        function testSim8Choice(ch) {
+            const item = window.currentSim8Item;
+            const res = document.getElementById('sim8Result');
+            if (ch === item.type) {
+                res.className = "p-2.5 rounded-xl border border-emerald-500/50 bg-emerald-950/40 text-emerald-300 text-xs font-mono text-center font-bold";
+                res.innerHTML = `✓ CORRECT! ${item.exp}`;
+                playSuccessSound();
+                setTimeout(() => {
+                    window.sim8Index++;
+                    loadSim8Card();
+                }, 1800);
+            } else {
+                res.className = "p-2.5 rounded-xl border border-rose-500/50 bg-rose-950/40 text-rose-300 text-xs font-mono text-center font-bold";
+                res.innerHTML = `✗ Try Again! Hint: Is it strictly about geometry or all mathematics?`;
+                playErrorSound();
+            }
+        }
+
+        // SIMULATOR 9: Euclid's 7 Axioms Interactive Balance Scale
+        function renderSim9(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="text-xs">
+                        <label class="text-slate-400">Select Axiom to Demonstrate:</label>
+                        <select id="axiomSelect" onchange="updateAxiomScale()" class="w-full mt-1 bg-slate-900 border border-slate-700 text-amber-300 rounded-lg p-1.5 font-mono">
+                            <option value="1">Axiom 1: Things equal to same thing are equal (a=c, b=c ⇒ a=b)</option>
+                            <option value="2">Axiom 2: If equals are added to equals, wholes are equal (a+c = b+c)</option>
+                            <option value="3">Axiom 3: If equals are subtracted, remainders are equal (a-c = b-c)</option>
+                            <option value="5">Axiom 5: The whole is greater than the part (Whole > Part)</option>
+                            <option value="6">Axiom 6: Things double of the same things are equal (2a = 2b)</option>
+                        </select>
+                    </div>
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="scaleSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div id="scaleProofText" class="p-2.5 bg-slate-950 rounded-xl border border-amber-500/30 text-xs font-mono text-center text-emerald-400 font-bold">
+                        <!-- Scale text -->
+                    </div>
+                </div>
+            `;
+            updateAxiomScale();
+        }
+
+        function updateAxiomScale() {
+            const ax = document.getElementById('axiomSelect').value;
+            const svg = document.getElementById('scaleSvg');
+            const txt = document.getElementById('scaleProofText');
+            if (!svg || !txt) return;
+
+            if (ax === '1') {
+                txt.textContent = "A = 10 kg, C = 10 kg and B = 10 kg, C = 10 kg ⇒ A = B (Perfect Balance!)";
+            } else if (ax === '2') {
+                txt.textContent = "Start: 5 kg = 5 kg. Add +3 kg to both sides ⇒ 8 kg = 8 kg (Still Balanced!)";
+            } else if (ax === '3') {
+                txt.textContent = "Start: 10 kg = 10 kg. Subtract -4 kg from both sides ⇒ 6 kg = 6 kg (Balanced!)";
+            } else if (ax === '5') {
+                txt.textContent = "Left: Whole (10 kg) vs Right: Part (3 kg) ⇒ Scale Tilts! Whole > Part.";
+            } else {
+                txt.textContent = "Double both equal weights: 2(6 kg) = 2(6 kg) ⇒ 12 kg = 12 kg (Balanced!)";
+            }
+
+            const tilt = (ax === '5') ? 15 : 0;
+            const yLeft = 140 + tilt;
+            const yRight = 140 - tilt;
+
+            svg.innerHTML = `
+                <!-- Balance Stand -->
+                <line x1="150" y1="90" x2="150" y2="240" stroke="#64748b" stroke-width="4"/>
+                <polygon points="120,240 180,240 150,220" fill="#475569"/>
+
+                <!-- Beam -->
+                <line x1="60" y1="${yLeft}" x2="240" y2="${yRight}" stroke="#f59e0b" stroke-width="4"/>
+                <circle cx="150" cy="90" r="5" fill="#f8fafc"/>
+
+                <!-- Left Pan -->
+                <line x1="60" y1="${yLeft}" x2="60" y2="${yLeft + 50}" stroke="#94a3b8" stroke-width="1.5"/>
+                <rect x="35" y="${yLeft + 50}" width="50" height="8" rx="3" fill="#cbd5e1"/>
+                <rect x="45" y="${yLeft + 30}" width="30" height="20" rx="3" fill="#10b981"/>
+                <text x="50" y="${yLeft + 45}" fill="#ffffff" font-size="10" font-weight="bold">${ax === '5' ? '10kg' : 'A'}</text>
+
+                <!-- Right Pan -->
+                <line x1="240" y1="${yRight}" x2="240" y2="${yRight + 50}" stroke="#94a3b8" stroke-width="1.5"/>
+                <rect x="215" y="${yRight + 50}" width="50" height="8" rx="3" fill="#cbd5e1"/>
+                <rect x="${ax === '5' ? 230 : 225}" y="${ax === '5' ? yRight + 38 : yRight + 30}" width="${ax === '5' ? 20 : 30}" height="${ax === '5' ? 12 : 20}" rx="3" fill="${ax === '5' ? '#f43f5e' : '#10b981'}"/>
+                <text x="230" y="${yRight + 45}" fill="#ffffff" font-size="10" font-weight="bold">${ax === '5' ? '3kg' : 'B'}</text>
+            `;
+        }
+
+        // SIMULATOR 10: Unique Line & Infinite Extension Ray Gun
+        function renderSim10(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="rayGunSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div class="flex items-center justify-between gap-2">
+                        <button onclick="toggleRayExtender()" id="rayBtn" class="flex-1 py-1.5 rounded-xl text-xs font-bold bg-amber-600 hover:bg-amber-500 text-white transition">
+                            ⚡ Fire Postulate 2 Extender
+                        </button>
+                    </div>
+                    <div id="rayStatus" class="p-2.5 bg-slate-950 rounded-xl border border-amber-500/30 text-xs font-mono text-center text-amber-300">
+                        Axiom 5.1: Exactly ONE unique line connects points P and Q!
+                    </div>
+                </div>
+            `;
+            window.raysExtended = false;
+            drawRays();
+        }
+
+        function toggleRayExtender() {
+            window.raysExtended = !window.raysExtended;
+            const btn = document.getElementById('rayBtn');
+            const st = document.getElementById('rayStatus');
+            if (window.raysExtended) {
+                btn.textContent = "Reset to Segment";
+                st.innerHTML = `<span class="text-cyan-400 font-bold">Postulate 2 Activated:</span> Line segment produced indefinitely into an infinite line!`;
+                playSuccessSound();
+            } else {
+                btn.textContent = "⚡ Fire Postulate 2 Extender";
+                st.textContent = "Axiom 5.1: Exactly ONE unique line connects points P and Q!";
+            }
+            drawRays();
+        }
+
+        function drawRays() {
+            const svg = document.getElementById('rayGunSvg');
+            if (!svg) return;
+            const ext = window.raysExtended;
+
+            svg.innerHTML = `
+                <!-- Background Grid -->
+                <line x1="20" y1="150" x2="280" y2="150" stroke="#1e293b" stroke-width="1"/>
+                <line x1="150" y1="20" x2="150" y2="280" stroke="#1e293b" stroke-width="1"/>
+
+                <!-- Segment PQ or Extended Line -->
+                ${ext ? `
+                    <line x1="10" y1="210" x2="290" y2="90" stroke="#06b6d4" stroke-width="3"/>
+                    <!-- Arrows -->
+                    <polygon points="10,210 20,205 18,217" fill="#06b6d4"/>
+                    <polygon points="290,90 280,95 282,83" fill="#06b6d4"/>
+                ` : `
+                    <line x1="80" y1="180" x2="220" y2="120" stroke="#f59e0b" stroke-width="3"/>
+                `}
+
+                <!-- Points P and Q -->
+                <circle cx="80" cy="180" r="6" fill="#f59e0b"/>
+                <text x="65" y="175" fill="#f59e0b" font-size="11" font-weight="bold">P</text>
+
+                <circle cx="220" cy="120" r="6" fill="#f59e0b"/>
+                <text x="230" y="125" fill="#f59e0b" font-size="11" font-weight="bold">Q</text>
+            `;
+        }
+
+        // SIMULATOR 11: Universal Circle Compass & Right-Angle Superposition
+        function renderSim11(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="compSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div class="text-xs">
+                        <label class="text-slate-400 flex justify-between">
+                            <span>Postulate 3 Compass Radius:</span>
+                            <span id="compRVal" class="text-amber-400 font-bold">60 units</span>
+                        </label>
+                        <input type="range" min="30" max="110" value="60" step="5" id="compRSlider" oninput="updateCompass()" class="w-full accent-amber-500">
+                    </div>
+                    <div class="p-2.5 bg-slate-950 rounded-xl border border-amber-500/30 text-xs font-mono text-center text-cyan-300">
+                        Postulate 4: Every right angle (90°) superimposes perfectly onto any other right angle!
+                    </div>
+                </div>
+            `;
+            updateCompass();
+        }
+
+        function updateCompass() {
+            const r = parseFloat(document.getElementById('compRSlider').value);
+            document.getElementById('compRVal').textContent = `${r} units`;
+
+            const svg = document.getElementById('compSvg');
+            if (!svg) return;
+
+            svg.innerHTML = `
+                <!-- Concentric/Custom Circles -->
+                <circle cx="150" cy="150" r="${r}" fill="#06b6d4" fill-opacity="0.15" stroke="#06b6d4" stroke-width="2.5"/>
+                <circle cx="150" cy="150" r="4" fill="#f8fafc"/>
+                <text x="155" y="145" fill="#94a3b8" font-size="10">Center (h,k)</text>
+
+                <!-- Right Angles to Superimpose -->
+                <g transform="translate(40, 40)">
+                    <line x1="0" y1="40" x2="40" y2="40" stroke="#f43f5e" stroke-width="2"/>
+                    <line x1="40" y1="40" x2="40" y2="0" stroke="#f43f5e" stroke-width="2"/>
+                    <rect x="30" y="30" width="10" height="10" fill="none" stroke="#f43f5e"/>
+                    <text x="5" y="30" fill="#f43f5e" font-size="9">90°</text>
+                </g>
+
+                <g transform="translate(220, 200) rotate(45)">
+                    <line x1="0" y1="40" x2="40" y2="40" stroke="#10b981" stroke-width="2"/>
+                    <line x1="40" y1="40" x2="40" y2="0" stroke="#10b981" stroke-width="2"/>
+                    <rect x="30" y="30" width="10" height="10" fill="none" stroke="#10b981"/>
+                    <text x="5" y="30" fill="#10b981" font-size="9">90°</text>
+                </g>
+            `;
+        }
+
+        // SIMULATOR 12: Euclid's 5th Postulate Transversal & Intersection Engine
+        function renderSim12(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="post5Svg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div class="text-xs">
+                        <label class="text-slate-400 flex justify-between">
+                            <span>Adjust Interior Angle Sum (∠1 + ∠2):</span>
+                            <span id="post5SumVal" class="text-amber-400 font-bold">160° (< 180°)</span>
+                        </label>
+                        <input type="range" min="140" max="200" value="160" step="5" id="post5Slider" oninput="updatePost5()" class="w-full accent-amber-500">
+                    </div>
+                    <div id="post5Status" class="p-2.5 rounded-xl border text-xs font-mono text-center font-bold">
+                        <!-- Populated by updatePost5() -->
+                    </div>
+                </div>
+            `;
+            updatePost5();
+        }
+
+        function updatePost5() {
+            const sum = parseInt(document.getElementById('post5Slider').value);
+            const status = document.getElementById('post5Status');
+
+            if (sum < 180) {
+                status.className = "p-2.5 rounded-xl border border-rose-500/50 bg-rose-950/40 text-rose-300 text-xs font-mono text-center font-bold";
+                status.innerHTML = `Sum = ${sum}° < 180°: LINES INTERSECT on the Right!`;
+                document.getElementById('post5SumVal').textContent = `${sum}° (< 180°)`;
+            } else if (sum === 180) {
+                status.className = "p-2.5 rounded-xl border border-emerald-500/50 bg-emerald-950/40 text-emerald-300 text-xs font-mono text-center font-bold";
+                status.innerHTML = `Sum = 180°: PARALLEL LINES! Zero intersection.`;
+                document.getElementById('post5SumVal').textContent = `180° (Parallel!)`;
+            } else {
+                status.className = "p-2.5 rounded-xl border border-cyan-500/50 bg-cyan-950/40 text-cyan-300 text-xs font-mono text-center font-bold";
+                status.innerHTML = `Sum = ${sum}° > 180°: Lines diverge on right; intersect on the Left!`;
+                document.getElementById('post5SumVal').textContent = `${sum}° (> 180°)`;
+            }
+
+            const svg = document.getElementById('post5Svg');
+            if (!svg) return;
+
+            const slopeOffset = (sum - 180) * 0.8;
+            svg.innerHTML = `
+                <!-- Transversal Line -->
+                <line x1="80" y1="30" x2="120" y2="270" stroke="#f59e0b" stroke-width="2.5"/>
+                <text x="70" y="25" fill="#f59e0b" font-size="10" font-weight="bold">Transversal t</text>
+
+                <!-- Line 1 -->
+                <line x1="20" y1="100" x2="280" y2="${100 + slopeOffset}" stroke="#38bdf8" stroke-width="2"/>
+                <text x="20" y="90" fill="#38bdf8" font-size="10">Line l</text>
+
+                <!-- Line 2 -->
+                <line x1="20" y1="200" x2="280" y2="${200 - slopeOffset}" stroke="#34d399" stroke-width="2"/>
+                <text x="20" y="220" fill="#34d399" font-size="10">Line m</text>
+
+                <!-- Angle arcs -->
+                <path d="M 110 100 A 20 20 0 0 1 95 125" fill="none" stroke="#f43f5e" stroke-width="2"/>
+                <text x="115" y="125" fill="#f43f5e" font-size="10" font-weight="bold">∠1</text>
+
+                <path d="M 125 180 A 20 20 0 0 1 110 200" fill="none" stroke="#f43f5e" stroke-width="2"/>
+                <text x="125" y="195" fill="#f43f5e" font-size="10" font-weight="bold">∠2</text>
+            `;
+        }
+
+        // SIMULATOR 13: Playfair's Parallel Line Beam Generator
+        function renderSim13(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="playfairSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div class="text-xs">
+                        <label class="text-slate-400 flex justify-between">
+                            <span>Rotate Beam through Point P:</span>
+                            <span id="playfairDeg" class="text-amber-400 font-bold">0° (Parallel)</span>
+                        </label>
+                        <input type="range" min="-30" max="30" value="0" step="5" id="playfairSlider" oninput="updatePlayfair()" class="w-full accent-amber-500">
+                    </div>
+                    <div id="playfairStatus" class="p-2.5 rounded-xl border text-xs font-mono text-center font-bold">
+                        <!-- Populated by updatePlayfair() -->
+                    </div>
+                </div>
+            `;
+            updatePlayfair();
+        }
+
+        function updatePlayfair() {
+            const rot = parseInt(document.getElementById('playfairSlider').value);
+            document.getElementById('playfairDeg').textContent = `${rot}°`;
+            const st = document.getElementById('playfairStatus');
+
+            if (rot === 0) {
+                st.className = "p-2.5 rounded-xl border border-emerald-500/50 bg-emerald-950/40 text-emerald-300 text-xs font-mono text-center font-bold";
+                st.innerHTML = `★ PLAYFAIR'S PARALLEL: Exactly ONE line through P is parallel to line l!`;
+            } else {
+                st.className = "p-2.5 rounded-xl border border-slate-800 bg-slate-950 text-slate-400 text-xs font-mono text-center";
+                st.innerHTML = `Beam intersects line l at distance ≈ ${(200 / Math.tan(Math.abs(rot)*Math.PI/180)).toFixed(0)} units.`;
+            }
+
+            const svg = document.getElementById('playfairSvg');
+            if (!svg) return;
+
+            const rad = (rot * Math.PI) / 180;
+            const x1 = 150 - 130 * Math.cos(rad);
+            const y1 = 90 - 130 * Math.sin(rad);
+            const x2 = 150 + 130 * Math.cos(rad);
+            const y2 = 90 + 130 * Math.sin(rad);
+
+            svg.innerHTML = `
+                <!-- Fixed Line l -->
+                <line x1="20" y1="210" x2="280" y2="210" stroke="#64748b" stroke-width="2.5"/>
+                <text x="250" y="230" fill="#64748b" font-size="11" font-weight="bold">Line l</text>
+
+                <!-- Rotatable Line m through P -->
+                <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${rot === 0 ? '#10b981' : '#f59e0b'}" stroke-width="${rot === 0 ? '3' : '2'}"/>
+
+                <!-- Point P -->
+                <circle cx="150" cy="90" r="6" fill="#f43f5e"/>
+                <text x="145" y="75" fill="#f43f5e" font-size="11" font-weight="bold">Point P</text>
+            `;
+        }
+
+        // SIMULATOR 14: Euclid Proposition 1 Step-by-Step Triangle Prover
+        function renderSim14(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="prop1Svg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="text-slate-400">Proposition 1 Step:</span>
+                        <div class="flex gap-1">
+                            <button onclick="setProp1Step(1)" id="pr1Btn" class="px-2 py-0.5 rounded bg-amber-600 text-white font-bold">1. AB</button>
+                            <button onclick="setProp1Step(2)" id="pr2Btn" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">2. Circle A</button>
+                            <button onclick="setProp1Step(3)" id="pr3Btn" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">3. Circle B</button>
+                            <button onclick="setProp1Step(4)" id="pr4Btn" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">4. Proof</button>
+                        </div>
+                    </div>
+                    <div id="prop1ProofText" class="p-2.5 bg-slate-950 rounded-xl border border-amber-500/30 text-xs font-mono text-center text-amber-300">
+                        <!-- Populated by setProp1Step() -->
+                    </div>
+                </div>
+            `;
+            setProp1Step(1);
+        }
+
+        function setProp1Step(st) {
+            [1, 2, 3, 4].forEach(i => {
+                document.getElementById(`pr${i}Btn`).className = (i === st) ? 'px-2 py-0.5 rounded bg-amber-600 text-white font-bold' : 'px-2 py-0.5 rounded bg-slate-800 text-slate-300';
+            });
+
+            const txt = document.getElementById('prop1ProofText');
+            const svg = document.getElementById('prop1Svg');
+            if (!txt || !svg) return;
+
+            const ax = 110, ay = 190;
+            const bx = 190, by = 190;
+            const cx = 150, cy = 190 - 80 * 0.866; // Equilateral height = 69.28 -> cy = 120.7
+
+            if (st === 1) {
+                txt.textContent = "Given finite line segment AB (Length = 80).";
+                svg.innerHTML = `
+                    <line x1="${ax}" y1="${ay}" x2="${bx}" y2="${by}" stroke="#f59e0b" stroke-width="3"/>
+                    <circle cx="${ax}" cy="${ay}" r="4" fill="#f59e0b"/>
+                    <circle cx="${bx}" cy="${by}" r="4" fill="#f59e0b"/>
+                    <text x="${ax - 15}" y="${ay + 15}" fill="#f59e0b" font-size="10" font-weight="bold">A</text>
+                    <text x="${bx + 8}" y="${ay + 15}" fill="#f59e0b" font-size="10" font-weight="bold">B</text>
+                `;
+            } else if (st === 2) {
+                txt.textContent = "Postulate 3: Draw circle with center A and radius AB.";
+                svg.innerHTML = `
+                    <circle cx="${ax}" cy="${ay}" r="80" fill="none" stroke="#06b6d4" stroke-width="2"/>
+                    <line x1="${ax}" y1="${ay}" x2="${bx}" y2="${by}" stroke="#f59e0b" stroke-width="2.5"/>
+                    <circle cx="${ax}" cy="${ay}" r="4" fill="#f59e0b"/>
+                    <circle cx="${bx}" cy="${by}" r="4" fill="#f59e0b"/>
+                `;
+            } else if (st === 3) {
+                txt.textContent = "Postulate 3: Draw circle with center B and radius BA.";
+                svg.innerHTML = `
+                    <circle cx="${ax}" cy="${ay}" r="80" fill="none" stroke="#06b6d4" stroke-width="1.5"/>
+                    <circle cx="${bx}" cy="${by}" r="80" fill="none" stroke="#a855f7" stroke-width="1.5"/>
+                    <line x1="${ax}" y1="${ay}" x2="${bx}" y2="${by}" stroke="#f59e0b" stroke-width="2"/>
+                    <circle cx="${cx}" cy="${cy}" r="5" fill="#f43f5e"/>
+                    <text x="${cx - 5}" y="${cy - 8}" fill="#f43f5e" font-size="10" font-weight="bold">C</text>
+                `;
+            } else {
+                txt.innerHTML = `<span class="text-emerald-400 font-bold">Axiom 1:</span> AC = AB & BC = AB ⇒ AC = BC = AB. Equilateral proven!`;
+                svg.innerHTML = `
+                    <polygon points="${ax},${ay} ${bx},${by} ${cx},${cy}" fill="#10b981" fill-opacity="0.25" stroke="#10b981" stroke-width="3"/>
+                    <circle cx="${ax}" cy="${ay}" r="4" fill="#f59e0b"/>
+                    <circle cx="${bx}" cy="${by}" r="4" fill="#f59e0b"/>
+                    <circle cx="${cx}" cy="${cy}" r="5" fill="#f43f5e"/>
+                    <text x="${cx - 5}" y="${cy - 8}" fill="#f43f5e" font-size="10" font-weight="bold">C</text>
+                `;
+                playSuccessSound();
+            }
+        }
+
+        // SIMULATOR 15: Euclidean vs Spherical vs Hyperbolic Universe Comparer
+        function renderSim15(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="text-slate-400">Curvature:</span>
+                        <div class="flex gap-1">
+                            <button onclick="setGeomUniv('flat')" id="uFlatBtn" class="px-2 py-0.5 rounded bg-amber-600 text-white font-bold">Euclidean (Flat)</button>
+                            <button onclick="setGeomUniv('sphere')" id="uSphBtn" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">Spherical (+)</button>
+                            <button onclick="setGeomUniv('saddle')" id="uSadBtn" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">Hyperbolic (-)</button>
+                        </div>
+                    </div>
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="univSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div id="univReadout" class="p-2.5 bg-slate-950 rounded-xl border border-amber-500/30 text-xs font-mono text-center text-amber-300">
+                        <!-- Populated by setGeomUniv() -->
+                    </div>
+                </div>
+            `;
+            setGeomUniv('flat');
+        }
+
+        function setGeomUniv(m) {
+            ['flat', 'sphere', 'saddle'].forEach(k => {
+                const b = document.getElementById(k === 'flat' ? 'uFlatBtn' : (k === 'sphere' ? 'uSphBtn' : 'uSadBtn'));
+                if (b) b.className = (k === m) ? 'px-2 py-0.5 rounded bg-amber-600 text-white font-bold' : 'px-2 py-0.5 rounded bg-slate-800 text-slate-300';
+            });
+
+            const svg = document.getElementById('univSvg');
+            const rd = document.getElementById('univReadout');
+            if (!svg || !rd) return;
+
+            if (m === 'flat') {
+                rd.innerHTML = `
+                    <div class="text-amber-400 font-bold">Flat Euclidean Plane (Zero Curvature)</div>
+                    <div class="text-[11px] text-slate-300">Triangle Sum = 180° | Exactly 1 Parallel line through P</div>
+                `;
+                svg.innerHTML = `
+                    <polygon points="60,200 240,200 150,70" fill="#f59e0b" fill-opacity="0.2" stroke="#f59e0b" stroke-width="2.5"/>
+                    <text x="140" y="160" fill="#fef08a" font-size="11" font-weight="bold">Sum = 180°</text>
+                `;
+            } else if (m === 'sphere') {
+                rd.innerHTML = `
+                    <div class="text-rose-400 font-bold">Spherical Surface (Positive Curvature)</div>
+                    <div class="text-[11px] text-slate-300">Triangle Sum > 180° (e.g. 270°) | ZERO Parallel lines (all intersect!)</div>
+                `;
+                svg.innerHTML = `
+                    <!-- Sphere Sphere -->
+                    <circle cx="150" cy="150" r="100" fill="#0f172a" stroke="#f43f5e" stroke-width="2"/>
+                    <ellipse cx="150" cy="150" rx="100" ry="30" fill="none" stroke="#64748b" stroke-dasharray="3"/>
+                    <path d="M 150 50 A 100 100 0 0 1 250 150 A 100 30 0 0 1 150 180 A 100 100 0 0 1 150 50" fill="#f43f5e" fill-opacity="0.25" stroke="#f43f5e" stroke-width="2.5"/>
+                    <text x="160" y="130" fill="#fecdd3" font-size="11" font-weight="bold">Sum = 270°</text>
+                `;
+            } else {
+                rd.innerHTML = `
+                    <div class="text-cyan-400 font-bold">Hyperbolic Saddle Surface (Negative Curvature)</div>
+                    <div class="text-[11px] text-slate-300">Triangle Sum < 180° | INFINITELY MANY Parallel lines through P</div>
+                `;
+                svg.innerHTML = `
+                    <!-- Saddle Triangle -->
+                    <path d="M 60 190 Q 150 170 240 190 Q 190 120 150 60 Q 110 120 60 190" fill="#06b6d4" fill-opacity="0.25" stroke="#06b6d4" stroke-width="2.5"/>
+                    <text x="130" y="150" fill="#cffafe" font-size="11" font-weight="bold">Sum < 180°</text>
+                `;
+            }
+        }
+
+        // SIMULATOR 16: Axiomatic Sandbox & Logic Chain Verifier
+        function renderSim16(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs">
+                        <span class="text-slate-400 block mb-1">Prove Theorem: "Vertically opposite angles are equal"</span>
+                        <div class="space-y-1.5 font-mono text-[11px]">
+                            <div class="p-1.5 rounded bg-slate-900 border border-slate-800 text-amber-300">Step 1: ∠1 + ∠2 = 180° (Linear Pair Axiom)</div>
+                            <div class="p-1.5 rounded bg-slate-900 border border-slate-800 text-amber-300">Step 2: ∠2 + ∠3 = 180° (Linear Pair Axiom)</div>
+                            <div class="p-1.5 rounded bg-slate-900 border border-slate-800 text-cyan-300">Step 3: ∠1 + ∠2 = ∠2 + ∠3 (Axiom 1: Equals to 180°)</div>
+                            <div class="p-1.5 rounded bg-slate-900 border border-emerald-500/40 text-emerald-300 font-bold">Step 4: Subtract ∠2 ⇒ ∠1 = ∠3 (Axiom 3: Subtract Equals)</div>
+                        </div>
+                    </div>
+                    <div class="p-2.5 bg-slate-950 rounded-xl border border-amber-500/30 text-xs font-mono text-center text-emerald-400 font-bold">
+                        ★ Q.E.D. (Quod Erat Demonstrandum) — What was to be demonstrated!
+                    </div>
+                </div>
+            `;
+        }
+
+        // --- INITIALIZATION ---
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCurrentSlide();
+        });
+    </script>
+</body>
+</html>

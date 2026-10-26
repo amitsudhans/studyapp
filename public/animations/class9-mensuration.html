@@ -1,0 +1,2161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCERT Class 9 Mathematics • Mensuration Laboratory</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body);"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        @keyframes mouthMove {
+            0%, 100% { transform: scaleY(0.2); }
+            50% { transform: scaleY(1.1); }
+        }
+        .talking #teacherMouth {
+            animation: mouthMove 0.22s infinite alternate ease-in-out;
+            transform-origin: center bottom;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.78);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .glow-indigo {
+            box-shadow: 0 0 25px -5px rgba(99, 102, 241, 0.35);
+        }
+        .glow-emerald {
+            box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.35);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
+
+    <!-- Top Navigation Header -->
+    <header class="border-b border-slate-800/80 bg-slate-900/80 backdrop-blur sticky top-0 z-40 px-4 py-3">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <a href="/multimedia?syllabus=ncert&subject=mathematics&class=class9" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition">
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                </a>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">NCERT CLASS 9</span>
+                        <span class="text-xs text-slate-400 font-medium">Chapter 12</span>
+                    </div>
+                    <h1 class="text-base sm:text-lg font-bold text-white tracking-tight flex items-center gap-2">
+                        <span>Mensuration: Area & Perimeter</span>
+                        <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-normal">Interactive Lab</span>
+                    </h1>
+                </div>
+            </div>
+
+            <!-- Slide Progress & Navigation Controls -->
+            <div class="flex items-center gap-3">
+                <div class="hidden md:flex flex-col items-end mr-2">
+                    <span id="slideIndicatorText" class="text-xs font-mono font-bold text-indigo-300">Slide 1 of 20</span>
+                    <span id="slideCategoryText" class="text-[10px] text-slate-400">Boundary Metrics</span>
+                </div>
+                <button id="prevBtn" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 disabled:opacity-30 disabled:pointer-events-none transition border border-slate-700">
+                    <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                </button>
+                <div class="relative">
+                    <button id="slidePickerBtn" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200 border border-slate-700 flex items-center gap-1.5">
+                        <i data-lucide="layout-grid" class="w-4 h-4 text-indigo-400"></i>
+                        <span id="currentSlideBtnNum">1</span>/20
+                    </button>
+                    <!-- Slide Dropdown / Grid -->
+                    <div id="slidePickerMenu" class="hidden absolute right-0 mt-2 w-72 sm:w-80 p-3 rounded-2xl glass-panel border border-slate-700 shadow-2xl z-50">
+                        <div class="text-xs font-bold text-slate-300 mb-2 px-1 flex items-center justify-between">
+                            <span>JUMP TO SLIDE</span>
+                            <span class="text-[10px] text-indigo-400">20 Total Slides</span>
+                        </div>
+                        <div id="slideGrid" class="grid grid-cols-5 gap-1.5 max-h-60 overflow-y-auto p-1">
+                            <!-- Populated dynamically by JS -->
+                        </div>
+                    </div>
+                </div>
+                <button id="nextBtn" class="p-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white disabled:opacity-30 disabled:pointer-events-none transition shadow-lg shadow-indigo-600/30">
+                    <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Linear Progress Bar -->
+        <div class="w-full bg-slate-800/80 h-1 mt-3 rounded-full overflow-hidden">
+            <div id="progressBar" class="bg-gradient-to-r from-indigo-500 via-sky-400 to-emerald-400 h-full w-[5%] transition-all duration-300"></div>
+        </div>
+    </header>
+
+    <!-- Main Dynamic Workspace Area -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 flex flex-col gap-6">
+
+        <!-- Top Row: Slide Header Banner & Teacher Avatar Control -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
+            <!-- Slide Meta Banner (8 cols) -->
+            <div class="lg:col-span-8 glass-panel rounded-2xl p-5 flex flex-col justify-between border border-slate-800 relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div>
+                    <div class="flex flex-wrap items-center gap-2 mb-2">
+                        <span id="slideBadge" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">Competency CG-5</span>
+                        <span id="slideSubBadge" class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-slate-800 text-slate-300 border border-slate-700">Class 9 Mathematics</span>
+                    </div>
+                    <h2 id="slideTitle" class="text-xl sm:text-2xl font-extrabold text-white tracking-tight mb-1">Perimeter of Shapes & Boundary Metrics</h2>
+                    <p id="slideSubtitle" class="text-xs sm:text-sm text-indigo-300 font-medium">Defining the 1D Closed Contour Enclosing a 2D Planar Region</p>
+                </div>
+                <div class="mt-3 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                    <span id="slideFocusLabel" class="flex items-center gap-1.5 text-slate-300">
+                        <i data-lucide="compass" class="w-4 h-4 text-emerald-400"></i>
+                        <span>Core Focus: Polygons, Boundary Unrolling & Rectilinear Enclosures</span>
+                    </span>
+                    <span class="font-mono text-[11px] text-slate-400 hidden sm:inline">NCERT Ch 12 • Mensuration</span>
+                </div>
+            </div>
+
+            <!-- Prof. Sophia Voiceover & Avatar Card (4 cols) -->
+            <div class="lg:col-span-4 glass-panel rounded-2xl p-4 flex flex-col justify-between border border-slate-800 relative">
+                <div class="flex items-center gap-3">
+                    <!-- SVG Avatar with animated mouth -->
+                    <div id="avatarContainer" class="relative w-14 h-14 rounded-2xl bg-gradient-to-tr from-indigo-900 via-slate-800 to-indigo-700 border-2 border-indigo-400/30 p-1 flex items-center justify-center shrink-0 shadow-lg shadow-indigo-950/50">
+                        <svg id="teacherSvg" viewBox="0 0 100 100" class="w-full h-full">
+                            <!-- Background / Shoulders -->
+                            <path d="M20,95 Q50,75 80,95 L80,100 L20,100 Z" fill="#4338ca"/>
+                            <!-- Collar / Necklace -->
+                            <path d="M42,78 L50,85 L58,78" fill="none" stroke="#fbbf24" stroke-width="2"/>
+                            <!-- Neck -->
+                            <rect x="44" y="62" width="12" height="18" fill="#fbcfe8" rx="3"/>
+                            <!-- Head -->
+                            <ellipse cx="50" cy="45" rx="22" ry="24" fill="#fdf2f8"/>
+                            <!-- Hair back -->
+                            <path d="M26,45 Q24,20 50,18 Q76,20 74,45 Q75,65 68,70 Q72,40 50,28 Q28,40 32,70 Q25,65 26,45 Z" fill="#312e81"/>
+                            <!-- Hair bangs -->
+                            <path d="M30,35 Q50,22 70,35 Q60,25 50,26 Q40,25 30,35 Z" fill="#4338ca"/>
+                            <!-- Glasses -->
+                            <rect x="33" y="38" width="14" height="10" rx="3" fill="none" stroke="#1e1b4b" stroke-width="2"/>
+                            <rect x="53" y="38" width="14" height="10" rx="3" fill="none" stroke="#1e1b4b" stroke-width="2"/>
+                            <line x1="47" y1="43" x2="53" y2="43" stroke="#1e1b4b" stroke-width="2"/>
+                            <!-- Eyes -->
+                            <circle cx="40" cy="43" r="2.5" fill="#1e293b"/>
+                            <circle cx="60" cy="43" r="2.5" fill="#1e293b"/>
+                            <circle cx="41" cy="42" r="0.8" fill="#ffffff"/>
+                            <circle cx="61" cy="42" r="0.8" fill="#ffffff"/>
+                            <!-- Eyebrows -->
+                            <path d="M34,35 Q40,33 46,36" fill="none" stroke="#312e81" stroke-width="1.8" stroke-linecap="round"/>
+                            <path d="M54,36 Q60,33 66,35" fill="none" stroke="#312e81" stroke-width="1.8" stroke-linecap="round"/>
+                            <!-- Smile / Mouth -->
+                            <path id="teacherMouth" d="M44,57 Q50,62 56,57" fill="#be185d" stroke="#be185d" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <div id="speakingPulse" class="hidden absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-slate-900 animate-ping"></div>
+                        <div id="speakingDot" class="hidden absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-slate-900"></div>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-white tracking-wide">Prof. Sophia</span>
+                            <span id="speechStatus" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">Idle</span>
+                        </div>
+                        <p class="text-[11px] text-indigo-300 truncate">Audio Companion • En-US Narration</p>
+                    </div>
+                </div>
+
+                <!-- Speech Controls -->
+                <div class="mt-3 pt-2.5 border-t border-slate-800 flex items-center justify-between gap-1.5">
+                    <button id="toggleSpeechBtn" class="flex-1 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-md shadow-indigo-600/30">
+                        <i data-lucide="volume-2" class="w-4 h-4"></i>
+                        <span id="speechBtnLabel">Explain Slide</span>
+                    </button>
+                    <button id="pauseSpeechBtn" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 disabled:opacity-30 disabled:pointer-events-none transition border border-slate-700">
+                        <i data-lucide="pause" class="w-4 h-4"></i>
+                    </button>
+                    <button id="stopSpeechBtn" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-rose-300 hover:text-rose-200 transition border border-slate-700">
+                        <i data-lucide="square" class="w-4 h-4"></i>
+                    </button>
+                    <button id="speechSpeedBtn" class="px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-indigo-300 text-[11px] font-mono font-bold transition border border-slate-700">
+                        1.0x
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Row: Interactive Animation / Simulation Canvas + Dynamic Content Area -->
+        <div id="contentSlideContainer" class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            <!-- Left / Main Canvas: Interactive SVG Simulator (7 cols) -->
+            <div class="lg:col-span-7 glass-panel rounded-2xl p-4 sm:p-5 border border-slate-800 flex flex-col gap-3 min-h-[460px]">
+                <div class="flex items-center justify-between border-b border-slate-800/80 pb-2.5">
+                    <div class="flex items-center gap-2">
+                        <div class="p-1.5 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                            <i data-lucide="play-circle" class="w-4 h-4"></i>
+                        </div>
+                        <h3 id="simulatorHeading" class="text-xs sm:text-sm font-bold text-slate-200 uppercase tracking-wider">Interactive Simulator</h3>
+                    </div>
+                    <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded">Live Physics Canvas</span>
+                </div>
+
+                <!-- Simulation Display Viewport -->
+                <div id="simulatorViewport" class="flex-1 w-full min-h-[360px] bg-slate-950/70 rounded-xl border border-slate-800/80 p-2 sm:p-4 relative flex flex-col justify-between overflow-hidden">
+                    <!-- Dynamic Interactive SVG & HTML injected here -->
+                </div>
+            </div>
+
+            <!-- Right Column: Structured Educational Theory + 2 In-Slide Checkpoints (5 cols) -->
+            <div class="lg:col-span-5 flex flex-col gap-4">
+                <!-- Theory & Key Formulas Card -->
+                <div class="glass-panel rounded-2xl p-5 border border-slate-800 flex flex-col gap-3">
+                    <div class="flex items-center gap-2 border-b border-slate-800/80 pb-2.5">
+                        <i data-lucide="book-open" class="w-4 h-4 text-indigo-400"></i>
+                        <h3 class="text-xs sm:text-sm font-bold text-slate-200 uppercase tracking-wider">Concept Summary & Insights</h3>
+                    </div>
+                    <p id="slideSummaryText" class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        <!-- Populated by JS -->
+                    </p>
+
+                    <div class="mt-2">
+                        <h4 class="text-[11px] font-bold text-indigo-300 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-400"></i>
+                            <span>Key Takeaways & Formulas</span>
+                        </h4>
+                        <ul id="slideKeyPointsList" class="space-y-1.5 text-xs text-slate-300">
+                            <!-- Populated by JS -->
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- In-Slide Checkpoints (2 Quick Concept Checks) -->
+                <div class="glass-panel rounded-2xl p-5 border border-slate-800 flex flex-col gap-3">
+                    <div class="flex items-center justify-between border-b border-slate-800/80 pb-2">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="help-circle" class="w-4 h-4 text-amber-400"></i>
+                            <h3 class="text-xs sm:text-sm font-bold text-slate-200 uppercase tracking-wider">In-Slide Checkpoints</h3>
+                        </div>
+                        <span class="text-[10px] font-mono text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded">2 Questions</span>
+                    </div>
+
+                    <div id="checkpointsContainer" class="flex flex-col gap-4">
+                        <!-- Populated dynamically by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dedicated Mastery Quiz Container (Slides 17, 18, 19, 20) -->
+        <div id="quizSlideContainer" class="hidden flex-col gap-6">
+            <!-- Quiz Header Banner -->
+            <div class="glass-panel rounded-2xl p-6 border border-indigo-500/30 bg-gradient-to-r from-indigo-950/40 via-slate-900 to-slate-900">
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                    <div>
+                        <span id="quizBadge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">Mastery Quiz Challenge</span>
+                        <h2 id="quizTitle" class="text-2xl font-black text-white mt-2">Class 9 Mensuration Challenge</h2>
+                        <p id="quizDesc" class="text-sm text-slate-300 mt-1">10 dedicated questions with instant scoring, feedback, and full step-by-step mathematical solutions.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="p-3 rounded-xl bg-slate-800 border border-slate-700 text-center">
+                            <span class="text-[10px] text-slate-400 block uppercase font-bold">Quiz Score</span>
+                            <span id="quizScoreText" class="text-xl font-black text-emerald-400 font-mono">0 / 10</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Questions Grid (10 Questions) -->
+            <div id="quizQuestionsList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Populated dynamically by JS -->
+            </div>
+        </div>
+
+        <!-- Strict Last Slide Notice on Slide 20 -->
+        <div id="lastSlideNotice" class="hidden glass-panel rounded-2xl p-6 text-center border-2 border-emerald-500/40 bg-gradient-to-r from-emerald-950/40 via-slate-900 to-indigo-950/40 shadow-xl shadow-emerald-950/30">
+            <div class="w-14 h-14 mx-auto rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 mb-3">
+                <i data-lucide="check-check" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white">Congratulations on Completing Chapter 12!</h3>
+            <p class="text-base sm:text-lg text-emerald-300 font-semibold mt-1">You have reached the last slide of this chapter</p>
+            <p class="text-xs sm:text-sm text-slate-400 mt-2 max-w-xl mx-auto">
+                You have mastered boundary metrics, the constant ratio π and historical approximations, arc length, polygon areas, the triangle median theorem, Heron's formula, Baudhayana's squaring of rectangles, circle area derivations, sectors and segments, Brahmagupta's formula for cyclic quadrilaterals, generalisation hierarchies, and computational mensuration.
+            </p>
+            <div class="mt-4 flex flex-wrap justify-center gap-3">
+                <a href="/multimedia?syllabus=ncert&subject=mathematics&class=class9" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition flex items-center gap-2">
+                    <i data-lucide="layout-grid" class="w-4 h-4"></i>
+                    <span>Return to Mathematics Curriculum</span>
+                </a>
+                <button onclick="window.location.reload()" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs transition border border-slate-700 flex items-center gap-2">
+                    <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                    <span>Restart Laboratory</span>
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Step-by-Step Pop-up Solution Modal -->
+    <div id="solutionModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="glass-panel w-full max-w-xl rounded-2xl border border-slate-700 shadow-2xl p-6 flex flex-col gap-4 animate-in fade-in zoom-in-95 duration-200">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div class="flex items-center gap-2 text-indigo-400">
+                    <i data-lucide="file-check-2" class="w-5 h-5"></i>
+                    <h3 class="text-base font-bold text-white">Step-by-Step Mathematical Solution</h3>
+                </div>
+                <button onclick="window.closeSolutionModal()" class="p-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div id="modalQuestionText" class="text-xs sm:text-sm font-semibold text-slate-200 bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+                <!-- Question text -->
+            </div>
+            <div id="modalSolutionText" class="text-xs sm:text-sm text-slate-300 font-mono whitespace-pre-wrap leading-relaxed bg-slate-950/80 p-4 rounded-xl border border-slate-800/80 max-h-80 overflow-y-auto">
+                <!-- Solution text -->
+            </div>
+            <div class="flex justify-end pt-2">
+                <button onclick="window.closeSolutionModal()" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition">
+                    Got It, Continue
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Script Data & Controllers -->
+    <script>
+        const SLIDES = [{"id": 1, "title": "Perimeter of Shapes & Boundary Metrics", "subtitle": "Defining the 1D Closed Contour Enclosing a 2D Planar Region", "category": "Boundary Metrics", "badge": "CG-5 \u2022 C-5.1 \u2022 Boundary Metrics", "summary": "Perimeter is the total length of the continuous one-dimensional boundary enclosing a two-dimensional planar region. For any rectilinear polygon, the perimeter is the algebraic sum of all individual side lengths: P = \u03a3 s_i. For regular n-gons with equal side lengths s, this simplifies to P = n \u00d7 s (e.g., equilateral triangle P = 3s, square P = 4s, regular hexagon P = 6s). For irregular and composite figures, perimeter is evaluated by decomposing the boundary into individual linear segments. Perimeter has dimensions of length ([L]), measured in linear units such as meters (m), centimeters (cm), or kilometers (km). Practical applications include agricultural fencing, architectural skirting, athletic running tracks, and perimeter security fencing.", "key_points": ["Perimeter Definition: The total continuous path length along the boundary enclosing a 2D planar figure.", "Linear Dimension: Perimeter is purely one-dimensional ([L]), distinct from two-dimensional area ([L\u00b2]).", "Polygon Boundary Formula: For straight-sided polygons, P = \u03a3 s_i; for regular n-gons, P = n \u00b7 s.", "Rectangle & Square Metrics: Rectangle P = 2(l + b); Square P = 4s; Equilateral triangle P = 3s.", "Real-World Applications: Farmland fencing, architectural baseboards, framing, and athletic track design."], "narration": "Welcome to Mensuration: Area and Perimeter! Mensuration comes from the Latin 'mensurare', meaning 'to measure'. We begin with perimeter: the total distance traveled along the continuous outer edge of any closed two-dimensional shape. Whether fencing agricultural land or calculating baseboards for a room, perimeter quantifies one-dimensional boundary lengths. Watch our interactive boundary unroller transform polygons into a straight linear ruler!", "sim_title": "Polygon Boundary Unroller & Perimeter Linear Meter", "checkpoints": [{"q": "What is the perimeter of a regular hexagon with side length 7.5 cm?", "options": ["42.0 cm", "45.0 cm", "49.0 cm", "52.5 cm"], "ans": 1, "exp": "A regular hexagon has 6 equal sides. Perimeter P = 6 \u00d7 s = 6 \u00d7 7.5 cm = 45.0 cm.", "explanation": "A regular hexagon has 6 equal sides. Perimeter P = 6 \u00d7 s = 6 \u00d7 7.5 cm = 45.0 cm."}, {"q": "An L-shaped room has consecutive sides of 8 m, 6 m, 3 m, 2 m, 5 m, and 4 m. What is its perimeter?", "options": ["24 m", "28 m", "30 m", "32 m"], "ans": 1, "exp": "Perimeter is the total boundary length: 8 + 6 + 3 + 2 + 5 + 4 = 28 m.", "explanation": "Perimeter is the total boundary length: 8 + 6 + 3 + 2 + 5 + 4 = 28 m."}]}, {"id": 2, "title": "Perimeter of a Circle: Pi & Its Irrationality", "subtitle": "The Universal Invariant C / d = \u03c0 and Non-Repeating Decimal Expansion", "category": "Circular Metrics", "badge": "C-5.1 \u2022 The Constant Ratio \u03c0", "summary": "For any circle in the Euclidean plane, the ratio of its circumference C to its diameter d is strictly invariant: C / d = \u03c0 \u2248 3.14159265... regardless of the physical scale of the circle. In 1761, Johann Heinrich Lambert proved that \u03c0 is an irrational number; Ivan Niven provided a simplified calculus proof in 1947. Because \u03c0 is irrational, it cannot be expressed as a ratio of integers p/q (with q \u2260 0), and its decimal expansion is non-terminating and non-repeating. The widely used fraction 22/7 is merely a rational approximation (22/7 = 3.142857...), which overestimates \u03c0 by approximately 0.001264 (~0.04%). Archimedes, Aryabhata, and Zu Chongzhi all established that \u03c0 cannot be captured by simple whole-number ratios.", "key_points": ["The Universal Ratio: The circumference-to-diameter ratio C / d is constant for all circles and defines the mathematical constant \u03c0.", "Irrationality of Pi: Proven by Lambert (1761); \u03c0 cannot be written as p/q, with a non-terminating, non-periodic decimal expansion.", "Distinction from 22/7: 22/7 is a rational approximation (\u2248 3.142857), differing from true \u03c0 by ~0.04%.", "Circumference Formulas: C = \u03c0 d = 2\u03c0 r, where d is diameter and r is radius.", "Kinematic Meaning: A rolling wheel of radius r travels exactly 2\u03c0r linear distance in one complete 360\u00b0 revolution."], "narration": "No matter how microscopic or colossal a circle is, dividing its circumference by its diameter always yields the exact same universal number: \u03c0! In 1761, Johann Lambert proved that \u03c0 is irrational\u2014it can never be written as an exact fraction, and its decimals continue infinitely without any repeating pattern. In our rolling wheel lab, observe how one complete revolution rolls out exactly 2\u03c0r along the ruler!", "sim_title": "Rolling Circle Kinematic Unroller & Invariant C/d Meter", "checkpoints": [{"q": "Why is 22/7 NOT exactly equal to the mathematical constant \u03c0?", "options": ["Because 22/7 is irrational while \u03c0 is rational", "Because 22/7 is a rational approximation (\u2248 3.142857...) whereas \u03c0 is irrational (\u2248 3.141592...)", "Because 22/7 was proved false by Euclid", "Because \u03c0 equals exactly 3.14"], "ans": 1, "exp": "\u03c0 is an irrational number with a non-terminating, non-repeating decimal. 22/7 = 3.142857... is a rational fraction that exceeds \u03c0 by approximately 0.001264 (0.04%).", "explanation": "\u03c0 is an irrational number with a non-terminating, non-repeating decimal. 22/7 = 3.142857... is a rational fraction that exceeds \u03c0 by approximately 0.001264 (0.04%)."}, {"q": "If the diameter of a circle is doubled, what happens to the ratio Circumference / Diameter?", "options": ["It doubles", "It quadruples", "It halves", "It remains strictly constant and equal to \u03c0"], "ans": 3, "exp": "Circumference is directly proportional to diameter (C = \u03c0d). The ratio C/d is the universal constant \u03c0 for all circles regardless of size.", "explanation": "Circumference is directly proportional to diameter (C = \u03c0d). The ratio C/d is the universal constant \u03c0 for all circles regardless of size."}]}, {"id": 3, "title": "Historical Approximations to Pi Across Civilizations", "subtitle": "From Archimedes' 96-Gon Squeeze to Aryabhata's \u0100sanna & Zu Chongzhi's Mil\u00fc", "category": "History of Mathematics", "badge": "C-5.1 \u2022 Ancient Approximations", "summary": "Before the advent of modern calculus, ancient civilizations devised brilliant geometric algorithms to approximate \u03c0. Archimedes of Syracuse (c. 250 BCE) bounded \u03c0 by inscribing and circumscribing regular 96-sided polygons around a circle, establishing 223/71 < \u03c0 < 22/7 (3.1408 < \u03c0 < 3.1428). In India, Aryabhata (499 CE, Aryabhatiya) stated: 'Add 4 to 100, multiply by 8, and add 62,000; this gives the approximate circumference of a circle of diameter 20,000': 62832 / 20000 = 3.1416, explicitly labeling it '\u0101sanna' (approaching/approximate). In China, Zu Chongzhi (5th century CE) derived the Mil\u00fc ratio 355/113 \u2248 3.1415929, accurate to 6 decimal places\u2014unrivaled for over 900 years! The Egyptian Rhind Papyrus (c. 1650 BCE) used (16/9)\u00b2 \u2248 3.1605.", "key_points": ["Archimedes (c. 250 BCE): Inscribed and circumscribed regular 96-gons to prove 223/71 (3.1408) < \u03c0 < 22/7 (3.1428).", "Aryabhata (499 CE): Formulated C/d \u2248 62832 / 20000 = 3.1416, explicitly identifying it as '\u0101sanna' (approximate).", "Zu Chongzhi (5th century CE): Computed Mil\u00fc 355/113 \u2248 3.1415929, accurate to 6 decimal places (error < 3 \u00d7 10\u207b\u2077).", "Egyptian Rhind Papyrus (c. 1650 BCE): Approximated area using [d - d/9]\u00b2, giving \u03c0 \u2248 256/81 \u2248 3.1605.", "Evolution of Precision: Moving from empirical craft rules to rigorous geometric exhaustion and bounding limits."], "narration": "Centuries before computers, mathematicians across India, Greece, and China used pure geometric reasoning to approximate \u03c0! Archimedes doubled polygon sides up to 96 sides to trap \u03c0 between two fractions. Aryabhata computed 3.1416 and recognized that \u03c0 was inherently approximate. Zu Chongzhi found 355 over 113, matching \u03c0 to six decimal places! Watch our interactive polygon exhaustion squeeze \u03c0 tighter and tighter.", "sim_title": "Archimedean Polygon Exhaustion & Multi-Civilisation Error Comparator", "checkpoints": [{"q": "Which historical mathematician calculated the approximation \u03c0 \u2248 62832 / 20000 = 3.1416?", "options": ["Archimedes", "Aryabhata", "Zu Chongzhi", "Baudhayana"], "ans": 1, "exp": "In 499 CE, Indian astronomer-mathematician Aryabhata stated this formula in the Aryabhatiya, explicitly calling it '\u0101sanna' (approximate).", "explanation": "In 499 CE, Indian astronomer-mathematician Aryabhata stated this formula in the Aryabhatiya, explicitly calling it '\u0101sanna' (approximate)."}, {"q": "Zu Chongzhi's famous ratio Mil\u00fc (355 / 113) is accurate to how many decimal places?", "options": ["2 decimal places", "4 decimal places", "6 decimal places", "10 decimal places"], "ans": 2, "exp": "355 / 113 \u2248 3.14159292..., while \u03c0 \u2248 3.14159265... It matches to 6 decimal places (error less than 0.0000003)!", "explanation": "355 / 113 \u2248 3.14159292..., while \u03c0 \u2248 3.14159265... It matches to 6 decimal places (error less than 0.0000003)!"}]}, {"id": 4, "title": "Circumference & Length of an Arc", "subtitle": "Subtended Central Angles, Fractional Boundary Arcs & Sector Perimeters", "category": "Circular Metrics", "badge": "CG-5 \u2022 C-5.1 \u2022 Arc Length & Wheels", "summary": "The full perimeter of a circle is its circumference C = 2\u03c0r = \u03c0d. An arc is a continuous segment of the circumference. If an arc subtends a central angle \u03b8 (in degrees) at the circle's centre, its arc length l is proportional to the fraction of a complete 360\u00b0 turn: l = (\u03b8 / 360\u00b0) \u00d7 2\u03c0r = (\u03b8\u03c0r) / 180\u00b0. In radians, l = r\u03b8. The total perimeter of a sector must include the curved arc plus the two straight bounding radii: P_sector = l + 2r. Real-world applications include cyclometer distance tracking (total distance = revolutions \u00d7 2\u03c0r), circular gear pitch, satellite orbital trajectories, and banked highway curves.", "key_points": ["Circumference Formula: C = 2\u03c0 r = \u03c0 d for a full 360\u00b0 boundary traversal.", "Arc Length Formula: l = (\u03b8 / 360\u00b0) \u00b7 2\u03c0 r = (\u03b8 \u03c0 r) / 180\u00b0 for central angle \u03b8 in degrees.", "Perimeter of a Sector: P = l + 2r = (\u03b8 / 360\u00b0)(2\u03c0 r) + 2r, accounting for both curved and radial edges.", "Odometer Physics: Linear vehicle distance D = N \u00b7 (2\u03c0 r), where N is wheel revolutions.", "Curvature Applications: Rail tracks, road bends, circular arcs in bridges, and gear teeth kinematics."], "narration": "Think of arc length as measuring the crust of a pizza slice! If the central angle is \u03b8 degrees, the arc length is simply \u03b8 over 360 times the total circumference 2\u03c0r. But beware: the total perimeter of a sector includes the curved arc plus the two straight radii that close the slice! Drag the angle slider to explore both arc length and full sector boundary metrics.", "sim_title": "Dynamic Arc Length & Sector Perimeter Kinematic Simulator", "checkpoints": [{"q": "What is the length of an arc of a circle of radius 14 cm subtending an angle of 90\u00b0 at the centre? (Use \u03c0 = 22/7)", "options": ["11 cm", "22 cm", "44 cm", "88 cm"], "ans": 1, "exp": "Arc length l = (\u03b8 / 360\u00b0) \u00d7 2\u03c0r = (90/360) \u00d7 2 \u00d7 (22/7) \u00d7 14 = (1/4) \u00d7 88 = 22 cm.", "explanation": "Arc length l = (\u03b8 / 360\u00b0) \u00d7 2\u03c0r = (90/360) \u00d7 2 \u00d7 (22/7) \u00d7 14 = (1/4) \u00d7 88 = 22 cm."}, {"q": "A sector of radius 21 cm has a central angle of 60\u00b0. What is the TOTAL perimeter of the sector? (Use \u03c0 = 22/7)", "options": ["22 cm", "43 cm", "64 cm", "85 cm"], "ans": 2, "exp": "Arc length l = (60/360) \u00d7 2 \u00d7 (22/7) \u00d7 21 = (1/6) \u00d7 132 = 22 cm. Total perimeter = l + 2r = 22 + 2(21) = 22 + 42 = 64 cm.", "explanation": "Arc length l = (60/360) \u00d7 2 \u00d7 (22/7) \u00d7 21 = (1/6) \u00d7 132 = 22 cm. Total perimeter = l + 2r = 22 + 2(21) = 22 + 42 = 64 cm."}]}, {"id": 5, "title": "Area of Shapes: Rectangles, Parallelograms & Triangles", "subtitle": "Unit Square Tiling, Cavalieri Shearing Invariance & The Half-Base Factor", "category": "Polygon Areas", "badge": "CG-5 \u2022 Polygon Mensuration", "summary": "Area quantifies the size of a two-dimensional planar surface in square units ([L\u00b2]). For a rectangle with length l and breadth b, Area = l \u00d7 b, derived from counting unit squares in a grid. A parallelogram with base b and perpendicular altitude h has Area = b \u00d7 h: slicing off a right triangle from one end and translating it to the other produces an equal-area rectangle without area loss (Cavalieri's shearing principle). Any triangle with base b and altitude h is exactly half of a parallelogram with the same base and height: Area = (1/2) \u00d7 b \u00d7 h. Two triangles on the same base and between the same parallel lines have equal area.", "key_points": ["Rectangle Area: Area = l \u00b7 b, foundational to 2D Cartesian plane integration and grid counting.", "Parallelogram Area: Area = b \u00b7 h; shearing preserves cross-sectional lengths and total surface area.", "Triangle Area: Area = (1/2) \u00b7 b \u00b7 h; every triangle is half of an encompassing parallelogram.", "Same Base, Same Parallels: Triangles sharing base b between parallel lines have identical height h and equal area.", "Area Dimensions: Expressed in square units (m\u00b2, cm\u00b2, km\u00b2, hectares, where 1 hectare = 10,000 m\u00b2)."], "narration": "Notice the beautiful evolutionary chain of area formulas! We begin with rectangles, counting unit squares: length times breadth. Next, we shear the rectangle into a parallelogram without altering base or height\u2014the area remains base times height! Finally, cutting the parallelogram along its diagonal yields two congruent triangles, giving each triangle an area of exactly half base times height. Drag our shearing slider to watch this transformation live!", "sim_title": "Shearing Transformation: Parallelogram to Rectangle & Triangle Doubling", "checkpoints": [{"q": "A parallelogram has a base of 16 cm and a corresponding height of 9 cm. What is its area?", "options": ["72 cm\u00b2", "144 cm\u00b2", "180 cm\u00b2", "288 cm\u00b2"], "ans": 1, "exp": "Area of a parallelogram = base \u00d7 height = 16 cm \u00d7 9 cm = 144 cm\u00b2.", "explanation": "Area of a parallelogram = base \u00d7 height = 16 cm \u00d7 9 cm = 144 cm\u00b2."}, {"q": "Why does shearing a parallelogram into a rectangle preserve its area?", "options": ["Because the perimeter stays the same", "Because a right triangle sliced from one end translates to fit identically on the other end without gain or loss of area", "Because all angles remain 90\u00b0", "Because diagonals bisect at right angles"], "ans": 1, "exp": "By Cavalieri's principle of shearing, translating parallel cross-sections or moving a congruent triangular piece from one side to the other preserves total area.", "explanation": "By Cavalieri's principle of shearing, translating parallel cross-sections or moving a congruent triangular piece from one side to the other preserves total area."}]}, {"id": 6, "title": "Median of a Triangle Divides It into Equal Areas", "subtitle": "Equal Base Partitions and Shared Perpendicular Altitude", "category": "Triangle Theorems", "badge": "C-7.3 \u2022 Triangle Median Theorem", "summary": "Theorem: A median of a triangle divides it into two triangles of equal area. Proof: In \u0394ABC, let AD be the median to base BC, so BD = DC. Drop the perpendicular altitude AH from vertex A onto line BC (length h). For \u0394ABD, Area(\u0394ABD) = (1/2)(BD)(h). For \u0394ACD, Area(\u0394ACD) = (1/2)(DC)(h). Since BD = DC, Area(\u0394ABD) = Area(\u0394ACD). Key Corollaries: (1) The centroid G divides the triangle into 3 triangles of equal area: Area(\u0394GAB) = Area(\u0394GBC) = Area(\u0394GCA) = (1/3)Area(\u0394ABC). (2) The three medians together divide the triangle into 6 smaller triangles, each having area exactly (1/6)Area(\u0394ABC).", "key_points": ["Median Area Bisection Theorem: A median bisects a triangle into two sub-triangles of equal area.", "Shared Altitude Proof: Both sub-triangles have equal base lengths (BD = DC) and share the exact same altitude h from vertex A.", "Centroid Tripartition: Centroid G forms three triangles (\u0394GAB, \u0394GBC, \u0394GCA) each of area (1/3)Area(\u0394ABC).", "Hexa-Partition: The three concurrent medians partition any triangle into 6 smaller triangles of equal area (1/6 each).", "Independence of Skew: The equality holds universally for equilateral, isosceles, right, and scalene triangles."], "narration": "Even in a wildly skewed or scalene triangle, a median divides the enclosed area into two perfectly equal halves! Why? Because both halves have equal base lengths and share the exact same perpendicular height from the top vertex. Furthermore, the centroid partitions the triangle into three equal-area regions, and all three medians carve it into six equal pieces! Test this by dragging vertex A anywhere on screen.", "sim_title": "Interactive Triangle Median & Centroid Area Equalizer", "checkpoints": [{"q": "In \u0394ABC, AD is a median. If Area(\u0394ABC) = 48 cm\u00b2, what is Area(\u0394ABD)?", "options": ["12 cm\u00b2", "16 cm\u00b2", "24 cm\u00b2", "36 cm\u00b2"], "ans": 2, "exp": "A median bisects the base into equal halves sharing the same height, dividing triangle area into two equal halves: 48 / 2 = 24 cm\u00b2.", "explanation": "A median bisects the base into equal halves sharing the same height, dividing triangle area into two equal halves: 48 / 2 = 24 cm\u00b2."}, {"q": "The three medians of a triangle intersect at centroid G. How many smaller triangles of equal area are formed?", "options": ["2", "3", "4", "6"], "ans": 3, "exp": "The three medians partition any triangle into 6 smaller triangles, each having exactly 1/6th of the total area.", "explanation": "The three medians partition any triangle into 6 smaller triangles, each having exactly 1/6th of the total area."}]}, {"id": 7, "title": "Heron\u2019s Formula for Triangle Area", "subtitle": "Evaluating Area Purely from Three Side Lengths Without Altitude", "category": "Heron's Formula", "badge": "CG-5 \u2022 Heron's Formula", "summary": "In surveying and field geometry, measuring the perpendicular altitude across rugged terrain is often impractical, but measuring the perimeter sides a, b, c is straightforward. Hero of Alexandria (c. 60 CE, Metrica) proved that Area = \u221a[s(s - a)(s - b)(s - c)], where semi-perimeter s = (a + b + c) / 2. The formula requires only that the triangle inequality holds (a + b > c). Special cases: (1) Equilateral triangle (a = b = c): s = 3a/2, giving Area = (\u221a3 / 4)a\u00b2. (2) Isosceles triangle (a, a, b): Area = (b/4)\u221a(4a\u00b2 - b\u00b2). (3) Right triangle (a\u00b2 + b\u00b2 = c\u00b2): Area = (1/2)ab. Inradius r_in relates to area via Area = r_in \u00d7 s.", "key_points": ["Heron's Formula: Area = \u221a[s(s - a)(s - b)(s - c)], where semi-perimeter s = (a + b + c) / 2.", "Altitude Independence: Computes exact area using only side lengths a, b, c without constructing any height.", "Equilateral Specialization: For a = b = c, Heron reduces directly to Area = (\u221a3 / 4) a\u00b2.", "Isosceles Specialization: For sides a, a, b, reduces to Area = (b / 4) \u221a(4a\u00b2 - b\u00b2).", "Incircle Connection: Triangle area equals inradius times semi-perimeter: Area = r_in \u00b7 s."], "narration": "Imagine you are a surveyor measuring an irregular agricultural field. Measuring a perpendicular height across a river or dense forest is impossible, but measuring the three perimeter sides with a chain is easy! Hero of Alexandria solved this completely with Heron's formula: semi-perimeter s, times the differences s minus a, s minus b, s minus c, all under the square root. Adjust the side lengths to see Heron's formula compute area step by step.", "sim_title": "Heron\u2019s Formula Geometric Computer & Incircle Radius Visualizer", "checkpoints": [{"q": "Find the area of a triangle with sides 13 cm, 14 cm, and 15 cm using Heron's formula.", "options": ["72 cm\u00b2", "84 cm\u00b2", "90 cm\u00b2", "96 cm\u00b2"], "ans": 1, "exp": "s = (13 + 14 + 15)/2 = 21 cm. Area = \u221a[21 \u00d7 (21-13) \u00d7 (21-14) \u00d7 (21-15)] = \u221a[21 \u00d7 8 \u00d7 7 \u00d7 6] = \u221a[7056] = 84 cm\u00b2.", "explanation": "s = (13 + 14 + 15)/2 = 21 cm. Area = \u221a[21 \u00d7 (21-13) \u00d7 (21-14) \u00d7 (21-15)] = \u221a[21 \u00d7 8 \u00d7 7 \u00d7 6] = \u221a[7056] = 84 cm\u00b2."}, {"q": "What is the area of an equilateral triangle with side length 8 cm?", "options": ["16\u221a3 cm\u00b2", "24\u221a3 cm\u00b2", "32\u221a3 cm\u00b2", "64\u221a3 cm\u00b2"], "ans": 0, "exp": "Area = (\u221a3 / 4) a\u00b2 = (\u221a3 / 4) \u00d7 64 = 16\u221a3 cm\u00b2.", "explanation": "Area = (\u221a3 / 4) a\u00b2 = (\u221a3 / 4) \u00d7 64 = 16\u221a3 cm\u00b2."}]}, {"id": 8, "title": "Squaring a Rectangle: Baudhayana\u2019s Sulbasutras", "subtitle": "Vedic Geometric Quadrature via Gnomon Assembly & Difference of Squares", "category": "Vedic Geometry", "badge": "C-7.1 \u2022 Baudhayana Quadrature", "summary": "In the Baudhayana Sulbasutras (c. 800 BCE), ritual fire altars (vedis) required transforming a rectangular hearth of dimensions a \u00d7 b into an equivalent square of equal area: a \u00d7 b = x\u00b2. Baudhayana's construction: (1) Cut a square of side b from rectangle a \u00d7 b. (2) Bisect the remaining strip of width (a - b) into two equal strips of width (a - b)/2. (3) Attach one strip to the top and one to the side, forming an L-shaped gnomon. (4) Add a small corner square of side [(a - b)/2]\u00b2 to complete a large square of side (a + b)/2. (5) Area of rectangle ab = [(a + b)/2]\u00b2 - [(a - b)/2]\u00b2. (6) By Baudhayana's rope theorem, the difference of two squares is constructed as the leg of a right triangle: x = \u221a(ab)!", "key_points": ["Classical Quadrature Problem: Constructing a square of area equal to a given rectangle (x\u00b2 = a \u00b7 b).", "Baudhayana Sulbasutra (c. 800 BCE): Earliest known geometric proof of rectangular quadrature using cord and pegs.", "Gnomon Dissection: Reorganising excess strips into an L-shaped gnomon around the base square.", "Algebraic Equivalence: Proves the identity a \u00b7 b = [(a + b) / 2]\u00b2 - [(a - b) / 2]\u00b2 purely by geometric rearrangement.", "Geometric Mean Construction: The side of the resulting square x = \u221a(ab) is the geometric mean of length and breadth."], "narration": "Over 2,800 years ago, ancient Indian Vedic geometers solved the classic problem of 'squaring a rectangle' using only rope and pegs! Baudhayana demonstrated that any rectangle of dimensions a times b can be rearranged into an L-shaped gnomon, revealing that the rectangle's area equals the difference between two squares: (a+b)/2 squared minus (a-b)/2 squared! By the Sulbasutra rope theorem, this difference creates a square of side square root of a times b. Step through our 5-stage Vedic construction animation!", "sim_title": "Baudhayana Sulbasutra 5-Step Rectangular Squaring Animation", "checkpoints": [{"q": "In Baudhayana's Sulbasutra squaring of a rectangle of sides a and b, what algebraic identity is geometrically proven?", "options": ["(a + b)\u00b2 = a\u00b2 + 2ab + b\u00b2", "ab = [(a + b) / 2]\u00b2 - [(a - b) / 2]\u00b2", "(a - b)\u00b2 = a\u00b2 - 2ab + b\u00b2", "a\u00b3 - b\u00b3 = (a - b)(a\u00b2 + ab + b\u00b2)"], "ans": 1, "exp": "Baudhayana showed that the rectangle ab equals the difference between the large square on (a+b)/2 and the small corner square on (a-b)/2.", "explanation": "Baudhayana showed that the rectangle ab equals the difference between the large square on (a+b)/2 and the small corner square on (a-b)/2."}, {"q": "What is the side of a square having the same area as a rectangle of dimensions 18 cm \u00d7 8 cm?", "options": ["10 cm", "12 cm", "13 cm", "14 cm"], "ans": 1, "exp": "Area of rectangle = 18 \u00d7 8 = 144 cm\u00b2. Side of equivalent square = \u221a144 = 12 cm (the geometric mean of 18 and 8).", "explanation": "Area of rectangle = 18 \u00d7 8 = 144 cm\u00b2. Side of equivalent square = \u221a144 = 12 cm (the geometric mean of 18 and 8)."}]}, {"id": 9, "title": "Area of a Circle: Slicing Derivation", "subtitle": "Infinite Sector Dissection and Archimedes' Unrolled Triangle", "category": "Circle Area", "badge": "CG-5 \u2022 Circle Area Derivation", "summary": "To derive the area of a circle, partition it into N equal wedge sectors (N = 8, 16, 32, 64...) and rearrange them in an alternating, interlocking row. The total circumference 2\u03c0r is divided equally between the top and bottom scalloped boundaries, each receiving length (2\u03c0r)/2 = \u03c0r. The vertical height of each wedge is the radius r. As N \u2192 \u221e, the scallops straighten into parallel line segments perpendicular to the height, forming an exact rectangle of base \u03c0r and height r. Therefore, Area = base \u00d7 height = (\u03c0r) \u00d7 r = \u03c0r\u00b2! In Archimedes' concentric unrolling method, concentric circular rings unroll into stacked strips forming a right triangle of base 2\u03c0r and altitude r: Area = (1/2)(2\u03c0r)(r) = \u03c0r\u00b2.", "key_points": ["Sector Dissection Method: Slicing a circle into N wedges and meshing them alternately into a pseudo-rectangle.", "Base of Rearranged Shape: Top and bottom edges each receive half of the total circumference: C / 2 = \u03c0 r.", "Height of Rearranged Shape: The radial edges of the sectors form the height r.", "Limit as N \u2192 \u221e: As sector count tends to infinity, the shape becomes an exact rectangle of area (\u03c0 r) \u00b7 r = \u03c0 r\u00b2.", "Archimedes' Unrolled Triangle: Concentric thin circular rings unwind into a right triangle of base 2\u03c0 r and altitude r."], "narration": "How do we find the area enclosed by a curved circle? We cut it into thin pizza slices and interlock them in an alternating row! Notice that half the crust goes to the top edge and half goes to the bottom edge, each measuring \u03c0r. The height of the row is simply the radius r. As we increase the slice count towards infinity, the scalloped edges straighten into a perfect rectangle of area \u03c0r times r, or \u03c0r\u00b2! Watch our interactive dissection slice and unroll the circle.", "sim_title": "Interactive Sector Slicing to Rectangle & Archimedes Concentric Ring Unroller", "checkpoints": [{"q": "When a circle of radius r is cut into N sectors and rearranged into an alternating pseudo-rectangle, what are its dimensions as N \u2192 \u221e?", "options": ["Length = 2\u03c0r, Height = r", "Length = \u03c0r, Height = r", "Length = \u03c0r\u00b2, Height = 2r", "Length = \u03c0r / 2, Height = 2r"], "ans": 1, "exp": "The top and bottom edges each receive half the circumference (C / 2 = \u03c0r), while the radial slice forms the height r. Area = \u03c0r \u00d7 r = \u03c0r\u00b2.", "explanation": "The top and bottom edges each receive half the circumference (C / 2 = \u03c0r), while the radial slice forms the height r. Area = \u03c0r \u00d7 r = \u03c0r\u00b2."}, {"q": "In Archimedes' concentric ring derivation, unrolling the rings produces a right triangle with which dimensions?", "options": ["Base = \u03c0r, Height = r", "Base = 2\u03c0r, Height = r", "Base = 2r, Height = \u03c0r", "Base = 4\u03c0r, Height = r / 2"], "ans": 1, "exp": "The outermost ring unwinds to circumference 2\u03c0r (base), while the accumulated ring radii form the height r. Area = (1/2) \u00d7 (2\u03c0r) \u00d7 r = \u03c0r\u00b2.", "explanation": "The outermost ring unwinds to circumference 2\u03c0r (base), while the accumulated ring radii form the height r. Area = (1/2) \u00d7 (2\u03c0r) \u00d7 r = \u03c0r\u00b2."}]}, {"id": 10, "title": "Ancient Approximations of Circle Area", "subtitle": "The Egyptian Rhind Papyrus, Babylonian Tablets & Liu Hui's Exhaustion", "category": "Historical Mensuration", "badge": "C-5.1 \u2022 Ancient Approximations", "summary": "Before formal algebra, ancient civilisations devised empirical and geometric rules for circle area. The Egyptian Rhind Papyrus (c. 1650 BCE, Problem 50) instructed: 'Take away 1/9 of the diameter and square the remainder.' Area \u2248 [d - (1/9)d]\u00b2 = [(8/9)d]\u00b2 = (64/81)d\u00b2 = (256/81)r\u00b2 \u2248 3.1605 r\u00b2, an error of only ~0.6%! In ancient Mesopotamia (Babylonia), area was estimated from circumference as A \u2248 C\u00b2 / 12, implying \u03c0 \u2248 3. In China, Liu Hui (263 CE) wrote the Nine Chapters commentary, using 3,072-sided regular polygons to calculate \u03c0 \u2248 3.1416 and derive circle area with extraordinary precision.", "key_points": ["Egyptian Rhind Papyrus (c. 1650 BCE): Problem 50 gives Area \u2248 [(8/9) d]\u00b2 = (64/81) d\u00b2 \u2248 3.1605 r\u00b2.", "Babylonian Tablets (c. 1800 BCE): Estimated area from circumference as A \u2248 C\u00b2 / 12, reflecting \u03c0 \u2248 3.", "Liu Hui (263 CE, China): Exhaustion method using inscribed 3,072-gon to determine circle area and \u03c0 \u2248 3.1416.", "Vedic Altars (Sulbasutras): Circling the square and squaring the circle for Garhapatya and Ahavaniya altars.", "Accuracy Evolution: From practical granary estimates (0.6% error) to rigorous geometric limits."], "narration": "Thousands of years ago, Egyptian scribes calculating grain silo storage needed to find circular areas without knowing modern algebra! Their rule\u2014subtract one-ninth of the diameter and square the remainder\u2014produced an approximation accurate to within 0.6%! Compare the true circle area \u03c0r\u00b2 with the ancient Egyptian square and Babylonian formulas on our multi-civilisation area comparator.", "sim_title": "Multi-Civilisation Circle Area Comparator & Historical Error Dials", "checkpoints": [{"q": "According to the Egyptian Rhind Papyrus (Problem 50), circle area is approximated by squaring what fraction of the diameter?", "options": ["3/4 of diameter", "7/8 of diameter", "8/9 of diameter", "9/10 of diameter"], "ans": 2, "exp": "The scribe wrote: take away 1/9 of the diameter and square the remainder: [d - d/9]\u00b2 = [(8/9)d]\u00b2 = (64/81)d\u00b2.", "explanation": "The scribe wrote: take away 1/9 of the diameter and square the remainder: [d - d/9]\u00b2 = [(8/9)d]\u00b2 = (64/81)d\u00b2."}, {"q": "The ancient Babylonian formula A \u2248 C\u00b2 / 12 implies what value for \u03c0?", "options": ["2.8", "3.0", "3.125", "3.1416"], "ans": 1, "exp": "Since C = 2\u03c0r, C\u00b2 / 12 = 4\u03c0\u00b2r\u00b2 / 12 = (\u03c0\u00b2 / 3)r\u00b2. For this to equal \u03c0r\u00b2, we need \u03c0 / 3 = 1, so \u03c0 \u2248 3.", "explanation": "Since C = 2\u03c0r, C\u00b2 / 12 = 4\u03c0\u00b2r\u00b2 / 12 = (\u03c0\u00b2 / 3)r\u00b2. For this to equal \u03c0r\u00b2, we need \u03c0 / 3 = 1, so \u03c0 \u2248 3."}]}, {"id": 11, "title": "Area of the Sector of a Circle", "subtitle": "Central Angles, Fractional Slices & The Triangular (1/2)lr Formula", "category": "Sector Area", "badge": "CG-5 \u2022 Sector Mensuration", "summary": "A circular sector is the region bounded by two radii and their intercepted arc. The area of a sector subtending central angle \u03b8 at the centre is directly proportional to \u03b8: Area = (\u03b8 / 360\u00b0) \u00d7 \u03c0r\u00b2. Notice a remarkable mathematical connection: since arc length is l = (\u03b8 / 360\u00b0)(2\u03c0r), substituting l gives Area = (1/2) \u00d7 l \u00d7 r. This formula has the exact same structure as the area of a triangle: (1/2) \u00d7 base \u00d7 height, where the curved arc l acts as the base and radius r acts as the perpendicular height! Practical applications include automotive windshield wiper sweep areas, agricultural rotary sprinkler coverage, and beam angles of lighthouses.", "key_points": ["Sector Area Formula: Area = (\u03b8 / 360\u00b0) \u00b7 \u03c0 r\u00b2 for central angle \u03b8 measured in degrees.", "The Triangular Equivalence: Area = (1/2) \u00b7 l \u00b7 r, where arc length l acts as base and radius r acts as altitude.", "Minor vs Major Sector: Minor sector subtends \u03b8 < 180\u00b0; Major sector subtends 360\u00b0 - \u03b8 with Area = \u03c0 r\u00b2 - Area(minor).", "Irrigation & Wiper Modeling: Calculating watered field sectors and swept windshield clearing zones.", "Direct Proportionality: Doubling the central angle \u03b8 doubles both the arc length and the enclosed sector area."], "narration": "A sector is simply a slice of the circular pizza! Its area is \u03b8 over 360 times the total area \u03c0r\u00b2. But notice something astonishing: because arc length l is \u03b8 over 360 times 2\u03c0r, the sector area can also be written as one-half times l times r! This looks exactly like a triangle with curved base l and height r. Drag our angle slider to see sprinkler sweeps and windshield wipers calculated in real time.", "sim_title": "Rotary Sprinkler & Wiper Sweep Sector Laboratory", "checkpoints": [{"q": "What is the area of a sector of a circle of radius 6 cm with central angle 60\u00b0? (Use \u03c0 = 3.14)", "options": ["9.42 cm\u00b2", "18.84 cm\u00b2", "28.26 cm\u00b2", "37.68 cm\u00b2"], "ans": 1, "exp": "Area = (\u03b8 / 360\u00b0) \u00d7 \u03c0r\u00b2 = (60/360) \u00d7 3.14 \u00d7 36 = (1/6) \u00d7 113.04 = 18.84 cm\u00b2.", "explanation": "Area = (\u03b8 / 360\u00b0) \u00d7 \u03c0r\u00b2 = (60/360) \u00d7 3.14 \u00d7 36 = (1/6) \u00d7 113.04 = 18.84 cm\u00b2."}, {"q": "If an arc of a sector has length l = 15 cm and circle radius is r = 8 cm, what is the area of the sector?", "options": ["30 cm\u00b2", "60 cm\u00b2", "120 cm\u00b2", "240 cm\u00b2"], "ans": 1, "exp": "Using Area = (1/2) \u00d7 l \u00d7 r = (1/2) \u00d7 15 \u00d7 8 = 60 cm\u00b2.", "explanation": "Using Area = (1/2) \u00d7 l \u00d7 r = (1/2) \u00d7 15 \u00d7 8 = 60 cm\u00b2."}]}, {"id": 12, "title": "Area of Segments of a Circle", "subtitle": "Decomposing Boundary Regions: Sector Area Minus Triangular Core", "category": "Segment Mensuration", "badge": "CG-5 \u2022 Segment Mensuration", "summary": "A circular segment is the region bounded by a chord and its intercepted arc. The area of a minor segment is computed by decomposing the region: Area(minor segment) = Area(sector OAB) - Area(\u0394OAB) = (\u03b8 / 360\u00b0)\u03c0r\u00b2 - (1/2)r\u00b2 sin \u03b8. Special cases: (1) \u03b8 = 90\u00b0: Area(\u0394OAB) = (1/2)r\u00b2, so Area(segment) = (1/4)\u03c0r\u00b2 - (1/2)r\u00b2 = r\u00b2(\u03c0/4 - 1/2). (2) \u03b8 = 60\u00b0: \u0394OAB is equilateral of side r, Area(\u0394OAB) = (\u221a3/4)r\u00b2, so Area(segment) = (1/6)\u03c0r\u00b2 - (\u221a3/4)r\u00b2. (3) \u03b8 = 120\u00b0: Area(\u0394OAB) = (1/2)r\u00b2 sin 120\u00b0 = (\u221a3/4)r\u00b2. The major segment area is obtained by subtracting the minor segment from total circle area: Area(major) = \u03c0r\u00b2 - Area(minor).", "key_points": ["Segment Definition: The region enclosed between a chord and its corresponding arc.", "Decomposition Principle: Area(minor segment) = Area(sector OAB) - Area(triangle OAB).", "General Formula: Area = (\u03b8 / 360\u00b0) \u00b7 \u03c0 r\u00b2 - (1/2) r\u00b2 sin \u03b8.", "Standard Angle Reductions: 90\u00b0 right triangle gives (1/4)\u03c0r\u00b2 - (1/2)r\u00b2; 60\u00b0 equilateral gives (1/6)\u03c0r\u00b2 - (\u221a3/4)r\u00b2.", "Major Segment Complement: Area(major segment) = \u03c0 r\u00b2 - Area(minor segment)."], "narration": "To find the area of a circular segment, use decomposition: start with the entire pizza slice\u2014the sector\u2014and remove the triangular inner core \u0394OAB. What remains is the circular cap or segment! For a 90-degree central angle, subtract the right triangle half r-squared. For a 60-degree angle, subtract the equilateral triangle. Watch our simulator peel away the triangular core to isolate the segment!", "sim_title": "Circular Segment Decomposer & Triangle Subtraction Simulator", "checkpoints": [{"q": "A chord subtends a right angle (90\u00b0) at the centre of a circle of radius 10 cm. What is the area of the minor segment? (Use \u03c0 = 3.14)", "options": ["25.0 cm\u00b2", "28.5 cm\u00b2", "50.0 cm\u00b2", "78.5 cm\u00b2"], "ans": 1, "exp": "Area(sector) = (90/360) \u00d7 \u03c0(10)\u00b2 = (1/4) \u00d7 314 = 78.5 cm\u00b2. Area(\u0394OAB) = (1/2) \u00d7 10 \u00d7 10 = 50 cm\u00b2. Area(segment) = 78.5 - 50 = 28.5 cm\u00b2.", "explanation": "Area(sector) = (90/360) \u00d7 \u03c0(10)\u00b2 = (1/4) \u00d7 314 = 78.5 cm\u00b2. Area(\u0394OAB) = (1/2) \u00d7 10 \u00d7 10 = 50 cm\u00b2. Area(segment) = 78.5 - 50 = 28.5 cm\u00b2."}, {"q": "How is the area of a major segment calculated from the minor segment and total circle area?", "options": ["Area(major) = Area(minor) + Area(circle)", "Area(major) = Area(circle) - Area(minor segment)", "Area(major) = 2 \u00d7 Area(minor segment)", "Area(major) = (360 - \u03b8) \u00d7 Area(minor segment)"], "ans": 1, "exp": "The minor segment and major segment together form the complete circle without overlap: Area(major) = \u03c0r\u00b2 - Area(minor segment).", "explanation": "The minor segment and major segment together form the complete circle without overlap: Area(major) = \u03c0r\u00b2 - Area(minor segment)."}]}, {"id": 13, "title": "Brahmagupta\u2019s Formula for Cyclic 4-Gons", "subtitle": "The Master Theorem for Inscribed Quadrilateral Surface Area", "category": "Brahmagupta's Formula", "badge": "CG-5 \u2022 Brahmagupta's Theorem", "summary": "In 628 CE, the legendary Indian mathematician Brahmagupta (Brahmasphutasiddhanta, Chapter 12) discovered the universal area formula for any cyclic quadrilateral with side lengths a, b, c, d inscribed in a circle: Semi-perimeter s = (a + b + c + d) / 2; Area = \u221a[(s - a)(s - b)(s - c)(s - d)]. Condition: The quadrilateral MUST be cyclic (opposite angles sum to 180\u00b0). Geometric Significance: By Euler's theorem, among all quadrilaterals with fixed side lengths a, b, c, d, the cyclic quadrilateral encloses the MAXIMUM possible area! If the quadrilateral is non-cyclic, Brahmagupta's formula serves as a strict upper bound.", "key_points": ["Brahmagupta's Formula (628 CE): Area = \u221a[(s - a)(s - b)(s - c)(s - d)], where s = (a + b + c + d) / 2.", "Cyclic Inscription Requirement: Valid strictly when all four vertices lie on a common circle (opposite angles supplementary).", "Isoperimetric Optimality: Among all quadrilaterals with fixed sides a, b, c, d, the cyclic form maximizes enclosed area.", "Upper Bound Property: For non-cyclic quadrilaterals, \u221a[(s - a)(s - b)(s - c)(s - d)] > Actual Area.", "Symmetry: The formula is fully symmetric under any permutation of the side lengths a, b, c, d."], "narration": "Brahmagupta's formula is one of the crowning triumphs of classical Indian mathematics! Just as Heron gave a formula for triangles from three sides, Brahmagupta discovered a formula for cyclic quadrilaterals from four sides: semi-perimeter s, times s minus a, s minus b, s minus c, s minus d, under the root. Furthermore, among all quadrilaterals with those four sides, the cyclic one achieves the maximum possible area! Drag the four vertices along the circle to compute area in real time.", "sim_title": "Brahmagupta Cyclic Quadrilateral Lab & Area Maximizer", "checkpoints": [{"q": "What is the primary condition required for Brahmagupta's formula Area = \u221a[(s-a)(s-b)(s-c)(s-d)] to hold?", "options": ["The quadrilateral must be a rhombus", "The quadrilateral must be cyclic (all 4 vertices lie on a circle)", "The diagonals must intersect at 90\u00b0", "Opposite sides must be parallel"], "ans": 1, "exp": "Brahmagupta's formula is valid strictly for cyclic quadrilaterals (opposite angles sum to 180\u00b0).", "explanation": "Brahmagupta's formula is valid strictly for cyclic quadrilaterals (opposite angles sum to 180\u00b0)."}, {"q": "Find the area of a cyclic quadrilateral with sides a = 2, b = 3, c = 4, d = 5.", "options": ["\u221a120", "\u221a144 = 12", "\u221a180", "\u221a216"], "ans": 0, "exp": "s = (2 + 3 + 4 + 5)/2 = 7. Factors: (7-2)=5, (7-3)=4, (7-4)=3, (7-5)=2. Area = \u221a(5 \u00d7 4 \u00d7 3 \u00d7 2) = \u221a120 \u2248 10.95.", "explanation": "s = (2 + 3 + 4 + 5)/2 = 7. Factors: (7-2)=5, (7-3)=4, (7-4)=3, (7-5)=2. Area = \u221a(5 \u00d7 4 \u00d7 3 \u00d7 2) = \u221a120 \u2248 10.95."}]}, {"id": 14, "title": "Heron\u2019s Formula as a Special Case of Brahmagupta", "subtitle": "The Continuous Geometric Limit as One Side Collapses to Zero (d \u2192 0)", "category": "Generalisation & Specialisation", "badge": "CG-9 \u2022 Specialisation & Continuity", "summary": "What happens when one side of a cyclic quadrilateral shrinks to zero? Consider a cyclic quadrilateral ABCD with sides a, b, c, d. Let side d \u2192 0 by sliding vertex D until it coincides with vertex A. The 4-gon degenerates into a triangle with sides a, b, c! Semi-perimeter becomes s = (a + b + c + 0) / 2 = (a + b + c) / 2. The fourth factor becomes (s - d) = (s - 0) = s. Substituting into Brahmagupta's formula: Area = \u221a[(s - a)(s - b)(s - c)(s - 0)] = \u221a[s(s - a)(s - b)(s - c)], which is precisely Heron's formula! Why does this hold? Because every triangle has a unique circumcircle (three non-collinear points always determine a circle), so every triangle is inherently a cyclic 3-gon!", "key_points": ["Side Collapse Limit: Setting d = 0 transforms a cyclic 4-gon into a 3-gon (triangle) with sides a, b, c.", "Factor Reduction: The term (s - d) becomes (s - 0) = s, yielding \u221a[s(s - a)(s - b)(s - c)].", "Universal Cyclicity of Triangles: Every triangle has a unique circumcircle; hence, every triangle is intrinsically cyclic.", "Unification: Heron's formula is not an isolated law, but a direct degenerate specialization of Brahmagupta's theorem.", "Mathematical Elegance: Demonstrates how continuous parameter limits connect seemingly distinct mathematical formulas."], "narration": "Watch this breathtaking transformation! What happens if we take a cyclic quadrilateral and shrink its fourth side d down to zero? The fourth vertex merges with the third, turning the 4-gon into a triangle with sides a, b, and c! In Brahmagupta's formula, the factor s minus d becomes s minus zero, which is just s. Instantly, Brahmagupta's formula morphs into Heron's formula! Heron is simply Brahmagupta's formula with one side collapsed. Slide d to zero to watch this happen!", "sim_title": "Vertex Collapse Morphing: Brahmagupta to Heron Continuity Simulator", "checkpoints": [{"q": "Why is Heron's formula considered a special case of Brahmagupta's formula?", "options": ["Because setting side d = 0 turns the cyclic quadrilateral into a triangle, and (s - 0) becomes s", "Because Heron lived after Brahmagupta", "Because triangles have four sides", "Because Brahmagupta copied Heron's proof"], "ans": 0, "exp": "Setting d = 0 collapses the fourth side into a point, yielding a triangle with sides a, b, c and (s - d) = s, reducing Brahmagupta directly to Heron's formula.", "explanation": "Setting d = 0 collapses the fourth side into a point, yielding a triangle with sides a, b, c and (s - d) = s, reducing Brahmagupta directly to Heron's formula."}, {"q": "Why is every triangle guaranteed to be a cyclic polygon?", "options": ["Because all triangles are equilateral", "Because through any three non-collinear points, there exists a unique circumcircle", "Because the angle sum of a triangle is 180\u00b0", "Because triangle medians concur"], "ans": 1, "exp": "By Euclid's geometry, the perpendicular bisectors of any triangle's three sides concur at a unique circumcentre, defining a unique circumcircle through all three vertices.", "explanation": "By Euclid's geometry, the perpendicular bisectors of any triangle's three sides concur at a unique circumcentre, defining a unique circumcircle through all three vertices."}]}, {"id": 15, "title": "Generalisation & Special Cases in Mathematics", "subtitle": "The Structural Hierarchy from Bretschneider to Brahmagupta to Heron", "category": "Mathematical Abstraction", "badge": "CG-9 \u2022 Abstraction & Hierarchy", "summary": "Mathematics advances through generalisation (expanding theorems to broader domains) and specialisation (applying constraints to discover efficient corollaries). Bretschneider\u2019s formula gives the area of ANY convex quadrilateral: Area = \u221a[(s - a)(s - b)(s - c)(s - d) - abcd cos\u00b2((A + C)/2)]. (1) Cyclic Constraint (A + C = 180\u00b0): (A+C)/2 = 90\u00b0, cos(90\u00b0) = 0, causing the second term to vanish and yielding Brahmagupta's formula. (2) Triangular Constraint (d = 0): yields Heron's formula. (3) Equilateral Constraint (a = b = c): yields (\u221a3/4)a\u00b2. (4) Right-Angle Constraint (a\u00b2 + b\u00b2 = c\u00b2): yields (1/2)ab. Computational thinking mirrors this object-oriented inheritance tree: abstract parent classes specialize into optimized concrete subclasses.", "key_points": ["Bretschneider's Formula: The master parent formula for ALL convex quadrilaterals including a cosine correction term.", "Cyclic Specialization: When opposite angles are supplementary (A + C = 180\u00b0), cos(90\u00b0) = 0, reducing to Brahmagupta.", "Degenerate Specialization: When side d = 0, Brahmagupta reduces directly to Heron's formula for triangles.", "Equilateral Specialization: When a = b = c, Heron reduces to (\u221a3 / 4) a\u00b2.", "Computational Abstraction: General formulas provide universal correctness, while specializations provide O(1) computational speed."], "narration": "This formula hierarchy reveals the true power of computational abstraction! At the very top sits Bretschneider's formula for any convex four-sided shape. Add the constraint that vertices lie on a circle, and the cosine term vanishes to yield Brahmagupta. Shrink one side to zero, and it becomes Heron. Set all three sides equal, and you get root three over four a-squared! Explore the hierarchy tree to see each mathematical constraint trigger its simplification.", "sim_title": "Interactive Mensuration Formula Hierarchy Tree & Constraint Engine", "checkpoints": [{"q": "In Bretschneider's formula Area = \u221a[(s-a)(s-b)(s-c)(s-d) - abcd cos\u00b2((A+C)/2)], what causes the cosine term to vanish for cyclic quadrilaterals?", "options": ["A + C = 90\u00b0, so cos(45\u00b0) = 1/\u221a2", "A + C = 180\u00b0, so (A+C)/2 = 90\u00b0 and cos(90\u00b0) = 0", "A = C = 45\u00b0, so cos(45\u00b0) = 0", "Opposite angles sum to 360\u00b0"], "ans": 1, "exp": "In a cyclic quadrilateral, opposite angles are supplementary (A + C = 180\u00b0). Thus (A+C)/2 = 90\u00b0, and cos(90\u00b0) = 0, causing the second term to vanish!", "explanation": "In a cyclic quadrilateral, opposite angles are supplementary (A + C = 180\u00b0). Thus (A+C)/2 = 90\u00b0, and cos(90\u00b0) = 0, causing the second term to vanish!"}, {"q": "What is the area formula for an equilateral triangle of side a as a specialization of Heron's formula?", "options": ["(1/2) a\u00b2", "(\u221a3 / 2) a\u00b2", "(\u221a3 / 4) a\u00b2", "(3\u221a3 / 4) a\u00b2"], "ans": 2, "exp": "With a = b = c, s = 3a/2 and (s - a) = a/2. Area = \u221a[(3a/2)(a/2)\u00b3] = \u221a[(3a\u2074)/16] = (\u221a3 / 4) a\u00b2.", "explanation": "With a = b = c, s = 3a/2 and (s - a) = a/2. Area = \u221a[(3a/2)(a/2)\u00b3] = \u221a[(3a\u2074)/16] = (\u221a3 / 4) a\u00b2."}]}, {"id": 16, "title": "Computational Thinking: Algorithmic Mensuration", "subtitle": "Decomposition, Gauss's Shoelace Algorithm & Monte Carlo Integration", "category": "Computational Geometry", "badge": "CG-9 \u2022 Algorithmic Mensuration", "summary": "Modern computational geometry calculates perimeters and areas of complex, irregular shapes using three fundamental algorithmic paradigms: (1) Polygon Triangulation: Any simple n-gon can be partitioned into n - 2 triangles, computing total area as the sum of triangular sub-areas. (2) Gauss's Shoelace Algorithm: For any polygon with ordered vertices (x_i, y_i), Area = (1/2)|\u03a3 (x_i y_{i+1} - x_{i+1} y_i)| using cross-multiplication in O(n) time. (3) Monte Carlo Integration: Approximating circle area and \u03c0 by throwing N random points into a bounding square of side 2r: (N_inside / N_total) \u2248 (\u03c0r\u00b2) / (4r\u00b2) = \u03c0/4, so \u03c0 \u2248 4 \u00d7 (N_inside / N_total).", "key_points": ["Polygon Decomposition: Decomposing arbitrary n-gons into n - 2 non-overlapping triangles.", "The Shoelace Algorithm: Computes area of any 2D polygon in O(n) time via coordinate determinant sums.", "Monte Carlo Method: Stochastic approximation of area and \u03c0 using uniform random point distributions.", "Resolution Independence: Algorithmic decomposition scales from small CAD blueprints to satellite geographic mapping.", "Algorithmic Pipeline: Input Coordinates \u2192 Boundary Edge Traversal \u2192 Determinant Summation \u2192 Area Evaluation."], "narration": "How does a GPS app or CAD software calculate the area of an irregular building plot or island? It uses algorithmic pipelines! Either by decomposing complex shapes into simple triangles, using Gauss's Shoelace cross-multiplication on coordinate vertices, or running Monte Carlo dartboard simulations. Click 'Throw 1000 Darts' to watch the Monte Carlo algorithm estimate \u03c0 right before your eyes!", "sim_title": "Monte Carlo Pi Dartboard Simulator & Gauss Shoelace Polygon Engine", "checkpoints": [{"q": "In a Monte Carlo simulation for estimating \u03c0, 785 out of 1000 darts land inside an inscribed circle within a square of side 2r. What is the estimated value of \u03c0?", "options": ["3.10", "3.14", "3.18", "3.24"], "ans": 1, "exp": "Area ratio = (\u03c0 r\u00b2) / (4 r\u00b2) = \u03c0 / 4 \u2248 785 / 1000 = 0.785. Therefore, \u03c0 \u2248 4 \u00d7 0.785 = 3.14.", "explanation": "Area ratio = (\u03c0 r\u00b2) / (4 r\u00b2) = \u03c0 / 4 \u2248 785 / 1000 = 0.785. Therefore, \u03c0 \u2248 4 \u00d7 0.785 = 3.14."}, {"q": "Gauss's Shoelace Algorithm calculates polygon area using which coordinate operation?", "options": ["Successive cross-multiplications of adjacent vertex coordinates (x_i y_{i+1} - x_{i+1} y_i)", "Computing distances between all vertex pairs", "Finding the slope of each polygon side", "Calculating the circumradius of the polygon"], "ans": 0, "exp": "The Shoelace formula computes Area = (1/2)|\u03a3 (x_i y_{i+1} - x_{i+1} y_i)| by summing cross-products of adjacent coordinate pairs.", "explanation": "The Shoelace formula computes Area = (1/2)|\u03a3 (x_i y_{i+1} - x_{i+1} y_i)| by summing cross-products of adjacent coordinate pairs."}]}];
+        const QUIZZES = [{"id": 17, "title": "Mastery Challenge I: Perimeters, Pi & Historical Approximations", "badge": "CG-5 \u2022 C-5.1 \u2022 Questions 1\u201310", "desc": "Test your mastery on polygon perimeter metrics, circle circumference, the nature and irrationality of \u03c0, and historical approximations from Archimedes, Aryabhata, and Zu Chongzhi.", "questions": [{"q": "1. What is the circumference of a circular running track whose diameter is 70 meters? (Use \u03c0 = 22/7)", "options": ["110 m", "220 m", "350 m", "440 m"], "ans": 1, "solution": "Step 1: Circumference formula C = \u03c0 \u00d7 d.\nStep 2: C = (22/7) \u00d7 70 m.\nStep 3: C = 22 \u00d7 10 = 220 m."}, {"q": "2. How many complete revolutions will a bicycle wheel of radius 35 cm make to cover a total distance of 1.1 km? (Use \u03c0 = 22/7)", "options": ["250 revolutions", "500 revolutions", "750 revolutions", "1000 revolutions"], "ans": 1, "solution": "Step 1: Total distance = 1.1 km = 1100 m = 110,000 cm.\nStep 2: Circumference of wheel = 2\u03c0r = 2 \u00d7 (22/7) \u00d7 35 = 220 cm.\nStep 3: Number of revolutions = Distance / C = 110,000 / 220 = 500 revolutions."}, {"q": "3. Which of the following statements about \u03c0 is mathematically TRUE?", "options": ["\u03c0 is equal to 22/7", "\u03c0 is a rational number with repeating decimal digits", "\u03c0 is an irrational real number whose decimal expansion never terminates or repeats", "\u03c0 was discovered by Isaac Newton using calculus"], "ans": 2, "solution": "Step 1: \u03c0 is defined as the ratio of circumference to diameter in Euclidean geometry.\nStep 2: Lambert (1761) proved \u03c0 is irrational.\nStep 3: Its decimal expansion 3.14159265... is strictly non-terminating and non-repeating."}, {"q": "4. In ancient Greece, Archimedes bounded \u03c0 by inscribing and circumscribing regular polygons with how many sides?", "options": ["24 sides", "48 sides", "64 sides", "96 sides"], "ans": 3, "solution": "Step 1: Archimedes started with a regular hexagon (6 sides).\nStep 2: He doubled the sides successively: 6 \u2192 12 \u2192 24 \u2192 48 \u2192 96.\nStep 3: Using a 96-gon, he proved 223/71 < \u03c0 < 22/7."}, {"q": "5. What is the perimeter of a semicircle protractor of radius 7 cm, including its straight base diameter? (Use \u03c0 = 22/7)", "options": ["22 cm", "29 cm", "36 cm", "44 cm"], "ans": 2, "solution": "Step 1: Curved boundary = \u03c0r = (22/7) \u00d7 7 = 22 cm.\nStep 2: Straight base diameter = 2r = 2 \u00d7 7 = 14 cm.\nStep 3: Total perimeter = \u03c0r + 2r = 22 + 14 = 36 cm."}, {"q": "6. A wire bent in the shape of a circle of radius 28 cm is rebent into the shape of a square. What is the length of each side of the square? (Use \u03c0 = 22/7)", "options": ["22 cm", "44 cm", "88 cm", "176 cm"], "ans": 1, "solution": "Step 1: Length of wire = Circumference of circle = 2\u03c0r = 2 \u00d7 (22/7) \u00d7 28 = 176 cm.\nStep 2: Perimeter of square = 4s = 176 cm.\nStep 3: Side of square s = 176 / 4 = 44 cm."}, {"q": "7. What is the length of an arc that subtends a central angle of 45\u00b0 in a circle of radius 14 cm? (Use \u03c0 = 22/7)", "options": ["5.5 cm", "11 cm", "22 cm", "44 cm"], "ans": 1, "solution": "Step 1: Arc length formula l = (\u03b8 / 360\u00b0) \u00d7 2\u03c0r.\nStep 2: l = (45 / 360) \u00d7 2 \u00d7 (22/7) \u00d7 14 = (1/8) \u00d7 88.\nStep 3: l = 11 cm."}, {"q": "8. What is the percentage difference between the approximation 22/7 (\u2248 3.142857) and \u03c0 (\u2248 3.141593)?", "options": ["Approximately 0.04%", "Approximately 0.4%", "Approximately 1.2%", "Approximately 4.0%"], "ans": 0, "solution": "Step 1: Absolute error = 22/7 - \u03c0 \u2248 3.142857 - 3.141593 = 0.001264.\nStep 2: Relative error = 0.001264 / 3.141593 \u2248 0.000402.\nStep 3: Percentage error \u2248 0.04%."}, {"q": "9. If the perimeter of a regular octagon is 96 cm, what is the length of each side?", "options": ["8 cm", "10 cm", "12 cm", "16 cm"], "ans": 2, "solution": "Step 1: A regular octagon has 8 equal sides.\nStep 2: Perimeter P = 8 \u00d7 s = 96 cm.\nStep 3: Side s = 96 / 8 = 12 cm."}, {"q": "10. Aryabhata's verse describes the ratio 62832 / 20000. In decimal form, this value is exactly:", "options": ["3.1412", "3.1416", "3.1428", "3.1450"], "ans": 1, "solution": "Step 1: Divide numerator and denominator by 2: 31416 / 10000.\nStep 2: Shift the decimal 4 places left: 3.1416.\nStep 3: Aryabhata noted this is '\u0101sanna' (approaching/approximate)."}]}, {"id": 18, "title": "Mastery Challenge II: Arc Lengths, Polygon Areas & Triangle Medians", "badge": "CG-5 \u2022 C-7.3 \u2022 Questions 11\u201320", "desc": "Solve problems on circular arc lengths, sector perimeters, rolling wheel revolutions, shearing in parallelograms, and the Triangle Median Area Bisection Theorem.", "questions": [{"q": "11. A triangle and a parallelogram have the same base and lie between the same parallel lines. What is the ratio of Area(triangle) to Area(parallelogram)?", "options": ["1 : 4", "1 : 2", "1 : 1", "2 : 1"], "ans": 1, "solution": "Step 1: Let base = b and height = h.\nStep 2: Area(triangle) = (1/2) b h.\nStep 3: Area(parallelogram) = b h.\nStep 4: Ratio = [(1/2) b h] / [b h] = 1 : 2."}, {"q": "12. In \u0394PQR, QM is a median to side PR. If Area(\u0394PQR) = 64 cm\u00b2, what is Area(\u0394QMR)?", "options": ["16 cm\u00b2", "32 cm\u00b2", "48 cm\u00b2", "64 cm\u00b2"], "ans": 1, "solution": "Step 1: A median bisects a triangle into two sub-triangles of equal area.\nStep 2: Area(\u0394QMR) = (1/2) \u00d7 Area(\u0394PQR).\nStep 3: Area(\u0394QMR) = 64 / 2 = 32 cm\u00b2."}, {"q": "13. In \u0394ABC, D, E, and F are the midpoints of sides BC, CA, and AB respectively. What fraction of Area(\u0394ABC) is Area(\u0394DEF)?", "options": ["1/2", "1/3", "1/4", "1/6"], "ans": 2, "solution": "Step 1: By the Midpoint Theorem, joining the midpoints of the three sides divides the parent triangle into 4 congruent triangles.\nStep 2: Each small triangle has area = (1/4) \u00d7 Area(\u0394ABC)."}, {"q": "14. A rhombus has diagonals of lengths 16 cm and 12 cm. What is its area?", "options": ["48 cm\u00b2", "96 cm\u00b2", "144 cm\u00b2", "192 cm\u00b2"], "ans": 1, "solution": "Step 1: Area of rhombus = (1/2) \u00d7 d1 \u00d7 d2.\nStep 2: Area = (1/2) \u00d7 16 \u00d7 12 = 8 \u00d7 12 = 96 cm\u00b2."}, {"q": "15. A trapezium has parallel sides of lengths 14 cm and 20 cm, and the distance between them is 8 cm. What is its area?", "options": ["120 cm\u00b2", "136 cm\u00b2", "154 cm\u00b2", "272 cm\u00b2"], "ans": 1, "solution": "Step 1: Area of trapezium = (1/2) \u00d7 (sum of parallel sides) \u00d7 height.\nStep 2: Area = (1/2) \u00d7 (14 + 20) \u00d7 8 = (1/2) \u00d7 34 \u00d7 8 = 17 \u00d7 8 = 136 cm\u00b2."}, {"q": "16. Centroid G of \u0394ABC divides the median AD in what ratio from vertex A to midpoint D?", "options": ["1 : 1", "2 : 1", "3 : 1", "3 : 2"], "ans": 1, "solution": "Step 1: In any triangle, the centroid G divides each median in the ratio 2 : 1 from the vertex.\nStep 2: AG : GD = 2 : 1."}, {"q": "17. If Area(\u0394GBC) = 15 cm\u00b2 where G is the centroid of \u0394ABC, what is the total Area(\u0394ABC)?", "options": ["30 cm\u00b2", "45 cm\u00b2", "60 cm\u00b2", "75 cm\u00b2"], "ans": 1, "solution": "Step 1: The centroid joins the vertices to form 3 triangles of equal area: \u0394GAB, \u0394GBC, and \u0394GCA.\nStep 2: Area(\u0394ABC) = 3 \u00d7 Area(\u0394GBC) = 3 \u00d7 15 = 45 cm\u00b2."}, {"q": "18. A rectangular courtyard of length 25 m and width 16 m is to be paved with square tiles of side 2 m. How many tiles are needed?", "options": ["50 tiles", "100 tiles", "125 tiles", "200 tiles"], "ans": 1, "solution": "Step 1: Area of courtyard = 25 \u00d7 16 = 400 m\u00b2.\nStep 2: Area of one square tile = 2 \u00d7 2 = 4 m\u00b2.\nStep 3: Number of tiles = 400 / 4 = 100 tiles."}, {"q": "19. The base of an isosceles triangle is 12 cm and its perimeter is 32 cm. What is its area?", "options": ["36 cm\u00b2", "48 cm\u00b2", "60 cm\u00b2", "72 cm\u00b2"], "ans": 1, "solution": "Step 1: Sum of equal sides = 32 - 12 = 20 cm, so each equal side = 10 cm.\nStep 2: Altitude dropped to base bisects it into 6 cm. By Pythagoras: h = \u221a(10\u00b2 - 6\u00b2) = \u221a(100 - 36) = \u221a64 = 8 cm.\nStep 3: Area = (1/2) \u00d7 base \u00d7 height = (1/2) \u00d7 12 \u00d7 8 = 48 cm\u00b2."}, {"q": "20. Why do two triangles on the same base and between the same parallels have equal area?", "options": ["Because their sides are congruent", "Because their perimeters are identical", "Because they share the same base length and identical perpendicular altitude between the parallel lines", "Because they must be right-angled"], "ans": 2, "solution": "Step 1: Parallel lines are equidistant everywhere, so perpendicular distance (height h) is constant.\nStep 2: Area = (1/2) \u00d7 base \u00d7 height.\nStep 3: Since base and height are identical, both areas are equal."}]}, {"id": 19, "title": "Mastery Challenge III: Heron\u2019s Formula, Squaring & Circle Derivations", "badge": "CG-5 \u2022 C-7.1 \u2022 Questions 21\u201330", "desc": "Apply Heron's formula to scalene and isosceles triangles, explore Baudhayana's Sulbasutra rectangular squaring, and analyze sector slicing derivations of circle area.", "questions": [{"q": "21. What is the area of a triangle with sides 6 cm, 8 cm, and 10 cm?", "options": ["24 cm\u00b2", "30 cm\u00b2", "40 cm\u00b2", "48 cm\u00b2"], "ans": 0, "solution": "Step 1: Check Pythagoras: 6\u00b2 + 8\u00b2 = 36 + 64 = 100 = 10\u00b2, so it is a right triangle.\nStep 2: Area = (1/2) \u00d7 6 \u00d7 8 = 24 cm\u00b2.\nStep 3: Alternatively via Heron: s = (6+8+10)/2 = 12; Area = \u221a[12(6)(4)(2)] = \u221a576 = 24 cm\u00b2."}, {"q": "22. The sides of a triangular field are in the ratio 3 : 5 : 7 and its perimeter is 300 m. What is its area?", "options": ["1200\u221a3 m\u00b2", "1500\u221a3 m\u00b2", "1800\u221a3 m\u00b2", "2000\u221a3 m\u00b2"], "ans": 1, "solution": "Step 1: Let sides be 3x, 5x, 7x. Perimeter = 15x = 300 m \u21d2 x = 20 m.\nStep 2: Sides are a = 60 m, b = 100 m, c = 140 m.\nStep 3: Semi-perimeter s = 150 m.\nStep 4: Area = \u221a[150 \u00d7 (150-60) \u00d7 (150-100) \u00d7 (150-140)] = \u221a[150 \u00d7 90 \u00d7 50 \u00d7 10] = \u221a6750000 = 1500\u221a3 m\u00b2."}, {"q": "23. In Baudhayana's Sulbasutras, squaring a rectangle of dimensions a \u00d7 b produces a square of side x equal to:", "options": ["(a + b) / 2", "\u221a(ab)", "\u221a(a\u00b2 + b\u00b2)", "(a - b) / 2"], "ans": 1, "solution": "Step 1: Squaring a rectangle means constructing a square of equal area: x\u00b2 = ab.\nStep 2: Therefore, the side of the square is the geometric mean x = \u221a(ab).\nStep 3: Baudhayana achieved this via the difference of two squares identity: [(a+b)/2]\u00b2 - [(a-b)/2]\u00b2."}, {"q": "24. A rectangle has dimensions 25 cm \u00d7 4 cm. What is the side of an equal-area square constructed via Baudhayana's method?", "options": ["8 cm", "10 cm", "12.5 cm", "14.5 cm"], "ans": 1, "solution": "Step 1: Area of rectangle = 25 \u00d7 4 = 100 cm\u00b2.\nStep 2: Side of square x = \u221a100 = 10 cm."}, {"q": "25. When slicing a circle into N wedges to derive Area = \u03c0r\u00b2, why does the base of the rearranged rectangle equal \u03c0r rather than 2\u03c0r?", "options": ["Because half the pie wedges point upward and half point downward, dividing the circumference equally between top and bottom edges", "Because the circle is cut in half first", "Because radius r is halved", "Because \u03c0 is divided by 2"], "ans": 0, "solution": "Step 1: The total circumference 2\u03c0r is distributed evenly between the top and bottom saw-tooth edges.\nStep 2: Each edge receives half the circumference: (2\u03c0r) / 2 = \u03c0r.\nStep 3: Base \u00d7 Height = (\u03c0r) \u00d7 r = \u03c0r\u00b2."}, {"q": "26. What is the area of a circle whose circumference is 44 cm? (Use \u03c0 = 22/7)", "options": ["88 cm\u00b2", "154 cm\u00b2", "308 cm\u00b2", "616 cm\u00b2"], "ans": 1, "solution": "Step 1: Circumference C = 2\u03c0r = 44 cm \u21d2 2 \u00d7 (22/7) \u00d7 r = 44 \u21d2 r = 7 cm.\nStep 2: Area = \u03c0r\u00b2 = (22/7) \u00d7 7\u00b2 = 22 \u00d7 7 = 154 cm\u00b2."}, {"q": "27. Using the Egyptian Rhind Papyrus formula Area \u2248 [(8/9)d]\u00b2, what is the approximate area of a circle with diameter d = 9 units?", "options": ["56 sq units", "64 sq units", "72 sq units", "81 sq units"], "ans": 1, "solution": "Step 1: (8/9) \u00d7 d = (8/9) \u00d7 9 = 8 units.\nStep 2: Square the result: 8\u00b2 = 64 sq units.\nStep 3: The exact area is \u03c0 \u00d7 4.5\u00b2 \u2248 63.62, so 64 is accurate within ~0.6%!"}, {"q": "28. Find the cost of leveling a triangular park with sides 50 m, 65 m, and 65 m at the rate of \u20b97 per m\u00b2.", "options": ["\u20b97,500", "\u20b910,500", "\u20b914,000", "\u20b921,000"], "ans": 1, "solution": "Step 1: Triangle is isosceles with base 50 m and equal sides 65 m.\nStep 2: Altitude h = \u221a(65\u00b2 - 25\u00b2) = \u221a(4225 - 625) = \u221a3600 = 60 m.\nStep 3: Area = (1/2) \u00d7 50 \u00d7 60 = 1500 m\u00b2.\nStep 4: Cost = 1500 \u00d7 \u20b97 = \u20b910,500."}, {"q": "29. If the radius of a circle is tripled, by what factor does its area increase?", "options": ["3 times", "6 times", "9 times", "27 times"], "ans": 2, "solution": "Step 1: Area A1 = \u03c0r\u00b2.\nStep 2: New area A2 = \u03c0(3r)\u00b2 = 9\u03c0r\u00b2 = 9 A1.\nStep 3: The area increases by a factor of 3\u00b2 = 9."}, {"q": "30. What is the area of an equilateral triangle with perimeter 36 cm?", "options": ["36\u221a3 cm\u00b2", "48\u221a3 cm\u00b2", "72\u221a3 cm\u00b2", "144\u221a3 cm\u00b2"], "ans": 0, "solution": "Step 1: Side a = 36 / 3 = 12 cm.\nStep 2: Area = (\u221a3 / 4) a\u00b2 = (\u221a3 / 4) \u00d7 144 = 36\u221a3 cm\u00b2."}]}, {"id": 20, "title": "Mastery Challenge IV: Sectors, Segments, Brahmagupta & Generalisation", "badge": "CG-5 \u2022 CG-9 \u2022 Questions 31\u201340", "desc": "Tackle real-world sector and segment problems, Brahmagupta's formula for cyclic quadrilaterals, Heron's reduction, formula hierarchies, and computational mensuration algorithms.", "questions": [{"q": "31. A car wiper of blade length 25 cm sweeps through an angle of 115\u00b0. What is the total swept area by one wiper? (Use \u03c0 = 22/7)", "options": ["580.45 cm\u00b2", "627.48 cm\u00b2", "1254.96 cm\u00b2", "1500.00 cm\u00b2"], "ans": 1, "solution": "Step 1: Swept area = (\u03b8 / 360\u00b0) \u00d7 \u03c0r\u00b2.\nStep 2: Area = (115 / 360) \u00d7 (22/7) \u00d7 25\u00b2 = (23 / 72) \u00d7 (22/7) \u00d7 625.\nStep 3: Area = (23 \u00d7 11 \u00d7 625) / (36 \u00d7 7) = 158125 / 252 \u2248 627.48 cm\u00b2."}, {"q": "32. A chord of a circle of radius 14 cm subtends an angle of 60\u00b0 at the centre. What is the area of the minor segment? (Use \u03c0 = 22/7 and \u221a3 = 1.732)", "options": ["14.54 cm\u00b2", "17.89 cm\u00b2", "24.12 cm\u00b2", "32.45 cm\u00b2"], "ans": 1, "solution": "Step 1: Area(sector) = (60/360) \u00d7 (22/7) \u00d7 14\u00b2 = (1/6) \u00d7 22 \u00d7 28 = 102.67 cm\u00b2.\nStep 2: Area(\u0394OAB) = (\u221a3 / 4) \u00d7 14\u00b2 = (1.732 / 4) \u00d7 196 = 84.87 cm\u00b2.\nStep 3: Area(segment) = 102.67 - 84.87 = 17.80 cm\u00b2 (\u2248 17.89 cm\u00b2)."}, {"q": "33. What is the area of a cyclic quadrilateral with sides 1 cm, 2 cm, 3 cm, and 4 cm?", "options": ["\u221a18 \u2248 4.24", "\u221a24 \u2248 4.90", "\u221a30 \u2248 5.48", "6.00"], "ans": 1, "solution": "Step 1: Semi-perimeter s = (1 + 2 + 3 + 4)/2 = 5.\nStep 2: Factors: (s-a)=4, (s-b)=3, (s-c)=2, (s-d)=1.\nStep 3: Area = \u221a(4 \u00d7 3 \u00d7 2 \u00d7 1) = \u221a24 \u2248 4.899 cm\u00b2."}, {"q": "34. How does Brahmagupta's formula prove that a cyclic quadrilateral has maximum area among all quadrilaterals with the same side lengths?", "options": ["Because Bretschneider's formula subtracts the non-negative term abcd cos\u00b2((A+C)/2), which is minimized (zero) precisely when A+C=180\u00b0", "Because cyclic quadrilaterals have equal diagonals", "Because opposite sides are equal", "Because all angles are 90\u00b0"], "ans": 0, "solution": "Step 1: Bretschneider's formula: Area\u00b2 = (s-a)(s-b)(s-c)(s-d) - abcd cos\u00b2((A+C)/2).\nStep 2: Since abcd cos\u00b2(...) \u2265 0, the maximum area occurs when this subtracted term is zero.\nStep 3: This happens when cos((A+C)/2) = 0 \u21d2 A + C = 180\u00b0 (the cyclic condition)."}, {"q": "35. If the side lengths of a cyclic quadrilateral are 5 cm, 12 cm, 5 cm, and 12 cm (a rectangle), what is its area?", "options": ["30 cm\u00b2", "60 cm\u00b2", "120 cm\u00b2", "144 cm\u00b2"], "ans": 1, "solution": "Step 1: A rectangle with sides 5 and 12 is cyclic with diameter 13.\nStep 2: Area = 5 \u00d7 12 = 60 cm\u00b2.\nStep 3: Via Brahmagupta: s = 34/2 = 17. Factors: (17-5)=12, (17-12)=5, (17-5)=12, (17-12)=5. Area = \u221a(12\u00b2 \u00d7 5\u00b2) = 60 cm\u00b2."}, {"q": "36. In computational mensuration, what is the minimum number of triangles required to triangulate a simple convex n-gon?", "options": ["n - 3", "n - 2", "n - 1", "n"], "ans": 1, "solution": "Step 1: Drawing all non-intersecting diagonals from a single vertex to the other vertices produces triangles.\nStep 2: From 1 vertex, we can draw diagonals to n - 3 other vertices.\nStep 3: These diagonals partition the n-gon into exactly n - 2 triangles."}, {"q": "37. A circular sprinkler sprays water over a radius of 7 meters through an arc of 120\u00b0. What is the watered lawn area? (Use \u03c0 = 22/7)", "options": ["25.67 m\u00b2", "51.33 m\u00b2", "77.00 m\u00b2", "154.00 m\u00b2"], "ans": 1, "solution": "Step 1: Area = (\u03b8 / 360\u00b0) \u00d7 \u03c0r\u00b2.\nStep 2: Area = (120 / 360) \u00d7 (22/7) \u00d7 7\u00b2 = (1/3) \u00d7 22 \u00d7 7 = 154 / 3 \u2248 51.33 m\u00b2."}, {"q": "38. The perimeter of a sector of a circle of radius 5.6 cm is 27.2 cm. What is the area of the sector?", "options": ["22.4 cm\u00b2", "33.6 cm\u00b2", "44.8 cm\u00b2", "56.0 cm\u00b2"], "ans": 2, "solution": "Step 1: Perimeter of sector P = l + 2r \u21d2 27.2 = l + 2(5.6) = l + 11.2.\nStep 2: Arc length l = 27.2 - 11.2 = 16.0 cm.\nStep 3: Area of sector = (1/2) \u00d7 l \u00d7 r = (1/2) \u00d7 16.0 \u00d7 5.6 = 8.0 \u00d7 5.6 = 44.8 cm\u00b2."}, {"q": "39. Which mathematical property guarantees that every triangle has a valid circumcircle?", "options": ["The sum of angles is 180\u00b0", "The perpendicular bisectors of the three sides are always concurrent at the circumcentre", "The three altitudes are concurrent at the orthocentre", "The triangle inequality theorem"], "ans": 1, "solution": "Step 1: In any triangle, the perpendicular bisectors of the 3 sides meet at a single point O (the circumcentre).\nStep 2: Point O is equidistant from all 3 vertices: OA = OB = OC = R (circumradius).\nStep 3: A circle with centre O and radius R passes through all three vertices, proving every triangle is cyclic."}, {"q": "40. In Gauss's Shoelace Algorithm, a triangle has vertices at (0, 0), (6, 0), and (4, 5). What is its computed area?", "options": ["12 sq units", "15 sq units", "20 sq units", "30 sq units"], "ans": 1, "solution": "Step 1: Base lies along x-axis from (0,0) to (6,0) with length b = 6.\nStep 2: Height is the y-coordinate of vertex (4,5), so h = 5.\nStep 3: Area = (1/2) \u00d7 base \u00d7 height = (1/2) \u00d7 6 \u00d7 5 = 15 sq units.\nStep 4: Shoelace: (1/2) |(0\u00d70 - 6\u00d70) + (6\u00d75 - 4\u00d70) + (4\u00d70 - 0\u00d75)| = (1/2) |30| = 15."}]}];
+
+        let currentSlideIndex = 0; // 0 to 19 (total 20 slides)
+        let speechSynth = window.speechSynthesis;
+        let currentUtterance = null;
+        let isSpeaking = false;
+        let speechRate = 1.0;
+
+        // Fallback Web Audio Synthesizer if Web Speech is unavailable
+        let audioCtx = null;
+        function playTone(freq, duration, type='sine') {
+            try {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {
+                console.warn("Audio Context fallback unavailable:", e);
+            }
+        }
+
+        // Initialize Slide Picker Dropdown
+        function initSlidePicker() {
+            const grid = document.getElementById('slideGrid');
+            grid.innerHTML = '';
+            for (let i = 0; i < 20; i++) {
+                const btn = document.createElement('button');
+                btn.className = `p-2 rounded-lg text-xs font-bold transition flex flex-col items-center justify-center ${
+                    i === currentSlideIndex
+                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/40 ring-2 ring-indigo-400'
+                    : 'bg-slate-800/90 text-slate-300 hover:bg-slate-700'
+                }`;
+                btn.innerHTML = `<span>${i + 1}</span><span class="text-[9px] font-normal opacity-70">${i < 16 ? 'Lab' : 'Quiz'}</span>`;
+                btn.onclick = () => {
+                    goToSlide(i);
+                    document.getElementById('slidePickerMenu').classList.add('hidden');
+                };
+                grid.appendChild(btn);
+            }
+        }
+
+        document.getElementById('slidePickerBtn').addEventListener('click', () => {
+            const menu = document.getElementById('slidePickerMenu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Speech Synthesis Controls
+        function speakCurrentSlideNarration() {
+            if (speechSynth.speaking) {
+                speechSynth.cancel();
+            }
+
+            let text = "";
+            if (currentSlideIndex < 16) {
+                text = SLIDES[currentSlideIndex].narration;
+            } else {
+                const quiz = QUIZZES[currentSlideIndex - 16];
+                text = `Welcome to ${quiz.title}. ${quiz.desc} Answer all ten questions and click View Solution for full steps.`;
+            }
+
+            currentUtterance = new SpeechSynthesisUtterance(text);
+            currentUtterance.rate = speechRate;
+            currentUtterance.lang = 'en-US';
+
+            const speakingPulse = document.getElementById('speakingPulse');
+            const speakingDot = document.getElementById('speakingDot');
+            const avatar = document.getElementById('avatarContainer');
+            const status = document.getElementById('speechStatus');
+            const btnLabel = document.getElementById('speechBtnLabel');
+
+            currentUtterance.onstart = () => {
+                isSpeaking = true;
+                speakingPulse.classList.remove('hidden');
+                speakingDot.classList.remove('hidden');
+                avatar.classList.add('talking');
+                status.textContent = "Speaking";
+                status.className = "text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
+                btnLabel.textContent = "Stop Explaining";
+            };
+
+            currentUtterance.onend = () => {
+                isSpeaking = false;
+                speakingPulse.classList.add('hidden');
+                speakingDot.classList.add('hidden');
+                avatar.classList.remove('talking');
+                status.textContent = "Idle";
+                status.className = "text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400";
+                btnLabel.textContent = "Explain Slide";
+            };
+
+            currentUtterance.onerror = () => {
+                isSpeaking = false;
+                speakingPulse.classList.add('hidden');
+                speakingDot.classList.add('hidden');
+                avatar.classList.remove('talking');
+                status.textContent = "Audio Fallback";
+                status.className = "text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300";
+                btnLabel.textContent = "Explain Slide";
+                playTone(440, 0.3);
+            };
+
+            speechSynth.speak(currentUtterance);
+        }
+
+        document.getElementById('toggleSpeechBtn').addEventListener('click', () => {
+            if (isSpeaking) {
+                speechSynth.cancel();
+                isSpeaking = false;
+                document.getElementById('speakingPulse').classList.add('hidden');
+                document.getElementById('speakingDot').classList.add('hidden');
+                document.getElementById('avatarContainer').classList.remove('talking');
+                document.getElementById('speechStatus').textContent = "Stopped";
+                document.getElementById('speechBtnLabel').textContent = "Explain Slide";
+            } else {
+                speakCurrentSlideNarration();
+            }
+        });
+
+        document.getElementById('pauseSpeechBtn').addEventListener('click', () => {
+            if (speechSynth.speaking) {
+                if (speechSynth.paused) {
+                    speechSynth.resume();
+                    document.getElementById('speechStatus').textContent = "Speaking";
+                } else {
+                    speechSynth.pause();
+                    document.getElementById('speechStatus').textContent = "Paused";
+                }
+            }
+        });
+
+        document.getElementById('stopSpeechBtn').addEventListener('click', () => {
+            if (speechSynth.speaking) {
+                speechSynth.cancel();
+                isSpeaking = false;
+                document.getElementById('speakingPulse').classList.add('hidden');
+                document.getElementById('speakingDot').classList.add('hidden');
+                document.getElementById('avatarContainer').classList.remove('talking');
+                document.getElementById('speechStatus').textContent = "Stopped";
+                document.getElementById('speechBtnLabel').textContent = "Explain Slide";
+            }
+        });
+
+        document.getElementById('speechSpeedBtn').addEventListener('click', () => {
+            if (speechRate === 1.0) speechRate = 1.2;
+            else if (speechRate === 1.2) speechRate = 0.8;
+            else speechRate = 1.0;
+            document.getElementById('speechSpeedBtn').textContent = speechRate.toFixed(1) + 'x';
+            if (isSpeaking) {
+                speechSynth.cancel();
+                speakCurrentSlideNarration();
+            }
+        });
+
+        // Navigation Controllers
+        function goToSlide(index) {
+            if (index < 0 || index >= 20) return;
+            if (speechSynth.speaking) speechSynth.cancel();
+
+            currentSlideIndex = index;
+            renderCurrentSlide();
+            initSlidePicker();
+        }
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            if (currentSlideIndex > 0) goToSlide(currentSlideIndex - 1);
+        });
+
+        const nextBtn = document.getElementById('nextBtn');
+        nextBtn.addEventListener('click', () => {
+            if (currentSlideIndex < 19) goToSlide(currentSlideIndex + 1);
+        });
+
+        // Core Render Function
+        function renderCurrentSlide() {
+            // Update Progress Bar & Counters
+            const percent = ((currentSlideIndex + 1) / 20) * 100;
+            document.getElementById('progressBar').style.width = `${percent}%`;
+            document.getElementById('slideIndicatorText').textContent = `Slide ${currentSlideIndex + 1} of 20`;
+            document.getElementById('currentSlideBtnNum').textContent = currentSlideIndex + 1;
+
+            document.getElementById('prevBtn').disabled = (currentSlideIndex === 0);
+
+            // Handle Slide 20 Specific Requirement
+            const lastSlideNotice = document.getElementById('lastSlideNotice');
+            if (currentSlideIndex === 19) {
+                lastSlideNotice.classList.remove('hidden');
+                nextBtn.style.display = 'none';
+            } else {
+                lastSlideNotice.classList.add('hidden');
+                nextBtn.style.display = 'flex';
+                nextBtn.disabled = false;
+            }
+
+            const contentContainer = document.getElementById('contentSlideContainer');
+            const quizContainer = document.getElementById('quizSlideContainer');
+
+            if (currentSlideIndex < 16) {
+                // Content Slide Mode
+                contentContainer.classList.remove('hidden');
+                quizContainer.classList.add('hidden');
+
+                const slide = SLIDES[currentSlideIndex];
+                document.getElementById('slideCategoryText').textContent = slide.category;
+                document.getElementById('slideBadge').textContent = slide.badge;
+                document.getElementById('slideTitle').textContent = slide.title;
+                document.getElementById('slideSubtitle').textContent = slide.subtitle;
+                document.getElementById('simulatorHeading').textContent = slide.sim_title;
+                document.getElementById('slideSummaryText').textContent = slide.summary;
+
+                // Render Key Points
+                const keyPointsList = document.getElementById('slideKeyPointsList');
+                keyPointsList.innerHTML = slide.key_points.map(pt => `
+                    <li class="flex items-start gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0"></span>
+                        <span>${pt}</span>
+                    </li>
+                `).join('');
+
+                // Render Checkpoints
+                renderCheckpoints(slide.checkpoints);
+
+                // Render Bespoke Interactive Simulator
+                renderSimulator(currentSlideIndex);
+
+            } else {
+                // Quiz Slide Mode (Slides 17 to 20)
+                contentContainer.classList.add('hidden');
+                quizContainer.classList.remove('hidden');
+
+                const quiz = QUIZZES[currentSlideIndex - 16];
+                document.getElementById('slideCategoryText').textContent = "Mastery Assessment";
+                document.getElementById('slideBadge').textContent = quiz.badge;
+                document.getElementById('slideTitle').textContent = quiz.title;
+                document.getElementById('slideSubtitle').textContent = `10 Dedicated Questions • Questions ${ (currentSlideIndex - 16) * 10 + 1 } to ${ (currentSlideIndex - 16 + 1) * 10 }`;
+
+                document.getElementById('quizBadge').textContent = quiz.badge;
+                document.getElementById('quizTitle').textContent = quiz.title;
+                document.getElementById('quizDesc').textContent = quiz.desc;
+
+                renderQuizQuestions(quiz.questions);
+            }
+
+            // Re-render KaTeX math formulas across updated elements
+            if (window.renderMathInElement) {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '$', right: '$', display: false}
+                    ]
+                });
+            }
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+
+        // Render In-Slide Checkpoints
+        function renderCheckpoints(checkpoints) {
+            const container = document.getElementById('checkpointsContainer');
+            container.innerHTML = checkpoints.map((cp, idx) => `
+                <div class="glass-card p-3 rounded-xl border border-slate-700/60 flex flex-col gap-2">
+                    <p class="text-xs font-semibold text-slate-200">
+                        <span class="text-indigo-400 font-bold">Q${idx + 1}:</span> ${cp.q}
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                        ${cp.options.map((opt, oIdx) => `
+                            <button onclick="window.checkAnswer(this, ${currentSlideIndex}, ${idx}, ${oIdx}, ${cp.ans})"
+                                    class="text-left px-2.5 py-1.5 rounded-lg text-[11px] font-medium bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/80 transition flex items-center justify-between">
+                                <span>${String.fromCharCode(65 + oIdx)}. ${opt}</span>
+                                <span class="feedback-icon hidden"></span>
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div id="cp-exp-${idx}" class="hidden p-2 rounded-lg text-[11px] bg-slate-900/90 border border-slate-700 text-slate-300">
+                        <span class="font-bold text-emerald-400">Explanation:</span> ${cp.explanation}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        window.checkAnswer = function(btn, slideIdx, cpIdx, selectedIdx, correctIdx) {
+            const parent = btn.parentElement;
+            const buttons = parent.querySelectorAll('button');
+            buttons.forEach(b => b.disabled = true);
+
+            const expBox = document.getElementById(`cp-exp-${cpIdx}`);
+            if (expBox) expBox.classList.remove('hidden');
+
+            if (selectedIdx === correctIdx) {
+                btn.className = "text-left px-2.5 py-1.5 rounded-lg text-[11px] font-bold bg-emerald-600 text-white border border-emerald-400 shadow-md shadow-emerald-600/30 flex items-center justify-between";
+                playTone(587.33, 0.2); // D5 success tone
+            } else {
+                btn.className = "text-left px-2.5 py-1.5 rounded-lg text-[11px] font-bold bg-rose-600 text-white border border-rose-400 flex items-center justify-between";
+                buttons[correctIdx].className = "text-left px-2.5 py-1.5 rounded-lg text-[11px] font-bold bg-emerald-600/80 text-white border border-emerald-400 flex items-center justify-between";
+                playTone(220, 0.25, 'sawtooth'); // Low alert tone
+            }
+        };
+
+        // Render Quiz Questions (Slides 17–20)
+        let quizAnswersState = {};
+
+        function renderQuizQuestions(questions) {
+            const list = document.getElementById('quizQuestionsList');
+            const quizKey = `quiz_${currentSlideIndex}`;
+            if (!quizAnswersState[quizKey]) quizAnswersState[quizKey] = Array(10).fill(null);
+
+            list.innerHTML = questions.map((qObj, idx) => `
+                <div class="glass-panel p-4 rounded-2xl border border-slate-800 flex flex-col justify-between gap-3">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-bold">Question ${idx + 1}</span>
+                            <button onclick="window.openSolutionModal(${idx})" class="text-[11px] font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1 transition">
+                                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                                <span>View Solution</span>
+                            </button>
+                        </div>
+                        <p class="text-xs sm:text-sm font-semibold text-slate-100">${qObj.q}</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1">
+                        ${qObj.options.map((opt, oIdx) => `
+                            <button onclick="window.selectQuizOption(this, ${idx}, ${oIdx}, ${qObj.ans})"
+                                    class="text-left p-2.5 rounded-xl text-xs font-medium bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
+                                <span class="font-bold text-indigo-400 mr-1">${String.fromCharCode(65 + oIdx)}.</span> ${opt}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+
+            updateQuizScoreDisplay();
+        }
+
+        window.selectQuizOption = function(btn, qIdx, selectedIdx, correctIdx) {
+            const parent = btn.parentElement;
+            const buttons = parent.querySelectorAll('button');
+            buttons.forEach(b => b.disabled = true);
+
+            const quizKey = `quiz_${currentSlideIndex}`;
+            quizAnswersState[quizKey][qIdx] = (selectedIdx === correctIdx);
+
+            if (selectedIdx === correctIdx) {
+                btn.className = "text-left p-2.5 rounded-xl text-xs font-bold bg-emerald-600 text-white border border-emerald-400 shadow-lg shadow-emerald-600/30";
+                playTone(523.25, 0.2);
+            } else {
+                btn.className = "text-left p-2.5 rounded-xl text-xs font-bold bg-rose-600 text-white border border-rose-400";
+                buttons[correctIdx].className = "text-left p-2.5 rounded-xl text-xs font-bold bg-emerald-600/80 text-white border border-emerald-400";
+                playTone(220, 0.3, 'sawtooth');
+            }
+
+            updateQuizScoreDisplay();
+        };
+
+        function updateQuizScoreDisplay() {
+            const quizKey = `quiz_${currentSlideIndex}`;
+            const state = quizAnswersState[quizKey] || [];
+            const correctCount = state.filter(s => s === true).length;
+            const answeredCount = state.filter(s => s !== null).length;
+            const scoreDisplay = document.getElementById('quizScoreText');
+            if (scoreDisplay) {
+                scoreDisplay.textContent = `${correctCount} / 10`;
+            }
+        }
+
+        window.openSolutionModal = function(qIdx) {
+            const quiz = QUIZZES[currentSlideIndex - 16];
+            const qObj = quiz.questions[qIdx];
+            document.getElementById('modalQuestionText').textContent = qObj.q;
+            document.getElementById('modalSolutionText').textContent = qObj.solution;
+            document.getElementById('solutionModal').classList.remove('hidden');
+        };
+
+        window.closeSolutionModal = function() {
+            document.getElementById('solutionModal').classList.add('hidden');
+        };
+
+        // 16 Bespoke Interactive SVG Simulators
+        function renderSimulator(slideIndex) {
+            const vp = document.getElementById('simulatorViewport');
+            vp.innerHTML = '';
+
+            switch(slideIndex) {
+                case 0: renderSim1(vp); break;
+                case 1: renderSim2(vp); break;
+                case 2: renderSim3(vp); break;
+                case 3: renderSim4(vp); break;
+                case 4: renderSim5(vp); break;
+                case 5: renderSim6(vp); break;
+                case 6: renderSim7(vp); break;
+                case 7: renderSim8(vp); break;
+                case 8: renderSim9(vp); break;
+                case 9: renderSim10(vp); break;
+                case 10: renderSim11(vp); break;
+                case 11: renderSim12(vp); break;
+                case 12: renderSim13(vp); break;
+                case 13: renderSim14(vp); break;
+                case 14: renderSim15(vp); break;
+                case 15: renderSim16(vp); break;
+                default: vp.innerHTML = `<div class="p-6 text-center text-slate-400">Simulator ready for Slide ${slideIndex + 1}</div>`;
+            }
+
+            if (window.lucide) lucide.createIcons();
+        }
+
+        // Sim 1: Polygon Boundary Unroller & Linear Meter
+        function renderSim1(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <span class="text-slate-300 font-semibold">Select 2D Shape:</span>
+                            <button id="sim1_tri" class="px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition">Triangle</button>
+                            <button id="sim1_rect" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold transition">Rectangle</button>
+                            <button id="sim1_hex" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold transition">Hexagon</button>
+                            <button id="sim1_L" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold transition">L-Shape</button>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Unroll Boundary:</label>
+                            <input type="range" id="sim1_unroll" min="0" max="100" value="0" class="w-28 accent-indigo-500">
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim1_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim1_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-indigo-950/40 border border-indigo-500/40 text-indigo-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            let currentShape = 'tri';
+            const triBtn = document.getElementById('sim1_tri');
+            const rectBtn = document.getElementById('sim1_rect');
+            const hexBtn = document.getElementById('sim1_hex');
+            const lBtn = document.getElementById('sim1_L');
+            const slider = document.getElementById('sim1_unroll');
+            const svg = document.getElementById('sim1_svg');
+            const readout = document.getElementById('sim1_readout');
+
+            function update() {
+                const unroll = parseFloat(slider.value) / 100;
+                [triBtn, rectBtn, hexBtn, lBtn].forEach(b => b.className = "px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold transition");
+                if (currentShape === 'tri') triBtn.className = "px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition";
+                if (currentShape === 'rect') rectBtn.className = "px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition";
+                if (currentShape === 'hex') hexBtn.className = "px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition";
+                if (currentShape === 'L') lBtn.className = "px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition";
+
+                let sides = [];
+                let shapeName = "";
+                if (currentShape === 'tri') {
+                    sides = [12, 16, 20];
+                    shapeName = "Right Triangle (Sides: 12, 16, 20 cm)";
+                } else if (currentShape === 'rect') {
+                    sides = [18, 10, 18, 10];
+                    shapeName = "Rectangle (Length: 18 cm, Breadth: 10 cm)";
+                } else if (currentShape === 'hex') {
+                    sides = [8, 8, 8, 8, 8, 8];
+                    shapeName = "Regular Hexagon (6 sides of 8 cm each)";
+                } else {
+                    sides = [8, 6, 3, 2, 5, 4];
+                    shapeName = "Irregular L-Shaped Room (6 Boundary Segments)";
+                }
+
+                const totalPerimeter = sides.reduce((a, b) => a + b, 0);
+
+                let svgContent = `
+                    <!-- Ground Tape Ruler -->
+                    <line x1="40" y1="210" x2="560" y2="210" stroke="#334155" stroke-width="3"/>
+                    <text x="40" y="230" fill="#64748b" font-size="10" font-family="monospace">0 cm</text>
+                    <text x="560" y="230" fill="#64748b" font-size="10" font-family="monospace" text-anchor="end">${totalPerimeter} cm</text>
+                `;
+
+                // Render shape on the left or morphed ribbon
+                if (unroll === 0) {
+                    if (currentShape === 'tri') {
+                        svgContent += `
+                            <polygon points="180,60 180,180 340,180" fill="rgba(99,102,241,0.2)" stroke="#6366f1" stroke-width="3"/>
+                            <text x="160" y="125" fill="#a5b4fc" font-size="11" font-weight="bold">12 cm</text>
+                            <text x="260" y="198" fill="#a5b4fc" font-size="11" font-weight="bold">16 cm</text>
+                            <text x="275" y="115" fill="#38bdf8" font-size="11" font-weight="bold">20 cm</text>
+                        `;
+                    } else if (currentShape === 'rect') {
+                        svgContent += `
+                            <rect x="180" y="80" width="220" height="100" fill="rgba(16,185,129,0.2)" stroke="#10b981" stroke-width="3"/>
+                            <text x="290" y="70" fill="#6ee7b7" font-size="11" font-weight="bold" text-anchor="middle">18 cm</text>
+                            <text x="410" y="135" fill="#6ee7b7" font-size="11" font-weight="bold">10 cm</text>
+                        `;
+                    } else if (currentShape === 'hex') {
+                        svgContent += `
+                            <polygon points="270,70 330,70 360,120 330,170 270,170 240,120" fill="rgba(245,158,11,0.2)" stroke="#f59e0b" stroke-width="3"/>
+                            <text x="300" y="125" fill="#fcd34d" font-size="12" font-weight="bold" text-anchor="middle">6 × 8 cm</text>
+                        `;
+                    } else {
+                        svgContent += `
+                            <polygon points="200,70 320,70 320,130 260,130 260,180 200,180" fill="rgba(236,72,153,0.2)" stroke="#ec4899" stroke-width="3"/>
+                            <text x="260" y="60" fill="#f472b6" font-size="11" font-weight="bold" text-anchor="middle">Composite L-Shape</text>
+                        `;
+                    }
+                } else {
+                    // Unrolled straight line tape
+                    const startX = 40;
+                    const maxLen = 500;
+                    let currentX = startX;
+                    const colors = ['#6366f1', '#10b981', '#f59e0b', '#ec4899', '#38bdf8', '#8b5cf6'];
+
+                    sides.forEach((s, idx) => {
+                        const segW = (s / totalPerimeter) * maxLen * unroll;
+                        const c = colors[idx % colors.length];
+                        svgContent += `
+                            <rect x="${currentX}" y="195" width="${segW}" height="15" fill="${c}" rx="2"/>
+                            ${segW > 25 ? `<text x="${currentX + segW/2}" y="190" fill="${c}" font-size="10" font-weight="bold" text-anchor="middle">${s} cm</text>` : ''}
+                        `;
+                        currentX += segW;
+                    });
+                }
+
+                svg.innerHTML = svgContent;
+                readout.innerHTML = `
+                    ${shapeName} • Perimeter <b>P = ${sides.join(' + ')} = ${totalPerimeter} cm</b> (Unrolled: ${(unroll * 100).toFixed(0)}%)
+                `;
+            }
+
+            triBtn.onclick = () => { currentShape = 'tri'; update(); };
+            rectBtn.onclick = () => { currentShape = 'rect'; update(); };
+            hexBtn.onclick = () => { currentShape = 'hex'; update(); };
+            lBtn.onclick = () => { currentShape = 'L'; update(); };
+            slider.oninput = update;
+            update();
+        }
+
+        // Sim 2: Rolling Circle Kinematic Unroller & Invariant C/d Meter
+        function renderSim2(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Circle Radius (r):</label>
+                            <input type="range" id="sim2_r" min="25" max="50" value="35" class="w-28 accent-indigo-500">
+                            <span id="sim2_r_val" class="font-bold text-indigo-400 font-mono">35 px</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Roll Wheel:</label>
+                            <input type="range" id="sim2_roll" min="0" max="360" value="0" class="w-32 accent-emerald-500">
+                            <span id="sim2_roll_val" class="font-bold text-emerald-400 font-mono">0°</span>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim2_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim2_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            const rSlider = document.getElementById('sim2_r');
+            const rollSlider = document.getElementById('sim2_roll');
+            const rVal = document.getElementById('sim2_r_val');
+            const rollVal = document.getElementById('sim2_roll_val');
+            const svg = document.getElementById('sim2_svg');
+            const readout = document.getElementById('sim2_readout');
+
+            function update() {
+                const r = parseFloat(rSlider.value);
+                const rollDeg = parseFloat(rollSlider.value);
+                rVal.textContent = `${r} px`;
+                rollVal.textContent = `${rollDeg}°`;
+
+                const startX = 70;
+                const groundY = 190;
+                const d = 2 * r;
+                const totalC = 2 * Math.PI * r;
+                const distTraveled = (rollDeg / 360) * totalC;
+                const currentCenterX = startX + distTraveled;
+                const currentCenterY = groundY - r;
+
+                // Angle in radians for rotation
+                const angleRad = (rollDeg * Math.PI) / 180;
+                // Marker point on rim
+                const markerX = currentCenterX - r * Math.sin(angleRad);
+                const markerY = currentCenterY + r * Math.cos(angleRad);
+
+                svg.innerHTML = `
+                    <!-- Ground Horizontal Line -->
+                    <line x1="20" y1="${groundY}" x2="580" y2="${groundY}" stroke="#475569" stroke-width="3"/>
+                    <!-- Traced rolled path -->
+                    <line x1="${startX}" y1="${groundY}" x2="${currentCenterX}" y2="${groundY}" stroke="#10b981" stroke-width="4"/>
+
+                    <!-- Complete Revolution Target Marker -->
+                    <line x1="${startX + totalC}" y1="${groundY - 15}" x2="${startX + totalC}" y2="${groundY + 15}" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3,3"/>
+                    <text x="${startX + totalC}" y="${groundY + 28}" fill="#f59e0b" font-size="10" font-family="monospace" text-anchor="middle">2πr = πd</text>
+
+                    <!-- Rolling Circle -->
+                    <circle cx="${currentCenterX}" cy="${currentCenterY}" r="${r}" fill="rgba(99,102,241,0.2)" stroke="#6366f1" stroke-width="3"/>
+                    <circle cx="${currentCenterX}" cy="${currentCenterY}" r="3" fill="#6366f1"/>
+
+                    <!-- Radius Spoke -->
+                    <line x1="${currentCenterX}" y1="${currentCenterY}" x2="${markerX}" y2="${markerY}" stroke="#ec4899" stroke-width="2.5"/>
+                    <circle cx="${markerX}" cy="${markerY}" r="5" fill="#ec4899"/>
+
+                    <!-- Dimension Labels -->
+                    <text x="${currentCenterX}" y="${currentCenterY - r - 8}" fill="#a5b4fc" font-size="11" font-weight="bold" text-anchor="middle">d = ${d} px</text>
+                    <text x="${(startX + currentCenterX) / 2}" y="${groundY - 8}" fill="#34d399" font-size="10" font-family="monospace" text-anchor="middle">${distTraveled.toFixed(1)} px</text>
+                `;
+
+                readout.innerHTML = `
+                    Circumference <b>C = 2πr = ${(2 * Math.PI * r).toFixed(2)} px</b> | Diameter <b>d = ${d} px</b> | 
+                    Invariant Ratio: <b>C / d = ${Math.PI.toFixed(6)}... = π</b>
+                `;
+            }
+
+            rSlider.oninput = update;
+            rollSlider.oninput = update;
+            update();
+        }
+
+        // Sim 3: Archimedean Polygon Exhaustion & Multi-Civilisation Error Comparator
+        function renderSim3(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Archimedes' Polygon Sides (n):</label>
+                            <input type="range" id="sim3_n" min="1" max="5" value="1" step="1" class="w-28 accent-indigo-500">
+                            <span id="sim3_n_val" class="font-bold text-indigo-400 font-mono">6 sides</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-slate-400">Historical Comparison:</span>
+                            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold font-mono text-[10px]">Aryabhata: 3.1416</span>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim3_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim3_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-indigo-950/40 border border-indigo-500/40 text-indigo-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            const slider = document.getElementById('sim3_n');
+            const nVal = document.getElementById('sim3_n_val');
+            const svg = document.getElementById('sim3_svg');
+            const readout = document.getElementById('sim3_readout');
+
+            const sidesList = [6, 12, 24, 48, 96];
+
+            function update() {
+                const idx = parseInt(slider.value) - 1;
+                const n = sidesList[idx];
+                nVal.textContent = `${n} sides`;
+
+                const Ox = 300, Oy = 125, R = 90;
+                // Calculate inscribed and circumscribed polygon perimeter ratios
+                const lowerPi = n * Math.sin(Math.PI / n);
+                const upperPi = n * Math.tan(Math.PI / n);
+
+                // Generate points
+                let inPoints = [];
+                let outPoints = [];
+                for (let k = 0; k < n; k++) {
+                    const angle = (2 * Math.PI * k) / n - Math.PI / 2;
+                    const inX = Ox + R * Math.cos(angle);
+                    const inY = Oy + R * Math.sin(angle);
+                    inPoints.push(`${inX},${inY}`);
+
+                    const outR = R / Math.cos(Math.PI / n);
+                    const outX = Ox + outR * Math.cos(angle);
+                    const outY = Oy + outR * Math.sin(angle);
+                    outPoints.push(`${outX},${outY}`);
+                }
+
+                svg.innerHTML = `
+                    <!-- Circumscribed Polygon (Outer Bound) -->
+                    <polygon points="${outPoints.join(' ')}" fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="2"/>
+                    <!-- Target Perfect Circle -->
+                    <circle cx="${Ox}" cy="${Oy}" r="${R}" fill="none" stroke="#6366f1" stroke-width="3"/>
+                    <!-- Inscribed Polygon (Inner Bound) -->
+                    <polygon points="${inPoints.join(' ')}" fill="rgba(16,185,129,0.25)" stroke="#10b981" stroke-width="2"/>
+
+                    <!-- Centre Point -->
+                    <circle cx="${Ox}" cy="${Oy}" r="3" fill="#ffffff"/>
+                    <line x1="${Ox}" y1="${Oy}" x2="${Ox + R}" y2="${Oy}" stroke="#a5b4fc" stroke-width="1.5" stroke-dasharray="3,3"/>
+                    <text x="${Ox + R/2}" y="${Oy - 6}" fill="#a5b4fc" font-size="10" font-family="monospace">r</text>
+                `;
+
+                readout.innerHTML = `
+                    Archimedes' Squeeze with <b>${n}-gon</b>: 
+                    <span class="text-emerald-400">${lowerPi.toFixed(5)}</span> < <b>π</b> < <span class="text-amber-400">${upperPi.toFixed(5)}</span>
+                    ${n === 96 ? ' • (Proved 223/71 < π < 22/7!)' : ''}
+                `;
+            }
+
+            slider.oninput = update;
+            update();
+        }
+
+        // Sim 4: Dynamic Arc Length & Sector Perimeter Simulator
+        function renderSim4(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Central Angle (θ):</label>
+                            <input type="range" id="sim4_theta" min="15" max="340" value="90" class="w-28 accent-indigo-500">
+                            <span id="sim4_theta_val" class="font-bold text-indigo-400 font-mono">90°</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Radius (r):</label>
+                            <input type="range" id="sim4_r" min="50" max="100" value="80" class="w-24 accent-emerald-500">
+                            <span id="sim4_r_val" class="font-bold text-emerald-400 font-mono">80 cm</span>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim4_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim4_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            const thetaSlider = document.getElementById('sim4_theta');
+            const rSlider = document.getElementById('sim4_r');
+            const thetaVal = document.getElementById('sim4_theta_val');
+            const rVal = document.getElementById('sim4_r_val');
+            const svg = document.getElementById('sim4_svg');
+            const readout = document.getElementById('sim4_readout');
+
+            function update() {
+                const theta = parseFloat(thetaSlider.value);
+                const r = parseFloat(rSlider.value);
+                thetaVal.textContent = `${theta}°`;
+                rVal.textContent = `${r} cm`;
+
+                const Ox = 300, Oy = 125;
+                const startAngle = 0;
+                const endAngle = (theta * Math.PI) / 180;
+
+                const Ax = Ox + r * Math.cos(startAngle);
+                const Ay = Oy + r * Math.sin(startAngle);
+                const Bx = Ox + r * Math.cos(endAngle);
+                const By = Oy + r * Math.sin(endAngle);
+                const largeArc = theta > 180 ? 1 : 0;
+
+                const arcLen = (theta / 360) * 2 * Math.PI * r;
+                const sectorPerimeter = arcLen + 2 * r;
+
+                svg.innerHTML = `
+                    <!-- Complete Circle Faint Outline -->
+                    <circle cx="${Ox}" cy="${Oy}" r="${r}" fill="none" stroke="#334155" stroke-width="1.5" stroke-dasharray="4,4"/>
+
+                    <!-- Shaded Sector -->
+                    <path d="M${Ox},${Oy} L${Ax},${Ay} A${r},${r} 0 ${largeArc},1 ${Bx},${By} Z" fill="rgba(99,102,241,0.2)"/>
+
+                    <!-- Bounding Radii (Amber) -->
+                    <line x1="${Ox}" y1="${Oy}" x2="${Ax}" y2="${Ay}" stroke="#f59e0b" stroke-width="3"/>
+                    <line x1="${Ox}" y1="${Oy}" x2="${Bx}" y2="${By}" stroke="#f59e0b" stroke-width="3"/>
+
+                    <!-- Highlighted Arc (Cyan/Emerald) -->
+                    <path d="M${Ax},${Ay} A${r},${r} 0 ${largeArc},1 ${Bx},${By}" fill="none" stroke="#10b981" stroke-width="4"/>
+
+                    <!-- Center & Vertices -->
+                    <circle cx="${Ox}" cy="${Oy}" r="4" fill="#ffffff"/>
+                    <circle cx="${Ax}" cy="${Ay}" r="4" fill="#10b981"/>
+                    <circle cx="${Bx}" cy="${By}" r="4" fill="#10b981"/>
+
+                    <!-- Labels -->
+                    <text x="${Ox - 15}" y="${Oy - 5}" fill="#ffffff" font-size="11" font-weight="bold">O</text>
+                    <text x="${Ox + r/2}" y="${Oy - 8}" fill="#f59e0b" font-size="10" font-weight="bold">r = ${r}</text>
+                    <text x="${Bx + 8}" y="${By}" fill="#10b981" font-size="11" font-weight="bold">Arc l</text>
+                `;
+
+                readout.innerHTML = `
+                    Arc Length <b>l = (θ/360°) × 2πr = ${arcLen.toFixed(1)} cm</b> | 
+                    Total Sector Perimeter <b>P = l + 2r = ${sectorPerimeter.toFixed(1)} cm</b>
+                `;
+            }
+
+            thetaSlider.oninput = update;
+            rSlider.oninput = update;
+            update();
+        }
+
+        // Sim 5: Shearing Transformation: Parallelogram to Rectangle & Triangle Doubling
+        function renderSim5(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Shear Angle / Morph:</label>
+                            <input type="range" id="sim5_shear" min="0" max="60" value="0" class="w-28 accent-indigo-500">
+                            <span id="sim5_shear_val" class="font-bold text-indigo-400 font-mono">0°</span>
+                        </div>
+                        <div class="flex gap-1.5">
+                            <button id="sim5_mode_para" class="px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition">Parallelogram Shearing</button>
+                            <button id="sim5_mode_tri" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold transition">Triangle Doubling</button>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim5_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim5_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-indigo-950/40 border border-indigo-500/40 text-indigo-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            let mode = 'para';
+            const shearSlider = document.getElementById('sim5_shear');
+            const shearVal = document.getElementById('sim5_shear_val');
+            const paraBtn = document.getElementById('sim5_mode_para');
+            const triBtn = document.getElementById('sim5_mode_tri');
+            const svg = document.getElementById('sim5_svg');
+            const readout = document.getElementById('sim5_readout');
+
+            function update() {
+                const shear = parseFloat(shearSlider.value);
+                shearVal.textContent = `${shear}°`;
+
+                const b = 200;
+                const h = 100;
+                const baseY = 180;
+                const topY = baseY - h;
+                const shiftX = Math.tan((shear * Math.PI) / 180) * h;
+                const leftX = 200;
+
+                if (mode === 'para') {
+                    svg.innerHTML = `
+                        <!-- Sheared Parallelogram -->
+                        <polygon points="${leftX},${baseY} ${leftX + b},${baseY} ${leftX + b + shiftX},${topY} ${leftX + shiftX},${topY}" 
+                                 fill="rgba(99,102,241,0.25)" stroke="#6366f1" stroke-width="3"/>
+
+                        <!-- Equivalent Base Rectangle Ghost -->
+                        <rect x="${leftX}" y="${topY}" width="${b}" height="${h}" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="4,4"/>
+
+                        <!-- Height Guide Line -->
+                        <line x1="${leftX}" y1="${topY}" x2="${leftX}" y2="${baseY}" stroke="#ec4899" stroke-width="2" stroke-dasharray="3,3"/>
+                        <text x="${leftX - 15}" y="${topY + h/2}" fill="#f472b6" font-size="11" font-weight="bold">h = 10</text>
+                        <text x="${leftX + b/2}" y="${baseY + 18}" fill="#a5b4fc" font-size="11" font-weight="bold" text-anchor="middle">base = 20</text>
+                    `;
+                    readout.innerHTML = `
+                        Cavalieri Shearing Principle: Base = 20 cm, Height = 10 cm ⇒ <b>Area = b × h = 200 cm²</b> (Identical to rectangle!)
+                    `;
+                } else {
+                    svg.innerHTML = `
+                        <!-- Triangle 1 -->
+                        <polygon points="${leftX},${baseY} ${leftX + b},${baseY} ${leftX + shiftX},${topY}" 
+                                 fill="rgba(16,185,129,0.3)" stroke="#10b981" stroke-width="3"/>
+                        <!-- Inverted Congruent Triangle 2 Completing Parallelogram -->
+                        <polygon points="${leftX + b},${baseY} ${leftX + b + shiftX},${topY} ${leftX + shiftX},${topY}" 
+                                 fill="rgba(245,158,11,0.2)" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,4"/>
+
+                        <line x1="${leftX + shiftX}" y1="${topY}" x2="${leftX + shiftX}" y2="${baseY}" stroke="#ec4899" stroke-width="2" stroke-dasharray="3,3"/>
+                        <text x="${leftX + b/2}" y="${baseY + 18}" fill="#a5b4fc" font-size="11" font-weight="bold" text-anchor="middle">base = 20</text>
+                        <text x="${leftX + shiftX - 15}" y="${topY + h/2}" fill="#f472b6" font-size="11" font-weight="bold">h = 10</text>
+                    `;
+                    readout.innerHTML = `
+                        Triangle Doubling: Parallelogram Area = 200 cm² ⇒ <b>Triangle Area = (1/2) × b × h = 100 cm²</b>
+                    `;
+                }
+            }
+
+            paraBtn.onclick = () => { mode = 'para'; paraBtn.className = "px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition"; triBtn.className = "px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold transition"; update(); };
+            triBtn.onclick = () => { mode = 'tri'; triBtn.className = "px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition"; paraBtn.className = "px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold transition"; update(); };
+            shearSlider.oninput = update;
+            update();
+        }
+
+        // Sim 6: Interactive Triangle Median & Centroid Area Equalizer
+        function renderSim6(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Skew Vertex A (X):</label>
+                            <input type="range" id="sim6_skew" min="150" max="450" value="260" class="w-32 accent-indigo-500">
+                        </div>
+                        <div class="flex gap-1.5">
+                            <button id="sim6_view_median" class="px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition">1 Median (2 Halves)</button>
+                            <button id="sim6_view_centroid" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold transition">Centroid (3 Equal Areas)</button>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim6_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim6_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            let mode = 'median';
+            const slider = document.getElementById('sim6_skew');
+            const medBtn = document.getElementById('sim6_view_median');
+            const cenBtn = document.getElementById('sim6_view_centroid');
+            const svg = document.getElementById('sim6_svg');
+            const readout = document.getElementById('sim6_readout');
+
+            function update() {
+                const Ax = parseFloat(slider.value);
+                const Ay = 60;
+                const Bx = 160, By = 190;
+                const Cx = 440, Cy = 190;
+                const Dx = (Bx + Cx) / 2, Dy = By; // Midpoint of BC = 300, 190
+
+                const base = Cx - Bx; // 280
+                const height = By - Ay; // 130
+                const totalArea = (0.5 * base * height);
+
+                if (mode === 'median') {
+                    medBtn.className = "px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition";
+                    cenBtn.className = "px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold transition";
+
+                    svg.innerHTML = `
+                        <!-- Left Sub-Triangle ABD -->
+                        <polygon points="${Ax},${Ay} ${Bx},${By} ${Dx},${Dy}" fill="rgba(99,102,241,0.3)" stroke="#6366f1" stroke-width="2"/>
+                        <!-- Right Sub-Triangle ACD -->
+                        <polygon points="${Ax},${Ay} ${Dx},${Dy} ${Cx},${Cy}" fill="rgba(16,185,129,0.3)" stroke="#10b981" stroke-width="2"/>
+
+                        <!-- Median AD -->
+                        <line x1="${Ax}" y1="${Ay}" x2="${Dx}" y2="${Dy}" stroke="#f59e0b" stroke-width="3"/>
+
+                        <!-- Shared Altitude -->
+                        <line x1="${Ax}" y1="${Ay}" x2="${Ax}" y2="${By}" stroke="#ec4899" stroke-width="2" stroke-dasharray="3,3"/>
+
+                        <!-- Points -->
+                        <circle cx="${Ax}" cy="${Ay}" r="5" fill="#f8fafc"/>
+                        <circle cx="${Bx}" cy="${By}" r="5" fill="#f8fafc"/>
+                        <circle cx="${Cx}" cy="${Cy}" r="5" fill="#f8fafc"/>
+                        <circle cx="${Dx}" cy="${Dy}" r="5" fill="#f59e0b"/>
+
+                        <text x="${Ax}" y="${Ay - 8}" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">A</text>
+                        <text x="${Bx - 15}" y="${By + 5}" fill="#ffffff" font-size="12" font-weight="bold">B</text>
+                        <text x="${Cx + 10}" y="${Cy + 5}" fill="#ffffff" font-size="12" font-weight="bold">C</text>
+                        <text x="${Dx}" y="${Dy + 16}" fill="#f59e0b" font-size="11" font-weight="bold" text-anchor="middle">D (Midpoint)</text>
+                    `;
+                    readout.innerHTML = `
+                        Shared Altitude h = ${height} px | Equal Bases BD = DC = 140 px ⇒ 
+                        <b>Area(ΔABD) = Area(ΔACD) = ${(totalArea / 2).toFixed(0)} px²</b> (Exactly 50% each!)
+                    `;
+                } else {
+                    medBtn.className = "px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold transition";
+                    cenBtn.className = "px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition";
+
+                    // Centroid G = (Ax + Bx + Cx)/3, (Ay + By + Cy)/3
+                    const Gx = (Ax + Bx + Cx) / 3;
+                    const Gy = (Ay + By + Cy) / 3;
+
+                    svg.innerHTML = `
+                        <!-- ΔGAB -->
+                        <polygon points="${Ax},${Ay} ${Bx},${By} ${Gx},${Gy}" fill="rgba(99,102,241,0.25)" stroke="#6366f1" stroke-width="2"/>
+                        <!-- ΔGBC -->
+                        <polygon points="${Bx},${By} ${Cx},${Cy} ${Gx},${Gy}" fill="rgba(16,185,129,0.25)" stroke="#10b981" stroke-width="2"/>
+                        <!-- ΔGCA -->
+                        <polygon points="${Cx},${Cy} ${Ax},${Ay} ${Gx},${Gy}" fill="rgba(245,158,11,0.25)" stroke="#f59e0b" stroke-width="2"/>
+
+                        <!-- Centroid G -->
+                        <circle cx="${Gx}" cy="${Gy}" r="6" fill="#ec4899"/>
+                        <text x="${Gx + 10}" y="${Gy - 5}" fill="#f472b6" font-size="12" font-weight="bold">Centroid G</text>
+                    `;
+                    readout.innerHTML = `
+                        Centroid Tripartition: <b>Area(ΔGAB) = Area(ΔGBC) = Area(ΔGCA) = ${(totalArea / 3).toFixed(0)} px²</b> (Exactly 1/3 each!)
+                    `;
+                }
+            }
+
+            medBtn.onclick = () => { mode = 'median'; update(); };
+            cenBtn.onclick = () => { mode = 'centroid'; update(); };
+            slider.oninput = update;
+            update();
+        }
+
+        // Sim 7: Heron’s Formula Geometric Computer & Incircle Radius
+        function renderSim7(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Side a:</label>
+                            <input type="range" id="sim7_a" min="10" max="25" value="13" class="w-16 accent-indigo-500">
+                            <span id="sim7_a_val" class="text-indigo-400 font-bold font-mono">13</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Side b:</label>
+                            <input type="range" id="sim7_b" min="10" max="25" value="14" class="w-16 accent-emerald-500">
+                            <span id="sim7_b_val" class="text-emerald-400 font-bold font-mono">14</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Side c:</label>
+                            <input type="range" id="sim7_c" min="10" max="25" value="15" class="w-16 accent-amber-500">
+                            <span id="sim7_c_val" class="text-amber-400 font-bold font-mono">15</span>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim7_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim7_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-indigo-950/40 border border-indigo-500/40 text-indigo-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            const aS = document.getElementById('sim7_a');
+            const bS = document.getElementById('sim7_b');
+            const cS = document.getElementById('sim7_c');
+            const aV = document.getElementById('sim7_a_val');
+            const bV = document.getElementById('sim7_b_val');
+            const cV = document.getElementById('sim7_c_val');
+            const svg = document.getElementById('sim7_svg');
+            const readout = document.getElementById('sim7_readout');
+
+            function update() {
+                const a = parseFloat(aS.value);
+                const b = parseFloat(bS.value);
+                const c = parseFloat(cS.value);
+                aV.textContent = a;
+                bV.textContent = b;
+                cV.textContent = c;
+
+                // Triangle inequality check
+                const isValid = (a + b > c) && (b + c > a) && (c + a > b);
+                if (!isValid) {
+                    svg.innerHTML = `<text x="300" y="125" fill="#f43f5e" font-size="14" font-weight="bold" text-anchor="middle">Triangle Inequality Violated! (a + b must be > c)</text>`;
+                    readout.innerHTML = `<span class="text-rose-400">Cannot form a real triangle with these lengths.</span>`;
+                    return;
+                }
+
+                const s = (a + b + c) / 2;
+                const area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+                const inradius = area / s;
+
+                // Geometry coordinates for visualization
+                const scale = 12;
+                const Bx = 180, By = 190;
+                const Cx = Bx + c * scale, Cy = By;
+                const cosB = (a * a + c * c - b * b) / (2 * a * c);
+                const sinB = Math.sqrt(Math.max(0, 1 - cosB * cosB));
+                const Ax = Bx + a * scale * cosB;
+                const Ay = By - a * scale * sinB;
+
+                // Incenter coordinates
+                const Ix = (a * Cx + b * Bx + c * Ax) / (a + b + c);
+                const Iy = (a * Cy + b * By + c * Ay) / (a + b + c);
+
+                svg.innerHTML = `
+                    <!-- Triangle -->
+                    <polygon points="${Ax},${Ay} ${Bx},${By} ${Cx},${Cy}" fill="rgba(99,102,241,0.2)" stroke="#6366f1" stroke-width="3"/>
+
+                    <!-- Incircle -->
+                    <circle cx="${Ix}" cy="${Iy}" r="${inradius * scale}" fill="rgba(16,185,129,0.2)" stroke="#10b981" stroke-width="2"/>
+                    <circle cx="${Ix}" cy="${Iy}" r="3" fill="#10b981"/>
+
+                    <!-- Vertices -->
+                    <circle cx="${Ax}" cy="${Ay}" r="4" fill="#ffffff"/>
+                    <circle cx="${Bx}" cy="${By}" r="4" fill="#ffffff"/>
+                    <circle cx="${Cx}" cy="${Cy}" r="4" fill="#ffffff"/>
+
+                    <!-- Labels -->
+                    <text x="${Ax}" y="${Ay - 8}" fill="#ffffff" font-size="11" font-weight="bold" text-anchor="middle">A</text>
+                    <text x="${Bx - 12}" y="${By + 5}" fill="#ffffff" font-size="11" font-weight="bold">B</text>
+                    <text x="${Cx + 12}" y="${Cy + 5}" fill="#ffffff" font-size="11" font-weight="bold">C</text>
+                    <text x="${(Bx+Cx)/2}" y="${By + 18}" fill="#a5b4fc" font-size="10" font-weight="bold" text-anchor="middle">c = ${c}</text>
+                `;
+
+                readout.innerHTML = `
+                    s = (${a}+${b}+${c})/2 = <b>${s.toFixed(1)}</b> | Radicand: ${s}(${s-a})(${s-b})(${s-c}) | 
+                    <b>Area = ${area.toFixed(2)} cm²</b> | Inradius r_in = ${inradius.toFixed(2)} cm
+                `;
+            }
+
+            aS.oninput = update;
+            bS.oninput = update;
+            cS.oninput = update;
+            update();
+        }
+
+        // Sim 8: Baudhayana Sulbasutra 5-Step Rectangular Squaring Animation
+        function renderSim8(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <span class="text-slate-300 font-semibold">Baudhayana Sulbasutra Construction:</span>
+                        <div class="flex items-center gap-1.5" id="sim8_steps">
+                            <button data-step="1" class="px-2 py-1 rounded bg-indigo-600 text-white font-bold transition">1. Rectangle</button>
+                            <button data-step="2" class="px-2 py-1 rounded bg-slate-800 text-slate-300 font-bold transition">2. Cut Square</button>
+                            <button data-step="3" class="px-2 py-1 rounded bg-slate-800 text-slate-300 font-bold transition">3. Bisect Strip</button>
+                            <button data-step="4" class="px-2 py-1 rounded bg-slate-800 text-slate-300 font-bold transition">4. Gnomon</button>
+                            <button data-step="5" class="px-2 py-1 rounded bg-slate-800 text-slate-300 font-bold transition">5. Square Side</button>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim8_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim8_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-indigo-950/40 border border-indigo-500/40 text-indigo-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            let step = 1;
+            const buttons = document.querySelectorAll('#sim8_steps button');
+            const svg = document.getElementById('sim8_svg');
+            const readout = document.getElementById('sim8_readout');
+
+            function update() {
+                buttons.forEach(b => {
+                    if (parseInt(b.dataset.step) === step) {
+                        b.className = "px-2 py-1 rounded bg-indigo-600 text-white font-bold transition";
+                    } else {
+                        b.className = "px-2 py-1 rounded bg-slate-800 text-slate-300 font-bold transition";
+                    }
+                });
+
+                const a = 180, b = 80;
+                const Ox = 200, Oy = 70;
+
+                if (step === 1) {
+                    svg.innerHTML = `
+                        <rect x="${Ox}" y="${Oy}" width="${a}" height="${b}" fill="rgba(99,102,241,0.3)" stroke="#6366f1" stroke-width="3"/>
+                        <text x="${Ox + a/2}" y="${Oy - 10}" fill="#a5b4fc" font-size="12" font-weight="bold" text-anchor="middle">Length a = 18</text>
+                        <text x="${Ox - 15}" y="${Oy + b/2}" fill="#a5b4fc" font-size="12" font-weight="bold">b = 8</text>
+                    `;
+                    readout.innerHTML = `Step 1: Start with target rectangle of dimensions a = 18 and b = 8 (Area = 144).`;
+                } else if (step === 2) {
+                    svg.innerHTML = `
+                        <rect x="${Ox}" y="${Oy}" width="${b}" height="${b}" fill="rgba(16,185,129,0.3)" stroke="#10b981" stroke-width="3"/>
+                        <rect x="${Ox + b}" y="${Oy}" width="${a - b}" height="${b}" fill="rgba(245,158,11,0.2)" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,4"/>
+                        <text x="${Ox + b/2}" y="${Oy + b/2}" fill="#6ee7b7" font-size="11" font-weight="bold" text-anchor="middle">Square b × b</text>
+                        <text x="${Ox + b + (a-b)/2}" y="${Oy + b/2}" fill="#fcd34d" font-size="11" font-weight="bold" text-anchor="middle">Strip (a - b)</text>
+                    `;
+                    readout.innerHTML = `Step 2: Cut a square of side b = 8 from the rectangle; excess strip has width (a - b) = 10.`;
+                } else if (step === 3) {
+                    svg.innerHTML = `
+                        <rect x="${Ox}" y="${Oy}" width="${b}" height="${b}" fill="rgba(16,185,129,0.3)" stroke="#10b981" stroke-width="3"/>
+                        <rect x="${Ox + b}" y="${Oy}" width="${(a - b)/2}" height="${b}" fill="rgba(236,72,153,0.3)" stroke="#ec4899" stroke-width="2"/>
+                        <rect x="${Ox + b + (a - b)/2}" y="${Oy}" width="${(a - b)/2}" height="${b}" fill="rgba(236,72,153,0.3)" stroke="#ec4899" stroke-width="2"/>
+                        <text x="${Ox + b + (a-b)/4}" y="${Oy + b/2}" fill="#f472b6" font-size="9" font-weight="bold" text-anchor="middle">Half 1</text>
+                        <text x="${Ox + b + 3*(a-b)/4}" y="${Oy + b/2}" fill="#f472b6" font-size="9" font-weight="bold" text-anchor="middle">Half 2</text>
+                    `;
+                    readout.innerHTML = `Step 3: Bisect the remaining strip into two equal halves of width (a - b)/2 = 5.`;
+                } else if (step === 4) {
+                    svg.innerHTML = `
+                        <rect x="${Ox}" y="${Oy + 50}" width="${b}" height="${b}" fill="rgba(16,185,129,0.3)" stroke="#10b981" stroke-width="2"/>
+                        <!-- Side strip -->
+                        <rect x="${Ox + b}" y="${Oy + 50}" width="50" height="${b}" fill="rgba(236,72,153,0.3)" stroke="#ec4899" stroke-width="2"/>
+                        <!-- Top strip -->
+                        <rect x="${Ox}" y="${Oy}" width="${b}" height="50" fill="rgba(236,72,153,0.3)" stroke="#ec4899" stroke-width="2"/>
+                        <!-- Small corner square completing (a+b)/2 -->
+                        <rect x="${Ox + b}" y="${Oy}" width="50" height="50" fill="rgba(245,158,11,0.2)" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3,3"/>
+                        <text x="${Ox + b + 25}" y="${Oy + 30}" fill="#fcd34d" font-size="9" font-weight="bold" text-anchor="middle">[(a-b)/2]²</text>
+                    `;
+                    readout.innerHTML = `Step 4: Form L-gnomon of side (a + b)/2 = 13. Area = [(a+b)/2]² - [(a-b)/2]² = 13² - 5² = 144!`;
+                } else {
+                    svg.innerHTML = `
+                        <!-- Final Equivalent Square -->
+                        <rect x="240" y="60" width="120" height="120" fill="rgba(16,185,129,0.4)" stroke="#10b981" stroke-width="3"/>
+                        <text x="300" y="125" fill="#ffffff" font-size="14" font-weight="bold" text-anchor="middle">Square Side x = √144 = 12</text>
+                    `;
+                    readout.innerHTML = `Step 5: By Baudhayana's Rope Theorem, x² = 13² - 5² = 12² ⇒ <b>Side x = √(ab) = 12 cm!</b>`;
+                }
+            }
+
+            buttons.forEach(b => {
+                b.onclick = () => { step = parseInt(b.dataset.step); update(); };
+            });
+            update();
+        }
+
+        // Sim 9: Interactive Sector Slicing to Rectangle & Archimedes Concentric Ring Unroller
+        function renderSim9(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Sector Slices (N):</label>
+                            <input type="range" id="sim9_n" min="4" max="64" value="8" step="4" class="w-28 accent-indigo-500">
+                            <span id="sim9_n_val" class="font-bold text-indigo-400 font-mono">8 wedges</span>
+                        </div>
+                        <div class="flex gap-1.5">
+                            <button id="sim9_btn_circle" class="px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition">Pie Slicing</button>
+                            <button id="sim9_btn_rings" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold transition">Archimedes' Rings</button>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim9_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim9_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            let mode = 'pie';
+            const slider = document.getElementById('sim9_n');
+            const nVal = document.getElementById('sim9_n_val');
+            const pieBtn = document.getElementById('sim9_btn_circle');
+            const ringsBtn = document.getElementById('sim9_btn_rings');
+            const svg = document.getElementById('sim9_svg');
+            const readout = document.getElementById('sim9_readout');
+
+            function update() {
+                const n = parseInt(slider.value);
+                nVal.textContent = `${n} wedges`;
+
+                if (mode === 'pie') {
+                    pieBtn.className = "px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition";
+                    ringsBtn.className = "px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold transition";
+
+                    // Render pseudo-rectangle with n wedges
+                    const wedgeW = 320 / n;
+                    const h = 80;
+                    let wedgesSvg = "";
+                    for (let i = 0; i < n; i++) {
+                        const x = 140 + i * wedgeW;
+                        const isUp = (i % 2 === 0);
+                        const c = isUp ? 'rgba(99,102,241,0.4)' : 'rgba(16,185,129,0.4)';
+                        const stroke = isUp ? '#6366f1' : '#10b981';
+                        wedgesSvg += `<polygon points="${x},${isUp ? 80 : 80+h} ${x + wedgeW},${isUp ? 80 : 80+h} ${x + wedgeW/2},${isUp ? 80+h : 80}" fill="${c}" stroke="${stroke}" stroke-width="1.5"/>`;
+                    }
+
+                    svg.innerHTML = `
+                        <!-- Rearranged Wedges -->
+                        ${wedgesSvg}
+                        <!-- Dimension Annotations -->
+                        <line x1="140" y1="65" x2="460" y2="65" stroke="#a5b4fc" stroke-width="2"/>
+                        <text x="300" y="55" fill="#a5b4fc" font-size="11" font-weight="bold" text-anchor="middle">Base = C / 2 = πr</text>
+                        <line x1="120" y1="80" x2="120" y2="160" stroke="#f472b6" stroke-width="2"/>
+                        <text x="105" y="125" fill="#f472b6" font-size="11" font-weight="bold">Height = r</text>
+                    `;
+                    readout.innerHTML = `
+                        As N → ∞ (${n} slices): Base approaches <b>πr</b> and Height equals <b>r</b> ⇒ <b>Area = (πr) × r = πr²</b>!
+                    `;
+                } else {
+                    pieBtn.className = "px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold transition";
+                    ringsBtn.className = "px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition";
+
+                    svg.innerHTML = `
+                        <!-- Concentric Circles unrolled into Right Triangle -->
+                        <polygon points="150,180 450,180 150,80" fill="rgba(245,158,11,0.3)" stroke="#f59e0b" stroke-width="3"/>
+                        <text x="300" y="200" fill="#fcd34d" font-size="11" font-weight="bold" text-anchor="middle">Base = 2πr (Circumference)</text>
+                        <text x="110" y="135" fill="#a5b4fc" font-size="11" font-weight="bold">Height = r</text>
+                    `;
+                    readout.innerHTML = `
+                        Archimedes' Concentric Ring Method: Triangle of Base 2πr and Height r ⇒ <b>Area = (1/2) × 2πr × r = πr²</b>!
+                    `;
+                }
+            }
+
+            pieBtn.onclick = () => { mode = 'pie'; update(); };
+            ringsBtn.onclick = () => { mode = 'rings'; update(); };
+            slider.oninput = update;
+            update();
+        }
+
+        // Sim 10: Multi-Civilisation Circle Area Comparator & Historical Error Dials
+        function renderSim10(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Circle Diameter (d):</label>
+                            <input type="range" id="sim10_d" min="10" max="30" value="18" class="w-28 accent-indigo-500">
+                            <span id="sim10_d_val" class="font-bold text-indigo-400 font-mono">18 cm</span>
+                        </div>
+                        <span class="text-emerald-400 font-mono text-[11px]">Egyptian Rhind Papyrus vs True πr²</span>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim10_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim10_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            const dSlider = document.getElementById('sim10_d');
+            const dVal = document.getElementById('sim10_d_val');
+            const svg = document.getElementById('sim10_svg');
+            const readout = document.getElementById('sim10_readout');
+
+            function update() {
+                const d = parseFloat(dSlider.value);
+                const r = d / 2;
+                dVal.textContent = `${d} cm`;
+
+                const trueArea = Math.PI * r * r;
+                // Egyptian rule: Area ≈ [(8/9) d]²
+                const egyptianSide = (8 / 9) * d;
+                const egyptianArea = egyptianSide * egyptianSide;
+                const errorPercent = Math.abs(egyptianArea - trueArea) / trueArea * 100;
+
+                const scale = 5;
+                const Ox = 300, Oy = 125;
+                const rPx = r * scale;
+                const sqPx = egyptianSide * scale;
+
+                svg.innerHTML = `
+                    <!-- True Circle (Indigo) -->
+                    <circle cx="${Ox}" cy="${Oy}" r="${rPx}" fill="rgba(99,102,241,0.25)" stroke="#6366f1" stroke-width="3"/>
+                    <!-- Egyptian Equivalent Square (Amber) -->
+                    <rect x="${Ox - sqPx/2}" y="${Oy - sqPx/2}" width="${sqPx}" height="${sqPx}" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="4,4"/>
+
+                    <text x="${Ox}" y="${Oy}" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">d = ${d} cm</text>
+                `;
+
+                readout.innerHTML = `
+                    True Area: <b>${trueArea.toFixed(2)} cm²</b> | 
+                    Egyptian Rhind Square [(8/9)d]²: <b>${egyptianArea.toFixed(2)} cm²</b> | 
+                    Accuracy: <b>99.4% (Error: only ${errorPercent.toFixed(2)}%)</b>
+                `;
+            }
+
+            dSlider.oninput = update;
+            update();
+        }
+
+        // Sim 11: Rotary Sprinkler & Wiper Sweep Sector Laboratory
+        function renderSim11(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Sweep Angle (θ):</label>
+                            <input type="range" id="sim11_theta" min="30" max="240" value="120" class="w-28 accent-indigo-500">
+                            <span id="sim11_theta_val" class="font-bold text-indigo-400 font-mono">120°</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Radius (r):</label>
+                            <input type="range" id="sim11_r" min="5" max="15" value="7" class="w-24 accent-emerald-500">
+                            <span id="sim11_r_val" class="font-bold text-emerald-400 font-mono">7 m</span>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim11_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim11_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            const tSlider = document.getElementById('sim11_theta');
+            const rSlider = document.getElementById('sim11_r');
+            const tVal = document.getElementById('sim11_theta_val');
+            const rVal = document.getElementById('sim11_r_val');
+            const svg = document.getElementById('sim11_svg');
+            const readout = document.getElementById('sim11_readout');
+
+            function update() {
+                const theta = parseFloat(tSlider.value);
+                const r = parseFloat(rSlider.value);
+                tVal.textContent = `${theta}°`;
+                rVal.textContent = `${r} m`;
+
+                const Ox = 300, Oy = 160;
+                const rPx = r * 10;
+                const startAngle = -Math.PI / 2 - (theta * Math.PI) / 360;
+                const endAngle = -Math.PI / 2 + (theta * Math.PI) / 360;
+
+                const Ax = Ox + rPx * Math.cos(startAngle);
+                const Ay = Oy + rPx * Math.sin(startAngle);
+                const Bx = Ox + rPx * Math.cos(endAngle);
+                const By = Oy + rPx * Math.sin(endAngle);
+
+                const area = (theta / 360) * Math.PI * r * r;
+                const arcL = (theta / 360) * 2 * Math.PI * r;
+
+                svg.innerHTML = `
+                    <!-- Ground/Lawn Field -->
+                    <line x1="50" y1="${Oy}" x2="550" y2="${Oy}" stroke="#334155" stroke-width="2"/>
+                    <!-- Watered Sector -->
+                    <path d="M${Ox},${Oy} L${Ax},${Ay} A${rPx},${rPx} 0 0,1 ${Bx},${By} Z" fill="rgba(56,189,248,0.3)" stroke="#38bdf8" stroke-width="2"/>
+
+                    <!-- Sprinkler Nozzle -->
+                    <circle cx="${Ox}" cy="${Oy}" r="6" fill="#38bdf8"/>
+                    <line x1="${Ox}" y1="${Oy}" x2="${Ax}" y2="${Ay}" stroke="#f59e0b" stroke-width="2"/>
+                    <line x1="${Ox}" y1="${Oy}" x2="${Bx}" y2="${By}" stroke="#f59e0b" stroke-width="2"/>
+                `;
+
+                readout.innerHTML = `
+                    Sprinkler Coverage: <b>Area = (θ/360) × πr² = ${area.toFixed(2)} m²</b> | 
+                    Triangular Equivalent: <b>(1/2) × l × r = (1/2) × ${arcL.toFixed(2)} × ${r} = ${area.toFixed(2)} m²</b>
+                `;
+            }
+
+            tSlider.oninput = update;
+            rSlider.oninput = update;
+            update();
+        }
+
+        // Sim 12: Circular Segment Decomposer & Triangle Subtraction Simulator
+        function renderSim12(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Central Angle (θ):</label>
+                            <input type="range" id="sim12_theta" min="40" max="140" value="90" class="w-28 accent-indigo-500">
+                            <span id="sim12_theta_val" class="font-bold text-indigo-400 font-mono">90°</span>
+                        </div>
+                        <div class="flex gap-1.5">
+                            <button id="sim12_btn_decomp" class="px-2.5 py-1 rounded bg-indigo-600 text-white font-bold transition">Decompose Region</button>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim12_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim12_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            let isDecomposed = false;
+            const tSlider = document.getElementById('sim12_theta');
+            const tVal = document.getElementById('sim12_theta_val');
+            const decBtn = document.getElementById('sim12_btn_decomp');
+            const svg = document.getElementById('sim12_svg');
+            const readout = document.getElementById('sim12_readout');
+
+            function update() {
+                const theta = parseFloat(tSlider.value);
+                tVal.textContent = `${theta}°`;
+
+                const Ox = 300, Oy = 125, r = 85;
+                const halfRad = (theta * Math.PI) / 360;
+                const Ax = Ox - r * Math.sin(halfRad);
+                const Ay = Oy - r * Math.cos(halfRad);
+                const Bx = Ox + r * Math.sin(halfRad);
+                const By = Oy - r * Math.cos(halfRad);
+
+                const sectorArea = (theta / 360) * Math.PI * r * r;
+                const triArea = 0.5 * r * r * Math.sin((theta * Math.PI) / 180);
+                const segArea = sectorArea - triArea;
+
+                svg.innerHTML = `
+                    <circle cx="${Ox}" cy="${Oy}" r="${r}" fill="none" stroke="#334155" stroke-width="2"/>
+
+                    <!-- Minor Segment (Emerald) -->
+                    <path d="M${Ax},${Ay} A${r},${r} 0 0,1 ${Bx},${By} Z" fill="rgba(16,185,129,0.5)" stroke="#10b981" stroke-width="2"/>
+
+                    <!-- Triangle OAB (Fades out when decomposed) -->
+                    <polygon points="${Ox},${Oy} ${Ax},${Ay} ${Bx},${By}" 
+                             fill="${isDecomposed ? 'rgba(99,102,241,0.05)' : 'rgba(99,102,241,0.35)'}" 
+                             stroke="#6366f1" stroke-width="2" stroke-dasharray="${isDecomposed ? '3,3' : 'none'}"/>
+
+                    <!-- Chord AB -->
+                    <line x1="${Ax}" y1="${Ay}" x2="${Bx}" y2="${By}" stroke="#f59e0b" stroke-width="3"/>
+                `;
+
+                readout.innerHTML = `
+                    Sector Area = ${sectorArea.toFixed(0)} - Triangle Area = ${triArea.toFixed(0)} ⇒ 
+                    <b>Minor Segment Area = ${segArea.toFixed(0)} px²</b>
+                `;
+            }
+
+            decBtn.onclick = () => { isDecomposed = !isDecomposed; decBtn.textContent = isDecomposed ? "Reassemble Sector" : "Decompose Region"; update(); };
+            tSlider.oninput = update;
+            update();
+        }
+
+        // Sim 13: Brahmagupta Cyclic Quadrilateral Lab & Area Maximizer
+        function renderSim13(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <span class="text-slate-300 font-semibold">Brahmagupta (628 CE) Cyclic 4-Gon:</span>
+                        <span class="text-emerald-400 font-mono text-[11px]">Opposite Angles Sum to 180°</span>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim13_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim13_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            const svg = document.getElementById('sim13_svg');
+            const readout = document.getElementById('sim13_readout');
+
+            const Ox = 300, Oy = 125, R = 90;
+            // Sides approx 2, 3, 4, 5
+            const Ax = 236, Ay = 61;
+            const Bx = 210, By = 125;
+            const Cx = 300, Cy = 215;
+            const Dx = 385, Dy = 95;
+
+            svg.innerHTML = `
+                <!-- Circumcircle -->
+                <circle cx="${Ox}" cy="${Oy}" r="${R}" fill="none" stroke="#6366f1" stroke-width="3"/>
+                <!-- Inscribed Cyclic Quadrilateral -->
+                <polygon points="${Ax},${Ay} ${Bx},${By} ${Cx},${Cy} ${Dx},${Dy}" fill="rgba(16,185,129,0.25)" stroke="#10b981" stroke-width="3"/>
+
+                <circle cx="${Ax}" cy="${Ay}" r="5" fill="#ffffff"/>
+                <circle cx="${Bx}" cy="${By}" r="5" fill="#ffffff"/>
+                <circle cx="${Cx}" cy="${Cy}" r="5" fill="#ffffff"/>
+                <circle cx="${Dx}" cy="${Dy}" r="5" fill="#ffffff"/>
+
+                <text x="${Ax - 10}" y="${Ay - 5}" fill="#ffffff" font-size="11" font-weight="bold">A</text>
+                <text x="${Bx - 15}" y="${By}" fill="#ffffff" font-size="11" font-weight="bold">B</text>
+                <text x="${Cx}" y="${Cy + 16}" fill="#ffffff" font-size="11" font-weight="bold" text-anchor="middle">C</text>
+                <text x="${Dx + 10}" y="${Dy}" fill="#ffffff" font-size="11" font-weight="bold">D</text>
+            `;
+
+            readout.innerHTML = `
+                Brahmagupta's Formula: <b>Area = √[(s-a)(s-b)(s-c)(s-d)]</b> | 
+                Optimal Isoperimetric Maximization (Encloses Max Possible Area for Fixed Sides!)
+            `;
+        }
+
+        // Sim 14: Vertex Collapse Morphing: Brahmagupta to Heron Continuity Simulator
+        function renderSim14(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Collapse Side d to 0:</label>
+                            <input type="range" id="sim14_d" min="0" max="80" value="60" class="w-32 accent-indigo-500">
+                            <span id="sim14_d_val" class="font-bold text-indigo-400 font-mono">60 px</span>
+                        </div>
+                        <span id="sim14_badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">4-gon (Brahmagupta)</span>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim14_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim14_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            const slider = document.getElementById('sim14_d');
+            const dVal = document.getElementById('sim14_d_val');
+            const badge = document.getElementById('sim14_badge');
+            const svg = document.getElementById('sim14_svg');
+            const readout = document.getElementById('sim14_readout');
+
+            function update() {
+                const d = parseFloat(slider.value);
+                dVal.textContent = `${d} px`;
+
+                const Ox = 300, Oy = 125, R = 90;
+                const Ax = 230, Ay = 65;
+                const Bx = 210, By = 185;
+                const Cx = 390, Cy = 160;
+                // Move vertex D towards A as d -> 0
+                const Dx = Ax + (d / 80) * 150;
+                const Dy = Ay + (d / 80) * 20;
+
+                const isCollapsed = (d === 0);
+                if (isCollapsed) {
+                    badge.className = "px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
+                    badge.textContent = "3-gon / Triangle (Heron's Formula!)";
+                } else {
+                    badge.className = "px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30";
+                    badge.textContent = "4-gon (Brahmagupta's Formula)";
+                }
+
+                svg.innerHTML = `
+                    <circle cx="${Ox}" cy="${Oy}" r="${R}" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="3,3"/>
+                    <polygon points="${Ax},${Ay} ${Bx},${By} ${Cx},${Cy} ${Dx},${Dy}" fill="rgba(99,102,241,0.25)" stroke="#6366f1" stroke-width="3"/>
+
+                    <circle cx="${Ax}" cy="${Ay}" r="5" fill="#ffffff"/>
+                    <circle cx="${Bx}" cy="${By}" r="5" fill="#ffffff"/>
+                    <circle cx="${Cx}" cy="${Cy}" r="5" fill="#ffffff"/>
+                    <circle cx="${Dx}" cy="${Dy}" r="5" fill="${isCollapsed ? '#10b981' : '#f59e0b'}"/>
+
+                    <text x="${Ax - 15}" y="${Ay}" fill="#ffffff" font-size="11" font-weight="bold">A</text>
+                    <text x="${Bx - 15}" y="${By}" fill="#ffffff" font-size="11" font-weight="bold">B</text>
+                    <text x="${Cx + 10}" y="${Cy}" fill="#ffffff" font-size="11" font-weight="bold">C</text>
+                    <text x="${Dx + 5}" y="${Dy - 8}" fill="${isCollapsed ? '#34d399' : '#fcd34d'}" font-size="11" font-weight="bold">${isCollapsed ? 'D = A' : 'D'}</text>
+                `;
+
+                if (isCollapsed) {
+                    readout.innerHTML = `
+                        <b>d = 0: Factor (s - d) = (s - 0) = s!</b> ⇒ 
+                        Brahmagupta √[(s-a)(s-b)(s-c)(s-d)] becomes <b>√[s(s-a)(s-b)(s-c)] (Heron's Formula!)</b>
+                    `;
+                } else {
+                    readout.innerHTML = `
+                        Side d = ${d} px. Drag slider to 0 to watch Brahmagupta collapse into Heron's Formula!
+                    `;
+                }
+            }
+
+            slider.oninput = update;
+            update();
+        }
+
+        // Sim 15: Interactive Mensuration Formula Hierarchy Tree & Constraint Engine
+        function renderSim15(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2 rounded-xl border border-slate-800 text-xs">
+                        <span class="text-slate-300 font-semibold">Click a Hierarchy Node:</span>
+                        <div class="flex flex-wrap gap-1" id="sim15_nodes">
+                            <button data-node="bret" class="px-2 py-1 rounded bg-indigo-600 text-white font-bold transition">1. Bretschneider</button>
+                            <button data-node="brahma" class="px-2 py-1 rounded bg-slate-800 text-slate-300 font-bold transition">2. Brahmagupta</button>
+                            <button data-node="heron" class="px-2 py-1 rounded bg-slate-800 text-slate-300 font-bold transition">3. Heron</button>
+                            <button data-node="equi" class="px-2 py-1 rounded bg-slate-800 text-slate-300 font-bold transition">4. Equilateral</button>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim15_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim15_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-indigo-950/40 border border-indigo-500/40 text-indigo-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            let activeNode = 'bret';
+            const buttons = document.querySelectorAll('#sim15_nodes button');
+            const svg = document.getElementById('sim15_svg');
+            const readout = document.getElementById('sim15_readout');
+
+            function update() {
+                buttons.forEach(b => {
+                    b.className = (b.dataset.node === activeNode) 
+                        ? "px-2 py-1 rounded bg-indigo-600 text-white font-bold transition"
+                        : "px-2 py-1 rounded bg-slate-800 text-slate-300 font-bold transition";
+                });
+
+                if (activeNode === 'bret') {
+                    svg.innerHTML = `
+                        <rect x="100" y="40" width="400" height="60" rx="10" fill="rgba(99,102,241,0.3)" stroke="#6366f1" stroke-width="2"/>
+                        <text x="300" y="75" fill="#ffffff" font-size="13" font-weight="bold" text-anchor="middle">Bretschneider's Formula (Any Convex 4-gon)</text>
+                        <text x="300" y="150" fill="#a5b4fc" font-size="12" font-mono text-anchor="middle">√[(s-a)(s-b)(s-c)(s-d) - abcd cos²((A+C)/2)]</text>
+                    `;
+                    readout.innerHTML = `Universal Parent Formula: Accounts for non-cyclic distortion using the cosine correction term.`;
+                } else if (activeNode === 'brahma') {
+                    svg.innerHTML = `
+                        <rect x="120" y="40" width="360" height="60" rx="10" fill="rgba(16,185,129,0.3)" stroke="#10b981" stroke-width="2"/>
+                        <text x="300" y="75" fill="#ffffff" font-size="13" font-weight="bold" text-anchor="middle">Brahmagupta's Formula (Cyclic 4-gon)</text>
+                        <text x="300" y="150" fill="#6ee7b7" font-size="12" font-mono text-anchor="middle">Constraint A+C=180° ⇒ cos(90°)=0 ⇒ √[(s-a)(s-b)(s-c)(s-d)]</text>
+                    `;
+                    readout.innerHTML = `Specialization 1: When vertices lie on a circle, opposite angles are supplementary and the cosine term vanishes!`;
+                } else if (activeNode === 'heron') {
+                    svg.innerHTML = `
+                        <rect x="140" y="40" width="320" height="60" rx="10" fill="rgba(245,158,11,0.3)" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="300" y="75" fill="#ffffff" font-size="13" font-weight="bold" text-anchor="middle">Heron's Formula (Triangle)</text>
+                        <text x="300" y="150" fill="#fcd34d" font-size="12" font-mono text-anchor="middle">Constraint d=0 ⇒ (s-d)=s ⇒ √[s(s-a)(s-b)(s-c)]</text>
+                    `;
+                    readout.innerHTML = `Specialization 2: When one side collapses to zero, the cyclic 4-gon becomes a 3-gon (Heron's Formula!).`;
+                } else {
+                    svg.innerHTML = `
+                        <rect x="160" y="40" width="280" height="60" rx="10" fill="rgba(236,72,153,0.3)" stroke="#ec4899" stroke-width="2"/>
+                        <text x="300" y="75" fill="#ffffff" font-size="13" font-weight="bold" text-anchor="middle">Equilateral Triangle</text>
+                        <text x="300" y="150" fill="#f472b6" font-size="13" font-mono text-anchor="middle">Constraint a=b=c ⇒ Area = (√3 / 4) a²</text>
+                    `;
+                    readout.innerHTML = `Specialization 3: When all 3 sides are equal, Heron reduces to the classic equilateral area formula.`;
+                }
+            }
+
+            buttons.forEach(b => {
+                b.onclick = () => { activeNode = b.dataset.node; update(); };
+            });
+            update();
+        }
+
+        // Sim 16: Monte Carlo Pi Dartboard Simulator & Gauss Shoelace Polygon Engine
+        function renderSim16(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <span class="text-indigo-400 font-bold">Monte Carlo Dartboard Simulation:</span>
+                        <div class="flex gap-2">
+                            <button id="sim16_throw" class="px-3 py-1 rounded bg-indigo-600 hover:bg-indigo-500 text-white font-bold transition shadow">Throw 500 Darts</button>
+                            <button id="sim16_reset" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold transition">Reset</button>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[250px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim16_svg" viewBox="0 0 600 250" class="w-full h-full max-h-[250px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim16_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            let totalDarts = 0;
+            let insideDarts = 0;
+            const throwBtn = document.getElementById('sim16_throw');
+            const resetBtn = document.getElementById('sim16_reset');
+            const svg = document.getElementById('sim16_svg');
+            const readout = document.getElementById('sim16_readout');
+
+            const Ox = 300, Oy = 125, R = 80;
+            let dotsSvg = "";
+
+            function render() {
+                const estPi = totalDarts > 0 ? (4 * insideDarts / totalDarts).toFixed(4) : "0.0000";
+                svg.innerHTML = `
+                    <!-- Bounding Square -->
+                    <rect x="${Ox - R}" y="${Oy - R}" width="${2 * R}" height="${2 * R}" fill="rgba(30,41,59,0.5)" stroke="#64748b" stroke-width="2"/>
+                    <!-- Inscribed Circle -->
+                    <circle cx="${Ox}" cy="${Oy}" r="${R}" fill="none" stroke="#10b981" stroke-width="3"/>
+
+                    <!-- Dart Points -->
+                    ${dotsSvg}
+                `;
+
+                readout.innerHTML = `
+                    Darts Thrown: <b>${totalDarts}</b> | Inside Circle: <b>${insideDarts}</b> | 
+                    Estimated <b>π ≈ 4 × (${insideDarts} / ${totalDarts || 1}) = ${estPi}</b>
+                `;
+            }
+
+            throwBtn.onclick = () => {
+                for (let i = 0; i < 500; i++) {
+                    const rx = (Math.random() - 0.5) * 2 * R;
+                    const ry = (Math.random() - 0.5) * 2 * R;
+                    const isInside = (rx * rx + ry * ry <= R * R);
+                    totalDarts++;
+                    if (isInside) insideDarts++;
+                    if (totalDarts <= 1500) {
+                        dotsSvg += `<circle cx="${Ox + rx}" cy="${Oy + ry}" r="1.5" fill="${isInside ? '#10b981' : '#f43f5e'}"/>`;
+                    }
+                }
+                render();
+            };
+
+            resetBtn.onclick = () => {
+                totalDarts = 0;
+                insideDarts = 0;
+                dotsSvg = "";
+                render();
+            };
+
+            render();
+        }
+
+        // Initialize application on load
+        window.addEventListener('DOMContentLoaded', () => {
+            initSlidePicker();
+            renderCurrentSlide();
+        });
+    </script>
+</body>
+</html>

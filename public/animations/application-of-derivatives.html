@@ -1,0 +1,2086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 12 Mathematics • Chapter 6: Application of Derivatives Multimedia Lab</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- KaTeX for beautiful math typesetting -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .slide-section { display: none; }
+    .slide-section.active { display: block; animation: fadeIn 0.35s ease-out forwards; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .custom-scrollbar::-webkit-scrollbar { height: 6px; width: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.6); }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(59, 130, 246, 0.4); border-radius: 4px; }
+    @keyframes modalScaleUp {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .animate-modal { animation: modalScaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-blue-500 selection:text-white">
+
+  <!-- TOP HEADER -->
+  <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <span class="p-2 rounded-xl bg-blue-600/20 text-blue-400 border border-blue-500/30 text-lg">
+          <i class="fas fa-chart-line"></i>
+        </span>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 uppercase tracking-wider">NCERT Class 12</span>
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+            <span class="text-xs text-slate-400 font-medium">Chapter 6</span>
+          </div>
+          <h1 class="text-base sm:text-lg font-bold text-white tracking-tight">Application of Derivatives Multimedia Lab</h1>
+          <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <!-- Voiceover Narrator Controls -->
+        <button onclick="toggleSpeech()" id="speechToggleBtn" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700 cursor-pointer">
+          <i class="fas fa-volume-up" id="speechIcon"></i>
+          <span id="speechText">Narration On</span>
+        </button>
+
+        <!-- Auto-Play Slideshow -->
+        <button onclick="toggleAutoPlaySlideshow()" id="autoPlaySlideshowBtn" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700 cursor-pointer">
+          <i class="fas fa-play" id="autoPlayIcon"></i>
+          <span id="autoPlayText">Auto-Play</span>
+        </button>
+
+        <!-- Slide Counter -->
+        <div class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-300">
+          Slide <span id="slideCounterCurrent" class="font-bold text-white">1</span> of <span class="font-bold text-slate-400">21</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div id="autoPlayProgressBarContainer" class="w-full bg-slate-900 h-1 overflow-hidden hidden">
+      <div id="autoPlayProgressBar" class="bg-gradient-to-r from-blue-500 to-cyan-400 h-full w-0 transition-all duration-100 ease-linear"></div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
+    
+            <!-- Slide 0: 6.1 & 6.2 Rate of Change of Quantities: Foundations -->
+            <div id="slide-0" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Section 6.1 & 6.2</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">6.1 & 6.2 Rate of Change of Quantities: Foundations</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Whitehead Quote, dy/dx = (dy/dt)/(dx/dt), Expanding Circles, Cubes & Waves</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(0)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-blue-900/40 via-indigo-900/30 to-violet-900/40 p-5 rounded-2xl border border-blue-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40">§ 6.1 & 6.2 Foundations</span>
+              <span class="text-xs text-slate-400">Class 12 NCERT Mathematics Part 1</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Rate of Change of Quantities: The Core Calculus Concept</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              <em>"With Calculus as a key, Mathematics can be successfully applied to the explanation of the course of Nature."</em> — Alfred North Whitehead.
+              When one quantity $y$ varies with another quantity $x$ under a rule $y = f(x)$, the derivative $\frac{dy}{dx}$ (or $f'(x)$) represents the <strong>instantaneous rate of change</strong> of $y$ with respect to $x$. At a specific point $x_0$, $\left.\frac{dy}{dx}\right|_{x=x_0}$ is the rate at that exact instant.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Left: Geometric Rates & Chain Rule -->
+            <div class="glass-card p-5 rounded-2xl space-y-4">
+              <h4 class="font-bold text-white text-sm text-cyan-300 flex items-center space-x-2">
+                <span>🔄</span>
+                <span>The Parametric Time-Rate Chain Rule</span>
+              </h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                If two variables $x$ and $y$ are both varying with respect to time $t$, i.e. $x = f(t)$ and $y = g(t)$, then by the Chain Rule:
+              </p>
+              <div class="p-3 bg-slate-950/80 rounded-xl font-mono text-center text-cyan-300 text-sm border border-cyan-500/30">
+                \frac{dy}{dx} = \frac{dy / dt}{dx / dt} &nbsp;\text{(provided } \frac{dx}{dt} \neq 0\text{)}
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 space-y-2 text-xs">
+                <div class="font-bold text-white">Classic Examples from Textbook:</div>
+                <div>• <strong>Example 1:</strong> Area of circle $A = \pi r^2 \implies \frac{dA}{dr} = 2\pi r$. When $r = 5\text{ cm}$, rate is $10\pi\text{ cm}^2/\text{s}$.</div>
+                <div>• <strong>Example 2:</strong> Cube volume $V = x^3 \implies \frac{dV}{dt} = 3x^2 \frac{dx}{dt} = 9 \implies \frac{dx}{dt} = \frac{3}{x^2}$. Surface area $S = 6x^2 \implies \frac{dS}{dt} = 12x \frac{dx}{dt} = \frac{36}{x} = 3.6\text{ cm}^2/\text{s}$ at $x = 10\text{ cm}$.</div>
+                <div>• <strong>Example 3:</strong> Circular lake ripple with $\frac{dr}{dt} = 4\text{ cm/s}$. When $r = 10\text{ cm}$, $\frac{dA}{dt} = 2\pi r \frac{dr}{dt} = 80\pi\text{ cm}^2/\text{s}$.</div>
+              </div>
+            </div>
+
+            <!-- Right: Interactive Canvas Widget -->
+            <div class="glass-card p-5 rounded-2xl flex flex-col justify-between space-y-4">
+              <div class="flex items-center justify-between">
+                <h4 class="font-bold text-white text-sm flex items-center space-x-2">
+                  <span>🌊</span>
+                  <span>Interactive Wave Ripple Simulator</span>
+                </h4>
+                <div class="text-[11px] font-mono text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-500/40">
+                  dr/dt = 4 cm/s
+                </div>
+              </div>
+
+              <div class="relative bg-slate-950 rounded-xl p-2 border border-slate-800 flex items-center justify-center min-h-[220px]">
+                <canvas id="rippleCanvas" width="460" height="200" class="max-w-full rounded-lg"></canvas>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-[11px] text-slate-300 flex items-center justify-between">
+                <span id="canvasCaption">Radius expanding: dA/dt = 2πr · dr/dt accelerates linearly with r!</span>
+                <span class="text-violet-400 font-mono text-[10px]">Live Simulation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 0 Checkpoint Container -->
+            <div id="slide-checkpoints-0" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 1: 6.2 Rates in Economics & Physical Constraints -->
+            <div id="slide-1" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Section 6.2 • Economics & Mechanics</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">6.2 Rates in Economics & Physical Constraints</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Marginal Cost MC = dC/dx, Marginal Revenue MR = dR/dx, Leaning Ladders & Leaking Cones</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(1)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-emerald-900/40 via-teal-900/30 to-cyan-900/40 p-5 rounded-2xl border border-emerald-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">§ 6.2 Applied Rates</span>
+              <span class="text-xs text-slate-400">Economics & Physical Constraints</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Marginal Economics & Geometric Mechanics</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Derivatives connect real-world fiscal decisions with mechanical motion. In business, <strong>Marginal Cost</strong> ($MC$) and <strong>Marginal Revenue</strong> ($MR$) measure instantaneous change per unit item. In physics, rigid bodies like sliding ladders couple rates through geometric constraints.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Economics Box -->
+            <div class="glass-card p-5 rounded-2xl space-y-4">
+              <h4 class="font-bold text-white text-sm text-emerald-300 flex items-center space-x-2">
+                <span>💰</span>
+                <span>Marginal Cost & Marginal Revenue</span>
+              </h4>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div class="text-emerald-300 font-bold border-b border-slate-800 pb-1">Definitions:</div>
+                <div>• Marginal Cost: MC = \frac{dC}{dx} &nbsp;[Instantaneous cost of output x]</div>
+                <div>• Marginal Revenue: MR = \frac{dR}{dx} &nbsp;[Instantaneous revenue of output x]</div>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-xs space-y-1.5 text-slate-300">
+                <strong class="text-white block">Example 5 (Marginal Cost):</strong>
+                For $C(x) = 0.005x^3 - 0.02x^2 + 30x + 5000$:<br>
+                $MC = \frac{dC}{dx} = 0.015x^2 - 0.04x + 30$.<br>
+                When $x = 3$: $MC = 0.015(9) - 0.04(3) + 30 = 30.015 \approx \mathbf{₹ 30.02}$.
+              </div>
+            </div>
+
+            <!-- Mechanics: Sliding Ladder -->
+            <div class="glass-card p-5 rounded-2xl space-y-4">
+              <h4 class="font-bold text-white text-sm text-cyan-300 flex items-center space-x-2">
+                <span>🪜</span>
+                <span>Exercise 6.1 Q10: Leaning Ladder on Wall</span>
+              </h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                A 5 m ladder leans against a wall. The bottom slides away at $\frac{dx}{dt} = 2\text{ cm/s}$. How fast does the height $y$ drop when $x = 4\text{ m}$?
+              </p>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>1. Constraint: x² + y² = 5² = 25</div>
+                <div>2. Differentiate w.r.t t: 2x(dx/dt) + 2y(dy/dt) = 0</div>
+                <div>3. When x = 4 m: y = √(25 - 16) = 3 m</div>
+                <div>4. 2(4)(2) + 2(3)(dy/dt) = 0 ⟹ dy/dt = -16/6 = -8/3 cm/s</div>
+                <div class="text-rose-400 font-bold pt-1">The height drops at 8/3 cm/s! (Negative sign indicates decreasing height).</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 1 Checkpoint Container -->
+            <div id="slide-checkpoints-1" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 2: 📝 Exercise 6.1 Workshop: Rate of Change Master Problems -->
+            <div id="slide-2" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Exercise 6.1 Deep Dive</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">📝 Exercise 6.1 Workshop: Rate of Change Master Problems</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Spherical Balloon Inflation, Sand Cone Pouring (h = r/6), and Particle Trajectories</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(2)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-violet-900/40 via-purple-900/30 to-indigo-900/40 p-5 rounded-2xl border border-violet-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/40">Exercise 6.1 Workshop</span>
+              <span class="text-xs text-slate-400">Board Exam High-Weightage Rate Problems</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Mastering Related Rates: Balloons & Sand Cones</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Related rates problems always require 3 steps: write the geometric formula, express in a single variable using given proportionalities, and differentiate with respect to time using the chain rule!
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Sand Cone -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-amber-300">Exercise 6.1 Q14: Leaking Sand Cone</h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Sand poured at $12\text{ cm}^3/\text{s}$ forms a cone where height is always one-sixth of radius: $h = r/6 \implies r = 6h$.
+              </p>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>V = \frac{1}{3}\pi r^2 h = \frac{1}{3}\pi (6h)^2 h = 12\pi h^3</div>
+                <div>\frac{dV}{dt} = 36\pi h^2 \frac{dh}{dt} = 12</div>
+                <div>\frac{dh}{dt} = \frac{12}{36\pi h^2} = \frac{1}{3\pi h^2}</div>
+                <div>When h = 4 cm:</div>
+                <div class="text-emerald-400 font-bold">\frac{dh}{dt} = \frac{1}{3\pi(16)} = \frac{1}{48\pi}\text{ cm/s}</div>
+              </div>
+            </div>
+
+            <!-- Spherical Balloon -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-cyan-300">Exercise 6.1 Q8: Spherical Balloon Inflation</h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Pumped at $900\text{ cm}^3/\text{s}$. Find rate of radius increase when $r = 15\text{ cm}$:
+              </p>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>V = \frac{4}{3}\pi r^3</div>
+                <div>\frac{dV}{dt} = 4\pi r^2 \frac{dr}{dt} = 900</div>
+                <div>When r = 15 cm: 4\pi(225) \frac{dr}{dt} = 900\pi \frac{dr}{dt} = 900</div>
+                <div class="text-cyan-300 font-bold">\frac{dr}{dt} = \frac{900}{900\pi} = \frac{1}{\pi}\text{ cm/s}</div>
+              </div>
+              <div class="p-2.5 rounded-lg bg-violet-950/30 border border-violet-500/30 text-[11px] text-violet-200">
+                💡 <strong>Teacher's Rule:</strong> Always keep constants like $\pi$ unexpanded until the final evaluation to prevent rounding errors!
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 2 Checkpoint Container -->
+            <div id="slide-checkpoints-2" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 3: 6.3 Increasing and Decreasing Functions: Definitions & Graphs -->
+            <div id="slide-3" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Section 6.3 • Definitions</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">6.3 Increasing and Decreasing Functions: Definitions & Graphs</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Definition 1: Analytical Criteria, Parabola x² Sign Behavior, Strictly vs Non-Strictly Monotonic</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(3)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-purple-900/40 via-violet-900/30 to-fuchsia-900/40 p-5 rounded-2xl border border-purple-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/40">§ 6.3 Monotonicity</span>
+              <span class="text-xs text-slate-400">Definitions & Parabola x² Sign Behavior</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Increasing and Decreasing Functions: Analytical Definitions</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Let $I$ be an interval contained in the domain of a real-valued function $f$. We formally classify whether moving from left to right along the graph causes the height to rise, fall, or stay constant.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="glass-card p-4 rounded-xl border-l-4 border-l-emerald-400 space-y-2">
+              <span class="text-xs font-bold text-emerald-300">Strictly Increasing</span>
+              <p class="text-xs text-slate-300 font-mono">
+                x₁ < x₂ ⟹ f(x₁) < f(x₂)
+              </p>
+              <p class="text-[11px] text-slate-400">Curve constantly ascends; no flat plateaus permitted!</p>
+            </div>
+            <div class="glass-card p-4 rounded-xl border-l-4 border-l-rose-400 space-y-2">
+              <span class="text-xs font-bold text-rose-300">Strictly Decreasing</span>
+              <p class="text-xs text-slate-300 font-mono">
+                x₁ < x₂ ⟹ f(x₁) > f(x₂)
+              </p>
+              <p class="text-[11px] text-slate-400">Curve constantly descends from left to right.</p>
+            </div>
+            <div class="glass-card p-4 rounded-xl border-l-4 border-l-amber-400 space-y-2">
+              <span class="text-xs font-bold text-amber-300">Constant Function</span>
+              <p class="text-xs text-slate-300 font-mono">
+                f(x) = c &nbsp;∀ x ∈ I
+              </p>
+              <p class="text-[11px] text-slate-400">A completely horizontal flat line; slope is zero everywhere.</p>
+            </div>
+          </div>
+
+          <!-- Parabola Case Study -->
+          <div class="glass-card p-5 rounded-2xl space-y-3">
+            <h4 class="font-bold text-white text-sm text-cyan-300">The Parabola Archetype: f(x) = x² (Fig 6.1)</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-1">
+                <span class="text-rose-400 font-bold block">Left of Origin (x < 0):</span>
+                <div>• Moving left to right (e.g. -2 to -1): f(-2) = 4, f(-1) = 1.</div>
+                <div>• Height decreases ⟹ <strong>f is strictly decreasing on (-∞, 0)</strong>.</div>
+              </div>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-1">
+                <span class="text-emerald-400 font-bold block">Right of Origin (x > 0):</span>
+                <div>• Moving left to right (e.g. 1 to 2): f(1) = 1, f(2) = 4.</div>
+                <div>• Height increases ⟹ <strong>f is strictly increasing on (0, ∞)</strong>.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 3 Checkpoint Container -->
+            <div id="slide-checkpoints-3" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 4: 6.3 Theorem 1: First Derivative Test for Monotonicity -->
+            <div id="slide-4" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Section 6.3 • Theorem 1</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">6.3 Theorem 1: First Derivative Test for Monotonicity</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">f'(x) > 0 ⟹ Increasing, f'(x) < 0 ⟹ Decreasing, Proof via Mean Value Theorem</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(4)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-blue-900/40 via-teal-900/30 to-emerald-900/40 p-5 rounded-2xl border border-blue-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40">§ 6.3 Theorem 1</span>
+              <span class="text-xs text-slate-400">Mean Value Theorem Connection</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">First Derivative Test for Monotonicity</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Theorem 1 provides the ultimate calculus criterion for determining growth or decay using the sign of the tangent slope $f'(x)$.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Theorem Statement -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-cyan-300">Theorem 1 Statement & Proof</h4>
+              <p class="text-xs text-slate-300">Let $f$ be continuous on $[a, b]$ and differentiable on $(a, b)$:</p>
+              <ul class="p-3 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <li class="text-emerald-300">• f'(x) > 0 ∀ x ∈ (a, b) ⟹ f is strictly increasing on [a, b]</li>
+                <li class="text-rose-300">• f'(x) < 0 ∀ x ∈ (a, b) ⟹ f is strictly decreasing on [a, b]</li>
+                <li class="text-amber-300">• f'(x) = 0 ∀ x ∈ (a, b) ⟹ f is constant on [a, b]</li>
+              </ul>
+              <div class="p-3 bg-slate-900 rounded-xl text-xs space-y-1 text-slate-300">
+                <strong class="text-white block font-mono">Proof Sketch via MVT:</strong>
+                For $x_1 < x_2$, there exists $c \in (x_1, x_2)$ such that:
+                $$f(x_2) - f(x_1) = f'(c)(x_2 - x_1)$$
+                Since $x_2 - x_1 > 0$, the sign of $f(x_2) - f(x_1)$ is identical to the sign of $f'(c)$!
+              </div>
+            </div>
+
+            <!-- Example 8 -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-emerald-300">Example 8: f(x) = x³ - 3x² + 4x on ℝ</h4>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>f'(x) = 3x² - 6x + 4</div>
+                <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 3(x² - 2x + 1) + 1</div>
+                <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 3(x - 1)² + 1</div>
+                <div class="text-emerald-400 font-bold">
+                  Since 3(x - 1)² ≥ 0, f'(x) ≥ 1 > 0 for all x ∈ ℝ!
+                </div>
+                <div>⟹ f(x) is strictly increasing everywhere on the real line.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 4 Checkpoint Container -->
+            <div id="slide-checkpoints-4" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 5: 6.3 Monotonicity of Trigonometric Functions -->
+            <div id="slide-5" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Section 6.3 • Trigonometric Graphs</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">6.3 Monotonicity of Trigonometric Functions</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Sign Charts for cos x on (0, 2π), sin 3x on [0, π/2], and sin x + cos x</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(5)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-pink-900/40 via-purple-900/30 to-violet-900/40 p-5 rounded-2xl border border-pink-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-pink-500/20 text-pink-300 border border-pink-500/40">§ 6.3 Trigonometric Monotonicity</span>
+              <span class="text-xs text-slate-400">Quadrant Analysis & Periodic Swings</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Monotonicity of Trigonometric Functions</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Trigonometric functions change sign as angles traverse different quadrants. A classic board exam pitfall is declaring a function "increasing" over an interval where it oscillates both up and down!
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- cos x Case Study -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-pink-300">Example 9: f(x) = cos x on (0, 2π)</h4>
+              <p class="text-xs text-slate-300 font-mono">f'(x) = -sin x</p>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-2 text-xs">
+                <div>• <strong>Interval (0, π):</strong> $\sin x > 0 \implies f'(x) < 0$. Strictly <strong>decreasing</strong>.</div>
+                <div>• <strong>Interval (π, 2π):</strong> $\sin x < 0 \implies f'(x) > 0$. Strictly <strong>increasing</strong>.</div>
+                <div class="text-amber-300 font-bold pt-1">• <strong>Full Interval (0, 2π):</strong> It falls then rises ⟹ <strong>neither increasing nor decreasing</strong>!</div>
+              </div>
+            </div>
+
+            <!-- sin x + cos x Case Study -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-violet-300">Example 13: f(x) = sin x + cos x on [0, 2π]</h4>
+              <p class="text-xs text-slate-300 font-mono">f'(x) = cos x - sin x = 0 ⟹ tan x = 1 ⟹ x = π/4, 5π/4</p>
+              <div class="space-y-1.5 text-xs font-mono">
+                <div class="flex justify-between p-2 rounded bg-slate-950 border border-slate-800">
+                  <span class="text-slate-300">[0, π/4]</span>
+                  <span class="text-emerald-300 font-bold">f'(x) > 0 ⟹ Increasing</span>
+                </div>
+                <div class="flex justify-between p-2 rounded bg-slate-950 border border-slate-800">
+                  <span class="text-slate-300">(π/4, 5π/4)</span>
+                  <span class="text-rose-300 font-bold">f'(x) < 0 ⟹ Decreasing</span>
+                </div>
+                <div class="flex justify-between p-2 rounded bg-slate-950 border border-slate-800">
+                  <span class="text-slate-300">[5π/4, 2π]</span>
+                  <span class="text-emerald-300 font-bold">f'(x) > 0 ⟹ Increasing</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 5 Checkpoint Container -->
+            <div id="slide-checkpoints-5" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 6: 📝 Exercise 6.2 Workshop: Factorization & Logarithmic Monotonicity -->
+            <div id="slide-6" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Exercise 6.2 Deep Dive</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">📝 Exercise 6.2 Workshop: Factorization & Logarithmic Monotonicity</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Interval Splitting for Polynomials, y = log(1+x) - 2x/(2+x), and 4sinθ/(2+cosθ) - θ</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(6)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-amber-900/40 via-orange-900/30 to-yellow-900/40 p-5 rounded-2xl border border-amber-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">Exercise 6.2 Deep Dive</span>
+              <span class="text-xs text-slate-400">Interval Factorization & Algebraic Bounds</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Mastering Interval Factorization</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              To find intervals of monotonicity: differentiate $f(x)$, solve $f'(x) = 0$ to locate all partition roots, test the sign in each disjoint interval, and conclude using Theorem 1.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Polynomial Drill -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-amber-300">Exercise 6.2 Q5: f(x) = 2x³ - 3x² - 36x + 7</h4>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>f'(x) = 6x² - 6x - 36 = 6(x - 3)(x + 2)</div>
+                <div>Roots: x = -2 and x = 3 divide ℝ into 3 intervals:</div>
+                <div class="p-2 rounded bg-slate-900 border border-slate-800 text-emerald-300">
+                  (-∞, -2): 6(-)(-) > 0 ⟹ Strictly Increasing
+                </div>
+                <div class="p-2 rounded bg-slate-900 border border-slate-800 text-rose-300">
+                  (-2, 3): 6(-)(+) < 0 ⟹ Strictly Decreasing
+                </div>
+                <div class="p-2 rounded bg-slate-900 border border-slate-800 text-emerald-300">
+                  (3, ∞): 6(+)(+) > 0 ⟹ Strictly Increasing
+                </div>
+              </div>
+            </div>
+
+            <!-- Q7: Logarithmic Fraction -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-cyan-300">Exercise 6.2 Q7: y = log(1+x) - 2x/(2+x)</h4>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>\frac{dy}{dx} = \frac{1}{1+x} - \frac{(2+x)·2 - 2x(1)}{(2+x)^2} = \frac{1}{1+x} - \frac{4}{(2+x)^2}</div>
+                <div>\frac{dy}{dx} = \frac{(2+x)^2 - 4(1+x)}{(1+x)(2+x)^2} = \frac{x^2}{(1+x)(2+x)^2}</div>
+                <div class="text-emerald-400 font-bold pt-1">
+                  For x > -1: x² ≥ 0, 1+x > 0, (2+x)² > 0 ⟹ dy/dx ≥ 0!
+                </div>
+                <div class="text-slate-300">Hence, y is an increasing function throughout its domain x > -1. Q.E.D.!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 6 Checkpoint Container -->
+            <div id="slide-checkpoints-6" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 7: 6.4 Maxima and Minima: Foundations & Critical Points -->
+            <div id="slide-7" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Section 6.4 • Foundations</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">6.4 Maxima and Minima: Foundations & Critical Points</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Definitions 3 & 4: Local vs Global Extrema, Hills & Valleys, Theorem 2 (Fermat's Theorem)</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(7)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-red-900/40 via-rose-900/30 to-pink-900/40 p-5 rounded-2xl border border-red-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-red-500/20 text-red-300 border border-red-500/40">§ 6.4 Foundations</span>
+              <span class="text-xs text-slate-400">Hills, Valleys & Critical Points</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Maxima and Minima: Local vs Global Extrema</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              At turning points, a curve transitions from increasing to decreasing (a hill / maximum) or from decreasing to increasing (a valley / minimum).
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Definitions & Fermat -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-rose-300">Definition 4 & Theorem 2 (Fermat's Theorem)</h4>
+              <p class="text-xs text-slate-300">
+                • <strong>Local Maximum:</strong> $f(c) \ge f(x)$ for all $x \in (c-h, c+h)$.<br>
+                • <strong>Local Minimum:</strong> $f(c) \le f(x)$ for all $x \in (c-h, c+h)$.<br>
+                • <strong>Theorem 2:</strong> If $f$ has a local extremum at $x = c$, then either $f'(c) = 0$ or $f$ is not differentiable at $c$.
+              </p>
+              <div class="p-3 bg-slate-950/80 rounded-xl text-xs font-mono text-amber-300 border border-amber-500/30">
+                Critical Point Definition: Any point c in domain where f'(c) = 0 or f'(c) does not exist.
+              </div>
+            </div>
+
+            <!-- Converse Fails: Inflection -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-cyan-300">⚠️ Converse Fails: Point of Inflection</h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Just because $f'(c) = 0$ does NOT mean $c$ is an extremum! Consider $f(x) = x^3$:
+              </p>
+              <div class="p-3 bg-slate-950/70 rounded-xl font-mono text-xs text-slate-200 space-y-1">
+                <div>• f'(x) = 3x² ⟹ f'(0) = 0</div>
+                <div>• For x < 0: f(x) < 0 (below axis)</div>
+                <div>• For x > 0: f(x) > 0 (above axis)</div>
+                <div class="text-rose-400 font-bold pt-1">⟹ x = 0 is a Point of Inflection, neither max nor min!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 7 Checkpoint Container -->
+            <div id="slide-checkpoints-7" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 8: 6.4 Theorem 3: The First Derivative Test for Local Extrema -->
+            <div id="slide-8" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Section 6.4 • First Derivative Test</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">6.4 Theorem 3: The First Derivative Test for Local Extrema</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Sign Flip (+ to - ⟹ Maxima, - to + ⟹ Minima), Points of Inflection (x³ at origin)</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(8)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-teal-900/40 via-emerald-900/30 to-green-900/40 p-5 rounded-2xl border border-teal-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/40">§ 6.4 Theorem 3</span>
+              <span class="text-xs text-slate-400">First Derivative Test for Local Extrema</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">The First Derivative Test: Sign Flip Rules</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Let $f$ be continuous at a critical point $c$. We inspect how the sign of $f'(x)$ changes as $x$ increases through $c$ from left to right.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="glass-card p-4 rounded-xl border-t-4 border-t-rose-400 space-y-2">
+              <span class="text-xs font-bold text-rose-300">Sign Flip: + to -</span>
+              <div class="p-2.5 bg-slate-950 rounded font-mono text-xs text-rose-200">
+                f'(x) > 0 (left)<br>
+                f'(x) < 0 (right)
+              </div>
+              <p class="text-xs text-white font-bold">⟹ Local Maximum at c</p>
+            </div>
+            <div class="glass-card p-4 rounded-xl border-t-4 border-t-emerald-400 space-y-2">
+              <span class="text-xs font-bold text-emerald-300">Sign Flip: - to +</span>
+              <div class="p-2.5 bg-slate-950 rounded font-mono text-xs text-emerald-200">
+                f'(x) < 0 (left)<br>
+                f'(x) > 0 (right)
+              </div>
+              <p class="text-xs text-white font-bold">⟹ Local Minimum at c</p>
+            </div>
+            <div class="glass-card p-4 rounded-xl border-t-4 border-t-amber-400 space-y-2">
+              <span class="text-xs font-bold text-amber-300">No Sign Change</span>
+              <div class="p-2.5 bg-slate-950 rounded font-mono text-xs text-amber-200">
+                f'(x) keeps same sign on both sides
+              </div>
+              <p class="text-xs text-white font-bold">⟹ Point of Inflection</p>
+            </div>
+          </div>
+
+          <!-- Walkthrough Box -->
+          <div class="glass-card p-5 rounded-2xl space-y-3">
+            <h4 class="font-bold text-white text-sm text-cyan-300">Example 17 Walkthrough: f(x) = x³ - 3x + 3</h4>
+            <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+              <div>f'(x) = 3x² - 3 = 3(x - 1)(x + 1) = 0 ⟹ Critical points: x = -1 and x = 1.</div>
+              <div>• At x = -1: Left (-1.1) f' > 0, Right (-0.9) f' < 0. Sign flips + to - ⟹ <strong>Local Maxima at x = -1</strong>, max value = f(-1) = 5.</div>
+              <div>• At x = 1: Left (0.9) f' < 0, Right (1.1) f' > 0. Sign flips - to + ⟹ <strong>Local Minima at x = 1</strong>, min value = f(1) = 1.</div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 8 Checkpoint Container -->
+            <div id="slide-checkpoints-8" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 9: 6.4 Theorem 4: The Second Derivative Test & Corner Cases -->
+            <div id="slide-9" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Section 6.4 • Second Derivative Test</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">6.4 Theorem 4: The Second Derivative Test & Corner Cases</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">f'(c) = 0 with f''(c) < 0 (Maxima), f''(c) > 0 (Minima), Test Failure & Non-Differentiable Peaks (3 + |x|)</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(9)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-indigo-900/40 via-blue-900/30 to-cyan-900/40 p-5 rounded-2xl border border-indigo-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40">§ 6.4 Theorem 4</span>
+              <span class="text-xs text-slate-400">Concavity & Curvature Test</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">The Second Derivative Test: Concavity at Critical Points</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              When $f$ is twice differentiable at a critical point $c$ where $f'(c) = 0$, evaluating $f''(c)$ reveals concavity in a single calculation!
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Rules -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-cyan-300">Second Derivative Rules</h4>
+              <div class="space-y-2 text-xs font-mono">
+                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-rose-300">
+                  f'(c) = 0 &nbsp;and&nbsp; f''(c) < 0 ⟹ Local Maximum (Concave Down ⌢)
+                </div>
+                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-emerald-300">
+                  f'(c) = 0 &nbsp;and&nbsp; f''(c) > 0 ⟹ Local Minimum (Concave Up ⌣)
+                </div>
+                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-amber-300">
+                  f'(c) = 0 &nbsp;and&nbsp; f''(c) = 0 ⟹ TEST FAILS! (Use 1st Derivative Test)
+                </div>
+              </div>
+            </div>
+
+            <!-- Non-differentiable extrema -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-pink-300">Non-Differentiable Extrema: f(x) = 3 + |x|</h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                $f(x) = 3 + |x|$ has a sharp corner at $x = 0$, so $f''(0)$ does not exist (2nd derivative test impossible).
+              </p>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>For x < 0: f'(x) = -1 < 0 (Decreasing)</div>
+                <div>For x > 0: f'(x) = +1 > 0 (Increasing)</div>
+                <div class="text-emerald-400 font-bold">
+                  By First Derivative Test: x = 0 is a local minimum, value = f(0) = 3!
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 9 Checkpoint Container -->
+            <div id="slide-checkpoints-9" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 10: 6.4.1 Absolute Maxima & Minima in a Closed Interval -->
+            <div id="slide-10" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Section 6.4.1 • Global Extrema</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">6.4.1 Absolute Maxima & Minima in a Closed Interval</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Theorems 5 & 6, 4-Step Working Rule, Testing Critical Points vs Boundary Endpoints</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(10)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-cyan-900/40 via-teal-900/30 to-blue-900/40 p-5 rounded-2xl border border-cyan-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">§ 6.4.1 Global Extrema</span>
+              <span class="text-xs text-slate-400">Extreme Value Theorem on [a, b]</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Absolute Maximum & Minimum in Closed Intervals</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Theorem 5 guarantees that every continuous function on $[a, b]$ attains an absolute maximum and minimum. The absolute extremum may occur at an interior critical point OR at the boundary endpoints $a$ and $b$!
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- 4-step rule -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-cyan-300">The 4-Step Working Rule</h4>
+              <ol class="p-3 bg-slate-950/70 rounded-xl space-y-2 text-xs text-slate-200">
+                <li><strong class="text-white">Step 1:</strong> Find all interior critical points in $(a, b)$ where $f'(x) = 0$ or $f'$ is undefined.</li>
+                <li><strong class="text-white">Step 2:</strong> Note the endpoints $x = a$ and $x = b$.</li>
+                <li><strong class="text-white">Step 3:</strong> Calculate $f(x)$ at ALL critical points and endpoints.</li>
+                <li><strong class="text-white">Step 4:</strong> The largest value is the <strong>Absolute Maximum</strong>; the smallest is the <strong>Absolute Minimum</strong>.</li>
+              </ol>
+            </div>
+
+            <!-- Example 27 -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-emerald-300">Example 27: f(x) = 2x³ - 15x² + 36x + 1 on [1, 5]</h4>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-1.5 text-xs font-mono text-slate-200">
+                <div>f'(x) = 6(x - 2)(x - 3) = 0 ⟹ Critical points: x = 2, 3.</div>
+                <div>Evaluate all 4 candidate points:</div>
+                <div class="text-slate-300">• f(1) = 24 &nbsp;&nbsp;&nbsp;[Endpoint 1]</div>
+                <div class="text-slate-300">• f(2) = 29 &nbsp;&nbsp;&nbsp;[Critical Point]</div>
+                <div class="text-slate-300">• f(3) = 28 &nbsp;&nbsp;&nbsp;[Critical Point]</div>
+                <div class="text-slate-300">• f(5) = 56 &nbsp;&nbsp;&nbsp;[Endpoint 5]</div>
+                <div class="text-emerald-400 font-bold pt-1">
+                  Absolute Maximum = 56 (at x = 5); Absolute Minimum = 24 (at x = 1)!
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 10 Checkpoint Container -->
+            <div id="slide-checkpoints-10" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 11: 6.4 Applied Optimization 1: Geometry & Trajectories -->
+            <div id="slide-11" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Applied Calculus • Part 1</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">6.4 Applied Optimization 1: Geometry & Trajectories</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Splitting Numbers with Extremal Sum of Squares, Nearest Point on Parabola y = x² + 7, Wire Poles</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(11)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-orange-900/40 via-amber-900/30 to-yellow-900/40 p-5 rounded-2xl border border-orange-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-orange-500/20 text-orange-300 border border-orange-500/40">Applied Optimization 1</span>
+              <span class="text-xs text-slate-400">Geometry & Shortest Distances</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Distance Minimization & Trajectory Interceptions</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              When minimizing distances $D = \sqrt{(x - x_0)^2 + (y - y_0)^2}$, minimize $D^2$ instead! This eliminates bulky square roots while keeping the extremum location identical.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Apache Helicopter -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-amber-300">Example 29: Apache Helicopter on y = x² + 7</h4>
+              <p class="text-xs text-slate-300">Soldier placed at $(3, 7)$. Find nearest distance:</p>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>D² = (x - 3)² + (x² + 7 - 7)² = (x - 3)² + x⁴</div>
+                <div>d(D²)/dx = 2(x - 3) + 4x³ = 4x³ + 2x - 6 = 2(x - 1)(2x² + 2x + 3) = 0</div>
+                <div>Root: x = 1 (quadratic factor has Δ < 0)</div>
+                <div>Minimum D = √[(1 - 3)² + 1⁴] = √(4 + 1) = √5</div>
+                <div class="text-emerald-400 font-bold">Nearest distance is exactly √5!</div>
+              </div>
+            </div>
+
+            <!-- Wire Poles -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-cyan-300">Example 24: Two Vertical Poles Wire Tie</h4>
+              <p class="text-xs text-slate-300">Poles $AP = 16\text{ m}$, $BQ = 22\text{ m}$, distance $AB = 20\text{ m}$. Find point $R$ on $AB$ minimizing $RP^2 + RQ^2$:</p>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>Let AR = x, RB = 20 - x</div>
+                <div>S(x) = (x² + 16²) + ((20 - x)² + 22²) = 2x² - 40x + 1140</div>
+                <div>S'(x) = 4x - 40 = 0 ⟹ x = 10 m</div>
+                <div>S''(x) = 4 > 0 (Minimum confirmed)</div>
+                <div class="text-cyan-300 font-bold">Tie wire at AR = 10 m (exact midpoint!).</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 11 Checkpoint Container -->
+            <div id="slide-checkpoints-11" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 12: 6.4 Applied Optimization 2: Packaging & Inscribed Figures -->
+            <div id="slide-12" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Applied Calculus • Part 2</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">6.4 Applied Optimization 2: Packaging & Inscribed Figures</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Trapezium of Maximum Area (75√3), Inscribed Cylinder in Cone (r_cyl = r/2), Corner Cut Boxes</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(12)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-emerald-900/40 via-teal-900/30 to-green-900/40 p-5 rounded-2xl border border-emerald-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">Applied Optimization 2</span>
+              <span class="text-xs text-slate-400">Packaging & Inscribed Solid Geometry</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Industrial Packaging & Inscribed Figures</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Industrial optimization problems balance material constraints against volume and area. We prove that optimal shapes possess highly symmetric dimensional ratios!
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Trapezium of Maximum Area -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-emerald-300">Example 25: Trapezium with 3 Sides Equal to 10 cm</h4>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>Area A(x) = (x + 10)√(100 - x²)</div>
+                <div>A'(x) = \frac{-2x² - 10x + 100}{\sqrt{100 - x²}} = 0</div>
+                <div>2x² + 10x - 100 = 0 ⟹ x = 5 cm (distance > 0)</div>
+                <div class="text-emerald-400 font-bold">
+                  Max Area = (5 + 10)√(100 - 25) = 15√75 = 75√3 cm²!
+                </div>
+              </div>
+            </div>
+
+            <!-- Inscribed Cylinder in Cone -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-cyan-300">Example 26: Cylinder Inscribed in Cone</h4>
+              <p class="text-xs text-slate-300">Cone has radius $r$ and height $h$. Find cylinder radius $x$ for maximum curved surface area:</p>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>Height of cylinder: QE = \frac{h(r - x)}{r}</div>
+                <div>Curved Surface Area S(x) = 2\pi x · \frac{h(r - x)}{r} = \frac{2\pi h}{r}(rx - x²)</div>
+                <div>S'(x) = \frac{2\pi h}{r}(r - 2x) = 0 ⟹ x = r / 2</div>
+                <div class="text-cyan-300 font-bold">Cylinder radius is exactly half the cone radius!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 12 Checkpoint Container -->
+            <div id="slide-checkpoints-12" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 13: 📝 Exercise 6.3 Workshop: Classic Solid Geometry Proofs -->
+            <div id="slide-13" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Exercise 6.3 Deep Dive</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">📝 Exercise 6.3 Workshop: Classic Solid Geometry Proofs</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Cone Inscribed in Sphere (V_cone = 8/27 V_sphere), Semi-Vertical Angles tan⁻¹√2 & sin⁻¹(1/3)</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(13)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-purple-900/40 via-indigo-900/30 to-violet-900/40 p-5 rounded-2xl border border-purple-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/40">Exercise 6.3 Deep Dive</span>
+              <span class="text-xs text-slate-400">Classic Board Exam Solid Proofs</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Classic Solid Geometry Proofs</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              These two landmark theorems appear frequently in CBSE Class 12 board examinations: proving cone volume fractions and optimal semi-vertical angles.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Cone in Sphere -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-purple-300">Exercise 6.3 Q23: Largest Cone in Sphere</h4>
+              <p class="text-xs text-slate-300">Prove maximum cone volume is $\frac{8}{27}$ of sphere volume:</p>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>Let cone height h = R + x ⟹ r_c² = R² - x²</div>
+                <div>V(x) = \frac{1}{3}\pi (R² - x²)(R + x)</div>
+                <div>V'(x) = \frac{1}{3}\pi (R - 3x)(R + x) = 0 ⟹ x = R/3</div>
+                <div>h = R + R/3 = 4R/3, &nbsp; r_c² = 8R²/9</div>
+                <div>V_cone = \frac{1}{3}\pi (\frac{8R²}{9})(\frac{4R}{3}) = \frac{32\pi R³}{81}</div>
+                <div class="text-emerald-400 font-bold">
+                  V_cone = \frac{8}{27} · [\frac{4}{3}\pi R³] = \frac{8}{27} V_sphere &nbsp;[Q.E.D.!]
+                </div>
+              </div>
+            </div>
+
+            <!-- Semi-vertical angle -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-cyan-300">Exercise 6.3 Q25: Optimal Semi-Vertical Angle</h4>
+              <p class="text-xs text-slate-300">Given slant height $l$, maximize volume $V$:</p>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>r = l sin α, &nbsp; h = l cos α</div>
+                <div>V(α) = \frac{1}{3}\pi l³ \sin²α \cos α</div>
+                <div>dV/dα = \frac{1}{3}\pi l³ [2\sin α \cos²α - \sin³α] = 0</div>
+                <div>2\cos²α = \sin²α ⟹ \tan²α = 2 ⟹ \tan α = \sqrt{2}</div>
+                <div class="text-cyan-300 font-bold">Semi-vertical angle α = tan⁻¹(√2)! [Q.E.D.]</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 13 Checkpoint Container -->
+            <div id="slide-checkpoints-13" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 14: 6.5 Miscellaneous Workshop: Velocity, Inverted Tanks & Shadow Lengths -->
+            <div id="slide-14" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Miscellaneous • Mechanics & Rates</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">6.5 Miscellaneous Workshop: Velocity, Inverted Tanks & Shadow Lengths</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Car Stopping Distance, Inverted Conical Tank Water Rising, Walking Man Shadow Speed</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(14)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-blue-900/40 via-cyan-900/30 to-teal-900/40 p-5 rounded-2xl border border-blue-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40">Miscellaneous Workshop 1</span>
+              <span class="text-xs text-slate-400">Kinematics, Inverted Tanks & Shadow Velocities</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Kinematics & Advanced Rate Problems</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Miscellaneous examples link geometry and physics: water filling inverted cones and rate of shadow elongation for moving pedestrians.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Inverted Tank -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-cyan-300">Example 31: Inverted Conical Tank</h4>
+              <p class="text-xs text-slate-300">Semi-vertical angle $\tan\alpha = 0.5 = 1/2$. Water poured at $5\text{ m}^3/\text{h}$. Find $\frac{dh}{dt}$ when $h = 4\text{ m}$:</p>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>r = h/2 ⟹ V = \frac{1}{3}\pi (h/2)^2 h = \frac{\pi h^3}{12}</div>
+                <div>\frac{dV}{dt} = \frac{\pi h^2}{4} \frac{dh}{dt} = 5</div>
+                <div>When h = 4 m: \frac{\pi(16)}{4} \frac{dh}{dt} = 4\pi \frac{dh}{dt} = 5</div>
+                <div>\frac{dh}{dt} = \frac{5}{4\pi} = \frac{5}{4(22/7)} = \frac{35}{88}\text{ m/h}</div>
+                <div class="text-emerald-400 font-bold">Water level rises at 35/88 m/h!</div>
+              </div>
+            </div>
+
+            <!-- Walking Man Shadow -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-teal-300">Example 32: Walking Man and Shadow</h4>
+              <p class="text-xs text-slate-300">Man $2\text{ m}$ tall walks at $5\text{ km/h}$ away from a $6\text{ m}$ lamp post. Find rate of shadow growth:</p>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>Similar triangles: \frac{s}{l + s} = \frac{2}{6} = \frac{1}{3} ⟹ 3s = l + s ⟹ l = 2s</div>
+                <div>\frac{dl}{dt} = 2 \frac{ds}{dt}</div>
+                <div>Given dl/dt = 5 km/h:</div>
+                <div class="text-teal-300 font-bold">\frac{ds}{dt} = \frac{5}{2} = 2.5\text{ km/h}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 14 Checkpoint Container -->
+            <div id="slide-checkpoints-14" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 15: 6.5 Miscellaneous Workshop: Advanced Extrema & Envelopes -->
+            <div id="slide-15" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Miscellaneous • Advanced Extrema</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">6.5 Miscellaneous Workshop: Advanced Extrema & Envelopes</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">f(x) = (log x)/x Maximum at x = e, Norman Window Light, Minimum Hypotenuse (a^(2/3) + b^(2/3))^(3/2)</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(15)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-violet-900/40 via-purple-900/30 to-fuchsia-900/40 p-5 rounded-2xl border border-violet-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/40">Miscellaneous Workshop 2</span>
+              <span class="text-xs text-slate-400">Advanced Board Exam Milestone Extrema</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Advanced Extrema & Architectural Optimization</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              From maximizing natural daylight through Norman windows to finding optimal cylinder enclosures inside spheres, derivatives provide exact mathematical blueprints.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- f(x) = (log x)/x -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-fuchsia-300">Misc Exercise Q1: Maximum of f(x) = (log x)/x</h4>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>f'(x) = \frac{x(1/x) - (\log x)(1)}{x^2} = \frac{1 - \log x}{x^2} = 0</div>
+                <div>1 - \log x = 0 ⟹ \log x = 1 ⟹ x = e</div>
+                <div>f''(e) = \frac{(-1/e)e^2 - 2e(0)}{e^4} = -\frac{1}{e^3} < 0 (Maximum confirmed)</div>
+                <div class="text-emerald-400 font-bold">Maximum value is 1/e, attained at x = e!</div>
+              </div>
+            </div>
+
+            <!-- Cylinder in Sphere -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-violet-300">Misc Exercise Q14: Max Cylinder in Sphere</h4>
+              <p class="text-xs text-slate-300">Show cylinder height is $h = \frac{2R}{\sqrt{3}}$ for maximum volume:</p>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>r² = R² - (h/2)² ⟹ V(h) = \pi (R²h - h³/4)</div>
+                <div>V'(h) = \pi (R² - 3h²/4) = 0 ⟹ 3h²/4 = R² ⟹ h = 2R / √3</div>
+                <div>V''(h) = -3\pi h / 2 < 0 (Maximum confirmed)</div>
+                <div class="text-cyan-300 font-bold">Max volume is 4πR³ / (3√3)!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 15 Checkpoint Container -->
+            <div id="slide-checkpoints-15" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 16: 6.6 Comprehensive Chapter Review & Master Mindmap -->
+            <div id="slide-16" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Chapter 6 Master Summary</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">6.6 Comprehensive Chapter Review & Master Mindmap</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Complete Synthesis of Rates, Monotonicity Charts, Extremum Tests & Optimization Steps</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(16)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 p-5 rounded-2xl border border-indigo-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40">Chapter 6 Master Mindmap</span>
+              <span class="text-xs text-slate-400">Synthesis & Complete Examination Guide</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Application of Derivatives: Quick-Reference Cheatsheet</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Review all four core application areas before starting the 4 Quiz Challenges:
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+            <div class="glass-card p-4 rounded-xl border border-blue-500/30 space-y-2">
+              <span class="font-bold text-blue-300 block">1. Rate of Change</span>
+              <p class="text-slate-300 font-mono">dy/dx = (dy/dt) / (dx/dt)</p>
+              <p class="text-slate-400 text-[11px]">Marginal Cost dC/dx, Marginal Revenue dR/dx, physical velocities.</p>
+            </div>
+            <div class="glass-card p-4 rounded-xl border border-emerald-500/30 space-y-2">
+              <span class="font-bold text-emerald-300 block">2. Monotonicity</span>
+              <p class="text-slate-300 font-mono">f'(x) > 0 ⟹ Incr<br>f'(x) < 0 ⟹ Decr</p>
+              <p class="text-slate-400 text-[11px]">Find critical points, test disjoint interval signs.</p>
+            </div>
+            <div class="glass-card p-4 rounded-xl border border-purple-500/30 space-y-2">
+              <span class="font-bold text-purple-300 block">3. Local Extrema</span>
+              <p class="text-slate-300 font-mono">1st Test: + to - ⟹ Max<br>2nd Test: f'' < 0 ⟹ Max</p>
+              <p class="text-slate-400 text-[11px]">Turning points, inflection points when sign does not flip.</p>
+            </div>
+            <div class="glass-card p-4 rounded-xl border border-amber-500/30 space-y-2">
+              <span class="font-bold text-amber-300 block">4. Global Extrema</span>
+              <p class="text-slate-300 font-mono">Closed [a, b] Rule</p>
+              <p class="text-slate-400 text-[11px]">Compare values at interior critical points and endpoints a, b.</p>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 16 Checkpoint Container -->
+            <div id="slide-checkpoints-16" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 17: 🎯 Quiz Challenge 1: Rate of Change & Marginal Quantities -->
+            <div id="slide-17" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Quiz 1 of 4 • 10 Questions</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">🎯 Quiz Challenge 1: Rate of Change & Marginal Quantities</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Questions 1–10: Test your mastery on geometric rates, related rates, marginal costs and revenues.</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-300">
+                    <span id="quiz-score-1">0</span> / 10 Solved
+                  </span>
+                </div>
+              </div>
+
+              <!-- Quiz Questions Grid -->
+              <div id="quiz-container-1" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <!-- Rendered dynamically by JavaScript -->
+              </div>
+            </div>
+            
+
+            <!-- Slide 18: 🎯 Quiz Challenge 2: Increasing & Decreasing Functions -->
+            <div id="slide-18" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Quiz 2 of 4 • 10 Questions</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">🎯 Quiz Challenge 2: Increasing & Decreasing Functions</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Questions 11–20: Master monotonicity intervals, derivative tests, and trigonometric sign criteria.</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-300">
+                    <span id="quiz-score-2">0</span> / 10 Solved
+                  </span>
+                </div>
+              </div>
+
+              <!-- Quiz Questions Grid -->
+              <div id="quiz-container-2" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <!-- Rendered dynamically by JavaScript -->
+              </div>
+            </div>
+            
+
+            <!-- Slide 19: 🎯 Quiz Challenge 3: Local Extrema, Points of Inflection & Derivative Tests -->
+            <div id="slide-19" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Quiz 3 of 4 • 10 Questions</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">🎯 Quiz Challenge 3: Local Extrema, Inflection Points & Tests</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Questions 21–30: Master critical points, 1st and 2nd derivative tests, and inflection points.</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-300">
+                    <span id="quiz-score-3">0</span> / 10 Solved
+                  </span>
+                </div>
+              </div>
+
+              <!-- Quiz Questions Grid -->
+              <div id="quiz-container-3" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <!-- Rendered dynamically by JavaScript -->
+              </div>
+            </div>
+            
+
+            <!-- Slide 20: 🎯 Quiz Challenge 4: Absolute Extrema & Applied Geometric Optimization -->
+            <div id="slide-20" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Quiz 4 of 4 • 10 Questions</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">🎯 Quiz Challenge 4: Absolute Extrema & Applied Optimization</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Questions 31–40: Master closed interval extrema, geometric packaging, and real-world calculus.</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-300">
+                    <span id="quiz-score-4">0</span> / 10 Solved
+                  </span>
+                </div>
+              </div>
+
+              <!-- Quiz Questions Grid -->
+              <div id="quiz-container-4" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <!-- Rendered dynamically by JavaScript -->
+              </div>
+            </div>
+            
+  </main>
+
+  <!-- BOTTOM BAR (FOOTER CONTROLLER DOCK WITH S1, S2, ETC. ON FOOTER) -->
+  <footer style="flex-shrink: 0;" class="border-t border-slate-800/90 bg-slate-950/95 p-3 sm:p-4 z-40 sticky bottom-0">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+
+      <!-- LEFT: Previous & Auto-Play Controls -->
+      <div class="flex items-center space-x-2 shrink-0">
+        <button onclick="prevSlide()" id="prevSlideBtn" class="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold border border-slate-700 flex items-center space-x-1 cursor-pointer transition-all disabled:opacity-40 disabled:cursor-not-allowed">
+          <span>⏮</span>
+          <span>Previous</span>
+        </button>
+
+        <button onclick="toggleAutoPlaySlideshow()" id="autoPlaySlideshowBtnFooter" class="px-4 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shadow-lg shadow-blue-600/30 flex items-center space-x-1.5 cursor-pointer transition-all">
+          <span id="autoPlayIconFooter">▶</span>
+          <span id="autoPlayTextFooter">Auto-Play</span>
+        </button>
+      </div>
+
+      <!-- CENTER: Slide Jump Pills (S1, S2, S3 ... S17, Q1, Q2, Q3, Q4) ON FOOTER -->
+      <div class="flex items-center space-x-1 overflow-x-auto max-w-full pb-1 md:pb-0 text-xs custom-scrollbar">
+        <button onclick="goToSlide(0)" id="pill-0" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="6.1 & 6.2 Rate of Change of Quantities: Foundations">1. Rates Intro</button>
+<button onclick="goToSlide(1)" id="pill-1" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="6.2 Rates in Economics & Physical Constraints">2. Cost, Rev & Ladder</button>
+<button onclick="goToSlide(2)" id="pill-2" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="📝 Exercise 6.1 Workshop: Rate of Change Master Problems">3. Ex 6.1</button>
+<button onclick="goToSlide(3)" id="pill-3" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="6.3 Increasing and Decreasing Functions: Definitions & Graphs">4. Incr & Decr</button>
+<button onclick="goToSlide(4)" id="pill-4" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="6.3 Theorem 1: First Derivative Test for Monotonicity">5. Monotonicity Test</button>
+<button onclick="goToSlide(5)" id="pill-5" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="6.3 Monotonicity of Trigonometric Functions">6. Trig Monotonicity</button>
+<button onclick="goToSlide(6)" id="pill-6" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="📝 Exercise 6.2 Workshop: Factorization & Logarithmic Monotonicity">7. Ex 6.2</button>
+<button onclick="goToSlide(7)" id="pill-7" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="6.4 Maxima and Minima: Foundations & Critical Points">8. Maxima & Minima</button>
+<button onclick="goToSlide(8)" id="pill-8" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="6.4 Theorem 3: The First Derivative Test for Local Extrema">9. 1st Deriv Test</button>
+<button onclick="goToSlide(9)" id="pill-9" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="6.4 Theorem 4: The Second Derivative Test & Corner Cases">10. 2nd Deriv Test</button>
+<button onclick="goToSlide(10)" id="pill-10" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="6.4.1 Absolute Maxima & Minima in a Closed Interval">11. Global Extrema</button>
+<button onclick="goToSlide(11)" id="pill-11" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="6.4 Applied Optimization 1: Geometry & Trajectories">12. Shortest Dist</button>
+<button onclick="goToSlide(12)" id="pill-12" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="6.4 Applied Optimization 2: Packaging & Inscribed Figures">13. Box & Cylinder</button>
+<button onclick="goToSlide(13)" id="pill-13" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="📝 Exercise 6.3 Workshop: Classic Solid Geometry Proofs">14. Ex 6.3</button>
+<button onclick="goToSlide(14)" id="pill-14" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="6.5 Miscellaneous Workshop: Velocity, Inverted Tanks & Shadow Lengths">15. Shadow & Tank</button>
+<button onclick="goToSlide(15)" id="pill-15" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="6.5 Miscellaneous Workshop: Advanced Extrema & Envelopes">16. Milestone Extrema</button>
+<button onclick="goToSlide(16)" id="pill-16" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="6.6 Comprehensive Chapter Review & Master Mindmap">17. Mindmap</button>
+<button onclick="goToSlide(17)" id="pill-17" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="🎯 Quiz Challenge 1: Rate of Change & Marginal Quantities">18. Quiz 1</button>
+<button onclick="goToSlide(18)" id="pill-18" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="🎯 Quiz Challenge 2: Increasing & Decreasing Functions">19. Quiz 2</button>
+<button onclick="goToSlide(19)" id="pill-19" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="🎯 Quiz Challenge 3: Local Extrema, Points of Inflection & Derivative Tests">20. Quiz 3</button>
+<button onclick="goToSlide(20)" id="pill-20" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="🎯 Quiz Challenge 4: Absolute Extrema & Applied Geometric Optimization">21. Quiz 4</button>
+      </div>
+
+      <!-- RIGHT: Next Slide Button & Last Slide Message -->
+      <div class="flex items-center space-x-2 shrink-0 justify-end">
+        <div id="lastSlideNotice" style="display: none;" class="px-3.5 py-1.5 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold flex items-center space-x-1.5 shadow-lg animate-pulse">
+          <span>🎉</span>
+          <span>You have reached the last slide of this chapter</span>
+        </div>
+
+        <button onclick="nextSlide()" id="nextSlideBtn" class="px-5 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white text-xs font-bold shadow-lg shadow-blue-600/30 flex items-center space-x-1.5 cursor-pointer transition-all active:scale-95">
+          <span>Next Slide</span>
+          <span>⏭</span>
+        </button>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- DEDICATED POPUP MODAL FOR QUIZ SOLUTIONS -->
+  <div id="solutionModal" class="fixed inset-0 z-50 hidden bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-cyan-500/50 rounded-2xl max-w-2xl w-full p-6 shadow-2xl overflow-y-auto max-h-[90vh] relative animate-modal">
+      <!-- Close Button -->
+      <button onclick="closeSolutionPopup()" class="absolute top-4 right-4 p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition cursor-pointer">
+        <i class="fas fa-times text-base"></i>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="flex items-center space-x-2.5 pb-4 border-b border-slate-800">
+        <span class="p-2 rounded-xl bg-cyan-600/20 text-cyan-400 border border-cyan-500/30 text-base">
+          💡
+        </span>
+        <div>
+          <span id="modalQuizBadge" class="text-[10px] font-bold text-cyan-400 uppercase tracking-wider font-mono">Quiz Solution</span>
+          <h3 id="modalQuizTitle" class="text-base font-bold text-white">Detailed Step-by-Step Teacher Solution</h3>
+        </div>
+      </div>
+
+      <!-- Question Box -->
+      <div class="mt-4 p-4 rounded-xl bg-slate-950/80 border border-slate-800">
+        <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider block mb-1">Question</span>
+        <div id="modalQuestionText" class="text-sm font-semibold text-slate-100 leading-relaxed"></div>
+      </div>
+
+      <!-- Correct Answer Badge -->
+      <div class="mt-4 flex items-center justify-between p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/40">
+        <span class="text-xs font-bold text-emerald-300 flex items-center space-x-2">
+          <i class="fas fa-check-circle"></i>
+          <span>Correct Answer</span>
+        </span>
+        <span id="modalCorrectOption" class="text-xs font-mono font-bold text-emerald-300 bg-emerald-900/60 px-2.5 py-1 rounded-lg border border-emerald-500/30"></span>
+      </div>
+
+      <!-- Step-by-Step Solution Body -->
+      <div class="mt-4 space-y-2">
+        <span class="text-[10px] uppercase font-bold text-cyan-400 tracking-wider block">Mathematical Walkthrough</span>
+        <div id="modalExplanationContent" class="p-4 rounded-xl bg-slate-950/90 border border-cyan-500/30 text-xs sm:text-sm text-slate-200 leading-relaxed font-sans space-y-2">
+          <!-- Rendered explanation -->
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="mt-6 pt-4 border-t border-slate-800 flex justify-end">
+        <button onclick="closeSolutionPopup()" class="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition cursor-pointer shadow-lg shadow-blue-600/30">
+          Close Solution
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    const slidesData = [{"index": 0, "title": "6.1 & 6.2 Rate of Change of Quantities: Foundations", "subtitle": "Whitehead Quote, dy/dx = (dy/dt)/(dx/dt), Expanding Circles, Cubes & Waves", "badge": "Section 6.1 & 6.2", "narration": "Welcome to Chapter 6: Application of Derivatives! As Whitehead famously remarked, 'With Calculus as a key, Mathematics can be successfully applied to the explanation of the course of Nature.' The derivative dy by dx measures the instantaneous rate of change of one quantity with respect to another. When two quantities x and y depend on time t, the chain rule gives dy/dx equals (dy/dt) divided by (dx/dt). Let us explore expanding circles, inflating cubes, and water ripples."}, {"index": 1, "title": "6.2 Rates in Economics & Physical Constraints", "subtitle": "Marginal Cost MC = dC/dx, Marginal Revenue MR = dR/dx, Leaning Ladders & Leaking Cones", "badge": "Section 6.2 \u2022 Economics & Mechanics", "narration": "In economics, marginal cost is the instantaneous rate of change of total cost per additional unit produced, and marginal revenue is the rate of change of revenue. In mechanics, geometric constraints like a 5-meter ladder sliding down a wall couple horizontal and vertical velocities using the Pythagorean theorem."}, {"index": 2, "title": "\ud83d\udcdd Exercise 6.1 Workshop: Rate of Change Master Problems", "subtitle": "Spherical Balloon Inflation, Sand Cone Pouring (h = r/6), and Particle Trajectories", "badge": "Exercise 6.1 Deep Dive", "narration": "In Exercise 6.1, we tackle board exam favorites: gas pumped into a spherical balloon at 900 cubic centimeters per second, sand pouring from a pipe forming a cone where height is one-sixth of the radius, and finding points on 6y = x cubed plus 2 where y changes eight times as fast as x."}, {"index": 3, "title": "6.3 Increasing and Decreasing Functions: Definitions & Graphs", "subtitle": "Definition 1: Analytical Criteria, Parabola x\u00b2 Sign Behavior, Strictly vs Non-Strictly Monotonic", "badge": "Section 6.3 \u2022 Definitions", "narration": "A function is increasing on an interval if larger inputs produce larger outputs: x1 less than x2 implies f(x1) less than or equal to f(x2). It is strictly increasing if the inequality is strict. For the parabola y = x squared, moving left to right shows height decreasing for negative x and increasing for positive x."}, {"index": 4, "title": "6.3 Theorem 1: First Derivative Test for Monotonicity", "subtitle": "f'(x) > 0 \u27f9 Increasing, f'(x) < 0 \u27f9 Decreasing, Proof via Mean Value Theorem", "badge": "Section 6.3 \u2022 Theorem 1", "narration": "Theorem 1 connects the algebraic sign of the derivative to geometric growth! If f'(x) is positive on an open interval, the function is strictly increasing. If f'(x) is negative, it is strictly decreasing. The proof relies directly on Lagrange's Mean Value Theorem: f(x2) minus f(x1) equals f'(c) times (x2 minus x1)."}, {"index": 5, "title": "6.3 Monotonicity of Trigonometric Functions", "subtitle": "Sign Charts for cos x on (0, 2\u03c0), sin 3x on [0, \u03c0/2], and sin x + cos x", "badge": "Section 6.3 \u2022 Trigonometric Graphs", "narration": "Trigonometric functions alternate between increasing and decreasing across quadrants. For f(x) = cos x, f'(x) = -sin x is negative in the first two quadrants, making cos x decreasing on (0, pi), and positive in quadrants 3 and 4, making it increasing on (pi, 2pi). Across (0, 2pi), it is neither increasing nor decreasing as a whole."}, {"index": 6, "title": "\ud83d\udcdd Exercise 6.2 Workshop: Factorization & Logarithmic Monotonicity", "subtitle": "Interval Splitting for Polynomials, y = log(1+x) - 2x/(2+x), and 4sin\u03b8/(2+cos\u03b8) - \u03b8", "badge": "Exercise 6.2 Deep Dive", "narration": "In Exercise 6.2, we master interval partitioning by finding roots of f'(x) = 0 and testing signs in disjoint sub-intervals. We also analyze algebraic fractions and trigonometric expressions like 4 sin theta over (2 + cos theta) minus theta, proving it is strictly increasing on [0, pi/2]."}, {"index": 7, "title": "6.4 Maxima and Minima: Foundations & Critical Points", "subtitle": "Definitions 3 & 4: Local vs Global Extrema, Hills & Valleys, Theorem 2 (Fermat's Theorem)", "badge": "Section 6.4 \u2022 Foundations", "narration": "Extrema represent peaks and troughs. A point c is a local maximum if f(c) is greater than or equal to f(x) in some small neighborhood around c. Theorem 2 establishes that at any interior local extremum, the derivative must either equal zero or not exist. These candidate locations are called critical points."}, {"index": 8, "title": "6.4 Theorem 3: The First Derivative Test for Local Extrema", "subtitle": "Sign Flip (+ to - \u27f9 Maxima, - to + \u27f9 Minima), Points of Inflection (x\u00b3 at origin)", "badge": "Section 6.4 \u2022 First Derivative Test", "narration": "Theorem 3 provides the first derivative test: as x sweeps left to right through critical point c, if f'(x) changes sign from positive to negative, the curve peaks at a local maximum! If it changes from negative to positive, it troughs at a local minimum. If the sign does not change, like x cubed at zero, it is a point of inflection."}, {"index": 9, "title": "6.4 Theorem 4: The Second Derivative Test & Corner Cases", "subtitle": "f'(c) = 0 with f''(c) < 0 (Maxima), f''(c) > 0 (Minima), Test Failure & Non-Differentiable Peaks (3 + |x|)", "badge": "Section 6.4 \u2022 Second Derivative Test", "narration": "The Second Derivative Test is the workhorse of applied calculus: if f'(c) is zero and f''(c) is negative, the curve is concave down like a frowning hill, confirming a local maximum! If f''(c) is positive, it is concave up like a smiling valley, confirming a local minimum. If f''(c) is zero, the test fails and we revert to the first derivative test."}, {"index": 10, "title": "6.4.1 Absolute Maxima & Minima in a Closed Interval", "subtitle": "Theorems 5 & 6, 4-Step Working Rule, Testing Critical Points vs Boundary Endpoints", "badge": "Section 6.4.1 \u2022 Global Extrema", "narration": "On a closed bounded interval [a, b], every continuous function is guaranteed to achieve an absolute maximum and minimum by Theorem 5. Our systematic 4-step rule is: find all critical points where f'(x) = 0 or undefined, evaluate f at all critical points, evaluate f at boundary endpoints a and b, and pick the greatest and least values."}, {"index": 11, "title": "6.4 Applied Optimization 1: Geometry & Trajectories", "subtitle": "Splitting Numbers with Extremal Sum of Squares, Nearest Point on Parabola y = x\u00b2 + 7, Wire Poles", "badge": "Applied Calculus \u2022 Part 1", "narration": "Applied optimization models real-world problems mathematically. To find the point on parabola y = x squared + 7 nearest to an enemy observer at (3, 7), we minimize the squared distance function D squared = (x - 3) squared + x to the fourth, finding the exact closest approach."}, {"index": 12, "title": "6.4 Applied Optimization 2: Packaging & Inscribed Figures", "subtitle": "Trapezium of Maximum Area (75\u221a3), Inscribed Cylinder in Cone (r_cyl = r/2), Corner Cut Boxes", "badge": "Applied Calculus \u2022 Part 2", "narration": "We examine classic engineering designs: folding an open box from an aluminium sheet by cutting corner squares of side x to maximize volume, and proving that the cylinder of greatest curved surface area that fits inside a cone has radius exactly half the radius of the cone!"}, {"index": 13, "title": "\ud83d\udcdd Exercise 6.3 Workshop: Classic Solid Geometry Proofs", "subtitle": "Cone Inscribed in Sphere (V_cone = 8/27 V_sphere), Semi-Vertical Angles tan\u207b\u00b9\u221a2 & sin\u207b\u00b9(1/3)", "badge": "Exercise 6.3 Deep Dive", "narration": "Exercise 6.3 contains the crown jewels of board exam geometry: proving that the largest cone inscribed inside a sphere has volume equal to 8 over 27 of the sphere's volume, and showing the semi-vertical angle of a cone of maximum volume for a given slant height is tan inverse of root 2."}, {"index": 14, "title": "6.5 Miscellaneous Workshop: Velocity, Inverted Tanks & Shadow Lengths", "subtitle": "Car Stopping Distance, Inverted Conical Tank Water Rising, Walking Man Shadow Speed", "badge": "Miscellaneous \u2022 Mechanics & Rates", "narration": "In the Miscellaneous section, we solve real-world problems: a car decelerating to a stop in 4 seconds, water poured into an inverted conical tank where water level rises at 35 over 88 meters per hour, and a man walking away from a street lamp whose shadow lengthens at 2.5 kilometers per hour."}, {"index": 15, "title": "6.5 Miscellaneous Workshop: Advanced Extrema & Envelopes", "subtitle": "f(x) = (log x)/x Maximum at x = e, Norman Window Light, Minimum Hypotenuse (a^(2/3) + b^(2/3))^(3/2)", "badge": "Miscellaneous \u2022 Advanced Extrema", "narration": "Here we conquer advanced milestone problems: proving (log x)/x achieves its global maximum at x = e, designing a Norman window of perimeter 10 meters to admit maximum sunlight, and finding the shortest ladder across an internal obstacle with length (a to the 2/3 plus b to the 2/3) to the 3/2."}, {"index": 16, "title": "6.6 Comprehensive Chapter Review & Master Mindmap", "subtitle": "Complete Synthesis of Rates, Monotonicity Charts, Extremum Tests & Optimization Steps", "badge": "Chapter 6 Master Summary", "narration": "Congratulations on covering all concepts of Application of Derivatives! We review the central pillars: rate of change, monotonicity via the first derivative, local extrema via first and second derivative tests, global extrema on closed intervals, and the 5-step applied optimization blueprint. Now test your mastery in the four Quiz Challenges!"}, {"index": 17, "title": "\ud83c\udfaf Quiz Challenge 1: Rate of Change & Marginal Quantities", "subtitle": "10 CBSE Board & Competitive Questions with Step-by-Step Solution Popups", "badge": "Quiz 1 of 4 \u2022 10 Questions", "narration": "Quiz 1 tests your skills on rates of change of geometric figures, related rates, marginal cost, and marginal revenue. Select your answers and click \ud83d\udca1 Solution for the full popup walkthrough!"}, {"index": 18, "title": "\ud83c\udfaf Quiz Challenge 2: Increasing & Decreasing Functions", "subtitle": "10 Targeted Questions on Monotonicity Intervals, Sign Charts & Derivative Tests", "badge": "Quiz 2 of 4 \u2022 10 Questions", "narration": "Quiz 2 tests monotonicity intervals, strictly increasing vs decreasing criteria, and trigonometric behavior. Solve each question and use the solution popup to review the derivations."}, {"index": 19, "title": "\ud83c\udfaf Quiz Challenge 3: Local Extrema, Points of Inflection & Derivative Tests", "subtitle": "10 Questions on Critical Points, First & Second Derivative Tests, and Corner Extrema", "badge": "Quiz 3 of 4 \u2022 10 Questions", "narration": "Quiz 3 challenges your grasp of turning points, critical points, 1st and 2nd derivative tests, and inflection points. Click \ud83d\udca1 Solution on any problem to view the teacher explanation in a popup."}, {"index": 20, "title": "\ud83c\udfaf Quiz Challenge 4: Absolute Extrema & Applied Geometric Optimization", "subtitle": "10 Rigorous Questions on Closed Interval Maxima/Minima, Cone/Cylinder Optimization & Word Problems", "badge": "Quiz 4 of 4 \u2022 10 Questions", "narration": "Final Quiz Challenge! Test your expertise on closed interval extrema and classic geometric optimization proofs. Check your solutions and celebrate finishing Chapter 6!"}];
+    const slideCheckpoints = [{"slideIdx": 0, "questions": [{"id": 1, "question": "Find the rate of change of the area of a circle with respect to its radius r when r = 5 cm:", "options": ["A) 5\u03c0 cm\u00b2/cm", "B) 10\u03c0 cm\u00b2/cm", "C) 25\u03c0 cm\u00b2/cm", "D) 20\u03c0 cm\u00b2/cm"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 The area of a circle is A = \u03c0r\u00b2.<br>\u2022 Differentiating with respect to radius r: dA/dr = d/dr(\u03c0r\u00b2) = 2\u03c0r.<br>\u2022 When r = 5 cm: dA/dr = 2\u03c0(5) = 10\u03c0 cm\u00b2/cm (NCERT Example 1)."}, {"id": 2, "question": "If x = f(t) and y = g(t), how is dy/dx calculated using the chain rule when dx/dt \u2260 0?", "options": ["A) dy/dx = (dy/dt) \u00b7 (dx/dt)", "B) dy/dx = (dy/dt) / (dx/dt)", "C) dy/dx = (dx/dt) / (dy/dt)", "D) dy/dx = d\u00b2y/dt\u00b2"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 By parametric chain rule: dy/dt = (dy/dx) \u00b7 (dx/dt).<br>\u2022 Dividing both sides by dx/dt (when dx/dt \u2260 0): dy/dx = (dy/dt) / (dx/dt) (NCERT Section 6.2)."}]}, {"slideIdx": 1, "questions": [{"id": 1, "question": "If total revenue R(x) = 3x\u00b2 + 36x + 5, what is the marginal revenue (MR) when x = 5 units are sold?", "options": ["A) \u20b9 66", "B) \u20b9 36", "C) \u20b9 51", "D) \u20b9 96"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Marginal Revenue is MR = dR/dx = d/dx(3x\u00b2 + 36x + 5) = 6x + 36.<br>\u2022 For x = 5: MR = 6(5) + 36 = 30 + 36 = \u20b9 66 (NCERT Example 6)."}, {"id": 2, "question": "A 5 m ladder leans against a wall. The foot is pulled away at 2 cm/s. When the foot is 4 m from the wall, how fast is the height decreasing?", "options": ["A) 8/3 cm/s", "B) 2 cm/s", "C) 3/8 cm/s", "D) 5/2 cm/s"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 By Pythagoras: x\u00b2 + y\u00b2 = 5\u00b2 = 25.<br>\u2022 Differentiate w.r.t time t: 2x(dx/dt) + 2y(dy/dt) = 0 \u27f9 dy/dt = -(x/y)(dx/dt).<br>\u2022 When x = 4 m, y = \u221a(25 - 16) = 3 m.<br>\u2022 Given dx/dt = 2 cm/s: dy/dt = -(4/3)(2) = -8/3 cm/s.<br>\u2022 The height is decreasing at 8/3 cm/s (Exercise 6.1 Q10)."}]}, {"slideIdx": 2, "questions": [{"id": 1, "question": "A spherical balloon is inflated at 900 cm\u00b3/s. Find the rate of increase of radius when r = 15 cm:", "options": ["A) 1/\u03c0 cm/s", "B) 2/\u03c0 cm/s", "C) 3/\u03c0 cm/s", "D) 9/\u03c0 cm/s"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Volume of sphere V = (4/3)\u03c0r\u00b3.<br>\u2022 dV/dt = 4\u03c0r\u00b2(dr/dt).<br>\u2022 Given dV/dt = 900 and r = 15: 900 = 4\u03c0(15)\u00b2(dr/dt) = 4\u03c0(225)(dr/dt) = 900\u03c0(dr/dt).<br>\u2022 Therefore, dr/dt = 900 / (900\u03c0) = 1/\u03c0 cm/s (Exercise 6.1 Q8)."}, {"id": 2, "question": "A particle moves along 6y = x\u00b3 + 2. Find points where y changes 8 times as fast as x (dy/dt = 8 dx/dt):", "options": ["A) (4, 11) and (-4, -31/3)", "B) (2, 5/3) and (-2, -1)", "C) (3, 29/6) and (-3, -25/6)", "D) (1, 1/2) and (-1, 1/6)"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Differentiate 6y = x\u00b3 + 2 w.r.t t: 6(dy/dt) = 3x\u00b2(dx/dt).<br>\u2022 Given dy/dt = 8(dx/dt): 6(8 dx/dt) = 3x\u00b2(dx/dt) \u27f9 48 = 3x\u00b2 \u27f9 x\u00b2 = 16 \u27f9 x = \u00b14.<br>\u2022 When x = 4: 6y = 4\u00b3 + 2 = 66 \u27f9 y = 11 \u27f9 (4, 11).<br>\u2022 When x = -4: 6y = (-4)\u00b3 + 2 = -62 \u27f9 y = -31/3 \u27f9 (-4, -31/3) (Exercise 6.1 Q11)."}]}, {"slideIdx": 3, "questions": [{"id": 1, "question": "A function f is strictly increasing on an interval I if for all x\u2081, x\u2082 \u2208 I with x\u2081 < x\u2082:", "options": ["A) f(x\u2081) \u2264 f(x\u2082)", "B) f(x\u2081) < f(x\u2082)", "C) f(x\u2081) = f(x\u2082)", "D) f'(x) = 0"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 By Definition 1(iv) of NCERT: f is strictly increasing if x\u2081 < x\u2082 implies f(x\u2081) < f(x\u2082) (strict inequality without flat horizontal segments)."}, {"id": 2, "question": "For the parabola f(x) = x\u00b2, on which interval is the function strictly decreasing?", "options": ["A) (-\u221e, 0)", "B) (0, \u221e)", "C) (-\u221e, \u221e)", "D) [-1, 1]"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 f'(x) = 2x.<br>\u2022 For x < 0, f'(x) = 2x < 0, so f(x) is strictly decreasing on (-\u221e, 0).<br>\u2022 For x > 0, f'(x) > 0, so f(x) is strictly increasing on (0, \u221e) (NCERT Section 6.3 Fig 6.1)."}]}, {"slideIdx": 4, "questions": [{"id": 1, "question": "Show that f(x) = 7x - 3 is strictly increasing on all of \u211d:", "options": ["A) Because f'(x) = 7 > 0 for all x \u2208 \u211d", "B) Because f(0) = -3 < 0", "C) Because f''(x) = 0", "D) It is only increasing for x > 3/7"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Differentiating: f'(x) = 7.<br>\u2022 Since 7 > 0 for every x \u2208 \u211d, by Theorem 1, f(x) is strictly increasing everywhere on \u211d (NCERT Example 7)."}, {"id": 2, "question": "Which theorem is used in the textbook to formally prove Theorem 1 (f'(x) > 0 \u27f9 increasing)?", "options": ["A) Cauchy's Integral Theorem", "B) Lagrange's Mean Value Theorem (MVT)", "C) Fundamental Theorem of Algebra", "D) Intermediate Value Theorem"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 For x\u2081 < x\u2082, by MVT: f(x\u2082) - f(x\u2081) = f'(c)(x\u2082 - x\u2081).<br>\u2022 Since f'(c) > 0 and (x\u2082 - x\u2081) > 0, their product is positive, proving f(x\u2082) > f(x\u2081) (NCERT Page 154)."}]}, {"slideIdx": 5, "questions": [{"id": 1, "question": "On which interval is the function f(x) = cos x strictly increasing?", "options": ["A) (0, \u03c0)", "B) (\u03c0, 2\u03c0)", "C) (0, 2\u03c0)", "D) (0, \u03c0/2)"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 f'(x) = -sin x.<br>\u2022 For x \u2208 (\u03c0, 2\u03c0) (quadrants III and IV), sin x < 0, so f'(x) = -(-value) > 0.<br>\u2022 Hence cos x is strictly increasing on (\u03c0, 2\u03c0) (NCERT Example 9)."}, {"id": 2, "question": "The function f(x) = sin 3x on [0, \u03c0/2] is strictly increasing on:", "options": ["A) [0, \u03c0/6]", "B) (\u03c0/6, \u03c0/2)", "C) [0, \u03c0/2]", "D) [\u03c0/4, \u03c0/2]"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 f'(x) = 3 cos 3x.<br>\u2022 For x \u2208 [0, \u03c0/6), 3x \u2208 [0, \u03c0/2), where cos 3x > 0 \u27f9 f'(x) > 0 (increasing).<br>\u2022 For x \u2208 (\u03c0/6, \u03c0/2], 3x \u2208 (\u03c0/2, 3\u03c0/2], where cos 3x < 0 \u27f9 f'(x) < 0 (decreasing) (NCERT Example 12)."}]}, {"slideIdx": 6, "questions": [{"id": 1, "question": "Find the intervals in which f(x) = 2x\u00b3 - 3x\u00b2 - 36x + 7 is strictly increasing:", "options": ["A) (-\u221e, -2) and (3, \u221e)", "B) (-2, 3)", "C) (-\u221e, 3)", "D) (-2, \u221e)"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 f'(x) = 6x\u00b2 - 6x - 36 = 6(x\u00b2 - x - 6) = 6(x - 3)(x + 2).<br>\u2022 Setting f'(x) = 0 gives critical points x = -2 and x = 3.<br>\u2022 On (-\u221e, -2): f'(x) = 6(-)(-) > 0 (Increasing).<br>\u2022 On (-2, 3): f'(x) = 6(-)(+) < 0 (Decreasing).<br>\u2022 On (3, \u221e): f'(x) = 6(+)(+) > 0 (Increasing) (Exercise 6.2 Q5)."}, {"id": 2, "question": "The function y = x\u00b2 e^(-x) is strictly increasing on:", "options": ["A) (-\u221e, \u221e)", "B) (-2, 0)", "C) (2, \u221e)", "D) (0, 2)"], "correct": 3, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 dy/dx = 2x e^(-x) + x\u00b2(-e^(-x)) = x(2 - x) e^(-x).<br>\u2022 Since e^(-x) > 0 always, the sign is governed by x(2 - x).<br>\u2022 x(2 - x) > 0 for 0 < x < 2.<br>\u2022 Hence, y is strictly increasing on (0, 2) (Exercise 6.2 Q19)."}]}, {"slideIdx": 7, "questions": [{"id": 1, "question": "What is the definition of a critical point c of a real function f?", "options": ["A) A point where f(c) = 0", "B) A point where either f'(c) = 0 or f is not differentiable at c", "C) A point where f''(c) > 0", "D) An endpoint of the domain"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 By NCERT definition (Page 164): A point c in the domain of f where either f'(c) = 0 or f is not differentiable is called a critical point of f."}, {"id": 2, "question": "Theorem 2 states: If f has a local extremum at x = c, then f'(c) = 0 (if differentiable). Is the converse true?", "options": ["A) Yes, if f'(c) = 0 then c must be a local extremum", "B) No, for f(x) = x\u00b3, f'(0) = 0 but x = 0 is neither a maximum nor a minimum", "C) Yes, proved by Fermat", "D) No, only for trigonometric functions"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 The converse is FALSE.<br>\u2022 Counterexample: f(x) = x\u00b3 has f'(x) = 3x\u00b2 \u27f9 f'(0) = 0.<br>\u2022 However, for x < 0, f(x) < 0 and for x > 0, f(x) > 0. The point x = 0 is a point of inflection, not an extremum! (NCERT Page 164)."}]}, {"slideIdx": 8, "questions": [{"id": 1, "question": "If f'(x) changes sign from positive to negative as x increases through c, then c is a point of:", "options": ["A) Local minima", "B) Local maxima", "C) Point of inflection", "D) Discontinuity"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Positive slope before c means the curve is rising; negative slope after c means the curve is falling.<br>\u2022 Therefore, the curve peaks at x = c, making c a point of local maxima (Theorem 3(i))."}, {"id": 2, "question": "For f(x) = x\u00b3 - 3x + 3, find the point of local maxima and its value:", "options": ["A) Local max at x = 1, value = 1", "B) Local max at x = -1, value = 5", "C) Local max at x = 0, value = 3", "D) Local max at x = 3, value = 21"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 f'(x) = 3x\u00b2 - 3 = 3(x - 1)(x + 1) = 0 \u27f9 x = 1, -1.<br>\u2022 Near x = -1: for x < -1, f'(x) > 0; for x > -1, f'(x) < 0. Sign flips + to - \u27f9 Local Maxima at x = -1.<br>\u2022 Value: f(-1) = (-1)\u00b3 - 3(-1) + 3 = -1 + 3 + 3 = 5 (NCERT Example 17)."}]}, {"slideIdx": 9, "questions": [{"id": 1, "question": "By the Second Derivative Test, x = c is a point of local minima if:", "options": ["A) f'(c) = 0 and f''(c) < 0", "B) f'(c) = 0 and f''(c) > 0", "C) f'(c) > 0 and f''(c) = 0", "D) f''(c) = 0"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Theorem 4: When f'(c) = 0 and f''(c) > 0, the curve is concave up (valley shape), so x = c is a point of local minima."}, {"id": 2, "question": "What is the local minimum value of f(x) = 3 + |x| for x \u2208 \u211d?", "options": ["A) 0", "B) 3", "C) Does not exist because f is not differentiable at x = 0", "D) -3"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 For x < 0, f'(x) = -1 < 0 (decreasing).<br>\u2022 For x > 0, f'(x) = +1 > 0 (increasing).<br>\u2022 By First Derivative Test, x = 0 is a local minimum, even though f'(0) does not exist!<br>\u2022 Local minimum value is f(0) = 3 + |0| = 3 (NCERT Example 19)."}]}, {"slideIdx": 10, "questions": [{"id": 1, "question": "Find the absolute maximum value of f(x) = 2x\u00b3 - 15x\u00b2 + 36x + 1 on [1, 5]:", "options": ["A) 24", "B) 29", "C) 56", "D) 28"], "correct": 2, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 f'(x) = 6x\u00b2 - 30x + 36 = 6(x - 2)(x - 3) = 0 \u27f9 x = 2, 3.<br>\u2022 Evaluate at critical points & endpoints:<br>  f(1) = 24, f(2) = 29, f(3) = 28, f(5) = 56.<br>\u2022 Absolute maximum is 56 at x = 5 (NCERT Example 27)."}, {"id": 2, "question": "Why does f(x) = x on the open interval (0, 1) have NEITHER a maximum nor a minimum value?", "options": ["A) Because it is discontinuous", "B) Because the interval is open, and for any candidate point there is always a smaller or larger point inside (0, 1)", "C) Because f'(x) = 1 \u2260 0", "D) Both B and C"], "correct": 3, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 In (0, 1), f'(x) = 1 never vanishes (no interior critical points).<br>\u2022 Since endpoints 0 and 1 are excluded from the domain, f approaches 0 from above and 1 from below, but never reaches them inside (0, 1) (NCERT Example 16)."}]}, {"slideIdx": 11, "questions": [{"id": 1, "question": "Find two positive numbers whose sum is 15 and the sum of whose squares is minimum:", "options": ["A) 7 and 8", "B) 15/2 and 15/2", "C) 5 and 10", "D) 6 and 9"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Let numbers be x and 15 - x.<br>\u2022 S(x) = x\u00b2 + (15 - x)\u00b2 = 2x\u00b2 - 30x + 225.<br>\u2022 S'(x) = 4x - 30 = 0 \u27f9 x = 15/2.<br>\u2022 S''(x) = 4 > 0 (Minima confirmed). Both numbers are 15/2 (NCERT Example 22)."}, {"id": 2, "question": "Find the shortest distance from the point (0, c) to the parabola y = x\u00b2 where 1/2 \u2264 c \u2264 5:", "options": ["A) \u221a(4c - 1) / 2", "B) \u221a(c - 1/2)", "C) c - 1/2", "D) \u221a(2c - 1)"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Distance squared D\u00b2 = (x - 0)\u00b2 + (y - c)\u00b2 = y + (y - c)\u00b2.<br>\u2022 d(D\u00b2)/dy = 1 + 2(y - c) = 0 \u27f9 y = c - 1/2 = (2c - 1)/2.<br>\u2022 Minimum D = \u221a[(2c - 1)/2 + (1/2)\u00b2] = \u221a(4c - 1) / 2 (NCERT Example 23)."}]}, {"slideIdx": 12, "questions": [{"id": 1, "question": "A square tin of side 18 cm is made into an open box by cutting corner squares of side x. For max volume, x is:", "options": ["A) 3 cm", "B) 4 cm", "C) 6 cm", "D) 2 cm"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 V(x) = x(18 - 2x)\u00b2 = 4x\u00b3 - 72x\u00b2 + 324x.<br>\u2022 V'(x) = 12x\u00b2 - 144x + 324 = 12(x\u00b2 - 12x + 27) = 12(x - 3)(x - 9) = 0.<br>\u2022 x < 9 (since 18 - 2x > 0), so x = 3 cm.<br>\u2022 V''(3) = 24(3) - 144 = -72 < 0 (Maximum confirmed) (Exercise 6.3 Q17)."}, {"id": 2, "question": "The radius of the right circular cylinder of greatest curved surface area inscribed in a cone of base radius r is:", "options": ["A) r / 3", "B) r / 2", "C) 2r / 3", "D) r / 4"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Curved surface area S(x) = (2\u03c0h/r)(rx - x\u00b2).<br>\u2022 S'(x) = (2\u03c0h/r)(r - 2x) = 0 \u27f9 x = r/2.<br>\u2022 S''(x) = -4\u03c0h/r < 0 (Maximum confirmed) (NCERT Example 26)."}]}, {"slideIdx": 13, "questions": [{"id": 1, "question": "Prove that the volume of the largest cone that can be inscribed in a sphere of radius R is what fraction of the sphere's volume?", "options": ["A) 8 / 27", "B) 1 / 3", "C) 4 / 9", "D) 16 / 27"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Cone volume V = (1/3)\u03c0 r_c\u00b2 h. Let h = R + x where x is distance from center.<br>\u2022 r_c\u00b2 = R\u00b2 - x\u00b2 \u27f9 V(x) = (1/3)\u03c0 (R\u00b2 - x\u00b2)(R + x).<br>\u2022 Differentiating gives maximum at x = R/3 \u27f9 h = 4R/3.<br>\u2022 V_cone = (8/27) \u00b7 [(4/3)\u03c0 R\u00b3] = (8/27) V_sphere (Exercise 6.3 Q23)."}, {"id": 2, "question": "The semi-vertical angle of a right circular cone of maximum volume with given slant height l is:", "options": ["A) tan\u207b\u00b9(\u221a2)", "B) sin\u207b\u00b9(1/3)", "C) \u03c0/4", "D) tan\u207b\u00b9(1/\u221a2)"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 V = (1/3)\u03c0 r\u00b2 h = (1/3)\u03c0 (l sin \u03b1)\u00b2 (l cos \u03b1) = (\u03c0 l\u00b3/3) sin\u00b2\u03b1 cos \u03b1.<br>\u2022 dV/d\u03b1 = (\u03c0 l\u00b3/3) [2 sin \u03b1 cos\u00b2\u03b1 - sin\u00b3\u03b1] = 0 \u27f9 2 cos\u00b2\u03b1 = sin\u00b2\u03b1 \u27f9 tan\u00b2\u03b1 = 2.<br>\u2022 Therefore, \u03b1 = tan\u207b\u00b9(\u221a2) (Exercise 6.3 Q25)."}]}, {"slideIdx": 14, "questions": [{"id": 1, "question": "A car's distance is x = t\u00b2(2 - t/3). It starts at P (t = 0) and stops at Q. How long does it take to reach Q?", "options": ["A) 2 seconds", "B) 4 seconds", "C) 6 seconds", "D) 3 seconds"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Velocity v = dx/dt = d/dt(2t\u00b2 - t\u00b3/3) = 4t - t\u00b2 = t(4 - t).<br>\u2022 Car stops when v = 0 \u27f9 t = 0 or t = 4 seconds.<br>\u2022 Hence it reaches Q at t = 4 seconds (NCERT Example 30)."}, {"id": 2, "question": "A man 2 m high walks at 5 km/h away from a 6 m lamp post. At what rate is the length of his shadow increasing?", "options": ["A) 5/2 km/h", "B) 5/3 km/h", "C) 2 km/h", "D) 10/3 km/h"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 By similar triangles: s / (l + s) = 2 / 6 = 1/3 \u27f9 3s = l + s \u27f9 l = 2s.<br>\u2022 Differentiating w.r.t t: dl/dt = 2(ds/dt).<br>\u2022 Given dl/dt = 5 km/h: ds/dt = 5/2 km/h (NCERT Example 32)."}]}, {"slideIdx": 15, "questions": [{"id": 1, "question": "Show that the function f(x) = (log x) / x has its maximum value at:", "options": ["A) x = 1", "B) x = e", "C) x = e\u00b2", "D) x = 1/e"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 f'(x) = [x \u00b7 (1/x) - (log x) \u00b7 1] / x\u00b2 = (1 - log x) / x\u00b2.<br>\u2022 Setting f'(x) = 0 gives 1 - log x = 0 \u27f9 log x = 1 \u27f9 x = e.<br>\u2022 f''(e) = (-1/e \u00b7 e\u00b2 - 2e(1 - 1)) / e\u2074 = -1/e\u00b3 < 0 (Maximum confirmed) (Misc Exercise Q1)."}, {"id": 2, "question": "The height of the cylinder of maximum volume that can be inscribed in a sphere of radius R is:", "options": ["A) 2R / \u221a3", "B) R / \u221a3", "C) R / 2", "D) 4R / 3"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 V = \u03c0 r\u00b2 h. With r\u00b2 = R\u00b2 - (h/2)\u00b2: V(h) = \u03c0 (R\u00b2h - h\u00b3/4).<br>\u2022 V'(h) = \u03c0 (R\u00b2 - 3h\u00b2/4) = 0 \u27f9 3h\u00b2/4 = R\u00b2 \u27f9 h\u00b2 = 4R\u00b2/3 \u27f9 h = 2R / \u221a3.<br>\u2022 V''(h) = -3\u03c0h/2 < 0 (Maximum confirmed) (Misc Exercise Q14)."}]}, {"slideIdx": 16, "questions": [{"id": 1, "question": "Which of the following conditions guarantees an absolute maximum on a closed interval [a, b]?", "options": ["A) f is continuous on [a, b]", "B) f'(x) must be zero everywhere", "C) f must be a polynomial", "D) The interval must be infinite"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 By the Extreme Value Theorem (Theorem 5 of NCERT Chapter 6), every continuous function on a closed bounded interval [a, b] attains both an absolute maximum and an absolute minimum."}, {"id": 2, "question": "If f'(c) = 0 and f''(c) = 0, what is the required teacher procedure?", "options": ["A) Declare c a local maximum", "B) Declare c a local minimum", "C) The Second Derivative Test fails; revert to the First Derivative Test", "D) Conclude f has no derivative"], "correct": 2, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 As stated in Theorem 4(iii): if f'(c) = 0 and f''(c) = 0, the Second Derivative Test is inconclusive (fails), and we must inspect the sign change of f'(x) via the First Derivative Test."}]}];
+    const quizSets = [{"id": 1, "title": "\ud83c\udfaf Quiz Challenge 1: Rate of Change & Marginal Quantities", "description": "Questions 1\u201310: Test your mastery on geometric rates, related rates, marginal costs and revenues.", "questions": [{"id": 1, "question": "1. Find the rate of change of the area of a circle with respect to its radius r when r = 6 cm:", "options": ["A) 10\u03c0 cm\u00b2/cm", "B) 12\u03c0 cm\u00b2/cm", "C) 8\u03c0 cm\u00b2/cm", "D) 11\u03c0 cm\u00b2/cm"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 A = \u03c0r\u00b2 \u27f9 dA/dr = 2\u03c0r.<br>\u2022 For r = 6 cm: dA/dr = 2\u03c0(6) = 12\u03c0 cm\u00b2/cm.<br>\u2022 Hence, Option B is correct (Exercise 6.1 Q17)."}, {"id": 2, "question": "2. The total revenue received from the sale of x units is R(x) = 3x\u00b2 + 36x + 5. Find marginal revenue when x = 15:", "options": ["A) \u20b9 116", "B) \u20b9 96", "C) \u20b9 90", "D) \u20b9 126"], "correct": 3, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 MR = dR/dx = 6x + 36.<br>\u2022 For x = 15: MR = 6(15) + 36 = 90 + 36 = \u20b9 126.<br>\u2022 Hence, Option D is correct (Exercise 6.1 Q18)."}, {"id": 3, "question": "3. The volume of a cube is increasing at 8 cm\u00b3/s. How fast is the surface area increasing when edge length is 12 cm?", "options": ["A) 8/3 cm\u00b2/s", "B) 4/3 cm\u00b2/s", "C) 2 cm\u00b2/s", "D) 16/3 cm\u00b2/s"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 V = x\u00b3 \u27f9 dV/dt = 3x\u00b2(dx/dt) = 8 \u27f9 dx/dt = 8 / (3x\u00b2).<br>\u2022 S = 6x\u00b2 \u27f9 dS/dt = 12x(dx/dt) = 12x [8 / (3x\u00b2)] = 32 / x.<br>\u2022 For x = 12 cm: dS/dt = 32 / 12 = 8/3 cm\u00b2/s (Exercise 6.1 Q2)."}, {"id": 4, "question": "4. The radius of a circular wave moves at 4 cm/s. When r = 10 cm, how fast is the enclosed area increasing?", "options": ["A) 40\u03c0 cm\u00b2/s", "B) 80\u03c0 cm\u00b2/s", "C) 100\u03c0 cm\u00b2/s", "D) 20\u03c0 cm\u00b2/s"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 A = \u03c0r\u00b2 \u27f9 dA/dt = 2\u03c0r (dr/dt).<br>\u2022 Given dr/dt = 4 cm/s and r = 10 cm:<br>\u2022 dA/dt = 2\u03c0(10)(4) = 80\u03c0 cm\u00b2/s (NCERT Example 3)."}, {"id": 5, "question": "5. A rectangle has length x decreasing at 3 cm/min and width y increasing at 2 cm/min. When x = 10 and y = 6, find the rate of change of area:", "options": ["A) 2 cm\u00b2/min", "B) -2 cm\u00b2/min", "C) 4 cm\u00b2/min", "D) 0 cm\u00b2/min"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Area A = xy \u27f9 dA/dt = (dx/dt)y + x(dy/dt).<br>\u2022 dx/dt = -3 cm/min, dy/dt = +2 cm/min, x = 10, y = 6.<br>\u2022 dA/dt = (-3)(6) + 10(2) = -18 + 20 = 2 cm\u00b2/min (NCERT Example 4)."}, {"id": 6, "question": "6. The radius of a circle increases at 0.7 cm/s. What is the rate of increase of its circumference C?", "options": ["A) 1.4\u03c0 cm/s", "B) 0.7\u03c0 cm/s", "C) 2.8\u03c0 cm/s", "D) 0.49\u03c0 cm/s"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 C = 2\u03c0r \u27f9 dC/dt = 2\u03c0(dr/dt).<br>\u2022 dC/dt = 2\u03c0(0.7) = 1.4\u03c0 cm/s (Exercise 6.1 Q6)."}, {"id": 7, "question": "7. Sand pouring at 12 cm\u00b3/s forms a cone where height h is always one-sixth of radius r (r = 6h). How fast is height rising when h = 4 cm?", "options": ["A) 1 / (48\u03c0) cm/s", "B) 1 / (16\u03c0) cm/s", "C) 1 / (36\u03c0) cm/s", "D) 1 / (12\u03c0) cm/s"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Volume V = (1/3)\u03c0 r\u00b2 h = (1/3)\u03c0 (6h)\u00b2 h = 12\u03c0 h\u00b3.<br>\u2022 dV/dt = 36\u03c0 h\u00b2 (dh/dt) = 12.<br>\u2022 dh/dt = 12 / (36\u03c0 h\u00b2) = 1 / (3\u03c0 h\u00b2).<br>\u2022 At h = 4 cm: dh/dt = 1 / (3\u03c0 \u00b7 16) = 1 / (48\u03c0) cm/s (Exercise 6.1 Q14)."}, {"id": 8, "question": "8. An air bubble radius increases at 1/2 cm/s. At what rate is volume increasing when r = 1 cm?", "options": ["A) 2\u03c0 cm\u00b3/s", "B) 4\u03c0 cm\u00b3/s", "C) \u03c0/2 cm\u00b3/s", "D) 4/3 \u03c0 cm\u00b3/s"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 V = (4/3)\u03c0r\u00b3 \u27f9 dV/dt = 4\u03c0r\u00b2(dr/dt).<br>\u2022 With r = 1 and dr/dt = 1/2: dV/dt = 4\u03c0(1)\u00b2(1/2) = 2\u03c0 cm\u00b3/s (Exercise 6.1 Q12)."}, {"id": 9, "question": "9. A cylindrical tank of radius 10 m is being filled with wheat at 314 m\u00b3/h. At what rate is depth increasing? (Take \u03c0 \u2248 3.14)", "options": ["A) 1 m/h", "B) 0.1 m/h", "C) 1.1 m/h", "D) 0.5 m/h"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 V = \u03c0 r\u00b2 h = \u03c0 (10)\u00b2 h = 100\u03c0 h.<br>\u2022 dV/dt = 100\u03c0 (dh/dt) = 314.<br>\u2022 dh/dt = 314 / (100 \u00b7 3.14) = 314 / 314 = 1 m/h (Misc Exercise Q16)."}, {"id": 10, "question": "10. If cost C(x) = 0.005x\u00b3 - 0.02x\u00b2 + 30x + 5000, what is the marginal cost when x = 3 units?", "options": ["A) \u20b9 30.02 (approx)", "B) \u20b9 30.20", "C) \u20b9 32.50", "D) \u20b9 28.90"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 MC = dC/dx = 0.015x\u00b2 - 0.04x + 30.<br>\u2022 For x = 3: MC = 0.015(9) - 0.04(3) + 30 = 0.135 - 0.12 + 30 = 30.015 \u2248 \u20b9 30.02 (NCERT Example 5)."}]}, {"id": 2, "title": "\ud83c\udfaf Quiz Challenge 2: Increasing & Decreasing Functions", "description": "Questions 11\u201320: Master monotonicity intervals, derivative tests, and trigonometric sign criteria.", "questions": [{"id": 11, "question": "11. The function f(x) = x\u00b2 - 4x + 6 is strictly increasing in the interval:", "options": ["A) (2, \u221e)", "B) (-\u221e, 2)", "C) (-\u221e, \u221e)", "D) (0, 4)"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 f'(x) = 2x - 4.<br>\u2022 For strictly increasing, f'(x) > 0 \u27f9 2x - 4 > 0 \u27f9 x > 2.<br>\u2022 Hence, f is strictly increasing on (2, \u221e) (NCERT Example 10)."}, {"id": 12, "question": "12. For what values of a is f(x) = x\u00b2 + ax + 1 strictly increasing on [1, 2]?", "options": ["A) a \u2265 -2", "B) a \u2264 -2", "C) a \u2265 -4", "D) a \u2264 2"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 f'(x) = 2x + a.<br>\u2022 For f to be increasing on [1, 2], f'(x) \u2265 0 for all x \u2208 [1, 2].<br>\u2022 The minimum of 2x + a on [1, 2] occurs at x = 1: 2(1) + a \u2265 0 \u27f9 a \u2265 -2 (Exercise 6.2 Q14)."}, {"id": 13, "question": "13. Which of the following functions is strictly decreasing on (0, \u03c0/2)?", "options": ["A) cos x", "B) cos 2x", "C) cos 3x", "D) tan x"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 For f(x) = cos x, f'(x) = -sin x.<br>\u2022 On (0, \u03c0/2), sin x > 0 \u27f9 f'(x) < 0 strictly everywhere on (0, \u03c0/2).<br>\u2022 Note: For cos 2x and cos 3x, the derivative changes sign inside (0, \u03c0/2) (Exercise 6.2 Q12)."}, {"id": 14, "question": "14. On which interval is the function f(x) = x\u00b9\u2070\u2070 + sin x - 1 strictly decreasing?", "options": ["A) (0, 1)", "B) (\u03c0/2, \u03c0)", "C) (0, \u03c0/2)", "D) None of these"], "correct": 3, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 f'(x) = 100 x\u2079\u2079 + cos x.<br>\u2022 On (0, 1): x > 0 \u27f9 100x\u2079\u2079 > 0 and cos x > 0 \u27f9 f'(x) > 0.<br>\u2022 On (0, \u03c0/2): f'(x) > 0.<br>\u2022 On (\u03c0/2, \u03c0): x > 1.57 \u27f9 100x\u2079\u2079 > 100(1.57)\u2079\u2079 \u226b 1, while cos x \u2265 -1. Thus f'(x) > 0 always.<br>\u2022 Hence, f is not decreasing on any of these intervals (Option D) (Exercise 6.2 Q13)."}, {"id": 15, "question": "15. The function f(x) = log(sin x) is strictly increasing on:", "options": ["A) (0, \u03c0/2)", "B) (\u03c0/2, \u03c0)", "C) (0, \u03c0)", "D) (\u03c0, 3\u03c0/2)"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 f'(x) = (1 / sin x) \u00b7 cos x = cot x.<br>\u2022 On (0, \u03c0/2), cot x > 0 \u27f9 f'(x) > 0, so f is strictly increasing.<br>\u2022 On (\u03c0/2, \u03c0), cot x < 0 \u27f9 strictly decreasing (Exercise 6.2 Q16)."}, {"id": 16, "question": "16. Show that f(x) = x\u00b3 - 3x\u00b2 + 4x is strictly increasing on \u211d because:", "options": ["A) f'(x) = 3(x - 1)\u00b2 + 1 > 0 for all x \u2208 \u211d", "B) f(0) = 0", "C) f''(x) > 0 for all x", "D) It is a cubic polynomial"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 f'(x) = 3x\u00b2 - 6x + 4 = 3(x\u00b2 - 2x + 1) + 1 = 3(x - 1)\u00b2 + 1.<br>\u2022 Since 3(x - 1)\u00b2 \u2265 0, f'(x) \u2265 1 > 0 for all real x.<br>\u2022 By Theorem 1, f is strictly increasing on \u211d (NCERT Example 8)."}, {"id": 17, "question": "17. The interval in which f(x) = 2x\u00b2 - 3x is strictly decreasing is:", "options": ["A) (-\u221e, 3/4)", "B) (3/4, \u221e)", "C) (-\u221e, 3/2)", "D) (0, 3/4)"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 f'(x) = 4x - 3.<br>\u2022 For strictly decreasing: 4x - 3 < 0 \u27f9 x < 3/4 \u27f9 (-\u221e, 3/4) (Exercise 6.2 Q4)."}, {"id": 18, "question": "18. Show that the logarithmic function f(x) = log_e(x) on (0, \u221e) is:", "options": ["A) Strictly increasing", "B) Strictly decreasing", "C) Neither increasing nor decreasing", "D) Constant"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 f'(x) = 1/x.<br>\u2022 For all x \u2208 (0, \u221e), 1/x > 0.<br>\u2022 Therefore, log x is strictly increasing on (0, \u221e) (Exercise 6.2 Q10)."}, {"id": 19, "question": "19. The function f(x) = e^(2x) is:", "options": ["A) Strictly increasing on \u211d", "B) Strictly decreasing on \u211d", "C) Increasing only for x > 0", "D) Decreasing for x < 0"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 f'(x) = 2 e^(2x).<br>\u2022 Since exponential e^(2x) > 0 for all x \u2208 \u211d, f'(x) > 0 everywhere on \u211d.<br>\u2022 Thus e^(2x) is strictly increasing on \u211d (Exercise 6.2 Q2)."}, {"id": 20, "question": "20. For f(x) = x\u00b3 - 3x\u00b2 + 3x - 100, which statement is true?", "options": ["A) Strictly increasing on \u211d", "B) Strictly decreasing on \u211d", "C) Has a local maximum at x = 1", "D) Has a local minimum at x = 1"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 f'(x) = 3x\u00b2 - 6x + 3 = 3(x\u00b2 - 2x + 1) = 3(x - 1)\u00b2.<br>\u2022 Since (x - 1)\u00b2 \u2265 0 for all x, f'(x) \u2265 0 and vanishes only at x = 1 (isolated point).<br>\u2022 Thus, f is strictly increasing on \u211d (Exercise 6.2 Q18)."}]}, {"id": 3, "title": "\ud83c\udfaf Quiz Challenge 3: Local Extrema, Inflection Points & Tests", "description": "Questions 21\u201330: Master critical points, 1st and 2nd derivative tests, and inflection points.", "questions": [{"id": 21, "question": "21. For f(x) = 2x\u00b3 - 6x\u00b2 + 6x + 5, what is the nature of the critical point x = 1?", "options": ["A) Local maximum", "B) Local minimum", "C) Point of inflection", "D) Discontinuity"], "correct": 2, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 f'(x) = 6x\u00b2 - 12x + 6 = 6(x - 1)\u00b2.<br>\u2022 Setting f'(x) = 0 gives x = 1.<br>\u2022 For x < 1, f'(x) > 0; for x > 1, f'(x) > 0. The sign does not change!<br>\u2022 Hence, x = 1 is a point of inflection (NCERT Example 18 & 21)."}, {"id": 22, "question": "22. Find all critical points of f(x) = (x - 2)\u2074 (x + 1)\u00b3:", "options": ["A) x = 2, x = -1, and x = 2/7", "B) x = 2 and x = -1 only", "C) x = 0 only", "D) x = 2, x = -1, and x = 5/7"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 f'(x) = 4(x - 2)\u00b3(x + 1)\u00b3 + (x - 2)\u2074 \u00b7 3(x + 1)\u00b2<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= (x - 2)\u00b3(x + 1)\u00b2 [4(x + 1) + 3(x - 2)]<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= (x - 2)\u00b3(x + 1)\u00b2 [7x - 2].<br>\u2022 Setting f'(x) = 0 gives x = 2, x = -1, and x = 2/7 (Misc Exercise Q10)."}, {"id": 23, "question": "23. Why do the functions f(x) = e^x and g(x) = log x have NO local maxima or minima?", "options": ["A) Because f'(x) = e^x \u2260 0 and g'(x) = 1/x \u2260 0 for all x in their domains", "B) Because their second derivatives are negative", "C) Because they are not continuous", "D) Because their graphs are vertical lines"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 For any extremum, a critical point is required (where derivative is zero or undefined).<br>\u2022 d/dx(e^x) = e^x > 0 everywhere \u27f9 never zero.<br>\u2022 d/dx(log x) = 1/x \u2260 0 for all x > 0 \u27f9 never zero.<br>\u2022 Therefore, neither function possesses any maxima or minima (Exercise 6.3 Q4)."}, {"id": 24, "question": "24. Find the local maximum and local minimum values of f(x) = 3x\u2074 + 4x\u00b3 - 12x\u00b2 + 12:", "options": ["A) Local max = 12 at x = 0; Local min = 7 at x = 1 and -20 at x = -2", "B) Local max = 7; Local min = -20", "C) Local max = 20; Local min = 0", "D) No local extrema exist"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 f'(x) = 12x\u00b3 + 12x\u00b2 - 24x = 12x(x - 1)(x + 2) = 0 \u27f9 x = 0, 1, -2.<br>\u2022 f''(x) = 36x\u00b2 + 24x - 24.<br>\u2022 f''(0) = -24 < 0 \u27f9 Local Max at x = 0 with value f(0) = 12.<br>\u2022 f''(1) = 36 > 0 \u27f9 Local Min at x = 1 with value f(1) = 7.<br>\u2022 f''(-2) = 72 > 0 \u27f9 Local Min at x = -2 with value f(-2) = -20 (NCERT Example 20)."}, {"id": 25, "question": "25. For f(x) = - (x - 1)\u00b2 + 10, the maximum value of f on \u211d is:", "options": ["A) 10", "B) 1", "C) 9", "D) Does not exist"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 (x - 1)\u00b2 \u2265 0 for all x \u27f9 -(x - 1)\u00b2 \u2264 0.<br>\u2022 Adding 10: -(x - 1)\u00b2 + 10 \u2264 10.<br>\u2022 The maximum value 10 occurs when (x - 1)\u00b2 = 0, i.e., x = 1 (Exercise 6.3 Q1(iii))."}, {"id": 26, "question": "26. What is the minimum value of f(x) = |x + 2| - 1 for x \u2208 \u211d?", "options": ["A) -1", "B) 1", "C) -2", "D) 0"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Since |x + 2| \u2265 0 for all x, its minimum value is 0 (at x = -2).<br>\u2022 Therefore, min f(x) = 0 - 1 = -1 (Exercise 6.3 Q2(i))."}, {"id": 27, "question": "27. Find the maximum profit P(x) = 41 - 72x - 18x\u00b2 that a company can make:", "options": ["A) 113", "B) 41", "C) 72", "D) 85"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 P'(x) = -72 - 36x = 0 \u27f9 36x = -72 \u27f9 x = -2.<br>\u2022 P''(x) = -36 < 0 (Maximum confirmed).<br>\u2022 P(-2) = 41 - 72(-2) - 18(-2)\u00b2 = 41 + 144 - 72 = 113 (Exercise 6.3 Q6)."}, {"id": 28, "question": "28. At what point in (0, \u03c0/2) does f(x) = sin x + cos x attain its local maximum?", "options": ["A) x = \u03c0/4, with maximum value \u221a2", "B) x = \u03c0/6, with maximum value 1 + \u221a3/2", "C) x = \u03c0/3, with maximum value 1 + \u221a3/2", "D) x = 0, with maximum value 1"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 f'(x) = cos x - sin x = 0 \u27f9 tan x = 1 \u27f9 x = \u03c0/4.<br>\u2022 f''(x) = -sin x - cos x; f''(\u03c0/4) = -\u221a2 < 0 (Maximum confirmed).<br>\u2022 Value: sin(\u03c0/4) + cos(\u03c0/4) = 1/\u221a2 + 1/\u221a2 = 2/\u221a2 = \u221a2 (Exercise 6.3 Q3(iii))."}, {"id": 29, "question": "29. If x = 1 is the point at which f(x) = x\u2074 - 62x\u00b2 + ax + 9 attains maximum on [0, 2], find a:", "options": ["A) 120", "B) 60", "C) -120", "D) 124"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Since maximum is at interior point x = 1, f'(1) must equal 0.<br>\u2022 f'(x) = 4x\u00b3 - 124x + a.<br>\u2022 f'(1) = 4(1) - 124(1) + a = 0 \u27f9 -120 + a = 0 \u27f9 a = 120 (Exercise 6.3 Q11)."}, {"id": 30, "question": "30. The minimum value of f(x) = (x\u00b2 - x + 1) / (x\u00b2 + x + 1) for all real x is:", "options": ["A) 1/3", "B) 3", "C) 1", "D) 0"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Let y = (x\u00b2 - x + 1)/(x\u00b2 + x + 1) \u27f9 yx\u00b2 + yx + y = x\u00b2 - x + 1 \u27f9 (y - 1)x\u00b2 + (y + 1)x + (y - 1) = 0.<br>\u2022 For real x, discriminant \u0394 \u2265 0: (y + 1)\u00b2 - 4(y - 1)\u00b2 \u2265 0.<br>\u2022 (y + 1 - 2y + 2)(y + 1 + 2y - 2) \u2265 0 \u27f9 (3 - y)(3y - 1) \u2265 0 \u27f9 (y - 3)(3y - 1) \u2264 0.<br>\u2022 Thus 1/3 \u2264 y \u2264 3. The minimum value is 1/3 (Exercise 6.3 Q28)."}]}, {"id": 4, "title": "\ud83c\udfaf Quiz Challenge 4: Absolute Extrema & Applied Optimization", "description": "Questions 31\u201340: Master closed interval extrema, geometric packaging, and real-world calculus.", "questions": [{"id": 31, "question": "31. An Apache helicopter flies along y = x\u00b2 + 7. A soldier at (3, 7) aims to shoot it when nearest. The minimum distance is:", "options": ["A) \u221a5", "B) 5", "C) \u221a7", "D) 3"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Distance squared D\u00b2 = (x - 3)\u00b2 + (x\u00b2 + 7 - 7)\u00b2 = (x - 3)\u00b2 + x\u2074.<br>\u2022 d(D\u00b2)/dx = 2(x - 3) + 4x\u00b3 = 4x\u00b3 + 2x - 6 = 2(x - 1)(2x\u00b2 + 2x + 3).<br>\u2022 Root is x = 1 (quadratic factor has no real roots).<br>\u2022 Minimum D = \u221a[(1 - 3)\u00b2 + 1\u2074] = \u221a(4 + 1) = \u221a5 (NCERT Example 29)."}, {"id": 32, "question": "32. Find the point on the curve x\u00b2 = 2y which is nearest to the point (0, 5):", "options": ["A) (2\u221a2, 4)", "B) (2\u221a2, 0)", "C) (0, 0)", "D) (2, 2)"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Distance squared D\u00b2 = (x - 0)\u00b2 + (y - 5)\u00b2 = 2y + (y - 5)\u00b2 = y\u00b2 - 8y + 25.<br>\u2022 d(D\u00b2)/dy = 2y - 8 = 0 \u27f9 y = 4.<br>\u2022 For y = 4: x\u00b2 = 2(4) = 8 \u27f9 x = \u00b12\u221a2.<br>\u2022 Nearest points are (\u00b12\u221a2, 4) (Exercise 6.3 Q27)."}, {"id": 33, "question": "33. Two poles AP = 16 m and BQ = 22 m are separated by AB = 20 m. Point R on AB minimizes RP\u00b2 + RQ\u00b2. Distance AR is:", "options": ["A) 10 m", "B) 8 m", "C) 12 m", "D) 15 m"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Let AR = x, so RB = 20 - x.<br>\u2022 S(x) = RP\u00b2 + RQ\u00b2 = (x\u00b2 + 16\u00b2) + ((20 - x)\u00b2 + 22\u00b2) = 2x\u00b2 - 40x + 1140.<br>\u2022 S'(x) = 4x - 40 = 0 \u27f9 x = 10 m.<br>\u2022 S''(x) = 4 > 0 (Minimum confirmed). Hence AR = 10 m (NCERT Example 24)."}, {"id": 34, "question": "34. A sheet of tin 45 cm by 24 cm has squares cut from corners to form an open box. For max volume, corner square side is:", "options": ["A) 5 cm", "B) 4 cm", "C) 6 cm", "D) 8 cm"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 V(x) = x(45 - 2x)(24 - 2x) = 4x\u00b3 - 138x\u00b2 + 1080x.<br>\u2022 V'(x) = 12x\u00b2 - 276x + 1080 = 12(x\u00b2 - 23x + 90) = 12(x - 5)(x - 18) = 0.<br>\u2022 Since 2x < 24 \u27f9 x < 12, the valid root is x = 5 cm.<br>\u2022 V''(5) = 24(5) - 276 = -156 < 0 (Maximum confirmed) (Exercise 6.3 Q18)."}, {"id": 35, "question": "35. Find two positive numbers x and y such that x + y = 60 and xy\u00b3 is maximum:", "options": ["A) x = 15, y = 45", "B) x = 30, y = 30", "C) x = 20, y = 40", "D) x = 10, y = 50"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 P(y) = (60 - y)y\u00b3 = 60y\u00b3 - y\u2074.<br>\u2022 P'(y) = 180y\u00b2 - 4y\u00b3 = 4y\u00b2(45 - y) = 0 \u27f9 y = 45.<br>\u2022 Then x = 60 - 45 = 15.<br>\u2022 P''(45) = 360(45) - 12(45)\u00b2 = -8100 < 0 (Maximum confirmed) (Exercise 6.3 Q14)."}, {"id": 36, "question": "36. Find the maximum area of a trapezium whose three sides other than the base are each 10 cm:", "options": ["A) 75\u221a3 cm\u00b2", "B) 100 cm\u00b2", "C) 50\u221a3 cm\u00b2", "D) 75 cm\u00b2"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Parallel sides: 10 and 10 + 2x; height h = \u221a(100 - x\u00b2).<br>\u2022 Area A(x) = (x + 10)\u221a(100 - x\u00b2).<br>\u2022 Setting A'(x) = 0 gives 2x\u00b2 + 10x - 100 = 0 \u27f9 (x - 5)(2x + 20) = 0 \u27f9 x = 5 cm.<br>\u2022 Max Area A(5) = (5 + 10)\u221a(100 - 25) = 15\u221a75 = 15(5\u221a3) = 75\u221a3 cm\u00b2 (NCERT Example 25)."}, {"id": 37, "question": "37. A wire of length 28 m is cut into two pieces for a square (perimeter 4x) and circle (circumference 2\u03c0r). Combined area is minimum when:", "options": ["A) Side of square = 2 \u00b7 radius of circle (x = 2r)", "B) Side of square = radius of circle (x = r)", "C) Perimeter of square = Circumference of circle", "D) Radius = 28 m"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 4x + 2\u03c0r = 28 \u27f9 x = (28 - 2\u03c0r)/4 = 7 - (\u03c0/2)r.<br>\u2022 Area A = x\u00b2 + \u03c0r\u00b2 = (7 - \u03c0r/2)\u00b2 + \u03c0r\u00b2.<br>\u2022 dA/dr = 2(7 - \u03c0r/2)(-\u03c0/2) + 2\u03c0r = -7\u03c0 + (\u03c0\u00b2/2)r + 2\u03c0r = 0.<br>\u2022 Dividing by \u03c0: 2r + (\u03c0/2)r = 7 \u27f9 (4 + \u03c0)r/2 = 7 \u27f9 r = 14 / (\u03c0 + 4).<br>\u2022 Then x = 7 - (\u03c0/2)[14/(\u03c0 + 4)] = 28 / (\u03c0 + 4) = 2r! (Exercise 6.3 Q22)."}, {"id": 38, "question": "38. What is the semi-vertical angle of a right circular cone of given surface area S and maximum volume?", "options": ["A) sin\u207b\u00b9(1/3)", "B) tan\u207b\u00b9(\u221a2)", "C) sin\u207b\u00b9(1/\u221a3)", "D) \u03c0/6"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Surface area S = \u03c0 r l + \u03c0 r\u00b2 \u27f9 l = (S - \u03c0 r\u00b2) / (\u03c0 r).<br>\u2022 V\u00b2 = (1/9)\u03c0\u00b2 r\u2074 (l\u00b2 - r\u00b2) = (1/9)\u03c0\u00b2 r\u2074 [ (S - \u03c0 r\u00b2)\u00b2/(\u03c0\u00b2 r\u00b2) - r\u00b2 ] = (r\u00b2/9)[S\u00b2 - 2\u03c0 r\u00b2 S].<br>\u2022 d(V\u00b2)/dr = 0 \u27f9 S = 4\u03c0 r\u00b2.<br>\u2022 Then \u03c0 r l + \u03c0 r\u00b2 = 4\u03c0 r\u00b2 \u27f9 \u03c0 r l = 3\u03c0 r\u00b2 \u27f9 l = 3r \u27f9 sin \u03b1 = r/l = 1/3.<br>\u2022 Thus, semi-vertical angle is \u03b1 = sin\u207b\u00b9(1/3) (Exercise 6.3 Q26)."}, {"id": 39, "question": "39. The maximum value of [x(x - 1) + 1]^(1/3) on [0, 1] is:", "options": ["A) 1", "B) 1/2", "C) (1/3)^(1/3)", "D) 0"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Let g(x) = x\u00b2 - x + 1. g'(x) = 2x - 1 = 0 \u27f9 x = 1/2.<br>\u2022 Evaluate at x = 0, 1/2, 1:<br>&nbsp;&nbsp;g(0) = 1 \u27f9 f(0) = 1^(1/3) = 1.<br>&nbsp;&nbsp;g(1/2) = 1/4 - 1/2 + 1 = 3/4 \u27f9 f(1/2) = (3/4)^(1/3).<br>&nbsp;&nbsp;g(1) = 1 \u27f9 f(1) = 1^(1/3) = 1.<br>\u2022 Absolute maximum value is 1 (Exercise 6.3 Q29)."}, {"id": 40, "question": "40. Find the dimensions of the window with rectangular base and semicircular top (perimeter 10 m) to admit maximum light:", "options": ["A) Radius r = 10 / (\u03c0 + 4) m, Width = 2r = 20 / (\u03c0 + 4) m, Height = 10 / (\u03c0 + 4) m", "B) Radius r = 5 m, Width = 10 m", "C) Radius r = 2 m, Height = 3 m", "D) Radius r = 10 / \u03c0 m"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Width = 2r, height = y. Perimeter P = 2r + 2y + \u03c0r = 10 \u27f9 y = 5 - r(1 + \u03c0/2).<br>\u2022 Area A = 2r y + (1/2)\u03c0 r\u00b2 = 2r[5 - r - \u03c0r/2] + \u03c0r\u00b2/2 = 10r - 2r\u00b2 - \u03c0r\u00b2/2.<br>\u2022 dA/dr = 10 - 4r - \u03c0r = 0 \u27f9 r(4 + \u03c0) = 10 \u27f9 r = 10 / (\u03c0 + 4).<br>\u2022 Width = 2r = 20 / (\u03c0 + 4) m, and height y = 10 / (\u03c0 + 4) m (Misc Exercise Q8)."}]}];
+
+    let currentSlide = 0;
+    const totalSlides = slidesData.length;
+
+    const userCheckpointAnswers = {};
+    const userQuizAnswers = {};
+
+    let isNarrationEnabled = true;
+    let isAutoPlaySlideshow = false;
+    let autoPlayTimer = null;
+    let audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, type = 'sine', duration = 0.12, gainValue = 0.08) {
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(gainValue, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {
+        console.warn('Web Audio error:', e);
+      }
+    }
+
+    function playSuccessTone() {
+      playTone(523.25, 'triangle', 0.1, 0.08);
+      setTimeout(() => playTone(659.25, 'triangle', 0.12, 0.08), 80);
+      setTimeout(() => playTone(783.99, 'triangle', 0.2, 0.08), 160);
+    }
+
+    function playWrongTone() {
+      playTone(260.00, 'sawtooth', 0.15, 0.08);
+      setTimeout(() => playTone(220.00, 'sawtooth', 0.25, 0.08), 120);
+    }
+
+    function playSlideTransitionTone() {
+      playTone(440, 'sine', 0.06, 0.04);
+    }
+
+    function playPopupTone() {
+      playTone(440, 'sine', 0.06, 0.05);
+      setTimeout(() => playTone(880, 'sine', 0.12, 0.06), 60);
+    }
+
+    function speakNarration(text) {
+      if (!isNarrationEnabled || !('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 1.0;
+      utterance.pitch = 1.05;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function speakSlideNarration(slideIdx) {
+      const s = slidesData[slideIdx];
+      if (s && s.narration) {
+        speakNarration(s.narration);
+      }
+    }
+
+    function toggleSpeech() {
+      isNarrationEnabled = !isNarrationEnabled;
+      const icon = document.getElementById('speechIcon');
+      const text = document.getElementById('speechText');
+      if (isNarrationEnabled) {
+        icon.className = 'fas fa-volume-up text-cyan-400';
+        text.textContent = 'Narration On';
+        speakSlideNarration(currentSlide);
+      } else {
+        icon.className = 'fas fa-volume-mute text-slate-500';
+        text.textContent = 'Narration Off';
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+        }
+      }
+    }
+
+    function goToSlide(idx) {
+      if (idx < 0 || idx >= totalSlides) return;
+      currentSlide = idx;
+      updateSlideUI();
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        goToSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        goToSlide(currentSlide - 1);
+      }
+    }
+
+    function updateSlideUI() {
+      document.querySelectorAll('.slide-section').forEach((sec, i) => {
+        if (i === currentSlide) {
+          sec.classList.add('active');
+        } else {
+          sec.classList.remove('active');
+        }
+      });
+
+      document.getElementById('slideCounterCurrent').textContent = currentSlide + 1;
+
+      // Update footer pills
+      document.querySelectorAll('.slide-pill').forEach((pill, i) => {
+        if (i === currentSlide) {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-blue-600 text-white font-bold transition cursor-pointer';
+        } else {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer';
+        }
+      });
+
+      document.getElementById('prevSlideBtn').disabled = (currentSlide === 0);
+
+      // Last Slide Rule
+      const nextBtn = document.getElementById('nextSlideBtn');
+      const lastNotice = document.getElementById('lastSlideNotice');
+      if (currentSlide === totalSlides - 1) {
+        if (nextBtn) nextBtn.style.display = 'none';
+        if (lastNotice) lastNotice.style.display = 'inline-flex';
+        if (isAutoPlaySlideshow) {
+          toggleAutoPlaySlideshow();
+        }
+      } else {
+        if (nextBtn) nextBtn.style.display = 'inline-flex';
+        if (lastNotice) lastNotice.style.display = 'none';
+      }
+
+      playSlideTransitionTone();
+      speakSlideNarration(currentSlide);
+
+      if (currentSlide === 0) {
+        requestAnimationFrame(drawRippleCanvas);
+      }
+
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    function toggleAutoPlaySlideshow() {
+      const icon = document.getElementById('autoPlayIcon');
+      const txt = document.getElementById('autoPlayText');
+      const bar = document.getElementById('autoPlayProgressBarContainer');
+
+      if (isAutoPlaySlideshow) {
+        isAutoPlaySlideshow = false;
+        clearInterval(autoPlayTimer);
+        icon.className = 'fas fa-play';
+        txt.textContent = 'Auto-Play';
+        bar.classList.add('hidden');
+      } else {
+        if (currentSlide === totalSlides - 1) {
+          goToSlide(0);
+        }
+        isAutoPlaySlideshow = true;
+        icon.className = 'fas fa-pause text-amber-400';
+        txt.textContent = 'Pause';
+        bar.classList.remove('hidden');
+
+        let progress = 0;
+        const duration = 12000;
+        const interval = 100;
+        const step = (interval / duration) * 100;
+
+        autoPlayTimer = setInterval(() => {
+          progress += step;
+          document.getElementById('autoPlayProgressBar').style.width = `${progress}%`;
+          if (progress >= 100) {
+            progress = 0;
+            if (currentSlide < totalSlides - 1) {
+              nextSlide();
+            } else {
+              toggleAutoPlaySlideshow();
+            }
+          }
+        }, interval);
+      }
+    }
+
+    function renderSlideCheckpoints() {
+      slideCheckpoints.forEach(chk => {
+        const container = document.getElementById(`slide-checkpoints-${chk.slideIdx}`);
+        if (!container) return;
+
+        let qCardsHtml = '';
+        chk.questions.forEach((q, qIdx) => {
+          let optionsHtml = '';
+          q.options.forEach((opt, optIdx) => {
+            optionsHtml += `
+              <button onclick="handleCheckpointAnswer(${chk.slideIdx}, ${qIdx}, ${optIdx}, this)"
+                      class="chk-opt-btn-${chk.slideIdx}-${qIdx} w-full text-left p-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-300 font-medium transition cursor-pointer flex items-center justify-between text-xs">
+                <span>${opt}</span>
+                <span class="chk-check font-bold"></span>
+              </button>
+            `;
+          });
+
+          qCardsHtml += `
+            <div id="chk-card-${chk.slideIdx}-${qIdx}" class="glass-card p-4 rounded-2xl border border-slate-800/80 space-y-3">
+              <div class="flex items-start justify-between gap-2">
+                <div class="font-bold text-white text-xs leading-relaxed flex-1">
+                  <span class="text-blue-400 font-mono mr-1">Q${qIdx + 1}:</span>${q.question}
+                </div>
+                <button onclick="toggleCheckpointSolution(${chk.slideIdx}, ${qIdx})"
+                        id="chk-sol-btn-${chk.slideIdx}-${qIdx}"
+                        class="px-2.5 py-1 rounded-xl bg-blue-950/70 hover:bg-blue-900 border border-blue-500/40 text-blue-300 hover:text-blue-100 text-[11px] font-bold flex items-center space-x-1 shrink-0 transition cursor-pointer">
+                  <span>💡</span>
+                  <span id="chk-sol-btn-text-${chk.slideIdx}-${qIdx}">Solution</span>
+                </button>
+              </div>
+              <div class="space-y-1.5">${optionsHtml}</div>
+              <div id="chk-feedback-${chk.slideIdx}-${qIdx}" class="hidden p-2.5 rounded-xl text-[11px]"></div>
+              <div id="chk-solution-${chk.slideIdx}-${qIdx}" class="hidden p-3.5 rounded-xl bg-slate-950/95 border border-blue-500/40 text-slate-200 text-[11px] space-y-1">
+                <div class="font-bold text-cyan-300 border-b border-slate-800 pb-1 mb-1">Teacher's Step-by-Step Solution:</div>
+                <div class="leading-relaxed text-slate-300">${q.solution}</div>
+              </div>
+            </div>
+          `;
+        });
+
+        container.innerHTML = `
+          <div class="space-y-3">
+            <div class="flex items-center space-x-2 text-xs font-bold text-cyan-400 uppercase tracking-wider">
+              <span>✍️</span>
+              <span>Slide Knowledge Checkpoint (2 Exam Questions)</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              ${qCardsHtml}
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function handleCheckpointAnswer(slideIdx, qIdx, selectedIdx, btn) {
+      const key = `${slideIdx}-${qIdx}`;
+      if (userCheckpointAnswers[key] !== undefined) return;
+      userCheckpointAnswers[key] = selectedIdx;
+
+      const item = slideCheckpoints.find(s => s.slideIdx === slideIdx);
+      const q = item.questions[qIdx];
+      const isCorrect = (selectedIdx === q.correct);
+
+      const feedback = document.getElementById(`chk-feedback-${slideIdx}-${qIdx}`);
+      const card = document.getElementById(`chk-card-${slideIdx}-${qIdx}`);
+      const allBtns = card.querySelectorAll(`.chk-opt-btn-${slideIdx}-${qIdx}`);
+
+      allBtns.forEach((b, idx) => {
+        b.disabled = true;
+        if (idx === q.correct) {
+          b.classList.remove('bg-slate-950', 'border-slate-800');
+          b.classList.add('bg-emerald-950/60', 'border-emerald-500/60', 'text-emerald-300');
+          b.querySelector('.chk-check').textContent = '✓';
+        } else if (idx === selectedIdx && !isCorrect) {
+          b.classList.remove('bg-slate-950', 'border-slate-800');
+          b.classList.add('bg-rose-950/60', 'border-rose-500/60', 'text-rose-300');
+          b.querySelector('.chk-check').textContent = '✕';
+        }
+      });
+
+      feedback.classList.remove('hidden');
+      if (isCorrect) {
+        playSuccessTone();
+        feedback.className = 'p-2.5 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 text-[11px]';
+        feedback.innerHTML = `<strong>✓ Correct!</strong> Great work! Click 💡 Solution to view the teacher's derivation.`;
+      } else {
+        playWrongTone();
+        feedback.className = 'p-2.5 rounded-xl bg-rose-950/40 border border-rose-500/40 text-rose-300 text-[11px]';
+        feedback.innerHTML = `<strong>✕ Incorrect!</strong> Correct answer is <strong>${q.options[q.correct]}</strong>. Click 💡 Solution to review.`;
+      }
+    }
+
+    function toggleCheckpointSolution(slideIdx, qIdx) {
+      const solDiv = document.getElementById(`chk-solution-${slideIdx}-${qIdx}`);
+      const btnText = document.getElementById(`chk-sol-btn-text-${slideIdx}-${qIdx}`);
+      const btn = document.getElementById(`chk-sol-btn-${slideIdx}-${qIdx}`);
+      if (!solDiv) return;
+
+      const isHidden = solDiv.classList.contains('hidden');
+      if (isHidden) {
+        solDiv.classList.remove('hidden');
+        if (btnText) btnText.textContent = 'Hide';
+        if (btn) {
+          btn.classList.remove('bg-blue-950/70', 'text-blue-300');
+          btn.classList.add('bg-blue-600', 'text-white', 'border-blue-400');
+        }
+        playTone(659.25, 'sine', 0.08, 0.06);
+      } else {
+        solDiv.classList.add('hidden');
+        if (btnText) btnText.textContent = 'Solution';
+        if (btn) {
+          btn.classList.remove('bg-blue-600', 'text-white', 'border-blue-400');
+          btn.classList.add('bg-blue-950/70', 'text-blue-300');
+        }
+      }
+    }
+
+    function renderAllQuizzes() {
+      quizSets.forEach(set => {
+        const container = document.getElementById(`quiz-container-${set.id}`);
+        if (!container) return;
+
+        container.innerHTML = '';
+        set.questions.forEach((q, qIndex) => {
+          const card = document.createElement('div');
+          card.id = `quiz-card-${set.id}-${q.id}`;
+          card.className = 'glass-card p-4 rounded-2xl border border-slate-800 space-y-3';
+
+          let optionsHtml = '';
+          q.options.forEach((opt, optIdx) => {
+            optionsHtml += `
+              <button onclick="handleQuizAnswer(${set.id}, ${q.id}, ${optIdx}, this)"
+                      class="quiz-opt-btn-${set.id}-${q.id} w-full text-left p-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-300 font-medium transition cursor-pointer flex items-center justify-between text-xs">
+                <span>${opt}</span>
+                <span class="quiz-opt-check font-bold"></span>
+              </button>
+            `;
+          });
+
+          card.innerHTML = `
+            <div class="flex items-start justify-between gap-2">
+              <div class="font-bold text-white text-xs leading-relaxed flex-1">${q.question}</div>
+              <button onclick="openSolutionPopup(${set.id}, ${q.id})"
+                      id="sol-btn-${set.id}-${q.id}"
+                      title="Click to view full step-by-step solution in a popup"
+                      class="px-2.5 py-1 rounded-xl bg-blue-950/70 hover:bg-blue-900 border border-blue-500/40 text-cyan-300 hover:text-cyan-100 text-[11px] font-bold flex items-center space-x-1 shrink-0 transition cursor-pointer shadow-sm">
+                <span>💡</span>
+                <span>Solution</span>
+              </button>
+            </div>
+            <div class="space-y-1.5">${optionsHtml}</div>
+            <div id="quiz-feedback-${set.id}-${q.id}" class="hidden p-2.5 rounded-xl text-[11px]"></div>
+          `;
+
+          container.appendChild(card);
+        });
+      });
+    }
+
+    function handleQuizAnswer(setId, qId, selectedIdx, btn) {
+      const key = `${setId}-${qId}`;
+      if (userQuizAnswers[key] !== undefined) return;
+      userQuizAnswers[key] = selectedIdx;
+
+      const set = quizSets.find(s => s.id === setId);
+      const q = set.questions.find(item => item.id === qId);
+      const isCorrect = (selectedIdx === q.correct);
+
+      const feedback = document.getElementById(`quiz-feedback-${setId}-${qId}`);
+      const card = document.getElementById(`quiz-card-${setId}-${qId}`);
+      const allBtns = card.querySelectorAll(`.quiz-opt-btn-${setId}-${qId}`);
+
+      allBtns.forEach((b, idx) => {
+        b.disabled = true;
+        if (idx === q.correct) {
+          b.classList.remove('bg-slate-950', 'border-slate-800');
+          b.classList.add('bg-emerald-950/60', 'border-emerald-500/60', 'text-emerald-300');
+          b.querySelector('.quiz-opt-check').textContent = '✓';
+        } else if (idx === selectedIdx && !isCorrect) {
+          b.classList.remove('bg-slate-950', 'border-slate-800');
+          b.classList.add('bg-rose-950/60', 'border-rose-500/60', 'text-rose-300');
+          b.querySelector('.quiz-opt-check').textContent = '✕';
+        }
+      });
+
+      feedback.classList.remove('hidden');
+      if (isCorrect) {
+        playSuccessTone();
+        feedback.className = 'p-2.5 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 text-[11px]';
+        feedback.innerHTML = `<strong>✓ Correct!</strong> Click 💡 Solution to view the popup walkthrough.`;
+      } else {
+        playWrongTone();
+        feedback.className = 'p-2.5 rounded-xl bg-rose-950/40 border border-rose-500/40 text-rose-300 text-[11px]';
+        feedback.innerHTML = `<strong>✕ Incorrect!</strong> Correct answer is <strong>${q.options[q.correct]}</strong>. Click 💡 Solution for the popup walkthrough.`;
+      }
+
+      let solvedCount = 0;
+      set.questions.forEach(item => {
+        if (userQuizAnswers[`${setId}-${item.id}`] !== undefined) solvedCount++;
+      });
+      const scoreElem = document.getElementById(`quiz-score-${setId}`);
+      if (scoreElem) scoreElem.textContent = solvedCount;
+    }
+
+    function openSolutionPopup(setId, qId) {
+      const set = quizSets.find(s => s.id === setId);
+      if (!set) return;
+      const q = set.questions.find(item => item.id === qId);
+      if (!q) return;
+
+      document.getElementById('modalQuizBadge').textContent = `${set.title} • Question ${q.id}`;
+      document.getElementById('modalQuizTitle').textContent = `Step-by-Step Teacher Solution`;
+      document.getElementById('modalQuestionText').textContent = q.question;
+      document.getElementById('modalCorrectOption').textContent = q.options[q.correct];
+      document.getElementById('modalExplanationContent').innerHTML = q.solution;
+
+      const modal = document.getElementById('solutionModal');
+      modal.classList.remove('hidden');
+
+      playPopupTone();
+
+      if (window.renderMathInElement) {
+        renderMathInElement(document.getElementById('modalExplanationContent'), {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    function closeSolutionPopup() {
+      const modal = document.getElementById('solutionModal');
+      modal.classList.add('hidden');
+    }
+
+    document.addEventListener('click', (e) => {
+      const modal = document.getElementById('solutionModal');
+      if (e.target === modal) {
+        closeSolutionPopup();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeSolutionPopup();
+      }
+    });
+
+    // Canvas Ripple Animation for Slide 0
+    let rippleRadius = 20;
+    function drawRippleCanvas() {
+      const canvas = document.getElementById('rippleCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width;
+      const h = canvas.height;
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Water background
+      ctx.fillStyle = '#020617';
+      ctx.fillRect(0, 0, w, h);
+
+      const midX = w / 2;
+      const midY = h / 2;
+
+      rippleRadius += 0.6;
+      if (rippleRadius > 95) rippleRadius = 15;
+
+      for (let i = 0; i < 4; i++) {
+        const r = (rippleRadius + i * 22) % 95;
+        const alpha = Math.max(0, 1 - r / 95);
+        ctx.strokeStyle = `rgba(56, 189, 248, ${alpha * 0.8})`;
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.arc(midX, midY, r, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      // Center stone drop
+      ctx.fillStyle = '#38bdf8';
+      ctx.beginPath();
+      ctx.arc(midX, midY, 4, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Radius line
+      ctx.strokeStyle = '#a855f7';
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(midX, midY);
+      ctx.lineTo(midX + rippleRadius, midY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      ctx.fillStyle = '#c084fc';
+      ctx.font = '11px JetBrains Mono';
+      ctx.fillText(`r = ${rippleRadius.toFixed(1)} cm`, midX + 10, midY - 10);
+      const area = (Math.PI * rippleRadius * rippleRadius).toFixed(1);
+      ctx.fillText(`Area = ${area} cm²`, midX + 10, midY + 22);
+
+      if (currentSlide === 0) {
+        requestAnimationFrame(drawRippleCanvas);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderSlideCheckpoints();
+      renderAllQuizzes();
+      updateSlideUI();
+    });
+  </script>
+</body>
+</html>

@@ -925,6 +925,11 @@
             <!-- 10 dots injected by JS -->
         </div>
 
+        <div id="lastSlideNotice" style="display: none;" class="px-4 py-2 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold flex items-center space-x-2 shadow-lg animate-pulse">
+            <span>🎉</span>
+            <span>You have reached the last slide of this chapter</span>
+        </div>
+
         <button id="nextBtn" onclick="nextSlide()" class="px-5 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white text-xs font-bold flex items-center space-x-2 transition shadow-lg shadow-purple-600/30">
             <span class="hidden sm:inline">Next Slide</span>
             <i class="fa-solid fa-chevron-right"></i>
@@ -1077,7 +1082,15 @@
 
             document.getElementById("currentSlideDisplay").textContent = currentSlide;
             document.getElementById("prevBtn").disabled = (currentSlide === 1);
-            document.getElementById("nextBtn").disabled = (currentSlide === totalSlides);
+            const nextBtn = document.getElementById("nextBtn");
+            const lastNotice = document.getElementById("lastSlideNotice");
+            if (currentSlide === totalSlides) {
+                if (nextBtn) nextBtn.style.display = "none";
+                if (lastNotice) lastNotice.style.display = "inline-flex";
+            } else {
+                if (nextBtn) nextBtn.style.display = "inline-flex";
+                if (lastNotice) lastNotice.style.display = "none";
+            }
 
             // Update Dots
             const dots = document.querySelectorAll(".slide-dot");

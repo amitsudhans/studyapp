@@ -13,15 +13,21 @@ class StandardSeeder extends Seeder
      */
     public function run(): void
     {
-        $syllabus = Syllabus::firstOrCreate(
-            ['name' => 'CBSE']
-        );
+        $syllabi = [
+            'NCERT',
+            'CBSE',
+            'SCERT Kerala',
+        ];
 
-        for ($i = 1; $i <= 9; $i++) {
-            Standard::firstOrCreate([
-                'name' => "Class {$i}",
-                'syllabus_id' => $syllabus->id,
-            ]);
+        foreach ($syllabi as $name) {
+            $syllabus = Syllabus::firstOrCreate(['name' => $name]);
+
+            for ($i = 1; $i <= 12; $i++) {
+                Standard::firstOrCreate([
+                    'name' => "Class {$i}",
+                    'syllabus_id' => $syllabus->id,
+                ]);
+            }
         }
     }
 }

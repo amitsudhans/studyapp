@@ -1,0 +1,2164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 12 Mathematics • Part - 2 • Chapter 8: Application of Integrals Multimedia Lab</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- KaTeX for beautiful math typesetting -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .slide-section { display: none; }
+    .slide-section.active { display: block; animation: fadeIn 0.35s ease-out forwards; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .custom-scrollbar::-webkit-scrollbar { height: 6px; width: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.6); }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(59, 130, 246, 0.4); border-radius: 4px; }
+    @keyframes modalScaleUp {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .animate-modal { animation: modalScaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-blue-500 selection:text-white">
+
+  <!-- TOP HEADER -->
+  <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <span class="p-2 rounded-xl bg-blue-600/20 text-blue-400 border border-blue-500/30 text-lg">
+          <i class="fas fa-draw-polygon"></i>
+        </span>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 uppercase tracking-wider">NCERT Class 12</span>
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+            <span class="text-xs text-slate-400 font-medium">Chapter 8</span>
+          </div>
+          <h1 class="text-base sm:text-lg font-bold text-white tracking-tight">Application of Integrals Multimedia Lab</h1>
+          <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <!-- Voiceover Narrator Controls -->
+        <button onclick="toggleSpeech()" id="speechToggleBtn" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700 cursor-pointer">
+          <i class="fas fa-volume-up" id="speechIcon"></i>
+          <span id="speechText">Narration On</span>
+        </button>
+
+        <!-- Auto-Play Slideshow -->
+        <button onclick="toggleAutoPlaySlideshow()" id="autoPlaySlideshowBtn" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700 cursor-pointer">
+          <i class="fas fa-play" id="autoPlayIcon"></i>
+          <span id="autoPlayText">Auto-Play</span>
+        </button>
+
+        <!-- Slide Counter -->
+        <div class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-300">
+          Slide <span id="slideCounterCurrent" class="font-bold text-white">1</span> of <span class="font-bold text-slate-400">21</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div id="autoPlayProgressBarContainer" class="w-full bg-slate-900 h-1 overflow-hidden hidden">
+      <div id="autoPlayProgressBar" class="bg-gradient-to-r from-blue-500 to-cyan-500 h-full w-0 transition-all duration-100 ease-linear"></div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
+    
+            <!-- Slide 0: 8.1 Introduction: Beyond Elementary Geometry & Cauchy's Legacy -->
+            <div id="slide-0" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Section 8.1</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">8.1 Introduction: Beyond Elementary Geometry & Cauchy's Legacy</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Birkhoff Quote, Inadequacy of Euclidean Formulas, A.L. Cauchy (1789-1857) & Curvilinear Boundaries</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(0)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-blue-900/40 via-indigo-900/30 to-cyan-900/40 p-5 rounded-2xl border border-blue-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40">§ 8.1 Conceptual Foundations</span>
+              <span class="text-xs text-slate-400">A.L. Cauchy (1789–1857) & Curvilinear Areas</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Beyond Elementary Geometry: The Power of Integration</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              &ldquo;One should study Mathematics because it is only through Mathematics that nature can be conceived in harmonious form.&rdquo; &mdash; <em>Birkhoff</em>
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Euclidean vs Calculus Geometry -->
+            <div class="glass-card p-5 rounded-2xl space-y-4">
+              <div class="flex items-center space-x-2 text-cyan-300 font-bold text-sm">
+                <i class="fas fa-shapes"></i>
+                <h4>Elementary Geometry vs Integral Calculus</h4>
+              </div>
+              <div class="space-y-3 text-xs text-slate-300">
+                <div class="p-3 bg-slate-950/70 rounded-xl border border-slate-800">
+                  <div class="font-bold text-white mb-1 flex items-center justify-between">
+                    <span>1. Elementary Geometry (Euclidean Formulas)</span>
+                    <span class="text-[10px] px-2 py-0.5 bg-blue-500/20 text-blue-300 rounded">Straight Borders</span>
+                  </div>
+                  <p>Handles triangles ($A = \frac{1}{2}bh$), rectangles ($lw$), trapeziums, and circles. Fails completely for general curved lines and boundary trajectories.</p>
+                </div>
+                <div class="p-3 bg-slate-950/70 rounded-xl border border-slate-800">
+                  <div class="font-bold text-white mb-1 flex items-center justify-between">
+                    <span>2. Integral Calculus (Curvilinear Quadrature)</span>
+                    <span class="text-[10px] px-2 py-0.5 bg-emerald-500/20 text-emerald-300 rounded">Smooth Curves</span>
+                  </div>
+                  <p>Enables the exact calculation of areas enclosed by any smooth function $y = f(x)$, standard parabolas, circles, and ellipses via infinitesimal Riemann sums.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cauchy's Rigor & The Chapter Scope -->
+            <div class="glass-card p-5 rounded-2xl space-y-4">
+              <div class="flex items-center space-x-2 text-amber-300 font-bold text-sm">
+                <i class="fas fa-microscope"></i>
+                <h4>Augustin-Louis Cauchy & Scope of Study</h4>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                In Chapter 7, we defined the definite integral as the limit of a sum and established the Fundamental Theorem of Calculus. In this chapter, we apply these tools to solve real-world geometrical problems:
+              </p>
+              <div class="p-3.5 bg-amber-950/30 rounded-xl border border-amber-500/30 text-xs space-y-2">
+                <div class="font-bold text-amber-300">Curriculum Scope (Standard Forms Only):</div>
+                <ul class="list-disc list-inside text-slate-300 space-y-1 text-[11px]">
+                  <li>Area under simple functions $y = f(x)$ between ordinates $x = a$ and $x = b$.</li>
+                  <li>Area enclosed by standard circles: $x^2 + y^2 = a^2$.</li>
+                  <li>Area enclosed by standard ellipses: $\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$.</li>
+                  <li>Area between parabolas ($y^2 = 4ax$) and coordinate axes.</li>
+                  <li>Piecewise area calculation for axis-crossing curves and modulus functions.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 0 Checkpoint Container -->
+            <div id="slide-checkpoints-0" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 1: 8.2 Vertical Elementary Strips: dA = y dx & x-Axis Integration -->
+            <div id="slide-1" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Section 8.2 • Vertical Strips</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">8.2 Vertical Elementary Strips: dA = y dx & x-Axis Integration</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Fig 8.1: Infinitesimal Slices, Width dx, Height y = f(x), and Riemann Sum Accumulation A = ∫a^b y dx</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(1)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-cyan-900/40 via-blue-900/30 to-indigo-900/40 p-5 rounded-2xl border border-cyan-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">§ 8.2 Vertical Strips</span>
+              <span class="text-xs text-slate-400">Fig 8.1: Elementary Area dA = y dx & Definite Integration</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Vertical Elementary Strips: Slicing along the x-Axis</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              We can conceptualize the total area under $y = f(x)$ between $x = a$ and $x = b$ as composed of a very large number of extremely thin vertical strips.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Theory & Mathematical Formulation -->
+            <div class="glass-card p-5 rounded-2xl space-y-4">
+              <h4 class="font-bold text-white text-sm text-cyan-300">The Vertical Strip Protocol (Fig 8.1)</h4>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>Consider an arbitrary vertical strip at position $x$:</div>
+                <div>Height of strip = $y = f(x)$</div>
+                <div>Width of strip = $dx$ (infinitesimal increment along $x$)</div>
+                <div class="text-cyan-300 font-bold">Elementary Area: $dA = y\,dx = f(x)\,dx$</div>
+                <div class="text-emerald-400 font-bold pt-1 border-t border-slate-800">
+                  Total Area $A = \int_a^b dA = \int_a^b y\,dx = \int_a^b f(x)\,dx
+                </div>
+              </div>
+              <p class="text-xs text-slate-400">
+                Adding up the elementary areas of thin strips across the region $PQRSP$ gives the exact area bounded by the curve, the x-axis, and the ordinates $x = a$ and $x = b$.
+              </p>
+            </div>
+
+            <!-- Visual SVG Diagram of Fig 8.1 -->
+            <div class="glass-card p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+              <h4 class="font-bold text-white text-sm text-emerald-300">Geometric Diagram: Fig 8.1</h4>
+              <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800 flex items-center justify-center">
+                <svg viewBox="0 0 300 160" class="w-full max-w-xs h-auto">
+                  <!-- Axes -->
+                  <line x1="20" y1="140" x2="280" y2="140" stroke="#94a3b8" stroke-width="1.5" />
+                  <line x1="40" y1="150" x2="40" y2="20" stroke="#94a3b8" stroke-width="1.5" />
+                  <text x="285" y="144" fill="#94a3b8" font-size="10" font-family="monospace">X</text>
+                  <text x="36" y="15" fill="#94a3b8" font-size="10" font-family="monospace">Y</text>
+                  <text x="30" y="148" fill="#94a3b8" font-size="9" font-family="monospace">O</text>
+
+                  <!-- Curve y = f(x) -->
+                  <path d="M 60,100 Q 140,40 240,60" fill="none" stroke="#38bdf8" stroke-width="2.5" />
+                  <text x="160" y="38" fill="#38bdf8" font-size="10" font-weight="bold">y = f(x)</text>
+
+                  <!-- Shaded Bounded Region -->
+                  <path d="M 70,140 L 70,95 Q 140,40 230,58 L 230,140 Z" fill="rgba(56, 189, 248, 0.15)" stroke="none" />
+
+                  <!-- Boundary lines x = a and x = b -->
+                  <line x1="70" y1="140" x2="70" y2="95" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="3,3" />
+                  <text x="62" y="152" fill="#a855f7" font-size="9" font-family="monospace">x = a</text>
+
+                  <line x1="230" y1="140" x2="230" y2="58" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="3,3" />
+                  <text x="222" y="152" fill="#a855f7" font-size="9" font-family="monospace">x = b</text>
+
+                  <!-- Elementary Strip (Highlighted) -->
+                  <rect x="135" y="52" width="14" height="88" fill="rgba(16, 185, 129, 0.4)" stroke="#10b981" stroke-width="1.5" />
+                  <text x="133" y="100" fill="#10b981" font-size="9" font-weight="bold">y</text>
+                  <text x="136" y="152" fill="#10b981" font-size="9" font-family="monospace">dx</text>
+                </svg>
+              </div>
+              <div class="text-[11px] text-slate-400 text-center font-mono">
+                Elementary strip: Height = y, Width = dx ⟹ dA = y dx
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 1 Checkpoint Container -->
+            <div id="slide-checkpoints-1" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 2: 8.2 Horizontal Elementary Strips: dA = x dy & y-Axis Integration -->
+            <div id="slide-2" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Section 8.2 • Horizontal Strips</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">8.2 Horizontal Elementary Strips: dA = x dy & y-Axis Integration</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Fig 8.2: Slicing Parallel to x-Axis, Width dy, Length x = g(y), and Definite Integral A = ∫c^d x dy</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(2)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-teal-900/40 via-emerald-900/30 to-blue-900/40 p-5 rounded-2xl border border-teal-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/40">§ 8.2 Horizontal Strips</span>
+              <span class="text-xs text-slate-400">Fig 8.2: Elementary Area dA = x dy & y-Axis Integration</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Horizontal Elementary Strips: Slicing along the y-Axis</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              When a region is bounded by a curve $x = g(y)$, the y-axis, and horizontal lines $y = c$ and $y = d$, we partition into horizontal strips parallel to the x-axis.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Theory & Formula -->
+            <div class="glass-card p-5 rounded-2xl space-y-4">
+              <h4 class="font-bold text-white text-sm text-cyan-300">The Horizontal Strip Protocol (Fig 8.2)</h4>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>Consider an arbitrary horizontal strip at vertical height $y$:</div>
+                <div>Length of strip = $x = g(y)$</div>
+                <div>Thickness of strip = $dy$</div>
+                <div class="text-cyan-300 font-bold">Elementary Area: $dA = x\,dy = g(y)\,dy$</div>
+                <div class="text-emerald-400 font-bold pt-1 border-t border-slate-800">
+                  Total Area $A = \int_c^d dA = \int_c^d x\,dy = \int_c^d g(y)\,dy
+                </div>
+              </div>
+              <p class="text-xs text-slate-400">
+                This is particularly useful when integrating along parabolas like $y^2 = 4ax$ between horizontal boundaries, avoiding the need to split into positive and negative square root branches!
+              </p>
+            </div>
+
+            <!-- Visual SVG Diagram of Fig 8.2 -->
+            <div class="glass-card p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+              <h4 class="font-bold text-white text-sm text-emerald-300">Geometric Diagram: Fig 8.2</h4>
+              <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800 flex items-center justify-center">
+                <svg viewBox="0 0 300 160" class="w-full max-w-xs h-auto">
+                  <!-- Axes -->
+                  <line x1="40" y1="140" x2="280" y2="140" stroke="#94a3b8" stroke-width="1.5" />
+                  <line x1="60" y1="150" x2="60" y2="20" stroke="#94a3b8" stroke-width="1.5" />
+                  <text x="285" y="144" fill="#94a3b8" font-size="10" font-family="monospace">X</text>
+                  <text x="56" y="15" fill="#94a3b8" font-size="10" font-family="monospace">Y</text>
+                  <text x="50" y="148" fill="#94a3b8" font-size="9" font-family="monospace">O</text>
+
+                  <!-- Curve x = g(y) -->
+                  <path d="M 60,30 Q 180,60 140,140" fill="none" stroke="#a855f7" stroke-width="2.5" />
+                  <text x="180" y="65" fill="#a855f7" font-size="10" font-weight="bold">x = g(y)</text>
+
+                  <!-- Horizontal Lines y = c and y = d -->
+                  <line x1="60" y1="120" x2="160" y2="120" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3,3" />
+                  <text x="28" y="123" fill="#38bdf8" font-size="9" font-family="monospace">y = c</text>
+
+                  <line x1="60" y1="40" x2="160" y2="40" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3,3" />
+                  <text x="28" y="43" fill="#38bdf8" font-size="9" font-family="monospace">y = d</text>
+
+                  <!-- Elementary Horizontal Strip -->
+                  <rect x="60" y="75" width="98" height="12" fill="rgba(16, 185, 129, 0.4)" stroke="#10b981" stroke-width="1.5" />
+                  <text x="105" y="85" fill="#10b981" font-size="9" font-weight="bold">x</text>
+                  <text x="162" y="84" fill="#10b981" font-size="9" font-family="monospace">dy</text>
+                </svg>
+              </div>
+              <div class="text-[11px] text-slate-400 text-center font-mono">
+                Elementary strip: Length = x, Width = dy ⟹ dA = x dy
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 2 Checkpoint Container -->
+            <div id="slide-checkpoints-2" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 3: 8.2 The Negative Area Dilemma & Absolute Value Principle -->
+            <div id="slide-3" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Section 8.2 • Remark</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">8.2 The Negative Area Dilemma & Absolute Value Principle</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Fig 8.3: Why Curves Below x-Axis (f(x) < 0) Yield Negative Integrals & Area = |∫a^b f(x) dx|</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(3)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-rose-900/40 via-red-900/30 to-amber-900/40 p-5 rounded-2xl border border-rose-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40">§ 8.2 Crucial Remark</span>
+              <span class="text-xs text-slate-400">Fig 8.3: The Negative Area Dilemma & Absolute Values</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">The Negative Area Dilemma & Absolute Value Principle</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              If the curve $y = f(x)$ lies below the x-axis, then $f(x) < 0$ on $[a, b]$. The definite integral evaluates to a negative number, but physical area is strictly non-negative!
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Theory & Remark -->
+            <div class="glass-card p-5 rounded-2xl space-y-4">
+              <h4 class="font-bold text-white text-sm text-rose-300">NCERT Remark (Page 293)</h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                If the position of the curve under consideration is below the x-axis, then since $f(x) < 0$ from $x = a$ to $x = b$, the area bounded comes out to be negative.
+              </p>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div class="text-white font-bold">Absolute Value Area Rule:</div>
+                <div class="p-2 bg-slate-900 rounded text-rose-300 font-bold">
+                  \text{Area } A = \left| \int_a^b f(x)\,dx \right| = -\int_a^b f(x)\,dx
+                </div>
+                <p class="text-[11px] text-slate-400 font-sans">
+                  Only the numerical (magnitude) value of the area is taken into consideration.
+                </p>
+              </div>
+            </div>
+
+            <!-- Fig 8.3 SVG Illustration -->
+            <div class="glass-card p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+              <h4 class="font-bold text-white text-sm text-amber-300">Geometric Diagram: Fig 8.3</h4>
+              <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800 flex items-center justify-center">
+                <svg viewBox="0 0 300 160" class="w-full max-w-xs h-auto">
+                  <!-- Axes -->
+                  <line x1="20" y1="40" x2="280" y2="40" stroke="#94a3b8" stroke-width="1.5" />
+                  <line x1="60" y1="20" x2="60" y2="150" stroke="#94a3b8" stroke-width="1.5" />
+                  <text x="285" y="44" fill="#94a3b8" font-size="10" font-family="monospace">X</text>
+                  <text x="56" y="15" fill="#94a3b8" font-size="10" font-family="monospace">Y</text>
+                  <text x="50" y="38" fill="#94a3b8" font-size="9" font-family="monospace">O</text>
+
+                  <!-- Negative curve below x-axis -->
+                  <path d="M 80,45 Q 160,140 240,70" fill="none" stroke="#f43f5e" stroke-width="2.5" />
+                  <text x="175" y="110" fill="#f43f5e" font-size="10" font-weight="bold">y = f(x) &lt; 0</text>
+
+                  <!-- Shaded Bounded Region below axis -->
+                  <path d="M 95,40 L 95,68 Q 160,140 220,80 L 220,40 Z" fill="rgba(244, 63, 94, 0.2)" stroke="none" />
+
+                  <!-- Boundary lines -->
+                  <line x1="95" y1="40" x2="95" y2="68" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="3,3" />
+                  <text x="86" y="32" fill="#a855f7" font-size="9" font-family="monospace">x = a</text>
+
+                  <line x1="220" y1="40" x2="220" y2="80" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="3,3" />
+                  <text x="212" y="32" fill="#a855f7" font-size="9" font-family="monospace">x = b</text>
+
+                  <!-- Strip -->
+                  <rect x="145" y="40" width="12" height="66" fill="rgba(244, 63, 94, 0.4)" stroke="#f43f5e" stroke-width="1.5" />
+                  <text x="148" y="118" fill="#f43f5e" font-size="9" font-family="monospace">dx</text>
+                </svg>
+              </div>
+              <div class="text-[11px] text-slate-400 text-center font-mono">
+                Integral is negative ⟹ Geometric Area = |∫ₐᵇ f(x) dx| > 0
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 3 Checkpoint Container -->
+            <div id="slide-checkpoints-3" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 4: 8.2 Axis-Crossing Curves: The Composite Splitting Rule -->
+            <div id="slide-4" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Section 8.2 • Composite Area</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">8.2 Axis-Crossing Curves: The Composite Splitting Rule</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Fig 8.4: Multi-Quadrant Regions, Finding x-Intercepts, and Total Area A = |A₁| + A₂</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(4)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-purple-900/40 via-violet-900/30 to-indigo-900/40 p-5 rounded-2xl border border-purple-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/40">§ 8.2 Composite Splitting</span>
+              <span class="text-xs text-slate-400">Fig 8.4: Curves Crossing the x-Axis & Total Area A = |A₁| + A₂</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Axis-Crossing Curves: The Composite Splitting Rule</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              When a curve dips below the x-axis and then rises above it, blind integration from $a$ to $b$ computes the net signed cancellation, NOT the geometric area. We must split at every root!
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Theory & Warning -->
+            <div class="glass-card p-5 rounded-2xl space-y-4">
+              <h4 class="font-bold text-white text-sm text-cyan-300">The 3-Step Root Splitting Protocol</h4>
+              <div class="space-y-2 text-xs text-slate-300">
+                <div class="p-3 bg-slate-950/70 rounded-xl border border-slate-800 space-y-1">
+                  <div class="font-bold text-white">Step 1: Locate x-Intercepts</div>
+                  <p>Solve $f(x) = 0$ for all roots $c_1, c_2, \dots$ lying strictly inside the interval $(a, b)$.</p>
+                </div>
+                <div class="p-3 bg-slate-950/70 rounded-xl border border-slate-800 space-y-1">
+                  <div class="font-bold text-white">Step 2: Partition the Integral</div>
+                  <p>Break $[a, b]$ into sub-intervals where $f(x)$ maintains a constant sign.</p>
+                </div>
+                <div class="p-3 bg-slate-950/70 rounded-xl border border-slate-800 space-y-1">
+                  <div class="font-bold text-emerald-400">Step 3: Sum Absolute Values</div>
+                  <div class="font-mono text-cyan-300 text-[11px]">\text{Total Area } A = |A_1| + A_2 = \left| \int_a^c f(x)\,dx \right| + \int_c^b f(x)\,dx</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Fig 8.4 SVG Illustration -->
+            <div class="glass-card p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+              <h4 class="font-bold text-white text-sm text-purple-300">Geometric Diagram: Fig 8.4</h4>
+              <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800 flex items-center justify-center">
+                <svg viewBox="0 0 300 160" class="w-full max-w-xs h-auto">
+                  <!-- Axes -->
+                  <line x1="20" y1="80" x2="280" y2="80" stroke="#94a3b8" stroke-width="1.5" />
+                  <line x1="40" y1="20" x2="40" y2="150" stroke="#94a3b8" stroke-width="1.5" />
+                  <text x="285" y="84" fill="#94a3b8" font-size="10" font-family="monospace">X</text>
+                  <text x="36" y="15" fill="#94a3b8" font-size="10" font-family="monospace">Y</text>
+
+                  <!-- Oscillating Curve crossing x-axis at x = c -->
+                  <path d="M 50,130 Q 90,140 140,80 Q 190,20 240,40" fill="none" stroke="#38bdf8" stroke-width="2.5" />
+
+                  <!-- Below Region A1 -->
+                  <path d="M 65,80 L 65,120 Q 95,140 140,80 Z" fill="rgba(244, 63, 94, 0.25)" stroke="none" />
+                  <text x="85" y="105" fill="#f43f5e" font-size="11" font-weight="bold">A₁ &lt; 0</text>
+
+                  <!-- Above Region A2 -->
+                  <path d="M 140,80 Q 190,20 230,35 L 230,80 Z" fill="rgba(16, 185, 129, 0.25)" stroke="none" />
+                  <text x="175" y="60" fill="#10b981" font-size="11" font-weight="bold">A₂ &gt; 0</text>
+
+                  <!-- Vertical lines -->
+                  <line x1="65" y1="80" x2="65" y2="120" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="3,3" />
+                  <text x="56" y="74" fill="#a855f7" font-size="9" font-family="monospace">x = a</text>
+
+                  <line x1="230" y1="35" x2="230" y2="80" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="3,3" />
+                  <text x="222" y="93" fill="#a855f7" font-size="9" font-family="monospace">x = b</text>
+                </svg>
+              </div>
+              <div class="text-[11px] text-slate-400 text-center font-mono">
+                Total Bounded Area = |A₁| + A₂
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 4 Checkpoint Container -->
+            <div id="slide-checkpoints-4" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 5: Example 1: Area Enclosed by a Standard Circle x² + y² = a² -->
+            <div id="slide-5" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Example 1 • Circle</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">Example 1: Area Enclosed by a Standard Circle x² + y² = a²</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Fig 8.5: Quadrant Symmetry (4 × Quadrant 1), Vertical Strips, and Rigorous Derivation of πa²</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(5)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-blue-900/40 via-cyan-900/30 to-teal-900/40 p-5 rounded-2xl border border-blue-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40">Example 1 Deep Dive</span>
+              <span class="text-xs text-slate-400">Fig 8.5: Enclosed Area of Standard Circle x² + y² = a²</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Example 1: Area Enclosed by a Circle $x^2 + y^2 = a^2$</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Find the exact area enclosed by the standard circle $x^2 + y^2 = a^2$ using definite integration.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Step-by-Step Derivation -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-cyan-300">Rigorous 4-Step Derivation</h4>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>1. Circle is symmetrical about both x and y axes:</div>
+                <div class="text-cyan-300">\text{Total Area } A = 4 \times (\text{First Quadrant Area})</div>
+                <div>2. In Quadrant 1, $y = +\sqrt{a^2 - x^2}$ with $x \in [0, a]$:</div>
+                <div class="text-amber-300">A = 4 \int_0^a y\,dx = 4 \int_0^a \sqrt{a^2 - x^2}\,dx</div>
+                <div>3. Apply standard radical quadratic formula from Chapter 7:</div>
+                <div>= 4 \left[ \frac{x}{2}\sqrt{a^2 - x^2} + \frac{a^2}{2}\sin^{-1}\left(\frac{x}{a}\right) \right]_0^a</div>
+                <div>= 4 \left[ \left( 0 + \frac{a^2}{2}\sin^{-1}(1) \right) - 0 \right] = 4 \left( \frac{a^2}{2} \cdot \frac{\pi}{2} \right)</div>
+                <div class="text-emerald-400 font-bold text-sm pt-1 border-t border-slate-800">
+                  \implies \text{Total Area} = \pi a^2 \text{ sq units}
+                </div>
+              </div>
+            </div>
+
+            <!-- Fig 8.5 Diagram -->
+            <div class="glass-card p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+              <h4 class="font-bold text-white text-sm text-emerald-300">Quadrant Symmetry: Fig 8.5</h4>
+              <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800 flex items-center justify-center">
+                <svg viewBox="0 0 200 200" class="w-48 h-48">
+                  <!-- Axes -->
+                  <line x1="10" y1="100" x2="190" y2="100" stroke="#94a3b8" stroke-width="1.5" />
+                  <line x1="100" y1="10" x2="100" y2="190" stroke="#94a3b8" stroke-width="1.5" />
+
+                  <!-- Full Circle -->
+                  <circle cx="100" cy="100" r="70" fill="none" stroke="#64748b" stroke-width="1.5" />
+
+                  <!-- Shaded Quadrant 1 -->
+                  <path d="M 100,100 L 170,100 A 70,70 0 0,0 100,30 Z" fill="rgba(56, 189, 248, 0.3)" stroke="#38bdf8" stroke-width="2" />
+
+                  <!-- Labels -->
+                  <text x="104" y="24" fill="#38bdf8" font-size="9" font-family="monospace">B(0, a)</text>
+                  <text x="172" y="112" fill="#38bdf8" font-size="9" font-family="monospace">A(a, 0)</text>
+                  <text x="88" y="112" fill="#94a3b8" font-size="9" font-family="monospace">O</text>
+
+                  <!-- Vertical Strip -->
+                  <rect x="130" y="55" width="10" height="45" fill="rgba(16, 185, 129, 0.5)" stroke="#10b981" stroke-width="1" />
+                  <text x="132" y="114" fill="#10b981" font-size="8" font-family="monospace">dx</text>
+                  <text x="132" y="80" fill="#10b981" font-size="8" font-weight="bold">y</text>
+                </svg>
+              </div>
+              <div class="text-[11px] text-slate-400 text-center font-mono">
+                Total Area = 4 × First Quadrant = 4(πa²/4) = πa²
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 5 Checkpoint Container -->
+            <div id="slide-checkpoints-5" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 6: Circle Area via Horizontal Strips: Invariance of Method -->
+            <div id="slide-6" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Example 1 • Alternative</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">Circle Area via Horizontal Strips: Invariance of Method</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Fig 8.6: Slicing Horizontally x = √(a² - y²), dy Integration, and Confirming Area = πa²</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(6)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-emerald-900/40 via-teal-900/30 to-cyan-900/40 p-5 rounded-2xl border border-emerald-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">Example 1 Alternative</span>
+              <span class="text-xs text-slate-400">Fig 8.6: Circle Area via Horizontal Strips & Invariance</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Circle Area via Horizontal Strips: Invariance of Method</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Demonstrating the textbook's alternative proof using horizontal strips parallel to the x-axis, confirming that geometrical area is invariant under coordinate orientation.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Derivation -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-cyan-300">Horizontal Derivation (Fig 8.6)</h4>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>From $x^2 + y^2 = a^2$, solve for $x$:</div>
+                <div>$x = +\sqrt{a^2 - y^2}$ in Quadrant 1.</div>
+                <div>Taking horizontal strips of width $dy$:</div>
+                <div class="text-amber-300">A = 4 \int_0^a x\,dy = 4 \int_0^a \sqrt{a^2 - y^2}\,dy</div>
+                <div>= 4 \left[ \frac{y}{2}\sqrt{a^2 - y^2} + \frac{a^2}{2}\sin^{-1}\left(\frac{y}{a}\right) \right]_0^a</div>
+                <div>= 4 \left( \frac{a^2}{2}\sin^{-1}(1) - 0 \right) = 4 \left( \frac{a^2 \pi}{4} \right)</div>
+                <div class="text-emerald-400 font-bold text-sm pt-1 border-t border-slate-800">
+                  \implies A = \pi a^2 \text{ sq units}
+                </div>
+              </div>
+            </div>
+
+            <!-- Fig 8.6 Diagram -->
+            <div class="glass-card p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+              <h4 class="font-bold text-white text-sm text-emerald-300">Horizontal Strips: Fig 8.6</h4>
+              <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800 flex items-center justify-center">
+                <svg viewBox="0 0 200 200" class="w-48 h-48">
+                  <!-- Axes -->
+                  <line x1="10" y1="100" x2="190" y2="100" stroke="#94a3b8" stroke-width="1.5" />
+                  <line x1="100" y1="10" x2="100" y2="190" stroke="#94a3b8" stroke-width="1.5" />
+
+                  <!-- Full Circle -->
+                  <circle cx="100" cy="100" r="70" fill="none" stroke="#64748b" stroke-width="1.5" />
+
+                  <!-- Shaded Quadrant 1 -->
+                  <path d="M 100,100 L 170,100 A 70,70 0 0,0 100,30 Z" fill="rgba(16, 185, 129, 0.25)" stroke="#10b981" stroke-width="2" />
+
+                  <!-- Horizontal Strip -->
+                  <rect x="100" y="55" width="55" height="10" fill="rgba(56, 189, 248, 0.5)" stroke="#38bdf8" stroke-width="1" />
+                  <text x="125" y="63" fill="#38bdf8" font-size="8" font-weight="bold">x</text>
+                  <text x="160" y="63" fill="#38bdf8" font-size="8" font-family="monospace">dy</text>
+                </svg>
+              </div>
+              <div class="text-[11px] text-slate-400 text-center font-mono">
+                Horizontal strips yield the identical result: πa²
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 6 Checkpoint Container -->
+            <div id="slide-checkpoints-6" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 7: Example 2: Area Enclosed by a Standard Ellipse x²/a² + y²/b² = 1 -->
+            <div id="slide-7" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Example 2 • Ellipse</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">Example 2: Area Enclosed by a Standard Ellipse x²/a² + y²/b² = 1</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Fig 8.7: Aspect Ratio Scaling b/a, First Quadrant Integral, and Derivation of πab</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(7)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-purple-900/40 via-indigo-900/30 to-pink-900/40 p-5 rounded-2xl border border-purple-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/40">Example 2 Deep Dive</span>
+              <span class="text-xs text-slate-400">Fig 8.7: Enclosed Area of Standard Ellipse x²/a² + y²/b² = 1</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Example 2: Area Enclosed by an Ellipse $\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              An ellipse is an affine scaling of a circle with semi-major axis $a$ and semi-minor axis $b$. Let us derive its exact enclosed area formula $\pi a b$.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Derivation -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-cyan-300">Vertical Strip Derivation (Fig 8.7)</h4>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>Solve for $y$: $\frac{y^2}{b^2} = 1 - \frac{x^2}{a^2} = \frac{a^2 - x^2}{a^2}$</div>
+                <div>$\implies y = +\frac{b}{a}\sqrt{a^2 - x^2}$ in Quadrant 1.</div>
+                <div>By fourfold symmetry across both axes:</div>
+                <div class="text-purple-300">A = 4 \int_0^a y\,dx = 4 \frac{b}{a} \int_0^a \sqrt{a^2 - x^2}\,dx</div>
+                <div>= \frac{4b}{a} \left[ \frac{x}{2}\sqrt{a^2 - x^2} + \frac{a^2}{2}\sin^{-1}\left(\frac{x}{a}\right) \right]_0^a</div>
+                <div>= \frac{4b}{a} \left( \frac{a^2}{2} \cdot \frac{\pi}{2} \right) = \frac{4b}{a} \left( \frac{\pi a^2}{4} \right)</div>
+                <div class="text-emerald-400 font-bold text-sm pt-1 border-t border-slate-800">
+                  \implies \text{Total Area} = \pi a b \text{ sq units}
+                </div>
+              </div>
+            </div>
+
+            <!-- Fig 8.7 Diagram -->
+            <div class="glass-card p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+              <h4 class="font-bold text-white text-sm text-purple-300">Ellipse Geometry: Fig 8.7</h4>
+              <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800 flex items-center justify-center">
+                <svg viewBox="0 0 240 180" class="w-full max-w-xs h-auto">
+                  <!-- Axes -->
+                  <line x1="10" y1="90" x2="230" y2="90" stroke="#94a3b8" stroke-width="1.5" />
+                  <line x1="120" y1="10" x2="120" y2="170" stroke="#94a3b8" stroke-width="1.5" />
+
+                  <!-- Ellipse outline -->
+                  <ellipse cx="120" cy="90" rx="80" ry="50" fill="none" stroke="#64748b" stroke-width="1.5" />
+
+                  <!-- Shaded Quadrant 1 -->
+                  <path d="M 120,90 L 200,90 A 80,50 0 0,0 120,40 Z" fill="rgba(168, 85, 247, 0.3)" stroke="#a855f7" stroke-width="2" />
+
+                  <!-- Labels -->
+                  <text x="124" y="34" fill="#a855f7" font-size="9" font-family="monospace">B(0, b)</text>
+                  <text x="204" y="94" fill="#a855f7" font-size="9" font-family="monospace">A(a, 0)</text>
+                  <text x="28" y="94" fill="#64748b" font-size="8" font-family="monospace">A'(-a, 0)</text>
+                  <text x="124" y="166" fill="#64748b" font-size="8" font-family="monospace">B'(0, -b)</text>
+
+                  <!-- Strip -->
+                  <rect x="155" y="58" width="10" height="32" fill="rgba(56, 189, 248, 0.5)" stroke="#38bdf8" stroke-width="1" />
+                  <text x="157" y="104" fill="#38bdf8" font-size="8" font-family="monospace">dx</text>
+                  <text x="157" y="78" fill="#38bdf8" font-size="8" font-weight="bold">y</text>
+                </svg>
+              </div>
+              <div class="text-[11px] text-slate-400 text-center font-mono">
+                Ellipse Area = (b/a) × Circle Area = π a b
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 7 Checkpoint Container -->
+            <div id="slide-checkpoints-7" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 8: Ellipse Area via Horizontal Strips & Variable Slicing -->
+            <div id="slide-8" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Example 2 • Alternative</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">Ellipse Area via Horizontal Strips & Variable Slicing</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Fig 8.8: Horizontal Strips with Length x = (a/b)√(b² - y²), dy Bounds from 0 to b, and Verification of πab</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(8)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-pink-900/40 via-purple-900/30 to-indigo-900/40 p-5 rounded-2xl border border-pink-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-pink-500/20 text-pink-300 border border-pink-500/40">Example 2 Alternative</span>
+              <span class="text-xs text-slate-400">Fig 8.8: Ellipse Area via Horizontal Strips</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Ellipse Area via Horizontal Strips</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Evaluating the ellipse area by slicing horizontally from $y = 0$ to $y = b$ with strip length $x = \frac{a}{b}\sqrt{b^2 - y^2}$.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Derivation -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-cyan-300">Horizontal Derivation (Fig 8.8)</h4>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>Solve for $x$: $\frac{x^2}{a^2} = 1 - \frac{y^2}{b^2} = \frac{b^2 - y^2}{b^2}$</div>
+                <div>$\implies x = +\frac{a}{b}\sqrt{b^2 - y^2}$ in Quadrant 1.</div>
+                <div>Taking horizontal strips with bounds $y \in [0, b]$:</div>
+                <div class="text-pink-300">A = 4 \int_0^b x\,dy = 4 \frac{a}{b} \int_0^b \sqrt{b^2 - y^2}\,dy</div>
+                <div>= \frac{4a}{b} \left[ \frac{y}{2}\sqrt{b^2 - y^2} + \frac{b^2}{2}\sin^{-1}\left(\frac{y}{b}\right) \right]_0^b</div>
+                <div>= \frac{4a}{b} \left( \frac{b^2}{2}\sin^{-1}(1) - 0 \right) = \frac{4a}{b} \left( \frac{\pi b^2}{4} \right)</div>
+                <div class="text-emerald-400 font-bold text-sm pt-1 border-t border-slate-800">
+                  \implies A = \pi a b \text{ sq units}
+                </div>
+              </div>
+            </div>
+
+            <!-- Fig 8.8 Diagram -->
+            <div class="glass-card p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+              <h4 class="font-bold text-white text-sm text-pink-300">Horizontal Slicing: Fig 8.8</h4>
+              <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800 flex items-center justify-center">
+                <svg viewBox="0 0 240 180" class="w-full max-w-xs h-auto">
+                  <!-- Axes -->
+                  <line x1="10" y1="90" x2="230" y2="90" stroke="#94a3b8" stroke-width="1.5" />
+                  <line x1="120" y1="10" x2="120" y2="170" stroke="#94a3b8" stroke-width="1.5" />
+
+                  <!-- Ellipse outline -->
+                  <ellipse cx="120" cy="90" rx="80" ry="50" fill="none" stroke="#64748b" stroke-width="1.5" />
+
+                  <!-- Shaded Quadrant 1 -->
+                  <path d="M 120,90 L 200,90 A 80,50 0 0,0 120,40 Z" fill="rgba(236, 72, 153, 0.25)" stroke="#ec4899" stroke-width="2" />
+
+                  <!-- Horizontal Strip -->
+                  <rect x="120" y="58" width="62" height="10" fill="rgba(56, 189, 248, 0.5)" stroke="#38bdf8" stroke-width="1" />
+                  <text x="145" y="66" fill="#38bdf8" font-size="8" font-weight="bold">x</text>
+                  <text x="186" y="66" fill="#38bdf8" font-size="8" font-family="monospace">dy</text>
+                </svg>
+              </div>
+              <div class="text-[11px] text-slate-400 text-center font-mono">
+                A = 4(a/b) ∫₀ᵇ √(b² - y²) dy = π a b
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 8 Checkpoint Container -->
+            <div id="slide-checkpoints-8" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 9: 📝 Exercise 8.1 Workshop: Numerical Ellipses & Scaling Rules -->
+            <div id="slide-9" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Exercise 8.1 Workshop</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">📝 Exercise 8.1 Workshop: Numerical Ellipses & Scaling Rules</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Problem 1: x²/16 + y²/9 = 1 (Area = 12π), Problem 2: x²/4 + y²/9 = 1 (Area = 6π), and Semi-Major Axes</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(9)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-amber-900/40 via-yellow-900/30 to-orange-900/40 p-5 rounded-2xl border border-amber-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">Exercise 8.1 Workshop</span>
+              <span class="text-xs text-slate-400">Problems 1 & 2: Numerical Ellipses & Scaling Mastery</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Exercise 8.1: Ellipse Computations</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Step-by-step solutions to Problems 1 and 2 of Exercise 8.1, demonstrating both standard integration and the general area theorem $A = \pi a b$.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs">
+            <!-- Problem 1 -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                <h4 class="font-bold text-cyan-300 text-sm">Problem 1: $\frac{x^2}{16} + \frac{y^2}{9} = 1$</h4>
+                <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-mono text-[10px]">Ex 8.1 Q1</span>
+              </div>
+              <div class="space-y-2 text-slate-300 font-mono">
+                <div>Here $a^2 = 16 \implies a = 4$ (semi-major axis).</div>
+                <div>$b^2 = 9 \implies b = 3$ (semi-minor axis).</div>
+                <div>In Quadrant 1: $y = \frac{3}{4}\sqrt{16 - x^2}$.</div>
+                <div class="p-2.5 bg-slate-950/70 rounded-xl space-y-1">
+                  <div>Area = $4 \int_0^4 \frac{3}{4}\sqrt{16 - x^2}\,dx$</div>
+                  <div>= $3 \left[ \frac{x}{2}\sqrt{16-x^2} + 8\sin^{-1}\left(\frac{x}{4}\right) \right]_0^4$</div>
+                  <div>= $3 [0 + 8(\pi/2)] = 3(4\pi) = 12\pi$</div>
+                </div>
+                <div class="text-emerald-400 font-bold">Total Area = $12\pi$ sq units</div>
+              </div>
+            </div>
+
+            <!-- Problem 2 -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                <h4 class="font-bold text-amber-300 text-sm">Problem 2: $\frac{x^2}{4} + \frac{y^2}{9} = 1$</h4>
+                <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono text-[10px]">Ex 8.1 Q2</span>
+              </div>
+              <div class="space-y-2 text-slate-300 font-mono">
+                <div>Here $a^2 = 4 \implies a = 2$ (along x-axis).</div>
+                <div>$b^2 = 9 \implies b = 3$ (major axis along y-axis).</div>
+                <div>In Quadrant 1: $y = \frac{3}{2}\sqrt{4 - x^2}$.</div>
+                <div class="p-2.5 bg-slate-950/70 rounded-xl space-y-1">
+                  <div>Area = $4 \int_0^2 \frac{3}{2}\sqrt{4 - x^2}\,dx$</div>
+                  <div>= $6 \left[ \frac{x}{2}\sqrt{4-x^2} + 2\sin^{-1}\left(\frac{x}{2}\right) \right]_0^2$</div>
+                  <div>= $6 [0 + 2(\pi/2)] = 6(\pi) = 6\pi$</div>
+                </div>
+                <div class="text-emerald-400 font-bold">Total Area = $6\pi$ sq units</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 9 Checkpoint Container -->
+            <div id="slide-checkpoints-9" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 10: 📝 Exercise 8.1 Board MCQs: Circle Quadrants & Parabolas -->
+            <div id="slide-10" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Exercise 8.1 MCQs</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">📝 Exercise 8.1 Board MCQs: Circle Quadrants & Parabolas</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">MCQ 3: Circle Quadrant x² + y² = 4 (Area = π), MCQ 4: Parabola y² = 4x with y-Axis & y = 3 (Area = 9/4)</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(10)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-blue-900/40 via-teal-900/30 to-indigo-900/40 p-5 rounded-2xl border border-blue-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40">Exercise 8.1 MCQs</span>
+              <span class="text-xs text-slate-400">Problems 3 & 4: Circle Quadrants & Parabolic Strips</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Board MCQs: Circle Quadrants & Horizontal Parabolas</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Examination favorite multiple-choice questions from Exercise 8.1 testing single-quadrant circular limits and horizontal integration for parabolas.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs">
+            <!-- MCQ 3 -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                <h4 class="font-bold text-cyan-300 text-sm">MCQ 3: Circle Quadrant $x^2 + y^2 = 4$</h4>
+                <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono text-[10px]">Option (A) π</span>
+              </div>
+              <p class="text-slate-300">Find the area in the first quadrant bounded by $x^2 + y^2 = 4$ and lines $x = 0, x = 2$:</p>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-1.5 font-mono text-slate-300">
+                <div>A = \int_0^2 \sqrt{4 - x^2}\,dx</div>
+                <div>= \left[ \frac{x}{2}\sqrt{4-x^2} + 2\sin^{-1}\left(\frac{x}{2}\right) \right]_0^2</div>
+                <div>= 2\sin^{-1}(1) - 0 = 2(\pi/2) = \pi</div>
+                <div class="text-emerald-400 font-bold">Answer: (A) $\pi$ sq units</div>
+              </div>
+            </div>
+
+            <!-- MCQ 4 -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                <h4 class="font-bold text-amber-300 text-sm">MCQ 4: Parabola $y^2 = 4x$ with $y = 3$</h4>
+                <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono text-[10px]">Option (B) 9/4</span>
+              </div>
+              <p class="text-slate-300">Area of the region bounded by $y^2 = 4x$, the y-axis, and line $y = 3$:</p>
+              <div class="p-3 bg-slate-950/70 rounded-xl space-y-1.5 font-mono text-slate-300">
+                <div>Express x in terms of y: $x = \frac{y^2}{4}$.</div>
+                <div>Bounds on y: from $y = 0$ to $y = 3$.</div>
+                <div>Area = \int_0^3 x\,dy = \int_0^3 \frac{y^2}{4}\,dy</div>
+                <div>= \left[ \frac{y^3}{12} \right]_0^3 = \frac{27}{12} = \frac{9}{4}</div>
+                <div class="text-emerald-400 font-bold">Answer: (B) 9/4 sq units</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 10 Checkpoint Container -->
+            <div id="slide-checkpoints-10" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 11: Example 3: Linear Crossing Function y = 3x + 2 on [-1, 1] -->
+            <div id="slide-11" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Example 3 • Line</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">Example 3: Linear Crossing Function y = 3x + 2 on [-1, 1]</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Fig 8.9: Locating Root x = -2/3, Two Triangular Wedges ACBA & ADEA, and Total Area = 13/3</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(11)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-red-900/40 via-orange-900/30 to-amber-900/40 p-5 rounded-2xl border border-red-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-red-500/20 text-red-300 border border-red-500/40">Example 3 Deep Dive</span>
+              <span class="text-xs text-slate-400">Fig 8.9: The Axis-Crossing Line y = 3x + 2 on [-1, 1]</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Example 3: Area Bounded by $y = 3x + 2$ on $[-1, 1]$</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Find the total area bounded by the line $y = 3x + 2$, the x-axis, and ordinates $x = -1$ and $x = 1$.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Step-by-Step Splitting -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-cyan-300">Step-by-Step Solution</h4>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>1. Find x-intercept: $3x + 2 = 0 \implies x = -2/3$.</div>
+                <div>2. For $x \in [-1, -2/3]$: $y \le 0$ (Below x-axis).</div>
+                <div>3. For $x \in [-2/3, 1]$: $y \ge 0$ (Above x-axis).</div>
+                <div class="text-amber-300">Area = |Area(ACBA)| + Area(ADEA)</div>
+                <div>= \left| \int_{-1}^{-2/3} (3x+2)\,dx \right| + \int_{-2/3}^1 (3x+2)\,dx</div>
+                <div>= \left| \left[ \frac{3x^2}{2} + 2x \right]_{-1}^{-2/3} \right| + \left[ \frac{3x^2}{2} + 2x \right]_{-2/3}^1</div>
+                <div>= \left| -\frac{1}{6} \right| + \frac{25}{6} = \frac{1}{6} + \frac{25}{6} = \frac{26}{6}</div>
+                <div class="text-emerald-400 font-bold text-sm pt-1 border-t border-slate-800">
+                  \implies \text{Total Area} = \frac{13}{3} \text{ sq units}
+                </div>
+              </div>
+            </div>
+
+            <!-- Fig 8.9 Diagram -->
+            <div class="glass-card p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+              <h4 class="font-bold text-white text-sm text-amber-300">Geometric Diagram: Fig 8.9</h4>
+              <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800 flex items-center justify-center">
+                <svg viewBox="0 0 240 180" class="w-full max-w-xs h-auto">
+                  <!-- Axes -->
+                  <line x1="10" y1="120" x2="230" y2="120" stroke="#94a3b8" stroke-width="1.5" />
+                  <line x1="120" y1="10" x2="120" y2="170" stroke="#94a3b8" stroke-width="1.5" />
+
+                  <!-- Line y = 3x + 2 -->
+                  <line x1="40" y1="170" x2="190" y2="20" stroke="#f59e0b" stroke-width="2" />
+
+                  <!-- Intercept at x = -2/3 (x ≈ 90) -->
+                  <circle cx="90" cy="120" r="3" fill="#f59e0b" />
+                  <text x="65" y="112" fill="#f59e0b" font-size="8" font-family="monospace">(-2/3, 0)</text>
+
+                  <!-- Bounded Region 1 (Below) from x = -1 (75) to x = -2/3 (90) -->
+                  <polygon points="75,120 75,145 90,120" fill="rgba(244, 63, 94, 0.4)" stroke="#f43f5e" stroke-width="1" />
+                  <text x="60" y="150" fill="#f43f5e" font-size="8" font-family="monospace">1/6</text>
+
+                  <!-- Bounded Region 2 (Above) from x = -2/3 (90) to x = 1 (165) -->
+                  <polygon points="90,120 165,45 165,120" fill="rgba(16, 185, 129, 0.4)" stroke="#10b981" stroke-width="1" />
+                  <text x="125" y="90" fill="#10b981" font-size="9" font-family="monospace">25/6</text>
+
+                  <!-- Ordinates -->
+                  <line x1="75" y1="110" x2="75" y2="155" stroke="#a855f7" stroke-width="1" stroke-dasharray="2,2" />
+                  <text x="60" y="132" fill="#a855f7" font-size="8" font-family="monospace">x = -1</text>
+
+                  <line x1="165" y1="35" x2="165" y2="130" stroke="#a855f7" stroke-width="1" stroke-dasharray="2,2" />
+                  <text x="168" y="125" fill="#a855f7" font-size="8" font-family="monospace">x = 1</text>
+                </svg>
+              </div>
+              <div class="text-[11px] text-slate-400 text-center font-mono">
+                Total Area = 1/6 + 25/6 = 26/6 = 13/3
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 11 Checkpoint Container -->
+            <div id="slide-checkpoints-11" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 12: Example 4: Trigonometric Oscillations: y = cos x on [0, 2π] -->
+            <div id="slide-12" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Example 4 • Cosine</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">Example 4: Trigonometric Oscillations: y = cos x on [0, 2π]</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Fig 8.10: Three Alternating Lobes [0, π/2], [π/2, 3π/2], [3π/2, 2π], Area = 1 + |-2| + 1 = 4</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(12)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-teal-900/40 via-cyan-900/30 to-blue-900/40 p-5 rounded-2xl border border-teal-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/40">Example 4 Deep Dive</span>
+              <span class="text-xs text-slate-400">Fig 8.10: Oscillating Wave y = cos x between 0 and 2π</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Example 4: Area Bounded by $y = \cos x$ on $[0, 2\pi]$</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Evaluating the area bounded by the cosine wave between $x = 0$ and $x = 2\pi$ requires partitioning into three distinct arches.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- Derivation -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <h4 class="font-bold text-white text-sm text-cyan-300">Three-Lobe Partitioning (Fig 8.10)</h4>
+              <div class="p-3.5 bg-slate-950/70 rounded-xl space-y-2 text-xs font-mono text-slate-200">
+                <div>$\\cos x = 0$ at $x = \pi/2$ and $x = 3\pi/2$.</div>
+                <div>• Region 1 ($[0, \pi/2]$): Above x-axis.</div>
+                <div>• Region 2 ($[\pi/2, 3\pi/2]$): Below x-axis.</div>
+                <div>• Region 3 ($[3\pi/2, 2\pi]$): Above x-axis.</div>
+                <div class="text-teal-300">
+                  \text{Area} = \int_0^{\pi/2} \cos x\,dx + \left| \int_{\pi/2}^{3\pi/2} \cos x\,dx \right| + \int_{3\pi/2}^{2\pi} \cos x\,dx
+                </div>
+                <div>= [\sin x]_0^{\pi/2} + |[\sin x]_{\pi/2}^{3\pi/2}| + [\sin x]_{3\pi/2}^{2\pi}</div>
+                <div>= (1 - 0) + |(-1 - 1)| + (0 - (-1)) = 1 + |-2| + 1</div>
+                <div class="text-emerald-400 font-bold text-sm pt-1 border-t border-slate-800">
+                  \implies \text{Total Area} = 1 + 2 + 1 = 4 \text{ sq units}
+                </div>
+              </div>
+            </div>
+
+            <!-- Fig 8.10 Diagram -->
+            <div class="glass-card p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+              <h4 class="font-bold text-white text-sm text-teal-300">Cosine Wave Lobes: Fig 8.10</h4>
+              <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800 flex items-center justify-center">
+                <svg viewBox="0 0 280 150" class="w-full max-w-xs h-auto">
+                  <!-- Axis -->
+                  <line x1="20" y1="75" x2="260" y2="75" stroke="#94a3b8" stroke-width="1.5" />
+                  <line x1="40" y1="15" x2="40" y2="135" stroke="#94a3b8" stroke-width="1.5" />
+
+                  <!-- Cosine wave -->
+                  <path d="M 40,35 Q 65,35 85,75 Q 105,115 130,115 Q 155,115 175,75 Q 195,35 220,35" fill="none" stroke="#2dd4bf" stroke-width="2.5" />
+
+                  <!-- Shaded Lobe 1 (Area = 1) -->
+                  <path d="M 40,35 Q 65,35 85,75 L 40,75 Z" fill="rgba(45, 212, 191, 0.3)" />
+                  <text x="50" y="60" fill="#2dd4bf" font-size="9" font-weight="bold">1</text>
+
+                  <!-- Shaded Lobe 2 (Area = 2) -->
+                  <path d="M 85,75 Q 105,115 130,115 Q 155,115 175,75 Z" fill="rgba(244, 63, 94, 0.3)" />
+                  <text x="126" y="98" fill="#f43f5e" font-size="9" font-weight="bold">2</text>
+
+                  <!-- Shaded Lobe 3 (Area = 1) -->
+                  <path d="M 175,75 Q 195,35 220,35 L 220,75 Z" fill="rgba(45, 212, 191, 0.3)" />
+                  <text x="195" y="60" fill="#2dd4bf" font-size="9" font-weight="bold">1</text>
+
+                  <!-- Tick labels -->
+                  <text x="78" y="88" fill="#94a3b8" font-size="8" font-family="monospace">π/2</text>
+                  <text x="125" y="68" fill="#94a3b8" font-size="8" font-family="monospace">π</text>
+                  <text x="165" y="88" fill="#94a3b8" font-size="8" font-family="monospace">3π/2</text>
+                  <text x="215" y="88" fill="#94a3b8" font-size="8" font-family="monospace">2π</text>
+                </svg>
+              </div>
+              <div class="text-[11px] text-slate-400 text-center font-mono">
+                Total Area = 1 + 2 + 1 = 4 sq units
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 12 Checkpoint Container -->
+            <div id="slide-checkpoints-12" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 13: 📝 Miscellaneous Exercise Workshop: Power Curves & Modulus -->
+            <div id="slide-13" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Misc Exercise Part 1</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">📝 Miscellaneous Exercise Workshop: Power Curves & Modulus</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Problem 1: y = x² on [1, 2] (7/3) & y = x⁴ on [1, 5] (3124/5), Problem 2: y = |x + 3| on [-6, 0] (Area = 9)</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(13)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-indigo-900/40 via-purple-900/30 to-pink-900/40 p-5 rounded-2xl border border-indigo-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40">Miscellaneous Exercise</span>
+              <span class="text-xs text-slate-400">Power Curves & The Modulus Function y = |x + 3|</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Miscellaneous Workshop: Powers & Modulus Functions</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Evaluating areas under polynomials and absolute value functions from Miscellaneous Exercise 8 (Problems 1 & 2).
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs">
+            <!-- Problem 1: Powers -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                <h4 class="font-bold text-cyan-300 text-sm">Problem 1: Standard Power Curves</h4>
+                <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-mono text-[10px]">Misc Q1</span>
+              </div>
+              <div class="space-y-2 text-slate-300 font-mono">
+                <div class="p-2.5 bg-slate-950/70 rounded-xl space-y-1">
+                  <div class="font-bold text-white font-sans">(i) $y = x^2$ from $x = 1$ to $x = 2$:</div>
+                  <div>A = \int_1^2 x^2\,dx = \left[ \frac{x^3}{3} \right]_1^2 = \frac{8}{3} - \frac{1}{3} = \frac{7}{3}</div>
+                </div>
+                <div class="p-2.5 bg-slate-950/70 rounded-xl space-y-1">
+                  <div class="font-bold text-white font-sans">(ii) $y = x^4$ from $x = 1$ to $x = 5$:</div>
+                  <div>A = \int_1^5 x^4\,dx = \left[ \frac{x^5}{5} \right]_1^5 = \frac{3125 - 1}{5} = \frac{3124}{5} = 624.8</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Problem 2: Modulus -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                <h4 class="font-bold text-amber-300 text-sm">Problem 2: $y = |x + 3|$ from $-6$ to $0$</h4>
+                <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono text-[10px]">Misc Q2</span>
+              </div>
+              <p class="text-slate-300 font-sans">The vertex is at $x = -3$, splitting into two symmetric right triangles:</p>
+              <div class="p-2.5 bg-slate-950/70 rounded-xl space-y-1 font-mono text-slate-300">
+                <div>A = \int_{-6}^{-3} -(x+3)\,dx + \int_{-3}^0 (x+3)\,dx</div>
+                <div>Left Triangle (base = 3, height = 3): $\frac{1}{2}(3)(3) = \frac{9}{2}$</div>
+                <div>Right Triangle (base = 3, height = 3): $\frac{1}{2}(3)(3) = \frac{9}{2}$</div>
+                <div class="text-emerald-400 font-bold">Total Area = $\frac{9}{2} + \frac{9}{2} = 9$ sq units</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 13 Checkpoint Container -->
+            <div id="slide-checkpoints-13" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 14: 📝 Board Exam Classics: The Cubic & Odd-Symmetric Graphs -->
+            <div id="slide-14" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Misc Exercise Part 2</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">📝 Board Exam Classics: The Cubic & Odd-Symmetric Graphs</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Problem 3: y = sin x on [0, 2π] (Area = 4), MCQ 4: y = x³ on [-2, 1] (17/4), MCQ 5: y = x|x| on [-1, 1] (2/3)</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(14)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-fuchsia-900/40 via-purple-900/30 to-indigo-900/40 p-5 rounded-2xl border border-fuchsia-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-fuchsia-500/20 text-fuchsia-300 border border-fuchsia-500/40">Board Exam Classics</span>
+              <span class="text-xs text-slate-400">Misc MCQs: Cubic y = x³ and Odd Symmetry y = x|x|</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Board Classics: Cubics & Odd-Symmetric Curves</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Examination favorite multiple-choice questions from Chapter 8 testing sign splits on cubics and odd functions.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs">
+            <!-- MCQ 4 -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                <h4 class="font-bold text-cyan-300 text-sm">MCQ 4: Cubic $y = x^3$ on $[-2, 1]$</h4>
+                <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono text-[10px]">Option (D) 17/4</span>
+              </div>
+              <div class="space-y-1.5 font-mono text-slate-300">
+                <div>On $[-2, 0]$: $x^3 \le 0$, Area = $|\int_{-2}^0 x^3\,dx| = |[x^4/4]_{-2}^0| = |0 - 4| = 4$.</div>
+                <div>On $[0, 1]$: $x^3 \ge 0$, Area = $\int_0^1 x^3\,dx = [x^4/4]_0^1 = 1/4$.</div>
+                <div class="text-emerald-400 font-bold">Total Area = $4 + 1/4 = 17/4$ sq units</div>
+              </div>
+            </div>
+
+            <!-- MCQ 5 -->
+            <div class="glass-card p-5 rounded-2xl space-y-3">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                <h4 class="font-bold text-amber-300 text-sm">MCQ 5: $y = x|x|$ on $[-1, 1]$</h4>
+                <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono text-[10px]">Option (C) 2/3</span>
+              </div>
+              <div class="space-y-1.5 font-mono text-slate-300">
+                <div>For $x < 0$: $y = -x^2$. Area = $|\int_{-1}^0 -x^2\,dx| = 1/3$.</div>
+                <div>For $x \ge 0$: $y = x^2$. Area = $\int_0^1 x^2\,dx = 1/3$.</div>
+                <div class="text-emerald-400 font-bold">Total Area = $1/3 + 1/3 = 2/3$ sq units</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 14 Checkpoint Container -->
+            <div id="slide-checkpoints-14" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 15: Chapter 8 Summary: Master Formulas & Decision Matrix -->
+            <div id="slide-15" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Chapter Summary</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">Chapter 8 Summary: Master Formulas & Decision Matrix</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Vertical vs Horizontal Strips, The Absolute Value Splitting Rule, and Standard Formula Reference</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(15)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-blue-900/40 via-indigo-900/30 to-purple-900/40 p-5 rounded-2xl border border-blue-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40">Chapter 8 Summary</span>
+              <span class="text-xs text-slate-400">Master Formulas & Strip Decision Matrix</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Chapter 8 Master Summary</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Consolidated reference of all area formulas, strip selection rules, and geometric invariants established in Chapter 8.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
+            <div class="glass-card p-4 rounded-2xl space-y-3">
+              <div class="p-2.5 bg-slate-950/70 rounded-xl border border-slate-800 space-y-1">
+                <span class="text-cyan-400 font-bold font-sans">1. Vertical Strip Integration:</span>
+                <div class="text-white">\text{Area} = \int_a^b y\,dx = \int_a^b f(x)\,dx</div>
+              </div>
+              <div class="p-2.5 bg-slate-950/70 rounded-xl border border-slate-800 space-y-1">
+                <span class="text-emerald-400 font-bold font-sans">2. Horizontal Strip Integration:</span>
+                <div class="text-white">\text{Area} = \int_c^d x\,dy = \int_c^d \phi(y)\,dy</div>
+              </div>
+            </div>
+
+            <div class="glass-card p-4 rounded-2xl space-y-3">
+              <div class="p-2.5 bg-slate-950/70 rounded-xl border border-slate-800 space-y-1">
+                <span class="text-amber-400 font-bold font-sans">3. Circle & Ellipse Formulas:</span>
+                <div class="text-white">\text{Circle } (x^2 + y^2 = a^2): \text{Area} = \pi a^2</div>
+                <div class="text-white">\text{Ellipse } (x^2/a^2 + y^2/b^2 = 1): \text{Area} = \pi a b</div>
+              </div>
+              <div class="p-2.5 bg-slate-950/70 rounded-xl border border-slate-800 space-y-1">
+                <span class="text-rose-400 font-bold font-sans">4. Sign Crossing Rule:</span>
+                <div class="text-white">\text{Area} = |A_1| + A_2 = \left| \int_a^c f\,dx \right| + \int_c^b f\,dx</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 15 Checkpoint Container -->
+            <div id="slide-checkpoints-15" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 16: Historical Roots: From Greek Exhaustion to Newton, Leibniz & Cauchy -->
+            <div id="slide-16" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 uppercase tracking-wider">Historical Note</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">Historical Roots: From Greek Exhaustion to Newton, Leibniz & Cauchy</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Eudoxus (440 BC), Archimedes (300 BC), Calculus Summatorius (1684), and Cauchy's Limit Rigor</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="speakSlideNarration(16)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition title='Listen to teacher narration'">
+                    <i class="fas fa-volume-up text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-amber-900/40 via-orange-900/30 to-yellow-900/40 p-5 rounded-2xl border border-amber-500/30 shadow-lg">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">Historical Note</span>
+              <span class="text-xs text-slate-400">Pages 298–299: 2200 Years of Mathematical Discovery</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Historical Roots of Integral Calculus</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Tracing the evolutionary milestones from ancient Greece to the dawn of modern analysis.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            <div class="glass-card p-4 rounded-2xl space-y-2">
+              <h4 class="font-bold text-cyan-300 border-b border-slate-800 pb-1">Ancient Roots: Method of Exhaustion</h4>
+              <p class="text-slate-300 leading-relaxed">
+                Invented by Eudoxus (440 B.C.) and perfected by Archimedes (300 B.C.) to calculate areas of plane figures, parabolas, and sphere volumes by inscribing successive polygons.
+              </p>
+            </div>
+            <div class="glass-card p-4 rounded-2xl space-y-2">
+              <h4 class="font-bold text-amber-300 border-b border-slate-800 pb-1">17th Century: Newton & Leibniz</h4>
+              <p class="text-slate-300 leading-relaxed">
+                In 1665, Isaac Newton introduced fluxions and the inverse method of tangents. In 1684–86, G.W. Leibniz introduced <em>Calculus summatorius</em> and the elongated 'S' symbol &int;, changed in 1696 to <em>Calculus integrali</em> at the suggestion of J. Bernoulli.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+              
+            <!-- Slide 16 Checkpoint Container -->
+            <div id="slide-checkpoints-16" class="mt-6 pt-6 border-t border-slate-800">
+              <!-- Rendered via JavaScript -->
+            </div>
+            
+            </div>
+            
+
+            <!-- Slide 17: 🎯 Quiz Challenge 1: Strip Mechanics & Circle Area Formulas -->
+            <div id="slide-17" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Quiz Set 1</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">🎯 Quiz Challenge 1: Strip Mechanics & Circle Area Formulas</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Questions 1–10: Test your fundamentals on elementary strips dA = y dx and dA = x dy, symmetry principles, and circle integrations.</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-300">
+                    <span id="quiz-score-1">0</span> / 10 Solved
+                  </span>
+                </div>
+              </div>
+
+              <!-- Quiz Questions Grid -->
+              <div id="quiz-container-1" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <!-- Rendered dynamically by JavaScript -->
+              </div>
+            </div>
+            
+
+            <!-- Slide 18: 🎯 Quiz Challenge 2: Ellipse Areas & Boundary Curves -->
+            <div id="slide-18" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Quiz Set 2</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">🎯 Quiz Challenge 2: Ellipse Areas & Boundary Curves</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Questions 11–20: Master ellipse formulas πab, semi-axes identification, and horizontal strip setups.</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-300">
+                    <span id="quiz-score-2">0</span> / 10 Solved
+                  </span>
+                </div>
+              </div>
+
+              <!-- Quiz Questions Grid -->
+              <div id="quiz-container-2" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <!-- Rendered dynamically by JavaScript -->
+              </div>
+            </div>
+            
+
+            <!-- Slide 19: 🎯 Quiz Challenge 3: Axis-Crossing Lines, Modulus & Signed Integrals -->
+            <div id="slide-19" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Quiz Set 3</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">🎯 Quiz Challenge 3: Axis-Crossing Lines, Modulus & Signed Integrals</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Questions 21–30: Root identification, piecewise splitting, modulus functions |x+a|, and negative areas.</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-300">
+                    <span id="quiz-score-3">0</span> / 10 Solved
+                  </span>
+                </div>
+              </div>
+
+              <!-- Quiz Questions Grid -->
+              <div id="quiz-container-3" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <!-- Rendered dynamically by JavaScript -->
+              </div>
+            </div>
+            
+
+            <!-- Slide 20: 🎯 Quiz Challenge 4: Trigonometric Lobes, Higher Powers & Board Exam Classics -->
+            <div id="slide-20" class="slide-section space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Quiz Set 4</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 2</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-white mt-1">🎯 Quiz Challenge 4: Trigonometric Lobes, Higher Powers & Board Exam Classics</h2>
+                  <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 2</div>
+                  <p class="text-xs sm:text-sm text-slate-400">Questions 31–40: Sine and cosine oscillations, parabolas y² = 4ax, cubic curves, and board exam MCQs.</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-300">
+                    <span id="quiz-score-4">0</span> / 10 Solved
+                  </span>
+                </div>
+              </div>
+
+              <!-- Quiz Questions Grid -->
+              <div id="quiz-container-4" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <!-- Rendered dynamically by JavaScript -->
+              </div>
+            </div>
+            
+  </main>
+
+  <!-- BOTTOM BAR (FOOTER CONTROLLER DOCK WITH SHORT HEADING PILLS) -->
+  <footer style="flex-shrink: 0;" class="border-t border-slate-800/90 bg-slate-950/95 p-3 sm:p-4 z-40 sticky bottom-0">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+      <!-- Left: Audio Effects Toggle -->
+      <div class="flex items-center space-x-2">
+        <button onclick="toggleAudioFx()" id="audioFxToggleBtn" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 text-xs hover:text-white transition flex items-center space-x-1.5 cursor-pointer">
+          <i class="fas fa-music text-blue-400"></i>
+          <span id="audioFxStatus">SFX: On</span>
+        </button>
+      </div>
+
+      <!-- Center: Slide Navigation Pills with Short Topic Headings -->
+      <div class="flex items-center space-x-1 overflow-x-auto max-w-full md:max-w-2xl py-1 custom-scrollbar px-2">
+        <button onclick="goToSlide(0)" id="pill-0" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="8.1 Introduction: Beyond Elementary Geometry & Cauchy's Legacy">1. Cauchy & Intro</button>
+<button onclick="goToSlide(1)" id="pill-1" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="8.2 Vertical Elementary Strips: dA = y dx & x-Axis Integration">2. Vertical Strips</button>
+<button onclick="goToSlide(2)" id="pill-2" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="8.2 Horizontal Elementary Strips: dA = x dy & y-Axis Integration">3. Horizontal Strips</button>
+<button onclick="goToSlide(3)" id="pill-3" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="8.2 The Negative Area Dilemma & Absolute Value Principle">4. Negative Area</button>
+<button onclick="goToSlide(4)" id="pill-4" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="8.2 Axis-Crossing Curves: The Composite Splitting Rule">5. Axis Crossing</button>
+<button onclick="goToSlide(5)" id="pill-5" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="Example 1: Area Enclosed by a Standard Circle x² + y² = a²">6. Circle Example 1</button>
+<button onclick="goToSlide(6)" id="pill-6" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="Circle Area via Horizontal Strips: Invariance of Method">7. Circle Horizontal</button>
+<button onclick="goToSlide(7)" id="pill-7" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="Example 2: Area Enclosed by a Standard Ellipse x²/a² + y²/b² = 1">8. Ellipse Example 2</button>
+<button onclick="goToSlide(8)" id="pill-8" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="Ellipse Area via Horizontal Strips & Variable Slicing">9. Ellipse Horizontal</button>
+<button onclick="goToSlide(9)" id="pill-9" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="📝 Exercise 8.1 Workshop: Numerical Ellipses & Scaling Rules">10. Ex 8.1 Ellipses</button>
+<button onclick="goToSlide(10)" id="pill-10" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="📝 Exercise 8.1 Board MCQs: Circle Quadrants & Parabolas">11. Ex 8.1 MCQs</button>
+<button onclick="goToSlide(11)" id="pill-11" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="Example 3: Linear Crossing Function y = 3x + 2 on [-1, 1]">12. Line Split Ex 3</button>
+<button onclick="goToSlide(12)" id="pill-12" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="Example 4: Trigonometric Oscillations: y = cos x on [0, 2π]">13. Cosine Waves Ex 4</button>
+<button onclick="goToSlide(13)" id="pill-13" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="📝 Miscellaneous Exercise Workshop: Power Curves & Modulus">14. Misc Powers & |x|</button>
+<button onclick="goToSlide(14)" id="pill-14" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="📝 Board Exam Classics: The Cubic & Odd-Symmetric Graphs">15. Misc Cubics & Odd</button>
+<button onclick="goToSlide(15)" id="pill-15" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="Chapter 8 Summary: Master Formulas & Decision Matrix">16. Master Summary</button>
+<button onclick="goToSlide(16)" id="pill-16" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="Historical Roots: From Greek Exhaustion to Newton, Leibniz & Cauchy">17. Historical Roots</button>
+<button onclick="goToSlide(17)" id="pill-17" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="🎯 Quiz Challenge 1: Strip Mechanics & Circle Area Formulas">18. Quiz 1: Strips</button>
+<button onclick="goToSlide(18)" id="pill-18" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="🎯 Quiz Challenge 2: Ellipse Areas & Boundary Curves">19. Quiz 2: Ellipse</button>
+<button onclick="goToSlide(19)" id="pill-19" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="🎯 Quiz Challenge 3: Axis-Crossing Lines, Modulus & Signed Integrals">20. Quiz 3: Split Area</button>
+<button onclick="goToSlide(20)" id="pill-20" class="slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer" title="🎯 Quiz Challenge 4: Trigonometric Lobes, Higher Powers & Board Exam Classics">21. Quiz 4: Waves & MCQs</button>
+      </div>
+
+      <!-- Right: Navigation Buttons & Last Slide Notice Container -->
+      <div class="flex items-center space-x-2">
+        <button onclick="prevSlide()" id="prevBtn" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold transition flex items-center space-x-1.5 border border-slate-700 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed">
+          <i class="fas fa-chevron-left"></i>
+          <span>Prev</span>
+        </button>
+        <button onclick="nextSlide()" id="nextBtn" class="px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white text-xs font-bold shadow-lg shadow-blue-600/30 transition flex items-center space-x-1.5 cursor-pointer">
+          <span>Next</span>
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- REQUIRED LAST SLIDE NOTICE -->
+    <div id="lastSlideNotice" class="hidden max-w-7xl mx-auto mt-2 p-2.5 rounded-xl bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 text-center text-xs font-bold shadow-lg">
+      <i class="fas fa-check-circle mr-1.5"></i>
+      <span>You have reached the last slide of this chapter</span>
+    </div>
+  </footer>
+
+  <!-- POPUP MODAL FOR QUIZ SOLUTIONS -->
+  <div id="solutionModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="glass-card max-w-xl w-full rounded-2xl p-6 border border-slate-700/80 shadow-2xl space-y-4 animate-modal bg-slate-900/95 max-h-[85vh] overflow-y-auto custom-scrollbar">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center space-x-2 text-cyan-300 font-bold text-base">
+          <i class="fas fa-lightbulb text-amber-400"></i>
+          <span id="solutionModalTitle">Solution & Mathematical Derivation</span>
+        </div>
+        <button onclick="closeSolutionModal()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition flex items-center justify-center cursor-pointer">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div id="solutionModalBody" class="text-xs sm:text-sm text-slate-200 leading-relaxed space-y-3 font-sans">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <div class="pt-2 border-t border-slate-800/80 flex justify-end">
+        <button onclick="closeSolutionModal()" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition cursor-pointer">
+          Close Solution
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EMBEDDED DATA & SCRIPT -->
+  <script>
+    const SLIDES_COUNT = 21;
+    const SLIDES_METADATA = [{"index": 0, "title": "8.1 Introduction: Beyond Elementary Geometry & Cauchy's Legacy", "subtitle": "Birkhoff Quote, Inadequacy of Euclidean Formulas, A.L. Cauchy (1789-1857) & Curvilinear Boundaries", "badge": "Section 8.1", "narration": "Welcome to Chapter 8: Application of Integrals! In geometry, we learned formulas for elementary figures like triangles, rectangles, trapeziums, and circles. But when nature curves smoothly, elementary Euclidean formulas are completely inadequate. Integral Calculus provides the definitive tool to calculate the exact area enclosed by curves, lines, circles, parabolas, and ellipses. As Birkhoff remarked, 'One should study Mathematics because it is only through Mathematics that nature can be conceived in harmonious form.'"}, {"index": 1, "title": "8.2 Vertical Elementary Strips: dA = y dx & x-Axis Integration", "subtitle": "Fig 8.1: Infinitesimal Slices, Width dx, Height y = f(x), and Riemann Sum Accumulation A = \u222ba^b y dx", "badge": "Section 8.2 \u2022 Vertical Strips", "narration": "To find the area bounded by the curve y = f(x), the x-axis, and vertical lines x = a and x = b, imagine slicing the region into a very large number of extremely thin vertical strips. Consider an arbitrary strip at position x of height y and width dx. Its elementary area dA equals y dx. Summing all these strips from a to b yields the definite integral: Area A equals the integral from a to b of y dx."}, {"index": 2, "title": "8.2 Horizontal Elementary Strips: dA = x dy & y-Axis Integration", "subtitle": "Fig 8.2: Slicing Parallel to x-Axis, Width dy, Length x = g(y), and Definite Integral A = \u222bc^d x dy", "badge": "Section 8.2 \u2022 Horizontal Strips", "narration": "Alternatively, when a region is bounded by a curve x = g(y), the y-axis, and horizontal lines y = c and y = d, we slice horizontally. An elementary horizontal strip has length x and thickness dy, giving elementary area dA equals x dy. Integrating from c to d gives Area A equals the integral from c to d of x dy. Choosing between vertical or horizontal strips depends on which makes the integral simpler to evaluate."}, {"index": 3, "title": "8.2 The Negative Area Dilemma & Absolute Value Principle", "subtitle": "Fig 8.3: Why Curves Below x-Axis (f(x) < 0) Yield Negative Integrals & Area = |\u222ba^b f(x) dx|", "badge": "Section 8.2 \u2022 Remark", "narration": "When a curve lies entirely below the x-axis, f(x) is negative on the interval [a, b]. Consequently, evaluating the definite integral yields a negative number. However, area is a physical, geometric quantity and must always be positive. Therefore, whenever the curve lies below the axis, we take the absolute value: Area equals the absolute value of the integral from a to b of f(x) dx."}, {"index": 4, "title": "8.2 Axis-Crossing Curves: The Composite Splitting Rule", "subtitle": "Fig 8.4: Multi-Quadrant Regions, Finding x-Intercepts, and Total Area A = |A\u2081| + A\u2082", "badge": "Section 8.2 \u2022 Composite Area", "narration": "What happens when a curve crosses the x-axis? Some portion lies below the axis with negative integral A1, while another portion lies above with positive integral A2. If you integrate blindly from a to b without splitting, the negative and positive regions cancel each other out! To find the true bounded area, we locate the x-intercepts, split the integral at every crossing point, and compute Area A equals the absolute value of A1 plus A2."}, {"index": 5, "title": "Example 1: Area Enclosed by a Standard Circle x\u00b2 + y\u00b2 = a\u00b2", "subtitle": "Fig 8.5: Quadrant Symmetry (4 \u00d7 Quadrant 1), Vertical Strips, and Rigorous Derivation of \u03c0a\u00b2", "badge": "Example 1 \u2022 Circle", "narration": "In Example 1, we determine the exact area enclosed by the circle x squared plus y squared equals a squared. Because a circle possesses fourfold symmetry across both coordinate axes, the total area is four times the area of the first quadrant. In the first quadrant, y equals the positive square root of a squared minus x squared. Integrating four times the integral from zero to a of square root of a squared minus x squared dx yields exactly pi a squared."}, {"index": 6, "title": "Circle Area via Horizontal Strips: Invariance of Method", "subtitle": "Fig 8.6: Slicing Horizontally x = \u221a(a\u00b2 - y\u00b2), dy Integration, and Confirming Area = \u03c0a\u00b2", "badge": "Example 1 \u2022 Alternative", "narration": "The textbook demonstrates an alternative proof using horizontal strips. Solving for x in the first quadrant gives x equals the square root of a squared minus y squared. Integrating four times the integral from zero to a of square root of a squared minus y squared dy also evaluates to pi a squared. This reinforces that physical area is independent of the coordinate slicing direction."}, {"index": 7, "title": "Example 2: Area Enclosed by a Standard Ellipse x\u00b2/a\u00b2 + y\u00b2/b\u00b2 = 1", "subtitle": "Fig 8.7: Aspect Ratio Scaling b/a, First Quadrant Integral, and Derivation of \u03c0ab", "badge": "Example 2 \u2022 Ellipse", "narration": "In Example 2, we find the area enclosed by the standard ellipse x squared over a squared plus y squared over b squared equals 1. In the first quadrant, y equals b over a times the square root of a squared minus x squared. Exploiting symmetry across both axes, the whole area is four times the first quadrant area. Factoring out b over a, the integral is identical to the circle integral, producing the famous formula: Area of an ellipse equals pi times a times b."}, {"index": 8, "title": "Ellipse Area via Horizontal Strips & Variable Slicing", "subtitle": "Fig 8.8: Horizontal Strips with Length x = (a/b)\u221a(b\u00b2 - y\u00b2), dy Bounds from 0 to b, and Verification of \u03c0ab", "badge": "Example 2 \u2022 Alternative", "narration": "We can also integrate the ellipse using horizontal strips from y equals zero to y equals b. Expressing x as a over b times square root of b squared minus y squared, the fourfold integral evaluates to four times a over b times pi b squared over four, which simplifies cleanly to pi a b. Both vertical and horizontal methods produce the exact same elegant result."}, {"index": 9, "title": "\ud83d\udcdd Exercise 8.1 Workshop: Numerical Ellipses & Scaling Rules", "subtitle": "Problem 1: x\u00b2/16 + y\u00b2/9 = 1 (Area = 12\u03c0), Problem 2: x\u00b2/4 + y\u00b2/9 = 1 (Area = 6\u03c0), and Semi-Major Axes", "badge": "Exercise 8.1 Workshop", "narration": "In Exercise 8.1, we apply our ellipse theorem to numerical problems. For x squared over 16 plus y squared over 9 equals 1, the semi-axes are a = 4 and b = 3, giving total area pi times 4 times 3 equals 12 pi square units. For x squared over 4 plus y squared over 9 equals 1, a = 2 and b = 3, yielding an area of 6 pi square units."}, {"index": 10, "title": "\ud83d\udcdd Exercise 8.1 Board MCQs: Circle Quadrants & Parabolas", "subtitle": "MCQ 3: Circle Quadrant x\u00b2 + y\u00b2 = 4 (Area = \u03c0), MCQ 4: Parabola y\u00b2 = 4x with y-Axis & y = 3 (Area = 9/4)", "badge": "Exercise 8.1 MCQs", "narration": "Exercise 8.1 concludes with two essential board exam multiple choice questions. Question 3 asks for the first quadrant area of x squared plus y squared equals 4 between x = 0 and x = 2, which is one quarter of pi times 2 squared, or pi. Question 4 asks for the area between y squared equals 4x, the y-axis, and y = 3. Using horizontal strips, the integral of y squared over 4 dy from 0 to 3 evaluates directly to 9 over 4."}, {"index": 11, "title": "Example 3: Linear Crossing Function y = 3x + 2 on [-1, 1]", "subtitle": "Fig 8.9: Locating Root x = -2/3, Two Triangular Wedges ACBA & ADEA, and Total Area = 13/3", "badge": "Example 3 \u2022 Line", "narration": "Example 3 demonstrates why splitting is vital. The line y = 3x + 2 meets the x-axis at x = -2/3. For x between -1 and -2/3, the line lies below the x-axis, producing a negative integral of -1/6 whose area is +1/6. For x between -2/3 and 1, the line lies above the x-axis, giving an area of 25/6. Adding both absolute contributions gives 1/6 plus 25/6 equals 26/6, or 13/3 square units."}, {"index": 12, "title": "Example 4: Trigonometric Oscillations: y = cos x on [0, 2\u03c0]", "subtitle": "Fig 8.10: Three Alternating Lobes [0, \u03c0/2], [\u03c0/2, 3\u03c0/2], [3\u03c0/2, 2\u03c0], Area = 1 + |-2| + 1 = 4", "badge": "Example 4 \u2022 Cosine", "narration": "In Example 4, we evaluate the area bounded by y = cosine x between x = 0 and x = 2 pi. A direct integral would yield zero because the positive and negative waves cancel! Instead, we partition into three regions: from 0 to pi/2 the curve is above, giving area 1. From pi/2 to 3 pi/2 it is below, giving a signed integral of -2 with absolute area 2. From 3 pi/2 to 2 pi it is above, giving area 1. The total bounded area is 1 plus 2 plus 1 equals 4 square units."}, {"index": 13, "title": "\ud83d\udcdd Miscellaneous Exercise Workshop: Power Curves & Modulus", "subtitle": "Problem 1: y = x\u00b2 on [1, 2] (7/3) & y = x\u2074 on [1, 5] (3124/5), Problem 2: y = |x + 3| on [-6, 0] (Area = 9)", "badge": "Misc Exercise Part 1", "narration": "In the Miscellaneous Exercise, we integrate standard power curves: the parabola y = x squared from 1 to 2 gives 7/3, and y = x to the fourth from 1 to 5 gives 3124/5. For the V-shaped modulus curve y = absolute value of x plus 3 from -6 to 0, splitting at the vertex x = -3 decomposes the area into two symmetric right triangles, each of area 9/2, totaling 9 square units."}, {"index": 14, "title": "\ud83d\udcdd Board Exam Classics: The Cubic & Odd-Symmetric Graphs", "subtitle": "Problem 3: y = sin x on [0, 2\u03c0] (Area = 4), MCQ 4: y = x\u00b3 on [-2, 1] (17/4), MCQ 5: y = x|x| on [-1, 1] (2/3)", "badge": "Misc Exercise Part 2", "narration": "For y = sine x from 0 to 2 pi, two lobes of area 2 combine to give 4 square units. Multiple choice question 4 analyzes the cubic y = x cubed from -2 to 1: the negative lobe from -2 to 0 has area 4, and the positive lobe from 0 to 1 has area 1/4, summing to 17/4. Question 5 considers y = x times absolute x on [-1, 1]: symmetric parabolas of area 1/3 each total 2/3 square units."}, {"index": 15, "title": "Chapter 8 Summary: Master Formulas & Decision Matrix", "subtitle": "Vertical vs Horizontal Strips, The Absolute Value Splitting Rule, and Standard Formula Reference", "badge": "Chapter Summary", "narration": "Let us summarize Chapter 8. The area between y = f(x) and the x-axis from a to b is the integral of y dx. The area between x = g(y) and the y-axis from c to d is the integral of x dy. If the curve dips below the axis, integrate piecewise using absolute values. The area of a circle x squared plus y squared equals a squared is pi a squared, and the area of an ellipse x squared over a squared plus y squared over b squared equals 1 is pi a b."}, {"index": 16, "title": "Historical Roots: From Greek Exhaustion to Newton, Leibniz & Cauchy", "subtitle": "Eudoxus (440 BC), Archimedes (300 BC), Calculus Summatorius (1684), and Cauchy's Limit Rigor", "badge": "Historical Note", "narration": "The historical note traces integral calculus back over two millennia. Eudoxus in 440 BC and Archimedes in 300 BC invented the method of exhaustion to calculate curved areas by inscribing polygons. In the 17th century, Newton developed fluxions while Leibniz created the integral symbol from the letter S for summa. In the 19th century, Augustin-Louis Cauchy placed definite integrals on a rigorous foundation using limits of sums."}, {"index": 17, "title": "\ud83c\udfaf Quiz Challenge 1: Strip Mechanics & Circle Area Formulas", "subtitle": "Questions 1\u201310: Elementary strips, vertical vs horizontal orientation, and circle derivations.", "badge": "Quiz Set 1", "narration": "Welcome to Quiz Challenge 1! Test your fundamentals on elementary strips dA = y dx and dA = x dy, symmetry principles, and circle integrations. Click any answer to test your skills, and use the View Solution button for a full step-by-step popup explanation."}, {"index": 18, "title": "\ud83c\udfaf Quiz Challenge 2: Ellipse Areas & Boundary Curves", "subtitle": "Questions 11\u201320: Master ellipse formulas \u03c0ab, semi-axes identification, and horizontal strip setups.", "badge": "Quiz Set 2", "narration": "Quiz Challenge 2 focuses on ellipses and standard bounded regions. Calculate areas using scaling factors, evaluate horizontal integrations, and solve textbook problems with precision."}, {"index": 19, "title": "\ud83c\udfaf Quiz Challenge 3: Axis-Crossing Lines, Modulus & Signed Integrals", "subtitle": "Questions 21\u201330: Root identification, piecewise splitting, modulus functions |x+a|, and negative areas.", "badge": "Quiz Set 3", "narration": "Quiz Challenge 3 tests your mastery of the sign trap! Find x-intercepts, split integrals where functions change sign, and compute total geometric areas for linear and absolute value curves."}, {"index": 20, "title": "\ud83c\udfaf Quiz Challenge 4: Trigonometric Lobes, Higher Powers & Board Exam Classics", "subtitle": "Questions 31\u201340: Sine and cosine oscillations, parabolas y\u00b2 = 4ax, cubic curves, and board exam MCQs.", "badge": "Quiz Set 4", "narration": "Welcome to the final challenge: Quiz 4! Evaluate areas under trigonometric lobes, cubic curves, and parabolic boundaries. Review famous board exam problems and verify your calculus mastery."}];
+    const CHECKPOINTS_DATA = [{"slideIdx": 0, "questions": [{"id": 1, "question": "Why are standard formulas from elementary geometry inadequate for computing areas enclosed by general curves?", "options": ["A) Elementary geometry only applies to triangles, rectangles, trapeziums, and circles with straight or constant-curvature borders", "B) Elementary geometry formulas use radian measure which is inaccurate", "C) Curves do not possess a well-defined area", "D) Elementary geometry is limited to three-dimensional figures"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Section 8.1 explains: 'The formulae of elementary geometry allow us to calculate areas of many simple figures. However, they are inadequate for calculating the areas enclosed by curves. For that we shall need some concepts of Integral Calculus' (NCERT Page 292)."}, {"id": 2, "question": "Which mathematician is prominently featured on page 292 of NCERT Chapter 8 for establishing the rigorous definition of integrals?", "options": ["A) Isaac Newton", "B) A.L. Cauchy (1789-1857)", "C) James B. Bristol", "D) G.W. Leibniz"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Augustin-Louis Cauchy (1789-1857) is portrayed on page 292. His work in the early 19th century provided the rigorous justification of the integral as the limit of a sum (NCERT Page 292 & 299)."}]}, {"slideIdx": 1, "questions": [{"id": 1, "question": "In Fig 8.1, what are the dimensions and area of an arbitrary vertical elementary strip under y = f(x)?", "options": ["A) Width = dy, Height = x, Area dA = x dy", "B) Width = dx, Height = y = f(x), Area dA = y dx", "C) Width = dx, Height = f'(x), Area dA = f'(x) dx", "D) Width = \u0394x, Height = x\u00b2, Area dA = x\u00b2 dx"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Section 8.2 states: 'Consider an arbitrary strip of height y and width dx, then dA (area of the elementary strip) = y dx, where y = f(x).' Summing all strips from x = a to x = b gives A = \u222b\u2090\u1d47 y dx (NCERT Page 292-293)."}, {"id": 2, "question": "What is the total area bounded by y = f(x), the x-axis, and ordinates x = a and x = b?", "options": ["A) A = f(b) - f(a)", "B) A = \u222b\u2090\u1d47 y dx = \u222b\u2090\u1d47 f(x) dx", "C) A = \u222b\u2090\u1d47 [f'(x)]\u00b2 dx", "D) A = (1/2) [f(a) + f(b)] (b - a)"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 By definition of the definite integral as the limit of a sum of vertical strips: A = \u222b\u2090\u1d47 dA = \u222b\u2090\u1d47 y dx = \u222b\u2090\u1d47 f(x) dx (NCERT Page 293)."}]}, {"slideIdx": 2, "questions": [{"id": 1, "question": "In Fig 8.2, when a region is bounded by x = g(y), the y-axis, and lines y = c and y = d, how is the elementary strip chosen?", "options": ["A) Vertically with thickness dx and area dA = y dx", "B) Horizontally with thickness dy, length x = g(y), and area dA = x dy", "C) Radially with angle d\u03b8 and area dA = (1/2) r\u00b2 d\u03b8", "D) Triangular with area dA = (1/2) x y"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Section 8.2 explains: 'The area A bounded by the curve x = g(y), y-axis and the lines y = c, y = d is given by A = \u222b_c^d x dy = \u222b_c^d g(y) dy. Here, we consider horizontal strips' (NCERT Page 293)."}, {"id": 2, "question": "When is it advantageous to use horizontal strips (dy) instead of vertical strips (dx)?", "options": ["A) Only when the function is a straight line", "B) When the curve's equation expresses x conveniently in terms of y, or when the region is bounded by the y-axis and lines y = c, y = d", "C) Only when integrating negative functions", "D) Horizontal strips must never be used in standard calculus"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 For curves like y\u00b2 = 4ax bounded by the y-axis and horizontal lines, expressing x = y\u00b2/(4a) and integrating w.r.t y avoids splitting the curve into top and bottom branches (NCERT Page 293 & 296)."}]}, {"slideIdx": 3, "questions": [{"id": 1, "question": "If the curve y = f(x) lies entirely below the x-axis on [a, b] (f(x) < 0), what does the definite integral \u222b\u2090\u1d47 f(x) dx evaluate to?", "options": ["A) A strictly positive number", "B) Zero", "C) A negative number", "D) Infinity"], "correct": 2, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Because height y = f(x) is negative at every point on [a, b], the definite integral \u222b\u2090\u1d47 f(x) dx is negative.<br>\u2022 However, geometrical area is always non-negative: we take the absolute value |\u222b\u2090\u1d47 f(x) dx| (NCERT Page 293 Remark)."}, {"id": 2, "question": "What is the true geometric area bounded by y = -x, the x-axis, from x = 0 to x = 2?", "options": ["A) -2", "B) 2", "C) 0", "D) 4"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 The definite integral is \u222b\u2080\u00b2 (-x) dx = [-x\u00b2/2]\u2080\u00b2 = -2.<br>\u2022 Since area must be positive, Area = |-2| = 2 square units (NCERT Page 293 Remark)."}]}, {"slideIdx": 4, "questions": [{"id": 1, "question": "In Fig 8.4, if region A\u2081 lies below the x-axis (A\u2081 < 0) and region A\u2082 lies above (A\u2082 > 0), what is the total bounded area?", "options": ["A) A = A\u2081 + A\u2082", "B) A = |A\u2081| + A\u2082", "C) A = A\u2082 - |A\u2081|", "D) A = (A\u2081 + A\u2082) / 2"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Section 8.2 states: 'Here, A\u2081 < 0 and A\u2082 > 0. Therefore, the area A bounded by the curve y = f(x), x-axis and the ordinates x = a and x = b is given by A = |A\u2081| + A\u2082' (NCERT Page 293)."}, {"id": 2, "question": "What mistake occurs if you calculate \u222b\u2090\u1d47 f(x) dx directly across an axis-crossing curve without splitting at the root?", "options": ["A) The integral is undefined", "B) The negative area cancels part or all of the positive area, understating the true geometric area", "C) The answer will always equal zero", "D) The answer is multiplied by 2"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 For example, for y = sin x from 0 to 2\u03c0, \u222b\u2080^(2\u03c0) sin x dx = 0, but the actual geometric area is 2 + 2 = 4! Unsplit integration calculates net algebraic sum, not geometric area (NCERT Page 293 & 297)."}]}, {"slideIdx": 5, "questions": [{"id": 1, "question": "In Example 1, why is the total area of the circle x\u00b2 + y\u00b2 = a\u00b2 computed as 4 times the first quadrant integral?", "options": ["A) Because a circle has 4 equal quadrants and is symmetrical about both the x-axis and y-axis", "B) Because the circumference is 2\u03c0r", "C) Because the diameter is 2a", "D) Because 4 is a standard constant in all integral applications"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Section 8.2 Example 1 notes: 'The whole area enclosed = 4 \u00d7 (area of region AOBA in first quadrant) [as the circle is symmetrical about both x-axis and y-axis]' (NCERT Page 294)."}, {"id": 2, "question": "Which standard integral formula from Chapter 7 is used to evaluate 4 \u222b\u2080\u1d43 \u221a(a\u00b2 - x\u00b2) dx?", "options": ["A) \u222b \u221a(a\u00b2 - x\u00b2) dx = (x/2)\u221a(a\u00b2 - x\u00b2) + (a\u00b2/2) sin\u207b\u00b9(x/a)", "B) \u222b \u221a(a\u00b2 - x\u00b2) dx = log|x + \u221a(a\u00b2 - x\u00b2)|", "C) \u222b \u221a(a\u00b2 - x\u00b2) dx = (1/2a) log|(a+x)/(a-x)|", "D) \u222b \u221a(a\u00b2 - x\u00b2) dx = (2/3)(a\u00b2 - x\u00b2)^(3/2)"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Applying 4 [(x/2)\u221a(a\u00b2-x\u00b2) + (a\u00b2/2) sin\u207b\u00b9(x/a)]\u2080\u1d43 = 4 [(a\u00b2/2) sin\u207b\u00b9(1) - 0] = 4(a\u00b2/2)(\u03c0/2) = \u03c0a\u00b2 (NCERT Page 294)."}]}, {"slideIdx": 6, "questions": [{"id": 1, "question": "In Fig 8.6, how is the horizontal strip integral set up for the circle x\u00b2 + y\u00b2 = a\u00b2?", "options": ["A) 4 \u222b\u2080\u1d43 \u221a(a\u00b2 - y\u00b2) dy", "B) 2 \u222b\u2080\u1d43 (a\u00b2 - y\u00b2) dy", "C) 4 \u222b\u2080\u1d43 (a - y) dy", "D) \u222b\u208b\u2090\u1d43 \u221a(a\u00b2 - y\u00b2) dy"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 For horizontal strips, x = \u221a(a\u00b2 - y\u00b2). Integrating w.r.t y from 0 to a: Area = 4 \u222b\u2080\u1d43 x dy = 4 \u222b\u2080\u1d43 \u221a(a\u00b2 - y\u00b2) dy = \u03c0a\u00b2 (NCERT Page 295)."}, {"id": 2, "question": "What fundamental principle does the agreement between vertical and horizontal strip integrations illustrate?", "options": ["A) That geometry is dependent on axes", "B) The invariance of geometric area under orientation of elementary strips", "C) That dy must always equal dx", "D) That circles have no perimeter"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Both vertical (dx) and horizontal (dy) strips partition the same two-dimensional region into infinitesimal rectangles; the resulting Riemann limit converges to the exact same invariant area \u03c0a\u00b2 (NCERT Page 294-295)."}]}, {"slideIdx": 7, "questions": [{"id": 1, "question": "In the standard ellipse x\u00b2/a\u00b2 + y\u00b2/b\u00b2 = 1, what is the expression for y in the first quadrant?", "options": ["A) y = \u221a(b\u00b2 - x\u00b2)", "B) y = (b/a) \u221a(a\u00b2 - x\u00b2)", "C) y = (a/b) \u221a(b\u00b2 - x\u00b2)", "D) y = b - (b/a)x"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 x\u00b2/a\u00b2 + y\u00b2/b\u00b2 = 1 \u27f9 y\u00b2/b\u00b2 = 1 - x\u00b2/a\u00b2 = (a\u00b2 - x\u00b2)/a\u00b2 \u27f9 y = \u00b1(b/a)\u221a(a\u00b2 - x\u00b2).<br>\u2022 In the first quadrant, y > 0, so y = (b/a)\u221a(a\u00b2 - x\u00b2) (NCERT Page 295)."}, {"id": 2, "question": "What is the total area enclosed by the ellipse x\u00b2/a\u00b2 + y\u00b2/b\u00b2 = 1?", "options": ["A) \u03c0(a + b)", "B) \u03c0 a b", "C) 2\u03c0 a b", "D) \u03c0 a\u00b2 b\u00b2"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Area = 4 (b/a) \u222b\u2080\u1d43 \u221a(a\u00b2 - x\u00b2) dx = (4b/a) [(a\u00b2/2)(\u03c0/2)] = (4b/a)(\u03c0a\u00b2/4) = \u03c0ab (NCERT Page 295)."}]}, {"slideIdx": 8, "questions": [{"id": 1, "question": "In Fig 8.8, setting up the horizontal strip integral for the ellipse x\u00b2/a\u00b2 + y\u00b2/b\u00b2 = 1 requires integrating from:", "options": ["A) y = 0 to y = a", "B) y = 0 to y = b", "C) y = -b to y = b", "D) y = -a to y = a"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 In the first quadrant, the vertical coordinate y spans from 0 to the semi-minor/semi-major axis height b. Thus the bounds are y = 0 to y = b (NCERT Page 296)."}, {"id": 2, "question": "What is the expression for horizontal strip length x in terms of y for the ellipse?", "options": ["A) x = (a/b) \u221a(b\u00b2 - y\u00b2)", "B) x = (b/a) \u221a(b\u00b2 - y\u00b2)", "C) x = \u221a(a\u00b2 - y\u00b2)", "D) x = a - (a/b)y"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 x\u00b2/a\u00b2 = 1 - y\u00b2/b\u00b2 = (b\u00b2 - y\u00b2)/b\u00b2 \u27f9 x = (a/b)\u221a(b\u00b2 - y\u00b2).<br>\u2022 Total Area = 4 \u222b\u2080\u1d47 x dy = 4(a/b) \u222b\u2080\u1d47 \u221a(b\u00b2 - y\u00b2) dy = (4a/b)(\u03c0b\u00b2/4) = \u03c0ab (NCERT Page 296)."}]}, {"slideIdx": 9, "questions": [{"id": 1, "question": "Find the area of the region bounded by the ellipse x\u00b2/16 + y\u00b2/9 = 1 (Exercise 8.1 Q1):", "options": ["A) 144\u03c0", "B) 12\u03c0", "C) 24\u03c0", "D) 7\u03c0"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Here a\u00b2 = 16 \u27f9 a = 4, and b\u00b2 = 9 \u27f9 b = 3.<br>\u2022 Using the standard ellipse area formula Area = \u03c0 a b: Area = \u03c0(4)(3) = 12\u03c0 square units (Exercise 8.1 Q1, Page 296)."}, {"id": 2, "question": "Find the area of the region bounded by the ellipse x\u00b2/4 + y\u00b2/9 = 1 (Exercise 8.1 Q2):", "options": ["A) 6\u03c0", "B) 12\u03c0", "C) 36\u03c0", "D) 5\u03c0"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Here a\u00b2 = 4 \u27f9 a = 2, and b\u00b2 = 9 \u27f9 b = 3.<br>\u2022 Area = \u03c0 a b = \u03c0(2)(3) = 6\u03c0 square units (Exercise 8.1 Q2, Page 296)."}]}, {"slideIdx": 10, "questions": [{"id": 1, "question": "Find the area in the first quadrant bounded by x\u00b2 + y\u00b2 = 4 and lines x = 0, x = 2 (Exercise 8.1 Q3):", "options": ["A) \u03c0", "B) \u03c0/2", "C) \u03c0/3", "D) \u03c0/4"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 The circle has radius r = 2.<br>\u2022 The first quadrant region from x = 0 to x = 2 represents exactly one-fourth of the entire circle.<br>\u2022 Area = (1/4) \u03c0 r\u00b2 = (1/4) \u03c0 (2\u00b2) = \u03c0 square units (Option A) (Exercise 8.1 Q3, Page 296)."}, {"id": 2, "question": "Find the area bounded by the curve y\u00b2 = 4x, y-axis, and line y = 3 (Exercise 8.1 Q4):", "options": ["A) 2", "B) 9/4", "C) 9/3", "D) 9/2"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Using horizontal strips: x = y\u00b2/4 from y = 0 to y = 3.<br>\u2022 Area = \u222b\u2080\u00b3 x dy = \u222b\u2080\u00b3 (y\u00b2/4) dy = [y\u00b3 / 12]\u2080\u00b3 = 27/12 = 9/4 square units (Option B) (Exercise 8.1 Q4, Page 296)."}]}, {"slideIdx": 11, "questions": [{"id": 1, "question": "In Example 3, where does the line y = 3x + 2 intersect the x-axis?", "options": ["A) x = 2/3", "B) x = -2/3", "C) x = -1", "D) x = 0"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Set y = 0 \u27f9 3x + 2 = 0 \u27f9 x = -2/3.<br>\u2022 For x \u2208 [-1, -2/3], y \u2264 0 (below axis). For x \u2208 [-2/3, 1], y \u2265 0 (above axis) (NCERT Page 297)."}, {"id": 2, "question": "What is the total area bounded by y = 3x + 2, x-axis, x = -1, and x = 1 (Example 3)?", "options": ["A) 4", "B) 13/3", "C) 26/3", "D) 2"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Area = |\u222b\u208b\u2081^(-2/3) (3x+2) dx| + \u222b_(-2/3)\u00b9 (3x+2) dx.<br>\u2022 First triangle: |[3x\u00b2/2 + 2x]\u208b\u2081^(-2/3)| = |-1/6| = 1/6.<br>\u2022 Second triangle: [3x\u00b2/2 + 2x]_(-2/3)\u00b9 = 7/2 - (-2/3) = 25/6.<br>\u2022 Total Area = 1/6 + 25/6 = 26/6 = 13/3 square units (NCERT Page 297)."}]}, {"slideIdx": 12, "questions": [{"id": 1, "question": "In Example 4, what are the three sub-intervals when integrating y = cos x from 0 to 2\u03c0?", "options": ["A) [0, \u03c0/2], [\u03c0/2, 3\u03c0/2], [3\u03c0/2, 2\u03c0]", "B) [0, \u03c0], [\u03c0, 2\u03c0]", "C) [0, \u03c0/4], [\u03c0/4, \u03c0/2], [\u03c0/2, 2\u03c0]", "D) [0, 2\u03c0] without splitting"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 cos x = 0 at x = \u03c0/2 and x = 3\u03c0/2.<br>\u2022 On [0, \u03c0/2], cos x \u2265 0 (above). On [\u03c0/2, 3\u03c0/2], cos x \u2264 0 (below). On [3\u03c0/2, 2\u03c0], cos x \u2265 0 (above) (NCERT Page 297)."}, {"id": 2, "question": "What is the total bounded area of y = cos x between x = 0 and x = 2\u03c0 (Example 4)?", "options": ["A) 0", "B) 2", "C) 4", "D) 2\u03c0"], "correct": 2, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Area = \u222b\u2080^(\u03c0/2) cos x dx + |\u222b_(\u03c0/2)^(3\u03c0/2) cos x dx| + \u222b_(3\u03c0/2)^(2\u03c0) cos x dx.<br>\u2022 = [sin x]\u2080^(\u03c0/2) + |[sin x]_(\u03c0/2)^(3\u03c0/2)| + [sin x]_(3\u03c0/2)^(2\u03c0)<br>\u2022 = 1 + |-1 - 1| + (0 - (-1)) = 1 + 2 + 1 = 4 square units (NCERT Page 297)."}]}, {"slideIdx": 13, "questions": [{"id": 1, "question": "Find the area under y = x\u00b2 between x = 1, x = 2 and x-axis (Misc Exercise Q1(i)):", "options": ["A) 3", "B) 7/3", "C) 8/3", "D) 1/3"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Area = \u222b\u2081\u00b2 x\u00b2 dx = [x\u00b3/3]\u2081\u00b2 = 8/3 - 1/3 = 7/3 square units (Misc Exercise Q1(i), Page 298)."}, {"id": 2, "question": "Evaluate the area under y = |x + 3| from x = -6 to x = 0 (Misc Exercise Q2):", "options": ["A) 9", "B) 18", "C) 0", "D) 9/2"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Split at root x = -3: \u222b\u208b\u2086\u2070 |x+3| dx = \u222b\u208b\u2086^(-3) -(x+3) dx + \u222b\u208b\u2083\u2070 (x+3) dx.<br>\u2022 Each piece forms a right triangle of base 3 and height 3: Area = (1/2)(3)(3) + (1/2)(3)(3) = 9/2 + 9/2 = 9 square units (Misc Exercise Q2, Page 298)."}]}, {"slideIdx": 14, "questions": [{"id": 1, "question": "Find the area bounded by the cubic y = x\u00b3, the x-axis, from x = -2 to x = 1 (Misc Exercise Q4):", "options": ["A) -9", "B) -15/4", "C) 15/4", "D) 17/4"], "correct": 3, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 For x \u2208 [-2, 0], x\u00b3 \u2264 0. For x \u2208 [0, 1], x\u00b3 \u2265 0.<br>\u2022 Area = |\u222b\u208b\u2082\u2070 x\u00b3 dx| + \u222b\u2080\u00b9 x\u00b3 dx = |[x\u2074/4]\u208b\u2082\u2070| + [x\u2074/4]\u2080\u00b9 = |0 - 4| + (1/4 - 0) = 4 + 1/4 = 17/4 square units (Option D) (Misc Exercise Q4, Page 298)."}, {"id": 2, "question": "Find the area bounded by y = x|x|, x-axis, from x = -1 to x = 1 (Misc Exercise Q5):", "options": ["A) 0", "B) 1/3", "C) 2/3", "D) 4/3"], "correct": 2, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 For x < 0, y = -x\u00b2; for x \u2265 0, y = x\u00b2.<br>\u2022 Area = |\u222b\u208b\u2081\u2070 -x\u00b2 dx| + \u222b\u2080\u00b9 x\u00b2 dx = |[-x\u00b3/3]\u208b\u2081\u2070| + [x\u00b3/3]\u2080\u00b9 = 1/3 + 1/3 = 2/3 square units (Option C) (Misc Exercise Q5, Page 298)."}]}, {"slideIdx": 15, "questions": [{"id": 1, "question": "What is the complete summary formula for area bounded by y = f(x), x-axis, and lines x = a, x = b (b > a)?", "options": ["A) Area = \u222b\u2090\u1d47 y dx = \u222b\u2090\u1d47 f(x) dx", "B) Area = \u222b\u2090\u1d47 f'(x) dx", "C) Area = f(b) - f(a)", "D) Area = \u222b\u2090\u1d47 (y\u00b2/2) dx"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Summary point 1 on page 298: 'The area of the region bounded by the curve y = f(x), x-axis and the lines x = a and x = b (b > a) is given by the formula: Area = \u222b\u2090\u1d47 y dx = \u222b\u2090\u1d47 f(x) dx' (NCERT Page 298)."}, {"id": 2, "question": "What is the summary formula for area bounded by x = \u03c6(y), y-axis, and lines y = c, y = d (d > c)?", "options": ["A) Area = \u222b_c^d x dy = \u222b_c^d \u03c6(y) dy", "B) Area = \u222b_c^d y dx", "C) Area = \u03c6(d) - \u03c6(c)", "D) Area = \u222b_c^d [\u03c6'(y)]\u00b2 dy"], "correct": 0, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Summary point 2 on page 298: 'The area of the region bounded by the curve x = \u03c6(y), y-axis and the lines y = c, y = d is given by the formula: Area = \u222b_c^d x dy = \u222b_c^d \u03c6(y) dy' (NCERT Page 298)."}]}, {"slideIdx": 16, "questions": [{"id": 1, "question": "Which ancient Greek mathematicians developed the method of exhaustion, an early precursor of integration?", "options": ["A) Pythagoras and Euclid", "B) Eudoxus (440 B.C.) and Archimedes (300 B.C.)", "C) Thales and Ptolemy", "D) Aristotle and Plato"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Historical Note states: 'The greatest development of method of exhaustion in the early period was obtained in the works of Eudoxus (440 B.C.) and Archimedes (300 B.C.)' (NCERT Page 299)."}, {"id": 2, "question": "In what publication did Leibniz first introduce the integral sign '\u222b' under the name Calculus summatorius?", "options": ["A) Philosophiae Naturalis Principia Mathematica", "B) Acta Eruditorum (1684-86)", "C) Elements of Calculus", "D) Arithmetica Infinitorum"], "correct": 1, "solution": "<strong>Teacher's Step-by-Step Explanation:</strong><br>\u2022 Historical Note explains: 'During 1684-86, Leibnitz published an article in the Acta Eruditorum which he called Calculus summatorius, since it was connected with the summation of a number of infinitely small areas, whose sum he indicated by the symbol \u222b' (NCERT Page 299)."}]}];
+    const QUIZ_SETS = [{"id": 1, "title": "\ud83c\udfaf Quiz Challenge 1: Strip Mechanics & Circle Area Formulas", "description": "Questions 1\u201310: Test your fundamentals on elementary strips dA = y dx and dA = x dy, symmetry principles, and circle integrations.", "questions": [{"id": 1, "question": "1. What is the elementary area dA of a thin vertical strip of height y and width dx?", "options": ["A) dA = x dy", "B) dA = y dx", "C) dA = (1/2) y dx", "D) dA = y\u00b2 dx"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 A vertical strip of height y and infinitesimal width dx has rectangular area dA = height \u00d7 width = y dx (NCERT Page 292)."}, {"id": 2, "question": "2. What is the area enclosed by the circle x\u00b2 + y\u00b2 = 25?", "options": ["A) 10\u03c0", "B) 25\u03c0", "C) 50\u03c0", "D) 5\u03c0"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Circle equation: x\u00b2 + y\u00b2 = a\u00b2 with a\u00b2 = 25 \u27f9 a = 5.<br>\u2022 Enclosed Area = \u03c0 a\u00b2 = \u03c0 (5\u00b2) = 25\u03c0 square units (NCERT Example 1)."}, {"id": 3, "question": "3. The area in the first quadrant of circle x\u00b2 + y\u00b2 = 16 bounded by x = 0 and x = 4 is:", "options": ["A) 16\u03c0", "B) 8\u03c0", "C) 4\u03c0", "D) 2\u03c0"], "correct": 2, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Total area = \u03c0 r\u00b2 = \u03c0(4\u00b2) = 16\u03c0.<br>\u2022 First quadrant area = (1/4)(16\u03c0) = 4\u03c0 square units (NCERT Example 1)."}, {"id": 4, "question": "4. In evaluating 4 \u222b\u2080\u1d43 \u221a(a\u00b2 - x\u00b2) dx, substituting x = a sin \u03b8 transforms limits from x \u2208 [0, a] to \u03b8 \u2208:", "options": ["A) [0, \u03c0]", "B) [0, \u03c0/2]", "C) [-\u03c0/2, \u03c0/2]", "D) [0, 2\u03c0]"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 When x = 0 \u27f9 a sin \u03b8 = 0 \u27f9 \u03b8 = 0.<br>\u2022 When x = a \u27f9 a sin \u03b8 = a \u27f9 sin \u03b8 = 1 \u27f9 \u03b8 = \u03c0/2.<br>\u2022 Limits are [0, \u03c0/2] (NCERT Page 294)."}, {"id": 5, "question": "5. What is the value of \u222b\u2080\u1d43 \u221a(a\u00b2 - x\u00b2) dx?", "options": ["A) \u03c0a\u00b2", "B) \u03c0a\u00b2/2", "C) \u03c0a\u00b2/4", "D) a\u00b2/2"], "correct": 2, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 \u222b\u2080\u1d43 \u221a(a\u00b2 - x\u00b2) dx = [(x/2)\u221a(a\u00b2-x\u00b2) + (a\u00b2/2) sin\u207b\u00b9(x/a)]\u2080\u1d43 = 0 + (a\u00b2/2)(\u03c0/2) - 0 = \u03c0a\u00b2/4.<br>\u2022 This is exactly one quadrant of a circle of radius a (NCERT Page 294)."}, {"id": 6, "question": "6. For the circle x\u00b2 + y\u00b2 = 9, the area bounded by the curve, x-axis, and x = 0 to x = 3 in quadrant 1 is:", "options": ["A) 9\u03c0/4", "B) 9\u03c0/2", "C) 9\u03c0", "D) 3\u03c0"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Radius r = 3.<br>\u2022 Area in first quadrant = (1/4) \u03c0 r\u00b2 = (1/4) \u03c0 (3\u00b2) = 9\u03c0/4 square units (NCERT Page 294)."}, {"id": 7, "question": "7. If an elementary strip is taken horizontally with width dy and length x, its area is:", "options": ["A) y dx", "B) x dy", "C) x dx", "D) y dy"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 A horizontal strip has length x along the horizontal direction and infinitesimal thickness dy along the vertical direction: dA = x dy (NCERT Page 293)."}, {"id": 8, "question": "8. Why is the circle x\u00b2 + y\u00b2 = a\u00b2 symmetrical about both coordinate axes?", "options": ["A) Replacing x with -x and y with -y leaves the equation unchanged: (-x)\u00b2 + (-y)\u00b2 = x\u00b2 + y\u00b2 = a\u00b2", "B) Because circles are defined by \u03c0", "C) Because the radius is positive", "D) Because it passes through the origin"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Even powers of x and y ensure symmetry w.r.t the y-axis (f(-x, y) = f(x, y)) and x-axis (f(x, -y) = f(x, y)), enabling 4-quadrant multiplication (NCERT Page 294)."}, {"id": 9, "question": "9. What is the area of the region bounded by x\u00b2 + y\u00b2 = 1?", "options": ["A) 1", "B) \u03c0", "C) 2\u03c0", "D) \u03c0/4"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 With a = 1, Area = \u03c0 (1\u00b2) = \u03c0 square units (NCERT Example 1)."}, {"id": 10, "question": "10. In horizontal strip integration 4 \u222b\u2080\u1d43 \u221a(a\u00b2 - y\u00b2) dy, the variable of integration is:", "options": ["A) x", "B) y", "C) \u03b8", "D) a"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 The differential is dy, indicating integration along the y-axis with bounds on y from 0 to a (NCERT Page 295 Fig 8.6)."}]}, {"id": 2, "title": "\ud83c\udfaf Quiz Challenge 2: Ellipse Areas & Boundary Curves", "description": "Questions 11\u201320: Master ellipse formulas \u03c0ab, semi-axes identification, and horizontal strip setups.", "questions": [{"id": 11, "question": "11. Find the area enclosed by the ellipse x\u00b2/25 + y\u00b2/16 = 1:", "options": ["A) 400\u03c0", "B) 20\u03c0", "C) 40\u03c0", "D) 9\u03c0"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 a\u00b2 = 25 \u27f9 a = 5; b\u00b2 = 16 \u27f9 b = 4.<br>\u2022 Area = \u03c0 a b = \u03c0 (5)(4) = 20\u03c0 square units (NCERT Example 2)."}, {"id": 12, "question": "12. In the ellipse x\u00b2/a\u00b2 + y\u00b2/b\u00b2 = 1, what does the ratio b/a represent in the vertical strip formula y = (b/a)\u221a(a\u00b2 - x\u00b2)?", "options": ["A) The eccentricity", "B) The vertical scaling factor relative to a circle of radius a", "C) The slope of the major axis", "D) The focal length"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 An ellipse is a circle of radius a vertically compressed by the aspect ratio b/a. Multiplying the circle's area \u03c0a\u00b2 by b/a gives (b/a)(\u03c0a\u00b2) = \u03c0ab (NCERT Page 295)."}, {"id": 13, "question": "13. What is the area enclosed by the ellipse x\u00b2/36 + y\u00b2/49 = 1?", "options": ["A) 42\u03c0", "B) 85\u03c0", "C) 1764\u03c0", "D) 21\u03c0"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 a\u00b2 = 36 \u27f9 a = 6; b\u00b2 = 49 \u27f9 b = 7.<br>\u2022 Area = \u03c0 a b = \u03c0 (6)(7) = 42\u03c0 square units (NCERT Example 2)."}, {"id": 14, "question": "14. Find the area enclosed by 9x\u00b2 + 4y\u00b2 = 36:", "options": ["A) 36\u03c0", "B) 6\u03c0", "C) 12\u03c0", "D) 18\u03c0"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Divide by 36: x\u00b2/4 + y\u00b2/9 = 1.<br>\u2022 Here a = 2, b = 3. Area = \u03c0 a b = \u03c0(2)(3) = 6\u03c0 square units (Exercise 8.1 Q2)."}, {"id": 15, "question": "15. Find the area enclosed by 4x\u00b2 + 9y\u00b2 = 144:", "options": ["A) 24\u03c0", "B) 36\u03c0", "C) 12\u03c0", "D) 48\u03c0"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Divide by 144: x\u00b2/36 + y\u00b2/16 = 1.<br>\u2022 a = 6, b = 4. Area = \u03c0 a b = \u03c0(6)(4) = 24\u03c0 square units."}, {"id": 16, "question": "16. In horizontal strip integration of the ellipse x\u00b2/a\u00b2 + y\u00b2/b\u00b2 = 1, the integral is 4(a/b) \u222b\u2080\u1d47 \u221a(b\u00b2 - y\u00b2) dy. The value of \u222b\u2080\u1d47 \u221a(b\u00b2 - y\u00b2) dy is:", "options": ["A) \u03c0b\u00b2/4", "B) \u03c0b\u00b2/2", "C) \u03c0b\u00b2", "D) b\u00b2/2"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 By the standard circular quadrant formula: \u222b\u2080\u1d47 \u221a(b\u00b2 - y\u00b2) dy = \u03c0b\u00b2/4.<br>\u2022 Multiplied by 4(a/b): 4(a/b)(\u03c0b\u00b2/4) = \u03c0ab (NCERT Page 296 Fig 8.8)."}, {"id": 17, "question": "17. What is the area of the ellipse x\u00b2/100 + y\u00b2/1 = 1?", "options": ["A) 100\u03c0", "B) 10\u03c0", "C) 20\u03c0", "D) \u03c0"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 a = 10, b = 1.<br>\u2022 Area = \u03c0 a b = \u03c0(10)(1) = 10\u03c0 square units."}, {"id": 18, "question": "18. What is the area of the region bounded by x\u00b2/a\u00b2 + y\u00b2/b\u00b2 = 1 in the second quadrant?", "options": ["A) \u03c0ab", "B) \u03c0ab/2", "C) \u03c0ab/4", "D) \u03c0ab/8"], "correct": 2, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 By symmetry across both axes, each of the four quadrants contains exactly one-fourth of the total area \u03c0ab: Area = \u03c0ab/4 (NCERT Page 295)."}, {"id": 19, "question": "19. If a = b in the ellipse x\u00b2/a\u00b2 + y\u00b2/b\u00b2 = 1, what does the figure become and what is its area?", "options": ["A) A parabola of area 4a\u00b2", "B) A circle of area \u03c0a\u00b2", "C) A square of area a\u00b2", "D) A hyperbola of infinite area"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 When a = b, x\u00b2/a\u00b2 + y\u00b2/a\u00b2 = 1 \u27f9 x\u00b2 + y\u00b2 = a\u00b2 (a circle). The area formula \u03c0ab becomes \u03c0a\u00b2 (NCERT Page 294-295)."}, {"id": 20, "question": "20. The area bounded by the ellipse x\u00b2/a\u00b2 + y\u00b2/b\u00b2 = 1 above the x-axis (upper half) is:", "options": ["A) \u03c0ab", "B) \u03c0ab/2", "C) 2\u03c0ab", "D) \u03c0ab/4"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 The upper half consists of Quadrants 1 and 2: Area = (1/2) Total Area = (1/2) \u03c0ab = \u03c0ab/2 (NCERT Page 295)."}]}, {"id": 3, "title": "\ud83c\udfaf Quiz Challenge 3: Axis-Crossing Lines, Modulus & Signed Integrals", "description": "Questions 21\u201330: Root identification, piecewise splitting, modulus functions |x+a|, and negative areas.", "questions": [{"id": 21, "question": "21. Why does evaluating \u222b\u208b\u2081\u00b9 (3x + 2) dx directly NOT give the bounded geometric area?", "options": ["A) Because 3x + 2 is non-linear", "B) Because 3x + 2 crosses the x-axis at x = -2/3, so the negative area on [-1, -2/3] partially cancels the positive area on [-2/3, 1]", "C) Because the integral diverges", "D) Because the limits are symmetric"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Direct integration: [3x\u00b2/2 + 2x]\u208b\u2081\u00b9 = (3/2 + 2) - (3/2 - 2) = 4.<br>\u2022 But the true geometric area is |A\u2081| + A\u2082 = 1/6 + 25/6 = 13/3 \u2248 4.33! Cancellation loses area (NCERT Example 3, Page 297)."}, {"id": 22, "question": "22. Find the area bounded by the line y = x, the x-axis, from x = -2 to x = 2:", "options": ["A) 0", "B) 2", "C) 4", "D) 8"], "correct": 2, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Root is at x = 0.<br>\u2022 On [-2, 0]: y \u2264 0, Area = |\u222b\u208b\u2082\u2070 x dx| = |[x\u00b2/2]\u208b\u2082\u2070| = |0 - 2| = 2.<br>\u2022 On [0, 2]: y \u2265 0, Area = \u222b\u2080\u00b2 x dx = [x\u00b2/2]\u2080\u00b2 = 2.<br>\u2022 Total Area = 2 + 2 = 4 square units (Two symmetric triangles of base 2, height 2)."}, {"id": 23, "question": "23. Evaluate the area bounded by y = |x| from x = -3 to x = 3:", "options": ["A) 0", "B) 9", "C) 18", "D) 6"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 y = |x| is non-negative everywhere: Area = \u222b\u208b\u2083\u00b3 |x| dx = 2 \u222b\u2080\u00b3 x dx = 2 [x\u00b2/2]\u2080\u00b3 = 9 square units."}, {"id": 24, "question": "24. Evaluate the area bounded by y = |x + 2|, the x-axis, from x = -4 to x = 0:", "options": ["A) 4", "B) 8", "C) 0", "D) 2"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Root is at x = -2.<br>\u2022 Left triangle on [-4, -2]: base = 2, height = 2 \u27f9 Area = (1/2)(2)(2) = 2.<br>\u2022 Right triangle on [-2, 0]: base = 2, height = 2 \u27f9 Area = (1/2)(2)(2) = 2.<br>\u2022 Total Area = 2 + 2 = 4 square units (NCERT Misc Exercise Q2 Pattern)."}, {"id": 25, "question": "25. The area bounded by the line y = 2x - 4, the x-axis, between x = 0 and x = 3 is:", "options": ["A) -3", "B) 5", "C) 4", "D) 1"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Root is at 2x - 4 = 0 \u27f9 x = 2.<br>\u2022 On [0, 2]: |\u222b\u2080\u00b2 (2x - 4) dx| = |[x\u00b2 - 4x]\u2080\u00b2| = |4 - 8| = 4.<br>\u2022 On [2, 3]: \u222b\u2082\u00b3 (2x - 4) dx = [x\u00b2 - 4x]\u2082\u00b3 = (9 - 12) - (4 - 8) = -3 - (-4) = 1.<br>\u2022 Total Area = 4 + 1 = 5 square units."}, {"id": 26, "question": "26. For a curve y = f(x) crossing the x-axis at c \u2208 (a, b) with f(x) \u2264 0 on [a, c] and f(x) \u2265 0 on [c, b], the area formula is:", "options": ["A) -\u222b\u2090\u1d9c f(x) dx + \u222b_c^b f(x) dx", "B) \u222b\u2090\u1d9c f(x) dx - \u222b_c^b f(x) dx", "C) \u222b\u2090\u1d47 f(x) dx", "D) \u222b\u2090\u1d9c f(x) dx + \u222b_c^b f(x) dx"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Since f(x) \u2264 0 on [a, c], its integral is negative; taking |\u222b\u2090\u1d9c f(x) dx| = -\u222b\u2090\u1d9c f(x) dx.<br>\u2022 Adding the positive integral on [c, b] yields -\u222b\u2090\u1d9c f(x) dx + \u222b_c^b f(x) dx (NCERT Page 293)."}, {"id": 27, "question": "27. Find the area under y = x\u00b2 - 1 between x = 0 and x = 2:", "options": ["A) 2/3", "B) 2", "C) 4/3", "D) 8/3"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Root is at x = 1.<br>\u2022 On [0, 1]: y \u2264 0, Area = |\u222b\u2080\u00b9 (x\u00b2 - 1) dx| = |[x\u00b3/3 - x]\u2080\u00b9| = |1/3 - 1| = 2/3.<br>\u2022 On [1, 2]: y \u2265 0, Area = \u222b\u2081\u00b2 (x\u00b2 - 1) dx = [x\u00b3/3 - x]\u2081\u00b2 = (8/3 - 2) - (1/3 - 1) = 2/3 - (-2/3) = 4/3.<br>\u2022 Total Area = 2/3 + 4/3 = 6/3 = 2 square units."}, {"id": 28, "question": "28. Find the area enclosed by y = |x - 1|, x = 0, x = 2, and the x-axis:", "options": ["A) 1", "B) 2", "C) 1/2", "D) 4"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Vertex at x = 1.<br>\u2022 Left triangle [0, 1]: (1/2)(1)(1) = 1/2.<br>\u2022 Right triangle [1, 2]: (1/2)(1)(1) = 1/2.<br>\u2022 Total Area = 1/2 + 1/2 = 1 square unit."}, {"id": 29, "question": "29. What is the value of \u222b\u208b\u2081\u00b9 |x| dx?", "options": ["A) 0", "B) 1", "C) 2", "D) 1/2"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Since |x| is even: 2 \u222b\u2080\u00b9 x dx = 2 [x\u00b2/2]\u2080\u00b9 = 1 square unit."}, {"id": 30, "question": "30. The area bounded by y = 2x, x = -1, x = 3, and the x-axis is:", "options": ["A) 8", "B) 10", "C) 9", "D) 5"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Root at x = 0.<br>\u2022 On [-1, 0]: |\u222b\u208b\u2081\u2070 2x dx| = |[x\u00b2]\u208b\u2081\u2070| = |0 - 1| = 1.<br>\u2022 On [0, 3]: \u222b\u2080\u00b3 2x dx = [x\u00b2]\u2080\u00b3 = 9.<br>\u2022 Total Area = 1 + 9 = 10 square units."}]}, {"id": 4, "title": "\ud83c\udfaf Quiz Challenge 4: Trigonometric Lobes, Higher Powers & Board Exam Classics", "description": "Questions 31\u201340: Sine and cosine oscillations, parabolas y\u00b2 = 4ax, cubic curves, and board exam MCQs.", "questions": [{"id": 31, "question": "31. What is the area of a single arch of the sine curve y = sin x between x = 0 and x = \u03c0?", "options": ["A) 1", "B) 2", "C) \u03c0", "D) 4"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Area = \u222b\u2080^\u03c0 sin x dx = [-cos x]\u2080^\u03c0 = -cos \u03c0 - (-cos 0) = -(-1) - (-1) = 1 + 1 = 2 square units (NCERT Page 298 Misc Q3)."}, {"id": 32, "question": "32. What is the total geometric area bounded by y = sin x from x = 0 to x = 2\u03c0?", "options": ["A) 0", "B) 2", "C) 4", "D) 2\u03c0"], "correct": 2, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Two arches: [0, \u03c0] above (area = 2) and [\u03c0, 2\u03c0] below (area = |-2| = 2).<br>\u2022 Total Area = 2 + 2 = 4 square units (Exercise 8 Misc Q3, Page 298)."}, {"id": 33, "question": "33. What is the area bounded by the cubic y = x\u00b3, x-axis, between x = -2 and x = 1 (Misc Exercise Q4)?", "options": ["A) -15/4", "B) 15/4", "C) 17/4", "D) -9"], "correct": 2, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 On [-2, 0]: |\u222b\u208b\u2082\u2070 x\u00b3 dx| = |[x\u2074/4]\u208b\u2082\u2070| = |0 - 4| = 4.<br>\u2022 On [0, 1]: \u222b\u2080\u00b9 x\u00b3 dx = [x\u2074/4]\u2080\u00b9 = 1/4.<br>\u2022 Total Area = 4 + 1/4 = 17/4 square units (Option D) (NCERT Page 298)."}, {"id": 34, "question": "34. Find the area bounded by y = x |x|, the x-axis, and ordinates x = -1 and x = 1 (Misc Exercise Q5):", "options": ["A) 0", "B) 1/3", "C) 2/3", "D) 4/3"], "correct": 2, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 For x < 0: y = -x\u00b2; for x \u2265 0: y = x\u00b2.<br>\u2022 Area = |\u222b\u208b\u2081\u2070 (-x\u00b2) dx| + \u222b\u2080\u00b9 x\u00b2 dx = 1/3 + 1/3 = 2/3 square units (Option C) (NCERT Page 298)."}, {"id": 35, "question": "35. Find the area bounded by y\u00b2 = 4x, the y-axis, and the horizontal line y = 2:", "options": ["A) 2/3", "B) 4/3", "C) 1", "D) 8/3"], "correct": 0, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Express x = y\u00b2/4.<br>\u2022 Area = \u222b\u2080\u00b2 (y\u00b2/4) dy = [y\u00b3 / 12]\u2080\u00b2 = 8/12 = 2/3 square units."}, {"id": 36, "question": "36. Find the area under y = x\u2074 from x = 1 to x = 5 (Misc Exercise Q1(ii)):", "options": ["A) 624.8", "B) 3124/5", "C) Both A and B are correct", "D) 625"], "correct": 2, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Area = \u222b\u2081\u2075 x\u2074 dx = [x\u2075/5]\u2081\u2075 = (5\u2075 - 1\u2075)/5 = (3125 - 1)/5 = 3124/5 = 624.8 square units.<br>\u2022 Both A and B represent the exact same value (NCERT Page 298)."}, {"id": 37, "question": "37. In Example 4, what is the area of the central lobe of y = cos x between x = \u03c0/2 and x = 3\u03c0/2?", "options": ["A) 1", "B) 2", "C) -2", "D) \u03c0"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 The signed integral is \u222b_(\u03c0/2)^(3\u03c0/2) cos x dx = sin(3\u03c0/2) - sin(\u03c0/2) = -1 - 1 = -2.<br>\u2022 The geometric area is |-2| = 2 square units (NCERT Page 297 Fig 8.10)."}, {"id": 38, "question": "38. What is the area of the region bounded by the parabola y = 4 - x\u00b2 and the x-axis?", "options": ["A) 16/3", "B) 32/3", "C) 8", "D) 16"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Roots are at 4 - x\u00b2 = 0 \u27f9 x = \u00b12.<br>\u2022 By symmetry: 2 \u222b\u2080\u00b2 (4 - x\u00b2) dx = 2 [4x - x\u00b3/3]\u2080\u00b2 = 2 [8 - 8/3] = 2(16/3) = 32/3 square units."}, {"id": 39, "question": "39. Find the area bounded by the curve y = \u221ax, the x-axis, and line x = 4:", "options": ["A) 8/3", "B) 16/3", "C) 4", "D) 32/3"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 Area = \u222b\u2080\u2074 x^(1/2) dx = [(2/3) x^(3/2)]\u2080\u2074 = (2/3)(4^(3/2)) = (2/3)(8) = 16/3 square units."}, {"id": 40, "question": "40. According to the Historical Note on page 299, who introduced the term 'Calculus integrali' in 1696?", "options": ["A) Isaac Newton", "B) J. Bernoulli (suggesting it to Leibniz)", "C) Archimedes", "D) A.L. Cauchy"], "correct": 1, "solution": "<strong>Step-by-Step Solution:</strong><br>\u2022 The Historical Note states: 'In 1696, he [Leibniz] followed a suggestion made by J. Bernoulli and changed this article to Calculus integrali' (NCERT Page 299)."}]}];
+
+    let currentSlide = 0;
+    let speechEnabled = true;
+    let sfxEnabled = true;
+    let isAutoPlaying = false;
+    let autoPlayTimer = null;
+    let autoPlayProgressInterval = null;
+    const SLIDE_DURATION_MS = 14000;
+
+    // Web Audio Synthesizer
+    let audioCtx = null;
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, type = 'sine', duration = 0.15, vol = 0.1) {
+      if (!sfxEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(vol, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {
+        console.warn('Audio tone error', e);
+      }
+    }
+
+    function playSuccessChord() {
+      if (!sfxEnabled) return;
+      setTimeout(() => playTone(523.25, 'sine', 0.25, 0.12), 0);   // C5
+      setTimeout(() => playTone(659.25, 'sine', 0.25, 0.12), 80);  // E5
+      setTimeout(() => playTone(783.99, 'sine', 0.35, 0.14), 160); // G5
+    }
+
+    function playErrorBeep() {
+      if (!sfxEnabled) return;
+      playTone(220, 'sawtooth', 0.25, 0.1);
+    }
+
+    function playSlideTurnClick() {
+      if (!sfxEnabled) return;
+      playTone(440, 'triangle', 0.08, 0.06);
+    }
+
+    function toggleAudioFx() {
+      sfxEnabled = !sfxEnabled;
+      document.getElementById('audioFxStatus').textContent = sfxEnabled ? 'SFX: On' : 'SFX: Off';
+      playTone(600, 'sine', 0.1, 0.08);
+    }
+
+    // Web Speech API Narrator
+    function toggleSpeech() {
+      speechEnabled = !speechEnabled;
+      const text = document.getElementById('speechText');
+      const icon = document.getElementById('speechIcon');
+      if (speechEnabled) {
+        text.textContent = 'Narration On';
+        icon.className = 'fas fa-volume-up';
+        speakSlideNarration(currentSlide);
+      } else {
+        text.textContent = 'Narration Off';
+        icon.className = 'fas fa-volume-mute';
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
+      }
+    }
+
+    function speakSlideNarration(slideIdx) {
+      if (!speechEnabled || !window.speechSynthesis) return;
+      window.speechSynthesis.cancel();
+      const meta = SLIDES_METADATA[slideIdx];
+      if (!meta || !meta.narration) return;
+      const utterance = new SpeechSynthesisUtterance(meta.narration);
+      utterance.rate = 1.0;
+      utterance.pitch = 1.0;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // Slides Navigation
+    function showSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= SLIDES_COUNT) index = SLIDES_COUNT - 1;
+      currentSlide = index;
+
+      document.querySelectorAll('.slide-section').forEach((el, i) => {
+        if (i === currentSlide) {
+          el.classList.add('active');
+        } else {
+          el.classList.remove('active');
+        }
+      });
+
+      document.querySelectorAll('.slide-pill').forEach((pill, i) => {
+        if (i === currentSlide) {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-blue-600 text-white shadow-md shadow-blue-500/30 transition cursor-pointer';
+          pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        } else {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer';
+        }
+      });
+
+      document.getElementById('slideCounterCurrent').textContent = currentSlide + 1;
+      document.getElementById('prevBtn').disabled = (currentSlide === 0);
+
+      const nextBtn = document.getElementById('nextBtn');
+      const lastSlideNotice = document.getElementById('lastSlideNotice');
+
+      if (currentSlide === SLIDES_COUNT - 1) {
+        nextBtn.style.display = 'none';
+        lastSlideNotice.classList.remove('hidden');
+      } else {
+        nextBtn.style.display = 'flex';
+        lastSlideNotice.classList.add('hidden');
+      }
+
+      speakSlideNarration(currentSlide);
+      if (window.renderMathInElement) {
+        renderMathInElement(document.getElementById(`slide-${currentSlide}`), {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide < SLIDES_COUNT - 1) {
+        playSlideTurnClick();
+        showSlide(currentSlide + 1);
+        if (isAutoPlaying) resetAutoPlayTimer();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        playSlideTurnClick();
+        showSlide(currentSlide - 1);
+        if (isAutoPlaying) resetAutoPlayTimer();
+      }
+    }
+
+    function goToSlide(i) {
+      playSlideTurnClick();
+      showSlide(i);
+      if (isAutoPlaying) resetAutoPlayTimer();
+    }
+
+    // Auto Play Slideshow
+    function toggleAutoPlaySlideshow() {
+      isAutoPlaying = !isAutoPlaying;
+      const btn = document.getElementById('autoPlaySlideshowBtn');
+      const text = document.getElementById('autoPlayText');
+      const icon = document.getElementById('autoPlayIcon');
+      const barContainer = document.getElementById('autoPlayProgressBarContainer');
+
+      if (isAutoPlaying) {
+        text.textContent = 'Pause';
+        icon.className = 'fas fa-pause';
+        btn.classList.add('bg-blue-600', 'text-white');
+        barContainer.classList.remove('hidden');
+        startAutoPlayTimer();
+      } else {
+        text.textContent = 'Auto-Play';
+        icon.className = 'fas fa-play';
+        btn.classList.remove('bg-blue-600', 'text-white');
+        barContainer.classList.add('hidden');
+        clearInterval(autoPlayTimer);
+        clearInterval(autoPlayProgressInterval);
+      }
+    }
+
+    function startAutoPlayTimer() {
+      clearInterval(autoPlayTimer);
+      clearInterval(autoPlayProgressInterval);
+      const bar = document.getElementById('autoPlayProgressBar');
+      let start = Date.now();
+
+      autoPlayProgressInterval = setInterval(() => {
+        let elapsed = Date.now() - start;
+        let pct = Math.min(100, (elapsed / SLIDE_DURATION_MS) * 100);
+        bar.style.width = pct + '%';
+      }, 50);
+
+      autoPlayTimer = setInterval(() => {
+        if (currentSlide < SLIDES_COUNT - 1) {
+          showSlide(currentSlide + 1);
+          start = Date.now();
+        } else {
+          toggleAutoPlaySlideshow();
+        }
+      }, SLIDE_DURATION_MS);
+    }
+
+    function resetAutoPlayTimer() {
+      if (isAutoPlaying) startAutoPlayTimer();
+    }
+
+    // Render Checkpoints
+    function renderCheckpoints() {
+      CHECKPOINTS_DATA.forEach(cd => {
+        const container = document.getElementById(`slide-checkpoints-${cd.slideIdx}`);
+        if (!container) return;
+
+        let html = `
+          <div class="glass-card p-5 rounded-2xl space-y-4 border border-blue-500/20 bg-slate-900/60">
+            <div class="flex items-center space-x-2 text-cyan-300 font-bold text-sm">
+              <i class="fas fa-chalkboard-teacher text-amber-400"></i>
+              <span>Slide Checkpoints: Teacher's Topic Questions (2 Questions with Solutions)</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        `;
+
+        cd.questions.forEach((q, qIndex) => {
+          html += `
+            <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-800 space-y-3">
+              <div class="text-xs font-bold text-white leading-relaxed">
+                <span class="text-blue-400 font-mono">Q${qIndex + 1}:</span> ${q.question}
+              </div>
+              <div class="grid grid-cols-1 gap-1.5 font-mono text-xs">
+          `;
+
+          q.options.forEach((opt, optIdx) => {
+            html += `
+              <button onclick="handleCheckpointAnswer(${cd.slideIdx}, ${q.id}, ${optIdx}, ${q.correct})"
+                      id="cp-btn-${cd.slideIdx}-${q.id}-${optIdx}"
+                      class="text-left px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white transition border border-slate-800/80 cursor-pointer">
+                ${opt}
+              </button>
+            `;
+          });
+
+          html += `
+              </div>
+              <div id="cp-solution-${cd.slideIdx}-${q.id}" class="hidden p-3 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-200 leading-relaxed font-sans">
+                ${q.solution}
+              </div>
+            </div>
+          `;
+        });
+
+        html += `
+            </div>
+          </div>
+        `;
+        container.innerHTML = html;
+      });
+    }
+
+    function handleCheckpointAnswer(slideIdx, qId, chosenIdx, correctIdx) {
+      const solDiv = document.getElementById(`cp-solution-${slideIdx}-${qId}`);
+      const buttons = [0, 1, 2, 3].map(i => document.getElementById(`cp-btn-${slideIdx}-${qId}-${i}`)).filter(Boolean);
+
+      buttons.forEach((btn, i) => {
+        btn.disabled = true;
+        btn.classList.remove('bg-slate-900', 'hover:bg-slate-800');
+        if (i === correctIdx) {
+          btn.classList.add('bg-emerald-950', 'border-emerald-500', 'text-emerald-300', 'font-bold');
+        } else if (i === chosenIdx) {
+          btn.classList.add('bg-rose-950', 'border-rose-500', 'text-rose-300');
+        } else {
+          btn.classList.add('opacity-40');
+        }
+      });
+
+      if (chosenIdx === correctIdx) {
+        playSuccessChord();
+      } else {
+        playErrorBeep();
+      }
+
+      if (solDiv) {
+        solDiv.classList.remove('hidden');
+        if (window.renderMathInElement) {
+          renderMathInElement(solDiv, {
+            delimiters: [
+              {left: "$$", right: "$$", display: true},
+              {left: "$", right: "$", display: false}
+            ],
+            throwOnError: false
+          });
+        }
+      }
+    }
+
+    // Render Quizzes
+    const quizScores = { 1: 0, 2: 0, 3: 0, 4: 0 };
+    const quizAnswered = { 1: new Set(), 2: new Set(), 3: new Set(), 4: new Set() };
+
+    function renderQuizzes() {
+      QUIZ_SETS.forEach(qs => {
+        const container = document.getElementById(`quiz-container-${qs.id}`);
+        if (!container) return;
+
+        let html = '';
+        qs.questions.forEach(q => {
+          html += `
+            <div class="glass-card p-4 rounded-xl space-y-3 border border-slate-800 bg-slate-900/60 flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-start justify-between gap-2">
+                  <h4 class="text-xs sm:text-sm font-bold text-white">${q.question}</h4>
+                  <button onclick="openSolutionModal(${qs.id}, ${q.id})"
+                          class="px-2.5 py-1 rounded-lg bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/30 text-[11px] font-bold transition flex items-center space-x-1 shrink-0 cursor-pointer"
+                          title="View detailed mathematical solution">
+                    <i class="fas fa-eye text-[10px]"></i>
+                    <span>Solution</span>
+                  </button>
+                </div>
+                <div class="grid grid-cols-1 gap-1.5 font-mono text-xs">
+          `;
+
+          q.options.forEach((opt, optIdx) => {
+            html += `
+              <button onclick="handleQuizAnswer(${qs.id}, ${q.id}, ${optIdx}, ${q.correct})"
+                      id="quiz-btn-${qs.id}-${q.id}-${optIdx}"
+                      class="text-left px-3 py-2 rounded-lg bg-slate-950/70 hover:bg-slate-800 text-slate-300 hover:text-white transition border border-slate-800/80 cursor-pointer">
+                ${opt}
+              </button>
+            `;
+          });
+
+          html += `
+                </div>
+              </div>
+            </div>
+          `;
+        });
+        container.innerHTML = html;
+      });
+    }
+
+    function handleQuizAnswer(quizId, qId, chosenIdx, correctIdx) {
+      const buttons = [0, 1, 2, 3].map(i => document.getElementById(`quiz-btn-${quizId}-${qId}-${i}`)).filter(Boolean);
+      buttons.forEach((btn, i) => {
+        btn.disabled = true;
+        btn.classList.remove('bg-slate-950/70', 'hover:bg-slate-800');
+        if (i === correctIdx) {
+          btn.classList.add('bg-emerald-950', 'border-emerald-500', 'text-emerald-300', 'font-bold');
+        } else if (i === chosenIdx) {
+          btn.classList.add('bg-rose-950', 'border-rose-500', 'text-rose-300');
+        } else {
+          btn.classList.add('opacity-40');
+        }
+      });
+
+      if (!quizAnswered[quizId].has(qId)) {
+        quizAnswered[quizId].add(qId);
+        if (chosenIdx === correctIdx) {
+          quizScores[quizId]++;
+          document.getElementById(`quiz-score-${quizId}`).textContent = quizScores[quizId];
+          playSuccessChord();
+        } else {
+          playErrorBeep();
+        }
+      }
+    }
+
+    // Solution Pop-Up Modal
+    function openSolutionModal(quizId, qId) {
+      const qs = QUIZ_SETS.find(s => s.id === quizId);
+      if (!qs) return;
+      const q = qs.questions.find(item => item.id === qId);
+      if (!q) return;
+
+      playTone(550, 'sine', 0.12, 0.08);
+      document.getElementById('solutionModalTitle').innerHTML = `Question ${q.id} Solution`;
+      document.getElementById('solutionModalBody').innerHTML = `
+        <div class="p-3 bg-slate-950/70 rounded-xl border border-slate-800 text-xs font-mono text-cyan-300 mb-3">
+          ${q.question}
+        </div>
+        <div class="space-y-2">
+          ${q.solution}
+        </div>
+      `;
+
+      const modal = document.getElementById('solutionModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+
+      if (window.renderMathInElement) {
+        renderMathInElement(document.getElementById('solutionModalBody'), {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    function closeSolutionModal() {
+      const modal = document.getElementById('solutionModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeSolutionModal();
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    // Initialize On Load
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCheckpoints();
+      renderQuizzes();
+      showSlide(0);
+
+      document.body.addEventListener('click', () => {
+        if (!audioCtx) getAudioContext();
+      }, { once: true });
+    });
+  </script>
+</body>
+</html>

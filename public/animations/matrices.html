@@ -1,0 +1,1954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 12 Mathematics • Chapter 3: Matrices Multimedia Lab</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.78);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .slide-section { display: none; }
+    .slide-section.active { display: block; animation: fadeIn 0.35s ease-out forwards; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .custom-scrollbar::-webkit-scrollbar { height: 6px; width: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.6); }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(16, 185, 129, 0.4); border-radius: 4px; }
+    .matrix-bracket {
+      position: relative;
+      padding: 0.5rem 0.75rem;
+    }
+    .matrix-bracket::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 4px;
+      border-left: 2px solid #10b981;
+      border-top: 2px solid #10b981;
+      border-bottom: 2px solid #10b981;
+      border-radius: 3px 0 0 3px;
+    }
+    .matrix-bracket::after {
+      content: "";
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: 4px;
+      border-right: 2px solid #10b981;
+      border-top: 2px solid #10b981;
+      border-bottom: 2px solid #10b981;
+      border-radius: 0 3px 3px 0;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-emerald-500 selection:text-white">
+
+  <!-- ========================================================================= -->
+  <!-- TOP NAVIGATION HEADER & AUDIO CONTROLS -->
+  <!-- ========================================================================= -->
+  <header style="flex-shrink: 0;" class="border-b border-slate-800/80 bg-slate-900/90 backdrop-blur-md sticky top-0 z-40 px-4 py-3 sm:px-6">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <span class="text-2xl sm:text-3xl">🔢</span>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">NCERT Class 12</span>
+            <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-amber-500/20 text-amber-300 border border-amber-500/30">Part - 1</span>
+            <span class="text-xs font-mono text-slate-400">Chapter 3</span>
+          </div>
+          <h1 class="text-sm sm:text-base font-black text-white tracking-tight">Matrices (Complete Visual Lab)</h1>
+          <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+        </div>
+      </div>
+
+      <!-- Controls: Narration Voice, Sound SFX, Counter -->
+      <div class="flex items-center space-x-2 shrink-0">
+        <button id="voiceToggleBtn" onclick="toggleVoice()" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center space-x-1.5 transition-all">
+          <span id="voiceIcon">🔊</span>
+          <span id="voiceText" class="hidden sm:inline">Voice: ON</span>
+        </button>
+        <button id="sfxToggleBtn" onclick="toggleSfx()" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center space-x-1.5 transition-all">
+          <span id="sfxIcon">🎵</span>
+          <span id="sfxText" class="hidden sm:inline">SFX: ON</span>
+        </button>
+        <div class="h-6 w-px bg-slate-800"></div>
+        <div class="px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono font-bold text-emerald-400">
+          Slide <span id="slideCounterCurrent">1</span>/14
+        </div>
+      </div>
+    </div>
+
+    <!-- Autoplay Countdown Progress Bar -->
+    <div class="w-full bg-slate-900 h-1 mt-2.5 rounded-full overflow-hidden">
+      <div id="autoPlayCountdownBar" class="bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-500 h-full w-0 transition-all duration-100 ease-linear opacity-0"></div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN SLIDES STAGE -->
+  <!-- ========================================================================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 1: INTRODUCTION, CANTOR QUOTE & REAL-WORLD MODELING -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-0" class="slide-section active space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-emerald-500/30 relative overflow-hidden">
+        <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none"></div>
+
+        <div class="flex flex-col lg:flex-row items-start justify-between gap-6 mb-6">
+          <div class="space-y-2">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+              § 3.1 &amp; 3.2 Matrix Foundations
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-black text-white">What is a Matrix? Real-World Representation</h2>
+            <p class="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+              A <strong class="text-emerald-300">matrix</strong> is an ordered rectangular array of numbers or functions.
+              The evolution of matrices originated as a compact method for solving <strong class="text-white">systems of linear equations</strong>. Today, their utility extends to electronic spreadsheets, computer graphics (rotation, reflection, magnification), cryptography, genetics, economics, and quantum mechanics!
+            </p>
+          </div>
+
+          <!-- Cantor Quote Badge -->
+          <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 text-xs max-w-md shrink-0 shadow-lg">
+            <div class="text-amber-400 font-bold mb-1 flex items-center space-x-1">
+              <span>✨</span>
+              <span>Georg Cantor (1845–1918)</span>
+            </div>
+            <p class="italic text-slate-300 leading-relaxed">
+              "The essence of Mathematics lies in its freedom."
+            </p>
+            <div class="text-[10px] text-slate-500 text-right mt-1 font-mono">— Founder of Modern Set Theory</div>
+          </div>
+        </div>
+
+        <!-- Textbook Real-World Example: Radha, Fauzia & Simran -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 items-stretch">
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3 text-xs">
+            <h3 class="font-bold text-white text-sm flex items-center space-x-2">
+              <span>📚</span>
+              <span>Textbook Case: Notebooks &amp; Pens</span>
+            </h3>
+            <p class="text-slate-300 leading-relaxed">
+              Suppose Radha has 15 notebooks and 6 pens; Fauzia has 10 notebooks and 2 pens; Simran has 13 notebooks and 5 pens.
+            </p>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 font-mono text-slate-300 space-y-2">
+              <div class="text-emerald-400 font-bold">Arrangement 1 (3 Rows × 2 Columns):</div>
+              <div class="flex items-center space-x-4">
+                <div class="matrix-bracket text-center font-bold text-slate-200">
+                  <div>15 &nbsp; 6</div>
+                  <div>10 &nbsp; 2</div>
+                  <div>13 &nbsp; 5</div>
+                </div>
+                <div class="text-[11px] text-slate-400 space-y-1">
+                  <div>Row 1: Radha (15 books, 6 pens)</div>
+                  <div>Row 2: Fauzia (10 books, 2 pens)</div>
+                  <div>Row 3: Simran (13 books, 5 pens)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-gradient-to-br from-emerald-950/40 via-slate-900 to-slate-900 border border-emerald-500/30 space-y-3 text-xs">
+            <h3 class="font-bold text-white text-sm flex items-center space-x-2">
+              <span>📐</span>
+              <span>Geometric Coordinate Representation</span>
+            </h3>
+            <p class="text-slate-300 leading-relaxed">
+              Any point <span class="font-mono text-emerald-300">P(x, y)</span> in the coordinate plane can be represented as a column matrix <span class="font-mono">[x; y]</span> or row matrix <span class="font-mono">[x, y]</span>.
+            </p>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 font-mono text-slate-300 space-y-2">
+              <div class="text-cyan-400 font-bold">Quadrilateral ABCD with A(1,0), B(3,2), C(1,3), D(-1,2):</div>
+              <div class="matrix-bracket text-center font-bold text-slate-200 inline-block">
+                <div>&nbsp;1 &nbsp; 3 &nbsp; 1 &nbsp;-1&nbsp;</div>
+                <div>&nbsp;0 &nbsp; 2 &nbsp; 3 &nbsp; 2&nbsp;</div>
+              </div>
+              <span class="text-[10px] text-slate-400 block">Matrix of order 2 × 4 encoding polygon vertices.</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-0" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 2: ORDER OF A MATRIX, ELEMENTS & FORMULA CONSTRUCTION -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-1" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-teal-500/30 space-y-6">
+        <div class="space-y-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-teal-500/20 text-teal-300 border border-teal-500/30">
+            § 3.2.1 Matrix Dimensions &amp; Indexing
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Order of a Matrix (m × n) &amp; Element Indexing</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            A matrix with <strong class="text-white">m rows</strong> and <strong class="text-white">n columns</strong> has order <strong class="text-teal-300 font-mono">m × n</strong> (read "m by n").
+            The entry lying in the <strong class="text-cyan-300">i-th row</strong> and <strong class="text-cyan-300">j-th column</strong> is denoted by <strong class="text-white font-mono">aᵢⱼ</strong>.
+            The total number of elements is equal to the product <strong class="text-emerald-300 font-mono">mn</strong>.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <!-- General Array -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
+            <span class="font-bold text-emerald-400 block text-sm">General Array Notation:</span>
+            <div class="p-3 rounded-xl bg-slate-950 font-mono text-center text-slate-300 matrix-bracket">
+              <div>a₁₁ &nbsp; a₁₂ &nbsp; ... &nbsp; a₁ₙ</div>
+              <div>a₂₁ &nbsp; a₂₂ &nbsp; ... &nbsp; a₂ₙ</div>
+              <div>&nbsp;: &nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp; :</div>
+              <div>aₘ₁ &nbsp; aₘ₂ &nbsp; ... &nbsp; aₘₙ</div>
+            </div>
+            <p class="text-[11px] text-slate-400">Where 1 ≤ i ≤ m, 1 ≤ j ≤ n, with i, j ∈ ℕ.</p>
+          </div>
+
+          <!-- Example 2: Factor Pairs of Elements -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
+            <span class="font-bold text-cyan-400 block text-sm">Example 2: Possible Orders</span>
+            <p class="text-slate-300 leading-relaxed">
+              If a matrix has <strong class="text-white">8 elements</strong>, find all possible orders:
+            </p>
+            <div class="p-2.5 rounded-xl bg-slate-950 font-mono text-slate-300 space-y-1">
+              <div>Ordered pairs with product 8:</div>
+              <div class="text-teal-300">(1, 8), (8, 1), (4, 2), (2, 4)</div>
+            </div>
+            <p class="text-[11px] text-slate-400">If it has 13 elements (prime), orders are only 1 × 13 and 13 × 1.</p>
+          </div>
+
+          <!-- Example 3: Construction by Formula -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
+            <span class="font-bold text-amber-400 block text-sm">Example 3: Construct 3 × 2 Matrix</span>
+            <p class="text-slate-300">Given rule: <span class="font-mono text-amber-300">aᵢⱼ = ½ |i – 3j|</span></p>
+            <div class="p-2.5 rounded-xl bg-slate-950 font-mono text-[11px] text-slate-300 space-y-0.5">
+              <div>a₁₁ = ½|1–3| = 1 &nbsp;&nbsp; a₁₂ = ½|1–6| = 5/2</div>
+              <div>a₂₁ = ½|2–3| = ½ &nbsp;&nbsp; a₂₂ = ½|2–6| = 2</div>
+              <div>a₃₁ = ½|3–3| = 0 &nbsp;&nbsp; a₃₂ = ½|3–6| = 3/2</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-1" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 3: THE 7 TYPES OF MATRICES -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-2" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-cyan-500/30 space-y-6">
+        <div class="space-y-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+            § 3.3 Classification
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">The 7 Fundamental Types of Matrices</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            Matrices are classified based on their dimensions and internal entry patterns. Explore the 7 types defined in NCERT § 3.3:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+          <!-- 1. Column Matrix -->
+          <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 space-y-1.5">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-emerald-400">1. Column Matrix</span>
+              <span class="font-mono text-[10px] text-slate-500">m × 1</span>
+            </div>
+            <p class="text-slate-400 text-[11px]">Has only one column.</p>
+            <div class="p-2 rounded-xl bg-slate-950 font-mono text-center text-slate-200 matrix-bracket">
+              <div>0</div>
+              <div>√3</div>
+              <div>-1</div>
+            </div>
+          </div>
+
+          <!-- 2. Row Matrix -->
+          <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 space-y-1.5">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-teal-400">2. Row Matrix</span>
+              <span class="font-mono text-[10px] text-slate-500">1 × n</span>
+            </div>
+            <p class="text-slate-400 text-[11px]">Has only one row.</p>
+            <div class="p-2 rounded-xl bg-slate-950 font-mono text-center text-slate-200 matrix-bracket">
+              <div>[-½, &nbsp; √5, &nbsp; 2, &nbsp; 3]</div>
+            </div>
+          </div>
+
+          <!-- 3. Square Matrix -->
+          <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 space-y-1.5">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-cyan-400">3. Square Matrix</span>
+              <span class="font-mono text-[10px] text-slate-500">m = n</span>
+            </div>
+            <p class="text-slate-400 text-[11px]">Rows = Columns. Principal diagonal: a₁₁, a₂₂, a₃₃.</p>
+            <div class="p-2 rounded-xl bg-slate-950 font-mono text-center text-slate-200 matrix-bracket">
+              <div>1 &nbsp; 4</div>
+              <div>3 &nbsp; 6</div>
+            </div>
+          </div>
+
+          <!-- 4. Diagonal Matrix -->
+          <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 space-y-1.5">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-blue-400">4. Diagonal Matrix</span>
+              <span class="font-mono text-[10px] text-slate-500">bᵢⱼ = 0 (i ≠ j)</span>
+            </div>
+            <p class="text-slate-400 text-[11px]">All non-diagonal elements are zero.</p>
+            <div class="p-2 rounded-xl bg-slate-950 font-mono text-center text-slate-200 matrix-bracket">
+              <div>-1 &nbsp; 0</div>
+              <div>&nbsp;0 &nbsp; 2</div>
+            </div>
+          </div>
+
+          <!-- 5. Scalar Matrix -->
+          <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 space-y-1.5">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-indigo-400">5. Scalar Matrix</span>
+              <span class="font-mono text-[10px] text-slate-500">bᵢᵢ = k</span>
+            </div>
+            <p class="text-slate-400 text-[11px]">Diagonal elements are all equal to constant k.</p>
+            <div class="p-2 rounded-xl bg-slate-950 font-mono text-center text-slate-200 matrix-bracket">
+              <div>√3 &nbsp; 0</div>
+              <div>&nbsp;0 &nbsp; √3</div>
+            </div>
+          </div>
+
+          <!-- 6. Identity Matrix -->
+          <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 space-y-1.5">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-purple-400">6. Identity Matrix (Iₙ)</span>
+              <span class="font-mono text-[10px] text-slate-500">aᵢᵢ = 1</span>
+            </div>
+            <p class="text-slate-400 text-[11px]">Diagonal entries are 1, non-diagonals 0.</p>
+            <div class="p-2 rounded-xl bg-slate-950 font-mono text-center text-slate-200 matrix-bracket">
+              <div>1 &nbsp; 0 &nbsp; 0</div>
+              <div>0 &nbsp; 1 &nbsp; 0</div>
+              <div>0 &nbsp; 0 &nbsp; 1</div>
+            </div>
+          </div>
+
+          <!-- 7. Zero Matrix -->
+          <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 space-y-1.5 col-span-1 sm:col-span-2">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-rose-400">7. Zero / Null Matrix (O)</span>
+              <span class="font-mono text-[10px] text-slate-500">All aᵢⱼ = 0</span>
+            </div>
+            <p class="text-slate-400 text-[11px]">All elements are zero. Denoted by O. Order is clear from context.</p>
+            <div class="p-2 rounded-xl bg-slate-950 font-mono text-center text-slate-200 matrix-bracket inline-block">
+              <div>0 &nbsp; 0 &nbsp; 0</div>
+              <div>0 &nbsp; 0 &nbsp; 0</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-2" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 4: EQUALITY OF MATRICES & SOLVING FOR UNKNOWNS -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-3" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-amber-500/30 space-y-6">
+        <div class="space-y-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-amber-500/20 text-amber-300 border border-amber-500/30">
+            § 3.3.1 Definition 2 &amp; Examples 4, 5
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Equality of Matrices &amp; Solving Unknowns</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            Two matrices <strong class="text-white">A = [aᵢⱼ]</strong> and <strong class="text-white">B = [bᵢⱼ]</strong> are equal (<strong class="text-amber-300 font-mono">A = B</strong>) if and only if:
+            <br>1. They have the <strong class="text-emerald-300">exact same order</strong>.
+            <br>2. Every corresponding entry is equal: <strong class="text-cyan-300 font-mono">aᵢⱼ = bᵢⱼ</strong> for all i and j.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs">
+          <!-- Example 4 -->
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+            <span class="font-bold text-amber-400 block text-sm">Example 4: 6-Variable Matrix Equality</span>
+            <div class="p-3 rounded-xl bg-slate-950 font-mono text-[11px] text-slate-300 space-y-1">
+              <div>[ x+3 &nbsp; z+4 &nbsp; 2y-7 ] &nbsp; = &nbsp; [ &nbsp;0 &nbsp;&nbsp; 6 &nbsp; 3y-2 ]</div>
+              <div>[ -6 &nbsp;&nbsp; a-1 &nbsp;&nbsp;&nbsp; 0 &nbsp;&nbsp; ] &nbsp; = &nbsp; [ -6 &nbsp; -3 &nbsp; 2c+2 ]</div>
+              <div>[ b-3 &nbsp; -21 &nbsp;&nbsp;&nbsp; 0 &nbsp;&nbsp; ] &nbsp; = &nbsp; [ 2b+4 &nbsp;-21 &nbsp; 0 &nbsp; ]</div>
+            </div>
+            <div class="space-y-1 text-slate-300">
+              <div>&bull; <span class="font-mono text-cyan-300">x + 3 = 0 ⇒ x = -3</span></div>
+              <div>&bull; <span class="font-mono text-cyan-300">z + 4 = 6 ⇒ z = 2</span></div>
+              <div>&bull; <span class="font-mono text-cyan-300">2y - 7 = 3y - 2 ⇒ y = -5</span></div>
+              <div>&bull; <span class="font-mono text-cyan-300">a - 1 = -3 ⇒ a = -2</span></div>
+              <div>&bull; <span class="font-mono text-cyan-300">0 = 2c + 2 ⇒ c = -1</span></div>
+              <div>&bull; <span class="font-mono text-cyan-300">b - 3 = 2b + 4 ⇒ b = -7</span></div>
+            </div>
+          </div>
+
+          <!-- Example 5: 2x2 System of Equations -->
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+            <span class="font-bold text-emerald-400 block text-sm">Example 5: Linear System via Equality</span>
+            <div class="p-3 rounded-xl bg-slate-950 font-mono text-[11px] text-slate-300 space-y-1">
+              <div>[ 2a + b &nbsp; a - 2b ] &nbsp; = &nbsp; [ &nbsp;4 &nbsp; -3 ]</div>
+              <div>[ 5c - d &nbsp; 4c + 3d ] &nbsp; = &nbsp; [ 11 &nbsp; 24 ]</div>
+            </div>
+            <div class="space-y-1.5 text-slate-300">
+              <div class="p-2 rounded-lg bg-slate-950 border border-slate-800">
+                <span class="text-teal-300 font-bold">Solve (a, b):</span> 2a + b = 4 and a – 2b = –3
+                <br>Multiplying: 4a + 2b = 8 ⇒ 5a = 5 ⇒ <strong class="text-white">a = 1, b = 2</strong>.
+              </div>
+              <div class="p-2 rounded-lg bg-slate-950 border border-slate-800">
+                <span class="text-teal-300 font-bold">Solve (c, d):</span> 5c – d = 11 and 4c + 3d = 24
+                <br>15c – 3d = 33 ⇒ 19c = 57 ⇒ <strong class="text-white">c = 3, d = 4</strong>.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-3" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 5: MATRIX ADDITION, SCALAR MULTIPLICATION & PROPERTIES -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-4" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-emerald-500/30 space-y-6">
+        <div class="space-y-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+            § 3.4.1 - 3.4.4 Operations
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Matrix Addition, Scalar Scaling &amp; Their Laws</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            Addition requires <strong class="text-emerald-300">identical dimensions</strong>: <span class="font-mono text-white">cᵢⱼ = aᵢⱼ + bᵢⱼ</span>.
+            Scalar multiplication scales every entry by k: <span class="font-mono text-cyan-300">kA = [k aᵢⱼ]</span>.
+            Difference is defined as <span class="font-mono text-amber-300">A – B = A + (–1)B</span>.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs">
+          <!-- 4 Core Laws of Addition -->
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-2.5">
+            <span class="font-bold text-emerald-400 block text-sm">Laws of Matrix Addition:</span>
+            <div class="space-y-1.5 text-slate-300">
+              <div class="p-2 rounded-xl bg-slate-950 border border-slate-800 flex justify-between">
+                <span>1. Commutative Law:</span>
+                <span class="font-mono text-emerald-300 font-bold">A + B = B + A</span>
+              </div>
+              <div class="p-2 rounded-xl bg-slate-950 border border-slate-800 flex justify-between">
+                <span>2. Associative Law:</span>
+                <span class="font-mono text-emerald-300 font-bold">(A + B) + C = A + (B + C)</span>
+              </div>
+              <div class="p-2 rounded-xl bg-slate-950 border border-slate-800 flex justify-between">
+                <span>3. Additive Identity:</span>
+                <span class="font-mono text-emerald-300 font-bold">A + O = O + A = A</span>
+              </div>
+              <div class="p-2 rounded-xl bg-slate-950 border border-slate-800 flex justify-between">
+                <span>4. Additive Inverse:</span>
+                <span class="font-mono text-emerald-300 font-bold">A + (–A) = O</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scalar Properties & Example 8 -->
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-2.5">
+            <span class="font-bold text-teal-400 block text-sm">Scalar Scaling &amp; Linear Equation:</span>
+            <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 font-mono text-[11px] text-teal-300 space-y-1">
+              <div>k(A + B) = kA + kB</div>
+              <div>(k + l)A = kA + lA</div>
+            </div>
+            <div class="p-3 rounded-xl bg-gradient-to-br from-slate-950 to-slate-900 border border-slate-800 text-slate-300 space-y-1">
+              <strong class="text-white">Example 8 Solving:</strong> 2A + 3X = 5B
+              <div class="text-[11px] text-slate-400">
+                Subtract 2A: 3X = 5B – 2A ⇒ <span class="font-mono text-amber-300">X = ⅓(5B – 2A)</span>.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-4" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 6: MATRIX MULTIPLICATION & COMPATIBILITY RULE -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-5" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-indigo-500/30 space-y-6">
+        <div class="space-y-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+            § 3.4.5 The Dot Product of Rows &amp; Columns
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Matrix Multiplication: Compatibility &amp; Mechanics</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            The product <strong class="text-white">AB</strong> is defined <strong class="text-indigo-300">IF AND ONLY IF</strong> the number of columns in <strong class="text-white">A</strong> equals the number of rows in <strong class="text-white">B</strong>!
+            <br>If <span class="font-mono text-cyan-300">A</span> has order <span class="font-mono text-white">m × n</span> and <span class="font-mono text-cyan-300">B</span> has order <span class="font-mono text-white">n × p</span>, the product <span class="font-mono text-emerald-300">C = AB</span> has order <strong class="text-emerald-300 font-mono">m × p</strong>.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs">
+          <!-- Row-by-Column Formula -->
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+            <span class="font-bold text-indigo-400 block text-sm">The (i, k)-th Element Formula:</span>
+            <div class="p-3 rounded-xl bg-slate-950 font-mono text-slate-200 space-y-1.5 border border-slate-800">
+              <div>cᵢₖ = aᵢ₁b₁ₖ + aᵢ₂b₂ₖ + ... + aᵢₙbₙₖ</div>
+              <div class="text-emerald-400 text-xs">cᵢₖ = ∑ⱼ₌₁ⁿ aᵢⱼ · bⱼₖ</div>
+            </div>
+            <p class="text-slate-300 leading-relaxed">
+              We take the <strong class="text-cyan-300">i-th row of A</strong> and multiply element-wise with the <strong class="text-cyan-300">k-th column of B</strong>, then sum all products together.
+            </p>
+          </div>
+
+          <!-- Real-Life Motivation: Meera & Nadeem -->
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+            <span class="font-bold text-teal-400 block text-sm">Textbook Shop Modeling (Meera &amp; Nadeem):</span>
+            <p class="text-slate-300 leading-relaxed">
+              Meera needs 2 pens &amp; 5 books; Nadeem needs 8 pens &amp; 10 books.
+              Shop rates: Pen ₹5 (₹4 at Shop 2), Book ₹50 (₹40 at Shop 2).
+            </p>
+            <div class="p-3 rounded-xl bg-slate-950 font-mono text-[11px] text-slate-300 space-y-1">
+              <div>[ 2 &nbsp; 5 ] &nbsp; × &nbsp; [ &nbsp;5 &nbsp;&nbsp; 4 ] &nbsp; = &nbsp; [ 260 &nbsp; 208 ] (Meera)</div>
+              <div>[ 8 &nbsp;10 ] &nbsp; &nbsp; &nbsp; [ 50 &nbsp; 40 ] &nbsp; &nbsp; &nbsp; [ 540 &nbsp; 432 ] (Nadeem)</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-5" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 7: NON-COMMUTATIVITY, ZERO DIVISORS & LAWS -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-6" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-rose-500/30 space-y-6">
+        <div class="space-y-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-rose-500/20 text-rose-300 border border-rose-500/30">
+            § 3.4.5 &amp; 3.4.6 Essential Properties
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Non-Commutativity &amp; Zero Divisors</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            Matrix multiplication differs drastically from ordinary real numbers:
+            <strong class="text-rose-400">AB ≠ BA in general</strong>, and <strong class="text-amber-300">AB = O does NOT mean A = O or B = O</strong>!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <!-- 1. Non-Commutativity -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
+            <span class="font-bold text-rose-400 block text-sm">1. AB ≠ BA in General:</span>
+            <p class="text-slate-300 leading-relaxed">
+              Example 14:
+              <br><span class="font-mono text-cyan-300">A = [1 0; 0 -1], B = [0 1; 1 0]</span>
+              <br>⇒ <span class="font-mono text-emerald-300">AB = [0 1; -1 0]</span>
+              <br>⇒ <span class="font-mono text-rose-300">BA = [0 -1; 1 0]</span>
+              <br>Clearly <strong class="text-white">AB ≠ BA</strong>!
+            </p>
+            <div class="p-2 rounded-xl bg-slate-950 text-slate-400 text-[10px]">
+              <strong>Exception:</strong> Diagonal matrices of the same order always commute!
+            </div>
+          </div>
+
+          <!-- 2. Zero Divisors -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
+            <span class="font-bold text-amber-400 block text-sm">2. Zero Divisors (Ex 15):</span>
+            <p class="text-slate-300 leading-relaxed">
+              In real algebra, ab = 0 implies a = 0 or b = 0. In matrices:
+            </p>
+            <div class="p-2.5 rounded-xl bg-slate-950 font-mono text-[11px] text-slate-300 space-y-1">
+              <div>A = [ 0 -1; 0 2 ] ≠ O</div>
+              <div>B = [ 3 &nbsp;5; 0 0 ] ≠ O</div>
+              <div class="text-emerald-400">AB = [ 0 0; 0 0 ] = O!</div>
+            </div>
+          </div>
+
+          <!-- 3. Valid Multiplication Laws -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
+            <span class="font-bold text-emerald-400 block text-sm">3. Valid Algebraic Laws:</span>
+            <div class="space-y-1.5 text-slate-300">
+              <div class="p-2 rounded-xl bg-slate-950 border border-slate-800">
+                <strong class="text-cyan-300">Associative:</strong> (AB)C = A(BC)
+              </div>
+              <div class="p-2 rounded-xl bg-slate-950 border border-slate-800">
+                <strong class="text-cyan-300">Distributive:</strong> A(B+C) = AB + AC
+              </div>
+              <div class="p-2 rounded-xl bg-slate-950 border border-slate-800">
+                <strong class="text-cyan-300">Multiplicative Identity:</strong> IA = AI = A
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-6" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 8: TRANSPOSE OF A MATRIX & THE REVERSAL LAW -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-7" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-sky-500/30 space-y-6">
+        <div class="space-y-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-sky-500/20 text-sky-300 border border-sky-500/30">
+            § 3.5 Transpose &amp; Properties
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Transpose of a Matrix (A′ or Aᵀ) &amp; Reversal Law</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            The transpose is obtained by <strong class="text-sky-300">interchanging rows and columns</strong>: if <span class="font-mono text-white">A = [aᵢⱼ]ₘₓₙ</span>, then <span class="font-mono text-sky-300">A′ = [aⱼᵢ]ₙₓₘ</span>.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs">
+          <!-- 4 Transpose Properties -->
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+            <span class="font-bold text-sky-400 block text-sm">4 Fundamental Properties:</span>
+            <div class="space-y-2 text-slate-300 font-mono text-[11px]">
+              <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 flex justify-between">
+                <span>(i) Double Transpose:</span>
+                <span class="text-emerald-400 font-bold">(A′)′ = A</span>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 flex justify-between">
+                <span>(ii) Scalar Scaling:</span>
+                <span class="text-emerald-400 font-bold">(kA)′ = kA′</span>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 flex justify-between">
+                <span>(iii) Addition Rule:</span>
+                <span class="text-emerald-400 font-bold">(A + B)′ = A′ + B′</span>
+              </div>
+              <div class="p-2.5 rounded-xl bg-sky-950/60 border border-sky-500/40 flex justify-between text-sky-200">
+                <span>(iv) Reversal Law:</span>
+                <span class="text-white font-bold">(AB)′ = B′A′</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reversal Law Proof / Verification -->
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+            <span class="font-bold text-amber-400 block text-sm">Why Does Order Reverse in (AB)′ = B′A′?</span>
+            <p class="text-slate-300 leading-relaxed">
+              If A is <span class="font-mono text-cyan-300">m × n</span> and B is <span class="font-mono text-cyan-300">n × p</span>, then AB is <span class="font-mono text-emerald-300">m × p</span>, and its transpose (AB)′ has order <strong class="text-emerald-300 font-mono">p × m</strong>.
+            </p>
+            <p class="text-slate-300 leading-relaxed">
+              To obtain order p × m from the transposes, we MUST multiply B′ (order p × n) with A′ (order n × m):
+            </p>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 font-mono text-slate-300">
+              B′₍ₚ ₓ ₙ₎ × A′₍ₙ ₓ ₘ₎ = (B′A′)₍ₚ ₓ ₘ₎ = (AB)′!
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-7" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 9: SYMMETRIC & SKEW-SYMMETRIC MATRICES & THEOREMS 1 & 2 -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-8" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-purple-500/30 space-y-6">
+        <div class="space-y-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-purple-500/20 text-purple-300 border border-purple-500/30">
+            § 3.6 Theorems 1 &amp; 2
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Symmetric &amp; Skew-Symmetric Decomposition</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            A square matrix is <strong class="text-emerald-300">Symmetric</strong> if <span class="font-mono text-white">A′ = A</span>.
+            It is <strong class="text-rose-400">Skew-Symmetric</strong> if <span class="font-mono text-white">A′ = –A</span>.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs">
+          <!-- Definitions & Diagonal Zero Property -->
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+            <span class="font-bold text-purple-400 block text-sm">Critical Property: Diagonal Elements of Skew Matrix</span>
+            <p class="text-slate-300 leading-relaxed">
+              If A is skew-symmetric, then <span class="font-mono text-cyan-300">aⱼᵢ = –aᵢⱼ</span>.
+              <br>For diagonal entries, set <span class="font-mono text-white">i = j</span>:
+            </p>
+            <div class="p-3 rounded-xl bg-slate-950 font-mono text-slate-300 border border-slate-800">
+              aᵢᵢ = –aᵢᵢ &nbsp;⇒&nbsp; 2aᵢᵢ = 0 &nbsp;⇒&nbsp; <strong class="text-amber-400">aᵢᵢ = 0 for all i!</strong>
+            </div>
+            <div class="p-2.5 rounded-xl bg-purple-950/40 text-purple-200 border border-purple-500/30">
+              <strong>Theorem 1:</strong> For any square matrix A, <span class="font-mono">A + A′</span> is symmetric, and <span class="font-mono">A – A′</span> is skew-symmetric.
+            </div>
+          </div>
+
+          <!-- Theorem 2: Unique Decomposition -->
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+            <span class="font-bold text-emerald-400 block text-sm">Theorem 2: Unique Decomposition</span>
+            <p class="text-slate-300 leading-relaxed">
+              Any square matrix A can be uniquely expressed as the sum of a symmetric and a skew-symmetric matrix:
+            </p>
+            <div class="p-3 rounded-xl bg-slate-950 font-mono text-slate-200 border border-slate-800 text-center">
+              A = <span class="text-emerald-400">½(A + A′)</span> + <span class="text-rose-400">½(A – A′)</span>
+              <div class="text-[10px] text-slate-400 mt-1">A = P (Symmetric) + Q (Skew-Symmetric)</div>
+            </div>
+            <p class="text-slate-400 text-[11px]">
+              This powerful result guarantees that any square grid of numbers splits cleanly into mirror-reflection and anti-symmetric components.
+            </p>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-8" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 10: INVERTIBLE MATRICES & UNIQUENESS THEOREMS -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-9" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-teal-500/30 space-y-6">
+        <div class="space-y-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-teal-500/20 text-teal-300 border border-teal-500/30">
+            § 3.7 Invertibility &amp; Theorems 3, 4
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Invertible Matrices &amp; Uniqueness of Inverses</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            If A is a square matrix of order m, and there exists another square matrix B such that <strong class="text-teal-300 font-mono">AB = BA = I</strong>, then B is called the <strong class="text-white">inverse of A</strong> (<span class="font-mono text-emerald-300">B = A⁻¹</span>).
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <!-- Note on Rectangular Matrices -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
+            <span class="font-bold text-amber-400 block text-sm">Square Requirement:</span>
+            <p class="text-slate-300 leading-relaxed">
+              A rectangular matrix <strong class="text-rose-400">never possesses an inverse</strong>, because for AB and BA to both equal I, both matrices must be square and of identical order.
+            </p>
+          </div>
+
+          <!-- Theorem 3: Uniqueness -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
+            <span class="font-bold text-cyan-400 block text-sm">Theorem 3: Uniqueness of Inverse</span>
+            <p class="text-slate-300 leading-relaxed">
+              The inverse of a square matrix, if it exists, is <strong class="text-white">unique</strong>.
+            </p>
+            <div class="p-2.5 rounded-xl bg-slate-950 font-mono text-[10px] text-slate-400">
+              Proof: If AB = I and AC = I, then B = BI = B(AC) = (BA)C = IC = C!
+            </div>
+          </div>
+
+          <!-- Theorem 4: Inverse of Product -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
+            <span class="font-bold text-emerald-400 block text-sm">Theorem 4: Reversal Law of Inverses</span>
+            <p class="text-slate-300 leading-relaxed">
+              If A and B are invertible matrices of the same order:
+            </p>
+            <div class="p-2.5 rounded-xl bg-emerald-950/60 border border-emerald-500/40 font-mono text-emerald-300 font-bold text-center">
+              (AB)⁻¹ = B⁻¹A⁻¹
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-9" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 11: QUIZ CHALLENGE 1 (QUESTIONS 1 - 10: DEFINITIONS & TYPES) -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-10" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-emerald-500/40 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+              🎯 Quiz Challenge 1 of 4 • Questions 1 to 10
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-black text-white">Matrix Definitions, Order, Elements &amp; Types</h2>
+            <p class="text-xs text-slate-400">10 questions covering orders, factor pairs, array construction, and matrix classifications.</p>
+          </div>
+
+          <div class="px-4 py-2.5 rounded-2xl bg-slate-900 border border-slate-800 text-center shrink-0">
+            <span class="text-[10px] uppercase font-bold text-slate-400 block">Quiz 1 Score</span>
+            <span class="text-xl font-mono font-black text-emerald-400" id="quizScoreDisplay-1">0 / 10</span>
+          </div>
+        </div>
+
+        <!-- 10 Questions Container -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs" id="quizContainer-1"></div>
+
+        <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
+          <span class="text-xs text-slate-400">Review your answers or attempt this set again:</span>
+          <button onclick="resetQuiz(1)" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 transition cursor-pointer">
+            🔄 Reset Quiz 1
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 12: QUIZ CHALLENGE 2 (QUESTIONS 11 - 20: EQUALITY & OPERATIONS) -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-11" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-teal-500/40 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-teal-500/20 text-teal-300 border border-teal-500/30">
+              🎯 Quiz Challenge 2 of 4 • Questions 11 to 20
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-black text-white">Matrix Equality, Addition, Scaling &amp; Properties</h2>
+            <p class="text-xs text-slate-400">10 questions covering linear systems from equality, addition rules, additive inverses, and identities.</p>
+          </div>
+
+          <div class="px-4 py-2.5 rounded-2xl bg-slate-900 border border-slate-800 text-center shrink-0">
+            <span class="text-[10px] uppercase font-bold text-slate-400 block">Quiz 2 Score</span>
+            <span class="text-xl font-mono font-black text-teal-400" id="quizScoreDisplay-2">0 / 10</span>
+          </div>
+        </div>
+
+        <!-- 10 Questions Container -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs" id="quizContainer-2"></div>
+
+        <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
+          <span class="text-xs text-slate-400">Review your answers or attempt this set again:</span>
+          <button onclick="resetQuiz(2)" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 transition cursor-pointer">
+            🔄 Reset Quiz 2
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 13: QUIZ CHALLENGE 3 (QUESTIONS 21 - 30: MULTIPLICATION) -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-12" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-indigo-500/40 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+              🎯 Quiz Challenge 3 of 4 • Questions 21 to 30
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-black text-white">Matrix Multiplication, Non-Commutativity &amp; Polynomials</h2>
+            <p class="text-xs text-slate-400">10 questions covering dimensional compatibility, row-by-column products, zero divisors, and matrix identities.</p>
+          </div>
+
+          <div class="px-4 py-2.5 rounded-2xl bg-slate-900 border border-slate-800 text-center shrink-0">
+            <span class="text-[10px] uppercase font-bold text-slate-400 block">Quiz 3 Score</span>
+            <span class="text-xl font-mono font-black text-indigo-400" id="quizScoreDisplay-3">0 / 10</span>
+          </div>
+        </div>
+
+        <!-- 10 Questions Container -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs" id="quizContainer-3"></div>
+
+        <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
+          <span class="text-xs text-slate-400">Review your answers or attempt this set again:</span>
+          <button onclick="resetQuiz(3)" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 transition cursor-pointer">
+            🔄 Reset Quiz 3
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 14: QUIZ CHALLENGE 4 (QUESTIONS 31 - 40: TRANSPOSE & INVERSES) -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-13" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-purple-500/40 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-purple-500/20 text-purple-300 border border-purple-500/30">
+              🎯 Quiz Challenge 4 of 4 • Questions 31 to 40
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-black text-white">Transpose, Symmetric, Skew-Symmetric &amp; Inverses</h2>
+            <p class="text-xs text-slate-400">10 high-yield board exam questions on reversal laws, skew-symmetric diagonal zeros, and inverse criteria.</p>
+          </div>
+
+          <div class="px-4 py-2.5 rounded-2xl bg-slate-900 border border-slate-800 text-center shrink-0">
+            <span class="text-[10px] uppercase font-bold text-slate-400 block">Quiz 4 Score</span>
+            <span class="text-xl font-mono font-black text-purple-400" id="quizScoreDisplay-4">0 / 10</span>
+          </div>
+        </div>
+
+        <!-- 10 Questions Container -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs" id="quizContainer-4"></div>
+
+        <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
+          <span class="text-xs text-slate-400">Review your answers or attempt this set again:</span>
+          <button onclick="resetQuiz(4)" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 transition cursor-pointer">
+            🔄 Reset Quiz 4
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- BOTTOM CONTROLLER DOCK -->
+  <!-- ========================================================================= -->
+  <footer style="flex-shrink: 0;" class="border-t border-slate-800/90 bg-slate-950/95 p-3 sm:p-4 z-40 sticky bottom-0">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+      
+      <!-- LEFT: Previous & Auto-Play Controls -->
+      <div class="flex items-center space-x-2 shrink-0">
+        <button id="prevSlideBtn" onclick="prevSlide()" class="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold border border-slate-700 flex items-center space-x-1 cursor-pointer transition-all disabled:opacity-40 disabled:cursor-not-allowed">
+          <span>⏮</span>
+          <span>Previous</span>
+        </button>
+
+        <button id="autoPlaySlideshowBtn" onclick="toggleAutoPlaySlideshow()" class="px-4 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-lg shadow-emerald-600/30 flex items-center space-x-1.5 cursor-pointer transition-all">
+          <span id="autoPlayIcon">▶</span>
+          <span id="autoPlayText">Auto-Play</span>
+        </button>
+      </div>
+
+      <!-- CENTER: Slide Jump Pills (14 Slides) -->
+      <div class="flex items-center space-x-1 overflow-x-auto max-w-full pb-1 md:pb-0 text-xs custom-scrollbar">
+        <button onclick="goToSlide(0)" class="slide-pill px-2.5 py-1 rounded-lg bg-emerald-600 text-white font-bold transition-all cursor-pointer" title="1. Definition & Real-World Array Modeling">1. Intro</button>
+        <button onclick="goToSlide(1)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="2. Order m × n & Element Coordinates">2. Order</button>
+        <button onclick="goToSlide(2)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="3. 7 Fundamental Types of Matrices">3. Types</button>
+        <button onclick="goToSlide(3)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="4. Equality of Matrices & Unknown Solving">4. Equality</button>
+        <button onclick="goToSlide(4)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="5. Matrix Addition & Scalar Multiplication">5. Addition</button>
+        <button onclick="goToSlide(5)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="6. Matrix Multiplication (Row × Column)">6. Multiply</button>
+        <button onclick="goToSlide(6)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="7. Multiplication Properties & Zero Divisors">7. Laws</button>
+        <button onclick="goToSlide(7)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="8. Transpose of Matrix & Reversal Law">8. Transpose</button>
+        <button onclick="goToSlide(8)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="9. Symmetric & Skew-Symmetric Matrices">9. Symmetric</button>
+        <button onclick="goToSlide(9)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="10. Invertible Matrices & Uniqueness">10. Invertible</button>
+        <button onclick="goToSlide(10)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="Quiz 1: Definitions, Order & Types">11. Quiz 1</button>
+        <button onclick="goToSlide(11)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="Quiz 2: Matrix Operations & Unknowns">12. Quiz 2</button>
+        <button onclick="goToSlide(12)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="Quiz 3: Multiplication & Transpose Laws">13. Quiz 3</button>
+        <button onclick="goToSlide(13)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="Quiz 4: Symmetry & Inverses">14. Quiz 4</button>
+      </div>
+
+      <!-- RIGHT: Next Slide Button & Last Slide Message -->
+      <div class="flex items-center space-x-2 shrink-0 justify-end">
+        <div id="lastSlideNotice" style="display: none;" class="px-3.5 py-1.5 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold flex items-center space-x-1.5 shadow-lg animate-pulse">
+          <span>🎉</span>
+          <span>You have reached the last slide of this chapter</span>
+        </div>
+
+        <button id="nextSlideBtn" onclick="nextSlide()" class="px-5 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white text-xs font-bold shadow-lg shadow-emerald-600/30 flex items-center space-x-1.5 cursor-pointer transition-all active:scale-95">
+          <span>Next Slide</span>
+          <span>⏭</span>
+        </button>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT ENGINE: SLIDES, NARRATION, SFX & 40 INTERACTIVE QUIZZES -->
+  <!-- ========================================================================= -->
+  <script>
+    let currentSlide = 0;
+    const totalSlides = 14;
+    let sfxEnabled = true;
+    let voiceEnabled = true;
+    let isAutoPlaySlideshow = false;
+    let autoPlayInterval = null;
+    let countdownInterval = null;
+
+    // Web Audio Synthesizer Context
+    let audioCtx = null;
+    function getAudioCtx() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, type = 'sine', duration = 0.12, gainVal = 0.1) {
+      if (!sfxEnabled) return;
+      try {
+        const ctx = getAudioCtx();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(gainVal, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function playSlideTransitionTone() {
+      if (!sfxEnabled) return;
+      playTone(523.25, 'triangle', 0.1, 0.08); // C5
+      setTimeout(() => playTone(659.25, 'sine', 0.15, 0.08), 80); // E5
+      setTimeout(() => playTone(783.99, 'sine', 0.2, 0.08), 160); // G5
+    }
+
+    function playSuccessTone() {
+      if (!sfxEnabled) return;
+      playTone(587.33, 'sine', 0.08, 0.1); // D5
+      setTimeout(() => playTone(739.99, 'sine', 0.1, 0.1), 70); // F#5
+      setTimeout(() => playTone(880.00, 'sine', 0.25, 0.12), 140); // A5
+    }
+
+    function playWrongTone() {
+      if (!sfxEnabled) return;
+      playTone(261.63, 'sawtooth', 0.15, 0.08);
+      setTimeout(() => playTone(233.08, 'sawtooth', 0.25, 0.08), 100);
+    }
+
+    // Voice Narration Data for all 14 Slides
+    const slideNarration = [
+      "Welcome to Chapter 3: Matrices. A matrix is an ordered rectangular array of numbers or functions. As mathematician Georg Cantor observed, the essence of mathematics lies in its freedom. Matrices compact systems of linear equations and power modern electronic spreadsheets, computer graphics, cryptography, and economics.",
+      "Slide 2 explores the Order of a Matrix and element indexing. A matrix with m rows and n columns has order m by n, containing m times n total elements. An element at row i and column j is designated a i j. In factor problems, a matrix with 8 elements can have 4 possible orders, while a prime count like 13 permits only two orders.",
+      "Slide 3 categorizes the seven fundamental types of matrices: column matrices, row matrices, square matrices where rows equal columns, diagonal matrices where off-diagonals are zero, scalar matrices where diagonals are equal, identity matrices with ones along the diagonal, and zero matrices.",
+      "Slide 4 covers Equality of Matrices. Two matrices are equal if and only if they share identical orders and every corresponding element matches. Comparing corresponding entries allows us to solve systems of linear equations for unknown variables.",
+      "Slide 5 details Matrix Addition and Scalar Multiplication. Matrices can only be added if they possess the exact same order. Scalar multiplication scales every entry by constant k. Matrix addition is both commutative and associative, with the zero matrix serving as additive identity.",
+      "Slide 6 presents Matrix Multiplication. The product A B is defined only when the number of columns in A equals the number of rows in B. To compute each entry, we take the dot product of the i-th row of A with the k-th column of B.",
+      "Slide 7 highlights key properties of matrix multiplication. Crucially, matrix multiplication is not commutative: A B does not equal B A in general. Furthermore, A B can equal the zero matrix even when neither A nor B is a zero matrix. However, multiplication remains associative and distributive.",
+      "Slide 8 introduces the Transpose of a matrix, obtained by interchanging rows and columns. When transposing a matrix product, the order of factors reverses: the transpose of A B equals B transpose times A transpose.",
+      "Slide 9 explores Symmetric and Skew-Symmetric matrices. A matrix is symmetric if it equals its transpose, and skew-symmetric if it equals the negative of its transpose. Every diagonal element of a skew-symmetric matrix is strictly zero, and any square matrix uniquely decomposes into the sum of a symmetric and skew-symmetric matrix.",
+      "Slide 10 discusses Invertible Matrices. If A B equals B A equals the identity matrix, then B is the unique inverse of A. Rectangular matrices have no inverse, and the inverse of a product A B equals B inverse times A inverse.",
+      "Welcome to Quiz Challenge 1 of 4. Test your knowledge on Matrix Definitions, Order, Elements, and Types across ten high-yield questions. Click the Solution button anytime to view full step-by-step solutions.",
+      "Quiz Challenge 2 of 4 focuses on Matrix Equality, Addition, Scalar Scaling, and their algebraic properties. Review your steps or click Solution for the derivations.",
+      "Quiz Challenge 3 of 4 tests Matrix Multiplication, Dimensional Compatibility, Zero Divisors, and Matrix Polynomials across ten questions.",
+      "Welcome to the final slide and Quiz Challenge 4 of 4. Test your mastery of Transpose properties, Symmetric matrices, and Invertibility criteria."
+    ];
+
+    function speakNarration(text) {
+      if (!voiceEnabled || !('speechSynthesis' in window) || typeof SpeechSynthesisUtterance === 'undefined') return;
+      try {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 1.0;
+        utterance.pitch = 1.0;
+        window.speechSynthesis.speak(utterance);
+      } catch (e) {}
+    }
+
+    function toggleVoice() {
+      voiceEnabled = !voiceEnabled;
+      const icon = document.getElementById('voiceIcon');
+      const text = document.getElementById('voiceText');
+      if (voiceEnabled) {
+        icon.textContent = '🔊';
+        text.textContent = 'Voice: ON';
+        speakNarration(slideNarration[currentSlide]);
+      } else {
+        icon.textContent = '🔇';
+        text.textContent = 'Voice: OFF';
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
+      }
+    }
+
+    function toggleSfx() {
+      sfxEnabled = !sfxEnabled;
+      const icon = document.getElementById('sfxIcon');
+      const text = document.getElementById('sfxText');
+      if (sfxEnabled) {
+        icon.textContent = '🎵';
+        text.textContent = 'SFX: ON';
+        playTone(523.25, 'sine', 0.1);
+      } else {
+        icon.textContent = '🔇';
+        text.textContent = 'SFX: OFF';
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // Slide Navigation Core
+    // -------------------------------------------------------------------------
+    function goToSlide(idx) {
+      if (idx < 0) idx = 0;
+      if (idx >= totalSlides) idx = totalSlides - 1;
+      currentSlide = idx;
+      updateSlideUI();
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        goToSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        goToSlide(currentSlide - 1);
+      }
+    }
+
+    function updateSlideUI() {
+      document.querySelectorAll('.slide-section').forEach((sec, i) => {
+        if (i === currentSlide) {
+          sec.classList.add('active');
+        } else {
+          sec.classList.remove('active');
+        }
+      });
+
+      document.getElementById('slideCounterCurrent').textContent = currentSlide + 1;
+
+      document.querySelectorAll('.slide-pill').forEach((pill, i) => {
+        if (i === currentSlide) {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-emerald-600 text-white font-bold transition-all cursor-pointer';
+        } else {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer';
+        }
+      });
+
+      document.getElementById('prevSlideBtn').disabled = (currentSlide === 0);
+
+      // EXACT USER SPECIFICATION: On last slide, NO NEXT SLIDE OPTION on right, show message
+      const nextBtn = document.getElementById('nextSlideBtn');
+      const lastNotice = document.getElementById('lastSlideNotice');
+      if (currentSlide === totalSlides - 1) {
+        if (nextBtn) nextBtn.style.display = 'none';
+        if (lastNotice) lastNotice.style.display = 'inline-flex';
+        if (isAutoPlaySlideshow) {
+          toggleAutoPlaySlideshow();
+        }
+      } else {
+        if (nextBtn) nextBtn.style.display = 'inline-flex';
+        if (lastNotice) lastNotice.style.display = 'none';
+      }
+
+      playSlideTransitionTone();
+      speakNarration(slideNarration[currentSlide]);
+
+      if (isAutoPlaySlideshow) {
+        resetAutoPlayCountdown();
+      }
+    }
+
+    function toggleAutoPlaySlideshow() {
+      const btn = document.getElementById('autoPlaySlideshowBtn');
+      const icon = document.getElementById('autoPlayIcon');
+      const txt = document.getElementById('autoPlayText');
+      const bar = document.getElementById('autoPlayCountdownBar');
+
+      if (isAutoPlaySlideshow) {
+        isAutoPlaySlideshow = false;
+        clearInterval(countdownInterval);
+        clearTimeout(autoPlayInterval);
+        icon.textContent = '▶';
+        txt.textContent = 'Auto-Play';
+        btn.className = 'px-4 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-lg shadow-emerald-600/30 flex items-center space-x-1.5 cursor-pointer transition-all';
+        bar.style.opacity = '0';
+        bar.style.width = '0%';
+      } else {
+        if (currentSlide === totalSlides - 1) {
+          goToSlide(0);
+        }
+        isAutoPlaySlideshow = true;
+        icon.textContent = '⏸';
+        txt.textContent = 'Pause';
+        btn.className = 'px-4 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold shadow-lg shadow-amber-600/30 flex items-center space-x-1.5 cursor-pointer transition-all';
+        bar.style.opacity = '1';
+        resetAutoPlayCountdown();
+      }
+    }
+
+    function resetAutoPlayCountdown() {
+      clearInterval(countdownInterval);
+      clearTimeout(autoPlayInterval);
+
+      const bar = document.getElementById('autoPlayCountdownBar');
+      let elapsed = 0;
+      const durationMs = 12000;
+      const stepMs = 100;
+
+      countdownInterval = setInterval(() => {
+        elapsed += stepMs;
+        const pct = Math.min((elapsed / durationMs) * 100, 100);
+        if (bar) bar.style.width = pct + '%';
+        if (elapsed >= durationMs) {
+          clearInterval(countdownInterval);
+        }
+      }, stepMs);
+
+      autoPlayInterval = setTimeout(() => {
+        if (isAutoPlaySlideshow) {
+          if (currentSlide < totalSlides - 1) {
+            nextSlide();
+          } else {
+            toggleAutoPlaySlideshow();
+          }
+        }
+      }, durationMs);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        if (currentSlide < totalSlides - 1) nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+      }
+    });
+
+    // -------------------------------------------------------------------------
+    // 4 QUIZ SLIDES EACH WITH 10 QUESTIONS (40 TOTAL WITH INTERACTIVE SOLUTION BUTTON)
+    // -------------------------------------------------------------------------
+    const quizSets = [
+      {
+        id: 1,
+        containerId: 'quizContainer-1',
+        scoreId: 'quizScoreDisplay-1',
+        questions: [
+          {
+            id: 1,
+            question: "1. If a matrix has 24 elements, what is the number of possible orders it can have?",
+            options: ["8", "4", "6", "12"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> The order of an m × n matrix with 24 elements requires mn = 24 where m, n ∈ ℕ.<br><strong>Step 2:</strong> Find all ordered factor pairs of 24:<br>(1, 24), (24, 1), (2, 12), (12, 2), (3, 8), (8, 3), (4, 6), (6, 4).<br><strong>Conclusion:</strong> There are exactly <strong>8</strong> possible orders."
+          },
+          {
+            id: 2,
+            question: "2. If a matrix has 13 elements, what are its possible orders?",
+            options: ["1 × 13 and 13 × 1 only", "1 × 13, 13 × 1, 2 × 6.5", "1 × 13, 13 × 1, 3 × 4", "None of these"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> The order m × n requires m and n to be natural numbers such that mn = 13.<br><strong>Step 2:</strong> Since 13 is a prime number, its only natural factor pairs are (1, 13) and (13, 1).<br><strong>Conclusion:</strong> The only possible orders are <strong>1 × 13 and 13 × 1</strong>."
+          },
+          {
+            id: 3,
+            question: "3. A matrix A = [aᵢⱼ]ₘ ₓ ₙ is a square matrix if:",
+            options: ["m = n", "m < n", "m > n", "mn = 1"],
+            correct: 0,
+            explanation: "<strong>Definition (NCERT § 3.3):</strong> A matrix in which the number of rows equals the number of columns is defined as a square matrix.<br><strong>Conclusion:</strong> <strong>m = n</strong>."
+          },
+          {
+            id: 4,
+            question: "4. The number of all possible matrices of order 3 × 3 with each entry 0 or 1 is:",
+            options: ["512", "27", "81", "18"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> A 3 × 3 matrix contains 3 × 3 = 9 entries.<br><strong>Step 2:</strong> Each of the 9 entries can be filled independently in 2 ways (either 0 or 1).<br><strong>Step 3:</strong> By Fundamental Principle of Counting, total possible matrices = 2⁹ = <strong>512</strong>."
+          },
+          {
+            id: 5,
+            question: "5. In a 3 × 2 matrix where elements are defined by aᵢⱼ = ½ |i – 3j|, the entry a₂₁ is:",
+            options: ["1/2", "1", "5/2", "0"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Substitute row index i = 2 and column index j = 1 into the rule.<br><strong>Step 2:</strong> a₂₁ = ½ |2 – 3(1)| = ½ |2 – 3| = ½ |-1| = ½(1).<br><strong>Conclusion:</strong> a₂₁ = <strong>1/2</strong>."
+          },
+          {
+            id: 6,
+            question: "6. A diagonal matrix where all diagonal elements are equal to a constant k (k ≠ 1) is called a:",
+            options: ["Scalar matrix", "Identity matrix", "Zero matrix", "Row matrix"],
+            correct: 0,
+            explanation: "<strong>Definition:</strong> A diagonal matrix whose diagonal elements are all equal to some constant k is called a <strong>scalar matrix</strong>. (If k = 1, it becomes the identity matrix)."
+          },
+          {
+            id: 7,
+            question: "7. Which of the following statements about an identity matrix is always TRUE?",
+            options: ["Every identity matrix is a scalar matrix", "Every scalar matrix is an identity matrix", "Identity matrix can have rectangular order", "Diagonal elements can be any real number"],
+            correct: 0,
+            explanation: "<strong>NCERT Note (§ 3.3):</strong> An identity matrix has all diagonal elements equal to 1 and off-diagonals 0, fulfilling the scalar matrix definition with k = 1. Thus, <strong>every identity matrix is a scalar matrix</strong>."
+          },
+          {
+            id: 8,
+            question: "8. What is the order of a column matrix having 5 rows?",
+            options: ["5 × 1", "1 × 5", "5 × 5", "1 × 1"],
+            correct: 0,
+            explanation: "<strong>Definition:</strong> A column matrix has only one column (n = 1). With m = 5 rows, its order is <strong>5 × 1</strong>."
+          },
+          {
+            id: 9,
+            question: "9. For A = [ [2, 5, 19, -7], [35, -2, 5/2, 12], [√3, 1, -5, 17] ], what is the element a₂₃?",
+            options: ["5/2", "19", "12", "-5"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> a₂₃ denotes the element in row 2 and column 3.<br><strong>Step 2:</strong> In Row 2 [35, -2, 5/2, 12], the 3rd element is <strong>5/2</strong>."
+          },
+          {
+            id: 10,
+            question: "10. If a matrix A has order 3 × 4, how many total elements does it contain?",
+            options: ["12", "7", "14", "24"],
+            correct: 0,
+            explanation: "<strong>Rule:</strong> The total number of elements in an m × n matrix is given by the product mn.<br><strong>Calculation:</strong> 3 × 4 = <strong>12</strong>."
+          }
+        ]
+      },
+      {
+        id: 2,
+        containerId: 'quizContainer-2',
+        scoreId: 'quizScoreDisplay-2',
+        questions: [
+          {
+            id: 11,
+            question: "11. If [ [x+3, z+4], [y-1, -6] ] = [ [0, 6], [3, -6] ], then find the value of x + y + z:",
+            options: ["3", "-1", "5", "7"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Equate corresponding entries:<br>• x + 3 = 0 ⇒ x = -3<br>• z + 4 = 6 ⇒ z = 2<br>• y – 1 = 3 ⇒ y = 4<br><strong>Step 2:</strong> x + y + z = (-3) + 4 + 2 = <strong>3</strong>."
+          },
+          {
+            id: 12,
+            question: "12. Find x and y if 2 [ [1, 3], [0, x] ] + [ [y, 0], [1, 2] ] = [ [5, 6], [1, 8] ]:",
+            options: ["x = 3, y = 3", "x = 2, y = 3", "x = 3, y = 2", "x = 4, y = 1"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Multiply scalar 2: [ [2, 6], [0, 2x] ] + [ [y, 0], [1, 2] ] = [ [2+y, 6], [1, 2x+2] ].<br><strong>Step 2:</strong> Equate with [ [5, 6], [1, 8] ]:<br>• 2 + y = 5 ⇒ y = 3<br>• 2x + 2 = 8 ⇒ 2x = 6 ⇒ x = 3.<br><strong>Conclusion:</strong> <strong>x = 3, y = 3</strong>."
+          },
+          {
+            id: 13,
+            question: "13. If A is of order 2 × 3 and B is of order 3 × 2, then the sum A + B is:",
+            options: ["Not defined", "Order 2 × 2", "Order 3 × 3", "Order 2 × 3"],
+            correct: 0,
+            explanation: "<strong>Fundamental Rule:</strong> Addition of two matrices A and B is defined IF AND ONLY IF they have the exact same order. Since 2 × 3 ≠ 3 × 2, A + B is <strong>not defined</strong>."
+          },
+          {
+            id: 14,
+            question: "14. What is the additive identity matrix for matrix addition of 2 × 2 matrices?",
+            options: ["[ [0, 0], [0, 0] ]", "[ [1, 0], [0, 1] ]", "[ [1, 1], [1, 1] ]", "[ [-1, 0], [0, -1] ]"],
+            correct: 0,
+            explanation: "<strong>Rule:</strong> The zero matrix O satisfies A + O = O + A = A for any matrix A of the same order. For 2 × 2, the additive identity is <strong>[ [0, 0], [0, 0] ]</strong>."
+          },
+          {
+            id: 15,
+            question: "15. If A = [ [2, 4], [3, 2] ] and B = [ [1, 3], [-2, 5] ], then compute 2A – B:",
+            options: ["[ [3, 5], [8, -1] ]", "[ [3, 1], [1, -3] ]", "[ [5, 11], [4, 9] ]", "[ [1, 1], [5, -3] ]"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> 2A = [ [4, 8], [6, 4] ].<br><strong>Step 2:</strong> 2A – B = [ [4–1, 8–3], [6–(-2), 4–5] ] = <strong>[ [3, 5], [8, -1] ]</strong>."
+          },
+          {
+            id: 16,
+            question: "16. If X + Y = [ [7, 0], [2, 5] ] and X – Y = [ [3, 0], [0, 3] ], find matrix X:",
+            options: ["[ [5, 0], [1, 4] ]", "[ [2, 0], [1, 1] ]", "[ [10, 0], [2, 8] ]", "[ [4, 0], [2, 2] ]"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Add both equations: (X + Y) + (X – Y) = 2X.<br><strong>Step 2:</strong> 2X = [ [7+3, 0+0], [2+0, 5+3] ] = [ [10, 0], [2, 8] ].<br><strong>Step 3:</strong> Divide by 2: X = <strong>[ [5, 0], [1, 4] ]</strong>."
+          },
+          {
+            id: 17,
+            question: "17. Simplify cosθ [ [cosθ, sinθ], [-sinθ, cosθ] ] + sinθ [ [sinθ, -cosθ], [cosθ, sinθ] ]:",
+            options: ["[ [1, 0], [0, 1] ] (Identity I)", "[ [0, 1], [1, 0] ]", "[ [0, 0], [0, 0] ]", "[ [cos2θ, sin2θ], [-sin2θ, cos2θ] ]"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Scale by cosθ: [ [cos²θ, cosθsinθ], [-cosθsinθ, cos²θ] ].<br><strong>Step 2:</strong> Scale by sinθ: [ [sin²θ, -sinθcosθ], [sinθcosθ, sin²θ] ].<br><strong>Step 3:</strong> Add terms: [ [cos²θ+sin²θ, 0], [0, cos²θ+sin²θ] ] = <strong>[ [1, 0], [0, 1] ]</strong>."
+          },
+          {
+            id: 18,
+            question: "18. Which property does NOT hold for matrix addition?",
+            options: ["Non-commutative law", "Commutative law (A + B = B + A)", "Associative law ((A+B)+C = A+(B+C))", "Existence of additive inverse"],
+            correct: 0,
+            explanation: "<strong>Rule:</strong> Matrix addition is strictly commutative (A + B = B + A). Therefore, the 'non-commutative law' does NOT hold."
+          },
+          {
+            id: 19,
+            question: "19. If k is a scalar and A = [aᵢⱼ]ₘ ₓ ₙ, then kA is defined by:",
+            options: ["[k aᵢⱼ]ₘ ₓ ₙ", "Only diagonal multiplied by k", "Only row 1 multiplied by k", "Order becomes km × kn"],
+            correct: 0,
+            explanation: "<strong>Definition (§ 3.4.2):</strong> Multiplying a matrix by a scalar k means multiplying <em>every individual element</em> of the matrix by k. Thus kA = <strong>[k aᵢⱼ]ₘ ₓ ₙ</strong>."
+          },
+          {
+            id: 20,
+            question: "20. For A and B with entries given in Ex 3.2 Q5, 3A – 5B evaluates to:",
+            options: ["Zero matrix O", "Identity matrix I", "Diagonal matrix", "Scalar matrix with k=2"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Multiplying A by 3 clears all denominators of 3, leaving integer entries.<br><strong>Step 2:</strong> Multiplying B by 5 clears all denominators of 5, producing the exact identical integer entries.<br><strong>Conclusion:</strong> 3A – 5B = <strong>Zero matrix O</strong>."
+          }
+        ]
+      },
+      {
+        id: 3,
+        containerId: 'quizContainer-3',
+        scoreId: 'quizScoreDisplay-3',
+        questions: [
+          {
+            id: 21,
+            question: "21. If A has order 2 × 3 and B has order 3 × 4, what is the order of the product AB?",
+            options: ["2 × 4", "3 × 3", "4 × 2", "2 × 3"],
+            correct: 0,
+            explanation: "<strong>Rule:</strong> If A is m × n and B is n × p, then the product AB is defined and has order m × p.<br><strong>Calculation:</strong> Here m = 2, n = 3, p = 4. Thus AB has order <strong>2 × 4</strong>."
+          },
+          {
+            id: 22,
+            question: "22. If A is of order 2 × 3 and B is of order 2 × 3, then:",
+            options: ["Neither AB nor BA is defined", "Both AB and BA are defined", "AB is defined, BA is not", "AB has order 2 × 2"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> For AB to be defined, cols(A) must equal rows(B). Here 3 ≠ 2 (undefined).<br><strong>Step 2:</strong> For BA, cols(B) must equal rows(A). Here 3 ≠ 2 (undefined).<br><strong>Conclusion:</strong> <strong>Neither AB nor BA is defined</strong>."
+          },
+          {
+            id: 23,
+            question: "23. If A = [ [1, -2], [2, 3] ] and B = [ [1, 2, 3], [2, 3, 1] ], find the (1, 2) entry of AB:",
+            options: ["-4", "-3", "1", "7"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> The (1, 2) entry is the dot product of Row 1 of A and Column 2 of B.<br><strong>Step 2:</strong> Row 1 of A = [1, -2]; Column 2 of B = [2; 3].<br><strong>Step 3:</strong> c₁₂ = 1(2) + (-2)(3) = 2 – 6 = <strong>-4</strong>."
+          },
+          {
+            id: 24,
+            question: "24. If AB = O for two non-zero matrices A and B, which statement is TRUE?",
+            options: ["It is NOT necessary that either A = O or B = O", "Either A = O or B = O must hold", "Both A and B must be zero matrices", "Matrix multiplication is invalid"],
+            correct: 0,
+            explanation: "<strong>NCERT Critical Note (§ 3.4.5 Example 15):</strong> In matrix algebra, the product of two non-zero matrices can be the zero matrix. Thus, <strong>it is not necessary that either A = O or B = O</strong>."
+          },
+          {
+            id: 25,
+            question: "25. Which of the following pairs of matrices always commute under multiplication?",
+            options: ["Diagonal matrices of the same order", "Any two square matrices of the same order", "Any two symmetric matrices", "Row and column matrices of the same size"],
+            correct: 0,
+            explanation: "<strong>NCERT Explicit Note (page 54):</strong> 'Multiplication of diagonal matrices of same order will be commutative.' Thus, <strong>diagonal matrices of the same order</strong> always commute."
+          },
+          {
+            id: 26,
+            question: "26. If A = [ [0, 1], [1, 0] ], then compute A²:",
+            options: ["[ [1, 0], [0, 1] ] (Identity I)", "[ [0, 0], [0, 0] ]", "[ [0, 1], [1, 0] ]", "[ [2, 0], [0, 2] ]"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> A² = A · A = [ [0, 1], [1, 0] ] · [ [0, 1], [1, 0] ].<br><strong>Step 2:</strong> Row 1 · Col 1 = 0(0) + 1(1) = 1; Row 1 · Col 2 = 0(1) + 1(0) = 0.<br>Row 2 · Col 1 = 1(0) + 0(1) = 0; Row 2 · Col 2 = 1(1) + 0(0) = 1.<br><strong>Conclusion:</strong> A² = <strong>[ [1, 0], [0, 1] ] = I</strong>."
+          },
+          {
+            id: 27,
+            question: "27. If A is a square matrix such that A² = A, then (I + A)³ – 7A is equal to:",
+            options: ["I", "A", "I – A", "3A"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Expand (I + A)³: since IA = AI, binomial expansion holds: I³ + 3I²A + 3IA² + A³.<br><strong>Step 2:</strong> Given A² = A ⇒ A³ = A² · A = A · A = A² = A.<br><strong>Step 3:</strong> Expression = I + 3A + 3A + A – 7A = I + 7A – 7A = <strong>I</strong>."
+          },
+          {
+            id: 28,
+            question: "28. If A = [ [α, β], [γ, -α] ] is such that A² = I, then:",
+            options: ["1 – α² – βγ = 0", "1 + α² + βγ = 0", "1 – α² + βγ = 0", "1 + α² – βγ = 0"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> A² = [ [α² + βγ, 0], [0, βγ + α²] ].<br><strong>Step 2:</strong> Equate with I = [ [1, 0], [0, 1] ]: α² + βγ = 1.<br><strong>Conclusion:</strong> <strong>1 – α² – βγ = 0</strong>."
+          },
+          {
+            id: 29,
+            question: "29. Given P (p × k) and Y (3 × k), what restrictions on n, k, p ensure PY + WY is defined (W is n × 3)?",
+            options: ["k = 3, p = n", "k is arbitrary, p = 2", "p is arbitrary, k = 3", "k = 2, p = 3"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> For PY to be defined, cols(P) must equal rows(Y) ⇒ k = 3. Order of PY is p × k.<br><strong>Step 2:</strong> For WY, cols(W) = 3 = rows(Y). Order of WY is n × k.<br><strong>Step 3:</strong> To add PY and WY, orders must match: p × k = n × k ⇒ p = n.<br><strong>Conclusion:</strong> <strong>k = 3, p = n</strong>."
+          },
+          {
+            id: 30,
+            question: "30. If F(x) = [ [cosx, -sinx, 0], [sinx, cosx, 0], [0, 0, 1] ], then F(x)F(y) equals:",
+            options: ["F(x + y)", "F(x – y)", "F(xy)", "F(x) + F(y)"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Multiply F(x) by F(y). The top-left entry is cosx cosy – sinx siny = cos(x + y).<br><strong>Step 2:</strong> Top-middle is –(sinx cosy + cosx siny) = –sin(x + y).<br><strong>Conclusion:</strong> The product regenerates the rotation matrix: <strong>F(x + y)</strong>."
+          }
+        ]
+      },
+      {
+        id: 4,
+        containerId: 'quizContainer-4',
+        scoreId: 'quizScoreDisplay-4',
+        questions: [
+          {
+            id: 31,
+            question: "31. If A is an m × n matrix, then its transpose A′ has order:",
+            options: ["n × m", "m × n", "m × m", "n × n"],
+            correct: 0,
+            explanation: "<strong>Definition (§ 3.5):</strong> Interchanging the m rows and n columns swaps the dimensions, resulting in order <strong>n × m</strong>."
+          },
+          {
+            id: 32,
+            question: "32. For any two matrices A and B of suitable orders, (AB)′ is equal to:",
+            options: ["B′A′ (The Reversal Law)", "A′B′", "(BA)′", "-(A′B')"],
+            correct: 0,
+            explanation: "<strong>The Reversal Law (§ 3.5.1):</strong> Transposition reverses the order of matrix multiplication: (AB)′ = <strong>B′A′</strong>."
+          },
+          {
+            id: 33,
+            question: "33. All diagonal elements of a skew-symmetric matrix are always:",
+            options: ["Zero", "1", "-1", "Any real number"],
+            correct: 0,
+            explanation: "<strong>Proof (§ 3.6):</strong> Skew-symmetry requires aⱼᵢ = –aᵢⱼ. On the diagonal, set i = j: aᵢᵢ = –aᵢᵢ ⇒ 2aᵢᵢ = 0 ⇒ <strong>aᵢᵢ = 0</strong> for all i."
+          },
+          {
+            id: 34,
+            question: "34. If A is any square matrix with real entries, then A – A′ is always:",
+            options: ["A skew-symmetric matrix", "A symmetric matrix", "An identity matrix", "A zero matrix"],
+            correct: 0,
+            explanation: "<strong>Theorem 1:</strong> Let C = A – A′. Taking transpose: C′ = (A – A′)′ = A′ – (A′)′ = A′ – A = –(A – A′) = –C. Thus, A – A′ is <strong>skew-symmetric</strong>."
+          },
+          {
+            id: 35,
+            question: "35. If matrix A is BOTH symmetric and skew-symmetric, then A must be:",
+            options: ["A zero matrix", "A diagonal matrix", "An identity matrix", "A scalar matrix"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Symmetric implies A′ = A. Skew-symmetric implies A′ = –A.<br><strong>Step 2:</strong> Therefore A = –A ⇒ 2A = O ⇒ A = O.<br><strong>Conclusion:</strong> A is <strong>a zero matrix</strong>."
+          },
+          {
+            id: 36,
+            question: "36. If A and B are symmetric matrices of the same order, then AB – BA is:",
+            options: ["A skew-symmetric matrix", "A symmetric matrix", "A zero matrix", "An identity matrix"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Given A′ = A, B′ = B.<br><strong>Step 2:</strong> (AB – BA)′ = (AB)′ – (BA)′ = B′A′ – A′B′ = BA – AB = –(AB – BA).<br><strong>Conclusion:</strong> It equals its negative, so AB – BA is <strong>skew-symmetric</strong>."
+          },
+          {
+            id: 37,
+            question: "37. If A = [ [cosα, -sinα], [sinα, cosα] ] and A + A′ = I, then find α:",
+            options: ["π/3", "π/6", "π", "3π/2"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> A + A′ = [ [2cosα, 0], [0, 2cosα] ].<br><strong>Step 2:</strong> Equate with I = [ [1, 0], [0, 1] ]: 2cosα = 1 ⇒ cosα = 1/2.<br><strong>Conclusion:</strong> In principal interval, α = <strong>π/3</strong> (60°)."
+          },
+          {
+            id: 38,
+            question: "38. Any square matrix A can be uniquely expressed as sum of symmetric P and skew-symmetric Q where:",
+            options: ["P = ½(A + A′) and Q = ½(A – A′)", "P = A + A′ and Q = A – A′", "P = ½(A – A′) and Q = ½(A + A′)", "P = AA′ and Q = A′A"],
+            correct: 0,
+            explanation: "<strong>Theorem 2 (§ 3.6):</strong> A = ½(A + A′) + ½(A – A′), where <strong>P = ½(A + A′)</strong> is symmetric and <strong>Q = ½(A – A′)</strong> is skew-symmetric."
+          },
+          {
+            id: 39,
+            question: "39. If A and B are invertible matrices of the same order, then (AB)⁻¹ equals:",
+            options: ["B⁻¹A⁻¹", "A⁻¹B⁻¹", "(BA)⁻¹", "-(AB)"],
+            correct: 0,
+            explanation: "<strong>Theorem 4 (§ 3.7):</strong> By pre-multiplying (AB)(B⁻¹A⁻¹) = A(BB⁻¹)A⁻¹ = A I A⁻¹ = AA⁻¹ = I. Hence (AB)⁻¹ = <strong>B⁻¹A⁻¹</strong> (Reversal law of inverses)."
+          },
+          {
+            id: 40,
+            question: "40. Square matrices A and B will be inverses of each other ONLY if:",
+            options: ["AB = BA = I", "AB = BA = 0", "AB = 0, BA = I", "AB = BA"],
+            correct: 0,
+            explanation: "<strong>Definition 6 (§ 3.7):</strong> Two square matrices A and B are inverses of each other if and only if <strong>AB = BA = I</strong>."
+          }
+        ]
+      }
+    ];
+
+    let userAnswers = {};
+
+    function createQuizCard(set, q) {
+      const card = document.createElement('div');
+      card.id = `quiz-card-${q.id}`;
+      card.className = 'p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-3 transition-all';
+
+      let optionsHtml = '';
+      q.options.forEach((opt, optIdx) => {
+        optionsHtml += `
+          <button onclick="handleQuizAnswer(${set.id}, ${q.id}, ${optIdx}, this)"
+                  class="quiz-opt-btn-${q.id} w-full text-left p-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-300 font-medium transition cursor-pointer flex items-center justify-between">
+            <span>${opt}</span>
+            <span class="opt-check text-xs font-bold"></span>
+          </button>
+        `;
+      });
+
+      card.innerHTML = `
+        <div class="flex items-start justify-between gap-2">
+          <div class="font-bold text-white text-xs leading-relaxed flex-1">${q.question}</div>
+          <button onclick="toggleSolution(${set.id}, ${q.id})" 
+                  id="sol-btn-${q.id}"
+                  title="Click to view full step-by-step solution"
+                  class="px-2.5 py-1 rounded-xl bg-emerald-950/70 hover:bg-emerald-900 border border-emerald-500/40 text-emerald-300 hover:text-emerald-100 text-[11px] font-bold flex items-center space-x-1 shrink-0 transition-all cursor-pointer shadow-sm">
+            <span>💡</span>
+            <span id="sol-btn-text-${q.id}">Solution</span>
+          </button>
+        </div>
+        <div class="space-y-1.5">${optionsHtml}</div>
+        <div id="quiz-feedback-${q.id}" class="hidden p-2.5 rounded-xl text-[11px] leading-relaxed"></div>
+        <div id="quiz-solution-${q.id}" class="hidden p-3.5 rounded-xl bg-slate-950/95 border border-emerald-500/40 text-slate-200 text-[11px] space-y-2 shadow-xl transition-all">
+          <div class="flex items-center space-x-1.5 text-emerald-300 font-bold border-b border-slate-800/80 pb-1.5">
+            <span>📝</span>
+            <span>Step-by-Step Solution:</span>
+            <span class="text-teal-300 ml-auto font-mono text-[10px] bg-teal-950/70 px-2 py-0.5 rounded-md border border-teal-500/40 font-bold">Correct Ans: ${q.options[q.correct]}</span>
+          </div>
+          <div class="text-slate-300 leading-relaxed pt-0.5">${q.explanation}</div>
+        </div>
+      `;
+      return card;
+    }
+
+    function toggleSolution(setId, qId) {
+      const solDiv = document.getElementById(`quiz-solution-${qId}`);
+      const btnText = document.getElementById(`sol-btn-text-${qId}`);
+      const btn = document.getElementById(`sol-btn-${qId}`);
+      if (!solDiv) return;
+
+      const isHidden = solDiv.classList.contains('hidden');
+      if (isHidden) {
+        solDiv.classList.remove('hidden');
+        if (btnText) btnText.textContent = 'Hide';
+        if (btn) {
+          btn.classList.remove('bg-emerald-950/70', 'text-emerald-300');
+          btn.classList.add('bg-emerald-700', 'text-white', 'border-emerald-400');
+        }
+        playTone(659.25, 'sine', 0.08, 0.06);
+      } else {
+        solDiv.classList.add('hidden');
+        if (btnText) btnText.textContent = 'Solution';
+        if (btn) {
+          btn.classList.remove('bg-emerald-700', 'text-white', 'border-emerald-400');
+          btn.classList.add('bg-emerald-950/70', 'text-emerald-300');
+        }
+      }
+    }
+
+    function renderAllQuizzes() {
+      quizSets.forEach(set => {
+        const container = document.getElementById(set.containerId);
+        if (!container) return;
+        container.innerHTML = '';
+        set.questions.forEach(q => {
+          container.appendChild(createQuizCard(set, q));
+        });
+      });
+    }
+
+    function handleQuizAnswer(setId, qId, selectedIdx, btn) {
+      const answerKey = `${setId}-${qId}`;
+      if (userAnswers[answerKey] !== undefined) return;
+      userAnswers[answerKey] = selectedIdx;
+
+      const set = quizSets.find(s => s.id === setId);
+      const q = set.questions.find(item => item.id === qId);
+      const isCorrect = (selectedIdx === q.correct);
+      const feedback = document.getElementById(`quiz-feedback-${qId}`);
+      const card = document.getElementById(`quiz-card-${qId}`);
+      const allBtns = card.querySelectorAll(`.quiz-opt-btn-${qId}`);
+
+      allBtns.forEach((b, idx) => {
+        b.disabled = true;
+        if (idx === q.correct) {
+          b.classList.remove('bg-slate-950', 'border-slate-800');
+          b.classList.add('bg-emerald-950/60', 'border-emerald-500/60', 'text-emerald-300');
+          b.querySelector('.opt-check').textContent = '✓';
+        } else if (idx === selectedIdx && !isCorrect) {
+          b.classList.remove('bg-slate-950', 'border-slate-800');
+          b.classList.add('bg-rose-950/60', 'border-rose-500/60', 'text-rose-300');
+          b.querySelector('.opt-check').textContent = '✕';
+        }
+      });
+
+      feedback.classList.remove('hidden');
+      if (isCorrect) {
+        playSuccessTone();
+        feedback.className = 'p-2.5 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 text-[11px]';
+        feedback.innerHTML = `<strong>✓ Correct!</strong> Well done! You can click 💡 Solution anytime for complete derivation.`;
+      } else {
+        playWrongTone();
+        feedback.className = 'p-2.5 rounded-xl bg-rose-950/40 border border-rose-500/40 text-rose-300 text-[11px]';
+        feedback.innerHTML = `<strong>✕ Incorrect!</strong> Correct answer is <strong>${q.options[q.correct]}</strong>. Click 💡 Solution to view the step-by-step solution.`;
+      }
+
+      let setScore = 0;
+      set.questions.forEach(item => {
+        if (userAnswers[`${setId}-${item.id}`] === item.correct) {
+          setScore++;
+        }
+      });
+
+      const scoreDisplay = document.getElementById(set.scoreId);
+      if (scoreDisplay) {
+        scoreDisplay.textContent = `${setScore} / ${set.questions.length}`;
+      }
+    }
+
+    function resetQuiz(setId) {
+      const set = quizSets.find(s => s.id === setId);
+      if (!set) return;
+
+      set.questions.forEach(q => {
+        delete userAnswers[`${setId}-${q.id}`];
+      });
+
+      const scoreDisplay = document.getElementById(set.scoreId);
+      if (scoreDisplay) {
+        scoreDisplay.textContent = `0 / ${set.questions.length}`;
+      }
+
+      const container = document.getElementById(set.containerId);
+      if (container) {
+        container.innerHTML = '';
+        set.questions.forEach(q => {
+          container.appendChild(createQuizCard(set, q));
+        });
+      }
+
+      playTone(523.25, 'sine', 0.1);
+    }
+
+    // -------------------------------------------------------------------------
+    // 2 CHECKPOINT QUESTIONS FOR EACH OF THE 10 CONTENT SLIDES (WITH SOLUTIONS)
+    // -------------------------------------------------------------------------
+    const slideCheckpoints = [
+      {
+        slideIdx: 0,
+        questions: [
+          {
+            question: "1. If point P(3, –5) in the Cartesian plane is represented as a column matrix, what is its order and form?",
+            options: ["[ [3], [-5] ] of order 2 × 1", "[ 3, -5 ] of order 1 × 2", "[ [-5], [3] ] of order 2 × 1", "[ [3, 0], [0, -5] ] of order 2 × 2"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> In Cartesian coordinates (x, y), a point is represented as a column matrix [ [x], [y] ].<br><strong>Step 2:</strong> For P(3, –5), this gives [ [3], [-5] ], which has 2 rows and 1 column.<br><strong>Conclusion:</strong> Order is <strong>2 × 1</strong>."
+          },
+          {
+            question: "2. A matrix X encodes the vertices of a triangle ABC in a 2D plane where each column is a vertex (x, y). What is the order of X?",
+            options: ["2 × 3", "3 × 2", "3 × 3", "1 × 6"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> The 2 coordinates (x and y) form the 2 rows.<br><strong>Step 2:</strong> The 3 vertices A, B, and C form the 3 columns.<br><strong>Conclusion:</strong> The matrix order is <strong>2 × 3</strong>."
+          }
+        ]
+      },
+      {
+        slideIdx: 1,
+        questions: [
+          {
+            question: "1. If a matrix has 18 elements, how many possible orders can it have?",
+            options: ["6", "4", "8", "18"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Find all natural factor pairs (m, n) such that mn = 18.<br><strong>Step 2:</strong> The pairs are (1, 18), (18, 1), (2, 9), (9, 2), (3, 6), (6, 3).<br><strong>Conclusion:</strong> There are exactly <strong>6</strong> possible orders."
+          },
+          {
+            question: "2. If a matrix has entries given by aᵢⱼ = (i + 2j)² / 2, find the value of element a₂₃:",
+            options: ["32", "16", "25/2", "49/2"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Substitute row index i = 2 and column index j = 3.<br><strong>Step 2:</strong> i + 2j = 2 + 2(3) = 2 + 6 = 8.<br><strong>Step 3:</strong> Compute a₂₃ = 8² / 2 = 64 / 2 = <strong>32</strong>."
+          }
+        ]
+      },
+      {
+        slideIdx: 2,
+        questions: [
+          {
+            question: "1. What is the minimum number of zeros in a diagonal matrix of order 3 × 3?",
+            options: ["6", "3", "9", "0"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> A 3 × 3 square matrix contains 3 × 3 = 9 elements total.<br><strong>Step 2:</strong> By definition of a diagonal matrix, all non-diagonal elements (where i ≠ j) must be zero.<br><strong>Step 3:</strong> Total non-diagonal elements = 9 – 3 = <strong>6</strong>."
+          },
+          {
+            question: "2. A scalar matrix A = [ [k, 0], [0, k] ] becomes the multiplicative identity matrix I₂ when k equals:",
+            options: ["1", "0", "-1", "Any real number"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> An identity matrix requires all principal diagonal entries to be 1 and off-diagonals 0.<br><strong>Conclusion:</strong> A scalar matrix is an identity matrix precisely when <strong>k = 1</strong>."
+          }
+        ]
+      },
+      {
+        slideIdx: 3,
+        questions: [
+          {
+            question: "1. If [ [a - b, 2a + c], [2a - b, 3c + d] ] = [ [-1, 5], [0, 13] ], find a and b:",
+            options: ["a = 1, b = 2", "a = 2, b = 1", "a = -1, b = 0", "a = 3, b = 4"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> By equality of matrices, equate (2, 1) entries: 2a – b = 0 ⇒ b = 2a.<br><strong>Step 2:</strong> Equate (1, 1) entries: a – b = -1 ⇒ a – 2a = -1 ⇒ -a = -1 ⇒ a = 1.<br><strong>Step 3:</strong> b = 2(1) = 2. <strong>a = 1, b = 2</strong>."
+          },
+          {
+            question: "2. Why can't matrix A of order 2 × 2 be equal to matrix B of order 2 × 3 even if overlapping entries match?",
+            options: ["Equality requires identical orders (2 × 2 ≠ 2 × 3)", "B contains more columns so determinant is zero", "A is square and B is symmetric", "Matrix equality only applies to square matrices"],
+            correct: 0,
+            explanation: "<strong>Definition (§ 3.3.1):</strong> Two matrices can be equal IF AND ONLY IF they have the exact same order. Here 2 × 2 ≠ 2 × 3."
+          }
+        ]
+      },
+      {
+        slideIdx: 4,
+        questions: [
+          {
+            question: "1. If A = [ [1, 2], [3, 4] ] and B = [ [3, -1], [-1, 2] ], find the additive inverse of (A + B):",
+            options: ["[ [-4, -1], [-2, -6] ]", "[ [4, 1], [2, 6] ]", "[ [2, -3], [-4, -2] ]", "[ [0, 0], [0, 0] ]"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> A + B = [ [1+3, 2-1], [3-1, 4+2] ] = [ [4, 1], [2, 6] ].<br><strong>Step 2:</strong> The additive inverse of any matrix M is –M.<br><strong>Conclusion:</strong> –(A + B) = <strong>[ [-4, -1], [-2, -6] ]</strong>."
+          },
+          {
+            question: "2. If 3A = [ [9, -6], [12, 3] ], find the matrix A:",
+            options: ["[ [3, -2], [4, 1] ]", "[ [27, -18], [36, 9] ]", "[ [6, -9], [9, 0] ]", "[ [1, 0], [0, 1] ]"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Multiply by scalar 1/3: each entry of 3A is divided by 3.<br><strong>Conclusion:</strong> [ [9/3, -6/3], [12/3, 3/3] ] = <strong>[ [3, -2], [4, 1] ]</strong>."
+          }
+        ]
+      },
+      {
+        slideIdx: 5,
+        questions: [
+          {
+            question: "1. If matrix A has order 3 × 2 and B has order 2 × 4, how many scalar multiplications are done to form AB?",
+            options: ["24", "12", "48", "18"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> The product AB has order 3 × 4 = 12 entries.<br><strong>Step 2:</strong> Each entry is the dot product of a 2-element row and a 2-element column (2 scalar multiplications).<br><strong>Conclusion:</strong> Total multiplications = 12 × 2 = <strong>24</strong>."
+          },
+          {
+            question: "2. If A = [ 1, 2 ] and B = [ [3], [4] ], compute the product AB:",
+            options: ["[ 11 ] (Order 1 × 1)", "[ [3, 4], [6, 8] ] (Order 2 × 2)", "[ 7 ]", "Not defined"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> A is 1 × 2 and B is 2 × 1. The product AB is a 1 × 1 matrix.<br><strong>Step 2:</strong> AB = [ 1(3) + 2(4) ] = [ 3 + 8 ] = <strong>[ 11 ]</strong>."
+          }
+        ]
+      },
+      {
+        slideIdx: 6,
+        questions: [
+          {
+            question: "1. If A and B are non-zero square matrices such that AB = O, what can we deduce about BA?",
+            options: ["BA is NOT necessarily O", "BA must also equal O", "BA must equal I", "BA is undefined"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Matrix multiplication is non-commutative.<br><strong>Step 2:</strong> AB = O does not imply BA = O (for instance, A = [ [0, 1], [0, 0] ], B = [ [1, 0], [0, 0] ] gives AB = O but BA ≠ O).<br><strong>Conclusion:</strong> <strong>BA is NOT necessarily O</strong>."
+          },
+          {
+            question: "2. If a square matrix A satisfies A² – A + I = O, express A⁻¹ in terms of A:",
+            options: ["I – A", "A – I", "A + I", "A²"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Rewrite the equation: I = A – A² = A(I – A).<br><strong>Step 2:</strong> Since A(I – A) = I, by definition of inverse, <strong>A⁻¹ = I – A</strong>."
+          }
+        ]
+      },
+      {
+        slideIdx: 7,
+        questions: [
+          {
+            question: "1. If A is of order 3 × 1 and B is of order 1 × 3, what is the order of the transpose (AB)′?",
+            options: ["3 × 3", "1 × 1", "1 × 3", "3 × 1"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Order of AB = (3 × 1) × (1 × 3) = 3 × 3.<br><strong>Step 2:</strong> Transposing a 3 × 3 square matrix preserves the order 3 × 3.<br><strong>Conclusion:</strong> <strong>3 × 3</strong>."
+          },
+          {
+            question: "2. If (A′)′ = B and (3A)′ = C, then B and C are respectively:",
+            options: ["B = A and C = 3A′", "B = A′ and C = 3A", "B = A and C = A′", "B = 3A and C = A"],
+            correct: 0,
+            explanation: "<strong>Properties (§ 3.5.1):</strong><br>• (A′)′ = A (double transpose is identity) ⇒ B = A.<br>• (kA)′ = kA′ (scalar pulls out) ⇒ C = 3A′.<br><strong>Conclusion:</strong> <strong>B = A and C = 3A′</strong>."
+          }
+        ]
+      },
+      {
+        slideIdx: 8,
+        questions: [
+          {
+            question: "1. If A = [ [0, 2, -3], [-2, 0, 5], [3, -5, 0] ], what kind of matrix is A?",
+            options: ["Skew-symmetric matrix", "Symmetric matrix", "Scalar matrix", "Identity matrix"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> All diagonal elements are zero (a₁₁ = a₂₂ = a₃₃ = 0).<br><strong>Step 2:</strong> For every entry, aⱼᵢ = –aᵢⱼ (e.g. a₂₁ = -2 = -a₁₂, a₃₁ = 3 = -a₁₃, a₃₂ = -5 = -a₂₃).<br><strong>Conclusion:</strong> A′ = –A, so A is a <strong>skew-symmetric matrix</strong>."
+          },
+          {
+            question: "2. For A = [ [1, 5], [3, 7] ], find the symmetric matrix P in the decomposition A = P + Q:",
+            options: ["[ [1, 4], [4, 7] ]", "[ [0, 1], [-1, 0] ]", "[ [2, 8], [8, 14] ]", "[ [1, 0], [0, 7] ]"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Theorem 2 defines P = ½(A + A′).<br><strong>Step 2:</strong> A′ = [ [1, 3], [5, 7] ] ⇒ A + A′ = [ [2, 8], [8, 14] ].<br><strong>Step 3:</strong> P = ½ [ [2, 8], [8, 14] ] = <strong>[ [1, 4], [4, 7] ]</strong>."
+          }
+        ]
+      },
+      {
+        slideIdx: 9,
+        questions: [
+          {
+            question: "1. If A and B are invertible matrices of order 3, and (AB)⁻¹ = M, what does B⁻¹A⁻¹ equal?",
+            options: ["M", "M⁻¹", "-M", "A⁻¹B⁻¹"],
+            correct: 0,
+            explanation: "<strong>Theorem 4 (§ 3.7):</strong> By the Reversal Law for matrix inverses, (AB)⁻¹ = B⁻¹A⁻¹.<br><strong>Conclusion:</strong> B⁻¹A⁻¹ is identical to (AB)⁻¹ = <strong>M</strong>."
+          },
+          {
+            question: "2. Why can't a rectangular matrix of order 2 × 3 possess an inverse?",
+            options: ["For AB = BA = I, both A and B must be square and of identical order", "Its determinant is always positive", "Rectangular matrices can only have additive inverses", "Multiplication with another matrix is impossible"],
+            correct: 0,
+            explanation: "<strong>NCERT Note 1 (§ 3.7):</strong> For both AB and BA to be defined and equal to the identity matrix I, A and B must be square matrices of the exact same order."
+          }
+        ]
+      }
+    ];
+
+    let userCheckpointAnswers = {};
+
+    function renderSlideCheckpoints() {
+      slideCheckpoints.forEach(item => {
+        const container = document.getElementById(`checkpoint-slide-${item.slideIdx}`);
+        if (!container) return;
+
+        let qCardsHtml = '';
+        item.questions.forEach((q, qIdx) => {
+          let optionsHtml = '';
+          q.options.forEach((opt, optIdx) => {
+            optionsHtml += `
+              <button onclick="handleCheckpointAnswer(${item.slideIdx}, ${qIdx}, ${optIdx}, this)"
+                      class="chk-opt-btn-${item.slideIdx}-${qIdx} w-full text-left p-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-300 font-medium transition cursor-pointer flex items-center justify-between">
+                <span>${opt}</span>
+                <span class="chk-check text-xs font-bold"></span>
+              </button>
+            `;
+          });
+
+          qCardsHtml += `
+            <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-3 transition-all" id="chk-card-${item.slideIdx}-${qIdx}">
+              <div class="flex items-start justify-between gap-2">
+                <div class="font-bold text-white text-xs leading-relaxed flex-1">${q.question}</div>
+                <button onclick="toggleCheckpointSolution(${item.slideIdx}, ${qIdx})" 
+                        id="chk-sol-btn-${item.slideIdx}-${qIdx}"
+                        title="Click to view detailed solution"
+                        class="px-2.5 py-1 rounded-xl bg-emerald-950/70 hover:bg-emerald-900 border border-emerald-500/40 text-emerald-300 hover:text-emerald-100 text-[11px] font-bold flex items-center space-x-1 shrink-0 transition-all cursor-pointer shadow-sm">
+                  <span>💡</span>
+                  <span id="chk-sol-btn-text-${item.slideIdx}-${qIdx}">Solution</span>
+                </button>
+              </div>
+              <div class="space-y-1.5">${optionsHtml}</div>
+              <div id="chk-feedback-${item.slideIdx}-${qIdx}" class="hidden p-2.5 rounded-xl text-[11px] leading-relaxed"></div>
+              <div id="chk-solution-${item.slideIdx}-${qIdx}" class="hidden p-3.5 rounded-xl bg-slate-950/95 border border-emerald-500/40 text-slate-200 text-[11px] space-y-2 shadow-xl transition-all">
+                <div class="flex items-center space-x-1.5 text-emerald-300 font-bold border-b border-slate-800/80 pb-1.5">
+                  <span>📝</span>
+                  <span>Step-by-Step Solution:</span>
+                  <span class="text-teal-300 ml-auto font-mono text-[10px] bg-teal-950/70 px-2 py-0.5 rounded-md border border-teal-500/40 font-bold">Correct Ans: ${q.options[q.correct]}</span>
+                </div>
+                <div class="text-slate-300 leading-relaxed pt-0.5">${q.explanation}</div>
+              </div>
+            </div>
+          `;
+        });
+
+        container.innerHTML = `
+          <div class="space-y-4">
+            <div class="flex items-center space-x-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                ⚡ Slide Checkpoint • 2 Practice Questions
+              </span>
+              <span class="text-xs text-slate-400">Test your understanding of this slide with instant solutions</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+              ${qCardsHtml}
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function handleCheckpointAnswer(slideIdx, qIdx, selectedIdx, btn) {
+      const key = `${slideIdx}-${qIdx}`;
+      if (userCheckpointAnswers[key] !== undefined) return;
+      userCheckpointAnswers[key] = selectedIdx;
+
+      const item = slideCheckpoints.find(s => s.slideIdx === slideIdx);
+      const q = item.questions[qIdx];
+      const isCorrect = (selectedIdx === q.correct);
+
+      const feedback = document.getElementById(`chk-feedback-${slideIdx}-${qIdx}`);
+      const card = document.getElementById(`chk-card-${slideIdx}-${qIdx}`);
+      const allBtns = card.querySelectorAll(`.chk-opt-btn-${slideIdx}-${qIdx}`);
+
+      allBtns.forEach((b, idx) => {
+        b.disabled = true;
+        if (idx === q.correct) {
+          b.classList.remove('bg-slate-950', 'border-slate-800');
+          b.classList.add('bg-emerald-950/60', 'border-emerald-500/60', 'text-emerald-300');
+          b.querySelector('.chk-check').textContent = '✓';
+        } else if (idx === selectedIdx && !isCorrect) {
+          b.classList.remove('bg-slate-950', 'border-slate-800');
+          b.classList.add('bg-rose-950/60', 'border-rose-500/60', 'text-rose-300');
+          b.querySelector('.chk-check').textContent = '✕';
+        }
+      });
+
+      feedback.classList.remove('hidden');
+      if (isCorrect) {
+        playSuccessTone();
+        feedback.className = 'p-2.5 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 text-[11px]';
+        feedback.innerHTML = `<strong>✓ Correct!</strong> Great job! Click 💡 Solution anytime for complete step-by-step derivation.`;
+      } else {
+        playWrongTone();
+        feedback.className = 'p-2.5 rounded-xl bg-rose-950/40 border border-rose-500/40 text-rose-300 text-[11px]';
+        feedback.innerHTML = `<strong>✕ Incorrect!</strong> Correct answer is <strong>${q.options[q.correct]}</strong>. Click 💡 Solution to view the step-by-step solution.`;
+      }
+    }
+
+    function toggleCheckpointSolution(slideIdx, qIdx) {
+      const solDiv = document.getElementById(`chk-solution-${slideIdx}-${qIdx}`);
+      const btnText = document.getElementById(`chk-sol-btn-text-${slideIdx}-${qIdx}`);
+      const btn = document.getElementById(`chk-sol-btn-${slideIdx}-${qIdx}`);
+      if (!solDiv) return;
+
+      const isHidden = solDiv.classList.contains('hidden');
+      if (isHidden) {
+        solDiv.classList.remove('hidden');
+        if (btnText) btnText.textContent = 'Hide';
+        if (btn) {
+          btn.classList.remove('bg-emerald-950/70', 'text-emerald-300');
+          btn.classList.add('bg-emerald-700', 'text-white', 'border-emerald-400');
+        }
+        playTone(659.25, 'sine', 0.08, 0.06);
+      } else {
+        solDiv.classList.add('hidden');
+        if (btnText) btnText.textContent = 'Solution';
+        if (btn) {
+          btn.classList.remove('bg-emerald-700', 'text-white', 'border-emerald-400');
+          btn.classList.add('bg-emerald-950/70', 'text-emerald-300');
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderSlideCheckpoints();
+      renderAllQuizzes();
+      updateSlideUI();
+    });
+  </script>
+</body>
+</html>
+

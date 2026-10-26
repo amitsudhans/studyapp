@@ -18,7 +18,7 @@
                             🌳 Curriculum Tree Explorer
                         </span>
                         <span class="text-xs text-slate-600">•</span>
-                        <span class="text-xs font-mono text-cyan-300">NCERT / SCERT Framework</span>
+                        <span class="text-xs font-mono text-cyan-300">NCERT / CBSE / SCERT Kerala Framework</span>
                     </div>
 
                     <h1 class="text-2xl sm:text-3xl font-black text-white tracking-tight flex items-center space-x-2.5">
@@ -27,7 +27,7 @@
                     </h1>
                     <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
                         Explore interactive multimedia animations arranged strictly by textbook hierarchy: 
-                        <strong class="text-emerald-300">Syllabus</strong> (CBSE, SCERT) &rarr; 
+                        <strong class="text-emerald-300">Syllabus</strong> (NCERT, CBSE, SCERT Kerala) &rarr; 
                         <strong class="text-cyan-300">Subject</strong> (English, Mathematics, Science) &rarr; 
                         <strong class="text-indigo-300">Class</strong> (1 to 10) &rarr; 
                         <strong class="text-amber-300">Chapters</strong>.
@@ -63,13 +63,13 @@
                     </span>
                     <span class="text-[11px] text-slate-500">Board / Educational Framework</span>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     @foreach($syllabuses as $sId => $sData)
                         @php $isSylActive = ($selectedSyllabus === $sId); @endphp
                         <a href="{{ route('multimedia.index', ['syllabus' => $sId, 'subject' => $selectedSubject, 'class' => $selectedClass]) }}"
                            class="p-3.5 rounded-xl border transition-all flex items-center justify-between {{ $isSylActive ? 'bg-emerald-950/60 border-emerald-500/60 text-white shadow-lg shadow-emerald-950/50' : 'bg-slate-950/60 border-slate-800 text-slate-300 hover:border-slate-700 hover:text-white' }}">
                             <div class="flex items-center space-x-3">
-                                <span class="text-2xl">{{ $sId === 'cbse' ? '🏛️' : '🏫' }}</span>
+                                <span class="text-2xl">{{ $sId === 'ncert' ? '📘' : ($sId === 'cbse' ? '🏛️' : '🌴') }}</span>
                                 <div>
                                     <h4 class="text-sm font-bold {{ $isSylActive ? 'text-emerald-300' : 'text-slate-200' }}">{{ $sData['name'] }}</h4>
                                     <p class="text-[11px] text-slate-400">{{ $sData['badge'] }}</p>
@@ -118,9 +118,9 @@
                 <div class="flex items-center justify-between">
                     <span class="text-xs font-black uppercase tracking-wider text-slate-400 flex items-center space-x-1.5">
                         <span class="w-5 h-5 rounded-full bg-slate-800 text-indigo-400 font-bold flex items-center justify-center text-[10px]">3</span>
-                        <span>Select Class (Standard 1 to 10):</span>
+                        <span>Select Class (Standard 1 to 12):</span>
                     </span>
-                    <span class="text-[11px] text-slate-500">Primary • Middle • Secondary</span>
+                    <span class="text-[11px] text-slate-500">Primary • Middle • Secondary • Higher Secondary</span>
                 </div>
                 <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
                     @foreach($classes as $cId => $cData)
@@ -129,7 +129,7 @@
                            class="px-3.5 py-2 rounded-xl text-xs font-bold shrink-0 border transition-all flex items-center space-x-1.5 {{ $isClassActive ? 'bg-indigo-600 text-white border-indigo-400 shadow-md shadow-indigo-600/30 scale-105' : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-white hover:border-slate-700' }}">
                             <span>🎓</span>
                             <span>{{ $cData['name'] }}</span>
-                            @if(in_array($cId, ['class9', 'class10']) && $selectedSyllabus === 'cbse' && $selectedSubject === 'mathematics')
+                            @if(in_array($cId, ['class9', 'class10', 'class12']) && $selectedSyllabus === 'ncert' && $selectedSubject === 'mathematics')
                                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" title="Multimedia Lab Ready"></span>
                             @endif
                         </a>
@@ -171,9 +171,12 @@
             @if(count($activeChapters) > 0)
                 <div class="space-y-4">
                     <div class="flex items-center justify-between">
-                        <h3 class="text-base font-bold text-white flex items-center space-x-2">
+                        <h3 class="text-base font-bold text-white flex items-center space-x-2 flex-wrap">
                             <span>📖</span>
                             <span>Chapters for {{ strtoupper($selectedSyllabus) }} • {{ ucfirst($selectedSubject) }} • {{ $classes[$selectedClass]['name'] ?? $selectedClass }}</span>
+                            @if($selectedClass === 'class12')
+                                <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1 & Part - 2</span>
+                            @endif
                         </h3>
                         <span class="text-xs text-slate-400">{{ count($activeChapters) }} Chapter(s) in Curriculum</span>
                     </div>
@@ -189,16 +192,26 @@
                                                 <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
                                                     Chapter {{ $chapter['chapter_num'] }}
                                                 </span>
+                                                @if($selectedClass === 'class12')
+                                                    <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">
+                                                        {{ $chapter['part'] ?? 'Part - 1' }}
+                                                    </span>
+                                                @endif
                                                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
                                                     🎬 Interactive Multimedia Animation
                                                 </span>
                                                 <span class="text-xs font-mono text-emerald-400 font-bold">Slide-by-Slide Mode Ready</span>
                                             </div>
 
-                                            <h4 class="text-xl font-black text-white flex items-center space-x-2">
-                                                <span>{{ $chapter['media_key'] === 'real-numbers' ? '🌳' : '📐' }}</span>
-                                                <span>Chapter {{ $chapter['chapter_num'] }}: {{ $chapter['name'] }}</span>
-                                            </h4>
+                                            <div>
+                                                <h4 class="text-xl font-black text-white flex items-center space-x-2">
+                                                    <span>{{ $chapter['media_key'] === 'real-numbers' ? '🌳' : '📐' }}</span>
+                                                    <span>Chapter {{ $chapter['chapter_num'] }}: {{ $chapter['name'] }}</span>
+                                                </h4>
+                                                @if($selectedClass === 'class12')
+                                                    <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">{{ $chapter['part'] ?? 'Part - 1' }}</div>
+                                                @endif
+                                            </div>
 
                                             <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
                                                 {{ $chapter['description'] }}
@@ -244,6 +257,11 @@
                                             <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-800 text-slate-400">
                                                 Chapter {{ $chapter['chapter_num'] }}
                                             </span>
+                                            @if($selectedClass === 'class12')
+                                                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">
+                                                    {{ $chapter['part'] ?? 'Part - 1' }}
+                                                </span>
+                                            @endif
                                             <h4 class="text-sm sm:text-base font-bold text-slate-200">
                                                 {{ $chapter['name'] }}
                                             </h4>
@@ -292,13 +310,18 @@
                     <div class="pt-4 border-t border-slate-800/80 max-w-lg mx-auto space-y-2">
                         <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block">Available Animated Labs in Syllabus:</span>
                         <div class="flex items-center justify-center gap-2 flex-wrap">
-                            <a href="{{ route('multimedia.index', ['syllabus' => 'cbse', 'subject' => 'mathematics', 'class' => 'class10']) }}"
+                            <a href="{{ route('multimedia.index', ['syllabus' => 'ncert', 'subject' => 'mathematics', 'class' => 'class12']) }}"
+                               class="px-3 py-1.5 rounded-lg bg-indigo-950/60 hover:bg-indigo-900/60 border border-indigo-500/40 text-indigo-300 text-xs font-bold transition-all flex items-center space-x-1.5">
+                                <span>⚡</span>
+                                <span>Class 12 • Relations &amp; Functions (Ch 1)</span>
+                            </a>
+                            <a href="{{ route('multimedia.index', ['syllabus' => 'ncert', 'subject' => 'mathematics', 'class' => 'class10']) }}"
                                class="px-3 py-1.5 rounded-lg bg-emerald-950/60 hover:bg-emerald-900/60 border border-emerald-500/40 text-emerald-300 text-xs font-bold transition-all flex items-center space-x-1.5">
                                 <span>🌳</span>
                                 <span>Class 10 • Real Numbers (Ch 1)</span>
                             </a>
-                            <a href="{{ route('multimedia.index', ['syllabus' => 'cbse', 'subject' => 'mathematics', 'class' => 'class9']) }}"
-                               class="px-3 py-1.5 rounded-lg bg-indigo-950/60 hover:bg-indigo-900/60 border border-indigo-500/40 text-indigo-300 text-xs font-bold transition-all flex items-center space-x-1.5">
+                            <a href="{{ route('multimedia.index', ['syllabus' => 'ncert', 'subject' => 'mathematics', 'class' => 'class9']) }}"
+                               class="px-3 py-1.5 rounded-lg bg-cyan-950/60 hover:bg-cyan-900/60 border border-cyan-500/40 text-cyan-300 text-xs font-bold transition-all flex items-center space-x-1.5">
                                 <span>📐</span>
                                 <span>Class 9 • Number System (Ch 1)</span>
                             </a>

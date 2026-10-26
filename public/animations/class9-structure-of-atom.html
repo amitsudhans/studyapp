@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCERT Class 9 Science • Chapter 6: Structure of an Atom Laboratory</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body);"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        code, pre, .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(51, 65, 85, 0.6);
+        }
+        @keyframes mouthMove {
+            0%, 100% { transform: scaleY(0.2); }
+            50% { transform: scaleY(1); }
+        }
+        .talking {
+            animation: mouthMove 0.22s infinite alternate ease-in-out;
+            transform-origin: center;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.2); }
+            50% { box-shadow: 0 0 25px rgba(168, 85, 247, 0.45); }
+        }
+        .pulse-border {
+            animation: pulseGlow 2.5s infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-purple-500 selection:text-white">
+
+    <!-- Top Navigation Bar -->
+    <header class="glass-panel sticky top-0 z-40 border-b border-slate-800/80 px-4 py-2.5 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-purple-950/40 border border-purple-400/30">
+                <i data-lucide="atom" class="w-5 h-5 text-white"></i>
+            </div>
+            <div>
+                <div class="flex items-center gap-2">
+                    <span class="text-[11px] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-purple-950/80 text-purple-400 border border-purple-800/60 font-mono">
+                        NCERT Class 9 Science • Chapter 6
+                    </span>
+                    <span class="hidden sm:inline-block text-[11px] font-medium text-slate-400">• Atomic Physics & Chemistry</span>
+                </div>
+                <h1 class="text-sm sm:text-base font-extrabold text-white tracking-tight flex items-center gap-1.5">
+                    Structure of an Atom: Models, Configurations & Nuclear Isotopes
+                </h1>
+            </div>
+        </div>
+
+        <!-- Slide Selector & Nav Controls -->
+        <div class="flex items-center gap-2 sm:gap-3">
+            <div class="relative">
+                <button onclick="window.toggleSlideMenu()" id="slideMenuBtn" class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/70 hover:bg-slate-800 text-xs font-semibold text-slate-200 transition">
+                    <i data-lucide="compass" class="w-3.5 h-3.5 text-purple-400"></i>
+                    <span>Slide <span id="currentSlideNum">1</span> / 20</span>
+                    <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-400"></i>
+                </button>
+                <div id="slideMenuDropdown" class="hidden absolute right-0 mt-2 w-72 max-h-96 overflow-y-auto glass-panel rounded-xl shadow-2xl p-2 z-50 border border-slate-700 space-y-1">
+                    <div class="text-[11px] font-bold px-2.5 py-1 text-slate-400 uppercase tracking-wider font-mono">Curriculum Syllabus Index</div>
+                    <div id="slideListItems" class="space-y-0.5"></div>
+                </div>
+            </div>
+
+            <!-- Voice Controls -->
+            <div class="flex items-center gap-1 bg-slate-900/90 rounded-lg p-1 border border-slate-800">
+                <button onclick="window.toggleSpeech()" id="speechBtn" title="Play Voiceover Narration" class="w-8 h-8 rounded-md bg-purple-600 hover:bg-purple-500 text-white flex items-center justify-center transition">
+                    <i data-lucide="volume-2" id="speechIcon" class="w-4 h-4"></i>
+                </button>
+                <button onclick="window.stopSpeech()" title="Stop Voiceover" class="w-8 h-8 rounded-md hover:bg-slate-800 text-slate-400 hover:text-slate-200 flex items-center justify-center transition">
+                    <i data-lucide="square" class="w-3.5 h-3.5"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace Area -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-start">
+
+        <!-- Left Column: Talking Avatar, Theory Points, Checkpoints & Quizzes (7 cols) -->
+        <div class="lg:col-span-7 flex flex-col gap-4">
+
+            <!-- Teacher Avatar & Audio Card -->
+            <div class="glass-panel rounded-2xl p-4 border border-slate-800/80 shadow-xl relative overflow-hidden bg-gradient-to-r from-slate-900/95 via-slate-900/80 to-purple-950/20">
+                <div class="flex items-center gap-3.5">
+                    <!-- SVG Talking Avatar (Prof. Sophia) -->
+                    <div class="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-b from-purple-600 to-indigo-800 p-0.5 shadow-md shrink-0">
+                        <svg viewBox="0 0 100 100" class="w-full h-full rounded-[14px] bg-slate-900 overflow-hidden">
+                            <rect width="100" height="100" fill="#1e102a"/>
+                            <circle cx="50" cy="50" r="42" fill="#581c87" opacity="0.4"/>
+                            <!-- Torso / Lab Coat -->
+                            <path d="M20,95 Q50,75 80,95 L80,100 L20,100 Z" fill="#334155"/>
+                            <path d="M35,90 L50,100 L65,90 L60,82 L50,86 L40,82 Z" fill="#9333ea"/>
+                            <!-- Head -->
+                            <ellipse cx="50" cy="46" rx="22" ry="26" fill="#fed7aa"/>
+                            <!-- Hair -->
+                            <path d="M26,42 Q28,18 50,18 Q72,18 74,42 Q68,26 50,26 Q32,26 26,42 Z" fill="#374151"/>
+                            <path d="M26,42 Q24,60 28,68 Q32,56 32,46 Z" fill="#374151"/>
+                            <path d="M74,42 Q76,60 72,68 Q68,56 68,46 Z" fill="#374151"/>
+                            <!-- Glasses -->
+                            <rect x="33" y="40" width="13" height="8" rx="2" fill="none" stroke="#7e22ce" stroke-width="2"/>
+                            <rect x="54" y="40" width="13" height="8" rx="2" fill="none" stroke="#7e22ce" stroke-width="2"/>
+                            <line x1="46" y1="44" x2="54" y2="44" stroke="#7e22ce" stroke-width="2"/>
+                            <!-- Eyes -->
+                            <circle cx="39.5" cy="44" r="2.2" fill="#1f2937"/>
+                            <circle cx="60.5" cy="44" r="2.2" fill="#1f2937"/>
+                            <!-- Nose -->
+                            <path d="M50,47 L48,53 L52,53" fill="none" stroke="#fba06f" stroke-width="1.6" stroke-linecap="round"/>
+                            <!-- Talking Mouth -->
+                            <g id="teacherMouthGroup" transform="translate(50, 61)">
+                                <ellipse id="teacherMouth" cx="0" cy="0" rx="6" ry="1.8" fill="#991b1b"/>
+                            </g>
+                        </svg>
+                        <div class="absolute -bottom-1 -right-1 px-1.5 py-0.5 rounded text-[9px] font-bold bg-purple-500 text-white font-mono shadow">
+                            TEACHER
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="text-xs font-bold text-purple-400 uppercase tracking-wider font-mono">Prof. Sophia • Voice Guide</span>
+                            <span id="speechStatusIndicator" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">Ready</span>
+                        </div>
+                        <p id="narrationText" class="text-xs text-slate-300 mt-1 line-clamp-3 leading-relaxed italic">
+                            Welcome students! Today we enter the quantum heart of matter—journeying from Acharya Kanad’s ancient Parmanu to subatomic particles, atomic models, and modern nuclear energy.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Presentation Slide (Slides 1 to 16) -->
+            <div id="contentSlideContainer" class="space-y-4">
+                <!-- Slide Header Card -->
+                <div class="glass-panel rounded-2xl p-5 border border-slate-800 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span id="slideCategoryText" class="text-[11px] font-bold text-purple-400 uppercase tracking-widest font-mono">Section Core Theory</span>
+                        <span id="slideBadge" class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-purple-950/80 text-purple-300 border border-purple-800/60 font-mono">
+                            Part 1 of 20
+                        </span>
+                    </div>
+                    <div>
+                        <h2 id="slideTitle" class="text-lg sm:text-xl font-extrabold text-white tracking-tight">Historical Foundations: Acharya Kanad’s Parmanu to Subatomic Discoveries</h2>
+                        <p id="slideSubtitle" class="text-xs sm:text-sm font-medium text-purple-400/90 mt-0.5">From Ancient Indivisibility Philosophies to the Cleavage of the Atom</p>
+                    </div>
+                    <ul id="slideKeyPoints" class="text-xs sm:text-sm text-slate-300 space-y-2 pt-1 border-t border-slate-800/80 leading-relaxed">
+                        <!-- Injected via JavaScript -->
+                    </ul>
+                </div>
+
+                <!-- Checkpoints Container -->
+                <div class="glass-panel rounded-2xl p-4 sm:p-5 border border-slate-800 space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-800/80 pb-2.5">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-purple-400"></i>
+                            <h3 class="text-xs sm:text-sm font-bold text-white uppercase tracking-wider">Concept Checkpoints</h3>
+                        </div>
+                        <span class="text-[11px] font-mono text-slate-400">2 In-Slide Questions</span>
+                    </div>
+                    <div id="checkpointsList" class="space-y-4">
+                        <!-- Injected via JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dedicated Quiz Slide (Slides 17 to 20) -->
+            <div id="quizSlideContainer" class="hidden glass-panel rounded-2xl p-4 sm:p-5 border border-slate-800 space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
+                    <div class="flex items-center gap-2">
+                        <div class="w-7 h-7 rounded-lg bg-purple-950 border border-purple-700/60 flex items-center justify-center text-purple-400">
+                            <i data-lucide="award" class="w-4 h-4"></i>
+                        </div>
+                        <div>
+                            <h3 id="quizTitleDisplay" class="text-sm font-extrabold text-white">Mastery Assessment</h3>
+                            <p class="text-[11px] text-slate-400">10 Comprehensive Questions with Step-by-Step Solutions</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs font-mono font-bold text-purple-400">Score: <span id="quizScoreVal">0</span> / 10</span>
+                    </div>
+                </div>
+
+                <div id="quizQuestionsList" class="space-y-4">
+                    <!-- Injected via JavaScript -->
+                </div>
+            </div>
+
+            <!-- Slide 20 Last Slide Notice -->
+            <div id="lastSlideNotice" class="hidden glass-panel rounded-2xl p-6 text-center border-2 border-purple-500/40 bg-gradient-to-r from-purple-950/40 via-slate-900 to-indigo-950/40 shadow-xl shadow-purple-950/30">
+                <div class="w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 border border-purple-500/40 flex items-center justify-center mx-auto mb-2">
+                    <i data-lucide="check-check" class="w-6 h-6"></i>
+                </div>
+                <h4 class="text-lg font-bold text-white">Curriculum Chapter Mastered!</h4>
+                <p class="text-base sm:text-lg text-purple-300 font-semibold mt-1">You have reached the last slide of this chapter</p>
+                <p class="text-xs text-slate-400 mt-2 max-w-md mx-auto">
+                    You have comprehensively mastered Subatomic Particles, Thomson, Rutherford & Bohr Models, Bohr-Bury Shell Distributions, First 18 Elements, Valency, Atomic/Mass Numbers, Isotopes, Isobars, Dr. Homi Bhabha’s Thorium Vision, and Quantum Cloud Frontiers!
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Right Column: Interactive Bespoke SVG Simulators (5 cols) -->
+        <div class="lg:col-span-5 flex flex-col gap-4 sticky top-20">
+            <div class="glass-panel rounded-2xl p-4 sm:p-5 border border-slate-800 shadow-2xl flex flex-col gap-3">
+                <div class="flex items-center justify-between border-b border-slate-800/80 pb-2.5">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="cpu" class="w-4 h-4 text-purple-400"></i>
+                        <h3 id="simulatorTitle" class="text-xs sm:text-sm font-bold text-white uppercase tracking-wider">
+                            Interactive Visual Laboratory
+                        </h3>
+                    </div>
+                    <span id="simulatorBadge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-900 text-indigo-400 border border-slate-700">
+                        Interactive SVG
+                    </span>
+                </div>
+
+                <!-- Simulator Dynamic Viewport -->
+                <div id="simulatorViewport" class="min-h-[380px] flex items-center justify-center relative">
+                    <!-- Dynamic Interactive Simulator Content Rendered Here -->
+                </div>
+            </div>
+
+            <!-- Global Laboratory Quick Stats -->
+            <div class="glass-panel rounded-xl p-3 border border-slate-800/80 flex items-center justify-around text-center text-xs">
+                <div>
+                    <span class="text-slate-400 block text-[10px]">Particles</span>
+                    <span class="font-bold text-purple-400 font-mono">e⁻, p⁺, n⁰</span>
+                </div>
+                <div class="h-6 w-px bg-slate-800"></div>
+                <div>
+                    <span class="text-slate-400 block text-[10px]">Models</span>
+                    <span class="font-bold text-indigo-400 font-mono">3 Classical</span>
+                </div>
+                <div class="h-6 w-px bg-slate-800"></div>
+                <div>
+                    <span class="text-slate-400 block text-[10px]">Elements</span>
+                    <span class="font-bold text-cyan-400 font-mono">1 to 18</span>
+                </div>
+                <div class="h-6 w-px bg-slate-800"></div>
+                <div>
+                    <span class="text-slate-400 block text-[10px]">Checkpoints</span>
+                    <span class="font-bold text-amber-400 font-mono">32 Total</span>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Bottom Action Navigation Bar -->
+    <footer class="glass-panel sticky bottom-0 z-40 border-t border-slate-800/90 px-4 py-3 mt-auto">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <button onclick="window.prevSlide()" id="prevBtn" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-bold text-slate-300 transition">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                <span>Previous Slide</span>
+            </button>
+
+            <!-- Slide Dots -->
+            <div id="slideDots" class="hidden md:flex items-center gap-1.5 overflow-x-auto max-w-md py-1 px-2">
+                <!-- 20 Indicator Dots -->
+            </div>
+
+            <button onclick="window.nextSlide()" id="nextBtn" class="flex items-center gap-2 px-5 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-xs font-bold shadow-lg shadow-purple-950/40 transition">
+                <span>Next Slide</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+        </div>
+    </footer>
+
+    <!-- Step-by-Step Solution Pop-up Modal -->
+    <div id="solutionModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+        <div class="glass-panel w-full max-w-lg rounded-2xl border border-purple-500/50 p-6 shadow-2xl space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div class="flex items-center gap-2 text-purple-400 font-bold text-sm">
+                    <i data-lucide="lightbulb" class="w-4 h-4"></i>
+                    <span>Step-by-Step Pedagogical Solution</span>
+                </div>
+                <button onclick="window.closeSolutionModal()" class="w-7 h-7 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+            <div id="solutionModalBody" class="text-xs sm:text-sm text-slate-300 space-y-3 leading-relaxed">
+                <!-- Dynamic Solution Content -->
+            </div>
+            <div class="text-right pt-2 border-t border-slate-800">
+                <button onclick="window.closeSolutionModal()" class="px-4 py-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition">
+                    Understood & Continue
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Script -->
+    <script>
+        const SLIDES = [{"id": 1, "title": "Historical Foundations: Acharya Kanad\u2019s Parmanu to Subatomic Discoveries", "subtitle": "From Ancient Indivisibility Philosophies to the Cleavage of the Atom", "narration": "Welcome students! For centuries, humanity believed the atom was the ultimate, indivisible building block of matter. In ancient India around 600 BCE, the philosopher Acharya Kanad postulated that dividing matter repeatedly leads to 'Parmanu'\u2014indivisible particles that cannot be further split. In 1808, John Dalton formalized this in Western science. However, late 19th-century electrical experiments shattered the idea of indivisibility, revealing that atoms are themselves composite structures made of subatomic particles!", "points": ["<strong>Acharya Kanad & Ancient Indian Philosophy (~600 BCE):</strong> In the Vaisheshika Darshana, Acharya Kanad formulated the concept of <em>Parmanu</em>\u2014positing that if you divide a grain of matter repeatedly, you reach an ultimate indestructible particle beyond which division is impossible.", "<strong>Dalton's Indivisible Atom (1808):</strong> Postulated that atoms are tiny, hard, indivisible spheres that can neither be created nor destroyed during chemical combinations.", "<strong>Discovery of the Electron (J.J. Thomson, 1897):</strong> Through cathode ray discharge tube experiments under high voltage and vacuum, Thomson discovered negatively charged subatomic corpuscles\u2014the <em>electron</em> ($e^-$).", "<strong>Discovery of Canal Rays / Proton (E. Goldstein, 1886):</strong> Discovered positively charged radiation in gas discharge tubes called canal rays, which led to the discovery of the positively charged <em>proton</em> ($p^+$).", "<strong>Discovery of the Neutron (James Chadwick, 1932):</strong> By bombarding a thin beryllium foil with alpha particles, Chadwick proved the existence of an uncharged neutral particle with mass nearly equal to that of a proton\u2014the <em>neutron</em> ($n^0$)."], "checkpoints": [{"q": "Which experimental breakthrough in 1897 disproved John Dalton's postulate that atoms are indivisible and indestructible?", "options": ["Boyle's gas pressure experiments", "J.J. Thomson's cathode ray discharge tube discovery of the electron", "R\u00f6ntgen's discovery of X-rays", "Mendeleev's periodic table arrangement"], "correct": 1, "explanation": "J.J. Thomson's cathode ray experiments proved that negatively charged electrons exist as subatomic constituents inside all atoms, directly disproving Dalton's postulate of atomic indivisibility."}, {"q": "What ancient Indian concept was proposed by Acharya Kanad in the Vaisheshika philosophy regarding the ultimate nature of matter?", "options": ["The four humors", "The Parmanu\u2014the ultimate, indivisible particle of matter", "The concept of atomic radiation", "The discovery of cathode rays"], "correct": 1, "explanation": "Around the 6th century BCE, Acharya Kanad postulated the existence of 'Parmanu', defining it as the eternal and indivisible limit of material subdivision."}]}, {"id": 2, "title": "The Triad of Subatomic Particles: Electron, Proton & Neutron", "subtitle": "Charges, Relative Masses, SI Units, and Fundamental Roles in the Atom", "narration": "Every neutral atom is built from three fundamental subatomic particles: the positively charged proton, the electrically neutral neutron, and the negatively charged electron. Protons and neutrons are massive and reside packed tightly inside the atomic nucleus, while electrons have negligible mass and orbit in the outer space.", "points": ["<strong>The Electron ($e^-$):</strong> Discovered by J.J. Thomson (1897). Carries a single unit negative charge: $-1.602 \\times 10^{-19}\\text{ C}$ (relative charge: $-1$). Negligible rest mass: $9.109 \\times 10^{-31}\\text{ kg} \\approx \\frac{1}{1840}\\text{ u}$.", "<strong>The Proton ($p^+$):</strong> Discovered by E. Goldstein (1886). Carries a single unit positive charge: $+1.602 \\times 10^{-19}\\text{ C}$ (relative charge: $+1$). Rest mass: $1.673 \\times 10^{-27}\\text{ kg} \\approx 1\\text{ u}$ (approx. $1836$ times heavier than an electron).", "<strong>The Neutron ($n^0$):</strong> Discovered by James Chadwick (1932). Electrically neutral: charge $0\\text{ C}$. Rest mass: $1.675 \\times 10^{-27}\\text{ kg} \\approx 1\\text{ u}$ (slightly heavier than a proton).", "<strong>Nucleons:</strong> Protons and neutrons are bound together in the microscopic atomic nucleus by the fundamental strong nuclear force; collectively they are termed <em>nucleons</em>.", "<strong>Ordinary Hydrogen Exception:</strong> Ordinary Protium (${}_1^1\\text{H}$) is the ONLY atom in the universe that contains NO neutrons (consists of $1\\text{ proton}$ and $1\\text{ electron}$)."], "checkpoints": [{"q": "Which subatomic particle has approximately 1/1840th the mass of a hydrogen atom?", "options": ["Alpha particle", "Proton", "Neutron", "Electron"], "correct": 3, "explanation": "An electron has a rest mass of ~9.1 \u00d7 10\u207b\u00b3\u00b9 kg, which is approximately 1/1840 (or 1/1836) the mass of a proton or hydrogen atom, making its mass negligible in mass number calculations."}, {"q": "Which of the following atoms contains NO neutrons in its nucleus?", "options": ["Helium-4", "Protium (Ordinary Hydrogen, \u00b9H)", "Deuterium (Heavy Hydrogen, \u00b2H)", "Carbon-12"], "correct": 1, "explanation": "Ordinary hydrogen (Protium, \u00b9\u2081H) has mass number A=1 and atomic number Z=1, meaning it contains 1 proton and 0 neutrons."}]}, {"id": 3, "title": "J.J. Thomson\u2019s Atomic Model: The Plum Pudding / Watermelon Model", "subtitle": "The First Classical Atomic Architecture (1904) & Its Fundamental Limitations", "narration": "Following his discovery of the electron in 1897, J.J. Thomson proposed the first scientific model of the atom in 1904. He visualized an atom as a positively charged sphere in which electrons are embedded like dry raisins in a Christmas pudding, or black seeds embedded in the red edible pulp of a watermelon.", "points": ["<strong>Thomson's Postulates:</strong><br>1. An atom consists of a uniform sphere of positive electricity of radius approximately $10^{-10}\\text{ m}$.<br>2. Negatively charged electrons are embedded throughout this positive sphere, like plums in a pudding or seeds in a watermelon.", "<strong>Electrical Neutrality Explained:</strong> The total negative charge of the embedded electrons is equal in magnitude to the total positive charge of the sphere, making the atom electrically neutral overall.", "<strong>Key Strength:</strong> First model to successfully account for the electrical neutrality of matter and the presence of subatomic electrons without chemical destruction.", "<strong>Fatal Limitation:</strong> Thomson's model predicted that positive charge was spread uniformly throughout the atomic volume. It could NOT explain the results of alpha-particle scattering experiments conducted later by Ernest Rutherford!"], "checkpoints": [{"q": "In J.J. Thomson's watermelon analogy of the atom, what does the red edible flesh of the watermelon represent?", "options": ["Negatively charged electrons", "Positively charged uniform spherical matter", "The empty space inside the atom", "Electrically neutral neutrons"], "correct": 1, "explanation": "In Thomson's watermelon model, the red edible pulp represents the continuous positive charge sphere, while the black seeds embedded inside represent the electrons."}, {"q": "Why was J.J. Thomson's atomic model ultimately discarded by physicists?", "options": ["It failed to explain why atoms are electrically neutral", "It could not explain how high-energy alpha particles could be deflected at large angles in scattering experiments", "It claimed that atoms have no mass", "It predicted that electrons carry a positive charge"], "correct": 1, "explanation": "Because Thomson assumed positive charge was diffuse and spread out thinly over the entire atom, it could never exert the immense concentrated repulsive force needed to bounce heavy alpha particles backwards."}]}, {"id": 4, "title": "Rutherford\u2019s Alpha Particle Scattering Experiment (1911)", "subtitle": "Probing the Interior of the Atom with Fast-Moving Helium Nuclei", "narration": "In 1911, Ernest Rutherford, along with Hans Geiger and Ernest Marsden, designed an experiment that revolutionized our view of matter. They directed a beam of fast-moving, high-energy alpha particles (doubly charged helium ions, He\u00b2\u207a) at an ultra-thin gold foil, observing where the particles struck a fluorescent zinc sulfide screen.", "points": ["<strong>Experimental Apparatus:</strong><br>\u2022 Alpha particle source: Radioactive element (Bismuth/Radium) emitting high-energy $\\alpha$-particles (mass $4\\text{ u}$, charge $+2e$).<br>\u2022 Target: Gold foil beaten to extreme thinness (approx. $1000\\text{ atoms}$ thick, $\\sim 100\\text{ nm}$). Gold was chosen because it has the highest malleability of all metals.<br>\u2022 Detector: Circular zinc sulfide ($\\text{ZnS}$) fluorescent screen that produced micro-scintillations (flashes of light) when struck by $\\alpha$-particles.", "<strong>Unexpected Observations:</strong><br>1. <em>Most $\\alpha$-particles ($>99.9\\%$)</em> passed straight through the gold foil without any deflection.<br>2. <em>A small fraction</em> were deflected by small angles ($1^\\circ\\text{ to }10^\\circ$).<br>3. <em>Astonishingly rare:</em> Approximately $1$ out of every $12,000$ particles rebounded backwards ($>90^\\circ$ or even $180^\\circ$).", "<strong>Rutherford's Famous Reaction:</strong> 'It was quite the most incredible event that has ever happened to me in my life. It was almost as incredible as if you fired a 15-inch shell at a piece of tissue paper and it came back and hit you!'"], "checkpoints": [{"q": "Why did Ernest Rutherford select gold foil rather than aluminium or copper for his alpha scattering experiment?", "options": ["Gold is radioactive and emits its own alpha particles", "Gold is the most malleable metal and can be hammered into an ultra-thin layer only ~1000 atoms thick", "Gold has no electrons in its atoms", "Gold absorbs 100% of the alpha radiation"], "correct": 1, "explanation": "Rutherford required the thinnest possible metallic target so that alpha particles would interact with as few atomic layers as possible; gold's exceptional malleability enabled foils only ~100 nm thick."}, {"q": "What conclusion did Rutherford deduce from the fact that most alpha particles passed straight through the gold foil without any deflection?", "options": ["Most of the space inside an atom is completely empty", "The atom is a solid sphere of positive charge", "Alpha particles carry zero mass", "Electrons attract alpha particles with immense gravitational force"], "correct": 0, "explanation": "Because over 99.9% of alpha particles passed unhindered through the foil without feeling any repulsive force, Rutherford concluded that most of the space inside the atom is completely empty."}]}, {"id": 5, "title": "Rutherford\u2019s Nuclear Model & The Maxwell Collapse Dilemma", "subtitle": "Discovery of the Dense Nucleus and the Theoretical Crisis of Accelerating Charges", "narration": "From his scattering observations, Rutherford concluded that all the positive charge and virtually all the mass of an atom are concentrated in an unimaginably tiny, dense central core called the nucleus. While revolutionary, his model faced a fatal theoretical crisis under classical physics: revolving electrons are accelerating charges, and classical electrodynamics dictates they must radiate energy and spiral into the nucleus within a split microsecond!", "points": ["<strong>Rutherford's Nuclear Model Postulates:</strong><br>1. There is a positively charged, extremely dense center in an atom called the <em>nucleus</em>. Nearly all the mass of an atom resides in the nucleus.<br>2. The electrons revolve around the nucleus in circular planetary paths.<br>3. The size of the nucleus is minuscule compared to the atom: radius of nucleus is $\\sim 10^{-15}\\text{ m}$, while radius of atom is $\\sim 10^{-10}\\text{ m}$ (a factor of $10^5$, like a cricket ball in a huge 5-kilometer stadium!).", "<strong>The Drawback / Classical Crisis (Maxwell's Electrodynamics):</strong><br>\u2022 Any particle in circular motion undergoes centripetal acceleration ($a = v^2/r$).<br>\u2022 According to James Clerk Maxwell's classical electromagnetic theory, an accelerating charged particle must continuously radiate electromagnetic energy.<br>\u2022 As the orbiting electron loses energy, its orbital radius must shrink continuously, spiraling into the nucleus in less than $10^{-8}\\text{ seconds}$!<br>\u2022 This implied matter should spontaneously collapse into a dead mass, yet real atoms are exceptionally stable."], "checkpoints": [{"q": "According to classical electromagnetic theory (Maxwell), why was Rutherford's planetary model of revolving electrons considered unstable?", "options": ["Revolving electrons would lose charge and turn into neutrons", "Accelerating revolving electrons would continuously radiate energy, shrink their orbits, and spiral into the nucleus in ~10\u207b\u2078 seconds", "The positive nucleus would repel the electrons outwards into space", "Centrifugal force would fling the nucleus apart"], "correct": 1, "explanation": "Classical physics dictates that any charged particle undergoing circular acceleration must radiate energy. An electron radiating energy would rapidly spiral into the nucleus, causing atomic collapse."}, {"q": "If an atom has a diameter of approximately 10\u207b\u00b9\u2070 m (0.1 nm), what is the approximate diameter of its nucleus based on Rutherford's deductions?", "options": ["10\u207b\u00b9\u2070 m", "10\u207b\u00b9\u2075 m", "10\u207b\u2075 m", "10\u207b\u00b2 m"], "correct": 1, "explanation": "The atomic nucleus is approximately 100,000 times smaller than the atom itself: atomic diameter ~10\u207b\u00b9\u2070 m, nuclear diameter ~10\u207b\u00b9\u2075 m."}]}, {"id": 6, "title": "Neils Bohr\u2019s Model of the Atom: Discrete Stationary Orbits (1913)", "subtitle": "Quantization of Energy Levels (K, L, M, N...) and Quantum Transitions", "narration": "In 1913, Danish physicist Niels Bohr rescued atomic physics from the Maxwell collapse paradox. He applied Max Planck's quantum theory to Rutherford's nuclear model, postulating that electrons do NOT radiate energy when revolving in certain special, non-radiating orbits called discrete energy levels. Radiation is emitted or absorbed only when an electron jumps between these fixed levels!", "points": ["<strong>Bohr's Postulate 1 (Discrete Stationary Orbits):</strong> Only certain special orbits known as <em>discrete orbits</em> (or non-radiating stationary energy levels) of electrons are permitted inside the atom.", "<strong>Bohr's Postulate 2 (Energy Invariance):</strong> While revolving in these discrete orbits, the electrons do NOT radiate energy. Hence, the electron does not lose energy and will never spiral into the nucleus.", "<strong>Energy Level Nomenclature:</strong> These orbits or shells are designated by capital letters <strong>K, L, M, N...</strong> or by primary quantum numbers <strong>n = 1, 2, 3, 4...</strong> counting outward from the nucleus.", "\u2022 Shell $n = 1$ is the innermost <strong>K-shell</strong> (lowest energy ground state).<br>\u2022 Shell $n = 2$ is the <strong>L-shell</strong>.<br>\u2022 Shell $n = 3$ is the <strong>M-shell</strong>.<br>\u2022 Shell $n = 4$ is the <strong>N-shell</strong>.", "<strong>Quantum Jumps (Spectroscopy):</strong> An electron absorbs a photon of energy $\\Delta E = h\\nu$ when jumping from a lower energy orbit to an outer higher orbit, and emits a photon when falling back from a higher orbit to a lower orbit."], "checkpoints": [{"q": "How did Niels Bohr resolve the fatal drawback of Rutherford's model regarding the stability of the atom?", "options": ["He claimed that electrons have positive charge inside the atom", "He postulated that electrons revolve only in discrete, non-radiating stationary orbits where they do not lose energy", "He asserted that protons revolve around stationary electrons", "He argued that nuclear gravity prevents electromagnetic radiation"], "correct": 1, "explanation": "Bohr proposed that electrons occupy discrete non-radiating stationary energy shells (K, L, M, N), overcoming the classical prediction of continuous radiative energy loss."}, {"q": "What happens when an electron jumps from the L-shell (n=2) down to the K-shell (n=1)?", "options": ["The electron absorbs a photon of light", "The electron emits a discrete quantum of energy (photon) equal to the energy difference between the shells", "The electron is destroyed completely", "The nucleus expands by 50%"], "correct": 1, "explanation": "Dropping from a higher energy state (L-shell) to a lower energy state (K-shell) releases the exact energy difference (\u0394E = E\u2082 - E\u2081) as emitted electromagnetic radiation."}]}, {"id": 7, "title": "The Bohr-Bury Rules of Electron Distribution", "subtitle": "The 2n\u00b2 Law, Octet Ceiling, and Step-wise Electronic Architecture", "narration": "How are electrons arranged in the different shells around the nucleus? In 1921, Niels Bohr and Charles Bury formulated three fundamental rules that govern the electronic configuration of elements. Knowing these rules allows you to predict how every atom bonds and behaves chemically!", "points": ["<strong>Rule 1: Maximum Electron Capacity ($2n^2$ Rule):</strong> The maximum number of electrons that can be accommodated in a given energy level or shell is given by the formula $2n^2$, where $n$ is the principal orbit number:<br>\u2022 For <strong>K-shell</strong> ($n=1$): $\\text{Max} = 2(1)^2 = 2\\text{ electrons}$<br>\u2022 For <strong>L-shell</strong> ($n=2$): $\\text{Max} = 2(2)^2 = 8\\text{ electrons}$<br>\u2022 For <strong>M-shell</strong> ($n=3$): $\\text{Max} = 2(3)^2 = 18\\text{ electrons}$<br>\u2022 For <strong>N-shell</strong> ($n=4$): $\\text{Max} = 2(4)^2 = 32\\text{ electrons}$", "<strong>Rule 2: The Outermost Octet Ceiling:</strong> The maximum number of electrons that can be accommodated in the outermost valence shell is strictly <strong>8</strong>, even if that shell has the capacity under the $2n^2$ rule to hold more electrons.", "<strong>Rule 3: Step-wise Progressive Filling:</strong> Electrons are not accommodated in a given outer shell unless the inner shells are completely filled. Shells are filled in a progressive step-wise manner from lowest energy ($n=1$) to higher levels."], "checkpoints": [{"q": "What is the theoretical maximum electron capacity of the third energy shell (M-shell, n = 3)?", "options": ["8 electrons", "18 electrons", "32 electrons", "2 electrons"], "correct": 1, "explanation": "Using the 2n\u00b2 formula for n = 3: Maximum capacity = 2 \u00d7 (3)\u00b2 = 2 \u00d7 9 = 18 electrons."}, {"q": "Even though the M-shell (n=3) can hold up to 18 electrons, what is the maximum number of electrons permitted in it when it serves as the outermost valence shell?", "options": ["2 electrons", "18 electrons", "8 electrons", "32 electrons"], "correct": 2, "explanation": "Under Bohr-Bury Rule 2, the outermost shell of an atom can never hold more than 8 electrons (octet rule) for stability, regardless of its theoretical 2n\u00b2 capacity."}]}, {"id": 8, "title": "Electronic Configurations of the First 18 Elements", "subtitle": "Step-by-Step Shell Filling from Hydrogen (Z=1) to Argon (Z=18)", "narration": "Let us systematically distribute electrons across shells for the first 18 elements of the periodic table, following IUPAC conventions. Observe how the K-shell fills first with up to 2 electrons, followed by the L-shell with up to 8 electrons, and then the M-shell up to Argon with configuration (2, 8, 8).", "points": ["<strong>Period 1 (K-shell Filling):</strong><br>\u2022 <strong>Hydrogen (${}_1\\text{H}$):</strong> $1$ electron $\\to$ K: $1$<br>\u2022 <strong>Helium (${}_2\\text{He}$):</strong> $2$ electrons $\\to$ K: $2$ (Duplet complete; highly stable noble gas)", "<strong>Period 2 (L-shell Filling from 1 to 8):</strong><br>\u2022 <strong>Lithium (${}_3\\text{Li}$):</strong> K: $2$, L: $1$<br>\u2022 <strong>Beryllium (${}_4\\text{Be}$):</strong> K: $2$, L: $2$<br>\u2022 <strong>Boron (${}_5\\text{B}$):</strong> K: $2$, L: $3$<br>\u2022 <strong>Carbon (${}_6\\text{C}$):</strong> K: $2$, L: $4$<br>\u2022 <strong>Nitrogen (${}_7\\text{N}$):</strong> K: $2$, L: $5$<br>\u2022 <strong>Oxygen (${}_8\\text{O}$):</strong> K: $2$, L: $6$<br>\u2022 <strong>Fluorine (${}_9\\text{F}$):</strong> K: $2$, L: $7$<br>\u2022 <strong>Neon (${}_{10}\\text{Ne}$):</strong> K: $2$, L: $8$ (Octet complete; inert noble gas)", "<strong>Period 3 (M-shell Filling from 1 to 8):</strong><br>\u2022 <strong>Sodium (${}_{11}\\text{Na}$):</strong> K: $2$, L: $8$, M: $1$<br>\u2022 <strong>Magnesium (${}_{12}\\text{Mg}$):</strong> K: $2$, L: $8$, M: $2$<br>\u2022 <strong>Aluminium (${}_{13}\\text{Al}$):</strong> K: $2$, L: $8$, M: $3$<br>\u2022 <strong>Silicon (${}_{14}\\text{Si}$):</strong> K: $2$, L: $8$, M: $4$<br>\u2022 <strong>Phosphorus (${}_{15}\\text{P}$):</strong> K: $2$, L: $8$, M: $5$<br>\u2022 <strong>Sulfur (${}_{16}\\text{S}$):</strong> K: $2$, L: $8$, M: $6$<br>\u2022 <strong>Chlorine (${}_{17}\\text{Cl}$):</strong> K: $2$, L: $8$, M: $7$<br>\u2022 <strong>Argon (${}_{18}\\text{Ar}$):</strong> K: $2$, L: $8$, M: $8$ (Stable valence octet; noble gas)"], "checkpoints": [{"q": "What is the correct electronic configuration of a neutral phosphorus atom (Atomic number Z = 15)?", "options": ["K: 2, L: 8, M: 5", "K: 2, L: 5, M: 8", "K: 8, L: 2, M: 5", "K: 2, L: 13"], "correct": 0, "explanation": "Phosphorus (Z=15) fills K-shell with 2 electrons, L-shell with 8 electrons, and the remaining 5 electrons enter the M-shell, giving configuration (2, 8, 5)."}, {"q": "Which of the following elements has a completely filled valence shell with a stable octet (8 electrons)?", "options": ["Sodium (Z = 11)", "Chlorine (Z = 17)", "Argon (Z = 18)", "Aluminium (Z = 13)"], "correct": 2, "explanation": "Argon (Z = 18) has electronic configuration (2, 8, 8), possessing 8 electrons in its outermost M-shell, which gives it a stable, unreactive noble gas octet."}]}, {"id": 9, "title": "Valence Electrons & Valency as Combining Capacity", "subtitle": "The Octet Driving Force: Chemical Bonding, Electron Gain/Loss, and Sharing", "narration": "The electrons present in the outermost shell of an atom are called valence electrons. They determine the entire chemical personality of an element! An atom's combining capacity\u2014the number of electrons it must gain, lose, or share to attain a stable octet or duplet\u2014is defined as its valency.", "points": ["<strong>Valence Electrons:</strong> The number of electrons located in the outermost shell (valence shell) of an atom. For example, Sodium (${}_{11}\\text{Na}$: $2,8,1$) has $1$ valence electron; Oxygen (${}_8\\text{O}$: $2,6$) has $6$ valence electrons.", "<strong>The Octet Rule of Chemical Stability:</strong> Atoms of elements combine with one another to achieve a completely filled, energetically stable outermost shell of $8$ electrons (or $2$ electrons for Helium).", "<strong>Rules for Calculating Valency:</strong><br>\u2022 If valence electrons ($v$) are $1, 2, 3,\\text{ or }4$: $\\text{Valency} = v$.<br>  - Sodium ($v=1$): Loses $1\\ e^- \\to \\text{Valency} = 1$<br>  - Magnesium ($v=2$): Loses $2\\ e^- \\to \\text{Valency} = 2$<br>  - Aluminium ($v=3$): Loses $3\\ e^- \\to \\text{Valency} = 3$<br>  - Carbon ($v=4$): Shares $4\\ e^- \\to \\text{Valency} = 4$", "\u2022 If valence electrons ($v$) are $5, 6,\\text{ or }7$: $\\text{Valency} = 8 - v$.<br>  - Nitrogen ($v=5$): Gains $3\\ e^- \\to \\text{Valency} = 8 - 5 = 3$<br>  - Oxygen ($v=6$): Gains $2\\ e^- \\to \\text{Valency} = 8 - 6 = 2$<br>  - Chlorine ($v=7$): Gains $1\\ e^- \\to \\text{Valency} = 8 - 7 = 1$", "<strong>Noble Gases ($He, Ne, Ar$):</strong> Outermost shell is already completely filled; combining capacity is zero ($\\text{Valency} = 0$)."], "checkpoints": [{"q": "Why does oxygen (atomic number Z = 8) have a valency of 2, even though it possesses 6 valence electrons?", "options": ["Because oxygen loses all 6 electrons during bonding", "Because it is energetically easier for oxygen to gain 2 electrons to complete its octet (8 - 6 = 2)", "Because oxygen has 2 protons in its nucleus", "Because oxygen is a noble gas"], "correct": 1, "explanation": "With 6 valence electrons, oxygen needs 2 more electrons to attain a stable 8-electron octet. Therefore, its combining capacity (valency) is 8 - 6 = 2."}, {"q": "What is the valency of neon (Atomic number Z = 10, configuration 2, 8)?", "options": ["8", "2", "0", "1"], "correct": 2, "explanation": "Neon has a completely filled outermost shell with 8 electrons (stable octet). It neither gains, loses, nor shares electrons, so its valency is 0."}]}, {"id": 10, "title": "Atomic Number (Z), Mass Number (A) & Standard IUPAC Notation", "subtitle": "Deciphering Subatomic Counts: p\u207a, e\u207b, n\u2070 and Nuclear Invariants", "narration": "Two numbers uniquely identify any atom: the atomic number, Z, which defines what element it is, and the mass number, A, which tells us how heavy its nucleus is. In standard IUPAC notation, we write the chemical symbol with the mass number as an upper prefix and the atomic number as a lower prefix: \u1d2c_Z X.", "points": ["<strong>Atomic Number ($Z$):</strong> The total number of protons present in the nucleus of an atom. It is the fundamental chemical identity of an element ($Z$ never changes in chemical reactions).<br>$$\\text{In a neutral atom: } Z = \\text{Number of protons} = \\text{Number of electrons}$$", "<strong>Mass Number ($A$):</strong> The total number of nucleons (protons + neutrons) residing inside the nucleus.<br>$$A = \\text{Number of protons } (Z) + \\text{Number of neutrons } (N)$$", "<strong>Calculating Number of Neutrons ($N$):</strong><br>$$N = A - Z = \\text{Mass Number} - \\text{Atomic Number}$$", "<strong>Standard IUPAC Notation:</strong> Written as ${}_Z^A\\text{X}$, where $\\text{X}$ is the element symbol.<br>\u2022 Example: ${}_{11}^{23}\\text{Na}$ indicates Sodium with $Z=11$ protons, $11$ electrons, and $N = 23 - 11 = 12$ neutrons.", "\u2022 Example: ${}_{17}^{35}\\text{Cl}$ indicates Chlorine with $Z=17$ protons, $17$ electrons, and $N = 35 - 17 = 18$ neutrons."], "checkpoints": [{"q": "An atom has an atomic number Z = 13 and a mass number A = 27. How many electrons, protons, and neutrons does this neutral atom contain?", "options": ["Protons: 13, Electrons: 13, Neutrons: 14", "Protons: 14, Electrons: 13, Neutrons: 13", "Protons: 13, Electrons: 14, Neutrons: 27", "Protons: 27, Electrons: 13, Neutrons: 14"], "correct": 0, "explanation": "For neutral atom: Protons = Z = 13; Electrons = Z = 13; Neutrons = A - Z = 27 - 13 = 14 (this is Aluminium, \u00b2\u2077\u2081\u2083Al)."}, {"q": "The notation \u2074\u2070\u2082\u2080Ca represents a neutral calcium atom. How many neutrons are in its nucleus?", "options": ["40", "20", "60", "10"], "correct": 1, "explanation": "Neutrons = Mass Number (A) - Atomic Number (Z) = 40 - 20 = 20 neutrons."}]}, {"id": 11, "title": "Isotopes: Same Atomic Number, Different Mass Numbers", "subtitle": "Nuclear Variants with Identical Chemistry: Protium, Deuterium & Tritium", "narration": "Isotopes are atoms of the same element that possess the exact same atomic number (number of protons) but different mass numbers due to differing numbers of neutrons. Because they have identical electron configurations, isotopes exhibit identical chemical properties, but slightly different physical properties like mass and density.", "points": ["<strong>Definition of Isotopes:</strong> Atoms of the same element that have the same atomic number ($Z$) but different mass numbers ($A$). They have the same number of protons and electrons, but different numbers of neutrons.", "<strong>The Three Isotopes of Hydrogen:</strong><br>1. <strong>Protium (${}_1^1\\text{H}$):</strong> $1\\text{ proton}, 0\\text{ neutrons}, 1\\text{ electron}$ (approx. $99.98\\%$ of natural hydrogen).<br>2. <strong>Deuterium (${}_1^2\\text{H}$ or $\\text{D}$):</strong> $1\\text{ proton}, 1\\text{ neutron}, 1\\text{ electron}$ (Heavy hydrogen; forms heavy water $\\text{D}_2\\text{O}$ used as nuclear moderator).<br>3. <strong>Tritium (${}_1^3\\text{H}$ or $\\text{T}$):</strong> $1\\text{ proton}, 2\\text{ neutrons}, 1\\text{ electron}$ (Radioactive isotope with half-life $12.3\\text{ years}$).", "<strong>Other Common Isotope Pairs:</strong><br>\u2022 Carbon: Carbon-12 (${}_6^{12}\\text{C}$) and Carbon-14 (${}_6^{14}\\text{C}$, used in archaeological carbon dating).<br>\u2022 Chlorine: Chlorine-35 (${}_{17}^{35}\\text{Cl}$) and Chlorine-37 (${}_{17}^{37}\\text{Cl}$).", "<strong>Chemical vs Physical Properties:</strong> Since chemical reactions depend entirely on valence electrons, all isotopes of an element participate in identical chemical reactions. Physical properties (density, boiling point, mass) differ because of differing masses."], "checkpoints": [{"q": "Why do the two isotopes of carbon (Carbon-12 and Carbon-14) exhibit identical chemical reactions with oxygen to form CO\u2082?", "options": ["They have the exact same number of neutrons in their nucleus", "They have the exact same atomic number (Z=6) and identical electronic configuration (2, 4)", "They possess identical radioactive decay rates", "Carbon-14 has no electrons"], "correct": 1, "explanation": "Chemical behavior is dictated entirely by electronic configuration and valence electrons; since all isotopes of carbon have 6 electrons (configuration 2, 4), they react identically."}, {"q": "How many neutrons are present in a nucleus of Tritium (\u00b3\u2081H)?", "options": ["1 neutron", "2 neutrons", "3 neutrons", "0 neutrons"], "correct": 1, "explanation": "In Tritium (\u00b3\u2081H), Mass number A = 3 and Atomic number Z = 1. Number of neutrons N = A - Z = 3 - 1 = 2 neutrons."}]}, {"id": 12, "title": "Fractional Atomic Mass & The Chlorine Puzzle: 35.5 u", "subtitle": "Weighted Average Atomic Masses Derived from Natural Isotopic Abundances", "narration": "Have you ever wondered why the periodic table shows the atomic mass of Chlorine as 35.5 u rather than a whole integer number? The atomic mass of an element is the weighted average of the masses of its naturally occurring isotopes, weighted by their natural percentage abundances in nature.", "points": ["<strong>The Origin of Non-Integer Atomic Masses:</strong> In nature, most elements exist as mixtures of two or more isotopes in fixed percentage proportions.", "<strong>Chlorine Case Study (${}_{17}^{35}\\text{Cl}$ and ${}_{17}^{37}\\text{Cl}$):</strong><br>\u2022 Naturally occurring chlorine consists of two major isotopes in a $3:1$ ratio:<br>  - Chlorine-35 (${}_{17}^{35}\\text{Cl}$) with abundance $\\approx 75\\%$ (or $\\frac{3}{4}$).<br>  - Chlorine-37 (${}_{17}^{37}\\text{Cl}$) with abundance $\\approx 25\\%$ (or $\\frac{1}{4}$).", "<strong>Step-by-Step Calculation of Average Atomic Mass:</strong><br>$$\\text{Average Atomic Mass} = \\left(35 \\times \\frac{75}{100}\\right) + \\left(37 \\times \\frac{25}{100}\\right)$$<br>$$= \\left(35 \\times \\frac{3}{4}\\right) + \\left(37 \\times \\frac{1}{4}\\right) = \\frac{105}{4} + \\frac{37}{4} = \\frac{142}{4} = 35.5\\text{ u}$$", "<strong>Important Conceptual Note:</strong> This does NOT mean that an individual atom of chlorine has a mass of $35.5\\text{ u}$. Any single chlorine atom has a mass of either $35\\text{ u}$ or $37\\text{ u}$. But in any macroscopic sample, the average mass per atom is $35.5\\text{ u}$."], "checkpoints": [{"q": "If element X has two isotopes: X-10 (20% natural abundance) and X-11 (80% natural abundance), what is the average atomic mass of element X?", "options": ["10.5 u", "10.8 u", "11.0 u", "10.2 u"], "correct": 1, "explanation": "Average mass = (10 \u00d7 20/100) + (11 \u00d7 80/100) = 2.0 + 8.8 = 10.8 u."}, {"q": "Does any single individual chlorine atom ever have a mass of 35.5 u?", "options": ["Yes, 75% of chlorine atoms have a mass of 35.5 u", "No; every individual chlorine atom has a whole-number mass of either 35 u or 37 u, and 35.5 u is the statistical weighted average", "Yes, during chemical combination", "Yes, when chlorine is cooled to absolute zero"], "correct": 1, "explanation": "Atoms contain discrete integer numbers of nucleons. Individual chlorine atoms have mass 35 u (18 neutrons) or 37 u (20 neutrons); 35.5 u is solely the weighted average of the mixture."}]}, {"id": 13, "title": "Societal Applications of Radioisotopes: Medicine, Energy & Archeology", "subtitle": "Cancer Radiotherapy, Thyroid Endocrinology, Nuclear Fission & Carbon Dating (C-5.3)", "narration": "Because radioactive isotopes decay at precise exponential rates and emit high-energy radiation (gamma rays and beta particles), they have revolutionized modern medicine, agricultural science, and clean electricity generation, directly impacting millions of lives every single day.", "points": ["<strong>Cobalt-60 (${}^{60}\\text{Co}$) in Cancer Radiotherapy:</strong> Emits highly penetrating, collimated gamma ($\\gamma$) radiation used in teletherapy to destroy deep-seated malignant cancer cells and tumors while sparing surrounding tissue.", "<strong>Iodine-131 (${}^{131}\\text{I}$) in Thyroid Endocrinology:</strong> The thyroid gland selectively absorbs iodine. Administering radioactive ${}^{131}\\text{I}$ allows imaging of thyroid function and targeted radiation destruction of hyperthyroid tissue and goitres.", "<strong>Uranium-235 (${}^{235}\\text{U}$) in Nuclear Power Generation:</strong> Undergoes thermal neutron-induced nuclear fission inside nuclear power reactors, releasing $\\approx 200\\text{ MeV}$ per fission to generate clean baseload electricity.", "<strong>Carbon-14 (${}^{14}\\text{C}$) in Radiocarbon Archaeological Dating:</strong> Has a half-life of $5,730\\text{ years}$. Used to date fossilized organic remains, ancient wooden tools, and prehistoric human settlements.", "<strong>Sodium-24 (${}^{24}\\text{Na}$) in Vascular Medicine:</strong> Injected as a saline tracer into the bloodstream to detect circulatory obstructions, thrombosis, and arterial blood clots."], "checkpoints": [{"q": "Which isotope is universally used in medicine for the diagnosis and treatment of goitre (thyroid disorders)?", "options": ["Cobalt-60", "Iodine-131", "Uranium-235", "Carbon-14"], "correct": 1, "explanation": "Because the human thyroid gland selectively concentrates iodine, Iodine-131 (\u00b9\u00b3\u00b9I) is used in endocrinology for thyroid scanning and targeted therapy of goitre and thyroid carcinoma."}, {"q": "What is the primary peaceful societal application of the isotope Uranium-235 (\u00b2\u00b3\u2075U)?", "options": ["Treating cataracts in eye surgery", "Fuel in nuclear reactors for commercial electric power generation", "Carbon dating ancient mummies", "Water purification in municipal reservoirs"], "correct": 1, "explanation": "Uranium-235 undergoes controlled nuclear fission inside nuclear reactors, producing immense thermal energy used to drive steam turbines for electrical power generation."}]}, {"id": 14, "title": "Isobars: Different Elements with Identical Mass Numbers", "subtitle": "Same Nucleon Total, Different Nuclear Charges: \u2074\u2070Ar vs \u2074\u2070Ca and \u00b9\u2074C vs \u00b9\u2074N", "narration": "While isotopes are atoms of the SAME element with different mass numbers, isobars are atoms of DIFFERENT chemical elements that have the same mass number! They have different numbers of protons and different electronic configurations, which means their chemical properties are completely different.", "points": ["<strong>Definition of Isobars:</strong> Atoms of different chemical elements that have different atomic numbers ($Z$) but possess the same mass number ($A$).<br>$$\\text{Isobars have: } Z_1 \\neq Z_2 \\quad \\text{and} \\quad A_1 = A_2$$", "<strong>The Classic Argon-Calcium Isobaric Pair:</strong><br>\u2022 <strong>Argon (${}_{18}^{40}\\text{Ar}$):</strong> $Z = 18$ (18 protons, 18 electrons, 22 neutrons). It is an unreactive, inert monoatomic noble gas.<br>\u2022 <strong>Calcium (${}_{20}^{40}\\text{Ca}$):</strong> $Z = 20$ (20 protons, 20 electrons, 20 neutrons). It is a highly reactive, divalent alkaline earth metal.", "<strong>The Carbon-Nitrogen Isobaric Pair:</strong><br>\u2022 Carbon-14 (${}_6^{14}\\text{C}$): $6$ protons, $8$ neutrons ($A=14$).<br>\u2022 Nitrogen-14 (${}_7^{14}\\text{N}$): $7$ protons, $7$ neutrons ($A=14$).", "<strong>Diagnostic Comparison (Isotopes vs Isobars):</strong><br>\u2022 <em>Isotopes:</em> Same $Z$, different $A$, same element, identical chemical properties.<br>\u2022 <em>Isobars:</em> Different $Z$, same $A$, completely different elements, completely different chemical properties!"], "checkpoints": [{"q": "Why do the isobars Argon-40 (\u2074\u2070\u2081\u2088Ar) and Calcium-40 (\u2074\u2070\u2082\u2080Ca) exhibit radically different chemical behaviors despite having the exact same mass number of 40?", "options": ["They have different atomic numbers, different proton counts, and completely different valence electron configurations", "Calcium contains no protons", "Argon has a higher mass than calcium", "They have the same number of neutrons"], "correct": 0, "explanation": "Argon has Z=18 (config 2,8,8 - noble gas) while Calcium has Z=20 (config 2,8,8,2 - reactive metal). Chemical properties depend on valence electrons, not mass numbers."}, {"q": "Which of the following pairs represents isobars?", "options": ["\u00b9\u00b2\u2086C and \u00b9\u2074\u2086C", "\u2074\u2070\u2081\u2088Ar and \u2074\u2070\u2082\u2080Ca", "\u00b3\u2075\u2081\u2087Cl and \u00b3\u2077\u2081\u2087Cl", "\u00b9\u2081H and \u00b2\u2081H"], "correct": 1, "explanation": "\u2074\u2070\u2081\u2088Ar and \u2074\u2070\u2082\u2080Ca have different atomic numbers (18 vs 20) but identical mass numbers (A = 40), which makes them isobars."}]}, {"id": 15, "title": "Indian Scientific Pioneer: Dr. Homi J. Bhabha & Peaceful Atomic Energy (C-5.2)", "subtitle": "Father of the Indian Nuclear Programme & The 3-Stage Thorium Fuel Vision", "narration": "India's journey in modern atomic science was forged by the visionary theoretical physicist Dr. Homi Jehangir Bhabha (1909\u20131966). Recognized globally for Bhabha Scattering in quantum electrodynamics, Dr. Bhabha passionately advocated for atomic energy as a peaceful engine to lift millions of citizens out of poverty through self-reliant clean electricity.", "points": ["<strong>Architect of Indian Science:</strong> In 1945, Dr. Homi Bhabha established the Tata Institute of Fundamental Research (TIFR) in Mumbai, followed by the Atomic Energy Establishment Trombay (AEET, renamed Bhabha Atomic Research Centre - BARC in his honour in 1967).", "<strong>Global Theoretical Physics Contributions:</strong> Formulated the relativistic quantum mechanics of electron-positron scattering, known worldwide as <em>Bhabha Scattering</em>, and co-discovered cosmic ray shower cascades with Walter Heitler.", "<strong>The Visionary 3-Stage Nuclear Programme:</strong> Recognizing that India possessed limited domestic uranium reserves but the world's largest deposits of <strong>Thorium-232</strong> in monazite sands along the Kerala coast, Bhabha formulated India's unique 3-stage nuclear strategy:<br>\u2022 <em>Stage 1:</em> Pressurised Heavy Water Reactors (PHWRs) using natural Uranium to produce Plutonium-239.<br>\u2022 <em>Stage 2:</em> Fast Breeder Reactors (FBRs) using Plutonium to breed more fuel and convert Thorium into Uranium-233.<br>\u2022 <em>Stage 3:</em> Advanced Thermal Thorium Reactors using abundant Thorium-233 to generate centuries of clean, carbon-free energy.", "<strong>C-5.2 Peaceful Development:</strong> BARC pioneered indigenous radioisotope production for cancer treatment (Bhabhatron radiotherapy unit) and agricultural crop mutation breeding (producing high-yield groundnut, pulse, and mustard varieties)."], "checkpoints": [{"q": "Why did Dr. Homi J. Bhabha design a unique 3-stage nuclear power programme specifically tailored for India?", "options": ["India had zero access to water for cooling reactors", "India possessed limited natural uranium but world-leading reserves of Thorium-232 in coastal monazite sands", "To build nuclear weapons for export", "To replace all solar power in India"], "correct": 1, "explanation": "Dr. Bhabha strategically designed India's 3-stage programme to transition from scarce natural Uranium to India's vast domestic Thorium-232 reserves, ensuring centuries of long-term energy independence."}, {"q": "What peaceful medical technology was developed by BARC to treat cancer patients in developing nations?", "options": ["The Bhabhatron teletherapy Cobalt-60 unit", "The Paperfuge", "Oral Rehydration Solution", "The artificial lung machine"], "correct": 0, "explanation": "BARC engineered the 'Bhabhatron', an indigenous, highly affordable Cobalt-60 teletherapy machine designed to deliver precision cancer radiotherapy in India and developing countries."}]}, {"id": 16, "title": "Open Scientific Inquiry: Can We Ever Completely Understand the Atom? (C-7.2)", "subtitle": "Heisenberg Uncertainty, Quantum Probability Clouds, Quarks & The Nature of Reality", "narration": "Can we ever obtain a complete, perfect mechanical snapshot of an atom? In the 1920s, Werner Heisenberg and Erwin Schr\u00f6dinger proved that the neat planetary tracks of Bohr's model were an oversimplification. At the subatomic scale, quantum mechanics dictates that electrons are not solid billiard balls orbiting like planets, but probabilistic wave packets governed by fundamental uncertainty!", "points": ["<strong>The Heisenberg Uncertainty Principle (1927):</strong> It is fundamentally impossible to simultaneously measure both the exact position ($x$) and the exact momentum ($p$) of an electron with arbitrary precision:<br>$$\\Delta x \\cdot \\Delta p \\ge \\frac{h}{4\\pi}$$<br>The more precisely you pin down an electron's position, the less you know about its velocity!", "<strong>From Fixed Orbits to Orbital Electron Clouds:</strong> Modern quantum chemistry replaces fixed 2D planetary tracks with 3D <em>orbitals</em>\u2014mathematical wavefunctions where there is a $90\\%$ probability of finding an electron around the nucleus.", "<strong>Inside the Nucleon: The Quark Frontier:</strong> In the 1960s, Murray Gell-Mann showed that protons and neutrons are NOT fundamental particles! Each is composed of three elementary particles called <strong>quarks</strong> held together by gluons (the strong force):<br>\u2022 Proton ($p^+$) = $2\\text{ Up Quarks } (+2/3) + 1\\text{ Down Quark } (-1/3) = +1\\text{ charge}$<br>\u2022 Neutron ($n^0$) = $1\\text{ Up Quark } (+2/3) + 2\\text{ Down Quarks } (-1/3) = 0\\text{ charge}$", "<strong>C-7.2 Philosophical Frontier:</strong> As quantum field theory reveals, vacuum space inside an atom is not empty\u2014it roils with virtual particle-antiparticle pairs constantly popping in and out of existence! The deeper science probes, the more mysterious and interconnected reality becomes."], "checkpoints": [{"q": "According to the Heisenberg Uncertainty Principle, why can we never draw exact circular planetary tracks for electrons inside an atom?", "options": ["Electrons move too slowly to be tracked", "It is fundamentally impossible to simultaneously know both the exact position and momentum of an electron", "The nucleus repels all measuring instruments", "Electrons turn into photons when observed"], "correct": 1, "explanation": "Heisenberg's principle (\u0394x \u00b7 \u0394p \u2265 h/4\u03c0) establishes a fundamental quantum limit: pinning down an electron's exact position makes its velocity uncertain, precluding fixed planetary orbits."}, {"q": "What subatomic components constitute a proton inside the atomic nucleus?", "options": ["Two Up quarks (+2/3 each) and one Down quark (-1/3)", "Three electrons", "Two Down quarks and one Up quark", "Four photons and two neutrons"], "correct": 0, "explanation": "A proton is composed of two Up quarks (charge +2/3 each) and one Down quark (charge -1/3), yielding a net charge of +2/3 + 2/3 - 1/3 = +1."}]}];
+        const QUIZZES = [{"id": 17, "title": "Dedicated Quiz Challenge 1: Subatomic Particles & Historical Atomic Models", "subtitle": "Mastery Assessment: Thomson, Goldstein, Chadwick, Rutherford & Bohr (C-1.1, C-5.1)", "narration": "Welcome to Quiz Challenge 1! Test your foundational knowledge of the three subatomic particles, the watermelon model, Rutherford's alpha scattering experiment, and Bohr's quantized orbits. Answer all 10 questions and use 'View Solution' for detailed step-by-step reasoning.", "questions": [{"q": "Which scientist discovered the neutron by bombarding thin beryllium foil with alpha particles in 1932?", "options": ["J.J. Thomson", "Ernest Rutherford", "James Chadwick", "Niels Bohr"], "correct": 2, "solution": "James Chadwick discovered the neutron in 1932 by bombarding beryllium with alpha particles, observing penetrating neutral radiation composed of particles with mass nearly equal to a proton."}, {"q": "What major observation from Rutherford's gold foil experiment proved that the positive charge and mass of an atom are concentrated in a tiny fraction of the total atomic volume?", "options": ["Most alpha particles passed straight through without deflection", "Approximately 1 in 12,000 alpha particles rebounded backwards at angles greater than 90\u00b0", "All alpha particles were absorbed by the gold atoms", "The gold foil melted into liquid gold"], "correct": 1, "solution": "Only a concentrated, extremely dense positive mass (the nucleus) could exert the immense electrostatic repulsion required to bounce a fast-moving, heavy alpha particle backwards (180\u00b0)."}, {"q": "What is the relative mass and charge of an electron compared to a proton?", "options": ["Mass ~ 1/1840 u, Charge -1", "Mass ~ 1 u, Charge +1", "Mass ~ 1 u, Charge 0", "Mass ~ 1840 u, Charge -1"], "correct": 0, "solution": "An electron has relative mass approximately 1/1840th of a proton (negligible in mass calculations) and carries a single unit negative charge (-1)."}, {"q": "What was the critical flaw in Rutherford's planetary model under classical Maxwellian physics?", "options": ["It could not explain why gold is yellow", "Accelerating revolving electrons should continuously radiate energy and spiral into the nucleus in ~10\u207b\u2078 seconds", "It predicted that the nucleus is negative", "It required neutrons to have positive charge"], "correct": 1, "solution": "According to classical electrodynamics, any accelerating charged particle radiates electromagnetic energy. An electron orbiting in a circle is continuously accelerating and would spiral into the nucleus within 10\u207b\u2078 s."}, {"q": "In Niels Bohr's atomic model, what is the name and principal quantum number of the innermost electron shell?", "options": ["L-shell, n = 2", "K-shell, n = 1", "M-shell, n = 3", "N-shell, n = 4"], "correct": 1, "solution": "The innermost discrete shell closest to the nucleus is the K-shell, designated by principal quantum number n = 1."}, {"q": "What did E. Goldstein discover in 1886 using a perforated cathode in a gas discharge tube?", "options": ["Cathode rays consisting of electrons", "Canal rays (anode rays) consisting of positively charged ions/protons", "X-rays", "Cosmic radiation"], "correct": 1, "solution": "E. Goldstein used a perforated cathode to discover luminous rays traveling in the opposite direction from cathode rays, which he named 'canal rays' (positively charged protons)."}, {"q": "Why do electrons in Bohr's discrete orbits NOT radiate energy and fall into the nucleus?", "options": ["Gravity repels the electrons", "Bohr postulated that stationary orbits are non-radiating states where energy remains conserved", "The nucleus has zero charge", "Electrons freeze at room temperature"], "correct": 1, "solution": "Bohr's fundamental quantum postulate states that discrete stationary orbits are non-radiating; an electron only gains or loses energy when transitioning between levels."}, {"q": "Which atomic model was compared to a Christmas pudding or a watermelon?", "options": ["Rutherford's Model", "Bohr's Model", "Thomson's Model", "Dalton's Model"], "correct": 2, "solution": "J.J. Thomson (1904) proposed the Plum Pudding (or Watermelon) model, with negative electrons embedded in a positive sphere like raisins in a pudding."}, {"q": "How does the radius of an atomic nucleus compare to the overall radius of the atom?", "options": ["Nuclear radius is about 100,000 times smaller (10\u207b\u00b9\u2075 m vs 10\u207b\u00b9\u2070 m)", "Nuclear radius is 10 times larger", "They are exactly identical", "Nuclear radius is 1 millimeter"], "correct": 0, "solution": "The radius of the nucleus is ~10\u207b\u00b9\u2075 m, while the radius of the atom is ~10\u207b\u00b9\u2070 m\u2014a ratio of 1 to 100,000 (comparable to a marble in the center of a football stadium)."}, {"q": "Which ancient philosopher first proposed that matter is composed of ultimate indivisible particles called Parmanu?", "options": ["Aristotle", "Democritus", "Acharya Kanad", "John Dalton"], "correct": 2, "solution": "Around 600 BCE, Indian sage Acharya Kanad founded the Vaisheshika philosophy and formulated the theory of 'Parmanu' as the indestructible, indivisible limit of matter."}]}, {"id": 18, "title": "Dedicated Quiz Challenge 2: Bohr-Bury Rules, Configurations & Valency", "subtitle": "Mastery Assessment: 2n\u00b2 Law, Octet Rule, First 18 Elements & Valency Calculations", "narration": "Welcome to Quiz Challenge 2! Test your ability to distribute electrons using the 2n\u00b2 rule and determine valence electrons and combining capacity (valency) for elements from Hydrogen to Argon.", "questions": [{"q": "According to the 2n\u00b2 formula, what is the maximum number of electrons that the N-shell (n = 4) can accommodate?", "options": ["18 electrons", "32 electrons", "8 electrons", "50 electrons"], "correct": 1, "solution": "For the N-shell (n = 4), Maximum capacity = 2n\u00b2 = 2 \u00d7 (4)\u00b2 = 2 \u00d7 16 = 32 electrons."}, {"q": "What is the valency of Magnesium (Atomic number Z = 12)?", "options": ["1", "2", "6", "0"], "correct": 1, "solution": "Magnesium has Z=12 and electronic configuration (2, 8, 2). It has 2 valence electrons in its outermost shell, which it readily loses to form Mg\u00b2\u207a, giving it a valency of 2."}, {"q": "What is the electronic configuration of a chlorine atom (Atomic number Z = 17)?", "options": ["2, 8, 7", "2, 7, 8", "2, 8, 18", "7, 8, 2"], "correct": 0, "solution": "Chlorine (Z=17) fills K-shell with 2, L-shell with 8, and the remaining 7 electrons enter the M-shell: configuration (2, 8, 7)."}, {"q": "Why is the valency of nitrogen (Atomic number Z = 7, configuration 2, 5) equal to 3 rather than 5?", "options": ["Nitrogen loses all 5 electrons during bonding", "It is energetically more favorable to gain or share 3 electrons to attain an octet (8 - 5 = 3)", "Nitrogen has 3 protons in its nucleus", "Nitrogen forms only triple bonds with metals"], "correct": 1, "solution": "For non-metals with 5, 6, or 7 valence electrons, valency = 8 - (valence electrons). For nitrogen: Valency = 8 - 5 = 3."}, {"q": "Which of the following elements has a valency of zero?", "options": ["Helium (Z = 2)", "Neon (Z = 10)", "Argon (Z = 18)", "All of the above"], "correct": 3, "solution": "Helium (complete duplet), Neon (complete octet), and Argon (complete octet) all have completely filled valence shells, so none of them gain, lose, or share electrons; their valency is 0."}, {"q": "What is the maximum number of electrons permitted in the outermost shell of ANY atom, according to Bohr-Bury Rule 2?", "options": ["2 electrons", "8 electrons", "18 electrons", "32 electrons"], "correct": 1, "solution": "Rule 2 states that the outermost valence shell of an atom can never accommodate more than 8 electrons, regardless of its theoretical 2n\u00b2 capacity."}, {"q": "An element X has electronic configuration (2, 8, 4). What is the identity and valency of element X?", "options": ["Carbon, Valency 4", "Silicon, Valency 4", "Aluminium, Valency 3", "Sulfur, Valency 2"], "correct": 1, "solution": "Total electrons = 2 + 8 + 4 = 14, which corresponds to Silicon (Si, Z=14). With 4 valence electrons, its combining capacity (valency) is 4."}, {"q": "What is the valency of Aluminium (Atomic number Z = 13)?", "options": ["1", "2", "3", "5"], "correct": 2, "solution": "Aluminium (Z=13) has configuration (2, 8, 3). It loses its 3 outermost valence electrons to form Al\u00b3\u207a, giving a valency of 3."}, {"q": "How many electrons are in the outermost M-shell of a sulfur atom (Z = 16)?", "options": ["2", "4", "6", "8"], "correct": 2, "solution": "Sulfur has Z=16 and electronic configuration (2, 8, 6). The outermost M-shell contains 6 valence electrons."}, {"q": "Which element in the first 18 elements has the same number of valence electrons as sodium (Z = 11)?", "options": ["Lithium (Z = 3)", "Potassium (Z = 19)", "Hydrogen (Z = 1)", "Both Lithium and Hydrogen"], "correct": 3, "solution": "Hydrogen (1), Lithium (2, 1), and Sodium (2, 8, 1) all belong to Group 1 and possess exactly 1 valence electron."}]}, {"id": 19, "title": "Dedicated Quiz Challenge 3: Atomic Numbers, Mass Numbers & Isotopes", "subtitle": "Mastery Assessment: p\u207a, e\u207b, n\u2070 Calculations, IUPAC Notations & Fractional Masses", "narration": "Welcome to Quiz Challenge 3! Master the calculations connecting atomic numbers, mass numbers, subatomic particle counts, and fractional average atomic masses from isotopic abundances.", "questions": [{"q": "An atom has 8 protons, 8 electrons, and 9 neutrons. What is its atomic number (Z) and mass number (A)?", "options": ["Z = 8, A = 16", "Z = 8, A = 17", "Z = 9, A = 17", "Z = 17, A = 8"], "correct": 1, "solution": "Atomic number Z = number of protons = 8. Mass number A = protons + neutrons = 8 + 9 = 17 (this is Oxygen-17, \u00b9\u2077\u2088O)."}, {"q": "Naturally occurring Boron consists of two isotopes: \u00b9\u2070B (mass 10 u, 20% abundance) and \u00b9\u00b9B (mass 11 u, 80% abundance). What is the average atomic mass of Boron?", "options": ["10.2 u", "10.5 u", "10.8 u", "11.2 u"], "correct": 2, "solution": "Average mass = (10 \u00d7 20/100) + (11 \u00d7 80/100) = 2.0 + 8.8 = 10.8 u."}, {"q": "The isotope Deuterium (\u00b2\u2081H) is widely used in nuclear technology. How many neutrons does it have?", "options": ["0 neutrons", "1 neutron", "2 neutrons", "3 neutrons"], "correct": 1, "solution": "Deuterium has mass number A = 2 and atomic number Z = 1. Number of neutrons N = A - Z = 2 - 1 = 1 neutron."}, {"q": "How many protons and neutrons are present in the nucleus of Carbon-14 (\u00b9\u2074\u2086C)?", "options": ["6 protons and 8 neutrons", "8 protons and 6 neutrons", "6 protons and 6 neutrons", "14 protons and 0 neutrons"], "correct": 0, "solution": "Atomic number Z = 6 protons. Neutrons = A - Z = 14 - 6 = 8 neutrons."}, {"q": "What is the 3:1 natural abundance ratio of Chlorine-35 to Chlorine-37 that gives chlorine its fractional average mass of 35.5 u?", "options": ["50% Chlorine-35 and 50% Chlorine-37", "75% Chlorine-35 and 25% Chlorine-37", "25% Chlorine-35 and 75% Chlorine-37", "90% Chlorine-35 and 10% Chlorine-37"], "correct": 1, "solution": "Chlorine-35 comprises ~75% and Chlorine-37 comprises ~25% of natural chlorine: Average mass = (35 \u00d7 0.75) + (37 \u00d7 0.25) = 26.25 + 9.25 = 35.5 u."}, {"q": "In the standard notation \u00b2\u00b3\u2081\u2081Na, what does the superscript 23 represent?", "options": ["The atomic number (Z)", "The number of electrons", "The mass number (A = protons + neutrons)", "The valency of sodium"], "correct": 2, "solution": "In standard IUPAC notation \u1d2c_Z X, the superscript A represents the mass number (total number of nucleons: 11 protons + 12 neutrons = 23)."}, {"q": "Why do isotopes of an element have virtually identical chemical properties?", "options": ["They have the exact same number of neutrons", "They have the same atomic number and identical valence electron configuration", "They have identical physical densities", "They have the same nuclear half-life"], "correct": 1, "solution": "Chemical reactions involve valence electrons; because isotopes have identical electron configurations, their chemical reactivity is identical."}, {"q": "How many neutrons are present in the nucleus of Potassium-39 (\u00b3\u2079\u2081\u2089K)?", "options": ["19", "20", "39", "58"], "correct": 1, "solution": "Neutrons = Mass Number (A) - Atomic Number (Z) = 39 - 19 = 20 neutrons."}, {"q": "What definition of the unified atomic mass unit (u) was established by IUPAC in 1961?", "options": ["The mass of one hydrogen atom", "Exactly 1/12th the mass of one neutral Carbon-12 atom at rest", "The mass of one electron", "The mass of one oxygen-16 atom"], "correct": 1, "solution": "By international IUPAC agreement, 1 unified atomic mass unit (1 u) is defined as exactly 1/12th the rest mass of an unbound neutral Carbon-12 (\u00b9\u00b2C) atom (approx. 1.6605 \u00d7 10\u207b\u00b2\u2077 kg)."}, {"q": "Which subatomic particle defines the fundamental chemical identity of an element?", "options": ["Neutron", "Proton (Atomic Number Z)", "Electron", "Positron"], "correct": 1, "solution": "The number of protons (atomic number Z) is the unique invariant identifying an element. Changing proton count changes the element itself."}]}, {"id": 20, "title": "Dedicated Quiz Challenge 4: Isobars, Nuclear Science & Indian Pioneers", "subtitle": "Mastery Assessment: Isobars, Bhabha's Thorium Vision, Radioisotopes & Quantum Clouds (C-5.2, C-5.3, C-6.1, C-7.2)", "narration": "Welcome to the final Mastery Quiz Challenge! Synthesize your deep understanding across isobars, medical radioisotopes, Dr. Homi Bhabha's 3-stage nuclear programme, and quantum orbital clouds.", "questions": [{"q": "Which of the following pairs are isobars?", "options": ["\u2074\u2070\u2081\u2088Ar and \u2074\u2070\u2082\u2080Ca", "\u00b9\u00b2\u2086C and \u00b9\u2074\u2086C", "\u00b3\u2075\u2081\u2087Cl and \u00b3\u2077\u2081\u2087Cl", "\u00b9\u2086O and \u00b9\u2078\u2086O"], "correct": 0, "solution": "Isobars have different atomic numbers but the same mass number: \u2074\u2070\u2081\u2088Ar and \u2074\u2070\u2082\u2080Ca both have mass number A = 40 with different atomic numbers (18 vs 20)."}, {"q": "Which radioactive isotope is utilized in medicine for gamma-ray teletherapy to destroy cancer tumors?", "options": ["Uranium-235", "Cobalt-60", "Carbon-14", "Sodium-23"], "correct": 1, "solution": "Cobalt-60 (\u2076\u2070Co) decays by emitting high-energy gamma rays (1.17 MeV and 1.33 MeV) used in radiotherapy to destroy malignant tumor cells."}, {"q": "Why did Dr. Homi J. Bhabha formulate India's unique 3-stage nuclear energy programme to utilize Thorium-232?", "options": ["Thorium can be enriched in ordinary kitchen stoves", "India holds approximately 25% of the world's Thorium reserves in monazite sands, ensuring energy sovereignty", "Thorium has zero protons in its nucleus", "Thorium does not require nuclear reactors"], "correct": 1, "solution": "India has vast coastal monazite deposits of Thorium-232 but modest Uranium reserves; Bhabha's 3-stage strategy breeds fissile U-233 from Thorium for sustainable long-term power."}, {"q": "What is the half-life of Carbon-14 used in archaeological radiocarbon dating?", "options": ["24 hours", "30 days", "5,730 years", "1 million years"], "correct": 2, "solution": "Carbon-14 has a half-life of approximately 5,730 years, making it ideal for dating biological artifacts up to ~50,000 years old."}, {"q": "Which subatomic quarks compose a neutron?", "options": ["Two Up quarks and one Down quark", "One Up quark (+2/3) and two Down quarks (-1/3 each)", "Three Up quarks", "Three electrons"], "correct": 1, "solution": "A neutron consists of one Up quark (+2/3) and two Down quarks (-1/3 each): Net charge = +2/3 - 1/3 - 1/3 = 0."}, {"q": "What does the Heisenberg Uncertainty Principle (\u0394x \u00b7 \u0394p \u2265 h/4\u03c0) imply about the structure of an atom?", "options": ["Electrons do not exist", "We cannot simultaneously determine the exact position and velocity of an electron, so fixed circular planetary orbits are physically impossible", "Protons move faster than the speed of light", "Neutrons orbit the electrons"], "correct": 1, "solution": "Heisenberg showed that electrons cannot be pictured as tiny marbles following definite orbits; instead, they exist in 3D probabilistic cloud regions called orbitals."}, {"q": "Which Indian research institution was founded by Dr. Homi J. Bhabha in 1945 to advance fundamental physics research in India?", "options": ["Tata Institute of Fundamental Research (TIFR)", "Indian Space Research Organisation (ISRO)", "National Chemical Laboratory", "All India Institute of Medical Sciences"], "correct": 0, "solution": "Dr. Homi J. Bhabha established the Tata Institute of Fundamental Research (TIFR) in Mumbai in 1945 with the support of J.R.D. Tata."}, {"q": "What is the difference between isotopes and isobars in terms of chemical properties?", "options": ["Isotopes have identical chemical properties; isobars have completely different chemical properties", "Isotopes have different chemical properties; isobars have identical chemical properties", "Both isotopes and isobars have identical chemical properties", "Neither isotopes nor isobars can participate in chemical reactions"], "correct": 0, "solution": "Chemical reactivity depends on valence electrons and atomic number: isotopes share the same atomic number and have identical chemistry; isobars have different atomic numbers and differ chemically."}, {"q": "Which radioactive tracer isotope is injected into the bloodstream to detect circulatory thrombosis and vascular blood clots?", "options": ["Sodium-24 (\u00b2\u2074Na)", "Cobalt-60", "Uranium-238", "Argon-40"], "correct": 0, "solution": "Sodium-24 (\u00b2\u2074Na), with a half-life of 15 hours, is administered as a radioactive sodium chloride tracer to monitor arterial blood flow and locate circulatory obstructions."}, {"q": "In the modern quantum mechanical model of the atom, what is an 'orbital'?", "options": ["A rigid wire on which electrons slide", "A three-dimensional mathematical region in space around the nucleus where the probability of finding an electron is high (~90%)", "The hollow center inside a proton", "A track carved by alpha particles"], "correct": 1, "solution": "An orbital is a quantum mechanical probability density cloud representing the 3D volume around the nucleus where there is a high statistical likelihood (~90%) of finding an electron."}]}];
+        let currentSlide = 0; // 0 to 19
+        let isSpeaking = false;
+        let synth = window.speechSynthesis;
+        let currentUtterance = null;
+        let quizAnswers = {}; // slideIndex: { qIdx: selectedOpt }
+
+        // Audio synthesizer fallback
+        let audioCtx = null;
+        function playTone(freq = 440, duration = 0.15) {
+            try {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.frequency.value = freq;
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) {}
+        }
+
+        // Slide dropdown menu builder
+        function buildSlideMenu() {
+            const list = document.getElementById('slideListItems');
+            const dots = document.getElementById('slideDots');
+            list.innerHTML = '';
+            dots.innerHTML = '';
+
+            const allSlides = [...SLIDES, ...QUIZZES];
+            allSlides.forEach((s, idx) => {
+                // Menu item
+                const btn = document.createElement('button');
+                btn.className = `w-full text-left px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between transition ${idx === currentSlide ? 'bg-purple-950/80 text-purple-300 font-bold border border-purple-700/50' : 'text-slate-300 hover:bg-slate-800/80'}`;
+                btn.innerHTML = `
+                    <span class="truncate pr-2">${idx + 1}. ${s.title}</span>
+                    <span class="text-[10px] font-mono ${idx >= 16 ? 'text-amber-400' : 'text-slate-400'}">${idx >= 16 ? 'Quiz' : 'Theory'}</span>
+                `;
+                btn.onclick = () => {
+                    goToSlide(idx);
+                    toggleSlideMenu(false);
+                };
+                list.appendChild(btn);
+
+                // Indicator dot
+                const dot = document.createElement('button');
+                dot.className = `h-2 rounded-full transition-all ${idx === currentSlide ? 'w-6 bg-purple-500' : 'w-2 bg-slate-700 hover:bg-slate-500'}`;
+                dot.title = `Slide ${idx + 1}: ${s.title}`;
+                dot.onclick = () => goToSlide(idx);
+                dots.appendChild(dot);
+            });
+        }
+
+        function toggleSlideMenu(force) {
+            const el = document.getElementById('slideMenuDropdown');
+            if (typeof force === 'boolean') {
+                if (force) el.classList.remove('hidden'); else el.classList.add('hidden');
+            } else {
+                el.classList.toggle('hidden');
+            }
+        }
+
+        // Narration Voiceover Controller
+        function toggleSpeech() {
+            if (isSpeaking) {
+                stopSpeech();
+            } else {
+                playNarration();
+            }
+        }
+
+        function stopSpeech() {
+            if (synth) {
+                synth.cancel();
+            }
+            isSpeaking = false;
+            updateSpeechUI(false);
+        }
+
+        function playNarration() {
+            stopSpeech();
+            const slideData = currentSlide < 16 ? SLIDES[currentSlide] : QUIZZES[currentSlide - 16];
+            const textToSpeak = slideData.narration || slideData.title;
+
+            if ('speechSynthesis' in window) {
+                currentUtterance = new SpeechSynthesisUtterance(textToSpeak);
+                currentUtterance.rate = 0.96;
+                currentUtterance.pitch = 1.05;
+                currentUtterance.lang = 'en-US';
+
+                currentUtterance.onstart = () => {
+                    isSpeaking = true;
+                    updateSpeechUI(true);
+                };
+                currentUtterance.onend = () => {
+                    isSpeaking = false;
+                    updateSpeechUI(false);
+                };
+                currentUtterance.onerror = () => {
+                    isSpeaking = false;
+                    updateSpeechUI(false);
+                };
+                synth.speak(currentUtterance);
+            } else {
+                playTone(550, 0.3);
+            }
+        }
+
+        function updateSpeechUI(speaking) {
+            const mouth = document.getElementById('teacherMouth');
+            const icon = document.getElementById('speechIcon');
+            const indicator = document.getElementById('speechStatusIndicator');
+            if (speaking) {
+                mouth.classList.add('talking');
+                icon.setAttribute('data-lucide', 'volume-x');
+                indicator.textContent = 'Speaking...';
+                indicator.className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-purple-950 text-purple-400 border border-purple-800 animate-pulse';
+            } else {
+                mouth.classList.remove('talking');
+                icon.setAttribute('data-lucide', 'volume-2');
+                indicator.textContent = 'Ready';
+                indicator.className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400';
+            }
+            lucide.createIcons();
+        }
+
+        function renderSlide(idx) {
+            stopSpeech();
+            currentSlide = idx;
+            document.getElementById('currentSlideNum').textContent = idx + 1;
+
+            buildSlideMenu();
+
+            const isQuiz = idx >= 16;
+            const contentContainer = document.getElementById('contentSlideContainer');
+            const quizContainer = document.getElementById('quizSlideContainer');
+            const lastNotice = document.getElementById('lastSlideNotice');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // Previous / Next Button Visibility
+            prevBtn.disabled = (idx === 0);
+            prevBtn.classList.toggle('opacity-40', idx === 0);
+
+            if (idx === 19) {
+                // Slide 20 (index 19) is the last slide
+                nextBtn.style.display = 'none';
+                lastNotice.classList.remove('hidden');
+            } else {
+                nextBtn.style.display = 'flex';
+                lastNotice.classList.add('hidden');
+            }
+
+            if (!isQuiz) {
+                // Slide 1 to 16: Theory & Checkpoints
+                contentContainer.classList.remove('hidden');
+                quizContainer.classList.add('hidden');
+
+                const data = SLIDES[idx];
+                document.getElementById('slideTitle').textContent = data.title;
+                document.getElementById('slideSubtitle').textContent = data.subtitle;
+                document.getElementById('slideBadge').textContent = `Part ${idx + 1} of 20`;
+                document.getElementById('narrationText').textContent = data.narration;
+
+                // Points List
+                const pointsList = document.getElementById('slideKeyPoints');
+                pointsList.innerHTML = data.points.map(pt => `
+                    <li class="flex items-start gap-2.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-purple-400 mt-2 shrink-0"></span>
+                        <span>${pt}</span>
+                    </li>
+                `).join('');
+
+                // Checkpoints List (2 per slide)
+                const cpList = document.getElementById('checkpointsList');
+                cpList.innerHTML = data.checkpoints.map((cp, cpIdx) => `
+                    <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800/80 space-y-2.5">
+                        <div class="flex items-start justify-between gap-2">
+                            <span class="text-xs font-semibold text-slate-200">
+                                <span class="text-purple-400 font-mono font-bold mr-1.5">Q${cpIdx + 1}.</span>
+                                ${cp.q}
+                            </span>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                            ${cp.options.map((opt, optIdx) => `
+                                <button onclick="window.checkAnswer(${idx}, ${cpIdx}, ${optIdx})" 
+                                        id="cp-btn-${idx}-${cpIdx}-${optIdx}"
+                                        class="text-left px-3 py-2 rounded-lg text-xs font-medium bg-slate-950 border border-slate-800 hover:border-purple-600/60 hover:bg-slate-800/60 transition flex items-center justify-between">
+                                    <span>${opt}</span>
+                                    <span class="w-3.5 h-3.5 rounded-full border border-slate-700 shrink-0 ml-2"></span>
+                                </button>
+                            `).join('')}
+                        </div>
+                        <div id="cp-feedback-${idx}-${cpIdx}" class="hidden text-xs p-2 rounded-lg mt-1 font-mono"></div>
+                    </div>
+                `).join('');
+
+                // Render Interactive Simulator
+                renderSimulator(idx);
+
+            } else {
+                // Slides 17 to 20: Dedicated Quiz
+                contentContainer.classList.add('hidden');
+                quizContainer.classList.remove('hidden');
+
+                const qData = QUIZZES[idx - 16];
+                document.getElementById('quizTitleDisplay').textContent = qData.title;
+                document.getElementById('narrationText').textContent = qData.narration;
+
+                updateQuizScoreDisplay(idx);
+
+                const qList = document.getElementById('quizQuestionsList');
+                qList.innerHTML = qData.questions.map((q, qIdx) => `
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-3">
+                        <div class="flex items-start justify-between gap-3">
+                            <span class="text-xs sm:text-sm font-semibold text-slate-100">
+                                <span class="text-purple-400 font-mono font-bold mr-1">Q${qIdx + 1}.</span>
+                                ${q.q}
+                            </span>
+                            <button onclick="window.openSolutionModal(${idx - 16}, ${qIdx})" 
+                                    class="shrink-0 text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-800/50 flex items-center gap-1 transition">
+                                <i data-lucide="help-circle" class="w-3 h-3"></i>
+                                View Solution
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            ${q.options.map((opt, optIdx) => `
+                                <button onclick="window.selectQuizAnswer(${idx}, ${qIdx}, ${optIdx})"
+                                        id="quiz-btn-${idx}-${qIdx}-${optIdx}"
+                                        class="text-left px-3 py-2 rounded-lg text-xs bg-slate-950 border border-slate-800 hover:border-purple-500/60 transition flex items-center justify-between">
+                                    <span>${opt}</span>
+                                    <span class="w-3 h-3 rounded-full border border-slate-700 shrink-0 ml-2"></span>
+                                </button>
+                            `).join('')}
+                        </div>
+                        <div id="quiz-feedback-${idx}-${qIdx}" class="hidden text-xs p-2 rounded-lg font-mono"></div>
+                    </div>
+                `).join('');
+
+                // Render Summary View in Simulator Window
+                renderQuizSimulator(idx);
+            }
+
+            lucide.createIcons();
+            if (window.renderMathInElement) {
+                renderMathInElement(document.body);
+            }
+        }
+
+        function checkAnswer(slideIdx, cpIdx, optIdx) {
+            const cp = SLIDES[slideIdx].checkpoints[cpIdx];
+            const feedbackEl = document.getElementById(`cp-feedback-${slideIdx}-${cpIdx}`);
+            const isCorrect = (optIdx === cp.correct);
+
+            // Highlight all option buttons
+            cp.options.forEach((_, i) => {
+                const btn = document.getElementById(`cp-btn-${slideIdx}-${cpIdx}-${i}`);
+                btn.classList.remove('bg-purple-950', 'border-purple-500', 'text-purple-300', 'bg-rose-950', 'border-rose-500', 'text-rose-300');
+                if (i === cp.correct) {
+                    btn.classList.add('bg-purple-950/80', 'border-purple-500', 'text-purple-300');
+                } else if (i === optIdx && !isCorrect) {
+                    btn.classList.add('bg-rose-950/80', 'border-rose-500', 'text-rose-300');
+                }
+            });
+
+            feedbackEl.classList.remove('hidden', 'bg-purple-950/60', 'text-purple-300', 'border-purple-800', 'bg-rose-950/60', 'text-rose-300', 'border-rose-800');
+            if (isCorrect) {
+                playTone(660, 0.12);
+                feedbackEl.classList.add('bg-purple-950/60', 'text-purple-300', 'border', 'border-purple-800/80');
+                feedbackEl.innerHTML = `✓ <strong>Spot On!</strong> ${cp.explanation}`;
+            } else {
+                playTone(280, 0.2);
+                feedbackEl.classList.add('bg-rose-950/60', 'text-rose-300', 'border', 'border-rose-800/80');
+                feedbackEl.innerHTML = `✕ <strong>Review:</strong> ${cp.explanation}`;
+            }
+        }
+
+        function selectQuizAnswer(slideIdx, qIdx, optIdx) {
+            if (!quizAnswers[slideIdx]) quizAnswers[slideIdx] = {};
+            quizAnswers[slideIdx][qIdx] = optIdx;
+
+            const q = QUIZZES[slideIdx - 16].questions[qIdx];
+            const feedbackEl = document.getElementById(`quiz-feedback-${slideIdx}-${qIdx}`);
+            const isCorrect = (optIdx === q.correct);
+
+            q.options.forEach((_, i) => {
+                const btn = document.getElementById(`quiz-btn-${slideIdx}-${qIdx}-${i}`);
+                btn.classList.remove('bg-purple-950', 'border-purple-500', 'text-purple-300', 'bg-rose-950', 'border-rose-500', 'text-rose-300');
+                if (i === q.correct) {
+                    btn.classList.add('bg-purple-950/80', 'border-purple-500', 'text-purple-300');
+                } else if (i === optIdx && !isCorrect) {
+                    btn.classList.add('bg-rose-950/80', 'border-rose-500', 'text-rose-300');
+                }
+            });
+
+            feedbackEl.classList.remove('hidden', 'bg-purple-950/60', 'text-purple-300', 'border-purple-800', 'bg-rose-950/60', 'text-rose-300', 'border-rose-800');
+            if (isCorrect) {
+                playTone(660, 0.12);
+                feedbackEl.classList.add('bg-purple-950/60', 'text-purple-300', 'border', 'border-purple-800/80');
+                feedbackEl.innerHTML = `✓ Correct! Keep mastering the concepts.`;
+            } else {
+                playTone(280, 0.2);
+                feedbackEl.classList.add('bg-rose-950/60', 'text-rose-300', 'border', 'border-rose-800/80');
+                feedbackEl.innerHTML = `✕ Needs Review. Click 'View Solution' for detailed derivation.`;
+            }
+
+            updateQuizScoreDisplay(slideIdx);
+        }
+
+        function updateQuizScoreDisplay(slideIdx) {
+            const answers = quizAnswers[slideIdx] || {};
+            let score = 0;
+            const questions = QUIZZES[slideIdx - 16].questions;
+            for (let qIdx in answers) {
+                if (answers[qIdx] === questions[qIdx].correct) {
+                    score++;
+                }
+            }
+            document.getElementById('quizScoreVal').textContent = score;
+        }
+
+        function openSolutionModal(quizOffset, qIdx) {
+            const q = QUIZZES[quizOffset].questions[qIdx];
+            const modal = document.getElementById('solutionModal');
+            const body = document.getElementById('solutionModalBody');
+
+            body.innerHTML = `
+                <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+                    <span class="text-xs font-mono font-bold text-purple-400 block mb-1">Question ${qIdx + 1}:</span>
+                    <p class="text-xs text-white font-semibold">${q.q}</p>
+                </div>
+                <div class="p-3 rounded-xl bg-purple-950/40 border border-purple-800/60">
+                    <span class="text-xs font-mono font-bold text-purple-300 block mb-1">Correct Answer:</span>
+                    <p class="text-xs font-bold text-white">${q.options[q.correct]}</p>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+                    <span class="text-xs font-mono font-bold text-cyan-400 block mb-1">Detailed Explanation & Reasoning:</span>
+                    <p class="text-xs text-slate-300 leading-relaxed">${q.solution}</p>
+                </div>
+            `;
+            modal.classList.remove('hidden');
+            playTone(480, 0.1);
+        }
+
+        function closeSolutionModal() {
+            document.getElementById('solutionModal').classList.add('hidden');
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) goToSlide(currentSlide - 1);
+        }
+
+        function nextSlide() {
+            if (currentSlide < 19) goToSlide(currentSlide + 1);
+        }
+
+        function goToSlide(idx) {
+            if (idx >= 0 && idx < 20) {
+                renderSlide(idx);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // ==========================================
+        // BESPOKE INTERACTIVE SIMULATORS (SLIDES 1-16)
+        // ==========================================
+
+        function renderSimulator(slideIdx) {
+            const vp = document.getElementById('simulatorViewport');
+            const titleEl = document.getElementById('simulatorTitle');
+
+            switch(slideIdx) {
+                case 0:
+                    titleEl.textContent = "Acharya Kanad's Parmanu Division Timeline";
+                    renderSim1(vp); break;
+                case 1:
+                    titleEl.textContent = "Subatomic Particle Triad Comparator";
+                    renderSim2(vp); break;
+                case 2:
+                    titleEl.textContent = "J.J. Thomson Watermelon / Plum Pudding Model";
+                    renderSim3(vp); break;
+                case 3:
+                    titleEl.textContent = "Rutherford Alpha Scattering Gold Foil Chamber";
+                    renderSim4(vp); break;
+                case 4:
+                    titleEl.textContent = "Nuclear Atom vs Maxwell Spiral Collapse Paradox";
+                    renderSim5(vp); break;
+                case 5:
+                    titleEl.textContent = "Bohr Stationary Orbits & Quantum Jump Emission";
+                    renderSim6(vp); break;
+                case 6:
+                    titleEl.textContent = "Bohr-Bury 2n² Shell Capacity & Octet Ceiling";
+                    renderSim7(vp); break;
+                case 7:
+                    titleEl.textContent = "First 18 Elements Interactive Shell Configurator";
+                    renderSim8(vp); break;
+                case 8:
+                    titleEl.textContent = "Valency & Combining Capacity Engine";
+                    renderSim9(vp); break;
+                case 9:
+                    titleEl.textContent = "Atomic Notation & Subatomic Particle Counter";
+                    renderSim10(vp); break;
+                case 10:
+                    titleEl.textContent = "Hydrogen Isotopes Triad: Protium, Deuterium, Tritium";
+                    renderSim11(vp); break;
+                case 11:
+                    titleEl.textContent = "Chlorine Fractional Atomic Mass (35.5 u) Lab";
+                    renderSim12(vp); break;
+                case 12:
+                    titleEl.textContent = "Societal Radioisotopes: Medicine & Energy (C-5.3)";
+                    renderSim13(vp); break;
+                case 13:
+                    titleEl.textContent = "Isobars vs Isotopes Diagnostic Bench";
+                    renderSim14(vp); break;
+                case 14:
+                    titleEl.textContent = "Dr. Homi J. Bhabha & India's 3-Stage Nuclear Plan (C-5.2)";
+                    renderSim15(vp); break;
+                case 15:
+                    titleEl.textContent = "Quantum Orbital Clouds & Quark Substructure (C-7.2)";
+                    renderSim16(vp); break;
+                default:
+                    vp.innerHTML = `<div class="text-slate-400 text-xs">Visual module active.</div>`;
+            }
+        }
+
+        function renderQuizSimulator(slideIdx) {
+            const vp = document.getElementById('simulatorViewport');
+            const titleEl = document.getElementById('simulatorTitle');
+            titleEl.textContent = "Curriculum Assessment Hub";
+
+            const quizNum = slideIdx - 15;
+            vp.innerHTML = `
+                <div class="w-full flex flex-col items-center justify-center p-4 text-center space-y-3">
+                    <div class="w-16 h-16 rounded-2xl bg-purple-950 border border-purple-500/50 flex items-center justify-center text-purple-400 shadow-xl shadow-purple-950/50">
+                        <i data-lucide="award" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-sm font-bold text-white">Quiz Challenge Module #${quizNum}</h4>
+                    <p class="text-xs text-slate-300 leading-relaxed max-w-xs">
+                        Answer all 10 in-depth atomic physics questions. Use 'View Solution' for detailed step-by-step reasoning on NCERT criteria!
+                    </p>
+                    <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 w-full text-left font-mono text-[11px] text-slate-300 space-y-1">
+                        <div class="flex justify-between"><span>Curriculum Standard:</span><span class="text-purple-400">NCERT Class 9</span></div>
+                        <div class="flex justify-between"><span>Total Questions:</span><span class="text-white">10 MCQs</span></div>
+                        <div class="flex justify-between"><span>Pass Standard:</span><span class="text-amber-400">80%+ Mastery</span></div>
+                    </div>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        // SIMULATOR 1: Acharya Kanad's Parmanu Division Timeline (C-6.1)
+        function renderSim1(vp) {
+            let step = 1; // 1: Grain, 2: Micro-Speck, 3: Parmanu (Kanad), 4: Subatomic (Thomson/Rutherford)
+
+            function draw() {
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="flex items-center justify-between text-xs font-mono">
+                            <span class="text-slate-400">Subdivision Stage:</span>
+                            <span class="text-purple-400 font-bold">Stage ${step} of 4</span>
+                        </div>
+
+                        <!-- 4 Step Buttons -->
+                        <div class="grid grid-cols-4 gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800 text-[10px] font-mono font-bold">
+                            <button onclick="window.sim1Set(1)" class="py-1 rounded ${step === 1 ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400'}">1. Grain</button>
+                            <button onclick="window.sim1Set(2)" class="py-1 rounded ${step === 2 ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400'}">2. Micro-dust</button>
+                            <button onclick="window.sim1Set(3)" class="py-1 rounded ${step === 3 ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400'}">3. Parmanu</button>
+                            <button onclick="window.sim1Set(4)" class="py-1 rounded ${step === 4 ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400'}">4. Subatomic</button>
+                        </div>
+
+                        <!-- Graphical Canvas -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-center h-44">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                ${step === 1 ? `
+                                    <!-- Visible Grain of Rice / Mustard -->
+                                    <ellipse cx="125" cy="75" rx="55" ry="32" fill="#fde047" stroke="#ca8a04" stroke-width="2"/>
+                                    <text x="125" y="78" fill="#713f12" font-size="9" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">Macroscopic Matter</text>
+                                    <text x="125" y="135" fill="#94a3b8" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Divisible with human eye</text>
+                                ` : step === 2 ? `
+                                    <!-- Microscopic dust specks -->
+                                    ${[
+                                        [80,50],[120,40],[160,55],[95,85],[140,80],[175,95],[110,115],[150,110]
+                                    ].map(([cx,cy]) => `
+                                        <circle cx="${cx}" cy="${cy}" r="6" fill="#fbbf24" stroke="#d97706"/>
+                                    `).join('')}
+                                    <text x="125" y="135" fill="#f59e0b" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Fine Colloidal Subdivision</text>
+                                ` : step === 3 ? `
+                                    <!-- Glowing Indivisible Parmanu Sphere (Kanad ~600 BCE) -->
+                                    <circle cx="125" cy="75" r="35" fill="#9333ea" opacity="0.3"/>
+                                    <circle cx="125" cy="75" r="22" fill="#a855f7" stroke="#c084fc" stroke-width="2.5"/>
+                                    <text x="125" y="78" fill="#ffffff" font-size="10" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">PARMANU</text>
+                                    <text x="125" y="135" fill="#c084fc" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Acharya Kanad: Indivisible Limit</text>
+                                ` : `
+                                    <!-- Cleaved Subatomic Atom (1897-1932) -->
+                                    <circle cx="125" cy="75" r="50" fill="none" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="3 2"/>
+                                    <circle cx="125" cy="75" r="10" fill="#ef4444"/>
+                                    <text x="125" y="78" fill="#ffffff" font-size="7" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">p⁺, n⁰</text>
+                                    <!-- Orbiting electron -->
+                                    <circle cx="125" cy="25" r="4" fill="#38bdf8"/>
+                                    <circle cx="175" cy="75" r="4" fill="#38bdf8"/>
+                                    <text x="125" y="135" fill="#38bdf8" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Subatomic Particles (e⁻, p⁺, n⁰)</text>
+                                `}
+                            </svg>
+                        </div>
+
+                        <!-- C-6.1 Note -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
+                            <strong>Acharya Kanad (~600 BCE):</strong> Ancient Indian philosophy anticipated modern atomic theory by positing the Parmanu as the indestructible building block of all elements.
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim1Set = function(s) {
+                step = s;
+                playTone(380 + s * 50, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 2: Subatomic Particle Triad Comparator
+        function renderSim2(vp) {
+            let selP = 'electron'; // electron, proton, neutron
+            const pData = {
+                electron: { symbol: "e⁻", disc: "J.J. Thomson (1897)", charge: "-1.602 × 10⁻¹⁹ C (-1)", mass: "9.109 × 10⁻³¹ kg (~1/1840 u)", loc: "Orbits in extranuclear shells", col: "text-cyan-400", bg: "#0284c7" },
+                proton: { symbol: "p⁺", disc: "E. Goldstein (1886) / Rutherford", charge: "+1.602 × 10⁻¹⁹ C (+1)", mass: "1.673 × 10⁻²⁷ kg (~1 u)", loc: "Inside dense atomic nucleus", col: "text-rose-400", bg: "#be123c" },
+                neutron: { symbol: "n⁰", disc: "James Chadwick (1932)", charge: "0 C (Electrically Neutral)", mass: "1.675 × 10⁻²⁷ kg (~1 u)", loc: "Inside dense atomic nucleus", col: "text-amber-400", bg: "#d97706" }
+            };
+
+            function draw() {
+                const cur = pData[selP];
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="grid grid-cols-3 gap-1 bg-slate-900 p-1.5 rounded-xl border border-slate-800 text-xs font-mono font-bold">
+                            <button onclick="window.sim2Set('electron')" class="py-1 rounded ${selP === 'electron' ? 'bg-cyan-600 text-white' : 'bg-slate-800 text-slate-400'}">Electron (e⁻)</button>
+                            <button onclick="window.sim2Set('proton')" class="py-1 rounded ${selP === 'proton' ? 'bg-rose-600 text-white' : 'bg-slate-800 text-slate-400'}">Proton (p⁺)</button>
+                            <button onclick="window.sim2Set('neutron')" class="py-1 rounded ${selP === 'neutron' ? 'bg-amber-600 text-white' : 'bg-slate-800 text-slate-400'}">Neutron (n⁰)</button>
+                        </div>
+
+                        <!-- Graphical Particle Visualizer -->
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex items-center justify-center h-44">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                <circle cx="125" cy="75" r="45" fill="${cur.bg}" opacity="0.2"/>
+                                <circle cx="125" cy="75" r="30" fill="${cur.bg}" stroke="#ffffff" stroke-width="2"/>
+                                <text x="125" y="82" fill="#ffffff" font-size="16" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">${cur.symbol}</text>
+                                <text x="125" y="135" fill="#cbd5e1" font-size="8" font-family="JetBrains Mono" text-anchor="middle">${cur.disc}</text>
+                            </svg>
+                        </div>
+
+                        <!-- Data Card -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono space-y-1">
+                            <div class="flex justify-between"><span class="text-slate-400">Electrical Charge:</span><span class="${cur.col} font-bold">${cur.charge}</span></div>
+                            <div class="flex justify-between"><span class="text-slate-400">Relative Rest Mass:</span><span class="text-slate-200">${cur.mass}</span></div>
+                            <div class="flex justify-between"><span class="text-slate-400">Atomic Position:</span><span class="text-teal-300 font-semibold">${cur.loc}</span></div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim2Set = function(p) {
+                selP = p;
+                playTone(p === 'electron' ? 580 : p === 'proton' ? 440 : 360, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 3: Thomson's Watermelon / Plum Pudding Model
+        function renderSim3(vp) {
+            let mode = 'watermelon'; // 'watermelon' vs 'pudding'
+
+            function draw() {
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="grid grid-cols-2 gap-2 bg-slate-900 p-1.5 rounded-xl border border-slate-800 text-xs font-bold">
+                            <button onclick="window.sim3Set('watermelon')" class="py-1.5 rounded-lg transition ${mode === 'watermelon' ? 'bg-rose-600 text-white shadow' : 'bg-slate-800 text-slate-400'}">
+                                Watermelon Analogy
+                            </button>
+                            <button onclick="window.sim3Set('pudding')" class="py-1.5 rounded-lg transition ${mode === 'pudding' ? 'bg-amber-600 text-white shadow' : 'bg-slate-800 text-slate-400'}">
+                                Plum Pudding Model
+                            </button>
+                        </div>
+
+                        <!-- Graphical Sphere -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-center h-44">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                ${mode === 'watermelon' ? `
+                                    <!-- Watermelon Slice: Red Flesh is Positive Charge, Seeds are Electrons -->
+                                    <circle cx="125" cy="75" r="55" fill="#e11d48" stroke="#16a34a" stroke-width="4"/>
+                                    <!-- Embedded Black Seeds (Electrons) -->
+                                    ${[
+                                        [105,55],[145,55],[95,75],[125,75],[155,75],[110,95],[140,95]
+                                    ].map(([cx,cy]) => `
+                                        <ellipse cx="${cx}" cy="${cy}" rx="4" ry="2.5" fill="#000000" transform="rotate(30 ${cx} ${cy})"/>
+                                    `).join('')}
+                                    <text x="125" y="142" fill="#f43f5e" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Red Flesh: Positive Charge • Seeds: Electrons</text>
+                                ` : `
+                                    <!-- Plum Pudding Model -->
+                                    <circle cx="125" cy="75" r="55" fill="#d97706" opacity="0.8" stroke="#f59e0b" stroke-width="3"/>
+                                    <!-- Embedded Raisins (Electrons) -->
+                                    ${[
+                                        [100,55],[145,50],[85,75],[120,70],[155,80],[105,95],[135,100]
+                                    ].map(([cx,cy]) => `
+                                        <circle cx="${cx}" cy="${cy}" r="5" fill="#1e1b4b" stroke="#38bdf8" stroke-width="1.5"/>
+                                        <text x="${cx}" y="${cy + 2.5}" fill="#ffffff" font-size="6" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">-</text>
+                                    `).join('')}
+                                    <text x="125" y="142" fill="#fbbf24" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Positive Pudding Sphere • Embedded Negative Plums</text>
+                                `}
+                            </svg>
+                        </div>
+
+                        <!-- Data Card -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
+                            <strong>Neutrality Equation:</strong> Total Positive Charge ($+e$) = Total Negative Electron Charge ($-e$). Net charge = $0$. Failed to explain alpha particle scattering!
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim3Set = function(m) {
+                mode = m;
+                playTone(m === 'watermelon' ? 440 : 500, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 4: Rutherford Alpha Scattering Gold Foil Chamber (C-5.1)
+        function renderSim4(vp) {
+            let fired = false;
+
+            function draw() {
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="flex items-center justify-between text-xs font-mono">
+                            <span class="text-slate-400">Alpha Scattering Setup:</span>
+                            <button onclick="window.sim4Fire()" class="px-3 py-1 rounded-lg font-bold transition ${fired ? 'bg-purple-600 text-white animate-pulse' : 'bg-slate-800 text-slate-400'}">
+                                ${fired ? 'BEAM FIRING...' : 'FIRE ALPHA BEAM (He²⁺)'}
+                            </button>
+                        </div>
+
+                        <!-- Chamber SVG -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-center h-44">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                <!-- Circular Zinc Sulfide (ZnS) Screen -->
+                                <path d="M 50 30 A 85 85 0 1 1 50 120" fill="none" stroke="#22c55e" stroke-width="2" stroke-dasharray="4 2"/>
+                                <text x="195" y="30" fill="#4ade80" font-size="7" font-family="JetBrains Mono">ZnS Screen</text>
+
+                                <!-- Central Ultra-Thin Gold Foil -->
+                                <line x1="125" y1="40" x2="125" y2="110" stroke="#f59e0b" stroke-width="4"/>
+                                <text x="125" y="32" fill="#fbbf24" font-size="8" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">Gold Foil</text>
+
+                                <!-- Alpha Source on Left -->
+                                <rect x="15" y="65" width="20" height="20" rx="3" fill="#334155" stroke="#64748b"/>
+                                <circle cx="25" cy="75" r="3" fill="#ef4444"/>
+
+                                ${fired ? `
+                                    <!-- Most pass straight (>99%) -->
+                                    <line x1="35" y1="70" x2="205" y2="70" stroke="#a855f7" stroke-width="1.5"/>
+                                    <line x1="35" y1="75" x2="210" y2="75" stroke="#a855f7" stroke-width="2"/>
+                                    <line x1="35" y1="80" x2="205" y2="80" stroke="#a855f7" stroke-width="1.5"/>
+                                    <circle cx="210" cy="75" r="3" fill="#4ade80"/>
+
+                                    <!-- Small Angle Deflection -->
+                                    <path d="M 35 65 L 125 65 L 180 40" stroke="#a855f7" stroke-width="1.5"/>
+                                    <circle cx="180" cy="40" r="3" fill="#4ade80"/>
+
+                                    <!-- Rare Rebound Backwards (1 in 12,000) -->
+                                    <path d="M 35 78 L 125 78 L 45 105" stroke="#f43f5e" stroke-width="2"/>
+                                    <circle cx="45" cy="105" r="3" fill="#ef4444"/>
+                                    <text x="125" y="138" fill="#f43f5e" font-size="8" font-family="JetBrains Mono" text-anchor="middle">1 in 12,000 Rebounds (Dense Nucleus!)</text>
+                                ` : `
+                                    <text x="125" y="138" fill="#64748b" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Click button to fire He²⁺ beam</text>
+                                `}
+                            </svg>
+                        </div>
+
+                        <!-- Data Card -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
+                            <strong>Rutherford's Deduction:</strong> Massive positive mass is confined to a microscopic nucleus; 99.9% of the atom is completely empty space.
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim4Fire = function() {
+                fired = !fired;
+                playTone(fired ? 650 : 320, 0.1);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 5: Nuclear Atom vs Maxwell Spiral Collapse Paradox
+        function renderSim5(vp) {
+            let mode = 'maxwell'; // 'rutherford' vs 'maxwell'
+
+            function draw() {
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="grid grid-cols-2 gap-2 bg-slate-900 p-1.5 rounded-xl border border-slate-800 text-xs font-bold">
+                            <button onclick="window.sim5Set('rutherford')" class="py-1.5 rounded-lg transition ${mode === 'rutherford' ? 'bg-indigo-600 text-white shadow' : 'bg-slate-800 text-slate-400'}">
+                                Planetary Circular Orbit
+                            </button>
+                            <button onclick="window.sim5Set('maxwell')" class="py-1.5 rounded-lg transition ${mode === 'maxwell' ? 'bg-rose-600 text-white shadow' : 'bg-slate-800 text-slate-400'}">
+                                Maxwell Spiral Collapse
+                            </button>
+                        </div>
+
+                        <!-- Graphic Canvas -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-center h-44">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                <!-- Central Nucleus -->
+                                <circle cx="125" cy="75" r="8" fill="#ef4444"/>
+                                <text x="125" y="78" fill="#ffffff" font-size="7" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">+</text>
+
+                                ${mode === 'rutherford' ? `
+                                    <!-- Stable Circular Orbit -->
+                                    <circle cx="125" cy="75" r="45" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3 2"/>
+                                    <circle cx="125" cy="30" r="4" fill="#38bdf8"/>
+                                    <text x="125" y="138" fill="#38bdf8" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Rutherford Model: Fixed Circular Track</text>
+                                ` : `
+                                    <!-- Inward Radiation Spiral Decay -->
+                                    <path d="M 125 25 A 50 50 0 0 1 170 75 A 40 40 0 0 1 125 110 A 30 30 0 0 1 95 75 A 20 20 0 0 1 125 58 A 12 12 0 0 1 125 75" fill="none" stroke="#f43f5e" stroke-width="2"/>
+                                    <circle cx="125" cy="75" r="5" fill="#f43f5e"/>
+                                    <!-- Radiated EM Wave Packets -->
+                                    <path d="M 175 60 Q 185 55 195 60" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
+                                    <path d="M 160 100 Q 170 95 180 100" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
+                                    <text x="125" y="140" fill="#f43f5e" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Collapse into Nucleus in ~10⁻⁸ Seconds!</text>
+                                `}
+                            </svg>
+                        </div>
+
+                        <!-- Data Card -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
+                            <strong>Classical Paradox:</strong> Accelerating charges radiate energy. Under classical mechanics, electrons must spiral into the nucleus within a split microsecond!
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim5Set = function(m) {
+                mode = m;
+                playTone(m === 'rutherford' ? 520 : 310, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 6: Bohr Stationary Orbits & Quantum Jump Emission
+        function renderSim6(vp) {
+            let shell = 2; // 1: K, 2: L, 3: M, 4: N
+
+            function draw() {
+                const r = shell === 1 ? 22 : shell === 2 ? 38 : shell === 3 ? 52 : 65;
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="flex items-center justify-between text-xs font-mono">
+                            <span class="text-slate-400">Target Quantum Shell:</span>
+                            <span class="text-purple-400 font-bold">${shell === 1 ? 'K-shell (n=1)' : shell === 2 ? 'L-shell (n=2)' : shell === 3 ? 'M-shell (n=3)' : 'N-shell (n=4)'}</span>
+                        </div>
+
+                        <!-- 4 Shell Buttons -->
+                        <div class="grid grid-cols-4 gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800 text-[10px] font-mono font-bold">
+                            <button onclick="window.sim6Set(1)" class="py-1 rounded ${shell === 1 ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400'}">K (n=1)</button>
+                            <button onclick="window.sim6Set(2)" class="py-1 rounded ${shell === 2 ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400'}">L (n=2)</button>
+                            <button onclick="window.sim6Set(3)" class="py-1 rounded ${shell === 3 ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400'}">M (n=3)</button>
+                            <button onclick="window.sim6Set(4)" class="py-1 rounded ${shell === 4 ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400'}">N (n=4)</button>
+                        </div>
+
+                        <!-- Bohr Atom Graphic -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-center h-44">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                <!-- Nucleus -->
+                                <circle cx="125" cy="75" r="8" fill="#ef4444"/>
+                                <text x="125" y="78" fill="#ffffff" font-size="6" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">+</text>
+
+                                <!-- Discrete Concentric Shells K, L, M, N -->
+                                <circle cx="125" cy="75" r="22" fill="none" stroke="#6366f1" stroke-width="${shell === 1 ? 2 : 1}" stroke-dasharray="2 1" opacity="${shell === 1 ? 1 : 0.4}"/>
+                                <circle cx="125" cy="75" r="38" fill="none" stroke="#6366f1" stroke-width="${shell === 2 ? 2 : 1}" stroke-dasharray="2 1" opacity="${shell === 2 ? 1 : 0.4}"/>
+                                <circle cx="125" cy="75" r="52" fill="none" stroke="#6366f1" stroke-width="${shell === 3 ? 2 : 1}" stroke-dasharray="2 1" opacity="${shell === 3 ? 1 : 0.4}"/>
+                                <circle cx="125" cy="75" r="65" fill="none" stroke="#6366f1" stroke-width="${shell === 4 ? 2 : 1}" stroke-dasharray="2 1" opacity="${shell === 4 ? 1 : 0.4}"/>
+
+                                <!-- Active Electron in Selected Shell -->
+                                <circle cx="125" cy="${75 - r}" r="4" fill="#38bdf8"/>
+                                <!-- Emitted Photon Wave when jumping down -->
+                                <path d="M 130 50 Q 140 45 150 50 Q 160 55 170 50" stroke="#facc15" stroke-width="2" fill="none"/>
+                                <text x="180" y="52" fill="#facc15" font-size="8" font-family="JetBrains Mono">hν</text>
+
+                                <text x="125" y="142" fill="#a855f7" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Non-radiating Discrete Level (ΔE = E₂ - E₁ = hν)</text>
+                            </svg>
+                        </div>
+
+                        <!-- Data Card -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
+                            <strong>Niels Bohr (1913):</strong> Electrons revolve strictly in quantized stationary energy levels; radiation occurs only when transitioning between levels.
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim6Set = function(s) {
+                shell = s;
+                playTone(400 + s * 60, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 7: Bohr-Bury 2n² Shell Capacity & Octet Ceiling
+        function renderSim7(vp) {
+            let n = 2; // 1, 2, 3, 4
+
+            function draw() {
+                const cap = 2 * n * n;
+                const name = n === 1 ? 'K-shell' : n === 2 ? 'L-shell' : n === 3 ? 'M-shell' : 'N-shell';
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="grid grid-cols-4 gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800 text-[10px] font-mono font-bold">
+                            <button onclick="window.sim7Set(1)" class="py-1 rounded ${n === 1 ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400'}">n=1 (K)</button>
+                            <button onclick="window.sim7Set(2)" class="py-1 rounded ${n === 2 ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400'}">n=2 (L)</button>
+                            <button onclick="window.sim7Set(3)" class="py-1 rounded ${n === 3 ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400'}">n=3 (M)</button>
+                            <button onclick="window.sim7Set(4)" class="py-1 rounded ${n === 4 ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400'}">n=4 (N)</button>
+                        </div>
+
+                        <!-- Capacity Display Card -->
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex flex-col gap-2 items-center justify-center text-center h-40">
+                            <span class="text-[10px] font-mono text-slate-400 uppercase tracking-widest">${name} Capacity (n = ${n})</span>
+                            <div class="text-3xl font-mono font-extrabold text-purple-400">
+                                ${cap} Electrons
+                            </div>
+                            <div class="text-xs font-mono text-slate-300">
+                                Formula: 2n² = 2 × (${n})² = 2 × ${n*n} = ${cap}
+                            </div>
+                            <div class="text-[11px] font-mono text-amber-300 pt-1 border-t border-slate-800 w-full">
+                                ${n >= 3 ? 'Outermost Shell Ceiling: Strictly 8 Electrons (Octet Rule)!' : 'Completely Filled Shell Capacity'}
+                            </div>
+                        </div>
+
+                        <!-- Bohr-Bury Rule Summary -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
+                            <strong>Rule 2 Invariant:</strong> The outermost shell of an atom can never accommodate more than 8 electrons, regardless of the $2n^2$ capacity limit!
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim7Set = function(val) {
+                n = val;
+                playTone(450 + val * 50, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 8: First 18 Elements Interactive Shell Configurator (C-1.3)
+        function renderSim8(vp) {
+            let z = 11; // Sodium default
+            const elemNames = [
+                "H","He","Li","Be","B","C","N","O","F","Ne",
+                "Na","Mg","Al","Si","P","S","Cl","Ar"
+            ];
+            const fullNames = [
+                "Hydrogen","Helium","Lithium","Beryllium","Boron","Carbon","Nitrogen","Oxygen","Fluorine","Neon",
+                "Sodium","Magnesium","Aluminium","Silicon","Phosphorus","Sulfur","Chlorine","Argon"
+            ];
+
+            function getConfig(atomicNum) {
+                let k = Math.min(atomicNum, 2);
+                let l = Math.max(0, Math.min(atomicNum - 2, 8));
+                let m = Math.max(0, atomicNum - 10);
+                return { k, l, m };
+            }
+
+            function draw() {
+                const cfg = getConfig(z);
+                const sym = elemNames[z - 1];
+                const name = fullNames[z - 1];
+
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="flex items-center justify-between text-xs font-mono">
+                            <span class="text-slate-400">Element: <strong class="text-white">${z}. ${name} (${sym})</strong></span>
+                            <span class="text-purple-400 font-bold">${cfg.k}, ${cfg.l}${cfg.m > 0 ? ', ' + cfg.m : ''}</span>
+                        </div>
+
+                        <input type="range" min="1" max="18" value="${z}" oninput="window.sim8SetZ(this.value)" class="w-full accent-purple-500">
+
+                        <!-- Concentric Atom SVG -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-center h-44">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                <!-- Central Nucleus -->
+                                <circle cx="125" cy="75" r="14" fill="#881337" stroke="#f43f5e" stroke-width="1.5"/>
+                                <text x="125" y="78" fill="#ffffff" font-size="8" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">${sym}</text>
+
+                                <!-- K Shell -->
+                                <circle cx="125" cy="75" r="28" fill="none" stroke="#6366f1" stroke-width="1" stroke-dasharray="2 1"/>
+                                ${Array.from({length: cfg.k}).map((_, i) => {
+                                    const ang = i * Math.PI;
+                                    const cx = 125 + 28 * Math.cos(ang);
+                                    const cy = 75 + 28 * Math.sin(ang);
+                                    return `<circle cx="${cx}" cy="${cy}" r="3" fill="#38bdf8"/>`;
+                                }).join('')}
+
+                                <!-- L Shell -->
+                                ${cfg.l > 0 ? `
+                                    <circle cx="125" cy="75" r="46" fill="none" stroke="#6366f1" stroke-width="1" stroke-dasharray="2 1"/>
+                                    ${Array.from({length: cfg.l}).map((_, i) => {
+                                        const ang = i * (2 * Math.PI / cfg.l);
+                                        const cx = 125 + 46 * Math.cos(ang);
+                                        const cy = 75 + 46 * Math.sin(ang);
+                                        return `<circle cx="${cx}" cy="${cy}" r="3" fill="#a855f7"/>`;
+                                    }).join('')}
+                                ` : ''}
+
+                                <!-- M Shell -->
+                                ${cfg.m > 0 ? `
+                                    <circle cx="125" cy="75" r="62" fill="none" stroke="#6366f1" stroke-width="1" stroke-dasharray="2 1"/>
+                                    ${Array.from({length: cfg.m}).map((_, i) => {
+                                        const ang = i * (2 * Math.PI / cfg.m);
+                                        const cx = 125 + 62 * Math.cos(ang);
+                                        const cy = 75 + 62 * Math.sin(ang);
+                                        return `<circle cx="${cx}" cy="${cy}" r="3" fill="#facc15"/>`;
+                                    }).join('')}
+                                ` : ''}
+                            </svg>
+                        </div>
+
+                        <!-- Data Card -->
+                        <div class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono flex justify-around text-center">
+                            <div><span class="text-slate-400 block text-[10px]">K-Shell</span><span class="text-cyan-400 font-bold">${cfg.k}</span></div>
+                            <div><span class="text-slate-400 block text-[10px]">L-Shell</span><span class="text-purple-400 font-bold">${cfg.l}</span></div>
+                            <div><span class="text-slate-400 block text-[10px]">M-Shell</span><span class="text-amber-400 font-bold">${cfg.m}</span></div>
+                            <div><span class="text-slate-400 block text-[10px]">Valence e⁻</span><span class="text-emerald-400 font-bold">${cfg.m > 0 ? cfg.m : cfg.l > 0 ? cfg.l : cfg.k}</span></div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim8SetZ = function(val) {
+                z = parseInt(val);
+                playTone(300 + z * 20, 0.05);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 9: Valency & Combining Capacity Calculator
+        function renderSim9(vp) {
+            let elemIdx = 10; // Sodium (Z=11, index 10)
+            const elements = [
+                { sym: "H", z: 1, cfg: "1", v: 1, val: 1 },
+                { sym: "He", z: 2, cfg: "2", v: 2, val: 0 },
+                { sym: "Li", z: 3, cfg: "2, 1", v: 1, val: 1 },
+                { sym: "Be", z: 4, cfg: "2, 2", v: 2, val: 2 },
+                { sym: "B", z: 5, cfg: "2, 3", v: 3, val: 3 },
+                { sym: "C", z: 6, cfg: "2, 4", v: 4, val: 4 },
+                { sym: "N", z: 7, cfg: "2, 5", v: 5, val: 3 },
+                { sym: "O", z: 8, cfg: "2, 6", v: 6, val: 2 },
+                { sym: "F", z: 9, cfg: "2, 7", v: 7, val: 1 },
+                { sym: "Ne", z: 10, cfg: "2, 8", v: 8, val: 0 },
+                { sym: "Na", z: 11, cfg: "2, 8, 1", v: 1, val: 1 },
+                { sym: "Mg", z: 12, cfg: "2, 8, 2", v: 2, val: 2 },
+                { sym: "Al", z: 13, cfg: "2, 8, 3", v: 3, val: 3 },
+                { sym: "Si", z: 14, cfg: "2, 8, 4", v: 4, val: 4 },
+                { sym: "P", z: 15, cfg: "2, 8, 5", v: 5, val: 3 },
+                { sym: "S", z: 16, cfg: "2, 8, 6", v: 6, val: 2 },
+                { sym: "Cl", z: 17, cfg: "2, 8, 7", v: 7, val: 1 },
+                { sym: "Ar", z: 18, cfg: "2, 8, 8", v: 8, val: 0 }
+            ];
+
+            function draw() {
+                const el = elements[elemIdx];
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <!-- Quick Pick Buttons -->
+                        <div class="grid grid-cols-6 gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800 text-[10px] font-mono">
+                            ${elements.slice(0, 12).map((e, idx) => `
+                                <button onclick="window.sim9Set(${idx})" class="py-1 rounded ${elemIdx === idx ? 'bg-purple-600 text-white font-bold' : 'bg-slate-800 text-slate-400'}">${e.sym}</button>
+                            `).join('')}
+                        </div>
+                        <div class="grid grid-cols-6 gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800 text-[10px] font-mono">
+                            ${elements.slice(12).map((e, idx) => `
+                                <button onclick="window.sim9Set(${idx + 12})" class="py-1 rounded ${elemIdx === idx + 12 ? 'bg-purple-600 text-white font-bold' : 'bg-slate-800 text-slate-400'}">${e.sym}</button>
+                            `).join('')}
+                        </div>
+
+                        <!-- Valency Result Box -->
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex flex-col gap-1 items-center justify-center text-center h-32">
+                            <span class="text-[10px] font-mono text-slate-400 uppercase tracking-widest">Element: ${el.sym} (Z = ${el.z}) • Config: ${el.cfg}</span>
+                            <div class="text-3xl font-mono font-extrabold text-emerald-400">
+                                Valency = ${el.val}
+                            </div>
+                            <span class="text-xs font-mono text-slate-300">
+                                ${el.v <= 4 ? 'Valence electrons ≤ 4: Valency = ' + el.v : el.sym === 'He' || el.sym === 'Ne' || el.sym === 'Ar' ? 'Complete octet/duplet: Valency = 0' : 'Valence electrons > 4: Valency = 8 - ' + el.v + ' = ' + el.val}
+                            </span>
+                        </div>
+
+                        <!-- Data Card -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
+                            <strong>Combining Capacity:</strong> The number of electrons gained, lost, or shared to achieve an octet (8 electrons) in the outermost shell.
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim9Set = function(idx) {
+                elemIdx = idx;
+                playTone(420 + idx * 15, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 10: Atomic Notation & Subatomic Particle Counter
+        function renderSim10(vp) {
+            let selIdx = 2; // Na-23 default
+            const presets = [
+                { sym: "H", name: "Hydrogen", a: 1, z: 1 },
+                { sym: "C", name: "Carbon-12", a: 12, z: 6 },
+                { sym: "Na", name: "Sodium-23", a: 23, z: 11 },
+                { sym: "Cl", name: "Chlorine-35", a: 35, z: 17 },
+                { sym: "Ca", name: "Calcium-40", a: 40, z: 20 }
+            ];
+
+            function draw() {
+                const cur = presets[selIdx];
+                const protons = cur.z;
+                const electrons = cur.z;
+                const neutrons = cur.a - cur.z;
+
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="grid grid-cols-5 gap-1 bg-slate-900 p-1.5 rounded-xl border border-slate-800 text-[10px] font-mono font-bold">
+                            ${presets.map((p, idx) => `
+                                <button onclick="window.sim10Set(${idx})" class="py-1 rounded ${selIdx === idx ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400'}">
+                                    ${p.sym} (${p.a})
+                                </button>
+                            `).join('')}
+                        </div>
+
+                        <!-- IUPAC Notation Box -->
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex items-center justify-center gap-6 h-36">
+                            <!-- Superscript A and Subscript Z Notation -->
+                            <div class="flex items-center font-mono">
+                                <div class="flex flex-col text-right font-bold pr-1.5 text-sm">
+                                    <span class="text-amber-400">${cur.a}</span>
+                                    <span class="text-cyan-400">${cur.z}</span>
+                                </div>
+                                <span class="text-4xl font-extrabold text-white">${cur.sym}</span>
+                            </div>
+
+                            <!-- Subatomic Particle Counts -->
+                            <div class="font-mono text-xs space-y-1 border-l border-slate-800 pl-4">
+                                <div><span class="text-slate-400">Protons (p⁺ = Z):</span> <span class="text-rose-400 font-bold">${protons}</span></div>
+                                <div><span class="text-slate-400">Electrons (e⁻ = Z):</span> <span class="text-cyan-400 font-bold">${electrons}</span></div>
+                                <div><span class="text-slate-400">Neutrons (A - Z):</span> <span class="text-amber-400 font-bold">${neutrons}</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Data Card -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
+                            <strong>IUPAC Notation:</strong> Upper prefix is Mass Number ($A = p^+ + n^0$), lower prefix is Atomic Number ($Z = p^+$).
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim10Set = function(idx) {
+                selIdx = idx;
+                playTone(460, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 11: Hydrogen Isotopes Triad (Protium, Deuterium, Tritium)
+        function renderSim11(vp) {
+            let iso = 'protium'; // protium, deuterium, tritium
+
+            function draw() {
+                const p = 1, e = 1;
+                const n = iso === 'protium' ? 0 : iso === 'deuterium' ? 1 : 2;
+                const a = iso === 'protium' ? 1 : iso === 'deuterium' ? 2 : 3;
+                const name = iso === 'protium' ? "Protium (¹₁H)" : iso === 'deuterium' ? "Deuterium (²₁H / D)" : "Tritium (³₁H / T)";
+
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="grid grid-cols-3 gap-1 bg-slate-900 p-1.5 rounded-xl border border-slate-800 text-[10px] font-mono font-bold">
+                            <button onclick="window.sim11Set('protium')" class="py-1 rounded ${iso === 'protium' ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400'}">Protium (¹H)</button>
+                            <button onclick="window.sim11Set('deuterium')" class="py-1 rounded ${iso === 'deuterium' ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400'}">Deuterium (²H)</button>
+                            <button onclick="window.sim11Set('tritium')" class="py-1 rounded ${iso === 'tritium' ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400'}">Tritium (³H)</button>
+                        </div>
+
+                        <!-- Nucleus & Shell Cross Section -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-center h-44">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                <!-- K-Shell Orbit -->
+                                <circle cx="125" cy="75" r="45" fill="none" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="3 2"/>
+                                <!-- Single Electron -->
+                                <circle cx="125" cy="30" r="4" fill="#38bdf8"/>
+                                <text x="133" y="32" fill="#38bdf8" font-size="7" font-family="JetBrains Mono">1 e⁻</text>
+
+                                <!-- Nucleus Cluster -->
+                                <circle cx="125" cy="75" r="16" fill="#1e1b4b" stroke="#818cf8"/>
+                                <!-- 1 Proton (Always 1) -->
+                                <circle cx="${n === 0 ? 125 : 120}" cy="${n === 0 ? 75 : 72}" r="6" fill="#ef4444"/>
+                                <text x="${n === 0 ? 125 : 120}" y="${n === 0 ? 77 : 74}" fill="#ffffff" font-size="5" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">p⁺</text>
+
+                                ${n >= 1 ? `
+                                    <!-- 1st Neutron -->
+                                    <circle cx="128" cy="78" r="6" fill="#f59e0b"/>
+                                    <text x="128" y="80" fill="#ffffff" font-size="5" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">n⁰</text>
+                                ` : ''}
+                                ${n === 2 ? `
+                                    <!-- 2nd Neutron (Tritium) -->
+                                    <circle cx="120" cy="80" r="5" fill="#f59e0b"/>
+                                    <text x="120" y="82" fill="#ffffff" font-size="5" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">n⁰</text>
+                                ` : ''}
+
+                                <text x="125" y="140" fill="#a855f7" font-size="8" font-family="JetBrains Mono" text-anchor="middle">${name}</text>
+                            </svg>
+                        </div>
+
+                        <!-- Data Card -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono space-y-1">
+                            <div class="flex justify-between"><span class="text-slate-400">Protons / Electrons:</span><span class="text-white font-bold">1 p⁺ / 1 e⁻ (Same Chemistry)</span></div>
+                            <div class="flex justify-between"><span class="text-slate-400">Neutrons:</span><span class="text-amber-400 font-bold">${n} neutrons (Mass A = ${a})</span></div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim11Set = function(m) {
+                iso = m;
+                playTone(m === 'protium' ? 440 : m === 'deuterium' ? 480 : 520, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 12: Chlorine Fractional Atomic Mass (35.5 u) Lab
+        function renderSim12(vp) {
+            vp.innerHTML = `
+                <div class="w-full flex flex-col gap-2.5">
+                    <!-- Weighted Average Calculation Box -->
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-xs space-y-2">
+                        <div class="text-center font-bold text-sm text-purple-400 mb-1">
+                            Natural Chlorine Isotopic Composition
+                        </div>
+                        <div class="flex justify-between text-slate-300">
+                            <span>• Chlorine-35 (³⁵₁₇Cl):</span>
+                            <span class="text-emerald-400 font-bold">75% (3/4 ratio)</span>
+                        </div>
+                        <div class="flex justify-between text-slate-300">
+                            <span>• Chlorine-37 (³⁷₁₇Cl):</span>
+                            <span class="text-cyan-400 font-bold">25% (1/4 ratio)</span>
+                        </div>
+
+                        <div class="p-2 rounded bg-slate-900 border border-slate-800 text-[11px] text-slate-300 leading-relaxed pt-2">
+                            $$\text{Average Mass} = \left(35 \times \frac{75}{100}\right) + \left(37 \times \frac{25}{100}\right)$$
+                            $$= \frac{105}{4} + \frac{37}{4} = \frac{142}{4} = \mathbf{35.5\text{ u}}$$
+                        </div>
+
+                        <div class="text-center text-xs text-amber-300 font-bold pt-1">
+                            Individual atoms: strictly 35 u or 37 u!<br>
+                            35.5 u is the statistical weighted average.
+                        </div>
+                    </div>
+
+                    <!-- Visual Ratio Bar -->
+                    <div class="w-full h-4 rounded-full overflow-hidden flex border border-slate-700">
+                        <div class="bg-emerald-500 h-full flex items-center justify-center text-[9px] font-mono font-bold text-slate-950" style="width: 75%">³⁵Cl (75%)</div>
+                        <div class="bg-cyan-500 h-full flex items-center justify-center text-[9px] font-mono font-bold text-slate-950" style="width: 25%">³⁷Cl (25%)</div>
+                    </div>
+                </div>
+            `;
+            if (window.renderMathInElement) renderMathInElement(vp);
+        }
+
+        // SIMULATOR 13: Societal Radioisotopes: Medicine & Energy (C-5.3)
+        function renderSim13(vp) {
+            let app = 'co60'; // co60, i131, u235, c14
+            const data = {
+                co60: { title: "Cobalt-60 (⁶⁰Co)", use: "High-Energy Gamma Radiotherapy", desc: "Emits collimated γ-rays used in hospital teletherapy to destroy cancer tumors.", col: "text-rose-400" },
+                i131: { title: "Iodine-131 (¹³¹I)", use: "Thyroid Goitre & Oncology", desc: "Thyroid tissue selectively absorbs iodine; targeted beta radiation treats goitres.", col: "text-purple-400" },
+                u235: { title: "Uranium-235 (²³⁵U)", use: "Nuclear Power Reactor Fuel", desc: "Undergoes controlled fission releasing ~200 MeV energy to generate baseload electricity.", col: "text-amber-400" },
+                c14: { title: "Carbon-14 (¹⁴C)", use: "Archaeological Radiocarbon Dating", desc: "Half-life of 5,730 years allows dating of fossilized organic remains and ancient artifacts.", col: "text-emerald-400" }
+            };
+
+            function draw() {
+                const cur = data[app];
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="grid grid-cols-4 gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800 text-[9px] font-mono font-bold">
+                            <button onclick="window.sim13Set('co60')" class="py-1 rounded ${app === 'co60' ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400'}">⁶⁰Co (Cancer)</button>
+                            <button onclick="window.sim13Set('i131')" class="py-1 rounded ${app === 'i131' ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400'}">¹³¹I (Thyroid)</button>
+                            <button onclick="window.sim13Set('u235')" class="py-1 rounded ${app === 'u235' ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400'}">²³⁵U (Reactor)</button>
+                            <button onclick="window.sim13Set('c14')" class="py-1 rounded ${app === 'c14' ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400'}">¹⁴C (Dating)</button>
+                        </div>
+
+                        <!-- Graphical Display -->
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex flex-col gap-2 items-center justify-center text-center h-40">
+                            <div class="w-10 h-10 rounded-full bg-purple-950 border border-purple-500/60 flex items-center justify-center text-purple-400">
+                                <i data-lucide="radioactive" class="w-5 h-5"></i>
+                            </div>
+                            <h4 class="text-sm font-bold text-white">${cur.title}</h4>
+                            <span class="text-xs font-mono font-bold ${cur.col}">${cur.use}</span>
+                            <p class="text-[11px] text-slate-300 max-w-xs leading-relaxed">${cur.desc}</p>
+                        </div>
+
+                        <!-- C-5.3 Note -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
+                            <strong>Societal Impact:</strong> Nuclear isotopes save lives in oncology and provide carbon-free energy when harnessed for peaceful human advancement.
+                        </div>
+                    </div>
+                `;
+                lucide.createIcons();
+            }
+
+            window.sim13Set = function(m) {
+                app = m;
+                playTone(500, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 14: Isobars vs Isotopes Diagnostic Bench
+        function renderSim14(vp) {
+            let mode = 'isobar'; // 'isobar' vs 'isotope'
+
+            function draw() {
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="grid grid-cols-2 gap-2 bg-slate-900 p-1.5 rounded-xl border border-slate-800 text-xs font-bold">
+                            <button onclick="window.sim14Set('isobar')" class="py-1.5 rounded-lg transition ${mode === 'isobar' ? 'bg-purple-600 text-white shadow' : 'bg-slate-800 text-slate-400'}">
+                                Isobars (⁴⁰Ar vs ⁴⁰Ca)
+                            </button>
+                            <button onclick="window.sim14Set('isotope')" class="py-1.5 rounded-lg transition ${mode === 'isotope' ? 'bg-indigo-600 text-white shadow' : 'bg-slate-800 text-slate-400'}">
+                                Isotopes (¹²C vs ¹⁴C)
+                            </button>
+                        </div>
+
+                        <!-- Comparison Window -->
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex items-center justify-around h-40">
+                            ${mode === 'isobar' ? `
+                                <!-- Argon-40 vs Calcium-40 -->
+                                <div class="text-center font-mono space-y-1">
+                                    <div class="text-lg font-bold text-amber-400">⁴⁰₁₈Ar</div>
+                                    <div class="text-[10px] text-slate-300">18 p⁺ • 22 n⁰</div>
+                                    <div class="text-[10px] text-cyan-400">Inert Noble Gas</div>
+                                </div>
+                                <div class="text-center text-xs font-mono font-bold text-purple-400">
+                                    Mass Number A = 40<br>
+                                    <span class="text-[10px] text-slate-400 font-normal">Different Elements!</span>
+                                </div>
+                                <div class="text-center font-mono space-y-1">
+                                    <div class="text-lg font-bold text-amber-400">⁴⁰₂₀Ca</div>
+                                    <div class="text-[10px] text-slate-300">20 p⁺ • 20 n⁰</div>
+                                    <div class="text-[10px] text-rose-400">Reactive Metal</div>
+                                </div>
+                            ` : `
+                                <!-- Carbon-12 vs Carbon-14 -->
+                                <div class="text-center font-mono space-y-1">
+                                    <div class="text-lg font-bold text-cyan-400">¹²₆C</div>
+                                    <div class="text-[10px] text-slate-300">6 p⁺ • 6 n⁰</div>
+                                    <div class="text-[10px] text-emerald-400">Stable Carbon</div>
+                                </div>
+                                <div class="text-center text-xs font-mono font-bold text-purple-400">
+                                    Atomic Number Z = 6<br>
+                                    <span class="text-[10px] text-slate-400 font-normal">Same Chemistry!</span>
+                                </div>
+                                <div class="text-center font-mono space-y-1">
+                                    <div class="text-lg font-bold text-cyan-400">¹⁴₆C</div>
+                                    <div class="text-[10px] text-slate-300">6 p⁺ • 8 n⁰</div>
+                                    <div class="text-[10px] text-rose-400">Radioactive Tracer</div>
+                                </div>
+                            `}
+                        </div>
+
+                        <!-- Data Card -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
+                            ${mode === 'isobar' ? 
+                                '<strong>Isobars:</strong> Same mass number ($A$), different atomic number ($Z$). Different electron counts $\to$ completely different chemistry!' : 
+                                '<strong>Isotopes:</strong> Same atomic number ($Z$), different mass number ($A$). Identical valence electrons $\to$ identical chemical reactions.'}
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim14Set = function(m) {
+                mode = m;
+                playTone(m === 'isobar' ? 480 : 540, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 15: Dr. Homi J. Bhabha & India's 3-Stage Nuclear Plan (C-5.2)
+        function renderSim15(vp) {
+            let stage = 1; // 1, 2, 3
+
+            function draw() {
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="flex items-center justify-between text-xs font-mono">
+                            <span class="text-slate-400">Dr. Homi Bhabha 3-Stage Plan:</span>
+                            <span class="text-purple-400 font-bold">Stage ${stage} of 3</span>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-1 bg-slate-900 p-1.5 rounded-xl border border-slate-800 text-xs font-mono font-bold">
+                            <button onclick="window.sim15Set(1)" class="py-1 rounded ${stage === 1 ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400'}">Stage 1: PHWR</button>
+                            <button onclick="window.sim15Set(2)" class="py-1 rounded ${stage === 2 ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400'}">Stage 2: FBR</button>
+                            <button onclick="window.sim15Set(3)" class="py-1 rounded ${stage === 3 ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400'}">Stage 3: Thorium</button>
+                        </div>
+
+                        <!-- Graphical Display -->
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex items-center justify-center h-44">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                ${stage === 1 ? `
+                                    <rect x="30" y="25" width="190" height="95" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="2"/>
+                                    <text x="125" y="48" fill="#c7d2fe" font-size="10" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">Stage 1: PHWRs (Uranium)</text>
+                                    <text x="125" y="70" fill="#a5b4fc" font-size="8" font-family="JetBrains Mono" text-anchor="middle">• Natural Uranium fuel + Heavy Water</text>
+                                    <text x="125" y="86" fill="#a5b4fc" font-size="8" font-family="JetBrains Mono" text-anchor="middle">• Generates Electricity + Breeds Plutonium-239</text>
+                                    <text x="125" y="102" fill="#a5b4fc" font-size="8" font-family="JetBrains Mono" text-anchor="middle">• Foundation of Indian Nuclear Fleet</text>
+                                ` : stage === 2 ? `
+                                    <rect x="30" y="25" width="190" height="95" rx="6" fill="#4c0519" stroke="#f43f5e" stroke-width="2"/>
+                                    <text x="125" y="48" fill="#fecdd3" font-size="10" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">Stage 2: Fast Breeder (FBRs)</text>
+                                    <text x="125" y="70" fill="#fda4af" font-size="8" font-family="JetBrains Mono" text-anchor="middle">• Plutonium-239 core + Thorium blanket</text>
+                                    <text x="125" y="86" fill="#fda4af" font-size="8" font-family="JetBrains Mono" text-anchor="middle">• Breeds more fuel than it consumes!</text>
+                                    <text x="125" y="102" fill="#fda4af" font-size="8" font-family="JetBrains Mono" text-anchor="middle">• Converts ²³²Th into fissile ²³³U</text>
+                                ` : `
+                                    <rect x="30" y="25" width="190" height="95" rx="6" fill="#064e3b" stroke="#34d399" stroke-width="2"/>
+                                    <text x="125" y="48" fill="#d1fae5" font-size="10" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">Stage 3: Thorium-233 Cycle</text>
+                                    <text x="125" y="70" fill="#a7f3d0" font-size="8" font-family="JetBrains Mono" text-anchor="middle">• Utilizes coastal Kerala monazite sands</text>
+                                    <text x="125" y="86" fill="#a7f3d0" font-size="8" font-family="JetBrains Mono" text-anchor="middle">• India holds ~25% of world Thorium reserves</text>
+                                    <text x="125" y="102" fill="#a7f3d0" font-size="8" font-family="JetBrains Mono" text-anchor="middle">• Centuries of self-reliant clean energy!</text>
+                                `}
+                            </svg>
+                        </div>
+
+                        <!-- C-5.2 Note -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
+                            <strong>Dr. Homi J. Bhabha (1909–1966):</strong> Father of the Indian Nuclear Programme, architect of TIFR and BARC, and champion of peaceful atomic energy.
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim15Set = function(s) {
+                stage = s;
+                playTone(450 + s * 40, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 16: Quantum Orbital Clouds & Quark Substructure (C-7.2)
+        function renderSim16(vp) {
+            let mode = 'cloud'; // 'cloud' vs 'quark'
+
+            function draw() {
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="grid grid-cols-2 gap-2 bg-slate-900 p-1.5 rounded-xl border border-slate-800 text-xs font-bold">
+                            <button onclick="window.sim16Set('cloud')" class="py-1.5 rounded-lg transition ${mode === 'cloud' ? 'bg-purple-600 text-white shadow' : 'bg-slate-800 text-slate-400'}">
+                                Quantum Orbital Cloud (ψ²)
+                            </button>
+                            <button onclick="window.sim16Set('quark')" class="py-1.5 rounded-lg transition ${mode === 'quark' ? 'bg-cyan-600 text-white shadow' : 'bg-slate-800 text-slate-400'}">
+                                Inside a Proton (Quarks)
+                            </button>
+                        </div>
+
+                        <!-- Graphical Display -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-center h-44">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                ${mode === 'cloud' ? `
+                                    <!-- 3D Probability Density Cloud -->
+                                    <circle cx="125" cy="75" r="55" fill="#a855f7" opacity="0.1"/>
+                                    <circle cx="125" cy="75" r="40" fill="#a855f7" opacity="0.25"/>
+                                    <circle cx="125" cy="75" r="25" fill="#a855f7" opacity="0.45"/>
+                                    <circle cx="125" cy="75" r="8" fill="#ef4444"/>
+                                    <text x="125" y="78" fill="#ffffff" font-size="6" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">+</text>
+                                    <text x="125" y="140" fill="#c084fc" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Heisenberg Cloud: 90% Probability Wavepacket</text>
+                                ` : `
+                                    <!-- Proton Quark Triad (u, u, d) -->
+                                    <circle cx="125" cy="75" r="45" fill="#1e1b4b" stroke="#38bdf8" stroke-width="2"/>
+                                    <!-- 2 Up Quarks (+2/3) -->
+                                    <circle cx="105" cy="65" r="10" fill="#ef4444"/>
+                                    <text x="105" y="68" fill="#ffffff" font-size="8" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">u</text>
+                                    <circle cx="145" cy="65" r="10" fill="#ef4444"/>
+                                    <text x="145" y="68" fill="#ffffff" font-size="8" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">u</text>
+                                    <!-- 1 Down Quark (-1/3) -->
+                                    <circle cx="125" cy="95" r="10" fill="#3b82f6"/>
+                                    <text x="125" y="98" fill="#ffffff" font-size="8" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">d</text>
+                                    <!-- Gluon strings connecting quarks -->
+                                    <line x1="105" y1="65" x2="145" y2="65" stroke="#facc15" stroke-width="1.5" stroke-dasharray="2 1"/>
+                                    <line x1="105" y1="65" x2="125" y2="95" stroke="#facc15" stroke-width="1.5" stroke-dasharray="2 1"/>
+                                    <line x1="145" y1="65" x2="125" y2="95" stroke="#facc15" stroke-width="1.5" stroke-dasharray="2 1"/>
+                                    <text x="125" y="140" fill="#38bdf8" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Proton = u (+2/3) + u (+2/3) + d (-1/3) = +1</text>
+                                `}
+                            </svg>
+                        </div>
+
+                        <!-- C-7.2 Note -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
+                            <strong>C-7.2 Quantum Frontier:</strong> The atom is not a mechanical solar system—electrons exist as quantum probability clouds, and nucleons are made of vibrating quarks!
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim16Set = function(m) {
+                mode = m;
+                playTone(m === 'cloud' ? 520 : 460, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // Initialize on Load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderSlide(0);
+        });
+    </script>
+</body>
+</html>

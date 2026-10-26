@@ -1,0 +1,1872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 12 Mathematics • Inverse Trigonometric Functions Multimedia Lab</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .slide-section { display: none; }
+    .slide-section.active { display: block; animation: fadeIn 0.35s ease-out forwards; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .custom-scrollbar::-webkit-scrollbar { height: 6px; width: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.6); }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(6, 182, 212, 0.4); border-radius: 4px; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-white">
+
+  <!-- ========================================================================= -->
+  <!-- TOP NAVIGATION HEADER & AUDIO CONTROLS -->
+  <!-- ========================================================================= -->
+  <header style="flex-shrink: 0;" class="border-b border-slate-800/80 bg-slate-900/90 backdrop-blur-md sticky top-0 z-40 px-4 py-3 sm:px-6">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <span class="text-2xl sm:text-3xl">📐</span>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">NCERT Class 12</span>
+            <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-amber-500/20 text-amber-300 border border-amber-500/30">Part - 1</span>
+            <span class="text-xs font-mono text-slate-400">Chapter 2</span>
+          </div>
+          <h1 class="text-sm sm:text-base font-black text-white tracking-tight">Inverse Trigonometric Functions</h1>
+          <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+        </div>
+      </div>
+
+      <!-- Controls: Narration Voice, Sound SFX, Counter -->
+      <div class="flex items-center space-x-2 shrink-0">
+        <button id="voiceToggleBtn" onclick="toggleVoice()" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center space-x-1.5 transition-all">
+          <span id="voiceIcon">🔊</span>
+          <span id="voiceText" class="hidden sm:inline">Voice: ON</span>
+        </button>
+        <button id="sfxToggleBtn" onclick="toggleSfx()" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center space-x-1.5 transition-all">
+          <span id="sfxIcon">🎵</span>
+          <span id="sfxText" class="hidden sm:inline">SFX: ON</span>
+        </button>
+        <div class="h-6 w-px bg-slate-800"></div>
+        <div class="px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono font-bold text-cyan-400">
+          Slide <span id="slideCounterCurrent">1</span>/13
+        </div>
+      </div>
+    </div>
+
+    <!-- Autoplay Countdown Progress Bar -->
+    <div class="w-full bg-slate-900 h-1 mt-2.5 rounded-full overflow-hidden">
+      <div id="autoPlayCountdownBar" class="bg-gradient-to-r from-cyan-500 to-teal-400 h-full w-0 transition-all duration-100 ease-linear opacity-0"></div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN SLIDES STAGE -->
+  <!-- ========================================================================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 1: INTRODUCTION & WHY RESTRICT DOMAINS? -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-0" class="slide-section active space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-cyan-500/30 relative overflow-hidden">
+        <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-cyan-500/10 blur-3xl pointer-events-none"></div>
+
+        <div class="flex flex-col lg:flex-row items-start justify-between gap-6 mb-6">
+          <div class="space-y-2">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+              § 2.1 The Invertibility Dilemma
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-black text-white">Why Invert Trigonometric Functions?</h2>
+            <p class="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+              In Chapter 1, we learned that a function <strong class="text-cyan-300">f</strong> has an inverse <strong class="text-white">f⁻¹</strong> if and only if it is <strong class="text-emerald-300">bijective (one-one and onto)</strong>.
+              However, natural trigonometric functions are periodic (repeating indefinitely), meaning they are naturally <strong class="text-rose-400">many-to-one</strong> over ℝ!
+            </p>
+          </div>
+
+          <!-- Felix Klein Quote Badge -->
+          <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 text-xs max-w-md shrink-0 shadow-lg">
+            <div class="text-amber-400 font-bold mb-1 flex items-center space-x-1">
+              <span>✨</span>
+              <span>Felix Klein on Mathematical Science</span>
+            </div>
+            <p class="italic text-slate-300 leading-relaxed">
+              "Mathematics, in general, is fundamentally the science of self-evident things."
+            </p>
+            <div class="text-[10px] text-slate-500 text-right mt-1 font-mono">— Famous 19th Century Geometer</div>
+          </div>
+        </div>
+
+        <!-- The 6 Natural Functions & Domain Restriction Strategy -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 items-stretch">
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3 text-xs">
+            <h3 class="font-bold text-white text-sm flex items-center space-x-2">
+              <span>⚠️</span>
+              <span>The Fundamental Problem:</span>
+            </h3>
+            <p class="text-slate-300 leading-relaxed">
+              Consider <span class="font-mono text-cyan-300">sin 0 = sin π = sin 2π = 0</span>. Because infinitely many distinct inputs produce the same output, the horizontal line test fails everywhere on ℝ.
+            </p>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 font-mono text-slate-400 space-y-1">
+              <div>sine: ℝ → [-1, 1] (Periodic with period 2π)</div>
+              <div>cosine: ℝ → [-1, 1] (Periodic with period 2π)</div>
+              <div>tangent: ℝ - {(2n+1)π/2} → ℝ (Period π)</div>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-gradient-to-br from-cyan-950/40 via-slate-900 to-slate-900 border border-cyan-500/30 space-y-3 text-xs">
+            <h3 class="font-bold text-white text-sm flex items-center space-x-2">
+              <span>✂️</span>
+              <span>The Solution: Branch Truncation</span>
+            </h3>
+            <p class="text-slate-300 leading-relaxed">
+              By restricting the domain to a custom contiguous interval where the function is <strong class="text-emerald-300">strictly monotonic (always increasing or decreasing)</strong>, it becomes <strong class="text-white">one-one and onto</strong> with its full range!
+            </p>
+            <div class="p-3 rounded-xl bg-cyan-950/60 border border-cyan-500/40 text-cyan-200">
+              <strong>Crucial in Calculus:</strong> Inverse trigonometric functions serve to evaluate essential anti-derivatives like <span class="font-mono">∫ 1/√(1 - x²) dx = sin⁻¹x + C</span> and <span class="font-mono">∫ 1/(1 + x²) dx = tan⁻¹x + C</span>.
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-0" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 2: INVERSE SINE (sin⁻¹x) & PRINCIPAL VALUE BRANCH -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-1" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-indigo-500/30 space-y-6">
+        <div class="space-y-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+            § 2.2 Arcsine &amp; Principal Branch
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Inverse Sine Function (sin⁻¹x / arc sine)</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            Restricting the domain of sine to the closed interval <strong class="text-indigo-300">[-π/2, π/2]</strong> makes it strictly increasing, one-one, and onto with range <strong class="text-white">[-1, 1]</strong>.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
+          <div class="md:col-span-6 p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-4 text-xs">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300">Principal Value Definition</span>
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 font-mono text-indigo-300 space-y-2">
+              <div class="text-sm font-bold text-white">sin⁻¹ : [-1, 1] → [-π/2, π/2]</div>
+              <div class="text-slate-400 text-xs">Domain: [-1, 1] &bull; Range: [-π/2, π/2]</div>
+            </div>
+            <p class="text-slate-300 leading-relaxed">
+              While other intervals like <span class="font-mono text-slate-400">[-3π/2, -π/2]</span> or <span class="font-mono text-slate-400">[π/2, 3π/2]</span> are also bijective branches, the branch with range <strong class="text-cyan-300">[-π/2, π/2]</strong> is universally designated as the <strong class="text-amber-300">Principal Value Branch</strong>.
+            </p>
+            <div class="p-3 rounded-xl bg-amber-950/30 border border-amber-500/30 text-amber-200">
+              ⚠️ <strong>Warning:</strong> <span class="font-mono">sin⁻¹x</span> must NEVER be confused with <span class="font-mono">(sin x)⁻¹ = 1 / sin x = cosec x</span>!
+            </div>
+          </div>
+
+          <div class="md:col-span-6 p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-4 text-xs font-mono">
+            <span class="text-cyan-400 font-bold block text-sm">Cancellation Identities:</span>
+            <div class="space-y-2">
+              <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+                <span class="text-emerald-400 font-bold block">1. sin(sin⁻¹ x) = x</span>
+                <span class="text-slate-400 text-[11px] font-sans">Valid for all numbers x in the domain [-1, 1].</span>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+                <span class="text-purple-400 font-bold block">2. sin⁻¹(sin x) = x</span>
+                <span class="text-slate-400 text-[11px] font-sans">Valid ONLY when angle x lies within [-π/2, π/2]!</span>
+              </div>
+            </div>
+            <div class="p-3 rounded-xl bg-indigo-950/40 border border-indigo-500/30 text-slate-300 font-sans text-xs">
+              <strong>Odd Symmetry:</strong> Because sine is odd, <span class="font-mono text-indigo-300">sin⁻¹(-x) = -sin⁻¹(x)</span> for all x ∈ [-1, 1].
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-1" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 3: GRAPHICAL SYMMETRY & REFLECTION ALONG y = x -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-2" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-purple-500/30 space-y-6">
+        <div class="space-y-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-purple-500/20 text-purple-300 border border-purple-500/30">
+            § 2.2 Geometric Remark (Fig 2.1)
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Graphs: Mirror Reflection along the Line y = x</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            If <span class="font-mono text-purple-300">(a, b)</span> lies on the graph of <span class="font-mono">y = sin x</span>, then by definition of inverse functions, 
+            <span class="font-mono text-cyan-300">(b, a)</span> must lie on the graph of <span class="font-mono">y = sin⁻¹ x</span>.
+            Geometrically, the inverse graph is obtained by reflecting the original curve across the 45° diagonal line <strong class="text-white">y = x</strong>.
+          </p>
+        </div>
+
+        <!-- Interactive Reflection Visualizer Canvas -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+          <div class="lg:col-span-8 bg-slate-950 rounded-2xl p-4 border border-slate-800 flex flex-col items-center justify-center relative min-h-[320px]">
+            <canvas id="reflectionCanvas" width="600" height="280" class="w-full h-auto block"></canvas>
+            <div class="flex items-center space-x-3 mt-3 text-xs">
+              <span class="flex items-center space-x-1.5 text-cyan-400">
+                <span class="w-3 h-0.5 bg-cyan-400 inline-block"></span>
+                <span>y = sin x</span>
+              </span>
+              <span class="flex items-center space-x-1.5 text-purple-400">
+                <span class="w-3 h-0.5 bg-purple-400 inline-block"></span>
+                <span>y = sin⁻¹ x</span>
+              </span>
+              <span class="flex items-center space-x-1.5 text-slate-500">
+                <span class="w-3 h-0.5 bg-slate-500 inline-block"></span>
+                <span>y = x (Mirror)</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 bg-slate-900/80 rounded-2xl p-5 border border-slate-800 space-y-3 text-xs flex flex-col justify-between">
+            <div class="space-y-2">
+              <span class="text-amber-400 font-bold uppercase tracking-wider block">Key Coordinate Inversion:</span>
+              <div class="space-y-1.5 font-mono text-slate-300">
+                <div class="p-2 rounded bg-slate-950 border border-slate-800">
+                  sin(0) = 0 &rarr; <span class="text-cyan-300">sin⁻¹(0) = 0</span>
+                </div>
+                <div class="p-2 rounded bg-slate-950 border border-slate-800">
+                  sin(π/6) = 0.5 &rarr; <span class="text-cyan-300">sin⁻¹(0.5) = π/6</span>
+                </div>
+                <div class="p-2 rounded bg-slate-950 border border-slate-800">
+                  sin(π/2) = 1 &rarr; <span class="text-cyan-300">sin⁻¹(1) = π/2</span>
+                </div>
+                <div class="p-2 rounded bg-slate-950 border border-slate-800">
+                  sin(-π/2) = -1 &rarr; <span class="text-cyan-300">sin⁻¹(-1) = -π/2</span>
+                </div>
+              </div>
+            </div>
+            <button onclick="animateGraphReflection()" class="w-full py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition cursor-pointer shadow-md shadow-purple-600/30">
+              ⚡ Animate Reflection Sync
+            </button>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-2" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 4: INVERSE COSINE (cos⁻¹x) -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-3" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-emerald-500/30 space-y-6">
+        <div class="space-y-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+            § 2.2 Arccosine &amp; The [0, π] Principal Branch
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Inverse Cosine Function (cos⁻¹x)</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            Unlike sine, the cosine function cannot be restricted to [-π/2, π/2] because <span class="font-mono text-emerald-300">cos(-x) = cos(x)</span> (even function).
+            To make it bijective, its domain is restricted to <strong class="text-white">[0, π]</strong> where it decreases monotonically from 1 down to -1!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Principal Branch Definition -->
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3 text-xs">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300">Definition</span>
+            <h3 class="text-base font-bold text-white">cos⁻¹ : [-1, 1] → [0, π]</h3>
+            <p class="text-slate-300 leading-relaxed">
+              Domain is <span class="font-mono text-white">[-1, 1]</span> and Range (Principal Value Branch) is <strong class="text-emerald-300">[0, π]</strong>.
+            </p>
+            <div class="text-slate-400 text-[11px] pt-1">
+              Other bijective intervals: [-π, 0], [π, 2π].
+            </div>
+          </div>
+
+          <!-- Negative Argument Identity -->
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3 text-xs">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300">The π – θ Rule</span>
+            <h3 class="text-base font-bold text-white">cos⁻¹(–x) = π – cos⁻¹(x)</h3>
+            <p class="text-slate-300 leading-relaxed">
+              Since the range of cos⁻¹ is strictly non-negative [0, π], negative inputs map to <strong class="text-amber-300">Quadrant II</strong>:
+            </p>
+            <div class="p-2.5 rounded-lg bg-slate-950 font-mono text-amber-300 text-xs border border-slate-800">
+              cos⁻¹(-1/2) = π – π/3 = 2π/3
+            </div>
+          </div>
+
+          <!-- Cancellation Conditions -->
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3 text-xs">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300">Cancellation Rules</span>
+            <div class="space-y-2 font-mono text-slate-300">
+              <div class="p-2 rounded bg-slate-950 border border-slate-800">
+                cos(cos⁻¹ x) = x, ∀ x ∈ [-1, 1]
+              </div>
+              <div class="p-2 rounded bg-slate-950 border border-slate-800">
+                cos⁻¹(cos x) = x, ∀ x ∈ [0, π]
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-3" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 5: INVERSE TANGENT (tan⁻¹x) & COTANGENT (cot⁻¹x) -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-4" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-teal-500/30 space-y-6">
+        <div class="space-y-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-teal-500/20 text-teal-300 border border-teal-500/30">
+            § 2.2 Open Interval Branches
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Inverse Tangent (tan⁻¹x) &amp; Cotangent (cot⁻¹x)</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            Because tangent has vertical asymptotes at odd multiples of π/2 and cotangent at multiples of π, their principal branches use <strong class="text-teal-300">open intervals</strong>!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- tan⁻¹x Card -->
+          <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4 text-xs">
+            <div class="flex items-center justify-between">
+              <span class="text-xl">📈</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300">tan⁻¹x</span>
+            </div>
+            <h3 class="text-base font-bold text-white">tan⁻¹ : ℝ → (–π/2, π/2)</h3>
+            <ul class="space-y-2 text-slate-300">
+              <li>&bull; <strong>Domain:</strong> Entire real line <span class="font-mono text-white">ℝ = (–∞, ∞)</span></li>
+              <li>&bull; <strong>Range:</strong> Open interval <span class="font-mono text-teal-300">(–π/2, π/2)</span></li>
+              <li>&bull; <strong>Odd Symmetry:</strong> <span class="font-mono text-teal-300">tan⁻¹(–x) = –tan⁻¹(x)</span></li>
+              <li>&bull; <strong>Example:</strong> <span class="font-mono text-white">tan⁻¹(–√3) = –π/3</span>, <span class="font-mono text-white">tan⁻¹(1) = π/4</span></li>
+            </ul>
+          </div>
+
+          <!-- cot⁻¹x Card -->
+          <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4 text-xs">
+            <div class="flex items-center justify-between">
+              <span class="text-xl">📉</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300">cot⁻¹x</span>
+            </div>
+            <h3 class="text-base font-bold text-white">cot⁻¹ : ℝ → (0, π)</h3>
+            <ul class="space-y-2 text-slate-300">
+              <li>&bull; <strong>Domain:</strong> Entire real line <span class="font-mono text-white">ℝ = (–∞, ∞)</span></li>
+              <li>&bull; <strong>Range:</strong> Open interval <span class="font-mono text-amber-300">(0, π)</span></li>
+              <li>&bull; <strong>Negative Rule:</strong> <span class="font-mono text-amber-300">cot⁻¹(–x) = π – cot⁻¹(x)</span></li>
+              <li>&bull; <strong>Example 2:</strong> <span class="font-mono text-white">cot⁻¹(–1/√3) = π – π/3 = 2π/3</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-4" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 6: INVERSE COSECANT (cosec⁻¹x) & SECANT (sec⁻¹x) -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-5" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-sky-500/30 space-y-6">
+        <div class="space-y-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-sky-500/20 text-sky-300 border border-sky-500/30">
+            § 2.2 Split Domain &amp; Singular Points
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Inverse Cosecant (cosec⁻¹x) &amp; Secant (sec⁻¹x)</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            Since cosecant and secant assume values $|y| \ge 1$, their domains exclude the interior interval <strong class="text-rose-400">(–1, 1)</strong>, and their ranges omit singular asymptote angles.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4 text-xs">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/20 text-sky-300">cosec⁻¹x</span>
+            <h3 class="text-base font-bold text-white">cosec⁻¹ : ℝ – (–1, 1) → [–π/2, π/2] – {0}</h3>
+            <p class="text-slate-300 leading-relaxed">
+              Because <span class="font-mono">sin 0 = 0</span>, <span class="font-mono">cosec 0</span> is undefined. Hence <strong class="text-sky-300">{0}</strong> is excluded from the principal value branch.
+            </p>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 font-mono text-slate-300">
+              cosec⁻¹(2) = π/6 &bull; cosec⁻¹(–√2) = –π/4
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4 text-xs">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300">sec⁻¹x</span>
+            <h3 class="text-base font-bold text-white">sec⁻¹ : ℝ – (–1, 1) → [0, π] – {π/2}</h3>
+            <p class="text-slate-300 leading-relaxed">
+              Because <span class="font-mono">cos(π/2) = 0</span>, <span class="font-mono">sec(π/2)</span> is undefined. Hence <strong class="text-indigo-300">{π/2}</strong> is excluded from the principal value branch.
+            </p>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 font-mono text-slate-300">
+              sec⁻¹(2/√3) = π/6 &bull; sec⁻¹(–2) = π – π/3 = 2π/3
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-5" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 7: MASTER REFERENCE TABLE & VALUE CALCULATOR -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-6" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-cyan-500/30 space-y-6">
+        <div class="space-y-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+            § 2.2 Master Textbook Summary Table
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Domains and Principal Value Branches of All 6 Functions</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            Memorize this table: whenever an inverse trigonometric function is evaluated without mentioning a specific branch, it <strong class="text-cyan-300">always refers to the Principal Value Branch</strong>.
+          </p>
+        </div>
+
+        <!-- Master Table -->
+        <div class="overflow-x-auto rounded-2xl border border-slate-800 bg-slate-950/80">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="bg-slate-900 border-b border-slate-800 text-slate-400 font-bold uppercase tracking-wider">
+                <th class="p-3.5">Function</th>
+                <th class="p-3.5">Domain</th>
+                <th class="p-3.5">Range (Principal Value Branch)</th>
+                <th class="p-3.5">Negative Rule</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800 font-mono text-slate-200">
+              <tr class="hover:bg-slate-900/50">
+                <td class="p-3 text-cyan-300 font-bold">y = sin⁻¹ x</td>
+                <td class="p-3">[–1, 1]</td>
+                <td class="p-3 text-emerald-300 font-bold">[–π/2, π/2]</td>
+                <td class="p-3 text-slate-400">sin⁻¹(–x) = –sin⁻¹ x</td>
+              </tr>
+              <tr class="hover:bg-slate-900/50">
+                <td class="p-3 text-cyan-300 font-bold">y = cos⁻¹ x</td>
+                <td class="p-3">[–1, 1]</td>
+                <td class="p-3 text-amber-300 font-bold">[0, π]</td>
+                <td class="p-3 text-amber-400 font-bold">cos⁻¹(–x) = π – cos⁻¹ x</td>
+              </tr>
+              <tr class="hover:bg-slate-900/50">
+                <td class="p-3 text-cyan-300 font-bold">y = tan⁻¹ x</td>
+                <td class="p-3">ℝ</td>
+                <td class="p-3 text-emerald-300 font-bold">(–π/2, π/2)</td>
+                <td class="p-3 text-slate-400">tan⁻¹(–x) = –tan⁻¹ x</td>
+              </tr>
+              <tr class="hover:bg-slate-900/50">
+                <td class="p-3 text-cyan-300 font-bold">y = cot⁻¹ x</td>
+                <td class="p-3">ℝ</td>
+                <td class="p-3 text-amber-300 font-bold">(0, π)</td>
+                <td class="p-3 text-amber-400 font-bold">cot⁻¹(–x) = π – cot⁻¹ x</td>
+              </tr>
+              <tr class="hover:bg-slate-900/50">
+                <td class="p-3 text-cyan-300 font-bold">y = sec⁻¹ x</td>
+                <td class="p-3">ℝ – (–1, 1)</td>
+                <td class="p-3 text-amber-300 font-bold">[0, π] – {π/2}</td>
+                <td class="p-3 text-amber-400 font-bold">sec⁻¹(–x) = π – sec⁻¹ x</td>
+              </tr>
+              <tr class="hover:bg-slate-900/50">
+                <td class="p-3 text-cyan-300 font-bold">y = cosec⁻¹ x</td>
+                <td class="p-3">ℝ – (–1, 1)</td>
+                <td class="p-3 text-emerald-300 font-bold">[–π/2, π/2] – {0}</td>
+                <td class="p-3 text-slate-400">cosec⁻¹(–x) = –cosec⁻¹ x</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="checkpoint-slide-6" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 8: THE PRINCIPAL ANGLE TRAP (REDUCTION IDENTITIES) -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-7" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-rose-500/30 space-y-6">
+        <div class="space-y-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-rose-500/20 text-rose-300 border border-rose-500/30">
+            § 2.3 The Classic Board Exam Trap
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Beware the Cancellation Identity Trap!</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            Many students mistakenly write <span class="font-mono text-rose-400">sin⁻¹(sin θ) = θ</span> blindly! This is ONLY true if <strong class="text-white">θ lies within the principal value branch</strong>!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs">
+          <!-- Trap 1: sin⁻¹(sin 2π/3) -->
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3 font-mono">
+            <span class="text-rose-400 font-bold block text-sm">Example: sin⁻¹(sin 2π/3)</span>
+            <div class="p-2.5 rounded-lg bg-rose-950/40 border border-rose-500/30 text-rose-300 text-[11px]">
+              ✕ Wrong: 2π/3 (∉ [–π/2, π/2])
+            </div>
+            <div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 text-[11px] space-y-1">
+              <div>sin(2π/3) = sin(π – π/3) = sin(π/3)</div>
+              <div class="font-bold">✓ Correct Answer: π/3</div>
+            </div>
+          </div>
+
+          <!-- Trap 2: cos⁻¹(cos 7π/6) -->
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3 font-mono">
+            <span class="text-rose-400 font-bold block text-sm">Example: cos⁻¹(cos 7π/6)</span>
+            <div class="p-2.5 rounded-lg bg-rose-950/40 border border-rose-500/30 text-rose-300 text-[11px]">
+              ✕ Wrong: 7π/6 (∉ [0, π])
+            </div>
+            <div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 text-[11px] space-y-1">
+              <div>cos(7π/6) = cos(2π – 5π/6) = cos(5π/6)</div>
+              <div class="font-bold">✓ Correct Answer: 5π/6</div>
+            </div>
+          </div>
+
+          <!-- Trap 3: tan⁻¹(tan 3π/4) -->
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3 font-mono">
+            <span class="text-rose-400 font-bold block text-sm">Example: tan⁻¹(tan 3π/4)</span>
+            <div class="p-2.5 rounded-lg bg-rose-950/40 border border-rose-500/30 text-rose-300 text-[11px]">
+              ✕ Wrong: 3π/4 (∉ (–π/2, π/2))
+            </div>
+            <div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 text-[11px] space-y-1">
+              <div>tan(3π/4) = tan(π – π/4) = –tan(π/4)</div>
+              <div class="font-bold">✓ Correct Answer: –π/4</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-7" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 9: PROPERTIES & INDIAN ROOTS OF TRIGONOMETRY -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-8" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-indigo-500/30 space-y-6">
+        <div class="space-y-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+            § 2.3 &amp; Historical Note
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Algebraic Properties &amp; Ancient Indian Heritage</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            The study of trigonometry originated in ancient India before traveling to Arabia and Europe. The Sanskrit term <strong class="text-indigo-300">jya</strong> (half-chord) gave rise to the Latin <strong class="text-white">sinus (sine)</strong>.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
+          <!-- Algebraic Transformations -->
+          <div class="md:col-span-6 p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3 font-mono text-xs">
+            <span class="text-cyan-400 font-bold block text-sm">Key NCERT Simplifications:</span>
+            <div class="space-y-2 text-slate-300">
+              <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800">
+                3 sin⁻¹ x = sin⁻¹(3x – 4x³) [Put x = sin θ]
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800">
+                3 cos⁻¹ x = cos⁻¹(4x³ – 3x) [Put x = cos θ]
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800">
+                sin(tan⁻¹ x) = x / √(1 + x²) [Right Triangle Model]
+              </div>
+            </div>
+          </div>
+
+          <!-- Historical Note -->
+          <div class="md:col-span-6 p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-3 text-xs leading-relaxed text-slate-300">
+            <span class="text-amber-400 font-bold block text-sm">Historical Timeline from Textbook:</span>
+            <p>&bull; <strong class="text-white">Aryabhata (476 A.D.):</strong> First calculated tables of sine (*ardha-jya*) in the *Aryabhatiya*.</p>
+            <p>&bull; <strong class="text-white">Bhaskara I (600 A.D.):</strong> Formula to find sine values for angles &gt; 90°.</p>
+            <p>&bull; <strong class="text-white">Yuktibhasa (16th c. Kerala School):</strong> Contains early geometric proof for the expansion of <span class="font-mono text-cyan-300">sin(A + B)</span>.</p>
+            <p>&bull; <strong class="text-white">Sir John F.W. Herschel (1813):</strong> Introduced the notation <span class="font-mono text-indigo-300">sin⁻¹x, cos⁻¹x</span> for arc sine and arc cosine.</p>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-8" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 10: QUIZ PART 1 (QUESTIONS 1 - 10: DOMAINS & RANGES) -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-9" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-cyan-500/40 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+              🎯 Quiz Challenge 1 of 4 • Questions 1 to 10
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-black text-white">Domains, Ranges &amp; Principal Value Branches</h2>
+            <p class="text-xs text-slate-400">10 questions testing core definitions, intervals, and NCERT branch conventions.</p>
+          </div>
+
+          <div class="px-4 py-2.5 rounded-2xl bg-slate-900 border border-slate-800 text-center shrink-0">
+            <span class="text-[10px] uppercase font-bold text-slate-400 block">Quiz 1 Score</span>
+            <span class="text-xl font-mono font-black text-cyan-400" id="quizScoreDisplay-1">0 / 10</span>
+          </div>
+        </div>
+
+        <!-- 10 Questions Container -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs" id="quizContainer-1">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
+          <span class="text-xs text-slate-400">Review your answers or attempt this set again:</span>
+          <button onclick="resetQuiz(1)" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 transition cursor-pointer">
+            🔄 Reset Quiz 1
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 11: QUIZ PART 2 (QUESTIONS 11 - 20: NEGATIVE ARGUMENTS) -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-10" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-indigo-500/40 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+              🎯 Quiz Challenge 2 of 4 • Questions 11 to 20
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-black text-white">Negative Arguments &amp; Standard Value Evaluations</h2>
+            <p class="text-xs text-slate-400">10 questions covering odd/even signs, complementary identities, and principal angles.</p>
+          </div>
+
+          <div class="px-4 py-2.5 rounded-2xl bg-slate-900 border border-slate-800 text-center shrink-0">
+            <span class="text-[10px] uppercase font-bold text-slate-400 block">Quiz 2 Score</span>
+            <span class="text-xl font-mono font-black text-indigo-400" id="quizScoreDisplay-2">0 / 10</span>
+          </div>
+        </div>
+
+        <!-- 10 Questions Container -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs" id="quizContainer-2">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
+          <span class="text-xs text-slate-400">Review your answers or attempt this set again:</span>
+          <button onclick="resetQuiz(2)" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 transition cursor-pointer">
+            🔄 Reset Quiz 2
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 12: QUIZ PART 3 (QUESTIONS 21 - 30: ANGLE REDUCTION TRAPS) -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-11" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-amber-500/40 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-amber-500/20 text-amber-300 border border-amber-500/30">
+              🎯 Quiz Challenge 3 of 4 • Questions 21 to 30
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-black text-white">Angle Reduction Traps &amp; Function Composition</h2>
+            <p class="text-xs text-slate-400">10 questions covering domain boundary traps, sin⁻¹(sin θ), and composite trigonometric expressions.</p>
+          </div>
+
+          <div class="px-4 py-2.5 rounded-2xl bg-slate-900 border border-slate-800 text-center shrink-0">
+            <span class="text-[10px] uppercase font-bold text-slate-400 block">Quiz 3 Score</span>
+            <span class="text-xl font-mono font-black text-amber-400" id="quizScoreDisplay-3">0 / 10</span>
+          </div>
+        </div>
+
+        <!-- 10 Questions Container -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs" id="quizContainer-3">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
+          <span class="text-xs text-slate-400">Review your answers or attempt this set again:</span>
+          <button onclick="resetQuiz(3)" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 transition cursor-pointer">
+            🔄 Reset Quiz 3
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 13: QUIZ PART 4 (QUESTIONS 31 - 40: SIMPLIFICATIONS & IDENTITIES) -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-12" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-emerald-500/40 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+              🎯 Quiz Challenge 4 of 4 • Questions 31 to 40
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-black text-white">Simplifications, Algebraic Identities &amp; Equations</h2>
+            <p class="text-xs text-slate-400">10 high-yield questions on algebraic substitutions, half-angle formulas, and equation solving.</p>
+          </div>
+
+          <div class="px-4 py-2.5 rounded-2xl bg-slate-900 border border-slate-800 text-center shrink-0">
+            <span class="text-[10px] uppercase font-bold text-slate-400 block">Quiz 4 Score</span>
+            <span class="text-xl font-mono font-black text-emerald-400" id="quizScoreDisplay-4">0 / 10</span>
+          </div>
+        </div>
+
+        <!-- 10 Questions Container -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs" id="quizContainer-4">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
+          <span class="text-xs text-slate-400">Review your answers or attempt this set again:</span>
+          <button onclick="resetQuiz(4)" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 transition cursor-pointer">
+            🔄 Reset Quiz 4
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- BOTTOM CONTROLLER DOCK -->
+  <!-- ========================================================================= -->
+  <footer style="flex-shrink: 0;" class="border-t border-slate-800/90 bg-slate-950/95 p-3 sm:p-4 z-40 sticky bottom-0">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+      
+      <!-- LEFT: Previous & Auto-Play Controls -->
+      <div class="flex items-center space-x-2 shrink-0">
+        <button id="prevSlideBtn" onclick="prevSlide()" class="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold border border-slate-700 flex items-center space-x-1 cursor-pointer transition-all disabled:opacity-40 disabled:cursor-not-allowed">
+          <span>⏮</span>
+          <span>Previous</span>
+        </button>
+
+        <button id="autoPlaySlideshowBtn" onclick="toggleAutoPlaySlideshow()" class="px-4 py-1.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold shadow-lg shadow-cyan-600/30 flex items-center space-x-1.5 cursor-pointer transition-all">
+          <span id="autoPlayIcon">▶</span>
+          <span id="autoPlayText">Auto-Play</span>
+        </button>
+      </div>
+
+      <!-- CENTER: Slide Jump Pills (13 Slides) -->
+      <div class="flex items-center space-x-1 overflow-x-auto max-w-full pb-1 md:pb-0 text-xs custom-scrollbar">
+        <button onclick="goToSlide(0)" class="slide-pill px-2.5 py-1 rounded-lg bg-cyan-600 text-white font-bold transition-all cursor-pointer" title="1. Historical Foundations & Restrictions">1. Intro</button>
+        <button onclick="goToSlide(1)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="2. Inverse Sine Function (sin⁻¹x)">2. sin⁻¹x</button>
+        <button onclick="goToSlide(2)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="3. Reflection Across y = x Mirror">3. y = x Mirror</button>
+        <button onclick="goToSlide(3)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="4. Inverse Cosine Function (cos⁻¹x)">4. cos⁻¹x</button>
+        <button onclick="goToSlide(4)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="5. Inverse Tangent & Cotangent (tan⁻¹x & cot⁻¹x)">5. tan⁻¹ &amp; cot⁻¹</button>
+        <button onclick="goToSlide(5)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="6. Inverse Secant & Cosecant (sec⁻¹x & cosec⁻¹x)">6. sec⁻¹ &amp; cosec⁻¹</button>
+        <button onclick="goToSlide(6)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="7. The Master Domain & Range Table">7. Master Table</button>
+        <button onclick="goToSlide(7)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="8. Common Exam Angle Traps & Reductions">8. Angle Traps</button>
+        <button onclick="goToSlide(8)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="9. Algebraic Properties & Conversions">9. Properties</button>
+        <button onclick="goToSlide(9)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="Quiz 1: Domain, Range & Principal Values">10. Quiz 1</button>
+        <button onclick="goToSlide(10)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="Quiz 2: Angle Reduction & Tricky Negative Arguments">11. Quiz 2</button>
+        <button onclick="goToSlide(11)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="Quiz 3: Algebraic Conversions & Composition Rules">12. Quiz 3</button>
+        <button onclick="goToSlide(12)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="Quiz 4: Advanced Transformations & Mixed Identities">13. Quiz 4</button>
+      </div>
+
+      <!-- RIGHT (PUT NEXT BUTTON TO LAST IN RIGHT SIDE): Next Slide Button & Last Slide Message -->
+      <div class="flex items-center space-x-2 shrink-0 justify-end">
+        <div id="lastSlideNotice" style="display: none;" class="px-3.5 py-1.5 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold flex items-center space-x-1.5 shadow-lg animate-pulse">
+          <span>🎉</span>
+          <span>You have reached the last slide of this chapter</span>
+        </div>
+
+        <button id="nextSlideBtn" onclick="nextSlide()" class="px-5 py-2 rounded-xl bg-gradient-to-r from-cyan-600 to-teal-500 hover:from-cyan-500 hover:to-teal-400 text-white text-xs font-bold shadow-lg shadow-cyan-600/30 flex items-center space-x-1.5 cursor-pointer transition-all active:scale-95">
+          <span>Next Slide</span>
+          <span>⏭</span>
+        </button>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT ENGINE: SLIDES, NARRATION, SFX & SIMULATIONS -->
+  <!-- ========================================================================= -->
+  <script>
+    let currentSlide = 0;
+    const totalSlides = 13;
+    let sfxEnabled = true;
+    let voiceEnabled = true;
+    let isAutoPlaySlideshow = false;
+    let autoPlayInterval = null;
+    let countdownInterval = null;
+
+    // Web Audio Synthesizer Context
+    let audioCtx = null;
+    function getAudioCtx() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, type = 'sine', duration = 0.12, gainVal = 0.1) {
+      if (!sfxEnabled) return;
+      try {
+        const ctx = getAudioCtx();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(gainVal, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function playSlideTransitionTone() {
+      if (!sfxEnabled) return;
+      playTone(523.25, 'triangle', 0.1, 0.08); // C5
+      setTimeout(() => playTone(659.25, 'sine', 0.15, 0.08), 80); // E5
+      setTimeout(() => playTone(783.99, 'sine', 0.2, 0.08), 160); // G5
+    }
+
+    function playSuccessTone() {
+      if (!sfxEnabled) return;
+      playTone(587.33, 'sine', 0.08, 0.1); // D5
+      setTimeout(() => playTone(739.99, 'sine', 0.1, 0.1), 70); // F#5
+      setTimeout(() => playTone(880.00, 'sine', 0.25, 0.12), 140); // A5
+    }
+
+    function playWrongTone() {
+      if (!sfxEnabled) return;
+      playTone(261.63, 'sawtooth', 0.15, 0.08);
+      setTimeout(() => playTone(233.08, 'sawtooth', 0.25, 0.08), 100);
+    }
+
+    // Voice Narration Data for all 13 Slides
+    const slideNarration = [
+      "Welcome to Chapter 2: Inverse Trigonometric Functions. In Chapter 1, we established that a function possesses an inverse if and only if it is bijective, meaning one-one and onto. Natural trigonometric functions are periodic, repeating across the real line, and are therefore many-one. To define their inverses, we must restrict their domains to intervals where they become strictly monotonic and bijective.",
+      "Slide 2 explores the Inverse Sine Function, or arcsine. By restricting the domain of sine to the closed interval minus pi by 2 to pi by 2, it maps bijectively onto minus 1 to 1. The inverse sine function maps minus 1 to 1 back to minus pi by 2 to pi by 2. This standard interval is called the Principal Value Branch. Remember that sine inverse of x is not the reciprocal 1 over sine x.",
+      "Slide 3 illustrates the geometric symmetry of inverse functions. If point a comma b lies on the sine curve, then b comma a lies on the inverse sine curve. The entire graph of the inverse function is simply the mirror reflection of the original function across the line y equals x.",
+      "Slide 4 covers the Inverse Cosine Function. Cosine cannot be restricted to minus pi by 2 to pi by 2 because cosine is an even function, giving equal values for opposite angles. Instead, its principal domain is 0 to pi. For negative arguments, cosine inverse of minus x equals pi minus cosine inverse of x, projecting into the second quadrant.",
+      "Slide 5 introduces Inverse Tangent and Cotangent. Tangent is bijective on the open interval minus pi by 2 to pi by 2, while cotangent is bijective on the open interval 0 to pi. For negative inputs, tangent inverse is odd, whereas cotangent inverse follows the pi minus theta rule.",
+      "Slide 6 details Inverse Secant and Cosecant. Since secant and cosecant take values with magnitude greater than or equal to 1, their domains exclude the interval minus 1 to 1. Cosecant inverse omits zero, while secant inverse omits pi by 2 from their principal branches.",
+      "Slide 7 is the master reference table summarizing domains, principal value branches, and negative argument rules for all six functions. Remember: unless specified otherwise, any inverse trigonometric expression always evaluates to its principal value branch.",
+      "Slide 8 uncovers the classic Board Exam angle trap. Writing sine inverse of sine theta equals theta is only valid when theta lies inside minus pi by 2 to pi by 2. For sine of 2 pi by 3, the angle is reduced using sine of pi minus pi by 3, yielding the correct principal value pi by 3.",
+      "Slide 9 covers key algebraic properties and ancient Indian roots. Trigonometry originated with Aryabhata in 476 AD, Brahmagupta, and Bhaskara, while the 16th-century Malayalam text Yuktibhasa proved the sine addition formula. Sir John Herschel introduced the inverse notation in 1813.",
+      "Welcome to Quiz Challenge 1 of 4. Test your knowledge on Domains, Ranges, and Principal Value Branches across ten targeted questions.",
+      "In Quiz Challenge 2 of 4, test your mastery of negative argument signs and standard angle evaluations for all six inverse trigonometric functions.",
+      "Quiz Challenge 3 of 4 explores tricky angle reduction traps, function compositions, and principal branch boundary constraints.",
+      "Welcome to the final slide and Quiz Challenge 4 of 4. Solve ten advanced algebraic simplifications, substitutions, and inverse trigonometric equations."
+    ];
+
+    function speakNarration(text) {
+      if (!voiceEnabled || !('speechSynthesis' in window) || typeof SpeechSynthesisUtterance === 'undefined') return;
+      try {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 1.0;
+        utterance.pitch = 1.0;
+        window.speechSynthesis.speak(utterance);
+      } catch (e) {}
+    }
+
+    function toggleVoice() {
+      voiceEnabled = !voiceEnabled;
+      const icon = document.getElementById('voiceIcon');
+      const text = document.getElementById('voiceText');
+      if (voiceEnabled) {
+        icon.textContent = '🔊';
+        text.textContent = 'Voice: ON';
+        speakNarration(slideNarration[currentSlide]);
+      } else {
+        icon.textContent = '🔇';
+        text.textContent = 'Voice: OFF';
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
+      }
+    }
+
+    function toggleSfx() {
+      sfxEnabled = !sfxEnabled;
+      const icon = document.getElementById('sfxIcon');
+      const text = document.getElementById('sfxText');
+      if (sfxEnabled) {
+        icon.textContent = '🎵';
+        text.textContent = 'SFX: ON';
+        playTone(523.25, 'sine', 0.1);
+      } else {
+        icon.textContent = '🔇';
+        text.textContent = 'SFX: OFF';
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // Slide Navigation Core
+    // -------------------------------------------------------------------------
+    function goToSlide(idx) {
+      if (idx < 0) idx = 0;
+      if (idx >= totalSlides) idx = totalSlides - 1;
+      currentSlide = idx;
+      updateSlideUI();
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        goToSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        goToSlide(currentSlide - 1);
+      }
+    }
+
+    function updateSlideUI() {
+      // Toggle slide visibility
+      document.querySelectorAll('.slide-section').forEach((sec, i) => {
+        if (i === currentSlide) {
+          sec.classList.add('active');
+        } else {
+          sec.classList.remove('active');
+        }
+      });
+
+      // Update counter
+      document.getElementById('slideCounterCurrent').textContent = currentSlide + 1;
+
+      // Update pills
+      document.querySelectorAll('.slide-pill').forEach((pill, i) => {
+        if (i === currentSlide) {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-cyan-600 text-white font-bold transition-all cursor-pointer';
+        } else {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer';
+        }
+      });
+
+      // Update Previous button
+      document.getElementById('prevSlideBtn').disabled = (currentSlide === 0);
+
+      // EXACT USER SPECIFICATION: On last slide, NO NEXT SLIDE OPTION on right, show message
+      const nextBtn = document.getElementById('nextSlideBtn');
+      const lastNotice = document.getElementById('lastSlideNotice');
+      if (currentSlide === totalSlides - 1) {
+        if (nextBtn) nextBtn.style.display = 'none';
+        if (lastNotice) lastNotice.style.display = 'inline-flex';
+        if (isAutoPlaySlideshow) {
+          toggleAutoPlaySlideshow();
+        }
+      } else {
+        if (nextBtn) nextBtn.style.display = 'inline-flex';
+        if (lastNotice) lastNotice.style.display = 'none';
+      }
+
+      // Audio & Speech
+      playSlideTransitionTone();
+      speakNarration(slideNarration[currentSlide]);
+
+      // Slide-specific initialization
+      if (currentSlide === 2) {
+        drawReflectionGraph();
+      }
+
+      // Autoplay timer reset
+      if (isAutoPlaySlideshow) {
+        resetAutoPlayCountdown();
+      }
+    }
+
+    function toggleAutoPlaySlideshow() {
+      const btn = document.getElementById('autoPlaySlideshowBtn');
+      const icon = document.getElementById('autoPlayIcon');
+      const txt = document.getElementById('autoPlayText');
+      const bar = document.getElementById('autoPlayCountdownBar');
+
+      if (isAutoPlaySlideshow) {
+        isAutoPlaySlideshow = false;
+        clearInterval(countdownInterval);
+        clearTimeout(autoPlayInterval);
+        icon.textContent = '▶';
+        txt.textContent = 'Auto-Play';
+        btn.className = 'px-4 py-1.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold shadow-lg shadow-cyan-600/30 flex items-center space-x-1.5 cursor-pointer transition-all';
+        bar.style.opacity = '0';
+        bar.style.width = '0%';
+      } else {
+        if (currentSlide === totalSlides - 1) {
+          goToSlide(0);
+        }
+        isAutoPlaySlideshow = true;
+        icon.textContent = '⏸';
+        txt.textContent = 'Pause';
+        btn.className = 'px-4 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold shadow-lg shadow-amber-600/30 flex items-center space-x-1.5 cursor-pointer transition-all';
+        bar.style.opacity = '1';
+        resetAutoPlayCountdown();
+      }
+    }
+
+    function resetAutoPlayCountdown() {
+      clearInterval(countdownInterval);
+      clearTimeout(autoPlayInterval);
+
+      const bar = document.getElementById('autoPlayCountdownBar');
+      let elapsed = 0;
+      const durationMs = 12000;
+      const stepMs = 100;
+
+      countdownInterval = setInterval(() => {
+        elapsed += stepMs;
+        const pct = Math.min((elapsed / durationMs) * 100, 100);
+        if (bar) bar.style.width = pct + '%';
+        if (elapsed >= durationMs) {
+          clearInterval(countdownInterval);
+        }
+      }, stepMs);
+
+      autoPlayInterval = setTimeout(() => {
+        if (isAutoPlaySlideshow) {
+          if (currentSlide < totalSlides - 1) {
+            nextSlide();
+          } else {
+            toggleAutoPlaySlideshow();
+          }
+        }
+      }, durationMs);
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        if (currentSlide < totalSlides - 1) {
+          nextSlide();
+        }
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+      }
+    });
+
+    // -------------------------------------------------------------------------
+    // Slide 3: Graph Reflection Visualizer (Canvas)
+    // -------------------------------------------------------------------------
+    function drawReflectionGraph() {
+      const canvas = document.getElementById('reflectionCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width;
+      const h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      const cx = w / 2;
+      const cy = h / 2;
+      const scale = 55; // pixels per unit
+
+      // Draw Grid / Axes
+      ctx.strokeStyle = '#1e293b';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(0, cy); ctx.lineTo(w, cy);
+      ctx.moveTo(cx, 0); ctx.lineTo(cx, h);
+      ctx.stroke();
+
+      // Draw Mirror Line: y = x (diagonal)
+      ctx.strokeStyle = '#64748b';
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(cx - 130, cy + 130);
+      ctx.lineTo(cx + 130, cy - 130);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Draw y = sin x in cyan (x in [-pi, pi])
+      ctx.strokeStyle = '#06b6d4';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      for (let px = -w/2; px <= w/2; px += 2) {
+        const x = px / scale;
+        if (x < -Math.PI || x > Math.PI) continue;
+        const y = Math.sin(x);
+        const py = cy - y * scale;
+        if (px === -w/2) ctx.moveTo(cx + px, py);
+        else ctx.lineTo(cx + px, py);
+      }
+      ctx.stroke();
+
+      // Draw y = sin⁻¹ x in purple (x in [-1, 1], y in [-pi/2, pi/2])
+      ctx.strokeStyle = '#c084fc';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      for (let px = -scale; px <= scale; px += 2) {
+        const x = px / scale;
+        if (x < -1 || x > 1) continue;
+        const y = Math.asin(x);
+        const py = cy - y * scale;
+        if (px === -scale) ctx.moveTo(cx + px, py);
+        else ctx.lineTo(cx + px, py);
+      }
+      ctx.stroke();
+
+      // Axis Marks
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '10px JetBrains Mono';
+      ctx.fillText('(1, π/2)', cx + scale + 4, cy - (Math.PI/2) * scale);
+      ctx.fillText('(π/2, 1)', cx + (Math.PI/2) * scale - 10, cy - scale - 6);
+      ctx.fillText('0', cx + 4, cy + 12);
+    }
+
+    function animateGraphReflection() {
+      playSuccessTone();
+      drawReflectionGraph();
+    }
+
+    // -------------------------------------------------------------------------
+    // 4 QUIZ SLIDES EACH WITH 10 QUESTIONS (TOTAL 40 QUESTIONS WITH STEP-BY-STEP SOLUTIONS)
+    // -------------------------------------------------------------------------
+    const quizSets = [
+      {
+        id: 1,
+        containerId: 'quizContainer-1',
+        scoreId: 'quizScoreDisplay-1',
+        questions: [
+          {
+            id: 1,
+            question: "1. What is the Range (Principal Value Branch) of y = sin⁻¹x?",
+            options: ["[–π/2, π/2]", "[0, π]", "(–π/2, π/2)", "[–π, π]"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> The natural sine function is periodic with period 2π and is many-to-one on ℝ.<br><strong>Step 2:</strong> To invert it, its domain is restricted to the closed interval [–π/2, π/2] where it is strictly increasing and bijective with range [–1, 1].<br><strong>Conclusion:</strong> The inverse function sin⁻¹: [–1, 1] → [–π/2, π/2] has Principal Value Branch <strong>[–π/2, π/2]</strong>."
+          },
+          {
+            id: 2,
+            question: "2. What is the Domain of the inverse cosine function y = cos⁻¹x?",
+            options: ["[–1, 1]", "(–∞, ∞)", "[0, π]", "[–1, 1] – {0}"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Natural cosine takes values in [–1, 1] for all real angles.<br><strong>Step 2:</strong> By definition of an inverse mapping, the domain of cos⁻¹ is equal to the range of the restricted cosine function.<br><strong>Conclusion:</strong> The domain of cos⁻¹x is <strong>[–1, 1]</strong>."
+          },
+          {
+            id: 3,
+            question: "3. What is the Principal Value Branch (Range) of y = tan⁻¹x?",
+            options: ["[–π/2, π/2]", "(–π/2, π/2)", "(0, π)", "[0, π] – {π/2}"],
+            correct: 1,
+            explanation: "<strong>Step 1:</strong> Tangent is undefined at odd multiples of π/2 where cos x = 0 (vertical asymptotes).<br><strong>Step 2:</strong> On the open interval (–π/2, π/2), tan x is strictly increasing and bijective, mapping to (–∞, ∞).<br><strong>Conclusion:</strong> Inverting gives tan⁻¹: ℝ → (–π/2, π/2), so the Principal Value Branch is the open interval <strong>(–π/2, π/2)</strong>."
+          },
+          {
+            id: 4,
+            question: "4. The Principal Value Branch of y = sec⁻¹x is:",
+            options: ["[0, π] – {π/2}", "[–π/2, π/2] – {0}", "[0, π]", "(0, π)"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> sec x = 1 / cos x, which is undefined at x = π/2 because cos(π/2) = 0.<br><strong>Step 2:</strong> The principal domain of sec x is restricted to [0, π] omitting the asymptote point π/2.<br><strong>Conclusion:</strong> The Principal Value Branch of sec⁻¹x is <strong>[0, π] – {π/2}</strong>."
+          },
+          {
+            id: 5,
+            question: "5. The Principal Value Branch of y = cosec⁻¹x is:",
+            options: ["[0, π] – {π/2}", "[–π/2, π/2] – {0}", "[–π/2, π/2]", "(–π/2, π/2) – {0}"],
+            correct: 1,
+            explanation: "<strong>Step 1:</strong> cosec x = 1 / sin x, which is undefined at x = 0 because sin(0) = 0.<br><strong>Step 2:</strong> Restricting the sine interval [–π/2, π/2] by omitting 0 makes cosec x one-to-one and onto ℝ – (–1, 1).<br><strong>Conclusion:</strong> The Principal Value Branch of cosec⁻¹x is <strong>[–π/2, π/2] – {0}</strong>."
+          },
+          {
+            id: 6,
+            question: "6. What is the Domain of the inverse cotangent function y = cot⁻¹x?",
+            options: ["ℝ (all real numbers)", "[–1, 1]", "ℝ – (–1, 1)", "(0, π)"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> cot x = cos x / sin x takes all real values from –∞ to +∞ on its principal domain (0, π).<br><strong>Conclusion:</strong> The range of cot x is ℝ, which becomes the domain of cot⁻¹x: <strong>ℝ (all real numbers)</strong>."
+          },
+          {
+            id: 7,
+            question: "7. The Domain of the function y = sec⁻¹x is given by:",
+            options: ["ℝ – (–1, 1) or (–∞, –1] ∪ [1, ∞)", "[–1, 1]", "ℝ – [–1, 1]", "(–∞, ∞)"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Because cos x ∈ [–1, 1], its reciprocal sec x has magnitude |sec x| ≥ 1.<br><strong>Step 2:</strong> No angle produces sec x strictly between –1 and 1.<br><strong>Conclusion:</strong> The domain of sec⁻¹x is <strong>ℝ – (–1, 1)</strong>, equivalently <strong>(–∞, –1] ∪ [1, ∞)</strong>."
+          },
+          {
+            id: 8,
+            question: "8. What is the Principal Value Branch (Range) of y = cot⁻¹x?",
+            options: ["(0, π)", "[0, π]", "(–π/2, π/2)", "[–π/2, π/2] – {0}"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> cot x has vertical asymptotes at integer multiples of π, so 0 and π cannot be included.<br><strong>Step 2:</strong> On the open interval (0, π), cot x is strictly decreasing and continuous.<br><strong>Conclusion:</strong> The Principal Value Branch is the open interval <strong>(0, π)</strong>."
+          },
+          {
+            id: 9,
+            question: "9. If sin⁻¹x = y, then which condition must y satisfy?",
+            options: ["–π/2 ≤ y ≤ π/2", "0 ≤ y ≤ π", "–π/2 < y < π/2", "0 < y < π"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> By definition, y = sin⁻¹x implies sin y = x.<br><strong>Step 2:</strong> In the principal value branch for arcsine, the output y is restricted to closed interval [–π/2, π/2].<br><strong>Conclusion:</strong> <strong>–π/2 ≤ y ≤ π/2</strong>."
+          },
+          {
+            id: 10,
+            question: "10. When an inverse trig expression is evaluated without specifying a branch, which branch is used?",
+            options: ["Principal Value Branch", "Secondary branch", "Any arbitrary branch", "Positive quadrant branch"],
+            correct: 0,
+            explanation: "<strong>NCERT Standing Rule:</strong> Whenever an inverse trigonometric function is evaluated without mentioning a specific branch, it is mandatory to consider the <strong>Principal Value Branch</strong>."
+          }
+        ]
+      },
+      {
+        id: 2,
+        containerId: 'quizContainer-2',
+        scoreId: 'quizScoreDisplay-2',
+        questions: [
+          {
+            id: 11,
+            question: "11. Find the Principal Value of sin⁻¹(–1/2):",
+            options: ["–π/6", "5π/6", "–π/3", "7π/6"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Apply odd property: sin⁻¹(–x) = –sin⁻¹(x).<br><strong>Step 2:</strong> Evaluate sin⁻¹(1/2) = π/6 since sin(π/6) = 1/2 and π/6 ∈ [–π/2, π/2].<br><strong>Conclusion:</strong> sin⁻¹(–1/2) = <strong>–π/6</strong>."
+          },
+          {
+            id: 12,
+            question: "12. Find the Principal Value of cos⁻¹(–√3/2):",
+            options: ["5π/6", "–π/6", "π/6", "2π/3"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Apply the negative cosine rule: cos⁻¹(–x) = π – cos⁻¹(x).<br><strong>Step 2:</strong> cos(π/6) = √3/2 ⇒ cos⁻¹(√3/2) = π/6.<br><strong>Step 3:</strong> Compute π – π/6 = 5π/6.<br><strong>Conclusion:</strong> cos⁻¹(–√3/2) = <strong>5π/6</strong> (Quadrant II, lies in [0, π])."
+          },
+          {
+            id: 13,
+            question: "13. Find the Principal Value of tan⁻¹(–1):",
+            options: ["–π/4", "3π/4", "π/4", "–π/2"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Apply odd identity: tan⁻¹(–x) = –tan⁻¹(x).<br><strong>Step 2:</strong> tan(π/4) = 1 ⇒ tan⁻¹(1) = π/4.<br><strong>Conclusion:</strong> tan⁻¹(–1) = –(π/4) = <strong>–π/4</strong> ∈ (–π/2, π/2)."
+          },
+          {
+            id: 14,
+            question: "14. Find the Principal Value of cot⁻¹(–1/√3):",
+            options: ["2π/3", "–π/3", "π/3", "5π/6"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Apply rule for negative cotangent: cot⁻¹(–x) = π – cot⁻¹(x).<br><strong>Step 2:</strong> cot(π/3) = 1/√3 ⇒ cot⁻¹(1/√3) = π/3.<br><strong>Conclusion:</strong> cot⁻¹(–1/√3) = π – π/3 = <strong>2π/3</strong> ∈ (0, π)."
+          },
+          {
+            id: 15,
+            question: "15. Find the Principal Value of sec⁻¹(–2):",
+            options: ["2π/3", "–π/3", "π/3", "4π/3"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Apply sec⁻¹(–x) = π – sec⁻¹(x).<br><strong>Step 2:</strong> sec(π/3) = 2 ⇒ sec⁻¹(2) = π/3.<br><strong>Conclusion:</strong> sec⁻¹(–2) = π – π/3 = <strong>2π/3</strong> ∈ [0, π] – {π/2}."
+          },
+          {
+            id: 16,
+            question: "16. Find the Principal Value of cosec⁻¹(–√2):",
+            options: ["–π/4", "3π/4", "–π/2", "5π/4"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Apply cosec⁻¹(–x) = –cosec⁻¹(x).<br><strong>Step 2:</strong> cosec(π/4) = √2 ⇒ cosec⁻¹(√2) = π/4.<br><strong>Conclusion:</strong> cosec⁻¹(–√2) = –(π/4) = <strong>–π/4</strong>."
+          },
+          {
+            id: 17,
+            question: "17. Evaluate the sum sin⁻¹(1/2) + cos⁻¹(1/2):",
+            options: ["π/2", "π/3", "π/6", "π"],
+            correct: 0,
+            explanation: "<strong>Method 1 (General Identity):</strong> For all x ∈ [–1, 1], sin⁻¹x + cos⁻¹x = π/2.<br><strong>Method 2 (Direct):</strong> sin⁻¹(1/2) = π/6 and cos⁻¹(1/2) = π/3. Sum = π/6 + π/3 = 3π/6 = <strong>π/2</strong>."
+          },
+          {
+            id: 18,
+            question: "18. Evaluate tan⁻¹(1) + cos⁻¹(–1/2) + sin⁻¹(–1/2):",
+            options: ["3π/4", "π/2", "2π/3", "π"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> tan⁻¹(1) = π/4.<br><strong>Step 2:</strong> Recall identity: cos⁻¹(t) + sin⁻¹(t) = π/2 for any t ∈ [–1, 1]. Here with t = –1/2, cos⁻¹(–1/2) + sin⁻¹(–1/2) = π/2.<br><strong>Conclusion:</strong> π/4 + π/2 = <strong>3π/4</strong>."
+          },
+          {
+            id: 19,
+            question: "19. Find the value of tan⁻¹(√3) – sec⁻¹(–2):",
+            options: ["–π/3", "π/3", "0", "2π/3"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> tan⁻¹(√3) = π/3.<br><strong>Step 2:</strong> sec⁻¹(–2) = π – sec⁻¹(2) = π – π/3 = 2π/3.<br><strong>Step 3:</strong> Compute difference: π/3 – 2π/3 = <strong>–π/3</strong>."
+          },
+          {
+            id: 20,
+            question: "20. Evaluate cos⁻¹(1/2) + 2 sin⁻¹(1/2):",
+            options: ["2π/3", "π/3", "π/2", "π"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> cos⁻¹(1/2) = π/3.<br><strong>Step 2:</strong> sin⁻¹(1/2) = π/6 ⇒ 2 sin⁻¹(1/2) = 2(π/6) = π/3.<br><strong>Conclusion:</strong> π/3 + π/3 = <strong>2π/3</strong>."
+          }
+        ]
+      },
+      {
+        id: 3,
+        containerId: 'quizContainer-3',
+        scoreId: 'quizScoreDisplay-3',
+        questions: [
+          {
+            id: 21,
+            question: "21. Evaluate the expression sin⁻¹(sin 2π/3):",
+            options: ["π/3", "2π/3", "–π/3", "4π/3"],
+            correct: 0,
+            explanation: "<strong>Trap Warning:</strong> 2π/3 ∉ [–π/2, π/2], so sin⁻¹(sin θ) ≠ θ here!<br><strong>Step 1:</strong> Use reduction identity: sin(2π/3) = sin(π – π/3) = sin(π/3).<br><strong>Step 2:</strong> Since π/3 ∈ [–π/2, π/2], sin⁻¹(sin(π/3)) = <strong>π/3</strong>."
+          },
+          {
+            id: 22,
+            question: "22. Evaluate the expression cos⁻¹(cos 7π/6):",
+            options: ["5π/6", "7π/6", "π/6", "–π/6"],
+            correct: 0,
+            explanation: "<strong>Trap Warning:</strong> 7π/6 = 210° ∉ [0, π].<br><strong>Step 1:</strong> Use cos(2π – θ) = cos θ: cos(7π/6) = cos(2π – 5π/6) = cos(5π/6).<br><strong>Step 2:</strong> Since 5π/6 ∈ [0, π], cos⁻¹(cos 5π/6) = <strong>5π/6</strong>."
+          },
+          {
+            id: 23,
+            question: "23. Evaluate the expression tan⁻¹(tan 3π/4):",
+            options: ["–π/4", "3π/4", "π/4", "–3π/4"],
+            correct: 0,
+            explanation: "<strong>Trap Warning:</strong> 3π/4 = 135° ∉ (–π/2, π/2).<br><strong>Step 1:</strong> tan(3π/4) = tan(π – π/4) = –tan(π/4) = tan(–π/4).<br><strong>Step 2:</strong> Since –π/4 ∈ (–π/2, π/2), tan⁻¹(tan(–π/4)) = <strong>–π/4</strong>."
+          },
+          {
+            id: 24,
+            question: "24. Evaluate the expression cos⁻¹(cos 13π/6):",
+            options: ["π/6", "13π/6", "–π/6", "5π/6"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Rewrite 13π/6 as 2π + π/6.<br><strong>Step 2:</strong> Periodicity gives cos(2π + π/6) = cos(π/6).<br><strong>Step 3:</strong> Since π/6 ∈ [0, π], cos⁻¹(cos(π/6)) = <strong>π/6</strong>."
+          },
+          {
+            id: 25,
+            question: "25. Evaluate the expression sin⁻¹(sin 3π/5):",
+            options: ["2π/5", "3π/5", "–π/5", "π/5"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> 3π/5 = 108° > 90°, so it is outside [–π/2, π/2].<br><strong>Step 2:</strong> Use sin(π – θ) = sin θ: sin(3π/5) = sin(π – 2π/5) = sin(2π/5).<br><strong>Step 3:</strong> 2π/5 = 72° ∈ [–π/2, π/2], giving <strong>2π/5</strong>."
+          },
+          {
+            id: 26,
+            question: "26. Evaluate the value of sin(π/3 – sin⁻¹(–1/2)):",
+            options: ["1", "1/2", "0", "√3/2"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> sin⁻¹(–1/2) = –π/6.<br><strong>Step 2:</strong> Inside angle: π/3 – (–π/6) = π/3 + π/6 = 3π/6 = π/2.<br><strong>Conclusion:</strong> sin(π/2) = <strong>1</strong>."
+          },
+          {
+            id: 27,
+            question: "27. Evaluate cos(sec⁻¹x + cosec⁻¹x) for |x| ≥ 1:",
+            options: ["0", "1", "–1", "Undefined"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Apply complementary identity: sec⁻¹x + cosec⁻¹x = π/2 for all |x| ≥ 1.<br><strong>Step 2:</strong> The expression becomes cos(π/2).<br><strong>Conclusion:</strong> cos(π/2) = <strong>0</strong>."
+          },
+          {
+            id: 28,
+            question: "28. Evaluate the expression tan⁻¹(tan 7π/6):",
+            options: ["π/6", "7π/6", "–π/6", "5π/6"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> 7π/6 = 210° ∉ (–π/2, π/2).<br><strong>Step 2:</strong> Tangent has period π: tan(7π/6) = tan(π + π/6) = tan(π/6).<br><strong>Conclusion:</strong> Since π/6 ∈ (–π/2, π/2), tan⁻¹(tan π/6) = <strong>π/6</strong>."
+          },
+          {
+            id: 29,
+            question: "29. Find the value of sin(cos⁻¹(3/5)):",
+            options: ["4/5", "3/5", "5/4", "2/5"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Let θ = cos⁻¹(3/5) ⇒ cos θ = 3/5 with θ ∈ [0, π/2].<br><strong>Step 2:</strong> In a right triangle, Adjacent = 3, Hypotenuse = 5 ⇒ Opposite = √(5² – 3²) = 4.<br><strong>Conclusion:</strong> sin θ = Opposite / Hypotenuse = <strong>4/5</strong>."
+          },
+          {
+            id: 30,
+            question: "30. Evaluate tan(sin⁻¹(3/5) + cot⁻¹(3/2)):",
+            options: ["17/6", "6/17", "7/6", "11/6"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Convert both to tangent: sin⁻¹(3/5) = tan⁻¹(3/4) and cot⁻¹(3/2) = tan⁻¹(2/3).<br><strong>Step 2:</strong> Apply tan(A + B) = (tan A + tan B) / (1 – tan A · tan B):<br>Numerator = 3/4 + 2/3 = 17/12.<br>Denominator = 1 – (3/4)(2/3) = 1 – 6/12 = 6/12.<br><strong>Conclusion:</strong> (17/12) / (6/12) = <strong>17/6</strong>."
+          }
+        ]
+      },
+      {
+        id: 4,
+        containerId: 'quizContainer-4',
+        scoreId: 'quizScoreDisplay-4',
+        questions: [
+          {
+            id: 31,
+            question: "31. Simplify tan⁻¹((cos x – sin x) / (cos x + sin x)) where –π/4 < x < 3π/4:",
+            options: ["π/4 – x", "π/4 + x", "x – π/4", "π/2 – x"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Divide numerator and denominator by cos x: (1 – tan x) / (1 + tan x).<br><strong>Step 2:</strong> Since tan(π/4) = 1, this equals (tan(π/4) – tan x) / (1 + tan(π/4)tan x) = tan(π/4 – x).<br><strong>Conclusion:</strong> tan⁻¹(tan(π/4 – x)) = <strong>π/4 – x</strong>."
+          },
+          {
+            id: 32,
+            question: "32. Write tan⁻¹(x / √(a² – x²)) in simplest form for |x| < a:",
+            options: ["sin⁻¹(x/a)", "cos⁻¹(x/a)", "tan⁻¹(x/a)", "sec⁻¹(x/a)"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Put substitution x = a sin θ ⇒ θ = sin⁻¹(x/a).<br><strong>Step 2:</strong> √(a² – x²) = √(a² – a²sin²θ) = a cos θ.<br><strong>Step 3:</strong> The quotient is (a sin θ) / (a cos θ) = tan θ.<br><strong>Conclusion:</strong> tan⁻¹(tan θ) = θ = <strong>sin⁻¹(x/a)</strong>."
+          },
+          {
+            id: 33,
+            question: "33. Write tan⁻¹(√((1 – cos x)/(1 + cos x))) in simplest form for 0 < x < π:",
+            options: ["x / 2", "x", "2x", "π – x/2"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Half-angle identities: 1 – cos x = 2 sin²(x/2) and 1 + cos x = 2 cos²(x/2).<br><strong>Step 2:</strong> Radical becomes √((2 sin²(x/2))/(2 cos²(x/2))) = √(tan²(x/2)) = tan(x/2).<br><strong>Conclusion:</strong> tan⁻¹(tan(x/2)) = <strong>x / 2</strong>."
+          },
+          {
+            id: 34,
+            question: "34. For |x| < 1, what is the value of sin(tan⁻¹ x)?",
+            options: ["x / √(1 + x²)", "1 / √(1 + x²)", "x / √(1 – x²)", "1 / √(1 – x²)"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Let θ = tan⁻¹x ⇒ tan θ = x / 1.<br><strong>Step 2:</strong> By Pythagorean theorem, Opposite = x, Adjacent = 1, Hypotenuse = √(1 + x²).<br><strong>Conclusion:</strong> sin θ = Opposite / Hypotenuse = <strong>x / √(1 + x²)</strong>."
+          },
+          {
+            id: 35,
+            question: "35. For any real x, the value of cos(tan⁻¹ x) is:",
+            options: ["1 / √(1 + x²)", "x / √(1 + x²)", "1 / √(1 – x²)", "√(1 + x²)"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Let θ = tan⁻¹x ⇒ tan θ = x / 1.<br><strong>Step 2:</strong> In the reference right triangle, Adjacent side = 1, Hypotenuse = √(1 + x²).<br><strong>Conclusion:</strong> cos θ = Adjacent / Hypotenuse = <strong>1 / √(1 + x²)</strong>."
+          },
+          {
+            id: 36,
+            question: "36. If tan⁻¹x + tan⁻¹y = π/4 with xy < 1, then x + y + xy equals:",
+            options: ["1", "0", "–1", "2"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Apply formula: tan⁻¹((x + y)/(1 – xy)) = π/4.<br><strong>Step 2:</strong> Take tangent of both sides: (x + y)/(1 – xy) = tan(π/4) = 1.<br><strong>Step 3:</strong> Cross multiply: x + y = 1 – xy.<br><strong>Conclusion:</strong> x + y + xy = <strong>1</strong>."
+          },
+          {
+            id: 37,
+            question: "37. Solve the equation sin⁻¹(1 – x) – 2 sin⁻¹x = π/2. The valid value of x is:",
+            options: ["0", "1/2", "0, 1/2", "–1/2"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> sin⁻¹(1 – x) = π/2 + 2 sin⁻¹x ⇒ 1 – x = sin(π/2 + 2 sin⁻¹x) = cos(2 sin⁻¹x).<br><strong>Step 2:</strong> Use cos(2θ) = 1 – 2 sin²θ: 1 – x = 1 – 2x² ⇒ 2x² – x = 0 ⇒ x(2x – 1) = 0.<br><strong>Step 3:</strong> Testing roots: x = 1/2 gives sin⁻¹(1/2) – 2(π/6) = –π/6 ≠ π/2 (extraneous). x = 0 gives sin⁻¹(1) – 0 = π/2 (valid).<br><strong>Conclusion:</strong> <strong>x = 0</strong> only."
+          },
+          {
+            id: 38,
+            question: "38. What is the value of tan(1/2 cos⁻¹(√5/3))?",
+            options: ["(3 – √5) / 2", "(3 + √5) / 2", "(1 – √5) / 2", "(2 – √5) / 3"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Let θ = cos⁻¹(√5/3) ⇒ cos θ = √5/3.<br><strong>Step 2:</strong> Use tan(θ/2) = √((1 – cos θ)/(1 + cos θ)) = √((3 – √5)/(3 + √5)).<br><strong>Step 3:</strong> Rationalize: √((3 – √5)² / (9 – 5)) = (3 – √5) / √4 = <strong>(3 – √5) / 2</strong>."
+          },
+          {
+            id: 39,
+            question: "39. Find the number of real solutions to tan⁻¹((x – 1)/(x – 2)) + tan⁻¹((x + 1)/(x + 2)) = π/4:",
+            options: ["2", "1", "0", "Infinite"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> Use tan(A + B) = 1 on the given arguments:<br>Numerator = (x–1)(x+2) + (x+1)(x–2) = 2x² – 4.<br>Denominator = (x–2)(x+2) – (x–1)(x+1) = (x²–4) – (x²–1) = –3.<br><strong>Step 2:</strong> (2x² – 4) / –3 = 1 ⇒ 2x² – 4 = –3 ⇒ 2x² = 1 ⇒ x = ±1/√2.<br><strong>Conclusion:</strong> There are exactly <strong>2</strong> real solutions."
+          },
+          {
+            id: 40,
+            question: "40. If sin⁻¹x + sin⁻¹y + sin⁻¹z = 3π/2, evaluate x¹⁰⁰ + y¹⁰⁰ + z¹⁰⁰ – 9/(x¹⁰¹ + y¹⁰¹ + z¹⁰¹):",
+            options: ["0", "3", "–3", "1"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> The maximum value of sin⁻¹t is π/2 for any real t in [–1, 1].<br><strong>Step 2:</strong> The sum of three values can reach 3π/2 only if all three attain their maximum: sin⁻¹x = sin⁻¹y = sin⁻¹z = π/2 ⇒ x = y = z = 1.<br><strong>Step 3:</strong> Substitute: 1¹⁰⁰ + 1¹⁰⁰ + 1¹⁰⁰ – 9/(1¹⁰¹ + 1¹⁰¹ + 1¹⁰¹) = 3 – 9/3 = 3 – 3 = <strong>0</strong>."
+          }
+        ]
+      }
+    ];
+
+    let userAnswers = {};
+
+    function createQuizCard(set, q) {
+      const card = document.createElement('div');
+      card.id = `quiz-card-${q.id}`;
+      card.className = 'p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-3 transition-all';
+
+      let optionsHtml = '';
+      q.options.forEach((opt, optIdx) => {
+        optionsHtml += `
+          <button onclick="handleQuizAnswer(${set.id}, ${q.id}, ${optIdx}, this)"
+                  class="quiz-opt-btn-${q.id} w-full text-left p-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-300 font-medium transition cursor-pointer flex items-center justify-between">
+            <span>${opt}</span>
+            <span class="opt-check text-xs font-bold"></span>
+          </button>
+        `;
+      });
+
+      card.innerHTML = `
+        <div class="flex items-start justify-between gap-2">
+          <div class="font-bold text-white text-xs leading-relaxed flex-1">${q.question}</div>
+          <button onclick="toggleSolution(${set.id}, ${q.id})" 
+                  id="sol-btn-${q.id}"
+                  title="Click to view full step-by-step solution"
+                  class="px-2.5 py-1 rounded-xl bg-cyan-950/70 hover:bg-cyan-900 border border-cyan-500/40 text-cyan-300 hover:text-cyan-100 text-[11px] font-bold flex items-center space-x-1 shrink-0 transition-all cursor-pointer shadow-sm">
+            <span>💡</span>
+            <span id="sol-btn-text-${q.id}">Solution</span>
+          </button>
+        </div>
+        <div class="space-y-1.5">${optionsHtml}</div>
+        <div id="quiz-feedback-${q.id}" class="hidden p-2.5 rounded-xl text-[11px] leading-relaxed"></div>
+        <div id="quiz-solution-${q.id}" class="hidden p-3.5 rounded-xl bg-slate-950/95 border border-cyan-500/40 text-slate-200 text-[11px] space-y-2 shadow-xl transition-all">
+          <div class="flex items-center space-x-1.5 text-cyan-300 font-bold border-b border-slate-800/80 pb-1.5">
+            <span>📝</span>
+            <span>Step-by-Step Solution:</span>
+            <span class="text-emerald-300 ml-auto font-mono text-[10px] bg-emerald-950/70 px-2 py-0.5 rounded-md border border-emerald-500/40 font-bold">Correct Ans: ${q.options[q.correct]}</span>
+          </div>
+          <div class="text-slate-300 leading-relaxed pt-0.5">${q.explanation}</div>
+        </div>
+      `;
+      return card;
+    }
+
+    function toggleSolution(setId, qId) {
+      const solDiv = document.getElementById(`quiz-solution-${qId}`);
+      const btnText = document.getElementById(`sol-btn-text-${qId}`);
+      const btn = document.getElementById(`sol-btn-${qId}`);
+      if (!solDiv) return;
+
+      const isHidden = solDiv.classList.contains('hidden');
+      if (isHidden) {
+        solDiv.classList.remove('hidden');
+        if (btnText) btnText.textContent = 'Hide';
+        if (btn) {
+          btn.classList.remove('bg-cyan-950/70', 'text-cyan-300');
+          btn.classList.add('bg-cyan-700', 'text-white', 'border-cyan-400');
+        }
+        playTone(659.25, 'sine', 0.08, 0.06);
+      } else {
+        solDiv.classList.add('hidden');
+        if (btnText) btnText.textContent = 'Solution';
+        if (btn) {
+          btn.classList.remove('bg-cyan-700', 'text-white', 'border-cyan-400');
+          btn.classList.add('bg-cyan-950/70', 'text-cyan-300');
+        }
+      }
+    }
+
+    function renderAllQuizzes() {
+      quizSets.forEach(set => {
+        const container = document.getElementById(set.containerId);
+        if (!container) return;
+        container.innerHTML = '';
+        set.questions.forEach(q => {
+          container.appendChild(createQuizCard(set, q));
+        });
+      });
+    }
+
+    function handleQuizAnswer(setId, qId, selectedIdx, btn) {
+      const answerKey = `${setId}-${qId}`;
+      if (userAnswers[answerKey] !== undefined) return;
+      userAnswers[answerKey] = selectedIdx;
+
+      const set = quizSets.find(s => s.id === setId);
+      const q = set.questions.find(item => item.id === qId);
+      const isCorrect = (selectedIdx === q.correct);
+      const feedback = document.getElementById(`quiz-feedback-${qId}`);
+      const card = document.getElementById(`quiz-card-${qId}`);
+      const allBtns = card.querySelectorAll(`.quiz-opt-btn-${qId}`);
+
+      allBtns.forEach((b, idx) => {
+        b.disabled = true;
+        if (idx === q.correct) {
+          b.classList.remove('bg-slate-950', 'border-slate-800');
+          b.classList.add('bg-emerald-950/60', 'border-emerald-500/60', 'text-emerald-300');
+          b.querySelector('.opt-check').textContent = '✓';
+        } else if (idx === selectedIdx && !isCorrect) {
+          b.classList.remove('bg-slate-950', 'border-slate-800');
+          b.classList.add('bg-rose-950/60', 'border-rose-500/60', 'text-rose-300');
+          b.querySelector('.opt-check').textContent = '✕';
+        }
+      });
+
+      feedback.classList.remove('hidden');
+      if (isCorrect) {
+        playSuccessTone();
+        feedback.className = 'p-2.5 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 text-[11px]';
+        feedback.innerHTML = `<strong>✓ Correct!</strong> Great job! Click the 💡 Solution button anytime to see the full derivation.`;
+      } else {
+        playWrongTone();
+        feedback.className = 'p-2.5 rounded-xl bg-rose-950/40 border border-rose-500/40 text-rose-300 text-[11px]';
+        feedback.innerHTML = `<strong>✕ Incorrect!</strong> Correct answer is <strong>${q.options[q.correct]}</strong>. Click 💡 Solution to view the step-by-step solution.`;
+      }
+
+      // Update set score
+      let setScore = 0;
+      set.questions.forEach(item => {
+        if (userAnswers[`${setId}-${item.id}`] === item.correct) {
+          setScore++;
+        }
+      });
+
+      const scoreDisplay = document.getElementById(set.scoreId);
+      if (scoreDisplay) {
+        scoreDisplay.textContent = `${setScore} / ${set.questions.length}`;
+      }
+    }
+
+    function resetQuiz(setId) {
+      const set = quizSets.find(s => s.id === setId);
+      if (!set) return;
+
+      set.questions.forEach(q => {
+        delete userAnswers[`${setId}-${q.id}`];
+      });
+
+      const scoreDisplay = document.getElementById(set.scoreId);
+      if (scoreDisplay) {
+        scoreDisplay.textContent = `0 / ${set.questions.length}`;
+      }
+
+      const container = document.getElementById(set.containerId);
+      if (container) {
+        container.innerHTML = '';
+        set.questions.forEach(q => {
+          container.appendChild(createQuizCard(set, q));
+        });
+      }
+
+      playTone(523.25, 'sine', 0.1);
+    }
+
+    // -------------------------------------------------------------------------
+    // 2 CHECKPOINT QUESTIONS FOR EACH OF THE 9 CONTENT SLIDES (WITH SOLUTIONS)
+    // -------------------------------------------------------------------------
+    const slideCheckpoints = [
+      {
+        slideIdx: 0,
+        questions: [
+          {
+            question: "1. Why cannot the natural sine function sin: ℝ → [–1, 1] be inverted directly across all real numbers ℝ?",
+            options: ["It is periodic and many-to-one on ℝ", "Its range does not include 0", "It is discontinuous", "Its derivative is zero everywhere"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> An inverse function f⁻¹ exists if and only if f is bijective (one-to-one and onto).<br><strong>Step 2:</strong> Sine is periodic with period 2π (sin 0 = sin π = sin 2π = 0), completely failing the horizontal line test across ℝ.<br><strong>Conclusion:</strong> It is <strong>periodic and many-to-one on ℝ</strong>."
+          },
+          {
+            question: "2. Which standard integral in calculus is directly evaluated using the inverse sine function?",
+            options: ["∫ 1 / √(1 – x²) dx = sin⁻¹x + C", "∫ 1 / (1 + x²) dx", "∫ √(1 – x²) dx", "∫ 1 / x dx"],
+            correct: 0,
+            explanation: "<strong>Calculus Foundation (§ 2.1):</strong> The derivative of arcsine is d/dx(sin⁻¹x) = 1/√(1 – x²).<br><strong>Conclusion:</strong> Therefore, <strong>∫ 1 / √(1 – x²) dx = sin⁻¹x + C</strong>."
+          }
+        ]
+      },
+      {
+        slideIdx: 1,
+        questions: [
+          {
+            question: "1. The notation sin⁻¹x is mathematically equivalent to:",
+            options: ["arcsin x", "(sin x)⁻¹ = 1 / sin x", "cosec x", "x / sin x"],
+            correct: 0,
+            explanation: "<strong>Warning (§ 2.2):</strong> sin⁻¹x denotes the inverse angle function <strong>arcsin x</strong>, which must NEVER be confused with the reciprocal (sin x)⁻¹ = cosec x."
+          },
+          {
+            question: "2. In which interval must the angle θ lie if θ = sin⁻¹(1/√2) in its principal value branch?",
+            options: ["[–π/2, π/2]", "[0, π]", "(–π/2, π/2)", "(0, π)"],
+            correct: 0,
+            explanation: "<strong>Definition:</strong> The Principal Value Branch of sin⁻¹ is defined by the closed interval <strong>[–π/2, π/2]</strong>. Here θ = π/4 ∈ [–π/2, π/2]."
+          }
+        ]
+      },
+      {
+        slideIdx: 2,
+        questions: [
+          {
+            question: "1. If point (a, b) lies on the curve y = sin x, which corresponding point must lie on the graph of y = sin⁻¹x?",
+            options: ["(b, a)", "(-a, -b)", "(a, -b)", "(-b, a)"],
+            correct: 0,
+            explanation: "<strong>Geometric Property (§ 2.2):</strong> Inverse functions interchange input and output coordinates: if (a, b) is on y = f(x), then <strong>(b, a)</strong> lies on y = f⁻¹(x)."
+          },
+          {
+            question: "2. Along which mirror line in the coordinate plane are the graphs of f(x) and f⁻¹(x) symmetrical?",
+            options: ["The line y = x", "The x-axis (y = 0)", "The y-axis (x = 0)", "The line y = -x"],
+            correct: 0,
+            explanation: "<strong>Geometric Law:</strong> Reflection across the 45° diagonal line <strong>y = x</strong> swaps the x and y coordinates, mapping any invertible function directly onto its inverse."
+          }
+        ]
+      },
+      {
+        slideIdx: 3,
+        questions: [
+          {
+            question: "1. Why is [–π/2, π/2] not chosen as the principal domain for inverting cosine?",
+            options: ["Cosine is even: cos(-θ) = cos θ, so it is many-to-one on [–π/2, π/2]", "Cosine has asymptotes at 0", "Cosine cannot take negative values", "The range of cosine is not [-1, 1]"],
+            correct: 0,
+            explanation: "<strong>Reason:</strong> On [–π/2, π/2], cos(-π/3) = cos(π/3) = 1/2, making cosine many-to-one. To be one-to-one, its principal domain is chosen as <strong>[0, π]</strong>."
+          },
+          {
+            question: "2. What is the principal value of cos⁻¹(–1)?",
+            options: ["π", "0", "-π", "π/2"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> cos(π) = –1 and π ∈ [0, π].<br><strong>Step 2:</strong> cos⁻¹(–x) = π – cos⁻¹(x) ⇒ cos⁻¹(–1) = π – cos⁻¹(1) = π – 0 = <strong>π</strong>."
+          }
+        ]
+      },
+      {
+        slideIdx: 4,
+        questions: [
+          {
+            question: "1. Why are the endpoints –π/2 and π/2 excluded from the range of tan⁻¹x?",
+            options: ["tan x has vertical asymptotes and is undefined at ±π/2", "tan x is always positive", "tan⁻¹x has domain (0, ∞)", "tan x is a parabola"],
+            correct: 0,
+            explanation: "<strong>Property:</strong> At x = ±π/2, cos x = 0, so tan x tends to ±∞. Because tan(±π/2) does not exist, the principal branch of tan⁻¹ is the open interval <strong>(–π/2, π/2)</strong>."
+          },
+          {
+            question: "2. What is the Principal Value Branch (Range) of y = cot⁻¹x?",
+            options: ["(0, π)", "[0, π]", "(–π/2, π/2)", "[–π/2, π/2]"],
+            correct: 0,
+            explanation: "<strong>Definition (§ 2.2):</strong> cot x is continuous, strictly decreasing, and bijective on the open interval <strong>(0, π)</strong> with range ℝ."
+          }
+        ]
+      },
+      {
+        slideIdx: 5,
+        questions: [
+          {
+            question: "1. Which point is excluded from the principal value branch of y = sec⁻¹x?",
+            options: ["π/2", "0", "π", "-π/2"],
+            correct: 0,
+            explanation: "<strong>Reason:</strong> sec x = 1 / cos x is undefined at x = π/2 because cos(π/2) = 0. Therefore, the range is <strong>[0, π] – {π/2}</strong>."
+          },
+          {
+            question: "2. Which point is excluded from the principal value branch of y = cosec⁻¹x?",
+            options: ["0", "π/2", "π", "-π/2"],
+            correct: 0,
+            explanation: "<strong>Reason:</strong> cosec x = 1 / sin x is undefined at x = 0 because sin(0) = 0. Therefore, the range is <strong>[–π/2, π/2] – {0}</strong>."
+          }
+        ]
+      },
+      {
+        slideIdx: 6,
+        questions: [
+          {
+            question: "1. Which two inverse trigonometric functions have the exact same domain ℝ (all real numbers)?",
+            options: ["tan⁻¹x and cot⁻¹x", "sin⁻¹x and cos⁻¹x", "sec⁻¹x and cosec⁻¹x", "sin⁻¹x and tan⁻¹x"],
+            correct: 0,
+            explanation: "<strong>Master Table:</strong> Both tan x and cot x have range (–∞, ∞). Thus, both <strong>tan⁻¹x and cot⁻¹x</strong> have domain ℝ."
+          },
+          {
+            question: "2. Which two inverse trigonometric functions share the domain ℝ – (–1, 1)?",
+            options: ["sec⁻¹x and cosec⁻¹x", "sin⁻¹x and cos⁻¹x", "tan⁻¹x and cot⁻¹x", "cos⁻¹x and sec⁻¹x"],
+            correct: 0,
+            explanation: "<strong>Master Table:</strong> Since |sec x| ≥ 1 and |cosec x| ≥ 1, the domains of both <strong>sec⁻¹x and cosec⁻¹x</strong> are (–∞, –1] ∪ [1, ∞) = ℝ – (–1, 1)."
+          }
+        ]
+      },
+      {
+        slideIdx: 7,
+        questions: [
+          {
+            question: "1. When is the identity sin⁻¹(sin θ) = θ strictly valid?",
+            options: ["ONLY when θ ∈ [–π/2, π/2]", "For all real numbers θ", "ONLY when θ > 0", "When θ ∈ [0, π]"],
+            correct: 0,
+            explanation: "<strong>The Board Exam Trap:</strong> sin⁻¹(sin θ) = θ is valid IF AND ONLY IF θ lies in the principal value branch <strong>[–π/2, π/2]</strong>."
+          },
+          {
+            question: "2. What is the correct principal value of sin⁻¹(sin(5π/6))?",
+            options: ["π/6", "5π/6", "-π/6", "7π/6"],
+            correct: 0,
+            explanation: "<strong>Step 1:</strong> 5π/6 = 150° ∉ [–π/2, π/2].<br><strong>Step 2:</strong> Reduce using sin(π – θ) = sin θ: sin(5π/6) = sin(π – π/6) = sin(π/6).<br><strong>Conclusion:</strong> sin⁻¹(sin(π/6)) = <strong>π/6</strong>."
+          }
+        ]
+      },
+      {
+        slideIdx: 8,
+        questions: [
+          {
+            question: "1. Which ancient Indian mathematician first calculated tables of sine (ardha-jya) in 476 A.D.?",
+            options: ["Aryabhata", "Brahmagupta", "Bhaskara I", "Madhava"],
+            correct: 0,
+            explanation: "<strong>Historical Roots (§ 2.4):</strong> Aryabhata gave the first sine tables in his 476 A.D. astronomical masterpiece <em>Aryabhatiya</em>."
+          },
+          {
+            question: "2. Who introduced the modern notation sin⁻¹x and cos⁻¹x for inverse trigonometric functions in 1813?",
+            options: ["Sir John F.W. Herschel", "Isaac Newton", "Leonhard Euler", "Carl Friedrich Gauss"],
+            correct: 0,
+            explanation: "<strong>Textbook Historical Note:</strong> English astronomer and mathematician Sir John F.W. Herschel introduced the notation <strong>sin⁻¹x, cos⁻¹x</strong> in 1813."
+          }
+        ]
+      }
+    ];
+
+    let userCheckpointAnswers = {};
+
+    function renderSlideCheckpoints() {
+      slideCheckpoints.forEach(item => {
+        const container = document.getElementById(`checkpoint-slide-${item.slideIdx}`);
+        if (!container) return;
+
+        let qCardsHtml = '';
+        item.questions.forEach((q, qIdx) => {
+          let optionsHtml = '';
+          q.options.forEach((opt, optIdx) => {
+            optionsHtml += `
+              <button onclick="handleCheckpointAnswer(${item.slideIdx}, ${qIdx}, ${optIdx}, this)"
+                      class="chk-opt-btn-${item.slideIdx}-${qIdx} w-full text-left p-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-300 font-medium transition cursor-pointer flex items-center justify-between">
+                <span>${opt}</span>
+                <span class="chk-check text-xs font-bold"></span>
+              </button>
+            `;
+          });
+
+          qCardsHtml += `
+            <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-3 transition-all" id="chk-card-${item.slideIdx}-${qIdx}">
+              <div class="flex items-start justify-between gap-2">
+                <div class="font-bold text-white text-xs leading-relaxed flex-1">${q.question}</div>
+                <button onclick="toggleCheckpointSolution(${item.slideIdx}, ${qIdx})" 
+                        id="chk-sol-btn-${item.slideIdx}-${qIdx}"
+                        title="Click to view detailed solution"
+                        class="px-2.5 py-1 rounded-xl bg-cyan-950/70 hover:bg-cyan-900 border border-cyan-500/40 text-cyan-300 hover:text-cyan-100 text-[11px] font-bold flex items-center space-x-1 shrink-0 transition-all cursor-pointer shadow-sm">
+                  <span>💡</span>
+                  <span id="chk-sol-btn-text-${item.slideIdx}-${qIdx}">Solution</span>
+                </button>
+              </div>
+              <div class="space-y-1.5">${optionsHtml}</div>
+              <div id="chk-feedback-${item.slideIdx}-${qIdx}" class="hidden p-2.5 rounded-xl text-[11px] leading-relaxed"></div>
+              <div id="chk-solution-${item.slideIdx}-${qIdx}" class="hidden p-3.5 rounded-xl bg-slate-950/95 border border-cyan-500/40 text-slate-200 text-[11px] space-y-2 shadow-xl transition-all">
+                <div class="flex items-center space-x-1.5 text-cyan-300 font-bold border-b border-slate-800/80 pb-1.5">
+                  <span>📝</span>
+                  <span>Step-by-Step Solution:</span>
+                  <span class="text-emerald-300 ml-auto font-mono text-[10px] bg-emerald-950/70 px-2 py-0.5 rounded-md border border-emerald-500/40 font-bold">Correct Ans: ${q.options[q.correct]}</span>
+                </div>
+                <div class="text-slate-300 leading-relaxed pt-0.5">${q.explanation}</div>
+              </div>
+            </div>
+          `;
+        });
+
+        container.innerHTML = `
+          <div class="space-y-4">
+            <div class="flex items-center space-x-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                ⚡ Slide Checkpoint • 2 Practice Questions
+              </span>
+              <span class="text-xs text-slate-400">Test your understanding of this slide with instant solutions</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+              ${qCardsHtml}
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function handleCheckpointAnswer(slideIdx, qIdx, selectedIdx, btn) {
+      const key = `${slideIdx}-${qIdx}`;
+      if (userCheckpointAnswers[key] !== undefined) return;
+      userCheckpointAnswers[key] = selectedIdx;
+
+      const item = slideCheckpoints.find(s => s.slideIdx === slideIdx);
+      const q = item.questions[qIdx];
+      const isCorrect = (selectedIdx === q.correct);
+
+      const feedback = document.getElementById(`chk-feedback-${slideIdx}-${qIdx}`);
+      const card = document.getElementById(`chk-card-${slideIdx}-${qIdx}`);
+      const allBtns = card.querySelectorAll(`.chk-opt-btn-${slideIdx}-${qIdx}`);
+
+      allBtns.forEach((b, idx) => {
+        b.disabled = true;
+        if (idx === q.correct) {
+          b.classList.remove('bg-slate-950', 'border-slate-800');
+          b.classList.add('bg-emerald-950/60', 'border-emerald-500/60', 'text-emerald-300');
+          b.querySelector('.chk-check').textContent = '✓';
+        } else if (idx === selectedIdx && !isCorrect) {
+          b.classList.remove('bg-slate-950', 'border-slate-800');
+          b.classList.add('bg-rose-950/60', 'border-rose-500/60', 'text-rose-300');
+          b.querySelector('.chk-check').textContent = '✕';
+        }
+      });
+
+      feedback.classList.remove('hidden');
+      if (isCorrect) {
+        playSuccessTone();
+        feedback.className = 'p-2.5 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 text-[11px]';
+        feedback.innerHTML = `<strong>✓ Correct!</strong> Great job! Click 💡 Solution anytime for complete step-by-step derivation.`;
+      } else {
+        playWrongTone();
+        feedback.className = 'p-2.5 rounded-xl bg-rose-950/40 border border-rose-500/40 text-rose-300 text-[11px]';
+        feedback.innerHTML = `<strong>✕ Incorrect!</strong> Correct answer is <strong>${q.options[q.correct]}</strong>. Click 💡 Solution to view the step-by-step solution.`;
+      }
+    }
+
+    function toggleCheckpointSolution(slideIdx, qIdx) {
+      const solDiv = document.getElementById(`chk-solution-${slideIdx}-${qIdx}`);
+      const btnText = document.getElementById(`chk-sol-btn-text-${slideIdx}-${qIdx}`);
+      const btn = document.getElementById(`chk-sol-btn-${slideIdx}-${qIdx}`);
+      if (!solDiv) return;
+
+      const isHidden = solDiv.classList.contains('hidden');
+      if (isHidden) {
+        solDiv.classList.remove('hidden');
+        if (btnText) btnText.textContent = 'Hide';
+        if (btn) {
+          btn.classList.remove('bg-cyan-950/70', 'text-cyan-300');
+          btn.classList.add('bg-cyan-700', 'text-white', 'border-cyan-400');
+        }
+        playTone(659.25, 'sine', 0.08, 0.06);
+      } else {
+        solDiv.classList.add('hidden');
+        if (btnText) btnText.textContent = 'Solution';
+        if (btn) {
+          btn.classList.remove('bg-cyan-700', 'text-white', 'border-cyan-400');
+          btn.classList.add('bg-cyan-950/70', 'text-cyan-300');
+        }
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // Initialization on Page Load
+    // -------------------------------------------------------------------------
+    document.addEventListener('DOMContentLoaded', () => {
+      renderSlideCheckpoints();
+      renderAllQuizzes();
+      updateSlideUI();
+    });
+  </script>
+</body>
+</html>
+

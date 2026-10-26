@@ -633,7 +633,12 @@
           <span>Prev</span>
         </button>
 
-        <button id="nextSlideBtn" onclick="nextSlide()" class="px-4 py-1.5 rounded-xl bg-gradient-to-r from-rose-600 to-indigo-600 hover:from-rose-500 hover:to-indigo-500 text-white text-xs font-bold shadow-lg shadow-rose-600/20 flex items-center space-x-1 cursor-pointer transition-all">
+                <div id="lastSlideNotice" style="display: none;" class="px-3.5 py-1.5 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold flex items-center space-x-1.5 shadow-lg animate-pulse">
+          <span>🎉</span>
+          <span>You have reached the last slide of this chapter</span>
+        </div>
+
+<button id="nextSlideBtn" onclick="nextSlide()" class="px-4 py-1.5 rounded-xl bg-gradient-to-r from-rose-600 to-indigo-600 hover:from-rose-500 hover:to-indigo-500 text-white text-xs font-bold shadow-lg shadow-rose-600/20 flex items-center space-x-1 cursor-pointer transition-all">
           <span>Next</span>
           <span>⏭</span>
         </button>
@@ -811,10 +816,16 @@
 
       document.getElementById('prevSlideBtn').disabled = (currentSlide === 0);
       const nextBtn = document.getElementById('nextSlideBtn');
+      const lastNotice = document.getElementById('lastSlideNotice');
       if (currentSlide === totalSlides - 1) {
-        nextBtn.innerHTML = '<span>Restart 🔄</span>';
+        if (nextBtn) nextBtn.style.display = 'none';
+        if (lastNotice) lastNotice.style.display = 'inline-flex';
+        if (typeof isAutoPlaySlideshow !== 'undefined' && isAutoPlaySlideshow) {
+          toggleAutoPlaySlideshow();
+        }
       } else {
-        nextBtn.innerHTML = '<span>Next</span><span>⏭</span>';
+        if (nextBtn) nextBtn.style.display = 'inline-flex';
+        if (lastNotice) lastNotice.style.display = 'none';
       }
 
       playSlideTransitionTone();
@@ -833,9 +844,7 @@
     }
 
     function nextSlide() {
-      if (currentSlide >= totalSlides - 1) {
-        goToSlide(0);
-      } else {
+      if (currentSlide < totalSlides - 1) {
         goToSlide(currentSlide + 1);
       }
     }

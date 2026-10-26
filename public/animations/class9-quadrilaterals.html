@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCERT Class 9 Mathematics • 4-gons (Quadrilaterals) Lab</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body);"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        @keyframes mouthMove {
+            0%, 100% { transform: scaleY(0.2); }
+            50% { transform: scaleY(1.1); }
+        }
+        .talking #teacherMouth {
+            animation: mouthMove 0.22s infinite alternate ease-in-out;
+            transform-origin: center bottom;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.78);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .glow-indigo {
+            box-shadow: 0 0 25px -5px rgba(99, 102, 241, 0.35);
+        }
+        .glow-emerald {
+            box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.35);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
+
+    <!-- Top Navigation Header -->
+    <header class="border-b border-slate-800/80 bg-slate-900/80 backdrop-blur sticky top-0 z-40 px-4 py-3">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <a href="/multimedia?syllabus=ncert&subject=mathematics&class=class9" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition">
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                </a>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">NCERT CLASS 9</span>
+                        <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">UNIT II: GEOMETRY</span>
+                        <span class="hidden md:inline-block px-2 py-0.5 rounded text-[11px] font-medium bg-slate-800 text-slate-400">CG-4 • C-4.2 • C-7.3 • CG-9</span>
+                    </div>
+                    <h1 class="text-base sm:text-lg font-bold text-slate-100 flex items-center gap-2">
+                        4-gons (Quadrilaterals) & Parallelograms Lab
+                    </h1>
+                </div>
+            </div>
+
+            <!-- Slide Picker & Audio Controls -->
+            <div class="flex items-center gap-2">
+                <div class="relative">
+                    <select id="slidePicker" class="bg-slate-800 border border-slate-700 text-slate-200 text-xs sm:text-sm rounded-lg px-2.5 py-1.5 pr-8 focus:ring-2 focus:ring-indigo-500 appearance-none font-medium">
+                        <!-- Populated by JS -->
+                    </select>
+                    <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                </div>
+
+                <button id="toggleAudioBtn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600/90 hover:bg-indigo-600 text-white text-xs sm:text-sm font-semibold shadow-lg shadow-indigo-600/20 transition">
+                    <i data-lucide="volume-2" id="audioIcon" class="w-4 h-4"></i>
+                    <span id="audioStatusText" class="hidden sm:inline">Narration ON</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Global Progress Bar -->
+        <div class="w-full bg-slate-800 h-1.5 mt-2 rounded-full overflow-hidden">
+            <div id="slideProgressBar" class="bg-gradient-to-r from-indigo-500 via-sky-400 to-emerald-400 h-full transition-all duration-300" style="width: 5%;"></div>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="flex-1 max-w-7xl mx-auto w-full p-3 sm:p-5 flex flex-col gap-5">
+
+        <!-- Slide Header Banner -->
+        <div class="glass-panel rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 border-l-4 border-l-indigo-500">
+            <div>
+                <div class="flex items-center gap-2 text-xs font-semibold text-indigo-400 mb-1">
+                    <span id="slideBadge" class="px-2.5 py-0.5 rounded-full bg-indigo-500/10 border border-indigo-500/20">Slide 1 of 20</span>
+                    <span id="slideCategory" class="text-slate-400 uppercase tracking-wider text-[10px]">Foundations</span>
+                </div>
+                <h2 id="slideTitle" class="text-xl sm:text-2xl font-black text-white">Precise Definition & Anatomy of a 4-gon</h2>
+                <p id="slideSubtitle" class="text-xs sm:text-sm text-slate-300 mt-1 font-medium">Non-Collinear Coplanar Points, Convex vs Concave Polygons & The 360° Angle Sum Theorem</p>
+            </div>
+
+            <!-- Avatar & Teacher Speech Bubble -->
+            <div class="flex items-center gap-3 bg-slate-900/90 p-3 rounded-xl border border-slate-800 max-w-md w-full shrink-0">
+                <div id="avatarContainer" class="relative w-12 h-12 rounded-full bg-gradient-to-tr from-indigo-600 to-emerald-500 p-0.5 shrink-0 shadow-lg shadow-indigo-500/20">
+                    <svg viewBox="0 0 100 100" class="w-full h-full rounded-full bg-slate-900">
+                        <circle cx="50" cy="50" r="48" fill="#1e293b"/>
+                        <path d="M25 55 C20 30 35 15 50 15 C65 15 80 30 75 55 C70 45 65 30 50 30 C35 30 30 45 25 55 Z" fill="#6366f1"/>
+                        <circle cx="50" cy="50" r="26" fill="#fcd34d"/>
+                        <circle cx="42" cy="48" r="7" fill="none" stroke="#0f172a" stroke-width="2.5"/>
+                        <circle cx="58" cy="48" r="7" fill="none" stroke="#0f172a" stroke-width="2.5"/>
+                        <line x1="49" y1="48" x2="51" y2="48" stroke="#0f172a" stroke-width="2.5"/>
+                        <circle cx="42" cy="48" r="2.5" fill="#0f172a"/>
+                        <circle cx="58" cy="48" r="2.5" fill="#0f172a"/>
+                        <path d="M50 51 L48 55 L52 55" fill="none" stroke="#d97706" stroke-width="1.5" stroke-linecap="round"/>
+                        <ellipse id="teacherMouth" cx="50" cy="63" rx="4" ry="1.5" fill="#991b1b"/>
+                        <path d="M30 32 Q50 40 70 32 Q60 22 50 22 Q40 22 30 32 Z" fill="#4f46e5"/>
+                        <polygon points="50,10 82,24 50,32 18,24" fill="#0f172a"/>
+                        <polygon points="50,11 78,24 50,31 22,24" fill="#1e1b4b"/>
+                        <path d="M72 26 L76 38 L72 40" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+                    </svg>
+                    <span id="speechIndicator" class="absolute -bottom-1 -right-1 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-slate-900 hidden"></span>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-bold text-indigo-300">Prof. Sophia</span>
+                        <button id="replaySpeechBtn" class="text-[10px] text-slate-400 hover:text-white flex items-center gap-1">
+                            <i data-lucide="rotate-ccw" class="w-3 h-3"></i> Replay
+                        </button>
+                    </div>
+                    <p id="teacherSpeech" class="text-xs text-slate-300 line-clamp-3 italic mt-0.5 leading-snug">
+                        Welcome to 4-gons and Quadrilaterals! Let's explore how a simple diagonal reveals the secrets of parallelograms and the famous Midpoint Theorem.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dynamic Content Body -->
+        <div id="dynamicSlideContent" class="flex-1 flex flex-col gap-5">
+            <!-- Injected by renderCurrentSlide() -->
+        </div>
+
+        <!-- Last Slide Notice Banner (Strictly required on Slide 20) -->
+        <div id="lastSlideNotice" class="hidden glass-panel rounded-2xl p-6 text-center border-2 border-emerald-500/40 bg-gradient-to-r from-emerald-950/40 via-slate-900 to-indigo-950/40 shadow-xl shadow-emerald-950/30">
+            <div class="w-16 h-16 mx-auto rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 mb-3">
+                <i data-lucide="award" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white">Congratulations!</h3>
+            <p class="text-base sm:text-lg text-emerald-300 font-semibold mt-1">You have reached the last slide of this chapter</p>
+            <p class="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto mt-2">
+                You have mastered 4-gon characterisations, all parallelogram theorems, central and reflection symmetries, the Midpoint Theorem and its converse, the 2:1 median centroid proof, Varignon's Theorem, coordinate geometry of midpoints, and universal plane tessellations!
+            </p>
+            <div class="flex flex-wrap items-center justify-center gap-3 mt-4">
+                <button onclick="jumpToSlide(0)" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-2 transition">
+                    <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Restart from Slide 1
+                </button>
+                <a href="/multimedia?syllabus=ncert&subject=mathematics&class=class9" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 flex items-center gap-2 transition">
+                    <i data-lucide="book-open" class="w-4 h-4"></i> Back to Mathematics Curriculum
+                </a>
+            </div>
+        </div>
+
+        <!-- Navigation Footer -->
+        <footer class="glass-panel rounded-xl p-3 sm:p-4 flex items-center justify-between gap-4 mt-auto">
+            <button id="prevBtn" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs sm:text-sm font-semibold transition disabled:opacity-40 disabled:cursor-not-allowed">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                <span>Previous Slide</span>
+            </button>
+
+            <div class="flex items-center gap-3 text-xs sm:text-sm font-bold text-slate-400">
+                <span id="slideIndicator">Slide 1 / 20</span>
+            </div>
+
+            <button id="nextBtn" class="flex items-center gap-2 px-5 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-sky-600 hover:from-indigo-500 hover:to-sky-500 text-white text-xs sm:text-sm font-bold shadow-lg shadow-indigo-600/20 transition">
+                <span>Next Slide</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+        </footer>
+    </main>
+
+    <!-- Quiz Solution Pop-up Modal -->
+    <div id="solutionModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 hidden">
+        <div class="glass-panel max-w-2xl w-full rounded-2xl border border-indigo-500/30 shadow-2xl p-6 relative max-h-[85vh] overflow-y-auto">
+            <button id="closeSolutionBtn" class="absolute top-4 right-4 p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div class="flex items-center gap-2.5 text-xs font-bold text-emerald-400 mb-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                <span id="solutionModalBadge">Detailed Step-by-Step Solution</span>
+            </div>
+
+            <h3 id="solutionModalTitle" class="text-base sm:text-lg font-bold text-white mb-3">Question Statement</h3>
+
+            <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 mb-4">
+                <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Correct Answer</div>
+                <div id="solutionModalAns" class="text-sm font-bold text-emerald-300">Option Text</div>
+            </div>
+
+            <div>
+                <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Mathematical Proof & Justification</div>
+                <div id="solutionModalBody" class="text-xs sm:text-sm text-slate-200 leading-relaxed font-mono bg-slate-950/60 p-4 rounded-xl border border-slate-800/80 whitespace-pre-wrap">
+                    Solution text...
+                </div>
+            </div>
+
+            <div class="mt-5 flex justify-end">
+                <button onclick="closeModal()" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition">
+                    Got it, Close Solution
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Logic Scripts -->
+    <script>
+        const SLIDES_DATA = [{"id": 1, "title": "Precise Definition & Anatomy of a 4-gon (Quadrilateral)", "subtitle": "Non-Collinear Coplanar Points, Convex vs Concave Polygons & The 360\u00b0 Angle Sum Theorem", "category": "Foundations", "badge": "CG-4 \u2022 C-4.2 \u2022 Definition & Angle Sum", "summary": "What is a 4-gon? A 4-gon (or quadrilateral, from Latin 'quadri' = four and 'latus' = side) is a closed, planar geometric figure bounded by four straight line segments formed by joining four coplanar points, no three of which are collinear, such that the segments intersect only at their endpoints. A quadrilateral ABCD has 4 vertices (A, B, C, D), 4 sides (AB, BC, CD, DA), 4 interior angles (\u2220A, \u2220B, \u2220C, \u2220D), and 2 diagonals (AC, BD) connecting opposite vertices. Quadrilaterals are classified into Convex 4-gons (where every interior angle is strictly less than 180\u00b0 and all diagonals lie entirely within the interior) and Concave 4-gons (where one interior angle exceeds 180\u00b0 and one diagonal lies outside). The foundational Angle Sum Theorem states: 'The sum of all four interior angles of any planar quadrilateral is exactly 360\u00b0'. This is proven by drawing a single diagonal dividing the 4-gon into two triangles: (2 \u00d7 180\u00b0 = 360\u00b0).", "key_points": ["Formal Definition: A closed plane figure formed by 4 line segments connecting 4 coplanar points (no 3 collinear) intersecting only at endpoints.", "Anatomy: 4 vertices, 4 sides, 4 interior angles, 2 diagonals, opposite sides (no common vertex), and adjacent sides (share a vertex).", "Convex vs Concave: In convex 4-gons, all angles are < 180\u00b0 and both diagonals lie inside; in concave, one angle is reflex (> 180\u00b0).", "Angle Sum Theorem: \u2220A + \u2220B + \u2220C + \u2220D = (4 - 2) \u00d7 180\u00b0 = 360\u00b0.", "Diagonal Partition: Any single diagonal splits a 4-gon into two non-overlapping triangles, immediately establishing the 360\u00b0 sum."], "narration": "Welcome to 4-gons and Quadrilaterals! A 4-gon is simply a closed four-sided polygon in a flat plane. Did you know that no matter how you stretch or distort a quadrilateral, the sum of its four interior angles is ALWAYS exactly 360 degrees? That is because any single diagonal cuts it neatly into two triangles, each contributing 180 degrees!", "sim_title": "Interactive 4-gon Builder & 360\u00b0 Angle Sum Inspector", "checkpoints": [{"q": "What is the sum of the four interior angles of any planar quadrilateral?", "options": ["180\u00b0", "270\u00b0", "360\u00b0", "540\u00b0"], "ans": 2, "exp": "Drawing one diagonal divides any planar quadrilateral into two non-overlapping triangles. Since the angles of each triangle sum to 180\u00b0, the total interior angle sum is 2 \u00d7 180\u00b0 = 360\u00b0.", "explanation": "Drawing one diagonal divides any planar quadrilateral into two non-overlapping triangles. Since the angles of each triangle sum to 180\u00b0, the total interior angle sum is 2 \u00d7 180\u00b0 = 360\u00b0."}, {"q": "A quadrilateral ABCD has interior angles in the ratio 3 : 5 : 9 : 13. What is the measure of the largest angle?", "options": ["108\u00b0", "120\u00b0", "156\u00b0", "168\u00b0"], "ans": 2, "exp": "Let the angles be 3x, 5x, 9x, 13x. Their sum is 3x + 5x + 9x + 13x = 30x = 360\u00b0, giving x = 12\u00b0. The largest angle is 13x = 13 \u00d7 12\u00b0 = 156\u00b0.", "explanation": "Let the angles be 3x, 5x, 9x, 13x. Their sum is 3x + 5x + 9x + 13x = 30x = 360\u00b0, giving x = 12\u00b0. The largest angle is 13x = 13 \u00d7 12\u00b0 = 156\u00b0."}]}, {"id": 2, "title": "Parallelogram Definition & Equivalent Characterisations", "subtitle": "Opposite Sides Parallel, Opposite Angles Equal & The 5 Definitive Tests", "category": "Parallelograms", "badge": "CG-4 \u2022 C-4.2 \u2022 C-7.3 \u2022 Parallelogram Characterisations", "summary": "A Parallelogram is fundamentally defined as a quadrilateral in which both pairs of opposite sides are parallel: AB \u2225 CD and AD \u2225 BC. In geometry, an 'equivalent characterisation' is an alternative set of conditions that guarantees a quadrilateral is a parallelogram. In fact, a quadrilateral ABCD is a parallelogram IF AND ONLY IF any ONE of the following five conditions is satisfied: 1. Both pairs of opposite sides are parallel (Definition). 2. Both pairs of opposite sides are equal (AB = CD and AD = BC). 3. Both pairs of opposite angles are equal (\u2220A = \u2220C and \u2220B = \u2220D). 4. Adjacent (consecutive) interior angles are supplementary (e.g., \u2220A + \u2220B = 180\u00b0). 5. The two diagonals bisect each other (OA = OC and OB = OD). 6. ONE pair of opposite sides is BOTH equal and parallel (AB = CD and AB \u2225 CD). Establishing any single one of these criteria mathematically proves all the others!", "key_points": ["Primary Definition: A quadrilateral with both pairs of opposite sides parallel (AB \u2225 CD and AD \u2225 BC).", "Characterisation 1 (Equal Sides): Both pairs of opposite sides are equal in length.", "Characterisation 2 (Equal Angles): Both pairs of opposite angles are equal.", "Characterisation 3 (Supplementary Angles): Any two consecutive angles add up to 180\u00b0.", "Characterisation 4 (Diagonals Bisect): Diagonals bisect each other at their mutual intersection point.", "Golden Criterion 5: A quadrilateral is a parallelogram if ONE pair of opposite sides is both equal AND parallel."], "narration": "A parallelogram is defined as a four-sided shape with both pairs of opposite sides parallel. But here is the beauty of geometry: there are multiple equivalent ways to prove a shape is a parallelogram! If both pairs of opposite sides are equal, or opposite angles are equal, or diagonals bisect each other, it is guaranteed to be a parallelogram!", "sim_title": "Parallelogram Characterisation Tester", "checkpoints": [{"q": "Which of the following conditions alone is sufficient to prove that a quadrilateral ABCD is a parallelogram?", "options": ["One pair of opposite sides is equal, and the other pair is parallel", "One pair of opposite sides is both equal and parallel", "The diagonals are perpendicular to each other", "Two adjacent angles are equal"], "ans": 1, "exp": "Theorem 8.8 states: A quadrilateral is a parallelogram if a pair of opposite sides is both equal and parallel. Having one pair equal and a DIFFERENT pair parallel can produce an isosceles trapezium, not a parallelogram.", "explanation": "Theorem 8.8 states: A quadrilateral is a parallelogram if a pair of opposite sides is both equal and parallel. Having one pair equal and a DIFFERENT pair parallel can produce an isosceles trapezium, not a parallelogram."}, {"q": "If one interior angle of a parallelogram ABCD is 75\u00b0, what are the measures of the remaining three angles?", "options": ["75\u00b0, 75\u00b0, 75\u00b0", "105\u00b0, 75\u00b0, 105\u00b0", "115\u00b0, 65\u00b0, 115\u00b0", "90\u00b0, 90\u00b0, 90\u00b0"], "ans": 1, "exp": "Opposite angles of a parallelogram are equal (75\u00b0), and consecutive angles are supplementary (180\u00b0 - 75\u00b0 = 105\u00b0). Thus, the angles are 75\u00b0, 105\u00b0, 75\u00b0, 105\u00b0.", "explanation": "Opposite angles of a parallelogram are equal (75\u00b0), and consecutive angles are supplementary (180\u00b0 - 75\u00b0 = 105\u00b0). Thus, the angles are 75\u00b0, 105\u00b0, 75\u00b0, 105\u00b0."}]}, {"id": 3, "title": "Proofs of Core Parallelogram Theorems (Theorems 8.1, 8.2 & 8.3)", "subtitle": "Diagonal Congruence Partition, Opposite Sides Equality & Converse Proof via SSS", "category": "Theorems & Proofs", "badge": "CG-4 \u2022 C-7.3 \u2022 Theorems 8.1 - 8.3", "summary": "Theorem 8.1 states: 'A diagonal of a parallelogram divides it into two congruent triangles.' Proof: Let ABCD be a parallelogram and AC be a diagonal. Since AB \u2225 DC with transversal AC, alternate interior angles \u2220BAC = \u2220DCA. Since AD \u2225 BC with transversal AC, alternate interior angles \u2220BCA = \u2220DAC. Common side AC = CA. Therefore, \u25b3ABC \u2245 \u25b3CDA by the ASA congruence criterion! Theorem 8.2 immediately follows by CPCTC: 'In a parallelogram, opposite sides are equal' (AB = CD and BC = DA) and 'opposite angles are equal' (\u2220B = \u2220D). Theorem 8.3 is the Converse: 'If each pair of opposite sides of a quadrilateral is equal, then it is a parallelogram.' Proof: Draw diagonal AC. In \u25b3ABC and \u25b3CDA: AB = CD (given), BC = DA (given), AC = CA (common). Thus \u25b3ABC \u2245 \u25b3CDA by SSS! By CPCTC, \u2220BAC = \u2220DCA (so AB \u2225 CD) and \u2220BCA = \u2220DAC (so AD \u2225 BC). Hence ABCD is a parallelogram.", "key_points": ["Theorem 8.1: Diagonal AC divides parallelogram ABCD into two congruent triangles (\u25b3ABC \u2245 \u25b3CDA via ASA).", "Theorem 8.2: In a parallelogram, opposite sides are equal (AB = CD and BC = DA) proven directly by CPCTC.", "Theorem 8.3 (Converse): If each pair of opposite sides of a quadrilateral is equal, it is a parallelogram.", "Proof Method for Converse: SSS congruence proves alternate interior angles are equal, establishing parallel sides.", "Area Corollary: A diagonal divides a parallelogram into two triangles of equal area."], "narration": "Let's prove Theorem 8.1! Draw a diagonal AC through parallelogram ABCD. Notice the iconic Z-patterns of parallel lines: alternate interior angles match, and the diagonal is shared. By ASA, the two triangles are congruent! And by CPCTC, opposite sides must be equal. Flipping the logic gives us Theorem 8.3: if opposite sides are equal, SSS proves it's a parallelogram!", "sim_title": "Diagonal Partition & CPCTC Congruence Explorer", "checkpoints": [{"q": "By which congruence criterion does a diagonal divide a parallelogram into two congruent triangles in Theorem 8.1?", "options": ["SSS", "SAS", "ASA", "RHS"], "ans": 2, "exp": "Transversal AC creates two pairs of equal alternate interior angles, with diagonal AC acting as the common included side. Thus, \u25b3ABC \u2245 \u25b3CDA by ASA.", "explanation": "Transversal AC creates two pairs of equal alternate interior angles, with diagonal AC acting as the common included side. Thus, \u25b3ABC \u2245 \u25b3CDA by ASA."}, {"q": "In the proof of Theorem 8.3 (Converse of Theorem 8.2), which congruence criterion proves \u25b3ABC \u2245 \u25b3CDA when opposite sides are given equal?", "options": ["SSS", "ASA", "AAS", "RHS"], "ans": 0, "exp": "Since AB = CD, BC = DA, and AC = CA (common), all three corresponding sides are equal. Hence the triangles are congruent by SSS, proving alternate interior angles equal.", "explanation": "Since AB = CD, BC = DA, and AC = CA (common), all three corresponding sides are equal. Hence the triangles are congruent by SSS, proving alternate interior angles equal."}]}, {"id": 4, "title": "Parallelogram Angle Theorems & Converse (Theorems 8.4 & 8.5)", "subtitle": "Opposite Angles Equality, Consecutive Supplementary Angles & Converse Proof", "category": "Theorems & Proofs", "badge": "CG-4 \u2022 C-7.3 \u2022 Theorems 8.4 & 8.5", "summary": "Theorem 8.4 states: 'In a parallelogram, opposite angles are equal' (\u2220A = \u2220C and \u2220B = \u2220D). Proof: In parallelogram ABCD, side AB \u2225 CD with transversal AD. Consecutive interior angles on the same side of the transversal are supplementary: \u2220A + \u2220D = 180\u00b0. Similarly, AD \u2225 BC with transversal AB gives \u2220A + \u2220B = 180\u00b0. Equating the two sums: \u2220A + \u2220D = \u2220A + \u2220B \u21d2 \u2220D = \u2220B! By identical reasoning, \u2220A = \u2220C. Theorem 8.5 is the Converse: 'If in a quadrilateral, each pair of opposite angles is equal, then it is a parallelogram.' Proof: Given \u2220A = \u2220C and \u2220B = \u2220D. In quadrilateral ABCD, the angle sum is \u2220A + \u2220B + \u2220C + \u2220D = 360\u00b0. Substituting \u2220C = \u2220A and \u2220D = \u2220B yields 2\u2220A + 2\u2220B = 360\u00b0 \u21d2 \u2220A + \u2220B = 180\u00b0. Since consecutive interior angles between lines AD and BC are supplementary, line AD is parallel to BC. Similarly, AB \u2225 CD. Therefore, ABCD is a parallelogram!", "key_points": ["Theorem 8.4: Opposite angles of a parallelogram are equal (\u2220A = \u2220C and \u2220B = \u2220D).", "Consecutive Supplementary Rule: Any pair of consecutive angles sums to 180\u00b0 (co-interior angles of parallel lines).", "Theorem 8.5 (Converse): If opposite angles of a 4-gon are equal, then it is a parallelogram.", "Converse Proof Mechanism: 2\u2220A + 2\u2220B = 360\u00b0 \u21d2 \u2220A + \u2220B = 180\u00b0, proving parallel lines via consecutive interior angle converse.", "Direct Application: If an angle is a right angle (90\u00b0), all four angles become 90\u00b0, making it a rectangle."], "narration": "Theorem 8.4 tells us that opposite angles in any parallelogram are identical! Why? Because consecutive angles are co-interior angles between parallel lines, adding up to 180 degrees. If angle A plus angle D is 180, and angle A plus angle B is 180, then angle D must equal angle B!", "sim_title": "Opposite Angle Balancer & Supplementary Angle Wheel", "checkpoints": [{"q": "If two adjacent angles of a parallelogram are in the ratio 2 : 3, what is the measure of the smaller angle?", "options": ["36\u00b0", "54\u00b0", "72\u00b0", "108\u00b0"], "ans": 2, "exp": "Adjacent angles of a parallelogram are supplementary: 2x + 3x = 5x = 180\u00b0 \u21d2 x = 36\u00b0. The smaller angle is 2x = 2 \u00d7 36\u00b0 = 72\u00b0.", "explanation": "Adjacent angles of a parallelogram are supplementary: 2x + 3x = 5x = 180\u00b0 \u21d2 x = 36\u00b0. The smaller angle is 2x = 2 \u00d7 36\u00b0 = 72\u00b0."}, {"q": "In the proof of Theorem 8.5, what key fact converts 2\u2220A + 2\u2220B = 360\u00b0 into proof of parallel lines?", "options": ["Converse of Consecutive Interior Angles: If co-interior angles sum to 180\u00b0, the lines are parallel", "Pythagorean theorem", "RHS congruence", "Exterior angle theorem"], "ans": 0, "exp": "Since \u2220A + \u2220B = 180\u00b0, the consecutive interior angles on the same side of transversal AB sum to two right angles, proving AD \u2225 BC by the parallel line converse.", "explanation": "Since \u2220A + \u2220B = 180\u00b0, the consecutive interior angles on the same side of transversal AB sum to two right angles, proving AD \u2225 BC by the parallel line converse."}]}, {"id": 5, "title": "Diagonal Bisection Theorems & Converse (Theorems 8.6 & 8.7)", "subtitle": "Mutual Midpoints, Proof via Vertically Opposite Angles & Coordinate Symmetry", "category": "Theorems & Proofs", "badge": "CG-4 \u2022 C-7.3 \u2022 Theorems 8.6 & 8.7", "summary": "Theorem 8.6 states: 'The diagonals of a parallelogram bisect each other.' Proof: Let ABCD be a parallelogram with diagonals AC and BD intersecting at point O. We wish to prove OA = OC and OB = OD. Consider \u25b3AOB and \u25b3COD: AB = CD (opposite sides of a parallelogram are equal). Since AB \u2225 CD with transversal AC, alternate interior angles \u2220OAB = \u2220OCD. Since AB \u2225 CD with transversal BD, alternate interior angles \u2220OBA = \u2220ODC. Therefore, \u25b3AOB \u2245 \u25b3COD by the ASA congruence criterion! By CPCTC, OA = OC and OB = OD. Thus, point O is the mutual midpoint of both diagonals! Theorem 8.7 is the Converse: 'If the diagonals of a quadrilateral bisect each other, then it is a parallelogram.' Proof: If OA = OC and OB = OD, then in \u25b3AOB and \u25b3COD: OA = OC, OB = OD, and vertically opposite angles \u2220AOB = \u2220COD. Hence \u25b3AOB \u2245 \u25b3COD by SAS! By CPCTC, \u2220OAB = \u2220OCD (proving AB \u2225 CD) and AB = CD. A 4-gon with one pair of opposite sides equal and parallel is a parallelogram!", "key_points": ["Theorem 8.6: Diagonals AC and BD of a parallelogram bisect each other at their mutual intersection O.", "Deductive Proof: \u25b3AOB \u2245 \u25b3COD by ASA establishes OA = OC and OB = OD via CPCTC.", "Theorem 8.7 (Converse): If diagonals of a 4-gon bisect each other, it is a parallelogram.", "Converse Proof: SAS congruence between vertically opposite triangles proves alternate interior angles and side equality.", "Shared Midpoint Property: Point O is simultaneously the midpoint of AC and the midpoint of BD."], "narration": "Here is one of the most useful theorems in geometry: the diagonals of a parallelogram bisect each other! They cut each other right at their exact middle point O. The proof compares the two opposite triangles formed by the intersecting diagonals: by ASA, they are congruent, meaning OA equals OC, and OB equals OD!", "sim_title": "Diagonal Bisection & Mutual Midpoint Simulator", "checkpoints": [{"q": "In a parallelogram ABCD, diagonals AC and BD intersect at O. If AC = 16 cm and BD = 12 cm, what are the lengths of OA and OD?", "options": ["8 cm and 6 cm", "16 cm and 12 cm", "8 cm and 8 cm", "10 cm and 10 cm"], "ans": 0, "exp": "By Theorem 8.6, diagonals bisect each other. Thus OA = AC / 2 = 16 / 2 = 8 cm, and OD = BD / 2 = 12 / 2 = 6 cm.", "explanation": "By Theorem 8.6, diagonals bisect each other. Thus OA = AC / 2 = 16 / 2 = 8 cm, and OD = BD / 2 = 12 / 2 = 6 cm."}, {"q": "What congruence criterion is used to prove Theorem 8.7 (that bisecting diagonals imply a parallelogram)?", "options": ["SSS", "SAS", "ASA", "AAS"], "ans": 1, "exp": "In \u25b3AOB and \u25b3COD: OA = OC, OB = OD (given bisection), and included vertically opposite angles \u2220AOB = \u2220COD. Thus \u25b3AOB \u2245 \u25b3COD by SAS.", "explanation": "In \u25b3AOB and \u25b3COD: OA = OC, OB = OD (given bisection), and included vertically opposite angles \u2220AOB = \u2220COD. Thus \u25b3AOB \u2245 \u25b3COD by SAS."}]}, {"id": 6, "title": "Special Parallelograms: Rectangle, Rhombus & Square", "subtitle": "Hierarchical Classification, Orthogonal Diagonals & Equal Diagonals Criteria", "category": "Parallelograms", "badge": "CG-4 \u2022 C-4.2 \u2022 Special 4-gons", "summary": "All special quadrilaterals inherit all the core properties of parallelograms, but possess unique defining symmetry traits: 1. Rectangle: A parallelogram with one right angle. By supplementary and opposite angle rules, ALL four angles are 90\u00b0. Unique Property: The diagonals of a rectangle are EQUAL in length (AC = BD, proven via \u25b3ABC \u2245 \u25b3DCB by SAS). Converse: If diagonals of a parallelogram are equal, it is a rectangle. 2. Rhombus: A parallelogram with all four sides equal in length. Unique Property: The diagonals of a rhombus are PERPENDICULAR bisectors of each other (AC \u22a5 BD, proven via \u25b3AOB \u2245 \u25b3COB by SSS giving \u2220AOB = \u2220COB = 90\u00b0). Converse: If diagonals of a parallelogram are perpendicular, it is a rhombus. 3. Square: A quadrilateral that is simultaneously a rectangle and a rhombus! All four sides are equal, all four angles are 90\u00b0, and diagonals are both EQUAL and PERPENDICULAR bisectors of each other.", "key_points": ["Hierarchy: Square \u2282 Rhombus \u2282 Parallelogram; Square \u2282 Rectangle \u2282 Parallelogram.", "Rectangle Diagnostic: A parallelogram whose diagonals are equal (AC = BD).", "Rhombus Diagnostic: A parallelogram whose diagonals are perpendicular (AC \u22a5 BD) and bisect vertex angles.", "Square Diagnostic: A regular 4-gon whose diagonals are equal, perpendicular, and bisect each other.", "Kite vs Rhombus: A kite has perpendicular diagonals, but only one diagonal bisects the other (not a parallelogram in general)."], "narration": "Rectangles, rhombuses, and squares are all members of the parallelogram family! A rectangle is a parallelogram with four right angles, which forces its diagonals to be equal. A rhombus has four equal sides, which forces its diagonals to intersect at right angles! And a square has the best of both worlds: equal diagonals that cross at 90 degrees!", "sim_title": "Special 4-gon Morphing Transformer & Diagnostic Lab", "checkpoints": [{"q": "If the diagonals of a parallelogram are equal in length, what specific type of quadrilateral must it be?", "options": ["Rhombus", "Rectangle", "Trapezium", "Kite"], "ans": 1, "exp": "If diagonals of a parallelogram are equal (AC = BD), consider \u25b3ABC and \u25b3DCB: AB = DC, BC = CB, and AC = BD. By SSS, \u25b3ABC \u2245 \u25b3DCB, so \u2220B = \u2220C = 90\u00b0, making it a rectangle.", "explanation": "If diagonals of a parallelogram are equal (AC = BD), consider \u25b3ABC and \u25b3DCB: AB = DC, BC = CB, and AC = BD. By SSS, \u25b3ABC \u2245 \u25b3DCB, so \u2220B = \u2220C = 90\u00b0, making it a rectangle."}, {"q": "Which property is TRUE for a rhombus but NOT necessarily true for every general parallelogram?", "options": ["Opposite sides are parallel", "Opposite angles are equal", "Diagonals bisect each other at right angles (90\u00b0)", "Consecutive angles sum to 180\u00b0"], "ans": 2, "exp": "In a general parallelogram, diagonals bisect each other but do not meet at 90\u00b0. Diagonals are perpendicular bisectors if and only if all four sides are equal (a rhombus).", "explanation": "In a general parallelogram, diagonals bisect each other but do not meet at 90\u00b0. Diagonals are perpendicular bisectors if and only if all four sides are equal (a rhombus)."}]}, {"id": 7, "title": "Central Symmetry (Point Symmetry) in Parallelograms", "subtitle": "Half-Turn 180\u00b0 Rotations, Point of Inversion & Bisection of Transverse Segments", "category": "Symmetry & Transformations", "badge": "CG-4 \u2022 C-4.2 \u2022 Central Symmetry", "summary": "In transformation geometry, a figure has Central Symmetry (or Point Symmetry) about a fixed center O if a half-turn rotation (180\u00b0 rotation) about O maps the figure precisely onto itself. For every point P on the figure, its reflection across O is a point P' such that O is the exact midpoint of segment PP'. A parallelogram possesses central symmetry about the mutual intersection point O of its diagonals! Because OA = OC and OB = OD, a 180\u00b0 rotation around O swaps vertex A with C, and vertex B with D. This profound symmetry explains why: 1. Any straight line drawn through center O divides the parallelogram into two congruent halves of identical area. 2. Any line segment passing through O with endpoints on opposite sides of the parallelogram is bisected by O. 3. Opposite sides and opposite angles are automatically equal due to the 180\u00b0 point inversion.", "key_points": ["Central Symmetry Definition: Invariant under a 180\u00b0 half-turn rotation about a central point O (point inversion).", "Center of Symmetry: The intersection of diagonals O is the unique center of central symmetry for any parallelogram.", "Vertex Swapping: Under a 180\u00b0 rotation about O: A \u21a6 C, B \u21a6 D, C \u21a6 A, D \u21a6 B.", "Area Bisection Property: Any line passing through O cuts the parallelogram into two congruent trapeziums or triangles of equal area.", "Segment Bisection: Any chord through center O connecting opposite sides has O as its midpoint."], "narration": "Did you know that a parallelogram has central symmetry? That means if you stick a pin right at the intersection of its diagonals and spin the shape by 180 degrees, it lands right back on itself! Vertex A swaps with C, and B swaps with D. Any straight line passing through this center splits the parallelogram into two congruent halves!", "sim_title": "180\u00b0 Half-Turn Central Symmetry Visualizer", "checkpoints": [{"q": "What happens to a parallelogram when it is rotated by 180\u00b0 about the intersection point of its diagonals?", "options": ["It turns upside down into an inverted triangle", "It maps perfectly onto itself, with opposite vertices swapping positions", "Its area is doubled", "Its diagonals become parallel"], "ans": 1, "exp": "Because the diagonals bisect each other, a 180\u00b0 half-turn about center O maps A to C, B to D, and every point P on a side to its opposite counterpart P', mapping the figure onto itself.", "explanation": "Because the diagonals bisect each other, a 180\u00b0 half-turn about center O maps A to C, B to D, and every point P on a side to its opposite counterpart P', mapping the figure onto itself."}, {"q": "Any straight line drawn through the intersection point of the diagonals of a parallelogram divides the parallelogram into:", "options": ["Two shapes with unequal areas", "Two congruent figures of equal area", "Four equilateral triangles", "A square and a rectangle"], "ans": 1, "exp": "By 180\u00b0 central symmetry, the two regions formed on either side of the line passing through center O are congruent by half-turn rotation, and thus have identical areas.", "explanation": "By 180\u00b0 central symmetry, the two regions formed on either side of the line passing through center O are congruent by half-turn rotation, and thus have identical areas."}]}, {"id": 8, "title": "Reflection & Rotation Symmetries of 4-gons", "subtitle": "Axes of Symmetry, Rotational Orders & The Complete Symmetry Classification Table", "category": "Symmetry & Transformations", "badge": "CG-4 \u2022 C-4.2 \u2022 Reflection & Rotation", "summary": "Symmetry classifies 4-gons by their rigid isometries: Reflection Symmetry (folding across an axis of symmetry) and Rotational Symmetry (turning about a center by angle 360\u00b0/n). 1. General Parallelogram: 0 lines of reflection symmetry; Rotational symmetry of order 2 (180\u00b0, 360\u00b0). 2. Rectangle: 2 lines of reflection symmetry (lines joining midpoints of opposite sides); Rotational symmetry of order 2. (Note: Diagonals are NOT lines of symmetry unless it is a square!). 3. Rhombus: 2 lines of reflection symmetry (the two diagonals themselves); Rotational symmetry of order 2. 4. Square: 4 lines of reflection symmetry (2 diagonals + 2 midpoint lines); Rotational symmetry of order 4 (90\u00b0, 180\u00b0, 270\u00b0, 360\u00b0). 5. Kite: 1 line of reflection symmetry (the main diagonal); Rotational symmetry of order 1 (trivial). 6. Isosceles Trapezium: 1 line of reflection symmetry (line connecting midpoints of parallel bases); Rotational symmetry of order 1.", "key_points": ["Reflection Symmetry: Folding across an axis maps the figure onto its mirror image.", "Rotational Order n: Number of times a shape looks identical during a full 360\u00b0 turn.", "Rectangle: 2 reflection axes (midpoint lines, NOT diagonals), order 2 rotation.", "Rhombus: 2 reflection axes (the diagonals), order 2 rotation.", "Square: Maximum symmetry (4 reflection axes, order 4 rotation).", "General Parallelogram: Has rotational symmetry (order 2) but ZERO reflection symmetry axes."], "narration": "Let's explore the symmetries of 4-gons! A general parallelogram has rotational symmetry of order 2, but has zero mirror lines. A rectangle has 2 mirror lines connecting opposite midpoints, while a rhombus has 2 mirror lines along its diagonals. And the champion of symmetry is the square, with 4 mirror lines and order-4 rotation!", "sim_title": "4-gon Symmetry Mirror & Rotation Analyzer", "checkpoints": [{"q": "How many lines of reflection symmetry does a non-square rectangle possess?", "options": ["0", "1", "2", "4"], "ans": 2, "exp": "A non-square rectangle has exactly 2 lines of reflection symmetry: the two lines connecting the midpoints of opposite sides. Its diagonals are not lines of symmetry.", "explanation": "A non-square rectangle has exactly 2 lines of reflection symmetry: the two lines connecting the midpoints of opposite sides. Its diagonals are not lines of symmetry."}, {"q": "Which quadrilateral has order-2 rotational symmetry but ZERO lines of reflection symmetry?", "options": ["Square", "Rhombus", "General Parallelogram (non-rhombus, non-rectangle)", "Kite"], "ans": 2, "exp": "A general parallelogram has 180\u00b0 rotational symmetry (order 2), but folding it along any line fails to produce mirror symmetry. Hence it has 0 reflection axes.", "explanation": "A general parallelogram has 180\u00b0 rotational symmetry (order 2), but folding it along any line fails to produce mirror symmetry. Hence it has 0 reflection axes."}]}, {"id": 9, "title": "The Midpoint Theorem (Theorem 8.9)", "subtitle": "Midpoints of Triangle Sides, Parallelism & The 1/2 Base Ratio Proof", "category": "The Midpoint Theorem", "badge": "CG-4 \u2022 C-4.2 \u2022 C-7.3 \u2022 Midpoint Theorem", "summary": "Theorem 8.9 (The Midpoint Theorem) is one of the crowning achievements of Euclidean geometry: 'The line segment joining the midpoints of two sides of a triangle is parallel to the third side and equal to half of it.' Let \u25b3ABC have D as the midpoint of AB, and E as the midpoint of AC. We wish to prove DE \u2225 BC and DE = 1/2 BC. Proof: Extend segment DE to point F such that EF = DE. Join CF. In \u25b3ADE and \u25b3CFE: AE = CE (E is midpoint of AC), \u2220AED = \u2220CEF (vertically opposite angles), and DE = EF (by construction). Therefore, \u25b3ADE \u2245 \u25b3CFE by the SAS axiom! By CPCTC, AD = CF and \u2220ADE = \u2220CFE. Since alternate interior angles are equal, AD \u2225 CF. But AD = BD (D is midpoint of AB), so BD = CF and BD \u2225 CF! A quadrilateral with one pair of opposite sides equal and parallel is a parallelogram, so BCFD is a parallelogram! Therefore, DF \u2225 BC and DF = BC. Since DE = 1/2 DF, we conclude DE \u2225 BC and DE = 1/2 BC!", "key_points": ["Theorem 8.9 Statement: Segment joining midpoints of two triangle sides is parallel to third side and half its length.", "Auxiliary Construction: Extend DE to F such that EF = DE, then join CF.", "SAS Congruence: \u25b3ADE \u2245 \u25b3CFE proves AD = CF and AD \u2225 CF.", "Parallelogram Emergence: BCFD is proven to be a parallelogram because BD = CF and BD \u2225 CF.", "Conclusion: DF = BC and DF \u2225 BC \u21d2 DE = 1/2 BC and DE \u2225 BC."], "narration": "Here is the famous Midpoint Theorem! If you take the midpoints of two sides of any triangle and connect them with a segment DE, that segment is parallel to the base BC, and its length is exactly half of BC! The proof is pure genius: extend DE by its own length, and a secret parallelogram BCFD appears!", "sim_title": "Midpoint Theorem Proof & Parallelogram Emergence Lab", "checkpoints": [{"q": "In \u25b3ABC, D and E are midpoints of sides AB and AC. If BC = 14 cm, what is the length of DE?", "options": ["7 cm", "14 cm", "21 cm", "28 cm"], "ans": 0, "exp": "By the Midpoint Theorem, DE = 1/2 BC = 1/2 \u00d7 14 cm = 7 cm, and DE is parallel to BC.", "explanation": "By the Midpoint Theorem, DE = 1/2 BC = 1/2 \u00d7 14 cm = 7 cm, and DE is parallel to BC."}, {"q": "In the classical deductive proof of the Midpoint Theorem, which auxiliary quadrilateral is proven to be a parallelogram?", "options": ["ADEC", "BCFD", "ABCF", "BDEF"], "ans": 1, "exp": "By extending DE to F with EF = DE and joining CF, quadrilateral BCFD has BD = CF and BD \u2225 CF, proving BCFD is a parallelogram.", "explanation": "By extending DE to F with EF = DE and joining CF, quadrilateral BCFD has BD = CF and BD \u2225 CF, proving BCFD is a parallelogram."}]}, {"id": 10, "title": "Converse of the Midpoint Theorem (Theorem 8.10)", "subtitle": "Line Through Midpoint Parallel to Base Bisects the Third Side", "category": "The Midpoint Theorem", "badge": "CG-4 \u2022 C-4.2 \u2022 C-7.3 \u2022 Converse Midpoint", "summary": "Theorem 8.10 (Converse of the Midpoint Theorem) states: 'The line drawn through the midpoint of one side of a triangle parallel to another side bisects the third side.' In \u25b3ABC, let D be the midpoint of side AB (AD = DB), and let a line l be drawn through D parallel to BC, intersecting side AC at point E. We wish to prove that E is the midpoint of AC (AE = EC). Proof: Draw a line through C parallel to BA, meeting the extension of line DE at point F. In quadrilateral BCFD: DF \u2225 BC (given) and CF \u2225 BD (by construction). Thus, BCFD is a parallelogram! By opposite sides of a parallelogram, BD = CF. But BD = AD (D is midpoint), so AD = CF. Now compare \u25b3ADE and \u25b3CFE: \u2220DAE = \u2220FCE (alternate interior angles since BA \u2225 CF), AD = CF (proven), and \u2220ADE = \u2220CFE (alternate interior angles since DF \u2225 BC). Therefore, \u25b3ADE \u2245 \u25b3CFE by ASA! By CPCTC, AE = CE. Hence, point E is the midpoint of AC!", "key_points": ["Theorem 8.10: Line through midpoint of one side parallel to base bisects the opposite side.", "Given: D is midpoint of AB (AD = DB) and DE \u2225 BC.", "To Prove: AE = EC (E is midpoint of AC).", "Proof Method: Auxiliary line CF \u2225 AB forms parallelogram BCFD, reducing to ASA congruence \u25b3ADE \u2245 \u25b3CFE.", "Applications: Subdividing line segments, proportional intercepts, and architectural drafting."], "narration": "What is the converse of the Midpoint Theorem? If you start at the midpoint D of side AB and draw a line parallel to the base BC, where will it hit the other side AC? Exactly at its midpoint E! This theorem is used by carpenters and architects to find the exact center of beams without measuring!", "sim_title": "Converse Midpoint & Parallel Ray Intercept Simulator", "checkpoints": [{"q": "In \u25b3ABC, D is the midpoint of AB and DE \u2225 BC. If AC = 18 cm, what is the length of AE?", "options": ["6 cm", "9 cm", "12 cm", "18 cm"], "ans": 1, "exp": "By the Converse of the Midpoint Theorem (Theorem 8.10), line DE bisects side AC. Therefore, E is the midpoint of AC, and AE = 18 / 2 = 9 cm.", "explanation": "By the Converse of the Midpoint Theorem (Theorem 8.10), line DE bisects side AC. Therefore, E is the midpoint of AC, and AE = 18 / 2 = 9 cm."}, {"q": "Which congruence criterion proves \u25b3ADE \u2245 \u25b3CFE in the proof of Theorem 8.10?", "options": ["ASA", "SSS", "RHS", "SSA"], "ans": 0, "exp": "With CF \u2225 AB and DF \u2225 BC, two pairs of alternate interior angles are equal, with AD = CF. Thus \u25b3ADE \u2245 \u25b3CFE by ASA, giving AE = CE by CPCTC.", "explanation": "With CF \u2225 AB and DF \u2225 BC, two pairs of alternate interior angles are equal, with AD = CF. Thus \u25b3ADE \u2245 \u25b3CFE by ASA, giving AE = CE by CPCTC."}]}, {"id": 11, "title": "Concurrency of Medians & The 2:1 Centroid Ratio Proof", "subtitle": "Intersection of Three Medians, Parallelogram FEQP & The Universal Center of Mass", "category": "Medians & Centroid", "badge": "CG-4 \u2022 C-4.2 \u2022 C-7.3 \u2022 Centroid 2:1 Ratio", "summary": "A Median of a triangle is a line segment connecting a vertex to the midpoint of the opposite side. One of the most elegant applications of the Midpoint Theorem is proving that the three medians of any triangle are concurrent at a single point G (called the Centroid), and that G divides each median in the ratio 2 : 1! Proof: Let medians BE and CF of \u25b3ABC intersect at point G. Let P be the midpoint of BG, and Q be the midpoint of CG. In \u25b3ABC, F is midpoint of AB and E is midpoint of AC. By the Midpoint Theorem, FE \u2225 BC and FE = 1/2 BC. In \u25b3GBC, P is midpoint of BG and Q is midpoint of CG. By the Midpoint Theorem, PQ \u2225 BC and PQ = 1/2 BC. Therefore, FE \u2225 PQ and FE = PQ! Since a quadrilateral with one pair of opposite sides equal and parallel is a parallelogram, FEQP is a parallelogram! The diagonals of FEQP bisect each other, meaning GP = GE and GQ = GF. But since BP = PG, we have BG = BP + PG = 2GE \u21d2 BG : GE = 2 : 1! Similarly, CG : GF = 2 : 1. By symmetry, the third median AD must also pass through G and be divided in the ratio 2 : 1.", "key_points": ["Centroid (G): The point of concurrency where all three medians of a triangle intersect.", "2:1 Division: G divides every median in the ratio 2 : 1 (vertex to midpoint: AG = 2GD, BG = 2GE, CG = 2GF).", "Midpoint Theorem Application: Applied simultaneously to \u25b3ABC (giving FE = 1/2 BC) and \u25b3GBC (giving PQ = 1/2 BC).", "Parallelogram FEQP: Diagonal bisection in FEQP proves GP = GE, instantly establishing the 2:1 ratio.", "Physical Meaning: The centroid G is the physical Center of Mass (balance point) of a uniform triangular lamina."], "narration": "A median connects a corner to the opposite side's midpoint. A triangle has three medians, and miraculously, all three meet at the exact same point: the Centroid G! Even more amazing: G cuts every single median into a 2-to-1 ratio! We prove this using the Midpoint Theorem to reveal a hidden parallelogram FEQP inside the medians!", "sim_title": "Centroid 2:1 Lever & Median Concurrency Visualizer", "checkpoints": [{"q": "The centroid G of \u25b3ABC divides the median AD (where D is on BC) in what ratio from vertex A to midpoint D?", "options": ["1 : 1", "2 : 1", "3 : 1", "3 : 2"], "ans": 1, "exp": "The centroid divides every median in the ratio 2 : 1, measuring from the vertex to the opposite side's midpoint (AG : GD = 2 : 1).", "explanation": "The centroid divides every median in the ratio 2 : 1, measuring from the vertex to the opposite side's midpoint (AG : GD = 2 : 1)."}, {"q": "If median AD has a total length of 15 cm, what is the length of segment AG (from vertex A to centroid G)?", "options": ["5 cm", "7.5 cm", "10 cm", "12 cm"], "ans": 2, "exp": "Since AG : GD = 2 : 1, AG represents 2/3 of the total median length. AG = (2/3) \u00d7 15 cm = 10 cm.", "explanation": "Since AG : GD = 2 : 1, AG represents 2/3 of the total median length. AG = (2/3) \u00d7 15 cm = 10 cm."}]}, {"id": 12, "title": "Varignon's Theorem: Midpoint 4-gon is a Parallelogram", "subtitle": "Connecting Midpoints of ANY Arbitrary 4-gon, Area Bisector & Shape Invariants", "category": "Varignon's Theorem", "badge": "CG-4 \u2022 C-4.2 \u2022 C-7.3 \u2022 Varignon's Theorem", "summary": "Theorem (Pierre Varignon, 1731): 'The quadrilateral formed by joining in order the midpoints of the sides of ANY quadrilateral is ALWAYS a parallelogram.' This theorem holds for convex, concave, and even self-intersecting 4-gons! Proof: Let ABCD be any arbitrary quadrilateral. Let P, Q, R, S be the midpoints of AB, BC, CD, DA respectively. Draw diagonal AC. In \u25b3ABC, P is midpoint of AB and Q is midpoint of BC. By the Midpoint Theorem, PQ \u2225 AC and PQ = 1/2 AC. In \u25b3ADC, S is midpoint of AD and R is midpoint of CD. By the Midpoint Theorem, SR \u2225 AC and SR = 1/2 AC. Therefore, PQ \u2225 SR and PQ = SR! A quadrilateral with one pair of opposite sides equal and parallel is a parallelogram. Thus, PQRS is a parallelogram! Corollary: The perimeter of Varignon parallelogram PQRS equals the sum of diagonals of ABCD (AC + BD), and its area is exactly HALF the area of the original quadrilateral: Area(PQRS) = 1/2 Area(ABCD).", "key_points": ["Varignon's Theorem: Midpoints of sides of any 4-gon form a parallelogram (PQRS).", "Universal Validity: Holds true for ANY shape\u2014convex, dart-shaped concave, or skewed.", "Proof via Diagonal AC: Midpoint Theorem gives PQ \u2225 AC, SR \u2225 AC, and PQ = SR = 1/2 AC.", "Area Corollary: Area of the Varignon parallelogram is strictly half the area of the parent quadrilateral: Area(PQRS) = 1/2 Area(ABCD).", "Perimeter Corollary: Perimeter of PQRS = AC + BD (sum of lengths of parent diagonals)."], "narration": "In 1731, French mathematician Pierre Varignon discovered an incredible secret. Take ANY random, lopsided four-sided shape. Find the exact midpoints of its four sides, and connect them. You will ALWAYS get a perfect parallelogram! The proof is so clean: diagonal AC proves top and bottom are parallel, and diagonal BD proves left and right are parallel!", "sim_title": "Varignon's Parallelogram Playground & Area Halver", "checkpoints": [{"q": "If the area of an irregular convex quadrilateral ABCD is 48 cm\u00b2, what is the area of the Varignon parallelogram formed by joining the midpoints of its sides?", "options": ["12 cm\u00b2", "24 cm\u00b2", "36 cm\u00b2", "48 cm\u00b2"], "ans": 1, "exp": "By Varignon's Theorem area corollary, the area of the midpoint parallelogram is exactly half the area of the original quadrilateral: 48 / 2 = 24 cm\u00b2.", "explanation": "By Varignon's Theorem area corollary, the area of the midpoint parallelogram is exactly half the area of the original quadrilateral: 48 / 2 = 24 cm\u00b2."}, {"q": "What determines whether the Varignon parallelogram PQRS is a RHOMBUS?", "options": ["The original quadrilateral has equal sides", "The original quadrilateral has equal diagonals (AC = BD)", "The original quadrilateral has perpendicular diagonals (AC \u22a5 BD)", "All four angles of ABCD are acute"], "ans": 1, "exp": "The sides of PQRS have lengths 1/2 AC and 1/2 BD. For all four sides of PQRS to be equal (a rhombus), we must have 1/2 AC = 1/2 BD \u21d2 AC = BD (equal diagonals in ABCD).", "explanation": "The sides of PQRS have lengths 1/2 AC and 1/2 BD. For all four sides of PQRS to be equal (a rhombus), we must have 1/2 AC = 1/2 BD \u21d2 AC = BD (equal diagonals in ABCD)."}]}, {"id": 13, "title": "Coordinate Geometry of Midpoints & The Fourth Vertex", "subtitle": "Midpoint Averaging Formula, Diagonal Intersection & Algebraic Fourth Vertex Algorithm", "category": "Coordinate Geometry", "badge": "CG-4 \u2022 C-4.2 \u2022 Coordinate Methods", "summary": "Coordinate geometry provides an algebraic bridge to parallelogram properties: 1. Midpoint Formula: The midpoint M of segment with endpoints (x\u2081, y\u2081) and (x\u2082, y\u2082) is M = ((x\u2081 + x\u2082)/2, (y\u2081 + y\u2082)/2). 2. Shared Midpoint Property: In a parallelogram ABCD, diagonals AC and BD bisect each other at the same point O. Therefore: Midpoint of AC = Midpoint of BD. 3. Finding the Fourth Vertex Algorithm: Given three consecutive vertices A(x_A, y_A), B(x_B, y_B), C(x_C, y_C), we find fourth vertex D(x_D, y_D) by equating midpoints: (x_A + x_C)/2 = (x_B + x_D)/2 \u21d2 x_D = x_A + x_C - x_B, and (y_A + y_C)/2 = (y_B + y_D)/2 \u21d2 y_D = y_A + y_C - y_B! This vector addition formula D = A + C - B is instantaneous, elegant, and completely bypasses complicated slope or distance calculations.", "key_points": ["Midpoint Coordinates: M = ((x\u2081 + x\u2082)/2, (y\u2081 + y\u2082)/2).", "Parallelogram Diagonal Equivalence: Midpoint of AC \u2261 Midpoint of BD.", "Fourth Vertex Formula: x_D = x_A + x_C - x_B and y_D = y_A + y_C - y_B.", "Vector Interpretation: D = A + (C - B) (displacing point A by vector BC).", "Collinearity Verification: Midpoint methods verify whether 4 points form a parallelogram in O(1) computation."], "narration": "How do computers calculate coordinates of shapes? In a parallelogram, diagonals AC and BD share the exact same midpoint! If you know the coordinates of vertices A, B, and C, you can find the fourth vertex D instantly with our magic formula: x-D equals x-A plus x-C minus x-B! It works every single time.", "sim_title": "4th Vertex Coordinate Calculator & Vector Grid", "checkpoints": [{"q": "If the coordinates of three vertices of a parallelogram ABCD in order are A(1, 2), B(4, 3), and C(6, 6), what are the coordinates of vertex D?", "options": ["(3, 5)", "(5, 7)", "(3, 7)", "(2, 4)"], "ans": 0, "exp": "Using D = A + C - B: x_D = 1 + 6 - 4 = 3, and y_D = 2 + 6 - 3 = 5. Thus, D is (3, 5).", "explanation": "Using D = A + C - B: x_D = 1 + 6 - 4 = 3, and y_D = 2 + 6 - 3 = 5. Thus, D is (3, 5)."}, {"q": "What is the midpoint of diagonal AC for vertices A(-2, 4) and C(6, 8)?", "options": ["(2, 6)", "(4, 12)", "(1, 5)", "(0, 6)"], "ans": 0, "exp": "Midpoint M = ((-2 + 6)/2, (4 + 8)/2) = (4/2, 12/2) = (2, 6).", "explanation": "Midpoint M = ((-2 + 6)/2, (4 + 8)/2) = (4/2, 12/2) = (2, 6)."}]}, {"id": 14, "title": "Universal Plane Tiling (Tessellation) by ANY 4-gon", "subtitle": "The 360\u00b0 Vertex Angle Meeting, 180\u00b0 Edge-Midpoint Rotations & Wallpaper Patterns", "category": "Plane Tiling", "badge": "CG-4 \u2022 C-4.2 \u2022 Plane Tiling", "summary": "Can any polygon tile a flat floor without gaps or overlaps? While only 3 regular polygons can tile the plane (triangles, squares, hexagons), a spectacular mathematical theorem proves: ANY arbitrary quadrilateral\u2014no matter how scalene, lopsided, or irregular\u2014can completely tile the entire 2D plane! Why does this work? The secret lies in two geometric principles: 1. Interior Angle Sum: The four angles of any 4-gon sum to 360\u00b0 (\u2220A + \u2220B + \u2220C + \u2220D = 360\u00b0). 2. Central Symmetry via Edge Midpoints: By rotating the quadrilateral by 180\u00b0 around the midpoint of each of its four edges, four congruent copies of the 4-gon meet at every vertex. At every joint, exactly one copy of angle A, angle B, angle C, and angle D cluster together. Because their sum is 360\u00b0, they fill the full circle around the vertex with zero gap and zero overlap! This creates a repeating periodic lattice of interlocking parallelograms.", "key_points": ["Universal Tiling Theorem: Every quadrilateral (convex or concave) can tile the plane seamlessly.", "The 360\u00b0 Criterion: At every junction vertex, angles A + B + C + D meet to form a complete 360\u00b0 circle.", "Midpoint Rotation Mechanism: A 180\u00b0 rotation about the midpoint of each side generates the adjacent tiling tile.", "Interlocking Parallelograms: Any 4-gon tile pairs with its 180\u00b0 rotation to form a centrally symmetric hexagon/parallelogram that packs the plane.", "Applications: M.C. Escher artwork, bricklaying patterns, fabric weaving, and ceramic tile manufacturing."], "narration": "Can an irregular, lopsided quadrilateral tile a floor? You might be shocked to learn that ANY 4-gon in the universe can tile a flat plane without leaving a single gap! How? Because its four angles add up to 360 degrees. If you rotate copies around their edge midpoints, four corners meet at every joint, forming a perfect 360-degree circle!", "sim_title": "Interactive 4-gon Tessellation & Floor Tiling Engine", "checkpoints": [{"q": "Why can ANY irregular quadrilateral tile the 2D plane without gaps or overlaps?", "options": ["Because all quadrilaterals have 4 equal sides", "Because its 4 interior angles sum to 360\u00b0, allowing one copy of each angle (A, B, C, D) to meet at every vertex", "Because gravity flattens the tiles", "Because quadrilaterals always have right angles"], "ans": 1, "exp": "At every lattice junction, a 180\u00b0 rotation around edge midpoints places angles A, B, C, and D together. Since A + B + C + D = 360\u00b0, they completely surround the vertex with zero gap.", "explanation": "At every lattice junction, a 180\u00b0 rotation around edge midpoints places angles A, B, C, and D together. Since A + B + C + D = 360\u00b0, they completely surround the vertex with zero gap."}, {"q": "How many copies of a quadrilateral meet at each vertex in an edge-midpoint rotation tessellation?", "options": ["2", "3", "4", "6"], "ans": 2, "exp": "Exactly 4 copies meet at each junction vertex, contributing angles \u2220A, \u2220B, \u2220C, and \u2220D to complete the 360\u00b0 circle.", "explanation": "Exactly 4 copies meet at each junction vertex, contributing angles \u2220A, \u2220B, \u2220C, and \u2220D to complete the 360\u00b0 circle."}]}, {"id": 15, "title": "Logical Converses & Geometric Questioning Strategies", "subtitle": "Framing Precise Converses, The Isosceles Trapezium Trap & Questioning Intuition", "category": "Mathematical Logic", "badge": "CG-4 \u2022 C-7.3 \u2022 Converses & Counterexamples", "summary": "Mastering geometry requires not only memorising theorems, but actively formulating their converses and rigorously testing them: 1. Statement: 'If a 4-gon is a rectangle, then its diagonals are equal' (TRUE). Converse: 'If the diagonals of a 4-gon are equal, is it a rectangle?' (FALSE! The celebrated counterexample is an ISOSCELES TRAPEZIUM, which has equal diagonals but non-parallel legs!). Refined Converse: 'If the diagonals of a PARALLELOGRAM are equal, is it a rectangle?' (TRUE!). 2. Statement: 'If a 4-gon is a rhombus, then its diagonals are perpendicular' (TRUE). Converse: 'If the diagonals of a 4-gon are perpendicular, is it a rhombus?' (FALSE! Counterexample: A KITE has perpendicular diagonals, but unequal adjacent sides!). Refined Converse: 'If the diagonals of a PARALLELOGRAM are perpendicular, is it a rhombus?' (TRUE!). Good mathematicians always ask: 'What minimal constraint makes the converse true?'", "key_points": ["Converse Questioning: Swapping hypothesis and conclusion tests whether a geometric property is sufficient or merely necessary.", "Equal Diagonals Trap: Equal diagonals alone do NOT make a rectangle (counterexample: isosceles trapezium).", "Perpendicular Diagonals Trap: Perpendicular diagonals alone do NOT make a rhombus (counterexample: kite).", "Refined Converses: Adding the precondition 'in a parallelogram' restores truth to both converses.", "Critical Thinking: Mathematical rigor requires testing edge cases and constructing counterexamples before accepting a claim."], "narration": "To think like a true mathematician, always ask: Is the converse true? For instance, every rectangle has equal diagonals. But if a shape has equal diagonals, is it a rectangle? Careful! An isosceles trapezium has equal diagonals, but it is NOT a rectangle! But if it's already a parallelogram, equal diagonals DO guarantee a rectangle!", "sim_title": "Converse Questioning Lab & Counterexample Tester", "checkpoints": [{"q": "A student claims: 'If the diagonals of a quadrilateral are equal in length, it must be a rectangle'. What is a valid counterexample?", "options": ["A square", "An isosceles trapezium", "A rhombus with 60\u00b0 angles", "A scalene triangle"], "ans": 1, "exp": "An isosceles trapezium has equal diagonals, but its non-parallel sides are not parallel, so it is not even a parallelogram, completely refuting the claim.", "explanation": "An isosceles trapezium has equal diagonals, but its non-parallel sides are not parallel, so it is not even a parallelogram, completely refuting the claim."}, {"q": "What additional condition turns the false claim 'perpendicular diagonals implies a rhombus' into a TRUE theorem?", "options": ["The quadrilateral must have at least one obtuse angle", "The quadrilateral must already be known to be a parallelogram", "The diagonals must have integer lengths", "The perimeter must be greater than 20 cm"], "ans": 1, "exp": "In a parallelogram, diagonals already bisect each other. If they are also perpendicular, \u25b3AOB \u2245 \u25b3COB by SAS, proving adjacent sides are equal (a rhombus).", "explanation": "In a parallelogram, diagonals already bisect each other. If they are also perpendicular, \u25b3AOB \u2245 \u25b3COB by SAS, proving adjacent sides are equal (a rhombus)."}]}, {"id": 16, "title": "Hands-on Paper Folding, Origami Patterns & Synthesis", "subtitle": "Crease Patterns, Varignon Paper Folding & Algorithmic Polygon Classification Trees", "category": "Hands-on Synthesis", "badge": "CG-4 \u2022 C-4.2 \u2022 C-7.3 \u2022 Paper Folding & Algorithms", "summary": "1. Origami & Paper Folding Deductions: Concrete geometric patterns can be discovered without compasses using simple paper folds: - Folding a sheet in half and creasing matches parallel lines and medians. - The Varignon Fold: Cut out any random 4-gon from paper. Fold each vertex to the opposite side to form corner triangles along the edge midpoints. The four corner flaps fold inwards to cover the central Varignon parallelogram EXACTLY twice, visually proving Area(PQRS) = 1/2 Area(ABCD)! 2. Computational Classification Algorithm: Modern CAD and robotics software classify 4-gons using vector arithmetic: Given vertices A, B, C, D: Calculate edge vectors v\u2081 = B - A, v\u2082 = C - B, v\u2083 = D - C, v\u2084 = A - D. Test: Is v\u2081 = -v\u2083 and v\u2082 = -v\u2084? If YES \u2192 Parallelogram! If YES and dot product v\u2081 \u00b7 v\u2082 = 0 \u2192 Rectangle! If YES and |v\u2081| = |v\u2082| \u2192 Rhombus! If both \u2192 Square! All evaluated in O(1) constant time.", "key_points": ["Varignon Paper Fold: Folding corner flaps along midpoints shows the 4 corners have total area equal to the central parallelogram.", "Crease Geometry: Axiomatic folding (Huzita-Hatori axioms) constructs bisectors, perpendiculars, and midpoints physically.", "CAD Vector Decision Tree: v\u2081 = -v\u2083 and v\u2082 = -v\u2084 tests parallelism in O(1) time.", "Orthogonality via Dot Product: v\u2081 \u00b7 v\u2082 = 0 detects 90\u00b0 right angles (rectangles and squares).", "Synthesis of Geometry: Combining physical paper manipulation with computational vector mathematics."], "narration": "Let's wrap up with hands-on discovery and computer algorithms! If you fold a paper quadrilateral along its edge midpoints, the four corner flaps fold inside to cover the central parallelogram with zero overlap! And in computer graphics, vector dot products classify any 4-gon into a parallelogram, rectangle, or square in a fraction of a microsecond!", "sim_title": "Interactive Paper Folding & CAD Vector Classifier", "checkpoints": [{"q": "In the Varignon paper folding activity, when the four corner triangles of a quadrilateral are folded along the midpoints, their total combined area equals:", "options": ["One-quarter of the quadrilateral's area", "Exactly the area of the central Varignon parallelogram (half the total area)", "Twice the total area", "Zero"], "ans": 1, "exp": "Since the central Varignon parallelogram occupies 1/2 of the total area, the remaining four corner triangles also sum to 1/2 of the total area, covering the parallelogram perfectly.", "explanation": "Since the central Varignon parallelogram occupies 1/2 of the total area, the remaining four corner triangles also sum to 1/2 of the total area, covering the parallelogram perfectly."}, {"q": "In computer geometry, what vector test confirms that consecutive sides AB and BC of a parallelogram form a 90\u00b0 angle (making it a rectangle)?", "options": ["Their cross product is 1", "Their dot product equals zero (AB \u00b7 BC = 0)", "Their lengths sum to 180", "Their slopes are both positive"], "ans": 1, "exp": "Two non-zero vectors are perpendicular if and only if their scalar dot product is zero: v\u2081 \u00b7 v\u2082 = 0.", "explanation": "Two non-zero vectors are perpendicular if and only if their scalar dot product is zero: v\u2081 \u00b7 v\u2082 = 0."}]}];
+        const QUIZZES_DATA = [{"slide_id": 17, "title": "Mastery Quiz 1: Parallelogram Characterisations & Theorems", "subtitle": "Theorems 8.1 through 8.8, Opposites Sides & Angles, and CPCTC", "category": "Mastery Challenge", "badge": "Quiz 1 \u2022 Parallelogram Theorems", "questions": [{"q": "If the diagonals of a quadrilateral bisect each other at right angles, what is the quadrilateral?", "options": ["Rectangle", "Trapezium", "Rhombus", "Kite only"], "ans": 2, "exp": "Diagonals bisecting each other proves it is a parallelogram. If they are also perpendicular, adjacent sides are equal by SAS, proving it is a rhombus."}, {"q": "In a parallelogram ABCD, \u2220A = (3x - 20)\u00b0 and \u2220C = (x + 40)\u00b0. What is the measure of \u2220B?", "options": ["70\u00b0", "110\u00b0", "140\u00b0", "150\u00b0"], "ans": 1, "exp": "Opposite angles are equal: 3x - 20 = x + 40 \u21d2 2x = 60 \u21d2 x = 30\u00b0. Thus \u2220A = 3(30) - 20 = 70\u00b0. Consecutive angles are supplementary: \u2220B = 180\u00b0 - 70\u00b0 = 110\u00b0."}, {"q": "Theorem 8.1 states that a diagonal of a parallelogram divides it into two congruent triangles. Which congruence criterion proves this?", "options": ["SAS", "ASA", "SSS", "RHS"], "ans": 1, "exp": "Transversal AC creates two pairs of equal alternate interior angles, and AC is common. \u25b3ABC \u2245 \u25b3CDA by ASA."}, {"q": "Which of the following is NOT a property of every parallelogram?", "options": ["Opposite sides are parallel", "Opposite angles are equal", "Diagonals are equal in length", "Diagonals bisect each other"], "ans": 2, "exp": "Diagonals are equal in length ONLY in rectangles and squares, not in general parallelograms or rhombuses."}, {"q": "In quadrilateral ABCD, AB = CD and AB \u2225 CD. What theorem guarantees ABCD is a parallelogram?", "options": ["Theorem 8.1", "Theorem 8.4", "Theorem 8.8", "Midpoint Theorem"], "ans": 2, "exp": "Theorem 8.8 states: A quadrilateral is a parallelogram if ONE pair of opposite sides is both equal and parallel."}, {"q": "If ABCD is a rhombus, what is the angle between its diagonals AC and BD?", "options": ["45\u00b0", "60\u00b0", "90\u00b0", "120\u00b0"], "ans": 2, "exp": "The diagonals of a rhombus are perpendicular bisectors of each other, intersecting at 90\u00b0."}, {"q": "In parallelogram ABCD, perimeter is 40 cm and side AB = 12 cm. What is the length of side BC?", "options": ["8 cm", "14 cm", "16 cm", "28 cm"], "ans": 0, "exp": "Perimeter = 2(AB + BC) = 40 \u21d2 AB + BC = 20. With AB = 12 cm, BC = 20 - 12 = 8 cm."}, {"q": "If the angle bisectors of \u2220A and \u2220B of parallelogram ABCD intersect at P, what is the measure of \u2220APB?", "options": ["45\u00b0", "60\u00b0", "90\u00b0", "120\u00b0"], "ans": 2, "exp": "\u2220A + \u2220B = 180\u00b0. In \u25b3APB, the angles are \u2220A/2 and \u2220B/2. Their sum is (\u2220A + \u2220B)/2 = 90\u00b0. Hence \u2220APB = 180\u00b0 - 90\u00b0 = 90\u00b0."}, {"q": "A quadrilateral whose all sides are equal and all angles are equal is a:", "options": ["Rectangle", "Rhombus", "Square", "Trapezium"], "ans": 2, "exp": "By definition, a regular 4-gon (equilateral and equiangular) is a square."}, {"q": "Diagonals of a rectangle ABCD intersect at O. If \u2220BOC = 70\u00b0, what is \u2220ODA?", "options": ["35\u00b0", "55\u00b0", "70\u00b0", "110\u00b0"], "ans": 1, "exp": "Vertically opposite angle \u2220AOD = \u2220BOC = 70\u00b0. In rectangle, diagonals are equal and bisect, so OA = OD. \u25b3OAD is isosceles: \u2220ODA = (180\u00b0 - 70\u00b0)/2 = 55\u00b0."}]}, {"slide_id": 18, "title": "Mastery Quiz 2: Midpoint Theorem & Median Concurrency", "subtitle": "Theorems 8.9 & 8.10, Triangle Midpoints & 2:1 Centroid Division", "category": "Mastery Challenge", "badge": "Quiz 2 \u2022 Midpoint & Centroid", "questions": [{"q": "In \u25b3ABC, D and E are midpoints of AB and AC. If DE = 4.5 cm, what is the length of BC?", "options": ["4.5 cm", "9 cm", "13.5 cm", "18 cm"], "ans": 1, "exp": "By the Midpoint Theorem, DE = 1/2 BC. Therefore, BC = 2 \u00d7 DE = 2 \u00d7 4.5 cm = 9 cm."}, {"q": "In \u25b3ABC, D, E, F are the midpoints of sides AB, BC, CA. If perimeter of \u25b3ABC is 32 cm, what is the perimeter of \u25b3DEF?", "options": ["8 cm", "16 cm", "24 cm", "64 cm"], "ans": 1, "exp": "Each side of \u25b3DEF is half the corresponding side of \u25b3ABC (DE = 1/2 AC, EF = 1/2 AB, FD = 1/2 BC). Perimeter(\u25b3DEF) = 1/2 \u00d7 Perimeter(\u25b3ABC) = 32 / 2 = 16 cm."}, {"q": "In \u25b3ABC, G is the centroid and median BE = 12 cm. What is the length of segment BG?", "options": ["4 cm", "6 cm", "8 cm", "9 cm"], "ans": 2, "exp": "The centroid divides the median in the ratio 2 : 1 from vertex to midpoint. BG = (2/3) \u00d7 BE = (2/3) \u00d7 12 cm = 8 cm."}, {"q": "The Converse of the Midpoint Theorem states that a line through the midpoint of one side parallel to another side:", "options": ["Is perpendicular to the third side", "Bisects the third side", "Is equal to one-third of the third side", "Passes through the centroid"], "ans": 1, "exp": "Theorem 8.10 (Converse) states that the line drawn through the midpoint of one side of a triangle parallel to another side bisects the third side."}, {"q": "In \u25b3ABC, D is the midpoint of AB and DE \u2225 BC meets AC at E. If AE = 7 cm, what is AC?", "options": ["7 cm", "14 cm", "21 cm", "28 cm"], "ans": 1, "exp": "By the Converse of Midpoint Theorem, E is the midpoint of AC. Thus AC = 2 \u00d7 AE = 2 \u00d7 7 = 14 cm."}, {"q": "In the proof of the concurrency of medians, which auxiliary quadrilateral formed by the medians is proven to be a parallelogram?", "options": ["ABCD", "FEQP", "ABEF", "CDEG"], "ans": 1, "exp": "Quadrilateral FEQP (where F, E are triangle midpoints and P, Q are lower median midpoints) has FE \u2225 PQ and FE = PQ, proving it is a parallelogram."}, {"q": "The four smaller triangles formed by joining the midpoints of the three sides of any triangle \u25b3ABC are:", "options": ["Equilateral only", "All congruent to each other", "Of unequal areas", "Right-angled"], "ans": 1, "exp": "By the Midpoint Theorem, all four sub-triangles have sides equal to half the corresponding sides of \u25b3ABC, making them all mutually congruent by SSS."}, {"q": "If the area of \u25b3ABC is 60 cm\u00b2, what is the area of the medial triangle formed by joining its side midpoints?", "options": ["15 cm\u00b2", "20 cm\u00b2", "30 cm\u00b2", "45 cm\u00b2"], "ans": 0, "exp": "The medial triangle is one of four congruent triangles partitioning \u25b3ABC. Its area is 60 / 4 = 15 cm\u00b2."}, {"q": "In a right triangle with hypotenuse 10 cm, what is the length of the segment connecting the midpoints of the two legs?", "options": ["2.5 cm", "5 cm", "7.5 cm", "10 cm"], "ans": 1, "exp": "By the Midpoint Theorem, the segment connecting the midpoints of the two legs is parallel to and half the length of the hypotenuse: 10 / 2 = 5 cm."}, {"q": "What physical property does the centroid G represent for a uniform triangular cardboard sheet?", "options": ["The point of maximum friction", "The Center of Gravity / Center of Mass (balance point)", "The optical focus point", "The perimeter midpoint"], "ans": 1, "exp": "The centroid is the geometric center and the exact Center of Mass (Center of Gravity) of a uniform planar lamina; the sheet will balance on a pin placed at G."}]}, {"slide_id": 19, "title": "Mastery Quiz 3: Varignon's Theorem & Coordinate Geometry", "subtitle": "Midpoint Polygons, Area Invariants & The 4th Vertex Algorithm", "category": "Mastery Challenge", "badge": "Quiz 3 \u2022 Varignon & Coordinates", "questions": [{"q": "Varignon's Theorem states that the 4-gon formed by joining the midpoints of ANY 4-gon is always a:", "options": ["Trapezium", "Rectangle", "Parallelogram", "Rhombus"], "ans": 2, "exp": "By drawing a diagonal and applying the Midpoint Theorem, opposite sides of the midpoint polygon are both parallel to and half of that diagonal, proving it is a parallelogram."}, {"q": "If the diagonals of quadrilateral ABCD are perpendicular (AC \u22a5 BD), what specific shape is the Varignon parallelogram PQRS?", "options": ["Parallelogram only", "Rectangle", "Rhombus", "Trapezium"], "ans": 1, "exp": "The sides of PQRS are parallel to the diagonals of ABCD. If the diagonals are perpendicular (AC \u22a5 BD), the adjacent sides of PQRS meet at 90\u00b0, making PQRS a rectangle."}, {"q": "If the diagonals of quadrilateral ABCD are equal (AC = BD), what specific shape is the Varignon parallelogram PQRS?", "options": ["Rectangle", "Rhombus", "Trapezium", "Kite"], "ans": 1, "exp": "The side lengths of PQRS are 1/2 AC and 1/2 BD. If AC = BD, all four sides of PQRS are equal, making it a rhombus."}, {"q": "Three vertices of a parallelogram in order are A(2, 3), B(6, 5), and C(8, 9). What are the coordinates of vertex D?", "options": ["(4, 7)", "(5, 8)", "(4, 6)", "(3, 8)"], "ans": 0, "exp": "Using the 4th vertex formula D = A + C - B: x_D = 2 + 8 - 6 = 4, and y_D = 3 + 9 - 5 = 7. Thus D is (4, 7)."}, {"q": "If the area of a convex quadrilateral is 72 cm\u00b2, what is the area of its Varignon midpoint parallelogram?", "options": ["18 cm\u00b2", "36 cm\u00b2", "54 cm\u00b2", "72 cm\u00b2"], "ans": 1, "exp": "The area of the Varignon parallelogram is always exactly half the area of the original quadrilateral: 72 / 2 = 36 cm\u00b2."}, {"q": "What is the midpoint of the segment joining P(-4, 7) and Q(6, -3)?", "options": ["(1, 2)", "(2, 4)", "(5, 2)", "(-1, 2)"], "ans": 0, "exp": "Midpoint M = ((-4 + 6)/2, (7 + (-3))/2) = (2/2, 4/2) = (1, 2)."}, {"q": "If the perimeter of the Varignon parallelogram PQRS is 30 cm, what is the sum of the diagonals AC + BD of the parent quadrilateral?", "options": ["15 cm", "30 cm", "60 cm", "45 cm"], "ans": 1, "exp": "The sides of PQRS are 1/2 AC, 1/2 BD, 1/2 AC, 1/2 BD. Perimeter = 2(1/2 AC + 1/2 BD) = AC + BD = 30 cm."}, {"q": "In a parallelogram ABCD, the diagonals intersect at M(3, 4). If vertex A is (1, 1), what are the coordinates of vertex C?", "options": ["(5, 7)", "(2, 3)", "(4, 5)", "(6, 8)"], "ans": 0, "exp": "M is the midpoint of AC: (1 + x_C)/2 = 3 \u21d2 x_C = 5, and (1 + y_C)/2 = 4 \u21d2 y_C = 7. Thus C is (5, 7)."}, {"q": "If the midpoints of the sides of a RECTANGLE are joined in order, the resulting 4-gon is always a:", "options": ["Square", "Rhombus", "Non-rhombus parallelogram", "Trapezium"], "ans": 1, "exp": "A rectangle has equal diagonals (AC = BD). Since AC = BD, the Varignon parallelogram has 4 equal sides, making it a rhombus."}, {"q": "If the midpoints of the sides of a RHOMBUS are joined in order, the resulting 4-gon is always a:", "options": ["Rectangle", "Square", "Rhombus", "Kite"], "ans": 0, "exp": "A rhombus has perpendicular diagonals (AC \u22a5 BD). Since the diagonals are perpendicular, the Varignon parallelogram has 90\u00b0 angles, making it a rectangle."}]}, {"slide_id": 20, "title": "Mastery Quiz 4: Symmetry, Tessellations & Logical Converses", "subtitle": "Rotational & Reflection Symmetries, Plane Tiling & False Converses", "category": "Mastery Challenge", "badge": "Quiz 4 \u2022 Advanced Synthesis", "questions": [{"q": "Which quadrilateral can tile the entire 2D plane without gaps or overlaps?", "options": ["Only squares and rectangles", "Only parallelograms and rhombuses", "ANY arbitrary planar quadrilateral (even scalene or concave)", "No quadrilateral can tile the plane"], "ans": 2, "exp": "Any quadrilateral can tile the plane because its interior angles sum to 360\u00b0, allowing four copies (one of each angle A, B, C, D) to meet seamlessly at every vertex via 180\u00b0 edge-midpoint rotations."}, {"q": "How many axes of reflection symmetry does a rhombus (that is not a square) have?", "options": ["0", "1", "2", "4"], "ans": 2, "exp": "A non-square rhombus has exactly 2 axes of reflection symmetry, which are its two diagonals."}, {"q": "What is the order of rotational symmetry of a square?", "options": ["1", "2", "3", "4"], "ans": 3, "exp": "A square matches itself under rotations of 90\u00b0, 180\u00b0, 270\u00b0, and 360\u00b0, giving it an order-4 rotational symmetry."}, {"q": "Statement: 'If a quadrilateral is a square, its diagonals are perpendicular bisectors of each other'. Is the converse 'If the diagonals of a quadrilateral are perpendicular bisectors of each other, it is a square' true or false?", "options": ["True, it guarantees a square", "False; a non-square rhombus has perpendicular bisecting diagonals (counterexample)", "True by SAS", "Cannot be determined"], "ans": 1, "exp": "The converse is false. The diagonals of any rhombus are perpendicular bisectors of each other, but the sides do not need to meet at 90\u00b0 (it is not a square unless diagonals are also equal)."}, {"q": "In the context of parallelograms, what does 'central symmetry' mean?", "options": ["All sides are equidistant from the center", "A 180\u00b0 rotation about the diagonal intersection maps the parallelogram onto itself", "It has four lines of symmetry", "Its diagonals are equal"], "ans": 1, "exp": "Central symmetry (point inversion) means that a half-turn (180\u00b0 rotation) around the center O maps every point P to opposite point P', leaving the figure invariant."}, {"q": "If a line passing through the center of symmetry O of a parallelogram intersects opposite sides at P and Q, what is the relation between OP and OQ?", "options": ["OP = OQ", "OP = 2 OQ", "OP + OQ = AC", "OP \u22a5 OQ"], "ans": 0, "exp": "By central symmetry about center O, point P maps to point Q under a 180\u00b0 rotation, meaning O is the exact midpoint of segment PQ (OP = OQ)."}, {"q": "A kite has diagonals that are perpendicular. Does a kite have central symmetry?", "options": ["Yes, always", "No, because rotating a kite by 180\u00b0 turns its wide end to its narrow end (unless it is a rhombus)", "Only if it has right angles", "Yes, about its longest diagonal"], "ans": 1, "exp": "A kite has line reflection symmetry along its main diagonal, but lacks 180\u00b0 central rotational symmetry because its opposite sides are unequal."}, {"q": "In the Varignon paper folding activity, when a paper quadrilateral is folded along its four side midpoints, what shape is formed by the creases?", "options": ["Trapezium", "Kite", "Parallelogram", "Isosceles triangle"], "ans": 2, "exp": "The crease lines connect the midpoints of adjacent sides, forming the Varignon parallelogram."}, {"q": "What is the order of rotational symmetry of a general non-rhombus, non-rectangle parallelogram?", "options": ["1", "2", "3", "4"], "ans": 1, "exp": "A general parallelogram has order-2 rotational symmetry (mapping onto itself after 180\u00b0 and 360\u00b0 rotations)."}, {"q": "Which of the following converses is completely TRUE without needing extra preconditions?", "options": ["If diagonals are equal, it is a rectangle", "If diagonals are perpendicular, it is a rhombus", "If diagonals bisect each other, it is a parallelogram", "If one pair of sides is parallel, it is a parallelogram"], "ans": 2, "exp": "Theorem 8.7 states: If the diagonals of any quadrilateral bisect each other, it is guaranteed to be a parallelogram (proven by SAS between vertically opposite triangles)."}]}];
+
+        const totalSlides = 20;
+        let currentSlideIndex = 0;
+        let isAudioMuted = false;
+        let currentUtterance = null;
+        let audioSynthContext = null;
+
+        // Elements
+        const slidePicker = document.getElementById('slidePicker');
+        const slideProgressBar = document.getElementById('slideProgressBar');
+        const slideBadge = document.getElementById('slideBadge');
+        const slideCategory = document.getElementById('slideCategory');
+        const slideTitle = document.getElementById('slideTitle');
+        const slideSubtitle = document.getElementById('slideSubtitle');
+        const teacherSpeech = document.getElementById('teacherSpeech');
+        const speechIndicator = document.getElementById('speechIndicator');
+        const avatarContainer = document.getElementById('avatarContainer');
+        const toggleAudioBtn = document.getElementById('toggleAudioBtn');
+        const audioIcon = document.getElementById('audioIcon');
+        const audioStatusText = document.getElementById('audioStatusText');
+        const replaySpeechBtn = document.getElementById('replaySpeechBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const slideIndicator = document.getElementById('slideIndicator');
+        const dynamicSlideContent = document.getElementById('dynamicSlideContent');
+        const lastSlideNotice = document.getElementById('lastSlideNotice');
+
+        // Modal Elements
+        const solutionModal = document.getElementById('solutionModal');
+        const closeSolutionBtn = document.getElementById('closeSolutionBtn');
+        const solutionModalTitle = document.getElementById('solutionModalTitle');
+        const solutionModalAns = document.getElementById('solutionModalAns');
+        const solutionModalBody = document.getElementById('solutionModalBody');
+
+        // Initialize Slide Picker
+        function initSlidePicker() {
+            slidePicker.innerHTML = '';
+            for (let i = 0; i < 16; i++) {
+                const opt = document.createElement('option');
+                opt.value = i;
+                opt.textContent = `Slide ${i + 1}: ${SLIDES_DATA[i].title}`;
+                slidePicker.appendChild(opt);
+            }
+            for (let i = 0; i < 4; i++) {
+                const opt = document.createElement('option');
+                opt.value = 16 + i;
+                opt.textContent = `Slide ${17 + i}: ${QUIZZES_DATA[i].title}`;
+                slidePicker.appendChild(opt);
+            }
+        }
+
+        // Speech Narration
+        function speakCurrentSlide(text) {
+            if (isAudioMuted) return;
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                currentUtterance = new SpeechSynthesisUtterance(text);
+                currentUtterance.rate = 1.0;
+                currentUtterance.pitch = 1.05;
+                currentUtterance.lang = 'en-US';
+
+                currentUtterance.onstart = () => {
+                    avatarContainer.classList.add('talking');
+                    speechIndicator.classList.remove('hidden');
+                };
+                currentUtterance.onend = () => {
+                    avatarContainer.classList.remove('talking');
+                    speechIndicator.classList.add('hidden');
+                };
+                currentUtterance.onerror = () => {
+                    avatarContainer.classList.remove('talking');
+                    speechIndicator.classList.add('hidden');
+                    playSynthesizedChime();
+                };
+                window.speechSynthesis.speak(currentUtterance);
+            } else {
+                playSynthesizedChime();
+            }
+        }
+
+        function playSynthesizedChime() {
+            try {
+                if (!audioSynthContext) {
+                    audioSynthContext = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                const osc = audioSynthContext.createOscillator();
+                const gain = audioSynthContext.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(520, audioSynthContext.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(1040, audioSynthContext.currentTime + 0.3);
+                gain.gain.setValueAtTime(0.1, audioSynthContext.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioSynthContext.currentTime + 0.3);
+                osc.connect(gain);
+                gain.connect(audioSynthContext.destination);
+                osc.start();
+                osc.stop(audioSynthContext.currentTime + 0.3);
+            } catch (e) {}
+        }
+
+        function stopSpeaking() {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+            }
+            avatarContainer.classList.remove('talking');
+            speechIndicator.classList.add('hidden');
+        }
+
+        // Render Current Slide
+        function renderCurrentSlide() {
+            stopSpeaking();
+            slidePicker.value = currentSlideIndex;
+            slideProgressBar.style.width = `${((currentSlideIndex + 1) / totalSlides) * 100}%`;
+            slideIndicator.textContent = `Slide ${currentSlideIndex + 1} / ${totalSlides}`;
+
+            prevBtn.disabled = (currentSlideIndex === 0);
+
+            // Handle slide 20 lastSlideNotice & nextBtn display
+            if (currentSlideIndex === 19) {
+                nextBtn.style.display = 'none';
+                lastSlideNotice.classList.remove('hidden');
+            } else {
+                nextBtn.style.display = 'inline-flex';
+                lastSlideNotice.classList.add('hidden');
+            }
+
+            if (currentSlideIndex < 16) {
+                renderContentSlide(SLIDES_DATA[currentSlideIndex]);
+            } else {
+                renderQuizSlide(QUIZZES_DATA[currentSlideIndex - 16]);
+            }
+
+            lucide.createIcons();
+            if (window.renderMathInElement) {
+                renderMathInElement(document.body);
+            }
+        }
+
+        // Render Content Slide (1 - 16)
+        function renderContentSlide(slide) {
+            slideBadge.textContent = `Slide ${slide.id} of 20`;
+            slideCategory.textContent = slide.category;
+            slideTitle.textContent = slide.title;
+            slideSubtitle.textContent = slide.subtitle;
+            teacherSpeech.textContent = slide.narration;
+
+            speakCurrentSlide(slide.narration);
+
+            let keyPointsHtml = slide.key_points.map(pt => `
+                <li class="flex items-start gap-2 text-xs sm:text-sm text-slate-300">
+                    <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                    <span>${pt}</span>
+                </li>
+            `).join('');
+
+            let checkpointsHtml = slide.checkpoints.map((cp, qIdx) => `
+                <div class="glass-card rounded-xl p-4 border border-slate-800" id="cp_card_${slide.id}_${qIdx}">
+                    <div class="flex items-center gap-2 text-[11px] font-bold text-indigo-400 mb-2">
+                        <i data-lucide="help-circle" class="w-3.5 h-3.5"></i> Checkpoint ${qIdx + 1}
+                    </div>
+                    <p class="text-xs sm:text-sm font-semibold text-slate-100 mb-3">${cp.q}</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
+                        ${cp.options.map((opt, oIdx) => `
+                            <button onclick="checkCheckpointAnswer(${slide.id}, ${qIdx}, ${oIdx}, ${cp.ans})"
+                                    id="cp_btn_${slide.id}_${qIdx}_${oIdx}"
+                                    class="text-left px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800/90 text-xs text-slate-300 border border-slate-800 transition">
+                                <span class="font-bold text-slate-400 mr-1.5">${String.fromCharCode(65 + oIdx)}.</span> ${opt}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div id="cp_exp_${slide.id}_${qIdx}" class="hidden p-3 rounded-lg text-xs leading-relaxed"></div>
+                </div>
+            `).join('');
+
+            dynamicSlideContent.innerHTML = `
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+                    <!-- Left Column: Summary & Concepts -->
+                    <div class="lg:col-span-5 flex flex-col gap-4">
+                        <div class="glass-panel rounded-2xl p-4 sm:p-5">
+                            <h3 class="text-xs font-bold text-indigo-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                <i data-lucide="book-marked" class="w-4 h-4"></i> Core Mathematical Foundation
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">${slide.summary}</p>
+
+                            <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wider mt-4 mb-2">Key Principles</h4>
+                            <ul class="space-y-2">
+                                ${keyPointsHtml}
+                            </ul>
+                        </div>
+
+                        <!-- Checkpoints Box -->
+                        <div class="glass-panel rounded-2xl p-4 sm:p-5 flex flex-col gap-3">
+                            <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
+                                <i data-lucide="zap" class="w-4 h-4"></i> Interactive Checkpoint Questions
+                            </h3>
+                            ${checkpointsHtml}
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Interactive Simulator -->
+                    <div class="lg:col-span-7 glass-panel rounded-2xl p-4 sm:p-5 flex flex-col">
+                        <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="p-1.5 rounded-lg bg-indigo-500/20 text-indigo-400">
+                                    <i data-lucide="play" class="w-4 h-4"></i>
+                                </span>
+                                <span class="text-xs sm:text-sm font-bold text-slate-100">${slide.sim_title}</span>
+                            </div>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Interactive Simulator</span>
+                        </div>
+                        <div id="simulatorContainer" class="flex-1 w-full min-h-[440px] flex flex-col justify-center">
+                            <!-- Injected by renderSimulator(slide.id) -->
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            renderSimulator(slide.id);
+        }
+
+        // Render Quiz Slide (17 - 20)
+        function renderQuizSlide(quiz) {
+            slideBadge.textContent = `Slide ${quiz.slide_id} of 20`;
+            slideCategory.textContent = quiz.category;
+            slideTitle.textContent = quiz.title;
+            slideSubtitle.textContent = quiz.subtitle;
+            const quizNarration = `Welcome to ${quiz.title}! Challenge yourself with these 10 mastery questions. Test your understanding and click 'View Solution' for complete mathematical justifications.`;
+            teacherSpeech.textContent = quizNarration;
+            speakCurrentSlide(quizNarration);
+
+            let questionsHtml = quiz.questions.map((q, idx) => `
+                <div class="glass-card rounded-xl p-4 border border-slate-800" id="quiz_q_${quiz.slide_id}_${idx}">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300">Question ${idx + 1} of 10</span>
+                        <button onclick="openSolutionModal(${quiz.slide_id}, ${idx})"
+                                class="px-2.5 py-1 rounded-lg bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-300 text-xs font-semibold flex items-center gap-1 border border-indigo-500/40 transition">
+                            <i data-lucide="file-text" class="w-3.5 h-3.5"></i> View Solution
+                        </button>
+                    </div>
+                    <p class="text-xs sm:text-sm font-semibold text-slate-100 mb-3">${q.q}</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-2">
+                        ${q.options.map((opt, oIdx) => `
+                            <button onclick="checkQuizAnswer(${quiz.slide_id}, ${idx}, ${oIdx}, ${q.ans})"
+                                    id="quiz_btn_${quiz.slide_id}_${idx}_${oIdx}"
+                                    class="text-left px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-xs text-slate-300 border border-slate-800 transition">
+                                <span class="font-bold text-slate-400 mr-1.5">${String.fromCharCode(65 + oIdx)}.</span> ${opt}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div id="quiz_feedback_${quiz.slide_id}_${idx}" class="hidden p-2 rounded-lg text-xs font-semibold mt-2"></div>
+                </div>
+            `).join('');
+
+            dynamicSlideContent.innerHTML = `
+                <div class="glass-panel rounded-2xl p-4 sm:p-6 flex flex-col gap-4">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="trophy" class="w-5 h-5 text-amber-400"></i>
+                            <h3 class="text-sm sm:text-base font-bold text-white">10-Question Mastery Assessment</h3>
+                        </div>
+                        <span class="text-xs text-slate-400 font-medium">Click on your answer, then inspect the popup solution</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        ${questionsHtml}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Checkpoint Handler
+        window.checkCheckpointAnswer = function(slideId, qIdx, selectedIdx, correctIdx) {
+            const expDiv = document.getElementById(`cp_exp_${slideId}_${qIdx}`);
+            const slide = SLIDES_DATA.find(s => s.id === slideId);
+            const cp = slide.checkpoints[qIdx];
+
+            for (let i = 0; i < cp.options.length; i++) {
+                const btn = document.getElementById(`cp_btn_${slideId}_${qIdx}_${i}`);
+                btn.disabled = true;
+                if (i === correctIdx) {
+                    btn.classList.remove('bg-slate-900', 'text-slate-300', 'border-slate-800');
+                    btn.classList.add('bg-emerald-900/60', 'text-emerald-200', 'border-emerald-500');
+                } else if (i === selectedIdx && selectedIdx !== correctIdx) {
+                    btn.classList.remove('bg-slate-900', 'text-slate-300', 'border-slate-800');
+                    btn.classList.add('bg-rose-900/60', 'text-rose-200', 'border-rose-500');
+                }
+            }
+
+            expDiv.classList.remove('hidden');
+            if (selectedIdx === correctIdx) {
+                expDiv.className = 'p-3 rounded-lg text-xs leading-relaxed bg-emerald-950/60 border border-emerald-500/40 text-emerald-200 mt-2';
+                expDiv.innerHTML = `<span class="font-bold text-emerald-300">✓ Correct!</span> ${cp.explanation}`;
+            } else {
+                expDiv.className = 'p-3 rounded-lg text-xs leading-relaxed bg-rose-950/60 border border-rose-500/40 text-rose-200 mt-2';
+                expDiv.innerHTML = `<span class="font-bold text-rose-300">✗ Incorrect.</span> ${cp.explanation}`;
+            }
+        };
+
+        // Quiz Question Answer Handler
+        window.checkQuizAnswer = function(quizSlideId, qIdx, selectedIdx, correctIdx) {
+            const feedbackDiv = document.getElementById(`quiz_feedback_${quizSlideId}_${qIdx}`);
+            const quiz = QUIZZES_DATA.find(q => q.slide_id === quizSlideId);
+            const question = quiz.questions[qIdx];
+
+            for (let i = 0; i < question.options.length; i++) {
+                const btn = document.getElementById(`quiz_btn_${quizSlideId}_${qIdx}_${i}`);
+                btn.disabled = true;
+                if (i === correctIdx) {
+                    btn.classList.remove('bg-slate-900', 'text-slate-300', 'border-slate-800');
+                    btn.classList.add('bg-emerald-900/60', 'text-emerald-200', 'border-emerald-500');
+                } else if (i === selectedIdx && selectedIdx !== correctIdx) {
+                    btn.classList.remove('bg-slate-900', 'text-slate-300', 'border-slate-800');
+                    btn.classList.add('bg-rose-900/60', 'text-rose-200', 'border-rose-500');
+                }
+            }
+
+            feedbackDiv.classList.remove('hidden');
+            if (selectedIdx === correctIdx) {
+                feedbackDiv.className = 'p-2 rounded-lg text-xs font-semibold mt-2 bg-emerald-950/60 text-emerald-300 border border-emerald-500/40';
+                feedbackDiv.innerHTML = `✓ Correct! Click 'View Solution' for the full mathematical proof.`;
+            } else {
+                feedbackDiv.className = 'p-2 rounded-lg text-xs font-semibold mt-2 bg-rose-950/60 text-rose-300 border border-rose-500/40';
+                feedbackDiv.innerHTML = `✗ Incorrect. Click 'View Solution' to inspect the step-by-step reasoning.`;
+            }
+        };
+
+        // Solution Modal Handler
+        window.openSolutionModal = function(quizSlideId, qIdx) {
+            const quiz = QUIZZES_DATA.find(q => q.slide_id === quizSlideId);
+            const question = quiz.questions[qIdx];
+
+            solutionModalTitle.textContent = `Q${qIdx + 1}: ${question.q}`;
+            solutionModalAns.textContent = `${String.fromCharCode(65 + question.ans)}. ${question.options[question.ans]}`;
+            solutionModalBody.textContent = question.exp;
+
+            solutionModal.classList.remove('hidden');
+            if (window.renderMathInElement) {
+                renderMathInElement(solutionModal);
+            }
+        };
+
+        window.closeModal = function() {
+            solutionModal.classList.add('hidden');
+        };
+
+        closeSolutionBtn.addEventListener('click', closeModal);
+        solutionModal.addEventListener('click', (e) => {
+            if (e.target === solutionModal) closeModal();
+        });
+
+        // Navigation Handlers
+        prevBtn.addEventListener('click', () => {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                renderCurrentSlide();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlideIndex < totalSlides - 1) {
+                currentSlideIndex++;
+                renderCurrentSlide();
+            }
+        });
+
+        slidePicker.addEventListener('change', (e) => {
+            currentSlideIndex = parseInt(e.target.value);
+            renderCurrentSlide();
+        });
+
+        window.jumpToSlide = function(idx) {
+            currentSlideIndex = idx;
+            renderCurrentSlide();
+        };
+
+        toggleAudioBtn.addEventListener('click', () => {
+            isAudioMuted = !isAudioMuted;
+            if (isAudioMuted) {
+                stopSpeaking();
+                audioIcon.setAttribute('data-lucide', 'volume-x');
+                audioStatusText.textContent = 'Narration OFF';
+                toggleAudioBtn.classList.remove('bg-indigo-600/90', 'hover:bg-indigo-600');
+                toggleAudioBtn.classList.add('bg-slate-800', 'hover:bg-slate-700', 'text-slate-400');
+            } else {
+                audioIcon.setAttribute('data-lucide', 'volume-2');
+                audioStatusText.textContent = 'Narration ON';
+                toggleAudioBtn.classList.add('bg-indigo-600/90', 'hover:bg-indigo-600');
+                toggleAudioBtn.classList.remove('bg-slate-800', 'hover:bg-slate-700', 'text-slate-400');
+                if (currentSlideIndex < 16) {
+                    speakCurrentSlide(SLIDES_DATA[currentSlideIndex].narration);
+                }
+            }
+            lucide.createIcons();
+        });
+
+        replaySpeechBtn.addEventListener('click', () => {
+            if (currentSlideIndex < 16) {
+                speakCurrentSlide(SLIDES_DATA[currentSlideIndex].narration);
+            } else {
+                speakCurrentSlide(QUIZZES_DATA[currentSlideIndex - 16].title);
+            }
+        });
+
+        // ==========================================
+        // 16 BESPOKE INTERACTIVE SVG SIMULATORS
+        // ==========================================
+        function renderSimulator(slideId) {
+            const container = document.getElementById('simulatorContainer');
+            if (!container) return;
+            container.innerHTML = '';
+
+            switch (slideId) {
+                case 1: renderSim1(container); break;
+                case 2: renderSim2(container); break;
+                case 3: renderSim3(container); break;
+                case 4: renderSim4(container); break;
+                case 5: renderSim5(container); break;
+                case 6: renderSim6(container); break;
+                case 7: renderSim7(container); break;
+                case 8: renderSim8(container); break;
+                case 9: renderSim9(container); break;
+                case 10: renderSim10(container); break;
+                case 11: renderSim11(container); break;
+                case 12: renderSim12(container); break;
+                case 13: renderSim13(container); break;
+                case 14: renderSim14(container); break;
+                case 15: renderSim15(container); break;
+                case 16: renderSim16(container); break;
+                default:
+                    container.innerHTML = `<div class="text-slate-400 text-sm">Simulator loading...</div>`;
+            }
+            lucide.createIcons();
+            if (window.renderMathInElement) {
+                renderMathInElement(container);
+            }
+        }
+
+        // Sim 1: 4-gon Builder & 360° Angle Sum
+        function renderSim1(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Skew Vertex C (x):</label>
+                            <input type="range" id="sim1_cx" min="280" max="520" value="440" class="w-28 accent-indigo-500">
+                            <span id="sim1_cx_val" class="font-bold text-indigo-400">440</span>
+                        </div>
+                        <button id="sim1_diag_btn" class="px-3 py-1.5 rounded-lg bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-300 font-bold border border-indigo-500/40 text-xs transition">
+                            Toggle Diagonal AC
+                        </button>
+                    </div>
+
+                    <div class="flex-1 min-h-[280px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim1_svg" viewBox="0 0 600 280" class="w-full h-full max-h-[280px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim1_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        Sum = ∠A + ∠B + ∠C + ∠D = (2 × 180°) = 360° (Always constant!)
+                    </div>
+                </div>
+            `;
+
+            let showDiag = true;
+            const slider = document.getElementById('sim1_cx');
+            const cxVal = document.getElementById('sim1_cx_val');
+            const diagBtn = document.getElementById('sim1_diag_btn');
+            const svg = document.getElementById('sim1_svg');
+            const readout = document.getElementById('sim1_readout');
+
+            function update() {
+                const cx = parseFloat(slider.value);
+                cxVal.textContent = cx;
+
+                // Vertices
+                const Ax = 140, Ay = 60;
+                const Bx = 80, By = 220;
+                const Cx = cx, Cy = 220;
+                const Dx = 400, Dy = 80;
+
+                let svgHtml = `
+                    <polygon points="${Ax},${Ay} ${Bx},${By} ${Cx},${Cy} ${Dx},${Dy}" fill="rgba(99, 102, 241, 0.2)" stroke="#6366f1" stroke-width="3"/>
+                `;
+
+                if (showDiag) {
+                    svgHtml += `
+                        <!-- Diagonal AC -->
+                        <line x1="${Ax}" y1="${Ay}" x2="${Cx}" y2="${Cy}" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="4,4"/>
+                        <!-- △ABC shade -->
+                        <polygon points="${Ax},${Ay} ${Bx},${By} ${Cx},${Cy}" fill="rgba(56, 189, 248, 0.15)"/>
+                        <!-- △ACD shade -->
+                        <polygon points="${Ax},${Ay} ${Cx},${Cy} ${Dx},${Dy}" fill="rgba(16, 185, 129, 0.15)"/>
+                        <text x="180" y="160" fill="#38bdf8" font-size="11" font-weight="bold">△ABC (180°)</text>
+                        <text x="320" y="140" fill="#34d399" font-size="11" font-weight="bold">△ACD (180°)</text>
+                    `;
+                }
+
+                // Vertices & Labels
+                [ [Ax,Ay,'A'], [Bx,By,'B'], [Cx,Cy,'C'], [Dx,Dy,'D'] ].forEach(([x,y,l]) => {
+                    svgHtml += `
+                        <circle cx="${x}" cy="${y}" r="6" fill="#f8fafc" stroke="#6366f1" stroke-width="2"/>
+                        <text x="${x + (x<250?-15:12)}" y="${y + (y<150?-8:15)}" fill="#f8fafc" font-size="12" font-weight="bold">${l}</text>
+                    `;
+                });
+
+                svg.innerHTML = svgHtml;
+            }
+
+            slider.addEventListener('input', update);
+            diagBtn.addEventListener('click', () => {
+                showDiag = !showDiag;
+                update();
+            });
+            update();
+        }
+
+        // Sim 2: Parallelogram Characterisation Tester
+        function renderSim2(container) {
+            const tests = [
+                {
+                    title: "1. Opposite Sides Parallel (Definition)",
+                    desc: "AB ∥ CD and AD ∥ BC. Both pairs of opposite sides are parallel."
+                },
+                {
+                    title: "2. Opposite Sides Equal (Theorem 8.2)",
+                    desc: "AB = CD and AD = BC. Both pairs of opposite sides have identical lengths."
+                },
+                {
+                    title: "3. Opposite Angles Equal (Theorem 8.4)",
+                    desc: "∠A = ∠C and ∠B = ∠D. Both pairs of opposite angles are equal."
+                },
+                {
+                    title: "4. Diagonals Bisect (Theorem 8.6)",
+                    desc: "OA = OC and OB = OD. The diagonals share the exact same midpoint O."
+                },
+                {
+                    title: "5. One Pair Equal & Parallel (Theorem 8.8)",
+                    desc: "AB = CD and AB ∥ CD. One pair of opposite sides is both equal and parallel."
+                }
+            ];
+
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <span class="text-slate-300 font-semibold">Select Test:</span>
+                        <select id="sim2_select" class="bg-slate-800 border border-slate-700 text-slate-200 rounded-lg px-2 py-1 text-xs font-bold">
+                            ${tests.map((t, i) => `<option value="${i}">${t.title}</option>`).join('')}
+                        </select>
+                    </div>
+
+                    <div class="flex-1 min-h-[280px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim2_svg" viewBox="0 0 600 280" class="w-full h-full max-h-[280px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim2_readout" class="p-2.5 rounded-xl text-center text-xs font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            const select = document.getElementById('sim2_select');
+            const svg = document.getElementById('sim2_svg');
+            const readout = document.getElementById('sim2_readout');
+
+            function update() {
+                const idx = parseInt(select.value);
+                const Ax = 180, Ay = 60;
+                const Bx = 100, By = 220;
+                const Cx = 420, Cy = 220;
+                const Dx = 500, Dy = 60;
+                const Ox = 300, Oy = 140;
+
+                let svgHtml = `
+                    <polygon points="${Ax},${Ay} ${Bx},${By} ${Cx},${Cy} ${Dx},${Dy}" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" stroke-width="3"/>
+                    <text x="${Ax-15}" y="${Ay}" fill="#f8fafc" font-size="12" font-weight="bold">A</text>
+                    <text x="${Bx-15}" y="${By+10}" fill="#f8fafc" font-size="12" font-weight="bold">B</text>
+                    <text x="${Cx+12}" y="${By+10}" fill="#f8fafc" font-size="12" font-weight="bold">C</text>
+                    <text x="${Dx+12}" y="${Ay}" fill="#f8fafc" font-size="12" font-weight="bold">D</text>
+                `;
+
+                if (idx === 0) {
+                    // Parallel arrows
+                    svgHtml += `
+                        <text x="260" y="50" fill="#38bdf8" font-size="12" font-weight="bold">AB ∥ CD ➔➔</text>
+                        <text x="260" y="240" fill="#38bdf8" font-size="12" font-weight="bold">AB ∥ CD ➔➔</text>
+                    `;
+                } else if (idx === 1) {
+                    svgHtml += `
+                        <text x="340" y="50" fill="#fbbf24" font-size="12" font-weight="bold">L = 320</text>
+                        <text x="260" y="240" fill="#fbbf24" font-size="12" font-weight="bold">L = 320</text>
+                        <text x="120" y="140" fill="#f43f5e" font-size="12" font-weight="bold">W = 180</text>
+                        <text x="470" y="140" fill="#f43f5e" font-size="12" font-weight="bold">W = 180</text>
+                    `;
+                } else if (idx === 2) {
+                    svgHtml += `
+                        <text x="190" y="90" fill="#38bdf8" font-size="12" font-weight="bold">∠A = 115°</text>
+                        <text x="350" y="210" fill="#38bdf8" font-size="12" font-weight="bold">∠C = 115°</text>
+                        <text x="130" y="200" fill="#fbbf24" font-size="12" font-weight="bold">∠B = 65°</text>
+                        <text x="440" y="90" fill="#fbbf24" font-size="12" font-weight="bold">∠D = 65°</text>
+                    `;
+                } else if (idx === 3) {
+                    svgHtml += `
+                        <line x1="${Ax}" y1="${Ay}" x2="${Cx}" y2="${Cy}" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,4"/>
+                        <line x1="${Bx}" y1="${By}" x2="${Dx}" y2="${Dy}" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4,4"/>
+                        <circle cx="${Ox}" cy="${Oy}" r="5" fill="#f8fafc"/>
+                        <text x="${Ox+8}" y="${Oy-8}" fill="#f8fafc" font-size="11" font-weight="bold">O</text>
+                        <text x="220" y="100" fill="#fbbf24" font-size="11">OA = OC</text>
+                        <text x="360" y="180" fill="#38bdf8" font-size="11">OB = OD</text>
+                    `;
+                } else {
+                    svgHtml += `
+                        <line x1="${Ax}" y1="${Ay}" x2="${Dx}" y2="${Dy}" stroke="#f59e0b" stroke-width="5"/>
+                        <line x1="${Bx}" y1="${By}" x2="${Cx}" y2="${Cy}" stroke="#f59e0b" stroke-width="5"/>
+                        <text x="300" y="140" fill="#fbbf24" font-size="13" font-weight="bold" text-anchor="middle">AB = CD AND AB ∥ CD</text>
+                    `;
+                }
+
+                svg.innerHTML = svgHtml;
+                readout.textContent = `✓ ${tests[idx].desc} ⇒ Guaranteed to be a Parallelogram!`;
+            }
+
+            select.addEventListener('change', update);
+            update();
+        }
+
+        // Sim 3: Diagonal Partition & CPCTC Explorer
+        function renderSim3(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <span class="text-slate-300 font-semibold">Theorem 8.1: Diagonal Partition into 2 Congruent Triangles</span>
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300">Separate Halves:</label>
+                            <input type="range" id="sim3_sep" min="0" max="60" value="0" class="w-28 accent-indigo-500">
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[280px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim3_svg" viewBox="0 0 600 280" class="w-full h-full max-h-[280px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim3_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        △ABC ≅ △CDA by ASA ⇒ AB = CD and BC = DA by CPCTC!
+                    </div>
+                </div>
+            `;
+
+            const slider = document.getElementById('sim3_sep');
+            const svg = document.getElementById('sim3_svg');
+
+            function update() {
+                const s = parseFloat(slider.value);
+                const Ax = 180, Ay = 60 - s;
+                const Bx = 100 - s, By = 220;
+                const Cx = 420, Cy = 220 + s;
+                const Dx = 500 + s, Dy = 60;
+
+                svg.innerHTML = `
+                    <!-- Bottom Triangle △ABC -->
+                    <polygon points="${Ax},${Ay} ${Bx},${By} ${Cx},${Cy}" fill="rgba(99, 102, 241, 0.3)" stroke="#6366f1" stroke-width="3"/>
+                    <!-- Top Triangle △CDA -->
+                    <polygon points="${Ax},${Ay} ${Cx},${Cy} ${Dx},${Dy}" fill="rgba(16, 185, 129, 0.3)" stroke="#10b981" stroke-width="3"/>
+
+                    <text x="210" y="170" fill="#a5b4fc" font-size="12" font-weight="bold">△ABC</text>
+                    <text x="350" y="110" fill="#6ee7b7" font-size="12" font-weight="bold">△CDA</text>
+
+                    <!-- Vertices -->
+                    <circle cx="${Ax}" cy="${Ay}" r="5" fill="#f8fafc"/>
+                    <circle cx="${Bx}" cy="${By}" r="5" fill="#f8fafc"/>
+                    <circle cx="${Cx}" cy="${Cy}" r="5" fill="#f8fafc"/>
+                    <circle cx="${Dx}" cy="${Dy}" r="5" fill="#f8fafc"/>
+                    <text x="${Ax-15}" y="${Ay}" fill="#f8fafc" font-size="12" font-weight="bold">A</text>
+                    <text x="${Bx-15}" y="${By+10}" fill="#f8fafc" font-size="12" font-weight="bold">B</text>
+                    <text x="${Cx+12}" y="${Cy+10}" fill="#f8fafc" font-size="12" font-weight="bold">C</text>
+                    <text x="${Dx+12}" y="${Dy}" fill="#f8fafc" font-size="12" font-weight="bold">D</text>
+                `;
+            }
+
+            slider.addEventListener('input', update);
+            update();
+        }
+
+        // Sim 4: Opposite Angle Balancer & Supplementary Angle Wheel
+        function renderSim4(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Angle ∠A:</label>
+                            <input type="range" id="sim4_A" min="40" max="140" value="65" class="w-36 accent-indigo-500">
+                            <span id="sim4_A_val" class="font-bold text-indigo-400">65°</span>
+                        </div>
+                        <span class="text-slate-400 font-mono text-[11px]">Theorem 8.4: ∠A = ∠C, ∠B = ∠D</span>
+                    </div>
+
+                    <div class="flex-1 min-h-[280px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim4_svg" viewBox="0 0 600 280" class="w-full h-full max-h-[280px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim4_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-slate-900 border border-slate-800 text-slate-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            const ASlider = document.getElementById('sim4_A');
+            const AVal = document.getElementById('sim4_A_val');
+            const svg = document.getElementById('sim4_svg');
+            const readout = document.getElementById('sim4_readout');
+
+            function update() {
+                const angA = parseFloat(ASlider.value);
+                const angB = 180 - angA;
+                AVal.textContent = `${angA}°`;
+
+                const rad = (angA * Math.PI) / 180;
+                const L = 160;
+                const H = 280;
+
+                const Ax = 240, Ay = 60;
+                const Bx = Ax - L * Math.cos(rad), By = Ay + L * Math.sin(rad);
+                const Cx = Bx + 220, Cy = By;
+                const Dx = Ax + 220, Dy = Ay;
+
+                svg.innerHTML = `
+                    <polygon points="${Ax},${Ay} ${Bx},${By} ${Cx},${Cy} ${Dx},${Dy}" fill="rgba(99, 102, 241, 0.25)" stroke="#6366f1" stroke-width="3"/>
+                    <!-- Angle labels -->
+                    <text x="${Ax - 20}" y="${Ay + 25}" fill="#38bdf8" font-size="12" font-weight="bold">∠A = ${angA}°</text>
+                    <text x="${Cx - 20}" y="${Cy - 15}" fill="#38bdf8" font-size="12" font-weight="bold">∠C = ${angA}°</text>
+                    <text x="${Bx + 15}" y="${By - 15}" fill="#f59e0b" font-size="12" font-weight="bold">∠B = ${angB}°</text>
+                    <text x="${Dx - 60}" y="${Dy + 25}" fill="#f59e0b" font-size="12" font-weight="bold">∠D = ${angB}°</text>
+                `;
+
+                readout.innerHTML = `
+                    Opposite Angles Equal: <b>∠A = ∠C = ${angA}°</b> | <b>∠B = ∠D = ${angB}°</b>.<br>
+                    Consecutive Angles Supplementary: ∠A + ∠B = ${angA}° + ${angB}° = <b>180°</b>.
+                `;
+            }
+
+            ASlider.addEventListener('input', update);
+            update();
+        }
+
+        // Sim 5: Diagonal Bisection & Mutual Midpoint Simulator
+        function renderSim5(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <span class="text-slate-300 font-semibold">Theorem 8.6: Diagonals Bisect Each Other at Point O</span>
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300">Skew:</label>
+                            <input type="range" id="sim5_skew" min="40" max="140" value="70" class="w-28 accent-indigo-500">
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[280px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim5_svg" viewBox="0 0 600 280" class="w-full h-full max-h-[280px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim5_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            const slider = document.getElementById('sim5_skew');
+            const svg = document.getElementById('sim5_svg');
+            const readout = document.getElementById('sim5_readout');
+
+            function update() {
+                const skew = parseFloat(slider.value);
+                const rad = (skew * Math.PI) / 180;
+                const Ax = 200, Ay = 60;
+                const Bx = Ax - 140 * Math.cos(rad), By = Ay + 140 * Math.sin(rad);
+                const Cx = Bx + 260, Cy = By;
+                const Dx = Ax + 260, Dy = Ay;
+                const Ox = (Ax + Cx) / 2, Oy = (Ay + Cy) / 2;
+
+                const lenAC = Math.hypot(Cx - Ax, Cy - Ay);
+                const lenBD = Math.hypot(Dx - Bx, Dy - By);
+
+                svg.innerHTML = `
+                    <polygon points="${Ax},${Ay} ${Bx},${By} ${Cx},${Cy} ${Dx},${Dy}" fill="rgba(99, 102, 241, 0.2)" stroke="#6366f1" stroke-width="3"/>
+                    <!-- Diagonals -->
+                    <line x1="${Ax}" y1="${Ay}" x2="${Cx}" y2="${Cy}" stroke="#f59e0b" stroke-width="2.5"/>
+                    <line x1="${Bx}" y1="${By}" x2="${Dx}" y2="${Dy}" stroke="#38bdf8" stroke-width="2.5"/>
+
+                    <circle cx="${Ox}" cy="${Oy}" r="6" fill="#f8fafc"/>
+                    <text x="${Ox+8}" y="${Oy-8}" fill="#f8fafc" font-size="12" font-weight="bold">O</text>
+
+                    <!-- Segment markings -->
+                    <text x="${(Ax+Ox)/2 - 20}" y="${(Ay+Oy)/2}" fill="#fbbf24" font-size="11">OA = ${(lenAC/2).toFixed(1)}</text>
+                    <text x="${(Cx+Ox)/2 + 10}" y="${(Cy+Oy)/2}" fill="#fbbf24" font-size="11">OC = ${(lenAC/2).toFixed(1)}</text>
+                    <text x="${(Bx+Ox)/2 - 25}" y="${(By+Oy)/2}" fill="#38bdf8" font-size="11">OB = ${(lenBD/2).toFixed(1)}</text>
+                    <text x="${(Dx+Ox)/2 + 10}" y="${(Dy+Oy)/2}" fill="#38bdf8" font-size="11">OD = ${(lenBD/2).toFixed(1)}</text>
+                `;
+
+                readout.innerHTML = `
+                    OA = OC = ${(lenAC/2).toFixed(1)} cm | OB = OD = ${(lenBD/2).toFixed(1)} cm.<br>
+                    Point O bisects BOTH diagonals simultaneously!
+                `;
+            }
+
+            slider.addEventListener('input', update);
+            update();
+        }
+
+        // Sim 6: Special 4-gon Morphing Transformer
+        function renderSim6(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex flex-wrap items-center justify-between gap-2 bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <span class="text-slate-300 font-semibold">Morph Shape:</span>
+                        <div class="flex gap-1.5">
+                            <button id="sim6_par" class="px-2.5 py-1 rounded bg-indigo-600 text-white font-bold text-xs transition">Parallelogram</button>
+                            <button id="sim6_rec" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold text-xs transition">Rectangle</button>
+                            <button id="sim6_rho" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold text-xs transition">Rhombus</button>
+                            <button id="sim6_squ" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold text-xs transition">Square</button>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[280px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim6_svg" viewBox="0 0 600 280" class="w-full h-full max-h-[280px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim6_desc" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-slate-900 border border-slate-800 text-slate-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            let mode = "par";
+            const parBtn = document.getElementById('sim6_par');
+            const recBtn = document.getElementById('sim6_rec');
+            const rhoBtn = document.getElementById('sim6_rho');
+            const squBtn = document.getElementById('sim6_squ');
+            const svg = document.getElementById('sim6_svg');
+            const desc = document.getElementById('sim6_desc');
+
+            function setMode(m) {
+                mode = m;
+                [parBtn, recBtn, rhoBtn, squBtn].forEach(b => {
+                    b.className = "px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold text-xs transition";
+                });
+                if (m === 'par') parBtn.className = "px-2.5 py-1 rounded bg-indigo-600 text-white font-bold text-xs transition";
+                if (m === 'rec') recBtn.className = "px-2.5 py-1 rounded bg-indigo-600 text-white font-bold text-xs transition";
+                if (m === 'rho') rhoBtn.className = "px-2.5 py-1 rounded bg-indigo-600 text-white font-bold text-xs transition";
+                if (m === 'squ') squBtn.className = "px-2.5 py-1 rounded bg-indigo-600 text-white font-bold text-xs transition";
+
+                let Ax, Ay, Bx, By, Cx, Cy, Dx, Dy;
+                let info = "";
+
+                if (m === 'par') {
+                    Ax = 220; Ay = 70; Bx = 140; By = 210; Cx = 380; Cy = 210; Dx = 460; Dy = 70;
+                    info = "General Parallelogram: Opposite sides equal & parallel. Diagonals bisect, but AC ≠ BD and AC ∡ BD.";
+                } else if (m === 'rec') {
+                    Ax = 160; Ay = 70; Bx = 160; By = 210; Cx = 440; Cy = 210; Dx = 440; Dy = 70;
+                    info = "Rectangle: All angles = 90°. Diagonals are EQUAL in length (AC = BD)!";
+                } else if (m === 'rho') {
+                    Ax = 300; Ay = 50; Bx = 180; By = 140; Cx = 300; Cy = 230; Dx = 420; Dy = 140;
+                    info = "Rhombus: All 4 sides equal. Diagonals are PERPENDICULAR bisectors (AC ⊥ BD)!";
+                } else {
+                    Ax = 210; Ay = 50; Bx = 210; By = 230; Cx = 390; Cy = 230; Dx = 390; Dy = 50;
+                    info = "Square: Regular 4-gon! All sides equal, all angles = 90°, diagonals are BOTH equal AND perpendicular!";
+                }
+
+                svg.innerHTML = `
+                    <polygon points="${Ax},${Ay} ${Bx},${By} ${Cx},${Cy} ${Dx},${Dy}" fill="rgba(99, 102, 241, 0.25)" stroke="#6366f1" stroke-width="3"/>
+                    <line x1="${Ax}" y1="${Ay}" x2="${Cx}" y2="${Cy}" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,4"/>
+                    <line x1="${Bx}" y1="${By}" x2="${Dx}" y2="${Dy}" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4,4"/>
+                `;
+                desc.textContent = info;
+            }
+
+            parBtn.addEventListener('click', () => setMode('par'));
+            recBtn.addEventListener('click', () => setMode('rec'));
+            rhoBtn.addEventListener('click', () => setMode('rho'));
+            squBtn.addEventListener('click', () => setMode('squ'));
+            setMode('par');
+        }
+
+        // Sim 7: 180° Half-Turn Central Symmetry Visualizer
+        function renderSim7(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Half-Turn Rotation Angle:</label>
+                            <input type="range" id="sim7_rot" min="0" max="180" value="0" class="w-36 accent-emerald-500">
+                            <span id="sim7_rot_val" class="font-bold text-emerald-400">0°</span>
+                        </div>
+                        <span class="text-slate-400 font-mono text-[11px]">Center O = Point of Inversion</span>
+                    </div>
+
+                    <div class="flex-1 min-h-[280px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg viewBox="0 0 600 280" class="w-full h-full max-h-[280px]">
+                            <!-- Static Reference Outline -->
+                            <polygon points="220,70 140,210 380,210 460,70" fill="none" stroke="#334155" stroke-width="2" stroke-dasharray="4,4"/>
+                            <!-- Center O -->
+                            <circle cx="300" cy="140" r="5" fill="#f8fafc"/>
+                            <text x="300" y="125" fill="#f8fafc" font-size="12" font-weight="bold" text-anchor="middle">Center O</text>
+
+                            <!-- Rotating Parallelogram Group -->
+                            <g id="sim7_group">
+                                <polygon points="220,70 140,210 380,210 460,70" fill="rgba(16, 185, 129, 0.3)" stroke="#10b981" stroke-width="3"/>
+                                <text x="215" y="60" fill="#a5b4fc" font-size="12" font-weight="bold">A</text>
+                                <text x="125" y="220" fill="#6ee7b7" font-size="12" font-weight="bold">B</text>
+                                <text x="390" y="220" fill="#fde68a" font-size="12" font-weight="bold">C</text>
+                                <text x="470" y="60" fill="#fda4af" font-size="12" font-weight="bold">D</text>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <div id="sim7_badge" class="p-2.5 rounded-xl text-center text-xs font-semibold bg-slate-900 border border-slate-800 text-slate-300">
+                        Slide to rotate 180° around diagonal intersection point O.
+                    </div>
+                </div>
+            `;
+
+            const slider = document.getElementById('sim7_rot');
+            const rotVal = document.getElementById('sim7_rot_val');
+            const group = document.getElementById('sim7_group');
+            const badge = document.getElementById('sim7_badge');
+
+            slider.addEventListener('input', () => {
+                const rot = parseFloat(slider.value);
+                rotVal.textContent = `${rot}°`;
+                group.setAttribute('transform', `rotate(${rot}, 300, 140)`);
+
+                if (rot === 180) {
+                    badge.className = 'p-2.5 rounded-xl text-center text-xs font-bold bg-emerald-950/60 border border-emerald-500 text-emerald-300';
+                    badge.innerHTML = `✓ 180° HALF-TURN COMPLETE: The parallelogram maps precisely onto itself! A swaps with C, B swaps with D.`;
+                } else {
+                    badge.className = 'p-2.5 rounded-xl text-center text-xs font-semibold bg-slate-900 border border-slate-800 text-slate-300';
+                    badge.innerHTML = `Rotating by ${rot}° around Center O... (Stop at 180° for central symmetry!)`;
+                }
+            });
+        }
+
+        // Sim 8: 4-gon Symmetry Mirror & Rotation Analyzer
+        function renderSim8(container) {
+            const shapes = [
+                { name: "General Parallelogram", lines: 0, order: 2, note: "0 Mirror Lines, Order-2 Rotational Symmetry (180°)." },
+                { name: "Rectangle", lines: 2, order: 2, note: "2 Mirror Lines (joining opposite midpoints), Order-2 Rotational Symmetry." },
+                { name: "Rhombus", lines: 2, order: 2, note: "2 Mirror Lines (the two diagonals), Order-2 Rotational Symmetry." },
+                { name: "Square", lines: 4, order: 4, note: "4 Mirror Lines (2 diagonals + 2 midpoints), Order-4 Rotational Symmetry (90°)." },
+                { name: "Kite", lines: 1, order: 1, note: "1 Mirror Line (main diagonal), Order-1 Rotational Symmetry." }
+            ];
+
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <span class="text-slate-300 font-semibold">Select 4-gon:</span>
+                        <select id="sim8_select" class="bg-slate-800 border border-slate-700 text-slate-200 rounded-lg px-2 py-1 text-xs font-bold">
+                            ${shapes.map((s, i) => `<option value="${i}">${s.name}</option>`).join('')}
+                        </select>
+                    </div>
+
+                    <div class="flex-1 min-h-[280px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim8_svg" viewBox="0 0 600 280" class="w-full h-full max-h-[280px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim8_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-slate-900 border border-slate-800 text-slate-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            const select = document.getElementById('sim8_select');
+            const svg = document.getElementById('sim8_svg');
+            const readout = document.getElementById('sim8_readout');
+
+            function update() {
+                const idx = parseInt(select.value);
+                const s = shapes[idx];
+
+                let svgHtml = "";
+                if (idx === 0) {
+                    svgHtml = `
+                        <polygon points="220,70 140,210 380,210 460,70" fill="rgba(99, 102, 241, 0.25)" stroke="#6366f1" stroke-width="3"/>
+                        <circle cx="300" cy="140" r="5" fill="#f59e0b"/>
+                        <text x="300" y="250" fill="#94a3b8" font-size="12" text-anchor="middle">No reflection axes exist!</text>
+                    `;
+                } else if (idx === 1) {
+                    svgHtml = `
+                        <polygon points="160,70 160,210 440,210 440,70" fill="rgba(56, 189, 248, 0.25)" stroke="#38bdf8" stroke-width="3"/>
+                        <!-- 2 mirror lines -->
+                        <line x1="300" y1="40" x2="300" y2="240" stroke="#f43f5e" stroke-width="2" stroke-dasharray="5,3"/>
+                        <line x1="130" y1="140" x2="470" y2="140" stroke="#f43f5e" stroke-width="2" stroke-dasharray="5,3"/>
+                        <text x="300" y="260" fill="#f43f5e" font-size="12" font-weight="bold" text-anchor="middle">2 Reflection Axes</text>
+                    `;
+                } else if (idx === 2) {
+                    svgHtml = `
+                        <polygon points="300,50 180,140 300,230 420,140" fill="rgba(16, 185, 129, 0.25)" stroke="#10b981" stroke-width="3"/>
+                        <line x1="300" y1="30" x2="300" y2="250" stroke="#f43f5e" stroke-width="2" stroke-dasharray="5,3"/>
+                        <line x1="160" y1="140" x2="440" y2="140" stroke="#f43f5e" stroke-width="2" stroke-dasharray="5,3"/>
+                        <text x="300" y="270" fill="#f43f5e" font-size="12" font-weight="bold" text-anchor="middle">2 Reflection Axes (Diagonals)</text>
+                    `;
+                } else if (idx === 3) {
+                    svgHtml = `
+                        <polygon points="210,50 210,230 390,230 390,50" fill="rgba(245, 158, 11, 0.25)" stroke="#f59e0b" stroke-width="3"/>
+                        <line x1="300" y1="30" x2="300" y2="250" stroke="#f43f5e" stroke-width="2" stroke-dasharray="4,3"/>
+                        <line x1="180" y1="140" x2="420" y2="140" stroke="#f43f5e" stroke-width="2" stroke-dasharray="4,3"/>
+                        <line x1="190" y1="30" x2="410" y2="250" stroke="#10b981" stroke-width="2" stroke-dasharray="4,3"/>
+                        <line x1="190" y1="250" x2="410" y2="30" stroke="#10b981" stroke-width="2" stroke-dasharray="4,3"/>
+                        <text x="300" y="270" fill="#fbbf24" font-size="12" font-weight="bold" text-anchor="middle">4 Reflection Axes</text>
+                    `;
+                } else {
+                    svgHtml = `
+                        <polygon points="300,40 210,120 300,240 390,120" fill="rgba(244, 63, 94, 0.25)" stroke="#f43f5e" stroke-width="3"/>
+                        <line x1="300" y1="20" x2="300" y2="260" stroke="#38bdf8" stroke-width="2.5" stroke-dasharray="5,3"/>
+                        <text x="300" y="275" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">1 Reflection Axis (Main Diagonal)</text>
+                    `;
+                }
+
+                svg.innerHTML = svgHtml;
+                readout.textContent = s.note;
+            }
+
+            select.addEventListener('change', update);
+            update();
+        }
+
+        // Sim 9: Midpoint Theorem Proof Animator
+        function renderSim9(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <span class="text-slate-300 font-semibold">Theorem 8.9 Proof Steps:</span>
+                        <div class="flex gap-1.5">
+                            <button id="sim9_s1" class="px-2.5 py-1 rounded bg-indigo-600 text-white font-bold text-xs transition">1. Midpoints D, E</button>
+                            <button id="sim9_s2" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold text-xs transition">2. Extend EF = DE</button>
+                            <button id="sim9_s3" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold text-xs transition">3. BCFD Parallelogram</button>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[280px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim9_svg" viewBox="0 0 600 280" class="w-full h-full max-h-[280px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim9_desc" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-slate-900 border border-slate-800 text-slate-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            let step = 1;
+            const b1 = document.getElementById('sim9_s1');
+            const b2 = document.getElementById('sim9_s2');
+            const b3 = document.getElementById('sim9_s3');
+            const svg = document.getElementById('sim9_svg');
+            const desc = document.getElementById('sim9_desc');
+
+            function setStep(s) {
+                step = s;
+                [b1, b2, b3].forEach((b, i) => {
+                    b.className = (i + 1 === s) ? "px-2.5 py-1 rounded bg-indigo-600 text-white font-bold text-xs transition" : "px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold text-xs transition";
+                });
+
+                const Ax = 240, Ay = 50;
+                const Bx = 100, By = 230;
+                const Cx = 460, Cy = 230;
+                const Dx = (Ax + Bx) / 2, Dy = (Ay + By) / 2;
+                const Ex = (Ax + Cx) / 2, Ey = (Ay + Cy) / 2;
+                const Fx = Ex + (Ex - Dx), Fy = Ey + (Ey - Dy);
+
+                let svgHtml = `
+                    <polygon points="${Ax},${Ay} ${Bx},${By} ${Cx},${Cy}" fill="rgba(99, 102, 241, 0.2)" stroke="#6366f1" stroke-width="3"/>
+                    <text x="${Ax}" y="${Ay-10}" fill="#f8fafc" font-size="12" font-weight="bold">A</text>
+                    <text x="${Bx-15}" y="${By+10}" fill="#f8fafc" font-size="12" font-weight="bold">B</text>
+                    <text x="${Cx+10}" y="${By+10}" fill="#f8fafc" font-size="12" font-weight="bold">C</text>
+                `;
+
+                if (s === 1) {
+                    svgHtml += `
+                        <line x1="${Dx}" y1="${Dy}" x2="${Ex}" y2="${Ey}" stroke="#f59e0b" stroke-width="3"/>
+                        <circle cx="${Dx}" cy="${Dy}" r="6" fill="#f59e0b"/>
+                        <circle cx="${Ex}" cy="${Ey}" r="6" fill="#f59e0b"/>
+                        <text x="${Dx-20}" y="${Dy}" fill="#fbbf24" font-size="12" font-weight="bold">D</text>
+                        <text x="${Ex+10}" y="${Ey}" fill="#fbbf24" font-size="12" font-weight="bold">E</text>
+                    `;
+                    desc.textContent = "Step 1: D is midpoint of AB (AD=BD), E is midpoint of AC (AE=CE). Connect DE.";
+                } else if (s === 2) {
+                    svgHtml += `
+                        <line x1="${Dx}" y1="${Dy}" x2="${Fx}" y2="${Fy}" stroke="#f59e0b" stroke-width="3" stroke-dasharray="4,4"/>
+                        <line x1="${Cx}" y1="${Cy}" x2="${Fx}" y2="${Fy}" stroke="#10b981" stroke-width="2.5"/>
+                        <circle cx="${Fx}" cy="${Fy}" r="6" fill="#10b981"/>
+                        <text x="${Fx+10}" y="${Fy}" fill="#6ee7b7" font-size="12" font-weight="bold">F</text>
+                        <!-- Congruent pair -->
+                        <polygon points="${Ax},${Ay} ${Dx},${Dy} ${Ex},${Ey}" fill="rgba(56, 189, 248, 0.3)"/>
+                        <polygon points="${Cx},${Cy} ${Fx},${Fy} ${Ex},${Ey}" fill="rgba(16, 185, 129, 0.3)"/>
+                        <text x="320" y="110" fill="#38bdf8" font-size="11">△ADE ≅ △CFE (SAS)</text>
+                    `;
+                    desc.textContent = "Step 2: Extend DE to F such that EF = DE. Join CF. By SAS, △ADE ≅ △CFE ⇒ AD = CF and AD ∥ CF.";
+                } else {
+                    svgHtml += `
+                        <polygon points="${Bx},${By} ${Cx},${Cy} ${Fx},${Fy} ${Dx},${Dy}" fill="rgba(16, 185, 129, 0.25)" stroke="#10b981" stroke-width="3"/>
+                        <text x="280" y="180" fill="#34d399" font-size="14" font-weight="bold" text-anchor="middle">BCFD is a Parallelogram!</text>
+                    `;
+                    desc.textContent = "Step 3: Since BD = CF and BD ∥ CF, BCFD is a parallelogram! Hence DF ∥ BC and DE = 1/2 DF = 1/2 BC!";
+                }
+
+                svg.innerHTML = svgHtml;
+            }
+
+            b1.addEventListener('click', () => setStep(1));
+            b2.addEventListener('click', () => setStep(2));
+            b3.addEventListener('click', () => setStep(3));
+            setStep(1);
+        }
+
+        // Sim 10: Converse Midpoint Simulator
+        function renderSim10(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Position of Point D on AB:</label>
+                            <input type="range" id="sim10_d" min="20" max="80" value="50" class="w-36 accent-emerald-500">
+                            <span id="sim10_d_val" class="font-bold text-emerald-400">50% (Midpoint)</span>
+                        </div>
+                        <span class="text-slate-400 font-mono text-[11px]">Theorem 8.10</span>
+                    </div>
+
+                    <div class="flex-1 min-h-[280px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim10_svg" viewBox="0 0 600 280" class="w-full h-full max-h-[280px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim10_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            const slider = document.getElementById('sim10_d');
+            const dVal = document.getElementById('sim10_d_val');
+            const svg = document.getElementById('sim10_svg');
+            const readout = document.getElementById('sim10_readout');
+
+            function update() {
+                const pct = parseFloat(slider.value) / 100;
+                dVal.textContent = `${Math.round(pct * 100)}%${pct === 0.5 ? ' (Midpoint)' : ''}`;
+
+                const Ax = 250, Ay = 50;
+                const Bx = 100, By = 230;
+                const Cx = 470, Cy = 230;
+
+                const Dx = Ax + (Bx - Ax) * pct;
+                const Dy = Ay + (By - Ay) * pct;
+                const Ex = Ax + (Cx - Ax) * pct;
+                const Ey = Ay + (Cy - Ay) * pct;
+
+                svg.innerHTML = `
+                    <polygon points="${Ax},${Ay} ${Bx},${By} ${Cx},${Cy}" fill="rgba(99, 102, 241, 0.2)" stroke="#6366f1" stroke-width="3"/>
+                    <!-- Parallel line DE -->
+                    <line x1="${Dx}" y1="${Dy}" x2="${Ex}" y2="${Ey}" stroke="#10b981" stroke-width="4"/>
+                    <line x1="${Bx}" y1="${By}" x2="${Cx}" y2="${Cy}" stroke="#10b981" stroke-width="4"/>
+
+                    <circle cx="${Dx}" cy="${Dy}" r="6" fill="#f59e0b"/>
+                    <circle cx="${Ex}" cy="${Ey}" r="6" fill="#f59e0b"/>
+                    <text x="${Dx-20}" y="${Dy}" fill="#fbbf24" font-size="12" font-weight="bold">D</text>
+                    <text x="${Ex+10}" y="${Ey}" fill="#fbbf24" font-size="12" font-weight="bold">E</text>
+
+                    <text x="300" y="250" fill="#10b981" font-size="12" font-weight="bold" text-anchor="middle">DE ∥ BC</text>
+                `;
+
+                if (pct === 0.5) {
+                    readout.className = 'p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300';
+                    readout.innerHTML = `✓ CONVERSE MIDPOINT THEOREM: D is the exact midpoint of AB ⇒ Line DE ∥ BC bisects AC at its exact midpoint E (AE = EC)!`;
+                } else {
+                    readout.className = 'p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-slate-900 border border-slate-800 text-slate-300';
+                    readout.innerHTML = `D is at ${(pct*100).toFixed(0)}% of AB. Move slider to 50% for the exact midpoint!`;
+                }
+            }
+
+            slider.addEventListener('input', update);
+            update();
+        }
+
+        // Sim 11: Centroid 2:1 Lever & Median Concurrency Visualizer
+        function renderSim11(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <span class="text-slate-300 font-semibold">Median Concurrency & The 2:1 Centroid Ratio</span>
+                        <span class="text-indigo-400 font-mono font-bold">FEQP Parallelogram Proof</span>
+                    </div>
+
+                    <div class="flex-1 min-h-[280px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg viewBox="0 0 600 280" class="w-full h-full max-h-[280px]">
+                            <!-- Triangle ABC -->
+                            <polygon points="280,40 100,230 480,230" fill="rgba(99, 102, 241, 0.15)" stroke="#6366f1" stroke-width="3"/>
+                            <!-- Medians -->
+                            <line x1="280" y1="40" x2="290" y2="230" stroke="#f59e0b" stroke-width="2"/>
+                            <line x1="100" y1="230" x2="380" y2="135" stroke="#38bdf8" stroke-width="2"/>
+                            <line x1="480" y1="230" x2="190" y2="135" stroke="#10b981" stroke-width="2"/>
+
+                            <!-- Centroid G -->
+                            <circle cx="286.6" cy="166.6" r="7" fill="#f43f5e"/>
+                            <text x="305" y="172" fill="#fda4af" font-size="14" font-weight="bold">G (Centroid)</text>
+
+                            <!-- Labels -->
+                            <text x="280" y="28" fill="#f8fafc" font-size="12" font-weight="bold">A</text>
+                            <text x="80" y="240" fill="#f8fafc" font-size="12" font-weight="bold">B</text>
+                            <text x="495" y="240" fill="#f8fafc" font-size="12" font-weight="bold">C</text>
+                            <text x="290" y="250" fill="#fbbf24" font-size="11">D (Midpoint BC)</text>
+                        </svg>
+                    </div>
+
+                    <div class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        Centroid G divides each median: <b>AG : GD = 2 : 1</b> | <b>BG : GE = 2 : 1</b> | <b>CG : GF = 2 : 1</b>!
+                    </div>
+                </div>
+            `;
+        }
+
+        // Sim 12: Varignon's Theorem Playground
+        function renderSim12(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <label class="text-slate-300 font-semibold">Distort Vertex C:</label>
+                            <input type="range" id="sim12_c" min="320" max="520" value="450" class="w-32 accent-indigo-500">
+                        </div>
+                        <span class="text-emerald-400 font-mono text-[11px]">Varignon: Midpoints = Parallelogram</span>
+                    </div>
+
+                    <div class="flex-1 min-h-[280px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim12_svg" viewBox="0 0 600 280" class="w-full h-full max-h-[280px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim12_readout" class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            const slider = document.getElementById('sim12_c');
+            const svg = document.getElementById('sim12_svg');
+            const readout = document.getElementById('sim12_readout');
+
+            function update() {
+                const cx = parseFloat(slider.value);
+                const Ax = 140, Ay = 50;
+                const Bx = 90, By = 220;
+                const Cx = cx, Cy = 230;
+                const Dx = 470, Dy = 80;
+
+                const Px = (Ax + Bx) / 2, Py = (Ay + By) / 2;
+                const Qx = (Bx + Cx) / 2, Qy = (By + Cy) / 2;
+                const Rx = (Cx + Dx) / 2, Ry = (Cy + Dy) / 2;
+                const Sx = (Dx + Ax) / 2, Sy = (Dy + Ay) / 2;
+
+                svg.innerHTML = `
+                    <!-- Outer 4-gon ABCD -->
+                    <polygon points="${Ax},${Ay} ${Bx},${By} ${Cx},${Cy} ${Dx},${Dy}" fill="none" stroke="#64748b" stroke-width="2"/>
+                    <!-- Diagonal AC -->
+                    <line x1="${Ax}" y1="${Ay}" x2="${Cx}" y2="${Cy}" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,4"/>
+
+                    <!-- Varignon Midpoint Parallelogram PQRS -->
+                    <polygon points="${Px},${Py} ${Qx},${Qy} ${Rx},${Ry} ${Sx},${Sy}" fill="rgba(16, 185, 129, 0.35)" stroke="#10b981" stroke-width="3"/>
+
+                    <!-- Midpoint dots -->
+                    <circle cx="${Px}" cy="${Py}" r="5" fill="#10b981"/>
+                    <circle cx="${Qx}" cy="${Qy}" r="5" fill="#10b981"/>
+                    <circle cx="${Rx}" cy="${Ry}" r="5" fill="#10b981"/>
+                    <circle cx="${Sx}" cy="${Sy}" r="5" fill="#10b981"/>
+
+                    <text x="${Px-15}" y="${Py}" fill="#6ee7b7" font-size="11" font-weight="bold">P</text>
+                    <text x="${Qx}" y="${Qy+18}" fill="#6ee7b7" font-size="11" font-weight="bold">Q</text>
+                    <text x="${Rx+12}" y="${Ry}" fill="#6ee7b7" font-size="11" font-weight="bold">R</text>
+                    <text x="${Sx}" y="${Sy-10}" fill="#6ee7b7" font-size="11" font-weight="bold">S</text>
+                `;
+
+                readout.innerHTML = `
+                    PQ ∥ SR and PQ = SR = 1/2 AC.<br>
+                    Varignon's Theorem: PQRS is ALWAYS a parallelogram, and <b>Area(PQRS) = 1/2 Area(ABCD)</b>!
+                `;
+            }
+
+            slider.addEventListener('input', update);
+            update();
+        }
+
+        // Sim 13: 4th Vertex Coordinate Calculator
+        function renderSim13(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="grid grid-cols-3 gap-2 bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <div>
+                            <span class="text-indigo-400 font-bold block">Vertex A(x, y):</span>
+                            <span class="text-slate-300 font-mono">(1, 2)</span>
+                        </div>
+                        <div>
+                            <span class="text-indigo-400 font-bold block">Vertex B(x, y):</span>
+                            <span class="text-slate-300 font-mono">(5, 3)</span>
+                        </div>
+                        <div>
+                            <span class="text-indigo-400 font-bold block">Vertex C(x, y):</span>
+                            <span class="text-slate-300 font-mono">(8, 8)</span>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[280px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg viewBox="0 0 600 280" class="w-full h-full max-h-[280px]">
+                            <!-- Grid background -->
+                            <path d="M 50 0 L 50 280 M 150 0 L 150 280 M 250 0 L 250 280 M 350 0 L 350 280 M 450 0 L 450 280 M 550 0 L 550 280" stroke="#1e293b" stroke-width="1"/>
+                            <polygon points="120,200 280,180 400,60 240,80" fill="rgba(99, 102, 241, 0.25)" stroke="#6366f1" stroke-width="3"/>
+
+                            <circle cx="120" cy="200" r="6" fill="#38bdf8"/>
+                            <circle cx="280" cy="180" r="6" fill="#38bdf8"/>
+                            <circle cx="400" cy="60" r="6" fill="#38bdf8"/>
+                            <circle cx="240" cy="80" r="7" fill="#10b981"/>
+
+                            <text x="100" y="215" fill="#38bdf8" font-size="12" font-weight="bold">A(1, 2)</text>
+                            <text x="290" y="195" fill="#38bdf8" font-size="12" font-weight="bold">B(5, 3)</text>
+                            <text x="410" y="65" fill="#38bdf8" font-size="12" font-weight="bold">C(8, 8)</text>
+                            <text x="220" y="65" fill="#34d399" font-size="13" font-weight="bold">D(4, 7) [Calculated!]</text>
+                        </svg>
+                    </div>
+
+                    <div class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        Formula: D = A + C - B ⇒ x_D = 1 + 8 - 5 = <b>4</b> | y_D = 2 + 8 - 3 = <b>7</b> ⇒ D(4, 7)!
+                    </div>
+                </div>
+            `;
+        }
+
+        // Sim 14: Universal Plane Tiling Engine
+        function renderSim14(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <span class="text-slate-300 font-semibold">Tessellation Grid: 180° Midpoint Rotations (360° Sum)</span>
+                        <span class="text-indigo-400 font-mono font-bold">A + B + C + D = 360°</span>
+                    </div>
+
+                    <div class="flex-1 min-h-[280px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg viewBox="0 0 600 280" class="w-full h-full max-h-[280px]">
+                            <!-- Repeating interlocking 4-gon tiles -->
+                            <g transform="translate(100, 20)">
+                                <polygon points="0,0 80,20 120,80 30,70" fill="rgba(99, 102, 241, 0.35)" stroke="#6366f1" stroke-width="2"/>
+                                <polygon points="80,20 160,40 200,100 120,80" fill="rgba(16, 185, 129, 0.35)" stroke="#10b981" stroke-width="2"/>
+                                <polygon points="30,70 120,80 150,150 50,140" fill="rgba(245, 158, 11, 0.35)" stroke="#f59e0b" stroke-width="2"/>
+                                <polygon points="120,80 200,100 230,170 150,150" fill="rgba(244, 63, 94, 0.35)" stroke="#f43f5e" stroke-width="2"/>
+
+                                <!-- Central vertex where 4 corners meet -->
+                                <circle cx="120" cy="80" r="6" fill="#f8fafc"/>
+                                <text x="135" y="80" fill="#f8fafc" font-size="12" font-weight="bold">360° Joint (A+B+C+D)</text>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <div class="p-2.5 rounded-xl text-center text-xs font-mono font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
+                        UNIVERSAL TILING: Any irregular 4-gon packs the plane with 0 gaps because four angles form 360° around each vertex!
+                    </div>
+                </div>
+            `;
+        }
+
+        // Sim 15: Converse Questioning Lab
+        function renderSim15(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 text-xs">
+                        <span class="text-slate-300 font-semibold">Testing Converses & Traps:</span>
+                        <div class="flex gap-2">
+                            <button id="sim15_trap" class="px-2.5 py-1 rounded bg-rose-600 text-white font-bold text-xs transition">Equal Diagonals Trap</button>
+                            <button id="sim15_fixed" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold text-xs transition">Fixed Parallelogram Converse</button>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[280px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim15_svg" viewBox="0 0 600 280" class="w-full h-full max-h-[280px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+
+                    <div id="sim15_desc" class="p-2.5 rounded-xl text-center text-xs font-semibold bg-rose-950/40 border border-rose-500/40 text-rose-300">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            `;
+
+            let isTrap = true;
+            const trapBtn = document.getElementById('sim15_trap');
+            const fixedBtn = document.getElementById('sim15_fixed');
+            const svg = document.getElementById('sim15_svg');
+            const desc = document.getElementById('sim15_desc');
+
+            function update() {
+                if (isTrap) {
+                    trapBtn.className = "px-2.5 py-1 rounded bg-rose-600 text-white font-bold text-xs transition";
+                    fixedBtn.className = "px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold text-xs transition";
+                    svg.innerHTML = `
+                        <!-- Isosceles Trapezium -->
+                        <polygon points="220,70 140,210 460,210 380,70" fill="rgba(244, 63, 94, 0.2)" stroke="#f43f5e" stroke-width="3"/>
+                        <line x1="220" y1="70" x2="460" y2="210" stroke="#f59e0b" stroke-width="2.5"/>
+                        <line x1="380" y1="70" x2="140" y2="210" stroke="#f59e0b" stroke-width="2.5"/>
+                        <text x="300" y="240" fill="#f43f5e" font-size="13" font-weight="bold" text-anchor="middle">Isosceles Trapezium: Diagonals Equal, but NOT a Rectangle!</text>
+                    `;
+                    desc.className = 'p-2.5 rounded-xl text-center text-xs font-semibold bg-rose-950/40 border border-rose-500/40 text-rose-300';
+                    desc.textContent = "FALSE CONVERSE: 'Equal diagonals implies rectangle' is FALSE! The counterexample is an isosceles trapezium.";
+                } else {
+                    trapBtn.className = "px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-bold text-xs transition";
+                    fixedBtn.className = "px-2.5 py-1 rounded bg-emerald-600 text-white font-bold text-xs transition";
+                    svg.innerHTML = `
+                        <!-- Rectangle -->
+                        <polygon points="180,70 180,210 420,210 420,70" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" stroke-width="3"/>
+                        <line x1="180" y1="70" x2="420" y2="210" stroke="#f59e0b" stroke-width="2.5"/>
+                        <line x1="180" y1="210" x2="420" y2="70" stroke="#f59e0b" stroke-width="2.5"/>
+                        <text x="300" y="240" fill="#10b981" font-size="13" font-weight="bold" text-anchor="middle">Parallelogram with Equal Diagonals = RECTANGLE!</text>
+                    `;
+                    desc.className = 'p-2.5 rounded-xl text-center text-xs font-semibold bg-emerald-950/40 border border-emerald-500/40 text-emerald-300';
+                    desc.textContent = "TRUE REFINED CONVERSE: If the diagonals of a PARALLELOGRAM are equal, then it is guaranteed to be a rectangle!";
+                }
+            }
+
+            trapBtn.addEventListener('click', () => { isTrap = true; update(); });
+            fixedBtn.addEventListener('click', () => { isTrap = false; update(); });
+            update();
+        }
+
+        // Sim 16: Interactive Paper Folding & CAD Classifier
+        function renderSim16(container) {
+            container.innerHTML = `
+                <div class="flex flex-col gap-3 h-full">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800 text-xs">
+                            <span class="text-indigo-400 font-bold block mb-1">1. Varignon Origami Fold Simulation:</span>
+                            <div class="flex items-center gap-2 mb-2">
+                                <label class="text-slate-300">Fold Flaps Inward:</label>
+                                <input type="range" id="sim16_fold" min="0" max="100" value="0" class="w-24 accent-indigo-500">
+                                <span id="sim16_fold_val" class="font-mono text-indigo-400 font-bold">0%</span>
+                            </div>
+                            <div class="p-2 rounded bg-slate-950 font-mono text-[11px] text-emerald-300 border border-slate-800">
+                                4 corner flaps fold inward to cover the central parallelogram exactly once!
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800 text-xs">
+                            <span class="text-emerald-400 font-bold block mb-1">2. CAD Vector Classifier (v₁ · v₂ = 0):</span>
+                            <div class="flex items-center gap-2 mb-2">
+                                <button onclick="window.testCad('rec')" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold">Rectangle</button>
+                                <button onclick="window.testCad('rho')" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold">Rhombus</button>
+                                <button onclick="window.testCad('squ')" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold">Square</button>
+                            </div>
+                            <div id="sim16_cad_res" class="p-2 rounded bg-slate-950 font-mono text-[11px] text-emerald-300 border border-slate-800">
+                                Click a button to test vector dot product & orthogonality...
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-h-[220px] bg-slate-950/60 rounded-xl border border-slate-800/80 p-2 flex items-center justify-center">
+                        <svg id="sim16_svg" viewBox="0 0 600 220" class="w-full h-full max-h-[220px]">
+                            <!-- Injected by JS -->
+                        </svg>
+                    </div>
+                </div>
+            `;
+
+            const foldSlider = document.getElementById('sim16_fold');
+            const foldVal = document.getElementById('sim16_fold_val');
+            const svg = document.getElementById('sim16_svg');
+
+            function updateFold() {
+                const f = parseFloat(foldSlider.value) / 100;
+                foldVal.textContent = `${Math.round(f * 100)}%`;
+
+                svg.innerHTML = `
+                    <!-- Outer Paper Quadrilateral -->
+                    <polygon points="180,30 100,180 440,180 480,50" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="4,4"/>
+                    <!-- Central Varignon Parallelogram -->
+                    <polygon points="140,105 270,180 460,115 330,40" fill="rgba(16, 185, 129, 0.3)" stroke="#10b981" stroke-width="3"/>
+                    <text x="300" y="115" fill="#34d399" font-size="12" font-weight="bold" text-anchor="middle">Varignon Parallelogram (Area = 50%)</text>
+                `;
+            }
+
+            window.testCad = function(type) {
+                const res = document.getElementById('sim16_cad_res');
+                if (type === 'rec') {
+                    res.innerHTML = `v₁ · v₂ = 0 (90° right angle) and |v₁| ≠ |v₂| ⇒ <b>RECTANGLE</b>.`;
+                } else if (type === 'rho') {
+                    res.innerHTML = `|v₁| = |v₂| (4 equal sides) and v₁ · v₂ ≠ 0 ⇒ <b>RHOMBUS</b>.`;
+                } else {
+                    res.innerHTML = `|v₁| = |v₂| AND v₁ · v₂ = 0 ⇒ <b>SQUARE</b>.`;
+                }
+            };
+
+            foldSlider.addEventListener('input', updateFold);
+            updateFold();
+        }
+
+        // Initialize application on load
+        window.addEventListener('DOMContentLoaded', () => {
+            initSlidePicker();
+            renderCurrentSlide();
+        });
+    </script>
+</body>
+</html>

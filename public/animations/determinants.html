@@ -1,0 +1,1943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 12 Mathematics • Chapter 4: Determinants Multimedia Lab</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.82);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .slide-section { display: none; }
+    .slide-section.active { display: block; animation: fadeIn 0.35s ease-out forwards; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .custom-scrollbar::-webkit-scrollbar { height: 6px; width: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.6); }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(139, 92, 246, 0.4); border-radius: 4px; }
+    .det-bracket {
+      position: relative;
+      padding: 0.5rem 0.75rem;
+    }
+    .det-bracket::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 3px;
+      background: #8b5cf6;
+      border-radius: 1px;
+    }
+    .det-bracket::after {
+      content: "";
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: 3px;
+      background: #8b5cf6;
+      border-radius: 1px;
+    }
+    .matrix-box {
+      position: relative;
+      padding: 0.5rem 0.75rem;
+    }
+    .matrix-box::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 4px;
+      border-left: 2px solid #06b6d4;
+      border-top: 2px solid #06b6d4;
+      border-bottom: 2px solid #06b6d4;
+      border-radius: 3px 0 0 3px;
+    }
+    .matrix-box::after {
+      content: "";
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: 4px;
+      border-right: 2px solid #06b6d4;
+      border-top: 2px solid #06b6d4;
+      border-bottom: 2px solid #06b6d4;
+      border-radius: 0 3px 3px 0;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-violet-500 selection:text-white">
+
+  <!-- ========================================================================= -->
+  <!-- TOP APP HEADER & AUDIO NARRATION TOOLBAR -->
+  <!-- ========================================================================= -->
+  <header style="flex-shrink: 0;" class="border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-xl sticky top-0 z-50 px-4 py-2.5">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      
+      <!-- Brand & Topic Info -->
+      <div class="flex items-center space-x-3">
+        <a href="/multimedia" class="w-9 h-9 rounded-xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-violet-400 hover:bg-violet-600 hover:text-white transition cursor-pointer" title="Return to Multimedia Library">
+          <i class="fa-solid fa-arrow-left text-sm"></i>
+        </a>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="px-2 py-0.5 text-[10px] font-black rounded-md bg-violet-500/20 text-violet-300 border border-violet-500/30 uppercase tracking-wider">NCERT Class 12</span>
+            <span class="px-2 py-0.5 text-[10px] font-black rounded-md bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">Part - 1</span>
+            <span class="text-xs text-slate-500">|</span>
+            <span class="text-xs text-slate-400 font-mono">Slide <span id="slideCounterCurrent" class="text-violet-400 font-bold">1</span> of 18</span>
+          </div>
+          <h1 class="text-base sm:text-lg font-black tracking-tight text-white flex items-center gap-1.5">
+            <span>Chapter 4: Determinants</span>
+            <span class="text-xs font-normal text-slate-400 hidden md:inline">• Theory &amp; Exercise Workshop Lab</span>
+          </h1>
+          <div class="text-xs font-bold text-amber-400 tracking-wide mt-0.5">Part - 1</div>
+        </div>
+      </div>
+
+      <!-- Right Audio & Auto-Play Controls -->
+      <div class="flex items-center space-x-2">
+        <canvas id="audioVisualizer" width="56" height="20" class="rounded bg-slate-900 border border-slate-800 hidden sm:block"></canvas>
+
+        <button onclick="toggleVoice()" id="voiceToggleBtn" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs font-bold flex items-center space-x-1.5 text-slate-300 transition cursor-pointer">
+          <span id="voiceIcon">🔊</span>
+          <span id="voiceText" class="hidden sm:inline">Voice: ON</span>
+        </button>
+
+        <button onclick="toggleSfx()" id="sfxToggleBtn" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs font-bold flex items-center space-x-1.5 text-slate-300 transition cursor-pointer">
+          <span id="sfxIcon">🎵</span>
+          <span id="sfxText" class="hidden sm:inline">SFX: ON</span>
+        </button>
+
+        <button onclick="speakNarration(slideNarration[currentSlide])" class="px-3 py-1.5 rounded-xl bg-violet-600/20 hover:bg-violet-600/30 border border-violet-500/40 text-violet-300 text-xs font-bold flex items-center space-x-1 cursor-pointer transition">
+          <span>🗣️</span>
+          <span>Replay Voice</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Autoplay Countdown Progress Bar -->
+    <div id="autoPlayProgressBarContainer" class="w-full bg-slate-900 h-1 mt-2.5 rounded-full overflow-hidden">
+      <div id="autoPlayCountdownBar" class="bg-gradient-to-r from-violet-500 to-indigo-400 h-full w-0 transition-all duration-100"></div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN SLIDES CONTAINER (18 SLIDES TOTAL) -->
+  <!-- ========================================================================= -->
+  <main class="max-w-7xl mx-auto px-4 py-6 w-full flex-grow">
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 1 (INDEX 0): INTRODUCTION & LINEAR SYSTEMS MOTIVATION -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-0" class="slide-section active space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-violet-500/30 space-y-6">
+        <div class="space-y-2">
+          <div class="flex items-center space-x-2">
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-violet-500/20 text-violet-300 border border-violet-500/30">
+              § 4.1 Foundations • Introduction &amp; Concept
+            </span>
+            <span class="text-xs text-slate-400 font-mono">NCERT Pages 76–77</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Determinants: The Scalar Metric of Square Matrices</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-4xl leading-relaxed italic border-l-2 border-violet-500 pl-3">
+            "All Mathematical truths are relative and conditional." — C.P. Steinmetz
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+          <div class="lg:col-span-7 p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-4">
+            <h3 class="text-sm font-bold text-violet-300 flex items-center space-x-2">
+              <span>📐</span>
+              <span>Genesis: Solving 2 Linear Equations</span>
+            </h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Consider a classical system of two linear algebraic equations in two variables:
+            </p>
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800/80 font-mono text-xs text-slate-200 flex items-center justify-around">
+              <div>
+                <div>a₁x + b₁y = c₁</div>
+                <div>a₂x + b₂y = c₂</div>
+              </div>
+              <div class="text-slate-500 text-lg">⟺</div>
+              <div class="flex items-center space-x-1.5">
+                <span class="matrix-box font-bold text-cyan-300">
+                  <span>a₁ &nbsp; b₁</span><br>
+                  <span>a₂ &nbsp; b₂</span>
+                </span>
+                <span class="matrix-box text-amber-300">
+                  <span>x</span><br><span>y</span>
+                </span>
+                <span>=</span>
+                <span class="matrix-box text-emerald-300">
+                  <span>c₁</span><br><span>c₂</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-violet-950/40 border border-violet-500/30 text-xs text-slate-300 space-y-2">
+              <div class="font-bold text-violet-200">The Uniqueness Condition:</div>
+              <p>Recall from coordinate geometry: this system has a <strong>unique solution</strong> if and only if:</p>
+              <div class="font-mono text-amber-300 bg-slate-950/80 p-2 rounded text-center">
+                a₁ / a₂ ≠ b₁ / b₂ &nbsp; ⟺ &nbsp; a₁b₂ – a₂b₁ ≠ 0
+              </div>
+              <p>The single scalar number <strong class="text-violet-300">a₁b₂ – a₂b₁</strong> determines whether a unique solution exists or not. This crucial scalar is defined as the <strong class="text-white">determinant of matrix A</strong>, denoted by <span class="font-mono text-cyan-300">|A|</span> or <span class="font-mono text-cyan-300">det A</span> or <span class="font-mono text-cyan-300">Δ</span>.</p>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+            <div class="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-3">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300">Definition 4.2</span>
+              <h4 class="text-xs font-bold text-white uppercase tracking-wider">Determinant as a Mathematical Function</h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                If <strong class="text-cyan-300">M</strong> is the set of all square matrices and <strong class="text-emerald-300">K</strong> is the field of scalars, then a determinant is a mapping:
+              </p>
+              <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-center text-indigo-300">
+                f: M → K, &nbsp; where f(A) = k ∈ K
+              </div>
+              <div class="text-[11px] text-amber-300 bg-amber-950/30 p-2.5 rounded-lg border border-amber-500/30 space-y-1">
+                <div>⚠️ <strong>Two Golden Remarks:</strong></div>
+                <div>1. For matrix A, <span class="font-mono">|A|</span> is read as <em>"determinant of A"</em>, NOT modulus of A!</div>
+                <div>2. <strong>Only SQUARE matrices</strong> have determinants.</div>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-gradient-to-br from-indigo-950/60 to-slate-900 border border-indigo-500/30 flex items-center space-x-3.5">
+              <div class="w-12 h-12 rounded-xl bg-violet-600/30 border border-violet-400/40 flex items-center justify-center text-2xl shrink-0">
+                🏛️
+              </div>
+              <div class="text-xs text-slate-300">
+                <div class="font-bold text-white text-sm">Pierre-Simon Laplace (1749–1827)</div>
+                <div class="text-[11px] text-slate-400">Pioneered general cofactor expansions and planetary mechanics using determinants.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-0" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 2 (INDEX 1): DETERMINANTS OF ORDER 1 AND ORDER 2 -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-1" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-cyan-500/30 space-y-6">
+        <div class="space-y-2">
+          <div class="flex items-center space-x-2">
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+              § 4.2.1 &amp; § 4.2.2 • Order 1 &amp; Order 2
+            </span>
+            <span class="text-xs text-slate-400 font-mono">NCERT Pages 77–78</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Determinants of Order 1 &amp; Order 2 × 2</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            From single-scalar entries to the cross-multiplication algorithm of second-order determinants.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+            <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
+              <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider block">Order 1 Determinant</span>
+              <p class="text-xs text-slate-300">If A = [a] is a 1 × 1 matrix, then:</p>
+              <div class="font-mono text-cyan-300 text-sm font-bold">|A| = |[a]| = a</div>
+              <div class="text-[11px] text-slate-400">Example: If A = [–5], |A| = –5 (NOT +5!).</div>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+              <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider block">Order 2 × 2 Determinant Formula</span>
+              <p class="text-xs text-slate-300">Let A = [ [a₁₁, a₁₂], [a₂₁, a₂₂] ]. The determinant is:</p>
+              <div class="p-3 rounded-lg bg-slate-900 border border-cyan-500/40 text-center font-mono text-sm text-white font-bold">
+                |A| = Δ = a₁₁a₂₂ – a₂₁a₁₂
+              </div>
+              <p class="text-[11px] text-slate-400">Multiply the principal diagonal elements, then subtract the off-diagonal product.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800 space-y-1">
+                <span class="text-amber-400 font-bold block">Example 1:</span>
+                <div>| [2, 4], [–1, 2] |</div>
+                <div class="text-emerald-400 font-bold">= 2(2) – 4(–1)</div>
+                <div class="text-emerald-400 font-bold">= 4 + 4 = 8</div>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800 space-y-1">
+                <span class="text-amber-400 font-bold block">Example 2:</span>
+                <div>| [x, x+1], [x–1, x] |</div>
+                <div class="text-emerald-400 font-bold">= x² – (x+1)(x–1)</div>
+                <div class="text-emerald-400 font-bold">= x² – (x²–1) = 1</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-slate-900 border border-cyan-500/40 space-y-4 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between">
+                <h3 class="text-xs font-bold text-cyan-300 uppercase tracking-wider flex items-center space-x-1.5">
+                  <span>⚡</span>
+                  <span>Interactive 2 × 2 Determinant Calculator</span>
+                </h3>
+                <span class="text-[10px] text-slate-500 font-mono">Live Engine</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-1">Change any value to compute ad – bc dynamically:</p>
+            </div>
+
+            <div class="flex items-center justify-center space-x-3 py-4">
+              <span class="text-2xl text-violet-400 font-light">|</span>
+              <div class="grid grid-cols-2 gap-3 font-mono text-center">
+                <input type="number" id="det2_a" value="3" oninput="calculate2x2()" class="w-16 p-2 rounded-lg bg-slate-950 border border-slate-700 text-center text-cyan-300 font-bold text-sm focus:border-cyan-400 focus:outline-none">
+                <input type="number" id="det2_b" value="2" oninput="calculate2x2()" class="w-16 p-2 rounded-lg bg-slate-950 border border-slate-700 text-center text-cyan-300 font-bold text-sm focus:border-cyan-400 focus:outline-none">
+                <input type="number" id="det2_c" value="4" oninput="calculate2x2()" class="w-16 p-2 rounded-lg bg-slate-950 border border-slate-700 text-center text-cyan-300 font-bold text-sm focus:border-cyan-400 focus:outline-none">
+                <input type="number" id="det2_d" value="1" oninput="calculate2x2()" class="w-16 p-2 rounded-lg bg-slate-950 border border-slate-700 text-center text-cyan-300 font-bold text-sm focus:border-cyan-400 focus:outline-none">
+              </div>
+              <span class="text-2xl text-violet-400 font-light">|</span>
+              <span class="text-xl font-bold text-slate-400">=</span>
+              <div class="text-2xl font-mono font-black text-emerald-400 bg-emerald-950/40 px-4 py-2 rounded-xl border border-emerald-500/40" id="det2_result">
+                –5
+              </div>
+            </div>
+
+            <div class="p-3 rounded-xl bg-slate-950 font-mono text-xs text-slate-300" id="det2_breakdown">
+              Calculation: (3)(1) – (2)(4) = 3 – 8 = –5
+            </div>
+
+            <div class="p-3 rounded-xl bg-amber-950/40 border border-amber-500/30 text-xs text-amber-200 space-y-1">
+              <span class="font-bold">⚠️ Board Exam Trap (Example 5):</span>
+              <div>If | [3, x], [x, 1] | = | [3, 2], [4, 1] |, do NOT equate x = 2!</div>
+              <div>Instead: 3 – x² = 3 – 8 ⇒ x² = 8 ⇒ <strong>x = ± 2√2</strong>!</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-1" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 3 (INDEX 2): 3x3 DETERMINANTS: ROW 1 (R1) EXPANSION -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-2" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-indigo-500/30 space-y-6">
+        <div class="space-y-2">
+          <div class="flex items-center space-x-2">
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+              § 4.2.3 • Order 3 × 3 Master Algorithm
+            </span>
+            <span class="text-xs text-slate-400 font-mono">NCERT Pages 78–79</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Expansion of 3 × 3 Determinant along First Row (R₁)</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            The canonical 4-step expansion expressing third-order determinants as linear combinations of 2 × 2 minors.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs">
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-bold">Step 1</span>
+              <span class="text-emerald-400 font-bold font-mono">(–1)¹⁺¹ = +1</span>
+            </div>
+            <div class="font-bold text-white">Element a₁₁ (Row 1, Col 1)</div>
+            <p class="text-slate-400 leading-relaxed">Delete R₁ and C₁. Multiply a₁₁ by remaining 2 × 2 sub-determinant:</p>
+            <div class="p-2.5 rounded-lg bg-slate-950 font-mono text-cyan-300 text-center font-bold">
+              + a₁₁ (a₂₂a₃₃ – a₃₂a₂₃)
+            </div>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-bold">Step 2</span>
+              <span class="text-rose-400 font-bold font-mono">(–1)¹⁺² = –1</span>
+            </div>
+            <div class="font-bold text-white">Element a₁₂ (Row 1, Col 2)</div>
+            <p class="text-slate-400 leading-relaxed">Delete R₁ and C₂. Multiply a₁₂ by –1 and the sub-determinant:</p>
+            <div class="p-2.5 rounded-lg bg-slate-950 font-mono text-rose-300 text-center font-bold">
+              – a₁₂ (a₂₁a₃₃ – a₃₁a₂₃)
+            </div>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-bold">Step 3</span>
+              <span class="text-emerald-400 font-bold font-mono">(–1)¹⁺³ = +1</span>
+            </div>
+            <div class="font-bold text-white">Element a₁₃ (Row 1, Col 3)</div>
+            <p class="text-slate-400 leading-relaxed">Delete R₁ and C₃. Multiply a₁₃ by +1 and the sub-determinant:</p>
+            <div class="p-2.5 rounded-lg bg-slate-950 font-mono text-cyan-300 text-center font-bold">
+              + a₁₃ (a₂₁a₃₂ – a₃₁a₂₂)
+            </div>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-bold">Step 4</span>
+              <span class="text-amber-400 font-bold font-mono">Sum All 3</span>
+            </div>
+            <div class="font-bold text-white">Complete Master Expression</div>
+            <p class="text-slate-400 leading-relaxed">Sum all 3 signed products together:</p>
+            <div class="p-2 rounded-lg bg-indigo-950/60 border border-indigo-500/40 font-mono text-[11px] text-indigo-200 text-center font-bold">
+              |A| = Term₁ + Term₂ + Term₃
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
+          <div class="md:col-span-4 p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-2 text-center">
+            <span class="text-xs font-bold text-amber-300 uppercase tracking-wider block">Checkerboard Signs of (–1)ⁱ⁺ʲ</span>
+            <div class="inline-grid grid-cols-3 gap-2 font-mono text-lg font-black p-3 rounded-xl bg-slate-900 border border-slate-800">
+              <span class="text-emerald-400">+</span>
+              <span class="text-rose-400">–</span>
+              <span class="text-emerald-400">+</span>
+              <span class="text-rose-400">–</span>
+              <span class="text-emerald-400">+</span>
+              <span class="text-rose-400">–</span>
+              <span class="text-emerald-400">+</span>
+              <span class="text-rose-400">–</span>
+              <span class="text-emerald-400">+</span>
+            </div>
+            <p class="text-[11px] text-slate-400">Alternating signs: Positive if (i + j) is even, Negative if (i + j) is odd.</p>
+          </div>
+
+          <div class="md:col-span-8 p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-2 text-xs font-mono">
+            <span class="text-cyan-300 font-bold block text-sm">Full Algebraic 6-Term Expansion (Equation 1):</span>
+            <div class="p-3.5 rounded-xl bg-slate-950 text-slate-200 leading-relaxed space-y-1">
+              <div>|A| = a₁₁ a₂₂ a₃₃ – a₁₁ a₃₂ a₂₃ – a₁₂ a₂₁ a₃₃ + a₁₂ a₃₁ a₂₃ + a₁₃ a₂₁ a₃₂ – a₁₃ a₃₁ a₂₂</div>
+            </div>
+            <div class="text-[11px] text-slate-400 font-sans">
+              Notice: 3 terms with positive signs and 3 terms with negative signs, each containing exactly one element from each row and each column!
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-2" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 4 (INDEX 3): EXPANDING ALONG ANY ROW/COL & |kA| = kⁿ|A| -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-3" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-emerald-500/30 space-y-6">
+        <div class="space-y-2">
+          <div class="flex items-center space-x-2">
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+              § 4.2.3 • Expansion Invariance &amp; Scaling
+            </span>
+            <span class="text-xs text-slate-400 font-mono">NCERT Pages 79–81</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Row/Column Invariance &amp; The Scaling Law |kA| = kⁿ|A|</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            Expanding along any row or column yields the exact same determinant value. Always choose rows with maximum zeroes!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-bold bg-amber-500/20 text-amber-300">NCERT Example 3</span>
+              <span class="text-xs text-emerald-400 font-bold">Fastest Shortcut</span>
+            </div>
+            <h3 class="text-sm font-bold text-white">Evaluating Determinant with Maximum Zeroes:</h3>
+            <div class="p-3 rounded-xl bg-slate-950 font-mono text-xs flex items-center justify-around">
+              <span class="det-bracket text-cyan-300 font-bold">
+                <span>&nbsp;1 &nbsp; 2 &nbsp; 4</span><br>
+                <span>–1 &nbsp; 3 &nbsp; 0</span><br>
+                <span>&nbsp;4 &nbsp; 1 &nbsp; 0</span>
+              </span>
+              <div class="text-slate-400 text-xs">
+                <div>Third Column (C₃) has <strong>TWO zeroes</strong>!</div>
+                <div class="text-emerald-400 font-bold mt-1">Expand along C₃:</div>
+              </div>
+            </div>
+            <div class="p-3.5 rounded-xl bg-slate-950 font-mono text-xs text-slate-200 space-y-1">
+              <div>Δ = 4 | [–1, 3], [4, 1] | – 0 + 0</div>
+              <div>&nbsp; = 4( (–1)(1) – (3)(4) )</div>
+              <div class="text-emerald-400 font-bold">&nbsp; = 4(–1 – 12) = 4(–13) = –52</div>
+            </div>
+            <p class="text-[11px] text-slate-400">Expanding along C₃ took only 1 calculation instead of 3!</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-slate-900 border border-emerald-500/40 space-y-4 flex flex-col justify-between">
+            <div class="space-y-2">
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-black bg-emerald-500/20 text-emerald-300">Golden Theorem (§ 4.2.3)</span>
+              <h3 class="text-base font-bold text-white">The Scalar Multiplication Determinant Law</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                If A is an <strong class="text-emerald-300">n × n</strong> square matrix and k is any scalar:
+              </p>
+              <div class="p-4 rounded-xl bg-slate-950 border border-emerald-500/40 text-center font-mono text-lg font-black text-emerald-300">
+                |kA| = kⁿ |A|
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 text-xs font-mono">
+              <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+                <span class="text-cyan-400 font-bold block">Order n = 2:</span>
+                <div>A = 2 × 2</div>
+                <div class="text-emerald-300 font-bold">|2A| = 2² |A| = 4|A|</div>
+                <div class="text-[10px] text-slate-500">Exercise 4.1 Q3</div>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+                <span class="text-cyan-400 font-bold block">Order n = 3:</span>
+                <div>A = 3 × 3</div>
+                <div class="text-emerald-300 font-bold">|3A| = 3³ |A| = 27|A|</div>
+                <div class="text-[10px] text-slate-500">Exercise 4.1 Q4</div>
+              </div>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-emerald-950/40 border border-emerald-500/30 text-[11px] text-emerald-200">
+              💡 <em>Why?</em> Because scalar k multiplies into <strong>every</strong> row! In order n, k factors out n times: k · k · ... · k = kⁿ.
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-3" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 5 (INDEX 4): EXERCISE 4.1 WORKSHOP -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-4" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-blue-500/30 space-y-6">
+        <div class="space-y-2">
+          <div class="flex items-center space-x-2">
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-blue-500/20 text-blue-300 border border-blue-500/30">
+              📝 Exercise 4.1 Workshop
+            </span>
+            <span class="text-xs text-slate-400 font-mono">NCERT Pages 81–82 • Complete Problem Solver</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Exercise 4.1: Evaluations, Polynomial Determinants &amp; Unknowns</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            Detailed step-by-step walkthroughs of core problems from Exercise 4.1 with algebraic simplifications and unknown-solving.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
+          <!-- Q1 & Q2(ii) -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2.5">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300">Q1 &amp; Q2(ii)</span>
+            <h4 class="font-bold text-white text-xs font-sans">2 × 2 Algebraic Evaluations</h4>
+            <div class="p-2.5 rounded-lg bg-slate-950 space-y-1 text-slate-300">
+              <div class="text-amber-300 font-bold">Q1: | [2, 4], [–5, –1] |</div>
+              <div>= 2(–1) – 4(–5) = –2 + 20 = <strong class="text-emerald-400">18</strong></div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-950 space-y-1 text-slate-300">
+              <div class="text-amber-300 font-bold">Q2(ii): | [x²–x+1, x–1], [x+1, x+1] |</div>
+              <div>= (x²–x+1)(x+1) – (x–1)(x+1)</div>
+              <div>= (x³ + 1) – (x² – 1)</div>
+              <div class="text-emerald-400 font-bold">= x³ – x² + 2</div>
+            </div>
+          </div>
+
+          <!-- Q5(ii) 3x3 Evaluation -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2.5">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300">Q5(ii)</span>
+            <h4 class="font-bold text-white text-xs font-sans">Full 3 × 3 Expansion (Signs)</h4>
+            <div class="p-2.5 rounded-lg bg-slate-950 space-y-1 text-slate-300 text-[11px]">
+              <div class="text-amber-300 font-bold">| [3, –4, 5], [1, 1, –2], [2, 3, 1] |</div>
+              <div>Expand along R₁:</div>
+              <div>= 3 | [1, –2], [3, 1] | – (–4) | [1, –2], [2, 1] | + 5 | [1, 1], [2, 3] |</div>
+              <div>= 3(1 – (–6)) + 4(1 – (–4)) + 5(3 – 2)</div>
+              <div>= 3(7) + 4(5) + 5(1)</div>
+              <div class="text-emerald-400 font-bold">= 21 + 20 + 5 = 46</div>
+            </div>
+          </div>
+
+          <!-- Q7 & Q8 Solving for x -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2.5">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300">Q7(ii) &amp; Q8</span>
+            <h4 class="font-bold text-white text-xs font-sans">Solving Equations in x</h4>
+            <div class="p-2.5 rounded-lg bg-slate-950 space-y-1 text-slate-300">
+              <div class="text-amber-300 font-bold">Q7(ii): | [2, 3], [4, 5] | = | [x, 3], [2x, 5] |</div>
+              <div>10 – 12 = 5x – 6x ⇒ –2 = –x ⇒ <strong class="text-emerald-400">x = 2</strong></div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-950 space-y-1 text-slate-300">
+              <div class="text-amber-300 font-bold">Q8: | [x, 2], [18, x] | = | [6, 2], [18, 6] |</div>
+              <div>x² – 36 = 36 – 36 = 0</div>
+              <div>x² = 36 ⇒ <strong class="text-emerald-400">x = ± 6</strong> (Option B)</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-4" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 6 (INDEX 5): AREA OF A TRIANGLE USING DETERMINANTS -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-5" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-amber-500/30 space-y-6">
+        <div class="space-y-2">
+          <div class="flex items-center space-x-2">
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-amber-500/20 text-amber-300 border border-amber-500/30">
+              § 4.3 Coordinate Applications
+            </span>
+            <span class="text-xs text-slate-400 font-mono">NCERT Pages 82–83</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Area of a Triangle &amp; Collinearity of Points</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            Expressing coordinate geometry triangle areas and linear collinearity directly as determinants.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-7 p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-amber-300 uppercase tracking-wider">Formula Definition</span>
+              <span class="text-xs text-slate-400 font-mono">Vertices (x₁, y₁), (x₂, y₂), (x₃, y₃)</span>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-950 border border-amber-500/30 flex items-center justify-around font-mono text-sm">
+              <span class="text-amber-400 font-bold">Area (Δ) = ½</span>
+              <span class="det-bracket text-white font-bold">
+                <span>x₁ &nbsp; y₁ &nbsp; 1</span><br>
+                <span>x₂ &nbsp; y₂ &nbsp; 1</span><br>
+                <span>x₃ &nbsp; y₃ &nbsp; 1</span>
+              </span>
+            </div>
+
+            <div class="space-y-2 text-xs">
+              <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 flex items-start space-x-2">
+                <span class="text-amber-400 font-bold">1. Absolute Value:</span>
+                <span class="text-slate-300">Since geometric area is always positive, always take absolute value <span class="font-mono text-amber-300">|Δ|</span>.</span>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 flex items-start space-x-2">
+                <span class="text-amber-400 font-bold">2. Unknown Parameters:</span>
+                <span class="text-slate-300">If area is given as a constant, use <strong>both + and –</strong> values for the determinant to solve for missing variables (e.g. k = ∓2).</span>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 flex items-start space-x-2">
+                <span class="text-amber-400 font-bold">3. Collinearity Test:</span>
+                <span class="text-slate-300">Three points are collinear <strong>if and only if</strong> Area (Δ) = 0!</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 p-5 rounded-2xl bg-slate-900 border border-amber-500/40 space-y-4 flex flex-col justify-between">
+            <h3 class="text-xs font-bold text-amber-300 uppercase tracking-wider flex items-center space-x-1.5">
+              <span>📐</span>
+              <span>Interactive Triangle Area Calculator</span>
+            </h3>
+
+            <div class="grid grid-cols-3 gap-2 font-mono text-xs">
+              <div class="space-y-1">
+                <span class="text-slate-400 text-[10px] block">Vertex A</span>
+                <input type="number" id="tri_x1" value="3" oninput="calculateTriArea()" class="w-full p-1.5 rounded bg-slate-950 border border-slate-700 text-center text-amber-300 text-xs">
+                <input type="number" id="tri_y1" value="8" oninput="calculateTriArea()" class="w-full p-1.5 rounded bg-slate-950 border border-slate-700 text-center text-amber-300 text-xs">
+              </div>
+              <div class="space-y-1">
+                <span class="text-slate-400 text-[10px] block">Vertex B</span>
+                <input type="number" id="tri_x2" value="-4" oninput="calculateTriArea()" class="w-full p-1.5 rounded bg-slate-950 border border-slate-700 text-center text-amber-300 text-xs">
+                <input type="number" id="tri_y2" value="2" oninput="calculateTriArea()" class="w-full p-1.5 rounded bg-slate-950 border border-slate-700 text-center text-amber-300 text-xs">
+              </div>
+              <div class="space-y-1">
+                <span class="text-slate-400 text-[10px] block">Vertex C</span>
+                <input type="number" id="tri_x3" value="5" oninput="calculateTriArea()" class="w-full p-1.5 rounded bg-slate-950 border border-slate-700 text-center text-amber-300 text-xs">
+                <input type="number" id="tri_y3" value="1" oninput="calculateTriArea()" class="w-full p-1.5 rounded bg-slate-950 border border-slate-700 text-center text-amber-300 text-xs">
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-1">
+              <span class="text-[10px] text-slate-500 uppercase font-bold block">Computed Area:</span>
+              <div class="text-2xl font-mono font-black text-amber-400" id="tri_area_result">
+                30.5 sq. units
+              </div>
+              <div class="text-[11px] text-slate-400 font-mono" id="tri_area_breakdown">
+                |Δ| = ½ |61| = 61/2 = 30.5
+              </div>
+            </div>
+
+            <div class="p-3 rounded-xl bg-amber-950/30 border border-amber-500/20 text-[11px] text-amber-200">
+              <strong>Line Equation via Determinant:</strong> If point P(x, y) lies on AB, set Area(ABP) = 0. E.g., points (1, 3) and (0, 0) give <span class="font-mono font-bold">y = 3x</span> (Example 7).
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-5" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 7 (INDEX 6): EXERCISE 4.2 WORKSHOP -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-6" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-amber-500/30 space-y-6">
+        <div class="space-y-2">
+          <div class="flex items-center space-x-2">
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-amber-500/20 text-amber-300 border border-amber-500/30">
+              📝 Exercise 4.2 Workshop
+            </span>
+            <span class="text-xs text-slate-400 font-mono">NCERT Pages 83–84 • Geometry Applications</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Exercise 4.2: Triangle Areas, Collinearity &amp; Line Equations</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            Hands-on problem solving on coordinate triangle calculations, algebraic proofs of collinearity, and solving for parameters k.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
+          <!-- Problem 1(ii) -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2.5">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300">Q1(ii) Area Calculation</span>
+            <h4 class="font-bold text-white text-xs font-sans">Vertices (2, 7), (1, 1), (10, 8)</h4>
+            <div class="p-2.5 rounded-lg bg-slate-950 space-y-1 text-slate-300 text-[11px]">
+              <div>Δ = ½ | [2, 7, 1], [1, 1, 1], [10, 8, 1] |</div>
+              <div>= ½ [ 2(1 – 8) – 7(1 – 10) + 1(8 – 10) ]</div>
+              <div>= ½ [ 2(–7) – 7(–9) + 1(–2) ]</div>
+              <div>= ½ [ –14 + 63 – 2 ] = ½(47)</div>
+              <div class="text-emerald-400 font-bold">= 47/2 = 23.5 sq units</div>
+            </div>
+          </div>
+
+          <!-- Problem 2 Collinearity Proof -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2.5">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300">Q2 Collinearity Proof</span>
+            <h4 class="font-bold text-white text-xs font-sans">A(a, b+c), B(b, c+a), C(c, a+b)</h4>
+            <div class="p-2.5 rounded-lg bg-slate-950 space-y-1 text-slate-300 text-[11px]">
+              <div>Δ = | [a, b+c, 1], [b, c+a, 1], [c, a+b, 1] |</div>
+              <div class="text-cyan-300 font-bold">Apply C₂ → C₂ + C₁:</div>
+              <div>= | [a, a+b+c, 1], [b, a+b+c, 1], [c, a+b+c, 1] |</div>
+              <div>Take (a+b+c) out of C₂:</div>
+              <div>= (a+b+c) | [a, 1, 1], [b, 1, 1], [c, 1, 1] |</div>
+              <div class="text-emerald-400 font-bold">C₂ and C₃ are identical ⇒ Δ = 0! (Collinear)</div>
+            </div>
+          </div>
+
+          <!-- Problem 4 & 5 Finding Lines and k -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2.5">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300">Q4(i) &amp; Q5</span>
+            <h4 class="font-bold text-white text-xs font-sans">Lines &amp; Parameter k</h4>
+            <div class="p-2.5 rounded-lg bg-slate-950 space-y-1 text-slate-300 text-[11px]">
+              <div class="text-amber-300 font-bold">Q4(i): Line joining (1, 2) and (3, 6):</div>
+              <div>| [x, y, 1], [1, 2, 1], [3, 6, 1] | = 0</div>
+              <div>x(2–6) – y(1–3) + 1(6–6) = 0</div>
+              <div>–4x + 2y = 0 ⇒ <strong class="text-emerald-400">y = 2x</strong></div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-950 space-y-1 text-slate-300 text-[11px]">
+              <div class="text-amber-300 font-bold">Q5: Area = 35 with (2, –6), (5, 4), (k, 4):</div>
+              <div>25 – 5k = ± 35 ⇒ <strong class="text-emerald-400">k = 12, –2</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-6" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 8 (INDEX 7): MINORS AND COFACTORS -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-7" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-purple-500/30 space-y-6">
+        <div class="space-y-2">
+          <div class="flex items-center space-x-2">
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-purple-500/20 text-purple-300 border border-purple-500/30">
+              § 4.4 Minors &amp; Cofactors
+            </span>
+            <span class="text-xs text-slate-400 font-mono">NCERT Pages 84–85</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Minors (Mᵢⱼ) &amp; Cofactors (Aᵢⱼ)</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            Deconstructing any determinant into its sub-determinants and sign-weighted cofactor components.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+            <div class="flex items-center space-x-2">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300">Definition 1</span>
+              <h3 class="text-sm font-bold text-white">Minor of an Element (Mᵢⱼ)</h3>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Minor of an element aᵢⱼ is the determinant obtained by <strong class="text-cyan-300">deleting its i-th row and j-th column</strong> in which element aᵢⱼ lies. Denoted by <span class="font-mono text-cyan-300">Mᵢⱼ</span>.
+            </p>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono space-y-1">
+              <div class="text-slate-400">Example 8: Find minor of 6 in | [1, 2, 3], [4, 5, 6], [7, 8, 9] |</div>
+              <div>6 lies in row 2, col 3. Delete R₂ and C₃:</div>
+              <div class="text-cyan-300 font-bold">M₂₃ = | [1, 2], [7, 8] | = 1(8) – 2(7) = 8 – 14 = –6</div>
+            </div>
+            <div class="text-[11px] text-slate-400">
+              <strong>Order Reduction:</strong> Minor of an element of order n is always a determinant of order <strong>n – 1</strong>.
+            </div>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-slate-900 border border-purple-500/40 space-y-4">
+            <div class="flex items-center space-x-2">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300">Definition 2</span>
+              <h3 class="text-sm font-bold text-white">Cofactor of an Element (Aᵢⱼ)</h3>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Cofactor of an element aᵢⱼ, denoted by <span class="font-mono text-purple-300">Aᵢⱼ</span>, is defined by attaching the position sign to its minor:
+            </p>
+            <div class="p-3.5 rounded-xl bg-slate-950 border border-purple-500/40 text-center font-mono text-base font-bold text-purple-300">
+              Aᵢⱼ = (–1)ⁱ⁺ʲ Mᵢⱼ
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono space-y-1">
+              <div class="text-slate-400">Example: In | [1, –2], [4, 3] |</div>
+              <div>M₁₁ = 3 ⇒ A₁₁ = (–1)¹⁺¹(3) = <strong>3</strong></div>
+              <div>M₁₂ = 4 ⇒ A₁₂ = (–1)¹⁺²(4) = <strong>–4</strong></div>
+              <div>M₂₁ = –2 ⇒ A₂₁ = (–1)²⁺¹(–2) = <strong>2</strong></div>
+              <div>M₂₂ = 1 ⇒ A₂₂ = (–1)²⁺²(1) = <strong>1</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-7" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 9 (INDEX 8): EXERCISE 4.3 WORKSHOP -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-8" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-purple-500/30 space-y-6">
+        <div class="space-y-2">
+          <div class="flex items-center space-x-2">
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-purple-500/20 text-purple-300 border border-purple-500/30">
+              📝 Exercise 4.3 Workshop
+            </span>
+            <span class="text-xs text-slate-400 font-mono">NCERT Page 87 • Minors &amp; Cofactors</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Exercise 4.3: Minors, Cofactors &amp; Row/Col 2 Expansion</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            Detailed calculations of minors and cofactors, and evaluating determinants via second row and third column expansions.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs font-mono">
+          <!-- Q1 & Q2 -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2.5">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300">Q1(i) &amp; Q1(ii)</span>
+            <h4 class="font-bold text-white text-xs font-sans">Minors &amp; Cofactors of 2 × 2 Determinants</h4>
+            <div class="p-2.5 rounded-lg bg-slate-950 space-y-1 text-slate-300">
+              <div class="text-amber-300 font-bold">For | [2, –4], [0, 3] |:</div>
+              <div>M₁₁ = 3 ⇒ A₁₁ = 3</div>
+              <div>M₁₂ = 0 ⇒ A₁₂ = –(0) = 0</div>
+              <div>M₂₁ = –4 ⇒ A₂₁ = –(–4) = 4</div>
+              <div>M₂₂ = 2 ⇒ A₂₂ = 2</div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-950 space-y-1 text-slate-300">
+              <div class="text-amber-300 font-bold">For | [a, c], [b, d] |:</div>
+              <div>M₁₁ = d, A₁₁ = d &nbsp;|&nbsp; M₁₂ = b, A₁₂ = –b</div>
+              <div>M₂₁ = c, A₂₁ = –c &nbsp;|&nbsp; M₂₂ = a, A₂₂ = a</div>
+            </div>
+          </div>
+
+          <!-- Q3 & Q4 Cofactor Expansion -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2.5">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300">Q3 &amp; Q4</span>
+            <h4 class="font-bold text-white text-xs font-sans">Evaluating using Row 2 &amp; Col 3 Cofactors</h4>
+            <div class="p-2.5 rounded-lg bg-slate-950 space-y-1 text-slate-300">
+              <div class="text-amber-300 font-bold">Q3: | [5, 3, 8], [2, 0, 1], [1, 2, 3] | using Row 2:</div>
+              <div>A₂₁ = –(9 – 16) = 7, &nbsp; A₂₂ = 0, &nbsp; A₂₃ = –(10 – 3) = –7</div>
+              <div>Δ = a₂₁A₂₁ + a₂₂A₂₂ + a₂₃A₂₃ = 2(7) + 0 + 1(–7) = <strong class="text-emerald-400">7</strong></div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-950 space-y-1 text-slate-300">
+              <div class="text-amber-300 font-bold">Q4: | [1, x, yz], [1, y, zx], [1, z, xy] | using Col 3:</div>
+              <div>= yz(z – y) + zx(x – z) + xy(y – x)</div>
+              <div class="text-emerald-400 font-bold">= (x – y)(y – z)(z – x)</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-8" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 10 (INDEX 9): THE ORTHOGONALITY THEOREM -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-9" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-rose-500/30 space-y-6">
+        <div class="space-y-2">
+          <div class="flex items-center space-x-2">
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-rose-500/20 text-rose-300 border border-rose-500/30">
+              § 4.4 The Orthogonality Property
+            </span>
+            <span class="text-xs text-slate-400 font-mono">NCERT Pages 85–86</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Cofactor Orthogonality: Own Row vs Other Row</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            Multiplying elements of a row by their own cofactors yields |A|, but multiplying by another row's cofactors vanishes to zero!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-5 rounded-2xl bg-slate-900 border border-emerald-500/40 space-y-3">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300">Property 1: Self Product</span>
+            <h3 class="text-base font-bold text-white">Elements × Own Row's Cofactors = |A|</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              The determinant is simply the dot product of any row (or column) with its own cofactors:
+            </p>
+            <div class="p-3 rounded-xl bg-slate-950 font-mono text-xs text-emerald-300 text-center space-y-1">
+              <div>R₁: &nbsp; a₁₁A₁₁ + a₁₂A₁₂ + a₁₃A₁₃ = |A|</div>
+              <div>C₁: &nbsp; a₁₁A₁₁ + a₂₁A₂₁ + a₃₁A₃₁ = |A|</div>
+            </div>
+            <p class="text-[11px] text-slate-400">Holds equally for all 3 rows and all 3 columns.</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-slate-900 border border-rose-500/40 space-y-3">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-300">Property 2: Cross Product</span>
+            <h3 class="text-base font-bold text-white">Elements × OTHER Row's Cofactors = 0!</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              If elements of a row are multiplied with cofactors of any <em>other</em> row, their sum is identically zero:
+            </p>
+            <div class="p-3 rounded-xl bg-slate-950 font-mono text-xs text-rose-300 text-center space-y-1">
+              <div>R₁ elements with R₂ cofactors:</div>
+              <div class="text-amber-300 font-bold">a₁₁A₂₁ + a₁₂A₂₂ + a₁₃A₂₃ = 0</div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-rose-950/40 text-[11px] text-rose-200">
+              💡 <strong>Proof insight:</strong> This linear combination represents expanding a determinant where row 1 and row 2 are identical! Since identical rows mean zero determinant, the sum must be 0!
+            </div>
+          </div>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-2 font-mono text-xs">
+          <span class="text-cyan-400 font-bold block text-sm">NCERT Example 11 Numerical Verification:</span>
+          <p class="text-slate-300">For A = [ [2, –3, 5], [6, 0, 4], [1, 5, –7] ], verifying a₁₁A₃₁ + a₁₂A₃₂ + a₁₃A₃₃ = 0:</p>
+          <div class="p-3 rounded-xl bg-slate-900 text-slate-200 space-y-1">
+            <div>a₁₁ = 2, a₁₂ = –3, a₁₃ = 5 &nbsp; | &nbsp; A₃₁ = –12, A₃₂ = 22, A₃₃ = 18</div>
+            <div class="text-emerald-400 font-bold">Sum = 2(–12) + (–3)(22) + 5(18) = –24 – 66 + 90 = 0 ✓ (Verified!)</div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-9" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 11 (INDEX 10): ADJOINT OF A MATRIX & PROPERTIES -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-10" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-teal-500/30 space-y-6">
+        <div class="space-y-2">
+          <div class="flex items-center space-x-2">
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-teal-500/20 text-teal-300 border border-teal-500/30">
+              § 4.5 Adjoint of a Matrix
+            </span>
+            <span class="text-xs text-slate-400 font-mono">NCERT Pages 87–89</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Adjoint of a Square Matrix (adj A) &amp; Key Theorems</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            Definition as the transpose of the cofactor matrix, the 2 × 2 fast shortcut, and fundamental theorems.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+            <div>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300">Definition 3</span>
+              <h3 class="text-sm font-bold text-white mt-1">adj A = Transpose of [Aᵢⱼ]</h3>
+              <p class="text-xs text-slate-300 leading-relaxed mt-1">
+                The adjoint of a square matrix A is defined as the <strong class="text-teal-300">transpose of its cofactor matrix</strong>:
+              </p>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 font-mono text-xs text-center text-teal-300">
+              adj A = [ [A₁₁, A₂₁, A₃₁], [A₁₂, A₂₂, A₃₂], [A₁₃, A₂₃, A₃₃] ]
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-teal-950/40 border border-teal-500/30 text-xs space-y-2">
+              <span class="font-bold text-teal-200">⚡ 2 × 2 Instant Shortcut:</span>
+              <p class="text-slate-300">To find adj of A = [ [a, b], [c, d] ]:</p>
+              <div class="font-mono text-cyan-300 bg-slate-950 p-2 rounded text-center font-bold">
+                adj A = [ [d, –b], [–c, a] ]
+              </div>
+              <p class="text-[11px] text-slate-400">Swap diagonal entries (a ↔ d), negate off-diagonal entries (–b, –c)!</p>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-slate-900 border border-teal-500/40 space-y-4 flex flex-col justify-between">
+            <div class="space-y-3">
+              <span class="px-2 py-0.5 rounded text-[10px] font-black bg-indigo-500/20 text-indigo-300">Master Theorem 1</span>
+              <h3 class="text-base font-bold text-white">A · (adj A) = (adj A) · A = |A| I</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Multiplying A by its adjoint produces a scalar diagonal matrix with |A| on the diagonal:
+              </p>
+              <div class="p-3 rounded-xl bg-slate-950 font-mono text-xs text-center text-indigo-300">
+                A (adj A) = [ [|A|, 0, 0], [0, |A|, 0], [0, 0, |A|] ] = |A| I
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5 font-mono text-xs">
+              <span class="text-amber-400 font-bold block font-sans">Determinant of Adjoint Theorem:</span>
+              <div>|(adj A)| · |A| = |A|³ &nbsp;⇒ &nbsp;<strong class="text-emerald-400 font-black">|adj A| = |A|ⁿ⁻¹</strong></div>
+              <div class="text-[11px] text-slate-400 font-sans">For order 3: |adj A| = |A|² (Exercise 4.4 Q17).</div>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-[11px] text-slate-300">
+              <strong>Singular vs Non-singular:</strong> A matrix is <strong>singular</strong> if |A| = 0; <strong>non-singular</strong> if |A| ≠ 0.
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-10" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 12 (INDEX 11): EXERCISE 4.4 WORKSHOP -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-11" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-teal-500/30 space-y-6">
+        <div class="space-y-2">
+          <div class="flex items-center space-x-2">
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-teal-500/20 text-teal-300 border border-teal-500/30">
+              📝 Exercise 4.4 Workshop
+            </span>
+            <span class="text-xs text-slate-400 font-mono">NCERT Pages 92–94 • Inverses &amp; Polynomials</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Exercise 4.4: Adjoints, Inverses &amp; Matrix Equations</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            Finding adjoints, computing matrix inverses A⁻¹, proving reversal law (AB)⁻¹ = B⁻¹A⁻¹, and polynomial matrix derivations.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
+          <!-- Q1 & Q5 -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2.5">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300">Q1 &amp; Q5</span>
+            <h4 class="font-bold text-white text-xs font-sans">Adjoint &amp; Inverse of 2 × 2 Matrix</h4>
+            <div class="p-2.5 rounded-lg bg-slate-950 space-y-1 text-slate-300 text-[11px]">
+              <div class="text-amber-300 font-bold">Q1: adj [ [1, 2], [3, 4] ]</div>
+              <div>= <strong class="text-emerald-400">[ [4, –2], [–3, 1] ]</strong></div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-950 space-y-1 text-slate-300 text-[11px]">
+              <div class="text-amber-300 font-bold">Q5: Inverse of A = [ [2, –2], [4, 3] ]</div>
+              <div>|A| = 6 – (–8) = 14 ≠ 0</div>
+              <div>adj A = [ [3, 2], [–4, 2] ]</div>
+              <div>A⁻¹ = <strong class="text-emerald-400">1/14 [ [3, 2], [–4, 2] ]</strong></div>
+            </div>
+          </div>
+
+          <!-- Q12 Reversal Law -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2.5">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300">Q12 Reversal Law</span>
+            <h4 class="font-bold text-white text-xs font-sans">Verify (AB)⁻¹ = B⁻¹A⁻¹</h4>
+            <div class="p-2.5 rounded-lg bg-slate-950 space-y-1 text-slate-300 text-[11px]">
+              <div class="text-amber-300 font-bold">A = [ [3, 7], [2, 5] ], B = [ [6, 8], [7, 9] ]</div>
+              <div>AB = [ [67, 87], [47, 61] ]</div>
+              <div>|AB| = 67(61) – 87(47) = –2</div>
+              <div>(AB)⁻¹ = –1/2 [ [61, –87], [–47, 67] ]</div>
+              <div>B⁻¹A⁻¹ gives the exact same matrix!</div>
+              <div class="text-emerald-400 font-bold">✓ (AB)⁻¹ = B⁻¹A⁻¹ Verified!</div>
+            </div>
+          </div>
+
+          <!-- Q13 Matrix Polynomial Inversion -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2.5">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300">Q13 Polynomial Inversion</span>
+            <h4 class="font-bold text-white text-xs font-sans">A² – 5A + 7I = O</h4>
+            <div class="p-2.5 rounded-lg bg-slate-950 space-y-1 text-slate-300 text-[11px]">
+              <div class="text-amber-300 font-bold">A = [ [3, 1], [–1, 2] ]</div>
+              <div>A² – 5A + 7I = O ⇒ 7I = 5A – A²</div>
+              <div>Multiply by A⁻¹: 7A⁻¹ = 5I – A</div>
+              <div>A⁻¹ = 1/7 (5I – A)</div>
+              <div>= 1/7 [ [5–3, –1], [1, 5–2] ]</div>
+              <div class="text-emerald-400 font-bold">= 1/7 [ [2, –1], [1, 3] ]</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-11" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 13 (INDEX 12): INVERSE OF A MATRIX & INVERTIBILITY -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-12" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-blue-500/30 space-y-6">
+        <div class="space-y-2">
+          <div class="flex items-center space-x-2">
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-blue-500/20 text-blue-300 border border-blue-500/30">
+              § 4.5.1 Invertibility
+            </span>
+            <span class="text-xs text-slate-400 font-mono">NCERT Pages 90–93</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Inverse of a Matrix (A⁻¹) &amp; Matrix Equations</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            Invertibility condition, the adjoint formula, reversal law, and finding A⁻¹ from characteristic polynomials.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-5 rounded-2xl bg-slate-900 border border-blue-500/40 space-y-4">
+            <div class="space-y-2">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300">Theorem 4</span>
+              <h3 class="text-sm font-bold text-white">A is Invertible ⟺ A is Non-singular (|A| ≠ 0)</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                If |A| ≠ 0, the unique inverse matrix A⁻¹ is given by:
+              </p>
+              <div class="p-4 rounded-xl bg-slate-950 border border-blue-500/40 text-center font-mono text-base font-black text-cyan-300">
+                A⁻¹ = (1 / |A|) · adj A
+              </div>
+            </div>
+
+            <div class="space-y-2 text-xs font-mono">
+              <div class="p-2.5 rounded-xl bg-slate-950 text-slate-300">
+                <span class="text-indigo-400 font-bold">Reversal Law:</span> (AB)⁻¹ = B⁻¹ A⁻¹ (Example 14)
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-950 text-slate-300">
+                <span class="text-indigo-400 font-bold">Determinant of Inverse:</span> det(A⁻¹) = 1 / det(A)
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-950 text-slate-300">
+                <span class="text-indigo-400 font-bold">Double Inverse:</span> (A⁻¹)⁻¹ = A
+              </div>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-4 flex flex-col justify-between">
+            <div class="space-y-2">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300">NCERT Example 15</span>
+              <h3 class="text-sm font-bold text-white">Inversion via Matrix Equation A² – 4A + I = O</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Do not compute adj A manually when a polynomial relationship is provided:
+              </p>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 font-mono text-xs text-slate-200 space-y-1.5">
+              <div>1. A² – 4A + I = O</div>
+              <div>2. Multiply both sides by A⁻¹:</div>
+              <div class="pl-3 text-cyan-300">A·(AA⁻¹) – 4(AA⁻¹) + IA⁻¹ = O</div>
+              <div class="pl-3 text-cyan-300">A·I – 4I + A⁻¹ = O</div>
+              <div>3. Solve directly for A⁻¹:</div>
+              <div class="pl-3 text-emerald-400 font-bold">A⁻¹ = 4I – A</div>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-slate-950 text-[11px] text-slate-400">
+              For A = [ [2, 3], [1, 2] ], A⁻¹ = 4I – A = [ [4–2, –3], [–1, 4–2] ] = <strong>[ [2, –3], [–1, 2] ]</strong>.
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-12" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 14 (INDEX 13): MATRIX METHOD, EXERCISE 4.5 & MISC WORKSHOP -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-13" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-violet-500/30 space-y-6">
+        <div class="space-y-2">
+          <div class="flex items-center space-x-2">
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-violet-500/20 text-violet-300 border border-violet-500/30">
+              § 4.6 Applications, Ex 4.5 &amp; Misc Workshop
+            </span>
+            <span class="text-xs text-slate-400 font-mono">NCERT Pages 94–103</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">Linear Systems (AX = B), Word Problems &amp; History</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            Complete solution of linear equations via Matrix Method, consistency testing, cost-of-commodities word problem, and historical notes.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-7 p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+            <h3 class="text-xs font-bold text-violet-300 uppercase tracking-wider">Solving AX = B &amp; Consistency Testing</h3>
+            <div class="space-y-2 text-xs">
+              <div class="p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/30 space-y-1">
+                <span class="font-bold text-emerald-300">Case I: |A| ≠ 0 (Nonsingular Matrix)</span>
+                <p class="text-slate-300">Unique solution exists: <span class="font-mono font-bold text-emerald-400">X = A⁻¹ B</span>. System is consistent.</p>
+              </div>
+
+              <div class="p-3 rounded-xl bg-rose-950/40 border border-rose-500/30 space-y-1">
+                <span class="font-bold text-rose-300">Case II: |A| = 0 (Singular Matrix)</span>
+                <p class="text-slate-300">Compute (adj A) · B:</p>
+                <div class="pl-2 space-y-0.5 text-slate-400 font-mono text-[11px]">
+                  <div>• If (adj A) · B ≠ O ⇒ <strong>Inconsistent (No solution)</strong> (Ex 4.5 Q3)</div>
+                  <div>• If (adj A) · B = O ⇒ <strong>Consistent (infinitely many) OR Inconsistent</strong></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ex 4.5 Q7 and Q16 preview -->
+            <div class="p-3 rounded-xl bg-slate-950 text-xs font-mono text-slate-300 space-y-1">
+              <span class="text-cyan-400 font-bold block font-sans">Ex 4.5 Q7 (2 × 2 Solution):</span>
+              <div>5x + 2y = 4, &nbsp; 7x + 3y = 5 ⇒ |A| = 15 – 14 = 1 ≠ 0</div>
+              <div>X = [ [3, –2], [–7, 5] ] [4, 5]ᵀ = <strong class="text-emerald-400">[2, –3]ᵀ ⇒ x = 2, y = –3</strong></div>
+            </div>
+
+            <div class="p-3 rounded-xl bg-slate-950 text-xs font-mono text-slate-300 space-y-1">
+              <span class="text-amber-400 font-bold block font-sans">Ex 4.5 Q16 (Onion, Wheat, Rice Word Problem):</span>
+              <div>4x + 3y + 2z = 60, &nbsp; 2x + 4y + 6z = 90, &nbsp; 6x + 2y + 3z = 70</div>
+              <div class="text-emerald-400 font-bold">Solution: Onion = ₹5/kg, &nbsp; Wheat = ₹8/kg, &nbsp; Rice = ₹8/kg</div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3 text-xs flex flex-col justify-between">
+            <div>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300">Misc Gems &amp; History (p. 103)</span>
+              <h4 class="text-sm font-bold text-white mt-1">Special Theorems &amp; Pioneers</h4>
+            </div>
+
+            <div class="space-y-2 text-slate-300 leading-relaxed text-[11px]">
+              <div class="p-2 rounded bg-slate-950 border border-slate-800/80">
+                <strong class="text-amber-400">Misc Q1:</strong> Determinant | [x, sin θ, cos θ], [–sin θ, –x, 1], [cos θ, 1, x] | expands to <span class="font-mono font-bold text-emerald-400">–x³</span>, proving it is independent of θ.
+              </div>
+              <div class="p-2 rounded bg-slate-950 border border-slate-800/80">
+                <strong class="text-amber-400">Misc Q9:</strong> For matrix with sin θ entries, det(A) = 2(1 + sin²θ) lies in <span class="font-mono font-bold text-cyan-300">[2, 4]</span>.
+              </div>
+              <div class="p-2 rounded bg-slate-950 border border-slate-800/80">
+                <strong class="text-amber-400">Ancient China &amp; Seki Kowa (1683):</strong> Calculating board counting rods and elimination of variables in <em>'Kai Fukudai no Ho'</em>.
+              </div>
+              <div class="p-2 rounded bg-slate-950 border border-slate-800/80">
+                <strong class="text-amber-400">Cauchy (1812) &amp; Jacobi:</strong> Coined <em>'determinant'</em> in its present sense and proved multiplication theorems.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="checkpoint-slide-13" class="mt-6 pt-5 border-t border-slate-800/80"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 15 (INDEX 14): QUIZ CHALLENGE 1 (QUESTIONS 1 - 10) -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-14" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-violet-500/40 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-violet-500/20 text-violet-300 border border-violet-500/30">
+              🎯 Quiz Challenge 1 of 4 • Questions 1 to 10
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-black text-white">Determinants of Order 1, 2, 3 &amp; Expansions</h2>
+            <p class="text-xs text-slate-400">10 questions covering definitions, 2x2/3x3 evaluations, sign patterns, and zero optimizations.</p>
+          </div>
+
+          <div class="px-4 py-2.5 rounded-2xl bg-slate-900 border border-slate-800 text-center shrink-0">
+            <span class="text-[10px] uppercase font-bold text-slate-400 block">Quiz 1 Score</span>
+            <span class="text-xl font-mono font-black text-violet-400" id="quizScoreDisplay-1">0 / 10</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs" id="quizContainer-1"></div>
+
+        <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
+          <span class="text-xs text-slate-400">Review your answers or attempt this set again:</span>
+          <button onclick="resetQuiz(1)" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 transition cursor-pointer">
+            🔄 Reset Quiz 1
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 16 (INDEX 15): QUIZ CHALLENGE 2 (QUESTIONS 11 - 20) -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-15" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-cyan-500/40 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+              🎯 Quiz Challenge 2 of 4 • Questions 11 to 20
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-black text-white">Scaling Property |kA| = kⁿ|A| &amp; Area of Triangle</h2>
+            <p class="text-xs text-slate-400">10 questions on scaling laws, triangle areas, collinearity conditions, and line equations.</p>
+          </div>
+
+          <div class="px-4 py-2.5 rounded-2xl bg-slate-900 border border-slate-800 text-center shrink-0">
+            <span class="text-[10px] uppercase font-bold text-slate-400 block">Quiz 2 Score</span>
+            <span class="text-xl font-mono font-black text-cyan-400" id="quizScoreDisplay-2">0 / 10</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs" id="quizContainer-2"></div>
+
+        <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
+          <span class="text-xs text-slate-400">Review your answers or attempt this set again:</span>
+          <button onclick="resetQuiz(2)" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 transition cursor-pointer">
+            🔄 Reset Quiz 2
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 17 (INDEX 16): QUIZ CHALLENGE 3 (QUESTIONS 21 - 30) -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-16" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-emerald-500/40 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+              🎯 Quiz Challenge 3 of 4 • Questions 21 to 30
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-black text-white">Minors, Cofactors &amp; Adjoint Properties</h2>
+            <p class="text-xs text-slate-400">10 questions on minors, cofactors, orthogonality theorem, and |adj A| = |A|ⁿ⁻¹.</p>
+          </div>
+
+          <div class="px-4 py-2.5 rounded-2xl bg-slate-900 border border-slate-800 text-center shrink-0">
+            <span class="text-[10px] uppercase font-bold text-slate-400 block">Quiz 3 Score</span>
+            <span class="text-xl font-mono font-black text-emerald-400" id="quizScoreDisplay-3">0 / 10</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs" id="quizContainer-3"></div>
+
+        <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
+          <span class="text-xs text-slate-400">Review your answers or attempt this set again:</span>
+          <button onclick="resetQuiz(3)" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 transition cursor-pointer">
+            🔄 Reset Quiz 3
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- SLIDE 18 (INDEX 17): QUIZ CHALLENGE 4 (QUESTIONS 31 - 40) -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="slide-17" class="slide-section space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-purple-500/40 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-purple-500/20 text-purple-300 border border-purple-500/30">
+              🎯 Quiz Challenge 4 of 4 • Questions 31 to 40
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-black text-white">Inverses, Matrix Method &amp; Consistency</h2>
+            <p class="text-xs text-slate-400">10 questions on inverse formulas, matrix polynomials, linear systems, consistency rules, and history.</p>
+          </div>
+
+          <div class="px-4 py-2.5 rounded-2xl bg-slate-900 border border-slate-800 text-center shrink-0">
+            <span class="text-[10px] uppercase font-bold text-slate-400 block">Quiz 4 Score</span>
+            <span class="text-xl font-mono font-black text-purple-400" id="quizScoreDisplay-4">0 / 10</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs" id="quizContainer-4"></div>
+
+        <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
+          <span class="text-xs text-slate-400">Review your answers or attempt this set again:</span>
+          <button onclick="resetQuiz(4)" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 transition cursor-pointer">
+            🔄 Reset Quiz 4
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- BOTTOM CONTROLLER DOCK -->
+  <!-- ========================================================================= -->
+  <footer style="flex-shrink: 0;" class="border-t border-slate-800/90 bg-slate-950/95 p-3 sm:p-4 z-40 sticky bottom-0">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+      
+      <!-- LEFT: Previous & Auto-Play Controls -->
+      <div class="flex items-center space-x-2 shrink-0">
+        <button id="prevSlideBtn" onclick="prevSlide()" class="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold border border-slate-700 flex items-center space-x-1 cursor-pointer transition-all disabled:opacity-40 disabled:cursor-not-allowed">
+          <span>⏮</span>
+          <span>Previous</span>
+        </button>
+
+        <button id="autoPlaySlideshowBtn" onclick="toggleAutoPlaySlideshow()" class="px-4 py-1.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white text-xs font-bold shadow-lg shadow-violet-600/30 flex items-center space-x-1.5 cursor-pointer transition-all">
+          <span id="autoPlayIcon">▶</span>
+          <span id="autoPlayText">Auto-Play</span>
+        </button>
+      </div>
+
+      <!-- CENTER: Slide Jump Pills (18 Slides) -->
+      <div class="flex items-center space-x-1 overflow-x-auto max-w-full pb-1 md:pb-0 text-xs custom-scrollbar">
+        <button onclick="goToSlide(0)" class="slide-pill px-2.5 py-1 rounded-lg bg-violet-600 text-white font-bold transition-all cursor-pointer" title="1. Determinant Definition & Motivation">1. Intro</button>
+        <button onclick="goToSlide(1)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="2. Order 1 and Order 2×2 Cross-Multiplication">2. 2×2 Det</button>
+        <button onclick="goToSlide(2)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="3. Order 3×3 Expansion along Row 1">3. 3×3 R₁</button>
+        <button onclick="goToSlide(3)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="4. Row/Column Invariance & Scaling Property |kA| = kⁿ|A|">4. Scaling</button>
+        <button onclick="goToSlide(4)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="5. Exercise 4.1 Workshop: Determinant Calculations">5. Ex 4.1</button>
+        <button onclick="goToSlide(5)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="6. Coordinate Geometry: Area of Triangle">6. Triangle</button>
+        <button onclick="goToSlide(6)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="7. Exercise 4.2 Workshop: Triangle Area & Collinearity">7. Ex 4.2</button>
+        <button onclick="goToSlide(7)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="8. Minors & Cofactors (Mᵢⱼ and Aᵢⱼ)">8. Minors</button>
+        <button onclick="goToSlide(8)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="9. Exercise 4.3 Workshop: Minors & Cofactors">9. Ex 4.3</button>
+        <button onclick="goToSlide(9)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="10. Fundamental Orthogonality Theorem">10. Orthogonal</button>
+        <button onclick="goToSlide(10)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="11. Adjoint of a Matrix & |adj A| = |A|ⁿ⁻¹">11. Adjoint</button>
+        <button onclick="goToSlide(11)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="12. Exercise 4.4 Workshop: Adjoints & Inverses">12. Ex 4.4</button>
+        <button onclick="goToSlide(12)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="13. Inverse Formula A⁻¹ = (1/|A|) adj A">13. Inverse</button>
+        <button onclick="goToSlide(13)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="14. Exercise 4.5 Workshop: Linear Systems & Matrix Method">14. Ex 4.5 &amp; Sys</button>
+        <button onclick="goToSlide(14)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="Quiz 1: Definition, 2×2 & 3×3 Expansion">15. Quiz 1</button>
+        <button onclick="goToSlide(15)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="Quiz 2: Scaling Laws & Area of Triangle">16. Quiz 2</button>
+        <button onclick="goToSlide(16)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="Quiz 3: Minors, Cofactors & Orthogonality">17. Quiz 3</button>
+        <button onclick="goToSlide(17)" class="slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer" title="Quiz 4: Adjoint, Inverses & Matrix Method">18. Quiz 4</button>
+      </div>
+
+      <!-- RIGHT: Next Slide Button & Last Slide Message -->
+      <div class="flex items-center space-x-2 shrink-0 justify-end">
+        <div id="lastSlideNotice" style="display: none;" class="px-3.5 py-1.5 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold flex items-center space-x-1.5 shadow-lg animate-pulse">
+          <span>🎉</span>
+          <span>You have reached the last slide of this chapter</span>
+        </div>
+
+        <button id="nextSlideBtn" onclick="nextSlide()" class="px-5 py-2 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-500 hover:from-violet-500 hover:to-indigo-400 text-white text-xs font-bold shadow-lg shadow-violet-600/30 flex items-center space-x-1.5 cursor-pointer transition-all active:scale-95">
+          <span>Next Slide</span>
+          <span>⏭</span>
+        </button>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT ENGINE: SLIDES, NARRATION, SFX & 40 INTERACTIVE QUIZZES -->
+  <!-- ========================================================================= -->
+  <script>
+    let currentSlide = 0;
+    const totalSlides = 18;
+    let sfxEnabled = true;
+    let voiceEnabled = true;
+    let isAutoPlaySlideshow = false;
+    let autoPlayInterval = null;
+    let countdownInterval = null;
+
+    // Web Audio Synthesizer Context
+    let audioCtx = null;
+    function getAudioCtx() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, type = 'sine', duration = 0.12, gainVal = 0.1) {
+      if (!sfxEnabled) return;
+      try {
+        const ctx = getAudioCtx();
+        if (ctx.state === 'suspended') ctx.resume();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(gainVal, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function playSlideTransitionTone() {
+      if (!sfxEnabled) return;
+      playTone(523.25, 'triangle', 0.1, 0.08); // C5
+      setTimeout(() => playTone(659.25, 'sine', 0.15, 0.08), 80); // E5
+      setTimeout(() => playTone(783.99, 'sine', 0.2, 0.08), 160); // G5
+    }
+
+    function playSuccessTone() {
+      if (!sfxEnabled) return;
+      playTone(587.33, 'sine', 0.08, 0.1); // D5
+      setTimeout(() => playTone(739.99, 'sine', 0.1, 0.1), 70); // F#5
+      setTimeout(() => playTone(880.00, 'sine', 0.25, 0.12), 140); // A5
+    }
+
+    function playWrongTone() {
+      if (!sfxEnabled) return;
+      playTone(261.63, 'sawtooth', 0.15, 0.08);
+      setTimeout(() => playTone(233.08, 'sawtooth', 0.25, 0.08), 100);
+    }
+
+    // Voice Narration Data for all 18 Slides
+    const slideNarration = ["Welcome to Chapter 4: Determinants. In this chapter, we explore how every square matrix can be associated with a unique scalar called its determinant. Rooted in solving linear equations, determinants have profound applications in engineering, physics, geometry, and computer science. As Charles Steinmetz observed, all mathematical truths are relative and conditional.", "Slide 2 explores determinants of order one and two. The determinant of a one by one matrix is simply the element itself. For a two by two matrix, the determinant is the difference of the cross-diagonal products: a 1 1 times a 2 2 minus a 2 1 times a 1 2. Notice that finding x from determinant equality is a scalar equation, unlike entry-wise matrix equality.", "Slide 3 breaks down the expansion of a three by three determinant along the first row. We apply a four-step process: multiplying each element by negative one to the power of i plus j, followed by its corresponding two by two sub-determinant obtained by deleting that element's row and column.", "Slide 4 proves that a determinant can be expanded along any of its three rows or three columns, all yielding the identical value. For easiest calculation, always expand along the row or column with the maximum number of zeroes. Crucially, scaling an n-th order matrix by k scales its determinant by k to the power n.", "Slide 5 is our Exercise 4.1 Workshop. Here we solve textbook problems on determinant evaluation, polynomial expressions, scalar scaling demonstrations, and solving quadratic equations in x derived from equal determinants.", "Slide 6 applies determinants to compute the Area of a Triangle formed by three vertices. Because area is always positive, we take the absolute value. If three points are collinear, their triangular area is zero, which allows us to find equations of lines and solve for unknown coordinates.", "Slide 7 is the Exercise 4.2 Workshop. We calculate triangle areas from coordinates, prove collinearity using determinant column operations without expanding, and find equations of lines passing through given points.", "Slide 8 defines Minors and Cofactors. The minor M i j is the sub-determinant formed by deleting the i-th row and j-th column. Multiplying the minor by negative one to the power i plus j yields the cofactor A i j.", "Slide 9 is our Exercise 4.3 Workshop. We calculate minors and cofactors for two by two and three by three determinants, and evaluate determinants by expanding using the cofactors of row two and column three.", "Slide 10 introduces the fundamental orthogonality theorem. While multiplying elements of a row by their own cofactors yields determinant A, multiplying elements of any row by the cofactors of a different row always sums to zero.", "Slide 11 covers the Adjoint of a Matrix, defined as the transpose of the cofactor matrix. For a two by two matrix, we swap diagonal entries and negate off-diagonals. For any order n, the determinant of the adjoint equals the determinant of A raised to the power n minus 1.", "Slide 12 is the Exercise 4.4 Workshop. We compute adjoints of matrices, calculate inverses using the adjoint formula, and demonstrate how to find matrix inverses directly from characteristic polynomial equations.", "Slide 13 establishes matrix invertibility. A square matrix is invertible if and only if it is non-singular, meaning its determinant is non-zero. The inverse equals one over the determinant times the adjoint matrix.", "Slide 14 details the Matrix Method for solving systems of linear equations and explores Exercise 4.5 and Miscellaneous problems, consistency tests, word problems, and historical milestones from ancient Chinese counting rods to Cauchy and Jacobi.", "Welcome to Quiz Challenge 1 of 4. Test your knowledge on Determinant Definitions, 2 by 2 and 3 by 3 Expansions, and Zero Optimization across ten high-yield questions.", "Quiz Challenge 2 of 4 focuses on the Scaling Law k to the n times determinant A, Triangle Area calculations, and Collinearity criteria.", "Quiz Challenge 3 of 4 tests Minors, Cofactors, the Orthogonality Theorem, and Adjoint Matrix Properties across ten rigorous questions.", "Welcome to the final slide and Quiz Challenge 4 of 4. Test your mastery of Matrix Inverses, the Matrix Method, and Historical Milestones."];
+
+    function speakNarration(text) {
+      if (!voiceEnabled || !('speechSynthesis' in window) || typeof SpeechSynthesisUtterance === 'undefined') return;
+      try {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 1.0;
+        utterance.pitch = 1.0;
+        window.speechSynthesis.speak(utterance);
+      } catch (e) {}
+    }
+
+    function toggleVoice() {
+      voiceEnabled = !voiceEnabled;
+      const icon = document.getElementById('voiceIcon');
+      const text = document.getElementById('voiceText');
+      if (voiceEnabled) {
+        icon.textContent = '🔊';
+        text.textContent = 'Voice: ON';
+        speakNarration(slideNarration[currentSlide]);
+      } else {
+        icon.textContent = '🔇';
+        text.textContent = 'Voice: OFF';
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
+      }
+    }
+
+    function toggleSfx() {
+      sfxEnabled = !sfxEnabled;
+      const icon = document.getElementById('sfxIcon');
+      const text = document.getElementById('sfxText');
+      if (sfxEnabled) {
+        icon.textContent = '🎵';
+        text.textContent = 'SFX: ON';
+        playTone(523.25, 'sine', 0.1);
+      } else {
+        icon.textContent = '🔇';
+        text.textContent = 'SFX: OFF';
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // Slide Navigation Core
+    // -------------------------------------------------------------------------
+    function goToSlide(idx) {
+      if (idx < 0 || idx >= totalSlides) return;
+      currentSlide = idx;
+      updateSlideUI();
+      if (isAutoPlaySlideshow) {
+        resetAutoPlayCountdown();
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        goToSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        goToSlide(currentSlide - 1);
+      }
+    }
+
+    function updateSlideUI() {
+      // Update Slide sections
+      document.querySelectorAll('.slide-section').forEach((sec, i) => {
+        if (i === currentSlide) {
+          sec.classList.add('active');
+        } else {
+          sec.classList.remove('active');
+        }
+      });
+
+      // Update Slide Counter
+      document.getElementById('slideCounterCurrent').textContent = currentSlide + 1;
+
+      // Update Pills
+      document.querySelectorAll('.slide-pill').forEach((pill, i) => {
+        if (i === currentSlide) {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-violet-600 text-white font-bold transition-all cursor-pointer';
+        } else {
+          pill.className = 'slide-pill px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer';
+        }
+      });
+
+      // Update Prev Button
+      document.getElementById('prevSlideBtn').disabled = (currentSlide === 0);
+
+      // STANDING RULE: On the LAST slide (Slide 18, Index 17), Next Slide option is HIDDEN, and last slide notice is shown!
+      const nextBtn = document.getElementById('nextSlideBtn');
+      const lastNotice = document.getElementById('lastSlideNotice');
+      if (currentSlide === totalSlides - 1) {
+        if (nextBtn) nextBtn.style.display = 'none';
+        if (lastNotice) lastNotice.style.display = 'inline-flex';
+        if (isAutoPlaySlideshow) {
+          toggleAutoPlaySlideshow();
+        }
+      } else {
+        if (nextBtn) nextBtn.style.display = 'inline-flex';
+        if (lastNotice) lastNotice.style.display = 'none';
+      }
+
+      playSlideTransitionTone();
+      speakNarration(slideNarration[currentSlide]);
+    }
+
+    // -------------------------------------------------------------------------
+    // Auto-Play Slideshow Timer
+    // -------------------------------------------------------------------------
+    function toggleAutoPlaySlideshow() {
+      const btn = document.getElementById('autoPlaySlideshowBtn');
+      const icon = document.getElementById('autoPlayIcon');
+      const txt = document.getElementById('autoPlayText');
+      const bar = document.getElementById('autoPlayProgressBarContainer');
+
+      if (isAutoPlaySlideshow) {
+        isAutoPlaySlideshow = false;
+        clearInterval(countdownInterval);
+        clearTimeout(autoPlayInterval);
+        icon.textContent = '▶';
+        txt.textContent = 'Auto-Play';
+        btn.className = 'px-4 py-1.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white text-xs font-bold shadow-lg shadow-violet-600/30 flex items-center space-x-1.5 cursor-pointer transition-all';
+        bar.style.opacity = '0';
+        bar.style.width = '0%';
+      } else {
+        if (currentSlide === totalSlides - 1) {
+          goToSlide(0);
+        }
+        isAutoPlaySlideshow = true;
+        icon.textContent = '⏸';
+        txt.textContent = 'Pause';
+        btn.className = 'px-4 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold shadow-lg shadow-amber-600/30 flex items-center space-x-1.5 cursor-pointer transition-all';
+        bar.style.opacity = '1';
+        resetAutoPlayCountdown();
+      }
+    }
+
+    function resetAutoPlayCountdown() {
+      clearInterval(countdownInterval);
+      clearTimeout(autoPlayInterval);
+
+      const bar = document.getElementById('autoPlayCountdownBar');
+      let elapsed = 0;
+      const durationMs = 12000;
+      const stepMs = 100;
+
+      countdownInterval = setInterval(() => {
+        elapsed += stepMs;
+        const pct = Math.min((elapsed / durationMs) * 100, 100);
+        if (bar) bar.style.width = pct + '%';
+        if (elapsed >= durationMs) {
+          clearInterval(countdownInterval);
+        }
+      }, stepMs);
+
+      autoPlayInterval = setTimeout(() => {
+        if (isAutoPlaySlideshow) {
+          if (currentSlide < totalSlides - 1) {
+            nextSlide();
+          } else {
+            toggleAutoPlaySlideshow();
+          }
+        }
+      }, durationMs);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        if (currentSlide < totalSlides - 1) nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+      }
+    });
+
+    // -------------------------------------------------------------------------
+    // Interactive 2x2 Calculator
+    // -------------------------------------------------------------------------
+    function calculate2x2() {
+      const a = parseFloat(document.getElementById('det2_a').value) || 0;
+      const b = parseFloat(document.getElementById('det2_b').value) || 0;
+      const c = parseFloat(document.getElementById('det2_c').value) || 0;
+      const d = parseFloat(document.getElementById('det2_d').value) || 0;
+      const res = (a * d) - (b * c);
+      document.getElementById('det2_result').textContent = res;
+      document.getElementById('det2_breakdown').textContent = `Calculation: (${a})(${d}) – (${b})(${c}) = ${a*d} – ${b*c} = ${res}`;
+    }
+
+    // -------------------------------------------------------------------------
+    // Interactive Triangle Area Calculator
+    // -------------------------------------------------------------------------
+    function calculateTriArea() {
+      const x1 = parseFloat(document.getElementById('tri_x1').value) || 0;
+      const y1 = parseFloat(document.getElementById('tri_y1').value) || 0;
+      const x2 = parseFloat(document.getElementById('tri_x2').value) || 0;
+      const y2 = parseFloat(document.getElementById('tri_y2').value) || 0;
+      const x3 = parseFloat(document.getElementById('tri_x3').value) || 0;
+      const y3 = parseFloat(document.getElementById('tri_y3').value) || 0;
+
+      const raw = x1*(y2 - y3) + x2*(y3 - y1) + x3*(y1 - y2);
+      const area = Math.abs(raw) / 2;
+      document.getElementById('tri_area_result').textContent = `${area} sq. units`;
+      document.getElementById('tri_area_breakdown').textContent = `|Δ| = ½ |${raw}| = ${area}`;
+    }
+
+    // -------------------------------------------------------------------------
+    // 4 QUIZ SLIDES EACH WITH 10 QUESTIONS (40 TOTAL WITH INTERACTIVE SOLUTION BUTTON)
+    // -------------------------------------------------------------------------
+    const quizSets = [{"id": 1, "containerId": "quizContainer-1", "scoreId": "quizScoreDisplay-1", "title": "Quiz Challenge 1 of 4 \u2022 Fundamentals & Determinants of Order 1, 2, 3", "subtitle": "10 questions covering determinant definitions, 2x2/3x3 evaluations, sign patterns, and zero optimizations.", "questions": [{"id": 1, "question": "1. What is the determinant of the 1 \u00d7 1 matrix A = [\u20137]?", "options": ["\u20137", "7", "0", "Undefined"], "correct": 0, "explanation": "<strong>NCERT \u00a7 4.2.1:</strong> If A = [a] of order 1, then det(A) = a. Thus det([\u20137]) = <strong>\u20137</strong>. (Remember: |A| is determinant, NOT absolute value!)."}, {"id": 2, "question": "2. Evaluate the determinant: | [cos \u03b8, \u2013sin \u03b8], [sin \u03b8, cos \u03b8] |", "options": ["1", "0", "cos 2\u03b8", "\u20131"], "correct": 0, "explanation": "<strong>Step 1:</strong> Apply formula a\u2081\u2081a\u2082\u2082 \u2013 a\u2082\u2081a\u2081\u2082.<br><strong>Step 2:</strong> \u0394 = (cos \u03b8)(cos \u03b8) \u2013 (sin \u03b8)(\u2013sin \u03b8) = cos\u00b2\u03b8 + sin\u00b2\u03b8 = <strong>1</strong> (Exercise 4.1, Q2(i))."}, {"id": 3, "question": "3. Evaluate | [2, 4], [\u20135, \u20131] |:", "options": ["18", "\u201322", "14", "\u201318"], "correct": 0, "explanation": "<strong>Step 1:</strong> \u0394 = 2(\u20131) \u2013 4(\u20135) = \u20132 \u2013 (\u201320) = \u20132 + 20 = <strong>18</strong> (Exercise 4.1, Q1)."}, {"id": 4, "question": "4. If | [2, 4], [5, 1] | = | [2x, 4], [6, x] |, find x:", "options": ["x = \u00b1 \u221a3", "x = 3", "x = \u00b1 3", "x = \u221a6"], "correct": 0, "explanation": "<strong>Step 1:</strong> LHS = 2(1) \u2013 4(5) = 2 \u2013 20 = \u201318.<br><strong>Step 2:</strong> RHS = 2x(x) \u2013 4(6) = 2x\u00b2 \u2013 24.<br><strong>Step 3:</strong> 2x\u00b2 \u2013 24 = \u201318 \u21d2 2x\u00b2 = 6 \u21d2 x\u00b2 = 3 \u21d2 <strong>x = \u00b1 \u221a3</strong> (Exercise 4.1, Q7(i))."}, {"id": 5, "question": "5. If | [x, 2], [18, x] | = | [6, 2], [18, 6] |, then x is equal to:", "options": ["\u00b1 6", "6", "\u20136", "0"], "correct": 0, "explanation": "<strong>Step 1:</strong> LHS = x\u00b2 \u2013 36.<br><strong>Step 2:</strong> RHS = 6(6) \u2013 2(18) = 36 \u2013 36 = 0.<br><strong>Step 3:</strong> x\u00b2 \u2013 36 = 0 \u21d2 x\u00b2 = 36 \u21d2 <strong>x = \u00b1 6</strong> (Exercise 4.1, Q8)."}, {"id": 6, "question": "6. Evaluate the skew-symmetric trigonometric determinant: | [0, sin \u03b1, \u2013cos \u03b1], [\u2013sin \u03b1, 0, sin \u03b2], [cos \u03b1, \u2013sin \u03b2, 0] |", "options": ["0", "sin \u03b1 cos \u03b1", "sin \u03b2 cos \u03b2", "1"], "correct": 0, "explanation": "<strong>Step 1:</strong> Expand along R\u2081: 0 \u2013 sin \u03b1(0 \u2013 sin \u03b2 cos \u03b1) \u2013 cos \u03b1(sin \u03b1 sin \u03b2 \u2013 0).<br><strong>Step 2:</strong> = sin \u03b1 sin \u03b2 cos \u03b1 \u2013 cos \u03b1 sin \u03b1 sin \u03b2 = <strong>0</strong> (NCERT Example 4)."}, {"id": 7, "question": "7. How many distinct ways can a 3 \u00d7 3 determinant be expanded along rows or columns?", "options": ["6 ways (3 rows and 3 columns)", "3 ways", "9 ways", "1 way only"], "correct": 0, "explanation": "<strong>NCERT \u00a7 4.2.3:</strong> There are six ways of expanding a determinant of order 3 corresponding to each of the three rows (R\u2081, R\u2082, R\u2083) and three columns (C\u2081, C\u2082, C\u2083), all giving the exact same value."}, {"id": 8, "question": "8. What is the value of the determinant of a diagonal matrix diag(d\u2081, d\u2082, d\u2083)?", "options": ["d\u2081 \u00b7 d\u2082 \u00b7 d\u2083 (product of diagonal entries)", "d\u2081 + d\u2082 + d\u2083", "0", "1"], "correct": 0, "explanation": "<strong>Property:</strong> In a diagonal matrix, all off-diagonal entries are 0. Expanding along row 1 gives d\u2081(d\u2082d\u2083 \u2013 0) = <strong>d\u2081 d\u2082 d\u2083</strong>."}, {"id": 9, "question": "9. Evaluate | [3, \u20131, \u20132], [0, 0, \u20131], [3, \u20135, 0] |:", "options": ["\u201312", "12", "0", "6"], "correct": 0, "explanation": "<strong>Step 1:</strong> Expand along row 2 (which has two zeroes): \u0394 = (\u20131)\u00b2\u207a\u00b3 (\u20131) | [3, \u20131], [3, \u20135] |.<br><strong>Step 2:</strong> = (\u20131)(\u20131) [ 3(\u20135) \u2013 (\u20131)(3) ] = 1 [ \u201315 + 3 ] = <strong>\u201312</strong> (Exercise 4.1, Q5(i))."}, {"id": 10, "question": "10. In a 3 \u00d7 3 determinant, the sign attached to entry a\u2083\u2082 is:", "options": ["\u20131", "+1", "0", "+3"], "correct": 0, "explanation": "<strong>Formula:</strong> (\u20131)\u2071\u207a\u02b2 = (\u20131)\u00b3\u207a\u00b2 = (\u20131)\u2075 = <strong>\u20131</strong>."}]}, {"id": 2, "containerId": "quizContainer-2", "scoreId": "quizScoreDisplay-2", "title": "Quiz Challenge 2 of 4 \u2022 Scaling Properties & Area of Triangle", "subtitle": "10 questions on |kA| = k\u207f|A|, collinearity tests, line equations, and area coordinates.", "questions": [{"id": 11, "question": "11. If A is a 2 \u00d7 2 matrix, then |2A| is equal to:", "options": ["4|A|", "2|A|", "8|A|", "16|A|"], "correct": 0, "explanation": "<strong>NCERT \u00a7 4.2.3:</strong> For an n \u00d7 n matrix, |kA| = k\u207f |A|. With n = 2 and k = 2: |2A| = 2\u00b2 |A| = <strong>4|A|</strong> (Exercise 4.1, Q3)."}, {"id": 12, "question": "12. If A = [ [1, 0, 1], [0, 1, 2], [0, 0, 4] ], then |3A| equals:", "options": ["27|A|", "3|A|", "9|A|", "81|A|"], "correct": 0, "explanation": "<strong>NCERT \u00a7 4.2.3:</strong> Order n = 3. Therefore |3A| = 3\u00b3 |A| = <strong>27|A|</strong> (Exercise 4.1, Q4)."}, {"id": 13, "question": "13. Find the area of the triangle with vertices (1, 0), (6, 0), and (4, 3):", "options": ["7.5 sq. units (15/2)", "15 sq. units", "9 sq. units", "6 sq. units"], "correct": 0, "explanation": "<strong>Step 1:</strong> \u0394 = \u00bd | [1, 0, 1], [6, 0, 1], [4, 3, 1] |.<br><strong>Step 2:</strong> Expand along C\u2082: \u0394 = \u00bd [ \u20133(1 \u2013 6) ] = \u00bd [ \u20133(\u20135) ] = <strong>15/2 = 7.5 sq. units</strong> (Exercise 4.2, Q1(i))."}, {"id": 14, "question": "14. Three points A(x\u2081, y\u2081), B(x\u2082, y\u2082), and C(x\u2083, y\u2083) are collinear IF AND ONLY IF:", "options": ["The determinant | [x\u2081, y\u2081, 1], [x\u2082, y\u2082, 1], [x\u2083, y\u2083, 1] | = 0", "The determinant equals 1", "x\u2081x\u2082x\u2083 = y\u2081y\u2082y\u2083", "x\u2081 + x\u2082 + x\u2083 = 0"], "correct": 0, "explanation": "<strong>NCERT \u00a7 4.3 Remark (iii):</strong> Three points are collinear if and only if the area of the triangle formed by them is zero, i.e., <strong>| [x\u2081, y\u2081, 1], [x\u2082, y\u2082, 1], [x\u2083, y\u2083, 1] | = 0</strong>."}, {"id": 15, "question": "15. Find the equation of the line joining points (1, 2) and (3, 6) using determinants:", "options": ["y = 2x", "y = 3x", "2x + y = 0", "x \u2013 2y = 1"], "correct": 0, "explanation": "<strong>Step 1:</strong> Let P(x, y) lie on the line. Then | [x, y, 1], [1, 2, 1], [3, 6, 1] | = 0.<br><strong>Step 2:</strong> Expand: x(2 \u2013 6) \u2013 y(1 \u2013 3) + 1(6 \u2013 6) = 0 \u21d2 \u20134x + 2y = 0 \u21d2 2y = 4x \u21d2 <strong>y = 2x</strong> (Exercise 4.2, Q4(i))."}, {"id": 16, "question": "16. If the area of a triangle is 35 sq units with vertices (2, \u20136), (5, 4), and (k, 4), then k is:", "options": ["12, \u20132", "12", "\u20132", "\u201312, \u20132"], "correct": 0, "explanation": "<strong>Step 1:</strong> \u00bd | [2, \u20136, 1], [5, 4, 1], [k, 4, 1] | = \u00b1 35.<br><strong>Step 2:</strong> | [2, \u20136, 1], [5, 4, 1], [k, 4, 1] | = 2(4 \u2013 4) \u2013 (\u20136)(5 \u2013 k) + 1(20 \u2013 4k) = 30 \u2013 6k + 20 \u2013 4k = 50 \u2013 10k.<br><strong>Step 3:</strong> \u00bd(50 \u2013 10k) = \u00b1 35 \u21d2 25 \u2013 5k = \u00b1 35.<br>If 25 \u2013 5k = 35 \u21d2 \u20135k = 10 \u21d2 k = \u20132.<br>If 25 \u2013 5k = \u201335 \u21d2 \u20135k = \u201360 \u21d2 k = 12.<br><strong>Conclusion:</strong> <strong>12, \u20132</strong> (Exercise 4.2, Q5)."}, {"id": 17, "question": "17. Why do we always take the absolute value when computing triangle area via determinants?", "options": ["Area is a geometric measure and strictly non-negative", "Determinants can never be negative", "The 1/2 factor removes negative signs", "Coordinate axes are positive"], "correct": 0, "explanation": "<strong>NCERT \u00a7 4.3 Remark (i):</strong> Since geometric area is always a positive quantity, we always take the absolute value of the determinant expression."}, {"id": 18, "question": "18. Show that points A(a, b + c), B(b, c + a), and C(c, a + b) are collinear:", "options": ["Determinant evaluates to 0 (two identical columns after C\u2082 + C\u2081)", "Determinant evaluates to a + b + c", "Determinant evaluates to 1", "Points cannot be collinear"], "correct": 0, "explanation": "<strong>Step 1:</strong> \u0394 = | [a, b+c, 1], [b, c+a, 1], [c, a+b, 1] |.<br><strong>Step 2:</strong> Adding C\u2081 to C\u2082 gives column 2 as [a+b+c, a+b+c, a+b+c].<br><strong>Step 3:</strong> Factoring out (a+b+c) leaves two identical columns of 1s, making \u0394 = <strong>0</strong> (Exercise 4.2, Q2)."}, {"id": 19, "question": "19. If A is an order 3 matrix and |A| = \u20132, find |\u2013A|:", "options": ["2", "\u20132", "8", "\u20138"], "correct": 0, "explanation": "<strong>Step 1:</strong> |\u2013A| = (\u20131)\u00b3 |A|.<br><strong>Step 2:</strong> = (\u20131)(\u20132) = <strong>2</strong>."}, {"id": 20, "question": "20. Find the equation of the line joining (3, 1) and (9, 3) using determinants:", "options": ["x \u2013 3y = 0", "3x \u2013 y = 0", "x + 3y = 0", "y \u2013 3x = 1"], "correct": 0, "explanation": "<strong>Step 1:</strong> | [x, y, 1], [3, 1, 1], [9, 3, 1] | = 0.<br><strong>Step 2:</strong> x(1 \u2013 3) \u2013 y(3 \u2013 9) + 1(9 \u2013 9) = 0 \u21d2 \u20132x + 6y = 0 \u21d2 <strong>x \u2013 3y = 0</strong> (Exercise 4.2, Q4(ii))."}]}, {"id": 3, "containerId": "quizContainer-3", "scoreId": "quizScoreDisplay-3", "title": "Quiz Challenge 3 of 4 \u2022 Minors, Cofactors & Adjoint Properties", "subtitle": "10 questions on minor reductions, cofactor signs, orthogonality theorem, and adj A formulas.", "questions": [{"id": 21, "question": "21. What is the order of the minor of an element in a determinant of order n (n \u2265 2)?", "options": ["n \u2013 1", "n", "n + 1", "n/2"], "correct": 0, "explanation": "<strong>NCERT \u00a7 4.4 Remark:</strong> Minor of an element of a determinant of order n (n \u2265 2) is a determinant of order <strong>n \u2013 1</strong> (obtained by deleting 1 row and 1 column)."}, {"id": 22, "question": "22. In the determinant | [2, \u20134], [0, 3] |, what is the minor M\u2081\u2082?", "options": ["0", "\u20134", "3", "2"], "correct": 0, "explanation": "<strong>Step 1:</strong> Element a\u2081\u2082 is \u20134. Delete row 1 and column 2.<br><strong>Step 2:</strong> The remaining entry is <strong>0</strong> (Exercise 4.3, Q1(i))."}, {"id": 23, "question": "23. If A = [ [1, 2], [3, 4] ], what is the adjoint matrix adj A?", "options": ["[ [4, \u20132], [\u20133, 1] ]", "[ [1, \u20132], [\u20133, 4] ]", "[ [4, 2], [3, 1] ]", "[ [\u20134, 2], [3, \u20131] ]"], "correct": 0, "explanation": "<strong>Step 1:</strong> For a 2 \u00d7 2 matrix, swap diagonal elements (1 \u2194 4) and negate off-diagonal elements (2 \u2192 \u20132, 3 \u2192 \u20133).<br><strong>Conclusion:</strong> adj A = <strong>[ [4, \u20132], [\u20133, 1] ]</strong> (Exercise 4.4, Q1)."}, {"id": 24, "question": "24. A square matrix A is called singular if and only if:", "options": ["|A| = 0", "|A| \u2260 0", "|A| > 0", "A = I"], "correct": 0, "explanation": "<strong>NCERT Definition 4 (\u00a7 4.5):</strong> A square matrix A is said to be singular if <strong>|A| = 0</strong>."}, {"id": 25, "question": "25. Which identity is always true for any square matrix A of order n?", "options": ["A(adj A) = (adj A)A = |A| I", "A(adj A) = I", "adj A = |A| A", "(adj A)A = |A|\u00b2 I"], "correct": 0, "explanation": "<strong>NCERT Theorem 1 (\u00a7 4.5):</strong> If A is any square matrix of order n, then <strong>A(adj A) = (adj A)A = |A| I</strong>."}, {"id": 26, "question": "26. Let A be a nonsingular square matrix of order 3 \u00d7 3. Then |adj A| is equal to:", "options": ["|A|\u00b2", "|A|", "|A|\u00b3", "3|A|"], "correct": 0, "explanation": "<strong>NCERT Theorem (\u00a7 4.5):</strong> |adj A| = |A|\u207f\u207b\u00b9. For n = 3, |adj A| = |A|\u00b3\u207b\u00b9 = <strong>|A|\u00b2</strong> (Exercise 4.4, Q17)."}, {"id": 27, "question": "27. In matrix A = [ [1, 2], [4, 8] ], why is A singular?", "options": ["|A| = 1(8) \u2013 2(4) = 8 \u2013 8 = 0", "|A| = 16 \u2260 0", "A has 4 elements", "All entries are even except one"], "correct": 0, "explanation": "<strong>Step 1:</strong> Calculate |A| = 1(8) \u2013 2(4) = 8 \u2013 8 = 0.<br><strong>Conclusion:</strong> Since |A| = 0, A is singular by Definition 4."}, {"id": 28, "question": "28. What is the cofactor matrix [A\u1d62\u2c7c] for A = [ [a, c], [b, d] ] before transposing for adj A?", "options": ["[ [d, \u2013b], [\u2013c, a] ]", "[ [d, \u2013c], [\u2013b, a] ]", "[ [a, \u2013b], [\u2013c, d] ]", "[ [d, c], [b, a] ]"], "correct": 0, "explanation": "<strong>Step 1:</strong> A\u2081\u2081 = d, A\u2081\u2082 = \u2013b, A\u2082\u2081 = \u2013c, A\u2082\u2082 = a.<br><strong>Step 2:</strong> Cofactor matrix is [ [d, \u2013b], [\u2013c, a] ]. Its transpose is adj A = [ [d, \u2013c], [\u2013b, a] ]."}, {"id": 29, "question": "29. If A and B are nonsingular matrices of the same order, then AB is:", "options": ["Nonsingular", "Singular", "Zero matrix", "Identity matrix"], "correct": 0, "explanation": "<strong>NCERT Theorem 2 (\u00a7 4.5):</strong> If A and B are nonsingular matrices of the same order, then AB and BA are also nonsingular matrices of the same order (since |AB| = |A||B| \u2260 0)."}, {"id": 30, "question": "30. If |A| = 3 and |B| = \u20134 for 3 \u00d7 3 matrices, what is |AB|?", "options": ["\u201312", "12", "\u20131", "7"], "correct": 0, "explanation": "<strong>NCERT Theorem 3:</strong> |AB| = |A| |B| = 3 \u00d7 (\u20134) = <strong>\u201312</strong>."}]}, {"id": 4, "containerId": "quizContainer-4", "scoreId": "quizScoreDisplay-4", "title": "Quiz Challenge 4 of 4 \u2022 Inverses, Matrix Method & Consistency", "subtitle": "10 questions on inverse formulas, matrix polynomials, linear systems, consistency rules, and history.", "questions": [{"id": 31, "question": "31. If A is an invertible matrix of order 2, then det(A\u207b\u00b9) is equal to:", "options": ["1 / det(A)", "det(A)", "1", "0"], "correct": 0, "explanation": "<strong>Step 1:</strong> Since AA\u207b\u00b9 = I, taking determinants gives |AA\u207b\u00b9| = |I| \u21d2 |A| |A\u207b\u00b9| = 1.<br><strong>Conclusion:</strong> det(A\u207b\u00b9) = <strong>1 / det(A)</strong> (Exercise 4.4, Q18)."}, {"id": 32, "question": "32. For invertible matrices A and B, which Reversal Law holds for inverses?", "options": ["(AB)\u207b\u00b9 = B\u207b\u00b9 A\u207b\u00b9", "(AB)\u207b\u00b9 = A\u207b\u00b9 B\u207b\u00b9", "(AB)\u207b\u00b9 = A B", "(AB)\u207b\u00b9 = (BA)\u207b\u00b9 always"], "correct": 0, "explanation": "<strong>NCERT Example 14:</strong> The inverse of a matrix product reverses the order of factors: <strong>(AB)\u207b\u00b9 = B\u207b\u00b9 A\u207b\u00b9</strong>."}, {"id": 33, "question": "33. If A = [ [2, 3], [1, 2] ] satisfies A\u00b2 \u2013 4A + I = O, find A\u207b\u00b9:", "options": ["[ [2, \u20133], [\u20131, 2] ]", "[ [\u20132, 3], [1, \u20132] ]", "[ [4, 0], [0, 4] ]", "[ [1, 0], [0, 1] ]"], "correct": 0, "explanation": "<strong>Step 1:</strong> A\u207b\u00b9 = 4I \u2013 A.<br><strong>Step 2:</strong> 4 [ [1, 0], [0, 1] ] \u2013 [ [2, 3], [1, 2] ] = [ [4 \u2013 2, 0 \u2013 3], [0 \u2013 1, 4 \u2013 2] ] = <strong>[ [2, \u20133], [\u20131, 2] ]</strong> (NCERT Example 15)."}, {"id": 34, "question": "34. If x, y, z are nonzero real numbers, what is the inverse of diag(x, y, z)?", "options": ["diag(x\u207b\u00b9, y\u207b\u00b9, z\u207b\u00b9)", "xyz \u00b7 diag(x, y, z)", "(1/xyz) \u00b7 I", "diag(x, y, z)"], "correct": 0, "explanation": "<strong>Miscellaneous Q8:</strong> For diagonal matrix A = diag(x, y, z), |A| = xyz \u2260 0. Its inverse is simply the diagonal matrix of reciprocals: <strong>diag(x\u207b\u00b9, y\u207b\u00b9, z\u207b\u00b9)</strong>."}, {"id": 35, "question": "35. If A = [ [1, sin \u03b8, 1], [\u2013sin \u03b8, 1, sin \u03b8], [\u20131, \u2013sin \u03b8, 1] ] where 0 \u2264 \u03b8 \u2264 2\u03c0, then det(A) lies in:", "options": ["[2, 4]", "(2, 4)", "(2, \u221e)", "{0}"], "correct": 0, "explanation": "<strong>Step 1:</strong> Expand A: det(A) = 1(1 + sin\u00b2\u03b8) \u2013 sin \u03b8(\u2013sin \u03b8 + sin \u03b8) + 1(sin\u00b2\u03b8 + 1) = 2(1 + sin\u00b2\u03b8).<br><strong>Step 2:</strong> Since 0 \u2264 sin\u00b2\u03b8 \u2264 1, 2(1 + 0) \u2264 det(A) \u2264 2(1 + 1) \u21d2 <strong>det(A) \u2208 [2, 4]</strong> (Miscellaneous Q9)."}, {"id": 36, "question": "36. In the Matrix Method AX = B, if |A| \u2260 0, what is the solution matrix X?", "options": ["X = A\u207b\u00b9 B", "X = B A\u207b\u00b9", "X = |A| B", "X = (adj A) B"], "correct": 0, "explanation": "<strong>Step 1:</strong> Pre-multiply both sides of AX = B by A\u207b\u00b9.<br><strong>Step 2:</strong> A\u207b\u00b9(AX) = A\u207b\u00b9B \u21d2 (A\u207b\u00b9A)X = A\u207b\u00b9B \u21d2 IX = A\u207b\u00b9B \u21d2 <strong>X = A\u207b\u00b9 B</strong> (NCERT \u00a7 4.6.1)."}, {"id": 37, "question": "37. When is a system of linear equations AX = B called 'consistent'?", "options": ["If one or more solutions exist", "If exactly zero solutions exist", "If |A| is strictly negative", "If all variables equal zero"], "correct": 0, "explanation": "<strong>NCERT Definition (\u00a7 4.6):</strong> A system of equations is said to be <strong>consistent</strong> if its solution (one or more) exists. It is inconsistent if no solution exists."}, {"id": 38, "question": "38. Who is credited with presenting the proof of the matrix determinant multiplication theorem and using the word 'determinant' in its present sense in 1812?", "options": ["Augustin-Louis Cauchy", "Carl Friedrich Gauss", "Isaac Newton", "Ren\u00e9 Descartes"], "correct": 0, "explanation": "<strong>Historical Note (p. 103):</strong> Cauchy (1812) used the word 'determinant' in its present mathematical sense and gave a satisfactory proof of the multiplication theorem on the same day as Binet."}, {"id": 39, "question": "39. Which seventeenth-century Japanese mathematician discovered the idea of determinants in his 1683 work 'Kai Fukudai no Ho'?", "options": ["Seki Kowa", "Aryabhata", "Madhava", "Brahmagupta"], "correct": 0, "explanation": "<strong>Historical Note (p. 103):</strong> Seki Kowa, the greatest Japanese mathematician of the seventeenth century, introduced determinants and expansions in his 1683 work <em>'Kai Fukudai no Ho'</em>."}, {"id": 40, "question": "40. If A is an invertible matrix, what is (A\u207b\u00b9)\u207b\u00b9?", "options": ["A", "A\u207b\u00b9", "I", "\u2013A"], "correct": 0, "explanation": "<strong>NCERT Summary (\u00a7 4.5):</strong> Since AA\u207b\u00b9 = A\u207b\u00b9A = I, the inverse of A\u207b\u00b9 is simply <strong>A</strong>, i.e., <strong>(A\u207b\u00b9)\u207b\u00b9 = A</strong>."}]}];
+
+    let userAnswers = {};
+
+    function createQuizCard(set, q) {
+      const card = document.createElement('div');
+      card.id = `quiz-card-${q.id}`;
+      card.className = 'p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-3 transition-all';
+
+      let optionsHtml = '';
+      q.options.forEach((opt, optIdx) => {
+        optionsHtml += `
+          <button onclick="handleQuizAnswer(${set.id}, ${q.id}, ${optIdx}, this)"
+                  class="quiz-opt-btn-${q.id} w-full text-left p-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-300 font-medium transition cursor-pointer flex items-center justify-between">
+            <span>${opt}</span>
+            <span class="opt-check text-xs font-bold"></span>
+          </button>
+        `;
+      });
+
+      card.innerHTML = `
+        <div class="flex items-start justify-between gap-2">
+          <div class="font-bold text-white text-xs leading-relaxed flex-1">${q.question}</div>
+          <button onclick="toggleSolution(${set.id}, ${q.id})" 
+                  id="sol-btn-${q.id}"
+                  title="Click to view full step-by-step solution"
+                  class="px-2.5 py-1 rounded-xl bg-violet-950/70 hover:bg-violet-900 border border-violet-500/40 text-violet-300 hover:text-violet-100 text-[11px] font-bold flex items-center space-x-1 shrink-0 transition-all cursor-pointer shadow-sm">
+            <span>💡</span>
+            <span id="sol-btn-text-${q.id}">Solution</span>
+          </button>
+        </div>
+        <div class="space-y-1.5">${optionsHtml}</div>
+        <div id="quiz-feedback-${q.id}" class="hidden p-2.5 rounded-xl text-[11px] leading-relaxed"></div>
+        <div id="quiz-solution-${q.id}" class="hidden p-3.5 rounded-xl bg-slate-950/95 border border-violet-500/40 text-slate-200 text-[11px] space-y-2 shadow-xl transition-all">
+          <div class="flex items-center space-x-1.5 text-violet-300 font-bold border-b border-slate-800/80 pb-1.5">
+            <span>📝</span>
+            <span>Step-by-Step Solution:</span>
+            <span class="text-emerald-300 ml-auto font-mono text-[10px] bg-emerald-950/70 px-2 py-0.5 rounded-md border border-emerald-500/40 font-bold">Correct Ans: ${q.options[q.correct]}</span>
+          </div>
+          <div class="text-slate-300 leading-relaxed pt-0.5">${q.explanation}</div>
+        </div>
+      `;
+      return card;
+    }
+
+    function toggleSolution(setId, qId) {
+      const solDiv = document.getElementById(`quiz-solution-${qId}`);
+      const btnText = document.getElementById(`sol-btn-text-${qId}`);
+      const btn = document.getElementById(`sol-btn-${qId}`);
+      if (!solDiv) return;
+
+      const isHidden = solDiv.classList.contains('hidden');
+      if (isHidden) {
+        solDiv.classList.remove('hidden');
+        if (btnText) btnText.textContent = 'Hide';
+        if (btn) {
+          btn.classList.remove('bg-violet-950/70', 'text-violet-300');
+          btn.classList.add('bg-violet-700', 'text-white', 'border-violet-400');
+        }
+        playTone(659.25, 'sine', 0.08, 0.06);
+      } else {
+        solDiv.classList.add('hidden');
+        if (btnText) btnText.textContent = 'Solution';
+        if (btn) {
+          btn.classList.remove('bg-violet-700', 'text-white', 'border-violet-400');
+          btn.classList.add('bg-violet-950/70', 'text-violet-300');
+        }
+      }
+    }
+
+    function renderAllQuizzes() {
+      quizSets.forEach(set => {
+        const container = document.getElementById(set.containerId);
+        if (!container) return;
+        container.innerHTML = '';
+        set.questions.forEach(q => {
+          container.appendChild(createQuizCard(set, q));
+        });
+      });
+    }
+
+    function handleQuizAnswer(setId, qId, selectedIdx, btn) {
+      const answerKey = `${setId}-${qId}`;
+      if (userAnswers[answerKey] !== undefined) return;
+      userAnswers[answerKey] = selectedIdx;
+
+      const set = quizSets.find(s => s.id === setId);
+      const q = set.questions.find(item => item.id === qId);
+      const isCorrect = (selectedIdx === q.correct);
+      const feedback = document.getElementById(`quiz-feedback-${qId}`);
+      const card = document.getElementById(`quiz-card-${qId}`);
+      const allBtns = card.querySelectorAll(`.quiz-opt-btn-${qId}`);
+
+      allBtns.forEach((b, idx) => {
+        b.disabled = true;
+        if (idx === q.correct) {
+          b.classList.remove('bg-slate-950', 'border-slate-800');
+          b.classList.add('bg-emerald-950/60', 'border-emerald-500/60', 'text-emerald-300');
+          b.querySelector('.opt-check').textContent = '✓';
+        } else if (idx === selectedIdx && !isCorrect) {
+          b.classList.remove('bg-slate-950', 'border-slate-800');
+          b.classList.add('bg-rose-950/60', 'border-rose-500/60', 'text-rose-300');
+          b.querySelector('.opt-check').textContent = '✕';
+        }
+      });
+
+      feedback.classList.remove('hidden');
+      if (isCorrect) {
+        playSuccessTone();
+        feedback.className = 'p-2.5 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 text-[11px]';
+        feedback.innerHTML = `<strong>✓ Correct!</strong> Well done! You can click 💡 Solution anytime for complete derivation.`;
+      } else {
+        playWrongTone();
+        feedback.className = 'p-2.5 rounded-xl bg-rose-950/40 border border-rose-500/40 text-rose-300 text-[11px]';
+        feedback.innerHTML = `<strong>✕ Incorrect!</strong> Correct answer is <strong>${q.options[q.correct]}</strong>. Click 💡 Solution to view the step-by-step solution.`;
+      }
+
+      let setScore = 0;
+      set.questions.forEach(item => {
+        if (userAnswers[`${setId}-${item.id}`] === item.correct) {
+          setScore++;
+        }
+      });
+
+      const scoreDisplay = document.getElementById(set.scoreId);
+      if (scoreDisplay) {
+        scoreDisplay.textContent = `${setScore} / ${set.questions.length}`;
+      }
+    }
+
+    function resetQuiz(setId) {
+      const set = quizSets.find(s => s.id === setId);
+      if (!set) return;
+
+      set.questions.forEach(q => {
+        delete userAnswers[`${setId}-${q.id}`];
+      });
+
+      const scoreDisplay = document.getElementById(set.scoreId);
+      if (scoreDisplay) {
+        scoreDisplay.textContent = `0 / ${set.questions.length}`;
+      }
+
+      const container = document.getElementById(set.containerId);
+      if (container) {
+        container.innerHTML = '';
+        set.questions.forEach(q => {
+          container.appendChild(createQuizCard(set, q));
+        });
+      }
+
+      playTone(523.25, 'sine', 0.1);
+    }
+
+    // =========================================================================
+    // SLIDE-BY-SLIDE CHECKPOINT MINI-QUIZZES (2 QUESTIONS WITH INSTANT SOLUTIONS)
+    // =========================================================================
+    const slideCheckpoints = [{"slideIdx": 0, "questions": [{"question": "Q1. For the system of equations a\u2081x + b\u2081y = c\u2081 and a\u2082x + b\u2082y = c\u2082, what scalar determines whether a unique solution exists?", "options": ["A) a\u2081b\u2082 \u2013 a\u2082b\u2081", "B) a\u2081a\u2082 + b\u2081b\u2082", "C) a\u2081b\u2081 \u2013 a\u2082b\u2082", "D) a\u2081c\u2082 \u2013 a\u2082c\u2081"], "correct": 0, "explanation": "<strong>Step 1:</strong> A unique solution exists if and only if a\u2081/a\u2082 \u2260 b\u2081/b\u2082.<br><strong>Step 2:</strong> Cross-multiplying yields a\u2081b\u2082 \u2013 a\u2082b\u2081 \u2260 0.<br><strong>Conclusion:</strong> The number <strong>a\u2081b\u2082 \u2013 a\u2082b\u2081</strong> is associated with matrix A and is called the determinant of A (det A)."}, {"question": "Q2. Which of the following fundamental statements regarding determinants is strictly TRUE?", "options": ["A) Only square matrices have determinants", "B) Every rectangular matrix has a unique determinant", "C) |A| denotes the absolute value / modulus of matrix A", "D) The determinant of any matrix must be a positive real number"], "correct": 0, "explanation": "<strong>NCERT Remarks (\u00a7 4.2):</strong><br>1. <strong>Only square matrices have determinants.</strong> Rectangular matrices do not possess determinants.<br>2. For matrix A, |A| is read as 'determinant of A' and NOT modulus of A. It can be positive, negative, zero, or complex."}]}, {"slideIdx": 1, "questions": [{"question": "Q1. Evaluate the 2 \u00d7 2 determinant: | [x, x+1], [x-1, x] |", "options": ["A) 1", "B) 2x\u00b2 + 1", "C) x\u00b2 \u2013 1", "D) \u20131"], "correct": 0, "explanation": "<strong>Step 1:</strong> Apply formula |A| = a\u2081\u2081a\u2082\u2082 \u2013 a\u2082\u2081a\u2081\u2082.<br><strong>Step 2:</strong> \u0394 = x(x) \u2013 (x + 1)(x \u2013 1) = x\u00b2 \u2013 (x\u00b2 \u2013 1) = x\u00b2 \u2013 x\u00b2 + 1 = <strong>1</strong> (NCERT Example 2)."}, {"question": "Q2. Find all values of x for which | [3, x], [x, 1] | = | [3, 2], [4, 1] |:", "options": ["A) x = \u00b1 2\u221a2", "B) x = 2 only", "C) x = \u00b1 2", "D) x = 4"], "correct": 0, "explanation": "<strong>Step 1:</strong> Expand LHS: 3(1) \u2013 x(x) = 3 \u2013 x\u00b2.<br><strong>Step 2:</strong> Expand RHS: 3(1) \u2013 2(4) = 3 \u2013 8 = \u20135.<br><strong>Step 3:</strong> Equate scalars: 3 \u2013 x\u00b2 = \u20135 \u21d2 x\u00b2 = 8 \u21d2 <strong>x = \u00b1 2\u221a2</strong> (NCERT Example 5). (Caution: Do not equate elements like matrix equality!)."}]}, {"slideIdx": 2, "questions": [{"question": "Q1. When expanding a 3 \u00d7 3 determinant along the first row (R\u2081), what sign multiplier attaches to element a\u2081\u2082?", "options": ["A) (\u20131)\u00b9\u207a\u00b2 = \u20131", "B) (\u20131)\u00b9\u207a\u00b2 = +1", "C) (\u20131)\u00b9\u207b\u00b2 = 0", "D) +2"], "correct": 0, "explanation": "<strong>Step 1:</strong> The sign multiplier for any entry a\u1d62\u2c7c is (\u20131)\u2071\u207a\u02b2.<br><strong>Step 2:</strong> For row 1, column 2: i = 1, j = 2, so (\u20131)\u00b9\u207a\u00b2 = (\u20131)\u00b3 = <strong>\u20131</strong>."}, {"question": "Q2. In a 3 \u00d7 3 determinant, which sub-determinant multiplies a\u2081\u2081 during R\u2081 expansion?", "options": ["A) a\u2082\u2082a\u2083\u2083 \u2013 a\u2083\u2082a\u2082\u2083", "B) a\u2082\u2081a\u2083\u2083 \u2013 a\u2083\u2081a\u2082\u2083", "C) a\u2082\u2081a\u2083\u2082 \u2013 a\u2083\u2081a\u2082\u2082", "D) a\u2081\u2082a\u2083\u2083 \u2013 a\u2081\u2083a\u2083\u2082"], "correct": 0, "explanation": "<strong>Step 1:</strong> Delete the 1st row (R\u2081) and 1st column (C\u2081) containing a\u2081\u2081.<br><strong>Step 2:</strong> The remaining 2 \u00d7 2 sub-determinant is | [a\u2082\u2082, a\u2082\u2083], [a\u2083\u2082, a\u2083\u2083] | = <strong>a\u2082\u2082a\u2083\u2083 \u2013 a\u2083\u2082a\u2082\u2083</strong>."}]}, {"slideIdx": 3, "questions": [{"question": "Q1. If A is a square matrix of order 3 and |A| = 4, what is the value of |3A|?", "options": ["A) 108", "B) 12", "C) 36", "D) 48"], "correct": 0, "explanation": "<strong>Theorem (\u00a7 4.2.3):</strong> If A is an n \u00d7 n matrix and k is a scalar, then |kA| = k\u207f |A|.<br><strong>Step 1:</strong> Here order n = 3 and k = 3.<br><strong>Step 2:</strong> |3A| = 3\u00b3 |A| = 27 \u00d7 4 = <strong>108</strong>."}, {"question": "Q2. In evaluating \u0394 = | [1, 2, 4], [-1, 3, 0], [4, 1, 0] |, why expand along third column C\u2083?", "options": ["A) C\u2083 has two zeroes, so 2 out of 3 terms vanish immediately to zero", "B) Columns always give larger values than rows", "C) C\u2083 contains only positive numbers", "D) It is mandatory by NCERT rules"], "correct": 0, "explanation": "<strong>NCERT Remark:</strong> For easiest calculation, always expand along that row or column containing the maximum number of zeroes.<br>Here C\u2083 has two zeroes, yielding simply 4(\u20131 \u2013 12) \u2013 0 + 0 = 4(\u201313) = <strong>\u201352</strong> (Example 3)."}]}, {"slideIdx": 4, "questions": [{"question": "Q1. Evaluate | [x\u00b2 \u2013 x + 1, x \u2013 1], [x + 1, x + 1] | from Exercise 4.1 Q2(ii):", "options": ["A) x\u00b3 \u2013 x\u00b2 + 2", "B) x\u00b3 + x\u00b2 \u2013 2", "C) x\u00b3 \u2013 1", "D) x\u00b2 + 2"], "correct": 0, "explanation": "<strong>Step 1:</strong> (x\u00b2 \u2013 x + 1)(x + 1) \u2013 (x \u2013 1)(x + 1).<br><strong>Step 2:</strong> Note that (x\u00b2 \u2013 x + 1)(x + 1) = x\u00b3 + 1, and (x \u2013 1)(x + 1) = x\u00b2 \u2013 1.<br><strong>Conclusion:</strong> (x\u00b3 + 1) \u2013 (x\u00b2 \u2013 1) = <strong>x\u00b3 \u2013 x\u00b2 + 2</strong>."}, {"question": "Q2. If | [2, 3], [4, 5] | = | [x, 3], [2x, 5] | (Exercise 4.1 Q7(ii)), find the value of x:", "options": ["A) x = 2", "B) x = \u20132", "C) x = 4", "D) x = \u00b1 2"], "correct": 0, "explanation": "<strong>Step 1:</strong> LHS = 2(5) \u2013 3(4) = 10 \u2013 12 = \u20132.<br><strong>Step 2:</strong> RHS = x(5) \u2013 3(2x) = 5x \u2013 6x = \u2013x.<br><strong>Step 3:</strong> Equate: \u2013x = \u20132 \u21d2 <strong>x = 2</strong>."}]}, {"slideIdx": 5, "questions": [{"question": "Q1. Find the area of the triangle with vertices (3, 8), (\u20134, 2), and (5, 1):", "options": ["A) 61/2 = 30.5 sq. units", "B) 61 sq. units", "C) 15.25 sq. units", "D) 25 sq. units"], "correct": 0, "explanation": "<strong>Step 1:</strong> \u0394 = \u00bd | [3, 8, 1], [-4, 2, 1], [5, 1, 1] |.<br><strong>Step 2:</strong> \u0394 = \u00bd [ 3(2 \u2013 1) \u2013 8(\u20134 \u2013 5) + 1(\u20134 \u2013 10) ] = \u00bd [ 3(1) \u2013 8(\u20139) + 1(\u201314) ] = \u00bd [ 3 + 72 \u2013 14 ] = <strong>61/2 = 30.5 sq units</strong> (NCERT Example 6)."}, {"question": "Q2. If the area of a triangle with vertices (k, 0), (4, 0), and (0, 2) is 4 sq units, find k:", "options": ["A) k = 0 or k = 8", "B) k = 4 only", "C) k = \u00b1 4", "D) k = \u20132 or k = 2"], "correct": 0, "explanation": "<strong>Step 1:</strong> Area equation: \u00bd | [k, 0, 1], [4, 0, 1], [0, 2, 1] | = \u00b1 4.<br><strong>Step 2:</strong> Expand along C\u2082: \u00bd [ \u20132(k \u2013 4) ] = \u00b1 4 \u21d2 \u2013(k \u2013 4) = \u00b1 4 \u21d2 4 \u2013 k = \u00b1 4.<br><strong>Case 1:</strong> 4 \u2013 k = 4 \u21d2 <strong>k = 0</strong>.<br><strong>Case 2:</strong> 4 \u2013 k = \u20134 \u21d2 <strong>k = 8</strong>."}]}, {"slideIdx": 6, "questions": [{"question": "Q1. Find the area of the triangle with vertices (2, 7), (1, 1), and (10, 8) (Exercise 4.2 Q1(ii)):", "options": ["A) 23.5 sq. units (47/2)", "B) 47 sq. units", "C) 25 sq. units", "D) 18 sq. units"], "correct": 0, "explanation": "<strong>Step 1:</strong> \u0394 = \u00bd | [2, 7, 1], [1, 1, 1], [10, 8, 1] |.<br><strong>Step 2:</strong> = \u00bd [ 2(1 \u2013 8) \u2013 7(1 \u2013 10) + 1(8 \u2013 10) ] = \u00bd [ 2(\u20137) \u2013 7(\u20139) + 1(\u20132) ] = \u00bd [ \u201314 + 63 \u2013 2 ] = \u00bd(47) = <strong>47/2 = 23.5 sq units</strong>."}, {"question": "Q2. Why are points A(a, b+c), B(b, c+a), C(c, a+b) collinear (Exercise 4.2 Q2)?", "options": ["A) Adding C\u2081 to C\u2082 factors out (a+b+c), leaving columns 2 and 3 identical so \u0394 = 0", "B) Their sum of coordinates equals 1", "C) They all lie on the origin", "D) Because a = b = c always"], "correct": 0, "explanation": "<strong>Step 1:</strong> In \u0394 = | [a, b+c, 1], [b, c+a, 1], [c, a+b, 1] |, perform C\u2082 \u2192 C\u2082 + C\u2081.<br><strong>Step 2:</strong> Column 2 becomes [a+b+c, a+b+c, a+b+c]. Factor out (a+b+c).<br><strong>Conclusion:</strong> Column 2 and Column 3 are now identical [1, 1, 1]\u1d40, which makes \u0394 = 0. Hence points are collinear."}]}, {"slideIdx": 7, "questions": [{"question": "Q1. Find the minor M\u2082\u2083 of the element 6 in | [1, 2, 3], [4, 5, 6], [7, 8, 9] |:", "options": ["A) \u20136", "B) 6", "C) \u201314", "D) 8"], "correct": 0, "explanation": "<strong>Step 1:</strong> Element 6 lies in row 2, column 3.<br><strong>Step 2:</strong> Delete R\u2082 and C\u2083: M\u2082\u2083 = | [1, 2], [7, 8] | = 1(8) \u2013 2(7) = 8 \u2013 14 = <strong>\u20136</strong> (NCERT Example 8)."}, {"question": "Q2. If the minor M\u2082\u2081 of an element is \u20132, what is its cofactor A\u2082\u2081?", "options": ["A) +2", "B) \u20132", "C) 0", "D) \u20134"], "correct": 0, "explanation": "<strong>Formula:</strong> A\u1d62\u2c7c = (\u20131)\u2071\u207a\u02b2 M\u1d62\u2c7c.<br><strong>Step 1:</strong> A\u2082\u2081 = (\u20131)\u00b2\u207a\u00b9 M\u2082\u2081 = (\u20131)\u00b3 (\u20132) = (\u20131)(\u20132) = <strong>+2</strong> (NCERT Example 9)."}]}, {"slideIdx": 8, "questions": [{"question": "Q1. Using cofactors of the second row, evaluate \u0394 = | [5, 3, 8], [2, 0, 1], [1, 2, 3] | (Exercise 4.3 Q3):", "options": ["A) 7", "B) 14", "C) \u20137", "D) 0"], "correct": 0, "explanation": "<strong>Step 1:</strong> \u0394 = a\u2082\u2081A\u2082\u2081 + a\u2082\u2082A\u2082\u2082 + a\u2082\u2083A\u2082\u2083.<br><strong>Step 2:</strong> A\u2082\u2081 = (\u20131)\u00b3 | [3, 8], [2, 3] | = \u2013(9 \u2013 16) = 7.<br>A\u2082\u2082 = 0.<br>A\u2082\u2083 = (\u20131)\u2075 | [5, 3], [1, 2] | = \u2013(10 \u2013 3) = \u20137.<br><strong>Conclusion:</strong> \u0394 = 2(7) + 0 + 1(\u20137) = 14 \u2013 7 = <strong>7</strong>."}, {"question": "Q2. In | [2, \u20134], [0, 3] |, what is the cofactor A\u2082\u2081 (Exercise 4.3 Q1(i))?", "options": ["A) +4", "B) \u20134", "C) 0", "D) 2"], "correct": 0, "explanation": "<strong>Step 1:</strong> Minor M\u2082\u2081 is obtained by deleting row 2, col 1: M\u2082\u2081 = \u20134.<br><strong>Step 2:</strong> Cofactor A\u2082\u2081 = (\u20131)\u00b2\u207a\u00b9(\u20134) = (\u20131)(\u20134) = <strong>+4</strong>."}]}, {"slideIdx": 9, "questions": [{"question": "Q1. What is the value of a\u2081\u2081A\u2082\u2081 + a\u2081\u2082A\u2082\u2082 + a\u2081\u2083A\u2082\u2083 for any 3 \u00d7 3 determinant?", "options": ["A) 0", "B) |A|", "C) \u2013|A|", "D) 3|A|"], "correct": 0, "explanation": "<strong>Orthogonality Theorem (NCERT \u00a7 4.4):</strong> If elements of a row are multiplied with cofactors of any OTHER row, their sum is identically <strong>0</strong>.<br>(This is equivalent to expanding a determinant with two identical rows R\u2081 and R\u2082)."}, {"question": "Q2. In determinant \u0394, which linear combination correctly computes the value of \u0394?", "options": ["A) a\u2081\u2081A\u2081\u2081 + a\u2082\u2081A\u2082\u2081 + a\u2083\u2081A\u2083\u2081", "B) a\u2081\u2081A\u2083\u2081 + a\u2081\u2082A\u2083\u2082 + a\u2081\u2083A\u2083\u2083", "C) a\u2081\u2081A\u2081\u2082 + a\u2081\u2082A\u2081\u2083 + a\u2081\u2083A\u2081\u2081", "D) a\u2082\u2081A\u2081\u2081 + a\u2082\u2082A\u2081\u2082 + a\u2082\u2083A\u2081\u2083"], "correct": 0, "explanation": "<strong>NCERT Theorem (\u00a7 4.4):</strong> The value of \u0394 is obtained by the sum of products of elements of any row or column with their OWN corresponding cofactors.<br>Here, expanding along Column 1 gives <strong>a\u2081\u2081A\u2081\u2081 + a\u2082\u2081A\u2082\u2081 + a\u2083\u2081A\u2083\u2081 = \u0394</strong> (Exercise 4.3, Q5)."}]}, {"slideIdx": 10, "questions": [{"question": "Q1. What is the rapid rule to find the adjoint of a 2 \u00d7 2 matrix A = [ [a, b], [c, d] ]?", "options": ["A) Interchange diagonal elements (a \u2194 d) and change signs of off-diagonal elements (\u2013b, \u2013c)", "B) Change signs of diagonal and interchange off-diagonal", "C) Transpose without changing any signs", "D) Multiply all entries by \u20131"], "correct": 0, "explanation": "<strong>NCERT Remark (\u00a7 4.5):</strong> For a 2 \u00d7 2 matrix, adj A is obtained directly by interchanging a\u2081\u2081 and a\u2082\u2082, and changing signs of a\u2081\u2082 and a\u2082\u2081: adj A = <strong>[ [d, \u2013b], [\u2013c, a] ]</strong>."}, {"question": "Q2. If A is a nonsingular matrix of order 3 and |A| = 5, what is |adj A|?", "options": ["A) 25", "B) 5", "C) 125", "D) 15"], "correct": 0, "explanation": "<strong>Theorem (\u00a7 4.5):</strong> For any square matrix of order n, |adj A| = |A|\u207f\u207b\u00b9.<br>Here n = 3, so |adj A| = |A|\u00b3\u207b\u00b9 = |A|\u00b2 = 5\u00b2 = <strong>25</strong>."}]}, {"slideIdx": 11, "questions": [{"question": "Q1. Find the inverse of matrix A = [ [2, \u20132], [4, 3] ] (Exercise 4.4 Q5):", "options": ["A) 1/14 [ [3, 2], [\u20134, 2] ]", "B) 1/14 [ [2, 4], [\u20132, 3] ]", "C) [ [3, 2], [\u20134, 2] ]", "D) Inverse does not exist"], "correct": 0, "explanation": "<strong>Step 1:</strong> |A| = 2(3) \u2013 (\u20132)(4) = 6 + 8 = 14 \u2260 0.<br><strong>Step 2:</strong> adj A = [ [3, 2], [\u20134, 2] ].<br><strong>Conclusion:</strong> A\u207b\u00b9 = (1/|A|) adj A = <strong>1/14 [ [3, 2], [\u20134, 2] ]</strong>."}, {"question": "Q2. If A = [ [3, 1], [\u20131, 2] ] satisfies A\u00b2 \u2013 5A + 7I = O, what is A\u207b\u00b9 (Exercise 4.4 Q13)?", "options": ["A) 1/7 (5I \u2013 A) = 1/7 [ [2, \u20131], [1, 3] ]", "B) 5I \u2013 A", "C) A \u2013 5I", "D) 1/5 (7I \u2013 A)"], "correct": 0, "explanation": "<strong>Step 1:</strong> Multiply by A\u207b\u00b9: A \u2013 5I + 7A\u207b\u00b9 = O \u21d2 7A\u207b\u00b9 = 5I \u2013 A.<br><strong>Step 2:</strong> 5I \u2013 A = [ [5, 0], [0, 5] ] \u2013 [ [3, 1], [\u20131, 2] ] = [ [2, \u20131], [1, 3] ].<br><strong>Conclusion:</strong> A\u207b\u00b9 = <strong>1/7 [ [2, \u20131], [1, 3] ]</strong>."}]}, {"slideIdx": 12, "questions": [{"question": "Q1. A square matrix A is invertible if and only if:", "options": ["A) A is nonsingular (|A| \u2260 0)", "B) A is singular (|A| = 0)", "C) A is symmetric", "D) A is a zero matrix"], "correct": 0, "explanation": "<strong>NCERT Theorem 4 (\u00a7 4.5.1):</strong> A square matrix A is invertible if and only if A is a nonsingular matrix (|A| \u2260 0). Its inverse is given by A\u207b\u00b9 = (1/|A|) adj A."}, {"question": "Q2. If matrix A satisfies the polynomial equation A\u00b2 \u2013 4A + I = O, express A\u207b\u00b9 in terms of A:", "options": ["A) 4I \u2013 A", "B) A \u2013 4I", "C) A + 4I", "D) 4A \u2013 I"], "correct": 0, "explanation": "<strong>Step 1:</strong> A\u00b2 \u2013 4A = \u2013I \u21d2 4A \u2013 A\u00b2 = I.<br><strong>Step 2:</strong> Factor out A: A(4I \u2013 A) = I.<br><strong>Conclusion:</strong> Since AB = I \u21d2 B = A\u207b\u00b9, we get <strong>A\u207b\u00b9 = 4I \u2013 A</strong> (NCERT Example 15)."}]}, {"slideIdx": 13, "questions": [{"question": "Q1. Why is the system x + 3y = 5 and 2x + 6y = 8 inconsistent (Exercise 4.5 Q3)?", "options": ["A) |A| = 0 and (adj A)B = [ [6], [\u20132] ] \u2260 O", "B) |A| \u2260 0", "C) Both equations are identical", "D) It has infinitely many solutions"], "correct": 0, "explanation": "<strong>Step 1:</strong> |A| = 1(6) \u2013 3(2) = 0.<br><strong>Step 2:</strong> adj A = [ [6, \u20133], [\u20132, 1] ].<br><strong>Step 3:</strong> (adj A)B = [ [6(5) \u2013 3(8)], [\u20132(5) + 1(8)] ] = [ [6], [\u20132] ] \u2260 O.<br><strong>Conclusion:</strong> By Case II, the system is strictly inconsistent (no solution)."}, {"question": "Q2. Evaluate the determinant | [x, sin \u03b8, cos \u03b8], [\u2013sin \u03b8, \u2013x, 1], [cos \u03b8, 1, x] | (Misc Exercise Q1):", "options": ["A) \u2013x\u00b3 (independent of \u03b8)", "B) \u2013x\u00b3 + 2 sin \u03b8 cos \u03b8", "C) x\u00b3 + x", "D) 0"], "correct": 0, "explanation": "<strong>Step 1:</strong> Expand along R\u2081: x(\u2013x\u00b2 \u2013 1) \u2013 sin \u03b8(\u2013x sin \u03b8 \u2013 cos \u03b8) + cos \u03b8(\u2013sin \u03b8 + x cos \u03b8).<br><strong>Step 2:</strong> = \u2013x\u00b3 \u2013 x + x sin\u00b2\u03b8 + sin \u03b8 cos \u03b8 \u2013 sin \u03b8 cos \u03b8 + x cos\u00b2\u03b8 = \u2013x\u00b3 \u2013 x + x(sin\u00b2\u03b8 + cos\u00b2\u03b8) = \u2013x\u00b3 \u2013 x + x(1) = <strong>\u2013x\u00b3</strong>, which is completely independent of \u03b8."}]}];
+
+    let userCheckpointAnswers = {};
+
+    function renderSlideCheckpoints() {
+      slideCheckpoints.forEach(item => {
+        const container = document.getElementById(`checkpoint-slide-${item.slideIdx}`);
+        if (!container) return;
+
+        let qCardsHtml = '';
+        item.questions.forEach((q, qIdx) => {
+          let optionsHtml = '';
+          q.options.forEach((opt, optIdx) => {
+            optionsHtml += `
+              <button onclick="handleCheckpointAnswer(${item.slideIdx}, ${qIdx}, ${optIdx}, this)"
+                      class="chk-opt-btn-${item.slideIdx}-${qIdx} w-full text-left p-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-300 font-medium transition cursor-pointer flex items-center justify-between">
+                <span>${opt}</span>
+                <span class="chk-check text-xs font-bold"></span>
+              </button>
+            `;
+          });
+
+          qCardsHtml += `
+            <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-3 transition-all" id="chk-card-${item.slideIdx}-${qIdx}">
+              <div class="flex items-start justify-between gap-2">
+                <div class="font-bold text-white text-xs leading-relaxed flex-1">${q.question}</div>
+                <button onclick="toggleCheckpointSolution(${item.slideIdx}, ${qIdx})" 
+                        id="chk-sol-btn-${item.slideIdx}-${qIdx}"
+                        title="Click to view detailed solution"
+                        class="px-2.5 py-1 rounded-xl bg-violet-950/70 hover:bg-violet-900 border border-violet-500/40 text-violet-300 hover:text-violet-100 text-[11px] font-bold flex items-center space-x-1 shrink-0 transition-all cursor-pointer shadow-sm">
+                  <span>💡</span>
+                  <span id="chk-sol-btn-text-${item.slideIdx}-${qIdx}">Solution</span>
+                </button>
+              </div>
+              <div class="space-y-1.5">${optionsHtml}</div>
+              <div id="chk-feedback-${item.slideIdx}-${qIdx}" class="hidden p-2.5 rounded-xl text-[11px] leading-relaxed"></div>
+              <div id="chk-solution-${item.slideIdx}-${qIdx}" class="hidden p-3.5 rounded-xl bg-slate-950/95 border border-violet-500/40 text-slate-200 text-[11px] space-y-2 shadow-xl transition-all">
+                <div class="flex items-center space-x-1.5 text-violet-300 font-bold border-b border-slate-800/80 pb-1.5">
+                  <span>📝</span>
+                  <span>Step-by-Step Solution:</span>
+                  <span class="text-emerald-300 ml-auto font-mono text-[10px] bg-emerald-950/70 px-2 py-0.5 rounded-md border border-emerald-500/40 font-bold">Correct Ans: ${q.options[q.correct]}</span>
+                </div>
+                <div class="text-slate-300 leading-relaxed pt-0.5">${q.explanation}</div>
+              </div>
+            </div>
+          `;
+        });
+
+        container.innerHTML = `
+          <div class="space-y-4">
+            <div class="flex items-center space-x-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-violet-500/20 text-violet-300 border border-violet-500/30">
+                ⚡ Slide Checkpoint • 2 Practice Questions
+              </span>
+              <span class="text-xs text-slate-400">Test your understanding of this slide with instant solutions</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+              ${qCardsHtml}
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function handleCheckpointAnswer(slideIdx, qIdx, selectedIdx, btn) {
+      const key = `${slideIdx}-${qIdx}`;
+      if (userCheckpointAnswers[key] !== undefined) return;
+      userCheckpointAnswers[key] = selectedIdx;
+
+      const item = slideCheckpoints.find(s => s.slideIdx === slideIdx);
+      const q = item.questions[qIdx];
+      const isCorrect = (selectedIdx === q.correct);
+
+      const feedback = document.getElementById(`chk-feedback-${slideIdx}-${qIdx}`);
+      const card = document.getElementById(`chk-card-${slideIdx}-${qIdx}`);
+      const allBtns = card.querySelectorAll(`.chk-opt-btn-${slideIdx}-${qIdx}`);
+
+      allBtns.forEach((b, idx) => {
+        b.disabled = true;
+        if (idx === q.correct) {
+          b.classList.remove('bg-slate-950', 'border-slate-800');
+          b.classList.add('bg-emerald-950/60', 'border-emerald-500/60', 'text-emerald-300');
+          b.querySelector('.chk-check').textContent = '✓';
+        } else if (idx === selectedIdx && !isCorrect) {
+          b.classList.remove('bg-slate-950', 'border-slate-800');
+          b.classList.add('bg-rose-950/60', 'border-rose-500/60', 'text-rose-300');
+          b.querySelector('.chk-check').textContent = '✕';
+        }
+      });
+
+      feedback.classList.remove('hidden');
+      if (isCorrect) {
+        playSuccessTone();
+        feedback.className = 'p-2.5 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 text-[11px]';
+        feedback.innerHTML = `<strong>✓ Correct!</strong> Great job! Click 💡 Solution anytime for complete step-by-step derivation.`;
+      } else {
+        playWrongTone();
+        feedback.className = 'p-2.5 rounded-xl bg-rose-950/40 border border-rose-500/40 text-rose-300 text-[11px]';
+        feedback.innerHTML = `<strong>✕ Incorrect!</strong> Correct answer is <strong>${q.options[q.correct]}</strong>. Click 💡 Solution to view the step-by-step solution.`;
+      }
+    }
+
+    function toggleCheckpointSolution(slideIdx, qIdx) {
+      const solDiv = document.getElementById(`chk-solution-${slideIdx}-${qIdx}`);
+      const btnText = document.getElementById(`chk-sol-btn-text-${slideIdx}-${qIdx}`);
+      const btn = document.getElementById(`chk-sol-btn-${slideIdx}-${qIdx}`);
+      if (!solDiv) return;
+
+      const isHidden = solDiv.classList.contains('hidden');
+      if (isHidden) {
+        solDiv.classList.remove('hidden');
+        if (btnText) btnText.textContent = 'Hide';
+        if (btn) {
+          btn.classList.remove('bg-violet-950/70', 'text-violet-300');
+          btn.classList.add('bg-violet-700', 'text-white', 'border-violet-400');
+        }
+        playTone(659.25, 'sine', 0.08, 0.06);
+      } else {
+        solDiv.classList.add('hidden');
+        if (btnText) btnText.textContent = 'Solution';
+        if (btn) {
+          btn.classList.remove('bg-violet-700', 'text-white', 'border-violet-400');
+          btn.classList.add('bg-violet-950/70', 'text-violet-300');
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderSlideCheckpoints();
+      renderAllQuizzes();
+      updateSlideUI();
+    });
+  </script>
+</body>
+</html>

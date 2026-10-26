@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCERT Class 9 Mathematics • Lines and Angles Lab</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body);"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        .mouth-talking {
+            animation: mouthTalk 0.25s infinite alternate ease-in-out;
+            transform-origin: 50% 65%;
+        }
+        @keyframes mouthTalk {
+            0% { transform: scaleY(0.2); }
+            100% { transform: scaleY(1.4); }
+        }
+        .slide-fade-in {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-emerald-500 selection:text-white">
+
+    <!-- Top Navigation Header -->
+    <header class="bg-slate-900/90 backdrop-blur-md border-b border-slate-800 sticky top-0 z-40 px-4 py-2.5">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-500/30">
+                    <i data-lucide="triangle" class="w-5 h-5 text-white"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Class 9 Maths • Chapter 8</span>
+                        <span id="currentBadge" class="hidden sm:inline-block text-xs text-teal-400 bg-teal-500/10 px-2 py-0.5 rounded border border-teal-500/20 font-semibold">CG-7 • Rays & Angles</span>
+                    </div>
+                    <h1 class="text-sm sm:text-base font-extrabold text-white tracking-tight">Lines and Angles Lab</h1>
+                </div>
+            </div>
+
+            <!-- Central Slide Indicator -->
+            <div class="flex items-center gap-2 bg-slate-950/80 px-3 py-1.5 rounded-xl border border-slate-800">
+                <span class="text-xs text-slate-400">Slide</span>
+                <span id="slideCounter" class="text-sm font-bold text-emerald-400 font-mono">1 / 20</span>
+                <div class="w-20 sm:w-28 bg-slate-800 h-2 rounded-full overflow-hidden ml-1">
+                    <div id="progressBar" class="bg-gradient-to-r from-emerald-500 to-teal-500 h-full w-[5%] transition-all duration-300"></div>
+                </div>
+            </div>
+
+            <!-- Voice Controls & Speed -->
+            <div class="flex items-center gap-2">
+                <div class="flex items-center bg-slate-800/80 rounded-lg p-0.5 border border-slate-700">
+                    <button onclick="changeSpeed(0.8)" id="spd08" class="px-2 py-1 text-[11px] rounded font-medium text-slate-300 hover:text-white transition">0.8x</button>
+                    <button onclick="changeSpeed(1.0)" id="spd10" class="px-2 py-1 text-[11px] rounded font-bold bg-emerald-600 text-white transition">1.0x</button>
+                    <button onclick="changeSpeed(1.2)" id="spd12" class="px-2 py-1 text-[11px] rounded font-medium text-slate-300 hover:text-white transition">1.2x</button>
+                </div>
+                <button onclick="toggleAudio()" id="voiceToggleBtn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition shadow-md shadow-emerald-600/30">
+                    <i data-lucide="volume-2" class="w-4 h-4"></i>
+                    <span id="voiceBtnText">Voice On</span>
+                </button>
+                <button onclick="replayAudio()" title="Replay Audio" class="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition">
+                    <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Teacher Avatar & Live Narration Banner -->
+    <div class="bg-slate-900/60 border-b border-slate-800/80 px-4 py-2.5">
+        <div class="max-w-7xl mx-auto flex items-center gap-3">
+            <div class="relative shrink-0">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-600 p-0.5 shadow-md shadow-emerald-500/20">
+                    <svg viewBox="0 0 100 100" class="w-full h-full rounded-full bg-slate-900">
+                        <circle cx="50" cy="50" r="48" fill="#1e293b"/>
+                        <path d="M50 18 C32 18 24 32 24 48 C24 64 34 82 50 82 C66 82 76 64 76 48 C76 32 68 18 50 18 Z" fill="#fed7aa"/>
+                        <path d="M22 38 C22 20 34 12 50 12 C66 12 78 20 78 38 C78 44 74 46 72 38 C68 22 32 22 28 38 C26 46 22 44 22 38 Z" fill="#334155"/>
+                        <ellipse cx="38" cy="46" rx="4" ry="5" fill="#0f172a"/>
+                        <ellipse cx="62" cy="46" rx="4" ry="5" fill="#0f172a"/>
+                        <circle cx="39" cy="44" r="1.5" fill="#ffffff"/>
+                        <circle cx="63" cy="44" r="1.5" fill="#ffffff"/>
+                        <circle cx="38" cy="46" r="8" fill="none" stroke="#64748b" stroke-width="2"/>
+                        <circle cx="62" cy="46" r="8" fill="none" stroke="#64748b" stroke-width="2"/>
+                        <line x1="46" y1="46" x2="54" y2="46" stroke="#64748b" stroke-width="2"/>
+                        <path d="M48 50 L52 50 L50 56 Z" fill="#fbcfe8"/>
+                        <g id="teacherMouth">
+                            <ellipse cx="50" cy="65" rx="5" ry="2.5" fill="#be123c"/>
+                        </g>
+                    </svg>
+                </div>
+                <div id="speakingPulse" class="hidden absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-slate-900 animate-ping"></div>
+            </div>
+            <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2">
+                    <span class="text-xs font-bold text-emerald-400">Prof. Sophia</span>
+                    <span class="text-[10px] text-slate-400">• Geometry & Angle Relationships Guide</span>
+                </div>
+                <p id="narrationText" class="text-xs sm:text-sm text-slate-200 truncate font-normal">
+                    Welcome to Lines and Angles! Explore rays, linear pairs, parallel line theorems, and triangle angle constraints.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Workspace Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-between">
+        <div id="slideContentContainer">
+            <!-- Dynamically populated slide content -->
+        </div>
+
+        <!-- Universal Pop-up Solution Modal -->
+        <div id="solutionModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+            <div class="bg-slate-900 border border-emerald-500/30 rounded-2xl max-w-xl w-full p-5 sm:p-6 shadow-2xl relative max-h-[85vh] overflow-y-auto">
+                <div class="flex items-start justify-between gap-3 border-b border-slate-800 pb-3 mb-4">
+                    <div class="flex items-center gap-2">
+                        <div class="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                            <i data-lucide="check-square" class="w-4 h-4"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-bold text-white">Step-by-Step Mathematical Solution</h3>
+                            <span id="modalQSubtitle" class="text-xs text-emerald-400 font-mono"></span>
+                        </div>
+                    </div>
+                    <button onclick="closeSolutionModal()" class="p-1 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+                <div class="mb-4 p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs sm:text-sm text-slate-300 font-medium leading-relaxed" id="modalQuestionText">
+                    <!-- Question text -->
+                </div>
+                <div class="p-4 bg-emerald-950/20 rounded-xl border border-emerald-500/20 text-xs sm:text-sm text-emerald-200 leading-relaxed font-mono space-y-2" id="modalSolutionText">
+                    <!-- Solution derivation -->
+                </div>
+                <div class="mt-5 flex justify-end">
+                    <button onclick="closeSolutionModal()" class="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white transition">
+                        Understood & Close
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Last Slide Notice Banner -->
+        <div id="lastSlideNotice" class="hidden mt-6 p-4 rounded-xl bg-gradient-to-r from-emerald-950/60 via-slate-900 to-teal-950/60 border border-emerald-500/40 text-center">
+            <div class="flex items-center justify-center gap-2 text-emerald-400 font-bold text-sm sm:text-base">
+                <i data-lucide="check-circle" class="w-5 h-5"></i>
+                <span>You have reached the last slide of this chapter</span>
+            </div>
+            <p class="text-xs text-slate-300 mt-1">
+                Outstanding accomplishment! You have mastered rays, angle classifications, linear pairs, vertically opposite angles, parallel transversals, corresponding/alternate/interior angles, transitivity of parallelism, triangle angle sum proofs, exterior angles, and contradiction constraints in Lines and Angles.
+            </p>
+        </div>
+
+        <!-- Bottom Navigation Bar -->
+        <footer class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between gap-3">
+            <button onclick="prevSlide()" id="prevBtn" class="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 hover:border-slate-700 transition">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                Previous Slide
+            </button>
+
+            <!-- Slide Thumbnails Indicator -->
+            <div class="hidden md:flex items-center gap-1" id="thumbnailTrack">
+                <!-- 20 mini dot indicators -->
+            </div>
+
+            <button onclick="nextSlide()" id="nextBtn" class="flex items-center gap-2 px-5 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white shadow-lg shadow-emerald-600/30 transition">
+                Next Slide
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+        </footer>
+    </main>
+
+    <script>
+        // --- DATA STRUCTURES ---
+        const SLIDES = [{"id": 1, "title": "Notion of a Ray & Formation of Angles", "subtitle": "Endpoints, Directed Rays, Common Vertex, Arms & Angle Interiors", "category": "Foundations", "badge": "CG-7 \u2022 C-7.1 \u2022 Rays & Angles", "summary": "In geometry, a ray is a portion of a straight line that has one fixed starting point (called its endpoint or origin) and extends endlessly in one direction, denoted as ray OA. An angle is the geometric figure formed by two rays originating from the exact same common starting point. The common starting point O is called the Vertex of the angle, and the two rays OA and OB are called the Arms or sides of the angle. An angle is designated as \u2220AOB or \u2220BOA. The region enclosed between the two arms is called the interior of the angle.", "key_points": ["Ray: A part of a line with one fixed endpoint, extending infinitely in one direction (ray OA).", "Angle: Formed when two rays share a common initial point (Vertex).", "The two rays are called the Arms of the angle.", "Notation: Symbol \u2220 is used; vertex letter is always placed in the middle (\u2220AOB).", "An angle partitions the plane into three distinct sets of points: the interior, the angle itself, and the exterior."], "narration": "Welcome to Lines and Angles! A ray starts at one fixed point and shoots endlessly in one direction, like a beam of light. When two rays share the exact same starting point, they form an angle! That shared point is the vertex, and the two rays are the arms.", "sim_title": "Ray Spinner & Angle Generator", "checkpoints": [{"q": "What is the common starting point of two rays forming an angle called?", "options": ["Origin", "Vertex", "Intersect", "Midpoint"], "ans": 1, "exp": "The common starting point of the two rays forming an angle is called the Vertex.", "explanation": "The common starting point of the two rays forming an angle is called the Vertex."}, {"q": "In the notation \u2220XYZ, which letter represents the vertex of the angle?", "options": ["X", "Y", "Z", "Any of them"], "ans": 1, "exp": "By mathematical convention, the middle letter (Y) always designates the vertex of the angle.", "explanation": "By mathematical convention, the middle letter (Y) always designates the vertex of the angle."}]}, {"id": 2, "title": "Measures of Angles & Angle Classification", "subtitle": "Degree Measurement System, Right Angles, Straight Angles & Reflex Angles", "category": "Classification", "badge": "CG-7 \u2022 C-7.1 \u2022 Angle Types", "summary": "Angle measure is quantified in degrees (\u00b0), where one complete revolution of a ray about its vertex is divided into 360 equal parts (1 complete angle = 360\u00b0). Angles are classified by their magnitude: (1) Acute angle: 0\u00b0 < \u03b8 < 90\u00b0; (2) Right angle: \u03b8 = 90\u00b0 (one quarter turn); (3) Obtuse angle: 90\u00b0 < \u03b8 < 180\u00b0; (4) Straight angle: \u03b8 = 180\u00b0 (half turn, equals two right angles, arms form a straight line); (5) Reflex angle: 180\u00b0 < \u03b8 < 360\u00b0; (6) Complete angle: \u03b8 = 360\u00b0.", "key_points": ["One complete rotation = 360\u00b0; 1 right angle = 90\u00b0; 1 straight angle = 180\u00b0 (equals 2 right angles).", "Acute angle: Strictly between 0\u00b0 and 90\u00b0 (0\u00b0 < \u03b8 < 90\u00b0).", "Right angle: Exactly 90\u00b0 (arms are perpendicular: OA \u22a5 OB).", "Obtuse angle: Strictly between 90\u00b0 and 180\u00b0 (90\u00b0 < \u03b8 < 180\u00b0).", "Reflex angle: Strictly between 180\u00b0 and 360\u00b0 (180\u00b0 < \u03b8 < 360\u00b0)."], "narration": "Angles come in all sizes! A 90-degree angle is a right angle. Any angle smaller than 90 degrees is acute\u2014sharp and small. Between 90 and 180 degrees is obtuse. A straight line is exactly 180 degrees, which equals two right angles! And anything larger than 180 degrees is called a reflex angle.", "sim_title": "Interactive Angle Gauge & Dynamic Classifier", "checkpoints": [{"q": "An angle measuring 135\u00b0 is classified as which type of angle?", "options": ["Acute angle", "Right angle", "Obtuse angle", "Reflex angle"], "ans": 2, "exp": "Since 90\u00b0 < 135\u00b0 < 180\u00b0, it is an Obtuse angle.", "explanation": "Since 90\u00b0 < 135\u00b0 < 180\u00b0, it is an Obtuse angle."}, {"q": "How many right angles make up a straight angle?", "options": ["1 right angle", "2 right angles", "3 right angles", "4 right angles"], "ans": 1, "exp": "A straight angle measures 180\u00b0, which equals 2 right angles (2 \u00d7 90\u00b0 = 180\u00b0).", "explanation": "A straight angle measures 180\u00b0, which equals 2 right angles (2 \u00d7 90\u00b0 = 180\u00b0)."}]}, {"id": 3, "title": "Complementary & Supplementary Angles", "subtitle": "Sum to 90\u00b0 vs Sum to 180\u00b0 & Algebraic Complement/Supplement Finding", "category": "Angle Pairs", "badge": "CG-7 \u2022 C-7.1 \u2022 Complement & Supplement", "summary": "Two angles are called Complementary Angles if their sum is 90\u00b0 (\u03b1 + \u03b2 = 90\u00b0); each angle is said to be the complement of the other. For example, 35\u00b0 and 55\u00b0 are complementary because 35\u00b0 + 55\u00b0 = 90\u00b0. Two angles are called Supplementary Angles if their sum is 180\u00b0 (\u03b1 + \u03b2 = 180\u00b0); each is the supplement of the other. For example, 70\u00b0 and 110\u00b0 are supplementary because 70\u00b0 + 110\u00b0 = 180\u00b0. Notice that complementary and supplementary angles do NOT need to be adjacent; they can be separate angles.", "key_points": ["Complementary angles: \u03b1 + \u03b2 = 90\u00b0 (Complement of \u03b8 is 90\u00b0 - \u03b8).", "Supplementary angles: \u03b1 + \u03b2 = 180\u00b0 (Supplement of \u03b8 is 180\u00b0 - \u03b8).", "Complementary angles can only be acute (both must be < 90\u00b0).", "Supplementary angles can consist of two right angles, or one acute and one obtuse angle.", "Angles need not share a vertex to be complementary or supplementary."], "narration": "Complementary and supplementary angles are fundamental pairs. If two angles add up to 90 degrees, they are complementary! Think 'C' for Corner (90\u00b0). If they add up to 180 degrees, they are supplementary! Think 'S' for Straight line (180\u00b0).", "sim_title": "Twin Angle Complement & Supplement Balancer", "checkpoints": [{"q": "What is the complement of an angle measuring 38\u00b0?", "options": ["52\u00b0", "142\u00b0", "62\u00b0", "42\u00b0"], "ans": 0, "exp": "Complement = 90\u00b0 - 38\u00b0 = 52\u00b0.", "explanation": "Complement = 90\u00b0 - 38\u00b0 = 52\u00b0."}, {"q": "An angle is equal to its own supplement. What is the measure of the angle?", "options": ["45\u00b0", "90\u00b0", "180\u00b0", "60\u00b0"], "ans": 1, "exp": "Let the angle be x. x + x = 180\u00b0 \u21d2 2x = 180\u00b0 \u21d2 x = 90\u00b0.", "explanation": "Let the angle be x. x + x = 180\u00b0 \u21d2 2x = 180\u00b0 \u21d2 x = 90\u00b0."}]}, {"id": 4, "title": "Adjacent Angles & Linear Pair Axiom (Axiom 6.1)", "subtitle": "Common Arm, Opposite Non-Common Arms & Sum on a Line = 180\u00b0", "category": "Linear Pair", "badge": "CG-7 \u2022 C-7.1 \u2022 Linear Pair Axiom", "summary": "Two angles are called Adjacent Angles if: (1) They have a common vertex O; (2) They have a common arm OC; (3) Their non-common arms OA and OB lie on opposite sides of the common arm. Axiom 6.1 (Linear Pair Axiom): 'If a ray stands on a line, then the sum of two adjacent angles so formed is 180\u00b0.' When the non-common arms of two adjacent angles form a straight line, the adjacent angles are said to form a Linear Pair of angles (\u2220AOC + \u2220BOC = 180\u00b0).", "key_points": ["Adjacent angles criteria: Common vertex, common arm, non-common arms on opposite sides.", "Axiom 6.1: A ray standing on a straight line forms two adjacent angles whose sum is 180\u00b0.", "Linear Pair: Adjacent angles whose non-common arms are opposite rays forming a straight line.", "Linear pair angles are always supplementary (sum = 180\u00b0).", "If \u2220AOC = x and \u2220BOC = y, then x + y = 180\u00b0."], "narration": "Look at adjacent angles: they are next-door neighbors! They share a common vertex and a common wall. When a ray stands on a straight line, it divides the straight angle into two adjacent pieces. Axiom 6.1 tells us these two pieces always add up to 180 degrees!", "sim_title": "Linear Pair Dynamic Beam Visualizer", "checkpoints": [{"q": "Ray OC stands on line AB. If \u2220AOC = 65\u00b0, what is the measure of \u2220BOC?", "options": ["115\u00b0", "125\u00b0", "25\u00b0", "135\u00b0"], "ans": 0, "exp": "By the Linear Pair Axiom: \u2220AOC + \u2220BOC = 180\u00b0 \u21d2 65\u00b0 + \u2220BOC = 180\u00b0 \u21d2 \u2220BOC = 115\u00b0.", "explanation": "By the Linear Pair Axiom: \u2220AOC + \u2220BOC = 180\u00b0 \u21d2 65\u00b0 + \u2220BOC = 180\u00b0 \u21d2 \u2220BOC = 115\u00b0."}, {"q": "Which condition is NOT required for two angles to be adjacent?", "options": ["They must share a common vertex", "They must share a common arm", "Their sum must always equal 180\u00b0", "Their non-common arms must lie on opposite sides of the common arm"], "ans": 2, "exp": "Adjacent angles do not have to sum to 180\u00b0; they only sum to 180\u00b0 when they form a linear pair on a straight line.", "explanation": "Adjacent angles do not have to sum to 180\u00b0; they only sum to 180\u00b0 when they form a linear pair on a straight line."}]}, {"id": 5, "title": "Converse of Linear Pair Axiom & Straight Line Criteria (Axiom 6.2)", "subtitle": "Proving that Non-Common Arms Form a Straight Line", "category": "Linear Pair Converse", "badge": "CG-7 \u2022 C-7.3 \u2022 Straight Line Criterion", "summary": "Axiom 6.2 (Converse of Linear Pair Axiom): 'If the sum of two adjacent angles is 180\u00b0, then the non-common arms of the angles form a line.' Axiom 6.1 and Axiom 6.2 together are called the Linear Pair Axiom. This converse axiom provides a vital geometric test: to prove that three points A, O, B lie on a straight line (are collinear), it is necessary and sufficient to show that the adjacent angles \u2220AOC and \u2220BOC sum to 180\u00b0.", "key_points": ["Axiom 6.2: If adjacent angles sum to 180\u00b0, their non-common arms form a single straight line.", "Two-way equivalence: Ray on a line \u21d4 Adjacent angles sum to 180\u00b0.", "Collinearity proof: Proving that A-O-B is a straight line requires proving \u2220AOC + \u2220COB = 180\u00b0.", "Enables testing structural straightness in carpentry, masonry, and computer graphics.", "Forms the foundation for proving theorems on intersecting and parallel lines."], "narration": "Axiom 6.2 is the converse: if two adjacent angles add up to 180 degrees, their outer arms MUST form a straight line! This is how architects and builders test if a beam is perfectly straight: check if the angles add up to 180 degrees!", "sim_title": "Straight Line Alignment Verifier & Angle Snapper", "checkpoints": [{"q": "Two adjacent angles \u2220AOC and \u2220BOC measure (2x + 10)\u00b0 and (3x + 20)\u00b0. If AOB is a straight line, what is x?", "options": ["30", "25", "35", "40"], "ans": 0, "exp": "(2x + 10) + (3x + 20) = 180 \u21d2 5x + 30 = 180 \u21d2 5x = 150 \u21d2 x = 30.", "explanation": "(2x + 10) + (3x + 20) = 180 \u21d2 5x + 30 = 180 \u21d2 5x = 150 \u21d2 x = 30."}, {"q": "If \u2220POQ = 110\u00b0 and \u2220QOR = 70\u00b0 are adjacent angles, what can be deduced about rays OP and OR?", "options": ["They are perpendicular", "They form a single straight line POR", "They are parallel", "They form a reflex angle"], "ans": 1, "exp": "Since 110\u00b0 + 70\u00b0 = 180\u00b0, by Axiom 6.2, rays OP and OR are opposite rays forming a straight line POR.", "explanation": "Since 110\u00b0 + 70\u00b0 = 180\u00b0, by Axiom 6.2, rays OP and OR are opposite rays forming a straight line POR."}]}, {"id": 6, "title": "Angle Sum Around a Point & Rays in a Star", "subtitle": "The 360\u00b0 Complete Revolution Property for Multiple Rays", "category": "Angle Sum", "badge": "CG-7 \u2022 C-7.1 \u2022 Angles at a Point", "summary": "When multiple rays emanate from a single common vertex O, the sum of all consecutive adjacent angles around that point equals 360\u00b0 (a complete angle). Theorem / Property: 'The sum of all the angles formed around a point is 360\u00b0.' To prove this, we draw a ray opposite to one of the given rays, creating a straight line, and apply the linear pair property to both sides: the top half sums to 180\u00b0 and the bottom half sums to 180\u00b0, yielding 180\u00b0 + 180\u00b0 = 360\u00b0.", "key_points": ["Sum of all consecutive angles meeting at a point is 360\u00b0 (one full revolution).", "Proof technique: Construct an opposite auxiliary ray to create a straight line, dividing the plane into two 180\u00b0 halves.", "Applicable to clock faces (360\u00b0 divided into 12 hours = 30\u00b0 per hour).", "Radial spokes in bicycle wheels and turbine rotors distribute angles summing to 360\u00b0.", "If n equal rays emanate from a point, each angle is 360\u00b0 / n."], "narration": "What happens when many rays meet at a single point like spokes on a bicycle wheel? They make a full turn! The sum of all angles around a point is always 360 degrees. If you have 6 equal spokes, each angle is 360 divided by 6, which is 60 degrees!", "sim_title": "Radial Angle Wheel & 360\u00b0 Sum Engine", "checkpoints": [{"q": "Four rays meet at point O forming angles x\u00b0, 2x\u00b0, 3x\u00b0, and 4x\u00b0. What is the value of x?", "options": ["36", "30", "40", "45"], "ans": 0, "exp": "x + 2x + 3x + 4x = 360\u00b0 \u21d2 10x = 360\u00b0 \u21d2 x = 36.", "explanation": "x + 2x + 3x + 4x = 360\u00b0 \u21d2 10x = 360\u00b0 \u21d2 x = 36."}, {"q": "What is the angle between the hour hand and the minute hand of a clock at 4:00 o'clock?", "options": ["90\u00b0", "120\u00b0", "150\u00b0", "100\u00b0"], "ans": 1, "exp": "Each hour represents 360\u00b0 / 12 = 30\u00b0. At 4:00, the hands are 4 hours apart: 4 \u00d7 30\u00b0 = 120\u00b0.", "explanation": "Each hour represents 360\u00b0 / 12 = 30\u00b0. At 4:00, the hands are 4 hours apart: 4 \u00d7 30\u00b0 = 120\u00b0."}]}, {"id": 7, "title": "Vertically Opposite Angles Theorem (Theorem 6.1)", "subtitle": "Proof by Linear Pairs: Opposite Angles Formed by Intersecting Lines are Equal", "category": "Theorems", "badge": "CG-7 \u2022 C-7.3 \u2022 Vertically Opposite Angles", "summary": "Theorem 6.1: 'If two lines intersect each other, then the vertically opposite angles are equal.' Formal Deductive Proof: Let lines AB and CD intersect at point O. Ray OA stands on line CD \u21d2 \u2220AOC + \u2220AOD = 180\u00b0 (by Linear Pair Axiom). Ray OD stands on line AB \u21d2 \u2220AOD + \u2220BOD = 180\u00b0 (by Linear Pair Axiom). By Euclid's Axiom 1 (things equal to the same thing are equal): \u2220AOC + \u2220AOD = \u2220AOD + \u2220BOD. Subtracting \u2220AOD from both sides (Axiom 3): \u2220AOC = \u2220BOD! Similarly, \u2220AOD = \u2220BOC.", "key_points": ["Theorem 6.1: Vertically opposite angles are equal (\u2220AOC = \u2220BOD and \u2220AOD = \u2220BOC).", "Proof uses only the Linear Pair Axiom and Euclid's Axioms 1 and 3.", "Vertically opposite angles share a vertex but have no common arm (their arms form opposite rays).", "Independent of angle magnitude: holds whether intersection is acute, right, or obtuse.", "Core building block for proving parallel line transversal theorems."], "narration": "When two lines cross each other like a pair of scissors, they create two pairs of vertically opposite angles. Theorem 6.1 proves that these opposite angles are always identical! Watch the proof: both angles share a linear pair with the middle angle. Subtracting the shared angle proves they must be equal!", "sim_title": "Scissors Mechanism & Vertically Opposite Angle Prover", "checkpoints": [{"q": "Two lines AB and CD intersect at O. If \u2220AOC = 50\u00b0, what is the measure of vertically opposite angle \u2220BOD?", "options": ["50\u00b0", "130\u00b0", "40\u00b0", "140\u00b0"], "ans": 0, "exp": "Vertically opposite angles are equal (Theorem 6.1), so \u2220BOD = \u2220AOC = 50\u00b0.", "explanation": "Vertically opposite angles are equal (Theorem 6.1), so \u2220BOD = \u2220AOC = 50\u00b0."}, {"q": "In the intersection of lines AB and CD, if \u2220AOC = 50\u00b0, what is the measure of adjacent angle \u2220AOD?", "options": ["50\u00b0", "130\u00b0", "90\u00b0", "100\u00b0"], "ans": 1, "exp": "\u2220AOC and \u2220AOD form a linear pair on line CD: \u2220AOD = 180\u00b0 - 50\u00b0 = 130\u00b0.", "explanation": "\u2220AOC and \u2220AOD form a linear pair on line CD: \u2220AOD = 180\u00b0 - 50\u00b0 = 130\u00b0."}]}, {"id": 8, "title": "Angle Bisectors of a Linear Pair: Perpendicularity Proof", "subtitle": "Proving that the Bisectors of a Linear Pair Form a 90\u00b0 Right Angle", "category": "Geometric Proofs", "badge": "CG-7 \u2022 C-7.3 \u2022 Bisector Orthogonality", "summary": "An Angle Bisector is a ray that divides an angle into two equal halves. Theorem: 'The bisectors of the two angles forming a linear pair are perpendicular to each other.' Proof: Let ray OC stand on line AB, forming linear pair angles \u2220AOC and \u2220BOC with \u2220AOC + \u2220BOC = 180\u00b0. Let ray OE bisect \u2220AOC (so \u2220COE = \u00bd \u2220AOC), and ray OF bisect \u2220BOC (so \u2220COF = \u00bd \u2220BOC). Then the angle between the bisectors is \u2220EOF = \u2220COE + \u2220COF = \u00bd \u2220AOC + \u00bd \u2220BOC = \u00bd(\u2220AOC + \u2220BOC) = \u00bd(180\u00b0) = 90\u00b0! Hence, OE \u22a5 OF.", "key_points": ["Angle Bisector: A ray dividing an angle into two congruent angles.", "Linear pair angle bisectors are always perpendicular (enclose an angle of exactly 90\u00b0).", "Proof uses halving axiom (Axiom 7): \u00bd(180\u00b0) = 90\u00b0.", "Crucial result in optical reflection: angle of incidence equals angle of reflection.", "Used in constructing perpendiculars without a protractor."], "narration": "Here is an elegant theorem: take any linear pair of angles on a straight line. Now draw the bisector of each angle. The angle between these two bisector rays is ALWAYS exactly 90 degrees! Half of 180 degrees is always 90 degrees!", "sim_title": "Linear Pair Bisector Orthogonality Tool", "checkpoints": [{"q": "If the angle bisectors of two adjacent angles are perpendicular (90\u00b0), what must be the sum of the original two angles?", "options": ["90\u00b0", "180\u00b0", "270\u00b0", "360\u00b0"], "ans": 1, "exp": "Since \u2220EOF = \u00bd(sum) = 90\u00b0, the sum must be 2 \u00d7 90\u00b0 = 180\u00b0 (they form a linear pair).", "explanation": "Since \u2220EOF = \u00bd(sum) = 90\u00b0, the sum must be 2 \u00d7 90\u00b0 = 180\u00b0 (they form a linear pair)."}, {"q": "Ray OE bisects \u2220AOC (80\u00b0) and ray OF bisects adjacent angle \u2220BOC (100\u00b0). What is \u2220EOF?", "options": ["80\u00b0", "90\u00b0", "100\u00b0", "45\u00b0"], "ans": 1, "exp": "\u2220EOF = \u00bd(80\u00b0) + \u00bd(100\u00b0) = 40\u00b0 + 50\u00b0 = 90\u00b0.", "explanation": "\u2220EOF = \u00bd(80\u00b0) + \u00bd(100\u00b0) = 40\u00b0 + 50\u00b0 = 90\u00b0."}]}, {"id": 9, "title": "Parallel Lines Cut by a Transversal: The 8-Angle System", "subtitle": "Transversal Definition, Interior/Exterior Classification & Angle Pairs", "category": "Parallel Lines", "badge": "CG-7 \u2022 C-7.1 \u2022 The 8-Angle System", "summary": "A straight line that intersects two or more coplanar lines at distinct points is called a Transversal (line t). When transversal t intersects two lines l and m, exactly 8 angles are formed (numbered 1 through 8). These 8 angles are systematically classified into: (1) Corresponding Angles (same relative corner: 1 & 5, 2 & 6, 4 & 8, 3 & 7); (2) Alternate Interior Angles (opposite sides between lines: 3 & 5, 4 & 6); (3) Alternate Exterior Angles (opposite sides outside lines: 1 & 7, 2 & 8); (4) Consecutive Interior / Co-interior Angles (same side between lines: 4 & 5, 3 & 6).", "key_points": ["Transversal: A line intersecting two or more coplanar lines at distinct points.", "8 angles are formed: 4 exterior angles (1, 2, 7, 8) and 4 interior angles (3, 4, 5, 6).", "Corresponding angles occupy identical relative positions at each intersection vertex.", "Alternate interior angles form the classic 'Z-shape' on opposite sides of the transversal.", "Co-interior angles form the 'C-shape' on the same interior side of the transversal."], "narration": "When a transversal line cuts across two parallel lines, it creates an 8-angle system! Four angles are interior (between the lines), and four are exterior. Notice how they pair up: corresponding angles look in the same direction, alternate interior angles make a Z-shape, and co-interior angles make a C-shape!", "sim_title": "Transversal 8-Angle Color-Coded Inspector", "checkpoints": [{"q": "In a transversal intersecting two lines, which of the following represents an Alternate Interior angle pair?", "options": ["\u22201 and \u22205", "\u22203 and \u22205", "\u22204 and \u22205", "\u22202 and \u22208"], "ans": 1, "exp": "\u22203 and \u22205 lie on opposite (alternate) sides of the transversal between the two lines (interior).", "explanation": "\u22203 and \u22205 lie on opposite (alternate) sides of the transversal between the two lines (interior)."}, {"q": "How many total angles are formed when a transversal intersects two lines in a plane?", "options": ["4 angles", "6 angles", "8 angles", "12 angles"], "ans": 2, "exp": "At each of the 2 intersection points, 4 angles are formed, giving 4 + 4 = 8 total angles.", "explanation": "At each of the 2 intersection points, 4 angles are formed, giving 4 + 4 = 8 total angles."}]}, {"id": 10, "title": "Corresponding Angles Axiom & Its Converse (Axioms 6.3 & 6.4)", "subtitle": "The Foundational Assumption Linking Parallel Lines to Angle Congruence", "category": "Axioms", "badge": "CG-7 \u2022 C-7.1 \u2022 Corresponding Angles", "summary": "Axiom 6.3 (Corresponding Angles Axiom): 'If a transversal intersects two parallel lines, then each pair of corresponding angles is equal' (\u22201 = \u22205, \u22202 = \u22206, \u22204 = \u22208, \u22203 = \u22207). Axiom 6.4 (Converse): 'If a transversal intersects two lines such that a pair of corresponding angles is equal, then the two lines are parallel to each other.' These axioms are accepted without proof and serve as the foundational bedrock to prove all subsequent theorems on alternate and interior angles.", "key_points": ["Axiom 6.3: Parallel lines cut by transversal \u21d2 Corresponding angles are equal.", "Axiom 6.4 (Converse): Corresponding angles are equal \u21d2 Lines are parallel.", "These two axioms establish an 'if and only if' bidirectional equivalence.", "Drafting T-squares and parallel rulers work directly by enforcing equal corresponding angles.", "Enables proving that alternate interior angles are equal (Theorem 6.2)."], "narration": "Axiom 6.3 is the master key to parallel lines: if the lines are parallel, corresponding angles are identical! And the converse is equally powerful: if you can measure and prove that just ONE pair of corresponding angles is equal, the lines are guaranteed to be parallel!", "sim_title": "T-Square & Parallel Glide Simulator", "checkpoints": [{"q": "Line l is parallel to line m, and transversal t intersects them. If \u22201 = 72\u00b0, what is its corresponding angle \u22205?", "options": ["72\u00b0", "108\u00b0", "18\u00b0", "90\u00b0"], "ans": 0, "exp": "By Axiom 6.3 (Corresponding Angles Axiom), corresponding angles are equal, so \u22205 = \u22201 = 72\u00b0.", "explanation": "By Axiom 6.3 (Corresponding Angles Axiom), corresponding angles are equal, so \u22205 = \u22201 = 72\u00b0."}, {"q": "A transversal cuts two lines such that a pair of corresponding angles both measure 85\u00b0. What can be concluded about the two lines?", "options": ["They are perpendicular", "They are parallel", "They will intersect", "They coincide"], "ans": 1, "exp": "By Axiom 6.4 (Converse of Corresponding Angles Axiom), equal corresponding angles prove the lines are parallel.", "explanation": "By Axiom 6.4 (Converse of Corresponding Angles Axiom), equal corresponding angles prove the lines are parallel."}]}, {"id": 11, "title": "Alternate Interior Angles: Theorem & Converse (Theorems 6.2 & 6.3)", "subtitle": "The Iconic 'Z-Pattern' & Proof via Corresponding and Vertically Opposite Angles", "category": "Alternate Angles", "badge": "CG-7 \u2022 C-7.3 \u2022 Alternate Interior Angles", "summary": "Theorem 6.2: 'If a transversal intersects two parallel lines, then each pair of alternate interior angles is equal' (\u22203 = \u22205 and \u22204 = \u22206). Proof: Let line AB \u2225 CD and transversal t intersect them. By Axiom 6.3, corresponding angles are equal: \u22201 = \u22205. By Theorem 6.1, vertically opposite angles are equal: \u22201 = \u22203. By Euclid's Axiom 1 (things equal to the same thing are equal): \u22203 = \u22205! Theorem 6.3 (Converse): 'If a transversal intersects two lines such that a pair of alternate interior angles is equal, then the lines are parallel.'", "key_points": ["Theorem 6.2: Alternate interior angles are equal for parallel lines (Z-pattern: \u22203 = \u22205, \u22204 = \u22206).", "Proof combines Corresponding Angles Axiom (\u22201 = \u22205) with Vertically Opposite Theorem (\u22201 = \u22203).", "Theorem 6.3 (Converse): Equal alternate interior angles prove parallelism.", "Alternate exterior angles are also equal (\u22201 = \u22207 and \u22202 = \u22208).", "Vital for engineering trusses, bridge beams, and conveyor belts."], "narration": "Look for the letter Z! The alternate interior angles nestled inside the corners of the Z are always equal when the lines are parallel. And we can prove it easily: corresponding angles equal vertically opposite angles, so alternate interior angles must be equal!", "sim_title": "The 'Z-Pattern' Alternate Interior Angle Prover", "checkpoints": [{"q": "Lines AB and CD are parallel. Transversal t intersects them. If \u22204 = 115\u00b0, what is alternate interior angle \u22206?", "options": ["65\u00b0", "115\u00b0", "90\u00b0", "125\u00b0"], "ans": 1, "exp": "By Theorem 6.2, alternate interior angles are equal, so \u22206 = \u22204 = 115\u00b0.", "explanation": "By Theorem 6.2, alternate interior angles are equal, so \u22206 = \u22204 = 115\u00b0."}, {"q": "Which two geometric principles are combined to prove Theorem 6.2 (Alternate interior angles are equal)?", "options": ["Corresponding Angles Axiom and Vertically Opposite Angles Theorem", "Pythagorean Theorem and Midpoint Formula", "Linear Pair Axiom and Exterior Angle Theorem", "Playfair's Axiom and Thales' Theorem"], "ans": 0, "exp": "Proof: \u22201 = \u22205 (Corresponding) and \u22201 = \u22203 (Vertically opposite) \u21d2 \u22203 = \u22205 by transitivity.", "explanation": "Proof: \u22201 = \u22205 (Corresponding) and \u22201 = \u22203 (Vertically opposite) \u21d2 \u22203 = \u22205 by transitivity."}]}, {"id": 12, "title": "Consecutive Interior Angles (Co-interior): Theorems 6.4 & 6.5", "subtitle": "The 'C-Pattern' Supplementary Criterion & Proof via Linear Pairs", "category": "Co-Interior Angles", "badge": "CG-7 \u2022 C-7.3 \u2022 Co-Interior Angles", "summary": "Theorem 6.4: 'If a transversal intersects two parallel lines, then each pair of consecutive interior angles on the same side of the transversal is supplementary' (\u22204 + \u22205 = 180\u00b0 and \u22203 + \u22206 = 180\u00b0). Proof: On line AB, ray t forms linear pair: \u22203 + \u22204 = 180\u00b0. But AB \u2225 CD \u21d2 alternate interior angles are equal: \u22203 = \u22205. Substituting \u22205 for \u22203 gives: \u22204 + \u22205 = 180\u00b0! Theorem 6.5 (Converse): 'If a transversal intersects two lines such that consecutive interior angles sum to 180\u00b0, then the lines are parallel.'", "key_points": ["Theorem 6.4: Consecutive interior (co-interior) angles sum to 180\u00b0 (C-pattern: \u22204 + \u22205 = 180\u00b0).", "Proof substitutes alternate interior angles into a linear pair.", "Theorem 6.5 (Converse): If consecutive interior angles sum to 180\u00b0, lines are parallel.", "Direct link to Euclid's Fifth Postulate: Parallel lines occur when the interior angle sum is exactly 180\u00b0.", "Crucial for trapezoid and parallelogram angle calculations."], "narration": "Inside the parallel lines on the same side of the transversal, we have co-interior angles forming a C-shape. These two angles are supplementary\u2014they always add up to 180 degrees! If one angle is 120 degrees, the other must be 60 degrees.", "sim_title": "The 'C-Pattern' Co-Interior Sum Gauge", "checkpoints": [{"q": "Lines l \u2225 m are cut by transversal t. If co-interior angle \u22204 = 130\u00b0, what is \u22205?", "options": ["50\u00b0", "130\u00b0", "60\u00b0", "140\u00b0"], "ans": 0, "exp": "Co-interior angles sum to 180\u00b0 (Theorem 6.4): \u22205 = 180\u00b0 - 130\u00b0 = 50\u00b0.", "explanation": "Co-interior angles sum to 180\u00b0 (Theorem 6.4): \u22205 = 180\u00b0 - 130\u00b0 = 50\u00b0."}, {"q": "Transversal t cuts lines p and q. Interior angles on the same side are 2x\u00b0 and 3x\u00b0. If p \u2225 q, find x.", "options": ["36", "30", "45", "60"], "ans": 0, "exp": "2x + 3x = 180 \u21d2 5x = 180 \u21d2 x = 36.", "explanation": "2x + 3x = 180 \u21d2 5x = 180 \u21d2 x = 36."}]}, {"id": 13, "title": "Transitivity of Parallelism (Theorem 6.6)", "subtitle": "Lines Parallel to the Same Line are Parallel to Each Other", "category": "Parallel Transitivity", "badge": "CG-7 \u2022 C-7.1 \u2022 Transitivity Theorem", "summary": "Theorem 6.6: 'Lines which are parallel to the same line are parallel to each other.' That is, if line l \u2225 line m and line m \u2225 line n, then line l \u2225 line n. Proof: Draw a transversal line t cutting all three lines l, m, and n. Let corresponding angles formed be \u22201, \u22202, and \u22203 respectively. Since l \u2225 m, \u22201 = \u22202 (Axiom 6.3). Since m \u2225 n, \u22202 = \u22203 (Axiom 6.3). By Euclid's Axiom 1 (things equal to the same thing are equal), \u22201 = \u22203. Since corresponding angles \u22201 and \u22203 are equal, by Axiom 6.4, line l \u2225 line n! This property extends to any number of parallel lines.", "key_points": ["Theorem 6.6 (Transitivity): l \u2225 m and m \u2225 n \u21d2 l \u2225 n.", "Proof uses corresponding angles and Euclid's Axiom 1 (transitivity of equality).", "Explains why ruled lined paper, railroad tracks, and Venetian blinds maintain uniform parallel spacing.", "Works for 3D planes as well as 2D lines.", "Fundamental theorem in Euclidean geometry."], "narration": "Parallelism is transitive! If line l is parallel to m, and m is parallel to n, then l is automatically parallel to n. Think of railway tracks or lined notebook paper: every single line stays parallel to all the others across the entire page!", "sim_title": "Venetian Blinds & Multi-Line Parallelism Rail", "checkpoints": [{"q": "If line a \u2225 line b, and line b \u2225 line c, what is the geometric relationship between line a and line c?", "options": ["Line a \u22a5 line c", "Line a \u2225 line c", "Line a intersects line c", "Cannot be determined"], "ans": 1, "exp": "By Theorem 6.6, lines parallel to the same line are parallel to each other, so line a \u2225 line c.", "explanation": "By Theorem 6.6, lines parallel to the same line are parallel to each other, so line a \u2225 line c."}, {"q": "Which Euclid's axiom is directly utilized in the proof of Theorem 6.6?", "options": ["Axiom 1: Things equal to the same thing are equal to one another", "Axiom 5: The whole is greater than the part", "Axiom 2: If equals are added to equals, wholes are equal", "Axiom 4: Things coinciding are equal"], "ans": 0, "exp": "Since \u22201 = \u22202 and \u22202 = \u22203, by Axiom 1 (transitivity of equality), \u22201 = \u22203.", "explanation": "Since \u22201 = \u22202 and \u22202 = \u22203, by Axiom 1 (transitivity of equality), \u22201 = \u22203."}]}, {"id": 14, "title": "Angle Sum Property of a Triangle (Theorem 6.7)", "subtitle": "Proof via Auxiliary Parallel Line: Sum of Interior Angles Equals 180\u00b0", "category": "Triangle Angle Sum", "badge": "CG-7 \u2022 C-7.3 \u2022 Triangle Sum Proof", "summary": "Theorem 6.7: 'The sum of the angles of a triangle is 180\u00b0' (\u2220A + \u2220B + \u2220C = 180\u00b0). Master Proof: Consider triangle ABC. Through vertex A, construct an auxiliary line XAY parallel to base BC. Since XAY is a straight line, the angles on it sum to 180\u00b0: \u2220XAB + \u2220BAC + \u2220YAC = 180\u00b0. But line XAY \u2225 BC and AB, AC are transversals: \u2220XAB = \u2220B (alternate interior angles) and \u2220YAC = \u2220C (alternate interior angles). Substituting gives: \u2220B + \u2220A + \u2220C = 180\u00b0! Hence, \u2220A + \u2220B + \u2220C = 180\u00b0.", "key_points": ["Theorem 6.7: The sum of the three interior angles of any triangle is always 180\u00b0.", "Proof relies on constructing an auxiliary line through one vertex parallel to the opposite base.", "Connects straight line linear pair (180\u00b0) with triangle interior angles via alternate interior angles.", "True for ALL triangles: acute, right, obtuse, equilateral, isosceles, and scalene.", "Fundamental constraint of flat 2D Euclidean geometry."], "narration": "Why do the three angles of a triangle always add up to 180 degrees? Here is Euclid's genius proof: draw a line through the top vertex parallel to the bottom base! The straight line makes 180 degrees, and the two alternate interior angles fold right into the triangle's corners!", "sim_title": "Triangle Angle Sum Unfolder & Parallel Auxiliary Line Prover", "checkpoints": [{"q": "In triangle ABC, \u2220A = 55\u00b0 and \u2220B = 65\u00b0. What is the measure of \u2220C?", "options": ["60\u00b0", "70\u00b0", "50\u00b0", "80\u00b0"], "ans": 0, "exp": "\u2220C = 180\u00b0 - (55\u00b0 + 65\u00b0) = 180\u00b0 - 120\u00b0 = 60\u00b0.", "explanation": "\u2220C = 180\u00b0 - (55\u00b0 + 65\u00b0) = 180\u00b0 - 120\u00b0 = 60\u00b0."}, {"q": "In the proof of the Triangle Angle Sum theorem, what auxiliary construction is made?", "options": ["A circle inscribed in the triangle", "A line through one vertex parallel to the opposite side", "A perpendicular bisector of the base", "An altitude from the vertex"], "ans": 1, "exp": "The proof requires drawing a line through a vertex parallel to the opposite side.", "explanation": "The proof requires drawing a line through a vertex parallel to the opposite side."}]}, {"id": 15, "title": "Exterior Angle Theorem & Triangle Angle Constraints", "subtitle": "Proof by Contradiction: Why Triangles Must Have at Least Two Acute Angles", "category": "Angle Constraints", "badge": "CG-7 \u2022 CG-9 \u2022 Proof by Contradiction", "summary": "Theorem 6.8 (Exterior Angle Theorem): 'If a side of a triangle is produced, the exterior angle so formed is equal to the sum of the two interior opposite angles' (Exterior \u2220ACD = \u2220A + \u2220B). From this and Theorem 6.7, we deduce vital triangle angle constraints using Proof by Contradiction: (1) A triangle MUST have at least two acute angles! If it had fewer than two acute angles, it would have two or more angles \u2265 90\u00b0, so their sum would exceed 180\u00b0, contradicting Theorem 6.7! (2) A triangle CANNOT have two right angles or two obtuse angles; (3) A triangle CANNOT have all three angles strictly less than 60\u00b0 (if all < 60\u00b0, sum < 180\u00b0, impossible!).", "key_points": ["Exterior Angle Theorem: Exterior angle = sum of two interior opposite angles (\u2220ACD = \u2220A + \u2220B).", "An exterior angle of a triangle is strictly greater than either of its interior opposite angles.", "Every triangle must have AT LEAST two acute angles (proof by contradiction).", "A triangle can have AT MOST one right angle or at most one obtuse angle.", "A triangle cannot have all three angles < 60\u00b0 (sum would be < 180\u00b0); in an equilateral triangle, all three are exactly 60\u00b0."], "narration": "The Exterior Angle Theorem states that any outside angle equals the sum of the two opposite inside angles! From this, we discover strict rules through proof by contradiction: a triangle MUST have at least two acute angles. It can never have two obtuse angles, and it can never have all three angles less than 60 degrees!", "sim_title": "Triangle Angle Constraints & Contradiction Tester", "checkpoints": [{"q": "An exterior angle of a triangle is 110\u00b0, and one of its interior opposite angles is 45\u00b0. What is the other interior opposite angle?", "options": ["65\u00b0", "75\u00b0", "55\u00b0", "70\u00b0"], "ans": 0, "exp": "By Exterior Angle Theorem: Exterior = \u22201 + \u22202 \u21d2 110\u00b0 = 45\u00b0 + \u22202 \u21d2 \u22202 = 110\u00b0 - 45\u00b0 = 65\u00b0.", "explanation": "By Exterior Angle Theorem: Exterior = \u22201 + \u22202 \u21d2 110\u00b0 = 45\u00b0 + \u22202 \u21d2 \u22202 = 110\u00b0 - 45\u00b0 = 65\u00b0."}, {"q": "Can a triangle have all three interior angles measuring less than 60\u00b0?", "options": ["Yes, in an acute triangle", "No, because their sum would be strictly less than 180\u00b0 (contradiction)", "Yes, in a scalene triangle", "Only if the sides are very small"], "ans": 1, "exp": "If all three angles are < 60\u00b0, their sum would be < 180\u00b0, violating the Angle Sum Theorem (Proof by Contradiction).", "explanation": "If all three angles are < 60\u00b0, their sum would be < 180\u00b0, violating the Angle Sum Theorem (Proof by Contradiction)."}]}, {"id": 16, "title": "Computational Thinking: Step-by-Step Geometric Inference Engine", "subtitle": "Algorithmic Geometry, Rule-Based Production Systems & Automated Angle Deduction", "category": "Computational Thinking", "badge": "CG-9 \u2022 Computational Geometry", "summary": "Computational thinking applies computer science paradigms to geometry by representing geometric axioms and theorems as production rules in an automated expert inference engine: Rule 1: linear_pair(a, b) \u21d2 b = 180 - a; Rule 2: vert_opposite(a, b) \u21d2 b = a; Rule 3: parallel(l, m) & alt_interior(a, b) \u21d2 b = a; Rule 4: triangle(a, b, c) \u21d2 c = 180 - (a + b). By applying forward-chaining deduction, a computer can systematically solve for all unknown angles in complex CAD blueprints and robotic linkages step by step.", "key_points": ["Geometric Production Rules: Encoding axioms and theorems as executable software rules.", "Forward-chaining inference: Repeatedly applying known angle rules until all unknowns are resolved.", "Proof trees: Representing geometric proofs as directed acyclic graphs (DAGs) of logical justifications.", "Powers modern CAD engineering software (AutoCAD, SolidWorks) and computer graphics ray tracing.", "Verification of geometric consistency and automated theorem proving in Artificial Intelligence."], "narration": "How do computers solve geometry? They use computational thinking! Every theorem we learned\u2014linear pair, vertically opposite, alternate interior, triangle sum\u2014becomes an if-then rule. By chaining these rules together, a computer algorithm can solve dozens of unknown angles in a fraction of a millisecond!", "sim_title": "Geometric Rule-Based Forward Chaining Engine", "checkpoints": [{"q": "In computational geometry, representing theorems as 'IF premise THEN conclusion' rules is called a:", "options": ["Production Rule Inference Engine", "Sorting Algorithm", "Hashing Function", "Binary Tree Search"], "ans": 0, "exp": "Production rule inference engines apply IF-THEN rules to deduce new facts step by step.", "explanation": "Production rule inference engines apply IF-THEN rules to deduce new facts step by step."}, {"q": "Given \u22201 = 40\u00b0 in a complex figure with parallel lines, what is the computational time complexity to determine its alternate interior angle?", "options": ["O(1) Constant Time", "O(n) Linear Time", "O(n\u00b2)", "O(log n)"], "ans": 0, "exp": "Applying a direct equality rule (alternate interior angles are equal) requires a single O(1) assignment operation.", "explanation": "Applying a direct equality rule (alternate interior angles are equal) requires a single O(1) assignment operation."}]}];
+        const QUIZZES = [{"id": 17, "title": "Mastery Challenge Part 1: Rays, Angles & Pairs", "subtitle": "10 Questions on Rays, Angle Classifications, Complementary & Supplementary Angles", "category": "Quiz Challenge", "badge": "Quiz Part 1 \u2022 Foundations & Pairs", "questions": [{"id": 1, "q": "How many endpoints does a geometric ray possess?", "options": ["Zero", "One", "Two", "Infinitely many"], "ans": 1, "solution": "A ray has exactly one fixed starting point (endpoint) and extends infinitely in the other direction."}, {"id": 2, "q": "An angle measuring 240\u00b0 is classified as which type of angle?", "options": ["Obtuse angle", "Straight angle", "Reflex angle", "Complete angle"], "ans": 2, "solution": "Since 180\u00b0 < 240\u00b0 < 360\u00b0, it is a Reflex angle."}, {"id": 3, "q": "If two angles are complementary, and one is 20\u00b0 larger than the other, what is the measure of the smaller angle?", "options": ["35\u00b0", "55\u00b0", "45\u00b0", "25\u00b0"], "ans": 0, "solution": "Let smaller angle be x. x + (x + 20\u00b0) = 90\u00b0 \u21d2 2x + 20\u00b0 = 90\u00b0 \u21d2 2x = 70\u00b0 \u21d2 x = 35\u00b0."}, {"id": 4, "q": "Find the measure of an angle whose supplement is four times its complement.", "options": ["60\u00b0", "45\u00b0", "30\u00b0", "75\u00b0"], "ans": 0, "solution": "Let angle be x. Supplement = 180\u00b0 - x; Complement = 90\u00b0 - x. Equation: 180 - x = 4(90 - x) \u21d2 180 - x = 360 - 4x \u21d2 3x = 180 \u21d2 x = 60\u00b0."}, {"id": 5, "q": "Two supplementary angles are in the ratio 4 : 5. What is the measure of the larger angle?", "options": ["80\u00b0", "100\u00b0", "90\u00b0", "120\u00b0"], "ans": 1, "solution": "4x + 5x = 180\u00b0 \u21d2 9x = 180\u00b0 \u21d2 x = 20\u00b0. Larger angle = 5(20\u00b0) = 100\u00b0."}, {"id": 6, "q": "What is the measure of the reflex angle corresponding to an interior angle of 70\u00b0?", "options": ["110\u00b0", "290\u00b0", "200\u00b0", "180\u00b0"], "ans": 1, "solution": "Reflex angle = 360\u00b0 - 70\u00b0 = 290\u00b0."}, {"id": 7, "q": "Can two obtuse angles be supplementary?", "options": ["Yes, always", "No, because both are > 90\u00b0, so their sum is strictly > 180\u00b0", "Only if they are equal", "Only in a triangle"], "ans": 1, "solution": "Since an obtuse angle is > 90\u00b0, the sum of two obtuse angles is > 180\u00b0, so they can never be supplementary."}, {"id": 8, "q": "If the arms of an angle form two opposite rays lying along a straight line, what is the measure of the angle?", "options": ["90\u00b0", "180\u00b0", "360\u00b0", "0\u00b0"], "ans": 1, "solution": "Two opposite rays form a straight line, which measures exactly 180\u00b0 (a straight angle)."}, {"id": 9, "q": "At 3:00 o'clock, what is the angle between the hour hand and the minute hand of a clock?", "options": ["60\u00b0", "90\u00b0", "120\u00b0", "45\u00b0"], "ans": 1, "solution": "At 3:00, the hands are 3 hours apart. Each hour is 360\u00b0 / 12 = 30\u00b0, so 3 \u00d7 30\u00b0 = 90\u00b0 (a right angle)."}, {"id": 10, "q": "What is the complement of a right angle (90\u00b0)?", "options": ["0\u00b0", "90\u00b0", "180\u00b0", "45\u00b0"], "ans": 0, "solution": "Complement = 90\u00b0 - 90\u00b0 = 0\u00b0."}]}, {"id": 18, "title": "Mastery Challenge Part 2: Linear Pairs & Intersecting Lines", "subtitle": "10 Questions on Linear Pair Axioms, Vertically Opposite Angles & Bisectors", "category": "Quiz Challenge", "badge": "Quiz Part 2 \u2022 Linear Pairs & Intersecting Lines", "questions": [{"id": 11, "q": "In a linear pair of angles, if one angle is acute, the other angle must be:", "options": ["Acute", "Right", "Obtuse", "Reflex"], "ans": 2, "solution": "Since linear pair angles sum to 180\u00b0, if one is < 90\u00b0 (acute), the other must be > 90\u00b0 (obtuse)."}, {"id": 12, "q": "Two lines AB and CD intersect at O. If \u2220AOC + \u2220BOD = 140\u00b0, what is the measure of \u2220AOC?", "options": ["70\u00b0", "140\u00b0", "110\u00b0", "40\u00b0"], "ans": 0, "solution": "\u2220AOC and \u2220BOD are vertically opposite angles, so \u2220AOC = \u2220BOD. Thus, 2\u2220AOC = 140\u00b0 \u21d2 \u2220AOC = 70\u00b0."}, {"id": 13, "q": "Ray OC stands on line AB. If \u2220AOC = 4x and \u2220BOC = 5x, what is the measure of \u2220AOC?", "options": ["80\u00b0", "100\u00b0", "20\u00b0", "40\u00b0"], "ans": 0, "solution": "4x + 5x = 180\u00b0 \u21d2 9x = 180\u00b0 \u21d2 x = 20\u00b0. Thus, \u2220AOC = 4(20\u00b0) = 80\u00b0."}, {"id": 14, "q": "Two adjacent angles on a line are in the ratio 2 : 3. What is the measure of the smaller angle?", "options": ["72\u00b0", "108\u00b0", "36\u00b0", "54\u00b0"], "ans": 0, "solution": "2x + 3x = 180\u00b0 \u21d2 5x = 180\u00b0 \u21d2 x = 36\u00b0. Smaller angle = 2(36\u00b0) = 72\u00b0."}, {"id": 15, "q": "What is the angle between the bisectors of two vertically opposite angles?", "options": ["90\u00b0", "180\u00b0 (they form a straight line)", "45\u00b0", "60\u00b0"], "ans": 1, "solution": "The bisectors of two vertically opposite angles lie along the exact same straight line, so the angle between them is 180\u00b0."}, {"id": 16, "q": "Five rays OA, OB, OC, OD, and OE form consecutive angles x\u00b0, (x+10)\u00b0, (x+20)\u00b0, (x+30)\u00b0, and (x+40)\u00b0 around point O. What is x?", "options": ["52", "60", "48", "72"], "ans": 0, "solution": "Sum around point = 360\u00b0 \u21d2 5x + 100 = 360 \u21d2 5x = 260 \u21d2 x = 52."}, {"id": 17, "q": "Lines AB and CD intersect at O. If \u2220AOC : \u2220AOD = 5 : 7, what is the measure of \u2220BOD?", "options": ["75\u00b0", "105\u00b0", "85\u00b0", "95\u00b0"], "ans": 0, "solution": "\u2220AOC + \u2220AOD = 180\u00b0 (linear pair) \u21d2 5x + 7x = 180\u00b0 \u21d2 12x = 180\u00b0 \u21d2 x = 15\u00b0. Thus, \u2220AOC = 5(15\u00b0) = 75\u00b0. Since \u2220BOD is vertically opposite to \u2220AOC, \u2220BOD = 75\u00b0."}, {"id": 18, "q": "If the angle bisectors of two adjacent angles form an angle of 90\u00b0, what must be true about the two adjacent angles?", "options": ["They form a linear pair (sum = 180\u00b0)", "They are complementary (sum = 90\u00b0)", "They are equal", "They are both obtuse"], "ans": 0, "solution": "Angle between bisectors = \u00bd(sum) = 90\u00b0 \u21d2 sum = 180\u00b0, meaning the non-common arms form a straight line (linear pair)."}, {"id": 19, "q": "Three coplanar lines intersect at a single common point O. How many pairs of vertically opposite angles are formed?", "options": ["3 pairs", "6 pairs", "4 pairs", "2 pairs"], "ans": 1, "solution": "Each pair of lines produces 2 pairs of vertically opposite angles. With 3 lines, there are 3 choose 2 = 3 pairs of lines, yielding 3 \u00d7 2 = 6 pairs of vertically opposite angles."}, {"id": 20, "q": "If an angle is 30\u00b0 less than twice its supplement, what is the angle?", "options": ["110\u00b0", "70\u00b0", "120\u00b0", "60\u00b0"], "ans": 0, "solution": "Let angle be x. Supplement = 180 - x. Equation: x = 2(180 - x) - 30 \u21d2 x = 360 - 2x - 30 \u21d2 3x = 330 \u21d2 x = 110\u00b0."}]}, {"id": 19, "title": "Mastery Challenge Part 3: Parallel Lines & Transversals", "subtitle": "10 Questions on Corresponding, Alternate Interior, and Co-Interior Angle Theorems", "category": "Quiz Challenge", "badge": "Quiz Part 3 \u2022 Parallel Lines", "questions": [{"id": 21, "q": "Lines AB \u2225 CD are cut by transversal t. If one interior angle is 68\u00b0, what is its alternate interior angle?", "options": ["68\u00b0", "112\u00b0", "22\u00b0", "90\u00b0"], "ans": 0, "solution": "By Theorem 6.2, alternate interior angles are equal, so the alternate interior angle is 68\u00b0."}, {"id": 22, "q": "Lines l \u2225 m are cut by transversal t. If consecutive interior angles on the same side are (3x - 10)\u00b0 and (2x + 20)\u00b0, find x.", "options": ["34", "30", "36", "40"], "ans": 0, "solution": "Consecutive interior angles are supplementary (Theorem 6.4): (3x - 10) + (2x + 20) = 180 \u21d2 5x + 10 = 180 \u21d2 5x = 170 \u21d2 x = 34."}, {"id": 23, "q": "If a transversal intersects two parallel lines, how are the bisectors of any pair of alternate interior angles related?", "options": ["They are parallel to each other", "They are perpendicular to each other", "They intersect at 45\u00b0", "They coincide"], "ans": 0, "solution": "The bisectors of a pair of alternate interior angles are parallel to each other (because they form equal alternate interior angles of measure \u03b8/2)."}, {"id": 24, "q": "If a transversal intersects two parallel lines, what geometric figure is formed by the bisectors of the four interior angles?", "options": ["A Rectangle", "A Rhombus", "A Trapezium", "A Kite"], "ans": 0, "solution": "The bisectors form a parallelogram whose interior angles are all 90\u00b0 (since linear pair bisectors are perpendicular), which defines a Rectangle."}, {"id": 25, "q": "In a figure, AB \u2225 CD and CD \u2225 EF. If \u2220ABC = 70\u00b0 and \u2220CEF = 130\u00b0, what is the reflex angle \u2220BCE?", "options": ["240\u00b0", "120\u00b0", "300\u00b0", "260\u00b0"], "ans": 0, "solution": "Draw auxiliary parallel through C: \u2220BCC' = 70\u00b0 (alternate to \u2220ABC). Co-interior angle with EF: 180\u00b0 - 130\u00b0 = 50\u00b0. Interior \u2220BCE = 70\u00b0 + 50\u00b0 = 120\u00b0. Reflex \u2220BCE = 360\u00b0 - 120\u00b0 = 240\u00b0."}, {"id": 26, "q": "If two lines are both perpendicular to the same line, what is their relationship to each other?", "options": ["They are parallel to each other", "They are perpendicular to each other", "They intersect at 45\u00b0", "They coincide"], "ans": 0, "solution": "If two coplanar lines are both perpendicular to a transversal line, their corresponding angles are both 90\u00b0, proving the two lines are parallel."}, {"id": 27, "q": "Lines AB \u2225 CD. A transversal intersects them at P and Q. If the ratio of two interior angles on the same side is 2 : 7, what is the larger angle?", "options": ["140\u00b0", "120\u00b0", "135\u00b0", "150\u00b0"], "ans": 0, "solution": "2x + 7x = 180\u00b0 \u21d2 9x = 180\u00b0 \u21d2 x = 20\u00b0. Larger angle = 7(20\u00b0) = 140\u00b0."}, {"id": 28, "q": "Which theorem states that 'Lines which are parallel to the same line are parallel to each other'?", "options": ["Theorem 6.6 (Transitivity of Parallelism)", "Theorem 6.1", "Theorem 6.4", "Linear Pair Axiom"], "ans": 0, "solution": "Theorem 6.6 establishes the transitivity of parallelism (l \u2225 m and m \u2225 n \u21d2 l \u2225 n)."}, {"id": 29, "q": "If a transversal cuts two lines such that alternate interior angles are (5x - 20)\u00b0 and (3x + 10)\u00b0, for what value of x are the lines parallel?", "options": ["15", "20", "10", "25"], "ans": 0, "solution": "For lines to be parallel, alternate interior angles must be equal: 5x - 20 = 3x + 10 \u21d2 2x = 30 \u21d2 x = 15."}, {"id": 30, "q": "What is the maximum number of acute angles formed when a transversal intersects two parallel lines?", "options": ["4", "2", "6", "8"], "ans": 0, "solution": "Unless the transversal is perpendicular (where all 8 are 90\u00b0), exactly 4 angles are equal acute angles and 4 are equal obtuse angles."}]}, {"id": 20, "title": "Mastery Challenge Part 4: Triangles, Exterior Angles & Contradictions", "subtitle": "10 Questions on Triangle Angle Sum, Exterior Angles & Indirect Proofs", "category": "Quiz Challenge", "badge": "Quiz Part 4 \u2022 Advanced Geometric Deductions", "questions": [{"id": 31, "q": "The angles of a triangle are in the ratio 2 : 3 : 4. What is the measure of the largest angle?", "options": ["80\u00b0", "60\u00b0", "90\u00b0", "100\u00b0"], "ans": 0, "solution": "2x + 3x + 4x = 180\u00b0 \u21d2 9x = 180\u00b0 \u21d2 x = 20\u00b0. Largest angle = 4(20\u00b0) = 80\u00b0."}, {"id": 32, "q": "In triangle ABC, the bisectors of \u2220B and \u2220C intersect at point O. What is the formula for \u2220BOC?", "options": ["90\u00b0 + \u00bd \u2220A", "90\u00b0 - \u00bd \u2220A", "180\u00b0 - \u2220A", "2 \u2220A"], "ans": 0, "solution": "In triangle OBC: \u2220BOC = 180\u00b0 - \u00bd(\u2220B + \u2220C) = 180\u00b0 - \u00bd(180\u00b0 - \u2220A) = 180\u00b0 - 90\u00b0 + \u00bd \u2220A = 90\u00b0 + \u00bd \u2220A."}, {"id": 33, "q": "An exterior angle of a triangle is 105\u00b0, and its two interior opposite angles are equal. What is the measure of each of these equal angles?", "options": ["52.5\u00b0", "75\u00b0", "65\u00b0", "45\u00b0"], "ans": 0, "solution": "By Exterior Angle Theorem: x + x = 105\u00b0 \u21d2 2x = 105\u00b0 \u21d2 x = 52.5\u00b0."}, {"id": 34, "q": "Why can a triangle NOT have two right angles? (Proof by Contradiction)", "options": ["Because 90\u00b0 + 90\u00b0 = 180\u00b0, leaving 0\u00b0 for the third angle (violating angle sum theorem)", "Because triangles can only have acute angles", "Because right angles cannot touch", "Because right triangles have only 2 sides"], "ans": 0, "solution": "If two angles were 90\u00b0, their sum is 180\u00b0, forcing the third angle to be 0\u00b0, which is impossible for a non-degenerate triangle."}, {"id": 35, "q": "The side BC of triangle ABC is produced to D. If \u2220ACD = 120\u00b0 and \u2220B = \u00bd \u2220A, find \u2220A.", "options": ["80\u00b0", "40\u00b0", "60\u00b0", "90\u00b0"], "ans": 0, "solution": "\u2220A + \u2220B = 120\u00b0 \u21d2 \u2220A + \u00bd \u2220A = 120\u00b0 \u21d2 1.5 \u2220A = 120\u00b0 \u21d2 \u2220A = 80\u00b0 (and \u2220B = 40\u00b0)."}, {"id": 36, "q": "What is the sum of the three exterior angles of any triangle (one at each vertex)?", "options": ["360\u00b0", "180\u00b0", "540\u00b0", "270\u00b0"], "ans": 0, "solution": "Each exterior angle is 180\u00b0 - interior angle. Total sum = 3(180\u00b0) - (sum of interior angles) = 540\u00b0 - 180\u00b0 = 360\u00b0."}, {"id": 37, "q": "In a right-angled triangle, what is the sum of the two acute angles?", "options": ["90\u00b0 (they are complementary)", "180\u00b0", "45\u00b0", "120\u00b0"], "ans": 0, "solution": "Since the right angle is 90\u00b0, the other two angles must sum to 180\u00b0 - 90\u00b0 = 90\u00b0 (complementary)."}, {"id": 38, "q": "In triangle PQR, if \u2220P - \u2220Q = 42\u00b0 and \u2220Q - \u2220R = 21\u00b0, find \u2220Q.", "options": ["53\u00b0", "95\u00b0", "32\u00b0", "60\u00b0"], "ans": 0, "solution": "\u2220P = \u2220Q + 42\u00b0 and \u2220R = \u2220Q - 21\u00b0. Sum = 180\u00b0 \u21d2 (\u2220Q + 42) + \u2220Q + (\u2220Q - 21) = 180 \u21d2 3\u2220Q + 21 = 180 \u21d2 3\u2220Q = 159 \u21d2 \u2220Q = 53\u00b0."}, {"id": 39, "q": "Why must every triangle have at least two acute angles?", "options": ["If a triangle had 2 or more non-acute angles (\u2265 90\u00b0), their sum would be \u2265 180\u00b0, leaving nothing for the third angle", "Because all polygons have acute angles", "Because acute angles are smaller", "It is an unproven assumption"], "ans": 0, "exp": "Proof by contradiction: If a triangle had fewer than two acute angles, at least two angles would be \u2265 90\u00b0, making their sum \u2265 180\u00b0, which violates the Triangle Angle Sum Theorem.", "solution": "Proof by contradiction: If a triangle had fewer than two acute angles, at least two angles would be \u2265 90\u00b0, making their sum \u2265 180\u00b0, which violates the Triangle Angle Sum Theorem."}, {"id": 40, "q": "In computational geometry, what graph data structure best represents a deductive geometric proof where theorems depend on earlier theorems?", "options": ["Directed Acyclic Graph (DAG)", "Circular Linked List", "Stack", "Hash Map"], "ans": 0, "solution": "A Directed Acyclic Graph (DAG) perfectly models deductive proofs, where premises flow towards conclusions without circular dependencies."}]}];
+        const ALL_SLIDES = [...SLIDES, ...QUIZZES];
+
+        let currentSlideIndex = 0;
+        let speechRate = 1.0;
+        let isAudioMuted = false;
+        let synth = window.speechSynthesis;
+        let activeUtterance = null;
+        let audioCtx = null;
+
+        function initAudioContext() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) {
+                    audioCtx = new AudioContext();
+                }
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playTone(freq, type = 'sine', duration = 0.2) {
+            try {
+                initAudioContext();
+                if (!audioCtx) return;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {
+                console.warn('Audio tone error:', e);
+            }
+        }
+
+        function playSuccessSound() {
+            playTone(523.25, 'triangle', 0.15);
+            setTimeout(() => playTone(659.25, 'triangle', 0.15), 100);
+            setTimeout(() => playTone(783.99, 'triangle', 0.25), 200);
+        }
+
+        function playErrorSound() {
+            playTone(220.00, 'sawtooth', 0.2);
+            setTimeout(() => playTone(196.00, 'sawtooth', 0.25), 150);
+        }
+
+        function speakCurrentSlide() {
+            if (isAudioMuted || !('speechSynthesis' in window)) return;
+            synth.cancel();
+
+            const slide = ALL_SLIDES[currentSlideIndex];
+            const textToSpeak = slide.narration || (slide.title + ". " + slide.subtitle);
+
+            const mouth = document.getElementById('teacherMouth');
+            const pulse = document.getElementById('speakingPulse');
+
+            activeUtterance = new SpeechSynthesisUtterance(textToSpeak);
+            activeUtterance.rate = speechRate;
+            activeUtterance.lang = 'en-US';
+
+            activeUtterance.onstart = () => {
+                if (mouth) mouth.classList.add('mouth-talking');
+                if (pulse) pulse.classList.remove('hidden');
+            };
+
+            activeUtterance.onend = () => {
+                if (mouth) mouth.classList.remove('mouth-talking');
+                if (pulse) pulse.classList.add('hidden');
+            };
+
+            activeUtterance.onerror = () => {
+                if (mouth) mouth.classList.remove('mouth-talking');
+                if (pulse) pulse.classList.add('hidden');
+            };
+
+            synth.speak(activeUtterance);
+        }
+
+        function toggleAudio() {
+            initAudioContext();
+            isAudioMuted = !isAudioMuted;
+            const btnText = document.getElementById('voiceBtnText');
+            const btn = document.getElementById('voiceToggleBtn');
+
+            if (isAudioMuted) {
+                synth.cancel();
+                btnText.textContent = "Voice Muted";
+                btn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-400 hover:text-white transition";
+                const mouth = document.getElementById('teacherMouth');
+                if (mouth) mouth.classList.remove('mouth-talking');
+            } else {
+                btnText.textContent = "Voice On";
+                btn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition shadow-md shadow-emerald-600/30";
+                speakCurrentSlide();
+            }
+        }
+
+        function replayAudio() {
+            initAudioContext();
+            speakCurrentSlide();
+        }
+
+        function changeSpeed(rate) {
+            speechRate = rate;
+            ['spd08', 'spd10', 'spd12'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.className = "px-2 py-1 text-[11px] rounded font-medium text-slate-400 hover:text-white transition";
+                }
+            });
+            const activeId = rate === 0.8 ? 'spd08' : (rate === 1.0 ? 'spd10' : 'spd12');
+            const activeEl = document.getElementById(activeId);
+            if (activeEl) {
+                activeEl.className = "px-2 py-1 text-[11px] rounded font-bold bg-emerald-600 text-white transition";
+            }
+            speakCurrentSlide();
+        }
+
+        function renderCurrentSlide() {
+            const slide = ALL_SLIDES[currentSlideIndex];
+            const total = ALL_SLIDES.length;
+            const currNum = currentSlideIndex + 1;
+
+            // Update Progress & Badges
+            document.getElementById('slideCounter').textContent = `${currNum} / ${total}`;
+            document.getElementById('progressBar').style.width = `${(currNum / total) * 100}%`;
+            document.getElementById('currentBadge').textContent = slide.badge || "Lines and Angles";
+            document.getElementById('narrationText').textContent = slide.narration || slide.summary || slide.subtitle;
+
+            // Render Thumbnails
+            renderThumbnails();
+
+            const container = document.getElementById('slideContentContainer');
+            const lastNotice = document.getElementById('lastSlideNotice');
+            const nextBtn = document.getElementById('nextBtn');
+            const prevBtn = document.getElementById('prevBtn');
+
+            // Handle Previous button state
+            prevBtn.disabled = (currentSlideIndex === 0);
+            prevBtn.style.opacity = (currentSlideIndex === 0) ? '0.5' : '1';
+
+            if (currentSlideIndex < 16) {
+                // Content Slide (1 - 16)
+                lastNotice.classList.add('hidden');
+                nextBtn.style.display = 'flex';
+
+                container.innerHTML = `
+                    <div class="slide-fade-in space-y-6">
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+                            <div>
+                                <span class="text-xs font-bold text-emerald-400 font-mono">CONCEPT #${currNum}</span>
+                                <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">${slide.title}</h2>
+                                <p class="text-xs sm:text-sm text-slate-400 font-medium mt-0.5">${slide.subtitle}</p>
+                            </div>
+                            <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 font-semibold">${slide.category}</span>
+                        </div>
+
+                        <!-- 2-Column Split: Theory on Left, Simulator on Right -->
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+                            <!-- Left: Theory & Checkpoints -->
+                            <div class="space-y-4">
+                                <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800/90 shadow-lg">
+                                    <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2 flex items-center gap-1.5">
+                                        <i data-lucide="book-open" class="w-4 h-4"></i>
+                                        Conceptual Overview
+                                    </h3>
+                                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                                        ${slide.summary}
+                                    </p>
+                                </div>
+
+                                <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800/90 shadow-lg">
+                                    <h3 class="text-xs font-bold uppercase tracking-wider text-teal-400 mb-2.5 flex items-center gap-1.5">
+                                        <i data-lucide="sparkles" class="w-4 h-4"></i>
+                                        Key Mathematical Insights
+                                    </h3>
+                                    <ul class="text-xs text-slate-300 space-y-2">
+                                        ${slide.key_points.map(kp => `
+                                            <li class="flex items-start gap-2">
+                                                <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5"></i>
+                                                <span>${kp}</span>
+                                            </li>
+                                        `).join('')}
+                                    </ul>
+                                </div>
+
+                                <!-- In-Slide 2 Checkpoint Questions -->
+                                <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800/90 shadow-lg space-y-4">
+                                    <h3 class="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+                                        <i data-lucide="help-circle" class="w-4 h-4"></i>
+                                        Slide Checkpoints (2 Questions)
+                                    </h3>
+                                    <div class="space-y-4">
+                                        ${slide.checkpoints.map((cp, cIdx) => `
+                                            <div class="p-3 bg-slate-950/80 rounded-xl border border-slate-800">
+                                                <div class="text-xs font-semibold text-slate-200 mb-2">Q${cIdx + 1}: ${cp.q}</div>
+                                                <div class="space-y-1.5 mb-2">
+                                                    ${cp.options.map((opt, oIdx) => `
+                                                        <button onclick="checkCheckpoint(${cIdx}, ${oIdx}, ${cp.ans})" id="cp_${cIdx}_${oIdx}" class="w-full text-left text-xs px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-emerald-500/50 text-slate-300 transition flex items-center justify-between">
+                                                            <span>${opt}</span>
+                                                            <span id="cp_ind_${cIdx}_${oIdx}" class="hidden font-bold text-xs"></span>
+                                                        </button>
+                                                    `).join('')}
+                                                </div>
+                                                <div id="cp_exp_${cIdx}" class="hidden text-[11px] p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-emerald-200">
+                                                    ${cp.explanation}
+                                                </div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right: Bespoke Interactive Simulator -->
+                            <div class="p-5 rounded-2xl bg-slate-900/90 border border-emerald-500/30 shadow-xl flex flex-col justify-between min-h-[460px]">
+                                <div>
+                                    <div class="flex items-center justify-between mb-3 border-b border-slate-800 pb-2">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
+                                            <h4 class="text-xs sm:text-sm font-bold text-emerald-300">${slide.sim_title}</h4>
+                                        </div>
+                                        <span class="text-[10px] text-slate-400 font-mono">Interactive Model</span>
+                                    </div>
+                                    <div id="simContainer_${currNum}" class="w-full flex flex-col items-center justify-center">
+                                        <!-- Interactive Simulator Injected Here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                // Initialize specific slide simulator
+                setTimeout(() => {
+                    initSlideSimulator(currNum);
+                    if (window.renderMathInElement) renderMathInElement(container);
+                    if (window.lucide) lucide.createIcons();
+                }, 50);
+
+            } else {
+                // Quiz Slide (17 - 20)
+                const isLast = (currentSlideIndex === total - 1);
+                if (isLast) {
+                    lastNotice.classList.remove('hidden');
+                    nextBtn.style.display = 'none';
+                } else {
+                    lastNotice.classList.add('hidden');
+                    nextBtn.style.display = 'flex';
+                }
+
+                container.innerHTML = `
+                    <div class="slide-fade-in space-y-5">
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+                            <div>
+                                <span class="text-xs font-bold text-amber-400 font-mono">MASTERY CHALLENGE</span>
+                                <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">${slide.title}</h2>
+                                <p class="text-xs sm:text-sm text-slate-400 font-medium">${slide.subtitle}</p>
+                            </div>
+                            <span class="text-xs px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold">10 Multi-Step Questions</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            ${slide.questions.map((q, qIdx) => `
+                                <div class="p-4 bg-slate-900/80 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-md">
+                                    <div>
+                                        <div class="flex items-center justify-between gap-2 mb-2">
+                                            <span class="text-xs font-bold text-emerald-400 font-mono">Question ${q.id}</span>
+                                            <button onclick="showSolution(${currentSlideIndex}, ${qIdx})" class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 transition flex items-center gap-1.5 shadow-sm">
+                                                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                                                View Solution
+                                            </button>
+                                        </div>
+                                        <p class="text-xs sm:text-sm text-slate-200 font-medium mb-3">${q.q}</p>
+                                        <div class="space-y-1.5 mb-2">
+                                            ${q.options.map((opt, oIdx) => `
+                                                <button onclick="answerQuiz(${q.id}, ${oIdx}, ${q.ans})" id="quiz_${q.id}_${oIdx}" class="w-full text-left text-xs px-3 py-2 rounded-xl bg-slate-950/80 border border-slate-800 hover:border-emerald-500/50 text-slate-300 transition flex items-center justify-between">
+                                                    <span>${opt}</span>
+                                                    <span id="quiz_ind_${q.id}_${oIdx}" class="hidden font-bold"></span>
+                                                </button>
+                                            `).join('')}
+                                        </div>
+                                    </div>
+                                    <div id="quiz_sol_preview_${q.id}" class="hidden mt-2 p-2 rounded-lg bg-slate-950 text-[10px] text-slate-400 border border-slate-800 flex items-center justify-between">
+                                        <span class="text-emerald-400 font-bold">Answered</span>
+                                        <button onclick="showSolution(${currentSlideIndex}, ${qIdx})" class="text-amber-400 hover:underline">Click to view derivation</button>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+
+                setTimeout(() => {
+                    if (window.renderMathInElement) renderMathInElement(container);
+                    if (window.lucide) lucide.createIcons();
+                }, 50);
+            }
+
+            speakCurrentSlide();
+        }
+
+        function renderThumbnails() {
+            const track = document.getElementById('thumbnailTrack');
+            if (!track) return;
+            track.innerHTML = ALL_SLIDES.map((s, idx) => {
+                const isActive = (idx === currentSlideIndex);
+                const isQuiz = (idx >= 16);
+                let colorClass = isActive
+                    ? (isQuiz ? 'bg-amber-400 ring-2 ring-amber-400/50 scale-125' : 'bg-emerald-400 ring-2 ring-emerald-400/50 scale-125')
+                    : (isQuiz ? 'bg-amber-900/60 hover:bg-amber-600' : 'bg-slate-700 hover:bg-slate-500');
+                return `
+                    <button onclick="goToSlide(${idx})" title="Slide ${idx + 1}" class="w-2.5 h-2.5 rounded-full transition-all duration-200 ${colorClass}"></button>
+                `;
+            }).join('');
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < ALL_SLIDES.length - 1) {
+                currentSlideIndex++;
+                renderCurrentSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                renderCurrentSlide();
+            }
+        }
+
+        function goToSlide(idx) {
+            if (idx >= 0 && idx < ALL_SLIDES.length) {
+                currentSlideIndex = idx;
+                renderCurrentSlide();
+            }
+        }
+
+        function checkCheckpoint(cIdx, oIdx, ans) {
+            initAudioContext();
+            const slide = ALL_SLIDES[currentSlideIndex];
+            const numOpts = slide.checkpoints[cIdx].options.length;
+
+            for (let i = 0; i < numOpts; i++) {
+                const btn = document.getElementById(`cp_${cIdx}_${i}`);
+                const ind = document.getElementById(`cp_ind_${cIdx}_${i}`);
+                if (!btn || !ind) continue;
+                btn.disabled = true;
+
+                if (i === ans) {
+                    btn.classList.add('border-emerald-500', 'bg-emerald-950/30', 'text-emerald-300');
+                    ind.textContent = '✓';
+                    ind.classList.remove('hidden');
+                    ind.classList.add('text-emerald-400');
+                } else if (i === oIdx && oIdx !== ans) {
+                    btn.classList.add('border-rose-500', 'bg-rose-950/30', 'text-rose-300');
+                    ind.textContent = '✗';
+                    ind.classList.remove('hidden');
+                    ind.classList.add('text-rose-400');
+                }
+            }
+
+            const exp = document.getElementById(`cp_exp_${cIdx}`);
+            if (exp) exp.classList.remove('hidden');
+
+            if (oIdx === ans) playSuccessSound();
+            else playErrorSound();
+        }
+
+        function answerQuiz(qId, oIdx, ans) {
+            initAudioContext();
+            const slide = ALL_SLIDES[currentSlideIndex];
+            const qObj = slide.questions.find(q => q.id === qId);
+            if (!qObj) return;
+
+            for (let i = 0; i < qObj.options.length; i++) {
+                const btn = document.getElementById(`quiz_${qId}_${i}`);
+                const ind = document.getElementById(`quiz_ind_${qId}_${i}`);
+                if (!btn || !ind) continue;
+                btn.disabled = true;
+
+                if (i === ans) {
+                    btn.classList.add('border-emerald-500', 'bg-emerald-950/30', 'text-emerald-300');
+                    ind.textContent = '✓ Correct';
+                    ind.classList.remove('hidden');
+                    ind.classList.add('text-emerald-400');
+                } else if (i === oIdx && oIdx !== ans) {
+                    btn.classList.add('border-rose-500', 'bg-rose-950/30', 'text-rose-300');
+                    ind.textContent = '✗';
+                    ind.classList.remove('hidden');
+                    ind.classList.add('text-rose-400');
+                }
+            }
+
+            const preview = document.getElementById(`quiz_sol_preview_${qId}`);
+            if (preview) preview.classList.remove('hidden');
+
+            if (oIdx === ans) playSuccessSound();
+            else playErrorSound();
+        }
+
+        function showSolution(slideIdx, qIdx) {
+            initAudioContext();
+            const slide = ALL_SLIDES[slideIdx];
+            const qObj = slide.questions[qIdx];
+            if (!qObj) return;
+
+            document.getElementById('modalQSubtitle').textContent = `Slide ${slideIdx + 1} • Question ${qObj.id}`;
+            document.getElementById('modalQuestionText').textContent = qObj.q;
+
+            const solEl = document.getElementById('modalSolutionText');
+            solEl.innerHTML = qObj.solution;
+
+            document.getElementById('solutionModal').classList.remove('hidden');
+            if (window.renderMathInElement) renderMathInElement(solEl);
+            if (window.lucide) lucide.createIcons();
+            playTone(440, 'sine', 0.1);
+        }
+
+        function closeSolutionModal() {
+            document.getElementById('solutionModal').classList.add('hidden');
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'Escape') closeSolutionModal();
+        });
+
+        // --- 16 BESPOKE SIMULATORS LOGIC ---
+
+        function initSlideSimulator(sNum) {
+            const container = document.getElementById(`simContainer_${sNum}`);
+            if (!container) return;
+
+            if (sNum === 1) renderSim1(container);
+            else if (sNum === 2) renderSim2(container);
+            else if (sNum === 3) renderSim3(container);
+            else if (sNum === 4) renderSim4(container);
+            else if (sNum === 5) renderSim5(container);
+            else if (sNum === 6) renderSim6(container);
+            else if (sNum === 7) renderSim7(container);
+            else if (sNum === 8) renderSim8(container);
+            else if (sNum === 9) renderSim9(container);
+            else if (sNum === 10) renderSim10(container);
+            else if (sNum === 11) renderSim11(container);
+            else if (sNum === 12) renderSim12(container);
+            else if (sNum === 13) renderSim13(container);
+            else if (sNum === 14) renderSim14(container);
+            else if (sNum === 15) renderSim15(container);
+            else if (sNum === 16) renderSim16(container);
+        }
+
+        // SIMULATOR 1: Ray Spinner & Angle Generator
+        function renderSim1(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="raySpinSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div class="text-xs">
+                        <label class="text-slate-400 flex justify-between">
+                            <span>Rotate Ray OB (Measure θ):</span>
+                            <span id="rayAngleVal" class="text-emerald-400 font-bold">50°</span>
+                        </label>
+                        <input type="range" min="0" max="360" value="50" step="5" id="rayAngleSlider" oninput="updateRaySpinner()" class="w-full accent-emerald-500">
+                    </div>
+                    <div id="rayAngleReadout" class="p-2.5 bg-slate-950 rounded-xl border border-emerald-500/30 text-xs font-mono text-center text-emerald-300">
+                        Angle ∠AOB = 50° | Vertex O(0,0), Arms OA & OB
+                    </div>
+                </div>
+            `;
+            updateRaySpinner();
+        }
+
+        function updateRaySpinner() {
+            const deg = parseInt(document.getElementById('rayAngleSlider').value);
+            document.getElementById('rayAngleVal').textContent = `${deg}°`;
+            document.getElementById('rayAngleReadout').textContent = `Angle ∠AOB = ${deg}° | Vertex O(0,0), Arms OA & OB`;
+
+            const svg = document.getElementById('raySpinSvg');
+            if (!svg) return;
+
+            const cx = 150, cy = 150, r = 110;
+            const ax = cx + r, ay = cy;
+            const rad = (deg * Math.PI) / 180;
+            const bx = cx + r * Math.cos(rad);
+            const by = cy - r * Math.sin(rad);
+
+            const largeArc = deg > 180 ? 1 : 0;
+            const pathD = deg === 360
+                ? `M ${cx} ${cy} m -${r}, 0 a ${r},${r} 0 1,0 ${r*2},0 a ${r},${r} 0 1,0 -${r*2},0`
+                : (deg === 0 ? '' : `M ${cx} ${cy} L ${ax} ${ay} A ${r} ${r} 0 ${largeArc} 0 ${bx} ${by} Z`);
+
+            svg.innerHTML = `
+                <!-- Dial Rim -->
+                <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#1e293b" stroke-width="1.5" stroke-dasharray="4"/>
+
+                <!-- Interior Shading -->
+                ${pathD ? `<path d="${pathD}" fill="#10b981" fill-opacity="0.2"/>` : ''}
+
+                <!-- Arm OA (Fixed Base) -->
+                <line x1="${cx}" y1="${cy}" x2="${ax + 15}" y2="${ay}" stroke="#38bdf8" stroke-width="3"/>
+                <polygon points="${ax + 15},${ay} ${ax + 5},${ay - 4} ${ax + 5},${ay + 4}" fill="#38bdf8"/>
+                <text x="${ax + 20}" y="${ay + 4}" fill="#38bdf8" font-size="11" font-weight="bold">A</text>
+
+                <!-- Arm OB (Rotatable) -->
+                <line x1="${cx}" y1="${cy}" x2="${bx}" y2="${by}" stroke="#f59e0b" stroke-width="3"/>
+                <text x="${bx + 8}" y="${by + 4}" fill="#f59e0b" font-size="11" font-weight="bold">B</text>
+
+                <!-- Vertex O -->
+                <circle cx="${cx}" cy="${cy}" r="5" fill="#f8fafc"/>
+                <text x="${cx - 15}" y="${cy + 15}" fill="#94a3b8" font-size="11" font-weight="bold">O</text>
+            `;
+        }
+
+        // SIMULATOR 2: Interactive Angle Gauge & Dynamic Classifier
+        function renderSim2(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="gaugeSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div class="text-xs">
+                        <label class="text-slate-400 flex justify-between">
+                            <span>Adjust Angle Magnitude (θ):</span>
+                            <span id="gaugeDegVal" class="text-emerald-400 font-bold">60°</span>
+                        </label>
+                        <input type="range" min="0" max="360" value="60" step="5" id="gaugeSlider" oninput="updateAngleGauge()" class="w-full accent-emerald-500">
+                    </div>
+                    <div id="gaugeBadge" class="p-2.5 rounded-xl border text-xs font-mono text-center font-bold">
+                        <!-- Populated by updateAngleGauge() -->
+                    </div>
+                </div>
+            `;
+            updateAngleGauge();
+        }
+
+        function updateAngleGauge() {
+            const deg = parseInt(document.getElementById('gaugeSlider').value);
+            document.getElementById('gaugeDegVal').textContent = `${deg}°`;
+            const badge = document.getElementById('gaugeBadge');
+
+            if (deg === 0) {
+                badge.className = "p-2.5 rounded-xl border border-slate-700 bg-slate-900 text-slate-300 text-xs font-mono text-center font-bold";
+                badge.innerHTML = `ZERO ANGLE (θ = 0°)`;
+            } else if (deg < 90) {
+                badge.className = "p-2.5 rounded-xl border border-emerald-500/50 bg-emerald-950/40 text-emerald-300 text-xs font-mono text-center font-bold";
+                badge.innerHTML = `ACUTE ANGLE (0° < θ < 90°)`;
+            } else if (deg === 90) {
+                badge.className = "p-2.5 rounded-xl border border-cyan-500/50 bg-cyan-950/40 text-cyan-300 text-xs font-mono text-center font-bold";
+                badge.innerHTML = `★ RIGHT ANGLE (θ = 90°, Exactly 1 Quarter Turn)`;
+            } else if (deg < 180) {
+                badge.className = "p-2.5 rounded-xl border border-amber-500/50 bg-amber-950/40 text-amber-300 text-xs font-mono text-center font-bold";
+                badge.innerHTML = `OBTUSE ANGLE (90° < θ < 180°)`;
+            } else if (deg === 180) {
+                badge.className = "p-2.5 rounded-xl border border-rose-500/50 bg-rose-950/40 text-rose-300 text-xs font-mono text-center font-bold";
+                badge.innerHTML = `★ STRAIGHT ANGLE (θ = 180°, Exactly 2 Right Angles)`;
+            } else if (deg < 360) {
+                badge.className = "p-2.5 rounded-xl border border-violet-500/50 bg-violet-950/40 text-violet-300 text-xs font-mono text-center font-bold";
+                badge.innerHTML = `REFLEX ANGLE (180° < θ < 360°)`;
+            } else {
+                badge.className = "p-2.5 rounded-xl border border-emerald-500/50 bg-emerald-950/40 text-emerald-300 text-xs font-mono text-center font-bold";
+                badge.innerHTML = `★ COMPLETE ANGLE (θ = 360°, One Full Turn)`;
+            }
+
+            const svg = document.getElementById('gaugeSvg');
+            if (!svg) return;
+
+            const cx = 150, cy = 150, r = 100;
+            const ax = cx + r, ay = cy;
+            const rad = (deg * Math.PI) / 180;
+            const bx = cx + r * Math.cos(rad);
+            const by = cy - r * Math.sin(rad);
+
+            svg.innerHTML = `
+                <circle cx="${cx}" cy="${cy}" r="${r}" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+                <line x1="${cx}" y1="${cy}" x2="${ax}" y2="${ay}" stroke="#38bdf8" stroke-width="3"/>
+                <line x1="${cx}" y1="${cy}" x2="${bx}" y2="${by}" stroke="#10b981" stroke-width="3"/>
+                <circle cx="${cx}" cy="${cy}" r="4" fill="#f8fafc"/>
+            `;
+        }
+
+        // SIMULATOR 3: Twin Angle Complement & Supplement Balancer
+        function renderSim3(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="compSuppSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div class="text-xs">
+                        <label class="text-slate-400 flex justify-between">
+                            <span>Adjust Angle θ:</span>
+                            <span id="csThetaVal" class="text-emerald-400 font-bold">35°</span>
+                        </label>
+                        <input type="range" min="10" max="80" value="35" step="5" id="csThetaSlider" oninput="updateCompSupp()" class="w-full accent-emerald-500">
+                    </div>
+                    <div id="csCalculations" class="p-2.5 bg-slate-950 rounded-xl border border-emerald-500/30 text-xs font-mono grid grid-cols-2 gap-2 text-center">
+                        <!-- Populated by updateCompSupp() -->
+                    </div>
+                </div>
+            `;
+            updateCompSupp();
+        }
+
+        function updateCompSupp() {
+            const th = parseInt(document.getElementById('csThetaSlider').value);
+            document.getElementById('csThetaVal').textContent = `${th}°`;
+
+            const comp = 90 - th;
+            const supp = 180 - th;
+
+            document.getElementById('csCalculations').innerHTML = `
+                <div class="p-1.5 rounded bg-slate-900 border border-slate-800">
+                    <span class="text-slate-400 block text-[10px]">Complement: 90° - θ</span>
+                    <span class="text-cyan-300 font-bold">${comp}°</span>
+                </div>
+                <div class="p-1.5 rounded bg-slate-900 border border-slate-800">
+                    <span class="text-slate-400 block text-[10px]">Supplement: 180° - θ</span>
+                    <span class="text-amber-300 font-bold">${supp}°</span>
+                </div>
+            `;
+
+            const svg = document.getElementById('compSuppSvg');
+            if (!svg) return;
+
+            const rad = (th * Math.PI) / 180;
+            const r = 90;
+            const cx = 150, cy = 180;
+            const armX = cx + r * Math.cos(rad);
+            const armY = cy - r * Math.sin(rad);
+
+            svg.innerHTML = `
+                <!-- Straight Line for Supplement -->
+                <line x1="30" y1="180" x2="270" y2="180" stroke="#64748b" stroke-width="2"/>
+                <line x1="150" y1="180" x2="150" y2="90" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3"/>
+
+                <!-- Middle Shared Ray -->
+                <line x1="150" y1="180" x2="${armX}" y2="${armY}" stroke="#10b981" stroke-width="3"/>
+
+                <circle cx="150" cy="180" r="4" fill="#f8fafc"/>
+
+                <text x="180" y="165" fill="#10b981" font-size="11" font-weight="bold">θ = ${th}°</text>
+                <text x="75" y="165" fill="#f59e0b" font-size="11" font-weight="bold">Supp = ${supp}°</text>
+                <text x="160" y="115" fill="#06b6d4" font-size="11" font-weight="bold">Comp = ${comp}°</text>
+            `;
+        }
+
+        // SIMULATOR 4: Linear Pair Dynamic Beam Visualizer
+        function renderSim4(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="linPairSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div class="text-xs">
+                        <label class="text-slate-400 flex justify-between">
+                            <span>Tilt Ray OC (∠BOC):</span>
+                            <span id="lpAngleVal" class="text-emerald-400 font-bold">65°</span>
+                        </label>
+                        <input type="range" min="20" max="160" value="65" step="5" id="lpSlider" oninput="updateLinearPair()" class="w-full accent-emerald-500">
+                    </div>
+                    <div id="lpFormula" class="p-2.5 bg-slate-950 rounded-xl border border-emerald-500/30 text-xs font-mono text-center text-emerald-300 font-bold">
+                        Axiom 6.1: ∠AOC (115°) + ∠BOC (65°) = 180°
+                    </div>
+                </div>
+            `;
+            updateLinearPair();
+        }
+
+        function updateLinearPair() {
+            const bAngle = parseInt(document.getElementById('lpSlider').value);
+            const aAngle = 180 - bAngle;
+            document.getElementById('lpAngleVal').textContent = `${bAngle}°`;
+            document.getElementById('lpFormula').textContent = `Axiom 6.1: ∠AOC (${aAngle}°) + ∠BOC (${bAngle}°) = 180°`;
+
+            const svg = document.getElementById('linPairSvg');
+            if (!svg) return;
+
+            const cx = 150, cy = 180, r = 100;
+            const rad = (bAngle * Math.PI) / 180;
+            const cxPt = cx + r * Math.cos(rad);
+            const cyPt = cy - r * Math.sin(rad);
+
+            svg.innerHTML = `
+                <!-- Line AB -->
+                <line x1="30" y1="180" x2="270" y2="180" stroke="#38bdf8" stroke-width="3"/>
+                <text x="25" y="200" fill="#38bdf8" font-size="11" font-weight="bold">A</text>
+                <text x="265" y="200" fill="#38bdf8" font-size="11" font-weight="bold">B</text>
+
+                <!-- Standing Ray OC -->
+                <line x1="${cx}" y1="${cy}" x2="${cxPt}" y2="${cyPt}" stroke="#f59e0b" stroke-width="3"/>
+                <circle cx="${cx}" cy="${cy}" r="4" fill="#f8fafc"/>
+                <text x="${cx - 5}" y="${cy + 15}" fill="#94a3b8" font-size="10">O</text>
+                <text x="${cxPt - 5}" y="${cyPt - 8}" fill="#f59e0b" font-size="11" font-weight="bold">C</text>
+
+                <text x="180" y="165" fill="#10b981" font-size="11" font-weight="bold">${bAngle}°</text>
+                <text x="80" y="165" fill="#f43f5e" font-size="11" font-weight="bold">${aAngle}°</text>
+            `;
+        }
+
+        // SIMULATOR 5: Straight Line Alignment Verifier
+        function renderSim5(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="alignSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div class="text-xs">
+                        <label class="text-slate-400 flex justify-between">
+                            <span>Adjust Sum (∠1 + ∠2):</span>
+                            <span id="alignSumVal" class="text-emerald-400 font-bold">180°</span>
+                        </label>
+                        <input type="range" min="150" max="210" value="180" step="5" id="alignSlider" oninput="updateAlign()" class="w-full accent-emerald-500">
+                    </div>
+                    <div id="alignBadge" class="p-2.5 rounded-xl border text-xs font-mono text-center font-bold">
+                        <!-- Populated by updateAlign() -->
+                    </div>
+                </div>
+            `;
+            updateAlign();
+        }
+
+        function updateAlign() {
+            const sum = parseInt(document.getElementById('alignSlider').value);
+            document.getElementById('alignSumVal').textContent = `${sum}°`;
+            const badge = document.getElementById('alignBadge');
+
+            if (sum === 180) {
+                badge.className = "p-2.5 rounded-xl border border-emerald-500/50 bg-emerald-950/40 text-emerald-300 text-xs font-mono text-center font-bold";
+                badge.innerHTML = `★ AXIOM 6.2 VERIFIED: Sum = 180° ⇒ Non-common arms form a STRAIGHT LINE!`;
+            } else {
+                badge.className = "p-2.5 rounded-xl border border-rose-500/50 bg-rose-950/30 text-rose-300 text-xs font-mono text-center font-bold";
+                badge.innerHTML = `Sum = ${sum}° ≠ 180°: Arms do NOT form a straight line (Bent at vertex O)`;
+            }
+
+            const svg = document.getElementById('alignSvg');
+            if (!svg) return;
+
+            const bend = (sum - 180) * 0.7;
+            const isStraight = (sum === 180);
+
+            svg.innerHTML = `
+                <!-- Arm OA -->
+                <line x1="50" y1="${150 + bend}" x2="150" y2="150" stroke="${isStraight ? '#10b981' : '#f43f5e'}" stroke-width="3"/>
+                <!-- Arm OB -->
+                <line x1="150" y1="150" x2="250" y2="150" stroke="${isStraight ? '#10b981' : '#f43f5e'}" stroke-width="3"/>
+                <!-- Ray OC -->
+                <line x1="150" y1="150" x2="150" y2="60" stroke="#f59e0b" stroke-width="2.5"/>
+
+                <circle cx="150" cy="150" r="5" fill="#f8fafc"/>
+                <text x="145" y="170" fill="#94a3b8" font-size="10">O</text>
+            `;
+        }
+
+        // SIMULATOR 6: Radial Angle Wheel & 360° Sum Engine
+        function renderSim6(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="wheelSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="text-slate-400">Number of Equal Sectors:</span>
+                        <div class="flex gap-1.5">
+                            <button onclick="setWheelSectors(4)" id="w4Btn" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">4 (90°)</button>
+                            <button onclick="setWheelSectors(5)" id="w5Btn" class="px-2 py-0.5 rounded bg-emerald-600 text-white font-bold">5 (72°)</button>
+                            <button onclick="setWheelSectors(6)" id="w6Btn" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">6 (60°)</button>
+                        </div>
+                    </div>
+                    <div id="wheelStatus" class="p-2.5 bg-slate-950 rounded-xl border border-emerald-500/30 text-xs font-mono text-center text-emerald-300">
+                        Sum around point = 5 × 72° = 360° (Complete Angle)
+                    </div>
+                </div>
+            `;
+            setWheelSectors(5);
+        }
+
+        function setWheelSectors(n) {
+            [4, 5, 6].forEach(i => {
+                document.getElementById(`w${i}Btn`).className = (i === n) ? 'px-2 py-0.5 rounded bg-emerald-600 text-white font-bold' : 'px-2 py-0.5 rounded bg-slate-800 text-slate-300';
+            });
+            const deg = 360 / n;
+            document.getElementById('wheelStatus').textContent = `Sum around point = ${n} × ${deg}° = 360° (Complete Angle)`;
+
+            const svg = document.getElementById('wheelSvg');
+            if (!svg) return;
+
+            const cx = 150, cy = 150, r = 100;
+            let lines = '';
+            for (let i = 0; i < n; i++) {
+                const rad = (i * deg * Math.PI) / 180;
+                const x = cx + r * Math.cos(rad);
+                const y = cy - r * Math.sin(rad);
+                lines += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#10b981" stroke-width="2"/>`;
+            }
+
+            svg.innerHTML = `
+                <circle cx="${cx}" cy="${cy}" r="${r}" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+                ${lines}
+                <circle cx="${cx}" cy="${cy}" r="5" fill="#f59e0b"/>
+            `;
+        }
+
+        // SIMULATOR 7: Scissors Mechanism & Vertically Opposite Angle Prover
+        function renderSim7(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="scissorSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div class="text-xs">
+                        <label class="text-slate-400 flex justify-between">
+                            <span>Scissors Opening Angle (θ):</span>
+                            <span id="sciAngleVal" class="text-emerald-400 font-bold">50°</span>
+                        </label>
+                        <input type="range" min="20" max="80" value="50" step="5" id="sciSlider" oninput="updateScissors()" class="w-full accent-emerald-500">
+                    </div>
+                    <div id="sciProofDisplay" class="p-2.5 bg-slate-950 rounded-xl border border-emerald-500/30 text-xs font-mono text-center text-emerald-300 font-bold">
+                        Theorem 6.1: ∠1 = ∠3 = 50° & ∠2 = ∠4 = 130°
+                    </div>
+                </div>
+            `;
+            updateScissors();
+        }
+
+        function updateScissors() {
+            const deg = parseInt(document.getElementById('sciSlider').value);
+            const supp = 180 - deg;
+            document.getElementById('sciAngleVal').textContent = `${deg}°`;
+            document.getElementById('sciProofDisplay').textContent = `Theorem 6.1: ∠1 = ∠3 = ${deg}° & ∠2 = ∠4 = ${supp}°`;
+
+            const svg = document.getElementById('scissorSvg');
+            if (!svg) return;
+
+            const cx = 150, cy = 150, len = 120;
+            const rad = (deg * Math.PI) / 360;
+
+            const x1 = cx - len * Math.cos(rad), y1 = cy - len * Math.sin(rad);
+            const x2 = cx + len * Math.cos(rad), y2 = cy + len * Math.sin(rad);
+
+            const x3 = cx - len * Math.cos(rad), y3 = cy + len * Math.sin(rad);
+            const x4 = cx + len * Math.cos(rad), y4 = cy - len * Math.sin(rad);
+
+            svg.innerHTML = `
+                <!-- Line 1 -->
+                <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#38bdf8" stroke-width="3"/>
+                <!-- Line 2 -->
+                <line x1="${x3}" y1="${y3}" x2="${x4}" y2="${y4}" stroke="#f59e0b" stroke-width="3"/>
+
+                <circle cx="${cx}" cy="${cy}" r="5" fill="#f8fafc"/>
+
+                <text x="210" y="155" fill="#10b981" font-size="11" font-weight="bold">∠1=${deg}°</text>
+                <text x="50" y="155" fill="#10b981" font-size="11" font-weight="bold">∠3=${deg}°</text>
+                <text x="135" y="80" fill="#f43f5e" font-size="11" font-weight="bold">∠2=${supp}°</text>
+                <text x="135" y="230" fill="#f43f5e" font-size="11" font-weight="bold">∠4=${supp}°</text>
+            `;
+        }
+
+        // SIMULATOR 8: Linear Pair Bisector Orthogonality Tool
+        function renderSim8(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="bisectorSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div class="text-xs">
+                        <label class="text-slate-400 flex justify-between">
+                            <span>Tilt Center Ray OC:</span>
+                            <span id="bisectAngleVal" class="text-emerald-400 font-bold">70°</span>
+                        </label>
+                        <input type="range" min="30" max="150" value="70" step="5" id="bisectSlider" oninput="updateBisectors()" class="w-full accent-emerald-500">
+                    </div>
+                    <div class="p-2.5 bg-slate-950 rounded-xl border border-emerald-500/30 text-xs font-mono text-center text-emerald-400 font-bold">
+                        ★ PROVEN: Bisector OE ⊥ Bisector OF (Enclosed Angle is ALWAYS 90°!)
+                    </div>
+                </div>
+            `;
+            updateBisectors();
+        }
+
+        function updateBisectors() {
+            const bAng = parseInt(document.getElementById('bisectSlider').value);
+            document.getElementById('bisectAngleVal').textContent = `${bAng}°`;
+
+            const svg = document.getElementById('bisectorSvg');
+            if (!svg) return;
+
+            const cx = 150, cy = 180, r = 100;
+            const radOC = (bAng * Math.PI) / 180;
+            const radOE = (bAng / 2 * Math.PI) / 180;
+            const radOF = ((bAng + (180 - bAng)/2) * Math.PI) / 180;
+
+            const xC = cx + r * Math.cos(radOC), yC = cy - r * Math.sin(radOC);
+            const xE = cx + r * Math.cos(radOE), yE = cy - r * Math.sin(radOE);
+            const xF = cx + r * Math.cos(radOF), yF = cy - r * Math.sin(radOF);
+
+            svg.innerHTML = `
+                <!-- Line AB -->
+                <line x1="30" y1="180" x2="270" y2="180" stroke="#64748b" stroke-width="2"/>
+                <!-- Ray OC -->
+                <line x1="${cx}" y1="${cy}" x2="${xC}" y2="${yC}" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3"/>
+
+                <!-- Bisectors OE and OF -->
+                <line x1="${cx}" y1="${cy}" x2="${xE}" y2="${yE}" stroke="#10b981" stroke-width="3"/>
+                <line x1="${cx}" y1="${cy}" x2="${xF}" y2="${yF}" stroke="#10b981" stroke-width="3"/>
+
+                <text x="${xE + 5}" y="${yE}" fill="#10b981" font-size="10" font-weight="bold">OE</text>
+                <text x="${xF - 15}" y="${yF}" fill="#10b981" font-size="10" font-weight="bold">OF</text>
+
+                <!-- Right Angle Marker -->
+                <circle cx="${cx}" cy="${cy}" r="4" fill="#f8fafc"/>
+                <text x="135" y="140" fill="#f59e0b" font-size="12" font-weight="bold">90°</text>
+            `;
+        }
+
+        // SIMULATOR 9: Transversal 8-Angle Color-Coded Inspector
+        function renderSim9(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="grid grid-cols-2 gap-1.5 text-[11px] font-mono">
+                        <button onclick="highlight8Angles('corr')" id="hCorrBtn" class="p-1.5 rounded bg-emerald-600 text-white font-bold">Corresponding</button>
+                        <button onclick="highlight8Angles('alt')" id="hAltBtn" class="p-1.5 rounded bg-slate-800 text-slate-300">Alt. Interior</button>
+                        <button onclick="highlight8Angles('co')" id="hCoBtn" class="p-1.5 rounded bg-slate-800 text-slate-300">Co-Interior</button>
+                        <button onclick="highlight8Angles('vert')" id="hVertBtn" class="p-1.5 rounded bg-slate-800 text-slate-300">Vert. Opposite</button>
+                    </div>
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="transSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div id="trans8Info" class="p-2.5 bg-slate-950 rounded-xl border border-emerald-500/30 text-xs font-mono text-center text-emerald-300">
+                        <!-- Populated by highlight8Angles() -->
+                    </div>
+                </div>
+            `;
+            highlight8Angles('corr');
+        }
+
+        function highlight8Angles(mode) {
+            ['corr', 'alt', 'co', 'vert'].forEach(k => {
+                const b = document.getElementById(`h${k.charAt(0).toUpperCase() + k.slice(1)}Btn`);
+                if (b) b.className = (k === mode) ? 'p-1.5 rounded bg-emerald-600 text-white font-bold' : 'p-1.5 rounded bg-slate-800 text-slate-300';
+            });
+
+            const info = document.getElementById('trans8Info');
+            const svg = document.getElementById('transSvg');
+            if (!info || !svg) return;
+
+            if (mode === 'corr') {
+                info.innerHTML = `Corresponding Angles: <span class="text-emerald-400 font-bold">(1,5), (2,6), (3,7), (4,8)</span> [Equal]`;
+            } else if (mode === 'alt') {
+                info.innerHTML = `Alternate Interior Angles: <span class="text-cyan-400 font-bold">(3,5) and (4,6)</span> [Z-Pattern, Equal]`;
+            } else if (mode === 'co') {
+                info.innerHTML = `Co-Interior Angles: <span class="text-rose-400 font-bold">(4,5) and (3,6)</span> [C-Pattern, Sum = 180°]`;
+            } else {
+                info.innerHTML = `Vertically Opposite Angles: <span class="text-amber-400 font-bold">(1,3), (2,4), (5,7), (6,8)</span> [Equal]`;
+            }
+
+            svg.innerHTML = `
+                <!-- Parallel Lines l and m -->
+                <line x1="30" y1="100" x2="270" y2="100" stroke="#64748b" stroke-width="2.5"/>
+                <line x1="30" y1="200" x2="270" y2="200" stroke="#64748b" stroke-width="2.5"/>
+                <!-- Transversal Line t -->
+                <line x1="90" y1="30" x2="210" y2="270" stroke="#f59e0b" stroke-width="2.5"/>
+
+                <!-- Top Intersection Angles 1,2,3,4 -->
+                <text x="135" y="85" fill="#f8fafc" font-size="10" font-weight="bold">1</text>
+                <text x="165" y="85" fill="#f8fafc" font-size="10" font-weight="bold">2</text>
+                <text x="165" y="125" fill="#f8fafc" font-size="10" font-weight="bold">3</text>
+                <text x="135" y="125" fill="#f8fafc" font-size="10" font-weight="bold">4</text>
+
+                <!-- Bottom Intersection Angles 5,6,7,8 -->
+                <text x="185" y="185" fill="#f8fafc" font-size="10" font-weight="bold">5</text>
+                <text x="215" y="185" fill="#f8fafc" font-size="10" font-weight="bold">6</text>
+                <text x="215" y="225" fill="#f8fafc" font-size="10" font-weight="bold">7</text>
+                <text x="185" y="225" fill="#f8fafc" font-size="10" font-weight="bold">8</text>
+            `;
+        }
+
+        // SIMULATOR 10: T-Square & Parallel Glide Simulator
+        function renderSim10(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="tsquareSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div class="text-xs">
+                        <label class="text-slate-400 flex justify-between">
+                            <span>Slide T-Square along Ruler:</span>
+                            <span id="tsquareYVal" class="text-emerald-400 font-bold">Position Y</span>
+                        </label>
+                        <input type="range" min="60" max="220" value="130" step="5" id="tsquareSlider" oninput="updateTSquare()" class="w-full accent-emerald-500">
+                    </div>
+                    <div class="p-2.5 bg-slate-950 rounded-xl border border-emerald-500/30 text-xs font-mono text-center text-emerald-300">
+                        Axiom 6.4: Constant 90° corresponding angle guarantees parallel lines!
+                    </div>
+                </div>
+            `;
+            updateTSquare();
+        }
+
+        function updateTSquare() {
+            const y = parseInt(document.getElementById('tsquareSlider').value);
+            const svg = document.getElementById('tsquareSvg');
+            if (!svg) return;
+
+            svg.innerHTML = `
+                <!-- Vertical Drawing Board Edge (Ruler) -->
+                <rect x="30" y="20" width="20" height="260" fill="#334155" stroke="#64748b"/>
+                <text x="20" y="290" fill="#64748b" font-size="9">Ruler</text>
+
+                <!-- Reference Horizontal Line 1 -->
+                <line x1="50" y1="60" x2="270" y2="60" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3"/>
+
+                <!-- Sliding T-Square Blade -->
+                <rect x="50" y="${y - 8}" width="220" height="16" fill="#10b981" fill-opacity="0.3" stroke="#10b981" stroke-width="2"/>
+                <rect x="25" y="${y - 25}" width="25" height="50" rx="3" fill="#047857"/>
+
+                <!-- 90° Angle Marker -->
+                <rect x="50" y="${y - 18}" width="10" height="10" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+                <text x="65" y="${y - 5}" fill="#f59e0b" font-size="9" font-weight="bold">90°</text>
+            `;
+        }
+
+        // SIMULATOR 11: The "Z-Pattern" Alternate Interior Angle Prover
+        function renderSim11(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="zPatternSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div class="text-xs">
+                        <label class="text-slate-400 flex justify-between">
+                            <span>Adjust Transversal Angle:</span>
+                            <span id="zAngleVal" class="text-emerald-400 font-bold">55°</span>
+                        </label>
+                        <input type="range" min="35" max="75" value="55" step="5" id="zSlider" oninput="updateZPattern()" class="w-full accent-emerald-500">
+                    </div>
+                    <div class="p-2.5 bg-slate-950 rounded-xl border border-emerald-500/30 text-xs font-mono text-center text-emerald-400 font-bold">
+                        ★ Z-PATTERN: Alternate Interior Angles are ALWAYS EQUAL!
+                    </div>
+                </div>
+            `;
+            updateZPattern();
+        }
+
+        function updateZPattern() {
+            const ang = parseInt(document.getElementById('zSlider').value);
+            document.getElementById('zAngleVal').textContent = `${ang}°`;
+
+            const svg = document.getElementById('zPatternSvg');
+            if (!svg) return;
+
+            const rad = (ang * Math.PI) / 180;
+            const dy = 100;
+            const dx = dy / Math.tan(rad);
+
+            const x1 = 150 - dx/2, y1 = 100;
+            const x2 = 150 + dx/2, y2 = 200;
+
+            svg.innerHTML = `
+                <!-- Parallel Lines -->
+                <line x1="30" y1="100" x2="270" y2="100" stroke="#475569" stroke-width="2"/>
+                <line x1="30" y1="200" x2="270" y2="200" stroke="#475569" stroke-width="2"/>
+
+                <!-- Glowing Neon Z -->
+                <path d="M 60 100 L ${x1} 100 L ${x2} 200 L 240 200" fill="none" stroke="#10b981" stroke-width="4"/>
+
+                <!-- Alternate Interior Angles -->
+                <text x="${x1 + 10}" y="125" fill="#10b981" font-size="12" font-weight="bold">${ang}°</text>
+                <text x="${x2 - 35}" y="190" fill="#10b981" font-size="12" font-weight="bold">${ang}°</text>
+            `;
+        }
+
+        // SIMULATOR 12: The "C-Pattern" Co-Interior Sum Gauge
+        function renderSim12(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="cPatternSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div class="text-xs">
+                        <label class="text-slate-400 flex justify-between">
+                            <span>Adjust Co-Interior Angle 1:</span>
+                            <span id="cAngleVal" class="text-emerald-400 font-bold">115°</span>
+                        </label>
+                        <input type="range" min="95" max="145" value="115" step="5" id="cSlider" oninput="updateCPattern()" class="w-full accent-emerald-500">
+                    </div>
+                    <div id="cSumInfo" class="p-2.5 bg-slate-950 rounded-xl border border-emerald-500/30 text-xs font-mono text-center text-emerald-400 font-bold">
+                        <!-- Populated by updateCPattern() -->
+                    </div>
+                </div>
+            `;
+            updateCPattern();
+        }
+
+        function updateCPattern() {
+            const a1 = parseInt(document.getElementById('cSlider').value);
+            const a2 = 180 - a1;
+            document.getElementById('cAngleVal').textContent = `${a1}°`;
+            document.getElementById('cSumInfo').innerHTML = `★ C-PATTERN: ${a1}° + ${a2}° = <span class="text-amber-300">180° (Supplementary)</span>`;
+
+            const svg = document.getElementById('cPatternSvg');
+            if (!svg) return;
+
+            svg.innerHTML = `
+                <!-- Parallel Lines -->
+                <line x1="30" y1="100" x2="270" y2="100" stroke="#475569" stroke-width="2"/>
+                <line x1="30" y1="200" x2="270" y2="200" stroke="#475569" stroke-width="2"/>
+
+                <!-- Glowing C Frame on Right -->
+                <path d="M 220 100 L 160 100 L 190 200 L 250 200" fill="none" stroke="#f43f5e" stroke-width="4"/>
+
+                <!-- Angle Labels -->
+                <text x="145" y="125" fill="#f43f5e" font-size="12" font-weight="bold">${a1}°</text>
+                <text x="175" y="190" fill="#f43f5e" font-size="12" font-weight="bold">${a2}°</text>
+            `;
+        }
+
+        // SIMULATOR 13: Venetian Blinds & Multi-Line Parallelism Rail
+        function renderSim13(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="blindSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div class="text-xs">
+                        <label class="text-slate-400 flex justify-between">
+                            <span>Rotate Venetian Blinds Slats:</span>
+                            <span id="blindAngleVal" class="text-emerald-400 font-bold">20°</span>
+                        </label>
+                        <input type="range" min="-30" max="30" value="20" step="5" id="blindSlider" oninput="updateBlinds()" class="w-full accent-emerald-500">
+                    </div>
+                    <div class="p-2.5 bg-slate-950 rounded-xl border border-emerald-500/30 text-xs font-mono text-center text-emerald-300 font-bold">
+                        Theorem 6.6: Line 1 ∥ Line 2 ∥ Line 3 ∥ Line 4 (Transitivity!)
+                    </div>
+                </div>
+            `;
+            updateBlinds();
+        }
+
+        function updateBlinds() {
+            const rot = parseInt(document.getElementById('blindSlider').value);
+            document.getElementById('blindAngleVal').textContent = `${rot}°`;
+
+            const svg = document.getElementById('blindSvg');
+            if (!svg) return;
+
+            let slats = '';
+            for (let y = 60; y <= 240; y += 45) {
+                slats += `
+                    <g transform="translate(150, ${y}) rotate(${rot})">
+                        <line x1="-100" y1="0" x2="100" y2="0" stroke="#10b981" stroke-width="4"/>
+                    </g>
+                `;
+            }
+
+            svg.innerHTML = `
+                <!-- Blind strings -->
+                <line x1="80" y1="30" x2="80" y2="270" stroke="#475569" stroke-width="1.5" stroke-dasharray="3"/>
+                <line x1="220" y1="30" x2="220" y2="270" stroke="#475569" stroke-width="1.5" stroke-dasharray="3"/>
+                ${slats}
+            `;
+        }
+
+        // SIMULATOR 14: Triangle Angle Sum Unfolder
+        function renderSim14(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden">
+                        <svg id="triSumSvg" viewBox="0 0 300 300" class="w-full h-full"></svg>
+                    </div>
+                    <div class="text-xs">
+                        <label class="text-slate-400 flex justify-between">
+                            <span>Adjust Vertex A Position:</span>
+                            <span id="triAVertexVal" class="text-emerald-400 font-bold">A(150, 70)</span>
+                        </label>
+                        <input type="range" min="80" max="220" value="150" step="10" id="triASlider" oninput="updateTriSum()" class="w-full accent-emerald-500">
+                    </div>
+                    <div id="triSumProof" class="p-2.5 bg-slate-950 rounded-xl border border-emerald-500/30 text-xs font-mono text-center text-emerald-400 font-bold">
+                        Theorem 6.7: ∠A + ∠B + ∠C = 180° (Proved via Parallel Auxiliary Line!)
+                    </div>
+                </div>
+            `;
+            updateTriSum();
+        }
+
+        function updateTriSum() {
+            const ax = parseInt(document.getElementById('triASlider').value);
+            document.getElementById('triAVertexVal').textContent = `A(${ax}, 70)`;
+
+            const svg = document.getElementById('triSumSvg');
+            if (!svg) return;
+
+            const bx = 60, by = 210;
+            const cxPt = 240, cyPt = 210;
+
+            svg.innerHTML = `
+                <!-- Auxiliary Parallel Line XAY ∥ BC -->
+                <line x1="20" y1="70" x2="280" y2="70" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4"/>
+                <text x="25" y="65" fill="#f59e0b" font-size="10" font-weight="bold">X</text>
+                <text x="270" y="65" fill="#f59e0b" font-size="10" font-weight="bold">Y (Parallel to BC)</text>
+
+                <!-- Triangle ABC -->
+                <polygon points="${ax},70 ${bx},${by} ${cxPt},${cyPt}" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="3"/>
+
+                <circle cx="${ax}" cy="70" r="5" fill="#f8fafc"/>
+                <text x="${ax - 5}" y="95" fill="#ffffff" font-size="11" font-weight="bold">A</text>
+
+                <circle cx="${bx}" cy="${by}" r="5" fill="#38bdf8"/>
+                <text x="${bx - 15}" y="${by + 15}" fill="#38bdf8" font-size="11" font-weight="bold">B</text>
+
+                <circle cx="${cxPt}" cy="${cyPt}" r="5" fill="#a855f7"/>
+                <text x="${cxPt + 8}" y="${cyPt + 15}" fill="#a855f7" font-size="11" font-weight="bold">C</text>
+            `;
+        }
+
+        // SIMULATOR 15: Triangle Angle Constraints & Contradiction Tester
+        function renderSim15(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="text-xs">
+                        <label class="text-slate-400">Test Impossible Triangle Scenarios:</label>
+                        <select id="contraSelect" onchange="testContradiction()" class="w-full mt-1 bg-slate-900 border border-slate-700 text-rose-300 rounded p-1 font-mono">
+                            <option value="twoRight">Scenario 1: Triangle with two 90° Right Angles</option>
+                            <option value="twoObtuse">Scenario 2: Triangle with two 100° Obtuse Angles</option>
+                            <option value="allSmall">Scenario 3: Triangle with all three angles < 60° (e.g. 50°, 50°, 50°)</option>
+                        </select>
+                    </div>
+                    <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-slate-950 rounded-xl border border-slate-800 p-2 overflow-hidden flex items-center justify-center">
+                        <div id="contraVisual" class="text-center space-y-2 p-3">
+                            <!-- Visual feedback -->
+                        </div>
+                    </div>
+                    <div id="contraAlert" class="p-2.5 rounded-xl border border-rose-500/50 bg-rose-950/40 text-xs font-mono text-center text-rose-300 font-bold">
+                        <!-- Populated by testContradiction() -->
+                    </div>
+                </div>
+            `;
+            testContradiction();
+        }
+
+        function testContradiction() {
+            const sc = document.getElementById('contraSelect').value;
+            const vis = document.getElementById('contraVisual');
+            const alert = document.getElementById('contraAlert');
+
+            if (sc === 'twoRight') {
+                vis.innerHTML = `
+                    <div class="text-4xl text-rose-500 font-black">🚫 CONTRADICTION!</div>
+                    <div class="text-slate-300 text-xs">90° + 90° = 180°</div>
+                    <div class="text-amber-400 text-xs font-mono">Third angle = 180° - 180° = 0° (Impossible!)</div>
+                `;
+                alert.textContent = "Proof by Contradiction: A triangle can have at most ONE right angle!";
+            } else if (sc === 'twoObtuse') {
+                vis.innerHTML = `
+                    <div class="text-4xl text-rose-500 font-black">🚫 CONTRADICTION!</div>
+                    <div class="text-slate-300 text-xs">100° + 100° = 200° > 180°</div>
+                    <div class="text-amber-400 text-xs font-mono">Sum already exceeds 180°!</div>
+                `;
+                alert.textContent = "Proof by Contradiction: A triangle can have at most ONE obtuse angle!";
+            } else {
+                vis.innerHTML = `
+                    <div class="text-4xl text-rose-500 font-black">🚫 CONTRADICTION!</div>
+                    <div class="text-slate-300 text-xs">50° + 50° + 50° = 150° < 180°</div>
+                    <div class="text-amber-400 text-xs font-mono">Cannot close into a triangle!</div>
+                `;
+                alert.textContent = "Proof by Contradiction: A triangle CANNOT have all three angles < 60°!";
+            }
+            playErrorSound();
+        }
+
+        // SIMULATOR 16: Geometric Rule-Based Forward Chaining Engine
+        function renderSim16(container) {
+            container.innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="text-slate-400">AI Inference Engine:</span>
+                        <button onclick="runInferenceEngine()" class="px-3 py-1 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition">
+                            ▶ Run Deduction Steps
+                        </button>
+                    </div>
+                    <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 font-mono text-[11px] space-y-1.5 h-[190px] overflow-y-auto" id="inferLog">
+                        <div class="text-slate-500">// Given: Line AB ∥ CD, Transversal t, ∠1 = 65°</div>
+                        <div class="text-cyan-400">Ready to execute forward-chaining rules...</div>
+                    </div>
+                    <div id="inferResult" class="p-2.5 bg-slate-950 rounded-xl border border-emerald-500/30 text-xs font-mono text-center text-emerald-400 font-bold">
+                        Click 'Run Deduction Steps' to trigger automated geometric inference!
+                    </div>
+                </div>
+            `;
+        }
+
+        function runInferenceEngine() {
+            const log = document.getElementById('inferLog');
+            const res = document.getElementById('inferResult');
+            log.innerHTML = `<div class="text-slate-500">// Executing Forward-Chaining Deduction...</div>`;
+
+            setTimeout(() => {
+                log.innerHTML += `<div class="text-amber-300">Rule 1 applied: vert_opposite(∠1, ∠3) ⇒ ∠3 = 65°</div>`;
+                playTone(400, 'sine', 0.1);
+            }, 300);
+
+            setTimeout(() => {
+                log.innerHTML += `<div class="text-amber-300">Rule 2 applied: linear_pair(∠1, ∠2) ⇒ ∠2 = 180° - 65° = 115°</div>`;
+                playTone(480, 'sine', 0.1);
+            }, 700);
+
+            setTimeout(() => {
+                log.innerHTML += `<div class="text-cyan-300">Rule 3 applied: alt_interior(∠3, ∠5) ⇒ ∠5 = 65°</div>`;
+                playTone(560, 'sine', 0.1);
+            }, 1100);
+
+            setTimeout(() => {
+                log.innerHTML += `<div class="text-emerald-400 font-bold">Rule 4 applied: co_interior(∠4, ∠5) ⇒ ∠4 = 180° - 65° = 115°</div>`;
+                res.innerHTML = `★ SUCCESS: All 8 angles deduced in 4 computational inference steps!`;
+                playSuccessSound();
+            }, 1500);
+        }
+
+        // --- INITIALIZATION ---
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCurrentSlide();
+        });
+    </script>
+</body>
+</html>

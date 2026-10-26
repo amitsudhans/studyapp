@@ -1,0 +1,1884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCERT Class 9 Science • Chapter 5: Exploring Mixtures & Separation Laboratory</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body);"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        code, pre, .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(51, 65, 85, 0.6);
+        }
+        @keyframes mouthMove {
+            0%, 100% { transform: scaleY(0.2); }
+            50% { transform: scaleY(1); }
+        }
+        .talking {
+            animation: mouthMove 0.22s infinite alternate ease-in-out;
+            transform-origin: center;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(99, 102, 241, 0.2); }
+            50% { box-shadow: 0 0 25px rgba(99, 102, 241, 0.45); }
+        }
+        .pulse-border {
+            animation: pulseGlow 2.5s infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
+
+    <!-- Top Navigation Bar -->
+    <header class="glass-panel sticky top-0 z-40 border-b border-slate-800/80 px-4 py-2.5 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-violet-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-950/40 border border-indigo-400/30">
+                <i data-lucide="flask-conical" class="w-5 h-5 text-white"></i>
+            </div>
+            <div>
+                <div class="flex items-center gap-2">
+                    <span class="text-[11px] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-indigo-950/80 text-indigo-400 border border-indigo-800/60 font-mono">
+                        NCERT Class 9 Science • Chapter 5
+                    </span>
+                    <span class="hidden sm:inline-block text-[11px] font-medium text-slate-400">• Chemistry & Separation Science</span>
+                </div>
+                <h1 class="text-sm sm:text-base font-extrabold text-white tracking-tight flex items-center gap-1.5">
+                    Exploring Mixtures and their Separation
+                </h1>
+            </div>
+        </div>
+
+        <!-- Slide Selector & Nav Controls -->
+        <div class="flex items-center gap-2 sm:gap-3">
+            <div class="relative">
+                <button onclick="window.toggleSlideMenu()" id="slideMenuBtn" class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/70 hover:bg-slate-800 text-xs font-semibold text-slate-200 transition">
+                    <i data-lucide="compass" class="w-3.5 h-3.5 text-indigo-400"></i>
+                    <span>Slide <span id="currentSlideNum">1</span> / 20</span>
+                    <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-400"></i>
+                </button>
+                <div id="slideMenuDropdown" class="hidden absolute right-0 mt-2 w-72 max-h-96 overflow-y-auto glass-panel rounded-xl shadow-2xl p-2 z-50 border border-slate-700 space-y-1">
+                    <div class="text-[11px] font-bold px-2.5 py-1 text-slate-400 uppercase tracking-wider font-mono">Curriculum Syllabus Index</div>
+                    <div id="slideListItems" class="space-y-0.5"></div>
+                </div>
+            </div>
+
+            <!-- Voice Controls -->
+            <div class="flex items-center gap-1 bg-slate-900/90 rounded-lg p-1 border border-slate-800">
+                <button onclick="window.toggleSpeech()" id="speechBtn" title="Play Voiceover Narration" class="w-8 h-8 rounded-md bg-indigo-600 hover:bg-indigo-500 text-white flex items-center justify-center transition">
+                    <i data-lucide="volume-2" id="speechIcon" class="w-4 h-4"></i>
+                </button>
+                <button onclick="window.stopSpeech()" title="Stop Voiceover" class="w-8 h-8 rounded-md hover:bg-slate-800 text-slate-400 hover:text-slate-200 flex items-center justify-center transition">
+                    <i data-lucide="square" class="w-3.5 h-3.5"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace Area -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-start">
+
+        <!-- Left Column: Talking Avatar, Theory Points, Checkpoints & Quizzes (7 cols) -->
+        <div class="lg:col-span-7 flex flex-col gap-4">
+
+            <!-- Teacher Avatar & Audio Card -->
+            <div class="glass-panel rounded-2xl p-4 border border-slate-800/80 shadow-xl relative overflow-hidden bg-gradient-to-r from-slate-900/95 via-slate-900/80 to-indigo-950/20">
+                <div class="flex items-center gap-3.5">
+                    <!-- SVG Talking Avatar (Prof. Sophia) -->
+                    <div class="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-b from-indigo-600 to-violet-800 p-0.5 shadow-md shrink-0">
+                        <svg viewBox="0 0 100 100" class="w-full h-full rounded-[14px] bg-slate-900 overflow-hidden">
+                            <rect width="100" height="100" fill="#13102b"/>
+                            <circle cx="50" cy="50" r="42" fill="#312e81" opacity="0.4"/>
+                            <!-- Torso / Lab Coat -->
+                            <path d="M20,95 Q50,75 80,95 L80,100 L20,100 Z" fill="#334155"/>
+                            <path d="M35,90 L50,100 L65,90 L60,82 L50,86 L40,82 Z" fill="#4f46e5"/>
+                            <!-- Head -->
+                            <ellipse cx="50" cy="46" rx="22" ry="26" fill="#fed7aa"/>
+                            <!-- Hair -->
+                            <path d="M26,42 Q28,18 50,18 Q72,18 74,42 Q68,26 50,26 Q32,26 26,42 Z" fill="#374151"/>
+                            <path d="M26,42 Q24,60 28,68 Q32,56 32,46 Z" fill="#374151"/>
+                            <path d="M74,42 Q76,60 72,68 Q68,56 68,46 Z" fill="#374151"/>
+                            <!-- Glasses -->
+                            <rect x="33" y="40" width="13" height="8" rx="2" fill="none" stroke="#4338ca" stroke-width="2"/>
+                            <rect x="54" y="40" width="13" height="8" rx="2" fill="none" stroke="#4338ca" stroke-width="2"/>
+                            <line x1="46" y1="44" x2="54" y2="44" stroke="#4338ca" stroke-width="2"/>
+                            <!-- Eyes -->
+                            <circle cx="39.5" cy="44" r="2.2" fill="#1f2937"/>
+                            <circle cx="60.5" cy="44" r="2.2" fill="#1f2937"/>
+                            <!-- Nose -->
+                            <path d="M50,47 L48,53 L52,53" fill="none" stroke="#fba06f" stroke-width="1.6" stroke-linecap="round"/>
+                            <!-- Talking Mouth -->
+                            <g id="teacherMouthGroup" transform="translate(50, 61)">
+                                <ellipse id="teacherMouth" cx="0" cy="0" rx="6" ry="1.8" fill="#991b1b"/>
+                            </g>
+                        </svg>
+                        <div class="absolute -bottom-1 -right-1 px-1.5 py-0.5 rounded text-[9px] font-bold bg-indigo-500 text-white font-mono shadow">
+                            TEACHER
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider font-mono">Prof. Sophia • Voice Guide</span>
+                            <span id="speechStatusIndicator" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">Ready</span>
+                        </div>
+                        <p id="narrationText" class="text-xs text-slate-300 mt-1 line-clamp-3 leading-relaxed italic">
+                            Welcome students! Today we unlock the science of mixtures, solutions, colloids, and separation techniques—bridging fundamental chemistry, classical Indian distillation, and life-saving medical discoveries.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Presentation Slide (Slides 1 to 16) -->
+            <div id="contentSlideContainer" class="space-y-4">
+                <!-- Slide Header Card -->
+                <div class="glass-panel rounded-2xl p-5 border border-slate-800 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span id="slideCategoryText" class="text-[11px] font-bold text-indigo-400 uppercase tracking-widest font-mono">Section Core Theory</span>
+                        <span id="slideBadge" class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-indigo-950/80 text-indigo-300 border border-indigo-800/60 font-mono">
+                            Part 1 of 20
+                        </span>
+                    </div>
+                    <div>
+                        <h2 id="slideTitle" class="text-lg sm:text-xl font-extrabold text-white tracking-tight">Matter & Purity: Pure Substances vs Mixtures</h2>
+                        <p id="slideSubtitle" class="text-xs sm:text-sm font-medium text-indigo-400/90 mt-0.5">Homogeneous vs Heterogeneous Systems: Physical Combinations without Fixed Ratios</p>
+                    </div>
+                    <ul id="slideKeyPoints" class="text-xs sm:text-sm text-slate-300 space-y-2 pt-1 border-t border-slate-800/80 leading-relaxed">
+                        <!-- Injected via JavaScript -->
+                    </ul>
+                </div>
+
+                <!-- Checkpoints Container -->
+                <div class="glass-panel rounded-2xl p-4 sm:p-5 border border-slate-800 space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-800/80 pb-2.5">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-indigo-400"></i>
+                            <h3 class="text-xs sm:text-sm font-bold text-white uppercase tracking-wider">Concept Checkpoints</h3>
+                        </div>
+                        <span class="text-[11px] font-mono text-slate-400">2 In-Slide Questions</span>
+                    </div>
+                    <div id="checkpointsList" class="space-y-4">
+                        <!-- Injected via JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dedicated Quiz Slide (Slides 17 to 20) -->
+            <div id="quizSlideContainer" class="hidden glass-panel rounded-2xl p-4 sm:p-5 border border-slate-800 space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
+                    <div class="flex items-center gap-2">
+                        <div class="w-7 h-7 rounded-lg bg-indigo-950 border border-indigo-700/60 flex items-center justify-center text-indigo-400">
+                            <i data-lucide="award" class="w-4 h-4"></i>
+                        </div>
+                        <div>
+                            <h3 id="quizTitleDisplay" class="text-sm font-extrabold text-white">Mastery Assessment</h3>
+                            <p class="text-[11px] text-slate-400">10 Comprehensive Questions with Step-by-Step Solutions</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs font-mono font-bold text-indigo-400">Score: <span id="quizScoreVal">0</span> / 10</span>
+                    </div>
+                </div>
+
+                <div id="quizQuestionsList" class="space-y-4">
+                    <!-- Injected via JavaScript -->
+                </div>
+            </div>
+
+            <!-- Slide 20 Last Slide Notice -->
+            <div id="lastSlideNotice" class="hidden glass-panel rounded-2xl p-6 text-center border-2 border-indigo-500/40 bg-gradient-to-r from-indigo-950/40 via-slate-900 to-violet-950/40 shadow-xl shadow-indigo-950/30">
+                <div class="w-12 h-12 rounded-full bg-indigo-500/20 text-indigo-400 border border-indigo-500/40 flex items-center justify-center mx-auto mb-2">
+                    <i data-lucide="check-check" class="w-6 h-6"></i>
+                </div>
+                <h4 class="text-lg font-bold text-white">Curriculum Chapter Mastered!</h4>
+                <p class="text-base sm:text-lg text-indigo-300 font-semibold mt-1">You have reached the last slide of this chapter</p>
+                <p class="text-xs text-slate-400 mt-2 max-w-md mx-auto">
+                    You have comprehensively mastered Solutions, Suspensions, Colloids, Concentration Formulas, Separation Techniques (Sublimation, Centrifugation, Chromatography, Fractional Distillation, Crystallisation, Alum Coagulation), Kannauj Deg-Bhapka, the Paperfuge, Dr. Dilip Mahalanabis's ORS, and Artificial Blood science!
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Right Column: Interactive Bespoke SVG Simulators (5 cols) -->
+        <div class="lg:col-span-5 flex flex-col gap-4 sticky top-20">
+            <div class="glass-panel rounded-2xl p-4 sm:p-5 border border-slate-800 shadow-2xl flex flex-col gap-3">
+                <div class="flex items-center justify-between border-b border-slate-800/80 pb-2.5">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="cpu" class="w-4 h-4 text-indigo-400"></i>
+                        <h3 id="simulatorTitle" class="text-xs sm:text-sm font-bold text-white uppercase tracking-wider">
+                            Interactive Visual Laboratory
+                        </h3>
+                    </div>
+                    <span id="simulatorBadge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-900 text-violet-400 border border-slate-700">
+                        Interactive SVG
+                    </span>
+                </div>
+
+                <!-- Simulator Dynamic Viewport -->
+                <div id="simulatorViewport" class="min-h-[380px] flex items-center justify-center relative">
+                    <!-- Dynamic Interactive Simulator Content Rendered Here -->
+                </div>
+            </div>
+
+            <!-- Global Laboratory Quick Stats -->
+            <div class="glass-panel rounded-xl p-3 border border-slate-800/80 flex items-center justify-around text-center text-xs">
+                <div>
+                    <span class="text-slate-400 block text-[10px]">Mixture Types</span>
+                    <span class="font-bold text-indigo-400 font-mono">3 Classes</span>
+                </div>
+                <div class="h-6 w-px bg-slate-800"></div>
+                <div>
+                    <span class="text-slate-400 block text-[10px]">Separations</span>
+                    <span class="font-bold text-violet-400 font-mono">6 Methods</span>
+                </div>
+                <div class="h-6 w-px bg-slate-800"></div>
+                <div>
+                    <span class="text-slate-400 block text-[10px]">Pioneers</span>
+                    <span class="font-bold text-cyan-400 font-mono">ORS & Paperfuge</span>
+                </div>
+                <div class="h-6 w-px bg-slate-800"></div>
+                <div>
+                    <span class="text-slate-400 block text-[10px]">Checkpoints</span>
+                    <span class="font-bold text-amber-400 font-mono">32 Total</span>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Bottom Action Navigation Bar -->
+    <footer class="glass-panel sticky bottom-0 z-40 border-t border-slate-800/90 px-4 py-3 mt-auto">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <button onclick="window.prevSlide()" id="prevBtn" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-bold text-slate-300 transition">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                <span>Previous Slide</span>
+            </button>
+
+            <!-- Slide Dots -->
+            <div id="slideDots" class="hidden md:flex items-center gap-1.5 overflow-x-auto max-w-md py-1 px-2">
+                <!-- 20 Indicator Dots -->
+            </div>
+
+            <button onclick="window.nextSlide()" id="nextBtn" class="flex items-center gap-2 px-5 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white text-xs font-bold shadow-lg shadow-indigo-950/40 transition">
+                <span>Next Slide</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+        </div>
+    </footer>
+
+    <!-- Step-by-Step Solution Pop-up Modal -->
+    <div id="solutionModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+        <div class="glass-panel w-full max-w-lg rounded-2xl border border-indigo-500/50 p-6 shadow-2xl space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div class="flex items-center gap-2 text-indigo-400 font-bold text-sm">
+                    <i data-lucide="lightbulb" class="w-4 h-4"></i>
+                    <span>Step-by-Step Pedagogical Solution</span>
+                </div>
+                <button onclick="window.closeSolutionModal()" class="w-7 h-7 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+            <div id="solutionModalBody" class="text-xs sm:text-sm text-slate-300 space-y-3 leading-relaxed">
+                <!-- Dynamic Solution Content -->
+            </div>
+            <div class="text-right pt-2 border-t border-slate-800">
+                <button onclick="window.closeSolutionModal()" class="px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition">
+                    Understood & Continue
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Script -->
+    <script>
+        const SLIDES = [{"id": 1, "title": "Matter & Purity: Pure Substances vs Mixtures", "subtitle": "Homogeneous vs Heterogeneous Systems: Physical Combinations without Fixed Ratios", "narration": "Welcome students! In chemistry, 'pure' means something very specific: a single form of matter with fixed chemical composition and sharp melting points, like distilled water or gold. Most substances around us, however, are mixtures\u2014physical combinations of two or more pure substances in variable proportions, retaining their original individual properties.", "points": ["<strong>Pure Substances:</strong> Composed of only one type of particle (elements like Iron $\\text{Fe}$ or compounds like pure Water $\\text{H}_2\\text{O}$); exhibit fixed melting/boiling points and cannot be separated into constituents by physical methods.", "<strong>Mixtures:</strong> Contain two or more pure substances mixed together in any proportion without chemical bonding; constituent components retain their distinct physical and chemical identities.", "<strong>Homogeneous Mixtures:</strong> Uniform composition and single phase throughout (e.g., salt dissolved in water, air, brass alloy); individual particles are indistinguishable under an optical microscope.", "<strong>Heterogeneous Mixtures:</strong> Non-uniform composition with physically distinct boundaries of separation (e.g., sand and iron filings, oil and water, chalk in water); components remain visibly distinct."], "checkpoints": [{"q": "Why is 24-carat pure gold considered a pure substance, while 22-carat jewelry gold is classified as a mixture?", "options": ["22-carat gold has chemical bonds between gold and copper", "22-carat gold contains copper or silver alloyed in variable proportion without chemical reaction", "24-carat gold can be separated into components by simple filtration", "22-carat gold has a higher fixed melting point than pure gold"], "correct": 1, "explanation": "22-carat gold is a homogeneous mixture (solid alloy) containing 22 parts gold and 2 parts copper or silver physically mixed without chemical combination, whereas 24-carat gold consists entirely of pure elemental gold atoms."}, {"q": "Which of the following represents a homogeneous mixture?", "options": ["A mixture of sulfur powder and iron filings", "Muddy pond water", "A clear solution of cane sugar completely dissolved in water", "Milk containing suspended fat globules"], "correct": 2, "explanation": "Sugar completely dissolved in water forms a true solution with uniform composition and single liquid phase throughout, making it a homogeneous mixture."}]}, {"id": 2, "title": "True Solutions & Their Fundamental Properties", "subtitle": "Homogeneous Molecular Dispersions: Solute, Solvent, Particle Size < 1 nm, and Stability", "narration": "A true solution is a homogeneous mixture of two or more substances. The component present in larger quantity that dissolves the other is the solvent, while the component dissolved is the solute. Because solute particles are smaller than 1 nanometer, they do not scatter light and will never settle out over time.", "points": ["<strong>Components of a Solution:</strong> Solute (substance dissolved, usually lesser amount) + Solvent (dissolving medium, usually greater amount). In an aqueous tincture of iodine, iodine solid is solute and alcohol is solvent.", "<strong>Ultramicroscopic Particle Size:</strong> Solute particles are individual ions or molecules with diameters less than $1\\text{ nm}$ ($10^{-9}\\text{ m}$), making them invisible even under powerful light microscopes.", "<strong>Optical Clarity & Absence of Tyndall Effect:</strong> Because particles are extraordinarily minute, they cannot scatter a beam of visible light passing through; the path of light is not visible in a true solution.", "<strong>High Stability & Filterability:</strong> Solute particles cannot be separated by ordinary filter paper or parchment membranes, and they never settle down when left undisturbed.", "<strong>Non-Liquid Solutions:</strong> Solutions are not always liquid: Air is a gaseous solution ($78\\%\\ \\text{N}_2, 21\\%\\ \\text{O}_2$), and Brass is a solid solution (alloy of $\\sim 70\\%\\ \\text{Cu}$ and $\\sim 30\\%\\ \\text{Zn}$)."], "checkpoints": [{"q": "Why does a beam of light passed through a clear copper sulfate aqueous solution not show a illuminated visible beam path?", "options": ["Copper sulfate chemically absorbs 100% of the light photons", "Solute ions are smaller than 1 nm and cannot scatter visible light wavelengths", "The solution is opaque to visible radiation", "Solute particles settle too quickly to scatter light"], "correct": 1, "explanation": "In a true solution, solute particles are smaller than 1 nanometer (less than the wavelength of light), so they do not scatter light. Hence, true solutions do not show the Tyndall effect."}, {"q": "In aerated soda water, what are the solute and solvent respectively?", "options": ["Solute: Water; Solvent: Carbon dioxide gas", "Solute: Carbon dioxide gas; Solvent: Water", "Both are solutes dissolved in air", "Both act simultaneously as solvents"], "correct": 1, "explanation": "In soda water, gaseous carbon dioxide (solute) is dissolved under high pressure in liquid water (solvent)."}]}, {"id": 3, "title": "Suspensions & Heterogeneous Settling Dynamics", "subtitle": "Macroscopic Particulate Systems: Particle Size > 100 nm, Instability, and Filterability", "narration": "A suspension is a heterogeneous mixture in which solute-like solid particles do not dissolve, but remain suspended throughout the bulk of the liquid medium. Because the particles are larger than 100 nanometers, they are visible to the naked eye, scatter light while in suspension, and eventually settle down under gravity.", "points": ["<strong>Macroscopic Particle Dimension:</strong> Suspended particles have diameters greater than $100\\text{ nm}$ ($10^{-7}\\text{ m}$), often visible to the naked eye or ordinary magnifying lens.", "<strong>Heterogeneous Bulk Phase:</strong> The solute particles remain suspended throughout the medium without molecular dissolution (e.g., chalk powder in water, sand in water, milk of magnesia).", "<strong>Dynamic Optical Behavior:</strong> While particles remain suspended, they scatter a beam of light, making its path visible. However, once particles settle, the scattering stops.", "<strong>Thermodynamic Instability:</strong> When left undisturbed, suspended particles settle at the bottom of the container due to gravity (sedimentation).", "<strong>Separation by Filtration:</strong> Suspended solid particles are larger than the pore diameter of ordinary filter paper and can be completely separated as a residue."], "checkpoints": [{"q": "What happens to the ability of a chalk-water suspension to scatter light after it has been left undisturbed for 30 minutes?", "options": ["Its light-scattering capacity increases exponentially", "It stops scattering light because the heavy chalk particles settle down to the bottom", "It converts spontaneously into a true solution", "The chalk particles dissolve into ions smaller than 1 nm"], "correct": 1, "explanation": "Suspensions are unstable. Once left undisturbed, the dense chalk particles sediment to the bottom under gravity; the supernatant liquid no longer scatters light."}, {"q": "Which property correctly distinguishes a suspension from a true solution?", "options": ["Suspension particles pass freely through filter paper without residue", "Suspension particles settle down on standing, whereas true solution particles never settle", "Suspensions are always completely transparent and homogeneous", "Suspension particle diameter is strictly less than 1 nm"], "correct": 1, "explanation": "Suspensions are unstable heterogeneous mixtures where particles sediment over time under gravity, whereas true solutions are permanently stable homogeneous mixtures."}]}, {"id": 4, "title": "Colloids & The Tyndall Effect", "subtitle": "Intermediate Dispersions (1\u2013100 nm): Brownian Motion, Light Scattering, and Colloidal Forms", "narration": "Colloids occupy the fascinating intermediate territory between true solutions and suspensions. With particle sizes between 1 and 100 nanometers, colloids appear homogeneous to the naked eye, like milk or ink, but are actually heterogeneous! Their particles are large enough to scatter light\u2014producing the famous Tyndall effect\u2014yet light enough to remain permanently suspended due to continuous molecular bombardment called Brownian motion.", "points": ["<strong>Intermediate Colloidal Scale:</strong> Particle diameter ranges between $1\\text{ nm}$ and $100\\text{ nm}$ ($10^{-9}\\text{ m}$ to $10^{-7}\\text{ m}$).", "<strong>Two-Phase Architecture:</strong> Consists of a <em>Dispersed Phase</em> (the solute-like colloidal substance) distributed within a <em>Dispersion Medium</em> (the continuous solvent-like medium).", "<strong>The Tyndall Effect (John Tyndall, 1869):</strong> Scattering of a visible light beam by colloidal particles, illuminating the path of the beam as a luminous cone (e.g., sunlight passing through dense forest mist or dust in a cinema hall).", "<strong>Brownian Motion (Robert Brown, 1827):</strong> Constant, erratic zig-zag motion of colloidal particles caused by unequal collisions with dispersion medium molecules, preventing gravitational settling.", "<strong>Colloidal Types:</strong> Sol (solid in liquid: ink, paint), Gel (liquid in solid: jelly, cheese, butter), Emulsion (liquid in liquid: milk, face cream), Aerosol (liquid/solid in gas: fog, clouds, smoke), Foam (gas in liquid/solid: shaving cream, foam rubber)."], "checkpoints": [{"q": "Why do fat and protein particles in milk remain suspended indefinitely without settling to the bottom?", "options": ["They are held by chemical covalent bonds to water", "Constant random collisions with water molecules (Brownian motion) counteract gravity", "Milk is a true solution with particles smaller than 0.1 nm", "Milk is an unstable coarse suspension"], "correct": 1, "explanation": "In colloids, continuous chaotic bombardment by dispersion medium molecules (Brownian motion) imparts kinetic energy that prevents colloidal particles from settling under gravity."}, {"q": "What type of colloid is formed when liquid water droplets are dispersed in atmospheric air (fog or cloud)?", "options": ["Solid Sol", "Aerosol", "Gel", "Emulsion"], "correct": 1, "explanation": "When a liquid (water droplets) is dispersed in a gas (air), the resulting colloidal system is classified as an Aerosol."}]}, {"id": 5, "title": "Expressing Concentration of Solutions: Mass & Volume Formulas", "subtitle": "Quantifying Solute Content: Mass %, Mass by Volume %, and Volume % with Standard SI Units", "narration": "Concentration is the precise amount of solute present in a given amount of solution. In chemistry, we use three standard percentage conventions: mass by mass percentage, mass by volume percentage, and volume by volume percentage. Mastering these formulas is essential for laboratory preparation, medicine, and industrial chemistry.", "points": ["<strong>Mass by Mass Percentage (\\% w/w):</strong><br>$$\\text{Mass \\% of Solute} = \\frac{\\text{Mass of Solute}}{\\text{Mass of Solution}} \\times 100 = \\frac{\\text{Mass of Solute}}{\\text{Mass of Solute} + \\text{Mass of Solvent}} \\times 100$$", "<strong>Mass by Volume Percentage (\\% w/v):</strong><br>$$\\text{Mass by Volume \\%} = \\frac{\\text{Mass of Solute (in g)}}{\\text{Volume of Solution (in mL)}} \\times 100$$", "<strong>Volume by Volume Percentage (\\% v/v):</strong><br>$$\\text{Volume \\% of Solute} = \\frac{\\text{Volume of Solute}}{\\text{Volume of Solution}} \\times 100$$", "<strong>Crucial Problem-Solving Invariant:</strong> Remember that $\\text{Mass of Solution} = \\text{Mass of Solute} + \\text{Mass of Solvent}$. Never divide solely by the solvent mass!", "<strong>NCERT Standard Solved Example:</strong> A solution contains $40\\text{ g}$ of common salt in $320\\text{ g}$ of water. Total mass of solution = $40 + 320 = 360\\text{ g}$.<br>$$\\text{Mass \\%} = \\frac{40}{360} \\times 100 = 11.11\\%$$"], "checkpoints": [{"q": "If 50 g of sodium chloride is dissolved in 200 g of distilled water, what is the mass by mass percentage of the solution?", "options": ["25%", "20%", "16.67%", "10%"], "correct": 1, "explanation": "Total mass of solution = 50 g (solute) + 200 g (solvent) = 250 g. Mass % = (50 / 250) \u00d7 100 = 20%."}, {"q": "A medical antiseptic solution contains 15 mL of pure alcohol dissolved in enough water to make 150 mL of solution. What is its volume by volume percentage?", "options": ["10%", "15%", "11.1%", "5%"], "correct": 0, "explanation": "Volume % = (Volume of solute / Volume of solution) \u00d7 100 = (15 mL / 150 mL) \u00d7 100 = 10% (v/v)."}]}, {"id": 6, "title": "Solubility, Saturated Solutions & Temperature Dynamics", "subtitle": "Equilibrium Thermodynamics: Saturated, Unsaturated, Supersaturated States & Solubility Curves", "narration": "At any given temperature, a solvent can dissolve only a finite amount of solute. When no more solute can dissolve at that specific temperature, the solution is saturated. The maximum mass of solute dissolved in 100 grams of solvent at that temperature is called its solubility. For most solids, heating increases solubility, while cooling causes excess solute to crystallize out.", "points": ["<strong>Unsaturated Solution:</strong> A solution in which more solute can be dissolved at the existing temperature without changing conditions.", "<strong>Saturated Solution:</strong> A thermodynamic equilibrium state where no more solute can dissolve in the solvent at the specified temperature.", "<strong>Supersaturated Solution:</strong> A metastable condition containing more dissolved solute than the equilibrium saturation limit, prepared by cooling a hot saturated solution slowly without disturbance.", "<strong>Solubility Definition:</strong> The maximum mass of solute (in grams) that dissolves in $100\\text{ g}$ of a given solvent at a specific temperature to form a saturated solution.", "<strong>Temperature Influence on Solubility:</strong> For salts with endothermic dissolution (e.g., $\\text{KNO}_3$, $\\text{NH}_4\\text{Cl}$), solubility increases steeply with rising temperature. For salts like $\\text{NaCl}$, solubility rises only marginally with heat.", "<strong>Crystallisation on Cooling:</strong> If a saturated solution prepared at $60^\\circ\\text{C}$ is allowed to cool to $20^\\circ\\text{C}$, the difference in solubility cannot remain dissolved and precipitates as pure crystals."], "checkpoints": [{"q": "The solubility of potassium nitrate (KNO3) in water is 32 g at 20\u00b0C and 106 g at 60\u00b0C. If 100 g of water saturated with KNO3 at 60\u00b0C is cooled down to 20\u00b0C, how much KNO3 will crystallize out?", "options": ["32 g", "106 g", "74 g", "138 g"], "correct": 2, "explanation": "Mass of KNO3 dissolved at 60\u00b0C = 106 g. Mass of KNO3 dissolved at 20\u00b0C = 32 g. The excess solute that must crystallize out = 106 g - 32 g = 74 g."}, {"q": "What happens when a single tiny seed crystal of solute is dropped into an undisturbed supersaturated solution?", "options": ["The seed crystal immediately dissolves", "Rapid precipitation of all excess dissolved solute occurs around the crystal", "The temperature of the solution drops to absolute zero", "The solution turns permanently into a gas"], "correct": 1, "explanation": "A supersaturated solution is metastable. Introducing a seed crystal provides nucleation sites, triggering rapid crystallization of all excess solute until equilibrium saturation is reached."}]}, {"id": 7, "title": "Separation by Sublimation: Solid-Gas Direct Phase Shift", "subtitle": "Purifying Sublimable Volatile Solids from Non-Volatile Impurities (NH4Cl, Camphor, Iodine)", "narration": "Sublimation is a phase transition where a solid changes directly into gas without passing through the intermediate liquid state, and on cooling, the vapour condenses directly back to pure solid (sublimate). We use this technique to separate a volatile, sublimable component from a non-sublimable impurity like common salt or sand.", "points": ["<strong>Scientific Principle:</strong> Exploits the sharp difference in sublimation tendency; one component sublimes upon gentle heating while the other component has a very high melting/boiling point and remains non-volatile.", "<strong>Sublimable Compounds:</strong> Ammonium chloride ($\\text{NH}_4\\text{Cl}$), Camphor, Naphthalene balls, Anthracene, and solid Iodine ($\\text{I}_2$).", "<strong>Standard Laboratory Setup:</strong> Mixture of $\\text{NH}_4\\text{Cl}$ and $\\text{NaCl}$ placed in a china dish covered with an inverted glass funnel. The stem of the funnel is plugged with cotton to prevent vapour escape.", "<strong>Thermal Deposition:</strong> On heating over a Bunsen burner, $\\text{NH}_4\\text{Cl}$ turns into white dense vapours, rises, and condenses as pure solid crystals on the cooler inner walls of the inverted funnel.", "<strong>Non-Sublimable Residue:</strong> Pure non-volatile common salt ($\\text{NaCl}$) remains behind undisturbed in the china dish."], "checkpoints": [{"q": "Why is the top stem of the inverted glass funnel plugged with cotton during sublimation of ammonium chloride?", "options": ["To prevent air from entering and burning the mixture", "To trap the ammonium chloride vapours inside so they condense on the funnel walls without escaping into the atmosphere", "To filter solid salt particles from the vapour", "To speed up the burning of the china dish"], "correct": 1, "explanation": "The cotton plug closes the stem of the funnel, containing the sublimed vapours so they deposit as pure solid sublimate on the cool inner walls rather than escaping."}, {"q": "Which of the following pairs of substances CANNOT be separated by sublimation?", "options": ["Ammonium chloride and common salt", "Camphor and sand", "Sodium chloride (salt) and sugar", "Iodine crystals and potassium chloride"], "correct": 2, "explanation": "Neither sodium chloride nor sugar is sublimable; both decompose or melt rather than subliming, so sublimation cannot separate them."}]}, {"id": 8, "title": "Separation by Centrifugation & The Spinning Dance Analogy", "subtitle": "High-Speed Radial Acceleration: Cream Separation, Blood Diagnostics & Kathak Dance Physics", "narration": "When microscopic particles in a liquid suspension are too small to be separated by ordinary filter paper, centrifugation comes to the rescue! By spinning the mixture at thousands of revolutions per minute, centrifugal force drives denser particles radially outward to the bottom of the tube, while lighter liquid remains at the top. This principle mirrors the spinning turns in classical Indian Kathak and Sufi dancing!", "points": ["<strong>Scientific Principle:</strong> Uses rapid rotational motion to generate high centrifugal acceleration (many multiples of Earth's gravity $g$), causing denser suspended particles to sediment rapidly to the bottom while lighter fluid rises.", "<strong>Clinical Diagnostic Applications:</strong> Separates whole blood into cellular components (dense red blood cells at the bottom, white blood cells/platelets in the buffy coat, and straw-colored liquid plasma on top).", "<strong>Dairy & Domestic Applications:</strong> Used in dairies to separate lighter butterfat/cream from denser skimmed milk, and in washing machines to squeeze water out of wet clothes during spin cycles.", "<strong>C-5.3 Dance Biomechanics Analogy:</strong> In Indian classical Kathak (*chakkars*) and Sufi whirling, as a dancer spins with high angular velocity, their costume skirt flares outward due to centrifugal inertia. If the dancer extends their arms, rotational momentum and outward radial forces demonstrate the exact centrifugal physics used in centrifuges!"], "checkpoints": [{"q": "When whole blood is centrifuged in a clinical diagnostic laboratory, why do the red blood cells settle at the very bottom of the centrifuge tube?", "options": ["Red blood cells have lower density than liquid plasma", "Red blood cells are denser than plasma and are driven to the bottom by centrifugal acceleration", "Red blood cells dissolve completely in the tube glass", "Centrifugation neutralizes the mass of blood plasma"], "correct": 1, "explanation": "Centrifugation forces denser components radially outward to the tube bottom; since red blood cells have higher density (~1.09 g/mL) than plasma (~1.025 g/mL), they pack at the bottom."}, {"q": "How does the flaring of a Kathak dancer's flared costume (ghaghra) during rapid pirouettes (chakkars) correlate to centrifugation?", "options": ["Both rely on gravity pulling objects vertically downward", "Both demonstrate outward radial displacement driven by high angular rotational acceleration", "Both require vacuum chambers to operate", "Both involve chemical phase changes from solid to gas"], "correct": 1, "explanation": "In both cases, rapid circular rotation generates outward inertial acceleration that propels matter away from the central axis of rotation."}]}, {"id": 9, "title": "Paper Chromatography: Separating Solutes by Differential Adsorption", "subtitle": "Stationary vs Mobile Phase Dynamics, Dye Separation, and Retention Factor (Rf)", "narration": "Chromatography, derived from the Greek word 'chroma' meaning color, is a separation technique used to separate solutes that dissolve in the same solvent. As the solvent front creeps upward through a porous paper strip via capillary action, components that are more soluble in the mobile phase travel faster, separating into distinct colored bands.", "points": ["<strong>Scientific Principle:</strong> Differential partition and relative solubility between a <em>Stationary Phase</em> (porous cellulose chromatography filter paper) and a <em>Mobile Phase</em> (running solvent, such as water or ethanol).", "<strong>Capillary Ascent:</strong> The solvent rises up the paper strip by capillary action, carrying the dissolved dye molecules along with it.", "<strong>Differential Mobility:</strong> A component that is more soluble in the mobile phase and less adsorbed onto the paper fibers moves faster and travels higher. A less soluble component lags behind.", "<strong>Retention Factor ($R_f$ Metric):</strong> Standard scientific convention to identify compounds:<br>$$R_f = \\frac{\\text{Distance travelled by the solute from baseline}}{\\text{Distance travelled by the solvent front from baseline}}$$", "<strong>Real-World Applications:</strong> Separating synthetic dyes in black ink, isolating plant photosynthetic pigments (chlorophyll a, b, xanthophyll, carotene), and detecting drugs or toxic metabolites in forensic blood/urine tests."], "checkpoints": [{"q": "In a paper chromatography experiment with black ink, why does the green dye component travel higher up the paper strip than the red dye component?", "options": ["Green dye has a higher molecular weight than red dye", "Green dye is more soluble in the rising water solvent and less strongly adsorbed by the paper fibers", "Green dye undergoes sublimation during the test", "Red dye reacts chemically with water to form an insoluble solid"], "correct": 1, "explanation": "Chromatographic separation depends on differential solubility and paper affinity: components that are more soluble in the mobile phase travel faster and farther."}, {"q": "If a dye spot moves 4.5 cm from the origin line while the solvent front moves 9.0 cm, what is the retention factor (Rf) of the dye?", "options": ["2.0", "0.50", "0.45", "13.5"], "correct": 1, "explanation": "Rf = (Distance travelled by solute) / (Distance travelled by solvent front) = 4.5 cm / 9.0 cm = 0.50."}]}, {"id": 10, "title": "Simple Distillation & Traditional Kannauj Deg-Bhapka", "subtitle": "Separating Miscible Liquids (\u0394Tb > 25\u00b0C) & India's Ancient Perfume Hydro-Distillation (C-6.1)", "narration": "Simple distillation is used to separate miscible liquids that boil without decomposition and possess a significant boiling point difference of more than 25\u00b0C. In India, traditional hydro-distillation has been practiced for over 1,000 years in Kannauj\u2014the Perfume Capital of India\u2014using the ingenious copper 'Deg-Bhapka' method to extract pure rose and petrichor attars!", "points": ["<strong>Simple Distillation Principle:</strong> Liquid mixture is heated in a distillation flask. The component with the lower boiling point vaporizes first, passes through a water-cooled Liebig condenser where it liquifies, and is collected in a receiver flask as distillate.", "<strong>Boiling Point Criterion:</strong> Applicable when the boiling points of two miscible liquids differ by at least $25^\\circ\\text{C}$ (or $25\\text{ K}$), e.g., Acetone (b.p. $56^\\circ\\text{C}$) and Water (b.p. $100^\\circ\\text{C}$, $\\Delta T_b = 44^\\circ\\text{C}$).", "<strong>C-6.1 Cultural Legacy: Deg-Bhapka of Kannauj:</strong> Kannauj in Uttar Pradesh produces authentic natural perfumes (*Attar*) using traditional copper stills without modern electricity:", "\u2022 <strong>The Deg (Still):</strong> Large copper vessel holding fresh flower petals (Damask Rose) and water, sealed hermetically with clay and cotton (*multani mitti*).", "\u2022 <strong>The Chonga:</strong> Bamboo pipe wrapped with twine connecting the Deg to the receiver.", "\u2022 <strong>The Bhapka (Receiver):</strong> Long-necked copper vessel filled with sandalwood base oil, submerged in a cold water tank (*Gaddi*) acting as a natural condenser."], "checkpoints": [{"q": "Why can a mixture of acetone (boiling point 56\u00b0C) and water (boiling point 100\u00b0C) be separated cleanly by simple distillation?", "options": ["They form an azeotrope that boils at a single temperature", "Their boiling point difference is 44\u00b0C, which is well above the required threshold of 25\u00b0C", "Water decomposes before reaching its boiling point", "Acetone sublimes while water remains solid"], "correct": 1, "explanation": "Simple distillation works efficiently when miscible liquids have a boiling point difference greater than 25\u00b0C. For acetone (56\u00b0C) and water (100\u00b0C), the difference is 44\u00b0C."}, {"q": "In the traditional Kannauj Deg-Bhapka distillation system, what serves the functional role of the modern water condenser?", "options": ["The wood-fired mud hearth (Bhatti)", "The copper Bhapka vessel submerged inside a cold water tank (Gaddi)", "The bamboo Chonga pipe wrapped in twine", "The clay sealing paste on the rim"], "correct": 1, "explanation": "The Bhapka (copper receiver) is kept submerged in a large tank of cold water, functioning as a condenser to cool and liquefy fragrant steam vapours flowing through the bamboo pipe."}]}, {"id": 11, "title": "Fractional Distillation & Industrial Air Liquefaction", "subtitle": "Separating Liquids with Close Boiling Points (\u0394Tb < 25\u00b0C) & Liquefying Atmospheric Gases", "narration": "When two or more miscible liquids have boiling points that differ by less than 25\u00b0C, simple distillation fails because both vapours rise together. Fractional distillation solves this with a fractionating column packed with glass beads, creating repeated condensation-evaporation cycles. This exact principle allows us to separate atmospheric air into pure nitrogen, argon, and oxygen!", "points": ["<strong>Fractionating Column Architecture:</strong> A vertical column packed with inert glass beads fitted between the flask and condenser. The beads provide a huge surface area for rising vapours to cool and condense repeatedly.", "<strong>Mechanism of Action:</strong> In each vaporization-condensation step up the column, the ascending vapour becomes richer in the more volatile (lower boiling) component, while the descending liquid becomes richer in the less volatile component.", "<strong>Separating Components of Air:</strong> Air is a homogeneous gaseous mixture of $78.08\\%\\ \\text{N}_2$, $20.95\\%\\ \\text{O}_2$, $0.93\\%\\ \\text{Ar}$, and trace gases.", "\u2022 <strong>Step 1: Liquefaction:</strong> Air is filtered, compressed under high pressure, and cooled by rapid expansion to produce liquid air.", "\u2022 <strong>Step 2: Fractional Warming:</strong> Liquid air is allowed to warm slowly in a fractional distillation column:", "  1. <strong>Nitrogen</strong> boils off first at $-196^\\circ\\text{C}$ ($77\\text{ K}$).", "  2. <strong>Argon</strong> boils off second at $-186^\\circ\\text{C}$ ($87\\text{ K}$).", "  3. <strong>Oxygen</strong> remains liquid longest, boiling at $-183^\\circ\\text{C}$ ($90\\text{ K}$), and is collected from the bottom."], "checkpoints": [{"q": "Why does nitrogen gas boil off first when liquid air is gently warmed in a fractional distillation column?", "options": ["Nitrogen has the lowest boiling point (-196\u00b0C) among the major air components", "Nitrogen is denser than liquid oxygen", "Nitrogen reacts chemically with argon to form a solid", "Nitrogen has the highest critical temperature"], "correct": 0, "explanation": "Nitrogen has the lowest boiling point (-196\u00b0C) compared to Argon (-186\u00b0C) and Oxygen (-183\u00b0C), so it vaporizes first at the lowest temperature."}, {"q": "What is the primary function of the glass beads packed inside a fractional distillation column?", "options": ["To chemically catalyze the reaction between the liquids", "To provide an increased surface area for repeated cycles of condensation and re-vaporization", "To absorb water vapor and act as a drying agent", "To filter out suspended dirt particles"], "correct": 1, "explanation": "The glass beads provide a large surface area for hot ascending vapours to cool and condense repeatedly, progressively enriching the vapour in the more volatile liquid."}]}, {"id": 12, "title": "Crystallisation & Micro-Scale Green Chemistry (C-7.1)", "subtitle": "Purifying Soluble Solids: Copper Sulfate, Alum & Waste-Minimizing Microscale Labs", "narration": "Crystallisation is a technique that separates a pure solid in the form of its geometric crystals from a solution. It is vastly superior to simple evaporation to dryness because evaporation often causes sensitive compounds to decompose, char (like sugar), or leaves behind soluble impurities. In modern laboratories, micro-scale crystallisation dramatically reduces chemical waste!", "points": ["<strong>Why Crystallisation is Superior to Evaporation:</strong><br>\u2022 During evaporation to dryness, solids may decompose or get charred upon excessive heating (e.g., sugar decomposes to carbon).<br>\u2022 Soluble impurities remain mixed with the solid during complete evaporation, whereas crystallisation leaves impurities dissolved in the mother liquor.", "<strong>Laboratory Crystallisation Protocol (Copper Sulfate $\\text{CuSO}_4\\cdot 5\\text{H}_2\\text{O}$):</strong><br>1. Dissolve impure sample in minimum volume of distilled water.<br>2. Filter out insoluble dirt impurities.<br>3. Heat gently until the crystallization point is reached (tested by dipping a glass rod\u2014crust forms).<br>4. Leave undisturbed to cool slowly: magnificent blue triclinic crystals grow!", "<strong>C-7.1 Micro-scale Chemistry Innovation:</strong> Instead of using hundreds of grams of toxic heavy metal salts, micro-scale setups use milligram-level reagents (few drops on cavity well-plates or capillary tubes). This adheres to <em>Green Chemistry</em>: zero toxic effluent, minimal hazard, and identical crystalline discovery!"], "checkpoints": [{"q": "Why is crystallisation preferred over heating to dryness for obtaining pure copper sulfate from an impure sample?", "options": ["Evaporation requires expensive catalysts", "Heating to dryness can decompose copper sulfate and traps all soluble impurities in the crust", "Crystallisation converts copper into gold", "Copper sulfate will sublime and escape if crystallized"], "correct": 1, "explanation": "Heating to dryness can decompose hydrated copper sulfate and causes soluble impurities to deposit with the product. Crystallisation leaves impurities behind in the mother liquor."}, {"q": "What core principle of Green Chemistry (C-7.1) is demonstrated by using micro-scale crystallisation experiments?", "options": ["Using plastic disposable beakers instead of glassware", "Drastically reducing reagent quantities and hazardous chemical waste while achieving identical pedagogical outcomes", "Eliminating the need to record experimental data", "Increasing the heating temperature to 1000\u00b0C"], "correct": 1, "explanation": "Micro-scale experimentation uses minute reagent volumes, dramatically minimizing hazardous chemical waste and environmental footprint."}]}, {"id": 13, "title": "Coagulation, Loading & Municipal Water Purification (C-5.2)", "subtitle": "Engineering Clean Drinking Water: Sedimentation, Alum Loading, Multi-tier Filtration & Chlorination", "narration": "Water from rivers or lakes contains suspended clay, colloidal impurities, and harmful pathogens. The municipal water purification system uses a sequential series of physical separation processes\u2014sedimentation, loading with alum, multi-tier filtration, and chlorination\u2014to deliver safe, potable water to millions of homes every day.", "points": ["<strong>Stage 1: Sedimentation Tank:</strong> Coarse suspended debris and heavy soil particles settle to the bottom under gravitational force over several hours.", "<strong>Stage 2: Loading / Coagulation Tank (Potash Alum):</strong> Fine colloidal clay particles carry negative electrical charges and repel each other, staying suspended. Adding Potash Alum ($\\text{KAl(SO}_4)_2\\cdot 12\\text{H}_2\\text{O}$) releases trivalent aluminium cations ($\\text{Al}^{3+}$), neutralizing the negative charge. The neutralized clay particles agglomerate into heavy 'flocs' that rapidly settle to the bottom.", "<strong>Stage 3: Multi-tier Filtration Tank:</strong> Clarified water passes through three successive layers: fine sand on top, coarse sand in the middle, and gravel at the base, trapping all remaining micro-particulates.", "<strong>Stage 4: Chlorination Tank:</strong> Controlled chlorine gas or bleaching powder ($\\text{CaOCl}_2$) is dissolved to destroy pathogenic bacteria and viruses before pumping to municipal overhead storage reservoirs.", "<strong>C-5.2 Societal & Environmental Impact:</strong> Access to purified municipal water eliminated water-borne epidemics (typhoid, cholera, dysentery), extending human life expectancy worldwide."], "checkpoints": [{"q": "What is the exact scientific role of adding alum (phitkari) to the loading tank during municipal water purification?", "options": ["It sweetens the taste of water by adding glucose", "It neutralizes the electrical charges on fine colloidal clay particles so they coagulate into heavy flocs and settle", "It reacts with chlorine to produce oxygen bubbles", "It boils the water instantly to 100\u00b0C"], "correct": 1, "explanation": "Alum provides trivalent aluminium ions (Al\u00b3\u207a) that neutralize the mutually repelling negative charges on colloidal clay particles, causing them to coagulate (loading) and settle."}, {"q": "In a municipal sand-and-gravel filtration tank, what is the correct sequence of media layers from top to bottom?", "options": ["Top: Coarse gravel; Middle: Sand; Bottom: Fine sand", "Top: Fine sand; Middle: Coarse sand; Bottom: Gravel", "Top: Alum; Middle: Chlorine tablets; Bottom: Clay", "Top: Activated charcoal; Middle: Gravel; Bottom: Fine sand"], "correct": 1, "explanation": "Water flows from top to bottom through progressively coarser layers: fine sand at top traps fine particles, coarse sand in middle, and gravel at the base supports drainage."}]}, {"id": 14, "title": "Frugal Scientific Innovation: The Paperfuge (C-8.1)", "subtitle": "Dr. Manu Prakash's 20-Cent Centrifuge: 125,000 RPM Whirligig Separating Blood in 90 Seconds", "narration": "Who says cutting-edge medical science requires million-rupee electric machines? In 2017, Indian-origin Stanford bioengineer Dr. Manu Prakash invented the 'Paperfuge'\u2014a 20-cent centrifuge made from paper, string, and plastic handles based on a 5,000-year-old whirligig children's toy. Spinning at an astonishing 125,000 RPM, it separates pure plasma from whole blood in 90 seconds in remote clinics with zero electricity!", "points": ["<strong>The Global Healthcare Problem:</strong> Heavy commercial electric centrifuges cost $\\$1,000\\text{ to }\\$5,000$, weigh kilograms, and require reliable grid electricity\u2014making them useless in off-grid rural health centers across developing nations.", "<strong>The Ancient Whirligig Toy Connection:</strong> By analyzing the non-linear physics of two braided twisted strings pulling a central disc, Dr. Manu Prakash discovered that the unwinding disc stores kinetic energy, reversing direction and accelerating to blistering speeds.", "<strong>Mechanical Breakthrough:</strong> The paper disc achieves rotational speeds up to $125,000\\text{ RPM}$ and centrifugal acceleration of $30,000\\ g$\u2014surpassing many laboratory electric centrifuges!", "<strong>Clinical Separation in 90 Seconds:</strong> Capillary tubes attached radially to the paper disc cleanly separate pure plasma from red blood cells in 90 seconds, enabling point-of-care diagnosis for malaria, HIV, and anemia.", "<strong>C-8.1 Pedagogical Inspiration:</strong> Proves that deep scientific principles (centripetal force, fluid dynamics, conservation of angular momentum) can be harnessed using eco-friendly, accessible materials to solve urgent human problems."], "checkpoints": [{"q": "What ancient mechanism inspired Dr. Manu Prakash to invent the high-speed Paperfuge for field diagnostics?", "options": ["A grandfather clock pendulum", "The traditional whirligig button-and-string spinning toy", "A water wheel mill", "An archery bow and arrow"], "correct": 1, "explanation": "The Paperfuge was inspired by the classical whirligig toy, where rhythmic pulling on strings creates rapid alternating rotational cycles reaching 125,000 RPM."}, {"q": "Why is the Paperfuge considered a milestone in frugal medical engineering for developing nations?", "options": ["It costs only ~20 cents, weighs 2 grams, operates without electricity, and separates blood in 90 seconds", "It replaces the need for doctors and hospitals completely", "It converts dirty water into pure drinking water instantaneously", "It uses diamond bearings to achieve hypersonic rotation"], "correct": 0, "explanation": "The Paperfuge is ultra-low-cost (~20 cents), completely manual (zero electricity), lightweight, and separates blood plasma rapidly for field diagnosis."}]}, {"id": 15, "title": "Indian Scientific Pioneer: Dr. Dilip Mahalanabis & The Chemistry of ORS", "subtitle": "Homogeneous Solution Chemistry Saving 50 Million Lives: SGLT1 Sodium-Glucose Co-Transport (C-6.1)", "narration": "During the 1971 Bangladesh Liberation War, millions of refugees fled into West Bengal. In the refugee camps of Bangaon, a devastating cholera epidemic struck. Intravenous saline bags ran out, and patients were dying by the hour. An Indian pediatrician, Dr. Dilip Mahalanabis, applied the fundamental chemistry of homogeneous solutions to formulate Oral Rehydration Solution (ORS)\u2014saving over 50 million human lives!", "points": ["<strong>The Cholera Crisis of 1971:</strong> Cholera toxin causes massive osmotic fluid loss from intestinal cells, leading to catastrophic dehydration, shock, and death within hours. Hospital intravenous (IV) saline supply was completely overwhelmed.", "<strong>The Biochemical Solution Formulation:</strong> Dr. Dilip Mahalanabis prepared a precise homogeneous aqueous solution containing:<br>\u2022 $3.5\\text{ g}$ Sodium chloride ($\\text{NaCl}$)<br>\u2022 $2.5\\text{ g}$ Sodium bicarbonate ($\\text{NaHCO}_3$, later replaced by Trisodium citrate)<br>\u2022 $1.5\\text{ g}$ Potassium chloride ($\\text{KCl}$)<br>\u2022 $20\\text{ g}$ Glucose (anhydrous) dissolved in exactly $1\\text{ Litre}$ of clean drinking water.", "<strong>The SGLT1 Mechanism:</strong> Cholera toxin disables single ion pumps, but leaves the intestinal <em>Sodium-Glucose Co-transporter 1 (SGLT1)</em> intact! When sodium ions and glucose are present in equimolar ratio in a homogeneous solution, SGLT1 transports them together across the intestinal lining into blood vessels, pulling water along by rapid osmosis!", "<strong>Monumental Historic Impact:</strong> In Dr. Mahalanabis's camp, cholera mortality plummeted from over $30\\%$ to under $3.6\\%$! The prestigious medical journal <em>The Lancet</em> declared ORS 'potentially the most important medical advance of the 20th century'."], "checkpoints": [{"q": "Why is glucose an indispensable chemical component in the Oral Rehydration Solution (ORS) formulated by Dr. Dilip Mahalanabis?", "options": ["It acts merely as a flavoring agent to make the medicine sweet", "It binds with sodium via the SGLT1 co-transporter, driving massive osmotic reabsorption of water back into the bloodstream", "It kills cholera bacteria directly by boiling them", "It solidifies the liquid solution inside the stomach"], "correct": 1, "explanation": "Glucose activates the intestinal SGLT1 co-transporter: one glucose molecule and two sodium ions are transported simultaneously across mucosal cells, pulling water molecules along by osmosis."}, {"q": "What was the direct societal impact of Dr. Dilip Mahalanabis's discovery during the 1971 Bangaon refugee crisis?", "options": ["It eradicated all mosquito populations in West Bengal", "It slashed cholera dehydration mortality from 30% down to under 3.6%, saving an estimated 50+ million lives globally", "It invented the first atomic microscope", "It discovered a new synthetic element on the periodic table"], "correct": 1, "explanation": "Dr. Mahalanabis's field deployment of ORS reduced cholera mortality from over 30% to below 3.6%, transforming global diarrhea treatment and saving over 50 million lives."}]}, {"id": 16, "title": "Open Scientific Inquiry: Can We Create Artificial Blood? (C-7.2)", "subtitle": "The Colloid Challenge: Perfluorocarbons (PFCs), Hemoglobin Carriers & Future Biomimetics", "narration": "Have you ever wondered: can chemists synthesize artificial blood that works just as real blood for all patients, regardless of blood group? Human blood is an astonishingly complex colloidal fluid: a living suspension of erythrocytes, leukocytes, and platelets inside an aqueous protein-electrolyte solution. Creating an artificial replacement has challenged scientists for over six decades!", "points": ["<strong>The Colloid Complexity of Natural Blood:</strong> Real blood is a non-Newtonian shear-thinning fluid consisting of $55\\%$ plasma (a complex solution of albumin, globulins, fibrinogen, electrolytes) and $45\\%$ formed cellular elements in colloidal suspension.", "<strong>Primary Candidate 1: Perfluorocarbons (PFCs):</strong> Chemically inert synthetic fluorocarbon liquids capable of dissolving up to $50$ times more non-polar oxygen gas than water. Formulated as micro-emulsions to circulate safely through micro-capillaries.", "<strong>Primary Candidate 2: Hemoglobin-Based Oxygen Carriers (HBOCs):</strong> Purified tetrameric hemoglobin extracted from outdated human blood or bovine sources, polymerized with glutaraldehyde to prevent renal toxicity.", "<strong>Why Creating True Artificial Blood is Extremely Difficult:</strong><br>1. <em>Universal Multifunctionality:</em> Real blood does not just transport oxygen; it fights infections (leukocytes), clots wounds (platelet thrombi), and buffers pH.<br>2. <em>Nitric Oxide Scavenging:</em> Free cell-free hemoglobin strips nitric oxide ($\\text{NO}$) from arterial walls, causing dangerous vasoconstriction and hypertension.<br>3. <em>Colloid Osmotic Pressure:</em> Maintaining exact oncotic pressure across capillary walls without triggering immune rejection or kidney damage.", "<strong>C-7.2 The Future Frontier:</strong> Nanoscale synthetic synthetic polymersomes and artificial platelets using biodegradable PEG-lipids are currently in clinical trials."], "checkpoints": [{"q": "From a physical chemistry standpoint, how is natural human blood best classified?", "options": ["A pure chemical element", "A complex colloidal suspension of living cells in an aqueous electrolyte-protein solution", "A completely homogeneous single-phase true solution", "A coarse gaseous aerosol"], "correct": 1, "explanation": "Blood is a complex heterogeneous system: cellular elements (RBCs, WBCs, platelets) are suspended in blood plasma, which itself is a colloidal solution of proteins and dissolved electrolytes."}, {"q": "What is one major biochemical hurdle that prevents cell-free hemoglobin solutions from easily replacing natural cellular blood?", "options": ["Hemoglobin cannot bind oxygen molecules outside a living body", "Cell-free hemoglobin scavenges arterial nitric oxide, causing severe blood vessel constriction and systemic hypertension", "Hemoglobin turns into lead upon contact with air", "Hemoglobin freezes solid at normal human body temperature"], "correct": 1, "explanation": "Outside the protective red blood cell membrane, free hemoglobin rapidly binds and scavenges nitric oxide (NO) from vascular endothelia, inducing coronary and systemic vasoconstriction."}]}];
+        const QUIZZES = [{"id": 17, "title": "Dedicated Quiz Challenge 1: Mixtures, Solutions, Suspensions & Colloids", "subtitle": "Mastery Assessment: Particle Size, Tyndall Effect, Brownian Motion & Phases (C-1.2)", "narration": "Welcome to Quiz Challenge 1! Test your foundational understanding of pure substances, homogeneous and heterogeneous mixtures, true solutions, suspensions, and colloids. Answer all 10 questions and use 'View Solution' for detailed step-by-step explanations.", "questions": [{"q": "Which of the following mixtures exhibits a visible path of light when a laser beam is shone through it?", "options": ["Aqueous copper sulfate solution", "Sodium chloride in water", "Dilute milk in water", "Alcohol in distilled water"], "correct": 2, "solution": "Milk is a colloidal emulsion where dispersed fat and protein particles (1\u2013100 nm) scatter light wavelengths, producing the Tyndall effect. Copper sulfate, salt, and alcohol form true solutions (<1 nm) that cannot scatter light."}, {"q": "What is the typical particle diameter in a true solution?", "options": ["Greater than 1000 nm", "Between 1 nm and 100 nm", "Less than 1 nm (< 10\u207b\u2079 m)", "Exactly 1 mm"], "correct": 2, "solution": "In a true solution, solute particles are single ions or molecules with dimensions strictly less than 1 nanometer (10\u207b\u2079 m), allowing them to pass through filter paper without scattering light."}, {"q": "Which statement regarding Brownian motion in colloidal systems is scientifically accurate?", "options": ["It is caused by gravitational attraction towards the Earth's core", "It results from continuous, unbalanced collisions of dispersion medium molecules with colloidal particles", "It causes colloidal particles to immediately settle at the bottom", "It occurs only in gaseous aerosols at 1000\u00b0C"], "correct": 1, "solution": "Brownian motion is the rapid, random zig-zag motion of colloidal particles caused by unequal, chaotic bombardment from the surrounding dispersion medium molecules, preventing gravitational settling."}, {"q": "Shaving cream is a colloidal system. What are its dispersed phase and dispersion medium?", "options": ["Dispersed phase: Liquid; Dispersion medium: Gas", "Dispersed phase: Gas; Dispersion medium: Liquid", "Dispersed phase: Solid; Dispersion medium: Liquid", "Dispersed phase: Gas; Dispersion medium: Solid"], "correct": 1, "solution": "Shaving cream is a foam, which consists of gas bubbles (dispersed phase) entrapped in a liquid soap matrix (dispersion medium)."}, {"q": "Which of the following is classified as a pure chemical compound rather than a mixture?", "options": ["Pure air", "Distilled pure water (H\u2082O)", "Brass (alloy of Cu and Zn)", "Petroleum crude oil"], "correct": 1, "solution": "Distilled water (H\u2082O) is a pure chemical compound with fixed hydrogen-to-oxygen mass ratio (1:8 by mass) and sharp melting/boiling points. Air, brass, and petroleum are mixtures of variable composition."}, {"q": "Why can suspended particles in muddy water be separated using ordinary filter paper, whereas starch in water cannot?", "options": ["Suspension particles (>100 nm) are larger than filter paper pores, while colloidal starch particles (1\u2013100 nm) pass through", "Starch particles react chemically with cellulose fibers", "Muddy water is a true solution while starch is a gas", "Filter paper carries a strong electrical charge that repels mud"], "correct": 0, "solution": "Suspension particles exceed 100 nm and are larger than the microscopic pores of filter paper, so they are retained as residue. Colloidal particles (1\u2013100 nm) are smaller than filter pores and pass through."}, {"q": "What happens when a cold carbonated soda bottle is opened at room temperature?", "options": ["Carbon dioxide gas solubility increases", "Pressure drops, drastically reducing the solubility of CO\u2082 gas and causing effervescent bubbling", "The soda freezes into solid dry ice", "Liquid water converts into gas"], "correct": 1, "solution": "According to Henry's law, gas solubility is directly proportional to pressure. Opening the cap releases pressure, lowering CO\u2082 solubility and causing gas bubbles to vigorously escape."}, {"q": "Cheese and butter are examples of which colloidal classification?", "options": ["Aerosol", "Solid Sol", "Gel (liquid dispersed in solid)", "Foam"], "correct": 2, "solution": "Cheese, butter, and jellies are classified as Gels, where a liquid dispersed phase is trapped within a solid continuous dispersion medium."}, {"q": "Which of the following is an example of a solid-in-solid homogeneous solution?", "options": ["Brass alloy (Zinc in Copper)", "Granite rock with mica and quartz", "Sand mixed with iron filings", "Chalk powder in sulfur"], "correct": 0, "solution": "Brass is an alloy (homogeneous solid solution) where ~30% zinc atoms are uniformly dispersed in ~70% copper lattice at the atomic level."}, {"q": "A mixture whose components can be distinguished under a simple magnifying glass and settle on standing is a:", "options": ["True solution", "Colloid", "Suspension", "Pure element"], "correct": 2, "solution": "A suspension is a heterogeneous mixture with macroscopic particles (>100 nm) visible to the eye/magnifying glass that sediment over time under gravity."}]}, {"id": 18, "title": "Dedicated Quiz Challenge 2: Concentration Formulas & Solubility Curves", "subtitle": "Mastery Assessment: Mass %, Volume %, Solubility Math & Thermodynamic Precipitates", "narration": "Welcome to Quiz Challenge 2! Sharpen your quantitative problem-solving skills on mass percentages, mass by volume percentages, and solubility curve interpretations. Work through each calculation with scientific precision.", "questions": [{"q": "A solution is prepared by dissolving 25 g of glucose in 175 g of distilled water. What is the mass by mass percentage of the solution?", "options": ["14.28%", "12.50%", "10.00%", "25.00%"], "correct": 1, "solution": "Total mass of solution = 25 g (solute) + 175 g (solvent) = 200 g. Mass % = (Mass of Solute / Total Mass of Solution) \u00d7 100 = (25 / 200) \u00d7 100 = 12.50%."}, {"q": "How many grams of common salt (NaCl) are required to prepare 250 g of a 12% (w/w) aqueous salt solution?", "options": ["12 g", "25 g", "30 g", "40 g"], "correct": 2, "solution": "Mass % = (Mass of solute / Mass of solution) \u00d7 100. Rearranging: Mass of solute = (Mass % \u00d7 Mass of solution) / 100 = (12 \u00d7 250) / 100 = 30 g."}, {"q": "If 20 mL of pure lemon juice is diluted with water to a total solution volume of 200 mL, what is the volume by volume percentage?", "options": ["5%", "10%", "15%", "20%"], "correct": 1, "solution": "Volume % = (Volume of solute / Total volume of solution) \u00d7 100 = (20 mL / 200 mL) \u00d7 100 = 10% (v/v)."}, {"q": "The solubility of salt X in water at 25\u00b0C is 36 g per 100 g of water. If a student stirs 45 g of salt X into 100 g of water at 25\u00b0C, what will be observed?", "options": ["All 45 g dissolves to give an unsaturated solution", "36 g dissolves to form a saturated solution, and 9 g remains undissolved at the bottom", "The solution boils vigorously", "The water turns entirely into ice"], "correct": 1, "solution": "At 25\u00b0C, exactly 36 g of salt dissolves in 100 g of water to reach saturation equilibrium. The remaining 9 g (45 g - 36 g) cannot dissolve and settles as undissolved solid."}, {"q": "The solubility of potassium chloride (KCl) is 34 g at 20\u00b0C and 54 g at 80\u00b0C. If 200 g of water saturated with KCl at 80\u00b0C is cooled down to 20\u00b0C, what total mass of KCl crystals precipitates?", "options": ["20 g", "40 g", "54 g", "68 g"], "correct": 1, "solution": "In 100 g water, mass precipitating = 54 g - 34 g = 20 g. Therefore, in 200 g water, mass of KCl precipitating = 20 g \u00d7 2 = 40 g."}, {"q": "What is the mass by volume percentage of a solution containing 15 g of sodium hydroxide dissolved in 300 mL of solution?", "options": ["3%", "5%", "15%", "20%"], "correct": 1, "solution": "Mass by volume % = (Mass of solute in g / Volume of solution in mL) \u00d7 100 = (15 / 300) \u00d7 100 = 5% (w/v)."}, {"q": "Why does a hot saturated solution of copper sulfate begin to deposit blue crystals when allowed to cool slowly to room temperature?", "options": ["Solubility of copper sulfate decreases as temperature drops, forcing excess solute out of solution", "Water evaporates instantly upon cooling", "Copper undergoes nuclear fission into sulfate", "The glass beaker contracts and squeezes the solution"], "correct": 0, "solution": "For copper sulfate, dissolution is endothermic and solubility decreases with lowering temperature. As the solution cools, the excess solute beyond the lower saturation limit crystallizes out."}, {"q": "A 10% (w/w) aqueous sodium chloride solution has a mass of 500 g. How much water solvent is present in this solution?", "options": ["50 g", "450 g", "500 g", "400 g"], "correct": 1, "solution": "Mass of solute NaCl = 10% of 500 g = 50 g. Mass of solvent (water) = Total mass of solution - Mass of solute = 500 g - 50 g = 450 g."}, {"q": "Which salt exhibits an almost flat solubility curve with very little increase in solubility from 0\u00b0C to 100\u00b0C?", "options": ["Potassium nitrate (KNO\u2083)", "Ammonium chloride (NH\u2084Cl)", "Sodium chloride (NaCl)", "Cerium sulfate"], "correct": 2, "solution": "Sodium chloride (NaCl) has an enthalpy of solution close to zero, so its solubility in water increases only very slightly (~35.7 g to ~39.8 g per 100 g water) between 0\u00b0C and 100\u00b0C."}, {"q": "A solution contains 30 mL of ethanol in 120 mL of water. Assuming volumes are additive, what is the volume percentage of ethanol?", "options": ["25%", "20%", "15%", "30%"], "correct": 1, "solution": "Total volume of solution = 30 mL (solute) + 120 mL (solvent) = 150 mL. Volume % = (30 / 150) \u00d7 100 = 20% (v/v)."}]}, {"id": 19, "title": "Dedicated Quiz Challenge 3: Separation Techniques & Principles", "subtitle": "Mastery Assessment: Sublimation, Centrifugation, Chromatography & Distillation (C-1.2, C-5.1)", "narration": "Welcome to Quiz Challenge 3! Put your knowledge of physical separation techniques to the test: from sublimation apparatus and chromatographic Rf values to Kannauj Deg-Bhapka distillation.", "questions": [{"q": "Which technique is best suited to separate a mixture of iodine crystals and sodium chloride?", "options": ["Simple filtration", "Sublimation", "Fractional distillation", "Centrifugation"], "correct": 1, "solution": "Iodine is a volatile sublimable solid that vaporizes directly upon gentle heating, while sodium chloride is non-volatile. Sublimation cleanly separates iodine on a cold surface."}, {"q": "What physical property enables the separation of components in paper chromatography?", "options": ["Differences in boiling points", "Differences in partition solubility in the mobile phase and adsorption affinity for the stationary phase", "Differences in magnetic susceptibility", "Differences in mass density under gravity"], "correct": 1, "solution": "Chromatography separates solutes based on their differential solubility in the moving solvent (mobile phase) versus their adsorption affinity to the stationary paper fibers."}, {"q": "Simple distillation is strictly recommended only when two miscible liquids have a boiling point difference of at least:", "options": ["5\u00b0C", "10\u00b0C", "25\u00b0C", "100\u00b0C"], "correct": 2, "solution": "According to IUPAC and NCERT standards, simple distillation requires a boiling point difference greater than 25\u00b0C (or 25 K) to achieve clean single-stage separation."}, {"q": "In the fractional distillation of crude liquid air, what is the correct sequence of gases evaporating as the column warms up?", "options": ["Oxygen (-183\u00b0C) \u2192 Argon (-186\u00b0C) \u2192 Nitrogen (-196\u00b0C)", "Nitrogen (-196\u00b0C) \u2192 Argon (-186\u00b0C) \u2192 Oxygen (-183\u00b0C)", "Argon (-186\u00b0C) \u2192 Nitrogen (-196\u00b0C) \u2192 Oxygen (-183\u00b0C)", "All three gases evaporate simultaneously at 0\u00b0C"], "correct": 1, "solution": "Gases boil in ascending order of their boiling points: Nitrogen boils first at -196\u00b0C, followed by Argon at -186\u00b0C, leaving Oxygen liquid longest until -183\u00b0C."}, {"q": "In Kannauj's traditional Deg-Bhapka perfume hydro-distillation (C-6.1), what is the function of the clay-and-cotton paste (multani mitti)?", "options": ["It acts as a chemical fragrance enhancer", "It provides a leak-proof hermetic seal on the copper Deg rim to prevent aromatic steam escape", "It absorbs all water vapor so only oil passes", "It keeps the fire cool"], "correct": 1, "solution": "The traditional multani mitti and cotton wrap hermetically seals the rim of the copper Deg still, ensuring aromatic steam builds pressure and flows through the Chonga without leaking."}, {"q": "Which mixture CANNOT be separated by fractional distillation?", "options": ["Crude petroleum into petrol, kerosene, and diesel", "Liquid air into nitrogen, argon, and oxygen", "Ethanol (78.3\u00b0C) and water (100\u00b0C)", "Sand and common salt"], "correct": 3, "solution": "Sand and salt is a solid-solid heterogeneous mixture; sand is insoluble in water while salt dissolves, so they are separated by dissolution, filtration, and crystallisation, not distillation."}, {"q": "If the solvent front moves 8.0 cm and a blue dye spot moves 6.4 cm in a paper chromatogram, what is the Rf value of the blue dye?", "options": ["1.25", "0.80", "0.64", "0.16"], "correct": 1, "solution": "Rf = Distance travelled by solute / Distance travelled by solvent front = 6.4 cm / 8.0 cm = 0.80."}, {"q": "What happens in a dairy separator when whole milk is spun at high rotational speeds?", "options": ["Denser skimmed milk is driven to the outer perimeter, while lighter cream/butterfat collects near the central axis", "Milk turns into solid cheese instantly", "All protein molecules are destroyed by nuclear forces", "Cream sinks to the bottom because fat is denser than water"], "correct": 0, "solution": "Butterfat cream has lower density (~0.92 g/mL) than water and skimmed milk (~1.03 g/mL). Under centrifugal force, denser skimmed milk moves outward, while lighter cream concentrates near the center."}, {"q": "Why is water circulated through the Liebig condenser from the bottom inlet to the top outlet?", "options": ["To save water pressure", "To ensure the cooling jacket remains completely filled with cold water without air pockets, maximizing heat exchange", "To heat up the distillate quickly", "To prevent glass from cracking due to sudden boiling"], "correct": 1, "solution": "Introducing cold water at the bottom forces water to flow upward against gravity, filling the entire cooling jacket and eliminating air bubbles for maximum cooling efficiency."}, {"q": "Which method is most suitable to separate volatile acetone from non-volatile dissolved mineral impurities?", "options": ["Simple distillation", "Paper chromatography", "Magnetic separation", "Sedimentation"], "correct": 0, "solution": "Acetone boils at 56\u00b0C and vaporizes, leaving non-volatile mineral impurities in the distillation flask; the pure condensed acetone is collected in the receiver."}]}, {"id": 20, "title": "Dedicated Quiz Challenge 4: Water Purification, Pioneers & Artificial Blood", "subtitle": "Mastery Assessment: Alum Loading, Dr. Dilip Mahalanabis, Paperfuge & Future Chemistry (C-5.2, C-6.1, C-7.1, C-7.2)", "narration": "Welcome to the final Mastery Quiz Challenge! Synthesize your deep understanding across municipal water treatment, Dr. Dilip Mahalanabis's life-saving ORS formulation, the Paperfuge, and cutting-edge artificial blood colloidal chemistry.", "questions": [{"q": "During municipal water purification, what chemical role is performed by the addition of Potash Alum in the loading tank?", "options": ["It disinfects water by killing 100% of bacterial viruses", "Trivalent Al\u00b3\u207a ions neutralize negative surface charges on colloidal clay particles, causing them to aggregate into settlable flocs", "It converts hard calcium ions into soft sodium ions", "It acts as a synthetic bleaching agent"], "correct": 1, "solution": "Colloidal clay particles carry negative surface charges that cause mutual repulsion. Alum releases Al\u00b3\u207a ions that neutralize these charges, enabling particles to coagulate into heavy flocs (loading) that quickly settle."}, {"q": "What physiological mechanism enabled Dr. Dilip Mahalanabis's Oral Rehydration Solution (ORS) to stop deadly dehydration during the 1971 cholera crisis (C-6.1)?", "options": ["Cholera toxin destroys all blood cells immediately", "The intestinal SGLT1 co-transporter simultaneously carries sodium and glucose into mucosal cells, pulling water back into the blood by osmosis", "Glucose chemically neutralizes the stomach hydrochloric acid", "Sodium chloride coats the stomach with a waterproof rubber lining"], "correct": 1, "solution": "Even when cholera toxin disrupts normal fluid transport, the SGLT1 carrier protein remains active. It co-transports sodium and glucose in 1:1 equimolar ratio across the intestinal epithelium, creating an osmotic gradient that pulls water back into circulation."}, {"q": "Dr. Manu Prakash's Paperfuge (C-8.1) achieves up to 125,000 RPM by utilizing which mechanical physics principle?", "options": ["A miniature rechargeable lithium-ion battery", "Non-linear mechanics of twisting and unwinding braided strings coupled to a central disc (whirligig dynamics)", "Steam pressure generated from boiling water", "Magnetic levitation over superconducting coils"], "correct": 1, "solution": "The Paperfuge is a purely manual device based on whirligig dynamics: rhythmic outward pulling on twisted strings stores and releases rotational kinetic energy, accelerating the paper disc up to 125,000 RPM."}, {"q": "Which gas or compound is added at the final stage of municipal water treatment to ensure bactericidal disinfection before distribution?", "options": ["Helium gas", "Chlorine gas or bleaching powder (CaOCl\u2082)", "Nitrogen dioxide gas", "Carbon monoxide"], "correct": 1, "solution": "Chlorine (or bleaching powder) forms hypochlorous acid (HOCl) in water, a potent oxidizing agent that destroys pathogenic bacteria and viral microorganisms, rendering water potable."}, {"q": "Why is Perfluorocarbon (PFC) emulsion investigated as a candidate for artificial blood substitutes (C-7.2)?", "options": ["PFCs can dissolve up to 50 times more non-polar oxygen gas than blood plasma", "PFCs are identical in amino acid sequence to human hemoglobin", "PFCs replicate white blood cell phagocytosis", "PFCs form blood clots automatically"], "correct": 0, "solution": "Perfluorocarbons are synthetic fluorinated hydrocarbons that possess extraordinary non-polar gas solubility, dissolving ~40\u201350 mL of oxygen per 100 mL of fluid without requiring binding heme proteins."}, {"q": "What fatal complication arises when unencapsulated cell-free hemoglobin is directly transfused into human blood vessels?", "options": ["Cell-free hemoglobin scavenges nitric oxide (NO) from endothelial walls, causing profound vasoconstriction and hypertension", "Hemoglobin evaporates into nitrogen gas inside the heart", "Hemoglobin turns into bone marrow immediately", "It causes instant hypothermia"], "correct": 0, "solution": "Without the RBC membrane shield, free hemoglobin extravasates into blood vessel walls and binds nitric oxide (NO), destroying the primary vasodilator and causing severe arterial hypertension and kidney damage."}, {"q": "What is the key advantage of micro-scale chemistry experiments (C-7.1) over traditional bulk laboratory demonstrations?", "options": ["They require larger beakers and higher chemical costs", "They minimize hazardous chemical consumption and waste generation while preserving full pedagogical discovery", "They replace all chemicals with digital photographs", "They produce toxic radioactive byproducts"], "correct": 1, "solution": "Micro-scale experiments use minimal reagent quantities (drops/milligrams), significantly reducing environmental chemical waste, storage hazards, and costs while teaching core principles."}, {"q": "The prestigious British medical journal The Lancet described which Indian medical breakthrough as 'potentially the most important medical advance of the 20th century'?", "options": ["The synthesis of artificial insulin", "Dr. Dilip Mahalanabis's field formulation and deployment of Oral Rehydration Solution (ORS)", "The discovery of the electron microscope", "The invention of the stethoscope"], "correct": 1, "solution": "The Lancet bestowed this historic praise on Oral Rehydration Therapy (ORT/ORS) in 1978, recognising Dr. Mahalanabis's simple, scalable solution that has saved more than 50 million lives."}, {"q": "In the municipal water treatment process, why must water pass through the sedimentation tank BEFORE entering the sand-gravel filtration tank?", "options": ["To allow heavy sand and silt to settle first so they do not instantly clog the fine filtration beds", "To heat the water to 100\u00b0C", "To dissolve all river fish", "To add toxic chlorine gas early"], "correct": 0, "solution": "Sedimentation allows coarse, heavy suspended solids to settle gravitationally first; otherwise, these macroscopic particles would rapidly block and clog the pore spaces of fine filtration beds."}, {"q": "Which of the following is NOT an essential ingredient in the standard WHO / Dr. Mahalanabis Oral Rehydration Solution?", "options": ["Sodium chloride (NaCl)", "Glucose (anhydrous)", "Potassium chloride (KCl)", "Concentrated Sulfuric acid (H\u2082SO\u2084)"], "correct": 3, "solution": "Sulfuric acid is a corrosive poison. Standard ORS contains sodium chloride, glucose, potassium chloride, and trisodium citrate (or sodium bicarbonate) in pure water."}]}];
+        let currentSlide = 0; // 0 to 19
+        let isSpeaking = false;
+        let synth = window.speechSynthesis;
+        let currentUtterance = null;
+        let quizAnswers = {}; // slideIndex: { qIdx: selectedOpt }
+
+        // Audio synthesizer fallback
+        let audioCtx = null;
+        function playTone(freq = 440, duration = 0.15) {
+            try {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.frequency.value = freq;
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) {}
+        }
+
+        // Slide dropdown menu builder
+        function buildSlideMenu() {
+            const list = document.getElementById('slideListItems');
+            const dots = document.getElementById('slideDots');
+            list.innerHTML = '';
+            dots.innerHTML = '';
+
+            const allSlides = [...SLIDES, ...QUIZZES];
+            allSlides.forEach((s, idx) => {
+                // Menu item
+                const btn = document.createElement('button');
+                btn.className = `w-full text-left px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between transition ${idx === currentSlide ? 'bg-indigo-950/80 text-indigo-300 font-bold border border-indigo-700/50' : 'text-slate-300 hover:bg-slate-800/80'}`;
+                btn.innerHTML = `
+                    <span class="truncate pr-2">${idx + 1}. ${s.title}</span>
+                    <span class="text-[10px] font-mono ${idx >= 16 ? 'text-amber-400' : 'text-slate-400'}">${idx >= 16 ? 'Quiz' : 'Theory'}</span>
+                `;
+                btn.onclick = () => {
+                    goToSlide(idx);
+                    toggleSlideMenu(false);
+                };
+                list.appendChild(btn);
+
+                // Indicator dot
+                const dot = document.createElement('button');
+                dot.className = `h-2 rounded-full transition-all ${idx === currentSlide ? 'w-6 bg-indigo-500' : 'w-2 bg-slate-700 hover:bg-slate-500'}`;
+                dot.title = `Slide ${idx + 1}: ${s.title}`;
+                dot.onclick = () => goToSlide(idx);
+                dots.appendChild(dot);
+            });
+        }
+
+        function toggleSlideMenu(force) {
+            const el = document.getElementById('slideMenuDropdown');
+            if (typeof force === 'boolean') {
+                if (force) el.classList.remove('hidden'); else el.classList.add('hidden');
+            } else {
+                el.classList.toggle('hidden');
+            }
+        }
+
+        // Narration Voiceover Controller
+        function toggleSpeech() {
+            if (isSpeaking) {
+                stopSpeech();
+            } else {
+                playNarration();
+            }
+        }
+
+        function stopSpeech() {
+            if (synth) {
+                synth.cancel();
+            }
+            isSpeaking = false;
+            updateSpeechUI(false);
+        }
+
+        function playNarration() {
+            stopSpeech();
+            const slideData = currentSlide < 16 ? SLIDES[currentSlide] : QUIZZES[currentSlide - 16];
+            const textToSpeak = slideData.narration || slideData.title;
+
+            if ('speechSynthesis' in window) {
+                currentUtterance = new SpeechSynthesisUtterance(textToSpeak);
+                currentUtterance.rate = 0.96;
+                currentUtterance.pitch = 1.05;
+                currentUtterance.lang = 'en-US';
+
+                currentUtterance.onstart = () => {
+                    isSpeaking = true;
+                    updateSpeechUI(true);
+                };
+                currentUtterance.onend = () => {
+                    isSpeaking = false;
+                    updateSpeechUI(false);
+                };
+                currentUtterance.onerror = () => {
+                    isSpeaking = false;
+                    updateSpeechUI(false);
+                };
+                synth.speak(currentUtterance);
+            } else {
+                playTone(550, 0.3);
+            }
+        }
+
+        function updateSpeechUI(speaking) {
+            const mouth = document.getElementById('teacherMouth');
+            const icon = document.getElementById('speechIcon');
+            const indicator = document.getElementById('speechStatusIndicator');
+            if (speaking) {
+                mouth.classList.add('talking');
+                icon.setAttribute('data-lucide', 'volume-x');
+                indicator.textContent = 'Speaking...';
+                indicator.className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-950 text-indigo-400 border border-indigo-800 animate-pulse';
+            } else {
+                mouth.classList.remove('talking');
+                icon.setAttribute('data-lucide', 'volume-2');
+                indicator.textContent = 'Ready';
+                indicator.className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400';
+            }
+            lucide.createIcons();
+        }
+
+        function renderSlide(idx) {
+            stopSpeech();
+            currentSlide = idx;
+            document.getElementById('currentSlideNum').textContent = idx + 1;
+
+            buildSlideMenu();
+
+            const isQuiz = idx >= 16;
+            const contentContainer = document.getElementById('contentSlideContainer');
+            const quizContainer = document.getElementById('quizSlideContainer');
+            const lastNotice = document.getElementById('lastSlideNotice');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // Previous / Next Button Visibility
+            prevBtn.disabled = (idx === 0);
+            prevBtn.classList.toggle('opacity-40', idx === 0);
+
+            if (idx === 19) {
+                // Slide 20 (index 19) is the last slide
+                nextBtn.style.display = 'none';
+                lastNotice.classList.remove('hidden');
+            } else {
+                nextBtn.style.display = 'flex';
+                lastNotice.classList.add('hidden');
+            }
+
+            if (!isQuiz) {
+                // Slide 1 to 16: Theory & Checkpoints
+                contentContainer.classList.remove('hidden');
+                quizContainer.classList.add('hidden');
+
+                const data = SLIDES[idx];
+                document.getElementById('slideTitle').textContent = data.title;
+                document.getElementById('slideSubtitle').textContent = data.subtitle;
+                document.getElementById('slideBadge').textContent = `Part ${idx + 1} of 20`;
+                document.getElementById('narrationText').textContent = data.narration;
+
+                // Points List
+                const pointsList = document.getElementById('slideKeyPoints');
+                pointsList.innerHTML = data.points.map(pt => `
+                    <li class="flex items-start gap-2.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-2 shrink-0"></span>
+                        <span>${pt}</span>
+                    </li>
+                `).join('');
+
+                // Checkpoints List (2 per slide)
+                const cpList = document.getElementById('checkpointsList');
+                cpList.innerHTML = data.checkpoints.map((cp, cpIdx) => `
+                    <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800/80 space-y-2.5">
+                        <div class="flex items-start justify-between gap-2">
+                            <span class="text-xs font-semibold text-slate-200">
+                                <span class="text-indigo-400 font-mono font-bold mr-1.5">Q${cpIdx + 1}.</span>
+                                ${cp.q}
+                            </span>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                            ${cp.options.map((opt, optIdx) => `
+                                <button onclick="window.checkAnswer(${idx}, ${cpIdx}, ${optIdx})" 
+                                        id="cp-btn-${idx}-${cpIdx}-${optIdx}"
+                                        class="text-left px-3 py-2 rounded-lg text-xs font-medium bg-slate-950 border border-slate-800 hover:border-indigo-600/60 hover:bg-slate-800/60 transition flex items-center justify-between">
+                                    <span>${opt}</span>
+                                    <span class="w-3.5 h-3.5 rounded-full border border-slate-700 shrink-0 ml-2"></span>
+                                </button>
+                            `).join('')}
+                        </div>
+                        <div id="cp-feedback-${idx}-${cpIdx}" class="hidden text-xs p-2 rounded-lg mt-1 font-mono"></div>
+                    </div>
+                `).join('');
+
+                // Render Interactive Simulator
+                renderSimulator(idx);
+
+            } else {
+                // Slides 17 to 20: Dedicated Quiz
+                contentContainer.classList.add('hidden');
+                quizContainer.classList.remove('hidden');
+
+                const qData = QUIZZES[idx - 16];
+                document.getElementById('quizTitleDisplay').textContent = qData.title;
+                document.getElementById('narrationText').textContent = qData.narration;
+
+                updateQuizScoreDisplay(idx);
+
+                const qList = document.getElementById('quizQuestionsList');
+                qList.innerHTML = qData.questions.map((q, qIdx) => `
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-3">
+                        <div class="flex items-start justify-between gap-3">
+                            <span class="text-xs sm:text-sm font-semibold text-slate-100">
+                                <span class="text-indigo-400 font-mono font-bold mr-1">Q${qIdx + 1}.</span>
+                                ${q.q}
+                            </span>
+                            <button onclick="window.openSolutionModal(${idx - 16}, ${qIdx})" 
+                                    class="shrink-0 text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-800/50 flex items-center gap-1 transition">
+                                <i data-lucide="help-circle" class="w-3 h-3"></i>
+                                View Solution
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            ${q.options.map((opt, optIdx) => `
+                                <button onclick="window.selectQuizAnswer(${idx}, ${qIdx}, ${optIdx})"
+                                        id="quiz-btn-${idx}-${qIdx}-${optIdx}"
+                                        class="text-left px-3 py-2 rounded-lg text-xs bg-slate-950 border border-slate-800 hover:border-indigo-500/60 transition flex items-center justify-between">
+                                    <span>${opt}</span>
+                                    <span class="w-3 h-3 rounded-full border border-slate-700 shrink-0 ml-2"></span>
+                                </button>
+                            `).join('')}
+                        </div>
+                        <div id="quiz-feedback-${idx}-${qIdx}" class="hidden text-xs p-2 rounded-lg font-mono"></div>
+                    </div>
+                `).join('');
+
+                // Render Summary View in Simulator Window
+                renderQuizSimulator(idx);
+            }
+
+            lucide.createIcons();
+            if (window.renderMathInElement) {
+                renderMathInElement(document.body);
+            }
+        }
+
+        function checkAnswer(slideIdx, cpIdx, optIdx) {
+            const cp = SLIDES[slideIdx].checkpoints[cpIdx];
+            const feedbackEl = document.getElementById(`cp-feedback-${slideIdx}-${cpIdx}`);
+            const isCorrect = (optIdx === cp.correct);
+
+            // Highlight all option buttons
+            cp.options.forEach((_, i) => {
+                const btn = document.getElementById(`cp-btn-${slideIdx}-${cpIdx}-${i}`);
+                btn.classList.remove('bg-indigo-950', 'border-indigo-500', 'text-indigo-300', 'bg-rose-950', 'border-rose-500', 'text-rose-300');
+                if (i === cp.correct) {
+                    btn.classList.add('bg-indigo-950/80', 'border-indigo-500', 'text-indigo-300');
+                } else if (i === optIdx && !isCorrect) {
+                    btn.classList.add('bg-rose-950/80', 'border-rose-500', 'text-rose-300');
+                }
+            });
+
+            feedbackEl.classList.remove('hidden', 'bg-indigo-950/60', 'text-indigo-300', 'border-indigo-800', 'bg-rose-950/60', 'text-rose-300', 'border-rose-800');
+            if (isCorrect) {
+                playTone(660, 0.12);
+                feedbackEl.classList.add('bg-indigo-950/60', 'text-indigo-300', 'border', 'border-indigo-800/80');
+                feedbackEl.innerHTML = `✓ <strong>Spot On!</strong> ${cp.explanation}`;
+            } else {
+                playTone(280, 0.2);
+                feedbackEl.classList.add('bg-rose-950/60', 'text-rose-300', 'border', 'border-rose-800/80');
+                feedbackEl.innerHTML = `✕ <strong>Review:</strong> ${cp.explanation}`;
+            }
+        }
+
+        function selectQuizAnswer(slideIdx, qIdx, optIdx) {
+            if (!quizAnswers[slideIdx]) quizAnswers[slideIdx] = {};
+            quizAnswers[slideIdx][qIdx] = optIdx;
+
+            const q = QUIZZES[slideIdx - 16].questions[qIdx];
+            const feedbackEl = document.getElementById(`quiz-feedback-${slideIdx}-${qIdx}`);
+            const isCorrect = (optIdx === q.correct);
+
+            q.options.forEach((_, i) => {
+                const btn = document.getElementById(`quiz-btn-${slideIdx}-${qIdx}-${i}`);
+                btn.classList.remove('bg-indigo-950', 'border-indigo-500', 'text-indigo-300', 'bg-rose-950', 'border-rose-500', 'text-rose-300');
+                if (i === q.correct) {
+                    btn.classList.add('bg-indigo-950/80', 'border-indigo-500', 'text-indigo-300');
+                } else if (i === optIdx && !isCorrect) {
+                    btn.classList.add('bg-rose-950/80', 'border-rose-500', 'text-rose-300');
+                }
+            });
+
+            feedbackEl.classList.remove('hidden', 'bg-indigo-950/60', 'text-indigo-300', 'border-indigo-800', 'bg-rose-950/60', 'text-rose-300', 'border-rose-800');
+            if (isCorrect) {
+                playTone(660, 0.12);
+                feedbackEl.classList.add('bg-indigo-950/60', 'text-indigo-300', 'border', 'border-indigo-800/80');
+                feedbackEl.innerHTML = `✓ Correct! Keep mastering the concepts.`;
+            } else {
+                playTone(280, 0.2);
+                feedbackEl.classList.add('bg-rose-950/60', 'text-rose-300', 'border', 'border-rose-800/80');
+                feedbackEl.innerHTML = `✕ Needs Review. Click 'View Solution' for detailed derivation.`;
+            }
+
+            updateQuizScoreDisplay(slideIdx);
+        }
+
+        function updateQuizScoreDisplay(slideIdx) {
+            const answers = quizAnswers[slideIdx] || {};
+            let score = 0;
+            const questions = QUIZZES[slideIdx - 16].questions;
+            for (let qIdx in answers) {
+                if (answers[qIdx] === questions[qIdx].correct) {
+                    score++;
+                }
+            }
+            document.getElementById('quizScoreVal').textContent = score;
+        }
+
+        function openSolutionModal(quizOffset, qIdx) {
+            const q = QUIZZES[quizOffset].questions[qIdx];
+            const modal = document.getElementById('solutionModal');
+            const body = document.getElementById('solutionModalBody');
+
+            body.innerHTML = `
+                <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+                    <span class="text-xs font-mono font-bold text-indigo-400 block mb-1">Question ${qIdx + 1}:</span>
+                    <p class="text-xs text-white font-semibold">${q.q}</p>
+                </div>
+                <div class="p-3 rounded-xl bg-indigo-950/40 border border-indigo-800/60">
+                    <span class="text-xs font-mono font-bold text-indigo-300 block mb-1">Correct Answer:</span>
+                    <p class="text-xs font-bold text-white">${q.options[q.correct]}</p>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+                    <span class="text-xs font-mono font-bold text-cyan-400 block mb-1">Detailed Explanation & Reasoning:</span>
+                    <p class="text-xs text-slate-300 leading-relaxed">${q.solution}</p>
+                </div>
+            `;
+            modal.classList.remove('hidden');
+            playTone(480, 0.1);
+        }
+
+        function closeSolutionModal() {
+            document.getElementById('solutionModal').classList.add('hidden');
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) goToSlide(currentSlide - 1);
+        }
+
+        function nextSlide() {
+            if (currentSlide < 19) goToSlide(currentSlide + 1);
+        }
+
+        function goToSlide(idx) {
+            if (idx >= 0 && idx < 20) {
+                renderSlide(idx);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // ==========================================
+        // BESPOKE INTERACTIVE SIMULATORS (SLIDES 1-16)
+        // ==========================================
+
+        function renderSimulator(slideIdx) {
+            const vp = document.getElementById('simulatorViewport');
+            const titleEl = document.getElementById('simulatorTitle');
+
+            switch(slideIdx) {
+                case 0:
+                    titleEl.textContent = "Homogeneous vs Heterogeneous Phase Matrix";
+                    renderSim1(vp); break;
+                case 1:
+                    titleEl.textContent = "True Solution Nanoscale Sizer & Alloy Metallurgy";
+                    renderSim2(vp); break;
+                case 2:
+                    titleEl.textContent = "Suspension Gravitational Sedimentation Lab";
+                    renderSim3(vp); break;
+                case 3:
+                    titleEl.textContent = "Tyndall Effect & Brownian Motion Chamber";
+                    renderSim4(vp); break;
+                case 4:
+                    titleEl.textContent = "Interactive Solution Concentration Calculator";
+                    renderSim5(vp); break;
+                case 5:
+                    titleEl.textContent = "Solubility-Temperature Equilibrium Curves";
+                    renderSim6(vp); break;
+                case 6:
+                    titleEl.textContent = "Sublimation Inverted Funnel Apparatus";
+                    renderSim7(vp); break;
+                case 7:
+                    titleEl.textContent = "Centrifugation & Kathak Spin Biomechanics";
+                    renderSim8(vp); break;
+                case 8:
+                    titleEl.textContent = "Paper Chromatography Chamber & Rf Metric";
+                    renderSim9(vp); break;
+                case 9:
+                    titleEl.textContent = "Simple Distillation vs Kannauj Deg-Bhapka Still";
+                    renderSim10(vp); break;
+                case 10:
+                    titleEl.textContent = "Fractional Distillation & Air Liquefaction";
+                    renderSim11(vp); break;
+                case 11:
+                    titleEl.textContent = "Copper Sulfate Microscale Crystallisation (C-7.1)";
+                    renderSim12(vp); break;
+                case 12:
+                    titleEl.textContent = "Municipal Water Purification Works (Alum Loading)";
+                    renderSim13(vp); break;
+                case 13:
+                    titleEl.textContent = "Dr. Manu Prakash 125,000 RPM Paperfuge (C-8.1)";
+                    renderSim14(vp); break;
+                case 14:
+                    titleEl.textContent = "Dr. Dilip Mahalanabis ORS & SGLT1 Transport (C-6.1)";
+                    renderSim15(vp); break;
+                case 15:
+                    titleEl.textContent = "Artificial Blood Engineering: PFCs & HBOCs (C-7.2)";
+                    renderSim16(vp); break;
+                default:
+                    vp.innerHTML = `<div class="text-slate-400 text-xs">Visual module active.</div>`;
+            }
+        }
+
+        function renderQuizSimulator(slideIdx) {
+            const vp = document.getElementById('simulatorViewport');
+            const titleEl = document.getElementById('simulatorTitle');
+            titleEl.textContent = "Curriculum Assessment Hub";
+
+            const quizNum = slideIdx - 15;
+            vp.innerHTML = `
+                <div class="w-full flex flex-col items-center justify-center p-4 text-center space-y-3">
+                    <div class="w-16 h-16 rounded-2xl bg-indigo-950 border border-indigo-500/50 flex items-center justify-center text-indigo-400 shadow-xl shadow-indigo-950/50">
+                        <i data-lucide="award" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-sm font-bold text-white">Quiz Challenge Module #${quizNum}</h4>
+                    <p class="text-xs text-slate-300 leading-relaxed max-w-xs">
+                        Answer all 10 in-depth chemistry questions. Use 'View Solution' for detailed step-by-step reasoning on NCERT criteria!
+                    </p>
+                    <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 w-full text-left font-mono text-[11px] text-slate-300 space-y-1">
+                        <div class="flex justify-between"><span>Curriculum Standard:</span><span class="text-indigo-400">NCERT Class 9</span></div>
+                        <div class="flex justify-between"><span>Total Questions:</span><span class="text-white">10 MCQs</span></div>
+                        <div class="flex justify-between"><span>Pass Standard:</span><span class="text-amber-400">80%+ Mastery</span></div>
+                    </div>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        // SIMULATOR 1: Homogeneous vs Heterogeneous Phase Comparator
+        function renderSim1(vp) {
+            let mode = 'homo'; // 'homo' vs 'hetero'
+
+            function draw() {
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-3">
+                        <div class="grid grid-cols-2 gap-2 bg-slate-900 p-1.5 rounded-xl border border-slate-800 text-xs font-bold">
+                            <button onclick="window.sim1Set('homo')" class="py-1.5 rounded-lg transition ${mode === 'homo' ? 'bg-indigo-600 text-white shadow' : 'bg-slate-800 text-slate-400'}">
+                                Homogeneous (Single Phase)
+                            </button>
+                            <button onclick="window.sim1Set('hetero')" class="py-1.5 rounded-lg transition ${mode === 'hetero' ? 'bg-amber-600 text-white shadow' : 'bg-slate-800 text-slate-400'}">
+                                Heterogeneous (Distinct Phases)
+                            </button>
+                        </div>
+
+                        <!-- Graphical Petri Dish / Beaker SVG -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-center h-44">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                <!-- Beaker Outline -->
+                                <rect x="55" y="20" width="140" height="110" rx="4" fill="#0f172a" stroke="#475569" stroke-width="2"/>
+                                <!-- Graduation Marks -->
+                                <line x1="55" y1="50" x2="68" y2="50" stroke="#64748b" stroke-width="1.5"/>
+                                <line x1="55" y1="80" x2="68" y2="80" stroke="#64748b" stroke-width="1.5"/>
+                                <line x1="55" y1="110" x2="68" y2="110" stroke="#64748b" stroke-width="1.5"/>
+
+                                ${mode === 'homo' ? `
+                                    <!-- Liquid Fill (Uniform Cyan/Blue) -->
+                                    <rect x="57" y="45" width="136" height="83" fill="#0369a1" opacity="0.4"/>
+                                    <!-- Uniform Dissolved Na+ and Cl- Ions -->
+                                    ${[
+                                        [75,60],[100,55],[130,62],[160,58],[85,80],[115,75],[145,82],[175,78],[75,100],[105,105],[135,102],[165,108]
+                                    ].map(([cx,cy], i) => `
+                                        <circle cx="${cx}" cy="${cy}" r="4" fill="${i % 2 === 0 ? '#38bdf8' : '#34d399'}"/>
+                                    `).join('')}
+                                    <text x="125" y="142" fill="#38bdf8" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Uniform Salt Solution (No Boundary)</text>
+                                ` : `
+                                    <!-- Two Distinct Phases: Water on Top, Sand at Bottom -->
+                                    <rect x="57" y="45" width="136" height="55" fill="#0369a1" opacity="0.3"/>
+                                    <rect x="57" y="100" width="136" height="28" fill="#78350f" opacity="0.8"/>
+                                    <!-- Separation Boundary Line -->
+                                    <line x1="57" y1="100" x2="193" y2="100" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4 2"/>
+                                    <!-- Coarse Sand Grains at Bottom -->
+                                    ${[
+                                        [70,110],[90,118],[110,108],[130,115],[150,112],[170,120],[80,122],[100,125],[120,120],[140,122],[160,118],[180,110]
+                                    ].map(([cx,cy]) => `
+                                        <circle cx="${cx}" cy="${cy}" r="3.5" fill="#d97706"/>
+                                    `).join('')}
+                                    <text x="125" y="142" fill="#f59e0b" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Physical Boundary: Water (Top) & Sand (Bottom)</text>
+                                `}
+                            </svg>
+                        </div>
+
+                        <!-- Data Card -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono space-y-1">
+                            <div class="flex justify-between"><span class="text-slate-400">Phase Count:</span><span class="${mode === 'homo' ? 'text-indigo-400' : 'text-amber-400'} font-bold">${mode === 'homo' ? 'Single (1 Phase)' : 'Two or More Distinct Phases'}</span></div>
+                            <div class="flex justify-between"><span class="text-slate-400">Composition:</span><span class="text-slate-200">${mode === 'homo' ? 'Uniform throughout' : 'Non-uniform distribution'}</span></div>
+                            <div class="flex justify-between"><span class="text-slate-400">Examples:</span><span class="text-teal-300 font-semibold">${mode === 'homo' ? 'Sugar in water, Air, Brass' : 'Oil in water, Sand & Iron, Chalk in water'}</span></div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim1Set = function(m) {
+                mode = m;
+                playTone(m === 'homo' ? 440 : 360, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 2: True Solution Particle Sizer & Alloy Metallurgy Lab
+        function renderSim2(vp) {
+            let type = 'brass'; // 'liquid', 'brass', 'air'
+
+            function draw() {
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="grid grid-cols-3 gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800 text-[10px] font-mono font-bold">
+                            <button onclick="window.sim2Set('liquid')" class="py-1 rounded ${type === 'liquid' ? 'bg-indigo-600 text-white' : 'bg-slate-800 text-slate-400'}">Liquid (Iodine)</button>
+                            <button onclick="window.sim2Set('brass')" class="py-1 rounded ${type === 'brass' ? 'bg-amber-600 text-white' : 'bg-slate-800 text-slate-400'}">Solid (Brass)</button>
+                            <button onclick="window.sim2Set('air')" class="py-1 rounded ${type === 'air' ? 'bg-cyan-600 text-white' : 'bg-slate-800 text-slate-400'}">Gas (Air)</button>
+                        </div>
+
+                        <!-- Nanoscale Molecular Window -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-center h-44">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                ${type === 'brass' ? `
+                                    <!-- Brass Solid Solution: 70% Cu (Orange) + 30% Zn (Blue) -->
+                                    <text x="125" y="20" fill="#f59e0b" font-size="9" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">Brass Alloy: Cu (70%) + Zn (30%)</text>
+                                    ${[
+                                        [50,45,1],[80,45,0],[110,45,0],[140,45,1],[170,45,0],[200,45,0],
+                                        [50,75,0],[80,75,0],[110,75,1],[140,75,0],[170,75,0],[200,75,1],
+                                        [50,105,0],[80,105,1],[110,105,0],[140,105,0],[170,105,1],[200,105,0]
+                                    ].map(([cx,cy,isZn]) => `
+                                        <circle cx="${cx}" cy="${cy}" r="11" fill="${isZn ? '#38bdf8' : '#ea580c'}" stroke="#1e293b" stroke-width="2"/>
+                                        <text x="${cx}" y="${cy + 3}" fill="#ffffff" font-size="7" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">${isZn ? 'Zn' : 'Cu'}</text>
+                                    `).join('')}
+                                    <text x="125" y="138" fill="#94a3b8" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Substitutional Atomic Solid Solution</text>
+                                ` : type === 'liquid' ? `
+                                    <!-- Tincture of Iodine: I2 dissolved in Ethanol -->
+                                    <text x="125" y="20" fill="#818cf8" font-size="9" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">Tincture: I₂ Solute (< 1 nm) in C₂H₅OH</text>
+                                    <rect x="40" y="30" width="170" height="95" rx="4" fill="#1e1b4b" stroke="#4338ca" stroke-width="1.5"/>
+                                    ${[
+                                        [65,55],[120,50],[170,60],[90,80],[145,85],[80,110],[135,115],[185,105]
+                                    ].map(([cx,cy]) => `
+                                        <!-- I2 Diatomic Solute Molecule -->
+                                        <ellipse cx="${cx}" cy="${cy}" rx="4" ry="2.5" fill="#a855f7"/>
+                                        <ellipse cx="${cx + 5}" cy="${cy}" rx="4" ry="2.5" fill="#a855f7"/>
+                                    `).join('')}
+                                    <text x="125" y="140" fill="#c084fc" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Diatomic Solute Particles (< 1 nm)</text>
+                                ` : `
+                                    <!-- Atmospheric Air Gaseous Solution -->
+                                    <text x="125" y="20" fill="#38bdf8" font-size="9" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">Air: 78% N₂, 21% O₂, 0.9% Ar</text>
+                                    <rect x="40" y="30" width="170" height="95" rx="4" fill="#0c4a6e" stroke="#0284c7" stroke-width="1.5"/>
+                                    ${[
+                                        [60,55,'#38bdf8','N2'],[105,50,'#38bdf8','N2'],[150,60,'#f43f5e','O2'],[190,50,'#38bdf8','N2'],
+                                        [80,80,'#38bdf8','N2'],[125,75,'#f43f5e','O2'],[170,85,'#38bdf8','N2'],
+                                        [65,110,'#f43f5e','O2'],[110,112,'#38bdf8','N2'],[155,108,'#fbbf24','Ar'],[190,115,'#38bdf8','N2']
+                                    ].map(([cx,cy,col,label]) => `
+                                        <circle cx="${cx}" cy="${cy}" r="7" fill="${col}"/>
+                                        <text x="${cx}" y="${cy + 2.5}" fill="#ffffff" font-size="6" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">${label}</text>
+                                    `).join('')}
+                                    <text x="125" y="140" fill="#7dd3fc" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Homogeneous Gaseous Dispersion</text>
+                                `}
+                            </svg>
+                        </div>
+
+                        <!-- Data Card -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono space-y-1">
+                            <span class="text-slate-300 font-bold">Key Invariant:</span>
+                            <p class="text-slate-400">In true solutions, solute particles are single molecules or ions (&lt; 1 nm), making light scattering impossible.</p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim2Set = function(t) {
+                type = t;
+                playTone(460, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 3: Suspension Gravitational Sedimentation Lab
+        function renderSim3(vp) {
+            let timeMins = 0; // 0, 15, 30, 60
+
+            function draw() {
+                const settledPercent = timeMins === 0 ? 0 : timeMins === 15 ? 40 : timeMins === 30 ? 75 : 100;
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="flex items-center justify-between text-xs font-mono">
+                            <span class="text-slate-400">Suspension Standing Time:</span>
+                            <span class="text-amber-400 font-bold">${timeMins} Minutes</span>
+                        </div>
+
+                        <!-- 4 Time Buttons -->
+                        <div class="grid grid-cols-4 gap-1 bg-slate-900 p-1.5 rounded-xl border border-slate-800 text-[10px] font-mono font-bold">
+                            <button onclick="window.sim3SetTime(0)" class="py-1 rounded ${timeMins === 0 ? 'bg-amber-600 text-white' : 'bg-slate-800 text-slate-400'}">0m (Stirred)</button>
+                            <button onclick="window.sim3SetTime(15)" class="py-1 rounded ${timeMins === 15 ? 'bg-amber-600 text-white' : 'bg-slate-800 text-slate-400'}">15 mins</button>
+                            <button onclick="window.sim3SetTime(30)" class="py-1 rounded ${timeMins === 30 ? 'bg-amber-600 text-white' : 'bg-slate-800 text-slate-400'}">30 mins</button>
+                            <button onclick="window.sim3SetTime(60)" class="py-1 rounded ${timeMins === 60 ? 'bg-amber-600 text-white' : 'bg-slate-800 text-slate-400'}">60 mins</button>
+                        </div>
+
+                        <!-- Beaker Sedimentation Graphic -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-center h-44">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                <!-- Beaker -->
+                                <rect x="75" y="20" width="100" height="110" rx="3" fill="#0f172a" stroke="#475569" stroke-width="2"/>
+                                <!-- Liquid Base -->
+                                <rect x="77" y="45" width="96" height="83" fill="#0284c7" opacity="${timeMins === 0 ? 0.7 : timeMins === 15 ? 0.5 : timeMins === 30 ? 0.3 : 0.15}"/>
+                                
+                                <!-- Floating Chalk Particles (>100 nm) -->
+                                ${timeMins === 0 ? `
+                                    ${[
+                                        [90,55],[120,52],[150,60],[100,75],[135,70],[160,80],[95,95],[125,90],[155,98],[110,115],[140,118]
+                                    ].map(([cx,cy]) => `
+                                        <circle cx="${cx}" cy="${cy}" r="3.5" fill="#f8fafc"/>
+                                    `).join('')}
+                                    <text x="125" y="142" fill="#f8fafc" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Turbid: Chalk suspended throughout</text>
+                                ` : timeMins === 60 ? `
+                                    <!-- Clear Supernatant on Top -->
+                                    <text x="125" y="65" fill="#38bdf8" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Clear Supernatant Water</text>
+                                    <!-- Compact Sediment at Bottom -->
+                                    <rect x="77" y="105" width="96" height="23" fill="#e2e8f0" opacity="0.9"/>
+                                    <text x="125" y="120" fill="#0f172a" font-size="8" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">Chalk Sediment</text>
+                                ` : `
+                                    <!-- Partial Settling -->
+                                    <rect x="77" y="${128 - (settledPercent / 100) * 23}" width="96" height="${(settledPercent / 100) * 23}" fill="#e2e8f0" opacity="0.8"/>
+                                    <circle cx="100" cy="80" r="3" fill="#f8fafc"/>
+                                    <circle cx="140" cy="75" r="3" fill="#f8fafc"/>
+                                    <circle cx="120" cy="95" r="3" fill="#f8fafc"/>
+                                    <text x="125" y="142" fill="#cbd5e1" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Sedimentation in Progress...</text>
+                                `}
+                            </svg>
+                        </div>
+
+                        <!-- Scientific Summary -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
+                            <strong>Thermodynamic Instability:</strong> Unlike solutions, suspensions contain macroscopic particles (&gt; 100 nm) too heavy for thermal collisions to support; they inevitably settle out under gravity.
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim3SetTime = function(t) {
+                timeMins = t;
+                playTone(400 + t * 3, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 4: Tyndall Effect & Brownian Motion Chamber
+        function renderSim4(vp) {
+            let laserOn = true;
+
+            function draw() {
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="flex items-center justify-between text-xs font-mono">
+                            <span class="text-slate-400">Optics Experiment:</span>
+                            <button onclick="window.sim4ToggleLaser()" class="px-3 py-1 rounded-lg font-bold transition ${laserOn ? 'bg-rose-600 text-white' : 'bg-slate-800 text-slate-400'}">
+                                Laser Beam: ${laserOn ? 'ACTIVE' : 'OFF'}
+                            </button>
+                        </div>
+
+                        <!-- 3 Cuvettes Optical Bench -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-center h-44 relative overflow-hidden">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                <!-- Laser Source on Left -->
+                                <rect x="5" y="65" width="22" height="20" rx="3" fill="#334155" stroke="#64748b"/>
+                                <circle cx="27" cy="75" r="3" fill="${laserOn ? '#ef4444' : '#64748b'}"/>
+
+                                <!-- Cuvette 1: True Solution (CuSO4) -->
+                                <rect x="45" y="35" width="55" height="80" rx="3" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+                                <rect x="47" y="45" width="51" height="68" fill="#0284c7" opacity="0.3"/>
+                                <text x="72" y="128" fill="#38bdf8" font-size="7" font-family="JetBrains Mono" text-anchor="middle">True Solution</text>
+
+                                <!-- Cuvette 2: Colloid (Milk/Starch) -->
+                                <rect x="115" y="35" width="55" height="80" rx="3" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+                                <rect x="117" y="45" width="51" height="68" fill="#475569" opacity="0.4"/>
+                                <text x="142" y="128" fill="#c084fc" font-size="7" font-family="JetBrains Mono" text-anchor="middle">Colloid Sol</text>
+
+                                <!-- Cuvette 3: Suspension (Chalk) -->
+                                <rect x="185" y="35" width="55" height="80" rx="3" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+                                <rect x="187" y="45" width="51" height="68" fill="#64748b" opacity="0.7"/>
+                                <text x="212" y="128" fill="#f59e0b" font-size="7" font-family="JetBrains Mono" text-anchor="middle">Suspension</text>
+
+                                ${laserOn ? `
+                                    <!-- Laser Ray through True Solution (Invisible inside) -->
+                                    <line x1="27" y1="75" x2="47" y2="75" stroke="#ef4444" stroke-width="2"/>
+                                    <line x1="98" y1="75" x2="117" y2="75" stroke="#ef4444" stroke-width="2"/>
+                                    <!-- Luminous Tyndall Cone inside Colloid (SCATTERED) -->
+                                    <polygon points="117,73 168,67 168,83 117,77" fill="#f43f5e" opacity="0.65"/>
+                                    <line x1="117" y1="75" x2="168" y2="75" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="2 1"/>
+                                    <!-- Blocked / Diffuse in Suspension -->
+                                    <line x1="168" y1="75" x2="187" y2="75" stroke="#ef4444" stroke-width="2"/>
+                                    <circle cx="200" cy="75" r="12" fill="#ef4444" opacity="0.4"/>
+                                    <text x="142" y="58" fill="#fecdd3" font-size="7" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">Tyndall Cone</text>
+                                ` : ''}
+                            </svg>
+                        </div>
+
+                        <!-- Diagnostic Note -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
+                            <strong>John Tyndall (1869):</strong> Colloidal particles (1 to 100 nm) are precisely the size required to scatter visible electromagnetic light, illuminating the beam's trajectory!
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim4ToggleLaser = function() {
+                laserOn = !laserOn;
+                playTone(laserOn ? 620 : 310, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 5: Interactive Solution Concentration Calculator
+        function renderSim5(vp) {
+            let soluteMass = 40; // grams
+            let solventMass = 320; // grams
+
+            function draw() {
+                const solutionMass = soluteMass + solventMass;
+                const massPercent = ((soluteMass / solutionMass) * 100).toFixed(2);
+
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="grid grid-cols-2 gap-2 text-xs font-mono">
+                            <div>
+                                <label class="text-slate-400 block mb-1">Solute Salt (g): <strong class="text-white">${soluteMass}g</strong></label>
+                                <input type="range" min="5" max="100" step="5" value="${soluteMass}" oninput="window.sim5SetSolute(this.value)" class="w-full accent-indigo-500">
+                            </div>
+                            <div>
+                                <label class="text-slate-400 block mb-1">Solvent Water (g): <strong class="text-white">${solventMass}g</strong></label>
+                                <input type="range" min="100" max="500" step="10" value="${solventMass}" oninput="window.sim5SetSolvent(this.value)" class="w-full accent-indigo-500">
+                            </div>
+                        </div>
+
+                        <!-- Live Calculation Step-by-Step Box -->
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 font-mono text-xs space-y-1.5">
+                            <div class="flex justify-between text-slate-400">
+                                <span>1. Total Solution Mass:</span>
+                                <span class="text-white font-bold">${soluteMass}g + ${solventMass}g = ${solutionMass}g</span>
+                            </div>
+                            <div class="flex justify-between text-slate-400">
+                                <span>2. Mass % Formula:</span>
+                                <span class="text-indigo-300">(\text{Mass Solute} / \text{Mass Solution}) \times 100</span>
+                            </div>
+                            <div class="flex justify-between text-slate-400 pt-1 border-t border-slate-800">
+                                <span>3. Calculated Concentration:</span>
+                                <span class="text-base text-indigo-400 font-extrabold">${massPercent}\% (w/w)</span>
+                            </div>
+                        </div>
+
+                        <!-- NCERT Presets -->
+                        <div class="grid grid-cols-3 gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800 text-[10px] font-mono">
+                            <button onclick="window.sim5Preset(40, 320)" class="py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200">NCERT Ex (40g/320g)</button>
+                            <button onclick="window.sim5Preset(50, 200)" class="py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200">20% Standard</button>
+                            <button onclick="window.sim5Preset(10, 90)" class="py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200">10% Dilute</button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim5SetSolute = function(v) {
+                soluteMass = parseInt(v);
+                draw();
+            };
+
+            window.sim5SetSolvent = function(v) {
+                solventMass = parseInt(v);
+                draw();
+            };
+
+            window.sim5Preset = function(sol, solv) {
+                soluteMass = sol;
+                solventMass = solv;
+                playTone(490, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 6: Solubility-Temperature Equilibrium Curves
+        function renderSim6(vp) {
+            let temp = 20; // 0 to 100°C
+
+            function getSolubility(t) {
+                // KNO3: 13g at 0°C, 32g at 20°C, 106g at 60°C, 167g at 80°C
+                const kno3 = Math.round(13 + (t * t) / 40 + t * 0.5);
+                // NaCl: 35.7 at 0°C, 36.0 at 20°C, 38.0 at 80°C
+                const nacl = Math.round(35.7 + t * 0.035);
+                return { kno3, nacl };
+            }
+
+            function draw() {
+                const s = getSolubility(temp);
+                const sCool = getSolubility(20);
+                const excessCrystals = temp > 20 ? (s.kno3 - sCool.kno3) : 0;
+
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="flex items-center justify-between text-xs font-mono">
+                            <span class="text-slate-400">Solution Temperature:</span>
+                            <span class="text-indigo-400 font-bold text-sm">${temp}°C</span>
+                        </div>
+
+                        <input type="range" min="0" max="80" step="5" value="${temp}" oninput="window.sim6SetTemp(this.value)" class="w-full accent-indigo-500">
+
+                        <!-- Beaker & Crystals Visualization -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-center h-44">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                <!-- Beaker -->
+                                <rect x="75" y="25" width="100" height="100" rx="3" fill="#0f172a" stroke="#475569" stroke-width="2"/>
+                                <!-- Hot or Warm Liquid Glow -->
+                                <rect x="77" y="45" width="96" height="78" fill="${temp > 50 ? '#f43f5e' : temp > 25 ? '#818cf8' : '#0284c7'}" opacity="${0.2 + temp / 160}"/>
+                                
+                                <text x="125" y="65" fill="#ffffff" font-size="9" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">T = ${temp}°C</text>
+                                <text x="125" y="80" fill="#a5b4fc" font-size="8" font-family="JetBrains Mono" text-anchor="middle">KNO₃ Dissolved: ${s.kno3}g</text>
+
+                                ${excessCrystals > 0 ? `
+                                    <!-- Crystal precipitate if cooled from this temp down to 20°C -->
+                                    <text x="125" y="105" fill="#f59e0b" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Cooling to 20°C yields:</text>
+                                    <text x="125" y="118" fill="#34d399" font-size="9" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">+${excessCrystals}g Crystals</text>
+                                ` : `
+                                    <text x="125" y="105" fill="#94a3b8" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Equilibrium at 20°C (32g)</text>
+                                `}
+                            </svg>
+                        </div>
+
+                        <!-- Metrics Card -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono space-y-1">
+                            <div class="flex justify-between"><span class="text-slate-400">KNO₃ Solubility (per 100g water):</span><span class="text-emerald-400 font-bold">${s.kno3} g</span></div>
+                            <div class="flex justify-between"><span class="text-slate-400">NaCl Solubility (almost flat):</span><span class="text-cyan-400 font-bold">${s.nacl} g</span></div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim6SetTemp = function(v) {
+                temp = parseInt(v);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 7: Sublimation Inverted Funnel Apparatus
+        function renderSim7(vp) {
+            let burnerOn = false;
+
+            function draw() {
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="flex items-center justify-between text-xs font-mono">
+                            <span class="text-slate-400">Bunsen Burner State:</span>
+                            <button onclick="window.sim7ToggleBurner()" class="px-3 py-1 rounded-lg font-bold transition ${burnerOn ? 'bg-amber-600 text-white' : 'bg-slate-800 text-slate-400'}">
+                                Burner: ${burnerOn ? 'HEATING ACTIVE' : 'COLD (CLICK TO HEAT)'}
+                            </button>
+                        </div>
+
+                        <!-- Sublimation Funnel SVG -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-center h-44">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                <!-- Cotton Plug in Top Stem -->
+                                <ellipse cx="125" cy="22" rx="7" ry="5" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1.5"/>
+                                <text x="160" y="24" fill="#94a3b8" font-size="7" font-family="JetBrains Mono">Cotton Plug</text>
+
+                                <!-- Inverted Glass Funnel -->
+                                <path d="M 122 22 L 122 55 L 75 110 L 175 110 L 128 55 L 128 22 Z" fill="#38bdf8" fill-opacity="0.15" stroke="#38bdf8" stroke-width="1.5"/>
+
+                                <!-- China Dish -->
+                                <path d="M 65 110 Q 125 125 185 110 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+
+                                <!-- Mixture inside Dish (NaCl + NH4Cl) -->
+                                <ellipse cx="125" cy="112" rx="45" ry="5" fill="#94a3b8"/>
+
+                                ${burnerOn ? `
+                                    <!-- Bunsen Flame -->
+                                    <polygon points="125,120 120,140 130,140" fill="#f59e0b"/>
+                                    <polygon points="125,123 122,138 128,138" fill="#38bdf8"/>
+                                    <!-- Rising NH4Cl Vapours -->
+                                    <path d="M 115 100 Q 120 80 115 65" stroke="#ffffff" stroke-width="2" stroke-dasharray="3 2" opacity="0.8"/>
+                                    <path d="M 135 100 Q 130 80 135 65" stroke="#ffffff" stroke-width="2" stroke-dasharray="3 2" opacity="0.8"/>
+                                    <!-- Pure NH4Cl Sublimate on Cool Inner Walls -->
+                                    <polygon points="85,100 95,85 100,90 90,105" fill="#ffffff"/>
+                                    <polygon points="165,100 155,85 150,90 160,105" fill="#ffffff"/>
+                                    <text x="125" y="75" fill="#ffffff" font-size="8" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">NH₄Cl Sublimate Deposits</text>
+                                ` : `
+                                    <text x="125" y="138" fill="#64748b" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Burner Off • Turn on to sublimate</text>
+                                `}
+                            </svg>
+                        </div>
+
+                        <!-- Data Card -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
+                            <strong>Phase Shift:</strong> Solid NH4Cl vaporizes without melting, condensing on cool glass as pure sublimate; non-volatile common salt remains in dish.
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim7ToggleBurner = function() {
+                burnerOn = !burnerOn;
+                playTone(burnerOn ? 520 : 330, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 8: Centrifugation & Kathak Spin Biomechanics (C-5.3)
+        function renderSim8(vp) {
+            let mode = 'blood'; // 'blood' vs 'dance'
+            let rpm = 3500;
+
+            function draw() {
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="grid grid-cols-2 gap-2 bg-slate-900 p-1.5 rounded-xl border border-slate-800 text-xs font-bold">
+                            <button onclick="window.sim8SetMode('blood')" class="py-1.5 rounded-lg transition ${mode === 'blood' ? 'bg-indigo-600 text-white shadow' : 'bg-slate-800 text-slate-400'}">
+                                Blood Separation Centrifuge
+                            </button>
+                            <button onclick="window.sim8SetMode('dance')" class="py-1.5 rounded-lg transition ${mode === 'dance' ? 'bg-rose-600 text-white shadow' : 'bg-slate-800 text-slate-400'}">
+                                Kathak Spin Biomechanics (C-5.3)
+                            </button>
+                        </div>
+
+                        <!-- Visualization SVG -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-center h-44">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                ${mode === 'blood' ? `
+                                    <!-- Centrifuge Tube -->
+                                    <rect x="105" y="20" width="40" height="100" rx="3" fill="#0f172a" stroke="#475569" stroke-width="2"/>
+                                    <!-- Conical tip -->
+                                    <polygon points="105,120 145,120 125,138" fill="#0f172a" stroke="#475569" stroke-width="2"/>
+
+                                    <!-- Plasma (55% Straw Yellow at Top) -->
+                                    <rect x="107" y="30" width="36" height="45" fill="#facc15" opacity="0.8"/>
+                                    <!-- Buffy Coat (1% White WBCs in Middle) -->
+                                    <rect x="107" y="75" width="36" height="5" fill="#f8fafc"/>
+                                    <!-- Dense Erythrocytes (45% Red RBCs at Bottom) -->
+                                    <rect x="107" y="80" width="36" height="40" fill="#be123c"/>
+                                    <polygon points="107,120 143,120 125,135" fill="#be123c"/>
+
+                                    <text x="60" y="50" fill="#facc15" font-size="8" font-family="JetBrains Mono">Plasma (55%)</text>
+                                    <text x="50" y="78" fill="#f8fafc" font-size="7" font-family="JetBrains Mono">Buffy Coat (1%)</text>
+                                    <text x="60" y="105" fill="#fb7185" font-size="8" font-family="JetBrains Mono">RBC Pellet (45%)</text>
+                                ` : `
+                                    <!-- Kathak Dancer Pirouette Outward Inertia -->
+                                    <circle cx="125" cy="35" r="10" fill="#fed7aa"/>
+                                    <!-- Torso -->
+                                    <rect x="120" y="45" width="10" height="30" fill="#f43f5e"/>
+                                    <!-- Extended Arms -->
+                                    <line x1="85" y1="52" x2="165" y2="52" stroke="#fed7aa" stroke-width="4" stroke-linecap="round"/>
+                                    <!-- Flared Ghaghra Skirt expanding horizontally due to centrifugal force -->
+                                    <polygon points="125,75 55,120 195,120" fill="#e11d48" opacity="0.85"/>
+                                    <!-- Outward Force Vectors -->
+                                    <path d="M 70 120 L 40 120" stroke="#facc15" stroke-width="2" marker-end="url(#arrow)"/>
+                                    <path d="M 180 120 L 210 120" stroke="#facc15" stroke-width="2"/>
+                                    <text x="125" y="140" fill="#facc15" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Outward Centrifugal Flaring (Chakkars)</text>
+                                `}
+                            </svg>
+                        </div>
+
+                        <!-- C-5.3 Note -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
+                            ${mode === 'blood' ? 
+                                '<strong>Density Gradient:</strong> Centrifugal acceleration separates dense erythrocytes (1.09 g/mL) from lighter plasma (1.025 g/mL).' : 
+                                '<strong>C-5.3 Biomechanics:</strong> High-speed spinning in Kathak/Sufi turns generates outward inertial momentum identical to centrifugal separation in tubes!'}
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim8SetMode = function(m) {
+                mode = m;
+                playTone(m === 'blood' ? 440 : 520, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 9: Paper Chromatography Chamber & Rf Metric
+        function renderSim9(vp) {
+            let runProgress = 100; // 0 to 100%
+
+            function draw() {
+                const solventY = 120 - (runProgress / 100) * 80; // 120 down to 40
+                const yellowY = 120 - (runProgress / 100) * 65; // Rf = 0.81
+                const redY = 120 - (runProgress / 100) * 45; // Rf = 0.56
+                const blueY = 120 - (runProgress / 100) * 25; // Rf = 0.31
+
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="flex items-center justify-between text-xs font-mono">
+                            <span class="text-slate-400">Chromatogram Development:</span>
+                            <button onclick="window.sim9Reset()" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 text-[11px]">
+                                ↺ Reset Run
+                            </button>
+                        </div>
+
+                        <!-- Chromatography Chamber SVG -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-center h-44">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                <!-- Glass Jar Container -->
+                                <rect x="70" y="15" width="110" height="120" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+                                <!-- Solvent Reservoir Pool at Bottom -->
+                                <rect x="72" y="125" width="106" height="9" fill="#0284c7" opacity="0.6"/>
+
+                                <!-- Filter Paper Strip -->
+                                <rect x="105" y="25" width="40" height="105" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+                                <!-- Baseline Pencil Line (Origin) -->
+                                <line x1="105" y1="120" x2="145" y2="120" stroke="#94a3b8" stroke-width="1" stroke-dasharray="2 1"/>
+
+                                <!-- Ascending Solvent Front -->
+                                <line x1="105" y1="${solventY}" x2="145" y2="${solventY}" stroke="#0284c7" stroke-width="1.5"/>
+                                <text x="155" y="${solventY + 3}" fill="#38bdf8" font-size="7" font-family="JetBrains Mono">Solvent Front</text>
+
+                                <!-- Separated Dye Bands -->
+                                <!-- Yellow Spot (Fastest) -->
+                                <ellipse cx="125" cy="${yellowY}" rx="6" ry="3.5" fill="#facc15"/>
+                                <!-- Red Spot (Medium) -->
+                                <ellipse cx="125" cy="${redY}" rx="6" ry="3.5" fill="#f43f5e"/>
+                                <!-- Blue Spot (Slowest) -->
+                                <ellipse cx="125" cy="${blueY}" rx="6" ry="3.5" fill="#3b82f6"/>
+
+                                <text x="90" y="${yellowY + 3}" fill="#facc15" font-size="7" font-family="JetBrains Mono" text-anchor="end">Rf 0.81</text>
+                                <text x="90" y="${redY + 3}" fill="#f43f5e" font-size="7" font-family="JetBrains Mono" text-anchor="end">Rf 0.56</text>
+                                <text x="90" y="${blueY + 3}" fill="#3b82f6" font-size="7" font-family="JetBrains Mono" text-anchor="end">Rf 0.31</text>
+                            </svg>
+                        </div>
+
+                        <!-- Data Card -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono space-y-1">
+                            <span class="text-slate-300 font-bold block">Retention Factor Formula:</span>
+                            <div class="text-indigo-400">R_f = (\text{Distance by Dye}) / (\text{Distance by Solvent Front})</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim9Reset = function() {
+                runProgress = 0;
+                draw();
+                let timer = setInterval(() => {
+                    runProgress += 10;
+                    if (runProgress >= 100) {
+                        runProgress = 100;
+                        clearInterval(timer);
+                    }
+                    draw();
+                }, 100);
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 10: Simple Distillation vs Kannauj Deg-Bhapka Still (C-6.1)
+        function renderSim10(vp) {
+            let mode = 'kannauj'; // 'modern' vs 'kannauj'
+
+            function draw() {
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="grid grid-cols-2 gap-2 bg-slate-900 p-1.5 rounded-xl border border-slate-800 text-xs font-bold">
+                            <button onclick="window.sim10Set('modern')" class="py-1.5 rounded-lg transition ${mode === 'modern' ? 'bg-indigo-600 text-white shadow' : 'bg-slate-800 text-slate-400'}">
+                                Modern Laboratory Distillation
+                            </button>
+                            <button onclick="window.sim10Set('kannauj')" class="py-1.5 rounded-lg transition ${mode === 'kannauj' ? 'bg-amber-600 text-white shadow' : 'bg-slate-800 text-slate-400'}">
+                                Kannauj Deg-Bhapka Still (C-6.1)
+                            </button>
+                        </div>
+
+                        <!-- Graphical Still SVG -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-center h-44">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                ${mode === 'modern' ? `
+                                    <!-- Modern Glass Distillation Flask & Liebig Condenser -->
+                                    <circle cx="65" cy="95" r="25" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+                                    <line x1="65" y1="70" x2="65" y2="35" stroke="#38bdf8" stroke-width="3"/>
+                                    <!-- Thermometer -->
+                                    <line x1="65" y1="35" x2="65" y2="75" stroke="#ef4444" stroke-width="1.5"/>
+                                    <text x="65" y="25" fill="#ef4444" font-size="8" font-family="JetBrains Mono" text-anchor="middle">56°C</text>
+                                    <!-- Liebig Condenser Angle -->
+                                    <line x1="65" y1="45" x2="180" y2="105" stroke="#38bdf8" stroke-width="4"/>
+                                    <rect x="90" y="55" width="70" height="20" rx="3" fill="#0284c7" opacity="0.3" transform="rotate(27 125 65)"/>
+                                    <!-- Conical Receiver Flask -->
+                                    <polygon points="180,105 165,135 205,135 190,105" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+                                    <text x="185" y="145" fill="#38bdf8" font-size="7" font-family="JetBrains Mono" text-anchor="middle">Pure Acetone</text>
+                                ` : `
+                                    <!-- Traditional Copper Deg-Bhapka of Kannauj -->
+                                    <!-- Copper Deg Still over Hearth -->
+                                    <path d="M 35 125 Q 25 75 60 70 L 60 55 L 75 55 L 75 70 Q 110 75 100 125 Z" fill="#b45309" stroke="#f59e0b" stroke-width="2"/>
+                                    <!-- Clay Multani Mitti Seal -->
+                                    <rect x="58" y="52" width="19" height="6" fill="#78350f" rx="2"/>
+                                    <text x="67" y="45" fill="#f59e0b" font-size="7" font-family="JetBrains Mono" text-anchor="middle">Deg (Copper Still)</text>
+
+                                    <!-- Bamboo Chonga Pipe -->
+                                    <path d="M 67 52 Q 130 20 180 85" fill="none" stroke="#84cc16" stroke-width="3"/>
+
+                                    <!-- Cold Water Tank (Gaddi) -->
+                                    <rect x="150" y="70" width="80" height="65" rx="3" fill="#0369a1" opacity="0.4" stroke="#38bdf8"/>
+                                    <!-- Copper Bhapka Receiver inside Tank -->
+                                    <ellipse cx="190" cy="110" rx="18" ry="20" fill="#b45309" stroke="#f59e0b" stroke-width="1.5"/>
+                                    <text x="190" y="145" fill="#38bdf8" font-size="7" font-family="JetBrains Mono" text-anchor="middle">Bhapka in Water Tank</text>
+                                `}
+                            </svg>
+                        </div>
+
+                        <!-- C-6.1 Culture Note -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
+                            ${mode === 'modern' ? 
+                                '<strong>Simple Distillation:</strong> Efficient when miscible liquids differ in boiling point by &gt; 25°C (e.g. Acetone 56°C & Water 100°C).' : 
+                                '<strong>C-6.1 Kannauj Heritage:</strong> Over 1,000 years of artisan hydro-distillation without electricity, using copper *Deg*, clay seal, bamboo *Chonga*, and water-submerged *Bhapka*!'}
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim10Set = function(m) {
+                mode = m;
+                playTone(m === 'modern' ? 480 : 540, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 11: Fractional Distillation & Air Liquefaction
+        function renderSim11(vp) {
+            let mode = 'air'; // 'air' vs 'column'
+
+            function draw() {
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="grid grid-cols-2 gap-2 bg-slate-900 p-1.5 rounded-xl border border-slate-800 text-xs font-bold">
+                            <button onclick="window.sim11Set('air')" class="py-1.5 rounded-lg transition ${mode === 'air' ? 'bg-cyan-600 text-white shadow' : 'bg-slate-800 text-slate-400'}">
+                                Atmospheric Air Separation
+                            </button>
+                            <button onclick="window.sim11Set('column')" class="py-1.5 rounded-lg transition ${mode === 'column' ? 'bg-indigo-600 text-white shadow' : 'bg-slate-800 text-slate-400'}">
+                                Packed Column Glass Beads
+                            </button>
+                        </div>
+
+                        <!-- Graphic Window -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-center h-44">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                ${mode === 'air' ? `
+                                    <!-- Air Liquefaction Tall Fractionator -->
+                                    <rect x="75" y="15" width="100" height="120" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+                                    <!-- Temperature Gradient Lines -->
+                                    <!-- Top: Nitrogen -196°C -->
+                                    <rect x="77" y="17" width="96" height="30" fill="#0284c7" opacity="0.3"/>
+                                    <text x="125" y="32" fill="#38bdf8" font-size="8" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">↑ N₂ Gas (-196°C / 77K)</text>
+
+                                    <!-- Middle: Argon -186°C -->
+                                    <rect x="77" y="47" width="96" height="35" fill="#f59e0b" opacity="0.2"/>
+                                    <text x="125" y="67" fill="#fbbf24" font-size="8" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">→ Argon Gas (-186°C / 87K)</text>
+
+                                    <!-- Bottom: Liquid Oxygen -183°C -->
+                                    <rect x="77" y="82" width="96" height="51" fill="#e11d48" opacity="0.3"/>
+                                    <text x="125" y="112" fill="#fb7185" font-size="8" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">↓ Liquid O₂ (-183°C / 90K)</text>
+                                ` : `
+                                    <!-- Fractionating Column with Glass Beads -->
+                                    <rect x="100" y="20" width="50" height="110" rx="3" fill="#0f172a" stroke="#818cf8" stroke-width="1.5"/>
+                                    <!-- Packed Glass Beads -->
+                                    ${[
+                                        [112,35],[138,35],[125,50],[112,65],[138,65],[125,80],[112,95],[138,95],[125,110]
+                                    ].map(([cx,cy]) => `
+                                        <circle cx="${cx}" cy="${cy}" r="7" fill="#6366f1" opacity="0.5" stroke="#c7d2fe"/>
+                                    `).join('')}
+                                    <text x="125" y="142" fill="#c7d2fe" font-size="7" font-family="JetBrains Mono" text-anchor="middle">Glass Beads: Enormous Surface Area</text>
+                                `}
+                            </svg>
+                        </div>
+
+                        <!-- Data Card -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
+                            <strong>Criterion:</strong> Used when boiling point difference is &lt; 25°C. Glass beads cause continuous condensation-vaporization cycles.
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim11Set = function(m) {
+                mode = m;
+                playTone(m === 'air' ? 520 : 460, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 12: Copper Sulfate Microscale Crystallisation (C-7.1)
+        function renderSim12(vp) {
+            let mode = 'micro'; // 'micro' vs 'bulk'
+
+            function draw() {
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="grid grid-cols-2 gap-2 bg-slate-900 p-1.5 rounded-xl border border-slate-800 text-xs font-bold">
+                            <button onclick="window.sim12Set('micro')" class="py-1.5 rounded-lg transition ${mode === 'micro' ? 'bg-indigo-600 text-white shadow' : 'bg-slate-800 text-slate-400'}">
+                                Microscale Green Lab (C-7.1)
+                            </button>
+                            <button onclick="window.sim12Set('bulk')" class="py-1.5 rounded-lg transition ${mode === 'bulk' ? 'bg-rose-900 text-white shadow' : 'bg-slate-800 text-slate-400'}">
+                                Bulk Evaporation (Charred/Impure)
+                            </button>
+                        </div>
+
+                        <!-- Graphic Window -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-center h-44">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                ${mode === 'micro' ? `
+                                    <!-- Microscale Well Slide with Pure Blue Crystals -->
+                                    <rect x="40" y="35" width="170" height="80" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+                                    <circle cx="125" cy="75" r="28" fill="#0f172a" stroke="#64748b" stroke-width="1.5"/>
+                                    <!-- Perfect Triclinic Blue Vitriol Crystals -->
+                                    <polygon points="115,60 135,55 140,75 120,80" fill="#2563eb" stroke="#60a5fa" stroke-width="1.5"/>
+                                    <polygon points="105,75 125,70 130,90 110,95" fill="#1d4ed8" stroke="#93c5fd" stroke-width="1.5"/>
+                                    <polygon points="125,78 145,72 150,92 130,98" fill="#3b82f6" stroke="#bfdbfe" stroke-width="1.5"/>
+                                    <text x="125" y="130" fill="#38bdf8" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Pure CuSO₄·5H₂O Crystals (Zero Waste)</text>
+                                ` : `
+                                    <!-- Bulk Charred Dirty Crust -->
+                                    <path d="M 55 105 Q 125 125 195 105 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+                                    <ellipse cx="125" cy="108" rx="55" ry="8" fill="#451a03"/>
+                                    <circle cx="110" cy="108" r="3" fill="#000000"/>
+                                    <circle cx="140" cy="106" r="3" fill="#000000"/>
+                                    <text x="125" y="70" fill="#ef4444" font-size="9" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">Evaporated to Dryness:</text>
+                                    <text x="125" y="85" fill="#fca5a5" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Charred & Trapped Soluble Impurities</text>
+                                `}
+                            </svg>
+                        </div>
+
+                        <!-- C-7.1 Note -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
+                            <strong>C-7.1 Green Chemistry:</strong> Microscale crystallization uses milligrams instead of hundreds of grams, producing pure blue vitriol without toxic chemical effluents!
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim12Set = function(m) {
+                mode = m;
+                playTone(m === 'micro' ? 560 : 320, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 13: Municipal Water Purification Works (Alum Loading) (C-5.2)
+        function renderSim13(vp) {
+            let stage = 2; // 1: Sedimentation, 2: Alum Loading, 3: Filtration, 4: Chlorination
+            const stages = [
+                { title: "Stage 1: Sedimentation Tank", desc: "Coarse sand and heavy particles settle gravitationally over time." },
+                { title: "Stage 2: Alum Loading Tank", desc: "Trivalent Al³⁺ from potash alum neutralizes colloidal clay charges; flocs settle rapidly!" },
+                { title: "Stage 3: Multi-tier Sand Filter", desc: "Successive layers of fine sand, coarse sand, and gravel filter remaining particulates." },
+                { title: "Stage 4: Chlorination Tank", desc: "Chlorine gas eliminates harmful bacterial and viral pathogens before public supply." }
+            ];
+
+            function draw() {
+                const cur = stages[stage - 1];
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="flex items-center justify-between text-xs font-mono">
+                            <span class="text-slate-400">Municipal Water Works:</span>
+                            <span class="text-indigo-400 font-bold">Stage ${stage} of 4</span>
+                        </div>
+
+                        <!-- 4 Stage Selector Buttons -->
+                        <div class="grid grid-cols-4 gap-1 bg-slate-900 p-1.5 rounded-xl border border-slate-800 text-[10px] font-mono font-bold">
+                            ${[1,2,3,4].map(s => `
+                                <button onclick="window.sim13SetStage(${s})" class="py-1 rounded ${stage === s ? 'bg-indigo-600 text-white' : 'bg-slate-800 text-slate-400'}">
+                                    Stage ${s}
+                                </button>
+                            `).join('')}
+                        </div>
+
+                        <!-- Animated Process SVG -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-center h-44">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                ${stage === 1 ? `
+                                    <!-- Sedimentation Tank -->
+                                    <rect x="50" y="30" width="150" height="90" rx="4" fill="#0f172a" stroke="#64748b" stroke-width="2"/>
+                                    <rect x="52" y="45" width="146" height="60" fill="#0284c7" opacity="0.3"/>
+                                    <rect x="52" y="105" width="146" height="13" fill="#78350f"/>
+                                    <text x="125" y="75" fill="#f8fafc" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Heavy Silt Settling Under Gravity</text>
+                                ` : stage === 2 ? `
+                                    <!-- Alum Loading Tank -->
+                                    <rect x="50" y="30" width="150" height="90" rx="4" fill="#0f172a" stroke="#818cf8" stroke-width="2"/>
+                                    <!-- Suspended Clay Flocs Agglomerating with Al3+ -->
+                                    <circle cx="85" cy="65" r="5" fill="#f59e0b"/>
+                                    <circle cx="115" cy="75" r="7" fill="#f59e0b"/>
+                                    <circle cx="155" cy="70" r="6" fill="#f59e0b"/>
+                                    <!-- Settled Flocs at bottom -->
+                                    <rect x="52" y="108" width="146" height="10" fill="#d97706" opacity="0.8"/>
+                                    <text x="125" y="45" fill="#a5b4fc" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Al³⁺ Neutralizes Clay Charges</text>
+                                    <text x="125" y="98" fill="#34d399" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Agglomerated Flocs Settle Fast</text>
+                                ` : stage === 3 ? `
+                                    <!-- Filtration Tank Layers -->
+                                    <rect x="50" y="30" width="150" height="90" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+                                    <rect x="52" y="45" width="146" height="20" fill="#fef08a" opacity="0.6"/>
+                                    <text x="125" y="58" fill="#713f12" font-size="7" font-family="JetBrains Mono" text-anchor="middle">Fine Sand Layer</text>
+                                    <rect x="52" y="65" width="146" height="25" fill="#d97706" opacity="0.7"/>
+                                    <text x="125" y="80" fill="#ffffff" font-size="7" font-family="JetBrains Mono" text-anchor="middle">Coarse Sand Layer</text>
+                                    <rect x="52" y="90" width="146" height="28" fill="#64748b" opacity="0.8"/>
+                                    <text x="125" y="107" fill="#f8fafc" font-size="7" font-family="JetBrains Mono" text-anchor="middle">Gravel Support Layer</text>
+                                ` : `
+                                    <!-- Chlorination -->
+                                    <rect x="50" y="30" width="150" height="90" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="2"/>
+                                    <rect x="52" y="45" width="146" height="73" fill="#10b981" opacity="0.25"/>
+                                    <text x="125" y="65" fill="#34d399" font-size="9" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">Chlorine (Cl₂) Injection</text>
+                                    <text x="125" y="85" fill="#d1fae5" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Destroys 99.9% of Pathogens</text>
+                                    <text x="125" y="105" fill="#ffffff" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Potable Safe Drinking Water</text>
+                                `}
+                            </svg>
+                        </div>
+
+                        <!-- Data Card -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono space-y-1">
+                            <span class="text-indigo-400 font-bold">${cur.title}</span>
+                            <p class="text-slate-300">${cur.desc}</p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim13SetStage = function(s) {
+                stage = s;
+                playTone(450 + s * 30, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 14: Dr. Manu Prakash 125,000 RPM Paperfuge (C-8.1)
+        function renderSim14(vp) {
+            let spinning = false;
+
+            function draw() {
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="flex items-center justify-between text-xs font-mono">
+                            <span class="text-slate-400">Manu Prakash Whirligig (C-8.1):</span>
+                            <button onclick="window.sim14ToggleSpin()" class="px-3 py-1 rounded-lg font-bold transition ${spinning ? 'bg-indigo-600 text-white animate-pulse' : 'bg-slate-800 text-slate-400'}">
+                                ${spinning ? 'PULLING STRINGS (125,000 RPM)' : 'PULL STRINGS TO SPIN'}
+                            </button>
+                        </div>
+
+                        <!-- Paperfuge Disc Graphic -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-center h-44">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                <!-- Braided Twisted Strings -->
+                                <line x1="20" y1="75" x2="95" y2="75" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="${spinning ? '1 1' : 'none'}"/>
+                                <line x1="155" y1="75" x2="230" y2="75" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="${spinning ? '1 1' : 'none'}"/>
+
+                                <!-- Central Paper Disc -->
+                                <circle cx="125" cy="75" r="32" fill="#f8fafc" stroke="#64748b" stroke-width="2"/>
+                                <!-- Central Two Holes -->
+                                <circle cx="120" cy="75" r="2.5" fill="#0f172a"/>
+                                <circle cx="130" cy="75" r="2.5" fill="#0f172a"/>
+
+                                <!-- Radial Capillary Tube mounted on Disc -->
+                                <rect x="100" y="73" width="50" height="4" rx="2" fill="#38bdf8" opacity="0.8"/>
+                                ${spinning ? `
+                                    <!-- Blood Separation occurring under 30,000 g -->
+                                    <rect x="100" y="73" width="22" height="4" fill="#facc15"/>
+                                    <rect x="122" y="73" width="28" height="4" fill="#be123c"/>
+                                    <text x="125" y="32" fill="#38bdf8" font-size="9" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">125,000 RPM • 30,000 g</text>
+                                    <text x="125" y="128" fill="#34d399" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Plasma separated in 90 seconds!</text>
+                                ` : `
+                                    <text x="125" y="32" fill="#94a3b8" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Cost: ~20 Cents • Zero Electricity</text>
+                                    <text x="125" y="128" fill="#64748b" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Click button to spin whirligig</text>
+                                `}
+                            </svg>
+                        </div>
+
+                        <!-- C-8.1 Note -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
+                            <strong>Frugal Science:</strong> Stanford bioengineer Dr. Manu Prakash designed a 20-cent paper centrifuge that achieves $30,000\ g$ acceleration, diagnosing malaria in off-grid clinics!
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim14ToggleSpin = function() {
+                spinning = !spinning;
+                playTone(spinning ? 700 : 350, 0.15);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 15: Dr. Dilip Mahalanabis ORS & SGLT1 Transport (C-6.1)
+        function renderSim15(vp) {
+            let orsActive = true;
+
+            function draw() {
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="flex items-center justify-between text-xs font-mono">
+                            <span class="text-slate-400">Dr. Dilip Mahalanabis ORS (C-6.1):</span>
+                            <button onclick="window.sim15Toggle()" class="px-3 py-1 rounded-lg font-bold transition ${orsActive ? 'bg-emerald-600 text-white' : 'bg-rose-900 text-white'}">
+                                Oral Rehydration: ${orsActive ? 'ACTIVE (SGLT1 ON)' : 'NO ORS (CHOLERA LEAK)'}
+                            </button>
+                        </div>
+
+                        <!-- Intestinal Epithelial SGLT1 Co-Transport SVG -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-center h-44">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                <!-- Intestinal Lumen (Left) and Blood Capillary (Right) -->
+                                <rect x="20" y="20" width="85" height="110" fill="#0f172a" stroke="#334155"/>
+                                <text x="62" y="35" fill="#94a3b8" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Intestinal Lumen</text>
+
+                                <!-- Cell Membrane Epithelium (Middle) -->
+                                <rect x="105" y="20" width="40" height="110" fill="#312e81" stroke="#6366f1"/>
+                                <!-- SGLT1 Protein Channel -->
+                                <rect x="110" y="60" width="30" height="30" rx="4" fill="#10b981" stroke="#34d399"/>
+                                <text x="125" y="78" fill="#ffffff" font-size="7" font-family="JetBrains Mono" font-weight="bold" text-anchor="middle">SGLT1</text>
+
+                                <!-- Blood Vessel (Right) -->
+                                <rect x="145" y="20" width="85" height="110" fill="#881337" opacity="0.3" stroke="#f43f5e"/>
+                                <text x="187" y="35" fill="#fb7185" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Blood Stream</text>
+
+                                ${orsActive ? `
+                                    <!-- Co-Transport of Na+ and Glucose into Blood -->
+                                    <circle cx="55" cy="65" r="4" fill="#38bdf8"/>
+                                    <text x="55" y="68" fill="#ffffff" font-size="6" font-family="JetBrains Mono" text-anchor="middle">Na+</text>
+                                    <rect x="70" y="62" width="8" height="8" rx="2" fill="#fbbf24"/>
+                                    <text x="74" y="68" fill="#000000" font-size="5" font-family="JetBrains Mono" text-anchor="middle">G</text>
+                                    <!-- Flow through SGLT1 pulling Water -->
+                                    <path d="M 85 75 L 170 75" stroke="#34d399" stroke-width="2" stroke-dasharray="3 2"/>
+                                    <text x="187" y="78" fill="#34d399" font-size="8" font-family="JetBrains Mono" text-anchor="middle">+H₂O Osmosis!</text>
+                                    <text x="125" y="142" fill="#34d399" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Cholera Mortality Slashed: 30% → 3.6%</text>
+                                ` : `
+                                    <!-- Dehydration Fluid Loss -->
+                                    <path d="M 170 75 L 85 75" stroke="#ef4444" stroke-width="2"/>
+                                    <text x="125" y="142" fill="#ef4444" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Severe Fluid Loss & Shock</text>
+                                `}
+                            </svg>
+                        </div>
+
+                        <!-- C-6.1 Note -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
+                            <strong>Dr. Dilip Mahalanabis (1934–2022):</strong> Formulated homogeneous solution chemistry (3.5g NaCl + 2.5g NaHCO3 + 1.5g KCl + 20g Glucose in 1L water), saving over 50 million lives!
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim15Toggle = function() {
+                orsActive = !orsActive;
+                playTone(orsActive ? 600 : 290, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // SIMULATOR 16: Artificial Blood Engineering: PFCs & HBOCs (C-7.2)
+        function renderSim16(vp) {
+            let cand = 'pfc'; // 'pfc', 'hboc', 'natural'
+
+            function draw() {
+                vp.innerHTML = `
+                    <div class="w-full flex flex-col gap-2.5">
+                        <div class="grid grid-cols-3 gap-1 bg-slate-900 p-1.5 rounded-xl border border-slate-800 text-[10px] font-mono font-bold">
+                            <button onclick="window.sim16Set('natural')" class="py-1 rounded ${cand === 'natural' ? 'bg-rose-600 text-white' : 'bg-slate-800 text-slate-400'}">Natural Blood</button>
+                            <button onclick="window.sim16Set('pfc')" class="py-1 rounded ${cand === 'pfc' ? 'bg-cyan-600 text-white' : 'bg-slate-800 text-slate-400'}">PFC Emulsion</button>
+                            <button onclick="window.sim16Set('hboc')" class="py-1 rounded ${cand === 'hboc' ? 'bg-indigo-600 text-white' : 'bg-slate-800 text-slate-400'}">HBOC Carriers</button>
+                        </div>
+
+                        <!-- Microcapillary Fluid Viewport -->
+                        <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-center h-44">
+                            <svg width="250" height="150" viewBox="0 0 250 150">
+                                <!-- Capillary Walls -->
+                                <line x1="20" y1="40" x2="230" y2="40" stroke="#f43f5e" stroke-width="3"/>
+                                <line x1="20" y1="110" x2="230" y2="110" stroke="#f43f5e" stroke-width="3"/>
+
+                                ${cand === 'natural' ? `
+                                    <!-- Flexible Biconcave RBCs in Plasma -->
+                                    <ellipse cx="60" cy="75" rx="14" ry="9" fill="#be123c"/>
+                                    <ellipse cx="125" cy="75" rx="14" ry="9" fill="#be123c"/>
+                                    <ellipse cx="190" cy="75" rx="14" ry="9" fill="#be123c"/>
+                                    <!-- Platelets -->
+                                    <circle cx="95" cy="60" r="3" fill="#fbbf24"/>
+                                    <text x="125" y="130" fill="#fb7185" font-size="8" font-family="JetBrains Mono" text-anchor="middle">Natural Blood: O₂ + Clotting + Immunity</text>
+                                ` : cand === 'pfc' ? `
+                                    <!-- Perfluorocarbon Micro-Emulsion -->
+                                    ${[
+                                        [50,65],[80,85],[110,60],[140,85],[170,65],[200,80]
+                                    ].map(([cx,cy]) => `
+                                        <circle cx="${cx}" cy="${cy}" r="6" fill="#06b6d4" stroke="#67e8f9" stroke-width="1.5"/>
+                                        <circle cx="${cx + 2}" cy="${cy - 2}" r="2" fill="#ffffff"/>
+                                    `).join('')}
+                                    <text x="125" y="130" fill="#38bdf8" font-size="8" font-family="JetBrains Mono" text-anchor="middle">PFCs: 50x O₂ solubility; zero clotting</text>
+                                ` : `
+                                    <!-- Polymerized Hemoglobin Chains -->
+                                    <circle cx="70" cy="75" r="5" fill="#881337"/>
+                                    <circle cx="80" cy="75" r="5" fill="#881337"/>
+                                    <circle cx="120" cy="75" r="5" fill="#881337"/>
+                                    <circle cx="130" cy="75" r="5" fill="#881337"/>
+                                    <circle cx="170" cy="75" r="5" fill="#881337"/>
+                                    <circle cx="180" cy="75" r="5" fill="#881337"/>
+                                    <text x="125" y="130" fill="#c084fc" font-size="8" font-family="JetBrains Mono" text-anchor="middle">HBOC: O₂ Carrier, but scavenges arterial NO</text>
+                                `}
+                            </svg>
+                        </div>
+
+                        <!-- C-7.2 Open Scientific Question -->
+                        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
+                            <strong>C-7.2 Scientific Frontier:</strong> Can artificial blood work universally? While PFCs transport $O_2$, they lack clotting platelets, immune leukocytes, and nitric oxide buffering!
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.sim16Set = function(c) {
+                cand = c;
+                playTone(c === 'natural' ? 440 : c === 'pfc' ? 520 : 480, 0.08);
+                draw();
+            };
+
+            draw();
+        }
+
+        // Initialize on Load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderSlide(0);
+        });
+    </script>
+</body>
+</html>
