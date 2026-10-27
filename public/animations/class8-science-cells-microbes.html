@@ -1,0 +1,1992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 8 Science • Chapter 2: Cell Structure & Microorganisms Master Lab</title>
+  
+  <!-- KaTeX CSS & JS with safe early trigger definition -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script>
+    function triggerMathRender(el) {
+      if (window.renderMathInElement) {
+        window.renderMathInElement(el || document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="if (window.triggerMathRender) triggerMathRender(document.body);"></script>
+
+  <style>
+    :root {
+      --bg-primary: #070d18;
+      --bg-secondary: #0f172a;
+      --card-bg: rgba(15, 23, 42, 0.88);
+      --card-border: rgba(16, 185, 129, 0.25);
+      --accent-emerald: #10b981;
+      --accent-cyan: #06b6d4;
+      --accent-amber: #f59e0b;
+      --accent-purple: #a855f7;
+      --accent-rose: #f43f5e;
+      --accent-teal: #14b8a6;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at top right, #064e3b 0%, #070d18 70%);
+      color: var(--text-main);
+      font-family: var(--font-stack);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #10b981, #06b6d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+    }
+
+    .brand-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(to right, #6ee7b7, #67e8f9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-main);
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .btn:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: var(--accent-emerald);
+      transform: translateY(-1px);
+    }
+
+    .btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #059669, #0891b2);
+      border-color: #10b981;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      box-shadow: 0 0 16px rgba(16, 185, 129, 0.4);
+    }
+
+    .slide-badge {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-emerald);
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 0.3rem 0.75rem;
+      border-radius: 9999px;
+      letter-spacing: 0.03em;
+    }
+
+    main {
+      flex: 1;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    /* Lesson Grid Layout */
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .lesson-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .panel {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel-header {
+      margin-bottom: 1.25rem;
+    }
+
+    .panel-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: var(--accent-emerald);
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+
+    .panel-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.25;
+    }
+
+    .panel-sub {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-top: 0.35rem;
+    }
+
+    /* Avatar & Narration Box */
+    .avatar-card {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 14px;
+      padding: 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 52px;
+      height: 52px;
+      flex-shrink: 0;
+    }
+
+    .avatar-face {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #047857, #0e7490);
+      border: 2px solid var(--accent-emerald);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+    }
+
+    .avatar-speaking {
+      animation: pulseAvatar 1.4s infinite alternate;
+    }
+
+    @keyframes pulseAvatar {
+      from { transform: scale(1); box-shadow: 0 0 8px rgba(16, 185, 129, 0.4); }
+      to { transform: scale(1.08); box-shadow: 0 0 20px rgba(6, 182, 212, 0.8); }
+    }
+
+    .voice-control-btn {
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid var(--accent-emerald);
+      color: #fff;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 0.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .voice-control-btn:hover {
+      background: var(--accent-emerald);
+      color: #070d18;
+    }
+
+    /* Key points / Takeaways */
+    .takeaway-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-top: 1rem;
+    }
+
+    .takeaway-list li {
+      position: relative;
+      padding-left: 1.6rem;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #e2e8f0;
+    }
+
+    .takeaway-list li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent-cyan);
+      font-weight: bold;
+    }
+
+    /* In-Slide Checkpoints */
+    .checkpoint-box {
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .checkpoint-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .checkpoint-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-amber);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .checkpoint-item {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 0.85rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .checkpoint-q {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #f1f5f9;
+      margin-bottom: 0.6rem;
+    }
+
+    .checkpoint-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+    }
+
+    .cp-opt-btn {
+      text-align: left;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+      padding: 0.45rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .cp-opt-btn:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: var(--accent-emerald);
+    }
+
+    .cp-opt-btn.correct {
+      background: rgba(16, 185, 129, 0.25) !important;
+      border-color: #10b981 !important;
+      color: #a7f3d0 !important;
+      font-weight: 600;
+    }
+
+    .cp-opt-btn.incorrect {
+      background: rgba(244, 63, 94, 0.25) !important;
+      border-color: #f43f5e !important;
+      color: #fecdd3 !important;
+    }
+
+    .cp-feedback {
+      margin-top: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      line-height: 1.4;
+      display: none;
+    }
+
+    .cp-feedback.show-correct {
+      display: block;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #6ee7b7;
+    }
+
+    .cp-feedback.show-incorrect {
+      display: block;
+      background: rgba(244, 63, 94, 0.15);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+      color: #fda4af;
+    }
+
+    /* Simulator Panel */
+    .sim-panel {
+      background: #090e1a;
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      min-height: 540px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .sim-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .sim-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--accent-emerald);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .sim-stats {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-pill {
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      color: #cbd5e1;
+    }
+
+    .stat-pill strong {
+      color: var(--accent-emerald);
+    }
+
+    .sim-canvas-wrapper {
+      flex: 1;
+      min-height: 380px;
+      background: #040711;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sim-controls {
+      margin-top: 0.85rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .sim-ctrl-group {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+
+    .sim-slider {
+      accent-color: var(--accent-emerald);
+      cursor: pointer;
+    }
+
+    /* Quiz Slides (17 to 20) */
+    .quiz-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .quiz-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 1.25rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      transition: all 0.2s ease;
+    }
+
+    .quiz-card:hover {
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    .quiz-q-num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-emerald);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+
+    .quiz-q-text {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.85rem;
+      line-height: 1.45;
+    }
+
+    .quiz-opts {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    @media (min-width: 640px) {
+      .quiz-opts {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .quiz-opt-btn {
+      text-align: left;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+      padding: 0.6rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .quiz-opt-btn:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: var(--accent-emerald);
+    }
+
+    .quiz-opt-btn.correct {
+      background: rgba(16, 185, 129, 0.25) !important;
+      border-color: #10b981 !important;
+      color: #6ee7b7 !important;
+      font-weight: 600;
+    }
+
+    .quiz-opt-btn.incorrect {
+      background: rgba(244, 63, 94, 0.25) !important;
+      border-color: #f43f5e !important;
+      color: #fecdd3 !important;
+    }
+
+    .quiz-btn-solution {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: #fbbf24;
+      padding: 0.4rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
+    }
+
+    .quiz-btn-solution:hover {
+      background: rgba(245, 158, 11, 0.3);
+      border-color: #f59e0b;
+    }
+
+    /* Solution Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .modal-card {
+      background: #0b1329;
+      border: 1px solid var(--accent-amber);
+      border-radius: 16px;
+      max-width: 650px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 1.75rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+      position: relative;
+    }
+
+    .modal-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fbbf24;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .modal-close-btn:hover {
+      background: rgba(244, 63, 94, 0.5);
+    }
+
+    .modal-solution-text {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #e2e8f0;
+      white-space: pre-line;
+      margin-top: 1rem;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1rem;
+      border-radius: 10px;
+      border-left: 3px solid var(--accent-amber);
+    }
+
+    /* Terminal Slide Banner */
+    .last-slide-banner {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.15));
+      border: 1px solid var(--accent-emerald);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+      display: none;
+      margin-top: 1.5rem;
+    }
+
+    .last-slide-banner h3 {
+      color: #6ee7b7;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .last-slide-banner p {
+      color: #cbd5e1;
+      font-size: 0.85rem;
+    }
+
+    /* Footer Navigation */
+    footer {
+      background: rgba(15, 23, 42, 0.9);
+      border-top: 1px solid var(--card-border);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(10px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header>
+    <div class="brand">
+      <div class="brand-icon">🔬</div>
+      <div>
+        <div class="brand-title">Class 8 Science • Chapter 2: Cell Structure & Microorganisms</div>
+        <div class="brand-sub">NCERT Interactive Laboratory & Animated Concept Studio</div>
+      </div>
+    </div>
+    <div class="nav-controls">
+      <span class="slide-badge" id="slideNumDisplay">Slide 1 of 20</span>
+      <button class="btn" id="prevBtn" onclick="prevSlide()" disabled>← Previous</button>
+      <button class="btn btn-primary" id="nextBtn" onclick="nextSlide()">Next →</button>
+    </div>
+  </header>
+
+  <!-- Main Slide Container -->
+  <main>
+    <!-- Lesson Grid (Slides 1 to 16) -->
+    <div class="lesson-grid" id="lessonGrid">
+      <!-- Left Column: Theory & Narrative -->
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-tag" id="slideBadgeTag">Cellular History</span>
+          <h1 class="panel-title" id="slideHeading">Discovery of Cells</h1>
+          <div class="panel-sub" id="slideSubheading">Micrographia, Robert Hooke (1665), and the First Glimpse</div>
+        </div>
+
+        <!-- Teacher Voice Avatar -->
+        <div class="avatar-card">
+          <div class="avatar-wrapper">
+            <div class="avatar-face" id="teacherAvatar">👨‍🔬</div>
+          </div>
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--accent-emerald);">Prof. Raman • Cellular Mentor</div>
+            <p style="font-size: 0.8rem; color: #cbd5e1; margin-top: 0.2rem;" id="narrationSummary">
+              Explore the discovery and fundamental architecture of cells and the microbial kingdom.
+            </p>
+            <button class="voice-control-btn" id="voiceToggleBtn" onclick="toggleVoice()">
+              <span id="voiceIcon">🔊</span> <span id="voiceBtnText">Listen to Teacher Explanation</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Core Theory Text -->
+        <div id="theoryContent"></div>
+
+        <!-- Key Takeaways -->
+        <div style="margin-top: 1.25rem;">
+          <h4 style="font-size: 0.85rem; font-weight: 700; color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 0.05em;">
+            Key Scientific Takeaways
+          </h4>
+          <ul class="takeaway-list" id="keyTakeawaysList"></ul>
+        </div>
+
+        <!-- In-Slide Checkpoints (2 Questions with Solutions) -->
+        <div class="checkpoint-box" id="checkpointContainer">
+          <div class="checkpoint-header">
+            <div class="checkpoint-title">⚡ Checkpoint Inquiries (2 Concept Checks)</div>
+          </div>
+          <div id="checkpointsList"></div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Bespoke Simulator -->
+      <div class="sim-panel">
+        <div class="sim-header">
+          <div class="sim-title" id="simTitle">🔬 Virtual Microscope Simulator</div>
+          <div class="sim-stats" id="simStats"></div>
+        </div>
+        <div class="sim-canvas-wrapper" id="simCanvas"></div>
+        <div class="sim-controls" id="simControls"></div>
+      </div>
+    </div>
+
+    <!-- Quiz Container (Slides 17 to 20) -->
+    <div class="quiz-container" id="quizContainer" style="display: none;">
+      <div class="panel">
+        <div class="panel-header" style="text-align: center;">
+          <span class="panel-tag" style="color: var(--accent-amber);">Mastery Assessment Series</span>
+          <h1 class="panel-title" id="quizTitle">Mastery Challenge</h1>
+          <div class="panel-sub" id="quizSubtitle">Answer all 10 questions to test your conceptual clarity.</div>
+          <div style="margin-top: 0.75rem;">
+            <span class="slide-badge" style="background: rgba(245, 158, 11, 0.15); border-color: #f59e0b; color: #fbbf24;" id="quizScoreBadge">
+              Score: 0 / 10
+            </span>
+          </div>
+        </div>
+        <div id="quizQuestionsGrid" style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;"></div>
+      </div>
+    </div>
+
+    <!-- Terminal Slide Notice -->
+    <div class="last-slide-banner" id="lastSlideNotice" style="display: none;">
+      <h3>🎉 You have reached the last slide of this chapter!</h3>
+      <p>Congratulations! You have mastered NCERT Class 8 Science Chapter 2: Cell Structure, Variation, and Microorganisms.</p>
+    </div>
+  </main>
+
+  <!-- Footer Navigation -->
+  <footer>
+    <div style="font-size: 0.8rem; color: #64748b;">
+      Class 8 Science • Chapter 2 • Cell Structure & Microorganisms Master Laboratory
+    </div>
+    <div class="nav-controls">
+      <button class="btn" onclick="prevSlide()">← Back</button>
+      <button class="btn btn-primary" id="footerNextBtn" onclick="nextSlide()">Continue Next →</button>
+    </div>
+  </footer>
+
+  <!-- Pop-Up Solution Modal -->
+  <div class="modal-backdrop" id="solutionModal" style="display: none;">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeSolutionModal()">✕</button>
+      <div class="modal-title">
+        <span>💡</span> Step-by-Step Scientific Solution
+      </div>
+      <div id="modalQuestionText" style="font-size: 0.95rem; font-weight: 600; color: #fff; margin-bottom: 0.5rem;"></div>
+      <div class="modal-solution-text" id="modalSolutionBody"></div>
+    </div>
+  </div>
+
+  <script>
+    const SLIDES = [{"id": 1, "title": "Discovery of Cells", "subtitle": "Micrographia, Robert Hooke (1665), and the First Glimpse", "badge": "Cellular History", "narration": "Welcome to Chapter 2: The Cell and Microorganisms. The human eye cannot resolve structures smaller than one-tenth of a millimeter. For centuries, the building blocks of living organisms remained completely hidden. That changed in 1665 when British polymath Robert Hooke examined thin shavings of bottle cork under a primitive compound microscope magnifying 200 to 300 times.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                The human eye has an optical resolution limit of approximately $0.1\\text{ mm}$ ($100\\,\\mu\\text{m}$). Any biological structure smaller than this threshold cannot be distinguished without optical assistance.\n            </p>\n            <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-3\">\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-cyan-500/30\">\n                    <h4 class=\"text-xs font-bold text-cyan-400 uppercase tracking-wider mb-1\">Robert Hooke (1665)</h4>\n                    <p class=\"text-xs text-slate-300\">\n                        In 1665, <strong>Robert Hooke</strong> observed thin slices of dead bottle cork under a compound microscope magnifying $200\\times$ to $300\\times$. He noticed a honeycomb pattern of tiny, hollow compartments and published his drawings in <em>Micrographia</em>.\n                    </p>\n                </div>\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-amber-500/30\">\n                    <h4 class=\"text-xs font-bold text-amber-400 uppercase tracking-wider mb-1\">Origin of the Word 'Cell'</h4>\n                    <p class=\"text-xs text-slate-300\">\n                        Hooke named these tiny boxes <strong>cells</strong> (from Latin <em>cellula</em>, meaning 'a small room'), because they reminded him of the small bare rooms inhabited by monks in a monastery. Hooke was actually observing the rigid, dead cellulose cell walls of plant tissue.\n                    </p>\n                </div>\n            </div>\n            <p class=\"text-xs text-slate-400 leading-relaxed\">\n                Hooke's landmark publication laid the foundation for biological cytology, sparking a scientific revolution to explore what lies inside these miniature chambers.\n            </p>\n        ", "key_points": ["The unaided human eye cannot resolve microscopic objects smaller than ~0.1 mm (100 μm).", "In 1665, Robert Hooke published 'Micrographia' after examining cork slices under a 200×–300× microscope.", "Hooke coined the word 'cell' (from Latin 'cellula', little room) to describe the honeycomb compartments.", "The cork compartments Hooke observed were actually empty cellulose walls of dead plant bark cells."], "sim_id": "hooke_cork_microscope_sim", "checkpoints": [{"question": "What biological material was Robert Hooke examining when he first coined the term 'cell' in 1665?", "options": ["Thin slices of dead bottle cork bark", "Living blood droplets from a frog", "Fresh green onion peel", "Pond water animalcules"], "correct": 0, "explanation": "Robert Hooke examined thin shavings of dead bottle cork (tree bark tissue) under his microscope, noticing box-like compartments that he named cells."}, {"question": "What was the magnification range of the compound microscope used by Robert Hooke in his 1665 study?", "options": ["200 to 300 times (200×–300×)", "10 to 20 times (10×–20×)", "1,000,000 times (1,000,000×)", "5 to 8 times (5×–8×)"], "correct": 0, "explanation": "Hooke's compound microscope magnified specimens between 200× and 300×, sufficient to clearly resolve plant cell walls in cork."}]}, {"id": 2, "title": "Leeuwenhoek & Modern Lenses", "subtitle": "From Animalcules to 1,000,000× Electron Microscopes", "badge": "Microscopy Frontiers", "narration": "While Hooke saw dead cell walls, Dutch lensmaker Antonie van Leeuwenhoek was the first human to observe living, swimming cells. In the late 1660s and 1670s, his precision glass spheres revealed bacteria and red blood cells. Fast forward to the modern era: advanced transmission and scanning electron microscopes can magnify up to one million times, revealing individual ribosomes and DNA macromolecules.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                The evolution of microscopy progressed from simple handcrafted glass beads to electromagnetic lenses that focus high-velocity electron beams.\n            </p>\n            <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-3\">\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-emerald-500/30\">\n                    <h4 class=\"text-xs font-bold text-emerald-400 uppercase tracking-wider mb-1\">Father of Microbiology</h4>\n                    <p class=\"text-xs text-slate-300\">\n                        In the 1660s–1670s, <strong>Antonie van Leeuwenhoek</strong> hand-ground tiny biconvex lenses with exceptional optical clarity. He became the first person to describe <strong>living bacteria</strong>, free-living protozoa, and red blood cells, earning the title <em>Father of Microbiology</em>.\n                    </p>\n                </div>\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-indigo-500/30\">\n                    <h4 class=\"text-xs font-bold text-indigo-400 uppercase tracking-wider mb-1\">Electron Microscopes (~1,000,000×)</h4>\n                    <p class=\"text-xs text-slate-300\">\n                        While light microscopes are limited by the wavelength of visible light (~$1500\\times$ max), modern <strong>Electron Microscopes (TEM & SEM)</strong> use electron beams with sub-nanometer wavelengths, achieving up to <strong>1,000,000×</strong> magnification to photograph subcellular organelles and viral capsids.\n                    </p>\n                </div>\n            </div>\n            <p class=\"text-xs text-slate-400 leading-relaxed\">\n                From Hooke's cork to the modern electron microscope, humanity unlocked the deepest molecular secrets of life.\n            </p>\n        ", "key_points": ["Antonie van Leeuwenhoek (1660s) crafted superior lenses and was the first to see living bacteria and blood cells.", "Leeuwenhoek is universally recognized as the 'Father of Microbiology'.", "Compound light microscopes are limited to ~1500× by the wavelength of visible light photons.", "Modern Electron Microscopes magnify up to 1,000,000×, revealing ultra-fine subcellular organelles."], "sim_id": "magnification_evolution_sim", "checkpoints": [{"question": "Who is honored as the 'Father of Microbiology' for being the first person to clearly see and describe living bacteria and blood cells?", "options": ["Antonie van Leeuwenhoek", "Robert Hooke", "Louis Pasteur", "Alexander Fleming"], "correct": 0, "explanation": "Antonie van Leeuwenhoek built handcrafted lenses with remarkable clarity and first observed living bacteria, protozoa, and red blood cells."}, {"question": "What is the approximate magnification capability of modern high-resolution electron microscopes?", "options": ["About 1,000,000 times (1,000,000×)", "About 300 times (300×)", "About 50 times (50×)", "About 2,000 times (2,000×)"], "correct": 0, "explanation": "Modern electron microscopes use focused beams of electrons to achieve magnifications around 1,000,000×, resolving ultra-fine organelle structures."}]}, {"id": 3, "title": "The Cell Triad", "subtitle": "The 3 Fundamental Pillars: Membrane, Cytoplasm, and Nucleus", "badge": "Cell Biology Basics", "narration": "Regardless of whether a cell belongs to a human, a tiger, a banyan tree, or an amoeba, every typical eukaryotic cell shares three fundamental parts that make life possible: the outer cell membrane, the jelly-like internal cytoplasm, and the central control nucleus.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                All living organisms are composed of one or more cells. The cell is the structural and functional unit of life. A typical cell contains three core components:\n            </p>\n            <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-2.5 my-3 text-xs\">\n                <div class=\"p-3 rounded-lg bg-cyan-950/20 border border-cyan-500/30\">\n                    <span class=\"font-bold text-cyan-400 block mb-1\">1. Cell Membrane</span>\n                    <p class=\"text-slate-300\">The flexible outer boundary that encloses the interior contents, separates cells from each other, and regulates molecular traffic.</p>\n                </div>\n                <div class=\"p-3 rounded-lg bg-emerald-950/20 border border-emerald-500/30\">\n                    <span class=\"font-bold text-emerald-400 block mb-1\">2. Cytoplasm</span>\n                    <p class=\"text-slate-300\">The transparent, gelatinous matrix filling the cell interior where biochemical metabolic reactions take place.</p>\n                </div>\n                <div class=\"p-3 rounded-lg bg-purple-950/20 border border-purple-500/30\">\n                    <span class=\"font-bold text-purple-400 block mb-1\">3. Nucleus</span>\n                    <p class=\"text-slate-300\">The prominent central sphere that directs and coordinates all cellular activities, protein synthesis, and reproduction.</p>\n                </div>\n            </div>\n            <p class=\"text-xs text-slate-400 leading-relaxed\">\n                These three components work in seamless harmony: the membrane protects, the cytoplasm metabolizes, and the nucleus commands.\n            </p>\n        ", "key_points": ["All living organisms are made up of basic microscopic structural units called cells.", "The 3 fundamental components of a typical eukaryotic cell are the cell membrane, cytoplasm, and nucleus.", "The cell membrane encloses and demarcates the living contents from the external environment.", "The cytoplasm hosts metabolic life processes, while the nucleus governs cell regulation."], "sim_id": "cell_triad_anatomy_sim", "checkpoints": [{"question": "What are the three fundamental components found in every typical animal and plant cell?", "options": ["Cell membrane, cytoplasm, and nucleus", "Cell wall, chloroplast, and flagellum", "Hemoglobin, bone marrow, and hair", "Root, stem, and leaf"], "correct": 0, "explanation": "Every typical cell contains the outer cell membrane (plasma membrane), the internal jelly-like cytoplasm, and the central control nucleus."}, {"question": "Which statement correctly describes the overarching biological principle of cells?", "options": ["All living beings are made up of cells, which form the basic unit of life", "Only animals have cells; plants are made of pure stone", "Cells are non-living minerals formed in dry rocks", "Cells can only be created inside chemical factories"], "correct": 0, "explanation": "Cells are the fundamental structural and functional building blocks of all living organisms, from single-celled bacteria to massive trees and humans."}]}, {"id": 4, "title": "Membrane & Cytoplasm", "subtitle": "Selective Permeability and the Metabolic Matrix", "badge": "Cytological Physiology", "narration": "Let us take a closer look at the cell's outer gate and inner factory floor. The cell membrane is porous and selectively permeable: it acts like an intelligent security checkpoint, welcoming essential sugars and minerals while barring toxins and expelling waste. Inside lies the cytoplasm, a rich chemical soup loaded with proteins, fats, carbohydrates, and mineral salts.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                The cell membrane and cytoplasm form a dynamic biochemical transport and reaction system.\n            </p>\n            <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-2 text-xs\">\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-cyan-500/30\">\n                    <h4 class=\"font-bold text-cyan-300 text-sm mb-1\">Cell Membrane (Plasma Membrane)</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        A thin, flexible, and <strong>porous</strong> phospholipid bilayer. It is <strong>selectively permeable</strong>, meaning it strictly regulates the passage of substances: admitting vital nutrients (glucose, oxygen, ions) into the cell while permitting metabolic waste products (carbon dioxide, urea) to exit. It also maintains cell shape and integrity.\n                    </p>\n                </div>\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-teal-500/30\">\n                    <h4 class=\"font-bold text-teal-300 text-sm mb-1\">Cytoplasm: The Life Matrix</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        A jelly-like fluid composed of water ($~80\\%$) and dissolved vital compounds: <strong>proteins, carbohydrates, fats, and mineral salts</strong>. Almost all cellular life processes, glycolysis, enzyme reactions, and waste packaging occur suspended within this colloidal soup.\n                    </p>\n                </div>\n            </div>\n            <p class=\"text-xs text-slate-400 mt-2\">\n                Without the membrane's selective permeability, toxic wastes would accumulate and kill the cell, or essential nutrients would leak away.\n            </p>\n        ", "key_points": ["The cell membrane is a porous, selectively permeable barrier enclosing the cytoplasm and nucleus.", "It controls inward transport of vital nutrients and outward excretion of metabolic waste materials.", "Cytoplasm is an aqueous colloidal matrix containing vital proteins, fats, carbohydrates, and salts.", "Most foundational biochemical life processes and enzyme reactions occur inside the cytoplasm."], "sim_id": "membrane_transport_cytoplasm_sim", "checkpoints": [{"question": "Why is the cell membrane described as 'porous' and 'selectively permeable'?", "options": ["It allows essential nutrients inside while letting metabolic wastes out, blocking harmful substances", "It allows all materials, both toxic and beneficial, to pass completely unrestricted", "It completely seals the cell like solid glass so nothing can enter or leave", "It only allows air bubbles to enter during sleep"], "correct": 0, "explanation": "Selective permeability means the porous plasma membrane regulates molecular movement, admitting nutrients and expelling wastes while maintaining internal cellular homeostasis."}, {"question": "What essential biomolecules and compounds are dissolved within the jelly-like matrix of cytoplasm?", "options": ["Proteins, carbohydrates, fats, and mineral salts", "Pure sand and crushed granite", "Solid iron bars and plastic polymers", "Dry nitrogen gas only"], "correct": 0, "explanation": "Cytoplasm is a nutrient-rich aqueous matrix containing dissolved proteins, carbohydrates, lipids, and essential mineral ions that fuel biochemical metabolic reactions."}]}, {"id": 5, "title": "The Nucleus", "subtitle": "The Master Control Center of Cellular Life and Growth", "badge": "Cellular Command", "narration": "Deep in the center of the cell lies its brain and command center: the nucleus. It oversees every decision the cell makes—when to synthesize proteins, when to absorb energy, when to grow, and when to divide. Inside, it safeguards the hereditary blueprint of life.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                The <strong>nucleus</strong> is typically the largest and most prominent spherical organelle in eukaryotic cells, acting as the executive control headquarters.\n            </p>\n            <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-2 text-xs\">\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-purple-500/30\">\n                    <h4 class=\"font-bold text-purple-300 text-sm mb-1\">Regulation of Activities</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        The nucleus regulates all biochemical activities, nutrient metabolism, cellular respiration rates, and structural growth. It sends chemical messenger signals (RNA) through porous nuclear membranes into the cytoplasm to instruct ribosomes to build specific functional proteins.\n                    </p>\n                </div>\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-indigo-500/30\">\n                    <h4 class=\"font-bold text-indigo-300 text-sm mb-1\">Genetic Material & Chromatin</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        Inside the nucleoplasm lies a network of thread-like <strong>chromatin</strong>, which condenses into rod-shaped <strong>chromosomes</strong> during cell division. These chromosomes carry genes made of DNA that pass hereditary characteristics from parent cells to offspring.\n                    </p>\n                </div>\n            </div>\n            <p class=\"text-xs text-slate-400 mt-2\">\n                If the nucleus is surgically removed from an amoeba (enucleation), the cell ceases protein production, stops growing, and dies within a few days.\n            </p>\n        ", "key_points": ["The nucleus is the master control center responsible for regulating all cellular activities and growth.", "It is surrounded by a double-layered nuclear membrane studded with nuclear pores.", "The nucleus houses chromatin fibers that condense into chromosomes containing hereditary DNA genes.", "A cell deprived of its nucleus loses its ability to divide or synthesize vital proteins and eventually perishes."], "sim_id": "nucleus_command_center_sim", "checkpoints": [{"question": "What is the primary function of the nucleus in a living cell?", "options": ["Regulating all cellular activities, growth, and protein synthesis", "Absorbing direct sunlight like a solar panel", "Pumping red blood through the bones", "Grinding solid food like human teeth"], "correct": 0, "explanation": "The nucleus acts as the command center of the cell, directing growth, metabolic operations, protein synthesis, and cellular reproduction."}, {"question": "What happens to a single-celled organism like Amoeba if its nucleus is carefully removed?", "options": ["It stops growing, ceases cellular operations, and soon dies", "It instantly turns into a giant plant", "It divides into twenty healthy daughter cells", "It starts flying through the air"], "correct": 0, "explanation": "Without the nucleus, the cell loses the master instructions needed to make proteins, regulate enzymes, and divide, causing it to die."}]}, {"id": 6, "title": "Cell Wall & Plant Features", "subtitle": "Cell Wall, Plastids (Chloroplasts), and Large Central Vacuoles", "badge": "Plant Cytology", "narration": "Why do giant trees stand tall against ferocious winds without bones, while animal bodies collapse into soft tissue? The answer lies in plant-specific structures: the rigid cellulose cell wall, green photosynthetic plastids called chloroplasts, and massive central vacuoles that maintain internal hydraulic turgor pressure.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                Plant cells possess distinctive structural organelles absent in animal cells that provide rigidity, autotrophic nutrition, and hydraulic turgor stability.\n            </p>\n            <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-2.5 my-2 text-xs\">\n                <div class=\"p-3 rounded-lg bg-emerald-950/20 border border-emerald-500/30\">\n                    <span class=\"font-bold text-emerald-400 block mb-1\">1. Cell Wall</span>\n                    <p class=\"text-slate-300\">An extra rigid outer coat located outside the cell membrane in plant, fungal, and bacterial cells. Made of tough <strong>cellulose</strong> in plants, it confers structural strength, fixes cell shape, and protects against high osmotic pressures.</p>\n                </div>\n                <div class=\"p-3 rounded-lg bg-lime-950/20 border border-lime-500/30\">\n                    <span class=\"font-bold text-lime-400 block mb-1\">2. Plastids (Chloroplasts)</span>\n                    <p class=\"text-slate-300\">Double-membrane organelles. <strong>Chloroplasts</strong> contain green <strong>chlorophyll</strong> pigments that trap solar energy for photosynthesis. Non-green plastids (leucoplasts & chromoplasts) store starches, oils, and pigments in fruits and roots.</p>\n                </div>\n                <div class=\"p-3 rounded-lg bg-cyan-950/20 border border-cyan-500/30\">\n                    <span class=\"font-bold text-cyan-400 block mb-1\">3. Large Central Vacuole</span>\n                    <p class=\"text-slate-300\">A giant fluid-filled sac occupying up to $90\\%$ of mature plant cell volume. Stores cell sap (sugars, amino acids, minerals), isolates waste, and exerts outward <strong>turgor pressure</strong> keeping leaves crisp and upright.</p>\n                </div>\n            </div>\n        ", "key_points": ["The cell wall is an extra protective outer coat found in plant, fungal, and bacterial cells (absent in animals).", "In plants, the cell wall is composed of tough cellulose, providing rigidity and mechanical support.", "Plastids are plant organelles; chloroplasts contain green chlorophyll for photosynthesis, while other plastids store food.", "A large central vacuole stores water and nutrients, removes waste, and maintains turgidity and cell shape."], "sim_id": "plant_vs_animal_organelles_sim", "checkpoints": [{"question": "Which of the following structures is found in plant cells but is completely ABSENT in animal cells?", "options": ["A rigid outer cell wall and chloroplasts", "Cell membrane", "Cytoplasm", "Nucleus"], "correct": 0, "explanation": "Plant cells possess a rigid cellulose cell wall and plastids (chloroplasts) for photosynthesis, both of which are absent in animal cells."}, {"question": "What is the primary role of the large fluid-filled central vacuole in mature plant cells?", "options": ["Storing water and nutrients, removing waste, and maintaining turgor pressure to keep the cell rigid", "Generating electrical current to shock insects", "Producing sound waves so plants can talk", "Absorbing nitrogen gas directly from clouds"], "correct": 0, "explanation": "The large central vacuole stores cell sap, sequesters waste, and pushes outward against the cell wall (turgor pressure), keeping plant stems and leaves upright."}]}, {"id": 7, "title": "Bacterial Nucleoid", "subtitle": "Prokaryotic Simplicity vs Eukaryotic Compartmentalization", "badge": "Prokaryotic Genetics", "narration": "Not every cell packages its genetic blueprints inside a neat, membrane-bound sphere. In bacteria, the DNA floats freely in direct contact with the cytoplasm in an irregular central region called the nucleoid. This fundamental difference splits all life on Earth into two great empires: prokaryotes and eukaryotes.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                One of the most profound evolutionary distinctions in biology is the presence or absence of a true, membrane-bound nucleus.\n            </p>\n            <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-2 text-xs\">\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-amber-500/30\">\n                    <h4 class=\"font-bold text-amber-300 text-sm mb-1\">Bacterial Cells (Prokaryotes)</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        Bacterial cells do not possess a well-defined nucleus or nuclear envelope. Instead, their genetic material consists of a single circular chromosome located in an un-enclosed, irregular central zone termed the <strong>nucleoid</strong>.<br>\n                        They lack membrane-bound organelles (no mitochondria, chloroplasts, or endoplasmic reticulum).\n                    </p>\n                </div>\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-cyan-500/30\">\n                    <h4 class=\"font-bold text-cyan-300 text-sm mb-1\">Plant & Animal Cells (Eukaryotes)</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        Eukaryotic cells possess a true, double-membrane nucleus that houses linear chromosomes wrapped around histone proteins. The interior cytoplasm is subdivided into specialized membrane-bound compartments (organelles) that isolate chemical reactions.\n                    </p>\n                </div>\n            </div>\n            <p class=\"text-xs text-slate-400 mt-2\">\n                Bacteria also feature a cell wall containing peptidoglycan, a plasma membrane, and ribosomes, allowing rapid binary fission.\n            </p>\n        ", "key_points": ["Bacterial cells lack a membrane-bound nucleus and nuclear envelope.", "The un-enclosed region where bacterial circular DNA resides is called the nucleoid.", "Organisms lacking a membrane-bound nucleus are called prokaryotes (e.g., bacteria, blue-green algae).", "Organisms with a well-defined membrane-bound nucleus are called eukaryotes (plants, animals, fungi, protozoa)."], "sim_id": "prokaryote_vs_eukaryote_sim", "checkpoints": [{"question": "What is the un-enclosed region containing genetic material in bacterial cells called?", "options": ["Nucleoid", "True nucleus", "Vacuole", "Centrosome"], "correct": 0, "explanation": "Bacteria do not have a nuclear membrane. Their circular genetic DNA lies directly in an un-enclosed region of cytoplasm called the nucleoid."}, {"question": "Which of the following organisms is a prokaryote lacking a membrane-bound nucleus?", "options": ["Bacterium (e.g., Lactobacillus or E. coli)", "Amoeba (Protozoan)", "Onion peel cell (Plant)", "Human cheek epithelial cell (Animal)"], "correct": 0, "explanation": "Bacteria are prokaryotes with a nucleoid and no nuclear membrane. Amoeba, onion cells, and human cells are all eukaryotes with true nuclei."}]}, {"id": 8, "title": "Cell Shapes & Function", "subtitle": "Spindle Muscle Cells, Branched Neurons, and Specialization", "badge": "Morphology & Specialization", "narration": "Cells are not boring little round balls. Their shapes, sizes, and internal structures are exquisitely adapted to the specific jobs they perform in the body. Long, branched neurons fire electrical signals across distances, spindle-shaped muscle fibers contract to produce motion, and biconcave red blood cells squeeze through narrow capillaries.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                In multicellular organisms, cells undergo <strong>differentiation</strong>: their shape, size, and internal architecture are tailored to maximize functional efficiency.\n            </p>\n            <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-2.5 my-2 text-xs\">\n                <div class=\"p-3 rounded-lg bg-rose-950/20 border border-rose-500/30\">\n                    <span class=\"font-bold text-rose-400 block mb-1\">1. Muscle Cells (Myocytes)</span>\n                    <p class=\"text-slate-300\">Elongated and <strong>spindle-shaped</strong> (tapered at both ends). Packed with actin and myosin protein filaments that contract and relax to generate physical pulling forces and body motion.</p>\n                </div>\n                <div class=\"p-3 rounded-lg bg-indigo-950/20 border border-indigo-500/30\">\n                    <span class=\"font-bold text-indigo-400 block mb-1\">2. Nerve Cells (Neurons)</span>\n                    <p class=\"text-slate-300\">Remarkably <strong>long and branched</strong> with thin dendrites and an extended axon (up to 1 meter long). Designed to transmit electrical impulses rapidly across the body like biological telephone wires.</p>\n                </div>\n                <div class=\"p-3 rounded-lg bg-red-950/20 border border-red-500/30\">\n                    <span class=\"font-bold text-red-400 block mb-1\">3. Red Blood Cells (RBCs)</span>\n                    <p class=\"text-slate-300\">Spherical, <strong>biconcave disc-shaped</strong> and lack a nucleus at maturity. This disc shape maximizes surface area for rapid oxygen diffusion and allows cells to flex through microscopic capillaries.</p>\n                </div>\n            </div>\n            <p class=\"text-xs text-slate-400 mt-2\">\n                White blood cells (like Amoeba) can constantly change their shape to squeeze through capillary walls (diapedesis) and engulf bacteria.\n            </p>\n        ", "key_points": ["The specific shape, size, and structure of a cell directly correspond to its functional role.", "Muscle cells are spindle-shaped (tapered ends) to contract and generate mechanical force.", "Nerve cells (neurons) are long and branched to transmit electrical nerve impulses across long distances.", "Red blood cells are biconcave discs optimized for oxygen exchange and flexible capillary passage."], "sim_id": "cell_shapes_specialization_sim", "checkpoints": [{"question": "Why do nerve cells (neurons) have an elongated shape with numerous branching dendrites?", "options": ["To receive and pass electrical impulses quickly over long distances across the body", "To store heavy fat molecules under the skin", "To absorb sunlight for photosynthesis", "To pump blood to the lungs"], "correct": 0, "explanation": "The elongated axon and branched dendrites of neurons allow rapid transmission of electrical impulses from sensory receptors to the brain and muscles."}, {"question": "What is the characteristic shape of smooth muscle cells in animals?", "options": ["Spindle-shaped (elongated with pointed, tapered ends)", "Perfect square cubes", "Hollow circular rings with holes", "Star-shaped with sharp crystal corners"], "correct": 0, "explanation": "Smooth muscle cells are spindle-shaped (fusiform), with a wider central body containing the nucleus and tapered ends, optimized for contracting along one axis."}]}, {"id": 9, "title": "Cell Sizes & Ostrich Egg", "subtitle": "From Micrometers to the Largest Known Single Cell (170 mm)", "badge": "Cytological Scales", "narration": "How small can a cell be, and how big can a single cell grow? While the smallest bacteria measure just a fraction of a micrometer, the living world boasts a giant single cell that you can hold in your hand: the yolk of an ostrich egg, measuring up to 170 millimeters across!", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                Cell dimensions span an astronomical range across living kingdoms, varying by a factor of over $100,000$.\n            </p>\n            <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-2 text-xs\">\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-cyan-500/30\">\n                    <h4 class=\"font-bold text-cyan-300 text-sm mb-1\">Smallest Cells (Mycoplasma & Bacteria)</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        The smallest known free-living cells are <em>Mycoplasma</em> (PPLO), measuring only $0.1\\,\\mu\\text{m}$ to $0.3\\,\\mu\\text{m}$ in diameter. Typical bacteria measure between $0.5\\,\\mu\\text{m}$ and $5\\,\\mu\\text{m}$, invisible to the human eye.\n                    </p>\n                </div>\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-amber-500/30\">\n                    <h4 class=\"font-bold text-amber-300 text-sm mb-1\">Largest Single Cell: The Ostrich Egg Yolk</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        The unfertilized egg of an ostrich holds the world record as the largest known single cell. Its central yolk measures <strong>$130\\text{ mm}$ to $170\\text{ mm}$ across</strong> ($13\\text{ cm}$ to $17\\text{ cm}$), weighing over $1.5\\text{ kg}$. It can be observed clearly without any magnifying tool!\n                    </p>\n                </div>\n            </div>\n            <p class=\"text-xs text-slate-400 mt-2\">\n                Remember: the overall size of an organism depends on the <strong>total number of cells</strong>, not the individual size of its cells. An elephant's kidney cell is roughly the same size as a mouse's kidney cell!\n            </p>\n        ", "key_points": ["Cell sizes range from 0.1 μm (Mycoplasma) up to 170 mm (Ostrich egg yolk).", "The yolk of an unfertilized ostrich egg is the largest known single cell in the living world (130–170 mm diameter).", "Organism body size depends on the total count of cells, not on cell volume.", "Cells remain microscopic because a high surface-area-to-volume ratio is required for nutrient diffusion."], "sim_id": "cell_size_scale_comparator_sim", "checkpoints": [{"question": "What holds the biological record as the largest known single cell in the living world?", "options": ["The yolk of an ostrich egg (130 mm to 170 mm in diameter)", "A blue whale liver cell", "A red kangaroo brain neuron", "An elephant skin cell"], "correct": 0, "explanation": "The yolk of an unfertilized ostrich egg is a single gigantic cell measuring 130 to 170 mm in diameter, visible to the unaided human eye."}, {"question": "Does a large animal like an elephant have substantially larger individual cells than a small animal like a mouse?", "options": ["No, their individual cells are of similar size; the elephant simply has billions more cells", "Yes, elephant cells are as large as basketballs", "No, mouse cells are 500 times larger than elephant cells", "Yes, elephant cells contain solid bone inside their cytoplasm"], "correct": 0, "explanation": "Cell sizes are determined by diffusion physics and are similar across mammals. An elephant is larger simply because it possesses vastly more total cells, not larger cells."}]}, {"id": 10, "title": "Levels of Organisation", "subtitle": "Cell → Tissue → Organ → Organ System → Organism", "badge": "Biological Hierarchy", "narration": "How do trillions of cells cooperate to build a living human or an oak tree? Life organizes itself into an elegant structural hierarchy. Every complex multicellular organism starts its existence as just a single fertilized egg cell that divides repeatedly, specializing into tissues, organs, and organ systems.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                Multicellular life follows a strict structural ladder of biological organization, where each tier represents an emergent level of complexity:\n            </p>\n            <div class=\"space-y-2 text-xs my-2\">\n                <div class=\"p-2.5 rounded-lg bg-slate-900/60 border border-cyan-500/30 flex items-center gap-3\">\n                    <span class=\"font-mono font-bold text-cyan-400 shrink-0\">1. Cell</span>\n                    <span class=\"text-slate-300\">The basic building block of life (e.g., muscle cell, epithelial cell, root hair cell).</span>\n                </div>\n                <div class=\"p-2.5 rounded-lg bg-slate-900/60 border border-teal-500/30 flex items-center gap-3\">\n                    <span class=\"font-mono font-bold text-teal-400 shrink-0\">2. Tissue</span>\n                    <span class=\"text-slate-300\">A group of similar cells working together to perform a specific function (e.g., muscular tissue, vascular xylem).</span>\n                </div>\n                <div class=\"p-2.5 rounded-lg bg-slate-900/60 border border-emerald-500/30 flex items-center gap-3\">\n                    <span class=\"font-mono font-bold text-emerald-400 shrink-0\">3. Organ</span>\n                    <span class=\"text-slate-300\">Different tissues integrated together to perform major tasks (e.g., stomach, heart, lungs, leaf, root).</span>\n                </div>\n                <div class=\"p-2.5 rounded-lg bg-slate-900/60 border border-indigo-500/30 flex items-center gap-3\">\n                    <span class=\"font-mono font-bold text-indigo-400 shrink-0\">4. Organ System</span>\n                    <span class=\"text-slate-300\">A coordinated team of organs carrying out comprehensive life functions (e.g., digestive system, circulatory system).</span>\n                </div>\n                <div class=\"p-2.5 rounded-lg bg-slate-900/60 border border-purple-500/30 flex items-center gap-3\">\n                    <span class=\"font-mono font-bold text-purple-400 shrink-0\">5. Organism</span>\n                    <span class=\"text-slate-300\">The complete living entity composed of cooperating organ systems (e.g., human, tiger, mango tree).</span>\n                </div>\n            </div>\n            <p class=\"text-xs text-slate-400 mt-2\">\n                All complex organisms begin as a <strong>single cell (zygote)</strong> that undergoes millions of successive divisions and cell differentiations.\n            </p>\n        ", "key_points": ["The hierarchy of life follows: Cell → Tissue → Organ → Organ System → Organism.", "A tissue is a cooperative group of specialized cells performing a common task.", "An organ is composed of multiple tissues; an organ system consists of coordinating organs.", "Every complex multicellular organism develops from a single fertilized egg (zygote) through repeated divisions."], "sim_id": "biological_hierarchy_ladder_sim", "checkpoints": [{"question": "Which of the following represents the correct biological hierarchy of organization from simplest to most complex?", "options": ["Cell → Tissue → Organ → Organ system → Organism", "Organism → Organ → Tissue → Cell → Organ system", "Tissue → Cell → Organism → Organ → Organ system", "Cell → Organ → Tissue → Organism → Organ system"], "correct": 0, "explanation": "Life builds progressively: similar cells form tissues, tissues form organs, organs form organ systems, and organ systems form the complete organism."}, {"question": "From what single starting entity does a complex multicellular organism (such as a human or horse) develop?", "options": ["A single fertilized egg cell (zygote) that divides repeatedly", "A cluster of soil minerals glued by water", "An adult organ system formed out of dust", "A group of hundred different dead animals"], "correct": 0, "explanation": "All complex multicellular creatures start their life as a single fertilized egg cell (zygote) that divides repeatedly and differentiates into trillions of specialized cells."}]}, {"id": 11, "title": "The Microbial World", "subtitle": "Ubiquity, Unicellular vs Multicellular, and Acellular Viruses", "badge": "Microbial Biosphere", "narration": "Microorganisms are the true rulers of Earth. They thrive everywhere—in rich fertile soil, fresh river water, the air we breathe, boiling geothermal hot springs, subzero polar glaciers, and deep inside human intestines. Some are unicellular, some form multicellular filaments, and viruses represent acellular parasites on the border of life.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                Microorganisms encompass an immense range of living forms that colonize every ecological niche on the planet.\n            </p>\n            <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2.5 my-2 text-xs\">\n                <div class=\"p-3 rounded-lg bg-amber-950/20 border border-amber-500/30\">\n                    <span class=\"font-bold text-amber-400 block mb-1\">1. Ubiquitous Habitats</span>\n                    <p class=\"text-slate-300\">Microbes survive in extreme environments: boiling hot springs ($>80^\\circ\\text{C}$), frozen Antarctic ice sheets, hyper-saline lakes, deep seabed crust, and inside animal digestive tracts.</p>\n                </div>\n                <div class=\"p-3 rounded-lg bg-cyan-950/20 border border-cyan-500/30\">\n                    <span class=\"font-bold text-cyan-400 block mb-1\">2. Unicellular vs Multicellular</span>\n                    <p class=\"text-slate-300\"><strong>Unicellular:</strong> Entire organism is a single standalone cell (Bacteria, <em>Amoeba</em>, <em>Paramecium</em>, Yeast).<br><strong>Multicellular:</strong> Many cells cooperate as colonies or filaments (molds like <em>Rhizopus</em>, filamentous algae like <em>Spirogyra</em>).</p>\n                </div>\n                <div class=\"p-3 rounded-lg bg-purple-950/20 border border-purple-500/30\">\n                    <span class=\"font-bold text-purple-400 block mb-1\">3. Viruses (Acellular)</span>\n                    <p class=\"text-slate-300\">Acellular microscopic agents containing DNA or RNA in a protein capsid. Completely inert outside host cells; can only reproduce and multiply inside living host cells, frequently causing diseases.</p>\n                </div>\n            </div>\n        ", "key_points": ["Microorganisms exist in soil, water, air, thermal hot springs, snow zones, and inside animal bodies.", "They can be unicellular (Bacteria, Amoeba) or multicellular (certain algae and fungi).", "Viruses are microscopic and acellular entities that reproduce strictly inside living host cells.", "Viruses lack cellular metabolic machinery and often cause disease in humans, animals, and plants."], "sim_id": "microbial_ubiquity_habitats_sim", "checkpoints": [{"question": "Which of the following is an example of an acellular entity that can multiply ONLY inside a living host cell?", "options": ["A virus (e.g., Influenza or Poliovirus)", "Amoeba proteus", "Lactobacillus bacterium", "Yeast (Saccharomyces)"], "correct": 0, "explanation": "Viruses are acellular (lacking cellular structure and cytoplasm) and must hijack a living host cell's machinery to replicate."}, {"question": "Where can living microorganisms be found on Earth?", "options": ["Everywhere—in soil, water, air, hot springs, snow zones, and inside animal bodies", "Exclusively in clean hospital operating rooms", "Only at the very center of the Earth's iron core", "Only inside commercial grocery stores"], "correct": 0, "explanation": "Microorganisms are ubiquitous, colonizing soil, water, atmosphere, thermal springs, polar glaciers, and the bodies of animals and plants."}]}, {"id": 12, "title": "Decomposers & Biogas", "subtitle": "Nature's Waste Recyclers and Clean Renewable Energy", "badge": "Ecological Biotechnology", "narration": "What happens to fallen leaves, food scraps, and organic farm waste? Soil bacteria and fungi act as nature's recycling squad, breaking down complex organic molecules into rich, black manure. In sealed, oxygen-free digesters, specialized anaerobic microbes turn that same animal dung into clean-burning biogas.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                Microbes play an irreplaceable role in maintaining ecological equilibrium and generating renewable clean fuel through two distinct pathways:\n            </p>\n            <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-2 text-xs\">\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-lime-500/30\">\n                    <h4 class=\"font-bold text-lime-300 text-sm mb-1\">Environmental Cleanup & Humus</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        Saprophytic fungi and bacteria break down complex vegetable waste, fallen leaves, and dead animal remains. They release mineral nutrients back into the soil, forming dark, nutrient-rich <strong>manure (humus)</strong> that enriches farmland without chemical contamination.\n                    </p>\n                </div>\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-emerald-500/30\">\n                    <h4 class=\"font-bold text-emerald-300 text-sm mb-1\">Biogas Generation (Methanogens)</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        In oxygen-free (anaerobic) underground digesters, specialized microorganisms decompose cattle dung (gobar) and sewage. They release <strong>biogas</strong>, an eco-friendly fuel composed primarily of <strong>methane ($\\text{CH}_4$, $55\\%-70\\%$)</strong> and carbon dioxide ($\\text{CO}_2$). The leftover slurry serves as concentrated organic fertilizer.\n                    </p>\n                </div>\n            </div>\n        ", "key_points": ["Fungi and bacteria decompose organic plant and animal waste into simpler, nutrient-rich soil manure.", "Anaerobic microorganisms decompose organic matter in oxygen-free digesters to produce biogas.", "Biogas consists primarily of clean-burning methane (CH₄) along with carbon dioxide (CO₂).", "Biogas plants provide clean cooking fuel and light while generating rich organic bio-fertilizer."], "sim_id": "biogas_anaerobic_digester_sim", "checkpoints": [{"question": "What is the primary combustible gas component found in biogas produced by anaerobic microbial digestion?", "options": ["Methane (CH₄)", "Oxygen (O₂)", "Helium (He)", "Chlorine (Cl₂)"], "correct": 0, "explanation": "Biogas is produced by anaerobic bacteria (methanogens) and consists primarily of methane (CH₄, 55%–70%), making it an excellent smokeless fuel."}, {"question": "How do saprophytic bacteria and fungi contribute to environmental cleanup in nature?", "options": ["By breaking down dead plant and animal remains into simple, nutrient-rich manure", "By turning all tree trunks into solid plastic", "By freezing fallen leaves so they never decay", "By transporting garbage to outer space"], "correct": 0, "explanation": "Decomposers secrete digestive enzymes that break down fallen leaves and dead organic waste into simple soil nutrients and humus, naturally recycling matter."}]}, {"id": 13, "title": "Fermentation in Foods", "subtitle": "Yeast in Bread & Lactobacillus in Curd, Idli, and Dosa", "badge": "Culinary Biotechnology", "narration": "Step into your kitchen and you are stepping into a microbiology laboratory! The fluffy lightness of baked bread, the sour tang of curd, and the bubbly rise of idli and dosa batter are all created by friendly microbes carrying out fermentation.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                Humans have harnessed microbial fermentation for millennia to transform raw grains and milk into digestible, long-lasting foods.\n            </p>\n            <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-2 text-xs\">\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-amber-500/30\">\n                    <h4 class=\"font-bold text-amber-300 text-sm mb-1\">Yeast (Baking & Brewing)</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        <em>Yeast</em> is a unicellular fungus. In warm, sugary dough, yeast respires anaerobically:\n                        <br><span class=\"font-mono text-cyan-300 block my-1 font-bold\">Glucose → Alcohol + CO₂ ↑ + Energy</span>\n                        Bubbles of released <strong>carbon dioxide gas</strong> expand within the dough, making it soft, airy, and fluffy when baked.\n                    </p>\n                </div>\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-cyan-500/30\">\n                    <h4 class=\"font-bold text-cyan-300 text-sm mb-1\">Lactobacillus (Dairy & Batter)</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        <em>Lactobacillus</em> bacteria ferment milk sugar (lactose) into <strong>lactic acid</strong>. The acid coagulates milk protein (casein), turning milk sour and creating thick curd. They also ferment fermented batters for <strong>idli, dosa, and bhatura</strong>, improving flavor, texture, and B-vitamin content.\n                    </p>\n                </div>\n            </div>\n        ", "key_points": ["Yeast is a unicellular fungus that releases carbon dioxide gas in warm dough, making bread soft and fluffy.", "Yeast fermentation also produces small amounts of alcohol, used in commercial brewing.", "Lactobacillus bacteria ferment milk lactose into lactic acid, forming thick curd.", "Fermentation of traditional batters (idli, dosa, bhatura) improves taste, fluffiness, and nutrient availability."], "sim_id": "kitchen_fermentation_lab_sim", "checkpoints": [{"question": "What gas does yeast produce during anaerobic respiration in dough that causes it to rise and become porous?", "options": ["Carbon dioxide (CO₂)", "Oxygen (O₂)", "Nitrogen (N₂)", "Methane (CH₄)"], "correct": 0, "explanation": "Yeast respires anaerobically in dough, releasing carbon dioxide gas bubbles that get trapped in the gluten network, causing the dough to swell and rise."}, {"question": "Which bacterium ferments milk into curd and helps ferment idli, dosa, and bhatura batter?", "options": ["Lactobacillus", "Rhizobium", "Pseudomonas", "Mycobacterium"], "correct": 0, "explanation": "Lactobacillus bacteria convert lactose sugar into lactic acid, which curdles milk into curd and provides the tangy fluffiness of idli and dosa batter."}]}, {"id": 14, "title": "Nitrogen Fixers & Algae", "subtitle": "Rhizobium Root Nodules, Spirulina, and 50%+ Earth's Oxygen", "badge": "Agricultural & Marine Botany", "narration": "Plants cannot absorb atmospheric nitrogen gas directly, nor could animals survive without oxygen. In the soil, Rhizobium bacteria in legume root nodules convert air nitrogen into plant food. Meanwhile in our oceans, microscopic algae produce more than half the oxygen in our atmosphere!", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                Microbes drive global biochemical cycles that make planetary agriculture and oxygen breathing possible.\n            </p>\n            <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-2 text-xs\">\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-emerald-500/30\">\n                    <h4 class=\"font-bold text-emerald-300 text-sm mb-1\">Rhizobium & Nitrogen Fixation</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        <em>Rhizobium</em> bacteria live symbiotically inside swollen <strong>root nodules</strong> of leguminous crops (peas, beans, gram, lentils). They trap inert atmospheric nitrogen ($\\text{N}_2$) and convert it into plant-usable nitrates ($\\text{NO}_3^-$), naturally boosting soil fertility without synthetic chemicals.\n                    </p>\n                </div>\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-teal-500/30\">\n                    <h4 class=\"font-bold text-teal-300 text-sm mb-1\">Microalgae: Earth's Oxygen Champions</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        Aquatic micro-algae (<em>Spirulina</em>, <em>Chlorella</em>, Diatoms) carry out intensive photosynthesis, generating <strong>more than half of Earth's oxygen</strong>! They sustain marine food chains, purify water, and serve as superfoods—<em>Spirulina</em> is packed with proteins, iron, and Vitamin $\\text{B}_{12}$.\n                    </p>\n                </div>\n            </div>\n        ", "key_points": ["Rhizobium bacteria reside in legume root nodules, converting atmospheric N₂ into fertile soil nitrates.", "Aquatic microalgae (Diatoms, Chlorella, Spirulina) generate more than 50% of the Earth's atmospheric oxygen.", "Microalgae form the base of aquatic food chains and aid in wastewater biological purification.", "Spirulina is cultivated commercially as a powerful dietary supplement rich in complete proteins and Vitamin B12."], "sim_id": "rhizobium_microalgae_lab_sim", "checkpoints": [{"question": "What proportion of Earth's total atmospheric oxygen is produced by aquatic micro-algae like diatoms and phytoplankton?", "options": ["More than half (over 50%)", "Less than 1%", "Exactly 5%", "Zero percent"], "correct": 0, "explanation": "Marine phytoplankton and aquatic micro-algae (such as diatoms) carry out immense photosynthetic activity, producing over half of Earth's oxygen."}, {"question": "Which microscopic blue-green alga is commercially cultivated as a protein- and vitamin B12-rich dietary supplement?", "options": ["Spirulina", "Amoeba", "Bread mold", "Poliovirus"], "correct": 0, "explanation": "Spirulina is a nutrient-dense cyanobacterium (microalga) widely consumed worldwide as a health supplement for its high protein, iron, and Vitamin B12 content."}]}, {"id": 15, "title": "Heritage & Modern Pioneers", "subtitle": "Vedic 'Krimi' and Ananda Mohan Chakrabarty's Oil-Eating Superbug", "badge": "Indian Scientific Heritage", "narration": "Long before European microscopes were invented, ancient Indian scholars recognized the existence of invisible living entities. In the Atharvaveda, they described 'Krimi'—microscopic beings categorized as visible and invisible. Fast forward to modern times: Indian-American microbiologist Dr. Ananda Mohan Chakrabarty engineered the world's first patented oil-eating bacterium to clean oceanic spills.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                India has a profound tradition of microbiology spanning ancient philosophical inquiries to landmark 20th-century biotechnology patents.\n            </p>\n            <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-2 text-xs\">\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-amber-500/30\">\n                    <h4 class=\"font-bold text-amber-300 text-sm mb-1\">Ancient Indian Texts & 'Krimi'</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        In ancient Indian texts, including the <em>Atharvaveda</em> and Ayurvedic treatises (Charaka Samhita), tiny entities were denoted by the Sanskrit word <strong>Krimi</strong>. These were classified into:\n                        <br>• <strong>Drishya:</strong> Visible parasites and organisms.\n                        <br>• <strong>Adrishya:</strong> Invisible organisms too tiny to be seen, describing both their beneficial and disease-causing effects.\n                    </p>\n                </div>\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-cyan-500/30\">\n                    <h4 class=\"font-bold text-cyan-300 text-sm mb-1\">Ananda Mohan Chakrabarty (1938–2020)</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        In 1971, Indian-born scientist <strong>Dr. Ananda Mohan Chakrabarty</strong> developed a specialized genetic strain of <em>Pseudomonas putida</em>. This 'superbug' could digest four separate hydrocarbon fractions of crude oil, rapidly biodegrading oil slicks in marine spills. In 1980, the US Supreme Court granted him the <strong>first-ever patent for a genetically engineered organism</strong> (<em>Diamond v. Chakrabarty</em>).\n                    </p>\n                </div>\n            </div>\n        ", "key_points": ["Ancient Indian Vedas (Atharvaveda) refer to microorganisms as 'Krimi', divided into Drishya (visible) and Adrishya (invisible).", "Ayurvedic texts documented both the beneficial and disease-causing roles of unseen Krimi.", "Dr. Ananda Mohan Chakrabarty developed an oil-eating bacterium (Pseudomonas putida) in 1971 to treat ocean oil spills.", "In 1980, Dr. Chakrabarty was awarded the world's first patent for a genetically modified living organism."], "sim_id": "oil_spill_bioremediation_sim", "checkpoints": [{"question": "What Sanskrit word was used in ancient Indian texts like the Atharvaveda to denote both visible (Drishya) and invisible (Adrishya) organisms?", "options": ["Krimi", "Vriksha", "Agni", "Vayu"], "correct": 0, "explanation": "The Atharvaveda uses the term 'Krimi' to designate tiny living entities, classifying them into Drishya (visible) and Adrishya (invisible)."}, {"question": "For what groundbreaking scientific achievement was Dr. Ananda Mohan Chakrabarty granted a historic patent in 1980?", "options": ["Developing a specialized bacterium capable of breaking down toxic crude oil spills in oceans", "Inventing the compound glass microscope", "Discovering the penicillin mold", "Breeding giant ostriches in laboratory cages"], "correct": 0, "explanation": "Dr. Chakrabarty engineered a multi-plasmid Pseudomonas strain capable of digesting crude oil hydrocarbons, receiving a historic patent in 1980 for oil spill bioremediation."}]}, {"id": 16, "title": "Master Synthesis Matrix", "subtitle": "Cellular Foundations, Organelles, and Microbial Roles", "badge": "Chapter Synthesis", "narration": "We have explored the cell from Hooke's 1665 cork chambers to electron microscopes, plant vacuoles, bacterial nucleoids, and ecological microbes. Here is our master comparative synthesis matrix bringing together cellular structures, functions, and the microbial world.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                Review this master comparison table summarizing cellular architecture and microbial roles for Class 8 Science Chapter 2.\n            </p>\n            <div class=\"overflow-x-auto my-2\">\n                <table class=\"w-full text-left text-xs border-collapse\">\n                    <thead>\n                        <tr class=\"border-b border-slate-700 bg-slate-900/80 text-cyan-400 font-bold\">\n                            <th class=\"p-2\">Feature / Organism</th>\n                            <th class=\"p-2\">Key Structure</th>\n                            <th class=\"p-2\">Primary Function</th>\n                            <th class=\"p-2\">Found In</th>\n                            <th class=\"p-2\">Scientific Significance</th>\n                        </tr>\n                    </thead>\n                    <tbody class=\"divide-y divide-slate-800 text-slate-300\">\n                        <tr class=\"hover:bg-slate-900/40\">\n                            <td class=\"p-2 font-bold text-cyan-400\">Cell Membrane</td>\n                            <td class=\"p-2\">Porous lipid bilayer</td>\n                            <td class=\"p-2\">Regulates entry of nutrients and exit of waste</td>\n                            <td class=\"p-2\">All cells (Universal)</td>\n                            <td class=\"p-2 text-cyan-300\">Selective permeability</td>\n                        </tr>\n                        <tr class=\"hover:bg-slate-900/40\">\n                            <td class=\"p-2 font-bold text-emerald-400\">Cell Wall</td>\n                            <td class=\"p-2\">Tough cellulose / chitin</td>\n                            <td class=\"p-2\">Rigidity, strength, and structural protection</td>\n                            <td class=\"p-2\">Plants, Fungi, Bacteria</td>\n                            <td class=\"p-2 text-cyan-300\">Withstands high turgor pressure</td>\n                        </tr>\n                        <tr class=\"hover:bg-slate-900/40\">\n                            <td class=\"p-2 font-bold text-purple-400\">Nucleus / Nucleoid</td>\n                            <td class=\"p-2\">Membrane nucleus vs naked nucleoid</td>\n                            <td class=\"p-2\">Controls cell activities, growth, reproduction</td>\n                            <td class=\"p-2\">Eukaryotes vs Bacteria</td>\n                            <td class=\"p-2 text-cyan-300\">Hereditary genetic blueprint</td>\n                        </tr>\n                        <tr class=\"hover:bg-slate-900/40\">\n                            <td class=\"p-2 font-bold text-lime-400\">Chloroplast & Vacuole</td>\n                            <td class=\"p-2\">Chlorophyll thylakoids; large fluid sac</td>\n                            <td class=\"p-2\">Photosynthesis; turgidity and waste storage</td>\n                            <td class=\"p-2\">Plant cells exclusively</td>\n                            <td class=\"p-2 text-cyan-300\">Autotrophy and plant posture</td>\n                        </tr>\n                        <tr class=\"hover:bg-slate-900/40\">\n                            <td class=\"p-2 font-bold text-amber-400\">Beneficial Microbes</td>\n                            <td class=\"p-2\">Yeast, Lactobacillus, Rhizobium, Spirulina</td>\n                            <td class=\"p-2\">Bread rising, curd, nitrogen fixation, oxygen</td>\n                            <td class=\"p-2\">Soil, food, water</td>\n                            <td class=\"p-2 text-cyan-300\">Biotechnology & Agriculture</td>\n                        </tr>\n                    </tbody>\n                </table>\n            </div>\n        ", "key_points": ["Every typical cell features a cell membrane, cytoplasm, and nucleus (or nucleoid in bacteria).", "Plant cells are distinguished by cellulose cell walls, photosynthetic chloroplasts, and large central vacuoles.", "Biological organization scales hierarchically: Cell → Tissue → Organ → Organ System → Organism.", "Microorganisms perform essential environmental decomposition, food fermentation, and biological nitrogen fixation."], "sim_id": "cells_microbes_master_matrix_sim", "checkpoints": [{"question": "Which combination correctly matches an organelle with its primary function in a plant cell?", "options": ["Chloroplast • Trapping sunlight for photosynthesis", "Cell wall • Carrying electrical thoughts to the brain", "Nucleus • Pumping food out of the roots into clouds", "Vacuole • Breathing in oxygen through ears"], "correct": 0, "explanation": "Chloroplasts contain green chlorophyll pigments that absorb sunlight energy to synthesize glucose during photosynthesis."}, {"question": "What is the primary difference between a bacterial cell and a human cheek cell?", "options": ["Bacterial cells lack a membrane-bound nucleus (they have a nucleoid), while human cheek cells have a true nucleus", "Bacterial cells have bones and teeth inside their cytoplasm", "Human cheek cells are 10 meters long", "Bacterial cells are made of solid rock"], "correct": 0, "explanation": "Bacteria are prokaryotes with an un-enclosed nucleoid and no nuclear membrane, whereas human cells are eukaryotes with a distinct double-membrane nucleus."}]}, {"id": 17, "title": "Mastery Challenge • Part I", "subtitle": "Questions 1–10: History of Microscopy, Hooke, Leeuwenhoek & Cell Parts", "badge": "Exam Certification", "narration": "Test your mastery of cellular history and fundamental cell components. Click Solution on any question to view step-by-step scientific explanations.", "theory": "<p class='text-sm text-slate-300'>Challenge questions covering Hooke's Micrographia, Leeuwenhoek's living cells, electron microscopes, the cell triad, and selective membrane permeability.</p>", "key_points": ["Attempt all 10 questions independently.", "Review step-by-step scientific solutions.", "Master the historical milestones and foundational parts of the cell."], "is_quiz_slide": true, "quiz_range": "1–10", "questions": [{"id": 1, "question": "In 1665, who observed thin slices of bottle cork under a compound microscope and coined the term 'cell'?", "options": ["Robert Hooke", "Antonie van Leeuwenhoek", "Louis Pasteur", "Alexander Fleming"], "correct": 0, "solution": "Step 1: In 1665, British scientist Robert Hooke examined thin shavings of dead cork under his compound microscope.\nStep 2: He observed a honeycomb pattern of tiny box-like compartments and published his drawings in 'Micrographia'.\nStep 3: He termed these compartments 'cells' (from Latin cellula, meaning small room)."}, {"id": 2, "question": "What was the landmark book published by Robert Hooke in 1665 that contained his famous illustrations of cork cells?", "options": ["Micrographia", "Origin of Species", "Philosophiae Naturalis Principia Mathematica", "Systema Naturae"], "correct": 0, "solution": "Step 1: Robert Hooke's pioneering book on microscopy was titled 'Micrographia' (1665).\nStep 2: It featured detailed engravings of microscopic observations, including flea anatomy and cork cells."}, {"id": 3, "question": "What was the magnification range of Robert Hooke's compound microscope in 1665?", "options": ["200 to 300 times (200×–300×)", "1,000,000 times (1,000,000×)", "10 to 20 times (10×–20×)", "5 to 8 times (5×–8×)"], "correct": 0, "solution": "Step 1: Hooke utilized a compound microscope combining an objective lens and an eyepiece.\nStep 2: It achieved a magnification of approximately 200× to 300×, enabling clear visualization of plant cell walls."}, {"id": 4, "question": "Who was the first person to clearly see and describe living single-celled bacteria and blood cells, earning the title 'Father of Microbiology'?", "options": ["Antonie van Leeuwenhoek", "Robert Hooke", "Edward Jenner", "Gregor Mendel"], "correct": 0, "solution": "Step 1: Antonie van Leeuwenhoek hand-ground high-quality spherical lenses in the late 1660s.\nStep 2: He observed living motile bacteria ('animalcules'), protozoa, and red blood cells for the first time.\nStep 3: For these pioneering discoveries, he is honored as the 'Father of Microbiology'."}, {"id": 5, "question": "What is the approximate magnification achieved by modern electron microscopes to view subcellular components?", "options": ["About 1,000,000 times (one million times)", "About 300 times", "About 1,500 times", "About 20 times"], "correct": 0, "solution": "Step 1: Electron microscopes use high-velocity electron beams with extremely short wavelengths.\nStep 2: This enables magnifications up to approximately 1,000,000×, resolving ribosomes, membranes, and viral capsids."}, {"id": 6, "question": "What are the three fundamental components present in every typical eukaryotic cell?", "options": ["Cell membrane, cytoplasm, and nucleus", "Cell wall, chloroplast, and flagellum", "Bones, blood, and cartilage", "Root, stem, and flower"], "correct": 0, "solution": "Step 1: All typical eukaryotic cells possess three essential structural pillars:\nStep 2: (1) The outer cell membrane, (2) the internal cytoplasm, and (3) the central control nucleus."}, {"id": 7, "question": "Why is the cell membrane (plasma membrane) described as 'selectively permeable'?", "options": ["It selectively admits essential nutrients while allowing metabolic wastes out, blocking harmful toxins", "It permits all substances to pass indiscriminately without any control", "It is completely impermeable and solid like iron", "It only opens when exposed to direct boiling water"], "correct": 0, "solution": "Step 1: The cell membrane contains microscopic pores and protein channels.\nStep 2: It exhibits selective permeability, regulating the ingress of glucose and ions while expelling cellular waste."}, {"id": 8, "question": "What is the cytoplasm in a living cell?", "options": ["The internal gelatinous matrix containing proteins, fats, carbohydrates, and salts where life processes occur", "A hard wooden shell on the outer surface of animal cells", "The empty vacuum chamber inside bone marrow", "A dry gas bubble inside the nucleus"], "correct": 0, "solution": "Step 1: Cytoplasm is the colloidal, semi-transparent matrix enclosed within the cell membrane.\nStep 2: It contains dissolved proteins, lipids, sugars, and mineral salts, hosting the majority of biochemical reactions."}, {"id": 9, "question": "What is the primary role of the nucleus in a eukaryotic cell?", "options": ["Regulating all cellular activities, growth, metabolic functions, and division", "Storing solid calcium like a skeleton", "Trapping direct sunlight for photosynthesis in animal cells", "Pumping blood through the human body"], "correct": 0, "solution": "Step 1: The nucleus contains the genetic instructions (DNA) of the cell.\nStep 2: It serves as the master command center, directing protein synthesis, nutrient metabolism, growth, and replication."}, {"id": 10, "question": "What was the true biological nature of the cork 'cells' observed by Robert Hooke in 1665?", "options": ["Empty cellulose cell walls of dead plant bark tissue", "Swimming living bacteria inside water", "Active red blood cells carrying oxygen", "Infectious viral particles"], "correct": 0, "solution": "Step 1: Bottle cork is harvested from the outer bark of the cork oak tree.\nStep 2: The living protoplasm of these cork cells had dried out and died, leaving behind only the rigid cellulose cell walls."}]}, {"id": 18, "title": "Mastery Challenge • Part II", "subtitle": "Questions 11–20: Plant Structures, Bacterial Nucleoids & Cell Specialization", "badge": "Exam Certification", "narration": "Mastery challenge part two covers plant-specific cell walls, plastids, vacuoles, the bacterial nucleoid, and functional cell shapes like spindle muscle cells and neurons.", "theory": "<p class='text-sm text-slate-300'>Challenge questions testing cell wall composition, chloroplasts, central vacuoles, prokaryotic nucleoids, spindle muscle fibers, and long branched neurons.</p>", "key_points": ["Differentiate between plant and animal cellular architecture.", "Understand why bacterial DNA lacks a nuclear membrane.", "Relate specific cell shapes to specialized biological functions."], "is_quiz_slide": true, "quiz_range": "11–20", "questions": [{"id": 11, "question": "Which extra protective outer covering is present in plant, fungal, and bacterial cells to give rigidity and structural support?", "options": ["Cell wall", "Cell membrane only", "Nuclear envelope", "Centrosome"], "correct": 0, "solution": "Step 1: Plant, fungal, and bacterial cells possess a rigid outer coat called the cell wall.\nStep 2: In plants, it is composed of cellulose, providing structural strength to withstand high turgor pressure."}, {"id": 12, "question": "What plant-specific organelles contain the green pigment chlorophyll and carry out photosynthesis?", "options": ["Chloroplasts (a type of plastid)", "Centrosomes", "Lysosomes", "Ribosomes"], "correct": 0, "solution": "Step 1: Plastids are double-membrane organelles found in plant cells.\nStep 2: Chloroplasts contain chlorophyll, which captures solar photon energy to convert carbon dioxide and water into glucose."}, {"id": 13, "question": "What is the function of the large central vacuole found in mature plant cells?", "options": ["Storing cell sap, removing wastes, and maintaining turgor pressure to keep the cell rigid", "Producing electrical shocks to repel birds", "Pumping blood into the xylem veins", "Generating sound waves during rain"], "correct": 0, "solution": "Step 1: The large central vacuole occupies 50%–90% of plant cell volume.\nStep 2: It stores cell sap, isolates metabolic byproducts, and exerts outward hydrostatic pressure against the cell wall."}, {"id": 14, "question": "How does the genetic region of a bacterial cell differ from the nucleus of a plant or animal cell?", "options": ["Bacterial cells lack a nuclear membrane; their DNA resides in an un-enclosed region called a nucleoid", "Bacterial cells have five separate nuclei enclosed in bone", "Bacterial cells do not have any genetic material at all", "Bacterial nuclei are 100 times larger than plant cells"], "correct": 0, "solution": "Step 1: Bacteria are prokaryotes, meaning 'before a nucleus'.\nStep 2: They lack a membrane-bound nucleus and nuclear envelope; their circular DNA floats in an un-enclosed zone called the nucleoid."}, {"id": 15, "question": "What characteristic shape do smooth muscle cells possess, and why?", "options": ["Spindle-shaped (pointed tapered ends) to contract and relax along a single axis", "Round biconcave discs to carry oxygen", "Long branched fibers to pass electrical nerve signals", "Irregular amoeboid shape to engulf bacteria"], "correct": 0, "solution": "Step 1: Smooth muscle cells (myocytes) are fusiform or spindle-shaped (tapered at both ends).\nStep 2: This elongated shape aligns actin and myosin protein filaments for effective contractile pulling."}, {"id": 16, "question": "Why are nerve cells (neurons) long and branched with dendrites and extended axons?", "options": ["To quickly transmit electrical and chemical messages across long distances in the body", "To filter toxic chemicals out of the urine", "To absorb vitamins from sunlight through the scalp", "To store extra fat reserves for winter hibernation"], "correct": 0, "solution": "Step 1: Neurons are the communication cables of the nervous system.\nStep 2: Their elongated axons and branched dendrites allow rapid, coordinated transmission of nerve impulses across the body."}, {"id": 17, "question": "Which of the following cell structures is present in onion peel cells but ABSENT in human cheek epithelial cells?", "options": ["Cell wall", "Cell membrane", "Cytoplasm", "Nucleus"], "correct": 0, "solution": "Step 1: Onion peel cells are plant cells and possess a rigid cellulose cell wall.\nStep 2: Human cheek cells are animal cells and possess only an outer plasma membrane, lacking a cell wall."}, {"id": 18, "question": "What type of plastids do non-green plant tissues (such as roots and potato tubers) contain for food storage?", "options": ["Leucoplasts", "Chloroplasts", "Chromoplasts", "Mitochondria"], "correct": 0, "solution": "Step 1: Plastids are categorized by pigment and function.\nStep 2: Leucoplasts are non-pigmented, colorless plastids specialized for storing starches, oils, and proteins in roots and tubers."}, {"id": 19, "question": "What is the structural term for the thread-like genetic network found inside a non-dividing eukaryotic nucleus?", "options": ["Chromatin", "Chlorophyll", "Chitin", "Cellulose"], "correct": 0, "solution": "Step 1: In a non-dividing cell, DNA is loosely coiled around histone proteins as a diffuse network termed chromatin.\nStep 2: During cell division, chromatin condenses into distinct rod-shaped chromosomes."}, {"id": 20, "question": "Why do plant cells require a rigid cell wall in addition to a cell membrane, unlike animals?", "options": ["To withstand variations in temperature, high wind velocity, and osmotic turgor pressure without bursting", "Because plant cells do not have any water inside them", "To allow plants to walk and run across fields", "To prevent leaves from absorbing sunlight"], "correct": 0, "solution": "Step 1: Plants cannot move to shelter from wind, rain, and thermal extremes.\nStep 2: The tough cellulose cell wall provides structural rigidity and prevents hypotonic osmotic lysis (bursting)."}]}, {"id": 19, "title": "Mastery Challenge • Part III", "subtitle": "Questions 21–30: Cell Sizes, Ostrich Egg, Hierarchy & Microbial Types", "badge": "Exam Certification", "narration": "Part three tests your understanding of cell sizes, the record-holding ostrich egg yolk, levels of biological organization, and the diversity of microbes and acellular viruses.", "theory": "<p class='text-sm text-slate-300'>Challenge questions covering ostrich egg diameter, the cell-to-organism hierarchy, zygote division, microbial ubiquity, and viral obligate parasitism.</p>", "key_points": ["Assess cell size records and the surface-area-to-volume rule.", "Trace the structural ladder from cells to complete organisms.", "Examine viral acellular nature and replication mechanisms."], "is_quiz_slide": true, "quiz_range": "21–30", "questions": [{"id": 21, "question": "What holds the biological record as the largest known single cell in the living world?", "options": ["The yolk of an ostrich egg (130 mm to 170 mm in diameter)", "A blue whale muscle cell", "An elephant neuron", "A giant redwood tree leaf cell"], "correct": 0, "solution": "Step 1: The yolk of an unfertilized ostrich egg is a single gigantic ovum cell.\nStep 2: It measures 130 mm to 170 mm across (13 to 17 cm) and can weigh over 1.5 kilograms."}, {"id": 22, "question": "Which of the following correctly displays the hierarchical levels of organization in multicellular life?", "options": ["Cell → Tissue → Organ → Organ system → Organism", "Organism → Organ system → Tissue → Organ → Cell", "Tissue → Cell → Organ → Organism → Organ system", "Cell → Organ → Tissue → Organ system → Organism"], "correct": 0, "solution": "Step 1: Life organizes from simple to complex:\nStep 2: Cells assemble into tissues; tissues form organs; organs form organ systems; organ systems make up the organism."}, {"id": 23, "question": "From what single starting entity do all complex multicellular animals and plants develop?", "options": ["A single fertilized egg cell (zygote) that divides repeatedly", "A clump of mud and river water", "An adult organ system formed out of air", "Ten different dead cells glued together"], "correct": 0, "solution": "Step 1: Sexual reproduction produces a single diploid cell: the fertilized egg (zygote).\nStep 2: Through repeated mitotic divisions and cellular differentiation, this single cell develops into a complex organism."}, {"id": 24, "question": "Which of the following is a unicellular microorganism made of only a single cell?", "options": ["Amoeba", "Bread mold (Rhizopus)", "Mushroom (Agaricus)", "Earthworm"], "correct": 0, "solution": "Step 1: Unicellular organisms carry out all life processes inside a single independent cell.\nStep 2: *Amoeba* and bacteria are unicellular. Molds, mushrooms, and earthworms are multicellular."}, {"id": 25, "question": "Why are viruses described as 'acellular' and placed on the boundary between the living and the non-living?", "options": ["They lack cellular structures (cytoplasm, organelles) and can only replicate inside a living host cell", "They have three nuclei and five cell walls", "They are giant multicellular animals that live underground", "They can synthesize glucose through photosynthesis at night"], "correct": 0, "solution": "Step 1: Viruses lack cellular components (no plasma membrane, cytoplasm, or ribosomes).\nStep 2: Outside a host, they are inert particles; they exhibit replication only after invading a living host cell."}, {"id": 26, "question": "In what diverse environments on Earth can living microorganisms be found?", "options": ["Everywhere—in soil, water, air, thermal hot springs, snow zones, and inside animal bodies", "Only in refrigerated milk cartons", "Exclusively in clean glass test tubes in laboratories", "Only on the dry surface of the moon"], "correct": 0, "solution": "Step 1: Microbes are ubiquitous extremophiles and mesophiles.\nStep 2: They populate soil, atmosphere, oceans, thermal geysers, polar ice sheets, and animal digestive tracts."}, {"id": 27, "question": "What is a 'tissue' in the biological hierarchy of life?", "options": ["A group of similar specialized cells performing a specific common function", "A collection of ten different complete animals", "The outer bone of a bird", "A single isolated atom of carbon"], "correct": 0, "solution": "Step 1: In multicellular biology, cells differentiate and cooperate.\nStep 2: A group of morphologically similar cells working together to carry out a common task forms a tissue (e.g., muscle tissue)."}, {"id": 28, "question": "What is an 'organ' in the biological hierarchy?", "options": ["A structure composed of different tissues working together to carry out a specific body task", "A single standalone bacterium", "A drop of water in the blood", "A chemical fertilizer used on plants"], "correct": 0, "solution": "Step 1: Different tissues integrate structurally and functionally to form an organ.\nStep 2: For example, the stomach combines epithelial, muscular, connective, and nervous tissues to digest food."}, {"id": 29, "question": "Why are cells generally microscopic rather than growing to the size of watermelons?", "options": ["A high surface-area-to-volume ratio is required for rapid diffusion of nutrients and waste across the membrane", "Because Earth's gravity crushes large cells into powder", "Because cells are afraid of direct sunlight", "Because nuclei can only see objects smaller than 1 micrometer"], "correct": 0, "solution": "Step 1: As a cell increases in size, its volume ($r^3$) grows much faster than its surface area ($r^2$).\nStep 2: Beyond a microscopic size, the surface area becomes insufficient to transport necessary nutrients and wastes, forcing cells to remain small."}, {"id": 30, "question": "Which of the following is an example of a multicellular microscopic fungus?", "options": ["Bread mold (Rhizopus)", "Amoeba", "Paramecium", "Bacteriophage"], "correct": 0, "solution": "Step 1: *Rhizopus* (bread mold) is composed of branching multicellular fungal filaments called hyphae.\nStep 2: *Amoeba* and *Paramecium* are unicellular protozoa; bacteriophage is an acellular virus."}]}, {"id": 20, "title": "Mastery Challenge • Part IV", "subtitle": "Questions 31–40: Beneficial Roles, Biogas, Microalgae & Scientific Pioneers", "badge": "Exam Certification", "narration": "The final mastery challenge covers decomposers, biogas generation, yeast & lactobacillus, Rhizobium nitrogen fixation, microalgae, Vedic Krimi, and Dr. Chakrabarty's superbug.", "theory": "<p class='text-sm text-slate-300'>Challenge questions covering composting, methane biogas, fermentation chemistry, symbiotic root nodules, Spirulina oxygen/nutrition, Vedic Krimi, and oil bioremediation.</p>", "key_points": ["Master economic and environmental benefits of microorganisms.", "Explain industrial fermentation in bread, curd, and batter.", "Connect ancient Indian scientific insights with modern biotechnology."], "is_quiz_slide": true, "quiz_range": "31–40", "questions": [{"id": 31, "question": "How do saprophytic fungi and bacteria clean the environment and enrich soil fertility?", "options": ["By decomposing fallen leaves, dead plant material, and animal remains into nutrient-rich humus (manure)", "By burying all organic waste in solid plastic boxes", "By freezing the forest floor into solid ice", "By converting dirt into poisonous chlorine gas"], "correct": 0, "solution": "Step 1: Decomposers secrete extracellular hydrolytic enzymes onto dead organic matter.\nStep 2: They break complex polymers into simple mineral nutrients, creating dark humus (manure) that enriches soil."}, {"id": 32, "question": "What gas mixture is produced when microorganisms decompose organic waste in an oxygen-free (anaerobic) environment?", "options": ["Biogas (composed primarily of methane with carbon dioxide)", "Pure oxygen gas with nitrogen", "Chlorofluorocarbons (CFCs)", "Pure hydrogen gas only"], "correct": 0, "solution": "Step 1: In an anaerobic environment, methanogenic bacteria digest organic waste.\nStep 2: This produces biogas, which is composed of 55%–70% methane ($\text{CH}_4$) and carbon dioxide ($\text{CO}_2$)."}, {"id": 33, "question": "What gas released by yeast fermentation makes bread dough expand, rise, and become soft and spongy?", "options": ["Carbon dioxide (CO₂)", "Nitrogen (N₂)", "Oxygen (O₂)", "Sulfur dioxide (SO₂)"], "correct": 0, "solution": "Step 1: Baker's yeast (*Saccharomyces cerevisiae*) respires anaerobically in warm, sugary dough:\n$$\\text{Glucose} \\to \\text{Alcohol} + \\text{CO}_2 \\uparrow$$\nStep 2: The expanding $\\text{CO}_2$ gas bubbles are trapped in the dough, creating its light, spongy texture."}, {"id": 34, "question": "Which bacterium converts milk into curd by fermenting lactose sugar into lactic acid?", "options": ["Lactobacillus", "Rhizobium", "Spirulina", "Pseudomonas"], "correct": 0, "solution": "Step 1: Starter curd introduces *Lactobacillus* bacteria into warm milk.\nStep 2: They ferment milk sugar (lactose) into lactic acid, lowering the pH and coagulating casein proteins into curd."}, {"id": 35, "question": "Where are symbiotic Rhizobium bacteria located in leguminous plants (beans, peas, lentils), and what is their function?", "options": ["Inside root nodules; they trap atmospheric nitrogen and convert it into plant-usable nitrates", "On leaf tips; they capture rainwater to make honey", "Inside flower petals; they produce sweet scent for bees", "Inside the bark; they make the plant grow taller than trees"], "correct": 0, "solution": "Step 1: *Rhizobium* forms a mutualistic symbiosis inside legume root nodules.\nStep 2: They fix unreactive atmospheric $\\text{N}_2$ into ammonium and nitrates, boosting soil fertility naturally."}, {"id": 36, "question": "What critical planetary role do aquatic microalgae (such as diatoms and phytoplankton) perform for Earth's biosphere?", "options": ["They produce more than half (50%+) of Earth's atmospheric oxygen through photosynthesis", "They absorb all sunlight so the oceans freeze into ice", "They drink all river water to prevent sea levels from rising", "They turn seawater into sweet sugar syrup"], "correct": 0, "solution": "Step 1: Aquatic microalgae are primary producers that inhabit oceans and lakes.\nStep 2: Through vast photosynthetic activity, they generate more than 50% of the oxygen in Earth's atmosphere."}, {"id": 37, "question": "Which microscopic aquatic organism is cultivated as a commercial superfood due to its high concentration of complete protein and Vitamin B12?", "options": ["Spirulina", "Amoeba", "Bread mold", "Yeast"], "correct": 0, "solution": "Step 1: *Spirulina* is a filamentous cyanobacterium (blue-green microalga).\nStep 2: It contains up to 60%–70% complete protein by dry weight and is rich in iron, beta-carotene, and Vitamin $\\text{B}_{12}$."}, {"id": 38, "question": "What Sanskrit word was used in ancient Indian texts like the Atharvaveda to denote microscopic and visible entities?", "options": ["Krimi (divided into Drishya and Adrishya)", "Chakra", "Prana", "Mantra"], "correct": 0, "solution": "Step 1: The *Atharvaveda* and early Ayurvedic texts employ the term 'Krimi'.\nStep 2: They categorized Krimi into Drishya (visible parasites) and Adrishya (invisible entities), noting both beneficial and pathogenic roles."}, {"id": 39, "question": "What was the landmark scientific contribution of Indian-American microbiologist Dr. Ananda Mohan Chakrabarty (1938–2020)?", "options": ["Engineering an oil-eating bacterium in 1971 to break down marine oil spills, receiving a historic patent in 1980", "Discovering the compound microscope in 1665", "Inventing the polio vaccine drops in 1955", "Synthesizing artificial chlorophyll in 1800"], "correct": 0, "solution": "Step 1: In 1971, Dr. Ananda Mohan Chakrabarty combined plasmids in *Pseudomonas putida*.\nStep 2: This 'superbug' could digest multiple crude oil hydrocarbons to clean oil spills.\nStep 3: In 1980, he was awarded the world's first patent for a genetically modified living organism."}, {"id": 40, "question": "Which combination correctly matches a microorganism with its beneficial human application?", "options": ["Lactobacillus • Curd & Fermented Batter | Yeast • Bread Rising | Rhizobium • Nitrogen Fixation", "Virus • Curd Formation | Bacterium • Rabies Vaccine | Amoeba • Biogas", "Rhizobium • Bread Dough Rising | Yeast • Malaria Cure | Diatoms • Poison", "Lactobacillus • Smallpox Vaccine | Fungus • Plastic Manufacturing"], "correct": 0, "solution": "Step 1: *Lactobacillus* ferments milk into curd and leavens batters.\nStep 2: *Yeast* produces $\\text{CO}_2$ to make bread dough light and spongy.\nStep 3: *Rhizobium* fixes atmospheric nitrogen in legume root nodules to fertilize soil."}]}];
+
+    let currentSlideIndex = 0;
+    let isSpeaking = false;
+    let synth = window.speechSynthesis;
+    let quizScores = {};
+
+    function loadSlide(index) {
+      if (index < 0 || index >= SLIDES.length) return;
+      currentSlideIndex = index;
+      stopSpeech();
+
+      const slide = SLIDES[index];
+      const indicator = document.getElementById('slideNumDisplay');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const footerNextBtn = document.getElementById('footerNextBtn');
+      const lastNotice = document.getElementById('lastSlideNotice');
+      const lessonGrid = document.getElementById('lessonGrid');
+      const quizContainer = document.getElementById('quizContainer');
+
+      indicator.textContent = `Slide ${index + 1} of ${SLIDES.length}`;
+      prevBtn.disabled = (index === 0);
+
+      if (index === SLIDES.length - 1) {
+        nextBtn.style.display = 'none';
+        footerNextBtn.style.display = 'none';
+        lastNotice.style.display = 'block';
+      } else {
+        nextBtn.style.display = 'inline-flex';
+        footerNextBtn.style.display = 'inline-flex';
+        lastNotice.style.display = 'none';
+      }
+
+      if (index < 16) {
+        // Content Slide
+        lessonGrid.style.display = 'grid';
+        quizContainer.style.display = 'none';
+
+        document.getElementById('slideBadgeTag').textContent = slide.badge || "Scientific Concept";
+        document.getElementById('slideHeading').textContent = slide.title;
+        document.getElementById('slideSubheading').textContent = slide.subtitle;
+        document.getElementById('theoryContent').innerHTML = slide.theory;
+        document.getElementById('narrationSummary').textContent = slide.narration.substring(0, 160) + '...';
+
+        const takeaways = document.getElementById('keyTakeawaysList');
+        takeaways.innerHTML = '';
+        (slide.key_points || []).forEach(pt => {
+          const li = document.createElement('li');
+          li.textContent = pt;
+          takeaways.appendChild(li);
+        });
+
+        renderCheckpoints(slide.checkpoints);
+        renderSimulator(slide.sim_id);
+      } else {
+        // Quiz Slides (17 to 20)
+        lessonGrid.style.display = 'none';
+        quizContainer.style.display = 'flex';
+
+        document.getElementById('quizTitle').textContent = slide.title;
+        document.getElementById('quizSubtitle').textContent = slide.subtitle;
+        renderQuizSlide(slide.questions);
+      }
+
+      setTimeout(() => {
+        triggerMathRender(document.body);
+      }, 50);
+    }
+
+    function prevSlide() {
+      if (currentSlideIndex > 0) {
+        loadSlide(currentSlideIndex - 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlideIndex < SLIDES.length - 1) {
+        loadSlide(currentSlideIndex + 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // In-Slide Checkpoints Renderer
+    function renderCheckpoints(checkpoints) {
+      const list = document.getElementById('checkpointsList');
+      list.innerHTML = '';
+
+      if (!checkpoints || checkpoints.length === 0) {
+        document.getElementById('checkpointContainer').style.display = 'none';
+        return;
+      }
+      document.getElementById('checkpointContainer').style.display = 'block';
+
+      checkpoints.forEach((cp, cpIdx) => {
+        const item = document.createElement('div');
+        item.className = 'checkpoint-item';
+
+        const qText = document.createElement('div');
+        qText.className = 'checkpoint-q';
+        qText.innerHTML = `<strong>Q${cpIdx + 1}:</strong> ${cp.question}`;
+        item.appendChild(qText);
+
+        const optsDiv = document.createElement('div');
+        optsDiv.className = 'checkpoint-options';
+
+        const fbDiv = document.createElement('div');
+        fbDiv.className = 'cp-feedback';
+
+        cp.options.forEach((optText, optIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'cp-opt-btn';
+          btn.innerHTML = optText;
+
+          btn.onclick = () => {
+            const allBtns = optsDiv.querySelectorAll('.cp-opt-btn');
+            allBtns.forEach(b => b.disabled = true);
+
+            if (optIdx === cp.correct) {
+              btn.classList.add('correct');
+              fbDiv.className = 'cp-feedback show-correct';
+              fbDiv.innerHTML = `<strong>✔ Correct!</strong> ${cp.explanation}`;
+            } else {
+              btn.classList.add('incorrect');
+              allBtns[cp.correct].classList.add('correct');
+              fbDiv.className = 'cp-feedback show-incorrect';
+              fbDiv.innerHTML = `<strong>✖ Not quite.</strong> ${cp.explanation}`;
+            }
+          };
+
+          optsDiv.appendChild(btn);
+        });
+
+        item.appendChild(optsDiv);
+        item.appendChild(fbDiv);
+        list.appendChild(item);
+      });
+    }
+
+    // Quiz Slide Renderer
+    function renderQuizSlide(questions) {
+      const grid = document.getElementById('quizQuestionsGrid');
+      grid.innerHTML = '';
+      quizScores[currentSlideIndex] = quizScores[currentSlideIndex] || {};
+
+      questions.forEach((q, idx) => {
+        const card = document.createElement('div');
+        card.className = 'quiz-card';
+
+        const qNum = document.createElement('div');
+        qNum.className = 'quiz-q-num';
+        qNum.textContent = `Question ${idx + 1} of 10`;
+        card.appendChild(qNum);
+
+        const qText = document.createElement('div');
+        qText.className = 'quiz-q-text';
+        qText.innerHTML = q.question;
+        card.appendChild(qText);
+
+        const optsDiv = document.createElement('div');
+        optsDiv.className = 'quiz-opts';
+
+        const solBtn = document.createElement('button');
+        solBtn.className = 'quiz-btn-solution';
+        solBtn.innerHTML = '💡 View Step-by-Step Solution';
+        solBtn.onclick = () => openSolutionModal(currentSlideIndex, idx);
+
+        q.options.forEach((optText, optIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'quiz-opt-btn';
+          btn.innerHTML = optText;
+
+          if (quizScores[currentSlideIndex][idx] !== undefined) {
+            btn.disabled = true;
+            if (optIdx === q.correct) btn.classList.add('correct');
+            if (quizScores[currentSlideIndex][idx] === optIdx && optIdx !== q.correct) {
+              btn.classList.add('incorrect');
+            }
+            solBtn.style.display = 'inline-flex';
+          }
+
+          btn.onclick = () => {
+            const allBtns = optsDiv.querySelectorAll('.quiz-opt-btn');
+            allBtns.forEach(b => b.disabled = true);
+            quizScores[currentSlideIndex][idx] = optIdx;
+
+            if (optIdx === q.correct) {
+              btn.classList.add('correct');
+            } else {
+              btn.classList.add('incorrect');
+              allBtns[q.correct].classList.add('correct');
+            }
+            solBtn.style.display = 'inline-flex';
+            updateQuizScore();
+          };
+
+          optsDiv.appendChild(btn);
+        });
+
+        card.appendChild(optsDiv);
+        card.appendChild(solBtn);
+        grid.appendChild(card);
+      });
+
+      updateQuizScore();
+    }
+
+    function updateQuizScore() {
+      const scores = quizScores[currentSlideIndex] || {};
+      let correctCount = 0;
+      const questions = SLIDES[currentSlideIndex].questions;
+
+      for (let idx in scores) {
+        if (scores[idx] === questions[idx].correct) correctCount++;
+      }
+
+      document.getElementById('quizScoreBadge').textContent = `Score: ${correctCount} / 10`;
+    }
+
+    function openSolutionModal(slideIdx, qIdx) {
+      const q = SLIDES[slideIdx].questions[qIdx];
+      document.getElementById('modalQuestionText').innerHTML = `<strong>Question:</strong> ${q.question}`;
+      document.getElementById('modalSolutionBody').innerHTML = q.solution;
+
+      const modal = document.getElementById('solutionModal');
+      modal.style.display = 'flex';
+      triggerMathRender(modal);
+    }
+
+    function closeSolutionModal() {
+      document.getElementById('solutionModal').style.display = 'none';
+    }
+
+    // Audio narration Web Speech API
+    function toggleVoice() {
+      if (isSpeaking) {
+        stopSpeech();
+      } else {
+        startSpeech();
+      }
+    }
+
+    function startSpeech() {
+      if (!synth) return;
+      const slide = SLIDES[currentSlideIndex];
+      const utterText = `${slide.title}. ${slide.subtitle}. ${slide.narration}`;
+
+      const utter = new SpeechSynthesisUtterance(utterText);
+      utter.rate = 0.95;
+      utter.pitch = 1.0;
+
+      utter.onend = () => {
+        isSpeaking = false;
+        updateVoiceButton();
+      };
+
+      synth.speak(utter);
+      isSpeaking = true;
+      updateVoiceButton();
+    }
+
+    function stopSpeech() {
+      if (synth && synth.speaking) {
+        synth.cancel();
+      }
+      isSpeaking = false;
+      updateVoiceButton();
+    }
+
+    function updateVoiceButton() {
+      const btn = document.getElementById('voiceToggleBtn');
+      const icon = document.getElementById('voiceIcon');
+      const text = document.getElementById('voiceBtnText');
+      const face = document.getElementById('teacherAvatar');
+
+      if (isSpeaking) {
+        icon.textContent = '⏹';
+        text.textContent = 'Stop Narration';
+        btn.style.background = '#e11d48';
+        face.classList.add('avatar-speaking');
+      } else {
+        icon.textContent = '🔊';
+        text.textContent = 'Listen to Teacher Explanation';
+        btn.style.background = 'rgba(16, 185, 129, 0.2)';
+        face.classList.remove('avatar-speaking');
+      }
+    }
+
+    // Simulator Dispatcher
+    function renderSimulator(simType) {
+      const title = document.getElementById('simTitle');
+      const stats = document.getElementById('simStats');
+      const canvas = document.getElementById('simCanvas');
+      const controls = document.getElementById('simControls');
+
+      canvas.innerHTML = '';
+      controls.innerHTML = '';
+      stats.innerHTML = '';
+
+      switch (simType) {
+        case 'hooke_cork_microscope_sim':
+          renderHookeCorkSim(title, stats, canvas, controls);
+          break;
+        case 'magnification_evolution_sim':
+          renderMagnificationEvolutionSim(title, stats, canvas, controls);
+          break;
+        case 'cell_triad_anatomy_sim':
+          renderCellTriadAnatomySim(title, stats, canvas, controls);
+          break;
+        case 'membrane_transport_cytoplasm_sim':
+          renderMembraneTransportSim(title, stats, canvas, controls);
+          break;
+        case 'nucleus_command_center_sim':
+          renderNucleusCommandSim(title, stats, canvas, controls);
+          break;
+        case 'plant_vs_animal_organelles_sim':
+          renderPlantVsAnimalSim(title, stats, canvas, controls);
+          break;
+        case 'prokaryote_vs_eukaryote_sim':
+          renderProkaryoteVsEukaryoteSim(title, stats, canvas, controls);
+          break;
+        case 'cell_shapes_specialization_sim':
+          renderCellShapesSpecializationSim(title, stats, canvas, controls);
+          break;
+        case 'cell_size_scale_comparator_sim':
+          renderCellSizeScaleSim(title, stats, canvas, controls);
+          break;
+        case 'biological_hierarchy_ladder_sim':
+          renderBiologicalHierarchySim(title, stats, canvas, controls);
+          break;
+        case 'microbial_ubiquity_habitats_sim':
+          renderMicrobialUbiquitySim(title, stats, canvas, controls);
+          break;
+        case 'biogas_anaerobic_digester_sim':
+          renderBiogasDigesterSim(title, stats, canvas, controls);
+          break;
+        case 'kitchen_fermentation_lab_sim':
+          renderKitchenFermentationSim(title, stats, canvas, controls);
+          break;
+        case 'rhizobium_microalgae_lab_sim':
+          renderRhizobiumMicroalgaeSim(title, stats, canvas, controls);
+          break;
+        case 'oil_spill_bioremediation_sim':
+          renderOilSpillBioremediationSim(title, stats, canvas, controls);
+          break;
+        case 'cells_microbes_master_matrix_sim':
+          renderCellsMicrobesMasterMatrixSim(title, stats, canvas, controls);
+          break;
+        default:
+          title.textContent = 'Laboratory Visualizer';
+          canvas.innerHTML = '<div style="color:#94a3b8;">Simulator loading...</div>';
+      }
+    }
+
+    // 1. Hooke Cork Microscope Simulator (1665)
+    function renderHookeCorkSim(title, stats, canvas, controls) {
+      title.textContent = "Hooke's 1665 Cork Slice & Compound Microscope";
+      let focus = 0; // 0 = sharp
+      let sliceThickness = 1; // 1 = thin, 2 = medium, 3 = thick
+
+      function update() {
+        stats.innerHTML = `
+          <div class="stat-pill">Year: <strong>1665</strong></div>
+          <div class="stat-pill">Magnification: <strong>250×</strong></div>
+          <div class="stat-pill">Specimen: <strong>Dead Bottle Cork Bark</strong></div>
+        `;
+
+        const blurVal = Math.abs(focus) * 1.2;
+        const opacity = sliceThickness === 1 ? 0.9 : sliceThickness === 2 ? 0.6 : 0.35;
+
+        canvas.innerHTML = `
+          <div style="position:relative; width:340px; height:340px; border-radius:50%; border:6px solid #334155; box-shadow:0 0 30px rgba(16,185,129,0.2) inset, 0 0 20px rgba(0,0,0,0.8); overflow:hidden; background:#0f172a;">
+            <svg width="340" height="340" viewBox="0 0 340 340" style="filter: blur(${blurVal}px); transition: filter 0.2s ease;">
+              <defs>
+                <pattern id="corkGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+                  <rect width="28" height="28" rx="2" fill="none" stroke="#d97706" stroke-width="2.5" opacity="${opacity}"/>
+                  <circle cx="14" cy="14" r="1.5" fill="#92400e" opacity="0.6"/>
+                </pattern>
+              </defs>
+              <rect x="0" y="0" width="340" height="340" fill="url(#corkGrid)"/>
+            </svg>
+            <div style="position:absolute; bottom:14px; left:50%; transform:translateX(-50%); font-size:10px; font-weight:700; color:#fef08a; background:rgba(0,0,0,0.7); padding:3px 10px; border-radius:6px; border:1px solid #78350f;">
+              Empty Cellulose Compartments: "Cells"
+            </div>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <div class="sim-ctrl-group">
+          <span>Cork Slice:</span>
+          <button class="btn btn-primary" id="thinSlice">Thin (Crisp)</button>
+          <button class="btn" id="thickSlice">Thick (Blurry)</button>
+        </div>
+        <div class="sim-ctrl-group" style="margin-left:auto;">
+          <span>Focus Knob:</span>
+          <input type="range" class="sim-slider" id="hookeFocus" min="-5" max="5" value="${focus}" style="width:90px;">
+        </div>
+      `;
+
+      controls.querySelector('#thinSlice').onclick = () => { sliceThickness = 1; update(); };
+      controls.querySelector('#thickSlice').onclick = () => { sliceThickness = 3; update(); };
+      controls.querySelector('#hookeFocus').oninput = (e) => { focus = parseInt(e.target.value); update(); };
+
+      update();
+    }
+
+    // 2. Magnification Evolution Simulator
+    function renderMagnificationEvolutionSim(title, stats, canvas, controls) {
+      title.textContent = "Optical Powers: Eye to 1,000,000× Electron Microscope";
+      let level = 2; // 0=Eye, 1=Leeuwenhoek (300x), 2=Light (1500x), 3=Electron (1,000,000x)
+
+      const levels = [
+        { name: "Unaided Eye (1×)", mag: "1×", res: "100 μm (0.1 mm)", view: "Hair strand & needle tip", color: "#94a3b8" },
+        { name: "Leeuwenhoek (300×)", mag: "300×", res: "1 μm", view: "Living bacteria & red blood cells", color: "#f59e0b" },
+        { name: "Compound Light (1500×)", mag: "1500×", res: "0.2 μm", view: "Cell wall, nucleus, chloroplasts", color: "#10b981" },
+        { name: "Electron Microscope (1,000,000×)", mag: "1,000,000×", res: "0.1 nm (0.0001 μm)", view: "Ribosomes, lipid bilayer, virus capsids", color: "#06b6d4" }
+      ];
+
+      function update() {
+        const cur = levels[level];
+        stats.innerHTML = `
+          <div class="stat-pill">Tool: <strong style="color:${cur.color}">${cur.name}</strong></div>
+          <div class="stat-pill">Limit: <strong>${cur.res}</strong></div>
+        `;
+
+        canvas.innerHTML = `
+          <div style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:1.5rem; text-align:center;">
+            <div style="width:180px; height:180px; border-radius:50%; background:#090e1a; border:4px solid ${cur.color}; display:flex; align-items:center; justify-content:center; box-shadow:0 0 25px ${cur.color}33; margin-bottom:1rem; position:relative; overflow:hidden;">
+              <svg width="180" height="180" viewBox="0 0 180 180">
+                ${getEvolutionSVG(level, cur.color)}
+              </svg>
+            </div>
+            <h3 style="font-size:1.15rem; font-weight:700; color:${cur.color}; margin-bottom:0.25rem;">${cur.name}</h3>
+            <p style="font-size:0.85rem; color:#cbd5e1; max-width:380px;">${cur.view}</p>
+          </div>
+        `;
+      }
+
+      function getEvolutionSVG(lvl, color) {
+        if (lvl === 0) {
+          return `<line x1="20" y1="90" x2="160" y2="90" stroke="${color}" stroke-width="8"/>
+                  <text x="90" y="70" text-anchor="middle" fill="#fff" font-size="11">Human Hair (~100 μm)</text>`;
+        } else if (lvl === 1) {
+          return `<ellipse cx="90" cy="90" rx="35" ry="14" fill="${color}44" stroke="${color}" stroke-width="2.5"/>
+                  <circle cx="80" cy="90" r="5" fill="${color}"/>
+                  <text x="90" y="55" text-anchor="middle" fill="#fff" font-size="10">Motile Bacterium</text>`;
+        } else if (lvl === 2) {
+          return `<rect x="35" y="45" width="110" height="90" rx="8" fill="${color}22" stroke="${color}" stroke-width="3"/>
+                  <circle cx="90" cy="90" r="22" fill="#a855f7" opacity="0.8"/>
+                  <circle cx="60" cy="70" r="10" fill="#22c55e"/>
+                  <circle cx="120" cy="110" r="10" fill="#22c55e"/>
+                  <text x="90" y="155" text-anchor="middle" fill="#fff" font-size="9">Onion Cell & Nucleus</text>`;
+        } else {
+          return `<!-- Phospholipid bilayer / DNA helix -->
+                  <g transform="translate(40, 50)">
+                    ${Array.from({length: 6}).map((_, i) => `
+                      <circle cx="${i * 20}" cy="20" r="6" fill="${color}"/>
+                      <line x1="${i * 20}" y1="26" x2="${i * 20}" y2="50" stroke="${color}" stroke-width="2"/>
+                      <circle cx="${i * 20}" cy="60" r="6" fill="${color}"/>
+                    `).join('')}
+                    <text x="50" y="95" text-anchor="middle" fill="#fff" font-size="9">Lipid Bilayer (4 nm)</text>
+                  </g>`;
+        }
+      }
+
+      controls.innerHTML = `
+        <button class="btn" id="l0">1× Eye</button>
+        <button class="btn" id="l1">300× Leeuwenhoek</button>
+        <button class="btn btn-primary" id="l2">1500× Light</button>
+        <button class="btn" id="l3">1,000,000× Electron</button>
+      `;
+
+      controls.querySelector('#l0').onclick = () => { level = 0; update(); };
+      controls.querySelector('#l1').onclick = () => { level = 1; update(); };
+      controls.querySelector('#l2').onclick = () => { level = 2; update(); };
+      controls.querySelector('#l3').onclick = () => { level = 3; update(); };
+
+      update();
+    }
+
+    // 3. Cell Triad Anatomy Simulator
+    function renderCellTriadAnatomySim(title, stats, canvas, controls) {
+      title.textContent = "The Fundamental Cell Triad";
+      let highlight = 'all';
+
+      function update() {
+        stats.innerHTML = `
+          <div class="stat-pill">Active View: <strong style="text-transform:capitalize;">${highlight}</strong></div>
+          <div class="stat-pill">Universal Architecture: <strong>Animal & Plant</strong></div>
+        `;
+
+        canvas.innerHTML = `
+          <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+            <svg width="340" height="300" viewBox="0 0 340 300">
+              <!-- Cell Membrane -->
+              <ellipse cx="170" cy="150" rx="130" ry="105" fill="${highlight === 'membrane' || highlight === 'all' ? 'rgba(6, 182, 212, 0.15)' : 'rgba(255,255,255,0.02)'}" stroke="${highlight === 'membrane' ? '#06b6d4' : '#334155'}" stroke-width="${highlight === 'membrane' ? 6 : 3}"/>
+              
+              <!-- Cytoplasm Area -->
+              ${highlight === 'cytoplasm' ? `
+                <ellipse cx="170" cy="150" rx="120" ry="95" fill="rgba(16, 185, 129, 0.25)"/>
+              ` : ''}
+
+              <!-- Cytoplasmic Organelles -->
+              <circle cx="100" cy="120" r="8" fill="#10b981" opacity="0.7"/>
+              <circle cx="230" cy="180" r="10" fill="#10b981" opacity="0.7"/>
+              <ellipse cx="110" cy="190" rx="14" ry="7" fill="#f59e0b" opacity="0.6"/>
+              <ellipse cx="220" cy="110" rx="14" ry="7" fill="#f59e0b" opacity="0.6"/>
+
+              <!-- Nucleus -->
+              <circle cx="170" cy="150" r="42" fill="${highlight === 'nucleus' || highlight === 'all' ? 'rgba(168, 85, 247, 0.45)' : '#1e1b4b'}" stroke="${highlight === 'nucleus' ? '#a855f7' : '#6366f1'}" stroke-width="${highlight === 'nucleus' ? 5 : 2}"/>
+              <circle cx="170" cy="150" r="14" fill="#a855f7"/>
+
+              <!-- Labels -->
+              <text x="170" y="35" text-anchor="middle" fill="#67e8f9" font-size="11" font-weight="700">1. Cell Membrane</text>
+              <text x="60" y="240" fill="#6ee7b7" font-size="11" font-weight="700">2. Cytoplasm</text>
+              <text x="170" y="154" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">3. Nucleus</text>
+            </svg>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <button class="btn" id="btnAll">Show All Triad</button>
+        <button class="btn" id="btnMem">1. Membrane</button>
+        <button class="btn" id="btnCyto">2. Cytoplasm</button>
+        <button class="btn" id="btnNuc">3. Nucleus</button>
+      `;
+
+      controls.querySelector('#btnAll').onclick = () => { highlight = 'all'; update(); };
+      controls.querySelector('#btnMem').onclick = () => { highlight = 'membrane'; update(); };
+      controls.querySelector('#btnCyto').onclick = () => { highlight = 'cytoplasm'; update(); };
+      controls.querySelector('#btnNuc').onclick = () => { highlight = 'nucleus'; update(); };
+
+      update();
+    }
+
+    // 4. Membrane Transport Simulator
+    function renderMembraneTransportSim(title, stats, canvas, controls) {
+      title.textContent = "Selective Permeability: Influx vs Efflux";
+      let state = 'transporting';
+
+      function update() {
+        stats.innerHTML = `
+          <div class="stat-pill">Permeability: <strong>Selectively Porous</strong></div>
+          <div class="stat-pill">Admitted: <strong>Glucose, O₂, Salts</strong></div>
+          <div class="stat-pill">Expelled: <strong>CO₂, Metabolic Waste</strong></div>
+        `;
+
+        canvas.innerHTML = `
+          <svg width="100%" height="100%" viewBox="0 0 460 300">
+            <!-- Membrane boundary -->
+            <rect x="210" y="20" width="40" height="260" rx="6" fill="#0f172a" stroke="#06b6d4" stroke-width="2"/>
+            <text x="230" y="15" text-anchor="middle" fill="#67e8f9" font-size="10" font-weight="700">Porous Membrane</text>
+
+            <!-- Outside Area -->
+            <rect x="20" y="30" width="180" height="240" rx="8" fill="rgba(255,255,255,0.02)"/>
+            <text x="110" y="55" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="700">External Environment</text>
+
+            <!-- Nutrients entering -->
+            <g transform="translate(80, 110)">
+              <circle cx="0" cy="0" r="10" fill="#10b981"/>
+              <text x="0" y="4" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">Glu</text>
+              <line x1="15" y1="0" x2="140" y2="0" stroke="#10b981" stroke-width="2" stroke-dasharray="4,4"/>
+              <text x="70" y="-10" text-anchor="middle" fill="#6ee7b7" font-size="9">Nutrient Entry →</text>
+            </g>
+
+            <!-- Inside Cytoplasm Area -->
+            <rect x="260" y="30" width="180" height="240" rx="8" fill="rgba(16, 185, 129, 0.08)"/>
+            <text x="350" y="55" text-anchor="middle" fill="#6ee7b7" font-size="11" font-weight="700">Cytoplasm (Internal Matrix)</text>
+
+            <!-- Waste exiting -->
+            <g transform="translate(380, 200)">
+              <circle cx="0" cy="0" r="10" fill="#f43f5e"/>
+              <text x="0" y="4" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">CO₂</text>
+              <line x1="-15" y1="0" x2="-140" y2="0" stroke="#f43f5e" stroke-width="2" stroke-dasharray="4,4"/>
+              <text x="-70" y="-10" text-anchor="middle" fill="#fda4af" font-size="9">← Waste Exit</text>
+            </g>
+          </svg>
+        `;
+      }
+
+      controls.innerHTML = `
+        <div style="font-size:0.75rem; color:#94a3b8;">
+          The porous plasma membrane admits life-giving nutrients (glucose, ions) and expels metabolic waste (CO₂, urea).
+        </div>
+      `;
+
+      update();
+    }
+
+    // 5. Nucleus Command Center Simulator
+    function renderNucleusCommandSim(title, stats, canvas, controls) {
+      title.textContent = "Nucleus: Command & Chromatin Condensation";
+      let dividing = false;
+
+      function update() {
+        stats.innerHTML = `
+          <div class="stat-pill">Status: <strong>${dividing ? 'Cell Division (Chromosomes Condense)' : 'Resting State (Diffuse Chromatin)'}</strong></div>
+          <div class="stat-pill">Envelope: <strong>Double Membrane Pores</strong></div>
+        `;
+
+        canvas.innerHTML = `
+          <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+            <svg width="340" height="280" viewBox="0 0 340 280">
+              <!-- Nuclear envelope -->
+              <circle cx="170" cy="140" r="100" fill="#1e1b4b" stroke="#a855f7" stroke-width="4" stroke-dasharray="14,6"/>
+              
+              ${dividing ? `
+                <!-- Condensed X-shaped chromosomes -->
+                <g transform="translate(140, 110)">
+                  <line x1="-15" y1="-20" x2="15" y2="20" stroke="#f59e0b" stroke-width="6" stroke-linecap="round"/>
+                  <line x1="15" y1="-20" x2="-15" y2="20" stroke="#f59e0b" stroke-width="6" stroke-linecap="round"/>
+                </g>
+                <g transform="translate(200, 150)">
+                  <line x1="-15" y1="-20" x2="15" y2="20" stroke="#f59e0b" stroke-width="6" stroke-linecap="round"/>
+                  <line x1="15" y1="-20" x2="-15" y2="20" stroke="#f59e0b" stroke-width="6" stroke-linecap="round"/>
+                </g>
+                <text x="170" y="260" text-anchor="middle" fill="#fde047" font-size="11" font-weight="700">Chromatin condensed into Chromosomes</text>
+              ` : `
+                <!-- Thread-like chromatin network -->
+                <path d="M 120 120 Q 150 90 180 130 T 210 150 T 150 170 T 130 140" fill="none" stroke="#c084fc" stroke-width="2.5"/>
+                <circle cx="185" cy="120" r="14" fill="#a855f7"/>
+                <text x="170" y="260" text-anchor="middle" fill="#c084fc" font-size="11" font-weight="700">Diffuse Chromatin & Nucleolus</text>
+              `}
+            </svg>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <button class="btn btn-primary" id="toggleDivide">${dividing ? 'Reset to Diffuse Chromatin' : '🔬 Trigger Division: Form Chromosomes'}</button>
+      `;
+
+      controls.querySelector('#toggleDivide').onclick = () => {
+        dividing = !dividing;
+        update();
+      };
+
+      update();
+    }
+
+    // 6. Plant vs Animal Organelles Simulator
+    function renderPlantVsAnimalSim(title, stats, canvas, controls) {
+      title.textContent = "Plant Cell (Wall & Plastids) vs Animal Cell";
+      let cellType = 'plant'; // 'plant' or 'animal'
+
+      function update() {
+        stats.innerHTML = `
+          <div class="stat-pill">Type: <strong>${cellType === 'plant' ? 'Plant Cell' : 'Animal Cell'}</strong></div>
+          <div class="stat-pill">Cell Wall: <strong>${cellType === 'plant' ? 'Cellulose Outer Wall' : 'None (Membrane only)'}</strong></div>
+          <div class="stat-pill">Plastids: <strong>${cellType === 'plant' ? 'Chloroplasts Present' : 'Absent'}</strong></div>
+        `;
+
+        if (cellType === 'plant') {
+          canvas.innerHTML = `
+            <svg width="100%" height="100%" viewBox="0 0 420 280">
+              <!-- Outer rigid cell wall -->
+              <polygon points="50,40 370,40 390,240 30,240" fill="#064e3b" stroke="#10b981" stroke-width="8"/>
+              <!-- Inner membrane -->
+              <polygon points="58,48 362,48 382,232 38,232" fill="#022c22" stroke="#06b6d4" stroke-width="2"/>
+              
+              <!-- Giant central vacuole -->
+              <ellipse cx="200" cy="140" rx="90" ry="60" fill="rgba(6, 182, 212, 0.3)" stroke="#38bdf8" stroke-width="2"/>
+              <text x="200" y="144" text-anchor="middle" fill="#bae6fd" font-size="11" font-weight="700">Large Central Vacuole</text>
+
+              <!-- Green chloroplasts -->
+              <ellipse cx="90" cy="90" rx="18" ry="10" fill="#16a34a" stroke="#4ade80"/>
+              <ellipse cx="320" cy="90" rx="18" ry="10" fill="#16a34a" stroke="#4ade80"/>
+              <ellipse cx="100" cy="200" rx="18" ry="10" fill="#16a34a" stroke="#4ade80"/>
+              
+              <!-- Pushed peripheral nucleus -->
+              <circle cx="320" cy="180" r="22" fill="#7e22ce" stroke="#c084fc"/>
+              <text x="320" y="184" text-anchor="middle" fill="#fff" font-size="8">Nucleus</text>
+            </svg>
+          `;
+        } else {
+          canvas.innerHTML = `
+            <svg width="100%" height="100%" viewBox="0 0 420 280">
+              <!-- Flexible irregular animal membrane -->
+              <path d="M 80 80 C 130 30 310 40 340 100 C 370 160 340 240 260 250 C 180 260 70 240 50 170 C 30 110 50 100 80 80 Z" fill="#1e1b4b" stroke="#a855f7" stroke-width="4"/>
+              
+              <!-- Central nucleus -->
+              <circle cx="200" cy="145" r="38" fill="#581c87" stroke="#c084fc" stroke-width="3"/>
+              <circle cx="200" cy="145" r="14" fill="#a855f7"/>
+              <text x="200" y="149" text-anchor="middle" fill="#fff" font-size="10">Nucleus</text>
+
+              <!-- Small temporary vacuoles -->
+              <circle cx="120" cy="110" r="9" fill="rgba(6, 182, 212, 0.4)" stroke="#38bdf8"/>
+              <circle cx="280" cy="190" r="10" fill="rgba(6, 182, 212, 0.4)" stroke="#38bdf8"/>
+              <text x="200" y="270" text-anchor="middle" fill="#cbd5e1" font-size="10">No cell wall • No chloroplasts</text>
+            </svg>
+          `;
+        }
+      }
+
+      controls.innerHTML = `
+        <button class="btn btn-primary" id="btnPlant">🌿 Plant Cell</button>
+        <button class="btn" id="btnAnimal">🐾 Animal Cell</button>
+      `;
+
+      controls.querySelector('#btnPlant').onclick = () => { cellType = 'plant'; update(); };
+      controls.querySelector('#btnAnimal').onclick = () => { cellType = 'animal'; update(); };
+
+      update();
+    }
+
+    // 7. Prokaryote vs Eukaryote Simulator
+    function renderProkaryoteVsEukaryoteSim(title, stats, canvas, controls) {
+      title.textContent = "Bacterial Nucleoid vs Eukaryotic Membrane Nucleus";
+
+      stats.innerHTML = `
+        <div class="stat-pill">Bacterium: <strong>Naked Nucleoid (No Membrane)</strong></div>
+        <div class="stat-pill">Eukaryote: <strong>Double-Membrane Enclosed Nucleus</strong></div>
+      `;
+
+      canvas.innerHTML = `
+        <svg width="100%" height="100%" viewBox="0 0 460 280">
+          <!-- Bacterium Side -->
+          <g transform="translate(30, 40)">
+            <rect x="0" y="0" width="180" height="190" rx="25" fill="#18181b" stroke="#f59e0b" stroke-width="3"/>
+            <text x="90" y="-12" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="700">Bacterium (Prokaryote)</text>
+            
+            <!-- Tangled circular DNA (Nucleoid) -->
+            <path d="M 60 70 Q 90 40 120 70 T 90 120 T 70 80" fill="none" stroke="#ef4444" stroke-width="3"/>
+            <text x="90" y="145" text-anchor="middle" fill="#fca5a5" font-size="10" font-weight="700">Nucleoid</text>
+            <text x="90" y="160" text-anchor="middle" fill="#94a3b8" font-size="8">No nuclear envelope</text>
+          </g>
+
+          <!-- Divider -->
+          <line x1="230" y1="30" x2="230" y2="250" stroke="#334155" stroke-width="2" stroke-dasharray="4,4"/>
+
+          <!-- Eukaryote Side -->
+          <g transform="translate(250, 40)">
+            <ellipse cx="90" cy="95" rx="85" ry="90" fill="#1e1b4b" stroke="#06b6d4" stroke-width="3"/>
+            <text x="90" y="-12" text-anchor="middle" fill="#67e8f9" font-size="11" font-weight="700">Eukaryote (Plant/Animal)</text>
+            
+            <!-- True double membrane nucleus -->
+            <circle cx="90" cy="95" r="38" fill="#581c87" stroke="#a855f7" stroke-width="3"/>
+            <text x="90" y="99" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">True Nucleus</text>
+            <text x="90" y="150" text-anchor="middle" fill="#c084fc" font-size="8">Double nuclear membrane</text>
+          </g>
+        </svg>
+      `;
+
+      controls.innerHTML = `
+        <div style="font-size:0.75rem; color:#94a3b8;">
+          Bacteria lack a nuclear membrane; their DNA floats freely in the nucleoid. Eukaryotes encapsulate genetic DNA inside a true nucleus.
+        </div>
+      `;
+    }
+
+    // 8. Cell Shapes Specialization Simulator
+    function renderCellShapesSpecializationSim(title, stats, canvas, controls) {
+      title.textContent = "Cell Differentiation: Shape Tailored to Function";
+      let activeShape = 'neuron';
+
+      function update() {
+        stats.innerHTML = `
+          <div class="stat-pill">Selected: <strong style="text-transform:capitalize;">${activeShape}</strong></div>
+          <div class="stat-pill">Principle: <strong>Form Follows Function</strong></div>
+        `;
+
+        canvas.innerHTML = `
+          <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+            <svg width="400" height="260" viewBox="0 0 400 260">
+              ${activeShape === 'neuron' ? `
+                <!-- Nerve Cell (Neuron) -->
+                <circle cx="90" cy="130" r="26" fill="#1e1b4b" stroke="#06b6d4" stroke-width="3"/>
+                <!-- Dendrites -->
+                <line x1="90" y1="104" x2="60" y2="70" stroke="#06b6d4" stroke-width="2.5"/>
+                <line x1="90" y1="104" x2="100" y2="60" stroke="#06b6d4" stroke-width="2.5"/>
+                <line x1="64" y1="130" x2="30" y2="120" stroke="#06b6d4" stroke-width="2.5"/>
+                <!-- Long Axon -->
+                <line x1="116" y1="130" x2="330" y2="130" stroke="#06b6d4" stroke-width="4"/>
+                <!-- Nerve terminals -->
+                <line x1="330" y1="130" x2="360" y2="105" stroke="#06b6d4" stroke-width="2.5"/>
+                <line x1="330" y1="130" x2="360" y2="155" stroke="#06b6d4" stroke-width="2.5"/>
+                <text x="200" y="220" text-anchor="middle" fill="#67e8f9" font-size="11" font-weight="700">Long & Branched: Quick impulse conduction</text>
+              ` : activeShape === 'muscle' ? `
+                <!-- Spindle-shaped Muscle Cell -->
+                <path d="M 50 130 Q 200 80 350 130 Q 200 180 50 130 Z" fill="rgba(244, 63, 94, 0.35)" stroke="#f43f5e" stroke-width="3"/>
+                <circle cx="200" cy="130" r="14" fill="#be123c"/>
+                <text x="200" y="220" text-anchor="middle" fill="#fda4af" font-size="11" font-weight="700">Spindle-Shaped: Uniaxial contraction & pull</text>
+              ` : `
+                <!-- Biconcave Red Blood Cell -->
+                <ellipse cx="200" cy="130" rx="80" ry="45" fill="#b91c1c" stroke="#ef4444" stroke-width="3"/>
+                <ellipse cx="200" cy="130" rx="35" ry="18" fill="#7f1d1d"/>
+                <text x="200" y="220" text-anchor="middle" fill="#fca5a5" font-size="11" font-weight="700">Biconcave Disc: High surface area for O₂ flux</text>
+              `}
+            </svg>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <button class="btn btn-primary" id="btnN">⚡ Neuron (Nerve)</button>
+        <button class="btn" id="btnM">💪 Muscle (Spindle)</button>
+        <button class="btn" id="btnR">🩸 RBC (Biconcave)</button>
+      `;
+
+      controls.querySelector('#btnN').onclick = () => { activeShape = 'neuron'; update(); };
+      controls.querySelector('#btnM').onclick = () => { activeShape = 'muscle'; update(); };
+      controls.querySelector('#btnR').onclick = () => { activeShape = 'rbc'; update(); };
+
+      update();
+    }
+
+    // 9. Cell Size Scale & Ostrich Egg Simulator
+    function renderCellSizeScaleSim(title, stats, canvas, controls) {
+      title.textContent = "Cell Sizes: From 0.1 μm to 170 mm Ostrich Egg";
+      let viewEgg = false;
+
+      function update() {
+        stats.innerHTML = `
+          <div class="stat-pill">Smallest: <strong>Mycoplasma (0.1 μm)</strong></div>
+          <div class="stat-pill">Largest: <strong>Ostrich Egg Yolk (170 mm)</strong></div>
+        `;
+
+        canvas.innerHTML = `
+          <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+            <svg width="400" height="260" viewBox="0 0 400 260">
+              ${viewEgg ? `
+                <!-- Giant Ostrich Egg Yolk -->
+                <circle cx="200" cy="130" r="105" fill="#f59e0b" stroke="#d97706" stroke-width="4"/>
+                <text x="200" y="125" text-anchor="middle" fill="#fff" font-size="16" font-weight="800">Ostrich Egg Yolk</text>
+                <text x="200" y="148" text-anchor="middle" fill="#fef08a" font-size="12" font-weight="700">130 mm – 170 mm (~1.5 kg)</text>
+                <text x="200" y="170" text-anchor="middle" fill="#78350f" font-size="10">Single Macroscopic Cell!</text>
+              ` : `
+                <!-- Microscopic Cells -->
+                <g transform="translate(60, 130)">
+                  <circle cx="0" cy="0" r="2" fill="#ef4444"/>
+                  <text x="0" y="25" text-anchor="middle" fill="#fca5a5" font-size="9">Bacteria (2 μm)</text>
+                </g>
+                <g transform="translate(180, 130)">
+                  <circle cx="0" cy="0" r="18" fill="#10b981"/>
+                  <text x="0" y="38" text-anchor="middle" fill="#6ee7b7" font-size="9">Human Cell (20 μm)</text>
+                </g>
+                <g transform="translate(320, 130)">
+                  <rect x="-30" y="-30" width="60" height="60" rx="4" fill="#0284c7"/>
+                  <text x="0" y="45" text-anchor="middle" fill="#7dd3fc" font-size="9">Plant Cell (100 μm)</text>
+                </g>
+              `}
+            </svg>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <button class="btn btn-primary" id="toggleEgg">${viewEgg ? 'Show Microscopic Cells' : '🥚 View Giant Ostrich Egg (170 mm)'}</button>
+      `;
+
+      controls.querySelector('#toggleEgg').onclick = () => {
+        viewEgg = !viewEgg;
+        update();
+      };
+
+      update();
+    }
+
+    // 10. Biological Hierarchy Ladder Simulator
+    function renderBiologicalHierarchySim(title, stats, canvas, controls) {
+      title.textContent = "Levels of Biological Organisation";
+      let tier = 1; // 1 to 5
+
+      const tiers = [
+        { name: "1. Cell", eg: "Smooth Muscle Cell", desc: "Basic unit of life capable of contraction." },
+        { name: "2. Tissue", eg: "Muscular Tissue", desc: "Cooperating sheet of spindle muscle cells." },
+        { name: "3. Organ", eg: "Stomach", desc: "Muscle, epithelial, and connective tissues working together." },
+        { name: "4. Organ System", eg: "Digestive System", desc: "Esophagus, stomach, intestines, liver digesting food." },
+        { name: "5. Organism", eg: "Human / Organism", desc: "Complete living creature with integrated systems." }
+      ];
+
+      function update() {
+        const cur = tiers[tier - 1];
+        stats.innerHTML = `
+          <div class="stat-pill">Level: <strong>${cur.name}</strong></div>
+          <div class="stat-pill">Example: <strong>${cur.eg}</strong></div>
+        `;
+
+        canvas.innerHTML = `
+          <div style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:1rem; text-align:center;">
+            <svg width="400" height="220" viewBox="0 0 400 220">
+              <!-- Stepped ladder bars -->
+              ${tiers.map((t, i) => `
+                <rect x="${40 + i * 65}" y="${160 - i * 30}" width="55" height="40" rx="6" fill="${tier === (i+1) ? '#10b981' : '#1e293b'}" stroke="${tier === (i+1) ? '#6ee7b7' : '#475569'}" stroke-width="2"/>
+                <text x="${67 + i * 65}" y="${185 - i * 30}" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">${i+1}</text>
+              `).join('')}
+            </svg>
+            <h3 style="font-size:1.1rem; font-weight:700; color:#10b981; margin-top:0.25rem;">${cur.name}: ${cur.eg}</h3>
+            <p style="font-size:0.85rem; color:#cbd5e1; max-width:400px;">${cur.desc}</p>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <button class="btn" id="t1">1. Cell</button>
+        <button class="btn" id="t2">2. Tissue</button>
+        <button class="btn" id="t3">3. Organ</button>
+        <button class="btn" id="t4">4. System</button>
+        <button class="btn" id="t5">5. Organism</button>
+      `;
+
+      controls.querySelector('#t1').onclick = () => { tier = 1; update(); };
+      controls.querySelector('#t2').onclick = () => { tier = 2; update(); };
+      controls.querySelector('#t3').onclick = () => { tier = 3; update(); };
+      controls.querySelector('#t4').onclick = () => { tier = 4; update(); };
+      controls.querySelector('#t5').onclick = () => { tier = 5; update(); };
+
+      update();
+    }
+
+    // 11. Microbial Ubiquity Simulator
+    function renderMicrobialUbiquitySim(title, stats, canvas, controls) {
+      title.textContent = "Microbial Ubiquity & Extreme Habitats";
+
+      stats.innerHTML = `
+        <div class="stat-pill">Habitats: <strong>Soil, Water, Air, Hot Springs, Snow</strong></div>
+        <div class="stat-pill">Organization: <strong>Unicellular & Multicellular</strong></div>
+      `;
+
+      canvas.innerHTML = `
+        <svg width="100%" height="100%" viewBox="0 0 460 280">
+          <!-- Zone 1: Hot Springs -->
+          <circle cx="80" cy="80" r="45" fill="rgba(244, 63, 94, 0.25)" stroke="#f43f5e" stroke-width="2"/>
+          <text x="80" y="75" text-anchor="middle" fill="#fda4af" font-size="10" font-weight="700">Hot Springs</text>
+          <text x="80" y="92" text-anchor="middle" fill="#cbd5e1" font-size="8">&gt; 80°C</text>
+
+          <!-- Zone 2: Polar Snow -->
+          <circle cx="230" cy="80" r="45" fill="rgba(6, 182, 212, 0.25)" stroke="#06b6d4" stroke-width="2"/>
+          <text x="230" y="75" text-anchor="middle" fill="#67e8f9" font-size="10" font-weight="700">Snow & Glaciers</text>
+          <text x="230" y="92" text-anchor="middle" fill="#cbd5e1" font-size="8">&lt; 0°C</text>
+
+          <!-- Zone 3: Gut Microbiome -->
+          <circle cx="380" cy="80" r="45" fill="rgba(245, 158, 11, 0.25)" stroke="#f59e0b" stroke-width="2"/>
+          <text x="380" y="75" text-anchor="middle" fill="#fde047" font-size="10" font-weight="700">Animal Gut</text>
+          <text x="380" y="92" text-anchor="middle" fill="#cbd5e1" font-size="8">Trillions</text>
+
+          <rect x="40" y="160" width="380" height="80" rx="10" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+          <text x="230" y="195" text-anchor="middle" fill="#a7f3d0" font-size="11" font-weight="700">
+            Microbes colonize every biosphere from deep oceans to clouds
+          </text>
+          <text x="230" y="215" text-anchor="middle" fill="#94a3b8" font-size="9">
+            Unicellular (Bacteria, Amoeba) • Multicellular (Fungi, Algae) • Acellular (Viruses)
+          </text>
+        </svg>
+      `;
+
+      controls.innerHTML = `
+        <div style="font-size:0.75rem; color:#94a3b8;">
+          Microbes survive thermal extremes, hyper-saline oceans, frozen glaciers, and digestive systems of living animals.
+        </div>
+      `;
+    }
+
+    // 12. Biogas Anaerobic Digester Simulator
+    function renderBiogasDigesterSim(title, stats, canvas, controls) {
+      title.textContent = "Biogas Plant: Anaerobic Organic Decomposition";
+      let flame = true;
+
+      function update() {
+        stats.innerHTML = `
+          <div class="stat-pill">Process: <strong>Anaerobic Digestion</strong></div>
+          <div class="stat-pill">Fuel: <strong>Methane (CH₄, 65%) + CO₂</strong></div>
+          <div class="stat-pill">Stove: <strong style="color:${flame ? '#06b6d4' : '#64748b'}">${flame ? 'Burning Blue Flame' : 'Valve Off'}</strong></div>
+        `;
+
+        canvas.innerHTML = `
+          <svg width="100%" height="100%" viewBox="0 0 460 280">
+            <!-- Ground line -->
+            <rect x="0" y="80" width="460" height="200" fill="#18181b"/>
+            <line x1="0" y1="80" x2="460" y2="80" stroke="#713f12" stroke-width="3"/>
+
+            <!-- Underground Digester Dome -->
+            <path d="M 120 180 C 120 100 280 100 280 180 L 280 250 L 120 250 Z" fill="#0f172a" stroke="#10b981" stroke-width="3"/>
+            <text x="200" y="210" text-anchor="middle" fill="#6ee7b7" font-size="11" font-weight="700">Anaerobic Slurry</text>
+
+            <!-- Gas pipe to stove -->
+            <line x1="200" y1="120" x2="200" y2="40" stroke="#38bdf8" stroke-width="4"/>
+            <line x1="200" y1="40" x2="360" y2="40" stroke="#38bdf8" stroke-width="4"/>
+
+            <!-- Kitchen Stove Flame -->
+            <rect x="340" y="30" width="50" height="15" fill="#475569" rx="3"/>
+            ${flame ? `
+              <polygon points="365,30 355,5 375,5" fill="#06b6d4"/>
+              <text x="365" y="-5" text-anchor="middle" fill="#38bdf8" font-size="9" font-weight="700">Clean Blue Flame</text>
+            ` : ''}
+          </svg>
+        `;
+      }
+
+      controls.innerHTML = `
+        <button class="btn btn-primary" id="toggleFlame">${flame ? 'Turn Off Stove Valve' : '🔥 Open Biogas Valve'}</button>
+      `;
+
+      controls.querySelector('#toggleFlame').onclick = () => { flame = !flame; update(); };
+      update();
+    }
+
+    // 13. Kitchen Fermentation Simulator
+    function renderKitchenFermentationSim(title, stats, canvas, controls) {
+      title.textContent = "Culinary Microbiology: Yeast & Lactobacillus";
+      let mode = 'bread';
+
+      function update() {
+        stats.innerHTML = `
+          <div class="stat-pill">Fermenter: <strong>${mode === 'bread' ? 'Yeast (Saccharomyces)' : 'Lactobacillus Bacterium'}</strong></div>
+          <div class="stat-pill">Product: <strong>${mode === 'bread' ? 'Fluffy Bread Dough' : 'Curd / Idli / Dosa'}</strong></div>
+        `;
+
+        if (mode === 'bread') {
+          canvas.innerHTML = `
+            <svg width="100%" height="100%" viewBox="0 0 460 260">
+              <rect x="150" y="70" width="160" height="150" rx="8" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+              <ellipse cx="230" cy="110" rx="70" ry="45" fill="#fde68a" stroke="#d97706" stroke-width="2"/>
+              <circle cx="210" cy="100" r="5" fill="#fff" opacity="0.8"/>
+              <circle cx="245" cy="105" r="7" fill="#fff" opacity="0.8"/>
+              <text x="230" y="180" text-anchor="middle" fill="#fed7aa" font-size="11" font-weight="700">Yeast Releases CO₂ Gas Bubbles</text>
+            </svg>
+          `;
+        } else {
+          canvas.innerHTML = `
+            <svg width="100%" height="100%" viewBox="0 0 460 260">
+              <path d="M 140 80 Q 140 220 230 220 Q 320 220 320 80 Z" fill="#fef3c7" stroke="#d97706" stroke-width="3"/>
+              <ellipse cx="230" cy="80" rx="90" ry="20" fill="#fef9c3" stroke="#d97706" stroke-width="2"/>
+              <text x="230" y="160" text-anchor="middle" fill="#92400e" font-size="11" font-weight="700">Lactic Acid Coagulates Milk</text>
+            </svg>
+          `;
+        }
+      }
+
+      controls.innerHTML = `
+        <button class="btn btn-primary" id="bBtn">🍞 Bread Dough (Yeast)</button>
+        <button class="btn" id="cBtn">🥛 Curd & Batter (Lactobacillus)</button>
+      `;
+
+      controls.querySelector('#bBtn').onclick = () => { mode = 'bread'; update(); };
+      controls.querySelector('#cBtn').onclick = () => { mode = 'curd'; update(); };
+
+      update();
+    }
+
+    // 14. Rhizobium & Microalgae Simulator
+    function renderRhizobiumMicroalgaeSim(title, stats, canvas, controls) {
+      title.textContent = "Global Life Support: Rhizobium & Microalgae";
+
+      stats.innerHTML = `
+        <div class="stat-pill">Rhizobium: <strong>Traps Atmospheric N₂ in Roots</strong></div>
+        <div class="stat-pill">Microalgae: <strong>&gt;50% of Earth's Oxygen</strong></div>
+      `;
+
+      canvas.innerHTML = `
+        <svg width="100%" height="100%" viewBox="0 0 460 260">
+          <!-- Left: Legume Root Nodule -->
+          <g transform="translate(60, 40)">
+            <rect width="150" height="180" rx="10" fill="#18181b" stroke="#10b981" stroke-width="2"/>
+            <circle cx="75" cy="80" r="18" fill="#f43f5e"/>
+            <text x="75" y="85" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">Nodule</text>
+            <text x="75" y="130" text-anchor="middle" fill="#a7f3d0" font-size="10" font-weight="700">Rhizobium N₂</text>
+            <text x="75" y="148" text-anchor="middle" fill="#94a3b8" font-size="8">Natural Soil Nitrates</text>
+          </g>
+
+          <!-- Right: Aquatic Microalgae -->
+          <g transform="translate(250, 40)">
+            <rect width="150" height="180" rx="10" fill="#032b43" stroke="#06b6d4" stroke-width="2"/>
+            <circle cx="75" cy="70" r="6" fill="#fff" opacity="0.8"/>
+            <circle cx="95" cy="50" r="8" fill="#fff" opacity="0.8"/>
+            <text x="75" y="115" text-anchor="middle" fill="#67e8f9" font-size="10" font-weight="700">Spirulina & Diatoms</text>
+            <text x="75" y="135" text-anchor="middle" fill="#a5f3fc" font-size="9">&gt;50% Global O₂</text>
+            <text x="75" y="152" text-anchor="middle" fill="#cbd5e1" font-size="8">Protein & Vit B₁₂</text>
+          </g>
+        </svg>
+      `;
+
+      controls.innerHTML = `
+        <div style="font-size:0.75rem; color:#94a3b8;">
+          Symbiotic Rhizobium enriches agricultural soil naturally, while microalgae produce over half the oxygen we breathe.
+        </div>
+      `;
+    }
+
+    // 15. Oil Spill Bioremediation Simulator
+    function renderOilSpillBioremediationSim(title, stats, canvas, controls) {
+      title.textContent = "Dr. Chakrabarty's Oil-Eating Superbug (1971/1980)";
+      let cleaned = false;
+
+      function update() {
+        stats.innerHTML = `
+          <div class="stat-pill">Scientist: <strong>Dr. Ananda Mohan Chakrabarty</strong></div>
+          <div class="stat-pill">Organism: <strong>Pseudomonas putida</strong></div>
+          <div class="stat-pill">Ocean Status: <strong style="color:${cleaned ? '#10b981' : '#f43f5e'}">${cleaned ? 'Bioremediated (Clean Ocean)' : 'Crude Oil Slick'}</strong></div>
+        `;
+
+        canvas.innerHTML = `
+          <svg width="100%" height="100%" viewBox="0 0 460 260">
+            <!-- Ocean water -->
+            <rect x="30" y="40" width="400" height="180" rx="10" fill="#0c4a6e" stroke="#38bdf8" stroke-width="2"/>
+            <text x="230" y="200" text-anchor="middle" fill="#bae6fd" font-size="11">Marine Ecosystem</text>
+
+            ${!cleaned ? `
+              <!-- Black crude oil slick -->
+              <ellipse cx="230" cy="110" rx="140" ry="40" fill="#09090b" opacity="0.95" stroke="#27272a"/>
+              <text x="230" y="115" text-anchor="middle" fill="#fca5a5" font-size="11" font-weight="700">Toxic Crude Oil Spill Slick</text>
+            ` : `
+              <!-- Cleaned ocean with bubbles and CO2 release -->
+              <circle cx="160" cy="100" r="14" fill="#059669" opacity="0.6"/>
+              <circle cx="230" cy="90" r="16" fill="#059669" opacity="0.6"/>
+              <circle cx="300" cy="105" r="14" fill="#059669" opacity="0.6"/>
+              <text x="230" y="100" text-anchor="middle" fill="#6ee7b7" font-size="11" font-weight="700">✔ Oil Slicks Digested into CO₂ + H₂O</text>
+            `}
+          </svg>
+        `;
+      }
+
+      controls.innerHTML = `
+        <button class="btn btn-primary" id="toggleClean">${cleaned ? 'Simulate New Oil Spill' : '🧫 Deploy Chakrabarty Superbug'}</button>
+      `;
+
+      controls.querySelector('#toggleClean').onclick = () => { cleaned = !cleaned; update(); };
+      update();
+    }
+
+    // 16. Cells & Microbes Master Matrix Simulator
+    function renderCellsMicrobesMasterMatrixSim(title, stats, canvas, controls) {
+      title.textContent = "Master Comparative Synthesis Matrix";
+
+      stats.innerHTML = `
+        <div class="stat-pill">Chapter: <strong>Cell Structure & Microorganisms</strong></div>
+        <div class="stat-pill">Focus: <strong>Universal Biological Laws</strong></div>
+      `;
+
+      canvas.innerHTML = `
+        <div style="width:100%; height:100%; overflow-y:auto; padding:0.75rem;">
+          <div style="display:grid; grid-template-columns:1fr; gap:0.5rem;">
+            <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:0.6rem;">
+              <strong style="color:var(--accent-emerald);">Hooke (1665) & Leeuwenhoek (1670s)</strong>
+              <div style="font-size:0.75rem; color:#cbd5e1;">Coined 'cell' from cork; first saw living bacteria and red blood cells.</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:0.6rem;">
+              <strong style="color:var(--accent-cyan);">Cell Membrane, Cytoplasm, Nucleus</strong>
+              <div style="font-size:0.75rem; color:#cbd5e1;">Porous barrier, metabolic reaction soup, and master genetic control center.</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:0.6rem;">
+              <strong style="color:var(--accent-amber);">Plant Specifics vs Bacterial Nucleoid</strong>
+              <div style="font-size:0.75rem; color:#cbd5e1;">Cellulose wall, chloroplasts, giant vacuole vs un-enclosed bacterial nucleoid.</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:0.6rem;">
+              <strong style="color:var(--accent-purple);">Microbial Ecology & Dr. Chakrabarty</strong>
+              <div style="font-size:0.75rem; color:#cbd5e1;">Biogas, yeast bread, lactobacillus curd, Atharvaveda Krimi, and oil-eating superbug patent.</div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      controls.innerHTML = `
+        <div style="font-size:0.75rem; color:#94a3b8;">
+          Synthesis matrix unifying historical discovery, organelle functions, and microbial biotechnology applications.
+        </div>
+      `;
+    }
+
+    // Initialize on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      loadSlide(0);
+    });
+  </script>
+</body>
+</html>

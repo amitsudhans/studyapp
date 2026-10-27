@@ -1,0 +1,3535 @@
+# Class 8 Mathematics Chapter 14: Area (Area of Polygons & Mensuration)
+# Master Builder Script: Compiles 20-slide laboratory into public/animations/class8-math-area-polygons.html
+
+import json
+import sys
+sys.path.insert(0, '.agents')
+from class8_math_area_polygons_data import SLIDES_DATA
+
+TEMPLATE_HTML = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 8 Mathematics • Chapter 14: Area (Polygons & Mensuration) Master Lab</title>
+  
+  <!-- KaTeX CSS & JS with safe early trigger definition -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script>
+    function triggerMathRender(el) {
+      if (window.renderMathInElement) {
+        window.renderMathInElement(el || document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="if (window.triggerMathRender) triggerMathRender(document.body);"></script>
+
+  <style>
+    :root {
+      --bg-primary: #070b14;
+      --bg-secondary: #0f172a;
+      --card-bg: rgba(15, 23, 42, 0.85);
+      --card-border: rgba(99, 102, 241, 0.25);
+      --accent-indigo: #6366f1;
+      --accent-cyan: #06b6d4;
+      --accent-amber: #f59e0b;
+      --accent-emerald: #10b981;
+      --accent-rose: #f43f5e;
+      --accent-purple: #a855f7;
+      --accent-teal: #14b8a6;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at top right, #1e1b4b 0%, #070b14 65%);
+      color: var(--text-main);
+      font-family: var(--font-stack);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Top Navigation Header */
+    header.lab-header {
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(99, 102, 241, 0.25);
+      padding: 12px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #059669, #06b6d4);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+    }
+
+    .brand-title h1 {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(to right, #ffffff, #a7f3d0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-title p {
+      font-size: 11px;
+      color: var(--accent-emerald);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .slide-badge {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #6ee7b7;
+    }
+
+    .btn-nav {
+      background: rgba(30, 41, 59, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-main);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-nav:hover:not(:disabled) {
+      background: var(--accent-emerald);
+      border-color: var(--accent-emerald);
+      color: #022c22;
+      transform: translateY(-1px);
+    }
+
+    .btn-nav:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* Main Container */
+    main.lab-container {
+      flex: 1;
+      max-width: 1440px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Two-column Lesson Grid */
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .lesson-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Theory Card */
+    .theory-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .slide-header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 14px;
+    }
+
+    .slide-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.3;
+    }
+
+    .slide-subtitle {
+      font-size: 13px;
+      color: var(--accent-cyan);
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .avatar-narrator {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.15));
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 12px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .avatar-icon {
+      font-size: 28px;
+      animation: floatAvatar 3s ease-in-out infinite;
+    }
+
+    @keyframes floatAvatar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    .avatar-text {
+      flex: 1;
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.4;
+    }
+
+    .avatar-btn {
+      background: var(--accent-emerald);
+      border: none;
+      color: #022c22;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s;
+    }
+
+    .avatar-btn:hover {
+      background: #34d399;
+    }
+
+    .theory-body {
+      font-size: 14px;
+      color: #cbd5e1;
+      line-height: 1.65;
+    }
+
+    .theory-body p {
+      margin-bottom: 10px;
+    }
+
+    .formula-banner {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+      margin: 8px 0;
+      box-shadow: inset 0 0 15px rgba(16, 185, 129, 0.05);
+    }
+
+    .takeaways-card {
+      background: rgba(30, 41, 59, 0.5);
+      border-left: 3px solid var(--accent-amber);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+    }
+
+    .takeaways-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent-amber);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .takeaways-list {
+      list-style-type: none;
+      font-size: 12.5px;
+      color: #94a3b8;
+    }
+
+    .takeaways-list li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 6px;
+    }
+
+    .takeaways-list li::before {
+      content: "•";
+      position: absolute;
+      left: 6px;
+      color: var(--accent-amber);
+      font-weight: bold;
+    }
+
+    /* Conceptual Checkpoints */
+    .checkpoint-section {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 14px;
+      margin-top: 6px;
+    }
+
+    .checkpoint-header {
+      font-size: 13px;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .checkpoint-item {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+
+    .checkpoint-q {
+      font-size: 13px;
+      font-weight: 600;
+      color: #f1f5f9;
+      margin-bottom: 8px;
+    }
+
+    .checkpoint-opts {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    .opt-btn {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #cbd5e1;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .opt-btn:hover:not(:disabled) {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: var(--accent-emerald);
+    }
+
+    .opt-btn.correct {
+      background: rgba(16, 185, 129, 0.25) !important;
+      border-color: #10b981 !important;
+      color: #6ee7b7 !important;
+    }
+
+    .opt-btn.incorrect {
+      background: rgba(244, 63, 94, 0.25) !important;
+      border-color: #f43f5e !important;
+      color: #fca5a5 !important;
+    }
+
+    .checkpoint-exp {
+      font-size: 12px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      margin-top: 8px;
+      display: none;
+      line-height: 1.5;
+    }
+
+    /* Simulator Right Card */
+    .sim-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .sim-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 10px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .sim-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sim-stats-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .stat-pill {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      color: #cbd5e1;
+    }
+
+    .stat-pill strong {
+      color: #38bdf8;
+    }
+
+    .sim-canvas-area {
+      background: #030712;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sim-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .control-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .control-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #cbd5e1;
+      min-width: 90px;
+    }
+
+    .control-slider {
+      flex: 1;
+      accent-color: var(--accent-emerald);
+      cursor: pointer;
+    }
+
+    .control-val {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      min-width: 35px;
+      text-align: right;
+    }
+
+    .sim-btn {
+      background: rgba(30, 41, 59, 0.9);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #e2e8f0;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .sim-btn:hover {
+      background: var(--accent-emerald);
+      border-color: var(--accent-emerald);
+      color: #022c22;
+      transform: translateY(-1px);
+    }
+
+    .sim-btn.active {
+      background: var(--accent-emerald);
+      border-color: #34d399;
+      color: #022c22;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+    }
+
+    /* Dedicated Quiz Slide Layout (Slides 17 to 20) */
+    .quiz-container {
+      display: none;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .quiz-header-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .quiz-title-area h2 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .quiz-title-area p {
+      font-size: 12px;
+      color: var(--accent-cyan);
+      margin-top: 2px;
+    }
+
+    .quiz-score-badge {
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid var(--accent-emerald);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #a7f3d0;
+    }
+
+    .quiz-questions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+      gap: 16px;
+    }
+
+    @media (max-width: 640px) {
+      .quiz-questions-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .quiz-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+    }
+
+    .quiz-q-num {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--accent-amber);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .quiz-q-text {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #f8fafc;
+      line-height: 1.5;
+    }
+
+    .quiz-opts {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    .quiz-opt-btn {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #cbd5e1;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .quiz-opt-btn:hover:not(:disabled) {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: var(--accent-emerald);
+    }
+
+    .quiz-opt-btn.correct {
+      background: rgba(16, 185, 129, 0.25) !important;
+      border-color: #10b981 !important;
+      color: #6ee7b7 !important;
+    }
+
+    .quiz-opt-btn.incorrect {
+      background: rgba(244, 63, 94, 0.25) !important;
+      border-color: #f43f5e !important;
+      color: #fca5a5 !important;
+    }
+
+    .quiz-btn-solution {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fcd34d;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      align-self: flex-start;
+      margin-top: 4px;
+      display: none;
+      transition: all 0.2s;
+    }
+
+    .quiz-btn-solution:hover {
+      background: rgba(245, 158, 11, 0.3);
+    }
+
+    /* Modal Backdrop and Box */
+    .modal-backdrop {
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+    }
+
+    /* Footer Navigation */
+    footer.lab-footer {
+      background: rgba(15, 23, 42, 0.95);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+
+    .footer-left {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .footer-notice {
+      font-size: 13px;
+      color: #f59e0b;
+      font-weight: 700;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Lab Header -->
+  <header class="lab-header">
+    <div class="brand-area">
+      <div class="brand-icon">📐</div>
+      <div class="brand-title">
+        <h1>Area • Master Laboratory</h1>
+        <p>NCERT Class 8 Mathematics • Chapter 14</p>
+      </div>
+    </div>
+
+    <div class="nav-controls">
+      <div class="slide-badge" id="slideNumDisplay">Slide 1 of 20</div>
+      <button class="btn-nav" id="prevBtn" onclick="prevSlide()" disabled>
+        <span>←</span> Prev
+      </button>
+      <button class="btn-nav" id="nextBtn" onclick="nextSlide()">
+        Next <span>→</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="lab-container">
+    
+    <!-- Lesson View (Slides 1 to 16) -->
+    <div class="lesson-grid" id="lessonGrid">
+      
+      <!-- Left Column: Theory & Interactive Checkpoints -->
+      <div class="theory-card">
+        <div class="slide-header">
+          <h2 class="slide-title" id="slideHeading">Area</h2>
+          <div class="slide-subtitle" id="slideSubheading">2D Spatial Measure & Square Unit Tiling</div>
+        </div>
+
+        <div class="avatar-narrator">
+          <div class="avatar-icon">📐</div>
+          <div class="avatar-text" id="avatarText">
+            Welcome to the Area Laboratory! Here we discover the geometry of 2D surfaces, from rectangles and triangles to parallelograms, rhombuses, trapeziums, and general polygons.
+          </div>
+          <button class="avatar-btn" id="voiceToggleBtn" onclick="toggleVoice()">
+            <span id="voiceIcon">🔊</span> <span id="voiceTxt">Listen</span>
+          </button>
+        </div>
+
+        <div class="theory-body" id="theoryContent">
+          <!-- Dynamic Theory Injected Here -->
+        </div>
+
+        <div class="formula-banner" id="formulaBanner">
+          <!-- Dynamic Formula Injected Here -->
+        </div>
+
+        <div class="takeaways-card">
+          <div class="takeaways-title">Key Core Takeaways</div>
+          <ul class="takeaways-list" id="keyTakeawaysList">
+            <!-- Dynamic Takeaways Injected Here -->
+          </ul>
+        </div>
+
+        <div class="checkpoint-section" id="checkpointContainer">
+          <div class="checkpoint-header">
+            <span>⚡</span> Quick Conceptual Checkpoints
+          </div>
+          <div id="checkpointsList">
+            <!-- Dynamic Checkpoints Injected Here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Bespoke Interactive SVG Simulator -->
+      <div class="sim-card">
+        <div class="sim-header">
+          <div class="sim-title">
+            <span>🔬</span>
+            <span id="simTitle">Interactive Mensuration Simulator</span>
+          </div>
+          <div class="sim-stats-bar" id="simStatsBar">
+            <!-- Dynamic Stats Injected Here -->
+          </div>
+        </div>
+
+        <div class="sim-canvas-area" id="simCanvasArea">
+          <!-- Dynamic SVG Simulator Canvas Injected Here -->
+        </div>
+
+        <div class="sim-controls" id="simControls">
+          <!-- Dynamic Controls Injected Here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz Slide View (Slides 17 to 20) -->
+    <div class="quiz-container" id="quizContainer">
+      <div class="quiz-header-card">
+        <div class="quiz-title-area">
+          <h2 id="quizTitle">Mastery Quiz Challenge</h2>
+          <p id="quizSubtitle">Answer all 10 questions to master these mensuration concepts.</p>
+        </div>
+        <div class="quiz-score-badge" id="quizScoreBadge">
+          Score: 0 / 10
+        </div>
+      </div>
+
+      <div class="quiz-questions-grid" id="quizQuestionsGrid">
+        <!-- 10 Quiz Cards Injected Here -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer Navigation -->
+  <footer class="lab-footer">
+    <div class="footer-left">
+      Interactive STEM Curriculum Lab • Grade 8 Mathematics • Chapter 14
+    </div>
+    <div class="footer-notice" id="lastSlideNotice">
+      🎉 You have reached the last slide of this chapter!
+    </div>
+    <button class="btn-nav" id="footerNextBtn" onclick="nextSlide()">
+      Next <span>→</span>
+    </button>
+  </footer>
+
+  <!-- Step-by-Step Solution Modal -->
+  <div id="solutionModal" style="position:fixed; top:0; left:0; width:100vw; height:100vh; display:none; align-items:center; justify-content:center; z-index:1000;" class="modal-backdrop">
+    <div style="background:#0f172a; border:1px solid rgba(16, 185, 129, 0.4); border-radius:16px; max-width:600px; width:90%; padding:24px; box-shadow:0 25px 50px -12px rgba(0,0,0,0.8); position:relative;">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px; margin-bottom:16px;">
+        <div style="font-size:16px; font-weight:800; color:#34d399; display:flex; align-items:center; gap:8px;">
+          <span>💡</span> Step-by-Step Mathematical Solution
+        </div>
+        <button onclick="closeSolutionModal()" style="background:none; border:none; color:#94a3b8; font-size:20px; cursor:pointer;">✕</button>
+      </div>
+      <div id="modalQuestionText" style="font-size:13.5px; color:#e2e8f0; margin-bottom:14px; font-weight:600;"></div>
+      <div id="modalSolutionBody" style="font-size:13px; color:#cbd5e1; line-height:1.6; background:rgba(15,23,42,0.8); padding:14px; border-radius:10px; border:1px solid rgba(255,255,255,0.05);"></div>
+    </div>
+  </div>
+
+  <script>
+    const SLIDES = %%SLIDES_JSON%%;
+
+    let currentSlideIndex = 0;
+    let isSpeaking = false;
+    let synth = window.speechSynthesis;
+    let quizScores = {};
+
+    function loadSlide(index) {
+      if (index < 0 || index >= SLIDES.length) return;
+      currentSlideIndex = index;
+      stopSpeech();
+
+      const slide = SLIDES[index];
+      const indicator = document.getElementById('slideNumDisplay');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const footerNextBtn = document.getElementById('footerNextBtn');
+      const lastNotice = document.getElementById('lastSlideNotice');
+      const lessonGrid = document.getElementById('lessonGrid');
+      const quizContainer = document.getElementById('quizContainer');
+
+      indicator.textContent = `Slide ${index + 1} of ${SLIDES.length}`;
+      prevBtn.disabled = (index === 0);
+
+      if (index === SLIDES.length - 1) {
+        nextBtn.style.display = 'none';
+        footerNextBtn.style.display = 'none';
+        lastNotice.style.display = 'block';
+      } else {
+        nextBtn.style.display = 'inline-flex';
+        footerNextBtn.style.display = 'inline-flex';
+        lastNotice.style.display = 'none';
+      }
+
+      if (index < 16) {
+        // Lesson Slides (1 to 16)
+        lessonGrid.style.display = 'grid';
+        quizContainer.style.display = 'none';
+
+        document.getElementById('slideHeading').textContent = slide.title;
+        document.getElementById('slideSubheading').textContent = slide.subtitle;
+        document.getElementById('theoryContent').innerHTML = slide.content;
+        document.getElementById('formulaBanner').innerHTML = slide.formula;
+
+        const takeaways = document.getElementById('keyTakeawaysList');
+        takeaways.innerHTML = '';
+        slide.key_takeaways.forEach(pt => {
+          const li = document.createElement('li');
+          li.textContent = pt;
+          takeaways.appendChild(li);
+        });
+
+        renderCheckpoints(slide.checkpoints);
+        renderSimulator(slide.simulator_type);
+      } else {
+        // Quiz Slides (17 to 20)
+        lessonGrid.style.display = 'none';
+        quizContainer.style.display = 'flex';
+
+        document.getElementById('quizTitle').textContent = slide.title;
+        document.getElementById('quizSubtitle').textContent = slide.subtitle;
+        renderQuizSlide(slide.questions);
+      }
+
+      setTimeout(() => {
+        triggerMathRender(document.body);
+      }, 50);
+    }
+
+    function prevSlide() {
+      if (currentSlideIndex > 0) {
+        loadSlide(currentSlideIndex - 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlideIndex < SLIDES.length - 1) {
+        loadSlide(currentSlideIndex + 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // In-Slide Checkpoints
+    function renderCheckpoints(checkpoints) {
+      const list = document.getElementById('checkpointsList');
+      list.innerHTML = '';
+
+      if (!checkpoints || checkpoints.length === 0) {
+        document.getElementById('checkpointContainer').style.display = 'none';
+        return;
+      }
+      document.getElementById('checkpointContainer').style.display = 'block';
+
+      checkpoints.forEach((cp, qIdx) => {
+        const item = document.createElement('div');
+        item.className = 'checkpoint-item';
+
+        const qTitle = document.createElement('div');
+        qTitle.className = 'checkpoint-q';
+        qTitle.innerHTML = `<strong>Q${qIdx + 1}:</strong> ${cp.question}`;
+        item.appendChild(qTitle);
+
+        const optsDiv = document.createElement('div');
+        optsDiv.className = 'checkpoint-opts';
+
+        const expDiv = document.createElement('div');
+        expDiv.className = 'checkpoint-exp';
+        expDiv.innerHTML = `<strong>Explanation:</strong> ${cp.explanation}`;
+
+        cp.options.forEach((optText, optIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'opt-btn';
+          btn.innerHTML = optText;
+          btn.onclick = () => {
+            const btns = optsDiv.querySelectorAll('.opt-btn');
+            btns.forEach(b => b.disabled = true);
+
+            if (optIdx === cp.correct) {
+              btn.classList.add('correct');
+              expDiv.style.display = 'block';
+              expDiv.style.background = 'rgba(16, 185, 129, 0.15)';
+              expDiv.style.border = '1px solid rgba(16, 185, 129, 0.3)';
+              expDiv.style.color = '#6ee7b7';
+            } else {
+              btn.classList.add('incorrect');
+              btns[cp.correct].classList.add('correct');
+              expDiv.style.display = 'block';
+              expDiv.style.background = 'rgba(244, 63, 94, 0.15)';
+              expDiv.style.border = '1px solid rgba(244, 63, 94, 0.3)';
+              expDiv.style.color = '#fca5a5';
+            }
+            triggerMathRender(expDiv);
+          };
+          optsDiv.appendChild(btn);
+        });
+
+        item.appendChild(optsDiv);
+        item.appendChild(expDiv);
+        list.appendChild(item);
+      });
+    }
+
+    // Quiz Slide Renderer
+    function renderQuizSlide(questions) {
+      const grid = document.getElementById('quizQuestionsGrid');
+      grid.innerHTML = '';
+      quizScores[currentSlideIndex] = quizScores[currentSlideIndex] || {};
+
+      questions.forEach((q, idx) => {
+        const card = document.createElement('div');
+        card.className = 'quiz-card';
+
+        const qNum = document.createElement('div');
+        qNum.className = 'quiz-q-num';
+        qNum.textContent = `Question ${idx + 1} of 10`;
+        card.appendChild(qNum);
+
+        const qText = document.createElement('div');
+        qText.className = 'quiz-q-text';
+        qText.innerHTML = q.question;
+        card.appendChild(qText);
+
+        const optsDiv = document.createElement('div');
+        optsDiv.className = 'quiz-opts';
+
+        const solBtn = document.createElement('button');
+        solBtn.className = 'quiz-btn-solution';
+        solBtn.textContent = '💡 View Step-by-Step Solution';
+        solBtn.onclick = () => openSolutionModal(currentSlideIndex, idx);
+
+        q.options.forEach((optText, optIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'quiz-opt-btn';
+          btn.innerHTML = optText;
+
+          if (quizScores[currentSlideIndex][idx] !== undefined) {
+            btn.disabled = true;
+            if (optIdx === q.correct) btn.classList.add('correct');
+            if (quizScores[currentSlideIndex][idx] === optIdx && optIdx !== q.correct) {
+              btn.classList.add('incorrect');
+            }
+            solBtn.style.display = 'inline-block';
+          }
+
+          btn.onclick = () => {
+            const allBtns = optsDiv.querySelectorAll('.quiz-opt-btn');
+            allBtns.forEach(b => b.disabled = true);
+            quizScores[currentSlideIndex][idx] = optIdx;
+
+            if (optIdx === q.correct) {
+              btn.classList.add('correct');
+            } else {
+              btn.classList.add('incorrect');
+              allBtns[q.correct].classList.add('correct');
+            }
+            solBtn.style.display = 'inline-block';
+            updateQuizScore();
+          };
+
+          optsDiv.appendChild(btn);
+        });
+
+        card.appendChild(optsDiv);
+        card.appendChild(solBtn);
+        grid.appendChild(card);
+      });
+
+      updateQuizScore();
+    }
+
+    function updateQuizScore() {
+      const scores = quizScores[currentSlideIndex] || {};
+      let correctCount = 0;
+      const questions = SLIDES[currentSlideIndex].questions;
+
+      for (let idx in scores) {
+        if (scores[idx] === questions[idx].correct) correctCount++;
+      }
+
+      document.getElementById('quizScoreBadge').textContent = `Score: ${correctCount} / 10`;
+    }
+
+    function openSolutionModal(slideIdx, qIdx) {
+      const q = SLIDES[slideIdx].questions[qIdx];
+      document.getElementById('modalQuestionText').innerHTML = `<strong>Question:</strong> ${q.question}`;
+      document.getElementById('modalSolutionBody').innerHTML = q.solution;
+
+      const modal = document.getElementById('solutionModal');
+      modal.style.display = 'flex';
+      triggerMathRender(modal);
+    }
+
+    function closeSolutionModal() {
+      document.getElementById('solutionModal').style.display = 'none';
+    }
+
+    // Audio narration Web Speech API
+    function toggleVoice() {
+      if (isSpeaking) {
+        stopSpeech();
+      } else {
+        startSpeech();
+      }
+    }
+
+    function startSpeech() {
+      if (!synth) return;
+      const slide = SLIDES[currentSlideIndex];
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = slide.content;
+      const cleanText = `${slide.title}. ${slide.subtitle}. ${tempDiv.textContent || tempDiv.innerText || ''}`;
+
+      const utter = new SpeechSynthesisUtterance(cleanText);
+      utter.rate = 0.95;
+      utter.pitch = 1.0;
+
+      utter.onend = () => {
+        isSpeaking = false;
+        updateVoiceButton();
+      };
+
+      synth.speak(utter);
+      isSpeaking = true;
+      updateVoiceButton();
+    }
+
+    function stopSpeech() {
+      if (synth && synth.speaking) {
+        synth.cancel();
+      }
+      isSpeaking = false;
+      updateVoiceButton();
+    }
+
+    function updateVoiceButton() {
+      const btn = document.getElementById('voiceToggleBtn');
+      const icon = document.getElementById('voiceIcon');
+      const txt = document.getElementById('voiceTxt');
+      if (isSpeaking) {
+        btn.style.background = 'var(--accent-rose)';
+        btn.style.borderColor = 'var(--accent-rose)';
+        icon.textContent = '⏹';
+        txt.textContent = 'Stop';
+      } else {
+        btn.style.background = 'var(--accent-emerald)';
+        btn.style.borderColor = 'var(--accent-emerald)';
+        icon.textContent = '🔊';
+        txt.textContent = 'Listen';
+      }
+    }
+
+    // ==========================================
+    // 16 Bespoke Interactive SVG Simulators
+    // ==========================================
+    function renderSimulator(simType) {
+      const title = document.getElementById('simTitle');
+      const stats = document.getElementById('simStatsBar');
+      const canvas = document.getElementById('simCanvasArea');
+      const controls = document.getElementById('simControls');
+
+      canvas.innerHTML = '';
+      controls.innerHTML = '';
+      stats.innerHTML = '';
+
+      switch (simType) {
+        case 'area_square_unit_tiling_sim':
+          renderAreaSquareUnitTilingSim(title, stats, canvas, controls);
+          break;
+        case 'rectangle_square_dimension_scaler':
+          renderRectangleSquareDimensionScaler(title, stats, canvas, controls);
+          break;
+        case 'perimeter_vs_area_comparator':
+          renderPerimeterVsAreaComparator(title, stats, canvas, controls);
+          break;
+        case 'triangle_half_rectangle_dissector':
+          renderTriangleHalfRectangleDissector(title, stats, canvas, controls);
+          break;
+        case 'cavalieri_triangles_parallel_shearing':
+          renderCavalieriTrianglesParallelShearing(title, stats, canvas, controls);
+          break;
+        case 'triangle_altitude_heron_explorer':
+          renderTriangleAltitudeHeronExplorer(title, stats, canvas, controls);
+          break;
+        case 'parallelogram_shear_rect_converter':
+          renderParallelogramShearRectConverter(title, stats, canvas, controls);
+          break;
+        case 'rhombus_diagonal_product_visualizer':
+          renderRhombusDiagonalProductVisualizer(title, stats, canvas, controls);
+          break;
+        case 'trapezium_two_copies_rotator':
+          renderTrapeziumTwoCopiesRotator(title, stats, canvas, controls);
+          break;
+        case 'trapezium_decomposition_lab':
+          renderTrapeziumDecompositionLab(title, stats, canvas, controls);
+          break;
+        case 'polygon_triangulation_surveyor_lab':
+          renderPolygonTriangulationSurveyorLab(title, stats, canvas, controls);
+          break;
+        case 'regular_polygon_apothem_unfolder':
+          renderRegularPolygonApothemUnfolder(title, stats, canvas, controls);
+          break;
+        case 'composite_shape_additive_subtractive_sim':
+          renderCompositeShapeAdditiveSubtractiveSim(title, stats, canvas, controls);
+          break;
+        case 'real_life_cost_coverage_calculator':
+          renderRealLifeCostCoverageCalculator(title, stats, canvas, controls);
+          break;
+        case 'area_scaling_k_squared_visualizer':
+          renderAreaScalingKSquaredVisualizer(title, stats, canvas, controls);
+          break;
+        case 'area_formulas_interactive_matrix':
+          renderAreaFormulasInteractiveMatrix(title, stats, canvas, controls);
+          break;
+        default:
+          title.textContent = 'Mensuration Visualiser';
+          canvas.innerHTML = '<div style="color:#94a3b8;">Simulator loading...</div>';
+      }
+    }
+
+    // 1. Area: Square Unit Tiling
+    function renderAreaSquareUnitTilingSim(title, stats, canvas, controls) {
+      title.textContent = "Square Unit Tiling: Paving 2D Space";
+      let cols = 6;
+      let rows = 4;
+      let activeTiles = {};
+
+      function resetTiles(allActive) {
+        activeTiles = {};
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            activeTiles[`${r}_${c}`] = allActive;
+          }
+        }
+      }
+      resetTiles(true);
+
+      function update() {
+        let count = 0;
+        for (let k in activeTiles) {
+          if (activeTiles[k]) count++;
+        }
+
+        stats.innerHTML = `
+          <div class="stat-pill">Dimensions: <strong>${cols} × ${rows}</strong></div>
+          <div class="stat-pill">Paved Tiles: <strong style="color:#10b981;">${count} units²</strong></div>
+          <div class="stat-pill">Total Capacity: <strong>${cols * rows} units²</strong></div>
+        `;
+
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        const tileSize = Math.min(320 / cols, 240 / rows);
+        const startX = 230 - (cols * tileSize) / 2;
+        const startY = 40;
+
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            const key = `${r}_${c}`;
+            const isPaved = activeTiles[key];
+            const x = startX + c * tileSize;
+            const y = startY + r * tileSize;
+
+            const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            rect.setAttribute("x", x);
+            rect.setAttribute("y", y);
+            rect.setAttribute("width", tileSize);
+            rect.setAttribute("height", tileSize);
+            rect.setAttribute("fill", isPaved ? "rgba(16, 185, 129, 0.45)" : "#0f172a");
+            rect.setAttribute("stroke", isPaved ? "#10b981" : "rgba(255,255,255,0.15)");
+            rect.setAttribute("stroke-width", "1.5");
+            rect.style.cursor = "pointer";
+
+            rect.onclick = () => {
+              activeTiles[key] = !activeTiles[key];
+              update();
+            };
+            svg.appendChild(rect);
+
+            if (isPaved && tileSize > 24) {
+              const t = document.createElementNS("http://www.w3.org/2000/svg", "text");
+              t.setAttribute("x", x + tileSize / 2);
+              t.setAttribute("y", y + tileSize / 2 + 4);
+              t.setAttribute("fill", "#a7f3d0");
+              t.setAttribute("font-size", Math.max(10, tileSize * 0.35));
+              t.setAttribute("font-weight", "bold");
+              t.setAttribute("text-anchor", "middle");
+              t.textContent = "1";
+              t.style.pointerEvents = "none";
+              svg.appendChild(t);
+            }
+          }
+        }
+
+        // Bottom takeaway note
+        const note = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        note.setAttribute("x", "230");
+        note.setAttribute("y", startY + rows * tileSize + 35);
+        note.setAttribute("fill", "#cbd5e1");
+        note.setAttribute("font-size", "13");
+        note.setAttribute("font-weight", "600");
+        note.setAttribute("text-anchor", "middle");
+        note.textContent = `Paved Surface = ${count} square units (1 unit² each)`;
+        svg.appendChild(note);
+
+        const tip = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        tip.setAttribute("x", "230");
+        tip.setAttribute("y", startY + rows * tileSize + 60);
+        tip.setAttribute("fill", "#38bdf8");
+        tip.setAttribute("font-size", "11.5");
+        tip.setAttribute("text-anchor", "middle");
+        tip.textContent = "👆 Click individual tiles to add/remove unit squares and observe 2D surface coverage!";
+        svg.appendChild(tip);
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="control-label">Width (cols):</span>
+          <input type="range" class="control-slider" min="2" max="10" value="${cols}" id="sliderTileW">
+          <span class="control-val" id="valTileW">${cols}</span>
+        </div>
+        <div class="control-row">
+          <span class="control-label">Height (rows):</span>
+          <input type="range" class="control-slider" min="2" max="7" value="${rows}" id="sliderTileH">
+          <span class="control-val" id="valTileH">${rows}</span>
+        </div>
+        <div class="control-row">
+          <button class="sim-btn" onclick="paveAll()">🟩 Pave All</button>
+          <button class="sim-btn" onclick="clearAll()">⬜ Clear All</button>
+          <button class="sim-btn" onclick="randomPave()">🎲 Random Pave</button>
+        </div>
+      `;
+
+      document.getElementById('sliderTileW').oninput = (e) => {
+        cols = parseInt(e.target.value);
+        document.getElementById('valTileW').textContent = cols;
+        resetTiles(true);
+        update();
+      };
+      document.getElementById('sliderTileH').oninput = (e) => {
+        rows = parseInt(e.target.value);
+        document.getElementById('valTileH').textContent = rows;
+        resetTiles(true);
+        update();
+      };
+
+      window.paveAll = () => { resetTiles(true); update(); };
+      window.clearAll = () => { resetTiles(false); update(); };
+      window.randomPave = () => {
+        for (let k in activeTiles) {
+          activeTiles[k] = Math.random() > 0.4;
+        }
+        update();
+      };
+
+      update();
+    }
+
+    // 2. Rectangles & Squares: Dimension Scaler
+    function renderRectangleSquareDimensionScaler(title, stats, canvas, controls) {
+      title.textContent = "Dimension Scaler: L × W and Quadratic s² Growth";
+      let length = 7;
+      let width = 4;
+
+      function update() {
+        const area = length * width;
+        const perim = 2 * (length + width);
+        const isSquare = (length === width);
+
+        stats.innerHTML = `
+          <div class="stat-pill">Dimensions: <strong>${length} × ${width}</strong></div>
+          <div class="stat-pill">Shape: <strong style="color:${isSquare ? '#10b981' : '#38bdf8'};">${isSquare ? 'Square (s²)' : 'Rectangle (L×W)'}</strong></div>
+          <div class="stat-pill">Area: <strong style="color:#10b981;">${area} units²</strong></div>
+          <div class="stat-pill">Perimeter: <strong>${perim} units</strong></div>
+        `;
+
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        const scale = 24;
+        const rectW = length * scale;
+        const rectH = width * scale;
+        const startX = 230 - rectW / 2;
+        const startY = 160 - rectH / 2;
+
+        // Grid lines inside rectangle
+        for (let r = 0; r < width; r++) {
+          for (let c = 0; c < length; c++) {
+            const cell = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            cell.setAttribute("x", startX + c * scale);
+            cell.setAttribute("y", startY + r * scale);
+            cell.setAttribute("width", scale);
+            cell.setAttribute("height", scale);
+            cell.setAttribute("fill", isSquare ? "rgba(16, 185, 129, 0.25)" : "rgba(99, 102, 241, 0.25)");
+            cell.setAttribute("stroke", "rgba(255,255,255,0.1)");
+            cell.setAttribute("stroke-width", "1");
+            svg.appendChild(cell);
+          }
+        }
+
+        // Outer border
+        const outer = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        outer.setAttribute("x", startX);
+        outer.setAttribute("y", startY);
+        outer.setAttribute("width", rectW);
+        outer.setAttribute("height", rectH);
+        outer.setAttribute("fill", "none");
+        outer.setAttribute("stroke", isSquare ? "#10b981" : "#818cf8");
+        outer.setAttribute("stroke-width", "3");
+        outer.setAttribute("rx", "4");
+        svg.appendChild(outer);
+
+        // Dimension labels
+        const tLen = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        tLen.setAttribute("x", 230);
+        tLen.setAttribute("y", startY - 12);
+        tLen.setAttribute("fill", "#38bdf8");
+        tLen.setAttribute("font-size", "14");
+        tLen.setAttribute("font-weight", "bold");
+        tLen.setAttribute("text-anchor", "middle");
+        tLen.textContent = `Length = ${length}`;
+        svg.appendChild(tLen);
+
+        const tWid = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        tWid.setAttribute("x", startX - 12);
+        tWid.setAttribute("y", 160);
+        tWid.setAttribute("fill", "#f59e0b");
+        tWid.setAttribute("font-size", "14");
+        tWid.setAttribute("font-weight", "bold");
+        tWid.setAttribute("text-anchor", "end");
+        tWid.textContent = `Width = ${width}`;
+        svg.appendChild(tWid);
+
+        // Center Area text
+        const tArea = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        tArea.setAttribute("x", 230);
+        tArea.setAttribute("y", 165);
+        tArea.setAttribute("fill", "#ffffff");
+        tArea.setAttribute("font-size", "18");
+        tArea.setAttribute("font-weight", "bold");
+        tArea.setAttribute("text-anchor", "middle");
+        tArea.textContent = `${area} units²`;
+        svg.appendChild(tArea);
+
+        // Formula statement
+        const fTxt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        fTxt.setAttribute("x", "230");
+        fTxt.setAttribute("y", "310");
+        fTxt.setAttribute("fill", "#cbd5e1");
+        fTxt.setAttribute("font-size", "13");
+        fTxt.setAttribute("font-weight", "bold");
+        fTxt.setAttribute("text-anchor", "middle");
+        fTxt.textContent = isSquare ? `Square Formula: Area = s² = ${length}² = ${area} units²` : `Rectangle Formula: Area = L × W = ${length} × ${width} = ${area} units²`;
+        svg.appendChild(fTxt);
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="control-label">Length (L):</span>
+          <input type="range" class="control-slider" min="1" max="10" value="${length}" id="sliderRectL">
+          <span class="control-val" id="valRectL">${length}</span>
+        </div>
+        <div class="control-row">
+          <span class="control-label">Width (W):</span>
+          <input type="range" class="control-slider" min="1" max="8" value="${width}" id="sliderRectW">
+          <span class="control-val" id="valRectW">${width}</span>
+        </div>
+        <div class="control-row">
+          <button class="sim-btn" onclick="makeSquare()">⬜ Make Square (L = W)</button>
+          <button class="sim-btn" onclick="setRect(5, 5)">Square 5×5</button>
+          <button class="sim-btn" onclick="setRect(8, 3)">Rectangle 8×3</button>
+        </div>
+      `;
+
+      document.getElementById('sliderRectL').oninput = (e) => {
+        length = parseInt(e.target.value);
+        document.getElementById('valRectL').textContent = length;
+        update();
+      };
+      document.getElementById('sliderRectW').oninput = (e) => {
+        width = parseInt(e.target.value);
+        document.getElementById('valRectW').textContent = width;
+        update();
+      };
+
+      window.makeSquare = () => {
+        width = length;
+        document.getElementById('sliderRectW').value = width;
+        document.getElementById('valRectW').textContent = width;
+        update();
+      };
+      window.setRect = (l, w) => {
+        length = l; width = w;
+        document.getElementById('sliderRectL').value = length;
+        document.getElementById('sliderRectW').value = width;
+        document.getElementById('valRectL').textContent = length;
+        document.getElementById('valRectW').textContent = width;
+        update();
+      };
+
+      update();
+    }
+
+    // 3. Perimeter vs Area Comparator
+    function renderPerimeterVsAreaComparator(title, stats, canvas, controls) {
+      title.textContent = "Perimeter vs Area: Fixed Boundary P = 24 cm";
+      let L = 6;
+      const P = 24;
+
+      function update() {
+        const W = P / 2 - L;
+        const area = L * W;
+        const maxArea = 36;
+        const isSquare = (L === 6);
+
+        stats.innerHTML = `
+          <div class="stat-pill">Perimeter (Fence): <strong style="color:#f59e0b;">24 cm (Constant)</strong></div>
+          <div class="stat-pill">Dimensions: <strong>${L} cm × ${W} cm</strong></div>
+          <div class="stat-pill">Area: <strong style="color:${isSquare ? '#10b981' : '#38bdf8'};">${area} cm²</strong></div>
+        `;
+
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        // Left: 2D enclosed shape
+        const scale = 14;
+        const rw = L * scale;
+        const rh = W * scale;
+        const rx = 35 + (160 - rw) / 2;
+        const ry = 40 + (160 - rh) / 2;
+
+        const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        rect.setAttribute("x", rx);
+        rect.setAttribute("y", ry);
+        rect.setAttribute("width", rw);
+        rect.setAttribute("height", rh);
+        rect.setAttribute("fill", isSquare ? "rgba(16, 185, 129, 0.4)" : "rgba(99, 102, 241, 0.35)");
+        rect.setAttribute("stroke", isSquare ? "#10b981" : "#818cf8");
+        rect.setAttribute("stroke-width", "2.5");
+        rect.setAttribute("rx", "4");
+        svg.appendChild(rect);
+
+        const rText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        rText.setAttribute("x", rx + rw / 2);
+        rText.setAttribute("y", ry + rh / 2 + 5);
+        rText.setAttribute("fill", "#ffffff");
+        rText.setAttribute("font-size", "14");
+        rText.setAttribute("font-weight", "bold");
+        rText.setAttribute("text-anchor", "middle");
+        rText.textContent = `${area} cm²`;
+        svg.appendChild(rText);
+
+        // Right: Parabola Curve of Area A(L) = L(12 - L)
+        const pStartX = 230;
+        const pStartY = 200;
+        const pW = 190;
+        const pH = 150;
+
+        const axis = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        axis.setAttribute("x1", pStartX);
+        axis.setAttribute("y1", pStartY);
+        axis.setAttribute("x2", pStartX + pW);
+        axis.setAttribute("y2", pStartY);
+        axis.setAttribute("stroke", "#64748b");
+        axis.setAttribute("stroke-width", "2");
+        svg.appendChild(axis);
+
+        const pts = [];
+        for (let l = 1; l <= 11; l++) {
+          const aVal = l * (12 - l);
+          const cx = pStartX + ((l - 1) / 10) * pW;
+          const cy = pStartY - (aVal / 36) * pH;
+          pts.push(`${cx},${cy}`);
+        }
+
+        const polyline = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
+        polyline.setAttribute("points", pts.join(' '));
+        polyline.setAttribute("fill", "none");
+        polyline.setAttribute("stroke", "#38bdf8");
+        polyline.setAttribute("stroke-width", "2.5");
+        svg.appendChild(polyline);
+
+        // Marker on curve
+        const curX = pStartX + ((L - 1) / 10) * pW;
+        const curY = pStartY - (area / 36) * pH;
+
+        const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        dot.setAttribute("cx", curX);
+        dot.setAttribute("cy", curY);
+        dot.setAttribute("r", "6");
+        dot.setAttribute("fill", isSquare ? "#10b981" : "#f59e0b");
+        dot.setAttribute("stroke", "#ffffff");
+        dot.setAttribute("stroke-width", "2");
+        svg.appendChild(dot);
+
+        // Parabola title
+        const pTitle = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        pTitle.setAttribute("x", pStartX + pW / 2);
+        pTitle.setAttribute("y", "35");
+        pTitle.setAttribute("fill", "#a7f3d0");
+        pTitle.setAttribute("font-size", "12");
+        pTitle.setAttribute("font-weight", "bold");
+        pTitle.setAttribute("text-anchor", "middle");
+        pTitle.textContent = "Area Curve for P = 24 cm";
+        svg.appendChild(pTitle);
+
+        // Bottom insight
+        const btm = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        btm.setAttribute("x", "230");
+        btm.setAttribute("y", "260");
+        btm.setAttribute("fill", "#cbd5e1");
+        btm.setAttribute("font-size", "13");
+        btm.setAttribute("font-weight", "600");
+        btm.setAttribute("text-anchor", "middle");
+        btm.textContent = `Perimeter is constant (24 cm), yet Area ranges from 11 cm² up to 36 cm²!`;
+        svg.appendChild(btm);
+
+        const tip = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        tip.setAttribute("x", "230");
+        tip.setAttribute("y", "290");
+        tip.setAttribute("fill", isSquare ? "#10b981" : "#f59e0b");
+        tip.setAttribute("font-size", "12.5");
+        tip.setAttribute("font-weight", "bold");
+        tip.setAttribute("text-anchor", "middle");
+        tip.textContent = isSquare ? "👑 Maximum Area Reached! The Square (6×6) maximizes enclosed surface." : "Drag slider to L = 6 cm to witness the peak square area!";
+        svg.appendChild(tip);
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="control-label">Length (L):</span>
+          <input type="range" class="control-slider" min="1" max="11" value="${L}" id="sliderPerimL">
+          <span class="control-val" id="valPerimL">${L}</span>
+        </div>
+        <div class="control-row">
+          <button class="sim-btn" onclick="setPerimL(6)">⭐ Peak Square (L = 6)</button>
+          <button class="sim-btn" onclick="setPerimL(1)">Thin Ribbon (L = 1)</button>
+          <button class="sim-btn" onclick="setPerimL(9)">Oblong (L = 9)</button>
+        </div>
+      `;
+
+      document.getElementById('sliderPerimL').oninput = (e) => {
+        L = parseInt(e.target.value);
+        document.getElementById('valPerimL').textContent = L;
+        update();
+      };
+
+      window.setPerimL = (val) => {
+        L = val;
+        document.getElementById('sliderPerimL').value = L;
+        document.getElementById('valPerimL').textContent = L;
+        update();
+      };
+
+      update();
+    }
+
+    // 4. Triangle: Half Rectangle/Parallelogram Dissector
+    function renderTriangleHalfRectangleDissector(title, stats, canvas, controls) {
+      title.textContent = "Triangle Area: Exactly Half of a Bounding Parallelogram";
+      let base = 12;
+      let height = 8;
+      let apexShift = 4; // horizontal shift of top apex
+      let showClone = false;
+
+      function update() {
+        const areaTri = 0.5 * base * height;
+        const areaPar = base * height;
+
+        stats.innerHTML = `
+          <div class="stat-pill">Base (b): <strong>${base} cm</strong></div>
+          <div class="stat-pill">Altitude (h): <strong>${height} cm</strong></div>
+          <div class="stat-pill">Triangle Area: <strong style="color:#10b981;">${areaTri} cm²</strong></div>
+          <div class="stat-pill">Parallelogram: <strong>${showClone ? areaPar + ' cm²' : 'Hidden'}</strong></div>
+        `;
+
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        const scale = 18;
+        const bW = base * scale;
+        const bH = height * scale;
+        const startX = 230 - bW / 2;
+        const baseY = 240;
+        const apexY = baseY - bH;
+        const apexX = startX + apexShift * scale;
+
+        // If clone is shown, draw the 2nd congruent rotated triangle forming a parallelogram
+        if (showClone) {
+          const clonePoly = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+          // Rotated 180 degrees around midpoint of AC or BC
+          const cP1 = `${startX + bW},${baseY}`;
+          const cP2 = `${apexX},${apexY}`;
+          const cP3 = `${startX + bW + (apexX - startX)},${apexY}`;
+          clonePoly.setAttribute("points", `${cP1} ${cP2} ${cP3}`);
+          clonePoly.setAttribute("fill", "rgba(6, 182, 212, 0.25)");
+          clonePoly.setAttribute("stroke", "#06b6d4");
+          clonePoly.setAttribute("stroke-width", "2");
+          clonePoly.setAttribute("stroke-dasharray", "4,4");
+          svg.appendChild(clonePoly);
+
+          const cloneLbl = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          cloneLbl.setAttribute("x", (startX + bW + apexX) / 2 + 15);
+          cloneLbl.setAttribute("y", (baseY + apexY) / 2);
+          cloneLbl.setAttribute("fill", "#22d3ee");
+          cloneLbl.setAttribute("font-size", "12");
+          cloneLbl.setAttribute("font-weight", "bold");
+          cloneLbl.textContent = "Twin Triangle (Rotated 180°)";
+          svg.appendChild(cloneLbl);
+        }
+
+        // Original Triangle
+        const tri = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+        tri.setAttribute("points", `${startX},${baseY} ${startX + bW},${baseY} ${apexX},${apexY}`);
+        tri.setAttribute("fill", "rgba(16, 185, 129, 0.4)");
+        tri.setAttribute("stroke", "#10b981");
+        tri.setAttribute("stroke-width", "2.5");
+        svg.appendChild(tri);
+
+        // Height altitude line
+        const altLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        altLine.setAttribute("x1", apexX);
+        altLine.setAttribute("y1", apexY);
+        altLine.setAttribute("x2", apexX);
+        altLine.setAttribute("y2", baseY);
+        altLine.setAttribute("stroke", "#f59e0b");
+        altLine.setAttribute("stroke-width", "2");
+        altLine.setAttribute("stroke-dasharray", "3,3");
+        svg.appendChild(altLine);
+
+        // Right angle marker
+        const sq = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        sq.setAttribute("x", apexX);
+        sq.setAttribute("y", baseY - 12);
+        sq.setAttribute("width", "12");
+        sq.setAttribute("height", "12");
+        sq.setAttribute("fill", "none");
+        sq.setAttribute("stroke", "#f59e0b");
+        sq.setAttribute("stroke-width", "1.5");
+        svg.appendChild(sq);
+
+        // Labels
+        const bLbl = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        bLbl.setAttribute("x", startX + bW / 2);
+        bLbl.setAttribute("y", baseY + 20);
+        bLbl.setAttribute("fill", "#cbd5e1");
+        bLbl.setAttribute("font-size", "13");
+        bLbl.setAttribute("font-weight", "bold");
+        bLbl.setAttribute("text-anchor", "middle");
+        bLbl.textContent = `Base b = ${base} cm`;
+        svg.appendChild(bLbl);
+
+        const hLbl = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        hLbl.setAttribute("x", apexX + 10);
+        hLbl.setAttribute("y", (baseY + apexY) / 2);
+        hLbl.setAttribute("fill", "#f59e0b");
+        hLbl.setAttribute("font-size", "13");
+        hLbl.setAttribute("font-weight", "bold");
+        hLbl.textContent = `h = ${height} cm`;
+        svg.appendChild(hLbl);
+
+        // Bottom takeaway formula
+        const fTxt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        fTxt.setAttribute("x", "230");
+        fTxt.setAttribute("y", "295");
+        fTxt.setAttribute("fill", "#10b981");
+        fTxt.setAttribute("font-size", "14");
+        fTxt.setAttribute("font-weight", "bold");
+        fTxt.setAttribute("text-anchor", "middle");
+        fTxt.textContent = `Area = ½ × base × height = ½ × ${base} × ${height} = ${areaTri} cm²`;
+        svg.appendChild(fTxt);
+
+        const tip = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        tip.setAttribute("x", "230");
+        tip.setAttribute("y", "325");
+        tip.setAttribute("fill", "#38bdf8");
+        tip.setAttribute("font-size", "11.5");
+        tip.setAttribute("text-anchor", "middle");
+        tip.textContent = showClone ? "✓ Two identical triangles form a complete parallelogram of area b × h!" : "Toggle 'Show Parallelogram Twin' below to see the halving proof!";
+        svg.appendChild(tip);
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="control-label">Base (b):</span>
+          <input type="range" class="control-slider" min="6" max="18" value="${base}" id="sliderTriB">
+          <span class="control-val" id="valTriB">${base}</span>
+        </div>
+        <div class="control-row">
+          <span class="control-label">Height (h):</span>
+          <input type="range" class="control-slider" min="4" max="12" value="${height}" id="sliderTriH">
+          <span class="control-val" id="valTriH">${height}</span>
+        </div>
+        <div class="control-row">
+          <span class="control-label">Apex Position:</span>
+          <input type="range" class="control-slider" min="0" max="12" value="${apexShift}" id="sliderTriShift">
+          <span class="control-val" id="valTriShift">${apexShift}</span>
+        </div>
+        <div class="control-row">
+          <button class="sim-btn ${showClone ? 'active' : ''}" onclick="toggleClone()">${showClone ? 'Hide Parallelogram Twin' : '✨ Show Parallelogram Twin'}</button>
+          <button class="sim-btn" onclick="setTri(10, 8, 5)">Right Triangle</button>
+        </div>
+      `;
+
+      document.getElementById('sliderTriB').oninput = (e) => {
+        base = parseInt(e.target.value);
+        document.getElementById('valTriB').textContent = base;
+        update();
+      };
+      document.getElementById('sliderTriH').oninput = (e) => {
+        height = parseInt(e.target.value);
+        document.getElementById('valTriH').textContent = height;
+        update();
+      };
+      document.getElementById('sliderTriShift').oninput = (e) => {
+        apexShift = parseInt(e.target.value);
+        document.getElementById('valTriShift').textContent = apexShift;
+        update();
+      };
+
+      window.toggleClone = () => {
+        showClone = !showClone;
+        update();
+      };
+      window.setTri = (b, h, sh) => {
+        base = b; height = h; apexShift = sh;
+        document.getElementById('sliderTriB').value = base;
+        document.getElementById('sliderTriH').value = height;
+        document.getElementById('sliderTriShift').value = apexShift;
+        update();
+      };
+
+      update();
+    }
+
+    // 5. Triangles & Parallels (Cavalieri Shearing)
+    function renderCavalieriTrianglesParallelShearing(title, stats, canvas, controls) {
+      title.textContent = "Triangles between Parallels: Shearing Invariance Lab";
+      let base = 12;
+      let height = 8;
+      let apexXPos = 180; // horizontal sliding position
+
+      function update() {
+        const area = 0.5 * base * height;
+
+        stats.innerHTML = `
+          <div class="stat-pill">Common Base: <strong>${base} cm</strong></div>
+          <div class="stat-pill">Parallel Gap (h): <strong>${height} cm</strong></div>
+          <div class="stat-pill">Area: <strong style="color:#10b981;">${area} cm² (Strictly Invariant!)</strong></div>
+        `;
+
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        const scale = 18;
+        const bW = base * scale;
+        const startX = 60;
+        const baseY = 240;
+        const topY = baseY - height * scale;
+
+        // Top parallel line L2
+        const l2 = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        l2.setAttribute("x1", "30");
+        l2.setAttribute("y1", topY);
+        l2.setAttribute("x2", "430");
+        l2.setAttribute("y2", topY);
+        l2.setAttribute("stroke", "#38bdf8");
+        l2.setAttribute("stroke-width", "2");
+        l2.setAttribute("stroke-dasharray", "6,4");
+        svg.appendChild(l2);
+
+        // Bottom parallel line L1
+        const l1 = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        l1.setAttribute("x1", "30");
+        l1.setAttribute("y1", baseY);
+        l1.setAttribute("x2", "430");
+        l1.setAttribute("y2", baseY);
+        l1.setAttribute("stroke", "#38bdf8");
+        l1.setAttribute("stroke-width", "2");
+        svg.appendChild(l1);
+
+        // Labels for parallel lines
+        const l2Txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        l2Txt.setAttribute("x", "435");
+        l2Txt.setAttribute("y", topY + 4);
+        l2Txt.setAttribute("fill", "#38bdf8");
+        l2Txt.setAttribute("font-size", "11");
+        l2Txt.textContent = "L₂";
+        svg.appendChild(l2Txt);
+
+        const l1Txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        l1Txt.setAttribute("x", "435");
+        l1Txt.setAttribute("y", baseY + 4);
+        l1Txt.setAttribute("fill", "#38bdf8");
+        l1Txt.setAttribute("font-size", "11");
+        l1Txt.textContent = "L₁ (L₁ ∥ L₂)";
+        svg.appendChild(l1Txt);
+
+        // Triangle
+        const tri = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+        tri.setAttribute("points", `${startX},${baseY} ${startX + bW},${baseY} ${apexXPos},${topY}`);
+        tri.setAttribute("fill", "rgba(16, 185, 129, 0.45)");
+        tri.setAttribute("stroke", "#10b981");
+        tri.setAttribute("stroke-width", "2.5");
+        svg.appendChild(tri);
+
+        // Apex marker circle
+        const apexDot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        apexDot.setAttribute("cx", apexXPos);
+        apexDot.setAttribute("cy", topY);
+        apexDot.setAttribute("r", "7");
+        apexDot.setAttribute("fill", "#f59e0b");
+        apexDot.setAttribute("stroke", "#ffffff");
+        apexDot.setAttribute("stroke-width", "2");
+        svg.appendChild(apexDot);
+
+        // Altitude dotted line
+        const alt = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        alt.setAttribute("x1", apexXPos);
+        alt.setAttribute("y1", topY);
+        alt.setAttribute("x2", apexXPos);
+        alt.setAttribute("y2", baseY);
+        alt.setAttribute("stroke", "#f59e0b");
+        alt.setAttribute("stroke-width", "1.5");
+        alt.setAttribute("stroke-dasharray", "3,3");
+        svg.appendChild(alt);
+
+        // Apex label
+        const cLbl = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        cLbl.setAttribute("x", apexXPos);
+        cLbl.setAttribute("y", topY - 12);
+        cLbl.setAttribute("fill", "#fbbf24");
+        cLbl.setAttribute("font-size", "13");
+        cLbl.setAttribute("font-weight", "bold");
+        cLbl.setAttribute("text-anchor", "middle");
+        cLbl.textContent = "Vertex C (Sliding along L₂)";
+        svg.appendChild(cLbl);
+
+        // Explanation text
+        const exp = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        exp.setAttribute("x", "230");
+        exp.setAttribute("y", "290");
+        exp.setAttribute("fill", "#cbd5e1");
+        exp.setAttribute("font-size", "13");
+        exp.setAttribute("font-weight", "bold");
+        exp.setAttribute("text-anchor", "middle");
+        exp.textContent = `Area = ½ × ${base} × ${height} = ${area} cm² (Never changes as C slides!)`;
+        svg.appendChild(exp);
+
+        const tip = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        tip.setAttribute("x", "230");
+        tip.setAttribute("y", "320");
+        tip.setAttribute("fill", "#38bdf8");
+        tip.setAttribute("font-size", "11.5");
+        tip.setAttribute("text-anchor", "middle");
+        tip.textContent = "✨ Cavalieri Shearing: The shape morphs from right to obtuse, but area remains strictly constant!";
+        svg.appendChild(tip);
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="control-label">Slide Vertex C:</span>
+          <input type="range" class="control-slider" min="60" max="380" value="${apexXPos}" id="sliderShearX">
+          <span class="control-val" id="valShearX">${apexXPos}</span>
+        </div>
+        <div class="control-row">
+          <button class="sim-btn" onclick="slideApex(60)">Left Edge (Right Δ)</button>
+          <button class="sim-btn" onclick="slideApex(168)">Center (Isosceles Δ)</button>
+          <button class="sim-btn" onclick="slideApex(276)">Right Edge (Right Δ)</button>
+          <button class="sim-btn" onclick="slideApex(360)">Extreme (Obtuse Δ)</button>
+        </div>
+      `;
+
+      document.getElementById('sliderShearX').oninput = (e) => {
+        apexXPos = parseInt(e.target.value);
+        document.getElementById('valShearX').textContent = apexXPos;
+        update();
+      };
+
+      window.slideApex = (pos) => {
+        apexXPos = pos;
+        document.getElementById('sliderShearX').value = apexXPos;
+        document.getElementById('valShearX').textContent = apexXPos;
+        update();
+      };
+
+      update();
+    }
+
+    // 6. Triangle Applications: Heron's Formula
+    function renderTriangleAltitudeHeronExplorer(title, stats, canvas, controls) {
+      title.textContent = "Heron's Formula: Area from 3 Sidelengths";
+      let a = 13, b = 14, c = 15;
+
+      function update() {
+        const s = (a + b + c) / 2;
+        const areaSq = s * (s - a) * (s - b) * (s - c);
+        const area = Math.sqrt(Math.max(0, areaSq));
+        const hC = (2 * area) / c;
+
+        stats.innerHTML = `
+          <div class="stat-pill">Sides: <strong>a=${a}, b=${b}, c=${c}</strong></div>
+          <div class="stat-pill">Semi-Perimeter (s): <strong>${s}</strong></div>
+          <div class="stat-pill">Heron Area: <strong style="color:#10b981;">${area.toFixed(1)} cm²</strong></div>
+          <div class="stat-pill">Height to base c: <strong>${hC.toFixed(2)} cm</strong></div>
+        `;
+
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        // Scale triangle to fit canvas
+        const scale = 14;
+        const p1 = { x: 90, y: 220 };
+        const p2 = { x: 90 + c * scale, y: 220 };
+        // calculate apex coordinates
+        const cosA = (b * b + c * c - a * a) / (2 * b * c);
+        const apexX = p1.x + b * cosA * scale;
+        const apexY = p1.y - Math.sqrt(Math.max(0, b * b - (b * cosA) ** 2)) * scale;
+
+        // Draw triangle
+        const tri = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+        tri.setAttribute("points", `${p1.x},${p1.y} ${p2.x},${p2.y} ${apexX},${apexY}`);
+        tri.setAttribute("fill", "rgba(16, 185, 129, 0.35)");
+        tri.setAttribute("stroke", "#10b981");
+        tri.setAttribute("stroke-width", "2.5");
+        svg.appendChild(tri);
+
+        // Height line
+        const alt = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        alt.setAttribute("x1", apexX);
+        alt.setAttribute("y1", apexY);
+        alt.setAttribute("x2", apexX);
+        alt.setAttribute("y2", p1.y);
+        alt.setAttribute("stroke", "#f59e0b");
+        alt.setAttribute("stroke-width", "2");
+        alt.setAttribute("stroke-dasharray", "3,3");
+        svg.appendChild(alt);
+
+        // Side labels
+        const lC = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        lC.setAttribute("x", (p1.x + p2.x) / 2);
+        lC.setAttribute("y", p1.y + 20);
+        lC.setAttribute("fill", "#cbd5e1");
+        lC.setAttribute("font-size", "13");
+        lC.setAttribute("font-weight", "bold");
+        lC.setAttribute("text-anchor", "middle");
+        lC.textContent = `c = ${c} cm`;
+        svg.appendChild(lC);
+
+        const lB = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        lB.setAttribute("x", (p1.x + apexX) / 2 - 15);
+        lB.setAttribute("y", (p1.y + apexY) / 2);
+        lB.setAttribute("fill", "#cbd5e1");
+        lB.setAttribute("font-size", "13");
+        lB.setAttribute("font-weight", "bold");
+        lB.textContent = `b = ${b}`;
+        svg.appendChild(lB);
+
+        const lA = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        lA.setAttribute("x", (p2.x + apexX) / 2 + 10);
+        lA.setAttribute("y", (p2.y + apexY) / 2);
+        lA.setAttribute("fill", "#cbd5e1");
+        lA.setAttribute("font-size", "13");
+        lA.setAttribute("font-weight", "bold");
+        lA.textContent = `a = ${a}`;
+        svg.appendChild(lA);
+
+        // Formula breakdown
+        const f1 = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        f1.setAttribute("x", "230");
+        f1.setAttribute("y", "275");
+        f1.setAttribute("fill", "#38bdf8");
+        f1.setAttribute("font-size", "13");
+        f1.setAttribute("font-weight", "bold");
+        f1.setAttribute("text-anchor", "middle");
+        f1.textContent = `s = (${a} + ${b} + ${c}) / 2 = ${s} cm`;
+        svg.appendChild(f1);
+
+        const f2 = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        f2.setAttribute("x", "230");
+        f2.setAttribute("y", "305");
+        f2.setAttribute("fill", "#10b981");
+        f2.setAttribute("font-size", "13.5");
+        f2.setAttribute("font-weight", "bold");
+        f2.setAttribute("text-anchor", "middle");
+        f2.textContent = `Area = √[${s}(${s-a})(${s-b})(${s-c})] = ${area.toFixed(1)} cm²`;
+        svg.appendChild(f2);
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <button class="sim-btn" onclick="setHeron(13, 14, 15)">Classic: 13, 14, 15 (Area = 84)</button>
+          <button class="sim-btn" onclick="setHeron(5, 12, 13)">Right: 5, 12, 13 (Area = 30)</button>
+          <button class="sim-btn" onclick="setHeron(7, 8, 9)">Scalene: 7, 8, 9</button>
+          <button class="sim-btn" onclick="setHeron(10, 10, 10)">Equilateral: 10, 10, 10</button>
+        </div>
+      `;
+
+      window.setHeron = (sa, sb, sc) => {
+        a = sa; b = sb; c = sc;
+        update();
+      };
+
+      update();
+    }
+
+    // 7. Parallelogram: Shear to Rectangle Converter
+    function renderParallelogramShearRectConverter(title, stats, canvas, controls) {
+      title.textContent = "Parallelogram: Dissect & Translate Triangle to Rectangle";
+      let base = 12;
+      let height = 7;
+      let animProgress = 0; // 0 (Parallelogram) to 1 (Rectangle)
+
+      function update() {
+        const area = base * height;
+
+        stats.innerHTML = `
+          <div class="stat-pill">Base (b): <strong>${base} cm</strong></div>
+          <div class="stat-pill">Altitude (h): <strong>${height} cm</strong></div>
+          <div class="stat-pill">Area: <strong style="color:#10b981;">${area} cm²</strong></div>
+          <div class="stat-pill">Form: <strong style="color:#38bdf8;">${animProgress === 1 ? 'Rectangle' : (animProgress === 0 ? 'Parallelogram' : 'Rearranging...')}</strong></div>
+        `;
+
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        const scale = 18;
+        const bW = base * scale;
+        const bH = height * scale;
+        const slant = 3 * scale;
+        const startX = 100;
+        const baseY = 220;
+        const topY = baseY - bH;
+
+        // Static central trapezoid of parallelogram: points (startX + slant, topY), (startX + bW, topY), (startX + bW, baseY), (startX + slant, baseY)
+        const centralTrap = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+        centralTrap.setAttribute("points", `${startX + slant},${topY} ${startX + bW},${topY} ${startX + bW},${baseY} ${startX + slant},${baseY}`);
+        centralTrap.setAttribute("fill", "rgba(99, 102, 241, 0.4)");
+        centralTrap.setAttribute("stroke", "#818cf8");
+        centralTrap.setAttribute("stroke-width", "2");
+        svg.appendChild(centralTrap);
+
+        // Moving sliced triangle: initially on left (startX, baseY) to (startX + slant, topY) to (startX + slant, baseY)
+        // shifts right by (animProgress * bW)
+        const shiftX = animProgress * bW;
+        const triX1 = startX + shiftX;
+        const triX2 = startX + slant + shiftX;
+
+        const sliceTri = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+        sliceTri.setAttribute("points", `${triX1},${baseY} ${triX2},${topY} ${triX2},${baseY}`);
+        sliceTri.setAttribute("fill", "rgba(16, 185, 129, 0.5)");
+        sliceTri.setAttribute("stroke", "#10b981");
+        sliceTri.setAttribute("stroke-width", "2.5");
+        svg.appendChild(sliceTri);
+
+        // Height guideline
+        const hLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        hLine.setAttribute("x1", startX + slant);
+        hLine.setAttribute("y1", topY);
+        hLine.setAttribute("x2", startX + slant);
+        hLine.setAttribute("y2", baseY);
+        hLine.setAttribute("stroke", "#f59e0b");
+        hLine.setAttribute("stroke-width", "2");
+        hLine.setAttribute("stroke-dasharray", "3,3");
+        svg.appendChild(hLine);
+
+        // Dimension labels
+        const bLbl = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        bLbl.setAttribute("x", startX + bW / 2);
+        bLbl.setAttribute("y", baseY + 24);
+        bLbl.setAttribute("fill", "#cbd5e1");
+        bLbl.setAttribute("font-size", "13");
+        bLbl.setAttribute("font-weight", "bold");
+        bLbl.setAttribute("text-anchor", "middle");
+        bLbl.textContent = `Base b = ${base} cm`;
+        svg.appendChild(bLbl);
+
+        const hLbl = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        hLbl.setAttribute("x", startX + slant - 12);
+        hLbl.setAttribute("y", (topY + baseY) / 2);
+        hLbl.setAttribute("fill", "#f59e0b");
+        hLbl.setAttribute("font-size", "13");
+        hLbl.setAttribute("font-weight", "bold");
+        hLbl.setAttribute("text-anchor", "end");
+        hLbl.textContent = `h = ${height} cm`;
+        svg.appendChild(hLbl);
+
+        // Explanation text
+        const fTxt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        fTxt.setAttribute("x", "230");
+        fTxt.setAttribute("y", "290");
+        fTxt.setAttribute("fill", "#10b981");
+        fTxt.setAttribute("font-size", "14");
+        fTxt.setAttribute("font-weight", "bold");
+        fTxt.setAttribute("text-anchor", "middle");
+        fTxt.textContent = `Area = Base × Height = ${base} × ${height} = ${area} cm²`;
+        svg.appendChild(fTxt);
+
+        const tip = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        tip.setAttribute("x", "230");
+        tip.setAttribute("y", "320");
+        tip.setAttribute("fill", "#38bdf8");
+        tip.setAttribute("font-size", "11.5");
+        tip.setAttribute("text-anchor", "middle");
+        tip.textContent = "Drag 'Translate Triangle' to move the sliced corner and complete the rectangle!";
+        svg.appendChild(tip);
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="control-label">Translate Triangle:</span>
+          <input type="range" class="control-slider" min="0" max="100" value="${animProgress * 100}" id="sliderShearAnim">
+          <span class="control-val" id="valShearAnim">${Math.round(animProgress * 100)}%</span>
+        </div>
+        <div class="control-row">
+          <button class="sim-btn" onclick="setShearProgress(0)">🔷 Parallelogram View</button>
+          <button class="sim-btn" onclick="setShearProgress(1)">🟩 Rectangle View</button>
+        </div>
+      `;
+
+      document.getElementById('sliderShearAnim').oninput = (e) => {
+        animProgress = parseInt(e.target.value) / 100;
+        document.getElementById('valShearAnim').textContent = Math.round(animProgress * 100) + '%';
+        update();
+      };
+
+      window.setShearProgress = (val) => {
+        animProgress = val;
+        document.getElementById('sliderShearAnim').value = val * 100;
+        document.getElementById('valShearAnim').textContent = Math.round(val * 100) + '%';
+        update();
+      };
+
+      update();
+    }
+
+    // 8. Rhombus: Diagonal Product Visualizer
+    function renderRhombusDiagonalProductVisualizer(title, stats, canvas, controls) {
+      title.textContent = "Rhombus: Diagonal Product (1/2 × d1 × d2)";
+      let d1 = 14;
+      let d2 = 10;
+
+      function update() {
+        const area = 0.5 * d1 * d2;
+        const boxArea = d1 * d2;
+
+        stats.innerHTML = `
+          <div class="stat-pill">Diagonal d₁: <strong>${d1} cm</strong></div>
+          <div class="stat-pill">Diagonal d₂: <strong>${d2} cm</strong></div>
+          <div class="stat-pill">Rhombus Area: <strong style="color:#10b981;">${area} cm²</strong></div>
+          <div class="stat-pill">Bounding Box: <strong>${boxArea} cm² (Exactly Double!)</strong></div>
+        `;
+
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        const scale = 14;
+        const w = d1 * scale;
+        const h = d2 * scale;
+        const cx = 230;
+        const cy = 150;
+
+        // Bounding Rectangle
+        const box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        box.setAttribute("x", cx - w / 2);
+        box.setAttribute("y", cy - h / 2);
+        box.setAttribute("width", w);
+        box.setAttribute("height", h);
+        box.setAttribute("fill", "rgba(99, 102, 241, 0.15)");
+        box.setAttribute("stroke", "#6366f1");
+        box.setAttribute("stroke-width", "2");
+        box.setAttribute("stroke-dasharray", "4,4");
+        svg.appendChild(box);
+
+        // Rhombus (Connecting midpoints of box edges)
+        const pTop = `${cx},${cy - h / 2}`;
+        const pRight = `${cx + w / 2},${cy}`;
+        const pBottom = `${cx},${cy + h / 2}`;
+        const pLeft = `${cx - w / 2},${cy}`;
+
+        const rhom = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+        rhom.setAttribute("points", `${pTop} ${pRight} ${pBottom} ${pLeft}`);
+        rhom.setAttribute("fill", "rgba(16, 185, 129, 0.45)");
+        rhom.setAttribute("stroke", "#10b981");
+        rhom.setAttribute("stroke-width", "2.5");
+        svg.appendChild(rhom);
+
+        // Diagonals
+        const diag1 = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        diag1.setAttribute("x1", cx - w / 2);
+        diag1.setAttribute("y1", cy);
+        diag1.setAttribute("x2", cx + w / 2);
+        diag1.setAttribute("y2", cy);
+        diag1.setAttribute("stroke", "#f59e0b");
+        diag1.setAttribute("stroke-width", "2");
+        svg.appendChild(diag1);
+
+        const diag2 = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        diag2.setAttribute("x1", cx);
+        diag2.setAttribute("y1", cy - h / 2);
+        diag2.setAttribute("x2", cx);
+        diag2.setAttribute("y2", cy + h / 2);
+        diag2.setAttribute("stroke", "#38bdf8");
+        diag2.setAttribute("stroke-width", "2");
+        svg.appendChild(diag2);
+
+        // Center right angle symbol
+        const ra = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        ra.setAttribute("x", cx);
+        ra.setAttribute("y", cy - 10);
+        ra.setAttribute("width", "10");
+        ra.setAttribute("height", "10");
+        ra.setAttribute("fill", "none");
+        ra.setAttribute("stroke", "#ffffff");
+        ra.setAttribute("stroke-width", "1.5");
+        svg.appendChild(ra);
+
+        // Labels
+        const l1 = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        l1.setAttribute("x", cx);
+        l1.setAttribute("y", cy - 15);
+        l1.setAttribute("fill", "#f59e0b");
+        l1.setAttribute("font-size", "12");
+        l1.setAttribute("font-weight", "bold");
+        l1.setAttribute("text-anchor", "middle");
+        l1.textContent = `d₁ = ${d1} cm`;
+        svg.appendChild(l1);
+
+        const l2 = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        l2.setAttribute("x", cx + 15);
+        l2.setAttribute("y", cy + 20);
+        l2.setAttribute("fill", "#38bdf8");
+        l2.setAttribute("font-size", "12");
+        l2.setAttribute("font-weight", "bold");
+        l2.textContent = `d₂ = ${d2} cm`;
+        svg.appendChild(l2);
+
+        // Formula statement
+        const fTxt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        fTxt.setAttribute("x", "230");
+        fTxt.setAttribute("y", "285");
+        fTxt.setAttribute("fill", "#10b981");
+        fTxt.setAttribute("font-size", "14");
+        fTxt.setAttribute("font-weight", "bold");
+        fTxt.setAttribute("text-anchor", "middle");
+        fTxt.textContent = `Area = ½ × d₁ × d₂ = ½ × ${d1} × ${d2} = ${area} cm²`;
+        svg.appendChild(fTxt);
+
+        const tip = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        tip.setAttribute("x", "230");
+        tip.setAttribute("y", "315");
+        tip.setAttribute("fill", "#cbd5e1");
+        tip.setAttribute("font-size", "11.5");
+        tip.setAttribute("text-anchor", "middle");
+        tip.textContent = "The bounding rectangle has area d₁ × d₂. The 4 corner right triangles equal the 4 inside triangles!";
+        svg.appendChild(tip);
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="control-label">Diagonal d₁:</span>
+          <input type="range" class="control-slider" min="6" max="18" value="${d1}" id="sliderRhomD1">
+          <span class="control-val" id="valRhomD1">${d1}</span>
+        </div>
+        <div class="control-row">
+          <span class="control-label">Diagonal d₂:</span>
+          <input type="range" class="control-slider" min="4" max="14" value="${d2}" id="sliderRhomD2">
+          <span class="control-val" id="valRhomD2">${d2}</span>
+        </div>
+      `;
+
+      document.getElementById('sliderRhomD1').oninput = (e) => {
+        d1 = parseInt(e.target.value);
+        document.getElementById('valRhomD1').textContent = d1;
+        update();
+      };
+      document.getElementById('sliderRhomD2').oninput = (e) => {
+        d2 = parseInt(e.target.value);
+        document.getElementById('valRhomD2').textContent = d2;
+        update();
+      };
+
+      update();
+    }
+
+    // 9. Trapezium: Two Copies Rotator
+    function renderTrapeziumTwoCopiesRotator(title, stats, canvas, controls) {
+      title.textContent = "Trapezium: The Two-Copy Parallelogram Proof";
+      let a = 6;
+      let b = 12;
+      let h = 7;
+      let showClone = false;
+
+      function update() {
+        const areaTrap = 0.5 * (a + b) * h;
+        const areaPar = (a + b) * h;
+
+        stats.innerHTML = `
+          <div class="stat-pill">Parallel Sides: <strong>a=${a}, b=${b}</strong></div>
+          <div class="stat-pill">Height (h): <strong>${h} cm</strong></div>
+          <div class="stat-pill">Trapezium Area: <strong style="color:#10b981;">${areaTrap} cm²</strong></div>
+          <div class="stat-pill">Parallelogram: <strong>${showClone ? areaPar + ' cm²' : 'Hidden'}</strong></div>
+        `;
+
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        const scale = 14;
+        const aW = a * scale;
+        const bW = b * scale;
+        const hH = h * scale;
+        const slant = 2 * scale;
+        const startX = 60;
+        const baseY = 220;
+        const topY = baseY - hH;
+
+        // If clone is active, draw the second rotated trapezium forming complete parallelogram
+        if (showClone) {
+          const clonePoly = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+          const p1 = `${startX + bW},${baseY}`;
+          const p2 = `${startX + slant + aW},${topY}`;
+          const p3 = `${startX + slant + aW + bW},${topY}`;
+          const p4 = `${startX + bW + aW},${baseY}`;
+          clonePoly.setAttribute("points", `${p1} ${p2} ${p3} ${p4}`);
+          clonePoly.setAttribute("fill", "rgba(6, 182, 212, 0.3)");
+          clonePoly.setAttribute("stroke", "#06b6d4");
+          clonePoly.setAttribute("stroke-width", "2");
+          clonePoly.setAttribute("stroke-dasharray", "4,4");
+          svg.appendChild(clonePoly);
+
+          const cLbl = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          cLbl.setAttribute("x", startX + bW + aW / 2);
+          cLbl.setAttribute("y", (baseY + topY) / 2);
+          cLbl.setAttribute("fill", "#22d3ee");
+          cLbl.setAttribute("font-size", "12");
+          cLbl.setAttribute("font-weight", "bold");
+          cLbl.setAttribute("text-anchor", "middle");
+          cLbl.textContent = "Copy 2 (Rotated 180°)";
+          svg.appendChild(cLbl);
+        }
+
+        // Original Trapezium
+        const trap = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+        trap.setAttribute("points", `${startX},${baseY} ${startX + bW},${baseY} ${startX + slant + aW},${topY} ${startX + slant},${topY}`);
+        trap.setAttribute("fill", "rgba(16, 185, 129, 0.45)");
+        trap.setAttribute("stroke", "#10b981");
+        trap.setAttribute("stroke-width", "2.5");
+        svg.appendChild(trap);
+
+        // Height dotted line
+        const alt = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        alt.setAttribute("x1", startX + slant);
+        alt.setAttribute("y1", topY);
+        alt.setAttribute("x2", startX + slant);
+        alt.setAttribute("y2", baseY);
+        alt.setAttribute("stroke", "#f59e0b");
+        alt.setAttribute("stroke-width", "2");
+        alt.setAttribute("stroke-dasharray", "3,3");
+        svg.appendChild(alt);
+
+        // Labels
+        const aLbl = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        aLbl.setAttribute("x", startX + slant + aW / 2);
+        aLbl.setAttribute("y", topY - 10);
+        aLbl.setAttribute("fill", "#38bdf8");
+        aLbl.setAttribute("font-size", "13");
+        aLbl.setAttribute("font-weight", "bold");
+        aLbl.setAttribute("text-anchor", "middle");
+        aLbl.textContent = `a = ${a} cm`;
+        svg.appendChild(aLbl);
+
+        const bLbl = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        bLbl.setAttribute("x", startX + bW / 2);
+        bLbl.setAttribute("y", baseY + 20);
+        bLbl.setAttribute("fill", "#cbd5e1");
+        bLbl.setAttribute("font-size", "13");
+        bLbl.setAttribute("font-weight", "bold");
+        bLbl.setAttribute("text-anchor", "middle");
+        bLbl.textContent = `b = ${b} cm`;
+        svg.appendChild(bLbl);
+
+        const hLbl = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        hLbl.setAttribute("x", startX + slant - 10);
+        hLbl.setAttribute("y", (topY + baseY) / 2);
+        hLbl.setAttribute("fill", "#f59e0b");
+        hLbl.setAttribute("font-size", "12");
+        hLbl.setAttribute("font-weight", "bold");
+        hLbl.setAttribute("text-anchor", "end");
+        hLbl.textContent = `h = ${h}`;
+        svg.appendChild(hLbl);
+
+        // Math takeaway
+        const fTxt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        fTxt.setAttribute("x", "230");
+        fTxt.setAttribute("y", "285");
+        fTxt.setAttribute("fill", "#10b981");
+        fTxt.setAttribute("font-size", "14");
+        fTxt.setAttribute("font-weight", "bold");
+        fTxt.setAttribute("text-anchor", "middle");
+        fTxt.textContent = `Area = ½(a + b)h = ½(${a} + ${b}) × ${h} = ${areaTrap} cm²`;
+        svg.appendChild(fTxt);
+
+        const tip = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        tip.setAttribute("x", "230");
+        tip.setAttribute("y", "315");
+        tip.setAttribute("fill", "#38bdf8");
+        tip.setAttribute("font-size", "11.5");
+        tip.setAttribute("text-anchor", "middle");
+        tip.textContent = showClone ? "Combined Parallelogram has base (a + b) and height h. Halving gives the trapezium!" : "Click 'Join 2nd Copy (Rotated)' to see the two-copy parallelogram proof!";
+        svg.appendChild(tip);
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="control-label">Top Base (a):</span>
+          <input type="range" class="control-slider" min="4" max="10" value="${a}" id="sliderTrapA">
+          <span class="control-val" id="valTrapA">${a}</span>
+        </div>
+        <div class="control-row">
+          <span class="control-label">Bottom Base (b):</span>
+          <input type="range" class="control-slider" min="8" max="16" value="${b}" id="sliderTrapB">
+          <span class="control-val" id="valTrapB">${b}</span>
+        </div>
+        <div class="control-row">
+          <span class="control-label">Height (h):</span>
+          <input type="range" class="control-slider" min="4" max="10" value="${h}" id="sliderTrapH">
+          <span class="control-val" id="valTrapH">${h}</span>
+        </div>
+        <div class="control-row">
+          <button class="sim-btn ${showClone ? 'active' : ''}" onclick="toggleTrapClone()">${showClone ? 'Hide 2nd Copy' : '✨ Join 2nd Copy (Rotated)'}</button>
+        </div>
+      `;
+
+      document.getElementById('sliderTrapA').oninput = (e) => {
+        a = parseInt(e.target.value);
+        document.getElementById('valTrapA').textContent = a;
+        update();
+      };
+      document.getElementById('sliderTrapB').oninput = (e) => {
+        b = parseInt(e.target.value);
+        document.getElementById('valTrapB').textContent = b;
+        update();
+      };
+      document.getElementById('sliderTrapH').oninput = (e) => {
+        h = parseInt(e.target.value);
+        document.getElementById('valTrapH').textContent = h;
+        update();
+      };
+
+      window.toggleTrapClone = () => {
+        showClone = !showClone;
+        update();
+      };
+
+      update();
+    }
+
+    // 10. Decomposing Trapeziums (Parallelogram + Triangle)
+    function renderTrapeziumDecompositionLab(title, stats, canvas, controls) {
+      title.textContent = "Trapezium Decomposition: Parallelogram + Triangle";
+      let a = 6;
+      let b = 14;
+      let h = 8;
+
+      function update() {
+        const areaPar = a * h;
+        const areaTri = 0.5 * (b - a) * h;
+        const areaTotal = areaPar + areaTri;
+
+        stats.innerHTML = `
+          <div class="stat-pill">Parallelogram: <strong>${a} × ${h} = ${areaPar} cm²</strong></div>
+          <div class="stat-pill">Triangle: <strong>½(${b-a}) × ${h} = ${areaTri} cm²</strong></div>
+          <div class="stat-pill">Total Area: <strong style="color:#10b981;">${areaTotal} cm²</strong></div>
+        `;
+
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        const scale = 16;
+        const startX = 70;
+        const baseY = 220;
+        const topY = baseY - h * scale;
+        const aW = a * scale;
+        const bW = b * scale;
+        const diffW = (b - a) * scale;
+
+        // Parallelogram section (Left)
+        const par = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+        par.setAttribute("points", `${startX},${baseY} ${startX + aW},${baseY} ${startX + aW},${topY} ${startX},${topY}`);
+        par.setAttribute("fill", "rgba(59, 130, 246, 0.45)");
+        par.setAttribute("stroke", "#3b82f6");
+        par.setAttribute("stroke-width", "2");
+        svg.appendChild(par);
+
+        const parTxt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        parTxt.setAttribute("x", startX + aW / 2);
+        parTxt.setAttribute("y", (baseY + topY) / 2 + 5);
+        parTxt.setAttribute("fill", "#93c5fd");
+        parTxt.setAttribute("font-size", "14");
+        parTxt.setAttribute("font-weight", "bold");
+        parTxt.setAttribute("text-anchor", "middle");
+        parTxt.textContent = `Rectangle: ${areaPar} cm²`;
+        svg.appendChild(parTxt);
+
+        // Triangle section (Right)
+        const tri = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+        tri.setAttribute("points", `${startX + aW},${baseY} ${startX + bW},${baseY} ${startX + aW},${topY}`);
+        tri.setAttribute("fill", "rgba(245, 158, 11, 0.45)");
+        tri.setAttribute("stroke", "#f59e0b");
+        tri.setAttribute("stroke-width", "2");
+        svg.appendChild(tri);
+
+        const triTxt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        triTxt.setAttribute("x", startX + aW + diffW / 3);
+        triTxt.setAttribute("y", (baseY + topY) / 2 + 15);
+        triTxt.setAttribute("fill", "#fcd34d");
+        triTxt.setAttribute("font-size", "12");
+        triTxt.setAttribute("font-weight", "bold");
+        triTxt.textContent = `Δ: ${areaTri} cm²`;
+        svg.appendChild(triTxt);
+
+        // Labels
+        const tA = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        tA.setAttribute("x", startX + aW / 2);
+        tA.setAttribute("y", topY - 10);
+        tA.setAttribute("fill", "#93c5fd");
+        tA.setAttribute("font-size", "13");
+        tA.setAttribute("font-weight", "bold");
+        tA.setAttribute("text-anchor", "middle");
+        tA.textContent = `Top base a = ${a}`;
+        svg.appendChild(tA);
+
+        const tDiff = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        tDiff.setAttribute("x", startX + aW + diffW / 2);
+        tDiff.setAttribute("y", baseY + 20);
+        tDiff.setAttribute("fill", "#fcd34d");
+        tDiff.setAttribute("font-size", "12");
+        tDiff.setAttribute("font-weight", "bold");
+        tDiff.setAttribute("text-anchor", "middle");
+        tDiff.textContent = `b - a = ${b - a}`;
+        svg.appendChild(tDiff);
+
+        // Sum proof
+        const f = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        f.setAttribute("x", "230");
+        f.setAttribute("y", "285");
+        f.setAttribute("fill", "#10b981");
+        f.setAttribute("font-size", "14");
+        f.setAttribute("font-weight", "bold");
+        f.setAttribute("text-anchor", "middle");
+        f.textContent = `Total Area = ${areaPar} + ${areaTri} = ${areaTotal} cm² = ½(${a} + ${b}) × ${h}`;
+        svg.appendChild(f);
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="control-label">Top a:</span>
+          <input type="range" class="control-slider" min="4" max="10" value="${a}" id="sliderDecA">
+          <span class="control-val" id="valDecA">${a}</span>
+        </div>
+        <div class="control-row">
+          <span class="control-label">Bottom b:</span>
+          <input type="range" class="control-slider" min="10" max="18" value="${b}" id="sliderDecB">
+          <span class="control-val" id="valDecB">${b}</span>
+        </div>
+      `;
+
+      document.getElementById('sliderDecA').oninput = (e) => {
+        a = parseInt(e.target.value);
+        document.getElementById('valDecA').textContent = a;
+        update();
+      };
+      document.getElementById('sliderDecB').oninput = (e) => {
+        b = parseInt(e.target.value);
+        document.getElementById('valDecB').textContent = b;
+        update();
+      };
+
+      update();
+    }
+
+    // 11. Polygon Area: Triangulation & Surveyor Field Book
+    function renderPolygonTriangulationSurveyorLab(title, stats, canvas, controls) {
+      title.textContent = "Surveyor Field Book: Polygon Triangulation & Offsets";
+      let offsetH1 = 20;
+      let offsetH2 = 30;
+
+      function update() {
+        // baseline AD = 80m. Offsets at 30m and 60m
+        // Triangle 1: base 30, height 20 -> 300 m²
+        // Triangle 2: base 50, height 20 -> 500 m²
+        // Triangle 3: base 60, height 30 -> 900 m²
+        // Triangle 4: base 20, height 30 -> 300 m²
+        const t1 = 0.5 * 30 * offsetH1;
+        const t2 = 0.5 * 50 * offsetH1;
+        const t3 = 0.5 * 60 * offsetH2;
+        const t4 = 0.5 * 20 * offsetH2;
+        const total = t1 + t2 + t3 + t4;
+
+        stats.innerHTML = `
+          <div class="stat-pill">Baseline AD: <strong>80 m</strong></div>
+          <div class="stat-pill">Top Offset (B): <strong>${offsetH1} m</strong></div>
+          <div class="stat-pill">Bottom Offset (C): <strong>${offsetH2} m</strong></div>
+          <div class="stat-pill">Surveyed Area: <strong style="color:#10b981;">${total} m²</strong></div>
+        `;
+
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        const startX = 60;
+        const baseY = 170;
+        const scaleX = 4;
+        const scaleY = 2.5;
+
+        const pA = { x: startX, y: baseY };
+        const pD = { x: startX + 80 * scaleX, y: baseY };
+        const pB = { x: startX + 30 * scaleX, y: baseY - offsetH1 * scaleY };
+        const pC = { x: startX + 60 * scaleX, y: baseY + offsetH2 * scaleY };
+
+        // Central Baseline AD
+        const bl = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        bl.setAttribute("x1", pA.x);
+        bl.setAttribute("y1", pA.y);
+        bl.setAttribute("x2", pD.x);
+        bl.setAttribute("y2", pD.y);
+        bl.setAttribute("stroke", "#38bdf8");
+        bl.setAttribute("stroke-width", "3");
+        svg.appendChild(bl);
+
+        // Quadrilateral ABCD polygon
+        const poly = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+        poly.setAttribute("points", `${pA.x},${pA.y} ${pB.x},${pB.y} ${pD.x},${pD.y} ${pC.x},${pC.y}`);
+        poly.setAttribute("fill", "rgba(16, 185, 129, 0.25)");
+        poly.setAttribute("stroke", "#10b981");
+        poly.setAttribute("stroke-width", "2.5");
+        svg.appendChild(poly);
+
+        // Offsets lines
+        const o1 = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        o1.setAttribute("x1", pB.x);
+        o1.setAttribute("y1", pB.y);
+        o1.setAttribute("x2", pB.x);
+        o1.setAttribute("y2", baseY);
+        o1.setAttribute("stroke", "#f59e0b");
+        o1.setAttribute("stroke-width", "2");
+        o1.setAttribute("stroke-dasharray", "3,3");
+        svg.appendChild(o1);
+
+        const o2 = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        o2.setAttribute("x1", pC.x);
+        o2.setAttribute("y1", pC.y);
+        o2.setAttribute("x2", pC.x);
+        o2.setAttribute("y2", baseY);
+        o2.setAttribute("stroke", "#f59e0b");
+        o2.setAttribute("stroke-width", "2");
+        o2.setAttribute("stroke-dasharray", "3,3");
+        svg.appendChild(o2);
+
+        // Vertex Labels
+        function vLbl(txt, x, y, col) {
+          const t = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          t.setAttribute("x", x);
+          t.setAttribute("y", y);
+          t.setAttribute("fill", col);
+          t.setAttribute("font-size", "14");
+          t.setAttribute("font-weight", "bold");
+          t.textContent = txt;
+          svg.appendChild(t);
+        }
+
+        vLbl("A (0m)", pA.x - 40, pA.y + 5, "#38bdf8");
+        vLbl("D (80m)", pD.x + 10, pD.y + 5, "#38bdf8");
+        vLbl(`B (+${offsetH1}m)`, pB.x - 15, pB.y - 10, "#fbbf24");
+        vLbl(`C (-${offsetH2}m)`, pC.x - 15, pC.y + 20, "#fbbf24");
+
+        // Area summary text
+        const sumT = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        sumT.setAttribute("x", "230");
+        sumT.setAttribute("y", "310");
+        sumT.setAttribute("fill", "#10b981");
+        sumT.setAttribute("font-size", "14");
+        sumT.setAttribute("font-weight", "bold");
+        sumT.setAttribute("text-anchor", "middle");
+        sumT.textContent = `Total Field Area = ½(AD)(h₁ + h₂) = ½(80)(${offsetH1} + ${offsetH2}) = ${total} m²`;
+        svg.appendChild(sumT);
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="control-label">Offset B (h₁):</span>
+          <input type="range" class="control-slider" min="10" max="35" value="${offsetH1}" id="sliderOff1">
+          <span class="control-val" id="valOff1">${offsetH1}m</span>
+        </div>
+        <div class="control-row">
+          <span class="control-label">Offset C (h₂):</span>
+          <input type="range" class="control-slider" min="10" max="40" value="${offsetH2}" id="sliderOff2">
+          <span class="control-val" id="valOff2">${offsetH2}m</span>
+        </div>
+      `;
+
+      document.getElementById('sliderOff1').oninput = (e) => {
+        offsetH1 = parseInt(e.target.value);
+        document.getElementById('valOff1').textContent = offsetH1 + 'm';
+        update();
+      };
+      document.getElementById('sliderOff2').oninput = (e) => {
+        offsetH2 = parseInt(e.target.value);
+        document.getElementById('valOff2').textContent = offsetH2 + 'm';
+        update();
+      };
+
+      update();
+    }
+
+    // 12. Regular Polygon: Apothem & Perimeter
+    function renderRegularPolygonApothemUnfolder(title, stats, canvas, controls) {
+      title.textContent = "Regular Polygon: Area = 1/2 × Perimeter × Apothem";
+      let nSides = 6; // Hexagon
+      let side = 6;
+      let apothem = 5.2;
+
+      function update() {
+        const perim = nSides * side;
+        const area = 0.5 * perim * apothem;
+
+        stats.innerHTML = `
+          <div class="stat-pill">Polygon: <strong>${nSides}-gon</strong></div>
+          <div class="stat-pill">Perimeter (P): <strong>${perim} cm</strong></div>
+          <div class="stat-pill">Apothem (r): <strong>${apothem} cm</strong></div>
+          <div class="stat-pill">Area: <strong style="color:#10b981;">${area.toFixed(1)} cm²</strong></div>
+        `;
+
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        const cx = 230;
+        const cy = 140;
+        const R = apothem * 18; // radius
+
+        // Draw regular polygon vertices
+        const pts = [];
+        for (let i = 0; i < nSides; i++) {
+          const angle = (i * 2 * Math.PI) / nSides - Math.PI / 2;
+          const px = cx + R * Math.cos(angle);
+          const py = cy + R * Math.sin(angle);
+          pts.push(`${px},${py}`);
+        }
+
+        const poly = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+        poly.setAttribute("points", pts.join(' '));
+        poly.setAttribute("fill", "rgba(16, 185, 129, 0.35)");
+        poly.setAttribute("stroke", "#10b981");
+        poly.setAttribute("stroke-width", "2.5");
+        svg.appendChild(poly);
+
+        // Center lines to vertices (triangle dissection)
+        for (let i = 0; i < nSides; i++) {
+          const angle = (i * 2 * Math.PI) / nSides - Math.PI / 2;
+          const px = cx + R * Math.cos(angle);
+          const py = cy + R * Math.sin(angle);
+
+          const rad = document.createElementNS("http://www.w3.org/2000/svg", "line");
+          rad.setAttribute("x1", cx);
+          rad.setAttribute("y1", cy);
+          rad.setAttribute("x2", px);
+          rad.setAttribute("y2", py);
+          rad.setAttribute("stroke", "rgba(255,255,255,0.2)");
+          rad.setAttribute("stroke-width", "1");
+          svg.appendChild(rad);
+        }
+
+        // Apothem line to bottom side
+        const apoLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        apoLine.setAttribute("x1", cx);
+        apoLine.setAttribute("y1", cy);
+        apoLine.setAttribute("x2", cx);
+        apoLine.setAttribute("y2", cy + apothem * 15);
+        apoLine.setAttribute("stroke", "#f59e0b");
+        apoLine.setAttribute("stroke-width", "2");
+        apoLine.setAttribute("stroke-dasharray", "3,3");
+        svg.appendChild(apoLine);
+
+        const apoLbl = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        apoLbl.setAttribute("x", cx + 12);
+        apoLbl.setAttribute("y", cy + 40);
+        apoLbl.setAttribute("fill", "#fbbf24");
+        apoLbl.setAttribute("font-size", "12");
+        apoLbl.setAttribute("font-weight", "bold");
+        apoLbl.textContent = `r = ${apothem}`;
+        svg.appendChild(apoLbl);
+
+        // Center dot
+        const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        dot.setAttribute("cx", cx);
+        dot.setAttribute("cy", cy);
+        dot.setAttribute("r", "4");
+        dot.setAttribute("fill", "#ffffff");
+        svg.appendChild(dot);
+
+        // Formula statement
+        const f = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        f.setAttribute("x", "230");
+        f.setAttribute("y", "285");
+        f.setAttribute("fill", "#10b981");
+        f.setAttribute("font-size", "14");
+        f.setAttribute("font-weight", "bold");
+        f.setAttribute("text-anchor", "middle");
+        f.textContent = `Area = ½ × Perimeter × Apothem = ½ × ${perim} × ${apothem} = ${area.toFixed(1)} cm²`;
+        svg.appendChild(f);
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <button class="sim-btn ${nSides === 5 ? 'active' : ''}" onclick="setSides(5, 5.0, 3.4)">Pentagon (n=5)</button>
+          <button class="sim-btn ${nSides === 6 ? 'active' : ''}" onclick="setSides(6, 6.0, 5.2)">Hexagon (n=6)</button>
+          <button class="sim-btn ${nSides === 8 ? 'active' : ''}" onclick="setSides(8, 4.0, 4.8)">Octagon (n=8)</button>
+        </div>
+      `;
+
+      window.setSides = (n, s, a) => {
+        nSides = n; side = s; apothem = a;
+        update();
+      };
+
+      update();
+    }
+
+    // 13. Composite Shapes: Additive vs Subtractive
+    function renderCompositeShapeAdditiveSubtractiveSim(title, stats, canvas, controls) {
+      title.textContent = "Composite Figures: Additive vs Subtractive Strategies";
+      let mode = 'l_shape'; // 'l_shape' or 'picture_frame'
+
+      function update() {
+        stats.innerHTML = `
+          <div class="stat-pill">Strategy: <strong>${mode === 'l_shape' ? 'Additive Decomposition (A₁ + A₂)' : 'Subtractive Decomposition (Outer - Inner)'}</strong></div>
+        `;
+
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        if (mode === 'l_shape') {
+          // L-shaped room (10x8 with 4x3 cutout -> 80 - 12 = 68 m²)
+          // Split into R1: 6x8 = 48, R2: 4x5 = 20 -> 68 m²
+          const startX = 140;
+          const startY = 50;
+
+          // Block 1
+          const b1 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+          b1.setAttribute("x", startX);
+          b1.setAttribute("y", startY);
+          b1.setAttribute("width", "90");
+          b1.setAttribute("height", "160");
+          b1.setAttribute("fill", "rgba(59, 130, 246, 0.45)");
+          b1.setAttribute("stroke", "#3b82f6");
+          b1.setAttribute("stroke-width", "2");
+          svg.appendChild(b1);
+
+          // Block 2
+          const b2 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+          b2.setAttribute("x", startX + 90);
+          b2.setAttribute("y", startY + 60);
+          b2.setAttribute("width", "90");
+          b2.setAttribute("height", "100");
+          b2.setAttribute("fill", "rgba(16, 185, 129, 0.45)");
+          b2.setAttribute("stroke", "#10b981");
+          b2.setAttribute("stroke-width", "2");
+          svg.appendChild(b2);
+
+          const t1 = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          t1.setAttribute("x", startX + 45);
+          t1.setAttribute("y", startY + 80);
+          t1.setAttribute("fill", "#ffffff");
+          t1.setAttribute("font-size", "14");
+          t1.setAttribute("font-weight", "bold");
+          t1.setAttribute("text-anchor", "middle");
+          t1.textContent = "A₁ = 48 m²";
+          svg.appendChild(t1);
+
+          const t2 = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          t2.setAttribute("x", startX + 135);
+          t2.setAttribute("y", startY + 115);
+          t2.setAttribute("fill", "#ffffff");
+          t2.setAttribute("font-size", "14");
+          t2.setAttribute("font-weight", "bold");
+          t2.setAttribute("text-anchor", "middle");
+          t2.textContent = "A₂ = 20 m²";
+          svg.appendChild(t2);
+
+          const res = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          res.setAttribute("x", "230");
+          res.setAttribute("y", "260");
+          res.setAttribute("fill", "#10b981");
+          res.setAttribute("font-size", "15");
+          res.setAttribute("font-weight", "bold");
+          res.setAttribute("text-anchor", "middle");
+          res.textContent = "Total Floor Area = 48 + 20 = 68 m²";
+          svg.appendChild(res);
+
+        } else {
+          // Picture Frame / Path around garden
+          const startX = 130;
+          const startY = 40;
+
+          // Outer rect (24x19 -> 456)
+          const outer = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+          outer.setAttribute("x", startX);
+          outer.setAttribute("y", startY);
+          outer.setAttribute("width", "200");
+          outer.setAttribute("height", "160");
+          outer.setAttribute("fill", "rgba(245, 158, 11, 0.4)");
+          outer.setAttribute("stroke", "#f59e0b");
+          outer.setAttribute("stroke-width", "2");
+          svg.appendChild(outer);
+
+          // Inner rect (20x15 -> 300)
+          const inner = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+          inner.setAttribute("x", startX + 30);
+          inner.setAttribute("y", startY + 25);
+          inner.setAttribute("width", "140");
+          inner.setAttribute("height", "110");
+          inner.setAttribute("fill", "#070b14");
+          inner.setAttribute("stroke", "#38bdf8");
+          inner.setAttribute("stroke-width", "2");
+          svg.appendChild(inner);
+
+          const inT = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          inT.setAttribute("x", startX + 100);
+          inT.setAttribute("y", startY + 85);
+          inT.setAttribute("fill", "#38bdf8");
+          inT.setAttribute("font-size", "13");
+          inT.setAttribute("font-weight", "bold");
+          inT.setAttribute("text-anchor", "middle");
+          inT.textContent = "Inner Garden: 300 m²";
+          svg.appendChild(inT);
+
+          const outT = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          outT.setAttribute("x", startX + 100);
+          outT.setAttribute("y", startY + 18);
+          outT.setAttribute("fill", "#fcd34d");
+          outT.setAttribute("font-size", "11");
+          outT.setAttribute("font-weight", "bold");
+          outT.setAttribute("text-anchor", "middle");
+          outT.textContent = "Surrounding Concrete Path";
+          svg.appendChild(outT);
+
+          const res = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          res.setAttribute("x", "230");
+          res.setAttribute("y", "255");
+          res.setAttribute("fill", "#10b981");
+          res.setAttribute("font-size", "15");
+          res.setAttribute("font-weight", "bold");
+          res.setAttribute("text-anchor", "middle");
+          res.textContent = "Path Area = Outer (456 m²) - Inner (300 m²) = 156 m²";
+          svg.appendChild(res);
+        }
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <button class="sim-btn ${mode === 'l_shape' ? 'active' : ''}" onclick="setCompMode('l_shape')">➕ L-Shaped Room (Additive)</button>
+          <button class="sim-btn ${mode === 'picture_frame' ? 'active' : ''}" onclick="setCompMode('picture_frame')">➖ Surrounding Path (Subtractive)</button>
+        </div>
+      `;
+
+      window.setCompMode = (m) => {
+        mode = m; update();
+      };
+
+      update();
+    }
+
+    // 14. Real Life Cost & Coverage Calculator
+    function renderRealLifeCostCoverageCalculator(title, stats, canvas, controls) {
+      title.textContent = "Real-Life Mensuration: Flooring Tiles & Budget Estimator";
+      let roomL = 8;
+      let roomW = 6;
+      let tileSide = 40; // cm
+      let ratePerTile = 35; // Rs
+
+      function update() {
+        const floorAreaM2 = roomL * roomW;
+        const floorAreaCm2 = floorAreaM2 * 10000;
+        const tileAreaCm2 = tileSide * tileSide;
+        const tilesNeeded = Math.ceil(floorAreaCm2 / tileAreaCm2);
+        const totalCost = tilesNeeded * ratePerTile;
+
+        stats.innerHTML = `
+          <div class="stat-pill">Room: <strong>${roomL}m × ${roomW}m (${floorAreaM2} m²)</strong></div>
+          <div class="stat-pill">Tile Size: <strong>${tileSide}cm × ${tileSide}cm</strong></div>
+          <div class="stat-pill">Tiles Needed: <strong style="color:#10b981;">${tilesNeeded} tiles</strong></div>
+          <div class="stat-pill">Estimated Cost: <strong style="color:#f59e0b;">₹${totalCost}</strong></div>
+        `;
+
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        // Drawing isometric/2D room floor
+        const rx = 80;
+        const ry = 40;
+        const rw = 300;
+        const rh = 180;
+
+        const floor = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        floor.setAttribute("x", rx);
+        floor.setAttribute("y", ry);
+        floor.setAttribute("width", rw);
+        floor.setAttribute("height", rh);
+        floor.setAttribute("fill", "#0f172a");
+        floor.setAttribute("stroke", "#10b981");
+        floor.setAttribute("stroke-width", "3");
+        floor.setAttribute("rx", "8");
+        svg.appendChild(floor);
+
+        // Pattern grid tiles inside
+        const tScale = 20;
+        for (let x = rx; x < rx + rw; x += tScale) {
+          for (let y = ry; y < ry + rh; y += tScale) {
+            const tile = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            tile.setAttribute("x", x);
+            tile.setAttribute("y", y);
+            tile.setAttribute("width", tScale);
+            tile.setAttribute("height", tScale);
+            tile.setAttribute("fill", "rgba(16, 185, 129, 0.15)");
+            tile.setAttribute("stroke", "rgba(255,255,255,0.08)");
+            svg.appendChild(tile);
+          }
+        }
+
+        // Room dimensions
+        const tL = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        tL.setAttribute("x", rx + rw / 2);
+        tL.setAttribute("y", ry - 10);
+        tL.setAttribute("fill", "#38bdf8");
+        tL.setAttribute("font-size", "14");
+        tL.setAttribute("font-weight", "bold");
+        tL.setAttribute("text-anchor", "middle");
+        tL.textContent = `Room Length = ${roomL} m (${roomL * 100} cm)`;
+        svg.appendChild(tL);
+
+        const tW = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        tW.setAttribute("x", rx - 10);
+        tW.setAttribute("y", ry + rh / 2);
+        tW.setAttribute("fill", "#f59e0b");
+        tW.setAttribute("font-size", "14");
+        tW.setAttribute("font-weight", "bold");
+        tW.setAttribute("text-anchor", "end");
+        tW.textContent = `${roomW} m`;
+        svg.appendChild(tW);
+
+        // Calculations breakdown
+        const eq1 = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        eq1.setAttribute("x", "230");
+        eq1.setAttribute("y", "265");
+        eq1.setAttribute("fill", "#cbd5e1");
+        eq1.setAttribute("font-size", "13");
+        eq1.setAttribute("font-weight", "bold");
+        eq1.setAttribute("text-anchor", "middle");
+        eq1.textContent = `Tiles = Total Floor Area / 1 Tile Area = ${floorAreaCm2.toLocaleString()} cm² / ${tileAreaCm2} cm² = ${tilesNeeded} tiles`;
+        svg.appendChild(eq1);
+
+        const eq2 = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        eq2.setAttribute("x", "230");
+        eq2.setAttribute("y", "295");
+        eq2.setAttribute("fill", "#f59e0b");
+        eq2.setAttribute("font-size", "14");
+        eq2.setAttribute("font-weight", "bold");
+        eq2.setAttribute("text-anchor", "middle");
+        eq2.textContent = `Total Flooring Budget = ${tilesNeeded} tiles × ₹${ratePerTile}/tile = ₹${totalCost.toLocaleString()}`;
+        svg.appendChild(eq2);
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="control-label">Room Length:</span>
+          <input type="range" class="control-slider" min="4" max="12" value="${roomL}" id="sliderRoomL">
+          <span class="control-val" id="valRoomL">${roomL}m</span>
+        </div>
+        <div class="control-row">
+          <span class="control-label">Room Width:</span>
+          <input type="range" class="control-slider" min="3" max="8" value="${roomW}" id="sliderRoomW">
+          <span class="control-val" id="valRoomW">${roomW}m</span>
+        </div>
+        <div class="control-row">
+          <span class="control-label">Tile Size:</span>
+          <button class="sim-btn ${tileSide === 30 ? 'active' : ''}" onclick="setTileSize(30)">30×30 cm</button>
+          <button class="sim-btn ${tileSide === 40 ? 'active' : ''}" onclick="setTileSize(40)">40×40 cm</button>
+          <button class="sim-btn ${tileSide === 50 ? 'active' : ''}" onclick="setTileSize(50)">50×50 cm</button>
+        </div>
+      `;
+
+      document.getElementById('sliderRoomL').oninput = (e) => {
+        roomL = parseInt(e.target.value);
+        document.getElementById('valRoomL').textContent = roomL + 'm';
+        update();
+      };
+      document.getElementById('sliderRoomW').oninput = (e) => {
+        roomW = parseInt(e.target.value);
+        document.getElementById('valRoomW').textContent = roomW + 'm';
+        update();
+      };
+
+      window.setTileSize = (ts) => {
+        tileSide = ts; update();
+      };
+
+      update();
+    }
+
+    // 15. Area Scaling: Quadratic k^2 Visualizer
+    function renderAreaScalingKSquaredVisualizer(title, stats, canvas, controls) {
+      title.textContent = "Area Scaling Law: Area Scales as k² with Scale Factor k";
+      let k = 2; // scale factor
+
+      function update() {
+        const origL = 3, origW = 2;
+        const origA = origL * origW; // 6
+        const newL = origL * k;
+        const newW = origW * k;
+        const newA = newL * newW; // 6 * k^2
+        const kSq = k * k;
+
+        stats.innerHTML = `
+          <div class="stat-pill">Linear Scale (k): <strong>×${k}</strong></div>
+          <div class="stat-pill">Perimeter Growth: <strong>×${k}</strong></div>
+          <div class="stat-pill">Area Growth: <strong style="color:#10b981;">×${kSq} (k² = ${k}²)</strong></div>
+        `;
+
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        const scale = 14;
+
+        // Original Shape (Left)
+        const oX = 50;
+        const oY = 70;
+        const oW = origL * scale;
+        const oH = origW * scale;
+
+        const oRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        oRect.setAttribute("x", oX);
+        oRect.setAttribute("y", oY);
+        oRect.setAttribute("width", oW);
+        oRect.setAttribute("height", oH);
+        oRect.setAttribute("fill", "rgba(59, 130, 246, 0.4)");
+        oRect.setAttribute("stroke", "#38bdf8");
+        oRect.setAttribute("stroke-width", "2");
+        svg.appendChild(oRect);
+
+        const oLbl = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        oLbl.setAttribute("x", oX + oW / 2);
+        oLbl.setAttribute("y", oY + oH + 20);
+        oLbl.setAttribute("fill", "#38bdf8");
+        oLbl.setAttribute("font-size", "12");
+        oLbl.setAttribute("font-weight", "bold");
+        oLbl.setAttribute("text-anchor", "middle");
+        oLbl.textContent = `Original: ${origA} units²`;
+        svg.appendChild(oLbl);
+
+        // Scaled Shape (Right)
+        const sX = 180;
+        const sY = 50;
+        const sW = newL * scale;
+        const sH = newW * scale;
+
+        // Draw individual k x k copies inside to visually count k^2
+        for (let r = 0; r < k; r++) {
+          for (let c = 0; c < k; c++) {
+            const block = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            block.setAttribute("x", sX + c * oW);
+            block.setAttribute("y", sY + r * oH);
+            block.setAttribute("width", oW);
+            block.setAttribute("height", oH);
+            block.setAttribute("fill", "rgba(16, 185, 129, 0.35)");
+            block.setAttribute("stroke", "rgba(255,255,255,0.2)");
+            block.setAttribute("stroke-width", "1");
+            svg.appendChild(block);
+
+            const bNum = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            bNum.setAttribute("x", sX + c * oW + oW / 2);
+            bNum.setAttribute("y", sY + r * oH + oH / 2 + 4);
+            bNum.setAttribute("fill", "#a7f3d0");
+            bNum.setAttribute("font-size", "11");
+            bNum.setAttribute("font-weight", "bold");
+            bNum.setAttribute("text-anchor", "middle");
+            bNum.textContent = `${r * k + c + 1}`;
+            svg.appendChild(bNum);
+          }
+        }
+
+        const sBorder = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        sBorder.setAttribute("x", sX);
+        sBorder.setAttribute("y", sY);
+        sBorder.setAttribute("width", sW);
+        sBorder.setAttribute("height", sH);
+        sBorder.setAttribute("fill", "none");
+        sBorder.setAttribute("stroke", "#10b981");
+        sBorder.setAttribute("stroke-width", "2.5");
+        svg.appendChild(sBorder);
+
+        // Explanation text
+        const t1 = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        t1.setAttribute("x", "230");
+        t1.setAttribute("y", "275");
+        t1.setAttribute("fill", "#cbd5e1");
+        t1.setAttribute("font-size", "13");
+        t1.setAttribute("font-weight", "bold");
+        t1.setAttribute("text-anchor", "middle");
+        t1.textContent = `Linear Scale k = ${k} ➔ Scaled Area = ${origA} × ${k}² = ${origA} × ${kSq} = ${newA} units²`;
+        svg.appendChild(t1);
+
+        const tip = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        tip.setAttribute("x", "230");
+        tip.setAttribute("y", "305");
+        tip.setAttribute("fill", "#f59e0b");
+        tip.setAttribute("font-size", "12");
+        tip.setAttribute("font-weight", "bold");
+        tip.setAttribute("text-anchor", "middle");
+        tip.textContent = `✨ Count the numbered tiles: Exactly ${kSq} copies of the original shape fit inside!`;
+        svg.appendChild(tip);
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="control-label">Scale Factor (k):</span>
+          <input type="range" class="control-slider" min="1" max="4" value="${k}" id="sliderScaleK">
+          <span class="control-val" id="valScaleK">×${k}</span>
+        </div>
+        <div class="control-row">
+          <button class="sim-btn ${k === 1 ? 'active' : ''}" onclick="setScaleK(1)">k = 1 (1×)</button>
+          <button class="sim-btn ${k === 2 ? 'active' : ''}" onclick="setScaleK(2)">k = 2 (4× Area)</button>
+          <button class="sim-btn ${k === 3 ? 'active' : ''}" onclick="setScaleK(3)">k = 3 (9× Area)</button>
+          <button class="sim-btn ${k === 4 ? 'active' : ''}" onclick="setScaleK(4)">k = 4 (16× Area)</button>
+        </div>
+      `;
+
+      document.getElementById('sliderScaleK').oninput = (e) => {
+        k = parseInt(e.target.value);
+        document.getElementById('valScaleK').textContent = '×' + k;
+        update();
+      };
+
+      window.setScaleK = (val) => {
+        k = val;
+        document.getElementById('sliderScaleK').value = k;
+        document.getElementById('valScaleK').textContent = '×' + k;
+        update();
+      };
+
+      update();
+    }
+
+    // 16. Area Matrix: Interactive Formula Switcher
+    function renderAreaFormulasInteractiveMatrix(title, stats, canvas, controls) {
+      title.textContent = "The Master 2D Area Matrix: Interactive Polygon Switcher";
+      let activeShape = 'trapezium';
+
+      const shapes = {
+        rectangle: { name: "Rectangle", formula: "A = L × W", p1: "Length = 8", p2: "Width = 5", area: "40 units²", desc: "Orderly grid of unit squares" },
+        square: { name: "Square", formula: "A = s²", p1: "Side = 6", p2: "Side = 6", area: "36 units²", desc: "Equilateral regular rectangle" },
+        triangle: { name: "Triangle", formula: "A = ½ b h", p1: "Base = 10", p2: "Height = 6", area: "30 units²", desc: "Half of an enclosing parallelogram" },
+        parallelogram: { name: "Parallelogram", formula: "A = b × h", p1: "Base = 9", p2: "Height = 5", area: "45 units²", desc: "Shears into equivalent rectangle" },
+        rhombus: { name: "Rhombus", formula: "A = ½ d₁ d₂", p1: "d₁ = 12", p2: "d₂ = 8", area: "48 units²", desc: "Perpendicular bisecting diagonals" },
+        trapezium: { name: "Trapezium", formula: "A = ½ (a + b) h", p1: "a = 6, b = 10", p2: "h = 5", area: "40 units²", desc: "Average parallel base × height" }
+      };
+
+      function update() {
+        const sh = shapes[activeShape];
+
+        stats.innerHTML = `
+          <div class="stat-pill">Active Shape: <strong>${sh.name}</strong></div>
+          <div class="stat-pill">Formula: <strong style="color:#10b981;">${sh.formula}</strong></div>
+          <div class="stat-pill">Calculated Area: <strong style="color:#38bdf8;">${sh.area}</strong></div>
+        `;
+
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        // Center card banner
+        const card = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        card.setAttribute("x", "50");
+        card.setAttribute("y", "40");
+        card.setAttribute("width", "360");
+        card.setAttribute("height", "180");
+        card.setAttribute("rx", "16");
+        card.setAttribute("fill", "#0f172a");
+        card.setAttribute("stroke", "#10b981");
+        card.setAttribute("stroke-width", "2.5");
+        svg.appendChild(card);
+
+        const sTitle = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        sTitle.setAttribute("x", "230");
+        sTitle.setAttribute("y", "80");
+        sTitle.setAttribute("fill", "#38bdf8");
+        sTitle.setAttribute("font-size", "22");
+        sTitle.setAttribute("font-weight", "bold");
+        sTitle.setAttribute("text-anchor", "middle");
+        sTitle.textContent = sh.name;
+        svg.appendChild(sTitle);
+
+        const sForm = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        sForm.setAttribute("x", "230");
+        sForm.setAttribute("y", "125");
+        sForm.setAttribute("fill", "#10b981");
+        sForm.setAttribute("font-size", "24");
+        sForm.setAttribute("font-weight", "bold");
+        sForm.setAttribute("text-anchor", "middle");
+        sForm.textContent = sh.formula;
+        svg.appendChild(sForm);
+
+        const sParam = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        sParam.setAttribute("x", "230");
+        sParam.setAttribute("y", "165");
+        sParam.setAttribute("fill", "#cbd5e1");
+        sParam.setAttribute("font-size", "13");
+        sParam.setAttribute("text-anchor", "middle");
+        sParam.textContent = `Parameters: ${sh.p1} • ${sh.p2}`;
+        svg.appendChild(sParam);
+
+        const sDesc = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        sDesc.setAttribute("x", "230");
+        sDesc.setAttribute("y", "195");
+        sDesc.setAttribute("fill", "#f59e0b");
+        sDesc.setAttribute("font-size", "12.5");
+        sDesc.setAttribute("font-weight", "bold");
+        sDesc.setAttribute("text-anchor", "middle");
+        sDesc.textContent = sh.desc;
+        svg.appendChild(sDesc);
+
+        // Footer summary
+        const foot = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        foot.setAttribute("x", "230");
+        foot.setAttribute("y", "280");
+        foot.setAttribute("fill", "#cbd5e1");
+        foot.setAttribute("font-size", "13");
+        foot.setAttribute("font-weight", "bold");
+        foot.setAttribute("text-anchor", "middle");
+        foot.textContent = "Switch between the buttons below to compare all 2D polygon area formulas!";
+        svg.appendChild(foot);
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <button class="sim-btn ${activeShape === 'rectangle' ? 'active' : ''}" onclick="selectMatrixShape('rectangle')">Rectangle</button>
+          <button class="sim-btn ${activeShape === 'square' ? 'active' : ''}" onclick="selectMatrixShape('square')">Square</button>
+          <button class="sim-btn ${activeShape === 'triangle' ? 'active' : ''}" onclick="selectMatrixShape('triangle')">Triangle</button>
+          <button class="sim-btn ${activeShape === 'parallelogram' ? 'active' : ''}" onclick="selectMatrixShape('parallelogram')">Parallelogram</button>
+          <button class="sim-btn ${activeShape === 'rhombus' ? 'active' : ''}" onclick="selectMatrixShape('rhombus')">Rhombus</button>
+          <button class="sim-btn ${activeShape === 'trapezium' ? 'active' : ''}" onclick="selectMatrixShape('trapezium')">Trapezium</button>
+        </div>
+      `;
+
+      window.selectMatrixShape = (k) => {
+        activeShape = k;
+        update();
+      };
+
+      update();
+    }
+
+    // Initial load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => loadSlide(0));
+    } else {
+      loadSlide(0);
+    }
+    window.addEventListener('load', () => {
+      triggerMathRender(document.body);
+    });
+  </script>
+</body>
+</html>
+"""
+
+def build_html():
+    slides_json = json.dumps(SLIDES_DATA)
+    final_html = TEMPLATE_HTML.replace("%%SLIDES_JSON%%", slides_json)
+
+    out_path = "public/animations/class8-math-area-polygons.html"
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(final_html)
+
+    print(f"Successfully generated {out_path} ({len(final_html)} bytes).")
+
+if __name__ == "__main__":
+    build_html()
+

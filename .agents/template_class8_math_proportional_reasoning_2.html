@@ -1,0 +1,2046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 8 Mathematics • Chapter 10: Advanced Proportional Reasoning & Inverse Variation Master Lab</title>
+  
+  <!-- KaTeX CSS & JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="triggerMathRender(document.body);"></script>
+
+  <style>
+    :root {
+      --bg-primary: #070b14;
+      --bg-secondary: #0f172a;
+      --card-bg: rgba(15, 23, 42, 0.85);
+      --card-border: rgba(99, 102, 241, 0.25);
+      --accent-indigo: #6366f1;
+      --accent-cyan: #06b6d4;
+      --accent-amber: #f59e0b;
+      --accent-emerald: #10b981;
+      --accent-rose: #f43f5e;
+      --accent-purple: #a855f7;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at top right, #1e1b4b 0%, #070b14 65%);
+      color: var(--text-main);
+      font-family: var(--font-stack);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Sticky Header */
+    header {
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid var(--card-border);
+      backdrop-filter: blur(12px);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .header-badge {
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    .header-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #f1f5f9;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .slide-indicator {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: rgba(30, 41, 59, 0.6);
+      padding: 4px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .speech-btn {
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid var(--accent-indigo);
+      color: #c7d2fe;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .speech-btn:hover {
+      background: rgba(99, 102, 241, 0.3);
+      color: #fff;
+    }
+    .speech-btn.active {
+      background: #10b981;
+      border-color: #10b981;
+      color: #fff;
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Slide Header Card */
+    .slide-header {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .slide-tag {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .slide-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+
+    .slide-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* Mentor Voice Avatar Bar */
+    .mentor-bar {
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .mentor-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #1e293b;
+      border: 2px solid var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .mentor-avatar svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .avatar-mouth {
+      transform-origin: 50px 65px;
+    }
+    .speaking .avatar-mouth {
+      animation: mouthTalk 0.25s infinite alternate ease-in-out;
+    }
+    @keyframes mouthTalk {
+      0% { transform: scaleY(1); }
+      100% { transform: scaleY(2.2); }
+    }
+
+    .mentor-name {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-amber);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .mentor-text {
+      font-size: 13.5px;
+      color: #e2e8f0;
+      font-style: italic;
+    }
+
+    /* Lesson Slide Layout: 2 Columns */
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .lesson-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Left Column: Theory & In-Slide Checkpoints */
+    .theory-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .theory-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      line-height: 1.65;
+      font-size: 14.5px;
+      color: #cbd5e1;
+    }
+
+    .theory-card h4 {
+      color: #fff;
+      font-size: 16px;
+      margin-top: 14px;
+      margin-bottom: 8px;
+    }
+
+    .theory-card p {
+      margin-bottom: 12px;
+    }
+
+    .theory-card ul, .theory-card ol {
+      margin-left: 20px;
+      margin-bottom: 12px;
+    }
+
+    .theory-card li {
+      margin-bottom: 6px;
+    }
+
+    /* Checkpoints Box */
+    .checkpoints-container {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 16px;
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .checkpoint-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--accent-amber);
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .checkpoint-card {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .checkpoint-q {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #f1f5f9;
+      margin-bottom: 12px;
+      line-height: 1.45;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .option-btn {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background: rgba(99, 102, 241, 0.15);
+      border-color: var(--accent-indigo);
+      color: #fff;
+    }
+
+    .option-btn.correct {
+      background: rgba(16, 185, 129, 0.2) !important;
+      border-color: var(--accent-emerald) !important;
+      color: #a7f3d0 !important;
+      font-weight: 600;
+    }
+
+    .option-btn.incorrect {
+      background: rgba(244, 63, 94, 0.2) !important;
+      border-color: var(--accent-rose) !important;
+      color: #fecdd3 !important;
+    }
+
+    .feedback-box {
+      margin-top: 10px;
+      font-size: 12.5px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      line-height: 1.4;
+      display: none;
+    }
+    .feedback-box.show {
+      display: block;
+    }
+    .feedback-box.correct-box {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid var(--accent-emerald);
+      color: #6ee7b7;
+    }
+    .feedback-box.incorrect-box {
+      background: rgba(244, 63, 94, 0.15);
+      border: 1px solid var(--accent-rose);
+      color: #fda4af;
+    }
+
+    /* Right Column: Simulator & Controls */
+    .sim-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: sticky;
+      top: 80px;
+    }
+
+    .sim-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 12px;
+    }
+
+    .sim-head h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sim-badge {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(99, 102, 241, 0.2);
+      color: #a5b4fc;
+      font-weight: 600;
+    }
+
+    .sim-viewport {
+      background: #090e1a;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      min-height: 330px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sim-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: rgba(30, 41, 59, 0.5);
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .sim-btn {
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .sim-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+    .sim-btn.active {
+      background: linear-gradient(135deg, #10b981, #06b6d4);
+    }
+
+    .sim-slider-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12.5px;
+      color: #cbd5e1;
+    }
+    .sim-slider-group span:first-child {
+      min-width: 90px;
+    }
+    .sim-slider-group input[type="range"] {
+      flex: 1;
+      accent-color: var(--accent-cyan);
+      cursor: pointer;
+    }
+
+    /* Quiz Slides: 4 Dedicated Slides (10 questions each) */
+    .quiz-container {
+      display: none;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .quiz-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+    }
+
+    .quiz-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .q-num-badge {
+      background: rgba(99, 102, 241, 0.25);
+      color: #a5b4fc;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 12px;
+    }
+
+    .sol-btn {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid var(--accent-amber);
+      color: #fcd34d;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s ease;
+    }
+    .sol-btn:hover {
+      background: rgba(245, 158, 11, 0.3);
+      color: #fff;
+    }
+
+    /* Navigation Footer */
+    footer {
+      background: rgba(15, 23, 42, 0.95);
+      border-top: 1px solid var(--card-border);
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      bottom: 0;
+      z-index: 100;
+    }
+
+    .nav-btn {
+      background: linear-gradient(135deg, #4f46e5, #6366f1);
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .nav-btn:hover:not(:disabled) {
+      background: linear-gradient(135deg, #4338ca, #4f46e5);
+      transform: translateY(-1px);
+    }
+    .nav-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .last-slide-notice {
+      color: #34d399;
+      font-size: 13.5px;
+      font-weight: 700;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid #10b981;
+      padding: 8px 18px;
+      border-radius: 20px;
+      display: none;
+    }
+
+    /* Modal Backdrop */
+    .modal-backdrop {
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Header Navigation -->
+  <header>
+    <div class="header-left">
+      <span class="header-badge">CLASS 8 • MATHEMATICS • CHAPTER 10</span>
+      <span class="header-title">Advanced Proportional Reasoning & Inverse Variation Master Lab</span>
+    </div>
+    <div class="header-right">
+      <div class="slide-indicator" id="slideNumDisplay">Slide 1 of 20</div>
+      <button class="speech-btn" id="voiceToggleBtn" onclick="toggleVoice()">
+        <span id="speakerIcon">🔊</span>
+        <span id="voiceStatusText">Listen</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Slide Workspace -->
+  <main>
+    <!-- Slide Header Card -->
+    <section class="slide-header">
+      <div class="slide-tag" id="slideTag">CHAPTER 10 • SLIDE 1 OF 20</div>
+      <h1 class="slide-title" id="slideTitle">Proportional Reasoning</h1>
+      <p class="slide-subtitle" id="slideSubtitle">Multiplicative Scaling & The Logic of Covariation</p>
+    </section>
+
+    <!-- Mentor Bar with Synchronized Talking Avatar -->
+    <section class="mentor-bar" id="mentorContainer">
+      <div class="mentor-avatar" id="mentorAvatar">
+        <svg viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="44" fill="#1e293b" stroke="#38bdf8" stroke-width="3"/>
+          <circle cx="35" cy="42" r="5" fill="#38bdf8"/>
+          <circle cx="65" cy="42" r="5" fill="#38bdf8"/>
+          <path class="avatar-mouth" d="M 38 66 Q 50 74 62 66" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="mentor-name">Mathematics Mentor</div>
+        <div class="mentor-text" id="mentorVoiceText">
+          Welcome to our laboratory on Advanced Proportional Reasoning and Inverse Proportions!
+        </div>
+      </div>
+    </section>
+
+    <!-- Lesson Slide Layout: 2 Columns (Used for Slides 1 to 16) -->
+    <div class="lesson-grid" id="lessonGrid">
+      <!-- Left Column: Rich Theory & In-Slide Checkpoints -->
+      <div class="theory-panel">
+        <div class="theory-card" id="theoryContent">
+          <!-- Populated dynamically -->
+        </div>
+
+        <!-- In-Slide Conceptual Checkpoints (2 per lesson slide) -->
+        <div class="checkpoints-container" id="checkpointContainer">
+          <div class="checkpoint-header">
+            <span>⚡</span> Conceptual Checkpoints (Test Your Understanding)
+          </div>
+          <div id="checkpointsList" style="display:flex; flex-direction:column; gap:14px;">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Simulator Panel -->
+      <section class="sim-panel" id="simulatorPanel">
+        <div class="sim-head">
+          <h3 id="simTitle">
+            <span>🔬</span> Interactive Lab Simulator
+          </h3>
+          <span class="sim-badge" id="simBadge">Live Explorer</span>
+        </div>
+        <div class="sim-viewport" id="simViewport">
+          <!-- Canvas / SVG Visuals Populated Dynamically -->
+        </div>
+        <div class="sim-controls" id="simControls">
+          <!-- Sliders and Buttons Populated Dynamically -->
+        </div>
+      </section>
+    </div>
+
+    <!-- Quiz Challenge Slides Container (Slides 17 to 20: 10 questions each) -->
+    <div class="quiz-container" id="quizContainer">
+      <!-- 10 Questions for the current quiz slide -->
+      <div class="quiz-grid" id="quizGrid"></div>
+    </div>
+  </main>
+
+  <!-- Sticky Navigation Footer -->
+  <footer>
+    <button class="nav-btn" id="prevBtn" onclick="prevSlide()" disabled>
+      ← Previous Slide
+    </button>
+    <div id="lastSlideNotice" class="last-slide-notice">
+      You have reached the last slide of this chapter
+    </div>
+    <button class="nav-btn" id="nextBtn" onclick="nextSlide()">
+      Next Slide →
+    </button>
+  </footer>
+
+  <!-- Universal Pop-up Solution Modal -->
+  <div id="solutionModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop" style="position:fixed; top:0; left:0; width:100vw; height:100vh; display:none; align-items:center; justify-content:center; z-index:1000;">
+    <div style="background:#0f172a; border:1px solid #6366f1; border-radius:16px; max-width:620px; width:95%; padding:24px; position:relative; box-shadow:0 20px 35px -5px rgba(0,0,0,0.8);">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+        <h3 id="modalTitle" style="color:#fcd34d; font-size:16px; font-weight:700; display:flex; align-items:center; gap:8px;">
+          <span>💡</span> Detailed Mathematical Solution
+        </h3>
+        <button onclick="closeSolutionModal()" style="background:none; border:none; color:#94a3b8; font-size:20px; cursor:pointer; padding:4px 8px;">✕</button>
+      </div>
+      <div id="modalBody" style="font-size:14px; line-height:1.65; color:#e2e8f0; max-height:60vh; overflow-y:auto; padding-right:8px;">
+        <!-- Solution math and explanation -->
+      </div>
+      <div style="margin-top:16px; text-align:right;">
+        <button onclick="closeSolutionModal()" style="background:#4f46e5; color:#fff; border:none; padding:8px 18px; border-radius:8px; font-size:13px; font-weight:700; cursor:pointer;">Close Solution</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Injected Data
+    const slides = __SLIDES_JSON__;
+    const quizQuestions = __QUIZ_JSON__;
+
+    let currentSlideIndex = 0;
+    let isSpeaking = false;
+    let synth = window.speechSynthesis;
+    let currentUtterance = null;
+
+    // Helper: Trigger KaTeX Rendering
+    function triggerMathRender(element) {
+      if (window.renderMathInElement) {
+        renderMathInElement(element || document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    // ==========================================
+    // Slide Navigation & State Management
+    // ==========================================
+    function loadSlide(index) {
+      if (index < 0 || index >= slides.length) return;
+      currentSlideIndex = index;
+      stopVoice();
+
+      const slide = slides[index];
+
+      // Update Header & Metas
+      document.getElementById('slideNumDisplay').textContent = `Slide ${index + 1} of ${slides.length}`;
+      document.getElementById('slideTag').textContent = `CHAPTER 10 • SLIDE ${index + 1} OF 20`;
+      document.getElementById('slideTitle').textContent = slide.title;
+      document.getElementById('slideSubtitle').textContent = slide.subtitle;
+      document.getElementById('mentorVoiceText').textContent = slide.voice;
+
+      const lessonGrid = document.getElementById('lessonGrid');
+      const quizContainer = document.getElementById('quizContainer');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const lastNotice = document.getElementById('lastSlideNotice');
+
+      prevBtn.disabled = (index === 0);
+
+      if (index === slides.length - 1) {
+        nextBtn.style.display = 'none';
+        lastNotice.style.display = 'block';
+      } else {
+        nextBtn.style.display = 'inline-block';
+        lastNotice.style.display = 'none';
+      }
+
+      if (index < 16) {
+        // Lesson Slide
+        lessonGrid.style.display = 'grid';
+        quizContainer.style.display = 'none';
+
+        document.getElementById('theoryContent').innerHTML = slide.content;
+        renderCheckpoints(slide.checkpoints);
+        renderSimulator(slide.sim_type);
+      } else {
+        // Dedicated Quiz Slide (Slides 17 to 20)
+        lessonGrid.style.display = 'none';
+        quizContainer.style.display = 'flex';
+
+        renderQuizSlide(slide.quiz_range);
+      }
+
+      setTimeout(() => {
+        triggerMathRender(document.body);
+      }, 50);
+    }
+
+    function prevSlide() {
+      if (currentSlideIndex > 0) {
+        loadSlide(currentSlideIndex - 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlideIndex < slides.length - 1) {
+        loadSlide(currentSlideIndex + 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // ==========================================
+    // In-Slide Conceptual Checkpoints
+    // ==========================================
+    function renderCheckpoints(checkpoints) {
+      const list = document.getElementById('checkpointsList');
+      list.innerHTML = '';
+
+      if (!checkpoints || checkpoints.length === 0) {
+        document.getElementById('checkpointContainer').style.display = 'none';
+        return;
+      }
+      document.getElementById('checkpointContainer').style.display = 'flex';
+
+      checkpoints.forEach((cp, cpIdx) => {
+        const card = document.createElement('div');
+        card.className = 'checkpoint-card';
+        card.innerHTML = `
+          <div class="checkpoint-q"><strong>Q${cpIdx + 1}:</strong> ${cp.q}</div>
+          <div class="options-grid" id="cpOptions${cpIdx}"></div>
+          <div class="feedback-box" id="cpFeedback${cpIdx}"></div>
+        `;
+
+        const optGrid = card.querySelector(`#cpOptions${cpIdx}`);
+        const feedback = card.querySelector(`#cpFeedback${cpIdx}`);
+
+        cp.options.forEach((opt, optIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'option-btn';
+          btn.innerHTML = `<span style="font-weight:700; color:#38bdf8;">${String.fromCharCode(65 + optIdx)}.</span> <span>${opt}</span>`;
+          btn.onclick = () => {
+            const allBtns = optGrid.querySelectorAll('.option-btn');
+            allBtns.forEach(b => b.disabled = true);
+
+            if (optIdx === cp.ans) {
+              btn.classList.add('correct');
+              feedback.className = 'feedback-box show correct-box';
+              feedback.innerHTML = `<strong>✓ Correct!</strong> ${cp.feedback}`;
+            } else {
+              btn.classList.add('incorrect');
+              allBtns[cp.ans].classList.add('correct');
+              feedback.className = 'feedback-box show incorrect-box';
+              feedback.innerHTML = `<strong>✗ Incorrect.</strong> ${cp.feedback}`;
+            }
+            triggerMathRender(feedback);
+          };
+          optGrid.appendChild(btn);
+        });
+
+        list.appendChild(card);
+      });
+    }
+
+    // ==========================================
+    // Mastery Quiz Slides (10 questions per slide)
+    // ==========================================
+    function renderQuizSlide(range) {
+      const grid = document.getElementById('quizGrid');
+      grid.innerHTML = '';
+
+      if (!range) return;
+      const [startNum, endNum] = range;
+      const questions = quizQuestions.filter(q => q.num >= startNum && q.num <= endNum);
+
+      questions.forEach((q) => {
+        const card = document.createElement('div');
+        card.className = 'quiz-card';
+        card.innerHTML = `
+          <div class="quiz-card-head">
+            <span class="q-num-badge">Question ${q.num} of 40</span>
+            <button class="sol-btn" onclick="openSolutionModal(${q.num})">
+              <span>💡</span> View Solution
+            </button>
+          </div>
+          <div class="checkpoint-q">${q.question}</div>
+          <div class="options-grid" id="qGrid${q.num}"></div>
+          <div class="feedback-box" id="qFeedback${q.num}"></div>
+        `;
+
+        const optGrid = card.querySelector(`#qGrid${q.num}`);
+        const feedback = card.querySelector(`#qFeedback${q.num}`);
+
+        q.options.forEach((optText, optIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'option-btn';
+          btn.innerHTML = `<span style="font-weight:700; color:#38bdf8;">${String.fromCharCode(65 + optIdx)}.</span> <span>${optText}</span>`;
+          btn.onclick = () => {
+            const allBtns = optGrid.querySelectorAll('.option-btn');
+            allBtns.forEach(b => b.disabled = true);
+
+            if (optIdx === q.correct) {
+              btn.classList.add('correct');
+              feedback.className = 'feedback-box show correct-box';
+              feedback.innerHTML = `<strong>✓ Excellent!</strong> Correct Answer. Click "View Solution" to inspect the complete proof.`;
+            } else {
+              btn.classList.add('incorrect');
+              allBtns[q.correct].classList.add('correct');
+              feedback.className = 'feedback-box show incorrect-box';
+              feedback.innerHTML = `<strong>✗ Not quite.</strong> Option (${String.fromCharCode(65 + q.correct)}) is correct. Click "View Solution" for detailed reasoning.`;
+            }
+          };
+          optGrid.appendChild(btn);
+        });
+
+        grid.appendChild(card);
+      });
+    }
+
+    // ==========================================
+    // Solution Modal
+    // ==========================================
+    function openSolutionModal(qNum) {
+      const q = quizQuestions.find(item => item.num === qNum);
+      if (!q) return;
+
+      const modal = document.getElementById('solutionModal');
+      document.getElementById('modalTitle').innerHTML = `<span>💡</span> Solution: Question ${q.num} of 40`;
+      document.getElementById('modalBody').innerHTML = `
+        <div style="margin-bottom:12px; font-weight:600; color:#94a3b8;">${q.question}</div>
+        <div style="background:rgba(30,41,59,0.7); border:1px solid #334155; border-radius:10px; padding:16px;">
+          ${q.solution}
+        </div>
+      `;
+      modal.style.display = 'flex';
+      setTimeout(() => {
+        triggerMathRender(document.getElementById('modalBody'));
+      }, 50);
+    }
+
+    function closeSolutionModal() {
+      document.getElementById('solutionModal').style.display = 'none';
+    }
+
+    // ==========================================
+    // Voice Narration (Web Speech API)
+    // ==========================================
+    function toggleVoice() {
+      if (isSpeaking) {
+        stopVoice();
+      } else {
+        startVoice();
+      }
+    }
+
+    function startVoice() {
+      if (!('speechSynthesis' in window)) {
+        alert("Your browser does not support text-to-speech audio narration.");
+        return;
+      }
+      stopVoice();
+
+      const text = document.getElementById('mentorVoiceText').textContent.trim();
+      currentUtterance = new SpeechSynthesisUtterance(text);
+      currentUtterance.rate = 0.95;
+      currentUtterance.pitch = 1.0;
+
+      const voices = synth.getVoices();
+      const engVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('India') || v.name.includes('Male')));
+      if (engVoice) currentUtterance.voice = engVoice;
+
+      currentUtterance.onstart = () => {
+        isSpeaking = true;
+        document.getElementById('mentorAvatar').classList.add('speaking');
+        document.getElementById('voiceToggleBtn').classList.add('active');
+        document.getElementById('voiceStatusText').textContent = 'Pause';
+      };
+
+      currentUtterance.onend = currentUtterance.onerror = () => {
+        stopVoice();
+      };
+
+      synth.speak(currentUtterance);
+    }
+
+    function stopVoice() {
+      if (synth && synth.speaking) {
+        synth.cancel();
+      }
+      isSpeaking = false;
+      const avatar = document.getElementById('mentorAvatar');
+      if (avatar) avatar.classList.remove('speaking');
+      const btn = document.getElementById('voiceToggleBtn');
+      if (btn) {
+        btn.classList.remove('active');
+        document.getElementById('voiceStatusText').textContent = 'Listen';
+      }
+    }
+
+    // =========================================================
+    // 16 Bespoke Interactive Mathematical Simulators (Slides 1-16)
+    // =========================================================
+    function renderSimulator(type) {
+      const vp = document.getElementById('simViewport');
+      const controls = document.getElementById('simControls');
+      const title = document.getElementById('simTitle');
+      const badge = document.getElementById('simBadge');
+
+      vp.innerHTML = '';
+      controls.innerHTML = '';
+
+      switch (type) {
+        case 'proportional_reasoning_foundations':
+          renderSim1(vp, controls, title, badge);
+          break;
+        case 'proportionality_direct_variation_recap':
+          renderSim2(vp, controls, title, badge);
+          break;
+        case 'map_scale_rf_navigator':
+          renderSim3(vp, controls, title, badge);
+          break;
+        case 'blueprint_scale_model_studio':
+          renderSim4(vp, controls, title, badge);
+          break;
+        case 'multi_term_triplet_ratio_mixer':
+          renderSim5(vp, controls, title, badge);
+          break;
+        case 'compound_ratio_chain_linker':
+          renderSim6(vp, controls, title, badge);
+          break;
+        case 'whole_partitioning_ratio_allocator':
+          renderSim7(vp, controls, title, badge);
+          break;
+        case 'slice_of_pie_circle_graph_lab':
+          renderSim8(vp, controls, title, badge);
+          break;
+        case 'pie_chart_sector_angle_calculator':
+          renderSim9(vp, controls, title, badge);
+          break;
+        case 'inverse_proportions_hyperbola_engine':
+          renderSim10(vp, controls, title, badge);
+          break;
+        case 'speed_time_distance_gearbox':
+          renderSim11(vp, controls, title, badge);
+          break;
+        case 'workers_time_workload_balance':
+          renderSim12(vp, controls, title, badge);
+          break;
+        case 'pipes_cisterns_fill_drain_lab':
+          renderSim13(vp, controls, title, badge);
+          break;
+        case 'direct_vs_inverse_dual_comparator':
+          renderSim14(vp, controls, title, badge);
+          break;
+        case 'trairasika_inverse_rule_of_three':
+          renderSim15(vp, controls, title, badge);
+          break;
+        case 'chapter_summary_master_matrix':
+          renderSim16(vp, controls, title, badge);
+          break;
+      }
+      triggerMathRender(vp);
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 1: Proportional Reasoning Foundations
+    // -------------------------------------------------------------
+    function renderSim1(vp, controls, title, badge) {
+      title.innerHTML = '<span>🌱</span> Proportional vs Additive Scaling';
+      badge.textContent = 'Multiplicative Logic';
+
+      let base = 10;
+      let factor = 3;
+
+      function update() {
+        const mult = base * factor;
+        const add = base + factor * 5;
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="display:flex; justify-content:space-around; margin-bottom:14px;">
+              <div style="background:#1e293b; border:1px solid #10b981; border-radius:10px; padding:12px; width:45%;">
+                <div style="font-size:11px; color:#10b981; font-weight:bold;">MULTIPLICATIVE (PROPORTIONAL)</div>
+                <div style="font-size:24px; font-weight:bold; color:#fff; margin-top:4px;">${mult}</div>
+                <div style="font-size:11px; color:#94a3b8;">${base} × ${factor} (Scaling factor: ${factor}×)</div>
+              </div>
+              <div style="background:#1e293b; border:1px solid #64748b; border-radius:10px; padding:12px; width:45%;">
+                <div style="font-size:11px; color:#94a3b8; font-weight:bold;">ADDITIVE DIFFERENCE</div>
+                <div style="font-size:24px; font-weight:bold; color:#cbd5e1; margin-top:4px;">${add}</div>
+                <div style="font-size:11px; color:#64748b;">${base} + ${factor*5} (Step difference: +${factor*5})</div>
+              </div>
+            </div>
+
+            <!-- Visual Bar Comparison -->
+            <div style="width:90%; margin:0 auto 10px auto; display:flex; flex-direction:column; gap:6px;">
+              <div style="text-align:left; font-size:11px; color:#10b981;">Proportional Stretch (${factor}×):</div>
+              <div style="height:14px; width:${Math.min(100, mult * 1.5)}%; background:linear-gradient(90deg, #10b981, #06b6d4); border-radius:4px;"></div>
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:8px; font-size:12px; color:#cbd5e1;">
+              Proportional reasoning scales quantities by multiplying: $y = kx$.
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div class="sim-slider-group">
+            <span>Base Value ($x$):</span>
+            <input type="range" id="bVal" min="5" max="30" value="${base}">
+            <span style="font-weight:bold; color:#38bdf8;">${base}</span>
+          </div>
+          <div class="sim-slider-group">
+            <span>Scale Factor ($k$):</span>
+            <input type="range" id="fVal" min="1" max="5" value="${factor}">
+            <span style="font-weight:bold; color:#10b981;">${factor}×</span>
+          </div>
+        `;
+
+        document.getElementById('bVal').oninput = (e) => {
+          base = parseInt(e.target.value);
+          update();
+        };
+        document.getElementById('fVal').oninput = (e) => {
+          factor = parseInt(e.target.value);
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 2: Direct Variation Recap
+    // -------------------------------------------------------------
+    function renderSim2(vp, controls, title, badge) {
+      title.innerHTML = '<span>📈</span> Direct Variation Graph (y = kx)';
+      badge.textContent = 'Constant Ratio Law';
+
+      let k = 15; // e.g. ₹15 per notebook
+      let x = 4;
+
+      function update() {
+        const y = k * x;
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <svg viewBox="0 0 280 180" style="max-width:260px; width:100%;">
+              <!-- Axes -->
+              <line x1="40" y1="150" x2="260" y2="150" stroke="#475569" stroke-width="2"/>
+              <line x1="40" y1="150" x2="40" y2="20" stroke="#475569" stroke-width="2"/>
+              
+              <!-- Direct Variation Ray from origin -->
+              <line x1="40" y1="150" x2="250" y2="${150 - (k * 8 * 0.8)}" stroke="#10b981" stroke-width="3"/>
+
+              <!-- Active Point (x, y) -->
+              <circle cx="${40 + x * 22}" cy="${150 - (y * 0.8)}" r="6" fill="#fcd34d"/>
+              <line x1="${40 + x * 22}" y1="150" x2="${40 + x * 22}" y2="${150 - (y * 0.8)}" stroke="#fcd34d" stroke-dasharray="3"/>
+              <line x1="40" y1="${150 - (y * 0.8)}" x2="${40 + x * 22}" y2="${150 - (y * 0.8)}" stroke="#fcd34d" stroke-dasharray="3"/>
+
+              <!-- Text Coordinates -->
+              <text x="${40 + x * 22 + 8}" y="${150 - (y * 0.8) - 6}" fill="#fcd34d" font-size="11" font-weight="bold">(${x}, ${y})</text>
+              <text x="250" y="166" fill="#94a3b8" font-size="10">x</text>
+              <text x="30" y="25" fill="#94a3b8" font-size="10">y</text>
+            </svg>
+
+            <div style="background:#0f172a; border:1px solid #10b981; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+              Unit Rate: $k = \mathbf{₹${k}/\text{unit}}$ | Quantity: $x = \mathbf{${x}}$
+              <br>Total Cost: $y = kx = ${k} \times ${x} = \mathbf{₹${y}}$ (Quotient $\frac{y}{x} = \frac{${y}}{${x}} = ${k}$ is constant!)
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div class="sim-slider-group">
+            <span>Unit Rate ($k$):</span>
+            <input type="range" id="kRange" min="5" max="25" step="5" value="${k}">
+            <span style="font-weight:bold; color:#10b981;">₹${k}</span>
+          </div>
+          <div class="sim-slider-group">
+            <span>Quantity ($x$):</span>
+            <input type="range" id="xRange" min="1" max="8" value="${x}">
+            <span style="font-weight:bold; color:#fcd34d;">${x}</span>
+          </div>
+        `;
+
+        document.getElementById('kRange').oninput = (e) => {
+          k = parseInt(e.target.value);
+          update();
+        };
+        document.getElementById('xRange').oninput = (e) => {
+          x = parseInt(e.target.value);
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 3: Ratios in Maps (R.F. Navigator)
+    // -------------------------------------------------------------
+    function renderSim3(vp, controls, title, badge) {
+      title.innerHTML = '<span>🗺️</span> Ratios in Maps (R.F. Navigator)';
+      badge.textContent = 'Cartographic Scale Scaling';
+
+      let mapCm = 4;
+      let scaleKm = 5; // 1 cm = 5 km
+
+      function update() {
+        const groundKm = mapCm * scaleKm;
+        const rfDen = scaleKm * 100000;
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <!-- Map ruler graphic -->
+            <div style="width:260px; height:50px; background:#1e293b; border:2px solid #38bdf8; border-radius:8px; margin:0 auto 12px auto; position:relative; display:flex; align-items:center; padding:0 12px;">
+              <div style="width:${mapCm * 24}px; height:8px; background:linear-gradient(90deg, #6366f1, #06b6d4); border-radius:4px;"></div>
+              <span style="position:absolute; right:14px; font-size:12px; font-weight:bold; color:#fcd34d;">${mapCm} cm on map</span>
+            </div>
+
+            <div style="display:flex; justify-content:space-around; margin-bottom:12px;">
+              <div style="background:#0f172a; border:1px solid #475569; border-radius:8px; padding:8px 14px;">
+                <div style="font-size:11px; color:#94a3b8;">Scale Specification</div>
+                <div style="font-size:15px; font-weight:bold; color:#38bdf8;">1 cm = ${scaleKm} km</div>
+              </div>
+              <div style="background:#0f172a; border:1px solid #10b981; border-radius:8px; padding:8px 14px;">
+                <div style="font-size:11px; color:#10b981;">Representative Fraction</div>
+                <div style="font-size:15px; font-weight:bold; color:#fff;">1 : ${rfDen.toLocaleString()}</div>
+              </div>
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+              Actual Ground Distance $= ${mapCm}\text{ cm} \times ${scaleKm}\text{ km/cm} = \mathbf{${groundKm}\text{ km}}$
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div class="sim-slider-group">
+            <span>Map Distance:</span>
+            <input type="range" id="mCm" min="1" max="8" value="${mapCm}">
+            <span style="font-weight:bold; color:#38bdf8;">${mapCm} cm</span>
+          </div>
+          <div style="font-size:12px; color:#94a3b8; margin-bottom:4px;">Map Scale:</div>
+          <div style="display:flex; gap:6px; justify-content:center;">
+            <button class="sim-btn ${scaleKm===2?'active':''}" onclick="setScaleKm(2)">1 cm = 2 km</button>
+            <button class="sim-btn ${scaleKm===5?'active':''}" onclick="setScaleKm(5)">1 cm = 5 km</button>
+            <button class="sim-btn ${scaleKm===10?'active':''}" onclick="setScaleKm(10)">1 cm = 10 km</button>
+            <button class="sim-btn ${scaleKm===25?'active':''}" onclick="setScaleKm(25)">1 cm = 25 km</button>
+          </div>
+        `;
+
+        document.getElementById('mCm').oninput = (e) => {
+          mapCm = parseInt(e.target.value);
+          update();
+        };
+        window.setScaleKm = (s) => {
+          scaleKm = s;
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 4: Blueprint & Scale Model Studio
+    // -------------------------------------------------------------
+    function renderSim4(vp, controls, title, badge) {
+      title.innerHTML = '<span>📐</span> Blueprint Studio: Linear vs Area';
+      badge.textContent = 'Scale Factor & 1:k² Law';
+
+      let scale = 50; // 1 : 50
+      let bLen = 6;
+      let bWid = 4;
+
+      function update() {
+        const realL = (bLen * scale) / 100;
+        const realW = (bWid * scale) / 100;
+        const bArea = bLen * bWid;
+        const rArea = (realL * realW).toFixed(1);
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="display:flex; justify-content:center; align-items:center; gap:20px; margin-bottom:12px;">
+              <!-- Blueprint rectangle -->
+              <div style="border:2px dashed #38bdf8; width:${bLen*14}px; height:${bWid*14}px; background:rgba(6,182,212,0.2); border-radius:4px; display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:10px; color:#fff;">
+                <span>${bLen}×${bWid} cm</span>
+                <span style="color:#67e8f9;">${bArea} cm²</span>
+              </div>
+              <span style="font-size:20px; color:#fcd34d;">➔ 1 : ${scale} ➔</span>
+              <!-- Real Room specs -->
+              <div style="background:#1e293b; border:1px solid #10b981; border-radius:8px; padding:10px 14px; text-align:left;">
+                <div style="font-size:11px; color:#10b981; font-weight:bold;">REAL ROOM DIMENSIONS</div>
+                <div style="font-size:16px; font-weight:bold; color:#fff;">${realL} m × ${realW} m</div>
+                <div style="font-size:13px; color:#34d399; font-weight:bold;">Floor Area = ${rArea} m²</div>
+              </div>
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+              Lengths scale by $1 : ${scale}$.
+              <br>Areas scale by $1 : ${scale}^2 = 1 : ${scale*scale}$!
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div class="sim-slider-group">
+            <span>Blueprint Length:</span>
+            <input type="range" id="blRange" min="4" max="10" value="${bLen}">
+            <span style="font-weight:bold; color:#38bdf8;">${bLen} cm</span>
+          </div>
+          <div class="sim-slider-group">
+            <span>Scale Ratio:</span>
+            <input type="range" id="scRange" min="20" max="100" step="10" value="${scale}">
+            <span style="font-weight:bold; color:#fcd34d;">1 : ${scale}</span>
+          </div>
+        `;
+
+        document.getElementById('blRange').oninput = (e) => {
+          bLen = parseInt(e.target.value);
+          update();
+        };
+        document.getElementById('scRange').oninput = (e) => {
+          scale = parseInt(e.target.value);
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 5: Ratios with More than 2 Terms (Mortar Mixer)
+    // -------------------------------------------------------------
+    function renderSim5(vp, controls, title, badge) {
+      title.innerHTML = '<span>🏗️</span> Multi-Term Ratio Mixer (a : b : c)';
+      badge.textContent = 'Cement : Sand : Gravel';
+
+      let rA = 1, rB = 2, rC = 4; // 1 : 2 : 4
+      let totalKg = 70;
+
+      function update() {
+        const sumParts = rA + rB + rC;
+        const unitVal = totalKg / sumParts;
+        const wA = (rA * unitVal).toFixed(1);
+        const wB = (rB * unitVal).toFixed(1);
+        const wC = (rC * unitVal).toFixed(1);
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="font-size:13px; color:#94a3b8; margin-bottom:8px;">
+              Mortar Ratio: <strong style="color:#fcd34d;">${rA} : ${rB} : ${rC}</strong> (Total = ${sumParts} parts)
+            </div>
+
+            <!-- Stacked Beaker / Multi-Bar -->
+            <div style="display:flex; height:32px; width:85%; border-radius:8px; overflow:hidden; margin:0 auto 14px auto; border:1px solid #475569;">
+              <div style="width:${(rA/sumParts)*100}%; background:#64748b; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:bold; color:#fff;">Cement ${wA}kg</div>
+              <div style="width:${(rB/sumParts)*100}%; background:#f59e0b; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:bold; color:#0f172a;">Sand ${wB}kg</div>
+              <div style="width:${(rC/sumParts)*100}%; background:#6366f1; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:bold; color:#fff;">Gravel ${wC}kg</div>
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+              For <strong>${totalKg} kg</strong> total batch:
+              <br>Cement: $\frac{${rA}}{${sumParts}} \times ${totalKg} = \mathbf{${wA}\text{ kg}}$ | Sand: $\mathbf{${wB}\text{ kg}}$ | Gravel: $\mathbf{${wC}\text{ kg}}$
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div class="sim-slider-group">
+            <span>Total Batch Size:</span>
+            <input type="range" id="totBatch" min="35" max="210" step="35" value="${totalKg}">
+            <span style="font-weight:bold; color:#fcd34d;">${totalKg} kg</span>
+          </div>
+        `;
+
+        document.getElementById('totBatch').oninput = (e) => {
+          totalKg = parseInt(e.target.value);
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 6: Compound Ratio Chain Linker
+    // -------------------------------------------------------------
+    function renderSim6(vp, controls, title, badge) {
+      title.innerHTML = '<span>🔗</span> Compound Ratio Chain Linker';
+      badge.textContent = 'Unifying A:B and B:C';
+
+      let a = 2, b1 = 3;
+      let b2 = 4, c = 5;
+
+      function gcd(x, y) { return y === 0 ? x : gcd(y, x % y); }
+      function lcm(x, y) { return (x * y) / gcd(x, y); }
+
+      function update() {
+        const commonB = lcm(b1, b2);
+        const m1 = commonB / b1;
+        const m2 = commonB / b2;
+        const finalA = a * m1;
+        const finalC = c * m2;
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="display:flex; justify-content:space-around; align-items:center; margin-bottom:12px;">
+              <div style="background:#1e293b; padding:10px; border-radius:8px; border:1px solid #38bdf8;">
+                <div style="font-size:11px; color:#38bdf8;">Ratio 1</div>
+                <div style="font-size:18px; font-weight:bold; color:#fff;">A : B = ${a} : ${b1}</div>
+              </div>
+              <span style="font-size:20px; color:#fcd34d;">+</span>
+              <div style="background:#1e293b; padding:10px; border-radius:8px; border:1px solid #10b981;">
+                <div style="font-size:11px; color:#10b981;">Ratio 2</div>
+                <div style="font-size:18px; font-weight:bold; color:#fff;">B : C = ${b2} : ${c}</div>
+              </div>
+            </div>
+
+            <!-- Unified Chain -->
+            <div style="background:#0f172a; border:2px solid #6366f1; border-radius:10px; padding:12px; margin-bottom:10px;">
+              <div style="font-size:11px; color:#a5b4fc; margin-bottom:4px;">UNIFIED EXTENDED CHAIN</div>
+              <div style="font-size:24px; font-weight:bold; color:#38bdf8;">
+                A : B : C = ${finalA} : ${commonB} : ${finalC}
+              </div>
+            </div>
+
+            <div style="font-size:12px; color:#cbd5e1;">
+              Equalizing bridge $B$: $\text{LCM}(${b1}, ${b2}) = ${commonB}$.
+              Scale factor 1 $= ${m1}×$, Scale factor 2 $= ${m2}×$.
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div class="sim-slider-group">
+            <span>A : B (B1):</span>
+            <input type="range" id="b1R" min="2" max="6" value="${b1}">
+            <span style="font-weight:bold; color:#38bdf8;">${a}:${b1}</span>
+          </div>
+          <div class="sim-slider-group">
+            <span>B : C (B2):</span>
+            <input type="range" id="b2R" min="2" max="6" value="${b2}">
+            <span style="font-weight:bold; color:#10b981;">${b2}:${c}</span>
+          </div>
+        `;
+
+        document.getElementById('b1R').oninput = (e) => {
+          b1 = parseInt(e.target.value);
+          update();
+        };
+        document.getElementById('b2R').oninput = (e) => {
+          b2 = parseInt(e.target.value);
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 7: Dividing a Whole in a Given Ratio
+    // -------------------------------------------------------------
+    function renderSim7(vp, controls, title, badge) {
+      title.innerHTML = '<span>📊</span> Dividing a Whole in a Given Ratio';
+      badge.textContent = 'Proportional Partitioning';
+
+      let total = 600;
+      let pA = 2;
+      let pB = 3;
+
+      function update() {
+        const sumP = pA + pB;
+        const unit = total / sumP;
+        const sA = pA * unit;
+        const sB = pB * unit;
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="font-size:13px; color:#94a3b8; margin-bottom:6px;">Total Quantity to Divide: <strong style="color:#fff; font-size:16px;">₹${total}</strong></div>
+
+            <div style="display:flex; height:34px; width:85%; border-radius:8px; overflow:hidden; margin:0 auto 14px auto; border:1px solid #475569;">
+              <div style="width:${(pA/sumP)*100}%; background:#38bdf8; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:bold; color:#0f172a;">Share A: ₹${sA.toFixed(0)}</div>
+              <div style="width:${(pB/sumP)*100}%; background:#a855f7; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:bold; color:#fff;">Share B: ₹${sB.toFixed(0)}</div>
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+              Ratio: <strong>${pA} : ${pB}</strong> (Total parts: ${sumP})
+              <br>1 part $= \frac{${total}}{${sumP}} = \text{₹}${unit.toFixed(1)}$
+              <br>Share A $= ${pA} \times ${unit.toFixed(1)} = \mathbf{₹${sA.toFixed(0)}}$ | Share B $= ${pB} \times ${unit.toFixed(1)} = \mathbf{₹${sB.toFixed(0)}}$
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div class="sim-slider-group">
+            <span>Total Whole (₹):</span>
+            <input type="range" id="totVal" min="200" max="1500" step="50" value="${total}">
+            <span style="font-weight:bold; color:#fff;">₹${total}</span>
+          </div>
+          <div class="sim-slider-group">
+            <span>Ratio A:</span>
+            <input type="range" id="pARange" min="1" max="5" value="${pA}">
+            <span style="font-weight:bold; color:#38bdf8;">${pA}</span>
+          </div>
+          <div class="sim-slider-group">
+            <span>Ratio B:</span>
+            <input type="range" id="pBRange" min="1" max="5" value="${pB}">
+            <span style="font-weight:bold; color:#a855f7;">${pB}</span>
+          </div>
+        `;
+
+        document.getElementById('totVal').oninput = (e) => {
+          total = parseInt(e.target.value);
+          update();
+        };
+        document.getElementById('pARange').oninput = (e) => {
+          pA = parseInt(e.target.value);
+          update();
+        };
+        document.getElementById('pBRange').oninput = (e) => {
+          pB = parseInt(e.target.value);
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 8: A Slice of the Pie (Circle Graph Lab)
+    // -------------------------------------------------------------
+    function renderSim8(vp, controls, title, badge) {
+      title.innerHTML = '<span>🥧</span> A Slice of the Pie: Circle Graphs';
+      badge.textContent = 'Proportions to Central Angles (360°)';
+
+      let pct = 30;
+
+      function update() {
+        const angle = (pct / 100) * 360;
+        const rad = (angle - 90) * (Math.PI / 180);
+        const x = 100 + 70 * Math.cos(rad);
+        const y = 100 + 70 * Math.sin(rad);
+        const largeArc = angle > 180 ? 1 : 0;
+
+        const pathD = angle === 360 
+          ? "M 100,30 A 70,70 0 1,0 100,170 A 70,70 0 1,0 100,30 Z" 
+          : `M 100,100 L 100,30 A 70,70 0 ${largeArc},1 ${x},${y} Z`;
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <svg viewBox="0 0 200 200" style="max-width:180px; width:100%;">
+              <!-- Background full circle -->
+              <circle cx="100" cy="100" r="70" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+              <!-- Active Slice -->
+              <path d="${pathD}" fill="#f59e0b" stroke="#fcd34d" stroke-width="2"/>
+              <!-- Center Pivot -->
+              <circle cx="100" cy="100" r="4" fill="#fff"/>
+            </svg>
+
+            <div style="background:#0f172a; border:1px solid #f59e0b; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+              Slice Share: <strong style="color:#fcd34d; font-size:16px;">${pct}%</strong> of the whole
+              <br>Central Angle Formula: $\theta = \frac{${pct}}{100} \times 360^\circ = \mathbf{${angle.toFixed(1)}^\circ}$
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div class="sim-slider-group">
+            <span>Slice Percentage:</span>
+            <input type="range" id="piePct" min="5" max="100" step="5" value="${pct}">
+            <span style="font-weight:bold; color:#fcd34d;">${pct}%</span>
+          </div>
+        `;
+
+        document.getElementById('piePct').oninput = (e) => {
+          pct = parseInt(e.target.value);
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 9: Sector Angle Calculator & Budgeting
+    // -------------------------------------------------------------
+    function renderSim9(vp, controls, title, badge) {
+      title.innerHTML = '<span>💰</span> Budget Pie Chart Calculator';
+      badge.textContent = 'Multi-Category Central Angles';
+
+      let food = 24, rent = 15, edu = 12, save = 9; // total = 60
+
+      function update() {
+        const total = food + rent + edu + save;
+        const aFood = ((food / total) * 360).toFixed(0);
+        const aRent = ((rent / total) * 360).toFixed(0);
+        const aEdu = ((edu / total) * 360).toFixed(0);
+        const aSave = ((save / total) * 360).toFixed(0);
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="font-size:13px; color:#94a3b8; margin-bottom:8px;">Total Monthly Income: <strong>₹${total},000</strong></div>
+
+            <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:8px; margin-bottom:12px;">
+              <div style="background:#1e293b; border-left:4px solid #38bdf8; padding:6px 10px; text-align:left; font-size:11.5px;">
+                Food: ₹${food}k ➔ <strong style="color:#38bdf8;">θ = ${aFood}°</strong>
+              </div>
+              <div style="background:#1e293b; border-left:4px solid #10b981; padding:6px 10px; text-align:left; font-size:11.5px;">
+                Rent: ₹${rent}k ➔ <strong style="color:#10b981;">θ = ${aRent}°</strong>
+              </div>
+              <div style="background:#1e293b; border-left:4px solid #f59e0b; padding:6px 10px; text-align:left; font-size:11.5px;">
+                Edu: ₹${edu}k ➔ <strong style="color:#fcd34d;">θ = ${aEdu}°</strong>
+              </div>
+              <div style="background:#1e293b; border-left:4px solid #a855f7; padding:6px 10px; text-align:left; font-size:11.5px;">
+                Save: ₹${save}k ➔ <strong style="color:#a855f7;">θ = ${aSave}°</strong>
+              </div>
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:8px; font-size:12px; color:#cbd5e1;">
+              Sum check: $${aFood}^\circ + ${aRent}^\circ + ${aEdu}^\circ + ${aSave}^\circ = \mathbf{360^\circ}$ ✓ Complete Circle Accounted
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div class="sim-slider-group">
+            <span>Food (₹k):</span>
+            <input type="range" id="fBudget" min="10" max="35" value="${food}">
+            <span style="font-weight:bold; color:#38bdf8;">₹${food}k</span>
+          </div>
+          <div class="sim-slider-group">
+            <span>Rent (₹k):</span>
+            <input type="range" id="rBudget" min="10" max="30" value="${rent}">
+            <span style="font-weight:bold; color:#10b981;">₹${rent}k</span>
+          </div>
+        `;
+
+        document.getElementById('fBudget').oninput = (e) => {
+          food = parseInt(e.target.value);
+          update();
+        };
+        document.getElementById('rBudget').oninput = (e) => {
+          rent = parseInt(e.target.value);
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 10: Inverse Proportions Hyperbola Engine
+    // -------------------------------------------------------------
+    function renderSim10(vp, controls, title, badge) {
+      title.innerHTML = '<span>⚡</span> Inverse Proportion: x · y = k';
+      badge.textContent = 'Constant Product Hyperbola';
+
+      let k = 60;
+      let x = 6;
+
+      function update() {
+        const y = (k / x).toFixed(1);
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <svg viewBox="0 0 280 180" style="max-width:260px; width:100%;">
+              <!-- Axes -->
+              <line x1="40" y1="150" x2="260" y2="150" stroke="#475569" stroke-width="2"/>
+              <line x1="40" y1="150" x2="40" y2="20" stroke="#475569" stroke-width="2"/>
+              
+              <!-- Hyperbolic Curve points -->
+              <path d="M 50,${150 - (k/2)*1.8} Q 80,80 240,${150 - (k/20)*1.8}" fill="none" stroke="#f43f5e" stroke-width="3"/>
+
+              <!-- Active Point (x, y) -->
+              <circle cx="${40 + x * 10}" cy="${150 - y * 6}" r="6" fill="#fcd34d"/>
+              <line x1="${40 + x * 10}" y1="150" x2="${40 + x * 10}" y2="${150 - y * 6}" stroke="#fcd34d" stroke-dasharray="3"/>
+              <line x1="40" y1="${150 - y * 6}" x2="${40 + x * 10}" y2="${150 - y * 6}" stroke="#fcd34d" stroke-dasharray="3"/>
+
+              <text x="${40 + x * 10 + 6}" y="${150 - y * 6 - 6}" fill="#fcd34d" font-size="11" font-weight="bold">(${x}, ${y})</text>
+            </svg>
+
+            <div style="background:#0f172a; border:1px solid #f43f5e; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+              Product Invariant: $x \times y = ${x} \times ${y} = \mathbf{${k}}$ (Constant!)
+              <br>When $x$ increases, $y$ decreases reciprocally along a <strong>rectangular hyperbola</strong>.
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div class="sim-slider-group">
+            <span>Input Variable (x):</span>
+            <input type="range" id="xInv" min="2" max="20" value="${x}">
+            <span style="font-weight:bold; color:#fcd34d;">x = ${x}</span>
+          </div>
+        `;
+
+        document.getElementById('xInv').oninput = (e) => {
+          x = parseInt(e.target.value);
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 11: Speed, Distance & Time Gearbox
+    // -------------------------------------------------------------
+    function renderSim11(vp, controls, title, badge) {
+      title.innerHTML = '<span>🚗</span> Speed vs Travel Time (Fixed Distance)';
+      badge.textContent = 'S × T = D (Reciprocal Law)';
+
+      let dist = 240;
+      let speed = 60;
+
+      function update() {
+        const time = (dist / speed).toFixed(2);
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="display:flex; justify-content:space-around; align-items:center; margin-bottom:12px;">
+              <div style="background:#1e293b; padding:10px 14px; border-radius:8px; border:1px solid #06b6d4;">
+                <div style="font-size:11px; color:#06b6d4;">SPEED (S)</div>
+                <div style="font-size:20px; font-weight:bold; color:#fff;">${speed} km/h</div>
+              </div>
+              <span style="font-size:22px; font-weight:bold; color:#fcd34d;">×</span>
+              <div style="background:#1e293b; padding:10px 14px; border-radius:8px; border:1px solid #10b981;">
+                <div style="font-size:11px; color:#10b981;">TIME (T)</div>
+                <div style="font-size:20px; font-weight:bold; color:#fff;">${time} hrs</div>
+              </div>
+              <span style="font-size:22px; font-weight:bold; color:#fcd34d;">=</span>
+              <div style="background:#1e293b; padding:10px 14px; border-radius:8px; border:1px solid #6366f1;">
+                <div style="font-size:11px; color:#a5b4fc;">FIXED DISTANCE</div>
+                <div style="font-size:20px; font-weight:bold; color:#fff;">${dist} km</div>
+              </div>
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+              If speed doubles from 60 km/h to 120 km/h, time drops from 4.0 hrs to 2.0 hrs (halved!).
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div class="sim-slider-group">
+            <span>Speed:</span>
+            <input type="range" id="spVal" min="20" max="120" step="10" value="${speed}">
+            <span style="font-weight:bold; color:#06b6d4;">${speed} km/h</span>
+          </div>
+        `;
+
+        document.getElementById('spVal').oninput = (e) => {
+          speed = parseInt(e.target.value);
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 12: Work, Workers & Days Balance
+    // -------------------------------------------------------------
+    function renderSim12(vp, controls, title, badge) {
+      title.innerHTML = '<span>👷</span> Work, Workers & Days Balance';
+      badge.textContent = 'W₁ · D₁ = W₂ · D₂';
+
+      let totalWork = 120; // 120 worker-days
+      let workers = 12;
+
+      function update() {
+        const days = (totalWork / workers).toFixed(1);
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="font-size:13px; color:#94a3b8; margin-bottom:8px;">
+              Total Workload: <strong style="color:#fcd34d;">${totalWork} worker-days</strong>
+            </div>
+
+            <div style="display:flex; justify-content:space-around; align-items:center; margin-bottom:12px;">
+              <div style="background:#1e293b; padding:10px 16px; border-radius:8px; border:1px solid #38bdf8;">
+                <div style="font-size:11px; color:#38bdf8;">Number of Workers (W)</div>
+                <div style="font-size:22px; font-weight:bold; color:#fff;">${workers}</div>
+              </div>
+              <span style="font-size:20px; color:#94a3b8;">➔</span>
+              <div style="background:#1e293b; padding:10px 16px; border-radius:8px; border:1px solid #10b981;">
+                <div style="font-size:11px; color:#10b981;">Days Required (D)</div>
+                <div style="font-size:22px; font-weight:bold; color:#34d399;">${days} days</div>
+              </div>
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+              $W \times D = ${workers} \times ${days} = \mathbf{${totalWork}}$
+              <br>Hiring more workers reduces completion days proportionally.
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div class="sim-slider-group">
+            <span>Workers Available:</span>
+            <input type="range" id="wCount" min="4" max="24" step="2" value="${workers}">
+            <span style="font-weight:bold; color:#38bdf8;">${workers} workers</span>
+          </div>
+        `;
+
+        document.getElementById('wCount').oninput = (e) => {
+          workers = parseInt(e.target.value);
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 13: Pipes, Cisterns & Combined Flow
+    // -------------------------------------------------------------
+    function renderSim13(vp, controls, title, badge) {
+      title.innerHTML = '<span>🚰</span> Pipes and Cisterns Lab';
+      badge.textContent = 'Reciprocal Flow Rate Addition';
+
+      let tA = 6;
+      let tB = 3;
+
+      function update() {
+        const combRate = (1/tA) + (1/tB);
+        const combTime = (1 / combRate).toFixed(2);
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="display:flex; justify-content:space-around; margin-bottom:12px;">
+              <div style="background:#1e293b; padding:8px 12px; border-radius:8px; border:1px solid #38bdf8;">
+                <div style="font-size:11px; color:#38bdf8;">Tap A alone</div>
+                <div style="font-size:16px; font-weight:bold; color:#fff;">${tA} hrs (1/${tA} tank/hr)</div>
+              </div>
+              <div style="background:#1e293b; padding:8px 12px; border-radius:8px; border:1px solid #10b981;">
+                <div style="font-size:11px; color:#10b981;">Tap B alone</div>
+                <div style="font-size:16px; font-weight:bold; color:#fff;">${tB} hrs (1/${tB} tank/hr)</div>
+              </div>
+            </div>
+
+            <!-- Water Tank Simulation -->
+            <div style="width:140px; height:70px; border:3px solid #64748b; border-radius:6px; margin:0 auto 10px auto; position:relative; overflow:hidden;">
+              <div style="position:absolute; bottom:0; width:100%; height:75%; background:rgba(6,182,212,0.5);"></div>
+              <div style="position:absolute; top:24px; left:0; width:100%; text-align:center; font-size:11px; font-weight:bold; color:#fff;">Together: ${combTime} hrs</div>
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:8px; font-size:12.5px; color:#cbd5e1;">
+              Combined Rate: $\frac{1}{${tA}} + \frac{1}{${tB}} = \frac{${tA+tB}}{${tA*tB}}$ tank/hr ➔ Time $= \mathbf{${combTime}\text{ hours}}$
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div class="sim-slider-group">
+            <span>Tap A Time:</span>
+            <input type="range" id="taRange" min="2" max="12" value="${tA}">
+            <span style="font-weight:bold; color:#38bdf8;">${tA} hrs</span>
+          </div>
+          <div class="sim-slider-group">
+            <span>Tap B Time:</span>
+            <input type="range" id="tbRange" min="2" max="12" value="${tB}">
+            <span style="font-weight:bold; color:#10b981;">${tB} hrs</span>
+          </div>
+        `;
+
+        document.getElementById('taRange').oninput = (e) => {
+          tA = parseInt(e.target.value);
+          update();
+        };
+        document.getElementById('tbRange').oninput = (e) => {
+          tB = parseInt(e.target.value);
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 14: Direct vs. Inverse Dual Comparator
+    // -------------------------------------------------------------
+    function renderSim14(vp, controls, title, badge) {
+      title.innerHTML = '<span>⚖️</span> Direct vs Inverse Proportion Matrix';
+      badge.textContent = 'Dual Decision Engine';
+
+      let mode = 'direct'; // direct or inverse
+
+      function update() {
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="font-size:16px; font-weight:bold; color:${mode==='direct'?'#10b981':'#f43f5e'}; margin-bottom:8px;">
+              ${mode === 'direct' ? 'DIRECT PROPORTION (y = kx)' : 'INVERSE PROPORTION (x · y = k)'}
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #334155; border-radius:10px; padding:12px; font-size:13px; line-height:1.6; text-align:left;">
+              ${mode === 'direct' ? `
+                <div style="color:#6ee7b7; font-weight:bold; margin-bottom:4px;">When x DOUBLES ➔ y DOUBLES!</div>
+                <div>• Constant of Proportionality: $\\frac{y}{x} = k$ (Constant Quotient)</div>
+                <div>• Two-Point Formula: $\\frac{x_1}{y_1} = \\frac{x_2}{y_2}$</div>
+                <div>• Examples: Petrol vs Distance, Notebooks vs Total Cost, Hours vs Pay.</div>
+              ` : `
+                <div style="color:#fda4af; font-weight:bold; margin-bottom:4px;">When x DOUBLES ➔ y is HALVED!</div>
+                <div>• Constant Product Law: $x \\times y = k$</div>
+                <div>• Two-Point Formula: $x_1 y_1 = x_2 y_2$</div>
+                <div>• Examples: Speed vs Travel Time, Workers vs Days, Pipe Taps vs Fill Time.</div>
+              `}
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div style="display:flex; gap:8px; justify-content:center;">
+            <button class="sim-btn ${mode==='direct'?'active':''}" onclick="setDualMode('direct')">Direct Proportion</button>
+            <button class="sim-btn ${mode==='inverse'?'active':''}" onclick="setDualMode('inverse')" style="background:${mode==='inverse'?'#f43f5e':'#475569'};">Inverse Proportion</button>
+          </div>
+        `;
+
+        window.setDualMode = (m) => {
+          mode = m;
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 15: Ancient Indian Vyastatrairāśika
+    // -------------------------------------------------------------
+    function renderSim15(vp, controls, title, badge) {
+      title.innerHTML = '<span>📜</span> Vyastatrairāśika: Inverse Rule of Three';
+      badge.textContent = 'Āryabhaṭa & Bhāskarācārya Heritage';
+
+      let x1 = 12; // Pramāṇa (12 cows)
+      let y1 = 14; // Phala (14 days)
+      let x2 = 21; // Icchā (21 cows)
+
+      function update() {
+        const y2 = ((x1 * y1) / x2).toFixed(1);
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="font-size:14px; font-weight:bold; color:#fcd34d; margin-bottom:8px;">
+              Vyastatrairāśika Equation
+            </div>
+
+            <div style="background:#1e293b; border:1px solid #6366f1; border-radius:8px; padding:10px; margin-bottom:12px; font-size:16px; color:#38bdf8;">
+              $$\text{Icchā-phala } (y_2) = \frac{\text{Pramāṇa } (x_1) \times \text{Phala } (y_1)}{\text{Icchā } (x_2)}$$
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; font-size:13px; color:#cbd5e1;">
+              Calculation: $y_2 = \frac{${x1} \times ${y1}}{${x2}} = \frac{${x1*y1}}{${x2}} = \mathbf{${y2}\text{ days}}$
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div class="sim-slider-group">
+            <span>Pramāṇa (x₁):</span>
+            <input type="range" id="pX1" min="6" max="24" value="${x1}">
+            <span style="font-weight:bold; color:#38bdf8;">${x1}</span>
+          </div>
+          <div class="sim-slider-group">
+            <span>Phala (y₁):</span>
+            <input type="range" id="pY1" min="5" max="30" value="${y1}">
+            <span style="font-weight:bold; color:#10b981;">${y1}</span>
+          </div>
+          <div class="sim-slider-group">
+            <span>Icchā (x₂):</span>
+            <input type="range" id="pX2" min="6" max="30" value="${x2}">
+            <span style="font-weight:bold; color:#fcd34d;">${x2}</span>
+          </div>
+        `;
+
+        document.getElementById('pX1').oninput = (e) => {
+          x1 = parseInt(e.target.value);
+          update();
+        };
+        document.getElementById('pY1').oninput = (e) => {
+          y1 = parseInt(e.target.value);
+          update();
+        };
+        document.getElementById('pX2').oninput = (e) => {
+          x2 = parseInt(e.target.value);
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 16: Chapter Summary Master Matrix
+    // -------------------------------------------------------------
+    function renderSim16(vp, controls, title, badge) {
+      title.innerHTML = '<span>📋</span> Proportionality Grand Matrix';
+      badge.textContent = 'Formulas & Decision Cheat Sheet';
+
+      let tab = 0;
+      const topics = [
+        {
+          name: 'Direct Proportion',
+          rule: '\\frac{y}{x} = k \\implies x_1 y_2 = x_2 y_1',
+          detail: 'When one increases, the other increases proportionally. Ratio is constant.'
+        },
+        {
+          name: 'Inverse Proportion',
+          rule: 'x \\cdot y = k \\implies x_1 y_1 = x_2 y_2',
+          detail: 'When one increases, the other decreases proportionally. Product is constant.'
+        },
+        {
+          name: 'Map Scales (R.F.)',
+          rule: '\\text{R.F.} = \\frac{\\text{Map Distance}}{\\text{Ground Distance}}',
+          detail: 'Dimensionless unit-free fraction representing spatial reduction.'
+        },
+        {
+          name: 'A Slice of the Pie',
+          rule: '\\theta = \\frac{\\text{Value}}{\\text{Total}} \\times 360^\\circ',
+          detail: 'Central sector angle for circular graph visualization.'
+        }
+      ];
+
+      function update() {
+        const item = topics[tab];
+        vp.innerHTML = `
+          <div style="width:100%; text-align:left;">
+            <div style="font-size:15px; font-weight:bold; color:#fcd34d; margin-bottom:8px; border-bottom:1px solid #334155; padding-bottom:4px;">
+              ${item.name}
+            </div>
+            <div style="background:#1e293b; border:1px solid #6366f1; border-radius:8px; padding:12px; margin-bottom:10px; font-size:18px; color:#38bdf8; text-align:center;">
+              $$${item.rule}$$
+            </div>
+            <div style="background:rgba(16,185,129,0.15); border:1px solid #10b981; border-radius:8px; padding:10px; font-size:12.5px; color:#6ee7b7;">
+              ${item.detail}
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div style="display:flex; flex-wrap:wrap; gap:6px; justify-content:center;">
+            ${topics.map((t, i) => `
+              <button class="sim-btn ${tab===i?'active':''}" onclick="setSumTab(${i})" style="font-size:11px; padding:5px 8px;">
+                ${t.name}
+              </button>
+            `).join('')}
+          </div>
+        `;
+
+        window.setSumTab = (i) => {
+          tab = i;
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // ==========================================
+    // Page Initializer
+    // ==========================================
+    window.addEventListener('DOMContentLoaded', () => {
+      loadSlide(0);
+    });
+  </script>
+</body>
+</html>

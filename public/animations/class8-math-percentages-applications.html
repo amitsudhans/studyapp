@@ -1,0 +1,2310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 8 Mathematics • Chapter 8: Comparing Quantities — Percentages & Applications Lab</title>
+  
+  <!-- KaTeX CSS & JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="triggerMathRender(document.body);"></script>
+
+  <style>
+    :root {
+      --bg-primary: #070b14;
+      --bg-secondary: #0f172a;
+      --card-bg: rgba(15, 23, 42, 0.85);
+      --card-border: rgba(99, 102, 241, 0.25);
+      --accent-indigo: #6366f1;
+      --accent-cyan: #06b6d4;
+      --accent-amber: #f59e0b;
+      --accent-emerald: #10b981;
+      --accent-rose: #f43f5e;
+      --accent-purple: #a855f7;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at top right, #1e1b4b 0%, #070b14 65%);
+      color: var(--text-main);
+      font-family: var(--font-stack);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Sticky Header */
+    header {
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid var(--card-border);
+      backdrop-filter: blur(12px);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .header-badge {
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    .header-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #f1f5f9;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .slide-indicator {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: rgba(30, 41, 59, 0.6);
+      padding: 4px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .speech-btn {
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid var(--accent-indigo);
+      color: #c7d2fe;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .speech-btn:hover {
+      background: rgba(99, 102, 241, 0.3);
+      color: #fff;
+    }
+    .speech-btn.active {
+      background: #10b981;
+      border-color: #10b981;
+      color: #fff;
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Slide Header Card */
+    .slide-header {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .slide-tag {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .slide-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+
+    .slide-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* Mentor Voice Avatar Bar */
+    .mentor-bar {
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .mentor-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #1e293b;
+      border: 2px solid var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .mentor-avatar svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .avatar-mouth {
+      transform-origin: 50px 65px;
+    }
+    .speaking .avatar-mouth {
+      animation: mouthTalk 0.25s infinite alternate ease-in-out;
+    }
+    @keyframes mouthTalk {
+      0% { transform: scaleY(1); }
+      100% { transform: scaleY(2.2); }
+    }
+
+    .mentor-name {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-amber);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .mentor-text {
+      font-size: 13.5px;
+      color: #e2e8f0;
+      font-style: italic;
+    }
+
+    /* Lesson Slide Layout: 2 Columns */
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .lesson-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Left Column: Theory & In-Slide Checkpoints */
+    .theory-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .theory-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      line-height: 1.65;
+      font-size: 14.5px;
+      color: #cbd5e1;
+    }
+
+    .theory-card h4 {
+      color: #fff;
+      font-size: 16px;
+      margin-top: 14px;
+      margin-bottom: 8px;
+    }
+
+    .theory-card p {
+      margin-bottom: 12px;
+    }
+
+    .theory-card ul, .theory-card ol {
+      margin-left: 20px;
+      margin-bottom: 12px;
+    }
+
+    .theory-card li {
+      margin-bottom: 6px;
+    }
+
+    /* Checkpoints Box */
+    .checkpoints-container {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 16px;
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .checkpoint-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--accent-amber);
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .checkpoint-card {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .checkpoint-q {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #f1f5f9;
+      margin-bottom: 12px;
+      line-height: 1.45;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .option-btn {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background: rgba(99, 102, 241, 0.15);
+      border-color: var(--accent-indigo);
+      color: #fff;
+    }
+
+    .option-btn.correct {
+      background: rgba(16, 185, 129, 0.2) !important;
+      border-color: var(--accent-emerald) !important;
+      color: #a7f3d0 !important;
+      font-weight: 600;
+    }
+
+    .option-btn.incorrect {
+      background: rgba(244, 63, 94, 0.2) !important;
+      border-color: var(--accent-rose) !important;
+      color: #fecdd3 !important;
+    }
+
+    .feedback-box {
+      margin-top: 10px;
+      font-size: 12.5px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      line-height: 1.4;
+      display: none;
+    }
+    .feedback-box.show {
+      display: block;
+    }
+    .feedback-box.correct-box {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid var(--accent-emerald);
+      color: #6ee7b7;
+    }
+    .feedback-box.incorrect-box {
+      background: rgba(244, 63, 94, 0.15);
+      border: 1px solid var(--accent-rose);
+      color: #fda4af;
+    }
+
+    /* Right Column: Simulator & Controls */
+    .sim-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: sticky;
+      top: 80px;
+    }
+
+    .sim-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 12px;
+    }
+
+    .sim-head h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sim-badge {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(99, 102, 241, 0.2);
+      color: #a5b4fc;
+      font-weight: 600;
+    }
+
+    .sim-viewport {
+      background: #090e1a;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      min-height: 330px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sim-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: rgba(30, 41, 59, 0.5);
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .sim-btn {
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .sim-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+    .sim-btn.active {
+      background: linear-gradient(135deg, #10b981, #06b6d4);
+    }
+
+    .sim-slider-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12.5px;
+      color: #cbd5e1;
+    }
+    .sim-slider-group span:first-child {
+      min-width: 90px;
+    }
+    .sim-slider-group input[type="range"] {
+      flex: 1;
+      accent-color: var(--accent-cyan);
+      cursor: pointer;
+    }
+
+    /* Quiz Slides: 4 Dedicated Slides (10 questions each) */
+    .quiz-container {
+      display: none;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .quiz-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+    }
+
+    .quiz-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .q-num-badge {
+      background: rgba(99, 102, 241, 0.25);
+      color: #a5b4fc;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 12px;
+    }
+
+    .sol-btn {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid var(--accent-amber);
+      color: #fcd34d;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s ease;
+    }
+    .sol-btn:hover {
+      background: rgba(245, 158, 11, 0.3);
+      color: #fff;
+    }
+
+    /* Navigation Footer */
+    footer {
+      background: rgba(15, 23, 42, 0.95);
+      border-top: 1px solid var(--card-border);
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      bottom: 0;
+      z-index: 100;
+    }
+
+    .nav-btn {
+      background: linear-gradient(135deg, #4f46e5, #6366f1);
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .nav-btn:hover:not(:disabled) {
+      background: linear-gradient(135deg, #4338ca, #4f46e5);
+      transform: translateY(-1px);
+    }
+    .nav-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .last-slide-notice {
+      color: #34d399;
+      font-size: 13.5px;
+      font-weight: 700;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid #10b981;
+      padding: 8px 18px;
+      border-radius: 20px;
+      display: none;
+    }
+
+    /* Modal Backdrop */
+    .modal-backdrop {
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Header Navigation -->
+  <header>
+    <div class="header-left">
+      <span class="header-badge">CLASS 8 • MATHEMATICS • CHAPTER 8</span>
+      <span class="header-title">Comparing Quantities: Percentages & Applications Lab</span>
+    </div>
+    <div class="header-right">
+      <div class="slide-indicator" id="slideNumDisplay">Slide 1 of 20</div>
+      <button class="speech-btn" id="voiceToggleBtn" onclick="toggleVoice()">
+        <span id="speakerIcon">🔊</span>
+        <span id="voiceStatusText">Listen</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Slide Workspace -->
+  <main>
+    <!-- Slide Header Card -->
+    <section class="slide-header">
+      <div class="slide-tag" id="slideTag">CHAPTER 8 • SLIDE 1 OF 20</div>
+      <h1 class="slide-title" id="slideTitle">Hidden Fractions</h1>
+      <p class="slide-subtitle" id="slideSubtitle">Unmasking Parts of a Whole & Hundredths</p>
+    </section>
+
+    <!-- Mentor Bar with Synchronized Talking Avatar -->
+    <section class="mentor-bar" id="mentorContainer">
+      <div class="mentor-avatar" id="mentorAvatar">
+        <svg viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="44" fill="#1e293b" stroke="#38bdf8" stroke-width="3"/>
+          <circle cx="35" cy="42" r="5" fill="#38bdf8"/>
+          <circle cx="65" cy="42" r="5" fill="#38bdf8"/>
+          <path class="avatar-mouth" d="M 38 66 Q 50 74 62 66" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="mentor-name">Mathematics Mentor</div>
+        <div class="mentor-text" id="mentorVoiceText">
+          Welcome to our laboratory on percentages and practical applications!
+        </div>
+      </div>
+    </section>
+
+    <!-- Lesson Slide Layout: 2 Columns (Used for Slides 1 to 16) -->
+    <div class="lesson-grid" id="lessonGrid">
+      <!-- Left Column: Rich Theory & In-Slide Checkpoints -->
+      <div class="theory-panel">
+        <div class="theory-card" id="theoryContent">
+          <!-- Populated dynamically -->
+        </div>
+
+        <!-- In-Slide Conceptual Checkpoints (2 per lesson slide) -->
+        <div class="checkpoints-container" id="checkpointContainer">
+          <div class="checkpoint-header">
+            <span>⚡</span> Conceptual Checkpoints (Test Your Understanding)
+          </div>
+          <div id="checkpointsList" style="display:flex; flex-direction:column; gap:14px;">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Simulator Panel -->
+      <section class="sim-panel" id="simulatorPanel">
+        <div class="sim-head">
+          <h3 id="simTitle">
+            <span>🔬</span> Interactive Lab Simulator
+          </h3>
+          <span class="sim-badge" id="simBadge">Live Explorer</span>
+        </div>
+        <div class="sim-viewport" id="simViewport">
+          <!-- Canvas / SVG Visuals Populated Dynamically -->
+        </div>
+        <div class="sim-controls" id="simControls">
+          <!-- Sliders and Buttons Populated Dynamically -->
+        </div>
+      </section>
+    </div>
+
+    <!-- Quiz Challenge Slides Container (Slides 17 to 20: 10 questions each) -->
+    <div class="quiz-container" id="quizContainer">
+      <!-- 10 Questions for the current quiz slide -->
+      <div class="quiz-grid" id="quizGrid"></div>
+    </div>
+  </main>
+
+  <!-- Sticky Navigation Footer -->
+  <footer>
+    <button class="nav-btn" id="prevBtn" onclick="prevSlide()" disabled>
+      ← Previous Slide
+    </button>
+    <div id="lastSlideNotice" class="last-slide-notice">
+      You have reached the last slide of this chapter
+    </div>
+    <button class="nav-btn" id="nextBtn" onclick="nextSlide()">
+      Next Slide →
+    </button>
+  </footer>
+
+  <!-- Universal Pop-up Solution Modal -->
+  <div id="solutionModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop" style="position:fixed; top:0; left:0; width:100vw; height:100vh; display:none; align-items:center; justify-content:center; z-index:1000;">
+    <div style="background:#0f172a; border:1px solid #6366f1; border-radius:16px; max-width:620px; width:95%; padding:24px; position:relative; box-shadow:0 20px 35px -5px rgba(0,0,0,0.8);">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+        <h3 id="modalTitle" style="color:#fcd34d; font-size:16px; font-weight:700; display:flex; align-items:center; gap:8px;">
+          <span>💡</span> Detailed Mathematical Solution
+        </h3>
+        <button onclick="closeSolutionModal()" style="background:none; border:none; color:#94a3b8; font-size:20px; cursor:pointer; padding:4px 8px;">✕</button>
+      </div>
+      <div id="modalBody" style="font-size:14px; line-height:1.65; color:#e2e8f0; max-height:60vh; overflow-y:auto; padding-right:8px;">
+        <!-- Solution math and explanation -->
+      </div>
+      <div style="margin-top:16px; text-align:right;">
+        <button onclick="closeSolutionModal()" style="background:#4f46e5; color:#fff; border:none; padding:8px 18px; border-radius:8px; font-size:13px; font-weight:700; cursor:pointer;">Close Solution</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Injected Data
+    const slides = [{"id": 1, "title": "Hidden Fractions", "subtitle": "Uncovering Fractional Parts in Shaded Grids, Ratios & Everyday Measures", "content": "<p>In our daily world, quantities are often partitioned into parts of a whole. Before we can master percentages, we must learn to recognize <strong>hidden fractions</strong> embedded in shapes, collections, and continuous measurements.</p><ul><li><strong>The Whole as Unity (1):</strong> The entire region, group, or quantity represents the number 1.</li><li><strong>Equal Partitioning:</strong> If a unit square is sliced into $n$ congruent pieces and $k$ pieces are shaded, the shaded portion represents the fraction:$$\\text{Fraction} = \\frac{k}{n} = \\frac{\\text{Number of Selected Parts}}{\\text{Total Number of Equal Parts}}$$</li><li><strong>Hidden Combinations:</strong> A shape may be partitioned unevenly at first glance. By subdividing all sections into the smallest common unit, the true fractional value is unmasked!</li></ul><p>For example, if half of a square is divided into 2 equal parts and the other half into 4 equal parts, one small piece is not $\\frac{1}{6}$; it is $\\frac{1}{8}$ of the whole square!</p>", "sim_type": "hidden_fractions_grid_scanner", "voice": "Welcome to our laboratory on percentages and their real-world applications! We begin by uncovering hidden fractions. Every fraction tells the story of parts compared to an unbroken whole.", "checkpoints": [{"q": "A rectangular garden is divided into 8 equal flowerbeds. If 3 flowerbeds are planted with roses and 2 with marigolds, what fraction of the garden remains unplanted?", "options": ["5/8", "3/8", "1/2", "1/4"], "ans": 1, "feedback": "Correct! Planted flowerbeds = 3 + 2 = 5 out of 8. The unplanted fraction is 1 - 5/8 = 3/8."}, {"q": "A pizza is cut into 12 equal slices. Kabir eats 3 slices and Priya eats 1 slice. What fraction of the pizza was consumed in simplest form?", "options": ["4/12", "1/3", "1/4", "2/3"], "ans": 1, "feedback": "Correct! Total slices eaten = 3 + 1 = 4 slices out of 12. In simplest form, 4/12 = 1/3."}]}, {"id": 2, "title": "Fractions into Percentages & Conversion", "subtitle": "The Concept of Parts Per Hundred & The Universal Multiplier", "content": "<p>The word <strong>percent</strong> originates from the Latin phrase <em>per centum</em>, meaning <strong>'per hundred'</strong> or <strong>'out of every hundred'</strong>. It is denoted by the symbol %.</p>$$\\mathbf{P\\% = \\frac{P}{100}}$$<p>A percentage is simply a fraction whose denominator is fixed at 100. This standardization makes comparisons effortless!</p><h4>How to Convert Any Fraction into a Percentage:</h4><ol><li><strong>Method 1 (Equivalent Denominator 100):</strong> If the denominator divides 100 evenly, multiply both numerator and denominator:$$\\frac{3}{5} = \\frac{3 \\times 20}{5 \\times 20} = \\frac{60}{100} = \\mathbf{60\\%}$$</li><li><strong>Method 2 (The Universal 100% Multiplier):</strong> Because $100\\% = \\frac{100}{100} = 1$, multiplying any number by 100% changes its form without changing its value:$$\\text{Percentage} = \\left(\\frac{a}{b} \\times 100\\right)\\%$$$$\\frac{5}{8} \\times 100\\% = \\frac{500}{8}\\% = \\mathbf{62.5\\%}$$</li></ol>", "sim_type": "fraction_to_percent_morpher", "voice": "Percent literally means per hundred. By expressing any fractional quantity as a fraction with denominator one hundred, we gain an instant, universal standard of comparison.", "checkpoints": [{"q": "Convert the fraction 7/20 into an equivalent percentage.", "options": ["28%", "35%", "40%", "70%"], "ans": 1, "feedback": "Correct! (7/20) × 100% = 7 × 5% = 35%."}, {"q": "Convert 3/8 into a percentage.", "options": ["37.5%", "38%", "35%", "42.5%"], "ans": 0, "feedback": "Correct! (3/8) × 100% = 300/8% = 37.5%."}]}, {"id": 3, "title": "Everyday Percentages", "subtitle": "Battery Gauges, Test Scores, Discount Badges & Storage Quotas", "content": "<p>Percentages are the lingua franca of modern technology, commerce, and media because they convey relative scale instantaneously, regardless of total capacity.</p><ul><li><strong>Smartphone Battery Indicator:</strong> When your phone displays 42%, it means 42 out of 100 equal energy units remain. A 5000 mAh battery at 42% holds 2100 mAh, whereas a 3000 mAh battery at 42% holds 1260 mAh—both are at the same relative fullness!</li><li><strong>Examination Scores:</strong> Scoring 45 out of 50 (90%) represents a higher academic performance than scoring 72 out of 90 (80%).</li><li><strong>Retail Discounts:</strong> A '25% Off' sticker immediately communicates that one-fourth of the price will be deducted at checkout.</li><li><strong>Nutritional Values:</strong> A juice packet stating '10% Added Sugar' implies that exactly 10 g in every 100 g of beverage is sugar.</li></ul>", "sim_type": "everyday_percentages_dashboard", "voice": "Look around you! From the battery indicator on your smartphone to retail discounts and test scores, percentages provide a universal language of relative proportion.", "checkpoints": [{"q": "Student A scores 36 out of 40 in Math. Student B scores 63 out of 75 in Science. Who achieved the higher percentage score?", "options": ["Student B (63 is greater than 36)", "Student A (90% vs. 84% for Student B)", "Both scored exactly the same percentage", "Cannot be compared because maximum marks are different"], "ans": 1, "feedback": "Correct! Student A: (36/40) × 100% = 90%. Student B: (63/75) × 100% = 84%. Student A performed better relatively."}, {"q": "A laptop battery of capacity 60 Watt-hours is at 65% charge. How much energy remains in the battery?", "options": ["36 Wh", "39 Wh", "42 Wh", "45 Wh"], "ans": 1, "feedback": "Correct! Energy = 65% of 60 = 0.65 × 60 = 39 Watt-hours."}]}, {"id": 4, "title": "Percent of a Value & Quick Mental Math", "subtitle": "Benchmark Decomposition: The 10%, 1%, 5%, and 50% Rule", "content": "<p>To compute $P\\%$ of a given quantity $Q$, we use the foundational formula:</p>$$\\mathbf{\\text{Value} = \\frac{P}{100} \\times Q}$$<h4>Rapid Mental Math Shortcuts (Benchmark Method):</h4><p>Calculators are rarely needed if you decompose percentages into familiar anchor benchmarks:</p><ul><li><strong>50% of Q:</strong> Divide by 2 (1/2).</li><li><strong>25% of Q:</strong> Half of 50%, or divide by 4 (1/4).</li><li><strong>10% of Q:</strong> Shift the decimal point one place to the left (divide by 10).</li><li><strong>1% of Q:</strong> Shift the decimal point two places to the left (divide by 100).</li><li><strong>5% of Q:</strong> Exactly half of 10%.</li></ul><p><strong>Example: Calculate 35% of ₹480 mentally:</strong></p>$$\\text{Anchor: } 10\\% \\text{ of } 480 = 48$$$$30\\% = 3 \\times 48 = 144$$$$5\\% = \\text{half of } 48 = 24$$$$35\\% = 144 + 24 = \\mathbf{\\text{₹}168}$$", "sim_type": "mental_benchmark_decomposer", "voice": "You do not need a calculator to find percentages! Master the benchmark anchors: 10 percent is shifting one decimal, 1 percent is shifting two decimals, and 5 percent is half of 10 percent.", "checkpoints": [{"q": "Find 15% of ₹640 using the benchmark method.", "options": ["₹86", "₹92", "₹96", "₹104"], "ans": 2, "feedback": "Correct! 10% of 640 = 64. 5% of 640 = 32. 15% = 64 + 32 = ₹96."}, {"q": "What is 25% of 360?", "options": ["80", "90", "95", "100"], "ans": 1, "feedback": "Correct! 25% is one-fourth: 360 / 4 = 90."}]}, {"id": 5, "title": "The FDP Trio: Fractions, Decimals & Percentages", "subtitle": "The Holy Trinity of Rational Representations", "content": "<p>Every rational number can wear three different hats: a <strong>Fraction</strong>, a <strong>Decimal</strong>, or a <strong>Percentage</strong>. Fluency in switching between these representations is one of the most powerful skills in mathematics.</p>$$\\mathbf{\\text{Fraction } \\left(\\frac{a}{b}\\right) \\iff \\text{Decimal } (0.xx) \\iff \\text{Percentage } (P\\%)}$$<table style=\"width:100%; border-collapse:collapse; margin-top:8px; font-size:13px; text-align:center;\"><thead><tr style=\"background:#1e293b; color:#38bdf8;\"><th style=\"padding:6px; border:1px solid #334155;\">Fraction</th><th style=\"padding:6px; border:1px solid #334155;\">Decimal</th><th style=\"padding:6px; border:1px solid #334155;\">Percentage</th><th style=\"padding:6px; border:1px solid #334155;\">Anchor Role</th></tr></thead><tbody><tr><td style=\"padding:6px; border:1px solid #334155;\">1/2</td><td>0.50</td><td>50%</td><td>Half</td></tr><tr><td style=\"padding:6px; border:1px solid #334155;\">1/4</td><td>0.25</td><td>25%</td><td>Quarter</td></tr><tr><td style=\"padding:6px; border:1px solid #334155;\">3/4</td><td>0.75</td><td>75%</td><td>Three Quarters</td></tr><tr><td style=\"padding:6px; border:1px solid #334155;\">1/5</td><td>0.20</td><td>20%</td><td>One Fifth</td></tr><tr><td style=\"padding:6px; border:1px solid #334155;\">1/10</td><td>0.10</td><td>10%</td><td>One Tenth</td></tr><tr><td style=\"padding:6px; border:1px solid #334155;\">1/8</td><td>0.125</td><td>12.5%</td><td>One Eighth</td></tr><tr><td style=\"padding:6px; border:1px solid #334155;\">1/3</td><td>0.333...</td><td>33 1/3%</td><td>One Third</td></tr></tbody></table>", "sim_type": "fdp_trinity_converter", "voice": "Fractions, decimals, and percentages are three different ways of writing the exact same mathematical value. Transitioning seamlessly between them empowers your problem solving.", "checkpoints": [{"q": "Express the decimal 0.08 as a percentage and as a fraction in simplest form.", "options": ["80% and 4/5", "8% and 2/25", "0.8% and 1/125", "8% and 8/10"], "ans": 1, "feedback": "Correct! 0.08 = 8/100 = 8%. In simplest form: 8/100 = 2/25."}, {"q": "Which fraction represents 12.5%?", "options": ["1/4", "1/5", "1/8", "1/12"], "ans": 2, "feedback": "Correct! 12.5% = 12.5/100 = 125/1000 = 1/8."}]}, {"id": 6, "title": "Percentages Beyond 100%", "subtitle": "Quantities Exceeding Unity: Growth Factors & Multiples", "content": "<p>Can a percentage be greater than 100%? <strong>Absolutely!</strong></p><p>While an object cannot be more than 100% of <em>itself</em> (you cannot eat 120% of a single pizza), when comparing an outcome to an original baseline, values frequently exceed 100%:</p><ul><li>100% represents the <strong>entire original whole</strong> ($1 \\times \\text{Base}$).</li><li>200% represents <strong>twice the original whole</strong> ($2 \\times \\text{Base}$).</li><li>350% represents <strong>three and a half times the original whole</strong> ($3.5 \\times \\text{Base}$).</li></ul><p><strong>Example in Agriculture:</strong> A farmer harvests 250 quintals of wheat this season compared to an expected target of 200 quintals. What percentage of the target was achieved?</p>$$\\text{Percentage Achieved} = \\frac{250}{200} \\times 100\\% = \\frac{5}{4} \\times 100\\% = \\mathbf{125\\%}$$<p>This means the harvest was 25% <em>above</em> the target ($100\\% + 25\\% = 125\\%$).</p>", "sim_type": "beyond_hundred_stack_visualizer", "voice": "Percentages can indeed exceed 100 percent! Whenever a new amount is greater than the original base quantity, the percentage will be greater than 100 percent.", "checkpoints": [{"q": "A factory produced 15,000 toys against its monthly target of 12,000 toys. What percentage of its target did it achieve?", "options": ["115%", "120%", "125%", "130%"], "ans": 2, "feedback": "Correct! (15000 / 12000) × 100% = (5/4) × 100% = 125%."}, {"q": "What decimal multiplier corresponds to 275%?", "options": ["0.275", "2.75", "27.5", "275"], "ans": 1, "feedback": "Correct! 275% = 275 / 100 = 2.75."}]}, {"id": 7, "title": "Comparing Proportions by Percent", "subtitle": "Normalizing Unequal Denominators onto a Universal Scale of 100", "content": "<p>How do we compare two disparate ratios when their total bases are unequal? Percentages act as the great leveler by projecting both fractions onto a common denominator of 100.</p><p><strong>The School Cricket Match Dilemma:</strong></p><ul><li>Batter A scored 42 runs off 50 balls (Strike Rate = 42/50).</li><li>Batter B scored 63 runs off 70 balls (Strike Rate = 63/70).</li></ul><p>Who scored at a faster pace? Direct comparison of 42 and 63 is misleading because Batter B faced more deliveries!</p>$$\\text{Batter A: } \\frac{42}{50} \\times 100\\% = 42 \\times 2\\% = \\mathbf{84\\%}$$$$\\text{Batter B: } \\frac{63}{70} \\times 100\\% = \\frac{9}{10} \\times 100\\% = \\mathbf{90\\%}$$<p>Because $90\\% > 84\\%$, Batter B scored at a significantly higher scoring rate!</p>", "sim_type": "proportion_normalizer_scale", "voice": "Percentages are the great leveler of comparison. By converting unequal fractions to a common base of 100, we reveal the true relative performance instantly.", "checkpoints": [{"q": "Class 8A had 28 students pass out of 35. Class 8B had 33 students pass out of 40. Which class had the higher pass percentage?", "options": ["Class 8A (80% vs 82.5% for 8B)", "Class 8B (82.5% vs 80% for 8A)", "Both classes had identical pass rates", "Cannot be determined without knowing failed count"], "ans": 1, "feedback": "Correct! Class 8A: 28/35 = 4/5 = 80%. Class 8B: 33/40 = 82.5%. Class 8B had the higher pass percentage."}, {"q": "Which is a higher success rate: 19 out of 25, or 37 out of 50?", "options": ["19 out of 25 (76% vs 74%)", "37 out of 50 (74% vs 76%)", "Both are exactly equal", "Cannot be compared"], "ans": 0, "feedback": "Correct! 19/25 = 76/100 = 76%. 37/50 = 74/100 = 74%. 19 out of 25 is higher."}]}, {"id": 8, "title": "Content Purity & Analysis (KYC)", "subtitle": "Know Your Contents: Gold Karats, Food Labels & Alloy Compositions", "content": "<p>Consumer literacy requires understanding <strong>Know Your Contents (KYC)</strong> labels on jewelry, food packaging, and industrial chemicals. Purity is universally quantified as a percentage.</p><h4>Gold Purity & The 24-Karat Standard:</h4><p>Pure elemental gold is designated as 24 Karats (100% pure gold). However, pure gold is too malleable for durable jewelry, so copper or silver is alloyed with it:</p>$$\\mathbf{\\text{Purity \\%} = \\frac{\\text{Karat Rating}}{24} \\times 100\\%}$$<ul><li><strong>24 Karat Gold:</strong> $\\frac{24}{24} \\times 100\\% = \\mathbf{100\\%}$ pure gold.</li><li><strong>22 Karat Gold (Standard Hallmark 916):</strong>$$\\text{Purity} = \\frac{22}{24} \\times 100\\% = \\frac{11}{12} \\times 100\\% = \\mathbf{91.67\\%} \\approx 916\\text{ parts per 1000}$$</li><li><strong>18 Karat Gold:</strong> $\\frac{18}{24} \\times 100\\% = \\frac{3}{4} \\times 100\\% = \\mathbf{75\\%}$ gold (25% alloy metals).</li></ul><p><strong>Food Composition:</strong> A chocolate bar weighing 150 g has 70% cocoa. The mass of pure cocoa is $0.70 \\times 150 = \\mathbf{105\\text{ g}}$.</p>", "sim_type": "gold_purity_kyc_scanner", "voice": "Know Your Contents! The karat system in gold is a prime example of percentages. 22 karat gold means 22 parts out of 24 are pure gold, yielding 91.6 percent purity, hallmarked as 916.", "checkpoints": [{"q": "What is the percentage purity of 14 Karat gold?", "options": ["50.0%", "58.33%", "62.5%", "70.0%"], "ans": 1, "feedback": "Correct! Purity = (14 / 24) × 100% = (7/12) × 100% ≈ 58.33%."}, {"q": "A packet of butter weighs 500 grams and contains 82% milk fat. What is the mass of milk fat in the packet?", "options": ["390 g", "410 g", "420 g", "440 g"], "ans": 1, "feedback": "Correct! Mass = 82% of 500 g = (82 / 100) × 500 = 82 × 5 = 410 grams."}]}, {"id": 9, "title": "Percentage Change: Increase & Decrease", "subtitle": "Measuring Relative Growth & Reduction via The Baseline Ratio", "content": "<p>When a quantity changes from an initial value to a new value, the change must ALWAYS be evaluated relative to the <strong>ORIGINAL (INITIAL) BASE</strong>, never the new value!</p>$$\\mathbf{\\text{Percentage Change} = \\frac{\\text{Absolute Change}}{\\text{Original Initial Value}} \\times 100\\%}$$<ul><li><strong>Percentage Increase:</strong> $\\frac{\\text{New Value} - \\text{Original Value}}{\\text{Original Value}} \\times 100\\%$<br><em>Multiplication Factor:</em> $\\text{New Value} = \\text{Original} \\times \\left(1 + \\frac{r}{100}\\right)$</li><li><strong>Percentage Decrease:</strong> $\\frac{\\text{Original Value} - \\text{New Value}}{\\text{Original Value}} \\times 100\\%$<br><em>Multiplication Factor:</em> $\\text{New Value} = \\text{Original} \\times \\left(1 - \\frac{r}{100}\\right)$</li></ul><p><em>Example:</em> A bicycle price rises from ₹4,000 to ₹4,600. Find the percentage increase.</p>$$\\text{Increase} = 4600 - 4000 = \\text{₹}600$$$$\\text{Percentage Increase} = \\frac{600}{4000} \\times 100\\% = \\frac{60}{4}\\% = \\mathbf{15\\%}$$", "sim_type": "percentage_change_elevator", "voice": "The golden rule of percentage change: always divide the change by the original starting value. Dividing by the final value is the most common error in mathematics!", "checkpoints": [{"q": "The population of a village decreased from 5,000 to 4,600 due to migration. What is the percentage decrease?", "options": ["6%", "8%", "9.2%", "10%"], "ans": 1, "feedback": "Correct! Decrease = 5000 - 4600 = 400. Percentage decrease = (400 / 5000) × 100% = 8%."}, {"q": "An item priced at ₹800 is increased by 20%. What is its new price?", "options": ["₹920", "₹960", "₹980", "₹1,000"], "ans": 1, "feedback": "Correct! Increase = 20% of 800 = 160. New price = 800 + 160 = ₹960."}]}, {"id": 10, "title": "Profit and Loss Arithmetic", "subtitle": "Cost Price, Selling Price, Markups & Profit/Loss Percentages", "content": "<p>Commercial arithmetic revolves around the exchange of goods. Every financial transaction is evaluated relative to the <strong>Cost Price (CP)</strong>—the investment made by the seller:</p><ul><li><strong>Cost Price (CP):</strong> The total amount paid to acquire or manufacture the article (including overheads like transport and repairs).</li><li><strong>Selling Price (SP):</strong> The price at which the article is sold to the consumer.</li><li><strong>Profit (Gain):</strong> Occurs when $SP > CP$:$$\\text{Profit} = SP - CP \\quad \\implies \\quad \\mathbf{\\text{Profit \\%} = \\frac{\\text{Profit}}{CP} \\times 100\\%}$$</li><li><strong>Loss:</strong> Occurs when $SP < CP$:$$\\text{Loss} = CP - SP \\quad \\implies \\quad \\mathbf{\\text{Loss \\%} = \\frac{\\text{Loss}}{CP} \\times 100\\%}$$</li></ul><p><strong>Crucial Law:</strong> Profit percentage and Loss percentage are <strong>ALWAYS calculated on the Cost Price (CP)</strong> unless stated otherwise!</p>$$SP = CP \\times \\left(1 + \\frac{\\text{Profit \\%}}{100}\\right) \\quad \\text{or} \\quad SP = CP \\times \\left(1 - \\frac{\\text{Loss \\%}}{100}\\right)$$", "sim_type": "profit_loss_trading_counter", "voice": "In commerce, profit or loss is always judged on your cost price, not what you sell it for. Selling price equals cost price plus profit, or cost price minus loss.", "checkpoints": [{"q": "A shopkeeper buys an article for ₹500 and sells it for ₹625. What is the profit percentage?", "options": ["20%", "25%", "30%", "125%"], "ans": 1, "feedback": "Correct! Profit = 625 - 500 = ₹125. Profit % = (125 / 500) × 100% = 25%."}, {"q": "A trader purchases a watch for ₹1,200 and incurs a 10% loss on selling it. Find the selling price.", "options": ["₹1,000", "₹1,080", "₹1,100", "₹1,120"], "ans": 1, "feedback": "Correct! Loss = 10% of 1200 = ₹120. SP = 1200 - 120 = ₹1,080."}]}, {"id": 11, "title": "Sales Tax & GST Calculations", "subtitle": "Marked Price, Trade Discounts & Goods and Services Tax", "content": "<p>Modern billing combines commercial trade discounts with statutory government taxes:</p><ol><li><strong>Marked Price (MP / List Price):</strong> The printed sticker price on the product.</li><li><strong>Discount:</strong> A reduction offered on the Marked Price to incentivize buyers:$$\\text{Discount} = MP - SP \\quad \\implies \\quad \\mathbf{\\text{Discount \\%} = \\frac{\\text{Discount}}{MP} \\times 100\\%}$$</li><li><strong>Goods and Services Tax (GST):</strong> An indirect tax charged by the government on the sale of goods and services. GST is calculated on the <strong>discounted Selling Price (SP)</strong>, NOT the original Marked Price!$$\\mathbf{\\text{GST Amount} = \\frac{\\text{GST \\%}}{100} \\times SP}$$$$\\mathbf{\\text{Total Bill Amount} = SP + \\text{GST Amount}}$$</li></ol><p><em>Example:</em> An appliance marked at ₹2,000 has a 10% discount and 18% GST.</p>$$\\text{Discount} = 10\\% \\text{ of } 2000 = \\text{₹}200 \\implies SP = \\text{₹}1,800$$$$\\text{GST Amount} = 18\\% \\text{ of } 1800 = \\text{₹}324$$$$\\text{Final Bill} = 1800 + 324 = \\mathbf{\\text{₹}2,124}$$", "sim_type": "invoice_gst_generator", "voice": "Keep your financial receipts sharp! Discounts are deducted from the marked sticker price, while Goods and Services Tax is added onto that discounted selling price.", "checkpoints": [{"q": "A jacket marked at ₹3,000 is offered at a 20% discount. What is the selling price before tax?", "options": ["₹2,200", "₹2,400", "₹2,500", "₹2,600"], "ans": 1, "feedback": "Correct! Discount = 20% of 3000 = ₹600. SP = 3000 - 600 = ₹2,400."}, {"q": "If the discounted price of a gadget is ₹1,500 and GST is 12%, what is the final bill amount?", "options": ["₹1,620", "₹1,650", "₹1,680", "₹1,720"], "ans": 2, "feedback": "Correct! GST = 12% of 1500 = ₹180. Final bill = 1500 + 180 = ₹1,680."}]}, {"id": 12, "title": "Compounding & Successive Growth", "subtitle": "Interest on Interest, Population Expansion & Compounding Cycles", "content": "<p>When a quantity grows, and in each subsequent interval the growth rate applies not only to the initial base but also to the accumulated growth, we have <strong>compounding</strong>!</p><ul><li><strong>Simple Interest (SI):</strong> Growth calculated strictly on the original principal $P$:$$SI = \\frac{P \\times R \\times T}{100}, \\quad A = P + SI$$</li><li><strong>Compound Interest (CI):</strong> In year 2, you earn interest on your year 1 interest!$$\\mathbf{A = P \\left(1 + \\frac{R}{100}\\right)^n}, \\quad CI = A - P$$Here $P$ is Principal, $R$ is annual rate of interest, $n$ is time periods (years).</li></ul><p><strong>Successive Percentage Growth:</strong> If a city's population of 100,000 grows by 10% in Year 1 and 10% in Year 2:</p>$$\\text{Year 1: } 100,000 \\times 1.10 = 110,000$$$$\\text{Year 2: } 110,000 \\times 1.10 = \\mathbf{121,000} \\quad (\\text{Net } 21\\% \\text{ growth, NOT } 20\\%!)$$", "sim_type": "compounding_exponential_growth_tree", "voice": "Compounding is often called the eighth wonder of the world. Because growth in each period earns its own growth, compound interest rapidly outpaces simple linear interest.", "checkpoints": [{"q": "Find the compound amount on ₹10,000 at 10% per annum compounded annually for 2 years.", "options": ["₹12,000", "₹12,100", "₹12,200", "₹12,500"], "ans": 1, "feedback": "Correct! A = 10000 × (1 + 10/100)² = 10000 × 1.1 × 1.1 = ₹12,100."}, {"q": "The population of a town is 50,000. It increases by 10% each year. What will be the population after 2 years?", "options": ["55,000", "60,000", "60,500", "61,000"], "ans": 2, "feedback": "Correct! After Year 1: 50000 × 1.1 = 55,000. After Year 2: 55000 × 1.1 = 60,500."}]}, {"id": 13, "title": "Depreciation & Decay", "subtitle": "Asset Value Depletion, Machine Wear & Bacterial Decay", "content": "<p>While investments compound upward, physical assets like motor vehicles, computers, and factory machinery lose monetary value over time through wear, tear, and obsolescence. This process is called <strong>depreciation</strong>.</p>$$\\mathbf{V_n = V_0 \\left(1 - \\frac{R}{100}\\right)^n}$$<ul><li>$V_0$: Initial original purchase cost.</li><li>$V_n$: Depreciated value after $n$ intervals.</li><li>$R$: Annual rate of depreciation.</li><li>$n$: Number of elapsed years.</li></ul><p><em>Example:</em> A motorcycle purchased for ₹80,000 depreciates at 10% per annum. Find its value after 2 years.</p>$$\\text{End of Year 1: } 80,000 \\times (1 - 0.10) = 80,000 \\times 0.90 = \\text{₹}72,000$$$$\\text{End of Year 2: } 72,000 \\times 0.90 = \\mathbf{\\text{₹}64,800}$$<p>Notice that the drop in year 1 was ₹8,000, but in year 2 it was only ₹7,200, because the base has reduced!</p>", "sim_type": "asset_depreciation_decay_curve", "voice": "Just as savings compound upwards, physical assets depreciate downwards. Each year, the depreciation percentage applies to the newly diminished value.", "checkpoints": [{"q": "A computer bought for ₹40,000 depreciates at 20% per year. What is its value after 1 year?", "options": ["₹30,000", "₹32,000", "₹34,000", "₹36,000"], "ans": 1, "feedback": "Correct! Depreciation = 20% of 40,000 = ₹8,000. Value after 1 year = 40000 - 8000 = ₹32,000."}, {"q": "A machinery valued at ₹1,00,000 depreciates at 10% per annum. What will be its book value after 2 years?", "options": ["₹80,000", "₹81,000", "₹82,000", "₹85,000"], "ans": 1, "feedback": "Correct! V₂ = 100000 × (1 - 0.1)² = 100000 × 0.81 = ₹81,000."}]}, {"id": 14, "title": "Percentage Traps & Paradoxes", "subtitle": "Symmetry Tricks (x% of y = y% of x) & The Reversibility Illusion", "content": "<p>Percentages harbor subtle mathematical traps that mislead even professional analysts. Let us inspect two classic paradoxes:</p><h4>Paradox 1: The Up-and-Down Trap (Asymmetric Base Shift)</h4><p>If you increase an amount by 20%, and then decrease the new amount by 20%, do you return to where you started?</p>$$\\text{Start with } 100 \\xrightarrow{+20\\%} 120 \\xrightarrow{-20\\% \\text{ of } 120} 120 - 24 = \\mathbf{96}$$<p>You did NOT break even; you lost 4%! Why? The 20% increase was calculated on base 100, but the 20% decrease was calculated on the larger base 120!</p><h4>Paradox 2: The Reversibility Law ($x\\%$ of $y = y\\%$ of $x$)</h4>$$\\frac{x}{100} \\times y = \\frac{x \\cdot y}{100} = \\frac{y}{100} \\times x = y\\% \\text{ of } x$$<p><em>Mental Math Super-Weapon:</em> Finding 16% of 50 seems difficult. But flip it: 50% of 16 = <strong>8</strong>! Instantaneous!</p>", "sim_type": "percentage_paradox_investigator", "voice": "Beware of percentage traps! Increasing by 20 percent and then decreasing by 20 percent leaves you with less than you started. But remember the reversibility secret: x percent of y is always equal to y percent of x.", "checkpoints": [{"q": "Calculate 8% of 25 using the reversibility law (x% of y = y% of x).", "options": ["1.5", "2", "2.5", "4"], "ans": 1, "feedback": "Correct! 8% of 25 = 25% of 8 = one-fourth of 8 = 2! Fast and effortless."}, {"q": "The price of a share rises by 50% on Monday and drops by 50% on Tuesday. If its initial price was ₹100, what is its final price?", "options": ["₹100 (breaks even)", "₹75 (a net loss of 25%)", "₹50", "₹80"], "ans": 1, "feedback": "Correct! 100 + 50% = 150. Then 150 - 50% of 150 = 150 - 75 = ₹75. Net loss is 25%!"}]}, {"id": 15, "title": "Base Value Blunders & Chapter Summary Formulas", "subtitle": "Debugging Wrong-Base Errors & Master Formula Matrix", "content": "<p>The single greatest cause of errors in percentage problems is <strong>Base Value Confusion</strong>. Always ask: <em>Percentage OF WHAT?</em></p><table style=\"width:100%; border-collapse:collapse; margin-top:8px; font-size:12.5px; text-align:left;\"><thead><tr style=\"background:#1e293b; color:#38bdf8; border-bottom:2px solid #334155;\"><th style=\"padding:6px;\">Concept</th><th style=\"padding:6px;\">Standard Base</th><th style=\"padding:6px;\">Master Formula</th></tr></thead><tbody><tr style=\"border-bottom:1px solid #334155;\"><td style=\"padding:6px; font-weight:bold; color:#f8fafc;\">Percent Value</td><td style=\"padding:6px;\">Total Quantity Q</td><td style=\"padding:6px;\">$\\text{Value} = \\frac{P}{100} \\times Q$</td></tr><tr style=\"border-bottom:1px solid #334155;\"><td style=\"padding:6px; font-weight:bold; color:#f8fafc;\">Percentage Change</td><td style=\"padding:6px;\">Original Value (Before)</td><td style=\"padding:6px;\">$\\frac{\\text{Change}}{\\text{Original}} \\times 100\\%$</td></tr><tr style=\"border-bottom:1px solid #334155;\"><td style=\"padding:6px; font-weight:bold; color:#f8fafc;\">Profit or Loss %</td><td style=\"padding:6px;\">Cost Price (CP)</td><td style=\"padding:6px;\">$\\frac{\\text{Profit or Loss}}{CP} \\times 100\\%$</td></tr><tr style=\"border-bottom:1px solid #334155;\"><td style=\"padding:6px; font-weight:bold; color:#f8fafc;\">Discount %</td><td style=\"padding:6px;\">Marked Price (MP)</td><td style=\"padding:6px;\">$\\frac{\\text{Discount}}{MP} \\times 100\\%$</td></tr><tr style=\"border-bottom:1px solid #334155;\"><td style=\"padding:6px; font-weight:bold; color:#f8fafc;\">Sales Tax / GST</td><td style=\"padding:6px;\">Selling Price (SP)</td><td style=\"padding:6px;\">$\\text{Tax} = \\frac{\\text{GST \\%}}{100} \\times SP$</td></tr><tr style=\"border-bottom:1px solid #334155;\"><td style=\"padding:6px; font-weight:bold; color:#f8fafc;\">Compound Interest</td><td style=\"padding:6px;\">Previous Balance</td><td style=\"padding:6px;\">$A = P\\left(1 + \\frac{R}{100}\\right)^n$</td></tr></tbody></table>", "sim_type": "base_blunder_debugger_matrix", "voice": "Always ask: percentage of what? Profit is on cost price, discount is on marked price, and percentage change is on the original starting value. This master table keeps you clear.", "checkpoints": [{"q": "A merchant calculates profit percentage on the Selling Price instead of Cost Price. If an article bought for ₹80 is sold for ₹100, what is the TRUE profit percentage?", "options": ["20%", "25%", "15%", "30%"], "ans": 1, "feedback": "Correct! Profit = 100 - 80 = 20. The merchant erroneously thought 20/100 = 20%. But the TRUE profit % is on CP: (20/80) × 100% = 25%!"}, {"q": "On which price is a trade discount calculated?", "options": ["Cost Price (CP)", "Selling Price (SP)", "Marked Price (MP / List Price)", "Total Bill Amount after tax"], "ans": 2, "feedback": "Correct! Discounts are always deducted from the sticker Marked Price (MP)."}]}, {"id": 16, "title": "Percentage Riddles & Peaceful Knights", "subtitle": "Recreational Combinatorics: Knights on a Chessboard & Puzzles", "content": "<p>To conclude our journey into percentages, let us explore the famous mathematical recreational puzzle: <strong>The Peaceful Knights Problem</strong>.</p><h4>The Peaceful Knights Challenge:</h4><p>What is the maximum percentage of squares on an 8 × 8 chessboard (64 squares) that can be occupied by knights such that <strong>no two knights attack each other</strong>?</p><ul><li><strong>The Bipartite Color Invariance:</strong> A knight moves in an 'L-shape' (two squares in one direction, one square perpendicular). A knight on a <em>white</em> square can ONLY attack <em>black</em> squares, and vice versa!</li><li><strong>The Peaceful Solution:</strong> Place all knights exclusively on squares of the <strong>same color</strong> (e.g., all on white squares)!</li><li>Since every square attacked by a white-square knight is black, no two white-square knights can ever attack each other!</li><li>A chessboard has exactly 32 white squares and 32 black squares:$$\\mathbf{\\text{Maximum Coverage} = \\frac{32}{64} \\times 100\\% = \\mathbf{50\\%}}$$</li></ul><p>Exactly half (50%) of the chessboard can be filled peacefully!</p>", "sim_type": "peaceful_knights_chessboard_lab", "voice": "Welcome to the Peaceful Knights puzzle! Because a knight always leaps from a white square to a black square, placing knights only on white squares guarantees that none can attack another. Exactly 50 percent of the board can be peacefully occupied!", "checkpoints": [{"q": "In the Peaceful Knights puzzle on a 6 × 6 mini chessboard (36 total squares), what is the maximum number of non-attacking knights that can be placed?", "options": ["12 knights", "18 knights", "20 knights", "24 knights"], "ans": 1, "feedback": "Correct! Exactly 50% of 36 = 18 squares of one color."}, {"q": "Why can knights on the same color squares never attack one another?", "options": ["Because knights can only attack pieces of the opposite color", "Because every valid knight leap moves from a white square to a black square (or vice versa)", "Because the board is rotated by 90 degrees", "Because knights are blocked by pawns"], "ans": 1, "feedback": "Correct! The L-shaped move alters square parity every single turn: white to black, or black to white."}]}, {"id": 17, "title": "Mastery Challenge — Part I (Questions 1 to 10)", "subtitle": "Foundations: Fractions into Percentages, FDP Conversions & Benchmarks", "content": "<p class='lead'>Welcome to Part I of the Mastery Assessment. Test your fluency with fractional conversions, anchor percentages, and benchmark mental arithmetic. Click <strong>💡 View Solution</strong> for full mathematical proofs.</p>", "sim_type": "quiz_slide", "quiz_range": [1, 10], "voice": "Welcome to Mastery Challenge 1. Solve the first ten questions testing foundations of fractions, percentages, and benchmark conversions. Click View Solution to examine the step-by-step mathematical reasoning.", "checkpoints": []}, {"id": 18, "title": "Mastery Challenge — Part II (Questions 11 to 20)", "subtitle": "Applications: Percent of Values, Comparing Proportions & KYC Purity", "content": "<p class='lead'>In Part II, solve applied problems comparing disparate performance ratios, content purity standards (KYC), and percentage increases and decreases.</p>", "sim_type": "quiz_slide", "quiz_range": [11, 20], "voice": "In Part 2, we tackle practical real-world problems: comparing proportions, examining gold purity standards, and calculating percentage changes. Take your time and verify your deductions.", "checkpoints": []}, {"id": 19, "title": "Mastery Challenge — Part III (Questions 21 to 30)", "subtitle": "Commerce: Cost Price, Selling Price, Profit/Loss, Discounts & GST", "content": "<p class='lead'>Part III tests your mastery of commercial mathematics: trading profits and losses, trade discount deductions, and Goods and Services Tax (GST) invoicing.</p>", "sim_type": "quiz_slide", "quiz_range": [21, 30], "voice": "Welcome to Part 3 on commercial arithmetic. Remember the cardinal rules: profit and loss are calculated on cost price, while discounts apply to the marked sticker price.", "checkpoints": []}, {"id": 20, "title": "Mastery Challenge — Part IV (Questions 31 to 40)", "subtitle": "Advanced: Compounding, Depreciation, Paradoxes & Peaceful Knights", "content": "<p class='lead'>Congratulations on reaching the final frontier! Part IV features compound interest, asset depreciation, percentage traps, and chessboard combinatorial puzzles.</p>", "sim_type": "quiz_slide", "quiz_range": [31, 40], "voice": "Congratulations on reaching the final challenge! Part 4 covers compound growth, depreciation, percentage paradoxes, and the famous Peaceful Knights puzzle. Finish strong!", "checkpoints": []}];
+    const quizQuestions = [{"num": 1, "slide": 17, "question": "What is $\frac{7}{25}$ converted into a percentage?", "options": ["14%", "28%", "35%", "25%"], "correct": 1, "solution": "To convert any fraction to a percentage, multiply by 00\\%$:\n34\frac{7}{25} \times 100\\% = 7 \times 4\\% = 28\\%34\nAlternatively, make the denominator 00$:\n34\frac{7 \times 4}{25 \times 4} = \frac{28}{100} = 28\\%34\nHence, the correct answer is $\\mathbf{28\\%}$."}, {"num": 2, "slide": 17, "question": "If a student scores 6$ marks out of 0$ on a test, what percentage did they achieve?", "options": ["80%", "85%", "90%", "92%"], "correct": 2, "solution": "Form the fraction of marks scored to total marks:\n34\text{Fraction} = \frac{36}{40} = \frac{9}{10}34\n\nMultiply by 00\\%$:\n34\frac{9}{10} \times 100\\% = 90\\%34\n\nThus, the score is $\\mathbf{90\\%}$."}, {"num": 3, "slide": 17, "question": "Which decimal number is strictly equivalent to 2.5\\%0", "options": ["0.0125", "0.125", "1.25", "0.00125"], "correct": 1, "solution": "To convert a percentage to a decimal, divide by 00$ (shift the decimal point $ places to the left):\n3412.5\\% = \frac{12.5}{100} = 0.12534\n\nAlso note that bash.125 = \frac{1}{8}$. Thus, the equivalent decimal is $\\mathbf{0.125}$."}, {"num": 4, "slide": 17, "question": "Using mental benchmark decomposition, what is 5\\%$ of $\text{₹}4800", "options": ["₹48", "₹64", "₹72", "₹80"], "correct": 2, "solution": "Decompose 5\\%$ into 0\\% + 5\\%$:\n3410\\% \text{ of } 480 = 480 \\div 10 = \text{₹}4834\n345\\% \text{ of } 480 = \text{half of } 10\\% = 48 \\div 2 = \text{₹}2434\n\nAdd the benchmarks together:\n3415\\% = 48 + 24 = \\mathbf{\text{₹}72}34."}, {"num": 5, "slide": 17, "question": "What is $\frac{9}{4}$ expressed as a percentage?", "options": ["175%", "225%", "250%", "300%"], "correct": 1, "solution": "Since the numerator exceeds the denominator, this improper fraction represents a value greater than 00\\%$:\n34\frac{9}{4} = 2\frac{1}{4} = 2 + 0.2534\n\nMultiplying by 00\\%$:\n34\frac{9}{4} \times 100\\% = 9 \times 25\\% = 225\\%34\n\nTherefore, $\frac{9}{4} = \\mathbf{225\\%}$."}, {"num": 6, "slide": 17, "question": "A water bottle contains 50\text{ mL}$ when filled to 5\\%$ of its capacity. What is its full capacity?", "options": ["900 mL", "1000 mL", "1100 mL", "1250 mL"], "correct": 1, "solution": "Let total capacity be \text{ mL}$.\n3475\\% \text{ of } C = 75034\n34\frac{3}{4}C = 750 \\implies C = 750 \times \frac{4}{3} = 250 \times 4 = 1000\text{ mL}34\n\nThe total capacity is $\\mathbf{1000\text{ mL}}$ (or \text{ litre}$)."}, {"num": 7, "slide": 17, "question": "What is 50\\%$ of 00", "options": ["160", "200", "240", "280"], "correct": 1, "solution": "Recall that 50\\% = 200\\% + 50\\% = 2 + 0.5 = 2.5$:\n34250\\% \text{ of } 80 = 2.5 \times 8034\n342 \times 80 = 16034\n340.5 \times 80 = 4034\n34160 + 40 = 20034\n\nOr via fraction: $\frac{5}{2} \times 80 = 5 \times 40 = \\mathbf{200}$."}, {"num": 8, "slide": 17, "question": "If 5\\%$ of a number is 40$, what is 0\\%$ of that same number?", "options": ["200", "240", "280", "320"], "correct": 1, "solution": "First find \\%$ or the full number:\n3435\\% \to 140 \\implies 1\\% = \frac{140}{35} = 434\n\nNow compute 0\\%$:\n3460\\% = 60 \times 4 = \\mathbf{240}34\n\n(The original number is 00 \times 4 = 400$, and 0\\% \text{ of } 400 = 240$.)"}, {"num": 9, "slide": 17, "question": "A phone battery drops from 0\\%$ to 0\\%$. What percentage of its remaining charge was lost?", "options": ["60%", "75%", "66.67%", "50%"], "correct": 1, "solution": "Read carefully: the drop in battery percentage points is 0 - 20 = 60\\%$.\n\nTo find the percentage *of its initial charge* (0\\%$) that was drained:\n34\text{Fraction drained} = \frac{60}{80} = \frac{3}{4} = 75\\%34\n\nSo $\\mathbf{75\\%}$ of its starting charge was consumed."}, {"num": 10, "slide": 17, "question": "Which of the following is the largest quantity?", "options": ["30% of 120", "25% of 160", "50% of 75", "40% of 95"], "correct": 1, "solution": "Calculate each value:\n1. 0\\% \text{ of } 120 = 0.3 \times 120 = 36$\n2. 5\\% \text{ of } 160 = \frac{1}{4} \times 160 = 40$\n3. 0\\% \text{ of } 75 = 37.5$\n4. 0\\% \text{ of } 95 = 0.4 \times 95 = 38$\n\nComparing the values: 0 > 38 > 37.5 > 36$. Thus, $\\mathbf{25\\% \text{ of } 160}$ is the largest."}, {"num": 11, "slide": 18, "question": "Class 8A had 8$ students out of 5$ score an A, while Class 8B had 1$ students out of 0$ score an A. Which class had a higher success rate?", "options": ["Class 8A (72%)", "Class 8B (70%)", "Both had exactly equal rates", "Cannot be compared"], "correct": 0, "solution": "Normalize both fractions to percentages:\n34\text{Class 8A} = \frac{18}{25} \times 100\\% = 18 \times 4\\% = 72\\%34\n34\text{Class 8B} = \frac{21}{30} \times 100\\% = \frac{7}{10} \times 100\\% = 70\\%34\n\nSince 2\\% > 70\\%$, $\\mathbf{\text{Class 8A}}$ had the higher proportion."}, {"num": 12, "slide": 18, "question": "An ornament is made of 8\text{-karat}$ gold. Given that pure gold is 4\text{ karats}$, what is the gold purity percentage?", "options": ["70%", "75%", "80%", "82.5%"], "correct": 1, "solution": "Gold purity is calculated as:\n34\text{Purity } \\% = \frac{\text{Karats}}{24} \times 100\\%34\n34\text{Purity} = \frac{18}{24} \times 100\\% = \frac{3}{4} \times 100\\% = \\mathbf{75\\%}34\n\nThe remaining 5\\%$ consists of alloy metals (copper, silver)."}, {"num": 13, "slide": 18, "question": "The price of petrol increased from $\text{₹}80$ to $\text{₹}100$ per litre. What is the percentage increase?", "options": ["20%", "25%", "15%", "22.5%"], "correct": 1, "solution": "The percentage change formula always divides by the **initial (base) value**:\n34\\Delta = 100 - 80 = \text{₹}2034\n34\text{Percentage Increase} = \frac{\\Delta}{\text{Original Base}} \times 100\\% = \frac{20}{80} \times 100\\% = \frac{1}{4} \times 100\\% = \\mathbf{25\\%}34."}, {"num": 14, "slide": 18, "question": "A shopkeeper bought a book for $\text{₹}400$ and sold it for $\text{₹}500$. Find the profit percentage.", "options": ["20%", "25%", "22.5%", "30%"], "correct": 1, "solution": "Cost Price ($\text{CP}$) = $\text{₹}400$, Selling Price ($\text{SP}$) = $\text{₹}500$.\n34\text{Profit} = \text{SP} - \text{CP} = 500 - 400 = \text{₹}10034\n\nProfit percentage is always computed over the Cost Price:\n34\text{Profit } \\% = \frac{\text{Profit}}{\text{CP}} \times 100\\% = \frac{100}{400} \times 100\\% = \\mathbf{25\\%}34."}, {"num": 15, "slide": 18, "question": "A cycle purchased for $\text{₹}2500$ was sold at a loss of 2\\%$. What was the selling price?", "options": ["₹2100", "₹2200", "₹2250", "₹2300"], "correct": 1, "solution": "34\text{Loss} = 12\\% \text{ of } \text{₹}2500 = \frac{12}{100} \times 2500 = 12 \times 25 = \text{₹}30034\n\n34\text{SP} = \text{CP} - \text{Loss} = 2500 - 300 = \\mathbf{\text{₹}2200}34\n\nAlternatively: $\text{SP} = (100\\% - 12\\%) \times 2500 = 88\\% \times 2500 = 0.88 \times 2500 = \text{₹}2200$."}, {"num": 16, "slide": 18, "question": "By selling a jacket for $\text{₹}1440$, a merchant makes a 0\\%$ profit. What was the cost price of the jacket?", "options": ["₹1152", "₹1200", "₹1240", "₹1250"], "correct": 1, "solution": "Since $\text{Profit} = 20\\%$, the selling price represents 20\\%$ of the cost price:\n34\text{SP} = 1.20 \times \text{CP}34\n341440 = 1.20 \times \text{CP} \\implies \text{CP} = \frac{1440}{1.2} = \frac{14400}{12} = \\mathbf{\text{₹}1200}34\n\n*Common Blunder Alert*: Do NOT subtract 0\\%$ from 440$; 0\\%$ was gained on the *cost price*, not the selling price!"}, {"num": 17, "slide": 18, "question": "A sample of 00\text{ g}$ of cereal contains 5\text{ g}$ of sugar. What is the sugar percentage on the nutrition label?", "options": ["4.5%", "9%", "10%", "11.5%"], "correct": 1, "solution": "34\text{Percentage} = \frac{\text{Mass of sugar}}{\text{Total mass}} \times 100\\%34\n34\text{Percentage} = \frac{45}{500} \times 100\\% = \frac{45}{5} = \\mathbf{9\\%}34."}, {"num": 18, "slide": 18, "question": "The population of a village decreased from 2,500$ to 1,000$. What was the percentage decrease?", "options": ["10%", "12%", "14%", "15%"], "correct": 1, "solution": "34\text{Decrease} = 12500 - 11000 = 150034\n34\text{Percentage Decrease} = \frac{1500}{12500} \times 100\\% = \frac{15}{125} \times 100\\% = \frac{3}{25} \times 100\\% = \\mathbf{12\\%}34."}, {"num": 19, "slide": 18, "question": "If an item bought for $\text{₹}600$ is sold for $\text{₹}540$, what is the loss percentage?", "options": ["5%", "10%", "12%", "15%"], "correct": 1, "solution": "34\text{Loss} = \text{CP} - \text{SP} = 600 - 540 = \text{₹}6034\n34\text{Loss } \\% = \frac{60}{600} \times 100\\% = \\mathbf{10\\%}34."}, {"num": 20, "slide": 18, "question": "A baker sells a cake at a 5\\%$ profit. If the profit earned is $\text{₹}75$, what is the selling price?", "options": ["₹300", "₹350", "₹375", "₹400"], "correct": 2, "solution": "3425\\% \text{ of } \text{CP} = 75 \\implies \frac{1}{4} \times \text{CP} = 75 \\implies \text{CP} = 75 \times 4 = \text{₹}30034\n\nNow compute Selling Price:\n34\text{SP} = \text{CP} + \text{Profit} = 300 + 75 = \\mathbf{\text{₹}375}34."}, {"num": 21, "slide": 19, "question": "A shirt has a Marked Price (MP) of $\text{₹}800$. The store offers a 5\\%$ discount. What is the selling price?", "options": ["₹660", "₹680", "₹700", "₹720"], "correct": 1, "solution": "Discount is always calculated on the **Marked Price**:\n34\text{Discount} = 15\\% \text{ of } 800 = \frac{15}{100} \times 800 = \text{₹}12034\n34\text{Selling Price (SP)} = \text{MP} - \text{Discount} = 800 - 120 = \\mathbf{\text{₹}680}34."}, {"num": 22, "slide": 19, "question": "An electronic gadget priced at $\text{₹}5000$ attracts an 8\\%$ Goods and Services Tax (GST). What is the total bill amount?", "options": ["₹5800", "₹5900", "₹6000", "₹6200"], "correct": 1, "solution": "34\text{GST Amount} = 18\\% \text{ of } 5000 = \frac{18}{100} \times 5000 = 18 \times 50 = \text{₹}90034\n34\text{Total Invoice Bill} = \text{Price} + \text{GST} = 5000 + 900 = \\mathbf{\text{₹}5900}34."}, {"num": 23, "slide": 19, "question": "A customer bought a tennis racket for $\text{₹}1770$ including 8\\%$ GST. What was the base price before tax?", "options": ["₹1450", "₹1500", "₹1550", "₹1600"], "correct": 1, "solution": "Let the base pre-tax price be $.\n34\text{Total} = B + 0.18 B = 1.18 B = 177034\n34B = \frac{1770}{1.18} = \frac{177000}{118} = \\mathbf{\text{₹}1500}34\n\nVerify: 8\\% \text{ of } 1500 = 270$, and 500 + 270 = 1770$."}, {"num": 24, "slide": 19, "question": "A principal of $\text{₹}10,000$ is invested at 0\\%$ per annum compounded annually for $ years. Find the compounded amount $.", "options": ["₹12,000", "₹12,100", "₹12,200", "₹12,500"], "correct": 1, "solution": "Using the compound interest formula  = P\\left(1 + \frac{r}{100}\right)^n$:\n34A = 10000\\left(1 + \frac{10}{100}\right)^2 = 10000(1.1)^2 = 10000 \times 1.21 = \\mathbf{\text{₹}12,100}34\n\nNotice the compound interest is 2100 - 10000 = \text{₹}2100$, which includes $\text{₹}100$ interest-on-interest."}, {"num": 25, "slide": 19, "question": "What is the Compound Interest (CI) earned on $\text{₹}8000$ at \\%$ per annum for $ years compounded annually?", "options": ["₹800", "₹820", "₹840", "₹850"], "correct": 1, "solution": "34A = 8000\\left(1 + \frac{5}{100}\right)^2 = 8000 \times \\left(\frac{21}{20}\right)^2 = 8000 \times \frac{441}{400} = 20 \times 441 = \text{₹}882034\n34\text{CI} = A - P = 8820 - 8000 = \\mathbf{\text{₹}820}34\n\n(Simple interest would have been 000 \times 0.05 \times 2 = \text{₹}800$; the extra $\text{₹}20$ is \\%$ of Year 1 interest $\text{₹}400$.)"}, {"num": 26, "slide": 19, "question": "A new motorcycle bought for $\text{₹}80,000$ depreciates at 0\\%$ per year. What is its value after $ years?", "options": ["₹64,000", "₹64,800", "₹65,000", "₹72,000"], "correct": 1, "solution": "Depreciation formula:  = P\\left(1 - \frac{r}{100}\right)^n$:\n34V = 80000\\left(1 - \frac{10}{100}\right)^2 = 80000 \times (0.9)^2 = 80000 \times 0.81 = \\mathbf{\text{₹}64,800}34\n\nStep-by-step: After Year 1: 0000 - 8000 = 72000$. After Year 2: 2000 - 7200 = \text{₹}64,800$."}, {"num": 27, "slide": 19, "question": "The population of a city is 00,000$ and grows at \\%$ annually. What will the population be after $ year?", "options": ["205,000", "210,000", "215,000", "220,000"], "correct": 1, "solution": "Growth amount $= 5\\% \text{ of } 200,000 = \frac{5}{100} \times 200,000 = 10,000$.\n34\text{New Population} = 200,000 + 10,000 = \\mathbf{210,000}34."}, {"num": 28, "slide": 19, "question": "A refrigerator marked at $\text{₹}20,000$ is sold with successive discounts of 0\\%$ and \\%$. What is the final selling price?", "options": ["₹17,000", "₹17,100", "₹17,200", "₹17,500"], "correct": 1, "solution": "Apply successive multipliers:\n34\text{SP} = 20000 \times (1 - 0.10) \times (1 - 0.05) = 20000 \times 0.90 \times 0.9534\n3420000 \times 0.90 = 1800034\n3418000 \times 0.95 = 18000 - 900 = \\mathbf{\text{₹}17,100}34\n\n*Note*: Successive discounts are NOT simply added (0\\% + 5\\% \ne 15\\%$, the effective discount is 4.5\\%$)."}, {"num": 29, "slide": 19, "question": "In a laboratory culture, bacteria count increases by 0\\%$ every hour. If initial count is 0,000$, what is the count after $ hours?", "options": ["55,000", "60,000", "60,500", "61,000"], "correct": 2, "solution": "Using exponential growth:\n34N_2 = N_0(1 + 0.10)^2 = 50000 \times 1.21 = \\mathbf{60,500}34\n\nHour 1: 0000 + 5000 = 55000$.\nHour 2: 5000 + 5500 = 60500$."}, {"num": 30, "slide": 19, "question": "A pair of shoes with marked price $\text{₹}1200$ is sold at a 0\\%$ discount. If sales tax of \\%$ is levied on the discounted price, what is the final cash paid?", "options": ["₹1120", "₹1134", "₹1140", "₹1150"], "correct": 1, "solution": "Step 1: Calculate discounted price (taxable value):\n34\text{Discounted Price} = 1200 - (10\\% \text{ of } 1200) = 1200 - 120 = \text{₹}108034\nStep 2: Add \\%$ sales tax on the discounted price:\n34\text{Tax} = 5\\% \text{ of } 1080 = 0.05 \times 1080 = \text{₹}5434\n34\text{Final Cash} = 1080 + 54 = \\mathbf{\text{₹}1134}34."}, {"num": 31, "slide": 20, "question": "A share price increases by 0\\%$ on Monday, but falls by 0\\%$ on Tuesday. Compared to the original price, the final price is:", "options": ["Equal to original", "4% higher", "4% lower", "2% lower"], "correct": 2, "solution": "Let initial price be 00$:\n- Monday (+20%): 00 \times 1.20 = 120$\n- Tuesday (-20% of 120): 20 \times 0.80 = 96$\n\nNet change: 6 - 100 = -4$, which represents a **4% decrease**!\n34\text{Multiplier} = (1 + 0.20)(1 - 0.20) = 1 - 0.04 = 0.96 \\implies \\mathbf{4\\% \text{ lower}}34."}, {"num": 32, "slide": 20, "question": "According to the percentage reversibility principle, which of the following is equivalent to 6\\%$ of 50", "options": ["25% of 16", "16% of 50", "8% of 25", "32% of 50"], "correct": 0, "solution": "The percentage reversibility law states:\n34x\\% \text{ of } y = \frac{x \times y}{100} = \frac{y \times x}{100} = y\\% \text{ of } x34\n\nThus, 6\\% \text{ of } 25 = 25\\% \text{ of } 16 = \frac{1}{4} \times 16 = \\mathbf{4}$.\n\nHence, it is identically $\\mathbf{25\\% \text{ of } 16}$."}, {"num": 33, "slide": 20, "question": "Salary of an employee is reduced by 5\\%$. By what percentage must the new reduced salary be increased to restore the original salary?", "options": ["25%", "30%", "33.33%", "50%"], "correct": 2, "solution": "Let original salary be 00$.\nReduced salary $= 100 - 25 = 75$.\n\nTo return from 5$ back to 00$, an increment of 5$ is needed on the NEW base of 5$:\n34\text{Required Increase} = \frac{25}{75} \times 100\\% = \frac{1}{3} \times 100\\% = \\mathbf{33.33\\%}34\n\nBecause the base has shrunk, a larger percentage is required to recover!"}, {"num": 34, "slide": 20, "question": "In the Peaceful Knights chess problem, what is the maximum percentage of squares on an  \times 8$ board that can be occupied without any two knights attacking each other?", "options": ["25%", "32%", "50%", "64%"], "correct": 2, "solution": "An  \times 8$ chessboard contains 4$ squares (2$ light, 2$ dark).\nA knight always moves from a light square to a dark square, and vice versa.\n\nIf all knights are placed strictly on squares of the same colour (e.g. all 32 on light squares), **no knight can attack another knight**!\n34\text{Maximum Peaceful Knights} = 3234\n34\text{Percentage coverage} = \frac{32}{64} \times 100\\% = \\mathbf{50\\%}34."}, {"num": 35, "slide": 20, "question": "If $ earns 5\\%$ more than $, by what percentage does $ earn less than 0", "options": ["25%", "20%", "15%", "18.5%"], "correct": 1, "solution": "Let  = 100$. Then  = 125$.\nDifference $= 125 - 100 = 25$.\n\nTo calculate how much less $ is relative to $, use $ as the base:\n34\text{Percentage less} = \frac{25}{A} \times 100\\% = \frac{25}{125} \times 100\\% = \frac{1}{5} \times 100\\% = \\mathbf{20\\%}34."}, {"num": 36, "slide": 20, "question": "What single discount is equivalent to two successive discounts of 0\\%$ and 0\\%0", "options": ["30%", "28%", "26%", "25%"], "correct": 1, "solution": "Net multiplier for successive discounts:\n34(1 - 0.20)(1 - 0.10) = 0.80 \times 0.90 = 0.7234\n34\text{Equivalent Single Discount} = (1 - 0.72) \times 100\\% = \\mathbf{28\\%}34\n\nOr formula:  + d_2 - \frac{d_1 d_2}{100} = 20 + 10 - \frac{200}{100} = 30 - 2 = 28\\%$."}, {"num": 37, "slide": 20, "question": "If the length of a rectangle increases by 0\\%$ and its breadth decreases by 0\\%$, how does its area change?", "options": ["Remains unchanged", "Decreases by 4%", "Increases by 4%", "Decreases by 2%"], "correct": 1, "solution": "Let initial dimensions be $ and $, initial area  = LB$.\n34L_{new} = 1.20 L, \\quad B_{new} = 0.80 B34\n34A_{new} = 1.20 L \times 0.80 B = 0.96 LB = 0.96 A_034\n\nChange $= 0.96 - 1.00 = -0.04$, meaning the area **decreases by 4%**."}, {"num": 38, "slide": 20, "question": "A merchant falsely marks up an item by 0\\%$ and then announces a discount of 0\\%$. Does he break even?", "options": ["Yes, he breaks even", "No, he suffers a 16% loss", "No, he makes a 16% gain", "No, he suffers an 8% loss"], "correct": 1, "solution": "Let Cost Price be $\text{₹}100$.\nMarked Price $= 100 + 40 = \text{₹}140$.\nDiscount $= 40\\% \text{ of } 140 = 0.40 \times 140 = \text{₹}56$.\nSelling Price $= 140 - 56 = \text{₹}84$.\n\n34\text{Loss} = 100 - 84 = \text{₹}16 \\implies \\mathbf{16\\% \text{ loss}}34.\nMultiplier: .40 \times 0.60 = 0.84 = 1 - 0.16$."}, {"num": 39, "slide": 20, "question": "On an  \times n$ chessboard, what is the maximum number of peaceful knights (where no two knights can attack one another)?", "options": ["n", "2n", "n²/2 (rounded up)", "n² - 1"], "correct": 2, "solution": "Since every move of a knight changes the square colour, all squares of one colour form an independent set.\n\nFor an  \times n$ board with ^2$ squares:\n34\text{Maximum Knights} = \\left\\lceil \frac{n^2}{2} \right\rceil34\nFor even =8$: $\frac{64}{2} = 32$ knights (0\\%$ coverage).\nFor odd =5$: $\\lceil 25/2 \rceil = 13$ knights."}, {"num": 40, "slide": 20, "question": "A vessel has 0\text{ L}$ of a solution containing 0\\%$ alcohol. How many litres of pure alcohol must be added to make it a 6\\%$ solution?", "options": ["10 L", "12 L", "15 L", "18 L"], "correct": 2, "solution": "Initial alcohol $= 20\\% \text{ of } 60 = 12\text{ L}$. Water $= 48\text{ L}$.\n\nLet \text{ L}$ of pure alcohol be added.\nNew total volume $= 60 + x$, and total alcohol $= 12 + x$.\n34\frac{12 + x}{60 + x} = \frac{36}{100} = \frac{9}{25}34\n3425(12 + x) = 9(60 + x)34\n34300 + 25x = 540 + 9x34\n3416x = 240 \\implies x = \frac{240}{16} = \\mathbf{15\text{ L}}34.\n\nCheck: Total alcohol $= 12 + 15 = 27\text{ L}$. Total volume $= 75\text{ L}$. $\frac{27}{75} = \frac{9}{25} = 36\\%$."}];
+
+    let currentSlideIndex = 0;
+    let isSpeaking = false;
+    let synth = window.speechSynthesis;
+    let currentUtterance = null;
+
+    // Helper: Trigger KaTeX Rendering
+    function triggerMathRender(element) {
+      if (window.renderMathInElement) {
+        renderMathInElement(element || document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    // ==========================================
+    // Slide Navigation & State Management
+    // ==========================================
+    function loadSlide(index) {
+      if (index < 0 || index >= slides.length) return;
+      currentSlideIndex = index;
+      stopVoice();
+
+      const slide = slides[index];
+
+      // Update Header & Metas
+      document.getElementById('slideNumDisplay').textContent = `Slide ${index + 1} of ${slides.length}`;
+      document.getElementById('slideTag').textContent = `CHAPTER 8 • SLIDE ${index + 1} OF 20`;
+      document.getElementById('slideTitle').textContent = slide.title;
+      document.getElementById('slideSubtitle').textContent = slide.subtitle;
+      document.getElementById('mentorVoiceText').textContent = slide.voice;
+
+      const lessonGrid = document.getElementById('lessonGrid');
+      const quizContainer = document.getElementById('quizContainer');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const lastNotice = document.getElementById('lastSlideNotice');
+
+      prevBtn.disabled = (index === 0);
+
+      if (index === slides.length - 1) {
+        nextBtn.style.display = 'none';
+        lastNotice.style.display = 'block';
+      } else {
+        nextBtn.style.display = 'inline-block';
+        lastNotice.style.display = 'none';
+      }
+
+      if (index < 16) {
+        // Lesson Slide
+        lessonGrid.style.display = 'grid';
+        quizContainer.style.display = 'none';
+
+        document.getElementById('theoryContent').innerHTML = slide.content;
+        renderCheckpoints(slide.checkpoints);
+        renderSimulator(slide.sim_type);
+      } else {
+        // Dedicated Quiz Slide (Slides 17 to 20)
+        lessonGrid.style.display = 'none';
+        quizContainer.style.display = 'flex';
+
+        renderQuizSlide(slide.quiz_range);
+      }
+
+      setTimeout(() => {
+        triggerMathRender(document.body);
+      }, 50);
+    }
+
+    function prevSlide() {
+      if (currentSlideIndex > 0) {
+        loadSlide(currentSlideIndex - 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlideIndex < slides.length - 1) {
+        loadSlide(currentSlideIndex + 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // ==========================================
+    // In-Slide Conceptual Checkpoints
+    // ==========================================
+    function renderCheckpoints(checkpoints) {
+      const list = document.getElementById('checkpointsList');
+      list.innerHTML = '';
+
+      if (!checkpoints || checkpoints.length === 0) {
+        document.getElementById('checkpointContainer').style.display = 'none';
+        return;
+      }
+      document.getElementById('checkpointContainer').style.display = 'flex';
+
+      checkpoints.forEach((cp, cpIdx) => {
+        const card = document.createElement('div');
+        card.className = 'checkpoint-card';
+        card.innerHTML = `
+          <div class="checkpoint-q"><strong>Q${cpIdx + 1}:</strong> ${cp.q}</div>
+          <div class="options-grid" id="cpOptions${cpIdx}"></div>
+          <div class="feedback-box" id="cpFeedback${cpIdx}"></div>
+        `;
+
+        const optGrid = card.querySelector(`#cpOptions${cpIdx}`);
+        const feedback = card.querySelector(`#cpFeedback${cpIdx}`);
+
+        cp.options.forEach((opt, optIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'option-btn';
+          btn.innerHTML = `<span style="font-weight:700; color:#38bdf8;">${String.fromCharCode(65 + optIdx)}.</span> <span>${opt}</span>`;
+          btn.onclick = () => {
+            const allBtns = optGrid.querySelectorAll('.option-btn');
+            allBtns.forEach(b => b.disabled = true);
+
+            if (optIdx === cp.ans) {
+              btn.classList.add('correct');
+              feedback.className = 'feedback-box show correct-box';
+              feedback.innerHTML = `<strong>✓ Correct!</strong> ${cp.feedback}`;
+            } else {
+              btn.classList.add('incorrect');
+              allBtns[cp.ans].classList.add('correct');
+              feedback.className = 'feedback-box show incorrect-box';
+              feedback.innerHTML = `<strong>✗ Incorrect.</strong> ${cp.feedback}`;
+            }
+            triggerMathRender(feedback);
+          };
+          optGrid.appendChild(btn);
+        });
+
+        list.appendChild(card);
+      });
+    }
+
+    // ==========================================
+    // Mastery Quiz Slides (10 questions per slide)
+    // ==========================================
+    function renderQuizSlide(range) {
+      const grid = document.getElementById('quizGrid');
+      grid.innerHTML = '';
+
+      if (!range) return;
+      const [startNum, endNum] = range;
+      const questions = quizQuestions.filter(q => q.num >= startNum && q.num <= endNum);
+
+      questions.forEach((q) => {
+        const card = document.createElement('div');
+        card.className = 'quiz-card';
+        card.innerHTML = `
+          <div class="quiz-card-head">
+            <span class="q-num-badge">Question ${q.num} of 40</span>
+            <button class="sol-btn" onclick="openSolutionModal(${q.num})">
+              <span>💡</span> View Solution
+            </button>
+          </div>
+          <div class="checkpoint-q">${q.question}</div>
+          <div class="options-grid" id="qGrid${q.num}"></div>
+          <div class="feedback-box" id="qFeedback${q.num}"></div>
+        `;
+
+        const optGrid = card.querySelector(`#qGrid${q.num}`);
+        const feedback = card.querySelector(`#qFeedback${q.num}`);
+
+        q.options.forEach((optText, optIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'option-btn';
+          btn.innerHTML = `<span style="font-weight:700; color:#38bdf8;">${String.fromCharCode(65 + optIdx)}.</span> <span>${optText}</span>`;
+          btn.onclick = () => {
+            const allBtns = optGrid.querySelectorAll('.option-btn');
+            allBtns.forEach(b => b.disabled = true);
+
+            if (optIdx === q.correct) {
+              btn.classList.add('correct');
+              feedback.className = 'feedback-box show correct-box';
+              feedback.innerHTML = `<strong>✓ Excellent!</strong> Correct Answer. Click "View Solution" to inspect the complete proof.`;
+            } else {
+              btn.classList.add('incorrect');
+              allBtns[q.correct].classList.add('correct');
+              feedback.className = 'feedback-box show incorrect-box';
+              feedback.innerHTML = `<strong>✗ Not quite.</strong> Option (${String.fromCharCode(65 + q.correct)}) is correct. Click "View Solution" for detailed reasoning.`;
+            }
+          };
+          optGrid.appendChild(btn);
+        });
+
+        grid.appendChild(card);
+      });
+    }
+
+    // ==========================================
+    // Solution Modal
+    // ==========================================
+    function openSolutionModal(qNum) {
+      const q = quizQuestions.find(item => item.num === qNum);
+      if (!q) return;
+
+      const modal = document.getElementById('solutionModal');
+      document.getElementById('modalTitle').innerHTML = `<span>💡</span> Solution: Question ${q.num} of 40`;
+      document.getElementById('modalBody').innerHTML = `
+        <div style="margin-bottom:12px; font-weight:600; color:#94a3b8;">${q.question}</div>
+        <div style="background:rgba(30,41,59,0.7); border:1px solid #334155; border-radius:10px; padding:16px;">
+          ${q.solution}
+        </div>
+      `;
+      modal.style.display = 'flex';
+      setTimeout(() => {
+        triggerMathRender(document.getElementById('modalBody'));
+      }, 50);
+    }
+
+    function closeSolutionModal() {
+      document.getElementById('solutionModal').style.display = 'none';
+    }
+
+    // ==========================================
+    // Voice Narration (Web Speech API)
+    // ==========================================
+    function toggleVoice() {
+      if (isSpeaking) {
+        stopVoice();
+      } else {
+        startVoice();
+      }
+    }
+
+    function startVoice() {
+      if (!('speechSynthesis' in window)) {
+        alert("Your browser does not support text-to-speech audio narration.");
+        return;
+      }
+      stopVoice();
+
+      const text = document.getElementById('mentorVoiceText').textContent.trim();
+      currentUtterance = new SpeechSynthesisUtterance(text);
+      currentUtterance.rate = 0.95;
+      currentUtterance.pitch = 1.0;
+
+      const voices = synth.getVoices();
+      const engVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('India') || v.name.includes('Male')));
+      if (engVoice) currentUtterance.voice = engVoice;
+
+      currentUtterance.onstart = () => {
+        isSpeaking = true;
+        document.getElementById('mentorAvatar').classList.add('speaking');
+        document.getElementById('voiceToggleBtn').classList.add('active');
+        document.getElementById('voiceStatusText').textContent = 'Pause';
+      };
+
+      currentUtterance.onend = currentUtterance.onerror = () => {
+        stopVoice();
+      };
+
+      synth.speak(currentUtterance);
+    }
+
+    function stopVoice() {
+      if (synth && synth.speaking) {
+        synth.cancel();
+      }
+      isSpeaking = false;
+      const avatar = document.getElementById('mentorAvatar');
+      if (avatar) avatar.classList.remove('speaking');
+      const btn = document.getElementById('voiceToggleBtn');
+      if (btn) {
+        btn.classList.remove('active');
+        document.getElementById('voiceStatusText').textContent = 'Listen';
+      }
+    }
+
+    // =========================================================
+    // 16 Bespoke Interactive Mathematical Simulators (Slides 1-16)
+    // =========================================================
+    function renderSimulator(type) {
+      const vp = document.getElementById('simViewport');
+      const controls = document.getElementById('simControls');
+      const title = document.getElementById('simTitle');
+      const badge = document.getElementById('simBadge');
+
+      vp.innerHTML = '';
+      controls.innerHTML = '';
+
+      switch (type) {
+        case 'hidden_fractions_grid_scanner':
+          renderSim1(vp, controls, title, badge);
+          break;
+        case 'fraction_to_percent_morpher':
+          renderSim2(vp, controls, title, badge);
+          break;
+        case 'everyday_percentages_dashboard':
+          renderSim3(vp, controls, title, badge);
+          break;
+        case 'mental_benchmark_decomposer':
+          renderSim4(vp, controls, title, badge);
+          break;
+        case 'fdp_trinity_converter':
+          renderSim5(vp, controls, title, badge);
+          break;
+        case 'beyond_hundred_stack_visualizer':
+          renderSim6(vp, controls, title, badge);
+          break;
+        case 'proportion_normalizer_scale':
+          renderSim7(vp, controls, title, badge);
+          break;
+        case 'gold_purity_kyc_scanner':
+          renderSim8(vp, controls, title, badge);
+          break;
+        case 'percentage_change_elevator':
+          renderSim9(vp, controls, title, badge);
+          break;
+        case 'profit_loss_trading_counter':
+          renderSim10(vp, controls, title, badge);
+          break;
+        case 'invoice_gst_generator':
+          renderSim11(vp, controls, title, badge);
+          break;
+        case 'compounding_exponential_growth_tree':
+          renderSim12(vp, controls, title, badge);
+          break;
+        case 'asset_depreciation_decay_curve':
+          renderSim13(vp, controls, title, badge);
+          break;
+        case 'percentage_paradox_investigator':
+          renderSim14(vp, controls, title, badge);
+          break;
+        case 'base_blunder_debugger_matrix':
+          renderSim15(vp, controls, title, badge);
+          break;
+        case 'peaceful_knights_chessboard_lab':
+          renderSim16(vp, controls, title, badge);
+          break;
+      }
+      triggerMathRender(vp);
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 1: Hidden Fractions Grid Scanner
+    // -------------------------------------------------------------
+    function renderSim1(vp, controls, title, badge) {
+      title.innerHTML = '<span>🔍</span> Hidden Fractions Grid Scanner';
+      badge.textContent = 'Fractional Part Unmasker';
+
+      let den = 10;
+      let num = 3;
+
+      function update() {
+        const pct = ((num / den) * 100).toFixed(1);
+        const dec = (num / den).toFixed(3);
+
+        let gridCells = '';
+        for (let i = 0; i < den; i++) {
+          const filled = i < num;
+          gridCells += `<div style="flex:1; min-width:${Math.max(16, 280/den)}px; height:45px; background:${filled ? 'linear-gradient(135deg, #06b6d4, #6366f1)' : '#1e293b'}; border:1px solid ${filled ? '#38bdf8' : '#334155'}; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:${filled ? '#fff' : '#64748b'}; transition:all 0.2s;">${i+1}</div>`;
+        }
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="font-size:13px; color:#94a3b8; margin-bottom:8px;">Partition of Whole: <strong>${num} out of ${den} equal pieces</strong></div>
+            <div style="display:flex; flex-wrap:wrap; gap:4px; justify-content:center; max-width:360px; margin:0 auto 16px auto;">
+              ${gridCells}
+            </div>
+
+            <!-- Mathematical Unmasking -->
+            <div style="background:#0f172a; border:1px solid #334155; border-radius:10px; padding:12px; font-size:13px; line-height:1.6;">
+              <div style="color:#38bdf8; font-weight:bold; font-size:15px; margin-bottom:4px;">
+                Fraction: $\frac{${num}}{${den}}$ $\implies$ <strong>${pct}%</strong>
+              </div>
+              <div style="color:#cbd5e1;">
+                Decimal value: <strong>${dec}</strong> | Scaling to 100: $\frac{${num}}{${den}} \times 100\% = \mathbf{${pct}\%}$
+              </div>
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div class="sim-slider-group">
+            <span>Denominator:</span>
+            <select id="denSelect" style="background:#0f172a; color:#fff; border:1px solid #6366f1; border-radius:6px; padding:4px 8px; font-size:12px;">
+              <option value="4" ${den===4?'selected':''}>4 pieces (quarters)</option>
+              <option value="5" ${den===5?'selected':''}>5 pieces (fifths)</option>
+              <option value="8" ${den===8?'selected':''}>8 pieces (eighths)</option>
+              <option value="10" ${den===10?'selected':''}>10 pieces (tenths)</option>
+              <option value="20" ${den===20?'selected':''}>20 pieces (twentieths)</option>
+              <option value="25" ${den===25?'selected':''}>25 pieces</option>
+            </select>
+          </div>
+          <div class="sim-slider-group">
+            <span>Numerator (${num}):</span>
+            <input type="range" id="numRange" min="0" max="${den}" value="${num}">
+          </div>
+        `;
+
+        document.getElementById('denSelect').onchange = (e) => {
+          den = parseInt(e.target.value);
+          if (num > den) num = den;
+          update();
+        };
+        document.getElementById('numRange').oninput = (e) => {
+          num = parseInt(e.target.value);
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 2: Fraction to Percent Morpher (100-Bead Grid)
+    // -------------------------------------------------------------
+    function renderSim2(vp, controls, title, badge) {
+      title.innerHTML = '<span>⚡</span> Fraction to Percent Morpher';
+      badge.textContent = '100-Bead Grid Matrix';
+
+      let currentA = 3;
+      let currentB = 5;
+
+      const presets = [
+        { a: 1, b: 2, label: '1/2' },
+        { a: 1, b: 4, label: '1/4' },
+        { a: 3, b: 4, label: '3/4' },
+        { a: 2, b: 5, label: '2/5' },
+        { a: 3, b: 5, label: '3/5' },
+        { a: 7, b: 10, label: '7/10' },
+        { a: 3, b: 8, label: '3/8' },
+        { a: 17, b: 25, label: '17/25' }
+      ];
+
+      function update() {
+        const pct = ((currentA / currentB) * 100);
+        const roundedBeads = Math.round(pct);
+
+        let beads = '';
+        for (let i = 0; i < 100; i++) {
+          const on = i < roundedBeads;
+          beads += `<div style="width:16px; height:16px; border-radius:50%; background:${on ? '#10b981' : '#1e293b'}; border:1px solid ${on ? '#34d399' : '#334155'}; box-shadow:${on ? '0 0 6px #10b981' : 'none'}; transition:all 0.15s;"></div>`;
+        }
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="display:grid; grid-template-columns:repeat(10, 16px); gap:6px; justify-content:center; margin-bottom:14px;">
+              ${beads}
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #10b981; border-radius:10px; padding:12px; font-size:13px;">
+              <div style="color:#6ee7b7; font-weight:bold; font-size:15px; margin-bottom:4px;">
+                $$\frac{${currentA}}{${currentB}} \times 100\% = \frac{${currentA * 100}}{${currentB}}\% = \mathbf{${pct.toFixed(1)}\%}$$
+              </div>
+              <div style="color:#94a3b8;">
+                Exactly <strong>${roundedBeads}</strong> out of 100 beads illuminated.
+              </div>
+            </div>
+          </div>
+        `;
+
+        let btnHtml = presets.map((p, idx) => `
+          <button class="sim-btn ${p.a===currentA && p.b===currentB ? 'active' : ''}" onclick="selectPreset(${idx})" style="padding:5px 10px; font-size:11px;">
+            ${p.label}
+          </button>
+        `).join('');
+
+        controls.innerHTML = `
+          <div style="font-size:12px; color:#94a3b8; margin-bottom:4px;">Select Fraction to Morph:</div>
+          <div style="display:flex; flex-wrap:wrap; gap:6px; justify-content:center;">
+            ${btnHtml}
+          </div>
+        `;
+
+        window.selectPreset = (idx) => {
+          currentA = presets[idx].a;
+          currentB = presets[idx].b;
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 3: Everyday Percentages Dashboard
+    // -------------------------------------------------------------
+    function renderSim3(vp, controls, title, badge) {
+      title.innerHTML = '<span>📱</span> Everyday Percentages Dashboard';
+      badge.textContent = 'Real-World Meters';
+
+      let mode = 'battery'; // battery, marks, storage
+      let val = 75;
+
+      function update() {
+        if (mode === 'battery') {
+          const col = val > 30 ? '#10b981' : (val > 15 ? '#f59e0b' : '#f43f5e');
+          const hoursLeft = ((val / 100) * 16).toFixed(1);
+          vp.innerHTML = `
+            <div style="width:100%; text-align:center;">
+              <div style="font-size:14px; font-weight:700; color:#38bdf8; margin-bottom:10px;">Smartphone Battery Gauge</div>
+              <div style="width:180px; height:85px; border:4px solid #475569; border-radius:12px; margin:0 auto; position:relative; padding:6px; display:flex; align-items:center;">
+                <!-- Battery Tip -->
+                <div style="position:absolute; right:-14px; top:28px; width:10px; height:26px; background:#475569; border-radius:0 4px 4px 0;"></div>
+                <div style="height:100%; width:${val}%; background:${col}; border-radius:6px; transition:width 0.2s ease, background 0.2s; display:flex; align-items:center; justify-content:center; color:#0f172a; font-weight:bold; font-size:16px;">
+                  ${val}%
+                </div>
+              </div>
+              <div style="margin-top:14px; background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+                Battery Level: <strong>${val}%</strong> | Estimated remaining runtime: <strong>${hoursLeft} hours</strong>
+                <br><span style="color:#94a3b8; font-size:11.5px;">Remaining charge fraction: ${val}/100 = ${(val/100).toFixed(2)}</span>
+              </div>
+            </div>
+          `;
+        } else if (mode === 'marks') {
+          const maxMarks = 80;
+          const marks = Math.round((val / 100) * maxMarks);
+          const pct = ((marks / maxMarks) * 100).toFixed(1);
+          const grade = pct >= 90 ? 'A+ (Outstanding)' : (pct >= 75 ? 'A (Excellent)' : (pct >= 60 ? 'B (Good)' : (pct >= 40 ? 'C (Pass)' : 'F (Needs Improvement)')));
+
+          vp.innerHTML = `
+            <div style="width:100%; text-align:center;">
+              <div style="font-size:14px; font-weight:700; color:#38bdf8; margin-bottom:10px;">Exam Marks Normalizer (Out of ${maxMarks})</div>
+              <div style="font-size:26px; font-weight:bold; color:#a5b4fc; margin-bottom:6px;">
+                ${marks} / ${maxMarks}
+              </div>
+              <div style="width:80%; height:20px; background:#1e293b; border-radius:10px; margin:0 auto 12px auto; overflow:hidden;">
+                <div style="height:100%; width:${pct}%; background:linear-gradient(90deg, #6366f1, #06b6d4); border-radius:10px; transition:width 0.2s;"></div>
+              </div>
+              <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+                Calculation: $\frac{${marks}}{${maxMarks}} \times 100\% = \mathbf{${pct}\%}$
+                <br>Grade Bracket: <strong style="color:#fcd34d;">${grade}</strong>
+              </div>
+            </div>
+          `;
+        } else {
+          const totalGB = 128;
+          const usedGB = Math.round((val / 100) * totalGB);
+          const freeGB = totalGB - usedGB;
+          vp.innerHTML = `
+            <div style="width:100%; text-align:center;">
+              <div style="font-size:14px; font-weight:700; color:#38bdf8; margin-bottom:10px;">Phone Storage Breakdown (128 GB)</div>
+              <div style="display:flex; height:26px; width:85%; border-radius:8px; overflow:hidden; margin:0 auto 14px auto; border:1px solid #475569;">
+                <div style="width:${val}%; background:#f43f5e; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:bold; color:#fff;">Used ${val}%</div>
+                <div style="width:${100-val}%; background:#10b981; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:bold; color:#fff;">Free ${100-val}%</div>
+              </div>
+              <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+                Used: <strong style="color:#fda4af;">${usedGB} GB</strong> (${val}%) | Available: <strong style="color:#6ee7b7;">${freeGB} GB</strong> (${100-val}%)
+              </div>
+            </div>
+          `;
+        }
+
+        controls.innerHTML = `
+          <div style="display:flex; gap:8px; justify-content:center; margin-bottom:8px;">
+            <button class="sim-btn ${mode==='battery'?'active':''}" onclick="setDashboardMode('battery')">🔋 Battery</button>
+            <button class="sim-btn ${mode==='marks'?'active':''}" onclick="setDashboardMode('marks')">📝 Test Marks</button>
+            <button class="sim-btn ${mode==='storage'?'active':''}" onclick="setDashboardMode('storage')">💾 Storage Quota</button>
+          </div>
+          <div class="sim-slider-group">
+            <span>Adjust Level:</span>
+            <input type="range" id="dashRange" min="0" max="100" value="${val}">
+            <span style="font-weight:bold; color:#38bdf8;">${val}%</span>
+          </div>
+        `;
+
+        document.getElementById('dashRange').oninput = (e) => {
+          val = parseInt(e.target.value);
+          update();
+        };
+
+        window.setDashboardMode = (m) => {
+          mode = m;
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 4: Mental Benchmark Decomposer
+    // -------------------------------------------------------------
+    function renderSim4(vp, controls, title, badge) {
+      title.innerHTML = '<span>🧠</span> Mental Benchmark Decomposer';
+      badge.textContent = 'Mental Math Shortcuts';
+
+      let baseVal = 480;
+      let targetPct = 15;
+
+      function update() {
+        const b50 = baseVal * 0.5;
+        const b10 = baseVal * 0.1;
+        const b5 = b10 * 0.5;
+        const b1 = baseVal * 0.01;
+        const result = (baseVal * (targetPct / 100)).toFixed(2);
+
+        let decompositionHtml = '';
+        if (targetPct === 15) {
+          decompositionHtml = `15% = 10% + 5% = ${b10} + ${b5} = <strong>${b10 + b5}</strong>`;
+        } else if (targetPct === 25) {
+          decompositionHtml = `25% = 50% ÷ 2 = ${b50} ÷ 2 = <strong>${b50 / 2}</strong>`;
+        } else if (targetPct === 35) {
+          decompositionHtml = `35% = 3 × 10% + 5% = 3(${b10}) + ${b5} = ${3*b10} + ${b5} = <strong>${3*b10 + b5}</strong>`;
+        } else if (targetPct === 65) {
+          decompositionHtml = `65% = 50% + 10% + 5% = ${b50} + ${b10} + ${b5} = <strong>${b50 + b10 + b5}</strong>`;
+        } else if (targetPct === 2) {
+          decompositionHtml = `2% = 2 × 1% = 2 × ${b1} = <strong>${2 * b1}</strong>`;
+        } else {
+          decompositionHtml = `${targetPct}% of ${baseVal} = ${result}`;
+        }
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="font-size:14px; color:#94a3b8; margin-bottom:8px;">Base Number: <strong style="color:#38bdf8; font-size:16px;">₹${baseVal}</strong></div>
+            
+            <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; margin-bottom:14px;">
+              <div style="background:#1e293b; border:1px solid #475569; border-radius:8px; padding:8px;">
+                <div style="font-size:11px; color:#a5b4fc;">50% (Half)</div>
+                <div style="font-size:14px; font-weight:bold; color:#fff;">₹${b50}</div>
+              </div>
+              <div style="background:#1e293b; border:1px solid #475569; border-radius:8px; padding:8px;">
+                <div style="font-size:11px; color:#38bdf8;">10% (÷10)</div>
+                <div style="font-size:14px; font-weight:bold; color:#fff;">₹${b10}</div>
+              </div>
+              <div style="background:#1e293b; border:1px solid #475569; border-radius:8px; padding:8px;">
+                <div style="font-size:11px; color:#fcd34d;">5% (10% ÷ 2)</div>
+                <div style="font-size:14px; font-weight:bold; color:#fff;">₹${b5}</div>
+              </div>
+              <div style="background:#1e293b; border:1px solid #475569; border-radius:8px; padding:8px;">
+                <div style="font-size:11px; color:#f43f5e;">1% (÷100)</div>
+                <div style="font-size:14px; font-weight:bold; color:#fff;">₹${b1}</div>
+              </div>
+            </div>
+
+            <!-- Target Breakdown -->
+            <div style="background:#0f172a; border:1px solid #6366f1; border-radius:10px; padding:12px; font-size:13px; line-height:1.6;">
+              <div style="color:#a5b4fc; font-weight:bold; font-size:15px; margin-bottom:4px;">
+                Calculating ${targetPct}% of ₹${baseVal}:
+              </div>
+              <div style="color:#34d399; font-size:14px;">
+                ${decompositionHtml}
+              </div>
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div class="sim-slider-group">
+            <span>Base Value:</span>
+            <input type="range" id="baseRange" min="50" max="1200" step="10" value="${baseVal}">
+            <span style="font-weight:bold; color:#38bdf8;">₹${baseVal}</span>
+          </div>
+          <div style="font-size:12px; color:#94a3b8; margin-top:4px;">Preset Percentages:</div>
+          <div style="display:flex; flex-wrap:wrap; gap:6px; justify-content:center;">
+            <button class="sim-btn ${targetPct===15?'active':''}" onclick="setTargetPct(15)">15%</button>
+            <button class="sim-btn ${targetPct===25?'active':''}" onclick="setTargetPct(25)">25%</button>
+            <button class="sim-btn ${targetPct===35?'active':''}" onclick="setTargetPct(35)">35%</button>
+            <button class="sim-btn ${targetPct===65?'active':''}" onclick="setTargetPct(65)">65%</button>
+            <button class="sim-btn ${targetPct===2?'active':''}" onclick="setTargetPct(2)">2%</button>
+          </div>
+        `;
+
+        document.getElementById('baseRange').oninput = (e) => {
+          baseVal = parseInt(e.target.value);
+          update();
+        };
+
+        window.setTargetPct = (p) => {
+          targetPct = p;
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 5: The FDP Trinity Converter
+    // -------------------------------------------------------------
+    function renderSim5(vp, controls, title, badge) {
+      title.innerHTML = '<span>🔄</span> The FDP Trinity Converter';
+      badge.textContent = 'Fractions • Decimals • Percentages';
+
+      let pct = 40;
+
+      function gcd(a, b) {
+        return b === 0 ? a : gcd(b, a % b);
+      }
+
+      function update() {
+        const dec = (pct / 100).toFixed(2);
+        const g = gcd(pct, 100);
+        const num = pct / g;
+        const den = 100 / g;
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <!-- Triple Card Trinity -->
+            <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; margin-bottom:16px;">
+              <div style="background:#1e293b; border:1px solid #38bdf8; border-radius:10px; padding:12px;">
+                <div style="font-size:11px; color:#38bdf8; font-weight:700;">FRACTION</div>
+                <div style="font-size:20px; font-weight:bold; color:#fff; margin-top:4px;">$$\frac{${num}}{${den}}$$</div>
+              </div>
+              <div style="background:#1e293b; border:1px solid #10b981; border-radius:10px; padding:12px;">
+                <div style="font-size:11px; color:#10b981; font-weight:700;">DECIMAL</div>
+                <div style="font-size:22px; font-weight:bold; color:#fff; margin-top:4px;">${dec}</div>
+              </div>
+              <div style="background:#1e293b; border:1px solid #f59e0b; border-radius:10px; padding:12px;">
+                <div style="font-size:11px; color:#f59e0b; font-weight:700;">PERCENTAGE</div>
+                <div style="font-size:22px; font-weight:bold; color:#fff; margin-top:4px;">${pct}%</div>
+              </div>
+            </div>
+
+            <!-- Visual Bar Scale -->
+            <div style="width:90%; height:24px; background:#0f172a; border-radius:12px; margin:0 auto 10px auto; overflow:hidden; border:1px solid #334155; position:relative;">
+              <div style="height:100%; width:${pct}%; background:linear-gradient(90deg, #6366f1, #06b6d4, #10b981); border-radius:12px; transition:width 0.2s;"></div>
+            </div>
+
+            <div style="font-size:12px; color:#94a3b8;">
+              Conversion path: $\frac{${num}}{${den}} \times 100\% = \mathbf{${pct}\%} \implies \mathbf{${dec}}$
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div class="sim-slider-group">
+            <span>Slide Value:</span>
+            <input type="range" id="fdpRange" min="1" max="100" value="${pct}">
+            <span style="font-weight:bold; color:#38bdf8;">${pct}%</span>
+          </div>
+        `;
+
+        document.getElementById('fdpRange').oninput = (e) => {
+          pct = parseInt(e.target.value);
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 6: Percentages Beyond 100%
+    // -------------------------------------------------------------
+    function renderSim6(vp, controls, title, badge) {
+      title.innerHTML = '<span>📈</span> Percentages Beyond 100%';
+      badge.textContent = 'Improper Multiples & Overflow';
+
+      let pct = 175;
+
+      function update() {
+        const fullBars = Math.floor(pct / 100);
+        const remainder = pct % 100;
+        const multiplier = (pct / 100).toFixed(2);
+
+        let barsHtml = '';
+        for (let i = 0; i < fullBars; i++) {
+          barsHtml += `
+            <div style="width:100%; background:#059669; border:1px solid #34d399; border-radius:8px; padding:6px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:bold; color:#fff;">
+              <span>Unit Whole #${i+1}</span>
+              <span>100% (Full)</span>
+            </div>
+          `;
+        }
+        if (remainder > 0) {
+          barsHtml += `
+            <div style="width:100%; background:#1e293b; border:1px solid #475569; border-radius:8px; padding:4px; overflow:hidden; position:relative;">
+              <div style="width:${remainder}%; height:26px; background:linear-gradient(90deg, #6366f1, #06b6d4); border-radius:6px; display:flex; align-items:center; padding-left:8px; font-size:11px; font-weight:bold; color:#fff;">
+                Overflow: +${remainder}%
+              </div>
+            </div>
+          `;
+        }
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="font-size:24px; font-weight:bold; color:#38bdf8; margin-bottom:4px;">
+              ${pct}%
+            </div>
+            <div style="font-size:13px; color:#94a3b8; margin-bottom:12px;">
+              Scaling Multiplier: <strong style="color:#fff;">${multiplier}×</strong> of original base
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:6px; max-width:320px; margin:0 auto 14px auto;">
+              ${barsHtml}
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+              As improper fraction: $\frac{${pct}}{100} = ${(pct/25).toFixed(0)}/4 = ${(pct/100).toFixed(2)}$
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div class="sim-slider-group">
+            <span>Percentage:</span>
+            <input type="range" id="overRange" min="100" max="300" step="5" value="${pct}">
+            <span style="font-weight:bold; color:#38bdf8;">${pct}%</span>
+          </div>
+        `;
+
+        document.getElementById('overRange').oninput = (e) => {
+          pct = parseInt(e.target.value);
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 7: Proportion Normalizer Scale
+    // -------------------------------------------------------------
+    function renderSim7(vp, controls, title, badge) {
+      title.innerHTML = '<span>⚖️</span> Proportion Normalizer Scale';
+      badge.textContent = 'Comparing Disparate Bases';
+
+      let aNum = 18, aDen = 25; // 72%
+      let bNum = 21, bDen = 30; // 70%
+
+      function update() {
+        const pctA = ((aNum / aDen) * 100).toFixed(1);
+        const pctB = ((bNum / bDen) * 100).toFixed(1);
+        const aWins = parseFloat(pctA) > parseFloat(pctB);
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <!-- Contender A -->
+            <div style="background:#1e293b; border:1px solid ${aWins ? '#10b981' : '#475569'}; border-radius:10px; padding:10px; margin-bottom:10px;">
+              <div style="display:flex; justify-content:space-between; font-size:12.5px; margin-bottom:4px;">
+                <span style="font-weight:bold; color:#38bdf8;">Candidate A: ${aNum} / ${aDen}</span>
+                <span style="font-weight:bold; color:#fff;">Normalized: ${pctA}%</span>
+              </div>
+              <div style="width:100%; height:14px; background:#0f172a; border-radius:6px; overflow:hidden;">
+                <div style="width:${pctA}%; height:100%; background:#38bdf8;"></div>
+              </div>
+            </div>
+
+            <!-- Contender B -->
+            <div style="background:#1e293b; border:1px solid ${!aWins ? '#10b981' : '#475569'}; border-radius:10px; padding:10px; margin-bottom:14px;">
+              <div style="display:flex; justify-content:space-between; font-size:12.5px; margin-bottom:4px;">
+                <span style="font-weight:bold; color:#a855f7;">Candidate B: ${bNum} / ${bDen}</span>
+                <span style="font-weight:bold; color:#fff;">Normalized: ${pctB}%</span>
+              </div>
+              <div style="width:100%; height:14px; background:#0f172a; border-radius:6px; overflow:hidden;">
+                <div style="width:${pctB}%; height:100%; background:#a855f7;"></div>
+              </div>
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+              <strong>Verdict:</strong> ${aWins ? '<span style="color:#34d399;">Candidate A has higher rate</span>' : '<span style="color:#a855f7;">Candidate B has higher rate</span>'}
+              (${pctA}% vs ${pctB}%). Percentages bring both to a common base of 100!
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div class="sim-slider-group">
+            <span>Candidate A (${aNum}/${aDen}):</span>
+            <input type="range" id="aRange" min="5" max="${aDen}" value="${aNum}">
+          </div>
+          <div class="sim-slider-group">
+            <span>Candidate B (${bNum}/${bDen}):</span>
+            <input type="range" id="bRange" min="5" max="${bDen}" value="${bNum}">
+          </div>
+        `;
+
+        document.getElementById('aRange').oninput = (e) => {
+          aNum = parseInt(e.target.value);
+          update();
+        };
+        document.getElementById('bRange').oninput = (e) => {
+          bNum = parseInt(e.target.value);
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 8: Content Purity & KYC Scanner
+    // -------------------------------------------------------------
+    function renderSim8(vp, controls, title, badge) {
+      title.innerHTML = '<span>🏆</span> Content Purity & KYC Scanner';
+      badge.textContent = 'Gold Karats & Nutrition KYC';
+
+      let karat = 22;
+
+      function update() {
+        const purityPct = ((karat / 24) * 100).toFixed(2);
+        const alloyPct = (100 - purityPct).toFixed(2);
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <!-- Gold Ingot Graphic -->
+            <div style="width:220px; height:70px; background:linear-gradient(135deg, #f59e0b, #d97706); border-radius:8px; margin:0 auto 12px auto; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 16px rgba(245, 158, 11, 0.3); border:2px solid #fcd34d;">
+              <div style="font-size:18px; font-weight:900; color:#451a03; letter-spacing:1px;">${karat} KARAT GOLD</div>
+              <div style="font-size:11px; font-weight:700; color:#78350f;">HALLMARK 916 / KYC PURITY</div>
+            </div>
+
+            <!-- Two-tone purity composition bar -->
+            <div style="display:flex; height:24px; width:85%; border-radius:6px; overflow:hidden; margin:0 auto 12px auto; border:1px solid #475569;">
+              <div style="width:${purityPct}%; background:#f59e0b; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:bold; color:#0f172a;">Pure Gold ${purityPct}%</div>
+              <div style="width:${alloyPct}%; background:#64748b; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:bold; color:#fff;">Alloy ${alloyPct}%</div>
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+              Formula: $\text{Purity } \% = \frac{${karat}}{24} \times 100\% = \mathbf{${purityPct}\%}$
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div style="font-size:12px; color:#94a3b8; margin-bottom:4px;">Select Karat Standard:</div>
+          <div style="display:flex; gap:8px; justify-content:center;">
+            <button class="sim-btn ${karat===24?'active':''}" onclick="setKarat(24)">24K (Pure)</button>
+            <button class="sim-btn ${karat===22?'active':''}" onclick="setKarat(22)">22K (Jewellery)</button>
+            <button class="sim-btn ${karat===18?'active':''}" onclick="setKarat(18)">18K</button>
+            <button class="sim-btn ${karat===14?'active':''}" onclick="setKarat(14)">14K</button>
+          </div>
+        `;
+
+        window.setKarat = (k) => {
+          karat = k;
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 9: Percentage Change Elevator (Increase/Decrease)
+    // -------------------------------------------------------------
+    function renderSim9(vp, controls, title, badge) {
+      title.innerHTML = '<span>📶</span> Percentage Change Elevator';
+      badge.textContent = 'Increase & Decrease Dynamics';
+
+      let v0 = 80;
+      let v1 = 100;
+
+      function update() {
+        const diff = v1 - v0;
+        const isUp = diff >= 0;
+        const pctChange = ((Math.abs(diff) / v0) * 100).toFixed(1);
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="display:flex; justify-content:space-around; align-items:center; margin-bottom:14px;">
+              <div style="background:#1e293b; border-radius:10px; padding:12px 18px; border:1px solid #475569;">
+                <div style="font-size:11px; color:#94a3b8;">Initial Base ($V_0$)</div>
+                <div style="font-size:22px; font-weight:bold; color:#fff;">₹${v0}</div>
+              </div>
+              <div style="font-size:24px; color:${isUp ? '#10b981' : '#f43f5e'}; font-weight:bold;">
+                ${isUp ? '▲' : '▼'}
+              </div>
+              <div style="background:#1e293b; border-radius:10px; padding:12px 18px; border:1px solid #475569;">
+                <div style="font-size:11px; color:#94a3b8;">Final Value ($V_1$)</div>
+                <div style="font-size:22px; font-weight:bold; color:#fff;">₹${v1}</div>
+              </div>
+            </div>
+
+            <div style="background:#0f172a; border:1px solid ${isUp ? '#10b981' : '#f43f5e'}; border-radius:10px; padding:12px; font-size:13px;">
+              <div style="font-size:15px; font-weight:bold; color:${isUp ? '#34d399' : '#fda4af'}; margin-bottom:4px;">
+                ${isUp ? 'Percentage Increase' : 'Percentage Decrease'}: ${pctChange}%
+              </div>
+              <div style="color:#cbd5e1;">
+                $$\frac{|${v1} - ${v0}|}{${v0}} \times 100\% = \frac{${Math.abs(diff)}}{${v0}} \times 100\% = \mathbf{${pctChange}\%}$$
+              </div>
+              <div style="font-size:11px; color:#94a3b8; margin-top:4px;">
+                *Notice: The denominator is always the <strong>initial baseline (${v0})</strong>.
+              </div>
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div class="sim-slider-group">
+            <span>Initial (Base):</span>
+            <input type="range" id="v0Range" min="20" max="200" step="5" value="${v0}">
+            <span style="font-weight:bold; color:#38bdf8;">₹${v0}</span>
+          </div>
+          <div class="sim-slider-group">
+            <span>Final Value:</span>
+            <input type="range" id="v1Range" min="20" max="200" step="5" value="${v1}">
+            <span style="font-weight:bold; color:#38bdf8;">₹${v1}</span>
+          </div>
+        `;
+
+        document.getElementById('v0Range').oninput = (e) => {
+          v0 = parseInt(e.target.value);
+          update();
+        };
+        document.getElementById('v1Range').oninput = (e) => {
+          v1 = parseInt(e.target.value);
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 10: Profit and Loss Trading Counter
+    // -------------------------------------------------------------
+    function renderSim10(vp, controls, title, badge) {
+      title.innerHTML = '<span>💰</span> Profit and Loss Trading Counter';
+      badge.textContent = 'Merchant Ledger & Margins';
+
+      let cp = 500;
+      let sp = 650;
+
+      function update() {
+        const diff = sp - cp;
+        const isProfit = diff >= 0;
+        const marginPct = ((Math.abs(diff) / cp) * 100).toFixed(1);
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="display:flex; justify-content:space-around; margin-bottom:12px;">
+              <div>
+                <span style="font-size:11px; color:#94a3b8;">Cost Price (CP)</span>
+                <div style="font-size:20px; font-weight:bold; color:#fff;">₹${cp}</div>
+              </div>
+              <div>
+                <span style="font-size:11px; color:#94a3b8;">Selling Price (SP)</span>
+                <div style="font-size:20px; font-weight:bold; color:#38bdf8;">₹${sp}</div>
+              </div>
+              <div>
+                <span style="font-size:11px; color:#94a3b8;">Status</span>
+                <div style="font-size:18px; font-weight:bold; color:${isProfit ? '#10b981' : '#f43f5e'};">
+                  ${isProfit ? 'PROFIT' : 'LOSS'}
+                </div>
+              </div>
+            </div>
+
+            <div style="background:#0f172a; border:1px solid ${isProfit ? '#10b981' : '#f43f5e'}; border-radius:10px; padding:12px; font-size:13px;">
+              <div style="font-size:16px; font-weight:bold; color:${isProfit ? '#34d399' : '#fda4af'}; margin-bottom:4px;">
+                ${isProfit ? 'Profit' : 'Loss'} Amount: ₹${Math.abs(diff)} (${marginPct}%)
+              </div>
+              <div style="color:#cbd5e1;">
+                Formula: $\frac{\text{${isProfit ? 'Profit' : 'Loss'}}}{\text{CP}} \times 100\% = \frac{${Math.abs(diff)}}{${cp}} \times 100\% = \mathbf{${marginPct}\%}$
+              </div>
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div class="sim-slider-group">
+            <span>Cost Price (CP):</span>
+            <input type="range" id="cpRange" min="100" max="1500" step="50" value="${cp}">
+            <span style="font-weight:bold; color:#fff;">₹${cp}</span>
+          </div>
+          <div class="sim-slider-group">
+            <span>Selling Price (SP):</span>
+            <input type="range" id="spRange" min="100" max="1500" step="50" value="${sp}">
+            <span style="font-weight:bold; color:#38bdf8;">₹${sp}</span>
+          </div>
+        `;
+
+        document.getElementById('cpRange').oninput = (e) => {
+          cp = parseInt(e.target.value);
+          update();
+        };
+        document.getElementById('spRange').oninput = (e) => {
+          sp = parseInt(e.target.value);
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 11: Invoice & GST Generator
+    // -------------------------------------------------------------
+    function renderSim11(vp, controls, title, badge) {
+      title.innerHTML = '<span>🧾</span> Invoice & GST Generator';
+      badge.textContent = 'Tax Invoice & Discount Engine';
+
+      let mp = 2000;
+      let discPct = 10;
+      let gstSlab = 18;
+
+      function update() {
+        const discAmt = mp * (discPct / 100);
+        const taxableSP = mp - discAmt;
+        const gstAmt = taxableSP * (gstSlab / 100);
+        const cgst = (gstAmt / 2).toFixed(2);
+        const sgst = (gstAmt / 2).toFixed(2);
+        const totalBill = (taxableSP + gstAmt).toFixed(2);
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:left; background:#0f172a; border:1px solid #334155; border-radius:10px; padding:14px; font-family:monospace; font-size:12.5px; color:#cbd5e1; max-width:340px; margin:0 auto;">
+            <div style="text-align:center; font-weight:bold; color:#fcd34d; margin-bottom:8px; font-size:13px; border-bottom:1px dashed #475569; padding-bottom:6px;">
+              TAX INVOICE / CASH MEMO
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+              <span>Marked Price (MP):</span>
+              <span>₹${mp.toFixed(2)}</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; color:#34d399; margin-bottom:4px;">
+              <span>Less: Discount (${discPct}%):</span>
+              <span>-₹${discAmt.toFixed(2)}</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-weight:bold; color:#fff; border-top:1px solid #334155; padding-top:4px; margin-bottom:6px;">
+              <span>Taxable Selling Price:</span>
+              <span>₹${taxableSP.toFixed(2)}</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; color:#a5b4fc; margin-bottom:2px;">
+              <span>CGST (${gstSlab/2}%):</span>
+              <span>+₹${cgst}</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; color:#a5b4fc; margin-bottom:6px;">
+              <span>SGST (${gstSlab/2}%):</span>
+              <span>+₹${sgst}</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:14px; color:#38bdf8; border-top:1px dashed #475569; padding-top:6px;">
+              <span>TOTAL INVOICE BILL:</span>
+              <span>₹${totalBill}</span>
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div class="sim-slider-group">
+            <span>Marked Price:</span>
+            <input type="range" id="mpRange" min="500" max="5000" step="100" value="${mp}">
+            <span style="font-weight:bold; color:#fff;">₹${mp}</span>
+          </div>
+          <div class="sim-slider-group">
+            <span>Discount %:</span>
+            <input type="range" id="discRange" min="0" max="40" step="5" value="${discPct}">
+            <span style="font-weight:bold; color:#34d399;">${discPct}%</span>
+          </div>
+          <div style="display:flex; gap:6px; justify-content:center; margin-top:4px;">
+            <span style="font-size:12px; color:#94a3b8; align-self:center;">GST Slab:</span>
+            <button class="sim-btn ${gstSlab===5?'active':''}" onclick="setGst(5)">5%</button>
+            <button class="sim-btn ${gstSlab===12?'active':''}" onclick="setGst(12)">12%</button>
+            <button class="sim-btn ${gstSlab===18?'active':''}" onclick="setGst(18)">18%</button>
+            <button class="sim-btn ${gstSlab===28?'active':''}" onclick="setGst(28)">28%</button>
+          </div>
+        `;
+
+        document.getElementById('mpRange').oninput = (e) => {
+          mp = parseInt(e.target.value);
+          update();
+        };
+        document.getElementById('discRange').oninput = (e) => {
+          discPct = parseInt(e.target.value);
+          update();
+        };
+        window.setGst = (g) => {
+          gstSlab = g;
+          update();
+        };
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 12: Compounding Exponential Growth Tree
+    // -------------------------------------------------------------
+    function renderSim12(vp, controls, title, badge) {
+      title.innerHTML = '<span>🌱</span> Compounding Growth Tree';
+      badge.textContent = 'CI vs Simple Interest Engine';
+
+      let P = 10000;
+      let r = 10;
+      let n = 3;
+
+      function update() {
+        const si = P + (P * r * n) / 100;
+        const ci = P * Math.pow(1 + r / 100, n);
+        const diff = ci - si;
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="display:flex; justify-content:space-around; margin-bottom:12px;">
+              <div style="background:#1e293b; border-radius:8px; padding:8px 14px; border:1px solid #475569;">
+                <div style="font-size:11px; color:#94a3b8;">Simple Interest (SI)</div>
+                <div style="font-size:16px; font-weight:bold; color:#cbd5e1;">₹${si.toFixed(0)}</div>
+              </div>
+              <div style="background:#1e293b; border-radius:8px; padding:8px 14px; border:1px solid #10b981;">
+                <div style="font-size:11px; color:#10b981;">Compound Interest (CI)</div>
+                <div style="font-size:16px; font-weight:bold; color:#34d399;">₹${ci.toFixed(0)}</div>
+              </div>
+            </div>
+
+            <!-- Visual Bar Comparison -->
+            <div style="width:90%; margin:0 auto 12px auto; display:flex; flex-direction:column; gap:6px;">
+              <div style="text-align:left; font-size:11px; color:#94a3b8;">SI Growth:</div>
+              <div style="height:14px; width:${Math.min(100, (si / (P * 2)) * 100)}%; background:#64748b; border-radius:4px;"></div>
+              <div style="text-align:left; font-size:11px; color:#34d399;">CI Exponential Growth:</div>
+              <div style="height:14px; width:${Math.min(100, (ci / (P * 2)) * 100)}%; background:#10b981; border-radius:4px;"></div>
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+              Compounding Bonus (Interest-on-Interest): <strong style="color:#fcd34d;">+₹${diff.toFixed(0)}</strong>
+              <br>Formula: $A = P\left(1 + \frac{r}{100}\right)^n = ${P}(1.${r < 10 ? '0'+r : r})^${n} = \mathbf{₹${ci.toFixed(0)}}$
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div class="sim-slider-group">
+            <span>Principal ($P$):</span>
+            <input type="range" id="pRange" min="2000" max="25000" step="1000" value="${P}">
+            <span style="font-weight:bold; color:#fff;">₹${P}</span>
+          </div>
+          <div class="sim-slider-group">
+            <span>Rate ($r\%$):</span>
+            <input type="range" id="rRange" min="5" max="20" step="1" value="${r}">
+            <span style="font-weight:bold; color:#38bdf8;">${r}%</span>
+          </div>
+          <div class="sim-slider-group">
+            <span>Years ($n$):</span>
+            <input type="range" id="nRange" min="1" max="5" step="1" value="${n}">
+            <span style="font-weight:bold; color:#fcd34d;">${n} yrs</span>
+          </div>
+        `;
+
+        document.getElementById('pRange').oninput = (e) => {
+          P = parseInt(e.target.value);
+          update();
+        };
+        document.getElementById('rRange').oninput = (e) => {
+          r = parseInt(e.target.value);
+          update();
+        };
+        document.getElementById('nRange').oninput = (e) => {
+          n = parseInt(e.target.value);
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 13: Asset Depreciation & Decay Curve
+    // -------------------------------------------------------------
+    function renderSim13(vp, controls, title, badge) {
+      title.innerHTML = '<span>📉</span> Asset Depreciation Curve';
+      badge.textContent = 'Wear & Value Loss Modeler';
+
+      let V0 = 50000;
+      let rate = 10;
+      let years = 3;
+
+      function update() {
+        const Vn = V0 * Math.pow(1 - rate / 100, years);
+        const lost = V0 - Vn;
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="display:flex; justify-content:space-around; margin-bottom:12px;">
+              <div>
+                <span style="font-size:11px; color:#94a3b8;">Original Cost</span>
+                <div style="font-size:18px; font-weight:bold; color:#fff;">₹${V0}</div>
+              </div>
+              <div>
+                <span style="font-size:11px; color:#fda4af;">Value Lost</span>
+                <div style="font-size:18px; font-weight:bold; color:#f43f5e;">-₹${lost.toFixed(0)}</div>
+              </div>
+              <div>
+                <span style="font-size:11px; color:#34d399;">Residual Value</span>
+                <div style="font-size:18px; font-weight:bold; color:#38bdf8;">₹${Vn.toFixed(0)}</div>
+              </div>
+            </div>
+
+            <!-- Step-down decay steps -->
+            <div style="display:flex; gap:6px; justify-content:center; align-items:flex-end; height:90px; margin-bottom:12px;">
+              ${Array.from({length: years + 1}, (_, yr) => {
+                const val = V0 * Math.pow(1 - rate / 100, yr);
+                const h = Math.max(14, (val / V0) * 80);
+                return `
+                  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+                    <div style="width:36px; height:${h}px; background:#4f46e5; border-radius:4px 4px 0 0;"></div>
+                    <span style="font-size:10px; color:#94a3b8;">Yr ${yr}</span>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+              Depreciation Formula: $V_n = V_0\left(1 - \frac{r}{100}\right)^n = ${V0}(1 - 0.${rate < 10 ? '0'+rate : rate})^${years} = \mathbf{₹${Vn.toFixed(0)}}$
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div class="sim-slider-group">
+            <span>Depreciation Rate:</span>
+            <input type="range" id="depRate" min="5" max="25" step="1" value="${rate}">
+            <span style="font-weight:bold; color:#f43f5e;">${rate}% / yr</span>
+          </div>
+          <div class="sim-slider-group">
+            <span>Years Elapsed:</span>
+            <input type="range" id="depYears" min="1" max="5" step="1" value="${years}">
+            <span style="font-weight:bold; color:#38bdf8;">${years} years</span>
+          </div>
+        `;
+
+        document.getElementById('depRate').oninput = (e) => {
+          rate = parseInt(e.target.value);
+          update();
+        };
+        document.getElementById('depYears').oninput = (e) => {
+          years = parseInt(e.target.value);
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 14: Percentage Paradox Investigator
+    // -------------------------------------------------------------
+    function renderSim14(vp, controls, title, badge) {
+      title.innerHTML = '<span>⚡</span> Percentage Paradox Investigator';
+      badge.textContent = 'Reversibility & Asymmetric Base Trap';
+
+      let mode = 'asymmetric'; // reversibility or asymmetric
+      let pVal = 20;
+
+      function update() {
+        if (mode === 'asymmetric') {
+          const afterUp = 100 * (1 + pVal / 100);
+          const afterDown = afterUp * (1 - pVal / 100);
+          const netLoss = (100 - afterDown).toFixed(2);
+
+          vp.innerHTML = `
+            <div style="width:100%; text-align:center;">
+              <div style="font-size:14px; font-weight:bold; color:#fcd34d; margin-bottom:8px;">
+                The Asymmetric Base Trap: +${pVal}% followed by -${pVal}%
+              </div>
+              <div style="display:flex; justify-content:space-around; align-items:center; margin-bottom:12px;">
+                <div>
+                  <div style="font-size:11px; color:#94a3b8;">Start Base</div>
+                  <div style="font-size:18px; font-weight:bold; color:#fff;">100</div>
+                </div>
+                <div style="color:#10b981; font-size:13px; font-weight:bold;">+${pVal}% ➔</div>
+                <div>
+                  <div style="font-size:11px; color:#94a3b8;">After Increase</div>
+                  <div style="font-size:18px; font-weight:bold; color:#34d399;">${afterUp}</div>
+                </div>
+                <div style="color:#f43f5e; font-size:13px; font-weight:bold;">-${pVal}% ➔</div>
+                <div>
+                  <div style="font-size:11px; color:#94a3b8;">Final Value</div>
+                  <div style="font-size:18px; font-weight:bold; color:#fda4af;">${afterDown.toFixed(1)}</div>
+                </div>
+              </div>
+
+              <div style="background:#0f172a; border:1px solid #f43f5e; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+                <strong>Paradox Revealed:</strong> You do NOT end at 100!
+                <br>You suffer a net <strong>${netLoss}% loss</strong> because the 20% drop was applied to a <em>larger base</em> (${afterUp})!
+                <br>Formula: Net Multiplier $= (1 + x)(1 - x) = 1 - x^2 = 1 - ${(pVal/100)**2}$.
+              </div>
+            </div>
+          `;
+        } else {
+          // Reversibility
+          const x = pVal;
+          const y = 50;
+          const ans = (x * y) / 100;
+          vp.innerHTML = `
+            <div style="width:100%; text-align:center;">
+              <div style="font-size:14px; font-weight:bold; color:#38bdf8; margin-bottom:8px;">
+                Reversibility Principle: $x\% \text{ of } y = y\% \text{ of } x$
+              </div>
+              <div style="display:flex; justify-content:space-around; margin-bottom:12px;">
+                <div style="background:#1e293b; border-radius:8px; padding:10px; border:1px solid #475569;">
+                  <div style="font-size:12px; color:#a5b4fc;">${x}% of ${y}</div>
+                  <div style="font-size:18px; font-weight:bold; color:#fff;">= ${ans}</div>
+                </div>
+                <div style="align-self:center; font-size:20px; color:#fcd34d;">≡</div>
+                <div style="background:#1e293b; border-radius:8px; padding:10px; border:1px solid #475569;">
+                  <div style="font-size:12px; color:#38bdf8;">${y}% of ${x} (Half of ${x})</div>
+                  <div style="font-size:18px; font-weight:bold; color:#fff;">= ${ans}</div>
+                </div>
+              </div>
+              <div style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+                Finding 16% of 50 is tricky in your head, but finding 50% (half) of 16 is instantly <strong>8</strong>!
+              </div>
+            </div>
+          `;
+        }
+
+        controls.innerHTML = `
+          <div style="display:flex; gap:8px; justify-content:center; margin-bottom:8px;">
+            <button class="sim-btn ${mode==='asymmetric'?'active':''}" onclick="setParadoxMode('asymmetric')">Asymmetric Base Trap</button>
+            <button class="sim-btn ${mode==='reversibility'?'active':''}" onclick="setParadoxMode('reversibility')">Reversibility Principle</button>
+          </div>
+          <div class="sim-slider-group">
+            <span>Percentage Value:</span>
+            <input type="range" id="paradoxRange" min="5" max="50" step="5" value="${pVal}">
+            <span style="font-weight:bold; color:#38bdf8;">${pVal}%</span>
+          </div>
+        `;
+
+        document.getElementById('paradoxRange').oninput = (e) => {
+          pVal = parseInt(e.target.value);
+          update();
+        };
+
+        window.setParadoxMode = (m) => {
+          mode = m;
+          update();
+        };
+        triggerMathRender(vp);
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 15: Base Blunder Debugger Matrix
+    // -------------------------------------------------------------
+    function renderSim15(vp, controls, title, badge) {
+      title.innerHTML = '<span>🛠️</span> Base Blunder Debugger Matrix';
+      badge.textContent = 'Common Traps & Formula Matrix';
+
+      let activeTab = 0;
+      const cases = [
+        {
+          title: 'The Selling Price Blunder',
+          myth: 'Merchant made 20% profit on SP ₹1200, so CP = ₹1200 - 20% = ₹960?',
+          debunk: 'NO! Profit is 20% of COST PRICE, not SP. SP is 120% of CP. So CP = 1200 / 1.2 = ₹1000!'
+        },
+        {
+          title: 'Successive Discount Trap',
+          myth: 'A store gives 20% off and an extra 20% off. Is that 40% discount?',
+          debunk: 'NO! The second 20% applies to the remaining 80%. Multiplier: 0.8 × 0.8 = 0.64 ➔ Net discount is 36%!'
+        },
+        {
+          title: 'Inclusive Tax Reversal',
+          myth: 'A restaurant bill is ₹1180 including 18% GST. Is tax 18% of 1180?',
+          debunk: 'NO! 1180 = 1.18 × Base. Base = 1180 / 1.18 = ₹1000. Tax is ₹180, NOT ₹212.40!'
+        },
+        {
+          title: 'Restoring a Reduced Salary',
+          myth: 'Salary was cut by 25%. To restore it, give a 25% raise?',
+          debunk: 'NO! If ₹100 falls to ₹75, you need +₹25 on a base of ₹75. That requires a 33.33% raise!'
+        }
+      ];
+
+      function update() {
+        const c = cases[activeTab];
+        vp.innerHTML = `
+          <div style="width:100%; text-align:left;">
+            <div style="font-size:14px; font-weight:bold; color:#fcd34d; margin-bottom:6px; border-bottom:1px solid #334155; padding-bottom:4px;">
+              Case #${activeTab+1}: ${c.title}
+            </div>
+            <div style="background:rgba(244,63,94,0.15); border:1px solid #f43f5e; border-radius:8px; padding:10px; margin-bottom:10px; font-size:12.5px; color:#fda4af;">
+              <strong>⚠️ Common Blunder:</strong> ${c.myth}
+            </div>
+            <div style="background:rgba(16,185,129,0.15); border:1px solid #10b981; border-radius:8px; padding:10px; font-size:12.5px; color:#6ee7b7; line-height:1.5;">
+              <strong>✓ Correct Mathematical Reality:</strong> ${c.debunk}
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div style="font-size:12px; color:#94a3b8; margin-bottom:4px;">Select Case Study:</div>
+          <div style="display:flex; flex-wrap:wrap; gap:6px; justify-content:center;">
+            ${cases.map((cs, i) => `
+              <button class="sim-btn ${activeTab===i?'active':''}" onclick="setCaseTab(${i})" style="font-size:11px; padding:6px 10px;">
+                Case ${i+1}
+              </button>
+            `).join('')}
+          </div>
+        `;
+
+        window.setCaseTab = (idx) => {
+          activeTab = idx;
+          update();
+        };
+      }
+      update();
+    }
+
+    // -------------------------------------------------------------
+    // Simulator 16: Peaceful Knights Chessboard Lab
+    // -------------------------------------------------------------
+    function renderSim16(vp, controls, title, badge) {
+      title.innerHTML = '<span>♟️</span> Peaceful Knights Chessboard Lab';
+      badge.textContent = '8×8 Bipartite Maximum Coverage';
+
+      // 8x8 Board state (64 booleans)
+      let board = new Array(64).fill(false);
+
+      // Pre-set to 32 knights on light squares
+      for (let i = 0; i < 64; i++) {
+        const r = Math.floor(i / 8);
+        const c = i % 8;
+        if ((r + c) % 2 === 0) board[i] = true;
+      }
+
+      function getKnightMoves(r, c) {
+        const deltas = [
+          [-2, -1], [-2, 1], [-1, -2], [-1, 2],
+          [1, -2], [1, 2], [2, -1], [2, 1]
+        ];
+        return deltas
+          .map(([dr, dc]) => [r + dr, c + dc])
+          .filter(([nr, nc]) => nr >= 0 && nr < 8 && nc >= 0 && nc < 8);
+      }
+
+      function checkConflicts() {
+        const conflicts = new Set();
+        for (let i = 0; i < 64; i++) {
+          if (!board[i]) continue;
+          const r = Math.floor(i / 8);
+          const c = i % 8;
+          const moves = getKnightMoves(r, c);
+          for (let [nr, nc] of moves) {
+            const targetIdx = nr * 8 + nc;
+            if (board[targetIdx]) {
+              conflicts.add(i);
+              conflicts.add(targetIdx);
+            }
+          }
+        }
+        return conflicts;
+      }
+
+      function update() {
+        const conflicts = checkConflicts();
+        const knightCount = board.filter(Boolean).length;
+        const coveragePct = ((knightCount / 64) * 100).toFixed(1);
+
+        let squaresHtml = '';
+        for (let i = 0; i < 64; i++) {
+          const r = Math.floor(i / 8);
+          const c = i % 8;
+          const isLightSquare = (r + c) % 2 === 0;
+          const hasKnight = board[i];
+          const inConflict = conflicts.has(i);
+
+          let bg = isLightSquare ? '#334155' : '#1e293b';
+          if (inConflict) bg = '#ef4444';
+
+          squaresHtml += `
+            <div onclick="toggleKnight(${i})" style="width:30px; height:30px; background:${bg}; display:flex; align-items:center; justify-content:center; font-size:18px; cursor:pointer; user-select:none; transition:background 0.15s; border:${inConflict ? '1px solid #fecdd3' : 'none'};">
+              ${hasKnight ? '♞' : ''}
+            </div>
+          `;
+        }
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="display:grid; grid-template-columns:repeat(8, 30px); gap:1px; justify-content:center; background:#0f172a; padding:4px; border:2px solid #6366f1; border-radius:6px; margin:0 auto 10px auto; width:fit-content;">
+              ${squaresHtml}
+            </div>
+
+            <!-- Stats Bar -->
+            <div style="display:flex; justify-content:space-around; background:#1e293b; border-radius:8px; padding:6px 12px; margin-bottom:8px; font-size:12px;">
+              <div>Knights: <strong style="color:#fff;">${knightCount}/64</strong></div>
+              <div>Conflicts: <strong style="color:${conflicts.size > 0 ? '#f43f5e' : '#10b981'};">${conflicts.size > 0 ? conflicts.size + ' Attack!' : '0 (Peaceful)'}</strong></div>
+              <div>Coverage: <strong style="color:#38bdf8;">${coveragePct}%</strong></div>
+            </div>
+
+            <div style="font-size:11.5px; color:#94a3b8; line-height:1.4;">
+              Every knight move changes square colour (Light ↔ Dark). By placing all knights on the same colour, <strong>no two knights can ever attack each other</strong>! Maximum = 32 knights (50%).
+            </div>
+          </div>
+        `;
+
+        controls.innerHTML = `
+          <div style="display:flex; gap:6px; justify-content:center; flex-wrap:wrap;">
+            <button class="sim-btn" onclick="solveKnights('light')">Solve: 32 Light Squares (50%)</button>
+            <button class="sim-btn" onclick="solveKnights('dark')">Solve: 32 Dark Squares (50%)</button>
+            <button class="sim-btn" onclick="clearKnights()" style="background:#475569;">Clear Board</button>
+          </div>
+        `;
+
+        window.toggleKnight = (idx) => {
+          board[idx] = !board[idx];
+          update();
+        };
+
+        window.solveKnights = (type) => {
+          board = new Array(64).fill(false);
+          for (let i = 0; i < 64; i++) {
+            const r = Math.floor(i / 8);
+            const c = i % 8;
+            if (type === 'light' && (r + c) % 2 === 0) board[i] = true;
+            if (type === 'dark' && (r + c) % 2 !== 0) board[i] = true;
+          }
+          update();
+        };
+
+        window.clearKnights = () => {
+          board = new Array(64).fill(false);
+          update();
+        };
+      }
+      update();
+    }
+
+    // ==========================================
+    // Page Initializer
+    // ==========================================
+    window.addEventListener('DOMContentLoaded', () => {
+      loadSlide(0);
+    });
+  </script>
+</body>
+</html>

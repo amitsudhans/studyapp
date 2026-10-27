@@ -895,6 +895,121 @@
                     titleText = "NCERT Class 9 Science — Chapter 7: Atoms and Molecules Master Lab";
                     badgeText = "Class 9 • NCERT / CBSE Science";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 shrink-0";
+                } else if (type === 'class9-earth-as-a-system' || type === 'chapter8-science-class9' || type === 'earth-as-a-system' || type === 'energy-matter-and-life') {
+                    fileUrl = "{{ asset('animations/class9-earth-as-a-system.html') }}";
+                    titleText = "NCERT Class 9 Science — Chapter 8: Earth as a System: Energy, Matter & Life Master Lab";
+                    badgeText = "Class 9 • NCERT / CBSE Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'class9-motion' || type === 'chapter9-science-class9' || type === 'motion' || type === 'kinematics-and-motion') {
+                    fileUrl = "{{ asset('animations/class9-motion.html') }}";
+                    titleText = "NCERT Class 9 Science — Chapter 9: Motion Master Lab";
+                    badgeText = "Class 9 • NCERT / CBSE Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
+                } else if (type === 'class9-force-and-laws-of-motion' || type === 'chapter10-science-class9' || type === 'force-and-laws-of-motion' || type === 'laws-of-motion') {
+                    fileUrl = "{{ asset('animations/class9-force-and-laws-of-motion.html') }}";
+                    titleText = "NCERT Class 9 Science — Chapter 10: Force and Laws of Motion Master Lab";
+                    badgeText = "Class 9 • NCERT / CBSE Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
+                } else if (type === 'class9-work-energy-simple-machines' || type === 'chapter11-science-class9' || type === 'work-energy-and-simple-machines' || type === 'work-and-energy') {
+                    fileUrl = "{{ asset('animations/class9-work-energy-simple-machines.html') }}";
+                    titleText = "NCERT Class 9 Science — Chapter 11: Work, Energy and Simple Machines Master Lab";
+                    badgeText = "Class 9 • NCERT / CBSE Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class9-sound' || type === 'chapter12-science-class9' || type === 'sound' || type === 'sound-waves-and-acoustics') {
+                    fileUrl = "{{ asset('animations/class9-sound.html') }}";
+                    titleText = "NCERT Class 9 Science — Chapter 12: Sound Master Lab";
+                    badgeText = "Class 9 • NCERT / CBSE Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/30 shrink-0";
+                } else if (type === 'class9-english-communication-writing' || type === 'chapter1-english-class9' || type === 'class9-english-writing' || type === 'effective-communication-writing') {
+                    fileUrl = "{{ asset('animations/class9-english-communication-writing.html') }}";
+                    titleText = "NCERT Class 9 English — Chapter 1: Effective Communication & Writing in Diverse Forms";
+                    badgeText = "Class 9 • NCERT / CBSE English";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
+                } else if (type === 'class8-math-square-and-cube' || type === 'chapter1-math-class8' || type === 'a-square-and-a-cube' || type === 'square-and-a-cube') {
+                    fileUrl = "{{ asset('animations/class8-math-square-and-cube.html') }}";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 1: Exploring Squares and Cubes Master Lab";
+                    badgeText = "Class 8 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class8-math-linear-polynomials' || type === 'chapter2-math-class8' || type === 'introduction-to-linear-polynomials' || type === 'linear-polynomials-class8') {
+                    fileUrl = "{{ asset('animations/class8-math-linear-polynomials.html') }}";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 2: Fundamentals of Linear Polynomials Master Lab";
+                    badgeText = "Class 8 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
+                } else if (type === 'class8-math-story-of-numbers' || type === 'chapter3-math-class8' || type === 'a-story-of-numbers' || type === 'story-of-numbers-class8') {
+                    fileUrl = "{{ asset('animations/class8-math-story-of-numbers.html') }}";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 3: The Evolution of Number Systems Master Lab";
+                    badgeText = "Class 8 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'class8-math-quadrilaterals' || type === 'chapter4-math-class8' || type === 'quadrilaterals-class8' || type === 'class8-quadrilaterals') {
+                    fileUrl = "{{ asset('animations/class8-math-quadrilaterals.html') }}";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 4: Properties and Types of Quadrilaterals Master Lab";
+                    badgeText = "Class 8 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
+                } else if (type === 'class8-math-number-play' || type === 'chapter5-math-class8' || type === 'number-play-class8' || type === 'class8-number-play') {
+                    fileUrl = "{{ asset('animations/class8-math-number-play.html') }}";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 5: Investigating Numbers & Divisibility Master Lab";
+                    badgeText = "Class 8 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class8-math-distributive-property' || type === 'chapter6-math-class8' || type === 'distributive-property-class8' || type === 'class8-distributive-property') {
+                    fileUrl = "{{ asset('animations/class8-math-distributive-property.html') }}";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 6: The Distributive Property & Algebraic Multiplication Master Lab";
+                    badgeText = "Class 8 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'class8-math-proportional-reasoning' || type === 'chapter7-math-class8' || type === 'proportional-reasoning-class8' || type === 'class8-proportional-reasoning') {
+                    fileUrl = "{{ asset('animations/class8-math-proportional-reasoning.html') }}";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 7: Comparing Quantities (Proportional Reasoning) Master Lab";
+                    badgeText = "Class 8 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
+                } else if (type === 'class8-math-percentages-applications' || type === 'chapter8-math-class8' || type === 'percentages-applications-class8' || type === 'class8-percentages-applications' || type === 'class8-math-percentages' || type === 'percentages-and-applications') {
+                    fileUrl = "{{ asset('animations/class8-math-percentages-applications.html') }}";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 8: Comparing Quantities (Percentages & Applications) Master Lab";
+                    badgeText = "Class 8 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class8-math-baudhayana-pythagoras' || type === 'chapter9-math-class8' || type === 'baudhayana-pythagoras-class8' || type === 'class8-baudhayana-pythagoras' || type === 'class8-math-pythagoras' || type === 'baudhayana-pythagoras-theorem' || type === 'the-baudhayana-pythagoras-theorem') {
+                    fileUrl = "{{ asset('animations/class8-math-baudhayana-pythagoras.html') }}";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 9: The Baudhāyana-Pythagoras Theorem Master Lab";
+                    badgeText = "Class 8 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
+                } else if (type === 'class8-math-proportional-reasoning-2' || type === 'chapter10-math-class8' || type === 'proportional-reasoning-2-class8' || type === 'class8-proportional-reasoning-2' || type === 'class8-math-inverse-proportions' || type === 'inverse-proportions-class8' || type === 'class8-inverse-proportions' || type === 'proportional-reasoning-2') {
+                    fileUrl = "{{ asset('animations/class8-math-proportional-reasoning-2.html') }}";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 10: Advanced Proportional Reasoning & Inverse Variation Master Lab";
+                    badgeText = "Class 8 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
+                } else if (type === 'class8-math-geometric-themes-solids' || type === 'chapter11-math-class8' || type === 'geometric-themes-solids-class8' || type === 'class8-geometric-themes-solids' || type === 'class8-math-visualising-solids' || type === 'visualising-solids-class8' || type === 'class8-visualising-solids' || type === 'geometric-themes-class8' || type === 'visualising-solids' || type === 'exploring-geometric-themes') {
+                    fileUrl = "{{ asset('animations/class8-math-geometric-themes-solids.html') }}";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 11: Exploring Geometric Themes (Fractals & Visualising Solids) Master Lab";
+                    badgeText = "Class 8 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
+                } else if (type === 'class8-math-data-handling-dots-lines' || type === 'chapter12-math-class8' || type === 'data-handling-dots-lines-class8' || type === 'class8-data-handling-dots-lines' || type === 'class8-math-data-handling' || type === 'data-handling-class8' || type === 'class8-data-handling' || type === 'tales-by-dots-and-lines' || type === 'data-handling') {
+                    fileUrl = "{{ asset('animations/class8-math-data-handling-dots-lines.html') }}";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 12: Data Handling (Tales by Dots and Lines) Master Lab";
+                    badgeText = "Class 8 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
+                } else if (type === 'class8-math-algebra-play' || type === 'chapter13-math-class8' || type === 'algebra-play-class8' || type === 'class8-algebra-play' || type === 'class8-math-algebra' || type === 'algebra-play') {
+                    fileUrl = "{{ asset('animations/class8-math-algebra-play.html') }}";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 13: Algebra Play Master Lab";
+                    badgeText = "Class 8 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class8-math-area-polygons' || type === 'chapter14-math-class8' || type === 'area-polygons-class8' || type === 'class8-area-polygons' || type === 'class8-math-area' || type === 'area-class8' || type === 'area-polygons' || type === 'area') {
+                    fileUrl = "{{ asset('animations/class8-math-area-polygons.html') }}";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 14: Area (Polygons & Mensuration) Master Lab";
+                    badgeText = "Class 8 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'class8-science-microbes-health' || type === 'chapter1-science-class8' || type === 'microbes-and-health-class8' || type === 'class8-microbes-and-health' || type === 'class8-science-microbes' || type === 'microbes-and-health' || type === 'microbes') {
+                    fileUrl = "{{ asset('animations/class8-science-microbes-health.html') }}";
+                    titleText = "NCERT Class 8 Science — Chapter 1: Microbes and Health Master Lab";
+                    badgeText = "Class 8 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
+                } else if (type === 'class8-science-cells-microbes' || type === 'chapter2-science-class8' || type === 'cell-structure-and-functions-class8' || type === 'class8-cell-structure' || type === 'cell-structure-and-functions' || type === 'cells-and-microorganisms-class8' || type === 'class8-cells-microbes' || type === 'cell-structure' || type === 'cells') {
+                    fileUrl = "{{ asset('animations/class8-science-cells-microbes.html') }}";
+                    titleText = "NCERT Class 8 Science — Chapter 2: Cell Structure & Microorganisms Master Lab";
+                    badgeText = "Class 8 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'class8-science-health-disease' || type === 'chapter3-science-class8' || type === 'health-and-disease-class8' || type === 'class8-health-disease' || type === 'class8-science-health' || type === 'health-and-disease' || type === 'health-disease-prevention-class8') {
+                    fileUrl = "{{ asset('animations/class8-science-health-disease.html') }}";
+                    titleText = "NCERT Class 8 Science — Chapter 3: Health, Diseases and Prevention Master Lab";
+                    badgeText = "Class 8 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
                 }
 
                 if (iframe.src !== fileUrl) {

@@ -1,0 +1,2057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- KaTeX CSS & JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="triggerMathRender(document.body);"></script>
+  <title>NCERT Class 8 Mathematics • Chapter 1: A Square and A Cube Master Lab</title>
+  
+  <style>
+    :root {
+      --bg-primary: #070b14;
+      --bg-secondary: #0f172a;
+      --card-bg: rgba(15, 23, 42, 0.85);
+      --card-border: rgba(99, 102, 241, 0.25);
+      --accent-indigo: #6366f1;
+      --accent-cyan: #06b6d4;
+      --accent-amber: #f59e0b;
+      --accent-emerald: #10b981;
+      --accent-rose: #f43f5e;
+      --accent-purple: #a855f7;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at top right, #1e1b4b 0%, #070b14 65%);
+      color: var(--text-main);
+      font-family: var(--font-stack);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Top Navigation */
+    .top-nav {
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid rgba(99, 102, 241, 0.3);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .badge-class {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.4);
+    }
+
+    .nav-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #f1f5f9;
+      letter-spacing: -0.01em;
+    }
+
+    .slide-progress {
+      font-size: 13px;
+      font-weight: 600;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    /* Main Container */
+    .lab-container {
+      max-width: 1440px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px;
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+      min-width: 0;
+    }
+
+    @media (max-width: 1100px) {
+      .lab-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Left / Main Workspace */
+    .slide-workspace {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      min-width: 0;
+    }
+
+    .slide-header {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px 24px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .slide-number-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 800;
+      color: #f59e0b;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .slide-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .slide-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Content Cards */
+    .slide-body {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      font-size: 14px;
+      color: #cbd5e1;
+      min-width: 0;
+      overflow-wrap: break-word;
+    }
+
+    /* KaTeX math enhancements */
+    .katex {
+      font-size: 1.08em;
+      color: inherit;
+    }
+    .katex-display {
+      margin: 0.6em 0 !important;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 4px 0;
+    }
+    .katex-display > .katex {
+      white-space: normal;
+    }
+
+    .lead-p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #e2e8f0;
+      margin-bottom: 16px;
+    }
+
+    .theory-box {
+      background: rgba(30, 41, 59, 0.6);
+      border-left: 4px solid var(--accent-indigo);
+      border-radius: 0 12px 12px 0;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+    }
+
+    .theory-box h4 {
+      color: #a5b4fc;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+      min-width: 0;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card-item {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 16px;
+      min-width: 0;
+    }
+
+    .card-item h4, .card-item h5 {
+      color: #38bdf8;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .card-item ul, .theory-box ul {
+      padding-left: 20px;
+      margin-top: 6px;
+      margin-bottom: 6px;
+    }
+
+    .card-item li, .theory-box li {
+      margin-bottom: 5px;
+      line-height: 1.5;
+    }
+
+    .highlight-eq {
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      color: #c7d2fe;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      font-weight: 600;
+      margin: 10px 0;
+      text-align: center;
+      overflow-x: auto;
+    }
+
+    /* Simulator Panel */
+    .sim-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .sim-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sim-title {
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sim-viewport {
+      width: 100%;
+      height: 320px;
+      background: #020617;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sim-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .sim-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.8);
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .control-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .slider-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      min-width: 130px;
+    }
+
+    .sim-slider {
+      flex: 1;
+      accent-color: var(--accent-indigo);
+      cursor: pointer;
+    }
+
+    .slider-val {
+      font-size: 12px;
+      font-weight: 700;
+      color: #38bdf8;
+      min-width: 45px;
+      text-align: right;
+    }
+
+    .sim-btn {
+      background: linear-gradient(135deg, #4f46e5, #6366f1);
+      color: #fff;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .sim-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+    }
+
+    /* Checkpoints Section */
+    .checkpoint-section {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .checkpoint-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 800;
+      color: #10b981;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .checkpoint-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .checkpoint-q {
+      font-size: 13px;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .opt-btn {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #cbd5e1;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+    }
+
+    .opt-btn:hover {
+      background: rgba(51, 65, 85, 0.8);
+      border-color: rgba(99, 102, 241, 0.4);
+    }
+
+    .opt-btn.correct {
+      background: rgba(16, 185, 129, 0.2) !important;
+      border-color: #10b981 !important;
+      color: #34d399 !important;
+    }
+
+    .opt-btn.wrong {
+      background: rgba(244, 63, 94, 0.2) !important;
+      border-color: #f43f5e !important;
+      color: #fb7185 !important;
+    }
+
+    .feedback-box {
+      margin-top: 10px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .feedback-box.show {
+      display: block;
+    }
+
+    /* Dedicated Quiz Questions Grid */
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .quiz-card {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .quiz-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .quiz-badge {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(99, 102, 241, 0.2);
+      color: #a5b4fc;
+    }
+
+    .sol-btn {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fbbf24;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .sol-btn:hover {
+      background: rgba(245, 158, 11, 0.3);
+      transform: translateY(-1px);
+    }
+
+    /* Right Sidebar / Teacher Avatar */
+    .teacher-pane {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .avatar-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .avatar-frame {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 12px;
+      background: radial-gradient(circle, #312e81 0%, #0f172a 75%);
+      border: 2px solid #6366f1;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+    }
+
+    .teacher-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .teacher-role {
+      font-size: 12px;
+      color: #38bdf8;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .speech-bubble {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 13px;
+      color: #e2e8f0;
+      line-height: 1.5;
+      text-align: left;
+      position: relative;
+      margin-bottom: 14px;
+    }
+
+    .speech-bubble::before {
+      content: "";
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 0 8px 8px 8px;
+      border-style: solid;
+      border-color: transparent transparent rgba(30, 41, 59, 0.8) transparent;
+    }
+
+    .voice-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #059669, #10b981);
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+    }
+
+    .voice-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.5);
+    }
+
+    /* Bottom Navigation Bar */
+    .bottom-nav {
+      background: rgba(15, 23, 42, 0.95);
+      border-top: 1px solid rgba(99, 102, 241, 0.3);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      bottom: 0;
+      z-index: 40;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-btn {
+      background: rgba(30, 41, 59, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      background: var(--accent-indigo);
+      border-color: var(--accent-indigo);
+      transform: translateY(-1px);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .last-slide-notice {
+      display: none;
+      color: #10b981;
+      font-size: 13px;
+      font-weight: 700;
+      background: rgba(16, 185, 129, 0.15);
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    /* Solution Pop-up Modal */
+    .modal-backdrop {
+      background: rgba(2, 6, 23, 0.85);
+      backdrop-filter: blur(8px);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Nav -->
+  <header class="top-nav">
+    <div class="nav-brand">
+      <span class="badge-class">Grade 8 • NCERT</span>
+      <span class="nav-title">A Square and A Cube • Mathematics Chapter 1</span>
+    </div>
+    <div class="slide-progress" id="slideProgressIndicator">Slide 1 of 20</div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="lab-container">
+    
+    <!-- Left: Slide Workspace -->
+    <div class="slide-workspace">
+      
+      <!-- Slide Header -->
+      <section class="slide-header">
+        <span class="slide-number-tag" id="slideTag">Lesson 1 of 20</span>
+        <h1 class="slide-title" id="slideTitle">1.1 Square Numbers & The Geometry of Area</h1>
+        <p class="slide-subtitle" id="slideSubtitle">Definition of Square Numbers, Geometric Arrays and Notation n²</p>
+      </section>
+
+      <!-- Slide Main Theory Body -->
+      <article class="slide-body" id="slideContent">
+        <!-- Injected via JS -->
+      </article>
+
+      <!-- Bespoke Simulator Container -->
+      <section class="sim-panel" id="simulatorPanel">
+        <div class="sim-header">
+          <div class="sim-title">
+            <span>⚙️</span> <span id="simTitle">Interactive Simulation</span>
+          </div>
+        </div>
+        <div class="sim-viewport">
+          <svg class="sim-svg" id="simSvg" viewBox="0 0 600 320"></svg>
+        </div>
+        <div class="sim-controls" id="simControls">
+          <!-- Injected via JS -->
+        </div>
+      </section>
+
+      <!-- Checkpoint Container (Slides 1-16) -->
+      <section class="checkpoint-section" id="checkpointContainer">
+        <div class="checkpoint-header">
+          <span>🎯</span> In-Slide Checkpoint Questions
+        </div>
+        <div id="checkpointsList">
+          <!-- Injected via JS -->
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Right: Mentor Talking Avatar -->
+    <aside class="teacher-pane">
+      <div class="avatar-card">
+        <div class="avatar-frame">
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <!-- Background Halo -->
+            <circle cx="50" cy="50" r="48" fill="#1e1b4b" stroke="#6366f1" stroke-width="2" />
+            <!-- Traditional Achkan / Coat -->
+            <path d="M20 95 Q50 82 80 95 L85 100 L15 100 Z" fill="#0284c7" />
+            <!-- Collar / Scarf -->
+            <path d="M42 82 L50 88 L58 82 L50 98 Z" fill="#f59e0b" />
+            <!-- Neck -->
+            <rect x="44" y="65" width="12" height="18" fill="#fbcfe8" rx="3" />
+            <!-- Head -->
+            <ellipse cx="50" cy="48" rx="22" ry="24" fill="#fed7aa" />
+            <!-- Neat Scholar Haircut -->
+            <path d="M28 42 C26 22, 74 22, 72 42 C72 32, 28 32, 28 42 Z" fill="#1e293b" />
+            <path d="M27 42 C25 55, 30 65, 33 68 C30 58, 28 48, 27 42 Z" fill="#1e293b" />
+            <path d="M73 42 C75 55, 70 65, 67 68 C70 58, 72 48, 73 42 Z" fill="#1e293b" />
+            <!-- Classic Round Spectacles -->
+            <circle cx="41" cy="45" r="6" fill="none" stroke="#d97706" stroke-width="1.8" />
+            <circle cx="59" cy="45" r="6" fill="none" stroke="#d97706" stroke-width="1.8" />
+            <line x1="47" y1="45" x2="53" y2="45" stroke="#d97706" stroke-width="1.8" />
+            <!-- Expressive Eyes -->
+            <circle cx="41" cy="45" r="2" fill="#0f172a" />
+            <circle cx="59" cy="45" r="2" fill="#0f172a" />
+            <!-- Intellectual Eyebrows -->
+            <path d="M35 37 Q41 34 47 37" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round" />
+            <path d="M53 37 Q59 34 65 37" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round" />
+            <!-- Nose -->
+            <path d="M50 46 L48 53 L52 53" fill="none" stroke="#d97706" stroke-width="1.5" />
+            <!-- Animated Talking Mouth -->
+            <ellipse id="teacherMouth" cx="50" cy="60" rx="4" ry="1.5" fill="#be123c" />
+          </svg>
+        </div>
+        <div class="teacher-title">Mathematics Mentor</div>
+        <div class="teacher-role">Senior Mathematics Mentor</div>
+        <div class="speech-bubble" id="teacherSpeech">
+          Welcome to Chapter 1: A Square and A Cube! Let us explore the geometric and arithmetic magic of powers and roots!
+        </div>
+        <button class="voice-btn" id="voiceToggleBtn" onclick="toggleSpeech()">
+          <span id="voiceIcon">🔊</span> <span id="voiceLabel">Play Voiceover</span>
+        </button>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- Bottom Navigation Bar -->
+  <footer class="bottom-nav">
+    <button class="nav-btn" id="prevBtn" onclick="prevSlide()" disabled>
+      ← Previous Slide
+    </button>
+    <div id="lastSlideNotice" class="last-slide-notice">
+      You have reached the last slide of this chapter
+    </div>
+    <button class="nav-btn" id="nextBtn" onclick="nextSlide()">
+      Next Slide →
+    </button>
+  </footer>
+
+  <!-- Universal Pop-up Solution Modal -->
+  <div id="solutionModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop" style="position:fixed; top:0; left:0; width:100vw; height:100vh; display:none; align-items:center; justify-content:center; z-index:1000;">
+    <div style="background:#0f172a; border:1px solid #6366f1; border-radius:16px; max-width:620px; width:95%; padding:24px; position:relative; box-shadow:0 20px 50px rgba(0,0,0,0.8);">
+      <button onclick="closeSolutionModal()" style="position:absolute; top:16px; right:16px; background:#1e293b; color:#94a3b8; border:1px solid #475569; width:32px; height:32px; border-radius:50%; font-weight:bold; cursor:pointer;">✕</button>
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+        <span style="background:rgba(245,158,11,0.2); color:#fbbf24; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:800; text-transform:uppercase;" id="modalQuestionBadge">Solution</span>
+        <span style="color:#94a3b8; font-size:12px;" id="modalQuestionNum">Question 1</span>
+      </div>
+      <h3 style="font-size:15px; font-weight:700; color:#fff; margin-bottom:14px; line-height:1.4;" id="modalQuestionTitle">Question Title</h3>
+      <div style="background:#020617; border:1px solid #1e293b; border-radius:10px; padding:16px; font-size:13px; color:#cbd5e1; line-height:1.7; max-height:360px; overflow-y:auto; white-space:pre-line;" id="modalSolutionContent">
+        Step-by-step solution derivation will appear here.
+      </div>
+      <div style="margin-top:16px; text-align:right;">
+        <button onclick="closeSolutionModal()" style="background:#4f46e5; color:#fff; border:none; padding:8px 18px; border-radius:8px; font-size:12px; font-weight:700; cursor:pointer;">Close Solution</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Data Ingestion
+    const slides = [{"id": 1, "title": "1.1 Square Numbers & The Geometry of Area", "subtitle": "Definition of Square Numbers, Geometric Arrays and Notation n² (NCERT Page 3)", "content": "\n<p class=\"lead-p\">In geometry, a square is a flat figure with four equal sides and four right angles. When we investigate the area of a square of sidelength $n$ units, we multiply the side length by itself: $\\text{Area} = n \\times n = n^2$. Numbers that can be represented as the area of a square formed by unit square tiles are known as <strong>square numbers</strong>.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Formal Mathematical Definition</h4>\n  <p>A natural number $m$ is called a <strong>square number</strong> (or a <em>perfect square</em>) if there exists a natural number $n$ such that:</p>\n  <p class=\"highlight-eq\">$$m = n \\times n = n^2$$</p>\n  <p>For instance, $1 = 1^2$, $4 = 2^2$, $9 = 3^2$, $16 = 4^2$, $25 = 5^2$, $36 = 6^2$, and so forth. If a positive integer cannot be factored into two identical natural numbers, it is not a square number.</p>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>Geometric Array Representation</h4>\n    <p>Every square number $n^2$ can be organized as an $n \\times n$ square array of discrete dots or unit grid squares:</p>\n    <ul>\n      <li><strong>1:</strong> A single dot ($1 \\times 1$).</li>\n      <li><strong>4:</strong> A $2 \\times 2$ matrix of dots.</li>\n      <li><strong>9:</strong> A $3 \\times 3$ matrix of dots.</li>\n      <li><strong>16:</strong> A $4 \\times 4$ matrix of dots.</li>\n    </ul>\n    <p>This deep connection between geometry (spatial area) and arithmetic (multiplication) gave rise to the terminology \"squared\".</p>\n  </div>\n  <div class=\"card-item\">\n    <h4>Squares of Fractions and Decimals</h4>\n    <p>While natural numbers produce <em>perfect squares</em>, the square operation applies to all rational numbers:</p>\n    <ul>\n      <li>$\\left(\\frac{3}{5}\\right)^2 = \\frac{3}{5} \\times \\frac{3}{5} = \\frac{9}{25}$</li>\n      <li>$(2.5)^2 = 2.5 \\times 2.5 = 6.25$</li>\n      <li>$(0.1)^2 = 0.01$ (squaring doubles the decimal places)</li>\n    </ul>\n    <p class=\"highlight-eq\">$$n^2 \\text{ is always strictly non-negative for any real number } n \\ge 0.$$</p>\n  </div>\n</div>\n", "sim_type": "square_grid_builder", "voice": "Welcome to Chapter 1 of Class 8 Mathematics: A Square and A Cube! We begin our mathematical adventure with Square Numbers. When you multiply any number by itself, you form a square! Notice how 1, 4, 9, 16, and 25 literally form geometrical square arrays on your screen. Adjust the slider to build square tile arrays from 1 squared up to 10 squared!", "checkpoints": [{"question": "Which of the following is a square number (perfect square)?", "options": ["18", "25", "32", "45"], "correct": 1, "explanation": "25 is equal to 5 × 5 = 5², making it a perfect square. The numbers 18, 32, and 45 cannot be written as the product of an integer with itself."}, {"question": "What is the area of a square tile with sidelength 2.5 cm?", "options": ["5.0 cm²", "6.25 cm²", "6.5 cm²", "7.25 cm²"], "correct": 1, "explanation": "Area = side × side = 2.5 × 2.5 = 6.25 cm²."}]}, {"id": 2, "title": "Factor Pairs & The 100-Lockers Theorem", "subtitle": "Why Only Square Numbers Possess an Odd Number of Factors (NCERT Page 1–2)", "content": "\n<p class=\"lead-p\">In the classical 100-lockers problem, 100 people toggle lockers based on multiples. Which lockers remain open at the end? A locker is toggled once for every factor it possesses. Because a closed locker toggled an odd number of times remains <strong>OPEN</strong>, only numbers with an <strong>odd number of factors</strong> stay open!</p>\n\n<div class=\"theory-box\">\n  <h4>1. Partner Factor Pairs Principle</h4>\n  <p>For any positive integer $N$, factors naturally arrive in paired partners $(a, b)$ such that $a \\times b = N$:</p>\n  <ul>\n    <li>For $N = 6$: the factor pairs are $(1, 6)$ and $(2, 3)$. Factors are $\\{1, 2, 3, 6\\}$ (total of 4 factors, an <strong>even</strong> count).</li>\n    <li>For $N = 12$: the factor pairs are $(1, 12), (2, 6), (3, 4)$. Factors are $\\{1, 2, 3, 4, 6, 12\\}$ (total of 6 factors, an <strong>even</strong> count).</li>\n    <li>For non-square numbers, every factor $a$ has a distinct partner factor $b \\neq a$, so factors always group into disjoint pairs. Hence, <em>all non-square integers have an even number of factors</em>.</li>\n  </ul>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>2. The Square Number Exception</h4>\n    <p>When $N$ is a square number, say $N = k^2$, there exists a special factor pair where both factors are identical: $k \\times k = N$.</p>\n    <p>For example, for $N = 36$:</p>\n    <p>Pairs: $(1, 36), (2, 18), (3, 12), (4, 9)$ and the unique pair $(6, 6)$.</p>\n    <p>When we list distinct factors of 36: $\\{1, 2, 3, 4, 6, 9, 12, 18, 36\\}$, the number 6 is counted only once!</p>\n    <p class=\"highlight-eq\">$$\\text{Number of factors of } 36 = 2 \\times 4 + 1 = 9 \\text{ (ODD!)}$$</p>\n  </div>\n  <div class=\"card-item\">\n    <h4>3. The Lockers That Remain Open</h4>\n    <p>Since only lockers with an odd number of factors remain open, the open lockers in the range 1 to 100 are strictly the perfect squares:</p>\n    <p class=\"highlight-eq\">$$\\{1, 4, 9, 16, 25, 36, 49, 64, 81, 100\\}$$</p>\n    <p>Lockers toggled exactly twice are those with exactly two factors: the <strong>prime numbers</strong> $\\{2, 3, 5, 7, 11, \\dots\\}$.</p>\n  </div>\n</div>\n", "sim_type": "locker_factor_matrix", "voice": "Here is one of the most elegant discoveries in arithmetic! Almost all numbers have an even number of factors because factors come in pairs, like 1 times 6 and 2 times 3. But look at 36: six times six is thirty-six! Because that factor pairs with itself, it is counted only once, giving an odd total of factors! This proves why only square lockers remain open!", "checkpoints": [{"question": "How many total factors does the square number 16 have?", "options": ["4", "5", "6", "8"], "correct": 1, "explanation": "Factors of 16 are 1, 2, 4, 8, and 16. Total count is 5 factors, which is an odd number because 4 × 4 = 16 pairs with itself."}, {"question": "Which lockers remain open in the 1 to 100 locker puzzle?", "options": ["All even numbered lockers", "All prime numbered lockers", "All perfect square numbered lockers", "All multiples of 10"], "correct": 2, "explanation": "A locker remains open if and only if it is toggled an odd number of times. Only perfect squares have an odd number of factors, so lockers 1, 4, 9, 16, 25, 36, 49, 64, 81, 100 stay open."}]}, {"id": 3, "title": "Patterns of Perfect Squares: The Units Digit Law", "subtitle": "Terminal Digits, Impossible Endings {2, 3, 7, 8} and Symmetry (NCERT Page 4)", "content": "\n<p class=\"lead-p\">When we compute the squares of the first 10 digits, an unmistakable pattern emerges in their final (units) digit. This single property allows mathematicians to instantly disqualify millions of numbers from being perfect squares at a single glance!</p>\n\n<div class=\"theory-box\">\n  <h4>1. Units Digit Determinism Table</h4>\n  <p>The units digit of $n^2$ depends solely on the units digit of $n$:</p>\n  <ul>\n    <li>Numbers ending in <strong>0</strong> square to end in <strong>0</strong> ($0^2 = 0, 10^2 = 100$).</li>\n    <li>Numbers ending in <strong>1 or 9</strong> square to end in <strong>1</strong> ($1^2 = 1, 9^2 = 81, 11^2 = 121, 19^2 = 361$).</li>\n    <li>Numbers ending in <strong>2 or 8</strong> square to end in <strong>4</strong> ($2^2 = 4, 8^2 = 64, 12^2 = 144, 18^2 = 324$).</li>\n    <li>Numbers ending in <strong>3 or 7</strong> square to end in <strong>9</strong> ($3^2 = 9, 7^2 = 49, 13^2 = 169, 17^2 = 289$).</li>\n    <li>Numbers ending in <strong>4 or 6</strong> square to end in <strong>6</strong> ($4^2 = 16, 6^2 = 36, 14^2 = 196, 16^2 = 256$).</li>\n    <li>Numbers ending in <strong>5</strong> square to end in <strong>5</strong> ($5^2 = 25, 15^2 = 225, 25^2 = 625$).</li>\n  </ul>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>The Fundamental Non-Square Criterion</h4>\n    <p>A natural number can only end with one of six digits: $\\{0, 1, 4, 5, 6, 9\\}$.</p>\n    <p class=\"highlight-eq\">$$\\text{No perfect square can EVER end in } 2, 3, 7, \\text{ or } 8!$$</p>\n    <p>Therefore, numbers like $2032, 2048, 1027, 3583$ are guaranteed to be <strong>non-squares</strong> without needing any calculation.</p>\n  </div>\n  <div class=\"card-item\">\n    <h4>Necessary vs. Sufficient Condition</h4>\n    <p>Ending in $0, 1, 4, 5, 6, \\text{ or } 9$ is a <em>necessary</em> condition, but <strong>not sufficient</strong>!</p>\n    <p>For example, 26 ends in 6, but $5^2 = 25$ and $6^2 = 36$, so 26 is not a square. Similarly, 19, 21, 34, 50 all end in allowed digits, but none are perfect squares.</p>\n  </div>\n</div>\n", "sim_type": "units_digit_analyzer", "voice": "Take a close look at the units digit law! Every single square number in the universe must end with 0, 1, 4, 5, 6, or 9. If you see any number ending in 2, 3, 7, or 8, you can instantly state with mathematical certainty that it is not a square! Test any number in our Units Digit Analyzer to see this rule in action.", "checkpoints": [{"question": "Which of the following numbers CANNOT possibly be a perfect square?", "options": ["1089", "2048", "3136", "4225"], "correct": 1, "explanation": "2048 ends in 8. No square of an integer can ever end in 2, 3, 7, or 8. The other numbers end in 9, 6, and 5 which are valid square endings."}, {"question": "If a number ends in the digit 7, what will be the units digit of its square?", "options": ["3", "7", "9", "1"], "correct": 2, "explanation": "Since 7 × 7 = 49, any number ending in 7 will always produce a square whose units digit is 9."}]}, {"id": 4, "title": "Trailing Zeros & Parity Invariance", "subtitle": "Even Number of Zeros Theorem, Parity Laws and Decimal Squaring (NCERT Page 5)", "content": "\n<p class=\"lead-p\">Square numbers obey two strict structural laws regarding terminal zeros and algebraic parity: the zero-doubling law and the parity conservation law.</p>\n\n<div class=\"theory-box\">\n  <h4>1. The Even Number of Terminal Zeros Theorem</h4>\n  <p>Let an integer $N$ end with $k$ zeros, meaning $N = a \\times 10^k$, where $a$ is not divisible by 10. Squaring $N$ yields:</p>\n  <p class=\"highlight-eq\">$$N^2 = (a \\times 10^k)^2 = a^2 \\times (10^k)^2 = a^2 \\times 10^{2k}$$</p>\n  <ul>\n    <li>The square $N^2$ will always end in exactly $2k$ zeros (an <strong>even number of zeros</strong>).</li>\n    <li>$10^2 = 100$ (1 zero becomes 2 zeros).</li>\n    <li>$400^2 = 160000$ (2 zeros become 4 zeros).</li>\n    <li>$7000^2 = 49000000$ (3 zeros become 6 zeros).</li>\n  </ul>\n  <p class=\"highlight-eq\">$$\\text{A number ending in an odd number of zeros (e.g., 50, 1000, 2500000) is NEVER a square!}$$</p>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>2. Parity Invariance Principle</h4>\n    <p>Squaring preserves mathematical parity:</p>\n    <ul>\n      <li><strong>Square of an EVEN number is always EVEN:</strong><br>\n      $(2k)^2 = 4k^2 = 2(2k^2)$, which is a multiple of 4 and therefore always even.</li>\n      <li><strong>Square of an ODD number is always ODD:</strong><br>\n      $(2k + 1)^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1$, which leaves remainder 1 when divided by 2.</li>\n    </ul>\n  </div>\n  <div class=\"card-item\">\n    <h4>Modulo 4 Property of Squares</h4>\n    <p>Every square is either $0 \\pmod 4$ or $1 \\pmod 4$:</p>\n    <ul>\n      <li>Even squares: $(2k)^2 = 4k^2 \\equiv 0 \\pmod 4$.</li>\n      <li>Odd squares: $(2k+1)^2 = 4(k^2+k) + 1 \\equiv 1 \\pmod 4$.</li>\n    </ul>\n    <p>No integer of the form $4m + 2$ or $4m + 3$ can ever be a perfect square!</p>\n  </div>\n</div>\n", "sim_type": "zero_parity_tester", "voice": "Notice the mathematical symmetry here: whenever you square a number ending in zeros, the number of zeros at the end exactly doubles! One zero becomes two, two becomes four, three becomes six. That means a true square can never end in an odd number of zeros! Furthermore, even numbers always square to even numbers, and odd numbers always square to odd numbers.", "checkpoints": [{"question": "If a number has 4 zeros at the end, how many zeros will its square have at the end?", "options": ["4 zeros", "8 zeros", "16 zeros", "6 zeros"], "correct": 1, "explanation": "The number of zeros doubles upon squaring. An integer ending in 4 zeros will have 4 × 2 = 8 zeros at the end of its square."}, {"question": "Which of the following numbers can be a perfect square based on terminal zeros and parity?", "options": ["25000", "360000", "490", "12100000"], "correct": 1, "explanation": "360000 ends in 4 zeros (even count) and 36 = 6², so 360000 = 600² is a perfect square. 25000 (3 zeros), 490 (1 zero), and 12100000 (5 zeros) all have an odd count of zeros and cannot be squares."}]}, {"id": 5, "title": "Perfect Squares & The Sum of Odd Numbers", "subtitle": "The Inverted-L Gnomon Theorem: Σ(2k - 1) = n² (NCERT Page 5–6)", "content": "\n<p class=\"lead-p\">One of the most visually stunning identities in all of mathematics connects consecutive square numbers to consecutive odd numbers. The difference between two consecutive squares is always an odd number, leading directly to the theorem that <strong>every square is the sum of consecutive odd numbers starting from 1</strong>.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Difference of Consecutive Squares</h4>\n  <p>Consider the algebraic difference between $(n+1)^2$ and $n^2$:</p>\n  <p class=\"highlight-eq\">$$(n + 1)^2 - n^2 = (n^2 + 2n + 1) - n^2 = 2n + 1$$</p>\n  <p>Because $2n + 1$ is the definition of an odd number, stepping from one square to the next always adds the next odd number:</p>\n  <ul>\n    <li>$2^2 - 1^2 = 4 - 1 = 3$</li>\n    <li>$3^2 - 2^2 = 9 - 4 = 5$</li>\n    <li>$4^2 - 3^2 = 16 - 9 = 7$</li>\n    <li>$5^2 - 4^2 = 25 - 16 = 9$</li>\n    <li>$6^2 - 5^2 = 36 - 25 = 11$</li>\n  </ul>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>2. The Sum of First n Odd Numbers</h4>\n    <p>By telescoping the differences, we obtain the universal theorem:</p>\n    <p class=\"highlight-eq\">$$1 + 3 + 5 + 7 + \\dots + (2n - 1) = n^2$$</p>\n    <ul>\n      <li>$1 = 1^2$ (sum of first 1 odd number)</li>\n      <li>$1 + 3 = 4 = 2^2$ (first 2 odd numbers)</li>\n      <li>$1 + 3 + 5 = 9 = 3^2$ (first 3 odd numbers)</li>\n      <li>$1 + 3 + 5 + 7 = 16 = 4^2$ (first 4 odd numbers)</li>\n      <li>$1 + 3 + 5 + 7 + 9 = 25 = 5^2$ (first 5 odd numbers)</li>\n    </ul>\n  </div>\n  <div class=\"card-item\">\n    <h4>3. The Geometric Gnomon (Inverted L)</h4>\n    <p>In visual geometry, wrapping an \"inverted L\" shape (gnomon) of dots around an $n \\times n$ square expands it to an $(n+1) \\times (n+1)$ square.</p>\n    <p>The number of dots in the corner border added is $n + n + 1 = 2n + 1$, which is exactly the next consecutive odd number!</p>\n  </div>\n</div>\n", "sim_type": "odd_sum_gnomon_animator", "voice": "Look closely at this visual marvel! To turn a 1-by-1 square into a 2-by-2 square, you add 3 dots in an inverted L shape. To make it a 3-by-3 square, you add 5 dots! To make it 4-by-4, you add 7 dots. This proves visually without a single word that the sum of the first n odd numbers is always equal to n squared!", "checkpoints": [{"question": "What is the sum of the first 8 consecutive odd numbers (1 + 3 + 5 + 7 + 9 + 11 + 13 + 15) without adding them individually?", "options": ["56", "64", "72", "81"], "correct": 1, "explanation": "The sum of the first n odd numbers is n². For n = 8, the sum is 8² = 64."}, {"question": "What is the 36th odd number, and what is 36² if 35² = 1225?", "options": ["36th odd = 71; 36² = 1296", "36th odd = 69; 36² = 1294", "36th odd = 73; 36² = 1298", "36th odd = 71; 36² = 1300"], "correct": 0, "explanation": "The nth odd number is 2n - 1. For n = 36, the 36th odd number is 2(36) - 1 = 71. Since 36² = 35² + 71 = 1225 + 71 = 1296."}]}, {"id": 6, "title": "Square Verification: Repeated Odd Subtraction", "subtitle": "Algorithmic Perfect Square Decision & Step Count Root Determination (NCERT Page 6)", "content": "\n<p class=\"lead-p\">The theorem $n^2 = \\sum_{k=1}^n (2k - 1)$ gives us an infallible mechanical algorithm to determine whether any positive integer is a perfect square, and simultaneously find its square root!</p>\n\n<div class=\"theory-box\">\n  <h4>1. The Repeated Subtraction Algorithm</h4>\n  <p>To test whether a positive integer $M$ is a perfect square:</p>\n  <ol>\n    <li>Subtract successive odd numbers $1, 3, 5, 7, 9, 11, \\dots$ in order from $M$.</li>\n    <li>If the remainder reaches <strong>exactly 0</strong> after $k$ subtractions, then $M$ is a <strong>perfect square</strong>, and $\\sqrt{M} = k$.</li>\n    <li>If the subtraction skips over 0 and becomes <strong>negative</strong>, then $M$ is <strong>NOT a perfect square</strong>.</li>\n  </ol>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>Example 1: Testing 25 (Square)</h4>\n    <p>Step 1: $25 - 1 = 24$</p>\n    <p>Step 2: $24 - 3 = 21$</p>\n    <p>Step 3: $21 - 5 = 16$</p>\n    <p>Step 4: $16 - 7 = 9$</p>\n    <p>Step 5: $9 - 9 = 0$</p>\n    <p class=\"highlight-eq\">$$\\text{Reached 0 in 5 steps} \\implies 25 = 5^2 \\implies \\sqrt{25} = 5$$</p>\n  </div>\n  <div class=\"card-item\">\n    <h4>Example 2: Testing 38 (Non-Square)</h4>\n    <p>Step 1: $38 - 1 = 37$ &emsp; Step 2: $37 - 3 = 34$</p>\n    <p>Step 3: $34 - 5 = 29$ &emsp; Step 4: $29 - 7 = 22$</p>\n    <p>Step 5: $22 - 9 = 13$ &emsp; Step 6: $13 - 11 = 2$</p>\n    <p>Step 7: $2 - 13 = -11 \\text{ (Crossed 0 into negative!)}$</p>\n    <p class=\"highlight-eq\">$$38 \\text{ cannot reach 0} \\implies 38 \\text{ is NOT a square!}$$</p>\n  </div>\n</div>\n", "sim_type": "repeated_subtraction_stepper", "voice": "Repeated subtraction is like walking backward down the staircase of odd numbers. If you land perfectly on step zero, your number is a square, and the number of steps you took is its square root! But if you tumble past zero into negative territory, the number is not a square. Try stepping through 81 or any number you choose!", "checkpoints": [{"question": "If we test 49 by repeated subtraction of consecutive odd numbers, in how many steps will we reach 0?", "options": ["5 steps", "6 steps", "7 steps", "8 steps"], "correct": 2, "explanation": "49 = 7², so subtracting 1, 3, 5, 7, 9, 11, 13 (the first 7 odd numbers) will reduce 49 to exactly 0 in 7 steps."}, {"question": "During repeated odd subtraction on the number 50, what happens at step 8?", "options": ["Reaches 0", "Crosses 0 and becomes -15", "Becomes 1 and next subtraction is 2 - 15 = -13", "Remains positive"], "correct": 2, "explanation": "After 7 steps, 50 - 49 = 1. The 8th odd number is 15. Then 1 - 15 = -14, which crosses below 0 into negative numbers, showing 50 is not a square."}]}, {"id": 7, "title": "Non-Squares Between Consecutive Squares", "subtitle": "The 2n Non-Square Theorem & Block Interval Counting (NCERT Page 7)", "content": "\n<p class=\"lead-p\">Between two consecutive perfect squares $n^2$ and $(n+1)^2$, how many non-square natural numbers are trapped? This fundamental counting theorem reveals a simple linear relationship of $2n$.</p>\n\n<div class=\"theory-box\">\n  <h4>1. The 2n Non-Square Theorem</h4>\n  <p>To count the integers strictly between $n^2$ and $(n+1)^2$, we compute:</p>\n  <p class=\"highlight-eq\">$$\\text{Count} = (n + 1)^2 - n^2 - 1 = (n^2 + 2n + 1) - n^2 - 1 = 2n$$</p>\n  <p>Therefore, there are exactly <strong>$2n$ non-perfect square numbers</strong> lying between $n^2$ and $(n+1)^2$:</p>\n  <ul>\n    <li>Between $1^2 = 1$ and $2^2 = 4$: there are $2(1) = 2$ non-squares ($\\{2, 3\\}$).</li>\n    <li>Between $2^2 = 4$ and $3^2 = 9$: there are $2(2) = 4$ non-squares ($\\{5, 6, 7, 8\\}$).</li>\n    <li>Between $3^2 = 9$ and $4^2 = 16$: there are $2(3) = 6$ non-squares ($\\{10, 11, 12, 13, 14, 15\\}$).</li>\n    <li>Between $16^2 = 256$ and $17^2 = 289$: there are $2(16) = 32$ non-squares.</li>\n    <li>Between $99^2 = 9801$ and $100^2 = 10000$: there are $2(99) = 198$ non-squares.</li>\n  </ul>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>Distribution in Blocks of 100</h4>\n    <p>Squares become progressively rarer as numbers grow larger:</p>\n    <ul>\n      <li><strong>1 to 100:</strong> 10 squares ($1^2$ to $10^2$).</li>\n      <li><strong>101 to 200:</strong> 4 squares ($11^2=121$ to $14^2=196$).</li>\n      <li><strong>201 to 300:</strong> 3 squares ($15^2=225$ to $17^2=289$).</li>\n      <li><strong>301 to 400:</strong> 3 squares ($18^2=324$ to $20^2=400$).</li>\n    </ul>\n  </div>\n  <div class=\"card-item\">\n    <h4>Largest Square Less Than 1000</h4>\n    <p>Since $30^2 = 900$, $31^2 = 961$, and $32^2 = 1024$:</p>\n    <p class=\"highlight-eq\">$$\\text{Largest perfect square } < 1000 = 31^2 = 961$$</p>\n    <p>There are exactly 31 square numbers between 1 and 1000.</p>\n  </div>\n</div>\n", "sim_type": "between_squares_counter", "voice": "How many numbers sit between consecutive squares? The answer is always twice the smaller root, or 2n! Between 3 squared and 4 squared, there are 2 times 3, or 6 non-squares: 10, 11, 12, 13, 14, and 15! Between 99 squared and 100 squared, there are 2 times 99, or 198 numbers! Try testing any consecutive pair in the simulator.", "checkpoints": [{"question": "How many non-perfect square numbers lie between 12² and 13²?", "options": ["24", "25", "26", "27"], "correct": 0, "explanation": "Using the 2n theorem, the number of non-square numbers between n² and (n + 1)² is 2n. For n = 12, 2 × 12 = 24 numbers."}, {"question": "What is the largest perfect square strictly less than 1000?", "options": ["900", "961", "981", "999"], "correct": 1, "explanation": "31² = 961, while 32² = 1024 > 1000. Hence, 961 is the largest square less than 1000."}]}, {"id": 8, "title": "Perfect Squares & Triangular Numbers", "subtitle": "Combining Consecutive Triangular Numbers: T_{n-1} + T_n = n² (NCERT Page 7)", "content": "\n<p class=\"lead-p\">Triangular numbers are numbers that can be arranged in equilateral triangle dot patterns: $1, 3, 6, 10, 15, 21, \\dots$. When any two consecutive triangular numbers are combined, they form a perfect square!</p>\n\n<div class=\"theory-box\">\n  <h4>1. Definition of Triangular Numbers</h4>\n  <p>The $n$-th triangular number $T_n$ is the sum of the first $n$ natural numbers:</p>\n  <p class=\"highlight-eq\">$$T_n = 1 + 2 + 3 + \\dots + n = \\frac{n(n + 1)}{2}$$</p>\n  <ul>\n    <li>$T_1 = 1$</li>\n    <li>$T_2 = 1 + 2 = 3$</li>\n    <li>$T_3 = 1 + 2 + 3 = 6$</li>\n    <li>$T_4 = 1 + 2 + 3 + 4 = 10$</li>\n    <li>$T_5 = 1 + 2 + 3 + 4 + 5 = 15$</li>\n  </ul>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>2. The Consecutivity Identity</h4>\n    <p>Adding two adjacent triangular numbers yields:</p>\n    <p class=\"highlight-eq\">$$T_{n-1} + T_n = \\frac{(n-1)n}{2} + \\frac{n(n+1)}{2} = \\frac{n(n-1 + n + 1)}{2} = \\frac{n(2n)}{2} = n^2$$</p>\n    <ul>\n      <li>$T_1 + T_2 = 1 + 3 = 4 = 2^2$</li>\n      <li>$T_2 + T_3 = 3 + 6 = 9 = 3^2$</li>\n      <li>$T_3 + T_4 = 6 + 10 = 16 = 4^2$</li>\n      <li>$T_4 + T_5 = 10 + 15 = 25 = 5^2$</li>\n      <li>$T_5 + T_6 = 15 + 21 = 36 = 6^2$</li>\n    </ul>\n  </div>\n  <div class=\"card-item\">\n    <h4>3. Geometric Tessellation Visual</h4>\n    <p>If you take an upper triangular wedge of 3 dots and an interlocking lower triangular wedge of 6 dots, they fit together along the diagonal to form a solid $3 \\times 3$ square of 9 dots!</p>\n    <p>Every square array can be cleanly cut along its diagonal into two consecutive triangular pieces.</p>\n  </div>\n</div>\n", "sim_type": "triangular_square_merger", "voice": "Triangles and squares are deeply intertwined in ancient arithmetic. Look at two consecutive triangular numbers, like 6 and 10. Fit them together, and they form a perfect 4-by-4 square of 16 dots! Algebraically, n times n minus 1 over 2, plus n times n plus 1 over 2, always simplifies to n squared!", "checkpoints": [{"question": "Which two consecutive triangular numbers add together to form 49 (which is 7²)?", "options": ["15 and 34", "21 and 28", "20 and 29", "18 and 31"], "correct": 1, "explanation": "T₆ = 6(7)/2 = 21 and T₇ = 7(8)/2 = 28. Then T₆ + T₇ = 21 + 28 = 49 = 7²."}, {"question": "What is the 5th triangular number T₅?", "options": ["10", "12", "15", "20"], "correct": 2, "explanation": "T₅ = 1 + 2 + 3 + 4 + 5 = 5(6)/2 = 15."}]}, {"id": 9, "title": "Square Roots: Concept & Radical Notation", "subtitle": "Inverse Operations, Dual Integer Roots (±x) and Principal Radical √ (NCERT Page 7–8)", "content": "\n<p class=\"lead-p\">Just as subtraction is the inverse of addition, and division is the inverse of multiplication, <strong>taking the square root</strong> is the inverse mathematical operation of squaring a number.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Formal Definition of Square Root</h4>\n  <p>If a number $y = x^2$, then $x$ is called a <strong>square root</strong> of $y$.</p>\n  <p>For example, because $7^2 = 49$, 7 is a square root of 49.</p>\n  <p>However, notice that: $(-7) \\times (-7) = +49$ as well!</p>\n  <p class=\"highlight-eq\">$$\\text{Every positive real number has TWO square roots: one positive and one negative: } \\pm \\sqrt{y}$$</p>\n  <p>For instance, the square roots of 64 are $+8$ and $-8$.</p>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>2. The Principal Square Root Symbol (√)</h4>\n    <p>By international mathematical convention, the radical symbol $\\sqrt{n}$ denotes strictly the <strong>principal (positive) square root</strong>:</p>\n    <ul>\n      <li>$\\sqrt{49} = 7$ (positive root)</li>\n      <li>$\\sqrt{64} = 8$</li>\n      <li>$\\sqrt{100} = 10$</li>\n      <li>$-\\sqrt{64} = -8$ (when negative root is desired)</li>\n    </ul>\n    <p>In Grade 8 NCERT mathematics, we focus on the positive square root $\\sqrt{n}$.</p>\n  </div>\n  <div class=\"card-item\">\n    <h4>3. Geometric Side-Length Meaning</h4>\n    <p>If a square field or floor has an area of $A \\text{ m}^2$, the physical side length $s$ is simply the principal square root:</p>\n    <p class=\"highlight-eq\">$$s = \\sqrt{A}$$</p>\n    <p>For $A = 441 \\text{ m}^2$, $s = \\sqrt{441} = 21 \\text{ m}$. Physical lengths can never be negative, which reinforces the natural role of the principal root.</p>\n  </div>\n</div>\n", "sim_type": "square_root_inverter", "voice": "Squaring and square roots are mirror opposites! If you square 8, you get 64. If you take the square root of 64, you return to 8. But remember, negative 8 squared is also positive 64! By mathematical convention, the radical sign specifically denotes the positive root. Let us test finding square roots visually!", "checkpoints": [{"question": "What are the two integer square roots of the number 81?", "options": ["+9 and -9", "+8.1 and -8.1", "+9 only", "+18 and -18"], "correct": 0, "explanation": "Because (+9)² = 81 and (-9)² = 81, the two integer square roots are +9 and -9. (The radical symbol √81 refers to the positive root +9)."}, {"question": "A square plot of land has an area of 441 m². What is the length of each side?", "options": ["19 m", "21 m", "23 m", "29 m"], "correct": 1, "explanation": "Side length = √Area = √441 = 21 m, because 21 × 21 = 441."}]}, {"id": 10, "title": "Prime Factorisation & Root Estimation", "subtitle": "Pairing Prime Factors and Interval Bounding for Square Roots (NCERT Page 9–10)", "content": "\n<p class=\"lead-p\">How do we find the square root of larger numbers like 324 or 1936, or determine if they are perfect squares? Two primary mathematical tools are <strong>prime factor pairing</strong> and <strong>square bounding estimation</strong>.</p>\n\n<div class=\"theory-box\">\n  <h4>1. The Prime Factor Pairing Method</h4>\n  <p>In the prime factorisation of any perfect square, <strong>every prime factor appears an even number of times</strong> and can be grouped into identical pairs:</p>\n  <p>For $324$:</p>\n  <p>$\\text{Prime factorisation} = 2 \\times 2 \\times 3 \\times 3 \\times 3 \\times 3 = (2 \\times 2) \\times (3 \\times 3) \\times (3 \\times 3)$</p>\n  <p>Taking one prime factor from each identical pair:</p>\n  <p class=\"highlight-eq\">$$\\sqrt{324} = 2 \\times 3 \\times 3 = 18$$</p>\n  <p>If any prime factor is left unpaired (like $156 = 2 \\times 2 \\times 3 \\times 13$, where 3 and 13 are unpaired), the number is <strong>NOT a perfect square</strong>!</p>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>2. Making Numbers Square</h4>\n    <p>To find the smallest number to multiply $9408$ to make it a perfect square:</p>\n    <p>$9408 = 2^6 \\times 3^1 \\times 7^2 = (2^3 \\times 7)^2 \\times 3$</p>\n    <p>The prime 3 is unpaired! Multiplying by 3 gives:</p>\n    <p>$9408 \\times 3 = 28224 = (2^3 \\times 3 \\times 7)^2 = 168^2$</p>\n    <p class=\"highlight-eq\">$$\\text{Multiply by 3; New root } = 168$$</p>\n  </div>\n  <div class=\"card-item\">\n    <h4>3. Estimation and Bounding</h4>\n    <p>To find $\\sqrt{1936}$ without factorisation:</p>\n    <ul>\n      <li>$40^2 = 1600$ and $50^2 = 2500 \\implies 40 < \\sqrt{1936} < 50$.</li>\n      <li>Ends in 6 $\\implies$ root must end in 4 or 6 (either 44 or 46).</li>\n      <li>$45^2 = (40+5)^2 = 2025 > 1936 \\implies \\text{Root is } 44$.</li>\n    </ul>\n  </div>\n</div>\n", "sim_type": "prime_factor_pairer", "voice": "Prime factorisation gives us an x-ray view inside any number! If every prime factor can be paired up in couples, the number is a perfect square, and taking one factor from each couple gives you the exact square root! If a prime factor is left alone without a partner, multiplying by that prime factor makes it a perfect square!", "checkpoints": [{"question": "Find the square root of 324 using prime factorisation.", "options": ["16", "18", "22", "24"], "correct": 1, "explanation": "324 = 2² × 3⁴ = (2 × 3²)² = 18². Taking one factor from each pair gives 2 × 3 × 3 = 18."}, {"question": "By what smallest natural number must 9408 be multiplied so that the product becomes a perfect square?", "options": ["2", "3", "7", "6"], "correct": 1, "explanation": "9408 = 2⁶ × 3¹ × 7². All prime factors are paired except 3. Multiplying by 3 completes the pair, making it 28224 = 168²."}]}, {"id": 11, "title": "1.2 Cubic Numbers & 3D Spatial Volume", "subtitle": "Definition of Cubes, Geometric Layering n³ and Exponent Notation (NCERT Page 11–12)", "content": "\n<p class=\"lead-p\">In solid geometry, a cube is a three-dimensional figure whose length, width, and height are all equal. When we calculate the volume of a solid cube of side $n$, we multiply $n$ by itself three times: $\\text{Volume} = n \\times n \\times n = n^3$. Numbers obtained this way are called <strong>cubic numbers</strong> or <strong>perfect cubes</strong>.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Formal Mathematical Definition</h4>\n  <p>A natural number $m$ is a <strong>perfect cube</strong> if there exists an integer $n$ such that:</p>\n  <p class=\"highlight-eq\">$$m = n \\times n \\times n = n^3$$</p>\n  <ul>\n    <li>$1^3 = 1 \\times 1 \\times 1 = 1$</li>\n    <li>$2^3 = 2 \\times 2 \\times 2 = 8$ (Takes 8 unit cubes to build a cube of side 2)</li>\n    <li>$3^3 = 3 \\times 3 \\times 3 = 27$</li>\n    <li>$4^3 = 4 \\times 4 \\times 4 = 64$ (4 layers of $4 \\times 4 = 16$ cubes)</li>\n    <li>$5^3 = 5 \\times 5 \\times 5 = 125$</li>\n  </ul>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>2. Spatial Layering Architecture</h4>\n    <p>A cube of side 4 cm is formed by stacking 4 horizontal slab layers:</p>\n    <ul>\n      <li>Each horizontal layer is a $4 \\times 4$ square containing 16 unit cubes.</li>\n      <li>Stacking 4 such layers gives $16 \\times 4 = 64$ unit cubes in total.</li>\n    </ul>\n    <p>Between 1 and 27, there are only two perfect cubes: 1 and 8. The numbers 2 through 7 and 9 through 26 are <strong>not cubes</strong>.</p>\n  </div>\n  <div class=\"card-item\">\n    <h4>3. Cubes of Negative Numbers & Fractions</h4>\n    <p>Unlike squares, cubic powers preserve negative signs!</p>\n    <ul>\n      <li>$(-6)^3 = (-6) \\times (-6) \\times (-6) = +36 \\times (-6) = -216$</li>\n      <li>$\\left(\\frac{4}{6}\\right)^3 = \\frac{4 \\times 4 \\times 4}{6 \\times 6 \\times 6} = \\frac{64}{216} = \\frac{8}{27}$</li>\n      <li>$(13.08)^3 = 2237.810112$</li>\n    </ul>\n    <p class=\"highlight-eq\">$$\\text{Cube of a negative number is always NEGATIVE!}$$</p>\n  </div>\n</div>\n", "sim_type": "cube_volume_builder", "voice": "Now we step into the third dimension! A square lives in 2D with length and width, but a cube adds height! When you multiply a number by itself three times, you get its cube. To build a cube of side 3, you stack three layers of 9 blocks, giving 27 unit blocks! And notice that negative numbers cubed stay negative!", "checkpoints": [{"question": "How many unit cubes of side 1 cm are needed to construct a solid cube of side 4 cm?", "options": ["16", "32", "64", "128"], "correct": 2, "explanation": "Volume = side³ = 4³ = 4 × 4 × 4 = 64 unit cubes."}, {"question": "What is the value of (-5)³?", "options": ["+125", "-125", "+25", "-75"], "correct": 1, "explanation": "(-5)³ = (-5) × (-5) × (-5) = 25 × (-5) = -125."}]}, {"id": 12, "title": "Cubic Patterns, Terminal Digits & Zero Tripling", "subtitle": "All Digits 0–9 Possible, Zero Tripling Law and Parity Conservation (NCERT Page 12–13)", "content": "\n<p class=\"lead-p\">While perfect squares can only end in $\\{0, 1, 4, 5, 6, 9\\}$, cubic numbers exhibit a completely different, universal property: <strong>every single digit from 0 to 9 can appear as the units digit of a perfect cube</strong>!</p>\n\n<div class=\"theory-box\">\n  <h4>1. Unique 1-to-1 Mapping of Cubic Units Digits</h4>\n  <p>The units digit of $n^3$ has a unique, bijective correspondence with the units digit of $n$:</p>\n  <div class=\"grid-2col\">\n    <div>\n      <p><strong>Same-digit endings (Self-preserving):</strong></p>\n      <ul>\n        <li>$0^3 = 0 \\implies \\dots 0^3 \\to \\mathbf{0}$</li>\n        <li>$1^3 = 1 \\implies \\dots 1^3 \\to \\mathbf{1}$</li>\n        <li>$4^3 = 64 \\implies \\dots 4^3 \\to \\mathbf{4}$</li>\n        <li>$5^3 = 125 \\implies \\dots 5^3 \\to \\mathbf{5}$</li>\n        <li>$6^3 = 216 \\implies \\dots 6^3 \\to \\mathbf{6}$</li>\n        <li>$9^3 = 729 \\implies \\dots 9^3 \\to \\mathbf{9}$</li>\n      </ul>\n    </div>\n    <div>\n      <p><strong>Complementary 10-sum endings:</strong></p>\n      <ul>\n        <li>$2^3 = 8 \\implies \\dots 2^3 \\to \\mathbf{8}$</li>\n        <li>$8^3 = 512 \\implies \\dots 8^3 \\to \\mathbf{2}$</li>\n        <li>$3^3 = 27 \\implies \\dots 3^3 \\to \\mathbf{7}$</li>\n        <li>$7^3 = 343 \\implies \\dots 7^3 \\to \\mathbf{3}$</li>\n      </ul>\n      <p>Notice that $2 \\leftrightarrow 8$ (sum to 10) and $3 \\leftrightarrow 7$ (sum to 10)!</p>\n    </div>\n  </div>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>2. The Zero-Tripling Theorem</h4>\n    <p>If an integer ends with $k$ zeros, its cube ends with $3k$ zeros:</p>\n    <p class=\"highlight-eq\">$$(a \\times 10^k)^3 = a^3 \\times 10^{3k}$$</p>\n    <ul>\n      <li>$10^3 = 1000$ (1 zero becomes 3 zeros).</li>\n      <li>$200^3 = 8,000,000$ (2 zeros become 6 zeros).</li>\n    </ul>\n    <p>A perfect cube can <strong>never end in exactly 2 zeros</strong> (like 100 or 2500) or 4 zeros; its trailing zeros must always be a multiple of 3!</p>\n  </div>\n  <div class=\"card-item\">\n    <h4>3. Parity Law for Cubes</h4>\n    <p>Just like squares, parity is strictly conserved:</p>\n    <ul>\n      <li>Cube of an EVEN number is always EVEN ($2^3=8, 4^3=64$).</li>\n      <li>Cube of an ODD number is always ODD ($3^3=27, 5^3=125$).</li>\n    </ul>\n  </div>\n</div>\n", "sim_type": "cube_digit_mapper", "voice": "Here is a fascinating contrast between squares and cubes! Squares can never end in 2, 3, 7, or 8. But cubes can end in every single digit from zero to nine! Notice the beautiful reciprocal harmony: numbers ending in 2 cube to end in 8, and numbers ending in 8 cube to end in 2! Numbers ending in 3 cube to 7, and 7 to 3! And terminal zeros always triple in number!", "checkpoints": [{"question": "Can a perfect cube end with exactly two zeros (such as 400 or 900)?", "options": ["Yes, always", "Yes, if the base ends in 0", "No, the number of trailing zeros in a cube must be a multiple of 3", "Only for prime numbers"], "correct": 2, "explanation": "When an integer ending in k zeros is cubed, the result has 3k zeros. Trailing zeros must be 3, 6, 9, etc., so a cube can never end in exactly two zeros."}, {"question": "What is the units digit of the cube of 188?", "options": ["4", "8", "2", "6"], "correct": 2, "explanation": "Since 188 ends in 8, and 8³ = 512 ends in 2, the cube of 188 will end in 2."}]}, {"id": 13, "title": "Taxicab Numbers & The Hardy–Ramanujan 1729", "subtitle": "Sums of Two Cubes in Two Distinct Ways: a³ + b³ = c³ + d³ (NCERT Page 13)", "content": "\n<p class=\"lead-p\">One of the most beloved stories in the history of science took place in 1918 when English mathematician G. H. Hardy visited the ailing Indian mathematical genius <strong>Srinivasa Ramanujan</strong> in a hospital at Putney.</p>\n\n<div class=\"theory-box\">\n  <h4>1. The Famous Cambridge Encounter</h4>\n  <p>Hardy remarked that he had ridden in taxicab number <strong>1729</strong>, calling it a dull, uninteresting number. Ramanujan instantly replied:</p>\n  <blockquote style=\"font-style: italic; border-left: 3px solid #f59e0b; padding-left: 12px; margin: 10px 0;\">\n    \"No, Hardy, it is a very interesting number! It is the smallest number expressible as the sum of two positive cubes in two different ways.\"\n  </blockquote>\n  <p class=\"highlight-eq\">$$1729 = 1^3 + 12^3 = 9^3 + 10^3$$</p>\n  <ul>\n    <li>Way 1: $1^3 + 12^3 = 1 + 1728 = 1729$</li>\n    <li>Way 2: $9^3 + 10^3 = 729 + 1000 = 1729$</li>\n  </ul>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>2. Definition of Taxicab Numbers $\\text{Ta}(n)$</h4>\n    <p>A <strong>taxicab number</strong> $\\text{Ta}(k)$ is defined as the smallest integer expressible as a sum of two positive cubes in $k$ distinct ways:</p>\n    <ul>\n      <li>$\\text{Ta}(1) = 2 = 1^3 + 1^3$</li>\n      <li>$\\text{Ta}(2) = 1729$ (The Hardy–Ramanujan number)</li>\n      <li>Next taxicab numbers: $4104$ and $13832$.</li>\n    </ul>\n  </div>\n  <div class=\"card-item\">\n    <h4>3. Deconstructing 4104 and 13832</h4>\n    <p>The next numbers expressible as two cubes in two ways are:</p>\n    <ul>\n      <li>$4104 = 2^3 + 16^3 = 8 + 4096$</li>\n      <li>$4104 = 9^3 + 15^3 = 729 + 3375$</li>\n      <li>$13832 = 2^3 + 24^3 = 8 + 13824$</li>\n      <li>$13832 = 18^3 + 20^3 = 5832 + 8000$</li>\n    </ul>\n  </div>\n</div>\n", "sim_type": "ramanujan_taxicab_sim", "voice": "Here is Srinivasa Ramanujan's magical taxicab number, 1729! While Hardy thought it was dull, Ramanujan recognized instantly that 1 cubed plus 12 cubed equals 1729, and 9 cubed plus 10 cubed also equals 1729! It is the smallest number in existence that can be written as the sum of two positive cubes in two distinct ways! Explore the cubes on your screen to verify it yourself.", "checkpoints": [{"question": "Which two pairs of cubes add up to 1729?", "options": ["(1³, 12³) and (9³, 10³)", "(2³, 11³) and (5³, 10³)", "(3³, 12³) and (7³, 8³)", "(4³, 10³) and (6³, 9³)"], "correct": 0, "explanation": "1³ + 12³ = 1 + 1728 = 1729, and 9³ + 10³ = 729 + 1000 = 1729."}, {"question": "Express 4104 as a sum of two positive cubes in one of its two ways.", "options": ["1³ + 16³", "2³ + 16³", "3³ + 15³", "4³ + 14³"], "correct": 1, "explanation": "2³ + 16³ = 8 + 4096 = 4104. (The other combination is 9³ + 15³ = 729 + 3375 = 4104)."}]}, {"id": 14, "title": "Cubes as Consecutive Odd Number Partitions", "subtitle": "The Nicomachus Theorem: n³ as the Sum of n Consecutive Odd Numbers (NCERT Page 14)", "content": "\n<p class=\"lead-p\">Just as square numbers equal the sum of odd numbers starting from 1, cubic numbers possess their own mesmerizing odd-number identity discovered in antiquity by <strong>Nicomachus of Gerasa</strong> (c. 100 CE): <em>$n^3$ is always the sum of $n$ consecutive odd numbers</em>!</p>\n\n<div class=\"theory-box\">\n  <h4>1. The Nicomachus Pyramid of Odd Numbers</h4>\n  <p>Grouping the sequence of all odd numbers into consecutive rows of size 1, 2, 3, 4, 5...:</p>\n  <ul>\n    <li>Row 1 (1 number): $\\mathbf{1} = 1 = \\mathbf{1^3}$</li>\n    <li>Row 2 (2 numbers): $\\mathbf{3 + 5} = 8 = \\mathbf{2^3}$</li>\n    <li>Row 3 (3 numbers): $\\mathbf{7 + 9 + 11} = 27 = \\mathbf{3^3}$</li>\n    <li>Row 4 (4 numbers): $\\mathbf{13 + 15 + 17 + 19} = 64 = \\mathbf{4^3}$</li>\n    <li>Row 5 (5 numbers): $\\mathbf{21 + 23 + 25 + 27 + 29} = 125 = \\mathbf{5^3}$</li>\n    <li>Row 6 (6 numbers): $\\mathbf{31 + 33 + 35 + 37 + 39 + 41} = 216 = \\mathbf{6^3}$</li>\n  </ul>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>2. The Starting Number Formula</h4>\n    <p>To find the first odd number in the row summing to $n^3$:</p>\n    <p>The total count of odd numbers in preceding rows is $\\frac{(n-1)n}{2}$.</p>\n    <p class=\"highlight-eq\">$$\\text{First odd number} = n(n - 1) + 1 = n^2 - n + 1$$</p>\n    <p>For $n = 10$:</p>\n    <p>First odd number = $10^2 - 10 + 1 = 100 - 10 + 1 = 91$.</p>\n    <p>The 10 consecutive odd numbers are: $91 + 93 + 95 + 97 + 99 + 101 + 103 + 105 + 107 + 109 = 10^3 = \\mathbf{1000}$.</p>\n  </div>\n  <div class=\"card-item\">\n    <h4>3. Algebraic Proof of the Sum</h4>\n    <p>The average of these $n$ consecutive odd numbers is exactly $n^2$.</p>\n    <p>Since there are $n$ numbers, their sum is:</p>\n    <p class=\"highlight-eq\">$$\\text{Sum} = n \\times (\\text{Average}) = n \\times n^2 = n^3$$</p>\n    <p>This allows us to evaluate massive sums of consecutive odd numbers instantly without adding them term-by-term!</p>\n  </div>\n</div>\n", "sim_type": "nicomachus_pyramid_animator", "voice": "Behold the Nicomachus odd pyramid! Notice how 1 cubed is just 1. Then 2 cubed is the sum of the next TWO odd numbers, 3 plus 5! Three cubed is the sum of the next THREE odd numbers, 7 plus 9 plus 11! And ten cubed is the sum of ten consecutive odd numbers starting at 91, totaling 1000! Mathematics is packed with these breathtaking regularities.", "checkpoints": [{"question": "What is the sum of: 91 + 93 + 95 + 97 + 99 + 101 + 103 + 105 + 107 + 109 without doing manual addition?", "options": ["900", "990", "1000", "1100"], "correct": 2, "explanation": "This is the set of 10 consecutive odd numbers representing the 10th row of Nicomachus's pyramid, so its sum is 10³ = 1000."}, {"question": "What is the first odd number in the expansion of 7³ as a sum of 7 consecutive odd numbers?", "options": ["41", "43", "45", "49"], "correct": 1, "explanation": "The first odd number is n² - n + 1. For n = 7: 7² - 7 + 1 = 49 - 7 + 1 = 43. (Check: 43+45+47+49+51+53+55 = 343 = 7³)."}]}, {"id": 15, "title": "Cube Roots & Triplet Prime Factorisation", "subtitle": "The Radical Symbol ∛, Factor Triplets and Inverse Powers (NCERT Page 14–15)", "content": "\n<p class=\"lead-p\">The <strong>cube root</strong> of a number $y$ is the number $x$ that satisfies $x^3 = y$. The operation is denoted using the index radical symbol $\\sqrt[3]{y}$. For example, since $2^3 = 8$, the cube root of 8 is $\\sqrt[3]{8} = 2$.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Prime Factor Triplet Method</h4>\n  <p>In the prime factorisation of any perfect cube, <strong>every prime factor occurs in triplets (multiples of 3)</strong>:</p>\n  <p>For $3375$:</p>\n  <p>$\\text{Prime factorisation} = 3 \\times 3 \\times 3 \\times 5 \\times 5 \\times 5 = (3 \\times 3 \\times 3) \\times (5 \\times 5 \\times 5) = 3^3 \\times 5^3$</p>\n  <p>Taking one representative factor from each triplet:</p>\n  <p class=\"highlight-eq\">$$\\sqrt[3]{3375} = 3 \\times 5 = 15$$</p>\n  <p>For $1728$:</p>\n  <p>$1728 = 2^6 \\times 3^3 = (2 \\times 2 \\times 2) \\times (2 \\times 2 \\times 2) \\times (3 \\times 3 \\times 3) \\implies \\sqrt[3]{1728} = 2 \\times 2 \\times 3 = 12$.</p>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>2. Testing Non-Cubes</h4>\n    <p>Consider $500$:</p>\n    <p>$500 = 2 \\times 2 \\times 5 \\times 5 \\times 5 = 2^2 \\times 5^3$.</p>\n    <p>While the factor 5 forms a complete triplet, the factor 2 occurs only twice.</p>\n    <p class=\"highlight-eq\">$$500 \\text{ is NOT a perfect cube!}$$</p>\n    <p>To make 500 a perfect cube, we must multiply by 2 (to make $2^3 \\times 5^3 = 1000 = 10^3$), or divide by 4 (to leave $5^3 = 125$).</p>\n  </div>\n  <div class=\"card-item\">\n    <h4>3. Making 1323 a Perfect Cube</h4>\n    <p>Factorise $1323$:</p>\n    <p>$1323 = 3 \\times 3 \\times 3 \\times 7 \\times 7 = 3^3 \\times 7^2$.</p>\n    <p>The factor 7 needs one more 7 to form a complete triplet of 7s.</p>\n    <p class=\"highlight-eq\">$$\\text{Multiply by } 7 \\implies 1323 \\times 7 = 9261 = 21^3$$</p>\n  </div>\n</div>\n", "sim_type": "cube_root_triplet_sim", "voice": "To find a square root, we grouped prime factors into pairs of two. But to find a cube root, we must group prime factors into triplets of three! Take 3375: it breaks into three threes and three fives. Take one from each triplet, multiply them together, and you get 15! If any factor lacks its triplet partners, you know exactly what to multiply to complete the cube!", "checkpoints": [{"question": "What is the cube root of 27000?", "options": ["20", "30", "40", "90"], "correct": 1, "explanation": "27000 = 27 × 1000 = 3³ × 10³ = (3 × 10)³ = 30³."}, {"question": "What is the smallest number by which 1323 must be multiplied so that the product is a perfect cube?", "options": ["3", "7", "9", "21"], "correct": 1, "explanation": "1323 = 3³ × 7². The prime 3 is in a complete triplet, but 7 occurs only twice. Multiplying by 7 completes the triplet, giving 1323 × 7 = 9261 = 21³."}]}, {"id": 16, "title": "Successive Differences, Aryabhata & Indian Roots", "subtitle": "Calculus of Finite Differences, Varga, Ghana, Mula and Babylonia (NCERT Page 15–16)", "content": "\n<p class=\"lead-p\">The deep architecture of squares and cubes is governed by a remarkable law of discrete mathematics: <strong>successive differences</strong>. Furthermore, the very words we use today for roots trace their lineage directly back to ancient Indian mathematicians like Aryabhata and Brahmagupta!</p>\n\n<div class=\"theory-box\">\n  <h4>1. Successive Differences Over Finite Levels</h4>\n  <p>When you compute differences between consecutive terms across successive levels:</p>\n  <ul>\n    <li><strong>Perfect Squares ($n^2$):</strong> $\\{1, 4, 9, 16, 25, 36, \\dots\\}$<br>\n    Level 1 Differences: $3, 5, 7, 9, 11 \\dots$ (the sequence of odd numbers)<br>\n    Level 2 Differences: $2, 2, 2, 2 \\dots$ ($\\mathbf{2! = 2}$ <strong>Constant!</strong>)</li>\n    <li><strong>Perfect Cubes ($n^3$):</strong> $\\{1, 8, 27, 64, 125, 216, \\dots\\}$<br>\n    Level 1 Differences: $7, 19, 37, 61, 91 \\dots$<br>\n    Level 2 Differences: $12, 18, 24, 30 \\dots$<br>\n    Level 3 Differences: $6, 6, 6, 6 \\dots$ ($\\mathbf{3! = 6}$ <strong>Constant!</strong>)</li>\n  </ul>\n  <p class=\"highlight-eq\">$$\\text{For degree } k, \\text{ the } k\\text{-th successive difference is always constant and equals } k!$$</p>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>2. Aryabhata's Varga & Ghana (499 CE)</h4>\n    <p>In his masterpiece <em>Aryabhatiya</em>, Aryabhata defined:</p>\n    <blockquote style=\"font-style: italic; border-left: 3px solid #10b981; padding-left: 8px;\">\n      \"A square figure of four equal sides and the number representing its area are called varga. The product of two equal quantities is also called varga.\"\n    </blockquote>\n    <p>Similarly, a solid cube and a three-factor product was termed <strong>ghana</strong>, and the fourth power was <strong>varga-varga</strong>.</p>\n  </div>\n  <div class=\"card-item\">\n    <h4>3. Why Do We Say \"Root\"? (Mula)</h4>\n    <p>In Sanskrit, the base or cause of a plant is its <strong>mula</strong> (root). Indian mathematicians called the side of a square <em>varga-mula</em> (root of the square) and the edge of a cube <em>ghana-mula</em>.</p>\n    <p>This term was translated into Arabic as <em>jidhr</em>, into Latin as <em>radix</em> (from which we get 'radical'), and into English as <strong>root</strong>!</p>\n  </div>\n</div>\n", "sim_type": "finite_difference_cascade", "voice": "Here is the poetry of mathematics! Look at the differences: for squares, the second differences are always constant at 2! For cubes, the third differences are always constant at 6, which is 3 factorial! And whenever you say the word 'square root', you are honoring ancient Indian masters who called the base of a square its 'varga-mula' or root of the plant, which traveled into Arabic, Latin, and modern English!", "checkpoints": [{"question": "What is the constant value of the third successive differences of consecutive perfect cubes (1, 8, 27, 64, 125...)?", "options": ["2", "4", "6", "8"], "correct": 2, "explanation": "For any polynomial of degree 3 (like n³), the third successive difference is constant and equals 3! = 3 × 2 × 1 = 6."}, {"question": "Which ancient Sanskrit word meaning 'root of a plant / origin' gave rise to the mathematical term 'root' (as in square root)?", "options": ["Varga", "Ghana", "Mula", "Krti"], "correct": 2, "explanation": "Mula, meaning the root or origin of a plant, was used as varga-mula (square root). It was translated into Arabic as jidhr, Latin as radix, and English as root."}]}, {"id": 17, "title": "Mastery Quiz Challenge I: Squares & Patterns", "subtitle": "10 Diagnostic Questions on Properties, Factors and Patterns with Step-by-Step Popups", "content": "\n<p class=\"lead-p\">Welcome to Quiz Challenge I! Test your rigorous mastery of square number properties, factor pair parity, terminal digit constraints, and odd number sums. Click your chosen option for immediate feedback or open the <strong>Solution</strong> pop-up to inspect the complete mathematical derivation.</p>\n<div id=\"quizContainer1\" class=\"quiz-grid\"></div>\n", "sim_type": "quiz_slide", "voice": "Welcome to Quiz Challenge 1! Put your conceptual understanding of square numbers, parity, units digits, and factor pairs to the test. Answer each question carefully and click View Solution to see full step-by-step explanations.", "quiz_range": [1, 10]}, {"id": 18, "title": "Mastery Quiz Challenge II: Square Roots & Estimation", "subtitle": "10 Diagnostic Questions on Square Roots, Prime Factors and Approximations", "content": "\n<p class=\"lead-p\">Quiz Challenge II focuses on square roots, prime factor pairing algorithms, non-square intervals between consecutive squares, and triangular number summation. Inspect each problem with analytical care.</p>\n<div id=\"quizContainer2\" class=\"quiz-grid\"></div>\n", "sim_type": "quiz_slide", "voice": "Now let us conquer Quiz Challenge 2! Here we explore square roots, the 2n non-square theorem, and prime factor pairing algorithms. Select your answers and click View Solution for detailed feedback.", "quiz_range": [11, 20]}, {"id": 19, "title": "Mastery Quiz Challenge III: Cubes & Ramanujan Numbers", "subtitle": "10 Diagnostic Questions on 3D Cubes, Taxicab Numbers and Terminal Zero Tripling", "content": "\n<p class=\"lead-p\">Quiz Challenge III explores the world of cubic numbers: unit cube stacking volume, terminal digit laws, Ramanujan's taxicab number 1729, and Nicomachus's odd number partitions.</p>\n<div id=\"quizContainer3\" class=\"quiz-grid\"></div>\n", "sim_type": "quiz_slide", "voice": "Welcome to Quiz Challenge 3! Dive into the third dimension with cubic volumes, terminal zero rules, Hardy-Ramanujan taxicab numbers, and Nicomachus pyramids. Test your precision and review each step-by-step solution.", "quiz_range": [21, 30]}, {"id": 20, "title": "Mastery Quiz Challenge IV: Advanced Factorisation & History", "subtitle": "10 Diagnostic Questions on Prime Triplets, Finite Differences and Indian History", "content": "\n<p class=\"lead-p\">Congratulations on reaching the final mastery examination! Challenge IV covers cube root extractions, successive difference calculus, historical Sanskrit terminology (Aryabhata & Brahmagupta), and multi-step reasoning problems.</p>\n<div id=\"quizContainer4\" class=\"quiz-grid\"></div>\n", "sim_type": "quiz_slide", "voice": "You have reached the final mastery challenge of Chapter 1! Solve these 10 comprehensive questions on cube roots, successive differences, and ancient mathematics. When you complete this slide, you have achieved full mastery of A Square and A Cube!", "quiz_range": [31, 40]}];
+    const quizData = [{"num": 1, "question": "Which of the following numbers can never be a perfect square?", "options": ["1024", "2048", "4096", "8100"], "correct": 1, "solution": "Step 1: Check the units digit of each number.\nStep 2: A perfect square can only end with 0, 1, 4, 5, 6, or 9.\nStep 3: 2048 ends with 8, which is an impossible ending for any perfect square (squares never end in 2, 3, 7, or 8).\nTherefore, 2048 can never be a perfect square."}, {"num": 2, "question": "How many total factors does the perfect square 36 possess?", "options": ["6 factors", "8 factors", "9 factors", "10 factors"], "correct": 2, "solution": "Step 1: Find all factor pairs of 36: 1×36, 2×18, 3×12, 4×9, and 6×6.\nStep 2: List the distinct factors: {1, 2, 3, 4, 6, 9, 12, 18, 36}.\nStep 3: Count the distinct elements: there are exactly 9 factors.\nStep 4: Notice that 9 is an odd number because 6 pairs with itself (6×6=36)."}, {"num": 3, "question": "If a number ends with the digit 9, what will be the units digit of its square?", "options": ["1", "3", "7", "9"], "correct": 0, "solution": "Step 1: The units digit of n² depends solely on the units digit of n.\nStep 2: Since 9 × 9 = 81, any number ending in 9 will have 1 as the units digit of its square.\nFor example: 9² = 81, 19² = 361, 29² = 841 all end in 1."}, {"num": 4, "question": "Which of the following numbers will have the digit 6 in its units place?", "options": ["(38)²", "(34)²", "(82)²", "(57)²"], "correct": 1, "solution": "Step 1: A square ends in 6 if and only if the base number ends in 4 or 6 (since 4² = 16 and 6² = 36).\nStep 2: Check the options:\n- 38 ends in 8 (square ends in 4)\n- 34 ends in 4 (square ends in 6)\n- 82 ends in 2 (square ends in 4)\n- 57 ends in 7 (square ends in 9)\nTherefore, (34)² has 6 in its units place."}, {"num": 5, "question": "How many trailing zeros does the square of 7000 have?", "options": ["3 zeros", "5 zeros", "6 zeros", "9 zeros"], "correct": 2, "solution": "Step 1: 7000 has 3 trailing zeros (7000 = 7 × 10³).\nStep 2: Squaring doubles the number of trailing zeros: (7 × 10³)² = 49 × 10⁶.\nStep 3: Therefore, the square will have exactly 3 × 2 = 6 zeros (49,000,000)."}, {"num": 6, "question": "What is the sum of the first 12 consecutive odd numbers (1 + 3 + 5 + ... + 23)?", "options": ["120", "132", "144", "156"], "correct": 2, "solution": "Step 1: The sum of the first n consecutive odd numbers starting from 1 is given by n².\nStep 2: Here n = 12.\nStep 3: Sum = 12² = 144."}, {"num": 7, "question": "Given that 25² = 625, what is the value of 26² without long multiplication?", "options": ["650", "676", "686", "700"], "correct": 1, "solution": "Step 1: We know that (n + 1)² = n² + 2n + 1.\nStep 2: For n = 25, 2n + 1 = 2(25) + 1 = 51.\nStep 3: 26² = 25² + 51 = 625 + 51 = 676."}, {"num": 8, "question": "When testing 64 by repeated subtraction of consecutive odd numbers, how many subtractions are required to reach 0?", "options": ["6", "7", "8", "9"], "correct": 2, "solution": "Step 1: Subtract odd numbers starting from 1:\n64 - 1 = 63 (step 1)\n63 - 3 = 60 (step 2)\n60 - 5 = 55 (step 3)\n55 - 7 = 48 (step 4)\n48 - 9 = 39 (step 5)\n39 - 11 = 28 (step 6)\n28 - 13 = 15 (step 7)\n15 - 15 = 0 (step 8)\nStep 2: Reached 0 at the 8th step, so √64 = 8."}, {"num": 9, "question": "Which of the following can never be the remainder when any perfect square is divided by 4?", "options": ["0", "1", "2 or 3", "None of these"], "correct": 2, "solution": "Step 1: If n is even (n = 2k), n² = 4k² ≡ 0 (mod 4).\nStep 2: If n is odd (n = 2k + 1), n² = 4k² + 4k + 1 ≡ 1 (mod 4).\nStep 3: Therefore, a perfect square can ONLY leave remainder 0 or 1 when divided by 4.\nStep 4: It can NEVER leave remainder 2 or 3."}, {"num": 10, "question": "In the 100 lockers problem, which of the following lockers remains OPEN at the end?", "options": ["Locker 48", "Locker 54", "Locker 64", "Locker 72"], "correct": 2, "solution": "Step 1: A locker remains open if and only if it is toggled an odd number of times.\nStep 2: The number of toggles equals the number of factors of the locker number.\nStep 3: Only perfect squares have an odd number of factors.\nStep 4: Among the choices, only 64 is a perfect square (8² = 64). Lockers 48, 54, and 72 have an even number of factors and end up closed."}, {"num": 11, "question": "How many non-perfect square numbers lie between 16² and 17²?", "options": ["32", "33", "34", "35"], "correct": 0, "solution": "Step 1: By the 2n non-square theorem, the number of non-square natural numbers between n² and (n + 1)² is 2n.\nStep 2: Here n = 16.\nStep 3: Number of non-squares = 2 × 16 = 32.\n(Check: 17² - 16² - 1 = 289 - 256 - 1 = 32)."}, {"num": 12, "question": "How many square numbers are there between 1 and 100 inclusive?", "options": ["8", "9", "10", "11"], "correct": 2, "solution": "Step 1: The square numbers starting from 1 are: 1²=1, 2²=4, 3²=9, 4²=16, 5²=25, 6²=36, 7²=49, 8²=64, 9²=81, 10²=100.\nStep 2: The 11th square is 11² = 121 > 100.\nStep 3: Therefore, there are exactly 10 square numbers between 1 and 100."}, {"num": 13, "question": "What is the sum of the triangular numbers T₃ (6) and T₄ (10)?", "options": ["12", "14", "16", "18"], "correct": 2, "solution": "Step 1: T₃ = 6 and T₄ = 10.\nStep 2: Sum = 6 + 10 = 16.\nStep 3: Notice that 16 = 4² = T₃ + T₄. Two consecutive triangular numbers always add to form a square number!"}, {"num": 14, "question": "A square field has an area of 729 m². What is the perimeter of the field?", "options": ["81 m", "108 m", "112 m", "124 m"], "correct": 1, "solution": "Step 1: Side length of square = √Area = √729.\nStep 2: Since 27 × 27 = 729, the side length is 27 m.\nStep 3: Perimeter = 4 × side = 4 × 27 = 108 m."}, {"num": 15, "question": "What is the smallest number by which 180 must be multiplied to make it a perfect square?", "options": ["2", "3", "5", "10"], "correct": 2, "solution": "Step 1: Find the prime factorisation of 180: 180 = 2 × 90 = 2 × 2 × 45 = 2² × 3² × 5¹.\nStep 2: Group factors into pairs: (2 × 2) × (3 × 3) × 5.\nStep 3: The factor 5 is unpaired.\nStep 4: Multiplying by 5 completes the pair: 180 × 5 = 900 = 30².\nTherefore, the smallest number is 5."}, {"num": 16, "question": "Find the smallest square number that is divisible by each of 4, 9, and 10.", "options": ["360", "600", "900", "3600"], "correct": 2, "solution": "Step 1: Find the LCM of 4, 9, and 10.\n4 = 2², 9 = 3², 10 = 2 × 5.\nLCM = 2² × 3² × 5¹ = 4 × 9 × 5 = 180.\nStep 2: Prime factors of 180 = 2² × 3² × 5¹.\nStep 3: To make it a square number, every prime exponent must be even. The prime 5 has exponent 1, so we multiply by 5.\nStep 4: Smallest square number = 180 × 5 = 900 (which is 30²)."}, {"num": 17, "question": "If 125² = 15625, what is the value of 126²?", "options": ["15625 + 126", "15625 + 251", "15625 + 253", "15625 + 26²"], "correct": 1, "solution": "Step 1: (n + 1)² = n² + 2n + 1.\nStep 2: For n = 125, 2n + 1 = 2(125) + 1 = 250 + 1 = 251.\nStep 3: 126² = 125² + 251 = 15625 + 251 = 15876."}, {"num": 18, "question": "In the pattern: 1² + 2² + 2² = 3², 2² + 3² + 6² = 7², 3² + 4² + 12² = 13², what is the missing value in 4² + 5² + 20² = (?)²?", "options": ["21²", "22²", "25²", "29²"], "correct": 0, "solution": "Step 1: Observe the pattern: n² + (n+1)² + [n(n+1)]² = [n(n+1) + 1]².\nStep 2: Here n = 4, so n+1 = 5, n(n+1) = 20, and n(n+1) + 1 = 21.\nStep 3: 4² + 5² + 20² = 16 + 25 + 400 = 441 = 21².\nTherefore, the missing number is 21²."}, {"num": 19, "question": "In the same pattern, what are the missing values in: 9² + 10² + (?)² = (?)²?", "options": ["90² and 91²", "89² and 90²", "90² and 92²", "100² and 101²"], "correct": 0, "solution": "Step 1: Here n = 9, n+1 = 10.\nStep 2: Third term = n(n+1) = 9 × 10 = 90.\nStep 3: Fourth term = n(n+1) + 1 = 90 + 1 = 91.\nStep 4: Equation is 9² + 10² + 90² = 91².\n(Verification: 81 + 100 + 8100 = 8281 = 91²)."}, {"num": 20, "question": "Akhil has a square cloth of area 125 cm². What is the maximum integer side length handkerchief he can cut from it?", "options": ["10 cm", "11 cm", "12 cm", "15 cm"], "correct": 1, "solution": "Step 1: Area of handkerchief of side s is s².\nStep 2: We require s² ≤ 125 with s being an integer.\nStep 3: Check squares: 10² = 100, 11² = 121, 12² = 144.\nStep 4: Since 121 ≤ 125 < 144, the largest integer side length is 11 cm."}, {"num": 21, "question": "Which of the following is a perfect cube?", "options": ["9", "16", "27", "36"], "correct": 2, "solution": "Step 1: A perfect cube is an integer raised to the power 3.\nStep 2: 1³ = 1, 2³ = 8, 3³ = 27, 4³ = 64.\nStep 3: 27 = 3 × 3 × 3 = 3³ is a perfect cube.\n(9 = 3², 16 = 4², and 36 = 6² are perfect squares, not cubes)."}, {"num": 22, "question": "What is the units digit of the cube of 237?", "options": ["1", "3", "7", "9"], "correct": 1, "solution": "Step 1: The units digit of n³ depends on the units digit of n.\nStep 2: 237 ends in 7.\nStep 3: 7³ = 7 × 7 × 7 = 343, which ends in 3.\nTherefore, the cube of 237 ends in 3."}, {"num": 23, "question": "Which of the following statements about cubes is TRUE?", "options": ["The cube of an odd number is always even", "A perfect cube can end with exactly two zeros", "There is no perfect cube that ends with 8", "The cube of an odd number is always odd"], "correct": 3, "solution": "Step 1: An odd number can be written as 2k + 1. Cubing it: (2k + 1)³ = 8k³ + 12k² + 6k + 1 = 2(4k³ + 6k² + 3k) + 1, which is strictly odd.\nStep 2: 2³ = 8 (a cube can end in 8).\nStep 3: A cube ending in zeros must have 3, 6, 9... zeros (never exactly 2 zeros).\nTherefore, 'The cube of an odd number is always odd' is the only true statement."}, {"num": 24, "question": "What is Ramanujan's famous Taxicab Number (the smallest number expressible as the sum of two positive cubes in two ways)?", "options": ["1296", "1728", "1729", "4104"], "correct": 2, "solution": "Step 1: 1729 is the Hardy–Ramanujan number.\nStep 2: 1729 = 1³ + 12³ = 1 + 1728 = 1729.\nStep 3: 1729 = 9³ + 10³ = 729 + 1000 = 1729.\nStep 4: It is the smallest integer with this two-way representation."}, {"num": 25, "question": "How many digits can the cube of a 2-digit number have?", "options": ["Only 3 digits", "Between 4 and 6 digits inclusive", "Exactly 7 digits", "Always 8 digits"], "correct": 1, "solution": "Step 1: The smallest 2-digit number is 10, and 10³ = 1000 (4 digits).\nStep 2: The largest 2-digit number is 99, and 99³ = 970,299 (6 digits).\nStep 3: Therefore, the cube of any 2-digit number has between 4 and 6 digits inclusive (never 3 digits, and never 7 or more digits)."}, {"num": 26, "question": "What is the value of 31 + 33 + 35 + 37 + 39 + 41 without manual addition?", "options": ["125", "216", "343", "512"], "correct": 1, "solution": "Step 1: This is a sequence of 6 consecutive odd numbers in Nicomachus's pattern.\nStep 2: By the Nicomachus theorem, the sum of these 6 numbers equals 6³.\nStep 3: 6³ = 6 × 6 × 6 = 216.\n(Check: 31+33+35+37+39+41 = 216)."}, {"num": 27, "question": "What is the cube root of 0.000064?", "options": ["0.004", "0.04", "0.4", "0.008"], "correct": 1, "solution": "Step 1: Write 0.000064 as a fraction: 64 / 1,000,000.\nStep 2: ∛(64 / 1,000,000) = ∛(64) / ∛(1,000,000).\nStep 3: ∛64 = 4 (since 4³ = 64) and ∛1,000,000 = 100 (since 100³ = 1,000,000).\nStep 4: 4 / 100 = 0.04."}, {"num": 28, "question": "What is the value of ∛(-216)?", "options": ["+6", "-6", "Undefined", "-36"], "correct": 1, "solution": "Step 1: We seek a number x such that x³ = -216.\nStep 2: (-6) × (-6) × (-6) = (+36) × (-6) = -216.\nStep 3: Therefore, ∛(-216) = -6."}, {"num": 29, "question": "Which of the following is the second smallest taxicab number after 1729?", "options": ["2048", "3375", "4104", "5832"], "correct": 2, "solution": "Step 1: 4104 is the next taxicab number.\nStep 2: 4104 = 2³ + 16³ = 8 + 4096 = 4104.\nStep 3: 4104 = 9³ + 15³ = 729 + 3375 = 4104."}, {"num": 30, "question": "How many unit cubes are in each horizontal layer of a 5 × 5 × 5 solid cube?", "options": ["5", "15", "25", "125"], "correct": 2, "solution": "Step 1: Each horizontal layer of a 5 cm cube is a square of 5 cm × 5 cm.\nStep 2: Number of unit cubes in one layer = 5 × 5 = 25 unit cubes.\nStep 3: Stacking 5 such layers yields 25 × 5 = 125 cubes in total."}, {"num": 31, "question": "Find the cube root of 10648 using prime factorisation.", "options": ["18", "22", "24", "28"], "correct": 1, "solution": "Step 1: Prime factorise 10648:\n10648 = 2 × 5324 = 2 × 2 × 2662 = 2 × 2 × 2 × 1331.\nStep 2: Factorise 1331: 1331 = 11 × 121 = 11 × 11 × 11.\nStep 3: 10648 = (2 × 2 × 2) × (11 × 11 × 11) = 2³ × 11³.\nStep 4: ∛10648 = 2 × 11 = 22."}, {"num": 32, "question": "What is the smallest number by which 256 must be divided so that the quotient is a perfect cube?", "options": ["2", "4", "8", "16"], "correct": 1, "solution": "Step 1: Prime factorise 256: 256 = 2⁸ = (2 × 2 × 2) × (2 × 2 × 2) × (2 × 2) = 2³ × 2³ × 2².\nStep 2: The factor 2² = 4 is leftover and does not form a complete triplet.\nStep 3: Dividing 256 by 4 leaves 2³ × 2³ = 64 = 4³, which is a perfect cube.\nTherefore, the smallest divisor is 4."}, {"num": 33, "question": "Which of the following expressions is the greatest in value?", "options": ["67³ - 66³", "43³ - 42³", "67² - 66²", "43² - 42²"], "correct": 0, "solution": "Step 1: Recall algebraic identity a³ - b³ = (a - b)(a² + ab + b²).\nWhen a - b = 1, a³ - b³ = a² + ab + b² ≈ 3a².\nStep 2: For squares: a² - b² = (a - b)(a + b) = 1 × (a + b) ≈ 2a.\nStep 3: Clearly 67³ - 66³ ≈ 3 × 67² = 3 × 4489 ≈ 13,467.\nExact values:\n- 67³ - 66³ = 67² + 67×66 + 66² = 4489 + 4422 + 4356 = 13267.\n- 43³ - 42³ = 43² + 43×42 + 42² = 1849 + 1806 + 1764 = 5419.\n- 67² - 66² = 67 + 66 = 133.\n- 43² - 42² = 43 + 42 = 85.\nTherefore, 67³ - 66³ is vastly the greatest."}, {"num": 34, "question": "In ancient Sanskrit mathematics, what term was used by Aryabhata for a square figure and its area?", "options": ["Ghana", "Varga", "Mula", "Pada"], "correct": 1, "solution": "Step 1: Aryabhata (499 CE) defined: 'A square figure of four equal sides and the number representing its area are called varga.'\nStep 2: Ghana was used for cube, and mula or pada was used for root."}, {"num": 35, "question": "What is the cube root of 32768 by estimation?", "options": ["28", "32", "38", "42"], "correct": 1, "solution": "Step 1: Group digits from the right into periods of three: (32) and (768).\nStep 2: Look at the right period (768): ends in 8. A cube ends in 8 if and only if its cube root ends in 2 (since 2³ = 8). So units digit = 2.\nStep 3: Look at the left period (32): 3³ = 27 and 4³ = 64. Since 27 ≤ 32 < 64, the tens digit is 3.\nStep 4: Combining tens and units digits: ∛32768 = 32."}, {"num": 36, "question": "What is the constant value of the 2nd successive differences of consecutive perfect squares (1, 4, 9, 16, 25...)?", "options": ["1", "2", "3", "4"], "correct": 1, "solution": "Step 1: Consecutive squares: 1, 4, 9, 16, 25, 36.\nStep 2: Level 1 differences: 4-1=3, 9-4=5, 16-9=7, 25-16=9, 36-25=11.\nStep 3: Level 2 differences: 5-3=2, 7-5=2, 9-7=2, 11-9=2.\nStep 4: The second difference is constant and equals 2."}, {"num": 37, "question": "By what smallest number must 675 be multiplied to obtain a perfect cube?", "options": ["3", "5", "15", "25"], "correct": 1, "solution": "Step 1: Factorise 675: 675 = 25 × 27 = 5² × 3³ = 3³ × 5².\nStep 2: The factor 3 occurs in a complete triplet (3³).\nStep 3: The factor 5 occurs only twice (5²).\nStep 4: Multiplying by 5 completes the triplet: 675 × 5 = 3375 = 15³.\nTherefore, the smallest multiplier is 5."}, {"num": 38, "question": "What is the value of (2.5)³?", "options": ["6.25", "12.5", "15.625", "18.75"], "correct": 2, "solution": "Step 1: (2.5)³ = 2.5 × 2.5 × 2.5.\nStep 2: 2.5 × 2.5 = 6.25.\nStep 3: 6.25 × 2.5 = 15.625."}, {"num": 39, "question": "Which ancient civilization created the earliest known clay tablet tables of squares and cubes as early as 1700 BCE?", "options": ["The Egyptians", "The Greeks", "The Babylonians", "The Romans"], "correct": 2, "solution": "Step 1: Historical records show that the Babylonians compiled tables of squares and cubes on cuneiform clay tablets around 1700 BCE.\nStep 2: These lists were used to rapidly compute square roots, cube roots, and solve architectural and land survey problems."}, {"num": 40, "question": "Three numbers are in the ratio 1 : 2 : 3 and the sum of their cubes is 4500. What is the largest of these three numbers?", "options": ["5", "10", "15", "20"], "correct": 2, "solution": "Step 1: Let the three numbers be x, 2x, and 3x.\nStep 2: Sum of their cubes: x³ + (2x)³ + (3x)³ = x³ + 8x³ + 27x³ = 36x³.\nStep 3: 36x³ = 4500 ⟹ x³ = 4500 / 36 = 125.\nStep 4: x = ∛125 = 5.\nStep 5: The largest number is 3x = 3 × 5 = 15."}];
+
+    let currentSlideIndex = 0;
+    let isSpeaking = false;
+    let synth = window.speechSynthesis;
+    let currentUtterance = null;
+    let mouthInterval = null;
+
+    // KaTeX Math Rendering Engine
+    function triggerMathRender(target) {
+      const el = target || document.body;
+      if (window.renderMathInElement) {
+        try {
+          renderMathInElement(el, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '$', right: '$', display: false },
+              { left: '\(', right: '\)', display: false },
+              { left: '\[', right: '\]', display: true }
+            ],
+            throwOnError: false
+          });
+        } catch (err) {
+          console.warn('KaTeX render warning:', err);
+        }
+      }
+    }
+
+    // Initialize
+    window.addEventListener('DOMContentLoaded', () => {
+      renderSlide(0);
+      triggerMathRender(document.body);
+    });
+    window.addEventListener('load', () => {
+      triggerMathRender(document.body);
+    });
+
+    function renderSlide(index) {
+      if (index < 0 || index >= slides.length) return;
+      currentSlideIndex = index;
+      stopSpeech();
+
+      const slide = slides[index];
+
+      // Update Nav Indicators
+      document.getElementById('slideProgressIndicator').textContent = `Slide ${index + 1} of ${slides.length}`;
+      document.getElementById('slideTag').textContent = index >= 16 ? `Mastery Quiz Challenge ${index - 15} of 4` : `Lesson ${index + 1} of 16`;
+      document.getElementById('slideTitle').textContent = slide.title;
+      document.getElementById('slideSubtitle').textContent = slide.subtitle;
+
+      // Update Theory Content
+      document.getElementById('slideContent').innerHTML = slide.content;
+      triggerMathRender(document.getElementById('slideContent'));
+
+      // Update Speech Bubble
+      document.getElementById('teacherSpeech').textContent = slide.voice;
+
+      // Navigation Buttons & Last Slide Terminal Rule
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const lastNotice = document.getElementById('lastSlideNotice');
+
+      prevBtn.disabled = (index === 0);
+
+      if (index === slides.length - 1) {
+        nextBtn.style.display = 'none';
+        lastNotice.style.display = 'block';
+      } else {
+        nextBtn.style.display = 'flex';
+        lastNotice.style.display = 'none';
+      }
+
+      // Checkpoints vs Quiz Questions
+      const checkpointContainer = document.getElementById('checkpointContainer');
+      const simPanel = document.getElementById('simulatorPanel');
+
+      if (index < 16) {
+        checkpointContainer.style.display = 'block';
+        simPanel.style.display = 'flex';
+        renderCheckpoints(slide.checkpoints);
+        renderSimulator(slide.sim_type);
+      } else {
+        checkpointContainer.style.display = 'none';
+        simPanel.style.display = 'none';
+        const qRange = slide.quiz_range;
+        renderQuizQuestions(index, qRange[0], qRange[1]);
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function prevSlide() {
+      if (currentSlideIndex > 0) {
+        renderSlide(currentSlideIndex - 1);
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlideIndex < slides.length - 1) {
+        renderSlide(currentSlideIndex + 1);
+      }
+    }
+
+    // Checkpoint Renderer (Slides 1 to 16)
+    function renderCheckpoints(checkpoints) {
+      const list = document.getElementById('checkpointsList');
+      list.innerHTML = '';
+      if (!checkpoints) return;
+
+      checkpoints.forEach((cp, qIdx) => {
+        const card = document.createElement('div');
+        card.className = 'checkpoint-card';
+
+        const qText = document.createElement('div');
+        qText.className = 'checkpoint-q';
+        qText.textContent = `Q${qIdx + 1}: ${cp.question}`;
+        card.appendChild(qText);
+
+        const grid = document.createElement('div');
+        grid.className = 'options-grid';
+
+        const feedback = document.createElement('div');
+        feedback.className = 'feedback-box';
+
+        cp.options.forEach((opt, optIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'opt-btn';
+          btn.textContent = `${String.fromCharCode(65 + optIdx)}. ${opt}`;
+          btn.onclick = () => {
+            const btns = grid.querySelectorAll('.opt-btn');
+            btns.forEach(b => b.disabled = true);
+            if (optIdx === cp.correct) {
+              btn.classList.add('correct');
+              feedback.style.background = 'rgba(16, 185, 129, 0.2)';
+              feedback.style.color = '#34d399';
+              feedback.innerHTML = `<strong>✓ Correct!</strong> ${cp.explanation}`;
+              triggerMathRender(feedback);
+            } else {
+              btn.classList.add('wrong');
+              btns[cp.correct].classList.add('correct');
+              feedback.style.background = 'rgba(244, 63, 94, 0.2)';
+              feedback.style.color = '#fb7185';
+              feedback.innerHTML = `<strong>✗ Incorrect.</strong> ${cp.explanation}`;
+              triggerMathRender(feedback);
+            }
+            feedback.classList.add('show');
+          };
+          grid.appendChild(btn);
+        });
+
+        card.appendChild(grid);
+        card.appendChild(feedback);
+        list.appendChild(card);
+      });
+      triggerMathRender(list);
+    }
+
+    // Quiz Questions Renderer (Slides 17 to 20)
+    function renderQuizQuestions(slideIdx, startNum, endNum) {
+      const containerId = `quizContainer${slideIdx - 15}`;
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = '';
+
+      const subset = quizData.filter(q => q.num >= startNum && q.num <= endNum);
+
+      subset.forEach(q => {
+        const card = document.createElement('div');
+        card.className = 'quiz-card';
+
+        card.innerHTML = `
+          <div class="quiz-card-head">
+            <span class="quiz-badge">Question ${q.num} of 40</span>
+            <button class="sol-btn" onclick="openSolutionModal(${q.num})">
+              <span>💡</span> View Solution
+            </button>
+          </div>
+          <div class="checkpoint-q">${q.question}</div>
+          <div class="options-grid" id="qGrid${q.num}"></div>
+          <div class="feedback-box" id="qFeedback${q.num}"></div>
+        `;
+
+        const grid = card.querySelector(`#qGrid${q.num}`);
+        const feedback = card.querySelector(`#qFeedback${q.num}`);
+
+        q.options.forEach((opt, optIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'opt-btn';
+          btn.textContent = `${String.fromCharCode(65 + optIdx)}. ${opt}`;
+          btn.onclick = () => {
+            const btns = grid.querySelectorAll('.opt-btn');
+            btns.forEach(b => b.disabled = true);
+            if (optIdx === q.correct) {
+              btn.classList.add('correct');
+              feedback.style.background = 'rgba(16, 185, 129, 0.2)';
+              feedback.style.color = '#34d399';
+              feedback.innerHTML = `<strong>✓ Correct!</strong> Click "View Solution" to see full step-by-step mathematical reasoning.`;
+            } else {
+              btn.classList.add('wrong');
+              btns[q.correct].classList.add('correct');
+              feedback.style.background = 'rgba(244, 63, 94, 0.2)';
+              feedback.style.color = '#fb7185';
+              feedback.innerHTML = `<strong>✗ Incorrect.</strong> Correct answer is (${String.fromCharCode(65 + q.correct)}). Inspect "View Solution" for detailed steps.`;
+            }
+            feedback.classList.add('show');
+          };
+          grid.appendChild(btn);
+        });
+
+        container.appendChild(card);
+      });
+      triggerMathRender(container);
+    }
+
+    // Solution Pop-up Modal Handlers
+    function openSolutionModal(qNum) {
+      const q = quizData.find(item => item.num === qNum);
+      if (!q) return;
+
+      document.getElementById('modalQuestionNum').textContent = `Question ${q.num} of 40`;
+      document.getElementById('modalQuestionTitle').innerHTML = q.question;
+      document.getElementById('modalSolutionContent').innerHTML = q.solution;
+      document.getElementById('solutionModal').classList.remove('hidden');
+      triggerMathRender(document.getElementById('solutionModal'));
+    }
+
+    function closeSolutionModal() {
+      document.getElementById('solutionModal').classList.add('hidden');
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeSolutionModal();
+    });
+
+    // Web Speech API Voiceover & Talking Mouth Animation
+    function toggleSpeech() {
+      if (isSpeaking) {
+        stopSpeech();
+      } else {
+        startSpeech();
+      }
+    }
+
+    function startSpeech() {
+      if (!('speechSynthesis' in window)) {
+        alert('Web Speech API is not supported in this browser.');
+        return;
+      }
+      synth.cancel();
+
+      const text = slides[currentSlideIndex].voice;
+      currentUtterance = new SpeechSynthesisUtterance(text);
+      currentUtterance.lang = 'en-US';
+      currentUtterance.rate = 0.95;
+      currentUtterance.pitch = 1.0;
+
+      currentUtterance.onstart = () => {
+        isSpeaking = true;
+        document.getElementById('voiceIcon').textContent = '⏹️';
+        document.getElementById('voiceLabel').textContent = 'Stop Voiceover';
+        startMouthAnimation();
+      };
+
+      currentUtterance.onend = () => {
+        stopMouthAnimation();
+      };
+
+      currentUtterance.onerror = () => {
+        stopMouthAnimation();
+      };
+
+      synth.speak(currentUtterance);
+    }
+
+    function stopSpeech() {
+      if ('speechSynthesis' in window) {
+        synth.cancel();
+      }
+      stopMouthAnimation();
+    }
+
+    function startMouthAnimation() {
+      const mouth = document.getElementById('teacherMouth');
+      if (!mouth) return;
+      clearInterval(mouthInterval);
+      mouthInterval = setInterval(() => {
+        const ry = (Math.random() * 4 + 1.5).toFixed(1);
+        mouth.setAttribute('ry', ry);
+      }, 120);
+    }
+
+    function stopMouthAnimation() {
+      isSpeaking = false;
+      document.getElementById('voiceIcon').textContent = '🔊';
+      document.getElementById('voiceLabel').textContent = 'Play Voiceover';
+      clearInterval(mouthInterval);
+      const mouth = document.getElementById('teacherMouth');
+      if (mouth) mouth.setAttribute('ry', '1.5');
+    }
+
+    // ==========================================
+    // 16 BESPOKE INTERACTIVE SIMULATORS
+    // ==========================================
+    function renderSimulator(type) {
+      const svg = document.getElementById('simSvg');
+      const controls = document.getElementById('simControls');
+      const title = document.getElementById('simTitle');
+
+      svg.innerHTML = '';
+      controls.innerHTML = '';
+
+      switch (type) {
+        case 'square_grid_builder':
+          title.textContent = 'Dynamic Square Tile Array & Area Modeler';
+          renderSquareGridSim(svg, controls);
+          break;
+        case 'locker_factor_matrix':
+          title.textContent = '100 Lockers & Factor Pair Parity Analyzer';
+          renderLockerSim(svg, controls);
+          break;
+        case 'units_digit_analyzer':
+          title.textContent = 'Units Digit Law & Square Disqualification Studio';
+          renderUnitsDigitSim(svg, controls);
+          break;
+        case 'zero_parity_tester':
+          title.textContent = 'Trailing Zero Doubling & Parity Invariance Engine';
+          renderZeroParitySim(svg, controls);
+          break;
+        case 'odd_sum_gnomon_animator':
+          title.textContent = 'Gnomon Inverted-L & Successive Odd Sum Animator';
+          renderGnomonSim(svg, controls);
+          break;
+        case 'repeated_subtraction_stepper':
+          title.textContent = 'Repeated Odd Subtraction Step-By-Step Decision Tree';
+          renderSubtractionSim(svg, controls);
+          break;
+        case 'between_squares_counter':
+          title.textContent = '2n Non-Square Theorem & Interval Explorer';
+          renderBetweenSquaresSim(svg, controls);
+          break;
+        case 'triangular_square_merger':
+          title.textContent = 'Consecutive Triangular Numbers Tessellation (T_{n-1} + T_{n} = n²)';
+          renderTriangularSim(svg, controls);
+          break;
+        case 'square_root_inverter':
+          title.textContent = 'Square vs Square Root Bi-Directional Transformer';
+          renderSquareRootSim(svg, controls);
+          break;
+        case 'prime_factor_pairer':
+          title.textContent = 'Prime Factor Pairing & Square Root Factoriser';
+          renderPrimeFactorSim(svg, controls);
+          break;
+        case 'cube_volume_builder':
+          title.textContent = '3D Cubic Stacking & Volume Layering Studio (n × n × n)';
+          renderCubeVolumeSim(svg, controls);
+          break;
+        case 'cube_digit_mapper':
+          title.textContent = 'Cubic Units Digit & Terminal Zero Tripling Engine';
+          renderCubeDigitSim(svg, controls);
+          break;
+        case 'ramanujan_taxicab_sim':
+          title.textContent = 'Hardy–Ramanujan 1729 Dual Cube Visualizer';
+          renderTaxicabSim(svg, controls);
+          break;
+        case 'nicomachus_pyramid_animator':
+          title.textContent = "Nicomachus's Consecutive Odd Number Cube Pyramid";
+          renderNicomachusSim(svg, controls);
+          break;
+        case 'cube_root_triplet_sim':
+          title.textContent = 'Cube Root Extraction by Prime Factor Triplets';
+          renderCubeRootTripletSim(svg, controls);
+          break;
+        case 'finite_difference_cascade':
+          title.textContent = 'Successive Differences Cascade & Aryabhata Mula Laboratory';
+          renderFiniteDifferenceSim(svg, controls);
+          break;
+        default:
+          title.textContent = 'Interactive Simulation';
+          svg.innerHTML = '<text x="300" y="160" fill="#94a3b8" text-anchor="middle">Interactive Demonstration</text>';
+      }
+    }
+
+    // 1. Square Grid Builder
+    function renderSquareGridSim(svg, controls) {
+      function draw(n) {
+        svg.innerHTML = `
+          <rect x="0" y="0" width="600" height="320" fill="#090d16" />
+          <text x="300" y="32" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="middle">Sidelength n = ${n} | Area = ${n} × ${n} = ${n * n} sq units</text>
+        `;
+        const size = Math.min(200, 200 / n * n);
+        const cellSize = 190 / n;
+        const startX = 300 - (n * cellSize) / 2;
+        const startY = 60;
+
+        for (let r = 0; r < n; r++) {
+          for (let c = 0; c < n; c++) {
+            const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            rect.setAttribute('x', startX + c * cellSize);
+            rect.setAttribute('y', startY + r * cellSize);
+            rect.setAttribute('width', cellSize - 1.5);
+            rect.setAttribute('height', cellSize - 1.5);
+            rect.setAttribute('rx', Math.max(1, 4 - n * 0.2));
+            rect.setAttribute('fill', ((r + c) % 2 === 0) ? '#6366f1' : '#4f46e5');
+            rect.setAttribute('stroke', '#a5b4fc');
+            rect.setAttribute('stroke-width', '0.5');
+            svg.appendChild(rect);
+          }
+        }
+
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', '300');
+        text.setAttribute('y', '285');
+        text.setAttribute('fill', '#f59e0b');
+        text.setAttribute('font-size', '13');
+        text.setAttribute('font-weight', 'bold');
+        text.setAttribute('text-anchor', 'middle');
+        text.textContent = `${n}² = ${n * n} perfect square tiles in array`;
+        svg.appendChild(text);
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="slider-label">Square Side Length (n):</span>
+          <input type="range" class="sim-slider" id="gridSlider" min="1" max="10" value="4">
+          <span class="slider-val" id="gridVal">n = 4</span>
+        </div>
+      `;
+
+      draw(4);
+      document.getElementById('gridSlider').addEventListener('input', (e) => {
+        const val = parseInt(e.target.value);
+        document.getElementById('gridVal').textContent = `n = ${val}`;
+        draw(val);
+      });
+    }
+
+    // 2. Locker Simulator
+    function renderLockerSim(svg, controls) {
+      function draw(num) {
+        // Find factors
+        const factors = [];
+        for (let i = 1; i <= num; i++) {
+          if (num % i === 0) factors.push(i);
+        }
+        const isSquare = factors.length % 2 === 1;
+
+        svg.innerHTML = `
+          <rect x="0" y="0" width="600" height="320" fill="#090d16" />
+          <text x="300" y="35" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="middle">Locker #${num} Factor Analysis</text>
+          
+          <!-- Locker Graphic -->
+          <rect x="100" y="70" width="130" height="190" rx="10" fill="${isSquare ? '#065f46' : '#881337'}" stroke="${isSquare ? '#10b981' : '#f43f5e'}" stroke-width="2.5" />
+          <circle cx="210" cy="165" r="7" fill="#f59e0b" />
+          <text x="165" y="125" fill="#fff" font-size="22" font-weight="bold" text-anchor="middle">#${num}</text>
+          <text x="165" y="225" fill="#fff" font-size="14" font-weight="bold" text-anchor="middle">${isSquare ? 'OPEN' : 'CLOSED'}</text>
+          
+          <!-- Factors List -->
+          <text x="260" y="85" fill="#f8fafc" font-size="13" font-weight="bold">Factors of ${num} (${factors.length} factors):</text>
+          <text x="260" y="115" fill="#a5b4fc" font-size="12">${factors.join(', ')}</text>
+          
+          <rect x="260" y="140" width="310" height="90" rx="8" fill="#1e293b" stroke="#475569" />
+          <text x="275" y="165" fill="${isSquare ? '#34d399' : '#fb7185'}" font-size="12" font-weight="bold">Parity: ${factors.length} is an ${isSquare ? 'ODD' : 'EVEN'} number</text>
+          <text x="275" y="190" fill="#cbd5e1" font-size="11">${isSquare ? `Pair ${Math.sqrt(num)} × ${Math.sqrt(num)} pairs with itself!` : 'Every factor has a distinct partner factor.'}</text>
+          <text x="275" y="212" fill="#38bdf8" font-size="11">Result: Locker stays ${isSquare ? 'OPEN at the end!' : 'CLOSED at the end.'}</text>
+        `;
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="slider-label">Test Locker Number:</span>
+          <input type="range" class="sim-slider" id="lockerSlider" min="1" max="100" value="36">
+          <span class="slider-val" id="lockerVal">#36</span>
+        </div>
+      `;
+
+      draw(36);
+      document.getElementById('lockerSlider').addEventListener('input', (e) => {
+        const val = parseInt(e.target.value);
+        document.getElementById('lockerVal').textContent = `#${val}`;
+        draw(val);
+      });
+    }
+
+    // 3. Units Digit Law Simulator
+    function renderUnitsDigitSim(svg, controls) {
+      function test(num) {
+        const u = num % 10;
+        const sq = num * num;
+        const sqU = sq % 10;
+        const isImpossible = [2, 3, 7, 8].includes(u);
+
+        svg.innerHTML = `
+          <rect x="0" y="0" width="600" height="320" fill="#090d16" />
+          <text x="300" y="35" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="middle">Units Digit Law & Non-Square Detector</text>
+          
+          <!-- Number Card -->
+          <rect x="50" y="70" width="220" height="180" rx="12" fill="#1e293b" stroke="#6366f1" stroke-width="1.5" />
+          <text x="160" y="105" fill="#94a3b8" font-size="12" text-anchor="middle">Base Number n</text>
+          <text x="160" y="145" fill="#fff" font-size="28" font-weight="bold" text-anchor="middle">${num}</text>
+          <text x="160" y="180" fill="#38bdf8" font-size="13" text-anchor="middle">Units Digit: <tspan fill="#f59e0b" font-weight="bold">${u}</tspan></text>
+          <text x="160" y="220" fill="${isImpossible ? '#f43f5e' : '#10b981'}" font-size="11" font-weight="bold" text-anchor="middle">
+            ${isImpossible ? 'CANNOT BE A SQUARE!' : 'Could be a square'}
+          </text>
+
+          <!-- Square Card -->
+          <rect x="330" y="70" width="220" height="180" rx="12" fill="#1e293b" stroke="#10b981" stroke-width="1.5" />
+          <text x="440" y="105" fill="#94a3b8" font-size="12" text-anchor="middle">Square n²</text>
+          <text x="440" y="145" fill="#34d399" font-size="24" font-weight="bold" text-anchor="middle">${sq}</text>
+          <text x="440" y="180" fill="#38bdf8" font-size="13" text-anchor="middle">Units Digit: <tspan fill="#f59e0b" font-weight="bold">${sqU}</tspan></text>
+          <text x="440" y="220" fill="#cbd5e1" font-size="11" text-anchor="middle">(${u} × ${u} = ${u*u} ends in ${sqU})</text>
+          
+          <text x="300" y="285" fill="#e2e8f0" font-size="12" text-anchor="middle">Permitted Square Units Digits: {0, 1, 4, 5, 6, 9} | Forbidden: {2, 3, 7, 8}</text>
+        `;
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="slider-label">Test Base Integer:</span>
+          <input type="range" class="sim-slider" id="digitSlider" min="1" max="50" value="17">
+          <span class="slider-val" id="digitVal">17</span>
+        </div>
+      `;
+
+      test(17);
+      document.getElementById('digitSlider').addEventListener('input', (e) => {
+        const val = parseInt(e.target.value);
+        document.getElementById('digitVal').textContent = val;
+        test(val);
+      });
+    }
+
+    // 4. Zero & Parity Simulator
+    function renderZeroParitySim(svg, controls) {
+      function update(base, zeros) {
+        const num = base * Math.pow(10, zeros);
+        const sqZeros = zeros * 2;
+        const sq = (base * base) * Math.pow(10, sqZeros);
+        const isEven = (base % 2 === 0);
+
+        svg.innerHTML = `
+          <rect x="0" y="0" width="600" height="320" fill="#090d16" />
+          <text x="300" y="32" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="middle">Trailing Zero Doubling & Parity Law</text>
+          
+          <rect x="50" y="60" width="500" height="100" rx="10" fill="#1e293b" stroke="#3b82f6" />
+          <text x="75" y="95" fill="#94a3b8" font-size="12">Given Integer:</text>
+          <text x="75" y="130" fill="#fff" font-size="22" font-weight="bold">${num.toLocaleString()}</text>
+          <text x="350" y="95" fill="#38bdf8" font-size="12">Trailing Zeros: <tspan font-weight="bold" fill="#f59e0b">${zeros}</tspan></text>
+          <text x="350" y="130" fill="${isEven ? '#10b981' : '#f59e0b'}" font-size="13" font-weight="bold">Parity: ${isEven ? 'EVEN' : 'ODD'}</text>
+
+          <rect x="50" y="180" width="500" height="105" rx="10" fill="#1e293b" stroke="#10b981" />
+          <text x="75" y="215" fill="#94a3b8" font-size="12">Its Square:</text>
+          <text x="75" y="250" fill="#34d399" font-size="20" font-weight="bold">${sq.toLocaleString()}</text>
+          <text x="350" y="215" fill="#38bdf8" font-size="12">Square Trailing Zeros: <tspan font-weight="bold" fill="#f59e0b">${sqZeros} (2 × ${zeros})</tspan></text>
+          <text x="350" y="250" fill="${isEven ? '#10b981' : '#f59e0b'}" font-size="13" font-weight="bold">Square Parity: ${isEven ? 'EVEN' : 'ODD'}</text>
+        `;
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="slider-label">Base Number:</span>
+          <select id="parityBase" style="background:#0f172a; color:#fff; padding:4px 8px; border-radius:6px; border:1px solid #475569;">
+            <option value="2">2 (Even)</option>
+            <option value="3">3 (Odd)</option>
+            <option value="4">4 (Even)</option>
+            <option value="7">7 (Odd)</option>
+          </select>
+          <span class="slider-label" style="min-width:90px; margin-left:15px;">Trailing Zeros:</span>
+          <input type="range" class="sim-slider" id="zeroSlider" min="1" max="4" value="2">
+          <span class="slider-val" id="zeroVal">2 zeros</span>
+        </div>
+      `;
+
+      update(2, 2);
+      const sel = document.getElementById('parityBase');
+      const sld = document.getElementById('zeroSlider');
+
+      sel.addEventListener('change', () => {
+        update(parseInt(sel.value), parseInt(sld.value));
+      });
+      sld.addEventListener('input', (e) => {
+        const z = parseInt(e.target.value);
+        document.getElementById('zeroVal').textContent = `${z} zeros`;
+        update(parseInt(sel.value), z);
+      });
+    }
+
+    // 5. Gnomon Simulator
+    function renderGnomonSim(svg, controls) {
+      function draw(n) {
+        svg.innerHTML = `
+          <rect x="0" y="0" width="600" height="320" fill="#090d16" />
+          <text x="300" y="30" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="middle">Inverted-L Gnomon: Sum of First ${n} Odd Numbers = ${n}²</text>
+        `;
+
+        const colors = ['#f43f5e', '#f59e0b', '#10b981', '#06b6d4', '#6366f1', '#a855f7', '#ec4899'];
+        const cellSize = 16;
+        const startX = 220;
+        const startY = 60;
+
+        for (let layer = 1; layer <= n; layer++) {
+          const col = colors[(layer - 1) % colors.length];
+          // Top row of this gnomon
+          for (let c = 0; c < layer; c++) {
+            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            circle.setAttribute('cx', startX + c * cellSize);
+            circle.setAttribute('cy', startY + (layer - 1) * cellSize);
+            circle.setAttribute('r', '5.5');
+            circle.setAttribute('fill', col);
+            svg.appendChild(circle);
+          }
+          // Right column of this gnomon
+          for (let r = 0; r < layer - 1; r++) {
+            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            circle.setAttribute('cx', startX + (layer - 1) * cellSize);
+            circle.setAttribute('cy', startY + r * cellSize);
+            circle.setAttribute('r', '5.5');
+            circle.setAttribute('fill', col);
+            svg.appendChild(circle);
+          }
+        }
+
+        // Odd terms formula
+        const oddTerms = [];
+        for (let k = 1; k <= n; k++) oddTerms.push(2 * k - 1);
+
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', '300');
+        text.setAttribute('y', '270');
+        text.setAttribute('fill', '#f59e0b');
+        text.setAttribute('font-size', '13');
+        text.setAttribute('font-weight', 'bold');
+        text.setAttribute('text-anchor', 'middle');
+        text.textContent = `${oddTerms.join(' + ')} = ${n * n} = ${n}²`;
+        svg.appendChild(text);
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="slider-label">Number of Odd Terms (n):</span>
+          <input type="range" class="sim-slider" id="gnomonSlider" min="1" max="7" value="4">
+          <span class="slider-val" id="gnomonVal">n = 4</span>
+        </div>
+      `;
+
+      draw(4);
+      document.getElementById('gnomonSlider').addEventListener('input', (e) => {
+        const v = parseInt(e.target.value);
+        document.getElementById('gnomonVal').textContent = `n = ${v}`;
+        draw(v);
+      });
+    }
+
+    // 6. Repeated Subtraction Simulator
+    function renderSubtractionSim(svg, controls) {
+      function test(num) {
+        let rem = num;
+        let odd = 1;
+        let step = 0;
+        const steps = [];
+
+        while (rem > 0 && step < 12) {
+          step++;
+          const prev = rem;
+          rem = rem - odd;
+          steps.push({ step, prev, odd, rem });
+          odd += 2;
+        }
+
+        const isSquare = (rem === 0);
+
+        svg.innerHTML = `
+          <rect x="0" y="0" width="600" height="320" fill="#090d16" />
+          <text x="300" y="28" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="middle">Testing ${num} by Repeated Odd Subtraction</text>
+        `;
+
+        let y = 60;
+        steps.slice(0, 6).forEach(s => {
+          const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          t.setAttribute('x', '100');
+          t.setAttribute('y', y);
+          t.setAttribute('fill', '#cbd5e1');
+          t.setAttribute('font-size', '12');
+          t.textContent = `Step ${s.step}: ${s.prev} - ${s.odd} = ${s.rem}`;
+          svg.appendChild(t);
+          y += 24;
+        });
+
+        if (steps.length > 6) {
+          y = 60;
+          steps.slice(6, 12).forEach(s => {
+            const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            t.setAttribute('x', '350');
+            t.setAttribute('y', y);
+            t.setAttribute('fill', '#cbd5e1');
+            t.setAttribute('font-size', '12');
+            t.textContent = `Step ${s.step}: ${s.prev} - ${s.odd} = ${s.rem}`;
+            svg.appendChild(t);
+            y += 24;
+          });
+        }
+
+        const resultBox = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        resultBox.setAttribute('x', '80');
+        resultBox.setAttribute('y', '225');
+        resultBox.setAttribute('width', '440');
+        resultBox.setAttribute('height', '70');
+        resultBox.setAttribute('rx', '8');
+        resultBox.setAttribute('fill', isSquare ? 'rgba(16, 185, 129, 0.15)' : 'rgba(244, 63, 94, 0.15)');
+        resultBox.setAttribute('stroke', isSquare ? '#10b981' : '#f43f5e');
+        svg.appendChild(resultBox);
+
+        const resText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        resText.setAttribute('x', '300');
+        resText.setAttribute('y', '255');
+        resText.setAttribute('fill', isSquare ? '#34d399' : '#fb7185');
+        resText.setAttribute('font-size', '13');
+        resText.setAttribute('font-weight', 'bold');
+        resText.setAttribute('text-anchor', 'middle');
+        resText.textContent = isSquare ? `SUCCESS: Reached 0 in ${steps.length} steps! √${num} = ${steps.length}` : `FAILED: Crossed 0 without landing on 0. ${num} is NOT a square!`;
+        svg.appendChild(resText);
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="slider-label">Select Number to Test:</span>
+          <button class="sim-btn" onclick="document.getElementById('subVal').value=25; runSub(25);">25 (Square)</button>
+          <button class="sim-btn" onclick="document.getElementById('subVal').value=49; runSub(49);">49 (Square)</button>
+          <button class="sim-btn" onclick="document.getElementById('subVal').value=81; runSub(81);">81 (Square)</button>
+          <button class="sim-btn" style="background:#be123c;" onclick="document.getElementById('subVal').value=38; runSub(38);">38 (Non-Square)</button>
+          <input type="hidden" id="subVal" value="49">
+        </div>
+      `;
+
+      window.runSub = test;
+      test(49);
+    }
+
+    // 7. Between Squares Simulator
+    function renderBetweenSquaresSim(svg, controls) {
+      function draw(n) {
+        const sq1 = n * n;
+        const sq2 = (n + 1) * (n + 1);
+        const count = 2 * n;
+
+        svg.innerHTML = `
+          <rect x="0" y="0" width="600" height="320" fill="#090d16" />
+          <text x="300" y="35" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="middle">2n Non-Square Theorem: ${n}² vs (${n}+1)²</text>
+
+          <rect x="50" y="80" width="130" height="110" rx="10" fill="#1e293b" stroke="#6366f1" stroke-width="2" />
+          <text x="115" y="115" fill="#94a3b8" font-size="12" text-anchor="middle">Lower Square</text>
+          <text x="115" y="145" fill="#fff" font-size="20" font-weight="bold" text-anchor="middle">${n}² = ${sq1}</text>
+
+          <rect x="420" y="80" width="130" height="110" rx="10" fill="#1e293b" stroke="#10b981" stroke-width="2" />
+          <text x="485" y="115" fill="#94a3b8" font-size="12" text-anchor="middle">Next Square</text>
+          <text x="485" y="145" fill="#fff" font-size="20" font-weight="bold" text-anchor="middle">${n+1}² = ${sq2}</text>
+
+          <path d="M190 135 L410 135" stroke="#f59e0b" stroke-width="3" stroke-dasharray="6,4" />
+          <polygon points="410,135 400,130 400,140" fill="#f59e0b" />
+
+          <rect x="210" y="100" width="180" height="70" rx="8" fill="#020617" stroke="#f59e0b" />
+          <text x="300" y="125" fill="#f59e0b" font-size="11" font-weight="bold" text-anchor="middle">Non-Squares Trapped:</text>
+          <text x="300" y="152" fill="#fff" font-size="18" font-weight="bold" text-anchor="middle">2 × ${n} = ${count}</text>
+
+          <text x="300" y="240" fill="#cbd5e1" font-size="12" text-anchor="middle">Algebraic Proof: (${n}+1)² - ${n}² - 1 = (${sq2} - ${sq1} - 1) = ${count}</text>
+          <text x="300" y="270" fill="#a5b4fc" font-size="12" text-anchor="middle">For n = 16: exactly 32 non-squares | For n = 99: exactly 198 non-squares</text>
+        `;
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="slider-label">Base Integer (n):</span>
+          <input type="range" class="sim-slider" id="betweenSlider" min="1" max="30" value="7">
+          <span class="slider-val" id="betweenVal">n = 7</span>
+        </div>
+      `;
+
+      draw(7);
+      document.getElementById('betweenSlider').addEventListener('input', (e) => {
+        const v = parseInt(e.target.value);
+        document.getElementById('betweenVal').textContent = `n = ${v}`;
+        draw(v);
+      });
+    }
+
+    // 8. Triangular Numbers Merger
+    function renderTriangularSim(svg, controls) {
+      function draw(n) {
+        const t1 = (n - 1) * n / 2;
+        const t2 = n * (n + 1) / 2;
+        const total = t1 + t2;
+
+        svg.innerHTML = `
+          <rect x="0" y="0" width="600" height="320" fill="#090d16" />
+          <text x="300" y="30" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="middle">T_{${n-1}} + T_{${n}} = ${t1} + ${t2} = ${total} = ${n}²</text>
+        `;
+
+        const startX = 220;
+        const startY = 60;
+        const cellSize = 180 / n;
+
+        for (let r = 0; r < n; r++) {
+          for (let c = 0; c < n; c++) {
+            const isLower = (c <= r);
+            const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            rect.setAttribute('x', startX + c * cellSize);
+            rect.setAttribute('y', startY + r * cellSize);
+            rect.setAttribute('width', cellSize - 1.5);
+            rect.setAttribute('height', cellSize - 1.5);
+            rect.setAttribute('rx', '3');
+            rect.setAttribute('fill', isLower ? '#10b981' : '#6366f1');
+            svg.appendChild(rect);
+          }
+        }
+
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', '300');
+        text.setAttribute('y', '280');
+        text.setAttribute('fill', '#f59e0b');
+        text.setAttribute('font-size', '13');
+        text.setAttribute('font-weight', 'bold');
+        text.setAttribute('text-anchor', 'middle');
+        text.textContent = `Green: T_{${n}} (${t2} dots) + Purple: T_{${n-1}} (${t1} dots) = ${n}² (${n*n} dots)`;
+        svg.appendChild(text);
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="slider-label">Square Side (n):</span>
+          <input type="range" class="sim-slider" id="triSlider" min="2" max="6" value="4">
+          <span class="slider-val" id="triVal">n = 4</span>
+        </div>
+      `;
+
+      draw(4);
+      document.getElementById('triSlider').addEventListener('input', (e) => {
+        const v = parseInt(e.target.value);
+        document.getElementById('triVal').textContent = `n = ${v}`;
+        draw(v);
+      });
+    }
+
+    // 9. Square Root Inverter
+    function renderSquareRootSim(svg, controls) {
+      function update(n) {
+        const sq = n * n;
+        svg.innerHTML = `
+          <rect x="0" y="0" width="600" height="320" fill="#090d16" />
+          <text x="300" y="35" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="middle">Bi-Directional Square & Square Root Engine</text>
+
+          <rect x="70" y="80" width="160" height="150" rx="12" fill="#1e293b" stroke="#6366f1" stroke-width="2" />
+          <text x="150" y="115" fill="#94a3b8" font-size="12" text-anchor="middle">Root (Side Length)</text>
+          <text x="150" y="165" fill="#fff" font-size="36" font-weight="bold" text-anchor="middle">${n}</text>
+          <text x="150" y="205" fill="#a5b4fc" font-size="12" text-anchor="middle">Dual: ±${n}</text>
+
+          <rect x="370" y="80" width="160" height="150" rx="12" fill="#1e293b" stroke="#10b981" stroke-width="2" />
+          <text x="450" y="115" fill="#94a3b8" font-size="12" text-anchor="middle">Square (Area)</text>
+          <text x="450" y="165" fill="#34d399" font-size="36" font-weight="bold" text-anchor="middle">${sq}</text>
+          <text x="450" y="205" fill="#6ee7b7" font-size="12" text-anchor="middle">${sq} sq units</text>
+
+          <path d="M245 130 Q300 110 355 130" fill="none" stroke="#f59e0b" stroke-width="2.5" />
+          <polygon points="355,130 345,123 347,135" fill="#f59e0b" />
+          <text x="300" y="105" fill="#f59e0b" font-size="11" font-weight="bold" text-anchor="middle">Square (n²)</text>
+
+          <path d="M355 175 Q300 195 245 175" fill="none" stroke="#38bdf8" stroke-width="2.5" />
+          <polygon points="245,175 255,182 253,170" fill="#38bdf8" />
+          <text x="300" y="215" fill="#38bdf8" font-size="11" font-weight="bold" text-anchor="middle">Square Root (√)</text>
+
+          <text x="300" y="275" fill="#cbd5e1" font-size="13" text-anchor="middle">√${sq} = ${n} &emsp;|&emsp; (-${n})² = +${sq}</text>
+        `;
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="slider-label">Root Value (n):</span>
+          <input type="range" class="sim-slider" id="rootSlider" min="1" max="25" value="9">
+          <span class="slider-val" id="rootVal">n = 9</span>
+        </div>
+      `;
+
+      update(9);
+      document.getElementById('rootSlider').addEventListener('input', (e) => {
+        const v = parseInt(e.target.value);
+        document.getElementById('rootVal').textContent = `n = ${v}`;
+        update(v);
+      });
+    }
+
+    // 10. Prime Factor Pairer
+    function renderPrimeFactorSim(svg, controls) {
+      function test(num) {
+        svg.innerHTML = `
+          <rect x="0" y="0" width="600" height="320" fill="#090d16" />
+          <text x="300" y="32" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="middle">Prime Factor Pairing for ${num}</text>
+        `;
+
+        let factorStr = "";
+        let rootStr = "";
+        if (num === 324) {
+          factorStr = "324 = (2 × 2) × (3 × 3) × (3 × 3)";
+          rootStr = "√324 = 2 × 3 × 3 = 18 (All factors paired!)";
+        } else if (num === 156) {
+          factorStr = "156 = (2 × 2) × 3 × 13";
+          rootStr = "3 and 13 are UNPAIRED ⟹ NOT a square!";
+        } else if (num === 9408) {
+          factorStr = "9408 = 2⁶ × 3¹ × 7² = (2³ × 7)² × 3";
+          rootStr = "Multiply by 3 to pair ⟹ √(9408 × 3) = 168";
+        }
+
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', '60');
+        rect.setAttribute('y', '70');
+        rect.setAttribute('width', '480');
+        rect.setAttribute('height', '180');
+        rect.setAttribute('rx', '12');
+        rect.setAttribute('fill', '#1e293b');
+        rect.setAttribute('stroke', '#6366f1');
+        rect.setAttribute('stroke-width', '1.5');
+        svg.appendChild(rect);
+
+        const t1 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        t1.setAttribute('x', '300');
+        t1.setAttribute('y', '125');
+        t1.setAttribute('fill', '#fff');
+        t1.setAttribute('font-size', '16');
+        t1.setAttribute('font-weight', 'bold');
+        t1.setAttribute('text-anchor', 'middle');
+        t1.textContent = factorStr;
+        svg.appendChild(t1);
+
+        const t2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        t2.setAttribute('x', '300');
+        t2.setAttribute('y', '175');
+        t2.setAttribute('fill', '#10b981');
+        t2.setAttribute('font-size', '14');
+        t2.setAttribute('font-weight', 'bold');
+        t2.setAttribute('text-anchor', 'middle');
+        t2.textContent = rootStr;
+        svg.appendChild(t2);
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="slider-label">Inspect Sample:</span>
+          <button class="sim-btn" onclick="runPrime(324)">324 (Square)</button>
+          <button class="sim-btn" style="background:#be123c;" onclick="runPrime(156)">156 (Non-Square)</button>
+          <button class="sim-btn" style="background:#0284c7;" onclick="runPrime(9408)">9408 (Make Square)</button>
+        </div>
+      `;
+
+      window.runPrime = test;
+      test(324);
+    }
+
+    // 11. Cube Volume Builder
+    function renderCubeVolumeSim(svg, controls) {
+      function draw(n) {
+        const vol = n * n * n;
+        svg.innerHTML = `
+          <rect x="0" y="0" width="600" height="320" fill="#090d16" />
+          <text x="300" y="32" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="middle">Solid Cube: Side = ${n} | Volume = ${n}³ = ${vol} unit blocks</text>
+          
+          <rect x="70" y="70" width="460" height="190" rx="12" fill="#1e293b" stroke="#8b5cf6" />
+          <text x="120" y="115" fill="#a5b4fc" font-size="13">Horizontal Layers: <tspan fill="#fff" font-weight="bold">${n} layers</tspan></text>
+          <text x="120" y="145" fill="#a5b4fc" font-size="13">Blocks per Layer: <tspan fill="#fff" font-weight="bold">${n} × ${n} = ${n * n} blocks</tspan></text>
+          <text x="120" y="175" fill="#a5b4fc" font-size="13">Total Volume: <tspan fill="#34d399" font-weight="bold">${n} × (${n * n}) = ${vol} unit cubes</tspan></text>
+          
+          <rect x="350" y="100" width="130" height="130" rx="8" fill="#4c1d95" stroke="#a78bfa" stroke-width="2" />
+          <text x="415" y="170" fill="#fff" font-size="22" font-weight="bold" text-anchor="middle">${n}³ = ${vol}</text>
+          <text x="300" y="290" fill="#cbd5e1" font-size="12" text-anchor="middle">Geometric 3D multiplication: Length × Width × Height</text>
+        `;
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="slider-label">Cube Side Length (n):</span>
+          <input type="range" class="sim-slider" id="cubeVolSlider" min="1" max="8" value="3">
+          <span class="slider-val" id="cubeVolVal">n = 3</span>
+        </div>
+      `;
+
+      draw(3);
+      document.getElementById('cubeVolSlider').addEventListener('input', (e) => {
+        const v = parseInt(e.target.value);
+        document.getElementById('cubeVolVal').textContent = `n = ${v}`;
+        draw(v);
+      });
+    }
+
+    // 12. Cube Digit Mapper
+    function renderCubeDigitSim(svg, controls) {
+      function update(d) {
+        const cubeD = (d * d * d) % 10;
+        svg.innerHTML = `
+          <rect x="0" y="0" width="600" height="320" fill="#090d16" />
+          <text x="300" y="32" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="middle">Cubic Units Digit Mapping (All 0–9 Possible!)</text>
+
+          <rect x="70" y="70" width="200" height="180" rx="12" fill="#1e293b" stroke="#6366f1" />
+          <text x="170" y="110" fill="#94a3b8" font-size="12" text-anchor="middle">Base Integer Ends In</text>
+          <text x="170" y="160" fill="#38bdf8" font-size="44" font-weight="bold" text-anchor="middle">...${d}</text>
+
+          <rect x="330" y="70" width="200" height="180" rx="12" fill="#1e293b" stroke="#10b981" />
+          <text x="430" y="110" fill="#94a3b8" font-size="12" text-anchor="middle">Cube Power Ends In</text>
+          <text x="430" y="160" fill="#34d399" font-size="44" font-weight="bold" text-anchor="middle">...${cubeD}</text>
+
+          <path d="M280 150 L320 150" stroke="#f59e0b" stroke-width="3" />
+          <polygon points="320,150 310,144 310,156" fill="#f59e0b" />
+
+          <text x="300" y="280" fill="#e2e8f0" font-size="12" text-anchor="middle">Reciprocal Pairs: 2 ↔ 8 (sum 10) &emsp;|&emsp; 3 ↔ 7 (sum 10)</text>
+        `;
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="slider-label">Units Digit of Number:</span>
+          <input type="range" class="sim-slider" id="cubeDigitSlider" min="0" max="9" value="7">
+          <span class="slider-val" id="cubeDigitVal">ends in 7</span>
+        </div>
+      `;
+
+      update(7);
+      document.getElementById('cubeDigitSlider').addEventListener('input', (e) => {
+        const v = parseInt(e.target.value);
+        document.getElementById('cubeDigitVal').textContent = `ends in ${v}`;
+        update(v);
+      });
+    }
+
+    // 13. Taxicab Simulator
+    function renderTaxicabSim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="0" y="0" width="600" height="320" fill="#090d16" />
+        <text x="300" y="32" fill="#f59e0b" font-size="15" font-weight="bold" text-anchor="middle">The Hardy–Ramanujan Number: 1729</text>
+
+        <!-- Way 1 -->
+        <rect x="60" y="70" width="220" height="180" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" />
+        <text x="170" y="105" fill="#38bdf8" font-size="13" font-weight="bold" text-anchor="middle">Representation 1</text>
+        <text x="170" y="145" fill="#fff" font-size="20" font-weight="bold" text-anchor="middle">1³ + 12³</text>
+        <text x="170" y="180" fill="#a5b4fc" font-size="13" text-anchor="middle">1 + 1728 = 1729</text>
+        <text x="170" y="215" fill="#10b981" font-size="11" font-weight="bold" text-anchor="middle">Small cube + Big cube</text>
+
+        <!-- Way 2 -->
+        <rect x="320" y="70" width="220" height="180" rx="12" fill="#1e293b" stroke="#10b981" stroke-width="1.5" />
+        <text x="430" y="105" fill="#10b981" font-size="13" font-weight="bold" text-anchor="middle">Representation 2</text>
+        <text x="430" y="145" fill="#fff" font-size="20" font-weight="bold" text-anchor="middle">9³ + 10³</text>
+        <text x="430" y="180" fill="#a5b4fc" font-size="13" text-anchor="middle">729 + 1000 = 1729</text>
+        <text x="430" y="215" fill="#38bdf8" font-size="11" font-weight="bold" text-anchor="middle">Balanced pair</text>
+
+        <text x="300" y="280" fill="#e2e8f0" font-size="12" text-anchor="middle">Smallest integer expressible as sum of two positive cubes in TWO different ways</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="slider-label">Explore More Taxicab Numbers:</span>
+          <button class="sim-btn" onclick="showTaxi(1729)">1729</button>
+          <button class="sim-btn" onclick="showTaxi(4104)">4104</button>
+          <button class="sim-btn" onclick="showTaxi(13832)">13832</button>
+        </div>
+      `;
+
+      window.showTaxi = (num) => {
+        if (num === 4104) {
+          svg.querySelector('text').textContent = 'Taxicab Number: 4104';
+          svg.querySelectorAll('rect')[1].nextElementSibling.nextElementSibling.textContent = '2³ + 16³';
+          svg.querySelectorAll('rect')[1].nextElementSibling.nextElementSibling.nextElementSibling.textContent = '8 + 4096 = 4104';
+          svg.querySelectorAll('rect')[2].nextElementSibling.nextElementSibling.textContent = '9³ + 15³';
+          svg.querySelectorAll('rect')[2].nextElementSibling.nextElementSibling.nextElementSibling.textContent = '729 + 3375 = 4104';
+        } else if (num === 13832) {
+          svg.querySelector('text').textContent = 'Taxicab Number: 13832';
+          svg.querySelectorAll('rect')[1].nextElementSibling.nextElementSibling.textContent = '2³ + 24³';
+          svg.querySelectorAll('rect')[1].nextElementSibling.nextElementSibling.nextElementSibling.textContent = '8 + 13824 = 13832';
+          svg.querySelectorAll('rect')[2].nextElementSibling.nextElementSibling.textContent = '18³ + 20³';
+          svg.querySelectorAll('rect')[2].nextElementSibling.nextElementSibling.nextElementSibling.textContent = '5832 + 8000 = 13832';
+        } else {
+          renderTaxicabSim(svg, controls);
+        }
+      };
+    }
+
+    // 14. Nicomachus Pyramid
+    function renderNicomachusSim(svg, controls) {
+      function draw(row) {
+        svg.innerHTML = `
+          <rect x="0" y="0" width="600" height="320" fill="#090d16" />
+          <text x="300" y="28" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="middle">Nicomachus Odd Pyramid: Row ${row} Sum = ${row}³</text>
+        `;
+
+        const startOdd = row * (row - 1) + 1;
+        const odds = [];
+        for (let i = 0; i < row; i++) odds.push(startOdd + i * 2);
+        const sum = row * row * row;
+
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', '40');
+        rect.setAttribute('y', '65');
+        rect.setAttribute('width', '520');
+        rect.setAttribute('height', '180');
+        rect.setAttribute('rx', '12');
+        rect.setAttribute('fill', '#1e293b');
+        rect.setAttribute('stroke', '#f59e0b');
+        rect.setAttribute('stroke-width', '1.5');
+        svg.appendChild(rect);
+
+        const t1 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        t1.setAttribute('x', '300');
+        t1.setAttribute('y', '110');
+        t1.setAttribute('fill', '#a5b4fc');
+        t1.setAttribute('font-size', '13');
+        t1.setAttribute('text-anchor', 'middle');
+        t1.textContent = `${row} Consecutive Odd Numbers:`;
+        svg.appendChild(t1);
+
+        const t2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        t2.setAttribute('x', '300');
+        t2.setAttribute('y', '155');
+        t2.setAttribute('fill', '#fff');
+        t2.setAttribute('font-size', '15');
+        t2.setAttribute('font-weight', 'bold');
+        t2.setAttribute('text-anchor', 'middle');
+        t2.textContent = odds.join(' + ');
+        svg.appendChild(t2);
+
+        const t3 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        t3.setAttribute('x', '300');
+        t3.setAttribute('y', '205');
+        t3.setAttribute('fill', '#34d399');
+        t3.setAttribute('font-size', '20');
+        t3.setAttribute('font-weight', 'bold');
+        t3.setAttribute('text-anchor', 'middle');
+        t3.textContent = `= ${sum} = ${row}³`;
+        svg.appendChild(t3);
+
+        const t4 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        t4.setAttribute('x', '300');
+        t4.setAttribute('y', '280');
+        t4.setAttribute('fill', '#cbd5e1');
+        t4.setAttribute('font-size', '12');
+        t4.setAttribute('text-anchor', 'middle');
+        t4.textContent = `First odd number formula: n² - n + 1 = ${row}² - ${row} + 1 = ${startOdd}`;
+        svg.appendChild(t4);
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="slider-label">Pyramid Row (n):</span>
+          <input type="range" class="sim-slider" id="nicoSlider" min="1" max="6" value="3">
+          <span class="slider-val" id="nicoVal">Row 3</span>
+        </div>
+      `;
+
+      draw(3);
+      document.getElementById('nicoSlider').addEventListener('input', (e) => {
+        const v = parseInt(e.target.value);
+        document.getElementById('nicoVal').textContent = `Row ${v}`;
+        draw(v);
+      });
+    }
+
+    // 15. Cube Root Triplet Simulator
+    function renderCubeRootTripletSim(svg, controls) {
+      function test(num) {
+        svg.innerHTML = `
+          <rect x="0" y="0" width="600" height="320" fill="#090d16" />
+          <text x="300" y="32" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="middle">Cube Root Extraction by Prime Factor Triplets</text>
+        `;
+
+        let fStr = "";
+        let rStr = "";
+        if (num === 3375) {
+          fStr = "3375 = (3 × 3 × 3) × (5 × 5 × 5) = 3³ × 5³";
+          rStr = "∛3375 = 3 × 5 = 15 (Complete Triplets)";
+        } else if (num === 1323) {
+          fStr = "1323 = (3 × 3 × 3) × (7 × 7) = 3³ × 7²";
+          rStr = "7 is missing one factor! Multiply by 7 ⟹ 9261 = 21³";
+        } else if (num === 500) {
+          fStr = "500 = (2 × 2) × (5 × 5 × 5) = 2² × 5³";
+          rStr = "2 occurs only twice ⟹ Divide by 4 (leaves 125=5³) or multiply by 2 (1000=10³)";
+        }
+
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', '60');
+        rect.setAttribute('y', '75');
+        rect.setAttribute('width', '480');
+        rect.setAttribute('height', '180');
+        rect.setAttribute('rx', '12');
+        rect.setAttribute('fill', '#1e293b');
+        rect.setAttribute('stroke', '#a855f7');
+        rect.setAttribute('stroke-width', '1.5');
+        svg.appendChild(rect);
+
+        const t1 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        t1.setAttribute('x', '300');
+        t1.setAttribute('y', '130');
+        t1.setAttribute('fill', '#fff');
+        t1.setAttribute('font-size', '15');
+        t1.setAttribute('font-weight', 'bold');
+        t1.setAttribute('text-anchor', 'middle');
+        t1.textContent = fStr;
+        svg.appendChild(t1);
+
+        const t2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        t2.setAttribute('x', '300');
+        t2.setAttribute('y', '180');
+        t2.setAttribute('fill', '#34d399');
+        t2.setAttribute('font-size', '13');
+        t2.setAttribute('font-weight', 'bold');
+        t2.setAttribute('text-anchor', 'middle');
+        t2.textContent = rStr;
+        svg.appendChild(t2);
+      }
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span class="slider-label">Inspect Sample:</span>
+          <button class="sim-btn" onclick="runTrip(3375)">3375 (Cube)</button>
+          <button class="sim-btn" style="background:#be123c;" onclick="runTrip(1323)">1323 (Multiply 7)</button>
+          <button class="sim-btn" style="background:#0284c7;" onclick="runTrip(500)">500 (Divide 4 / Mul 2)</button>
+        </div>
+      `;
+
+      window.runTrip = test;
+      test(3375);
+    }
+
+    // 16. Finite Difference Cascade
+    function renderFiniteDifferenceSim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="0" y="0" width="600" height="320" fill="#090d16" />
+        <text x="300" y="28" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="middle">Successive Differences Cascade</text>
+
+        <!-- Squares -->
+        <rect x="50" y="55" width="240" height="200" rx="10" fill="#1e293b" stroke="#3b82f6" />
+        <text x="170" y="85" fill="#38bdf8" font-size="13" font-weight="bold" text-anchor="middle">Perfect Squares (Degree 2)</text>
+        <text x="170" y="115" fill="#fff" font-size="11" text-anchor="middle">1,  4,  9,  16,  25,  36</text>
+        <text x="170" y="150" fill="#f59e0b" font-size="11" text-anchor="middle">Δ¹: 3,  5,  7,  9,  11 (Odds)</text>
+        <text x="170" y="185" fill="#10b981" font-size="12" font-weight="bold" text-anchor="middle">Δ²: 2,  2,  2,  2 (Constant 2! = 2)</text>
+
+        <!-- Cubes -->
+        <rect x="310" y="55" width="240" height="200" rx="10" fill="#1e293b" stroke="#a855f7" />
+        <text x="430" y="85" fill="#a855f7" font-size="13" font-weight="bold" text-anchor="middle">Perfect Cubes (Degree 3)</text>
+        <text x="430" y="115" fill="#fff" font-size="11" text-anchor="middle">1,  8,  27,  64,  125,  216</text>
+        <text x="430" y="145" fill="#f59e0b" font-size="11" text-anchor="middle">Δ¹: 7,  19,  37,  61,  91</text>
+        <text x="430" y="175" fill="#38bdf8" font-size="11" text-anchor="middle">Δ²: 12,  18,  24,  30</text>
+        <text x="430" y="205" fill="#10b981" font-size="12" font-weight="bold" text-anchor="middle">Δ³: 6,  6,  6 (Constant 3! = 6)</text>
+
+        <text x="300" y="285" fill="#e2e8f0" font-size="12" text-anchor="middle">Aryabhata (499 CE): Varga (Square), Ghana (Cube), Mula (Root / Origin)</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span style="color:#94a3b8; font-size:12px;">The k-th finite difference of a polynomial of degree k is always constant and equals k!</span>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>

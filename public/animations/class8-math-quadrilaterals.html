@@ -1,0 +1,2541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 8 Mathematics • Chapter 4: Quadrilaterals Master Lab</title>
+  
+  <!-- KaTeX CSS & JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="triggerMathRender(document.body);"></script>
+
+  <style>
+    :root {
+      --bg-primary: #070b14;
+      --bg-secondary: #0f172a;
+      --card-bg: rgba(15, 23, 42, 0.85);
+      --card-border: rgba(99, 102, 241, 0.25);
+      --accent-indigo: #6366f1;
+      --accent-cyan: #06b6d4;
+      --accent-amber: #f59e0b;
+      --accent-emerald: #10b981;
+      --accent-rose: #f43f5e;
+      --accent-purple: #a855f7;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at top right, #1e1b4b 0%, #070b14 65%);
+      color: var(--text-main);
+      font-family: var(--font-stack);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* KaTeX equation enhancements */
+    .katex {
+      font-size: 1.08em;
+      color: inherit;
+    }
+    .katex-display {
+      margin: 0.6em 0 !important;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 4px 0;
+    }
+    .katex-display > .katex {
+      white-space: normal;
+    }
+
+    /* Header Nav */
+    header {
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .header-badge {
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .header-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #e2e8f0;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .slide-indicator {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+    }
+
+    .speech-btn {
+      background: rgba(99, 102, 241, 0.2);
+      border: 1px solid var(--accent-indigo);
+      color: #c7d2fe;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .speech-btn:hover {
+      background: rgba(99, 102, 241, 0.35);
+      color: #fff;
+    }
+    .speech-btn.speaking {
+      background: rgba(244, 63, 94, 0.25);
+      border-color: var(--accent-rose);
+      color: #fecdd3;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      max-width: 1380px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Slide Header Card */
+    .slide-header {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px 24px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    .slide-tag {
+      color: var(--accent-amber);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .slide-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+      line-height: 1.25;
+    }
+
+    .slide-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Two Column Layout for Lessons */
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 1024px) {
+      .lesson-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Theory Left Column */
+    .theory-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .lead-p {
+      font-size: 15px;
+      line-height: 1.65;
+      color: #cbd5e1;
+    }
+
+    .theory-box {
+      background: rgba(30, 41, 59, 0.7);
+      border-left: 4px solid var(--accent-indigo);
+      border-radius: 0 12px 12px 0;
+      padding: 16px 20px;
+    }
+    .theory-box h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #e2e8f0;
+      margin-bottom: 8px;
+    }
+    .theory-box p, .theory-box li {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: #94a3b8;
+    }
+    .theory-box ul, .theory-box ol {
+      margin-left: 20px;
+      margin-top: 6px;
+    }
+
+    .formula-box {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .formula-box h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .formula-box p, .formula-box li {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: #cbd5e1;
+    }
+
+    /* Right Column: Simulator & Checkpoints */
+    .sim-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .sim-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sim-head h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sim-badge {
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent-emerald);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .sim-viewport {
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sim-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      padding-top: 6px;
+    }
+
+    .sim-btn {
+      background: rgba(30, 41, 59, 0.9);
+      border: 1px solid #475569;
+      color: #e2e8f0;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .sim-btn:hover {
+      background: var(--accent-indigo);
+      border-color: var(--accent-indigo);
+      color: #fff;
+    }
+    .sim-btn.active {
+      background: var(--accent-indigo);
+      border-color: #818cf8;
+      color: #fff;
+    }
+
+    .sim-slider-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      color: #cbd5e1;
+    }
+    .sim-slider-group input[type="range"] {
+      accent-color: var(--accent-cyan);
+      cursor: pointer;
+    }
+
+    /* In-Slide Checkpoint Section */
+    .checkpoint-section {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 14px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .checkpoint-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent-amber);
+    }
+
+    .checkpoint-card {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .checkpoint-q {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #e2e8f0;
+      line-height: 1.45;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    @media (max-width: 640px) {
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .opt-btn {
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #cbd5e1;
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      line-height: 1.35;
+    }
+    .opt-btn:hover:not(:disabled) {
+      background: #334155;
+      border-color: #64748b;
+      color: #fff;
+    }
+    .opt-btn.correct {
+      background: rgba(16, 185, 129, 0.25) !important;
+      border-color: var(--accent-emerald) !important;
+      color: #6ee7b7 !important;
+      font-weight: 700;
+    }
+    .opt-btn.wrong {
+      background: rgba(244, 63, 94, 0.25) !important;
+      border-color: var(--accent-rose) !important;
+      color: #fda4af !important;
+    }
+
+    .feedback-box {
+      font-size: 12.5px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      display: none;
+      line-height: 1.5;
+    }
+    .feedback-box.show {
+      display: block;
+    }
+
+    /* Teacher Persona Card */
+    .teacher-card {
+      background: linear-gradient(135deg, rgba(30, 27, 75, 0.8), rgba(15, 23, 42, 0.95));
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      border-radius: 16px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 68px;
+      height: 68px;
+      flex-shrink: 0;
+    }
+
+    .avatar-svg {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px solid var(--accent-cyan);
+      background: #0f172a;
+    }
+
+    .mouth-open {
+      display: none;
+    }
+    .speaking .mouth-open {
+      display: block;
+    }
+    .speaking .mouth-closed {
+      display: none;
+    }
+
+    .teacher-speech {
+      flex: 1;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: #e2e8f0;
+      font-style: italic;
+    }
+
+    .teacher-role {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    /* Sticky Bottom Footer */
+    footer {
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--card-border);
+      position: sticky;
+      bottom: 0;
+      z-index: 100;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-btn {
+      background: var(--accent-indigo);
+      border: none;
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .nav-btn:hover:not(:disabled) {
+      background: #4338ca;
+      transform: translateY(-1px);
+    }
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      background: #334155;
+    }
+
+    .last-slide-notice {
+      display: none;
+      color: #f59e0b;
+      font-weight: 800;
+      font-size: 13.5px;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 8px 18px;
+      border-radius: 8px;
+      animation: pulse 2s infinite;
+    }
+
+    /* Quiz Full-Width Layout (Slides 17 to 20) */
+    .quiz-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .quiz-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 18px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .quiz-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .quiz-badge {
+      background: rgba(99, 102, 241, 0.2);
+      color: #a5b4fc;
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .sol-btn {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid var(--accent-amber);
+      color: #fcd34d;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .sol-btn:hover {
+      background: rgba(245, 158, 11, 0.3);
+      color: #fff;
+    }
+
+    /* Modal Backdrop */
+    .modal-backdrop {
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+    }
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Header -->
+  <header>
+    <div class="header-left">
+      <span class="header-badge">NCERT Class 8</span>
+      <h1 class="header-title">Chapter 4: Quadrilaterals Master Lab</h1>
+    </div>
+    <div class="header-right">
+      <span class="slide-indicator" id="slideIndicator">Slide 1 of 20</span>
+      <button class="speech-btn" id="speechToggleBtn" onclick="toggleSpeech()">
+        <span id="speechIcon">🔊</span>
+        <span id="speechLabel">Voiceover</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Body Content -->
+  <main>
+    <!-- Slide Header Banner -->
+    <section class="slide-header">
+      <div class="slide-tag" id="slideTag">SECTION 4.1</div>
+      <h2 class="slide-title" id="slideTitle">Loading Slide...</h2>
+      <p class="slide-subtitle" id="slideSubtitle">Interactive Mathematical Laboratory</p>
+    </section>
+
+    <!-- Teacher Persona Avatar Banner -->
+    <section class="teacher-card" id="teacherCard">
+      <div class="avatar-wrapper" id="avatarWrapper">
+        <svg class="avatar-svg" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="48" fill="#1e1b4b"/>
+          <!-- Shoulders & Coat -->
+          <path d="M 15 95 Q 50 78 85 95 L 85 100 L 15 100 Z" fill="#312e81"/>
+          <path d="M 38 82 L 50 96 L 62 82 Z" fill="#6366f1"/>
+          <!-- Neck & Face -->
+          <rect x="42" y="60" width="16" height="15" fill="#fbcfe8" rx="4"/>
+          <ellipse cx="50" cy="46" rx="22" ry="25" fill="#fde047"/>
+          <!-- Hair & Cap -->
+          <path d="M 26 40 Q 50 12 74 40 Q 50 24 26 40 Z" fill="#1e293b"/>
+          <!-- Eyes -->
+          <circle cx="41" cy="44" r="3.2" fill="#0f172a"/>
+          <circle cx="59" cy="44" r="3.2" fill="#0f172a"/>
+          <circle cx="42" cy="43" r="1" fill="#fff"/>
+          <circle cx="60" cy="43" r="1" fill="#fff"/>
+          <!-- Spectacles -->
+          <circle cx="41" cy="44" r="6.5" fill="none" stroke="#67e8f9" stroke-width="1.8"/>
+          <circle cx="59" cy="44" r="6.5" fill="none" stroke="#67e8f9" stroke-width="1.8"/>
+          <line x1="47.5" y1="44" x2="52.5" y2="44" stroke="#67e8f9" stroke-width="1.8"/>
+          <!-- Eyebrows -->
+          <path d="M 35 37 Q 41 34 47 37" fill="none" stroke="#1e293b" stroke-width="1.5"/>
+          <path d="M 53 37 Q 59 34 65 37" fill="none" stroke="#1e293b" stroke-width="1.5"/>
+          <!-- Nose -->
+          <path d="M 50 46 L 48 52 L 52 52" fill="none" stroke="#ca8a04" stroke-width="1.4"/>
+          <!-- Mouth Closed -->
+          <path class="mouth-closed" d="M 43 58 Q 50 63 57 58" fill="none" stroke="#b91c1c" stroke-width="2.2" stroke-linecap="round"/>
+          <!-- Mouth Open (Talking) -->
+          <ellipse class="mouth-open" cx="50" cy="60" rx="6" ry="4.5" fill="#991b1b"/>
+        </svg>
+      </div>
+      <div>
+        <div class="teacher-role">Mathematics Mentor</div>
+        <div class="teacher-speech" id="teacherSpeech">
+          "Welcome to Chapter 4: Quadrilaterals! We will explore the geometry, properties, angle theorems, and symmetries of four-sided figures."
+        </div>
+      </div>
+    </section>
+
+    <!-- Dynamic Lesson Grid (Slides 1 to 16) -->
+    <div class="lesson-grid" id="lessonGrid">
+      <!-- Left Column: Theory & Formal Explanations -->
+      <div class="theory-panel" id="slideContent">
+        <!-- Injected dynamically -->
+      </div>
+
+      <!-- Right Column: Interactive Simulator + In-Slide Checkpoints -->
+      <div style="display:flex; flex-direction:column; gap:20px;">
+        <!-- Interactive Simulator Panel -->
+        <section class="sim-panel" id="simulatorPanel">
+          <div class="sim-head">
+            <h3 id="simTitle"><span>⚡</span> Interactive Laboratory Simulator</h3>
+            <span class="sim-badge" id="simBadge">Live Interactive Model</span>
+          </div>
+          <div class="sim-viewport" id="simViewport">
+            <!-- Simulator SVG & Canvas injected dynamically -->
+          </div>
+          <div class="sim-controls" id="simControls">
+            <!-- Simulator Interactive Controls -->
+          </div>
+        </section>
+
+        <!-- In-Slide Conceptual Checkpoints (2 Questions per slide) -->
+        <section class="checkpoint-section" id="checkpointContainer">
+          <div class="checkpoint-header">
+            <span>🎯</span> In-Slide Conceptual Checkpoints (Immediate Feedback)
+          </div>
+          <div id="checkpointsList" style="display:flex; flex-direction:column; gap:12px;">
+            <!-- Checkpoints injected dynamically -->
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Full-Width Quiz Containers (Slides 17 to 20) -->
+    <div id="quizSlide17" style="display:none;" class="quiz-container">
+      <div class="theory-box" style="margin-bottom:8px;">
+        <h4>Mastery Challenge 1 • Questions 1 to 10</h4>
+        <p>Answer all questions below. Click <strong>💡 View Solution</strong> to inspect the step-by-step mathematical reasoning.</p>
+      </div>
+      <div id="quizContainer1" style="display:flex; flex-direction:column; gap:16px;"></div>
+    </div>
+
+    <div id="quizSlide18" style="display:none;" class="quiz-container">
+      <div class="theory-box" style="margin-bottom:8px;">
+        <h4>Mastery Challenge 2 • Questions 11 to 20</h4>
+        <p>Parallelograms, diagonal bisections, and consecutive supplementary angles.</p>
+      </div>
+      <div id="quizContainer2" style="display:flex; flex-direction:column; gap:16px;"></div>
+    </div>
+
+    <div id="quizSlide19" style="display:none;" class="quiz-container">
+      <div class="theory-box" style="margin-bottom:8px;">
+        <h4>Mastery Challenge 3 • Questions 21 to 30</h4>
+        <p>Rhombus area, perpendicular diagonals, linkage rigidity, and Varignon's theorem.</p>
+      </div>
+      <div id="quizContainer3" style="display:flex; flex-direction:column; gap:16px;"></div>
+    </div>
+
+    <div id="quizSlide20" style="display:none;" class="quiz-container">
+      <div class="theory-box" style="margin-bottom:8px;">
+        <h4>Mastery Challenge 4 • Questions 31 to 40 (Final Slide)</h4>
+        <p>Kites, trapeziums, isosceles symmetry, and the comprehensive quadrilateral family tree.</p>
+      </div>
+      <div id="quizContainer4" style="display:flex; flex-direction:column; gap:16px;"></div>
+    </div>
+  </main>
+
+  <!-- Sticky Bottom Navigation Footer -->
+  <footer>
+    <button class="nav-btn" id="prevBtn" onclick="prevSlide()" disabled>
+      ← Previous Slide
+    </button>
+    <div id="lastSlideNotice" class="last-slide-notice">
+      You have reached the last slide of this chapter
+    </div>
+    <button class="nav-btn" id="nextBtn" onclick="nextSlide()">
+      Next Slide →
+    </button>
+  </footer>
+
+  <!-- Universal Pop-up Solution Modal -->
+  <div id="solutionModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop" style="position:fixed; top:0; left:0; width:100vw; height:100vh; display:none; align-items:center; justify-content:center; z-index:1000;">
+    <div style="background:#0f172a; border:1px solid #6366f1; border-radius:16px; max-width:620px; width:95%; padding:24px; position:relative; box-shadow:0 20px 50px rgba(0,0,0,0.8);">
+      <button onclick="closeSolutionModal()" style="position:absolute; top:16px; right:16px; background:#1e293b; color:#94a3b8; border:1px solid #475569; width:32px; height:32px; border-radius:50%; font-weight:bold; cursor:pointer;">✕</button>
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+        <span style="background:rgba(245,158,11,0.2); color:#fbbf24; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:800; text-transform:uppercase;" id="modalQuestionBadge">Solution</span>
+        <span style="color:#94a3b8; font-size:12px;" id="modalQuestionNum">Question 1</span>
+      </div>
+      <h3 style="font-size:15px; font-weight:700; color:#fff; margin-bottom:14px; line-height:1.4;" id="modalQuestionTitle">Question Title</h3>
+      <div style="background:#020617; border:1px solid #1e293b; border-radius:10px; padding:16px; font-size:13px; color:#cbd5e1; line-height:1.7; max-height:360px; overflow-y:auto; white-space:pre-line;" id="modalSolutionContent">
+        Step-by-step solution derivation will appear here.
+      </div>
+      <div style="margin-top:16px; text-align:right;">
+        <button onclick="closeSolutionModal()" style="background:#4f46e5; color:#fff; border:none; padding:8px 18px; border-radius:8px; font-size:13px; font-weight:700; cursor:pointer;">
+          Got It, Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Client-side Logic -->
+  <script>
+    const slides = [{"id": 1, "title": "4.1 Rectangles and Squares: Foundations of 4-Sided Polygons", "subtitle": "Equiangular Polygons, Perpendicular Geometry & The Regular Square", "content": "\n<p class=\"lead\">A <strong>quadrilateral</strong> is a closed two-dimensional polygon bounded by <strong>four straight line segments</strong>. It possesses 4 vertices, 4 interior angles, 4 edges, and exactly 2 diagonals connecting non-adjacent vertices.</p>\n\n<div class=\"theory-box\">\n  <h4>Geometric Anatomy of a Quadrilateral</h4>\n  <ul>\n    <li><strong>Vertices & Sides:</strong> Let the vertices in cyclical order be $A, B, C, D$. The line segments $AB, BC, CD, DA$ form the four sides.</li>\n    <li><strong>Opposite vs. Consecutive Sides:</strong> $AB$ and $CD$ are opposite sides (sharing no common vertex); $AB$ and $BC$ are consecutive (adjacent) sides.</li>\n    <li><strong>Diagonals:</strong> The segments $AC$ and $BD$ joining opposite vertices are the <strong>diagonals</strong>.</li>\n  </ul>\n</div>\n\n<div class=\"formula-box\">\n  <h4>Definition: The Rectangle</h4>\n  <p>A <strong>rectangle</strong> is a quadrilateral where <em>all four interior angles are equal</em> (equiangular):</p>\n  $$\\angle A = \\angle B = \\angle C = \\angle D = \\frac{360^\\circ}{4} = 90^\\circ$$\n  <p>Because each angle is a right angle ($90^\\circ$), opposite sides are automatically parallel and equal in length: $AB = CD$ and $BC = DA$.</p>\n</div>\n\n<div class=\"theory-box\">\n  <h4>The Square: The Ultimate Regular Quadrilateral</h4>\n  <p>A <strong>square</strong> is a special rectangle that is also <strong>equilateral</strong> (all four sides are equal):</p>\n  $$AB = BC = CD = DA = s \\quad \\text{and} \\quad \\angle A = \\angle B = \\angle C = \\angle D = 90^\\circ$$\n  <p>Every square is both a rectangle and a rhombus, representing the highest symmetry among all quadrilaterals.</p>\n</div>\n", "sim_type": "rectangle_square_geometry_lab", "voice": "Welcome to Chapter 4: Quadrilaterals. We begin with rectangles and squares. A quadrilateral is any four-sided polygon. When all four angles are right angles of 90 degrees, we obtain a rectangle. If all four sides are also equal, the rectangle becomes a square, the most symmetrical four-sided polygon in geometry.", "checkpoints": [{"question": "If a quadrilateral has all four interior angles equal to each other, what must each angle measure?", "options": ["60°", "90°", "120°", "180°"], "correct": 1, "explanation": "The sum of interior angles in any quadrilateral is $360^\\circ$. If all four are equal, each angle is $\\frac{360^\\circ}{4} = 90^\\circ$, defining an equiangular quadrilateral (rectangle)."}, {"question": "Which statement accurately describes the relationship between squares and rectangles?", "options": ["All rectangles are squares, but not all squares are rectangles", "All squares are rectangles, but not all rectangles are squares", "No square can ever be considered a rectangle", "Squares and rectangles have no shared geometric properties"], "correct": 1, "explanation": "A rectangle is defined as a quadrilateral with four right angles. Since every square possesses four right angles, every square is a rectangle with the additional constraint that all sides are equal."}]}, {"id": 2, "title": "Properties of Rectangles & Squares: Diagonals & Symmetry", "subtitle": "Diagonal Congruence, Perpendicular Bisection & Symmetry Axes", "content": "\n<p class=\"lead\">The internal diagonals of rectangles and squares possess distinctive geometric properties derived directly from triangle congruence and the Pythagorean theorem.</p>\n\n<div class=\"theory-box\">\n  <h4>Theorem: Rectangle Diagonals are Equal in Length</h4>\n  <p>In rectangle $ABCD$, consider right-angled triangles $\\triangle ABC$ and $\\triangle BAD$:</p>\n  <ul>\n    <li>Side $AB$ is common to both triangles ($AB = BA$).</li>\n    <li>Right angles are equal: $\\angle ABC = \\angle BAD = 90^\\circ$.</li>\n    <li>Opposite sides are equal: $BC = AD$.</li>\n  </ul>\n  <p>By the <strong>SAS (Side-Angle-Side) Congruence Criterion</strong>, $\\triangle ABC \\cong \\triangle BAD$. Therefore, corresponding hypotenuses are equal:</p>\n  $$AC = BD = \\sqrt{l^2 + w^2}$$\n</div>\n\n<div class=\"formula-box\">\n  <h4>Square Diagonals: Perpendicular Bisectors</h4>\n  <p>In a square of side length $s$:</p>\n  <ul>\n    <li><strong>Equal Diagonals:</strong> $d_1 = d_2 = s\\sqrt{2} \\approx 1.414 s$.</li>\n    <li><strong>Mutual Bisection:</strong> The diagonals bisect each other at center $O$: $OA = OB = OC = OD = \\frac{s}{\\sqrt{2}}$.</li>\n    <li><strong>Perpendicular Intersection:</strong> Diagonals cross at right angles: $AC \\perp BD$ ($90^\\circ$).</li>\n    <li><strong>Angle Bisection:</strong> Each diagonal bisects the $90^\\circ$ corner angles into two $45^\\circ$ angles.</li>\n  </ul>\n</div>\n\n<div class=\"theory-box\">\n  <h4>Lines of Symmetry</h4>\n  <p>A non-square rectangle has <strong>2 lines of symmetry</strong> (the perpendicular bisectors of opposite sides). A square has <strong>4 lines of symmetry</strong> (2 through midpoints of sides, plus 2 along the diagonals).</p>\n</div>\n", "sim_type": "diagonal_pythagorean_explorer", "voice": "Examining the diagonals of rectangles and squares reveals fascinating symmetry. In any rectangle, the two diagonals are equal in length, calculated by the square root of length squared plus width squared. In a square, the diagonals are not only equal, but they also intersect at perpendicular 90 degree angles and bisect the corner angles into 45 degrees.", "checkpoints": [{"question": "If a rectangle has length 8 cm and width 6 cm, what is the length of each diagonal?", "options": ["10 cm", "14 cm", "12 cm", "7 cm"], "correct": 0, "explanation": "Using the Pythagorean theorem: $d = \\sqrt{l^2 + w^2} = \\sqrt{8^2 + 6^2} = \\sqrt{64 + 36} = \\sqrt{100} = 10\\text{ cm}$."}, {"question": "At what angle do the diagonals of a square intersect each other at the center?", "options": ["45°", "60°", "90°", "120°"], "correct": 2, "explanation": "The diagonals of a square are perpendicular bisectors of each other, intersecting at right angles ($90^\\circ$)."}]}, {"id": 3, "title": "4.2 Angles in a Quadrilateral: The 360° Interior Angle Theorem", "subtitle": "Triangulation Partition, Convex Polygons & Angle Sum Proof", "content": "\n<p class=\"lead\">Why does the sum of interior angles in <em>every single quadrilateral</em> always equal exactly $360^\\circ$? The answer lies in dividing the quadrilateral with a diagonal into two triangles.</p>\n\n<div class=\"theory-box\">\n  <h4>The Triangulation Proof</h4>\n  <p>Consider any quadrilateral $ABCD$. Draw the diagonal $AC$, which partitions the polygon into two non-overlapping triangles: $\\triangle ABC$ and $\\triangle ACD$.</p>\n  <ol>\n    <li>In $\\triangle ABC$: $\\angle CAB + \\angle B + \\angle BCA = 180^\\circ$.</li>\n    <li>In $\\triangle ACD$: $\\angle DAC + \\angle D + \\angle ACD = 180^\\circ$.</li>\n  </ol>\n  <p>Adding these two equations together:</p>\n  $$(\\angle CAB + \\angle DAC) + \\angle B + (\\angle BCA + \\angle ACD) + \\angle D = 180^\\circ + 180^\\circ$$\n  $$\\angle A + \\angle B + \\angle C + \\angle D = 360^\\circ$$\n</div>\n\n<div class=\"formula-box\">\n  <h4>General Polygon Angle Sum Formula</h4>\n  <p>For any $n$-sided polygon, the sum of interior angles is given by:</p>\n  $$S = (n - 2) \\times 180^\\circ$$\n  <p>For a quadrilateral where $n = 4$:</p>\n  $$S = (4 - 2) \\times 180^\\circ = 2 \\times 180^\\circ = 360^\\circ$$\n</div>\n\n<div class=\"theory-box\">\n  <h4>Convex vs. Concave Quadrilaterals</h4>\n  <p>In a <strong>convex</strong> quadrilateral, every interior angle is strictly less than $180^\\circ$, and both diagonals lie entirely inside the figure. In a <strong>concave</strong> quadrilateral, one interior angle is a reflex angle ($> 180^\\circ$), and one diagonal lies outside the polygon. Even so, the interior angle sum remains $360^\\circ$!</p>\n</div>\n", "sim_type": "angle_sum_partition_lab", "voice": "The angle sum property is fundamental in quadrilateral geometry. By drawing a single diagonal between two opposite vertices, any quadrilateral is split into two non-overlapping triangles. Because the angles of each triangle add to 180 degrees, the total interior angle sum of any quadrilateral is always 180 plus 180, which equals 360 degrees.", "checkpoints": [{"question": "Three angles of a quadrilateral are 75°, 85°, and 110°. What is the measure of the fourth angle?", "options": ["80°", "90°", "95°", "100°"], "correct": 1, "explanation": "The sum of all four interior angles is $360^\\circ$. Therefore: $\\text{Fourth angle} = 360^\\circ - (75^\\circ + 85^\\circ + 110^\\circ) = 360^\\circ - 270^\\circ = 90^\\circ$."}, {"question": "If the angles of a quadrilateral are in the ratio 1 : 2 : 3 : 4, what is the largest angle?", "options": ["36°", "72°", "108°", "144°"], "correct": 3, "explanation": "Let the angles be $x, 2x, 3x, 4x$. Their sum is $x + 2x + 3x + 4x = 10x = 360^\\circ$, giving $x = 36^\\circ$. The largest angle is $4x = 4 \\times 36^\\circ = 144^\\circ$."}]}, {"id": 4, "title": "Exterior Angles of a Quadrilateral & The 360° Outer Turn", "subtitle": "Linear Pairs, The Total Turn Principle & Convex Polygon Walk", "content": "\n<p class=\"lead\">If you walk completely around the boundary of any convex polygon until you face your original direction, your body has completed one full rotation of $360^\\circ$. This geometric intuition governs <strong>exterior angles</strong>.</p>\n\n<div class=\"theory-box\">\n  <h4>Definition of an Exterior Angle</h4>\n  <p>An <strong>exterior angle</strong> is formed between any side of a polygon and the extension of its adjacent side. At each vertex $i$, the interior angle $I_i$ and the exterior angle $E_i$ form a <strong>linear pair</strong> on a straight line:</p>\n  $$I_i + E_i = 180^\\circ \\implies E_i = 180^\\circ - I_i$$\n</div>\n\n<div class=\"formula-box\">\n  <h4>Sum of Exterior Angles Theorem</h4>\n  <p>Summing the linear pairs across all 4 vertices of a quadrilateral:</p>\n  $$\\sum_{i=1}^4 (I_i + E_i) = 4 \\times 180^\\circ = 720^\\circ$$\n  $$(\\sum_{i=1}^4 I_i) + (\\sum_{i=1}^4 E_i) = 720^\\circ$$\n  <p>Since the interior angle sum $\\sum I_i = 360^\\circ$:</p>\n  $$360^\\circ + \\sum_{i=1}^4 E_i = 720^\\circ \\implies \\sum_{i=1}^4 E_i = 720^\\circ - 360^\\circ = 360^\\circ$$\n</div>\n\n<div class=\"theory-box\">\n  <h4>Key Takeaway</h4>\n  <p>The sum of the exterior angles (taken one at each vertex) of <strong>any convex polygon</strong>—whether a triangle, quadrilateral, or decagon—is <strong>always $360^\\circ$</strong>!</p>\n</div>\n", "sim_type": "exterior_angles_rotator", "voice": "Now let us examine exterior angles. At each corner, extending a side creates an exterior angle that forms a linear pair with the interior angle. When you trace the entire perimeter of any convex quadrilateral, the four exterior angles make one complete 360 degree turn. Therefore, the sum of exterior angles is always 360 degrees.", "checkpoints": [{"question": "If three exterior angles of a quadrilateral are 100°, 70°, and 80°, what is the fourth exterior angle?", "options": ["100°", "110°", "120°", "90°"], "correct": 1, "explanation": "The sum of all four exterior angles is $360^\\circ$. The fourth angle is $360^\\circ - (100^\\circ + 70^\\circ + 80^\\circ) = 360^\\circ - 250^\\circ = 110^\\circ$."}, {"question": "If an interior angle of a convex quadrilateral is 115°, what is its corresponding exterior angle?", "options": ["65°", "75°", "85°", "95°"], "correct": 0, "explanation": "Interior and exterior angles at any vertex form a linear pair on a straight line: $\\text{Exterior} = 180^\\circ - 115^\\circ = 65^\\circ$."}]}, {"id": 5, "title": "4.3 Parallelograms: Parallel Opposite Sides & Angle Laws", "subtitle": "Opposite Side Equality, Opposite Angle Parity & Consecutive Angle Supplements", "content": "\n<p class=\"lead\">A <strong>parallelogram</strong> is a quadrilateral in which <strong>both pairs of opposite sides are parallel</strong>. This parallel structure generates powerful angle and side relationships.</p>\n\n<div class=\"theory-box\">\n  <h4>Fundamental Definition</h4>\n  <p>In quadrilateral $ABCD$, if $AB \\parallel CD$ and $AD \\parallel BC$, then $ABCD$ is a <strong>parallelogram</strong> (abbreviated $\\parallel\\text{gm}$).</p>\n</div>\n\n<div class=\"formula-box\">\n  <h4>Three Core Theorems of Parallelograms</h4>\n  <ol>\n    <li><strong>Opposite Sides are Equal:</strong>\n      $$AB = CD \\quad \\text{and} \\quad AD = BC$$\n    </li>\n    <li><strong>Opposite Angles are Equal:</strong>\n      $$\\angle A = \\angle C \\quad \\text{and} \\quad \\angle B = \\angle D$$\n    </li>\n    <li><strong>Consecutive (Adjacent) Angles are Supplementary:</strong>\n      Because opposite sides are parallel, consecutive angles form co-interior angles between parallel lines cut by a transversal:\n      $$\\angle A + \\angle B = 180^\\circ, \\quad \\angle B + \\angle C = 180^\\circ, \\quad \\angle C + \\angle D = 180^\\circ, \\quad \\angle D + \\angle A = 180^\\circ$$\n    </li>\n  </ol>\n</div>\n\n<div class=\"theory-box\">\n  <h4>Proof Insight: Diagonal Congruence</h4>\n  <p>Drawing diagonal $BD$ creates two alternate interior angle pairs because of the parallel lines. By the <strong>ASA (Angle-Side-Angle) criterion</strong>, $\\triangle ABD \\cong \\triangle CDB$, proving simultaneously that opposite sides and opposite angles must be equal!</p>\n</div>\n", "sim_type": "parallelogram_parallel_sides_lab", "voice": "Section 4.3 introduces parallelograms. In a parallelogram, both pairs of opposite sides are parallel. This simple condition guarantees three major geometric truths: opposite sides are equal, opposite angles are equal, and any two consecutive angles are supplementary, adding up to 180 degrees.", "checkpoints": [{"question": "In a parallelogram ABCD, if angle A = 70°, what are the measures of angle B and angle C?", "options": ["angle B = 70°, angle C = 110°", "angle B = 110°, angle C = 70°", "angle B = 110°, angle C = 110°", "angle B = 70°, angle C = 70°"], "correct": 1, "explanation": "Consecutive angles are supplementary: $\\angle B = 180^\\circ - \\angle A = 180^\\circ - 70^\\circ = 110^\\circ$. Opposite angles are equal: $\\angle C = \\angle A = 70^\\circ$."}, {"question": "Two adjacent angles of a parallelogram are in the ratio 4 : 5. What is the measure of the smaller angle?", "options": ["80°", "100°", "75°", "90°"], "correct": 0, "explanation": "Adjacent angles are supplementary: $4x + 5x = 9x = 180^\\circ \\implies x = 20^\\circ$. The smaller angle is $4x = 4 \\times 20^\\circ = 80^\\circ$."}]}, {"id": 6, "title": "Diagonals of a Parallelogram & Mutual Bisection", "subtitle": "Intersection at Midpoints, Coordinate Balances & The Parallelogram Law", "content": "\n<p class=\"lead\">While the diagonals of a general parallelogram are typically unequal in length, they always share an exact point of mutual intersection: the <strong>geometric centroid</strong>.</p>\n\n<div class=\"theory-box\">\n  <h4>Theorem: Diagonals Bisect Each Other</h4>\n  <p>Let diagonals $AC$ and $BD$ of parallelogram $ABCD$ intersect at point $O$. Then:</p>\n  $$OA = OC = \\frac{1}{2} AC \\quad \\text{and} \\quad OB = OD = \\frac{1}{2} BD$$\n  <p><strong>Proof via ASA Congruence:</strong> Consider $\\triangle AOB$ and $\\triangle COD$:</p>\n  <ul>\n    <li>$AB = CD$ (opposite sides of a parallelogram).</li>\n    <li>$\\angle OAB = \\angle OCD$ (alternate interior angles since $AB \\parallel CD$).</li>\n    <li>$\\angle OBA = \\angle ODC$ (alternate interior angles since $AB \\parallel CD$).</li>\n  </ul>\n  <p>Therefore, $\\triangle AOB \\cong \\triangle COD$ by ASA, which proves $OA = OC$ and $OB = OD$.</p>\n</div>\n\n<div class=\"formula-box\">\n  <h4>The Parallelogram Law (Identity)</h4>\n  <p>For any parallelogram with side lengths $a, b$ and diagonals $d_1, d_2$, the sum of the squares of the diagonals equals the sum of the squares of all four sides:</p>\n  $$d_1^2 + d_2^2 = 2(a^2 + b^2)$$\n</div>\n\n<div class=\"theory-box\">\n  <h4>Midpoint Coordinate Invariance</h4>\n  <p>If vertices are given in Cartesian coordinates, the midpoint of diagonal $AC$ is $\\left(\\frac{x_A+x_C}{2}, \\frac{y_A+y_C}{2}\\right)$, which matches the midpoint of $BD$. This allows rapid calculation of missing fourth vertex coordinates!</p>\n</div>\n", "sim_type": "parallelogram_diagonal_bisector", "voice": "The diagonals of a parallelogram possess a key property: they bisect each other. This means their point of intersection divides each diagonal into two equal halves. We prove this using triangle congruence with alternate interior angles. Furthermore, the sum of squares of the two diagonals equals twice the sum of squares of the two adjacent sides.", "checkpoints": [{"question": "Diagonals AC and BD of a parallelogram intersect at O. If AC = 16 cm and BD = 12 cm, what is the length of OA and OB?", "options": ["OA = 8 cm, OB = 6 cm", "OA = 16 cm, OB = 12 cm", "OA = 4 cm, OB = 3 cm", "OA = 10 cm, OB = 5 cm"], "correct": 0, "explanation": "Because diagonals bisect each other: $OA = \\frac{AC}{2} = \\frac{16}{2} = 8\\text{ cm}$, and $OB = \\frac{BD}{2} = \\frac{12}{2} = 6\\text{ cm}$."}, {"question": "If side lengths of a parallelogram are 5 cm and 7 cm, what is the sum of the squares of its two diagonals?", "options": ["74 cm²", "148 cm²", "120 cm²", "200 cm²"], "correct": 1, "explanation": "By the Parallelogram Law: $d_1^2 + d_2^2 = 2(a^2 + b^2) = 2(5^2 + 7^2) = 2(25 + 49) = 2(74) = 148\\text{ cm}^2$."}]}, {"id": 7, "title": "Sufficient Conditions: Proving a Quadrilateral is a Parallelogram", "subtitle": "Diagnostic Criteria, Minimal Necessary Conditions & Geometry Tests", "content": "\n<p class=\"lead\">How can we prove that a given quadrilateral is definitely a parallelogram without checking every single side and angle? Mathematics provides several <strong>minimal sufficient conditions</strong>.</p>\n\n<div class=\"formula-box\">\n  <h4>Four Distinct Tests for a Parallelogram</h4>\n  <p>A quadrilateral $ABCD$ is guaranteed to be a parallelogram if <em>any one</em> of the following conditions is satisfied:</p>\n  <ol>\n    <li><strong>Both pairs of opposite sides are equal:</strong> $AB = CD$ and $BC = DA$.</li>\n    <li><strong>Both pairs of opposite angles are equal:</strong> $\\angle A = \\angle C$ and $\\angle B = \\angle D$.</li>\n    <li><strong>One pair of opposite sides is BOTH equal AND parallel:</strong>\n      $$AB = CD \\quad \\text{and} \\quad AB \\parallel CD$$\n      <em>(This is often the fastest and most elegant proof in geometry!)</em>\n    </li>\n    <li><strong>The diagonals bisect each other:</strong> $OA = OC$ and $OB = OD$.</li>\n  </ol>\n</div>\n\n<div class=\"theory-box\">\n  <h4>Caution: Common Geometric Traps</h4>\n  <ul>\n    <li><strong>Trap 1:</strong> Having only <em>one pair of opposite sides parallel</em> does NOT make it a parallelogram—that is a trapezium!</li>\n    <li><strong>Trap 2:</strong> Having only <em>one pair of opposite sides equal</em> and another pair parallel does NOT guarantee a parallelogram (an isosceles trapezium has this property).</li>\n    <li><strong>Golden Rule:</strong> The SAME pair of sides must be both equal and parallel.</li>\n  </ul>\n</div>\n", "sim_type": "parallelogram_condition_tester", "voice": "To prove that a four-sided shape is a parallelogram, we do not need to measure everything. Just one sufficient condition is enough. For instance, if one pair of opposite sides is both equal in length and parallel, or if the diagonals bisect each other, the shape is guaranteed to be a parallelogram.", "checkpoints": [{"question": "Which of the following conditions alone is sufficient to prove that quadrilateral ABCD is a parallelogram?", "options": ["AB is parallel to CD, and AD = BC", "AB = CD, and AB is parallel to CD", "Angle A = Angle B, and Angle C = Angle D", "Diagonals AC and BD are equal in length"], "correct": 1, "explanation": "If one pair of opposite sides is BOTH equal and parallel ($AB = CD$ and $AB \\parallel CD$), the quadrilateral is guaranteed to be a parallelogram."}, {"question": "If a quadrilateral has diagonals that bisect each other, which shape is it guaranteed to be at minimum?", "options": ["Trapezium", "Kite", "Parallelogram", "Square"], "correct": 2, "explanation": "Mutual bisection of diagonals is a necessary and sufficient condition for a quadrilateral to be a parallelogram."}]}, {"id": 8, "title": "4.4 Quadrilaterals with Equal Sidelengths: The Rhombus", "subtitle": "Equilateral Parallelograms & Perpendicular Diagonal Bisection", "content": "\n<p class=\"lead\">A <strong>rhombus</strong> (plural: rhombi or rhombuses) is a quadrilateral in which <strong>all four sides have equal length</strong>. It represents the equilateral member of the parallelogram family.</p>\n\n<div class=\"theory-box\">\n  <h4>Definition & Inherited Properties</h4>\n  <p>In quadrilateral $ABCD$, if $AB = BC = CD = DA = s$, then $ABCD$ is a <strong>rhombus</strong>.</p>\n  <p>Since all 4 sides are equal, opposite sides are automatically equal ($AB = CD$ and $BC = AD$). Therefore:</p>\n  <ul>\n    <li><strong>Every rhombus is a parallelogram.</strong></li>\n    <li>Opposite sides are parallel: $AB \\parallel CD$ and $AD \\parallel BC$.</li>\n    <li>Opposite angles are equal: $\\angle A = \\angle C$ and $\\angle B = \\angle D$.</li>\n    <li>Consecutive angles are supplementary: $\\angle A + \\angle B = 180^\\circ$.</li>\n  </ul>\n</div>\n\n<div class=\"formula-box\">\n  <h4>Special Rhombus Theorem: Perpendicular Diagonals</h4>\n  <p>The diagonals of a rhombus are <strong>perpendicular bisectors of each other</strong>:</p>\n  $$AC \\perp BD \\quad (\\angle AOB = 90^\\circ)$$\n  <p>Furthermore, each diagonal <strong>bisects the interior vertex angles</strong> through which it passes.</p>\n</div>\n\n<div class=\"theory-box\">\n  <h4>Proof of Perpendicularity</h4>\n  <p>In $\\triangle AOB$ and $\\triangle COB$:</p>\n  <ul>\n    <li>$AB = CB$ (all sides of rhombus are equal).</li>\n    <li>$OB$ is common.</li>\n    <li>$OA = OC$ (diagonals of parallelogram bisect each other).</li>\n  </ul>\n  <p>By SSS congruence, $\\triangle AOB \\cong \\triangle COB$. Thus $\\angle AOB = \\angle COB$. Since they form a linear pair on straight line $AC$, each must be $\\frac{180^\\circ}{2} = 90^\\circ$!</p>\n</div>\n", "sim_type": "rhombus_equilateral_stepper", "voice": "Section 4.4 focuses on rhombuses. A rhombus is a parallelogram with all four sides equal in length. Because of this equilateral symmetry, its diagonals cross each other at exactly 90 degrees, forming perpendicular bisectors, and they divide the vertex angles into equal halves.", "checkpoints": [{"question": "What is the angle of intersection between the two diagonals of any rhombus?", "options": ["45°", "60°", "90°", "180°"], "correct": 2, "explanation": "A distinguishing property of a rhombus is that its diagonals are perpendicular bisectors of each other, crossing at $90^\\circ$."}, {"question": "In a rhombus ABCD, if angle A = 60°, what is the measure of angle B?", "options": ["30°", "60°", "90°", "120°"], "correct": 3, "explanation": "Since a rhombus is a parallelogram, consecutive angles are supplementary: $\\angle B = 180^\\circ - \\angle A = 180^\\circ - 60^\\circ = 120^\\circ$."}]}, {"id": 9, "title": "Rhombus Area & The Half-Product Diagonal Theorem", "subtitle": "Four Congruent Right Triangles, Area Derivation & Side-Diagonal Relations", "content": "\n<p class=\"lead\">Calculating the area of a rhombus is remarkably straightforward when its diagonal lengths are known, relying on the four congruent right triangles formed by its diagonals.</p>\n\n<div class=\"formula-box\">\n  <h4>The Half-Product Diagonal Area Formula</h4>\n  <p>If the diagonals of a rhombus have lengths $d_1$ and $d_2$:</p>\n  $$\\text{Area} = \\frac{1}{2} \\times d_1 \\times d_2$$\n</div>\n\n<div class=\"theory-box\">\n  <h4>Visual Geometric Proof</h4>\n  <p>The two perpendicular diagonals divide the rhombus into <strong>4 congruent right-angled triangles</strong>, each with base $\\frac{d_1}{2}$ and height $\\frac{d_2}{2}$:</p>\n  $$\\text{Area of one triangle} = \\frac{1}{2} \\times \\left(\\frac{d_1}{2}\\right) \\times \\left(\\frac{d_2}{2}\\right) = \\frac{d_1 d_2}{8}$$\n  $$\\text{Total Area} = 4 \\times \\left(\\frac{d_1 d_2}{8}\\right) = \\frac{d_1 d_2}{2}$$\n  <p>Notice also that the rhombus occupies exactly <strong>half the area</strong> of the surrounding bounding rectangle of dimensions $d_1 \\times d_2$.</p>\n</div>\n\n<div class=\"formula-box\">\n  <h4>Relationship Between Side Length and Diagonals</h4>\n  <p>Applying the Pythagorean theorem to any one of the four central right-angled triangles:</p>\n  $$s^2 = \\left(\\frac{d_1}{2}\\right)^2 + \\left(\\frac{d_2}{2}\\right)^2 = \\frac{d_1^2 + d_2^2}{4}$$\n  $$s = \\frac{1}{2} \\sqrt{d_1^2 + d_2^2} \\quad \\iff \\quad 4s^2 = d_1^2 + d_2^2$$\n  <p>This allows calculating the perimeter $P = 4s$ directly from the diagonal lengths!</p>\n</div>\n", "sim_type": "rhombus_area_triangle_splitter", "voice": "The area of a rhombus is half the product of its two diagonals. Because the diagonals cut the rhombus into four identical right-angled triangles, rearranging them proves the area is exactly half of a rectangle with length d1 and width d2. Using the Pythagorean theorem on any of these triangles also gives the side length.", "checkpoints": [{"question": "What is the area of a rhombus whose diagonals measure 14 cm and 10 cm?", "options": ["70 cm²", "140 cm²", "35 cm²", "24 cm²"], "correct": 0, "explanation": "$\\text{Area} = \\frac{1}{2} \\times d_1 \\times d_2 = \\frac{1}{2} \\times 14 \\times 10 = 70\\text{ cm}^2$."}, {"question": "If the diagonals of a rhombus are 6 cm and 8 cm, what is the length of each side?", "options": ["5 cm", "7 cm", "10 cm", "14 cm"], "correct": 0, "explanation": "Half-diagonals are $\\frac{6}{2} = 3\\text{ cm}$ and $\\frac{8}{2} = 4\\text{ cm}$. Using Pythagoras: $s = \\sqrt{3^2 + 4^2} = \\sqrt{9 + 16} = \\sqrt{25} = 5\\text{ cm}$."}]}, {"id": 10, "title": "4.5 Playing with Quadrilaterals: Rigidity vs. Linkages", "subtitle": "Degrees of Freedom, Structural Deformation & Triangular Bracing in Engineering", "content": "\n<p class=\"lead\">Why are bicycle frames, electric transmission towers, and bridge trusses built with <strong>triangles</strong> instead of <strong>quadrilaterals</strong>? The answer lies in structural rigidity.</p>\n\n<div class=\"theory-box\">\n  <h4>Triangle Rigidity (SSS Congruence)</h4>\n  <p>Three rigid bars pinned together at their ends form a <strong>rigid structure</strong>. By the SSS Congruence Theorem, specifying the lengths of the three sides uniquely locks all three angles. It cannot deform without bending or breaking the bars.</p>\n</div>\n\n<div class=\"formula-box\">\n  <h4>Quadrilateral Flexibility (1 Degree of Freedom)</h4>\n  <p>A four-bar linkage pinned at its four corners is <strong>not rigid</strong>. Even if the four side lengths are strictly fixed, the angles can continuously change:</p>\n  $$\\text{Degrees of Freedom (DoF)} = 1$$\n  <p>A rectangle can easily collapse into an oblique parallelogram under shear force. To eliminate this flexibility, engineers install a <strong>diagonal brace</strong>.</p>\n</div>\n\n<div class=\"theory-box\">\n  <h4>The Diagonal Bracing Principle</h4>\n  <p>Adding a single diagonal rod across opposite vertices divides the flexible 4-gon into <strong>two rigid triangles</strong> ($\\triangle ABD$ and $\\triangle BCD$). This reduces the degrees of freedom from $1 \\to 0$, creating total structural stability.</p>\n</div>\n", "sim_type": "quadrilateral_rigidity_linkage", "voice": "Section 4.5 explores the mechanical nature of quadrilaterals. While a three-sided triangle is inherently rigid and cannot deform, a four-sided quadrilateral has one degree of freedom and deforms under pressure. In engineering and architecture, adding a single diagonal strut splits the quadrilateral into two rigid triangles, locking the entire framework firmly in place.", "checkpoints": [{"question": "Why is a four-bar linkage with fixed side lengths flexible rather than rigid?", "options": ["Because its angles can freely change without altering its side lengths", "Because its sides are made of elastic material", "Because its interior angle sum changes under pressure", "Because the sum of its sides is less than 360°"], "correct": 0, "explanation": "A quadrilateral has one degree of internal freedom: knowing the 4 side lengths alone does not fix its angles. It can shear into different parallelograms."}, {"question": "What is the minimum number of diagonal braces required to make a four-sided quadrilateral frame rigid?", "options": ["1", "2", "3", "4"], "correct": 0, "explanation": "Adding just 1 diagonal brace splits the 4-gon into two triangles, each of which is locked by SSS congruence, making the entire structure rigid."}]}, {"id": 11, "title": "Varignon's Theorem & Quadrilateral Tessellations", "subtitle": "Midpoint Parallelograms, Half-Area Invariance & Plane-Tiling Magic", "content": "\n<p class=\"lead\">In 1731, French mathematician Pierre Varignon discovered an astonishing geometric law connecting every quadrilateral—no matter how irregular—to a perfect parallelogram.</p>\n\n<div class=\"formula-box\">\n  <h4>Varignon's Theorem</h4>\n  <p>Given <em>any</em> arbitrary quadrilateral $ABCD$ (convex, concave, or self-intersecting):</p>\n  <p>If $P, Q, R, S$ are the midpoints of sides $AB, BC, CD, DA$ respectively, then the figure $PQRS$ is <strong>always a parallelogram</strong>!</p>\n  $$\\text{Area}(PQRS) = \\frac{1}{2} \\times \\text{Area}(ABCD)$$\n</div>\n\n<div class=\"theory-box\">\n  <h4>Proof via the Midpoint Theorem</h4>\n  <p>Draw diagonal $AC$. In $\\triangle ABC$, segment $PQ$ connects midpoints of $AB$ and $BC$. By the <strong>Triangle Midpoint Theorem</strong>:</p>\n  $$PQ \\parallel AC \\quad \\text{and} \\quad PQ = \\frac{1}{2} AC$$\n  <p>Similarly, in $\\triangle ADC$, segment $SR$ connects midpoints of $AD$ and $CD$:</p>\n  $$SR \\parallel AC \\quad \\text{and} \\quad SR = \\frac{1}{2} AC$$\n  <p>Since $PQ$ and $SR$ are both parallel to $AC$ and equal to $\\frac{1}{2} AC$, they are equal and parallel to each other. This guarantees $PQRS$ is a parallelogram!</p>\n</div>\n\n<div class=\"theory-box\">\n  <h4>Tessellation: Any Quadrilateral Tiles the Plane</h4>\n  <p>Remarkably, <strong>any quadrilateral</strong>—even totally asymmetric and irregular—can tile the 2D infinite plane with zero gaps and zero overlaps by performing $180^\\circ$ rotations around side midpoints. At each corner vertex of the tessellation, the four interior angles gather together: $\\angle 1 + \\angle 2 + \\angle 3 + \\angle 4 = 360^\\circ$.</p>\n</div>\n", "sim_type": "varignon_parallelogram_tessellation", "voice": "Pierre Varignon discovered that connecting the midpoints of the four sides of any quadrilateral always produces a parallelogram whose area is exactly half the original quadrilateral. Furthermore, because the four angles of any quadrilateral sum to 360 degrees, any quadrilateral can tile the two-dimensional plane without leaving any gaps.", "checkpoints": [{"question": "If an irregular quadrilateral has an area of 56 cm², what is the area of the Varignon parallelogram formed by joining its side midpoints?", "options": ["28 cm²", "14 cm²", "56 cm²", "112 cm²"], "correct": 0, "explanation": "By Varignon's Theorem, the area of the midpoint parallelogram is exactly half the area of the original quadrilateral: $\\frac{56}{2} = 28\\text{ cm}^2$."}, {"question": "Why can any arbitrary convex quadrilateral tile the plane seamlessly?", "options": ["Because all four of its interior angles sum to 360°", "Because its opposite sides are always parallel", "Because its diagonals are equal in length", "Because its sides are integer multiples of each other"], "correct": 0, "explanation": "When tiles are rotated $180^\\circ$ around side midpoints, one of each of the four angles ($\\angle A, \\angle B, \\angle C, \\angle D$) meets at every shared vertex, summing to $360^\\circ$ and completely filling the space around that point."}]}, {"id": 12, "title": "4.6 Kite: Two Pairs of Equal Adjacent Sides", "subtitle": "Bilateral Symmetry, Perpendicular Diagonals & One Bisected Axis", "content": "\n<p class=\"lead\">A <strong>kite</strong> is a quadrilateral that possesses <strong>two distinct pairs of adjacent equal sides</strong>. Unlike a parallelogram, opposite sides are generally not equal.</p>\n\n<div class=\"theory-box\">\n  <h4>Formal Definition</h4>\n  <p>In quadrilateral $ABCD$, if:</p>\n  $$AB = AD \\quad \\text{and} \\quad CB = CD \\quad (\\text{with } AB \\neq BC)$$\n  <p>then $ABCD$ is a <strong>kite</strong>. Sides that meet at vertex $A$ are equal, and sides meeting at vertex $C$ are equal.</p>\n</div>\n\n<div class=\"formula-box\">\n  <h4>Four Distinguishing Properties of a Kite</h4>\n  <ol>\n    <li><strong>Perpendicular Diagonals:</strong> The diagonals intersect at right angles: $AC \\perp BD$.</li>\n    <li><strong>One Diagonal is Bisected:</strong> The main symmetry diagonal $AC$ bisects the cross diagonal $BD$:\n      $$BM = MD$$\n    </li>\n    <li><strong>Exactly One Pair of Equal Opposite Angles:</strong>\n      $$\\angle B = \\angle D \\quad (\\text{but } \\angle A \\neq \\angle C)$$\n    </li>\n    <li><strong>Line of Symmetry:</strong> The main diagonal $AC$ is the single line of reflectional symmetry, bisecting both $\\angle A$ and $\\angle C$.</li>\n  </ol>\n</div>\n\n<div class=\"formula-box\">\n  <h4>Area of a Kite</h4>\n  <p>Since the diagonals are perpendicular and one bisects the other, the area formula matches that of a rhombus:</p>\n  $$\\text{Area} = \\frac{1}{2} \\times d_1 \\times d_2$$\n</div>\n", "sim_type": "kite_symmetry_explorer", "voice": "Section 4.6 introduces kites. A kite has two pairs of equal adjacent sides. The main axis diagonal acts as a line of mirror symmetry. It perpendicularly bisects the cross diagonal and bisects the top and bottom angles. Exactly one pair of opposite angles, the wings, are equal to each other.", "checkpoints": [{"question": "In a kite ABCD where AB = AD and CB = CD, if angle B = 105° and angle A = 70°, what is the measure of angle C?", "options": ["80°", "105°", "70°", "90°"], "correct": 0, "explanation": "In a kite, the non-vertex opposite angles are equal, so $\\angle D = \\angle B = 105^\\circ$. The angle sum is $360^\\circ$: $\\angle C = 360^\\circ - (70^\\circ + 105^\\circ + 105^\\circ) = 360^\\circ - 280^\\circ = 80^\\circ$."}, {"question": "If the diagonals of a kite measure 12 cm and 9 cm, what is the area of the kite?", "options": ["54 cm²", "108 cm²", "27 cm²", "42 cm²"], "correct": 0, "explanation": "$\\text{Area} = \\frac{1}{2} \\times d_1 \\times d_2 = \\frac{1}{2} \\times 12 \\times 9 = 54\\text{ cm}^2$."}]}, {"id": 13, "title": "4.6 Trapezium: One Pair of Parallel Bases", "subtitle": "Bases, Legs, Altitudes & Consecutive Interior Angle Supplements", "content": "\n<p class=\"lead\">A <strong>trapezium</strong> (known as a <em>trapezoid</em> in North American terminology) is a quadrilateral with <strong>at least one pair of parallel sides</strong>.</p>\n\n<div class=\"theory-box\">\n  <h4>Anatomy of a Trapezium</h4>\n  <ul>\n    <li><strong>Bases:</strong> The two parallel sides $AB$ and $CD$ are called the <strong>bases</strong> ($a$ and $b$).</li>\n    <li><strong>Legs:</strong> The non-parallel sides $AD$ and $BC$ are called the <strong>legs</strong>.</li>\n    <li><strong>Altitude (Height $h$):</strong> The perpendicular distance between the parallel bases.</li>\n  </ul>\n</div>\n\n<div class=\"formula-box\">\n  <h4>Consecutive Interior Angles on Each Leg</h4>\n  <p>Because the bases are parallel ($AB \\parallel CD$), the angles on the same non-parallel leg form consecutive interior (co-interior) angles and are <strong>supplementary</strong>:</p>\n  $$\\angle A + \\angle D = 180^\\circ \\quad \\text{and} \\quad \\angle B + \\angle C = 180^\\circ$$\n  <p><em>(Note: $\\angle A + \\angle B$ is generally not equal to $180^\\circ$ unless the shape is a parallelogram!)</em></p>\n</div>\n\n<div class=\"theory-box\">\n  <h4>Right-Angled Trapezium</h4>\n  <p>If one leg is perpendicular to the bases, the figure has two right angles and is called a <strong>right trapezium</strong>. The perpendicular leg directly serves as the altitude $h$.</p>\n</div>\n", "sim_type": "trapezium_parallel_base_slider", "voice": "Next, we study trapeziums. A trapezium has at least one pair of parallel sides called bases, while the other two sides are called legs. Because the bases are parallel, the two interior angles along each leg always add up to 180 degrees. The perpendicular distance between the bases is the height or altitude.", "checkpoints": [{"question": "In a trapezium ABCD where AB is parallel to CD, if angle A = 55° and angle B = 75°, what is angle D?", "options": ["125°", "105°", "135°", "115°"], "correct": 0, "explanation": "Angles along the transversal leg $AD$ are supplementary: $\\angle A + \\angle D = 180^\\circ \\implies \\angle D = 180^\\circ - 55^\\circ = 125^\\circ$."}, {"question": "Which statement is true for EVERY trapezium?", "options": ["Opposite angles are always equal", "At least one pair of opposite sides is parallel", "Diagonals are always equal in length", "All four sides are equal"], "correct": 1, "explanation": "By definition, a trapezium must have at least one pair of parallel opposite sides."}]}, {"id": 14, "title": "Isosceles Trapezium & Derivation of Trapezium Area", "subtitle": "Equal Legs, Base Angle Symmetry & The Rotational Duplication Proof", "content": "\n<p class=\"lead\">An <strong>isosceles trapezium</strong> occurs when the two non-parallel legs are equal in length. It possesses exceptional symmetry and leads naturally to the famous area formula.</p>\n\n<div class=\"theory-box\">\n  <h4>Properties of an Isosceles Trapezium</h4>\n  <p>In trapezium $ABCD$ where $AB \\parallel CD$ and non-parallel legs $AD = BC$:</p>\n  <ul>\n    <li><strong>Equal Base Angles:</strong> $\\angle A = \\angle B$ and $\\angle C = \\angle D$.</li>\n    <li><strong>Equal Diagonals:</strong> $AC = BD$.</li>\n    <li><strong>One Axis of Symmetry:</strong> The perpendicular bisector of the two parallel bases forms a line of reflectional symmetry.</li>\n  </ul>\n</div>\n\n<div class=\"formula-box\">\n  <h4>Formula for the Area of Any Trapezium</h4>\n  <p>For any trapezium with parallel base lengths $a$ and $b$, and perpendicular height $h$:</p>\n  $$\\text{Area} = \\frac{1}{2} (a + b) \\times h$$\n  <p><em>(Area equals the average of the bases multiplied by the height.)</em></p>\n</div>\n\n<div class=\"theory-box\">\n  <h4>Elegant Proof via Duplication & Rotation</h4>\n  <p>Take an exact replica of the trapezium, rotate it by $180^\\circ$, and join it along its slanted leg to the original. The combined shape is a <strong>parallelogram</strong> with base $(a + b)$ and height $h$:</p>\n  $$\\text{Area of Parallelogram} = (a + b) \\times h$$\n  $$\\text{Area of One Trapezium} = \\frac{1}{2} (a + b) \\times h$$\n</div>\n", "sim_type": "isosceles_trapezium_area_lab", "voice": "When the non-parallel legs of a trapezium are equal, it is called an isosceles trapezium, featuring equal base angles and equal diagonals. To find the area of any trapezium, we add the two parallel bases, divide by two to get their average, and multiply by the height. This formula is proven by rotating a second identical trapezium to create a large parallelogram.", "checkpoints": [{"question": "A trapezium has parallel bases of 12 cm and 8 cm, and a perpendicular height of 5 cm. What is its area?", "options": ["50 cm²", "100 cm²", "40 cm²", "60 cm²"], "correct": 0, "explanation": "$\\text{Area} = \\frac{1}{2} (a + b) h = \\frac{1}{2} (12 + 8) \\times 5 = \\frac{1}{2} (20) \\times 5 = 10 \\times 5 = 50\\text{ cm}^2$."}, {"question": "Which of the following is a special property of an isosceles trapezium that is NOT true for general trapeziums?", "options": ["Bases are parallel", "Diagonals are equal in length", "Interior angles sum to 360°", "Adjacent angles along a leg are supplementary"], "correct": 1, "explanation": "In an isosceles trapezium, the diagonals are equal in length ($AC = BD$) and base angles are equal, which is not true for general scalene trapeziums."}]}, {"id": 15, "title": "Comprehensive Quadrilateral Family Hierarchy", "subtitle": "The Euler-Venn Classification Tree & Taxonomic Inheritance Laws", "content": "\n<p class=\"lead\">All quadrilaterals belong to a rich, interconnected family tree. Understanding which shapes inherit properties from other shapes resolves common geometric confusions.</p>\n\n<div class=\"theory-box\">\n  <h4>The Hierarchy of Inclusions</h4>\n  <ul>\n    <li><strong>Quadrilateral:</strong> Any 4-sided closed polygon.</li>\n    <li><strong>Trapezium:</strong> Quadrilateral with at least 1 pair of parallel sides.</li>\n    <li><strong>Parallelogram:</strong> Quadrilateral with 2 pairs of parallel sides (a subset of trapeziums).</li>\n    <li><strong>Rectangle:</strong> Parallelogram with 4 right angles.</li>\n    <li><strong>Rhombus:</strong> Parallelogram with 4 equal sides.</li>\n    <li><strong>Square:</strong> Quadrilateral that is SIMULTANEOUSLY a rectangle AND a rhombus!</li>\n    <li><strong>Kite:</strong> Quadrilateral with 2 pairs of equal adjacent sides.</li>\n  </ul>\n</div>\n\n<div class=\"formula-box\">\n  <h4>Master Property Comparison Table</h4>\n  <table style=\"width:100%; border-collapse:collapse; margin-top:8px; font-size:12.5px;\">\n    <thead>\n      <tr style=\"border-bottom:1px solid #475569; color:#38bdf8;\">\n        <th style=\"text-align:left; padding:4px;\">Property</th>\n        <th>Parallelogram</th>\n        <th>Rectangle</th>\n        <th>Rhombus</th>\n        <th>Square</th>\n      </tr>\n    </thead>\n    <tbody style=\"color:#cbd5e1;\">\n      <tr style=\"border-bottom:1px solid #1e293b;\"><td style=\"padding:4px;\">Opposite sides parallel</td><td align=\"center\">✓</td><td align=\"center\">✓</td><td align=\"center\">✓</td><td align=\"center\">✓</td></tr>\n      <tr style=\"border-bottom:1px solid #1e293b;\"><td style=\"padding:4px;\">Opposite sides equal</td><td align=\"center\">✓</td><td align=\"center\">✓</td><td align=\"center\">✓</td><td align=\"center\">✓</td></tr>\n      <tr style=\"border-bottom:1px solid #1e293b;\"><td style=\"padding:4px;\">All 4 sides equal</td><td align=\"center\">✗</td><td align=\"center\">✗</td><td align=\"center\">✓</td><td align=\"center\">✓</td></tr>\n      <tr style=\"border-bottom:1px solid #1e293b;\"><td style=\"padding:4px;\">All 4 angles 90°</td><td align=\"center\">✗</td><td align=\"center\">✓</td><td align=\"center\">✗</td><td align=\"center\">✓</td></tr>\n      <tr style=\"border-bottom:1px solid #1e293b;\"><td style=\"padding:4px;\">Diagonals bisect</td><td align=\"center\">✓</td><td align=\"center\">✓</td><td align=\"center\">✓</td><td align=\"center\">✓</td></tr>\n      <tr style=\"border-bottom:1px solid #1e293b;\"><td style=\"padding:4px;\">Diagonals equal</td><td align=\"center\">✗</td><td align=\"center\">✓</td><td align=\"center\">✗</td><td align=\"center\">✓</td></tr>\n      <tr><td style=\"padding:4px;\">Diagonals perpendicular</td><td align=\"center\">✗</td><td align=\"center\">✗</td><td align=\"center\">✓</td><td align=\"center\">✓</td></tr>\n    </tbody>\n  </table>\n</div>\n", "sim_type": "quadrilateral_family_tree_matrix", "voice": "The quadrilateral family tree connects all four-sided shapes hierarchically. Parallelograms branch into rectangles with four right angles and rhombuses with four equal sides. At the intersection of both branches sits the square, which inherits every single property of both rectangles and rhombuses.", "checkpoints": [{"question": "Which statement is false?", "options": ["Every square is a rhombus", "Every square is a rectangle", "Every rectangle is a square", "Every rhombus is a parallelogram"], "correct": 2, "explanation": "Every rectangle has four right angles, but its adjacent sides need not be equal. Therefore, not every rectangle is a square."}, {"question": "Which quadrilateral possesses BOTH equal diagonals AND perpendicular diagonals?", "options": ["Rectangle", "Rhombus", "Square", "Parallelogram"], "correct": 2, "explanation": "A rectangle has equal diagonals, a rhombus has perpendicular diagonals, and the square uniquely possesses BOTH properties simultaneously."}]}, {"id": 16, "title": "IT'S PUZZLE TIME! Which Quad?", "subtitle": "Geometric Detective Clues, Property Elimination & Classification Mastery", "content": "\n<p class=\"lead\">Put on your mathematical detective hat! In this puzzle challenge, analyze subtle clues about angles, sides, and diagonals to determine the exact identity of the mystery quadrilateral.</p>\n\n<div class=\"theory-box\">\n  <h4>Diagnostic Decision Protocol</h4>\n  <ul>\n    <li><strong>Clue 1 (Parallelism):</strong> Are 0, 1, or 2 pairs of opposite sides parallel?\n      <br>• 0 pairs $\\to$ Kite or general quadrilateral.\n      <br>• Exactly 1 pair $\\to$ Trapezium.\n      <br>• 2 pairs $\\to$ Member of the Parallelogram family.\n    </li>\n    <li><strong>Clue 2 (Diagonals):</strong>\n      <br>• Diagonals equal only $\\to$ Rectangle or Isosceles Trapezium.\n      <br>• Diagonals perpendicular only $\\to$ Rhombus or Kite.\n      <br>• Diagonals BOTH equal AND perpendicular $\\to$ <strong>Square</strong>!\n    </li>\n    <li><strong>Clue 3 (Angles):</strong>\n      <br>• All 4 angles $90^\\circ \\to$ Rectangle or Square.\n      <br>• Exactly one pair of opposite angles equal $\\to$ Kite.\n    </li>\n  </ul>\n</div>\n\n<div class=\"formula-box\">\n  <h4>Sample Detective Mystery</h4>\n  <p><em>\"My diagonals bisect each other at right angles, but my diagonals are NOT equal in length. All four of my sides are 7 cm. Who am I?\"</em></p>\n  <p><strong>Deduction:</strong> All sides equal $\\implies$ Rhombus or Square. Diagonals not equal $\\implies$ It cannot be a square. Therefore, the shape is a <strong>Rhombus</strong>!</p>\n</div>\n", "sim_type": "which_quad_puzzle_game", "voice": "It is puzzle time! In Which Quad, you test your geometric intuition by analyzing diagnostic clues. By examining how many sides are parallel, whether diagonals are equal or perpendicular, and checking angle symmetries, you can deduce the exact name of any quadrilateral.", "checkpoints": [{"question": "Clue: 'My diagonals bisect each other and are equal in length, but my adjacent sides are unequal.' Who am I?", "options": ["Rhombus", "Rectangle", "Kite", "Trapezium"], "correct": 1, "explanation": "Diagonals bisecting each other $\\implies$ Parallelogram. Diagonals equal in length $\\implies$ Rectangle. Adjacent sides unequal $\\implies$ Not a square."}, {"question": "Clue: 'I have perpendicular diagonals and two pairs of equal adjacent sides, but my opposite sides are not parallel.' Who am I?", "options": ["Kite", "Rhombus", "Parallelogram", "Square"], "correct": 0, "explanation": "A kite has two pairs of equal adjacent sides and perpendicular diagonals, but no parallel opposite sides."}]}, {"id": 17, "title": "Mastery Quiz Challenge I: Rectangles, Squares & Angle Sum Properties", "subtitle": "Questions 1 to 10 • Comprehensive Diagnostic & Step-by-Step Proofs", "content": "<p class='lead'>Test your foundational mastery of quadrilateral angle sums, rectangular and square properties, and exterior turn geometry. Answer each question and click <strong>💡 View Solution</strong> to inspect step-by-step proofs.</p>", "sim_type": "quiz_slide", "quiz_range": [1, 10], "voice": "Welcome to Mastery Quiz Challenge 1. Solve the first ten questions covering interior and exterior angles, rectangles, and squares. Remember to click View Solution on any question to examine the detailed mathematical derivation.", "checkpoints": []}, {"id": 18, "title": "Mastery Quiz Challenge II: Parallelograms & Diagonal Properties", "subtitle": "Questions 11 to 20 • Parallel Rails, Angle Supplements & Mutual Bisections", "content": "<p class='lead'>Challenge your knowledge of parallelograms, opposite side equality, consecutive angle supplements, and diagonal bisection laws. Answer each question and click <strong>💡 View Solution</strong> for full proofs.</p>", "sim_type": "quiz_slide", "quiz_range": [11, 20], "voice": "Now tackle Mastery Quiz Challenge 2. These ten questions focus on parallelograms, supplementary angles, and diagonal bisection theorems. Use View Solution to review your work step by step.", "checkpoints": []}, {"id": 19, "title": "Mastery Quiz Challenge III: Rhombuses, Rigidity & Varignon's Theorem", "subtitle": "Questions 21 to 30 • Equilateral Symmetry, Linkage Mechanics & Tessellations", "content": "<p class='lead'>Test your understanding of rhombus area formulas, perpendicular diagonals, structural linkage rigidity, and Varignon's midpoint theorem. Click <strong>💡 View Solution</strong> for step-by-step reasoning.</p>", "sim_type": "quiz_slide", "quiz_range": [21, 30], "voice": "Mastery Quiz Challenge 3 covers rhombuses, diagonal area formulas, structural rigidity, and Varignon's theorem. Inspect the solutions to deepen your understanding of geometric proofs.", "checkpoints": []}, {"id": 20, "title": "Mastery Quiz Challenge IV: Kites, Trapeziums & The Grand Family Hierarchy", "subtitle": "Questions 31 to 40 • Symmetry Axes, Area Derivations & Puzzle Deductions", "content": "<p class='lead'>Complete the final challenge on kites, trapeziums, isosceles symmetry, and the comprehensive quadrilateral taxonomy. Click <strong>💡 View Solution</strong> on any question for full details.</p>", "sim_type": "quiz_slide", "quiz_range": [31, 40], "voice": "Congratulations on reaching Mastery Quiz Challenge 4, the final slide of this chapter. Complete the final ten questions on kites, trapeziums, and the quadrilateral family tree. You have reached the last slide of this chapter.", "checkpoints": []}];
+    const quizData = [{"num": 1, "question": "The sum of all four interior angles of any convex quadrilateral is equal to:", "options": ["180°", "270°", "360°", "540°"], "correct": 2, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. Let the quadrilateral be $ABCD$. Draw a diagonal from vertex $A$ to vertex $C$.\n2. This diagonal partitions the quadrilateral into two non-overlapping triangles: $\\triangle ABC$ and $\\triangle ADC$.\n3. By the Angle Sum Property of a triangle:\n   - In $\\triangle ABC$: $\\angle CAB + \\angle B + \\angle BCA = 180^\\circ$\n   - In $\\triangle ADC$: $\\angle DAC + \\angle D + \\angle ACD = 180^\\circ$\n4. Adding the angles of both triangles:\n   $$\\text{Total Sum} = (\\angle CAB + \\angle DAC) + \\angle B + (\\angle BCA + \\angle ACD) + \\angle D = 180^\\circ + 180^\\circ = 360^\\circ$$\n5. Thus, $\\angle A + \\angle B + \\angle C + \\angle D = 360^\\circ$.\n<strong>Correct Answer:</strong> (C) 360°\n"}, {"num": 2, "question": "Three angles of a quadrilateral measure 65°, 115°, and 85°. What is the measure of the fourth angle?", "options": ["85°", "95°", "105°", "115°"], "correct": 1, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. Let the four interior angles be $\\angle A = 65^\\circ$, $\\angle B = 115^\\circ$, $\\angle C = 85^\\circ$, and $\\angle D = x$.\n2. By the Quadrilateral Interior Angle Sum Theorem:\n   $$\\angle A + \\angle B + \\angle C + \\angle D = 360^\\circ$$\n3. Substitute the known angle measures:\n   $$65^\\circ + 115^\\circ + 85^\\circ + x = 360^\\circ$$\n4. Compute the sum of the three given angles:\n   $$65^\\circ + 115^\\circ = 180^\\circ$$\n   $$180^\\circ + 85^\\circ = 265^\\circ$$\n5. Solve for $x$:\n   $$x = 360^\\circ - 265^\\circ = 95^\\circ$$\n<strong>Correct Answer:</strong> (B) 95°\n"}, {"num": 3, "question": "The angles of a quadrilateral are in the ratio 2 : 3 : 5 : 8. What is the measure of the smallest angle?", "options": ["20°", "40°", "60°", "80°"], "correct": 1, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. Let the common ratio factor be $x$.\n2. The four angles can be written as $2x$, $3x$, $5x$, and $8x$.\n3. The sum of all four angles in a quadrilateral is $360^\\circ$:\n   $$2x + 3x + 5x + 8x = 360^\\circ$$\n4. Combine like terms:\n   $$18x = 360^\\circ \\implies x = \\frac{360^\\circ}{18} = 20^\\circ$$\n5. The smallest angle is:\n   $$\\text{Smallest angle} = 2x = 2 \\times 20^\\circ = 40^\\circ$$\n6. (Verification: Other angles are $60^\\circ, 100^\\circ, 160^\\circ$; $40 + 60 + 100 + 160 = 360^\\circ$.)\n<strong>Correct Answer:</strong> (B) 40°\n"}, {"num": 4, "question": "If a rectangle has length 12 cm and diagonal 13 cm, what is its width?", "options": ["5 cm", "7 cm", "8 cm", "10 cm"], "correct": 0, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. In rectangle $ABCD$, each corner is a right angle ($90^\\circ$).\n2. The diagonal $d$, length $l$, and width $w$ form a right-angled triangle where the diagonal is the hypotenuse.\n3. Apply the Pythagorean theorem:\n   $$d^2 = l^2 + w^2$$\n4. Substitute the given values $d = 13$ and $l = 12$:\n   $$13^2 = 12^2 + w^2$$\n   $$169 = 144 + w^2$$\n5. Solve for $w^2$:\n   $$w^2 = 169 - 144 = 25 \\implies w = \\sqrt{25} = 5\\text{ cm}$$\n<strong>Correct Answer:</strong> (A) 5 cm\n"}, {"num": 5, "question": "What is the sum of the exterior angles (taken one at each vertex) of ANY convex quadrilateral?", "options": ["180°", "360°", "540°", "720°"], "correct": 1, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. At each of the 4 vertices, the interior angle $I_i$ and the exterior angle $E_i$ lie on a straight line, forming a linear pair:\n   $$I_i + E_i = 180^\\circ$$\n2. Summing this relationship over all 4 vertices:\n   $$\\sum_{i=1}^4 (I_i + E_i) = 4 \\times 180^\\circ = 720^\\circ$$\n3. Separate the interior and exterior sums:\n   $$\\left(\\sum_{i=1}^4 I_i\\right) + \\left(\\sum_{i=1}^4 E_i\\right) = 720^\\circ$$\n4. We know the interior angle sum is $\\sum I_i = 360^\\circ$:\n   $$360^\\circ + \\sum E_i = 720^\\circ \\implies \\sum E_i = 720^\\circ - 360^\\circ = 360^\\circ$$\n<strong>Correct Answer:</strong> (B) 360°\n"}, {"num": 6, "question": "If three exterior angles of a quadrilateral are 80°, 110°, and 75°, what is the measure of the fourth exterior angle?", "options": ["85°", "95°", "105°", "115°"], "correct": 1, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. By the Exterior Angle Sum Theorem, the sum of all 4 exterior angles of a convex polygon is always $360^\\circ$.\n2. Let the fourth exterior angle be $E_4$.\n3. Set up the equation:\n   $$80^\\circ + 110^\\circ + 75^\\circ + E_4 = 360^\\circ$$\n4. Calculate the sum of the three given angles:\n   $$80^\\circ + 110^\\circ + 75^\\circ = 265^\\circ$$\n5. Subtract from $360^\\circ$:\n   $$E_4 = 360^\\circ - 265^\\circ = 95^\\circ$$\n<strong>Correct Answer:</strong> (B) 95°\n"}, {"num": 7, "question": "In a square of side length 10 cm, what is the exact length of each diagonal?", "options": ["10 cm", "14 cm", "10√2 cm", "20 cm"], "correct": 2, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. In a square, all four sides have equal length $s = 10\\text{ cm}$ and all four angles are $90^\\circ$.\n2. A diagonal divides the square into two congruent isosceles right-angled triangles with legs $s = 10$ and hypotenuse $d$.\n3. Applying the Pythagorean theorem:\n   $$d = \\sqrt{s^2 + s^2} = \\sqrt{2s^2} = s\\sqrt{2}$$\n4. Substituting $s = 10$:\n   $$d = 10\\sqrt{2}\\text{ cm} \\approx 14.14\\text{ cm}$$\n<strong>Correct Answer:</strong> (C) 10√2 cm\n"}, {"num": 8, "question": "How many lines of reflectional symmetry does a square possess?", "options": ["1", "2", "4", "Infinite"], "correct": 2, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. A line of symmetry is a line along which a shape can be folded so that both halves match identically.\n2. For a square:\n   - Line 1: Perpendicular bisector of the top and bottom horizontal sides.\n   - Line 2: Perpendicular bisector of the left and right vertical sides.\n   - Line 3: Diagonal joining the top-left vertex to bottom-right vertex.\n   - Line 4: Diagonal joining the top-right vertex to bottom-left vertex.\n3. Therefore, a square has exactly 4 lines of reflectional symmetry. (In comparison, a non-square rectangle has only 2).\n<strong>Correct Answer:</strong> (C) 4\n"}, {"num": 9, "question": "A quadrilateral has two angles of 110° and 80°. If the other two angles are equal to each other, what is the measure of each of these equal angles?", "options": ["80°", "85°", "90°", "95°"], "correct": 1, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. Let the two unknown equal angles be $x$ each.\n2. The four interior angles of the quadrilateral are $110^\\circ$, $80^\\circ$, $x$, and $x$.\n3. The sum of interior angles in a quadrilateral is $360^\\circ$:\n   $$110^\\circ + 80^\\circ + x + x = 360^\\circ$$\n4. Simplify:\n   $$190^\\circ + 2x = 360^\\circ$$\n5. Solve for $x$:\n   $$2x = 360^\\circ - 190^\\circ = 170^\\circ$$\n   $$x = \\frac{170^\\circ}{2} = 85^\\circ$$\n<strong>Correct Answer:</strong> (B) 85°\n"}, {"num": 10, "question": "Which of the following figures is ALWAYS an equiangular quadrilateral?", "options": ["Rhombus", "Parallelogram", "Rectangle", "Trapezium"], "correct": 2, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. An <strong>equiangular</strong> polygon is one in which all interior angles are equal in measure.\n2. In a quadrilateral, the total sum of angles is $360^\\circ$. If all four are equal, each must be:\n   $$\\frac{360^\\circ}{4} = 90^\\circ$$\n3. By definition, a quadrilateral with four right angles is a <strong>rectangle</strong>.\n4. (Rhombuses and parallelograms can have unequal adjacent angles like $60^\\circ$ and $120^\\circ$).\n<strong>Correct Answer:</strong> (C) Rectangle\n"}, {"num": 11, "question": "In parallelogram ABCD, if angle A = 115°, what is the measure of angle D?", "options": ["65°", "115°", "75°", "90°"], "correct": 0, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. In parallelogram $ABCD$, side $AB$ is parallel to side $CD$ ($AB \\parallel CD$), and side $AD$ acts as a transversal line intersecting them.\n2. Angles $\\angle A$ and $\\angle D$ are consecutive interior (co-interior) angles on the same side of the transversal $AD$.\n3. By the properties of parallel lines, consecutive interior angles are supplementary:\n   $$\\angle A + \\angle D = 180^\\circ$$\n4. Substitute the value $\\angle A = 115^\\circ$:\n   $$115^\\circ + \\angle D = 180^\\circ \\implies \\angle D = 180^\\circ - 115^\\circ = 65^\\circ$$\n<strong>Correct Answer:</strong> (A) 65°\n"}, {"num": 12, "question": "The perimeter of a parallelogram is 48 cm. If one side is 6 cm longer than the adjacent side, what are the lengths of the two sides?", "options": ["10 cm and 14 cm", "9 cm and 15 cm", "8 cm and 16 cm", "12 cm and 18 cm"], "correct": 1, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. In a parallelogram, opposite sides are equal in length. Let the two adjacent sides be $x$ and $x + 6$.\n2. The perimeter of a parallelogram is the sum of all four sides:\n   $$P = 2(a + b) = 2(x + (x + 6)) = 48\\text{ cm}$$\n3. Simplify the equation:\n   $$2(2x + 6) = 48$$\n   $$4x + 12 = 48$$\n4. Solve for $x$:\n   $$4x = 48 - 12 = 36 \\implies x = 9\\text{ cm}$$\n5. The longer side is:\n   $$x + 6 = 9 + 6 = 15\\text{ cm}$$\n6. Verification: $2(9 + 15) = 2(24) = 48\\text{ cm}$.\n<strong>Correct Answer:</strong> (B) 9 cm and 15 cm\n"}, {"num": 13, "question": "Diagonals AC and BD of parallelogram ABCD intersect at O. If AC = 18 cm and BD = 14 cm, what is the length of segment OD?", "options": ["7 cm", "9 cm", "14 cm", "18 cm"], "correct": 0, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. Theorem: The diagonals of a parallelogram bisect each other.\n2. This means the intersection point $O$ is the exact midpoint of both diagonal $AC$ and diagonal $BD$.\n3. Therefore:\n   $$OB = OD = \\frac{1}{2} BD$$\n4. Given $BD = 14\\text{ cm}$:\n   $$OD = \\frac{14}{2} = 7\\text{ cm}$$\n5. (Similarly, $OA = OC = \\frac{18}{2} = 9\\text{ cm}$).\n<strong>Correct Answer:</strong> (A) 7 cm\n"}, {"num": 14, "question": "If the ratio of two adjacent angles of a parallelogram is 2 : 3, what is the measure of the larger angle?", "options": ["72°", "108°", "120°", "144°"], "correct": 1, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. Let the two adjacent angles be $2x$ and $3x$.\n2. Adjacent (consecutive) angles of any parallelogram are supplementary:\n   $$2x + 3x = 180^\\circ$$\n3. Combine terms:\n   $$5x = 180^\\circ \\implies x = \\frac{180^\\circ}{5} = 36^\\circ$$\n4. The larger angle is:\n   $$\\text{Larger angle} = 3x = 3 \\times 36^\\circ = 108^\\circ$$\n5. (The smaller angle is $2x = 72^\\circ$; $72^\\circ + 108^\\circ = 180^\\circ$).\n<strong>Correct Answer:</strong> (B) 108°\n"}, {"num": 15, "question": "In a parallelogram ABCD, side AB = (3x - 4) cm and CD = (x + 10) cm. What is the actual length of side AB?", "options": ["7 cm", "17 cm", "21 cm", "24 cm"], "correct": 1, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. In a parallelogram, opposite sides are equal in length:\n   $$AB = CD$$\n2. Substitute the algebraic expressions:\n   $$3x - 4 = x + 10$$\n3. Rearrange the equation to isolate $x$:\n   $$3x - x = 10 + 4$$\n   $$2x = 14 \\implies x = 7$$\n4. Substitute $x = 7$ back into the expression for $AB$:\n   $$AB = 3(7) - 4 = 21 - 4 = 17\\text{ cm}$$\n5. Verification: $CD = 7 + 10 = 17\\text{ cm}$. Both sides are equal.\n<strong>Correct Answer:</strong> (B) 17 cm\n"}, {"num": 16, "question": "Which of the following conditions is NOT sufficient to prove that quadrilateral ABCD is a parallelogram?", "options": ["AB is parallel to CD, and AB = CD", "AB = CD and AD = BC", "Angle A = Angle C and Angle B = Angle D", "AB is parallel to CD, and AD = BC"], "correct": 3, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. Let us analyze condition (D): \"$AB \\parallel CD$ and $AD = BC$\".\n2. Here, one pair of opposite sides ($AB, CD$) is parallel, while the <em>other</em> pair of sides ($AD, BC$) is equal.\n3. This is precisely the defining characteristic of an <strong>isosceles trapezium</strong>! In an isosceles trapezium, the non-parallel legs are equal, but the shape is definitely NOT a parallelogram.\n4. For one pair of sides to guarantee a parallelogram, the <strong>SAME</strong> pair must be both parallel AND equal ($AB \\parallel CD$ and $AB = CD$, which is option A).\n<strong>Correct Answer:</strong> (D) AB is parallel to CD, and AD = BC\n"}, {"num": 17, "question": "In parallelogram ABCD, angle A = (2x + 15)° and opposite angle C = (3x - 20)°. What is the measure of angle B?", "options": ["85°", "95°", "105°", "115°"], "correct": 1, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. In a parallelogram, opposite angles are equal:\n   $$\\angle A = \\angle C$$\n2. Substitute the expressions:\n   $$2x + 15 = 3x - 20$$\n3. Solve for $x$:\n   $$15 + 20 = 3x - 2x \\implies x = 35$$\n4. Find the measure of $\\angle A$:\n   $$\\angle A = 2(35) + 15 = 70 + 15 = 85^\\circ$$\n5. Consecutive angles are supplementary:\n   $$\\angle A + \\angle B = 180^\\circ \\implies \\angle B = 180^\\circ - 85^\\circ = 95^\\circ$$\n<strong>Correct Answer:</strong> (B) 95°\n"}, {"num": 18, "question": "The diagonals of a parallelogram are 10 cm and 12 cm. At what distance from the vertices do they intersect?", "options": ["5 cm along one and 6 cm along the other", "10 cm and 12 cm", "2.5 cm and 3 cm", "Cannot be determined without side lengths"], "correct": 0, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. A fundamental property of every parallelogram is that its diagonals bisect each other.\n2. If the first diagonal has total length $d_1 = 10\\text{ cm}$, the intersection point $O$ is at a distance of:\n   $$\\frac{d_1}{2} = \\frac{10}{2} = 5\\text{ cm}$$ from its ends.\n3. If the second diagonal has total length $d_2 = 12\\text{ cm}$, the intersection point $O$ is at a distance of:\n   $$\\frac{d_2}{2} = \\frac{12}{2} = 6\\text{ cm}$$ from its ends.\n4. Hence, the point of intersection is 5 cm along the first diagonal and 6 cm along the second.\n<strong>Correct Answer:</strong> (A) 5 cm along one and 6 cm along the other\n"}, {"num": 19, "question": "If all four angles of a parallelogram are equal, what specific shape must it be?", "options": ["Trapezium", "Rhombus", "Rectangle", "Kite"], "correct": 2, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. The sum of all four interior angles of any quadrilateral is $360^\\circ$.\n2. If all four angles are equal, let each angle be $\\theta$:\n   $$4\\theta = 360^\\circ \\implies \\theta = \\frac{360^\\circ}{4} = 90^\\circ$$\n3. A parallelogram having all four angles equal to $90^\\circ$ is, by definition, a <strong>rectangle</strong>.\n<strong>Correct Answer:</strong> (C) Rectangle\n"}, {"num": 20, "question": "Using the Parallelogram Law, if adjacent sides are 3 cm and 4 cm, what is the sum of the squares of the two diagonals (d₁² + d₂²)?", "options": ["25 cm²", "50 cm²", "100 cm²", "144 cm²"], "correct": 1, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. The Parallelogram Law states that the sum of the squares of the diagonals equals the sum of the squares of all four sides:\n   $$d_1^2 + d_2^2 = 2(a^2 + b^2)$$\n2. Here, side lengths are $a = 3\\text{ cm}$ and $b = 4\\text{ cm}$.\n3. Calculate the sum of squares of the sides:\n   $$a^2 + b^2 = 3^2 + 4^2 = 9 + 16 = 25$$\n4. Multiply by 2:\n   $$d_1^2 + d_2^2 = 2(25) = 50\\text{ cm}^2$$\n<strong>Correct Answer:</strong> (B) 50 cm²\n"}, {"num": 21, "question": "The diagonals of a rhombus are 16 cm and 12 cm. What is the area of the rhombus?", "options": ["96 cm²", "192 cm²", "48 cm²", "112 cm²"], "correct": 0, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. The area of a rhombus is given by half the product of its two diagonals:\n   $$\\text{Area} = \\frac{1}{2} \\times d_1 \\times d_2$$\n2. Substitute the given diagonal lengths $d_1 = 16\\text{ cm}$ and $d_2 = 12\\text{ cm}$:\n   $$\\text{Area} = \\frac{1}{2} \\times 16 \\times 12$$\n3. Simplify:\n   $$\\text{Area} = 8 \\times 12 = 96\\text{ cm}^2$$\n<strong>Correct Answer:</strong> (A) 96 cm²\n"}, {"num": 22, "question": "If the diagonals of a rhombus are 24 cm and 10 cm, what is the length of each side of the rhombus?", "options": ["12 cm", "13 cm", "17 cm", "26 cm"], "correct": 1, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. The diagonals of a rhombus bisect each other at right angles ($90^\\circ$).\n2. This creates four congruent right-angled triangles at the center.\n3. The legs of each right triangle are half the diagonal lengths:\n   $$\\text{Leg}_1 = \\frac{24}{2} = 12\\text{ cm}, \\quad \\text{Leg}_2 = \\frac{10}{2} = 5\\text{ cm}$$\n4. The hypotenuse of each triangle is the side length $s$ of the rhombus.\n5. Apply the Pythagorean theorem:\n   $$s = \\sqrt{12^2 + 5^2} = \\sqrt{144 + 25} = \\sqrt{169} = 13\\text{ cm}$$\n<strong>Correct Answer:</strong> (B) 13 cm\n"}, {"num": 23, "question": "The perimeter of a rhombus is 40 cm. If one of its diagonals is 12 cm, what is the length of the other diagonal?", "options": ["12 cm", "14 cm", "16 cm", "18 cm"], "correct": 2, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. All four sides of a rhombus are equal:\n   $$\\text{Side } s = \\frac{\\text{Perimeter}}{4} = \\frac{40}{4} = 10\\text{ cm}$$\n2. Given one diagonal $d_1 = 12\\text{ cm}$, its half-length is:\n   $$\\frac{d_1}{2} = \\frac{12}{2} = 6\\text{ cm}$$\n3. In any central right triangle formed by the perpendicular diagonals:\n   $$s^2 = \\left(\\frac{d_1}{2}\\right)^2 + \\left(\\frac{d_2}{2}\\right)^2$$\n4. Substitute $s = 10$ and $\\frac{d_1}{2} = 6$:\n   $$10^2 = 6^2 + \\left(\\frac{d_2}{2}\\right)^2$$\n   $$100 = 36 + \\left(\\frac{d_2}{2}\\right)^2$$\n   $$\\left(\\frac{d_2}{2}\\right)^2 = 100 - 36 = 64 \\implies \\frac{d_2}{2} = \\sqrt{64} = 8\\text{ cm}$$\n5. Total length of the other diagonal is:\n   $$d_2 = 2 \\times 8 = 16\\text{ cm}$$\n<strong>Correct Answer:</strong> (C) 16 cm\n"}, {"num": 24, "question": "In a rhombus ABCD, angle CAB = 35°. What is the measure of angle ABC?", "options": ["35°", "70°", "110°", "145°"], "correct": 2, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. In a rhombus, the diagonal $AC$ bisects the vertex angle $\\angle A$.\n2. Given $\\angle CAB = 35^\\circ$, the entire interior angle $\\angle A$ is:\n   $$\\angle A = 2 \\times 35^\\circ = 70^\\circ$$\n3. Since a rhombus is a parallelogram, consecutive angles $\\angle A$ and $\\angle ABC$ are supplementary:\n   $$\\angle A + \\angle ABC = 180^\\circ$$\n4. Solve for $\\angle ABC$:\n   $$\\angle ABC = 180^\\circ - 70^\\circ = 110^\\circ$$\n<strong>Correct Answer:</strong> (C) 110°\n"}, {"num": 25, "question": "Why does a triangular frame hold its shape under load while a quadrilateral frame deforms easily?", "options": ["Because three side lengths uniquely determine a triangle (SSS congruence), giving it 0 internal degrees of freedom", "Because triangles always have three 60° angles", "Because triangles are heavier than quadrilaterals", "Because quadrilaterals have obtuse angles"], "correct": 0, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. By the SSS (Side-Side-Side) Congruence Theorem, fixing the lengths of the three sides of a triangle locks all three of its angles into a single unique configuration. It has 0 internal degrees of freedom.\n2. In contrast, four side lengths do NOT uniquely lock a quadrilateral; it has 1 internal degree of freedom and can deform into infinitely many different parallelograms without changing side lengths.\n3. This is why engineering structures (roof trusses, bridges, cranes) are triangulated.\n<strong>Correct Answer:</strong> (A) Because three side lengths uniquely determine a triangle (SSS congruence), giving it 0 internal degrees of freedom\n"}, {"num": 26, "question": "According to Varignon's Theorem, joining the midpoints of the consecutive sides of ANY quadrilateral always forms a:", "options": ["Square", "Rectangle", "Parallelogram", "Trapezium"], "correct": 2, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. Let $ABCD$ be any arbitrary quadrilateral, and let $P, Q, R, S$ be the midpoints of sides $AB, BC, CD, DA$.\n2. Draw diagonal $AC$.\n3. In $\\triangle ABC$, $P$ and $Q$ are midpoints. By the Midpoint Theorem:\n   $$PQ \\parallel AC \\quad \\text{and} \\quad PQ = \\frac{1}{2} AC$$\n4. In $\\triangle ADC$, $S$ and $R$ are midpoints. By the Midpoint Theorem:\n   $$SR \\parallel AC \\quad \\text{and} \\quad SR = \\frac{1}{2} AC$$\n5. Thus, $PQ$ and $SR$ are both parallel to $AC$ and equal in length ($PQ = SR$).\n6. A quadrilateral with one pair of opposite sides equal and parallel is guaranteed to be a <strong>parallelogram</strong>.\n<strong>Correct Answer:</strong> (C) Parallelogram\n"}, {"num": 27, "question": "If the area of quadrilateral ABCD is 84 cm², what is the area of the Varignon parallelogram formed by joining its side midpoints?", "options": ["21 cm²", "42 cm²", "84 cm²", "168 cm²"], "correct": 1, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. Varignon's Theorem states that the area of the midpoint parallelogram $PQRS$ is exactly half of the total area of the original quadrilateral $ABCD$:\n   $$\\text{Area}(PQRS) = \\frac{1}{2} \\times \\text{Area}(ABCD)$$\n2. Given $\\text{Area}(ABCD) = 84\\text{ cm}^2$:\n   $$\\text{Area}(PQRS) = \\frac{1}{2} \\times 84 = 42\\text{ cm}^2$$\n<strong>Correct Answer:</strong> (B) 42 cm²\n"}, {"num": 28, "question": "What shape is formed by joining the midpoints of the sides of a RECTANGLE?", "options": ["A Rectangle", "A Rhombus", "A Trapezium", "A Scalene Parallelogram"], "correct": 1, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. Let $ABCD$ be a rectangle. Its diagonals are equal in length: $AC = BD$.\n2. By the Midpoint Theorem, each side of the Varignon parallelogram has length equal to half of a diagonal:\n   $$PQ = RS = \\frac{1}{2} AC \\quad \\text{and} \\quad QR = SP = \\frac{1}{2} BD$$\n3. Since $AC = BD$, all four sides of $PQRS$ are equal:\n   $$PQ = QR = RS = SP$$\n4. A parallelogram with all four sides equal is a <strong>rhombus</strong>!\n<strong>Correct Answer:</strong> (B) A Rhombus\n"}, {"num": 29, "question": "What shape is formed by joining the midpoints of the sides of a RHOMBUS?", "options": ["A Rhombus", "A Rectangle", "A Square", "A Kite"], "correct": 1, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. In a rhombus $ABCD$, the diagonals intersect at right angles: $AC \\perp BD$.\n2. The sides of the midpoint quadrilateral $PQRS$ are parallel to the diagonals ($PQ \\parallel AC$ and $QR \\parallel BD$).\n3. Since $AC \\perp BD$, the angle between adjacent sides $PQ$ and $QR$ must also be $90^\\circ$.\n4. A parallelogram with right angles is a <strong>rectangle</strong>!\n5. (Note the beautiful dual relationship: midpoints of a rectangle form a rhombus, and midpoints of a rhombus form a rectangle!)\n<strong>Correct Answer:</strong> (B) A Rectangle\n"}, {"num": 30, "question": "Any quadrilateral can tile (tessellate) the plane without gaps because:", "options": ["All four sides can be arranged in parallel lines", "The sum of the four interior angles at each shared vertex is exactly 360°", "Quadrilaterals always possess lines of symmetry", "Diagonals bisect the perimeter"], "correct": 1, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. To tile a two-dimensional plane without leaving gaps or overlaps, the sum of the angles meeting at any common vertex must equal a full rotation of $360^\\circ$.\n2. By rotating arbitrary quadrilateral tiles by $180^\\circ$ around their side midpoints, one copy of each of the four interior angles ($\\angle A, \\angle B, \\angle C, \\angle D$) meets at each shared vertex.\n3. Since $\\angle A + \\angle B + \\angle C + \\angle D = 360^\\circ$, they perfectly fill the entire space around that point, allowing any arbitrary quadrilateral to tile the plane!\n<strong>Correct Answer:</strong> (B) The sum of the four interior angles at each shared vertex is exactly 360°\n"}, {"num": 31, "question": "Which of the following is a TRUE property of every kite?", "options": ["Opposite sides are parallel", "Both pairs of opposite angles are equal", "The diagonals are perpendicular to each other", "Diagonals are equal in length"], "correct": 2, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. By definition, a kite has two distinct pairs of equal adjacent sides.\n2. The main axis diagonal acts as a line of reflectional symmetry.\n3. As a direct consequence of this bilateral symmetry, the diagonals of a kite are always <strong>perpendicular to each other</strong> ($AC \\perp BD$).\n4. (Opposite sides are not parallel, diagonals are usually unequal, and only one pair of opposite angles is equal).\n<strong>Correct Answer:</strong> (C) The diagonals are perpendicular to each other\n"}, {"num": 32, "question": "In kite ABCD with AB = AD and CB = CD, if angle A = 80° and angle C = 40°, what is the measure of angle B?", "options": ["100°", "120°", "130°", "140°"], "correct": 1, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. In a kite, the two opposite angles between the unequal sides are equal:\n   $$\\angle B = \\angle D$$\n2. The sum of all four interior angles in any quadrilateral is $360^\\circ$:\n   $$\\angle A + \\angle B + \\angle C + \\angle D = 360^\\circ$$\n3. Substitute the known values:\n   $$80^\\circ + \\angle B + 40^\\circ + \\angle B = 360^\\circ$$\n4. Simplify:\n   $$120^\\circ + 2\\angle B = 360^\\circ$$\n5. Solve for $\\angle B$:\n   $$2\\angle B = 360^\\circ - 120^\\circ = 240^\\circ \\implies \\angle B = \\frac{240^\\circ}{2} = 120^\\circ$$\n<strong>Correct Answer:</strong> (B) 120°\n"}, {"num": 33, "question": "The diagonals of a kite are 15 cm and 8 cm. What is the area of the kite?", "options": ["60 cm²", "120 cm²", "30 cm²", "46 cm²"], "correct": 0, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. Because the diagonals of a kite intersect at right angles ($90^\\circ$) and the main diagonal bisects the cross diagonal into two equal segments, the area formula is:\n   $$\\text{Area} = \\frac{1}{2} \\times d_1 \\times d_2$$\n2. Substitute $d_1 = 15\\text{ cm}$ and $d_2 = 8\\text{ cm}$:\n   $$\\text{Area} = \\frac{1}{2} \\times 15 \\times 8 = 15 \\times 4 = 60\\text{ cm}^2$$\n<strong>Correct Answer:</strong> (A) 60 cm²\n"}, {"num": 34, "question": "In trapezium ABCD with AB parallel to CD, if angle A = 65° and angle B = 80°, find the measure of angle C.", "options": ["100°", "115°", "120°", "135°"], "correct": 0, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. In trapezium $ABCD$, base $AB$ is parallel to base $CD$ ($AB \\parallel CD$).\n2. Leg $BC$ acts as a transversal intersecting these parallel lines.\n3. Interior angles on the same side of the transversal line ($BC$) are supplementary:\n   $$\\angle B + \\angle C = 180^\\circ$$\n4. Substitute $\\angle B = 80^\\circ$:\n   $$80^\\circ + \\angle C = 180^\\circ \\implies \\angle C = 180^\\circ - 80^\\circ = 100^\\circ$$\n5. (Similarly, $\\angle D = 180^\\circ - \\angle A = 180^\\circ - 65^\\circ = 115^\\circ$).\n<strong>Correct Answer:</strong> (A) 100°\n"}, {"num": 35, "question": "A trapezium has parallel bases of lengths 14 cm and 10 cm, and its area is 96 cm². What is the perpendicular distance (height) between the bases?", "options": ["6 cm", "8 cm", "10 cm", "12 cm"], "correct": 1, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. The formula for the area of a trapezium is:\n   $$\\text{Area} = \\frac{1}{2} (a + b) \\times h$$\n2. Substitute the given values $\\text{Area} = 96$, $a = 14$, and $b = 10$:\n   $$96 = \\frac{1}{2} (14 + 10) \\times h$$\n3. Simplify the base sum:\n   $$96 = \\frac{1}{2} (24) \\times h$$\n   $$96 = 12 \\times h$$\n4. Solve for $h$:\n   $$h = \\frac{96}{12} = 8\\text{ cm}$$\n<strong>Correct Answer:</strong> (B) 8 cm\n"}, {"num": 36, "question": "Which of the following is true for an ISOSCELES trapezium?", "options": ["All four sides are equal", "The non-parallel sides are equal, and diagonals are equal", "Opposite angles are supplementary, but base angles are unequal", "Diagonals bisect each other at 90°"], "correct": 1, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. An isosceles trapezium is defined as a trapezium whose non-parallel sides (legs) are equal in length ($AD = BC$).\n2. Due to its bilateral reflectional symmetry across the perpendicular bisector of the bases:\n   - Base angles are equal: $\\angle A = \\angle B$ and $\\angle C = \\angle D$.\n   - Diagonals are equal in length: $AC = BD$.\n<strong>Correct Answer:</strong> (B) The non-parallel sides are equal, and diagonals are equal\n"}, {"num": 37, "question": "Which of the following statements is mathematically TRUE?", "options": ["Every rectangle is a square", "Every rhombus is a square", "Every square is a rhombus", "Every trapezium is a parallelogram"], "correct": 2, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. A rhombus is defined as any parallelogram with four equal sides.\n2. Every square is a parallelogram with four equal sides (and additionally has four $90^\\circ$ angles).\n3. Therefore, every square satisfies all requirements of a rhombus: <strong>Every square is a rhombus</strong>.\n4. Conversely, a rhombus is only a square if its angles are $90^\\circ$, so not all rhombuses are squares.\n<strong>Correct Answer:</strong> (C) Every square is a rhombus\n"}, {"num": 38, "question": "Riddle: 'I am a quadrilateral. My diagonals are equal in length and bisect each other at right angles. Who am I?'", "options": ["Rectangle", "Rhombus", "Square", "Kite"], "correct": 2, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. Clue 1: \"Diagonals bisect each other\" $\\implies$ Must be a member of the <strong>Parallelogram family</strong>.\n2. Clue 2: \"Diagonals are equal in length\" $\\implies$ Must be a <strong>Rectangle</strong>.\n3. Clue 3: \"Diagonals bisect at right angles (perpendicular)\" $\\implies$ Must be a <strong>Rhombus</strong>.\n4. The unique shape that is simultaneously both a rectangle and a rhombus is the <strong>Square</strong>!\n<strong>Correct Answer:</strong> (C) Square\n"}, {"num": 39, "question": "Riddle: 'My diagonals bisect each other at right angles, but they are NOT equal in length. My opposite sides are parallel. Who am I?'", "options": ["Square", "Rhombus", "Rectangle", "Trapezium"], "correct": 1, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. Clue 1: \"Diagonals bisect each other and opposite sides are parallel\" $\\implies$ Parallelogram.\n2. Clue 2: \"Diagonals intersect at right angles\" $\\implies$ Rhombus or Square.\n3. Clue 3: \"Diagonals are NOT equal in length\" $\\implies$ It cannot be a square (which requires equal diagonals).\n4. Therefore, the shape is a <strong>Rhombus</strong>.\n<strong>Correct Answer:</strong> (B) Rhombus\n"}, {"num": 40, "question": "In an isosceles trapezium, if one angle is 70°, what are the measures of the other three angles?", "options": ["70°, 110°, 110°", "70°, 70°, 150°", "110°, 110°, 140°", "90°, 90°, 110°"], "correct": 0, "solution": "\n<strong>Step-by-step mathematical reasoning:</strong>\n1. Let the isosceles trapezium have bases $AB \\parallel CD$.\n2. In an isosceles trapezium, angles adjacent to the same base are equal:\n   - If $\\angle A = 70^\\circ$, then $\\angle B = 70^\\circ$.\n3. Consecutive interior angles along each leg are supplementary ($AB \\parallel CD$):\n   $$\\angle A + \\angle D = 180^\\circ \\implies \\angle D = 180^\\circ - 70^\\circ = 110^\\circ$$\n   $$\\angle B + \\angle C = 180^\\circ \\implies \\angle C = 180^\\circ - 70^\\circ = 110^\\circ$$\n4. Therefore, the four angles are $70^\\circ, 70^\\circ, 110^\\circ, 110^\\circ$. The other three angles measure $70^\\circ, 110^\\circ, 110^\\circ$.\n<strong>Correct Answer:</strong> (A) 70°, 110°, 110°\n"}];
+
+    let currentSlideIndex = 0;
+    let isSpeaking = false;
+    let synth = window.speechSynthesis;
+    let currentUtterance = null;
+
+    // KaTeX Helper
+    function triggerMathRender(el) {
+      if (window.renderMathInElement) {
+        renderMathInElement(el, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    function init() {
+      renderSlide(0);
+      setupSpeechSynthesis();
+    }
+
+    function renderSlide(index) {
+      currentSlideIndex = index;
+      const slide = slides[index];
+
+      // Stop speech when slide changes
+      stopSpeech();
+
+      // Update Header Indicator
+      document.getElementById('slideIndicator').textContent = `Slide ${index + 1} of ${slides.length}`;
+      document.getElementById('slideTag').textContent = `CLASS 8 • CHAPTER 4 • PART ${index + 1}`;
+      document.getElementById('slideTitle').textContent = slide.title;
+      document.getElementById('slideSubtitle').textContent = slide.subtitle;
+
+      // Update Theory Content
+      document.getElementById('slideContent').innerHTML = slide.content;
+      triggerMathRender(document.getElementById('slideContent'));
+
+      // Update Speech Bubble
+      document.getElementById('teacherSpeech').textContent = slide.voice;
+
+      // Navigation Buttons & Last Slide Terminal Rule
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const lastNotice = document.getElementById('lastSlideNotice');
+
+      prevBtn.disabled = (index === 0);
+
+      if (index === slides.length - 1) {
+        nextBtn.style.display = 'none';
+        lastNotice.style.display = 'block';
+      } else {
+        nextBtn.style.display = 'flex';
+        lastNotice.style.display = 'none';
+      }
+
+      // Checkpoints vs Quiz Questions
+      const checkpointContainer = document.getElementById('checkpointContainer');
+      const simPanel = document.getElementById('simulatorPanel');
+      const lessonGrid = document.getElementById('lessonGrid');
+
+      const q17 = document.getElementById('quizSlide17');
+      const q18 = document.getElementById('quizSlide18');
+      const q19 = document.getElementById('quizSlide19');
+      const q20 = document.getElementById('quizSlide20');
+
+      q17.style.display = 'none';
+      q18.style.display = 'none';
+      q19.style.display = 'none';
+      q20.style.display = 'none';
+
+      if (index < 16) {
+        lessonGrid.style.display = 'grid';
+        checkpointContainer.style.display = 'flex';
+        simPanel.style.display = 'flex';
+        renderCheckpoints(slide.checkpoints);
+        renderSimulator(slide.sim_type);
+      } else {
+        lessonGrid.style.display = 'none';
+        const qRange = slide.quiz_range;
+        if (index === 16) {
+          q17.style.display = 'block';
+          renderQuizQuestions(16, qRange[0], qRange[1]);
+        } else if (index === 17) {
+          q18.style.display = 'block';
+          renderQuizQuestions(17, qRange[0], qRange[1]);
+        } else if (index === 18) {
+          q19.style.display = 'block';
+          renderQuizQuestions(18, qRange[0], qRange[1]);
+        } else if (index === 19) {
+          q20.style.display = 'block';
+          renderQuizQuestions(19, qRange[0], qRange[1]);
+        }
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function prevSlide() {
+      if (currentSlideIndex > 0) {
+        renderSlide(currentSlideIndex - 1);
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlideIndex < slides.length - 1) {
+        renderSlide(currentSlideIndex + 1);
+      }
+    }
+
+    // Checkpoint Renderer (Slides 1 to 16)
+    function renderCheckpoints(checkpoints) {
+      const list = document.getElementById('checkpointsList');
+      list.innerHTML = '';
+      if (!checkpoints) return;
+
+      checkpoints.forEach((cp, qIdx) => {
+        const card = document.createElement('div');
+        card.className = 'checkpoint-card';
+
+        const qText = document.createElement('div');
+        qText.className = 'checkpoint-q';
+        qText.textContent = `Q${qIdx + 1}: ${cp.question}`;
+        card.appendChild(qText);
+
+        const grid = document.createElement('div');
+        grid.className = 'options-grid';
+
+        const feedback = document.createElement('div');
+        feedback.className = 'feedback-box';
+
+        cp.options.forEach((opt, optIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'opt-btn';
+          btn.textContent = `${String.fromCharCode(65 + optIdx)}. ${opt}`;
+          btn.onclick = () => {
+            const btns = grid.querySelectorAll('.opt-btn');
+            btns.forEach(b => b.disabled = true);
+            if (optIdx === cp.correct) {
+              btn.classList.add('correct');
+              feedback.style.background = 'rgba(16, 185, 129, 0.2)';
+              feedback.style.color = '#34d399';
+              feedback.innerHTML = `<strong>✓ Correct!</strong> ${cp.explanation}`;
+              triggerMathRender(feedback);
+            } else {
+              btn.classList.add('wrong');
+              btns[cp.correct].classList.add('correct');
+              feedback.style.background = 'rgba(244, 63, 94, 0.2)';
+              feedback.style.color = '#fb7185';
+              feedback.innerHTML = `<strong>✗ Incorrect.</strong> ${cp.explanation}`;
+              triggerMathRender(feedback);
+            }
+            feedback.classList.add('show');
+          };
+          grid.appendChild(btn);
+        });
+
+        card.appendChild(grid);
+        card.appendChild(feedback);
+        list.appendChild(card);
+      });
+      triggerMathRender(list);
+    }
+
+    // Quiz Questions Renderer (Slides 17 to 20)
+    function renderQuizQuestions(slideIdx, startNum, endNum) {
+      const containerId = `quizContainer${slideIdx - 15}`;
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = '';
+
+      const subset = quizData.filter(q => q.num >= startNum && q.num <= endNum);
+
+      subset.forEach(q => {
+        const card = document.createElement('div');
+        card.className = 'quiz-card';
+
+        card.innerHTML = `
+          <div class="quiz-card-head">
+            <span class="quiz-badge">Question ${q.num} of 40</span>
+            <button class="sol-btn" onclick="openSolutionModal(${q.num})">
+              <span>💡</span> View Solution
+            </button>
+          </div>
+          <div class="checkpoint-q">${q.question}</div>
+          <div class="options-grid" id="qGrid${q.num}"></div>
+          <div class="feedback-box" id="qFeedback${q.num}"></div>
+        `;
+
+        const grid = card.querySelector(`#qGrid${q.num}`);
+        const feedback = card.querySelector(`#qFeedback${q.num}`);
+
+        q.options.forEach((opt, optIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'opt-btn';
+          btn.textContent = `${String.fromCharCode(65 + optIdx)}. ${opt}`;
+          btn.onclick = () => {
+            const btns = grid.querySelectorAll('.opt-btn');
+            btns.forEach(b => b.disabled = true);
+            if (optIdx === q.correct) {
+              btn.classList.add('correct');
+              feedback.style.background = 'rgba(16, 185, 129, 0.2)';
+              feedback.style.color = '#34d399';
+              feedback.innerHTML = `<strong>✓ Correct!</strong> Click "View Solution" to see full step-by-step mathematical reasoning.`;
+              triggerMathRender(feedback);
+            } else {
+              btn.classList.add('wrong');
+              btns[q.correct].classList.add('correct');
+              feedback.style.background = 'rgba(244, 63, 94, 0.2)';
+              feedback.style.color = '#fb7185';
+              feedback.innerHTML = `<strong>✗ Incorrect.</strong> Correct answer is (${String.fromCharCode(65 + q.correct)}). Inspect "View Solution" for detailed steps.`;
+              triggerMathRender(feedback);
+            }
+            feedback.classList.add('show');
+          };
+          grid.appendChild(btn);
+        });
+
+        container.appendChild(card);
+      });
+      triggerMathRender(container);
+    }
+
+    // Solution Pop-up Modal Handlers
+    function openSolutionModal(qNum) {
+      const q = quizData.find(item => item.num === qNum);
+      if (!q) return;
+
+      document.getElementById('modalQuestionNum').textContent = `Question ${q.num} of 40`;
+      document.getElementById('modalQuestionTitle').innerHTML = q.question;
+      document.getElementById('modalSolutionContent').innerHTML = q.solution;
+      document.getElementById('solutionModal').classList.remove('hidden');
+      triggerMathRender(document.getElementById('solutionModal'));
+    }
+
+    function closeSolutionModal() {
+      document.getElementById('solutionModal').classList.add('hidden');
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeSolutionModal();
+    });
+
+    // Web Speech API Voiceover & Talking Mouth Animation
+    function toggleSpeech() {
+      if (isSpeaking) {
+        stopSpeech();
+      } else {
+        startSpeech();
+      }
+    }
+
+    function startSpeech() {
+      if (!synth) return;
+      stopSpeech();
+
+      const text = slides[currentSlideIndex].voice;
+      currentUtterance = new SpeechSynthesisUtterance(text);
+      currentUtterance.rate = 1.0;
+      currentUtterance.pitch = 1.05;
+
+      const voices = synth.getVoices();
+      const engVoice = voices.find(v => v.lang.includes('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha')));
+      if (engVoice) currentUtterance.voice = engVoice;
+
+      currentUtterance.onstart = () => {
+        isSpeaking = true;
+        document.getElementById('speechToggleBtn').classList.add('speaking');
+        document.getElementById('speechIcon').textContent = '⏹';
+        document.getElementById('speechLabel').textContent = 'Stop';
+        document.getElementById('avatarWrapper').classList.add('speaking');
+      };
+
+      currentUtterance.onend = () => {
+        stopSpeech();
+      };
+
+      currentUtterance.onerror = () => {
+        stopSpeech();
+      };
+
+      synth.speak(currentUtterance);
+    }
+
+    function stopSpeech() {
+      if (synth && synth.speaking) {
+        synth.cancel();
+      }
+      isSpeaking = false;
+      const btn = document.getElementById('speechToggleBtn');
+      if (btn) btn.classList.remove('speaking');
+      const icon = document.getElementById('speechIcon');
+      if (icon) icon.textContent = '🔊';
+      const label = document.getElementById('speechLabel');
+      if (label) label.textContent = 'Voiceover';
+      const avatar = document.getElementById('avatarWrapper');
+      if (avatar) avatar.classList.remove('speaking');
+    }
+
+    function setupSpeechSynthesis() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.onvoiceschanged = () => {
+          // Voices ready
+        };
+      } else {
+        const btn = document.getElementById('speechToggleBtn');
+        if (btn) btn.style.display = 'none';
+      }
+    }
+
+    // ==========================================
+    // 16 Bespoke Interactive Laboratory Simulators
+    // ==========================================
+    function renderSimulator(type) {
+      const vp = document.getElementById('simViewport');
+      const controls = document.getElementById('simControls');
+      const title = document.getElementById('simTitle');
+      const badge = document.getElementById('simBadge');
+
+      vp.innerHTML = '';
+      controls.innerHTML = '';
+
+      switch (type) {
+        case 'rectangle_square_geometry_lab':
+          renderSim1(vp, controls, title, badge);
+          break;
+        case 'diagonal_pythagorean_explorer':
+          renderSim2(vp, controls, title, badge);
+          break;
+        case 'angle_sum_partition_lab':
+          renderSim3(vp, controls, title, badge);
+          break;
+        case 'exterior_angles_rotator':
+          renderSim4(vp, controls, title, badge);
+          break;
+        case 'parallelogram_parallel_sides_lab':
+          renderSim5(vp, controls, title, badge);
+          break;
+        case 'parallelogram_diagonal_bisector':
+          renderSim6(vp, controls, title, badge);
+          break;
+        case 'parallelogram_condition_tester':
+          renderSim7(vp, controls, title, badge);
+          break;
+        case 'rhombus_equilateral_stepper':
+          renderSim8(vp, controls, title, badge);
+          break;
+        case 'rhombus_area_triangle_splitter':
+          renderSim9(vp, controls, title, badge);
+          break;
+        case 'quadrilateral_rigidity_linkage':
+          renderSim10(vp, controls, title, badge);
+          break;
+        case 'varignon_parallelogram_tessellation':
+          renderSim11(vp, controls, title, badge);
+          break;
+        case 'kite_symmetry_explorer':
+          renderSim12(vp, controls, title, badge);
+          break;
+        case 'trapezium_parallel_base_slider':
+          renderSim13(vp, controls, title, badge);
+          break;
+        case 'isosceles_trapezium_area_lab':
+          renderSim14(vp, controls, title, badge);
+          break;
+        case 'quadrilateral_family_tree_matrix':
+          renderSim15(vp, controls, title, badge);
+          break;
+        case 'which_quad_puzzle_game':
+          renderSim16(vp, controls, title, badge);
+          break;
+        default:
+          vp.innerHTML = '<div style="color:#64748b;">Simulator loading...</div>';
+      }
+    }
+
+    // Sim 1: Rectangle & Square Morphology Lab
+    function renderSim1(vp, controls, title, badge) {
+      title.innerHTML = '<span>📐</span> Rectangle & Square Morphology Lab';
+      badge.textContent = 'Equiangular & Regularity Morpher';
+
+      let w = 220;
+      let h = 140;
+
+      function updateUI() {
+        const isSquare = (w === h);
+        const diag = Math.sqrt(w*w + h*h).toFixed(1);
+
+        const svgW = 480;
+        const svgH = 260;
+        const startX = (svgW - w) / 2;
+        const startY = (svgH - h) / 2;
+
+        vp.innerHTML = `
+          <div style="width:100%; max-width:500px; text-align:center;">
+            <svg viewBox="0 0 ${svgW} ${svgH}" style="width:100%; height:230px; background:#090d16; border-radius:10px; border:1px solid #1e293b;">
+              <!-- Grid background -->
+              <defs>
+                <pattern id="grid1" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#grid1)"/>
+
+              <!-- Rectangle Body -->
+              <rect x="${startX}" y="${startY}" width="${w}" height="${h}"
+                    fill="${isSquare ? 'rgba(16, 185, 129, 0.2)' : 'rgba(99, 102, 241, 0.2)'}"
+                    stroke="${isSquare ? '#10b981' : '#6366f1'}" stroke-width="2.5" rx="2"/>
+
+              <!-- Diagonals -->
+              <line x1="${startX}" y1="${startY}" x2="${startX + w}" y2="${startY + h}"
+                    stroke="#94a3b8" stroke-dasharray="4,4" stroke-width="1.5"/>
+              <line x1="${startX + w}" y1="${startY}" x2="${startX}" y2="${startY + h}"
+                    stroke="#94a3b8" stroke-dasharray="4,4" stroke-width="1.5"/>
+
+              <!-- 4 Right Angle Square Marks (12x12 px) -->
+              <path d="M ${startX + 12} ${startY} L ${startX + 12} ${startY + 12} L ${startX} ${startY + 12}" fill="none" stroke="#38bdf8" stroke-width="1.5"/>
+              <path d="M ${startX + w - 12} ${startY} L ${startX + w - 12} ${startY + 12} L ${startX + w} ${startY + 12}" fill="none" stroke="#38bdf8" stroke-width="1.5"/>
+              <path d="M ${startX + 12} ${startY + h} L ${startX + 12} ${startY + h - 12} L ${startX} ${startY + h - 12}" fill="none" stroke="#38bdf8" stroke-width="1.5"/>
+              <path d="M ${startX + w - 12} ${startY + h} L ${startX + w - 12} ${startY + h - 12} L ${startX + w} ${startY + h - 12}" fill="none" stroke="#38bdf8" stroke-width="1.5"/>
+
+              <!-- Dimension Labels -->
+              <text x="${startX + w/2}" y="${startY - 8}" fill="#e2e8f0" font-size="12" font-weight="bold" text-anchor="middle">Width = ${w} px</text>
+              <text x="${startX + w + 14}" y="${startY + h/2 + 4}" fill="#e2e8f0" font-size="12" font-weight="bold" text-anchor="start">Height = ${h} px</text>
+
+              <!-- Vertices A, B, C, D -->
+              <text x="${startX - 10}" y="${startY - 6}" fill="#38bdf8" font-size="13" font-weight="bold">A</text>
+              <text x="${startX + w + 4}" y="${startY - 6}" fill="#38bdf8" font-size="13" font-weight="bold">B</text>
+              <text x="${startX + w + 4}" y="${startY + h + 14}" fill="#38bdf8" font-size="13" font-weight="bold">C</text>
+              <text x="${startX - 10}" y="${startY + h + 14}" fill="#38bdf8" font-size="13" font-weight="bold">D</text>
+
+              <!-- Central Diagonals readout -->
+              <rect x="${startX + w/2 - 50}" y="${startY + h/2 - 12}" width="100" height="24" rx="6" fill="#0f172a" stroke="#334155"/>
+              <text x="${startX + w/2}" y="${startY + h/2 + 4}" fill="#fcd34d" font-size="11" font-weight="bold" text-anchor="middle">d = ${diag} px</text>
+            </svg>
+
+            <div style="margin-top:10px; display:flex; justify-content:center; gap:12px; font-size:12.5px;">
+              <span style="color:#38bdf8;">All 4 Angles: <strong>90°</strong></span>
+              <span style="color:#a5b4fc;">Diagonal d: <strong>${diag}</strong> px</span>
+              <span style="color:${isSquare ? '#34d399' : '#f59e0b'};">Classification: <strong>${isSquare ? 'Regular Square' : 'Rectangle'}</strong></span>
+            </div>
+            ${isSquare ? `
+              <div style="margin-top:6px; background:rgba(16,185,129,0.15); border:1px solid #10b981; border-radius:6px; padding:6px; font-size:12px; color:#34d399; font-weight:bold;">
+                ✨ Symmetrical Square: All 4 sides equal (${w} px) & Diagonals intersect perpendicularly at 90°!
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <div class="sim-slider-group">
+          <span>Width:</span>
+          <input type="range" id="wSlider" min="100" max="260" value="${w}" step="10">
+          <span id="wVal">${w}</span>
+        </div>
+        <div class="sim-slider-group">
+          <span>Height:</span>
+          <input type="range" id="hSlider" min="100" max="220" value="${h}" step="10">
+          <span id="hVal">${h}</span>
+        </div>
+        <button class="sim-btn" id="makeSquareBtn">Snap to Square (w = h)</button>
+        <button class="sim-btn" id="resetRectBtn">Reset Rectangle</button>
+      `;
+
+      const wSlider = document.getElementById('wSlider');
+      const hSlider = document.getElementById('hSlider');
+
+      wSlider.oninput = (e) => {
+        w = parseInt(e.target.value);
+        document.getElementById('wVal').textContent = w;
+        updateUI();
+      };
+
+      hSlider.oninput = (e) => {
+        h = parseInt(e.target.value);
+        document.getElementById('hVal').textContent = h;
+        updateUI();
+      };
+
+      document.getElementById('makeSquareBtn').onclick = () => {
+        w = 160;
+        h = 160;
+        wSlider.value = 160;
+        hSlider.value = 160;
+        document.getElementById('wVal').textContent = 160;
+        document.getElementById('hVal').textContent = 160;
+        updateUI();
+      };
+
+      document.getElementById('resetRectBtn').onclick = () => {
+        w = 220;
+        h = 140;
+        wSlider.value = 220;
+        hSlider.value = 140;
+        document.getElementById('wVal').textContent = 220;
+        document.getElementById('hVal').textContent = 140;
+        updateUI();
+      };
+
+      updateUI();
+    }
+
+    // Sim 2: Diagonal Pythagorean & SAS Congruence Explorer
+    function renderSim2(vp, controls, title, badge) {
+      title.innerHTML = '<span>📏</span> Rectangle Diagonal SAS Congruence Explorer';
+      badge.textContent = 'Pythagorean Theorem & Congruence Proof';
+
+      let activeTriangle = 'both'; // 'abc', 'bad', or 'both'
+      const l = 240;
+      const w = 140;
+
+      function updateUI() {
+        const d = Math.sqrt(l*l + w*w).toFixed(1);
+        const svgW = 460;
+        const svgH = 240;
+        const sx = 90;
+        const sy = 50;
+
+        vp.innerHTML = `
+          <div style="width:100%; max-width:500px; text-align:center;">
+            <svg viewBox="0 0 ${svgW} ${svgH}" style="width:100%; height:220px; background:#090d16; border-radius:10px; border:1px solid #1e293b;">
+              <!-- Rectangle boundary -->
+              <rect x="${sx}" y="${sy}" width="${l}" height="${w}" fill="none" stroke="#334155" stroke-width="2"/>
+
+              <!-- Triangle ABC Fill -->
+              ${activeTriangle === 'abc' || activeTriangle === 'both' ? `
+                <polygon points="${sx},${sy} ${sx + l},${sy} ${sx + l},${sy + w}" fill="rgba(6, 182, 212, 0.25)" stroke="#06b6d4" stroke-width="2"/>
+              ` : ''}
+
+              <!-- Triangle BAD Fill -->
+              ${activeTriangle === 'bad' || activeTriangle === 'both' ? `
+                <polygon points="${sx},${sy} ${sx + l},${sy} ${sx},${sy + w}" fill="rgba(244, 63, 94, 0.25)" stroke="#f43f5e" stroke-width="2"/>
+              ` : ''}
+
+              <!-- Diagonals AC and BD -->
+              <line x1="${sx}" y1="${sy + w}" x2="${sx + l}" y2="${sy}" stroke="#06b6d4" stroke-width="2" stroke-dasharray="3,3"/>
+              <line x1="${sx}" y1="${sy}" x2="${sx + l}" y2="${sy + w}" stroke="#f43f5e" stroke-width="2" stroke-dasharray="3,3"/>
+
+              <!-- Vertices -->
+              <text x="${sx - 14}" y="${sy + 4}" fill="#fff" font-weight="bold">D</text>
+              <text x="${sx + l + 8}" y="${sy + 4}" fill="#fff" font-weight="bold">C</text>
+              <text x="${sx + l + 8}" y="${sy + w + 14}" fill="#fff" font-weight="bold">B</text>
+              <text x="${sx - 14}" y="${sy + w + 14}" fill="#fff" font-weight="bold">A</text>
+
+              <!-- Dimension tags -->
+              <text x="${sx + l/2}" y="${sy + w + 20}" fill="#a5b4fc" font-size="12" text-anchor="middle">Base AB = ${l}</text>
+              <text x="${sx + l + 14}" y="${sy + w/2}" fill="#a5b4fc" font-size="12">BC = ${w}</text>
+              <text x="${sx - 35}" y="${sy + w/2}" fill="#a5b4fc" font-size="12">AD = ${w}</text>
+
+              <!-- Central label -->
+              <rect x="${sx + l/2 - 70}" y="${sy + w/2 - 14}" width="140" height="28" rx="6" fill="#0f172a" stroke="#475569"/>
+              <text x="${sx + l/2}" y="${sy + w/2 + 4}" fill="#fcd34d" font-size="11.5" font-weight="bold" text-anchor="middle">Diagonal d = ${d}</text>
+            </svg>
+
+            <div style="margin-top:10px; background:#0f172a; border:1px solid #1e293b; border-radius:8px; padding:8px 12px; font-size:12px; text-align:left; color:#cbd5e1;">
+              <strong>SAS Congruence Proof:</strong> In right $\triangle ABC$ and right $\triangle BAD$:
+              <br>1. Side $AB$ is common to both ($AB = AB$).
+              <br>2. Right angles: $\angle B = \angle A = 90^\circ$.
+              <br>3. Opposite sides equal: $BC = AD = ${w}.
+              <br>Therefore $\triangle ABC \cong \triangle BAD$ by SAS $\implies$ <strong>Hypotenuse $AC = BD = ${d}</strong>!
+            </div>
+          </div>
+        `;
+        triggerMathRender(vp);
+      }
+
+      controls.innerHTML = `
+        <button class="sim-btn ${activeTriangle === 'abc' ? 'active' : ''}" id="tAbcBtn">Show △ABC (Hypotenuse AC)</button>
+        <button class="sim-btn ${activeTriangle === 'bad' ? 'active' : ''}" id="tBadBtn">Show △BAD (Hypotenuse BD)</button>
+        <button class="sim-btn ${activeTriangle === 'both' ? 'active' : ''}" id="tBothBtn">Compare Both Overlaid</button>
+      `;
+
+      document.getElementById('tAbcBtn').onclick = () => { activeTriangle = 'abc'; updateUI(); };
+      document.getElementById('tBadBtn').onclick = () => { activeTriangle = 'bad'; updateUI(); };
+      document.getElementById('tBothBtn').onclick = () => { activeTriangle = 'both'; updateUI(); };
+
+      updateUI();
+    }
+
+    // Sim 3: Quadrilateral Triangulation & Angle Sum (360°)
+    function renderSim3(vp, controls, title, badge) {
+      title.innerHTML = '<span>🔺</span> Quadrilateral Triangulation & Angle Sum (360°)';
+      badge.textContent = 'Angle Sum Partition Theorem';
+
+      let showDiagonal = true;
+      let shapeType = 'convex1';
+
+      const shapes = {
+        convex1: { A: [80, 70], B: [360, 60], C: [400, 200], D: [110, 210] },
+        trapezoid: { A: [140, 60], B: [340, 60], C: [420, 210], D: [60, 210] },
+        kite: { A: [240, 40], B: [380, 140], C: [240, 220], D: [100, 140] }
+      };
+
+      function updateUI() {
+        const pts = shapes[shapeType];
+        const polyPoints = `${pts.A[0]},${pts.A[1]} ${pts.B[0]},${pts.B[1]} ${pts.C[0]},${pts.C[1]} ${pts.D[0]},${pts.D[1]}`;
+
+        vp.innerHTML = `
+          <div style="width:100%; max-width:500px; text-align:center;">
+            <svg viewBox="0 0 480 250" style="width:100%; height:220px; background:#090d16; border-radius:10px; border:1px solid #1e293b;">
+              <!-- Triangles fill -->
+              ${showDiagonal ? `
+                <polygon points="${pts.A[0]},${pts.A[1]} ${pts.B[0]},${pts.B[1]} ${pts.C[0]},${pts.C[1]}" fill="rgba(6,182,212,0.2)" stroke="none"/>
+                <polygon points="${pts.A[0]},${pts.A[1]} ${pts.C[0]},${pts.C[1]} ${pts.D[0]},${pts.D[1]}" fill="rgba(245,158,11,0.2)" stroke="none"/>
+                <!-- Diagonal AC -->
+                <line x1="${pts.A[0]}" y1="${pts.A[1]}" x2="${pts.C[0]}" y2="${pts.C[1]}" stroke="#38bdf8" stroke-width="2.5" stroke-dasharray="4,4"/>
+                <text x="${(pts.A[0]+pts.C[0])/2 + 10}" y="${(pts.A[1]+pts.C[1])/2 - 6}" fill="#38bdf8" font-size="11" font-weight="bold">Diagonal AC</text>
+                <!-- Triangle labels -->
+                <text x="${(pts.A[0]+pts.B[0]+pts.C[0])/3}" y="${(pts.A[1]+pts.B[1]+pts.C[1])/3}" fill="#67e8f9" font-size="12" font-weight="bold" text-anchor="middle">△ABC (180°)</text>
+                <text x="${(pts.A[0]+pts.C[0]+pts.D[0])/3}" y="${(pts.A[1]+pts.C[1]+pts.D[1])/3}" fill="#fcd34d" font-size="12" font-weight="bold" text-anchor="middle">△ACD (180°)</text>
+              ` : `
+                <polygon points="${polyPoints}" fill="rgba(99,102,241,0.2)" stroke="none"/>
+              `}
+
+              <!-- Main polygon outline -->
+              <polygon points="${polyPoints}" fill="none" stroke="#6366f1" stroke-width="2.5"/>
+
+              <!-- Vertices -->
+              <circle cx="${pts.A[0]}" cy="${pts.A[1]}" r="5" fill="#38bdf8"/>
+              <text x="${pts.A[0] - 12}" y="${pts.A[1] - 8}" fill="#fff" font-weight="bold">A</text>
+
+              <circle cx="${pts.B[0]}" cy="${pts.B[1]}" r="5" fill="#38bdf8"/>
+              <text x="${pts.B[0] + 10}" y="${pts.B[1] - 4}" fill="#fff" font-weight="bold">B</text>
+
+              <circle cx="${pts.C[0]}" cy="${pts.C[1]}" r="5" fill="#38bdf8"/>
+              <text x="${pts.C[0] + 10}" y="${pts.C[1] + 12}" fill="#fff" font-weight="bold">C</text>
+
+              <circle cx="${pts.D[0]}" cy="${pts.D[1]}" r="5" fill="#38bdf8"/>
+              <text x="${pts.D[0] - 14}" y="${pts.D[1] + 12}" fill="#fff" font-weight="bold">D</text>
+            </svg>
+
+            <div style="margin-top:8px; background:rgba(99,102,241,0.15); border:1px solid #6366f1; border-radius:8px; padding:10px; font-size:13px; color:#e2e8f0;">
+              Total Angle Sum = <strong>(∠A + ∠B + ∠C + ∠D) = 180° + 180° = 360°</strong>
+            </div>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <button class="sim-btn ${shapeType === 'convex1' ? 'active' : ''}" id="sh1">General Convex</button>
+        <button class="sim-btn ${shapeType === 'trapezoid' ? 'active' : ''}" id="sh2">Trapezium</button>
+        <button class="sim-btn ${shapeType === 'kite' ? 'active' : ''}" id="sh3">Kite Shape</button>
+        <button class="sim-btn" id="diagToggle">${showDiagonal ? 'Hide Diagonal' : 'Split with Diagonal AC'}</button>
+      `;
+
+      document.getElementById('sh1').onclick = () => { shapeType = 'convex1'; updateUI(); };
+      document.getElementById('sh2').onclick = () => { shapeType = 'trapezoid'; updateUI(); };
+      document.getElementById('sh3').onclick = () => { shapeType = 'kite'; updateUI(); };
+      document.getElementById('diagToggle').onclick = () => {
+        showDiagonal = !showDiagonal;
+        updateUI();
+      };
+
+      updateUI();
+    }
+
+    // Sim 4: Exterior Angles & Full 360° Turn Walk
+    function renderSim4(vp, controls, title, badge) {
+      title.innerHTML = '<span>🔄</span> Exterior Angles & Full 360° Turn Walk';
+      badge.textContent = 'Perimeter Walk & Exterior Turn Invariance';
+
+      let collected = false;
+
+      function updateUI() {
+        vp.innerHTML = `
+          <div style="width:100%; max-width:500px; text-align:center;">
+            <svg viewBox="0 0 480 250" style="width:100%; height:220px; background:#090d16; border-radius:10px; border:1px solid #1e293b;">
+              ${!collected ? `
+                <!-- Quadrilateral ABCD with extended rays -->
+                <!-- AB extended past B -->
+                <line x1="120" y1="80" x2="380" y2="80" stroke="#475569" stroke-dasharray="3,3" stroke-width="1.5"/>
+                <!-- BC extended past C -->
+                <line x1="320" y1="80" x2="400" y2="240" stroke="#475569" stroke-dasharray="3,3" stroke-width="1.5"/>
+                <!-- CD extended past D -->
+                <line x1="360" y1="160" x2="80" y2="220" stroke="#475569" stroke-dasharray="3,3" stroke-width="1.5"/>
+                <!-- DA extended past A -->
+                <line x1="140" y1="190" x2="110" y2="30" stroke="#475569" stroke-dasharray="3,3" stroke-width="1.5"/>
+
+                <!-- Main Quad -->
+                <polygon points="120,80 320,80 360,160 140,190" fill="rgba(30,41,59,0.7)" stroke="#6366f1" stroke-width="2.5"/>
+
+                <!-- Exterior Angle Arcs Color Coded -->
+                <!-- e1 at A (Indigo) -->
+                <circle cx="120" cy="80" r="16" fill="none" stroke="#818cf8" stroke-width="3"/>
+                <text x="96" y="65" fill="#818cf8" font-size="11" font-weight="bold">e₁=95°</text>
+
+                <!-- e2 at B (Cyan) -->
+                <circle cx="320" cy="80" r="16" fill="none" stroke="#06b6d4" stroke-width="3"/>
+                <text x="345" y="70" fill="#06b6d4" font-size="11" font-weight="bold">e₂=70°</text>
+
+                <!-- e3 at C (Amber) -->
+                <circle cx="360" cy="160" r="16" fill="none" stroke="#f59e0b" stroke-width="3"/>
+                <text x="375" y="195" fill="#f59e0b" font-size="11" font-weight="bold">e₃=105°</text>
+
+                <!-- e4 at D (Emerald) -->
+                <circle cx="140" cy="190" r="16" fill="none" stroke="#10b981" stroke-width="3"/>
+                <text x="100" y="215" fill="#10b981" font-size="11" font-weight="bold">e₄=90°</text>
+              ` : `
+                <!-- All 4 angles assembled into a 360 circle at origin (240, 125) -->
+                <g transform="translate(240, 125)">
+                  <!-- 4 Wedges filling the 360 circle -->
+                  <path d="M 0 0 L 70 0 A 70 70 0 0 1 12 69 Z" fill="rgba(6,182,212,0.6)" stroke="#06b6d4" stroke-width="1.5"/>
+                  <path d="M 0 0 L 12 69 A 70 70 0 0 1 -70 8 Z" fill="rgba(245,158,11,0.6)" stroke="#f59e0b" stroke-width="1.5"/>
+                  <path d="M 0 0 L -70 8 A 70 70 0 0 1 -8 -69 Z" fill="rgba(16,185,129,0.6)" stroke="#10b981" stroke-width="1.5"/>
+                  <path d="M 0 0 L -8 -69 A 70 70 0 0 1 70 0 Z" fill="rgba(99,102,241,0.6)" stroke="#818cf8" stroke-width="1.5"/>
+                  <circle cx="0" cy="0" r="4" fill="#fff"/>
+                  <text x="0" y="5" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">360°</text>
+                </g>
+                <text x="240" y="225" fill="#34d399" font-size="13" font-weight="bold" text-anchor="middle">✓ The 4 exterior angles form a complete 360° circle!</text>
+              `}
+            </svg>
+
+            <div style="margin-top:8px; display:flex; justify-content:center; gap:10px; font-size:12.5px;">
+              <span style="color:#818cf8;">e₁ = 95°</span> +
+              <span style="color:#06b6d4;">e₂ = 70°</span> +
+              <span style="color:#f59e0b;">e₃ = 105°</span> +
+              <span style="color:#10b981;">e₄ = 90°</span> =
+              <strong style="color:#fcd34d;">360°</strong>
+            </div>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <button class="sim-btn" id="sweepBtn">${collected ? 'View Along Polygon Perimeter' : 'Collect All Angles to Common Origin'}</button>
+      `;
+
+      document.getElementById('sweepBtn').onclick = () => {
+        collected = !collected;
+        updateUI();
+      };
+
+      updateUI();
+    }
+
+    // Sim 5: Parallelogram Parallel Rails & Co-Interior Angles
+    function renderSim5(vp, controls, title, badge) {
+      title.innerHTML = '<span>🛤️</span> Parallelogram Parallel Rails & Angle Laws';
+      badge.textContent = 'Co-Interior Supplementary Angles';
+
+      let a = 200; // base
+      let b = 130; // slant
+      let angle = 65; // degrees
+
+      function updateUI() {
+        const rad = (angle * Math.PI) / 180;
+        const dx = b * Math.cos(rad);
+        const dy = b * Math.sin(rad);
+
+        const svgW = 480;
+        const svgH = 250;
+        const sx = 100;
+        const sy = 190;
+
+        // Vertices A=(sx, sy), B=(sx+a, sy), C=(sx+a+dx, sy-dy), D=(sx+dx, sy-dy)
+        const A = [sx, sy];
+        const B = [sx + a, sy];
+        const C = [sx + a + dx, sy - dy];
+        const D = [sx + dx, sy - dy];
+
+        const oppAngle = 180 - angle;
+
+        vp.innerHTML = `
+          <div style="width:100%; max-width:500px; text-align:center;">
+            <svg viewBox="0 0 ${svgW} ${svgH}" style="width:100%; height:220px; background:#090d16; border-radius:10px; border:1px solid #1e293b;">
+              <!-- Infinite Parallel Rail Lines -->
+              <line x1="20" y1="${sy}" x2="460" y2="${sy}" stroke="#334155" stroke-dasharray="4,4" stroke-width="1.5"/>
+              <line x1="20" y1="${sy - dy}" x2="460" y2="${sy - dy}" stroke="#334155" stroke-dasharray="4,4" stroke-width="1.5"/>
+
+              <!-- Parallelogram Body -->
+              <polygon points="${A[0]},${A[1]} ${B[0]},${B[1]} ${C[0]},${C[1]} ${D[0]},${D[1]}"
+                       fill="rgba(99, 102, 241, 0.2)" stroke="#6366f1" stroke-width="2.5"/>
+
+              <!-- Vertex Labels -->
+              <text x="${A[0] - 12}" y="${A[1] + 16}" fill="#38bdf8" font-weight="bold">A (${angle}°)</text>
+              <text x="${B[0] + 6}" y="${B[1] + 16}" fill="#f43f5e" font-weight="bold">B (${oppAngle}°)</text>
+              <text x="${C[0] + 8}" y="${C[1] - 8}" fill="#38bdf8" font-weight="bold">C (${angle}°)</text>
+              <text x="${D[0] - 20}" y="${D[1] - 8}" fill="#f43f5e" font-weight="bold">D (${oppAngle}°)</text>
+
+              <!-- Rail Indicators -->
+              <text x="30" y="${sy - 6}" fill="#64748b" font-size="10">Railway 1 (AB)</text>
+              <text x="30" y="${sy - dy - 6}" fill="#64748b" font-size="10">Railway 2 (DC ∥ AB)</text>
+            </svg>
+
+            <div style="margin-top:8px; display:flex; justify-content:space-around; font-size:12px; background:#0f172a; padding:8px; border-radius:8px;">
+              <span style="color:#38bdf8;">Opposite: ∠A = ∠C = <strong>${angle}°</strong></span>
+              <span style="color:#f43f5e;">Opposite: ∠B = ∠D = <strong>${oppAngle}°</strong></span>
+              <span style="color:#34d399;">Consecutive: <strong>${angle}° + ${oppAngle}° = 180°</strong></span>
+            </div>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <div class="sim-slider-group">
+          <span>Angle ∠A:</span>
+          <input type="range" id="angSlider" min="40" max="140" value="${angle}" step="5">
+          <span id="angVal">${angle}°</span>
+        </div>
+        <button class="sim-btn" id="rightAngleBtn">Make 90° (Rectangle)</button>
+        <button class="sim-btn" id="skew60Btn">Set to 60°</button>
+      `;
+
+      const angSlider = document.getElementById('angSlider');
+      angSlider.oninput = (e) => {
+        angle = parseInt(e.target.value);
+        document.getElementById('angVal').textContent = `${angle}°`;
+        updateUI();
+      };
+
+      document.getElementById('rightAngleBtn').onclick = () => {
+        angle = 90;
+        angSlider.value = 90;
+        document.getElementById('angVal').textContent = `90°`;
+        updateUI();
+      };
+
+      document.getElementById('skew60Btn').onclick = () => {
+        angle = 60;
+        angSlider.value = 60;
+        document.getElementById('angVal').textContent = `60°`;
+        updateUI();
+      };
+
+      updateUI();
+    }
+
+    // Sim 6: Parallelogram Diagonal Bisection & Centroid Lab
+    function renderSim6(vp, controls, title, badge) {
+      title.innerHTML = '<span>✂️</span> Parallelogram Mutual Diagonal Bisection';
+      badge.textContent = 'Midpoint Invariance & Vector Balance';
+
+      let a = 220;
+      let b = 130;
+      let skew = 50;
+
+      function updateUI() {
+        const sx = 100;
+        const sy = 180;
+        const h = 110;
+
+        const A = [sx, sy];
+        const B = [sx + a, sy];
+        const C = [sx + a + skew, sy - h];
+        const D = [sx + skew, sy - h];
+
+        // Midpoint O
+        const O = [(A[0] + C[0])/2, (A[1] + C[1])/2];
+
+        // Diagonal lengths
+        const d1 = Math.hypot(C[0] - A[0], C[1] - A[1]).toFixed(1);
+        const d2 = Math.hypot(D[0] - B[0], D[1] - B[1]).toFixed(1);
+
+        const oa = (d1 / 2).toFixed(1);
+        const ob = (d2 / 2).toFixed(1);
+
+        vp.innerHTML = `
+          <div style="width:100%; max-width:500px; text-align:center;">
+            <svg viewBox="0 0 480 240" style="width:100%; height:220px; background:#090d16; border-radius:10px; border:1px solid #1e293b;">
+              <!-- Parallelogram -->
+              <polygon points="${A[0]},${A[1]} ${B[0]},${B[1]} ${C[0]},${C[1]} ${D[0]},${D[1]}"
+                       fill="rgba(99, 102, 241, 0.15)" stroke="#6366f1" stroke-width="2"/>
+
+              <!-- Diagonal AC (Cyan) -->
+              <line x1="${A[0]}" y1="${A[1]}" x2="${C[0]}" y2="${C[1]}" stroke="#06b6d4" stroke-width="2"/>
+              <!-- Diagonal BD (Amber) -->
+              <line x1="${B[0]}" y1="${B[1]}" x2="${D[0]}" y2="${D[1]}" stroke="#f59e0b" stroke-width="2"/>
+
+              <!-- Central Midpoint O -->
+              <circle cx="${O[0]}" cy="${O[1]}" r="5" fill="#10b981"/>
+              <text x="${O[0] + 8}" y="${O[1] - 8}" fill="#34d399" font-weight="bold" font-size="13">O (Centroid)</text>
+
+              <!-- Tick marks on OA and OC -->
+              <circle cx="${(A[0]+O[0])/2}" cy="${(A[1]+O[1])/2}" r="3" fill="#06b6d4"/>
+              <circle cx="${(C[0]+O[0])/2}" cy="${(C[1]+O[1])/2}" r="3" fill="#06b6d4"/>
+
+              <!-- Vertices -->
+              <text x="${A[0] - 12}" y="${A[1] + 16}" fill="#fff" font-weight="bold">A</text>
+              <text x="${B[0] + 6}" y="${B[1] + 16}" fill="#fff" font-weight="bold">B</text>
+              <text x="${C[0] + 6}" y="${C[1] - 8}" fill="#fff" font-weight="bold">C</text>
+              <text x="${D[0] - 14}" y="${D[1] - 8}" fill="#fff" font-weight="bold">D</text>
+            </svg>
+
+            <div style="margin-top:8px; display:flex; justify-content:space-around; font-size:12px; background:#0f172a; padding:8px; border-radius:8px;">
+              <span style="color:#06b6d4;">Diagonal AC = ${d1} (OA = OC = <strong>${oa}</strong>)</span>
+              <span style="color:#f59e0b;">Diagonal BD = ${d2} (OB = OD = <strong>${ob}</strong>)</span>
+            </div>
+            <div style="margin-top:4px; font-size:11.5px; color:#94a3b8;">
+              ✓ Point O bisects both diagonals simultaneously ($OA = OC$ and $OB = OD$).
+            </div>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <button class="sim-btn" id="sNormal">Standard Parallelogram</button>
+        <button class="sim-btn" id="sSkew">High Shear Parallelogram</button>
+      `;
+
+      document.getElementById('sNormal').onclick = () => { skew = 50; updateUI(); };
+      document.getElementById('sSkew').onclick = () => { skew = 120; updateUI(); };
+
+      updateUI();
+    }
+
+    // Sim 7: Parallelogram Diagnostic Test Chamber
+    function renderSim7(vp, controls, title, badge) {
+      title.innerHTML = '<span>🧪</span> Parallelogram Diagnostic Test Chamber';
+      badge.textContent = 'Sufficient Condition Validator';
+
+      let testCase = 'case3'; // default one pair equal and parallel
+
+      const cases = {
+        case1: {
+          name: '1. Both Pairs Opposite Sides Equal',
+          valid: true,
+          desc: 'AB = CD and BC = AD. By SSS congruence on diagonal split, opposite angles and parallelism follow automatically.',
+          shape: 'polygon points="120,170 320,170 360,70 160,70"'
+        },
+        case2: {
+          name: '2. Both Pairs Opposite Angles Equal',
+          valid: true,
+          desc: '∠A = ∠C and ∠B = ∠D. Since sum = 360°, consecutive angles sum to 180°, establishing parallel rails.',
+          shape: 'polygon points="120,170 320,170 360,70 160,70"'
+        },
+        case3: {
+          name: '3. One Pair Equal AND Parallel',
+          valid: true,
+          desc: 'AB ∥ CD and AB = CD. Fastest geometric proof! SAS congruence proves remaining pair must be equal and parallel.',
+          shape: 'polygon points="120,170 320,170 360,70 160,70"'
+        },
+        case4: {
+          name: '4. Diagonals Bisect Each Other',
+          valid: true,
+          desc: 'OA = OC and OB = OD. Central vertical ASA congruence guarantees opposite sides are equal and parallel.',
+          shape: 'polygon points="120,170 320,170 360,70 160,70"'
+        },
+        case5: {
+          name: '5. (TRAP) One Pair Parallel, OTHER Pair Equal',
+          valid: false,
+          desc: 'TRAP! AB ∥ CD, but non-parallel legs AD = BC. This is an Isosceles Trapezium! It is NOT a parallelogram!',
+          shape: 'polygon points="80,170 360,170 300,70 140,70"'
+        }
+      };
+
+      function updateUI() {
+        const c = cases[testCase];
+
+        vp.innerHTML = `
+          <div style="width:100%; max-width:500px; text-align:center;">
+            <svg viewBox="0 0 440 220" style="width:100%; height:190px; background:#090d16; border-radius:10px; border:1px solid #1e293b;">
+              <${c.shape}
+                fill="${c.valid ? 'rgba(16,185,129,0.2)' : 'rgba(244,63,94,0.2)'}"
+                stroke="${c.valid ? '#10b981' : '#f43f5e'}" stroke-width="2.5"/>
+              <text x="220" y="30" fill="${c.valid ? '#34d399' : '#fb7185'}" font-size="14" font-weight="bold" text-anchor="middle">
+                ${c.valid ? '✓ GUARANTEED PARALLELOGRAM' : '✗ FAILED TEST (TRAP: ISOSCELES TRAPEZIUM)'}
+              </text>
+            </svg>
+
+            <div style="margin-top:10px; background:#0f172a; border:1px solid ${c.valid ? '#10b981' : '#f43f5e'}; border-radius:8px; padding:10px 14px; font-size:12.5px; text-align:left; color:#cbd5e1;">
+              <strong style="color:${c.valid ? '#34d399' : '#fb7185'};">${c.name}:</strong> ${c.desc}
+            </div>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <button class="sim-btn" id="btnC1">Sides Equal</button>
+        <button class="sim-btn" id="btnC2">Angles Equal</button>
+        <button class="sim-btn active" id="btnC3">1 Pair = & ∥</button>
+        <button class="sim-btn" id="btnC4">Diags Bisect</button>
+        <button class="sim-btn" style="border-color:#f43f5e;" id="btnC5">Trap Test</button>
+      `;
+
+      document.getElementById('btnC1').onclick = () => { testCase = 'case1'; updateUI(); };
+      document.getElementById('btnC2').onclick = () => { testCase = 'case2'; updateUI(); };
+      document.getElementById('btnC3').onclick = () => { testCase = 'case3'; updateUI(); };
+      document.getElementById('btnC4').onclick = () => { testCase = 'case4'; updateUI(); };
+      document.getElementById('btnC5').onclick = () => { testCase = 'case5'; updateUI(); };
+
+      updateUI();
+    }
+
+    // Sim 8: Rhombus Equilateral Symmetry & Perpendicular Diagonals
+    function renderSim8(vp, controls, title, badge) {
+      title.innerHTML = '<span>💎</span> Rhombus Equilateral Symmetry & Perpendicular Diagonals';
+      badge.textContent = 'd₁ ⊥ d₂ & Vertex Angle Bisection';
+
+      let theta = 60; // acute angle
+      const s = 140; // side length
+
+      function updateUI() {
+        const rad = (theta * Math.PI) / 180;
+        const halfT = rad / 2;
+        // Diagonals d1 and d2
+        const d1 = 2 * s * Math.cos(halfT); // horizontal diagonal
+        const d2 = 2 * s * Math.sin(halfT); // vertical diagonal
+
+        const cx = 240;
+        const cy = 120;
+
+        const A = [cx - d1/2, cy];
+        const B = [cx, cy - d2/2];
+        const C = [cx + d1/2, cy];
+        const D = [cx, cy + d2/2];
+
+        vp.innerHTML = `
+          <div style="width:100%; max-width:500px; text-align:center;">
+            <svg viewBox="0 0 480 240" style="width:100%; height:220px; background:#090d16; border-radius:10px; border:1px solid #1e293b;">
+              <!-- Rhombus outline -->
+              <polygon points="${A[0]},${A[1]} ${B[0]},${B[1]} ${C[0]},${C[1]} ${D[0]},${D[1]}"
+                       fill="rgba(6, 182, 212, 0.18)" stroke="#06b6d4" stroke-width="2.5"/>
+
+              <!-- Perpendicular Diagonals -->
+              <line x1="${A[0]}" y1="${A[1]}" x2="${C[0]}" y2="${C[1]}" stroke="#f59e0b" stroke-width="2"/>
+              <line x1="${B[0]}" y1="${B[1]}" x2="${D[0]}" y2="${D[1]}" stroke="#f59e0b" stroke-width="2"/>
+
+              <!-- 90 degree perpendicular marker at center -->
+              <rect x="${cx}" y="${cy - 12}" width="12" height="12" fill="none" stroke="#fcd34d" stroke-width="1.5"/>
+
+              <!-- Equal side hash marks -->
+              <circle cx="${(A[0]+B[0])/2}" cy="${(A[1]+B[1])/2}" r="3" fill="#38bdf8"/>
+              <circle cx="${(B[0]+C[0])/2}" cy="${(B[1]+C[1])/2}" r="3" fill="#38bdf8"/>
+              <circle cx="${(C[0]+D[0])/2}" cy="${(C[1]+D[1])/2}" r="3" fill="#38bdf8"/>
+              <circle cx="${(D[0]+A[0])/2}" cy="${(D[1]+A[1])/2}" r="3" fill="#38bdf8"/>
+
+              <!-- Vertices -->
+              <text x="${A[0] - 16}" y="${A[1] + 4}" fill="#fff" font-weight="bold">A</text>
+              <text x="${B[0] - 4}" y="${B[1] - 8}" fill="#fff" font-weight="bold">B</text>
+              <text x="${C[0] + 8}" y="${C[1] + 4}" fill="#fff" font-weight="bold">C</text>
+              <text x="${D[0] - 4}" y="${D[1] + 16}" fill="#fff" font-weight="bold">D</text>
+
+              <!-- Center label -->
+              <text x="${cx + 16}" y="${cy - 14}" fill="#fcd34d" font-size="11" font-weight="bold">90°</text>
+            </svg>
+
+            <div style="margin-top:8px; display:flex; justify-content:space-around; font-size:12px; background:#0f172a; padding:8px; border-radius:8px;">
+              <span style="color:#06b6d4;">Side s = <strong>${s}</strong> (All 4 Equal)</span>
+              <span style="color:#f59e0b;">Diagonals: <strong>d₁ ⊥ d₂ (90°)</strong></span>
+              <span style="color:#34d399;">Bisected Corner: <strong>${(theta/2).toFixed(1)}°</strong></span>
+            </div>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <div class="sim-slider-group">
+          <span>Acute Angle:</span>
+          <input type="range" id="thSlider" min="40" max="85" value="${theta}" step="5">
+          <span id="thVal">${theta}°</span>
+        </div>
+        <button class="sim-btn" id="r60">60° Rhombus</button>
+        <button class="sim-btn" id="rSquare">90° (Square Limit)</button>
+      `;
+
+      const thSlider = document.getElementById('thSlider');
+      thSlider.oninput = (e) => {
+        theta = parseInt(e.target.value);
+        document.getElementById('thVal').textContent = `${theta}°`;
+        updateUI();
+      };
+
+      document.getElementById('r60').onclick = () => {
+        theta = 60;
+        thSlider.value = 60;
+        document.getElementById('thVal').textContent = `60°`;
+        updateUI();
+      };
+
+      document.getElementById('rSquare').onclick = () => {
+        theta = 89;
+        thSlider.value = 89;
+        document.getElementById('thVal').textContent = `90°`;
+        updateUI();
+      };
+
+      updateUI();
+    }
+
+    // Sim 9: Rhombus Area Dissection: (1/2) × d₁ × d₂
+    function renderSim9(vp, controls, title, badge) {
+      title.innerHTML = '<span>🧩</span> Rhombus Area Dissection: (1/2) × d₁ × d₂';
+      badge.textContent = 'Triangle Dissection & Rectangle Proof';
+
+      let state = 'rhombus'; // 'rhombus' or 'rectangle'
+      const d1 = 200;
+      const d2 = 120;
+
+      function updateUI() {
+        const area = (0.5 * d1 * d2).toFixed(0);
+
+        vp.innerHTML = `
+          <div style="width:100%; max-width:500px; text-align:center;">
+            <svg viewBox="0 0 480 230" style="width:100%; height:200px; background:#090d16; border-radius:10px; border:1px solid #1e293b;">
+              ${state === 'rhombus' ? `
+                <!-- Central Rhombus split into 4 colored right triangles -->
+                <g transform="translate(240, 115)">
+                  <!-- T1: Top-Right (Cyan) -->
+                  <polygon points="0,0 ${d1/2},0 0,${-d2/2}" fill="rgba(6,182,212,0.6)" stroke="#06b6d4" stroke-width="1.5"/>
+                  <!-- T2: Top-Left (Rose) -->
+                  <polygon points="0,0 ${-d1/2},0 0,${-d2/2}" fill="rgba(244,63,94,0.6)" stroke="#f43f5e" stroke-width="1.5"/>
+                  <!-- T3: Bottom-Left (Amber) -->
+                  <polygon points="0,0 ${-d1/2},0 0,${d2/2}" fill="rgba(245,158,11,0.6)" stroke="#f59e0b" stroke-width="1.5"/>
+                  <!-- T4: Bottom-Right (Emerald) -->
+                  <polygon points="0,0 ${d1/2},0 0,${d2/2}" fill="rgba(16,185,129,0.6)" stroke="#10b981" stroke-width="1.5"/>
+                </g>
+                <text x="240" y="210" fill="#e2e8f0" font-size="12" text-anchor="middle">Rhombus: 4 congruent right triangles</text>
+              ` : `
+                <!-- Reassembled into a Rectangle of width d1 and height d2/2 -->
+                <g transform="translate(140, 75)">
+                  <rect x="0" y="0" width="${d1}" height="${d2/2}" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="4,4"/>
+                  <!-- Left half -->
+                  <polygon points="0,0 ${d1/2},0 0,${d2/2}" fill="rgba(244,63,94,0.6)" stroke="#f43f5e" stroke-width="1.5"/>
+                  <polygon points="${d1/2},0 ${d1/2},${d2/2} 0,${d2/2}" fill="rgba(245,158,11,0.6)" stroke="#f59e0b" stroke-width="1.5"/>
+                  <!-- Right half -->
+                  <polygon points="${d1/2},0 ${d1},0 ${d1/2},${d2/2}" fill="rgba(6,182,212,0.6)" stroke="#06b6d4" stroke-width="1.5"/>
+                  <polygon points="${d1},0 ${d1},${d2/2} ${d1/2},${d2/2}" fill="rgba(16,185,129,0.6)" stroke="#10b981" stroke-width="1.5"/>
+                </g>
+                <text x="240" y="200" fill="#34d399" font-size="12" font-weight="bold" text-anchor="middle">
+                  Reassembled Rectangle = Length d₁ (${d1}) × Height (d₂/2) (${d2/2})
+                </text>
+              `}
+            </svg>
+
+            <div style="margin-top:8px; background:#0f172a; padding:8px 14px; border-radius:8px; font-size:12.5px; color:#cbd5e1;">
+              Formula: $\text{Area} = \frac{1}{2} \times d_1 \times d_2 = \frac{1}{2} \times ${d1} \times ${d2} = <strong style="color:#fcd34d;">${area}</strong> sq units
+            </div>
+          </div>
+        `;
+        triggerMathRender(vp);
+      }
+
+      controls.innerHTML = `
+        <button class="sim-btn" id="toggleReassembleBtn">
+          ${state === 'rhombus' ? 'Rearrange 4 Triangles into Rectangle' : 'Return to Rhombus'}
+        </button>
+      `;
+
+      document.getElementById('toggleReassembleBtn').onclick = () => {
+        state = (state === 'rhombus') ? 'rectangle' : 'rhombus';
+        updateUI();
+      };
+
+      updateUI();
+    }
+
+    // Sim 10: Quadrilateral Linkage vs. Triangular Bracing
+    function renderSim10(vp, controls, title, badge) {
+      title.innerHTML = '<span>🏗️</span> Quadrilateral Linkage vs. Triangular Bracing';
+      badge.textContent = 'Degrees of Freedom & Structural Stability';
+
+      let shear = 30; // degrees
+      let hasBrace = false;
+
+      function updateUI() {
+        const baseW = 200;
+        const sideH = 120;
+        const rad = (shear * Math.PI) / 180;
+        const dx = sideH * Math.sin(rad);
+        const dy = sideH * Math.cos(rad);
+
+        const A = [120, 190];
+        const B = [120 + baseW, 190];
+        const C = [120 + baseW + dx, 190 - dy];
+        const D = [120 + dx, 190 - dy];
+
+        vp.innerHTML = `
+          <div style="width:100%; max-width:500px; text-align:center;">
+            <svg viewBox="0 0 480 230" style="width:100%; height:200px; background:#090d16; border-radius:10px; border:1px solid #1e293b;">
+              <!-- 4 Bars -->
+              <polygon points="${A[0]},${A[1]} ${B[0]},${B[1]} ${C[0]},${C[1]} ${D[0]},${D[1]}"
+                       fill="${hasBrace ? 'rgba(16,185,129,0.15)' : 'rgba(244,63,94,0.15)'}"
+                       stroke="${hasBrace ? '#10b981' : '#f43f5e'}" stroke-width="4" stroke-linejoin="round"/>
+
+              <!-- Diagonal Steel Brace -->
+              ${hasBrace ? `
+                <line x1="${A[0]}" y1="${A[1]}" x2="${C[0]}" y2="${C[1]}" stroke="#10b981" stroke-width="4.5"/>
+                <text x="${(A[0]+C[0])/2 + 10}" y="${(A[1]+C[1])/2 - 10}" fill="#34d399" font-size="12" font-weight="bold">Diagonal Brace Pin</text>
+              ` : ''}
+
+              <!-- 4 Pin Joints -->
+              <circle cx="${A[0]}" cy="${A[1]}" r="7" fill="#e2e8f0" stroke="#0f172a" stroke-width="2"/>
+              <circle cx="${B[0]}" cy="${B[1]}" r="7" fill="#e2e8f0" stroke="#0f172a" stroke-width="2"/>
+              <circle cx="${C[0]}" cy="${C[1]}" r="7" fill="#e2e8f0" stroke="#0f172a" stroke-width="2"/>
+              <circle cx="${D[0]}" cy="${D[1]}" r="7" fill="#e2e8f0" stroke="#0f172a" stroke-width="2"/>
+
+              <!-- Status Banner -->
+              <text x="240" y="25" fill="${hasBrace ? '#34d399' : '#fb7185'}" font-size="13" font-weight="bold" text-anchor="middle">
+                ${hasBrace ? '🔒 RIGID STRUCTURE (0 Degrees of Freedom: Stable Truss)' : '⚠️ FLEXIBLE LINKAGE (1 Degree of Freedom: Deforms Under Force)'}
+              </text>
+            </svg>
+
+            <div style="margin-top:8px; font-size:12px; color:#cbd5e1;">
+              ${hasBrace ?
+                'With the diagonal installed, the quadrilateral is split into two rigid triangles. By SSS congruence, no angles can change!' :
+                'Drag the shear slider below to observe how the four-bar frame deforms without altering any side length!'
+              }
+            </div>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <div class="sim-slider-group">
+          <span>Shear Force:</span>
+          <input type="range" id="shSlider" min="-45" max="45" value="${shear}" step="5" ${hasBrace ? 'disabled' : ''}>
+          <span id="shVal">${shear}°</span>
+        </div>
+        <button class="sim-btn ${hasBrace ? 'active' : ''}" id="braceBtn">
+          ${hasBrace ? 'Remove Diagonal Brace (Unlock)' : 'Install Diagonal Brace (Lock)'}
+        </button>
+      `;
+
+      const shSlider = document.getElementById('shSlider');
+      shSlider.oninput = (e) => {
+        if (!hasBrace) {
+          shear = parseInt(e.target.value);
+          document.getElementById('shVal').textContent = `${shear}°`;
+          updateUI();
+        }
+      };
+
+      document.getElementById('braceBtn').onclick = () => {
+        hasBrace = !hasBrace;
+        renderSim10(vp, controls, title, badge);
+      };
+
+      updateUI();
+    }
+
+    // Sim 11: Varignon's Theorem & Plane Tessellation
+    function renderSim11(vp, controls, title, badge) {
+      title.innerHTML = '<span>✨</span> Varignon\'s Theorem & Plane Tessellation';
+      badge.textContent = 'Midpoint Parallelogram & Gapless Tiling';
+
+      let mode = 'varignon'; // 'varignon' or 'tessellation'
+
+      const A = [100, 50];
+      const B = [380, 70];
+      const C = [420, 200];
+      const D = [80, 180];
+
+      // Midpoints
+      const P = [(A[0]+B[0])/2, (A[1]+B[1])/2];
+      const Q = [(B[0]+C[0])/2, (B[1]+C[1])/2];
+      const R = [(C[0]+D[0])/2, (C[1]+D[1])/2];
+      const S = [(D[0]+A[0])/2, (D[1]+A[1])/2];
+
+      function updateUI() {
+        vp.innerHTML = `
+          <div style="width:100%; max-width:500px; text-align:center;">
+            <svg viewBox="0 0 480 240" style="width:100%; height:220px; background:#090d16; border-radius:10px; border:1px solid #1e293b;">
+              ${mode === 'varignon' ? `
+                <!-- Outer Asymmetric Quadrilateral ABCD -->
+                <polygon points="${A[0]},${A[1]} ${B[0]},${B[1]} ${C[0]},${C[1]} ${D[0]},${D[1]}"
+                         fill="rgba(30,41,59,0.6)" stroke="#475569" stroke-width="2"/>
+
+                <!-- Varignon Midpoint Parallelogram PQRS -->
+                <polygon points="${P[0]},${P[1]} ${Q[0]},${Q[1]} ${R[0]},${R[1]} ${S[0]},${S[1]}"
+                         fill="rgba(245,158,11,0.25)" stroke="#f59e0b" stroke-width="2.5"/>
+
+                <!-- Midpoint dots -->
+                <circle cx="${P[0]}" cy="${P[1]}" r="4" fill="#fbbf24"/>
+                <text x="${P[0]}" y="${P[1] - 8}" fill="#fcd34d" font-size="11" font-weight="bold">P</text>
+
+                <circle cx="${Q[0]}" cy="${Q[1]}" r="4" fill="#fbbf24"/>
+                <text x="${Q[0] + 8}" y="${Q[1]}" fill="#fcd34d" font-size="11" font-weight="bold">Q</text>
+
+                <circle cx="${R[0]}" cy="${R[1]}" r="4" fill="#fbbf24"/>
+                <text x="${R[0]}" y="${R[1] + 14}" fill="#fcd34d" font-size="11" font-weight="bold">R</text>
+
+                <circle cx="${S[0]}" cy="${S[1]}" r="4" fill="#fbbf24"/>
+                <text x="${S[0] - 14}" y="${S[1]}" fill="#fcd34d" font-size="11" font-weight="bold">S</text>
+
+                <text x="240" y="130" fill="#fcd34d" font-size="12" font-weight="bold" text-anchor="middle">
+                  Varignon ∥gm (Area = 50%)
+                </text>
+              ` : `
+                <!-- 2x2 Tessellation grid demonstrating seamless plane tiling -->
+                <g transform="scale(0.5) translate(40, 20)">
+                  <!-- 4 identical tiles rotated 180 degrees meeting at center -->
+                  <polygon points="100,50 380,70 420,200 80,180" fill="rgba(6,182,212,0.4)" stroke="#06b6d4" stroke-width="2"/>
+                  <polygon points="420,200 700,220 740,350 400,330" fill="rgba(244,63,94,0.4)" stroke="#f43f5e" stroke-width="2"/>
+                  <polygon points="80,180 420,200 400,330 60,310" fill="rgba(245,158,11,0.4)" stroke="#f59e0b" stroke-width="2"/>
+                  <polygon points="400,330 740,350 720,480 380,460" fill="rgba(16,185,129,0.4)" stroke="#10b981" stroke-width="2"/>
+                </g>
+                <text x="240" y="225" fill="#34d399" font-size="12" font-weight="bold" text-anchor="middle">
+                  Gapless Plane Tiling: 4 angles meet at every vertex = 360°
+                </text>
+              `}
+            </svg>
+
+            <div style="margin-top:8px; font-size:12px; color:#cbd5e1;">
+              <strong>Varignon's Law:</strong> Joining the midpoints of ANY 4-gon always creates a parallelogram whose area is exactly <strong>50%</strong> of the original!
+            </div>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <button class="sim-btn" id="togVMode">
+          ${mode === 'varignon' ? 'Show Plane Tessellation (Tiling)' : 'Show Varignon Midpoints'}
+        </button>
+      `;
+
+      document.getElementById('togVMode').onclick = () => {
+        mode = (mode === 'varignon') ? 'tessellation' : 'varignon';
+        updateUI();
+      };
+
+      updateUI();
+    }
+
+    // Sim 12: Kite Bilateral Symmetry & Cross Diagonals
+    function renderSim12(vp, controls, title, badge) {
+      title.innerHTML = '<span>🪁</span> Kite Bilateral Symmetry & Axis of Reflection';
+      badge.textContent = 'Perpendicular Cross & Equal Wings';
+
+      let topL = 70;
+      let botL = 130;
+      let wingW = 100;
+
+      function updateUI() {
+        const cx = 240;
+        const cy = 110;
+
+        const A = [cx, cy - topL];
+        const B = [cx + wingW, cy];
+        const C = [cx, cy + botL];
+        const D = [cx - wingW, cy];
+
+        const d1 = (topL + botL); // vertical diagonal AC
+        const d2 = (2 * wingW);   // horizontal diagonal BD
+        const area = (0.5 * d1 * d2).toFixed(0);
+
+        vp.innerHTML = `
+          <div style="width:100%; max-width:500px; text-align:center;">
+            <svg viewBox="0 0 480 260" style="width:100%; height:230px; background:#090d16; border-radius:10px; border:1px solid #1e293b;">
+              <!-- Kite body -->
+              <polygon points="${A[0]},${A[1]} ${B[0]},${B[1]} ${C[0]},${C[1]} ${D[0]},${D[1]}"
+                       fill="rgba(168, 85, 247, 0.2)" stroke="#a855f7" stroke-width="2.5"/>
+
+              <!-- Axis of symmetry (AC) -->
+              <line x1="${A[0]}" y1="${A[1] - 15}" x2="${C[0]}" y2="${C[1] + 15}"
+                    stroke="#ec4899" stroke-width="2" stroke-dasharray="4,4"/>
+
+              <!-- Cross diagonal (BD) -->
+              <line x1="${D[0]}" y1="${D[1]}" x2="${B[0]}" y2="${B[1]}"
+                    stroke="#38bdf8" stroke-width="2"/>
+
+              <!-- 90 deg right-angle mark at M -->
+              <rect x="${cx}" y="${cy - 10}" width="10" height="10" fill="none" stroke="#fcd34d" stroke-width="1.5"/>
+
+              <!-- Equal wing angles at B and D -->
+              <circle cx="${B[0]}" cy="${B[1]}" r="12" fill="none" stroke="#10b981" stroke-width="2"/>
+              <circle cx="${D[0]}" cy="${D[1]}" r="12" fill="none" stroke="#10b981" stroke-width="2"/>
+              <text x="${B[0] + 14}" y="${B[1] + 4}" fill="#34d399" font-size="11" font-weight="bold">∠B = ∠D</text>
+
+              <!-- Vertices -->
+              <text x="${A[0]}" y="${A[1] - 8}" fill="#fff" font-weight="bold" text-anchor="middle">A</text>
+              <text x="${C[0]}" y="${C[1] + 16}" fill="#fff" font-weight="bold" text-anchor="middle">C</text>
+              <text x="${D[0] - 14}" y="${D[1] + 4}" fill="#fff" font-weight="bold">D</text>
+              <text x="${B[0] + 6}" y="${B[1] + 4}" fill="#fff" font-weight="bold">B</text>
+            </svg>
+
+            <div style="margin-top:6px; display:flex; justify-content:space-around; font-size:12px; background:#0f172a; padding:6px; border-radius:8px;">
+              <span style="color:#ec4899;">Axis of Symmetry: <strong>AC (d₁ = ${d1})</strong></span>
+              <span style="color:#38bdf8;">Bisected Cross: <strong>BD (d₂ = ${d2})</strong></span>
+              <span style="color:#fcd34d;">Area = <strong>${area}</strong></span>
+            </div>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <div class="sim-slider-group">
+          <span>Wing Width:</span>
+          <input type="range" id="wSlider" min="60" max="140" value="${wingW}" step="10">
+          <span id="wVal">${wingW}</span>
+        </div>
+        <div class="sim-slider-group">
+          <span>Tail Length:</span>
+          <input type="range" id="tSlider" min="90" max="150" value="${botL}" step="10">
+          <span id="tVal">${botL}</span>
+        </div>
+      `;
+
+      document.getElementById('wSlider').oninput = (e) => {
+        wingW = parseInt(e.target.value);
+        document.getElementById('wVal').textContent = wingW;
+        updateUI();
+      };
+
+      document.getElementById('tSlider').oninput = (e) => {
+        botL = parseInt(e.target.value);
+        document.getElementById('tVal').textContent = botL;
+        updateUI();
+      };
+
+      updateUI();
+    }
+
+    // Sim 13: Trapezium Base Rails & Leg Transversals
+    function renderSim13(vp, controls, title, badge) {
+      title.innerHTML = '<span>📏</span> Trapezium Base Rails & Leg Transversals';
+      badge.textContent = 'At Least One Parallel Pair (a ∥ b)';
+
+      let topBase = 140;
+      let botBase = 260;
+      let height = 110;
+      let skew = 30;
+
+      function updateUI() {
+        const sx = 110;
+        const sy = 190;
+
+        const A = [sx, sy];
+        const B = [sx + botBase, sy];
+        const C = [sx + skew + topBase, sy - height];
+        const D = [sx + skew, sy - height];
+
+        // Angles approximation
+        const angleA = Math.round(Math.atan2(height, skew) * 180 / Math.PI);
+        const angleD = 180 - angleA;
+
+        vp.innerHTML = `
+          <div style="width:100%; max-width:500px; text-align:center;">
+            <svg viewBox="0 0 480 240" style="width:100%; height:210px; background:#090d16; border-radius:10px; border:1px solid #1e293b;">
+              <!-- Infinite Parallel Base Lines -->
+              <line x1="20" y1="${sy}" x2="460" y2="${sy}" stroke="#334155" stroke-dasharray="4,4" stroke-width="1.5"/>
+              <line x1="20" y1="${sy - height}" x2="460" y2="${sy - height}" stroke="#334155" stroke-dasharray="4,4" stroke-width="1.5"/>
+
+              <!-- Trapezium Polygon -->
+              <polygon points="${A[0]},${A[1]} ${B[0]},${B[1]} ${C[0]},${C[1]} ${D[0]},${D[1]}"
+                       fill="rgba(245, 158, 11, 0.2)" stroke="#f59e0b" stroke-width="2.5"/>
+
+              <!-- Altitude Line h -->
+              <line x1="${D[0]}" y1="${D[1]}" x2="${D[0]}" y2="${sy}" stroke="#ec4899" stroke-width="2" stroke-dasharray="3,3"/>
+              <rect x="${D[0]}" y="${sy - 10}" width="10" height="10" fill="none" stroke="#ec4899" stroke-width="1.5"/>
+              <text x="${D[0] + 6}" y="${sy - height/2}" fill="#ec4899" font-size="11" font-weight="bold">h = ${height}</text>
+
+              <!-- Dimension tags -->
+              <text x="${(D[0]+C[0])/2}" y="${D[1] - 8}" fill="#fcd34d" font-size="11" font-weight="bold" text-anchor="middle">Top Base a = ${topBase}</text>
+              <text x="${(A[0]+B[0])/2}" y="${sy + 18}" fill="#fcd34d" font-size="11" font-weight="bold" text-anchor="middle">Bottom Base b = ${botBase}</text>
+
+              <!-- Supplementary angle indicator along leg AD -->
+              <text x="${A[0] - 8}" y="${A[1] + 4}" fill="#38bdf8" font-size="11" font-weight="bold">${angleA}°</text>
+              <text x="${D[0] - 12}" y="${D[1] - 4}" fill="#38bdf8" font-size="11" font-weight="bold">${angleD}°</text>
+            </svg>
+
+            <div style="margin-top:6px; background:#0f172a; padding:8px; border-radius:8px; font-size:12px; color:#cbd5e1;">
+              <strong>Consecutive Interior Angles on Leg AD:</strong> ${angleA}° + ${angleD}° = <strong>180°</strong> (Co-interior angles of parallel bases).
+            </div>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <div class="sim-slider-group">
+          <span>Top Base a:</span>
+          <input type="range" id="tbSlider" min="80" max="180" value="${topBase}" step="10">
+          <span id="tbVal">${topBase}</span>
+        </div>
+        <div class="sim-slider-group">
+          <span>Height h:</span>
+          <input type="range" id="hSlider" min="70" max="130" value="${height}" step="10">
+          <span id="hVal">${height}</span>
+        </div>
+      `;
+
+      document.getElementById('tbSlider').oninput = (e) => {
+        topBase = parseInt(e.target.value);
+        document.getElementById('tbVal').textContent = topBase;
+        updateUI();
+      };
+
+      document.getElementById('hSlider').oninput = (e) => {
+        height = parseInt(e.target.value);
+        document.getElementById('hVal').textContent = height;
+        updateUI();
+      };
+
+      updateUI();
+    }
+
+    // Sim 14: Trapezium Area via Rotational Twin Duplication
+    function renderSim14(vp, controls, title, badge) {
+      title.innerHTML = '<span>👥</span> Trapezium Area via Rotational Twin Duplication';
+      badge.textContent = 'Area = (1/2)(a + b)h Proof';
+
+      let showTwin = false;
+      const a = 120; // top base
+      const b = 200; // bottom base
+      const h = 100;
+      const skew = 40;
+
+      function updateUI() {
+        const area = (0.5 * (a + b) * h).toFixed(0);
+        const combinedBase = a + b;
+
+        vp.innerHTML = `
+          <div style="width:100%; max-width:500px; text-align:center;">
+            <svg viewBox="0 0 480 230" style="width:100%; height:200px; background:#090d16; border-radius:10px; border:1px solid #1e293b;">
+              <!-- Original Trapezium (Cyan) -->
+              <polygon points="60,180 ${60+b},180 ${60+skew+a},${180-h} ${60+skew},${180-h}"
+                       fill="rgba(6,182,212,0.3)" stroke="#06b6d4" stroke-width="2.5"/>
+              <text x="${60 + b/2}" y="140" fill="#67e8f9" font-size="12" font-weight="bold" text-anchor="middle">Original Trapezium</text>
+
+              <!-- Inverted Twin (Amber) -->
+              ${showTwin ? `
+                <polygon points="${60+b},180 ${60+b+a},180 ${60+skew+a},${180-h} ${60+b},180" fill="none"/>
+                <polygon points="${60+b},180 ${60+b+a},180 ${60+b+a-skew},${180-h} ${60+skew+a},${180-h}"
+                         fill="rgba(245,158,11,0.3)" stroke="#f59e0b" stroke-width="2.5"/>
+                <text x="${60+b+a/2}" y="140" fill="#fcd34d" font-size="12" font-weight="bold" text-anchor="middle">Rotated Twin (180°)</text>
+
+                <!-- Combined Parallelogram Base Bracket -->
+                <line x1="60" y1="205" x2="${60+b+a}" y2="205" stroke="#fff" stroke-width="1.5"/>
+                <text x="${60 + (b+a)/2}" y="222" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">
+                  Combined Parallelogram Base = a + b (${combinedBase})
+                </text>
+              ` : ''}
+            </svg>
+
+            <div style="margin-top:6px; background:#0f172a; padding:8px 12px; border-radius:8px; font-size:12.5px; color:#cbd5e1;">
+              ${showTwin ? `
+                Parallelogram Area = $\text{Base} \times \text{Height} = (a + b)h$.
+                <br>One Trapezium = $\frac{1}{2}(a + b)h = \frac{1}{2}(${a} + ${b}) \times ${h} =$ <strong style="color:#34d399;">${area}</strong> sq units.
+              ` : `
+                Click the button below to rotate and snap an identical twin trapezium alongside the original!
+              `}
+            </div>
+          </div>
+        `;
+        triggerMathRender(vp);
+      }
+
+      controls.innerHTML = `
+        <button class="sim-btn" id="twinBtn">
+          ${showTwin ? 'Remove Twin' : 'Duplicate & Rotate Twin 180°'}
+        </button>
+      `;
+
+      document.getElementById('twinBtn').onclick = () => {
+        showTwin = !showTwin;
+        updateUI();
+      };
+
+      updateUI();
+    }
+
+    // Sim 15: The Grand Quadrilateral Family Tree & Euler-Venn Matrix
+    function renderSim15(vp, controls, title, badge) {
+      title.innerHTML = '<span>🌳</span> The Grand Quadrilateral Family Tree';
+      badge.textContent = 'Hierarchical Euler-Venn Classification';
+
+      let selectedNode = 'square';
+
+      const taxonomy = {
+        quad: {
+          name: 'Quadrilateral',
+          ancestors: ['Quadrilateral'],
+          props: 'Any 4-sided closed polygon. Sum of interior angles is always 360°. 4 vertices, 2 diagonals.'
+        },
+        trapezium: {
+          name: 'Trapezium',
+          ancestors: ['Quadrilateral', 'Trapezium'],
+          props: 'At least one pair of parallel sides (bases). Consecutive interior angles along each leg sum to 180°.'
+        },
+        kite: {
+          name: 'Kite',
+          ancestors: ['Quadrilateral', 'Kite'],
+          props: 'Two pairs of adjacent equal sides. Perpendicular diagonals. One diagonal is bisected and acts as an axis of symmetry.'
+        },
+        parallelogram: {
+          name: 'Parallelogram',
+          ancestors: ['Quadrilateral', 'Trapezium', 'Parallelogram'],
+          props: 'Both pairs of opposite sides parallel and equal. Opposite angles equal. Diagonals bisect each other.'
+        },
+        rectangle: {
+          name: 'Rectangle',
+          ancestors: ['Quadrilateral', 'Trapezium', 'Parallelogram', 'Rectangle'],
+          props: 'Parallelogram with four right angles (90°). Diagonals are equal in length and bisect each other.'
+        },
+        rhombus: {
+          name: 'Rhombus',
+          ancestors: ['Quadrilateral', 'Trapezium', 'Parallelogram', 'Rhombus'],
+          props: 'Parallelogram with all 4 sides equal. Diagonals bisect each other at right angles (90°) and bisect corner angles.'
+        },
+        square: {
+          name: 'Square (The Royal Regular)',
+          ancestors: ['Quadrilateral', 'Trapezium', 'Parallelogram', 'Rectangle', 'Rhombus', 'Square'],
+          props: 'SIMULTANEOUSLY a Rectangle AND a Rhombus! 4 equal sides, 4 right angles (90°), equal diagonals intersecting at 90°.'
+        }
+      };
+
+      function updateUI() {
+        const node = taxonomy[selectedNode];
+
+        vp.innerHTML = `
+          <div style="width:100%; max-width:520px; font-size:12px;">
+            <div style="text-align:center; margin-bottom:10px; font-weight:bold; color:#38bdf8; font-size:14px;">
+              Selected: <span style="color:#fcd34d;">${node.name}</span>
+            </div>
+
+            <!-- Interactive Tree Nodes -->
+            <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+              <div style="background:#1e293b; border:1px solid ${node.ancestors.includes('Quadrilateral') ? '#10b981' : '#475569'}; padding:6px 16px; border-radius:6px; font-weight:bold;">
+                Quadrilateral (4 Sides, 360°)
+              </div>
+              <div style="color:#64748b;">↓</div>
+              <div style="display:flex; justify-content:center; gap:20px; width:100%;">
+                <div style="background:#1e293b; border:1px solid ${node.ancestors.includes('Kite') ? '#10b981' : '#475569'}; padding:6px 14px; border-radius:6px;">
+                  Kite (Adj =)
+                </div>
+                <div style="background:#1e293b; border:1px solid ${node.ancestors.includes('Trapezium') ? '#10b981' : '#475569'}; padding:6px 14px; border-radius:6px;">
+                  Trapezium (1 Pair ∥)
+                </div>
+              </div>
+              <div style="color:#64748b;">↓</div>
+              <div style="background:#1e293b; border:1px solid ${node.ancestors.includes('Parallelogram') ? '#10b981' : '#475569'}; padding:6px 20px; border-radius:6px; font-weight:bold;">
+                Parallelogram (2 Pairs ∥)
+              </div>
+              <div style="color:#64748b;">↙ ↘</div>
+              <div style="display:flex; justify-content:center; gap:16px; width:100%;">
+                <div style="background:#1e293b; border:1px solid ${node.ancestors.includes('Rectangle') ? '#10b981' : '#475569'}; padding:6px 14px; border-radius:6px;">
+                  Rectangle (4 Right ∠s)
+                </div>
+                <div style="background:#1e293b; border:1px solid ${node.ancestors.includes('Rhombus') ? '#10b981' : '#475569'}; padding:6px 14px; border-radius:6px;">
+                  Rhombus (4 Equal Sides)
+                </div>
+              </div>
+              <div style="color:#64748b;">↘ ↙</div>
+              <div style="background:rgba(16,185,129,0.2); border:2px solid ${node.ancestors.includes('Square') ? '#10b981' : '#475569'}; padding:8px 24px; border-radius:8px; font-weight:bold; color:#34d399;">
+                Square (Equilateral + Equiangular)
+              </div>
+            </div>
+
+            <!-- Properties Box -->
+            <div style="margin-top:12px; background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px 14px; text-align:left; line-height:1.5;">
+              <strong style="color:#38bdf8;">Inherited Lineage:</strong> ${node.ancestors.join(' ➔ ')}
+              <br><strong style="color:#fcd34d;">Key Properties:</strong> ${node.props}
+            </div>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <button class="sim-btn" id="btnSquare">Square</button>
+        <button class="sim-btn" id="btnRect">Rectangle</button>
+        <button class="sim-btn" id="btnRhombus">Rhombus</button>
+        <button class="sim-btn" id="btnPara">Parallelogram</button>
+        <button class="sim-btn" id="btnKite">Kite</button>
+        <button class="sim-btn" id="btnTrap">Trapezium</button>
+      `;
+
+      document.getElementById('btnSquare').onclick = () => { selectedNode = 'square'; updateUI(); };
+      document.getElementById('btnRect').onclick = () => { selectedNode = 'rectangle'; updateUI(); };
+      document.getElementById('btnRhombus').onclick = () => { selectedNode = 'rhombus'; updateUI(); };
+      document.getElementById('btnPara').onclick = () => { selectedNode = 'parallelogram'; updateUI(); };
+      document.getElementById('btnKite').onclick = () => { selectedNode = 'kite'; updateUI(); };
+      document.getElementById('btnTrap').onclick = () => { selectedNode = 'trapezium'; updateUI(); };
+
+      updateUI();
+    }
+
+    // Sim 16: Which Quad? Detective Riddle Matrix
+    function renderSim16(vp, controls, title, badge) {
+      title.innerHTML = '<span>🔍</span> Which Quad? Detective Riddle Matrix';
+      badge.textContent = 'Interactive Deduction Challenge';
+
+      let puzzleIdx = 0;
+      let revealed = false;
+
+      const puzzles = [
+        {
+          clue: "My diagonals are equal in length and bisect each other at 90° right angles. All my sides are equal.",
+          answer: "Square",
+          why: "Diagonals bisect at 90° = Rhombus. Diagonals equal = Rectangle. Both together = Square!"
+        },
+        {
+          clue: "My diagonals bisect each other and are equal in length, but my adjacent sides are strictly unequal.",
+          answer: "Rectangle",
+          why: "Diagonals bisect = Parallelogram. Diagonals equal = Rectangle. Unequal adjacent sides = Not a square."
+        },
+        {
+          clue: "My diagonals bisect each other at right angles (90°), but they are unequal in length. All 4 of my sides are 8 cm.",
+          answer: "Rhombus",
+          why: "All sides equal + diagonals perpendicular = Rhombus. Unequal diagonals = Not a square."
+        },
+        {
+          clue: "I have two pairs of equal adjacent sides and perpendicular diagonals, but no pairs of parallel opposite sides.",
+          answer: "Kite",
+          why: "Two pairs of equal adjacent sides + perpendicular diagonals = Kite."
+        }
+      ];
+
+      function updateUI() {
+        const p = puzzles[puzzleIdx];
+
+        vp.innerHTML = `
+          <div style="width:100%; max-width:520px; text-align:center;">
+            <div style="background:#0f172a; border:1px solid #6366f1; border-radius:12px; padding:16px 20px; text-align:left;">
+              <div style="font-size:11px; font-weight:800; color:#38bdf8; text-transform:uppercase; margin-bottom:6px;">
+                Mystery Case #${puzzleIdx + 1} of ${puzzles.length}
+              </div>
+              <div style="font-size:14px; color:#e2e8f0; font-style:italic; line-height:1.5;">
+                "${p.clue}"
+              </div>
+            </div>
+
+            ${revealed ? `
+              <div style="margin-top:14px; background:rgba(16,185,129,0.2); border:1px solid #10b981; border-radius:10px; padding:12px; color:#34d399; font-size:13px; text-align:left;">
+                <strong>Solved Identity: ${p.answer}!</strong>
+                <br><span style="color:#cbd5e1; font-size:12px;">${p.why}</span>
+              </div>
+            ` : `
+              <div style="margin-top:14px; font-size:12.5px; color:#94a3b8;">
+                Make your deduction, then click "Reveal Identity" to verify!
+              </div>
+            `}
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <button class="sim-btn" id="pPrev">← Prev Case</button>
+        <button class="sim-btn" id="pRev">Reveal Identity</button>
+        <button class="sim-btn" id="pNext">Next Case →</button>
+      `;
+
+      document.getElementById('pPrev').onclick = () => {
+        if (puzzleIdx > 0) {
+          puzzleIdx--;
+          revealed = false;
+          updateUI();
+        }
+      };
+
+      document.getElementById('pNext').onclick = () => {
+        if (puzzleIdx < puzzles.length - 1) {
+          puzzleIdx++;
+          revealed = false;
+          updateUI();
+        }
+      };
+
+      document.getElementById('pRev').onclick = () => {
+        revealed = true;
+        updateUI();
+      };
+
+      updateUI();
+    }
+
+    // Boot on page load
+    window.onload = init;
+  </script>
+</body>
+</html>

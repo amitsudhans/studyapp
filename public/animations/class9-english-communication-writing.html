@@ -1,0 +1,2082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 9 English • Chapter 1: Effective Communication & Writing Master Lab</title>
+  
+  <style>
+    :root {
+      --bg-primary: #070b14;
+      --bg-secondary: #0f172a;
+      --card-bg: rgba(15, 23, 42, 0.85);
+      --card-border: rgba(99, 102, 241, 0.25);
+      --accent-indigo: #6366f1;
+      --accent-cyan: #06b6d4;
+      --accent-amber: #f59e0b;
+      --accent-emerald: #10b981;
+      --accent-rose: #f43f5e;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at top right, #1e1b4b 0%, #070b14 65%);
+      color: var(--text-main);
+      font-family: var(--font-stack);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Top Navigation */
+    .top-nav {
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid var(--card-border);
+      backdrop-filter: blur(12px);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-badge {
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.2px;
+    }
+
+    .nav-stats {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .slide-indicator {
+      font-size: 0.9rem;
+      color: var(--accent-cyan);
+      font-weight: 600;
+      background: rgba(6, 182, 212, 0.1);
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(6, 182, 212, 0.3);
+    }
+
+    /* Layout Container */
+    .lab-container {
+      max-width: 1440px;
+      margin: 16px auto;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 440px;
+      gap: 20px;
+      box-sizing: border-box;
+      width: 100%;
+      flex: 1;
+    }
+
+    @media (max-width: 1040px) {
+      .lab-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Slide Card */
+    .slide-viewport {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+      min-height: 640px;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      overflow-x: hidden;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .slide-header {
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 14px;
+    }
+
+    .slide-header h2 {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.3px;
+      line-height: 1.3;
+    }
+
+    .slide-header h3 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--accent-cyan);
+      margin-top: 4px;
+    }
+
+    .slide-body {
+      min-width: 0;
+      width: 100%;
+      box-sizing: border-box;
+      flex: 1;
+    }
+
+    p.lead-p {
+      font-size: 1.05rem;
+      color: #e2e8f0;
+      margin-bottom: 16px;
+    }
+
+    .theory-box {
+      background: rgba(30, 41, 59, 0.5);
+      border-left: 4px solid var(--accent-indigo);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 18px;
+    }
+
+    .theory-box h4 {
+      color: var(--accent-cyan);
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .theory-box p, .theory-box ul, .theory-box ol {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    .theory-box ul, .theory-box ol {
+      padding-left: 20px;
+      margin-top: 8px;
+    }
+
+    .theory-box li {
+      margin-bottom: 6px;
+    }
+
+    .highlight-eq {
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      text-align: center;
+      color: #e0e7ff;
+      font-size: 1.05rem;
+      font-weight: 600;
+      overflow-x: auto;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+      min-width: 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .grid-3col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+      min-width: 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .card-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 14px 16px;
+      min-width: 0;
+      box-sizing: border-box;
+      overflow-x: auto;
+    }
+
+    .card-item h4, .card-item h5 {
+      color: var(--accent-cyan);
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .card-item p, .card-item ul {
+      color: #cbd5e1;
+      font-size: 0.9rem;
+    }
+
+    .card-item ul {
+      padding-left: 18px;
+      margin-top: 6px;
+    }
+
+    .card-item li {
+      margin-bottom: 4px;
+    }
+
+    /* Checkpoints within slides */
+    .checkpoints-section {
+      margin-top: 24px;
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .checkpoints-header {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent-amber);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .checkpoint-card {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .checkpoint-card p.q-text {
+      font-weight: 600;
+      color: #f8fafc;
+      margin-bottom: 10px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .option-btn {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background: rgba(99, 102, 241, 0.25);
+      border-color: var(--accent-indigo);
+      color: #fff;
+    }
+
+    .option-btn.correct {
+      background: rgba(16, 185, 129, 0.25) !important;
+      border-color: var(--accent-emerald) !important;
+      color: #a7f3d0 !important;
+      font-weight: 600;
+    }
+
+    .option-btn.wrong {
+      background: rgba(244, 63, 94, 0.25) !important;
+      border-color: var(--accent-rose) !important;
+      color: #fecdd3 !important;
+    }
+
+    .checkpoint-feedback {
+      margin-top: 10px;
+      font-size: 0.88rem;
+      padding: 8px 12px;
+      border-radius: 6px;
+      display: none;
+    }
+
+    .checkpoint-feedback.show {
+      display: block;
+    }
+
+    .checkpoint-feedback.correct-fb {
+      background: rgba(16, 185, 129, 0.15);
+      color: #a7f3d0;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .checkpoint-feedback.wrong-fb {
+      background: rgba(244, 63, 94, 0.15);
+      color: #fecdd3;
+      border: 1px solid rgba(244, 63, 94, 0.3);
+    }
+
+    /* Strict Last Slide Notice */
+    .last-slide-notice {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #a7f3d0;
+      padding: 14px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 24px;
+      display: none;
+    }
+
+    /* Quiz Challenges Section */
+    .quiz-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .quiz-item {
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .quiz-num {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      background: rgba(6, 182, 212, 0.1);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .view-solution-btn {
+      background: transparent;
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .view-solution-btn:hover {
+      background: var(--accent-cyan);
+      color: #050b14;
+    }
+
+    /* Right Column: Teacher Avatar & Interactive Simulators */
+    .interactive-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      min-width: 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    /* Teacher Avatar Box */
+    .teacher-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .avatar-wrapper {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      padding: 3px;
+      margin-bottom: 10px;
+      box-shadow: 0 0 18px rgba(99, 102, 241, 0.4);
+    }
+
+    .avatar-svg {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #0f172a;
+    }
+
+    .teacher-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .teacher-role {
+      font-size: 0.8rem;
+      color: var(--accent-cyan);
+      margin-bottom: 12px;
+    }
+
+    .speech-bubble {
+      background: rgba(30, 41, 59, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      line-height: 1.45;
+      text-align: left;
+      width: 100%;
+      position: relative;
+    }
+
+    .voice-controls {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      width: 100%;
+    }
+
+    .voice-btn {
+      flex: 1;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #c7d2fe;
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .voice-btn:hover {
+      background: rgba(99, 102, 241, 0.3);
+      color: #fff;
+    }
+
+    /* Simulator Panel Box */
+    .simulator-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .simulator-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 8px;
+    }
+
+    .sim-canvas-area {
+      background: #020617;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      min-height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sim-controls {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .control-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+    }
+
+    .control-row input[type="range"] {
+      flex: 1;
+      accent-color: var(--accent-cyan);
+    }
+
+    .control-val {
+      font-family: monospace;
+      color: var(--accent-cyan);
+      min-width: 48px;
+      text-align: right;
+    }
+
+    .sim-btn-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .sim-action-btn {
+      flex: 1;
+      background: linear-gradient(135deg, #4f46e5, #0891b2);
+      border: none;
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .sim-action-btn:hover {
+      filter: brightness(1.15);
+    }
+
+    /* Bottom Navigation Bar */
+    .bottom-bar {
+      background: rgba(15, 23, 42, 0.95);
+      border-top: 1px solid var(--card-border);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      bottom: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-btn {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid var(--card-border);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      background: var(--accent-indigo);
+      border-color: var(--accent-indigo);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* Solution Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-card {
+      background: #0f172a;
+      border: 1px solid var(--accent-cyan);
+      border-radius: 14px;
+      max-width: 600px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    .modal-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-bottom: 12px;
+    }
+
+    .modal-body {
+      font-size: 0.95rem;
+      color: #e2e8f0;
+      line-height: 1.6;
+      white-space: pre-line;
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-brand">
+      <span class="nav-badge">NCERT • Class 9 English</span>
+      <span class="nav-title">Chapter 1: Effective Communication & Writing Forms (CG-1)</span>
+    </div>
+    <div class="nav-stats">
+      <span class="slide-indicator" id="slideIndicator">Slide 1 / 20</span>
+    </div>
+  </header>
+
+  <!-- Main Laboratory Layout -->
+  <main class="lab-container">
+    
+    <!-- Left Column: Slide Viewport -->
+    <section class="slide-viewport">
+      <div class="slide-header">
+        <h2 id="slideTitle">Loading...</h2>
+        <h3 id="slideSubtitle">...</h3>
+      </div>
+      
+      <div class="slide-body" id="slideContent">
+        <!-- Dynamic content injected here -->
+      </div>
+
+      <!-- In-Slide Checkpoints Section -->
+      <div class="checkpoints-section" id="checkpointsSection" style="display: none;">
+        <div class="checkpoints-header">
+          <span>⚡ Interactive In-Slide Concept Checkpoints</span>
+        </div>
+        <div id="checkpointsList"></div>
+      </div>
+
+      <!-- Quiz Questions Section (Slides 17 to 20) -->
+      <div id="quizSection" style="display: none;">
+        <div class="quiz-container" id="quizList"></div>
+      </div>
+
+      <!-- Strict Last Slide Notice -->
+      <div id="lastSlideNotice" class="last-slide-notice">
+        You have reached the last slide of this chapter
+      </div>
+    </section>
+
+    <!-- Right Column: Teacher Avatar & Interactive Simulators -->
+    <aside class="interactive-panel">
+      
+      <!-- Teacher Avatar Box -->
+      <div class="teacher-box">
+        <div class="avatar-wrapper">
+          <svg class="avatar-svg" viewBox="0 0 100 100">
+            <!-- Neck & Body -->
+            <path d="M30 85 C30 70, 70 70, 70 85 Z" fill="#4338ca" />
+            <!-- Head & Face -->
+            <circle cx="50" cy="45" r="24" fill="#fde68a" />
+            <!-- Hair -->
+            <path d="M25 45 C25 22, 75 22, 75 45 C75 28, 25 28, 25 45 Z" fill="#78350f" />
+            <path d="M25 42 C22 55, 28 65, 32 70 C28 58, 26 48, 25 42 Z" fill="#78350f" />
+            <path d="M75 42 C78 55, 72 65, 68 70 C72 58, 74 48, 75 42 Z" fill="#78350f" />
+            <!-- Glasses -->
+            <rect x="36" y="40" width="10" height="7" rx="2" fill="none" stroke="#d97706" stroke-width="2" />
+            <rect x="54" y="40" width="10" height="7" rx="2" fill="none" stroke="#d97706" stroke-width="2" />
+            <line x1="46" y1="43" x2="54" y2="43" stroke="#d97706" stroke-width="2" />
+            <!-- Eyes -->
+            <circle cx="41" cy="43" r="1.5" fill="#0f172a" />
+            <circle cx="59" cy="43" r="1.5" fill="#0f172a" />
+            <!-- Animated Talking Mouth -->
+            <ellipse id="teacherMouth" cx="50" cy="56" rx="4" ry="1.5" fill="#e11d48" />
+          </svg>
+        </div>
+        <div class="teacher-title">English Mentor</div>
+        <div class="teacher-role">Senior Rhetoric & Communication Guide</div>
+        <div class="speech-bubble" id="teacherSpeech">
+          Welcome to the Effective Communication and Writing Master Laboratory!
+        </div>
+        <div class="voice-controls">
+          <button class="voice-btn" id="voiceToggleBtn" onclick="toggleSpeech()">
+            <span id="voiceIcon">🔊</span> <span id="voiceLabel">Play Voiceover</span>
+          </button>
+          <button class="voice-btn" onclick="replaySpeech()">
+            <span>🔄</span> <span>Replay</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Interactive Dynamic Simulator -->
+      <div class="simulator-box">
+        <div class="simulator-title">
+          <span id="simTitle">Bespoke Interactive Lab</span>
+          <span style="font-size: 0.75rem; color: var(--accent-cyan); font-weight: normal;">LIVE SVG</span>
+        </div>
+        
+        <div class="sim-canvas-area" id="simCanvasArea">
+          <svg id="simSvg" width="100%" height="100%" viewBox="0 0 440 280">
+            <!-- Dynamic SVG elements injected by simulator renderer -->
+          </svg>
+        </div>
+
+        <div class="sim-controls" id="simControls">
+          <!-- Interactive Sliders / Buttons -->
+        </div>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <!-- Bottom Navigation Bar -->
+  <footer class="bottom-bar">
+    <button class="nav-btn" id="prevBtn" onclick="prevSlide()">
+      <span>⬅ Previous Slide</span>
+    </button>
+    <div style="color: var(--text-muted); font-size: 0.9rem;">
+      NCERT English Class 9 • Chapter 1 (CG-1)
+    </div>
+    <button class="nav-btn" id="nextBtn" onclick="nextSlide()">
+      <span>Next Slide ➡</span>
+    </button>
+  </footer>
+
+  <!-- Detailed Solution Pop-up Modal -->
+  <div class="modal-overlay" id="solutionModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeSolutionModal()">&times;</button>
+      <div class="modal-title" id="modalTitle">Question Solution</div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    const slides = [{"id": 1, "title": "Effective Communication & The Media Matrix", "subtitle": "Foundational Principles, Channels, Noise Barriers & The Dynamic Communication Loop (CG-1)", "content": "\n<p class=\"lead-p\">Language is not merely a tool for exchanging factual information; it is the fundamental medium through which human beings connect, negotiate relationships, share complex thoughts, and influence their societies. Under <strong>Curricular Goal 1 (CG-1)</strong>, students master the craft of purposeful, audience-aware communication across both classical writing and 21st-century new media.</p>\n\n<div class=\"theory-box\">\n  <h4>1. The Dynamic Communication Loop</h4>\n  <p>Human communication operates as a continuous, transactional cycle consisting of six interrelated components:</p>\n  <ul>\n    <li><strong>Sender (Encoder):</strong> Formulates the core message by selecting appropriate vocabulary, tone, and register suited to the purpose.</li>\n    <li><strong>Message:</strong> The structured idea, sentiment, or instruction conveyed in verbal, written, or non-verbal symbols.</li>\n    <li><strong>Channel/Medium:</strong> The physical or digital vehicle chosen—ranging from handwritten formal letters and newspaper editorials to podcasts, broadcast speeches, and multimedia emails.</li>\n    <li><strong>Receiver (Decoder):</strong> Interprets and assigns meaning to the message, heavily influenced by their context, background knowledge, and emotional state.</li>\n    <li><strong>Feedback:</strong> The response generated by the receiver, closing the loop and confirming whether the intended meaning was accurately decoded.</li>\n    <li><strong>Noise/Barriers:</strong> Physical, physiological, linguistic (jargon), or psychological interference that distorts transmission.</li>\n  </ul>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>The 7 C's of Professional Communication</h4>\n    <p>Every effective piece of writing—from an essay to an email—must satisfy the foundational 7 C's:</p>\n    <ul>\n      <li><strong>Clarity:</strong> Unambiguous purpose and plain sentence construction.</li>\n      <li><strong>Conciseness:</strong> Avoiding fluff, circumlocution, and redundant verbiage.</li>\n      <li><strong>Concreteness:</strong> Grounded in vivid facts, specific data, and active verbs.</li>\n      <li><strong>Correctness:</strong> Impeccable grammar, punctuation, and appropriate register.</li>\n      <li><strong>Coherence:</strong> Logical flow with smooth transitional bridges.</li>\n      <li><strong>Completeness:</strong> Providing all essential information (the 5 W's & H).</li>\n      <li><strong>Courtesy:</strong> Empathetic, respectful, and constructive tone.</li>\n    </ul>\n  </div>\n  <div class=\"card-item\">\n    <h4>Traditional Writing vs New Media Formats</h4>\n    <p>While classical essays, formal letters, and speeches emphasize structured paragraphs and linear exposition, <strong>new media communication</strong> requires rapid scannability, multi-modal integration (text, audio, visuals), interactive hypertext links, and scrupulous digital netiquette.</p>\n    <p class=\"highlight-eq\">Audience + Purpose + Context = The Guiding Triad of Communication</p>\n  </div>\n</div>\n", "sim_type": "comm_loop_matrix", "voice": "Welcome to the Master Laboratory of Effective Communication and Writing! Language is your greatest superpower to inspire, convince, and connect with the world. In this laboratory, we will explore how purpose, audience, and context shape every word you write—from classic essays to digital media scripts!", "checkpoints": [{"question": "Which component of the communication loop completes the cycle and verifies whether the receiver accurately understood the message?", "options": ["The Channel", "The Feedback", "The Noise", "The Encoding"], "correct": 1, "explanation": "Feedback is the receiver's response returned to the sender. It confirms whether the message was decoded accurately or if distortion occurred, thereby completing the communication loop."}, {"question": "A student writes a 500-word paragraph filled with repetitive phrases to say something that could be expressed in 40 words. Which of the 7 C's is violated?", "options": ["Clarity", "Conciseness", "Courtesy", "Completeness"], "correct": 1, "explanation": "Conciseness means expressing ideas using the minimum necessary words without sacrificing clarity or completeness. Circumlocution and repetitive filler directly violate conciseness."}]}, {"id": 2, "title": "Language in Social Context & Register Mastery", "subtitle": "Appropriate Sociolinguistic Registers, Politeness Strategies & Discussion Protocols (C-1.1)", "content": "\n<p class=\"lead-p\">No sentence exists in a linguistic vacuum. The exact same proposition—asking someone to wait—can be voiced as <em>\"Hold on a sec!\"</em> to a classmate or <em>\"Could you kindly bear with us for a few moments?\"</em> to a visiting dignitary. Competency <strong>C-1.1</strong> requires choosing the exact linguistic register appropriate to the social hierarchy, cultural setting, and relational intimacy of the situation.</p>\n\n<div class=\"theory-box\">\n  <h4>Martin Joos's Five Sociolinguistic Registers</h4>\n  <div class=\"grid-2col\">\n    <div class=\"card-item\">\n      <h5>1. Frozen (Static) Register</h5>\n      <p>Unchanging ceremonial language recited verbatim. Examples: National Anthems, constitutional oaths, religious liturgy, and formal legal statutes.</p>\n      <h5>2. Formal Register</h5>\n      <p>Impersonal, structured, Standard English with complete complex sentences, elevated vocabulary, and no slang or contractions. Examples: Academic essays, official notices, speeches, and job applications.</p>\n    </div>\n    <div class=\"card-item\">\n      <h5>3. Consultative Register</h5>\n      <p>Two-way professional dialogue where background information is provided without intimate familiarity. Examples: Doctor-patient consultations, teacher-student project reviews, and committee meetings.</p>\n      <h5>4. Casual & Intimate Registers</h5>\n      <p>Colloquial speech between peers using slang, abbreviations, and sentence fragments (Casual); and private language between family or close friends featuring non-verbal shorthand and terms of endearment (Intimate).</p>\n    </div>\n  </div>\n</div>\n\n<div class=\"theory-box\">\n  <h4>Constructive Discussion & Principled Debate</h4>\n  <p>In group discussions and classroom debates, mature communicators separate the <strong>merit of an idea</strong> from the <strong>dignity of the speaker</strong>. Disagreement must be supported with logical evidence rather than ad hominem attacks:</p>\n  <ul>\n    <li><strong>Expressing Agreement with Elaboration:</strong> <em>\"I concur with my peer's viewpoint, and I would further add that...\"</em> or <em>\"That point aligns precisely with empirical data, as demonstrated by...\"</em></li>\n    <li><strong>Polite Disagreement with Rationales:</strong> <em>\"While I appreciate that perspective, the evidence suggests an alternative outcome because...\"</em> or <em>\"I respectfully hold a different view on that issue, as...\"</em></li>\n    <li><strong>Synthesizing & Reaching Consensus:</strong> <em>\"While our initial opinions diverged on implementation, we both agree that the underlying principle is vital; therefore, we can conclude that...\"</em></li>\n  </ul>\n</div>\n", "sim_type": "social_register_slider", "voice": "Language changes its clothing depending on where it walks! Using street slang in an official application or speaking in archaic formal sentences at a family picnic creates social friction. Let us explore the five registers of English and practice framing courteous, reasoned disagreements in our interactive register studio!", "checkpoints": [{"question": "Which sentence demonstrates the most appropriate register for a formal email addressed to the school principal requesting leave?", "options": ["Hey Principal, gotta take tomorrow off, see ya!", "I am writing to formally request a one-day leave of absence on October 28 due to an urgent family commitment.", "Give me leave tomorrow please, urgent stuff at home.", "I might not show up tomorrow, so don't mark me absent okay?"], "correct": 1, "explanation": "Option B uses the formal register appropriate for addressing an institutional head: complete sentences, polite modal verbs, standard vocabulary, and no informal slang."}, {"question": "What is the key difference between polite debate and an aggressive argument?", "options": ["In polite debate, speakers attack the opponent's character rather than their ideas", "In polite debate, participants focus on evidence and reasoning while respecting the person, using courteous phrases to disagree", "In polite debate, speakers are not allowed to express any disagreement at all", "In polite debate, the loudest speaker automatically wins the round"], "correct": 1, "explanation": "Constructive debate (C-1.1) separates ideas from individuals. Speakers use logical evidence and courteous phrasing (e.g., 'While I acknowledge that premise, evidence indicates...') rather than emotional insults."}]}, {"id": 3, "title": "Debate Architecture & Reasoning Frameworks", "subtitle": "AREI Structure, Logical Fallacies, Refutations & Rebuttals (C-1.1)", "content": "\n<p class=\"lead-p\">A debate is not a shouting match; it is an organized verbal chess game where arguments are built brick by brick with logic, and opposing arguments are disassembled through rigorous rebuttal. Under <strong>C-1.1</strong>, students learn to formulate coherent claims, provide verifiable evidence, identify common fallacies, and synthesize opposing viewpoints to arrive at balanced conclusions.</p>\n\n<div class=\"theory-box\">\n  <h4>The AREI Argument Construction Formula</h4>\n  <div class=\"grid-2col\">\n    <div class=\"card-item\">\n      <h5>A — Assertion (Claim)</h5>\n      <p>A clear, declarative statement summarizing your specific contention. It must be debatable, precise, and directly relevant to the motion. Example: <em>\"Artificial intelligence tools in education enhance personalized learning.\"</em></p>\n      <h5>R — Reasoning (Logic)</h5>\n      <p>The philosophical or analytical explanation answering <em>'Why'</em> and <em>'How'</em> your assertion is true. Example: <em>\"Because algorithms adapt pacing to each student's unique mastery rate, preventing slow learners from falling behind and advanced learners from stagnating.\"</em></p>\n    </div>\n    <div class=\"card-item\">\n      <h5>E — Evidence (Data & Examples)</h5>\n      <p>Concrete empirical facts, peer-reviewed studies, credible statistical reports, or documented real-world case studies validating the reasoning. Example: <em>\"According to a 2024 UNESCO study across 500 schools, adaptive software improved foundational numeracy retention by 32%.\"</em></p>\n      <h5>I — Impact (Significance)</h5>\n      <p>The ultimate <em>'So what?'</em> explaining the broader societal or ethical implication of your claim on human well-being, equality, or national progress.</p>\n    </div>\n  </div>\n</div>\n\n<div class=\"theory-box\">\n  <h4>Spotting & Refuting Logical Fallacies</h4>\n  <ul>\n    <li><strong>Ad Hominem:</strong> Attacking the speaker's background, appearance, or age rather than the validity of their argument.</li>\n    <li><strong>Straw Man:</strong> Exaggerating, misrepresenting, or oversimplifying an opponent's argument to make it easier to attack.</li>\n    <li><strong>False Dilemma (Black-and-White):</strong> Falsely claiming only two extreme choices exist when numerous balanced middle grounds exist.</li>\n    <li><strong>Slippery Slope:</strong> Unjustifiably claiming that a small initial step will inevitably snowball into catastrophic disaster without demonstrating intermediate causality.</li>\n  </ul>\n</div>\n", "sim_type": "debate_arena_builder", "voice": "An assertion without evidence is just an opinion; evidence without reasoning is just a pile of numbers! To win hearts and minds in any debate or discussion, you need the AREI formula: Assertion, Reasoning, Evidence, and Impact. Let us build bulletproof arguments and dismantle logical fallacies in our interactive debate arena!", "checkpoints": [{"question": "A debater argues: 'My opponent says we should invest in renewable energy, but she is only 15 years old and has never run a business, so her proposal is invalid.' Which fallacy is this?", "options": ["Straw Man", "Ad Hominem", "False Dilemma", "Slippery Slope"], "correct": 1, "explanation": "Ad Hominem directly attacks the person's age or personal credentials instead of evaluating the factual merits and logic of her renewable energy proposal."}, {"question": "In the AREI model of argument construction, what role does 'Impact' serve?", "options": ["It introduces personal insults to shock the audience", "It answers the 'So What?' question, explaining why the argument matters in the real world", "It lists the dictionary definitions of every word in the motion", "It repeats the assertion five times in capital letters"], "correct": 1, "explanation": "Impact explains the ultimate significance and real-world consequences of the argument, demonstrating how it affects human lives, justice, economy, or social well-being."}]}, {"id": 4, "title": "Narrative Writing: Plot, Perspective & Suspense", "subtitle": "Freytag's Pyramid, Point of View, Dialogue & Narrative Pacing (C-1.2)", "content": "\n<p class=\"lead-p\">Narrative writing is the art of telling a compelling story based on personal life experiences or imaginative scenarios. A successful narrative does not simply chronicle an uneventful sequence of events; it crafts a transformative journey driven by character motivations, rising obstacles, moral choices, and emotional resonance.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Freytag's Dramatic Pyramid of Narrative Structure</h4>\n  <ol>\n    <li><strong>Exposition:</strong> Introduces the setting (time, place, atmospheric mood), the protagonist, and the initial status quo.</li>\n    <li><strong>Inciting Incident:</strong> The catalyst event that disrupts normal equilibrium and forces the protagonist into action.</li>\n    <li><strong>Rising Action:</strong> A sequence of escalating complications, internal conflicts, and obstacles that heighten tension and raise the stakes.</li>\n    <li><strong>Climax:</strong> The emotional peak or turning point where the protagonist confronts the central conflict directly; a decisive choice is made.</li>\n    <li><strong>Falling Action:</strong> The fallout and immediate aftermath of the climax; loose threads begin to resolve.</li>\n    <li><strong>Resolution (Denouement):</strong> A new equilibrium is established; the protagonist emerges changed with deeper maturity or insight.</li>\n  </ol>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>Points of View (POV) & Narrative Voice</h4>\n    <ul>\n      <li><strong>First Person (I / We):</strong> Intimate, subjective, and emotionally immediate; the reader experiences events strictly through the narrator's filtered senses and inner monologue.</li>\n      <li><strong>Third Person Limited (He / She / They):</strong> Focuses on the perspective and inner emotions of a single character from an external standpoint.</li>\n      <li><strong>Third Person Omniscient:</strong> An all-knowing god-like narrator who can reveal the hidden thoughts, motives, and backstories of all characters across time and space.</li>\n    </ul>\n  </div>\n  <div class=\"card-item\">\n    <h4>Show, Don't Tell!</h4>\n    <p>Novice writers <em>tell</em> emotions flatly; master storytellers <em>show</em> emotions through sensory details, physiological reactions, and physical actions:</p>\n    <ul>\n      <li><strong>Telling:</strong> <em>\"Aarav was terrified as he walked through the dark forest.\"</em></li>\n      <li><strong>Showing:</strong> <em>\"Twigs snapped under Aarav's trembling boots. His breath hitched in his throat, and cold beads of sweat trickled down the nape of his neck as shadows stretched like twisted fingers across the path.\"</em></li>\n    </ul>\n  </div>\n</div>\n", "sim_type": "freytags_pyramid_lab", "voice": "Every great story is an emotional rollercoaster! Do not tell your readers that a character was sad or scared; show their trembling hands, their pounding heart, and the cold sweat on their brow. Let us climb Freytag's Pyramid together and experiment with point-of-view and narrative tension in our interactive plot lab!", "checkpoints": [{"question": "Which of the following revisions best transforms the flat sentence 'Maya was very angry' into dynamic 'Show, Don't Tell' writing?", "options": ["Maya was angry because her brother broke her phone.", "Maya's knuckles turned white as she clenched her fists, her jaw tightened, and she slammed the door until the glass rattled in its frame.", "Maya experienced extreme anger and displeasure at the situation.", "Maya felt bad and mad all at once."], "correct": 1, "explanation": "Option B uses physiological cues (white knuckles, clenched fists, tightened jaw) and physical action (slamming the door until glass rattled) to vividly show anger without relying on the adjective 'angry'."}, {"question": "What is the function of the 'Inciting Incident' in a narrative plot arc?", "options": ["It describes the family tree of every background character", "It interrupts the normal status quo and sets the main conflict into motion", "It is the final sentence that says 'The End'", "It lists the moral lesson directly to the reader"], "correct": 1, "explanation": "The Inciting Incident is the crucial event that disrupts the character's initial ordinary world, forcing them out of comfort and igniting the primary plot conflict."}]}, {"id": 5, "title": "Descriptive Writing: Sensory Imagery & Figurative Craft", "subtitle": "The Five Senses, Figurative Devices, Spatial Organization & Dominant Impression (C-1.2)", "content": "\n<p class=\"lead-p\">Descriptive writing creates a vivid mental photograph in the reader's mind. Whether describing a chaotic bustling railway bazaar in Varanasi, a serene monsoon morning in the Western Ghats, or a weathered elderly artisan, master descriptive writing appeals to all five human senses and establishes a coherent <strong>dominant impression</strong>.</p>\n\n<div class=\"theory-box\">\n  <h4>1. The Multi-Sensory Palette</h4>\n  <div class=\"grid-2col\">\n    <div class=\"card-item\">\n      <h5>Visual (Sight) & Auditory (Sound)</h5>\n      <p>Colors, shades, luminescence, geometry, and motion (<em>\"dappled emerald foliage dancing in the golden twilight\"</em>). Sounds, pitch, rhythm, and acoustic volume (<em>\"the rhythmic clatter of the loom, punctuated by the sharp hiss of boiling tea\"</em>).</p>\n      <h5>Olfactory (Smell) & Gustatory (Taste)</h5>\n      <p>Scents that trigger memory and atmosphere (<em>\"the pungent aroma of roasted cardamom, petrichor rising from sun-baked mud\"</em>). Flavors and mouthfeels (<em>\"the tangy, sharp burst of raw mango seasoned with rock salt\"</em>).</p>\n    </div>\n    <div class=\"card-item\">\n      <h5>Tactile (Touch & Temperature)</h5>\n      <p>Textures, temperatures, and physical sensations (<em>\"the coarse, splintered grain of the wooden bench, radiating damp morning chill\"</em>).</p>\n      <h5>Kinesthetic & Organic Sensations</h5>\n      <p>Internal sensations of movement, gravity, breathlessness, nausea, or soaring lightness that make descriptions visceral.</p>\n    </div>\n  </div>\n</div>\n\n<div class=\"theory-box\">\n  <h4>Figurative Devices that Elevate Description</h4>\n  <ul>\n    <li><strong>Simile:</strong> Explicit comparison using 'like' or 'as' (<em>\"Her laughter cascaded like silver temple bells across the courtyard.\"</em>).</li>\n    <li><strong>Metaphor:</strong> Implicit comparison stating one thing is another (<em>\"The city was a sprawling iron beast that never closed its neon eyes.\"</em>).</li>\n    <li><strong>Personification:</strong> Endowing inanimate objects with human qualities (<em>\"The ancient banyan tree sighed under the weight of the monsoon gusts.\"</em>).</li>\n    <li><strong>Onomatopoeia:</strong> Words whose phonetics imitate their real-world sound (<em>\"buzz, sizzle, rustle, chime, gurgle\"</em>).</li>\n    <li><strong>Spatial Organization:</strong> Guiding the reader's camera eye logically—top-to-bottom, panoramic-to-focal, or foreground-to-background.</li>\n  </ul>\n</div>\n", "sim_type": "sensory_imagery_palette", "voice": "When you write descriptions, do not just rely on your eyes! Let your reader smell the wet earth after the first monsoon shower, hear the sizzling mustard seeds in a hot pan, and feel the rough texture of ancient stone. Let us paint with all five senses in our sensory imagery studio!", "checkpoints": [{"question": "Identify the primary sensory imagery in the line: 'The pungent aroma of roasting cumin and crushed mint leaves drifted across the breezy verandah.'", "options": ["Visual Imagery", "Olfactory Imagery", "Kinesthetic Imagery", "Tactile Imagery"], "correct": 1, "explanation": "The words 'pungent aroma', 'roasting cumin', and 'crushed mint leaves' directly evoke the sense of smell (olfactory imagery)."}, {"question": "Which figurative device is employed in the phrase: 'The wind whispered mournful secrets through the cracked window panes'?", "options": ["Hyperbole", "Personification", "Simile", "Oxymoron"], "correct": 1, "explanation": "Giving the wind human attributes like 'whispering mournful secrets' is personification."}]}, {"id": 6, "title": "Expository Writing: Informative & Analytical Prose", "subtitle": "Thesis Statements, Organizational Frameworks, Topic Sentences & Transitional Signposts (C-1.2)", "content": "\n<p class=\"lead-p\">Expository writing explains, informs, clarifies, or analyzes a topic objectively, without personal fiction or emotional bias. It is the dominant style of writing in textbooks, scientific reports, analytical essays, encyclopedia entries, and professional briefings. The hallmark of exceptional expository prose is intellectual honesty, impeccable organization, and logical coherence.</p>\n\n<div class=\"theory-box\">\n  <h4>1. The Anatomy of an Expository Essay</h4>\n  <ul>\n    <li><strong>Introduction:</strong> Begins with an attention-grabbing hook (provocative question, surprising statistic, or brief historical anecdote), introduces the core subject, and culminates in a sharp, defensible <strong>Thesis Statement</strong>.</li>\n    <li><strong>Body Paragraphs (PEEL / TEEL Model):</strong>\n      <ul>\n        <li><strong>Point / Topic Sentence:</strong> Declares the single specific sub-argument or fact explored in the paragraph.</li>\n        <li><strong>Evidence / Example:</strong> Provides supporting data, historical facts, scientific citations, or expert testimony.</li>\n        <li><strong>Explanation / Analysis:</strong> Breaks down how the evidence directly proves the topic sentence and supports the broader thesis.</li>\n        <li><strong>Link:</strong> Synthesizes the finding and bridges smoothly to the subsequent paragraph.</li>\n      </ul>\n    </li>\n    <li><strong>Conclusion:</strong> Restates the thesis in fresh, mature phrasing (not verbatim repetition), synthesizes the main body insights, and offers a forward-looking perspective, ethical takeaway, or call for deeper inquiry.</li>\n  </ul>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>Expository Organizational Frameworks</h4>\n    <ul>\n      <li><strong>Cause and Effect:</strong> Explores the origins and downstream ramifications of a phenomenon (e.g., Causes and Consequences of Glacier Retreat).</li>\n      <li><strong>Compare and Contrast:</strong> Analyzes similarities and differences between two entities (e.g., Solar Photovoltaic vs Wind Energy Systems).</li>\n      <li><strong>Chronological / Process Analysis:</strong> Step-by-step sequential breakdown of how something works or developed over history.</li>\n      <li><strong>Problem and Solution:</strong> Diagnoses an existing crisis and evaluates actionable technical or policy remedies.</li>\n    </ul>\n  </div>\n  <div class=\"card-item\">\n    <h4>Transitional Signposts (Cohesive Devices)</h4>\n    <p>Smooth transitions guide the reader effortlessly across complex trains of thought:</p>\n    <ul>\n      <li><strong>To Add:</strong> <em>Furthermore, Moreover, In addition, Additionally</em></li>\n      <li><strong>To Contrast:</strong> <em>Conversely, Nevertheless, On the contrary, In contrast</em></li>\n      <li><strong>To Illustrate:</strong> <em>For instance, Notably, Specifically, Exemplified by</em></li>\n      <li><strong>To Conclude:</strong> <em>Consequently, In synthesis, Therefore, Ultimately</em></li>\n    </ul>\n  </div>\n</div>\n", "sim_type": "expository_structure_builder", "voice": "Expository writing is the architecture of thought! A strong essay stands on three pillars: a clear thesis statement, well-supported body paragraphs following the PEEL model, and cohesive transitional signposts that guide your reader seamlessly from one insight to the next. Let us build structured essays in our interactive writing workshop!", "checkpoints": [{"question": "What is the primary function of a thesis statement in an expository essay?", "options": ["To ask ten rhetorical questions without answering any of them", "To state the central controlling idea and roadmap of the entire essay in one or two clear sentences", "To list all the sources consulted in alphabetical order", "To conclude the essay with a dramatic fictional dialogue"], "correct": 1, "explanation": "A thesis statement is the intellectual spine of an essay. It articulates the central claim or analytical focus that all subsequent body paragraphs must prove and elaborate."}, {"question": "Which transitional word is best suited to introduce an opposing perspective to an earlier claim?", "options": ["Additionally", "Conversely", "Similarly", "Furthermore"], "correct": 1, "explanation": "'Conversely' signals an intellectual pivot to introduce an opposing, contrasting idea or counterpoint."}]}, {"id": 7, "title": "Persuasive Writing & Rhetorical Mastery", "subtitle": "Aristotelian Appeals (Ethos, Pathos, Logos), Counterarguments & Persuasive Techniques (C-1.2)", "content": "\n<p class=\"lead-p\">Persuasive writing aims to convince the reader to adopt a specific belief, endorse a policy, or take immediate constructive action. Rooted in classical rhetoric formulated by Aristotle over 2,300 years ago, effective persuasion balances three interlocking appeals: <strong>Ethos (Credibility)</strong>, <strong>Pathos (Emotion)</strong>, and <strong>Logos (Logic)</strong>.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Aristotle's Rhetorical Triangle</h4>\n  <div class=\"grid-3col\">\n    <div class=\"card-item\">\n      <h5>Ethos (Credibility & Character)</h5>\n      <p>Establishes the author's moral integrity, expert competence, fairness, and unbiased authority. Achieved through objective tone, respectful consideration of opposing viewpoints, and citation of reputable institutions.</p>\n    </div>\n    <div class=\"card-item\">\n      <h5>Pathos (Emotional Resonance)</h5>\n      <p>Appeals to the audience's shared human values, empathy, hopes, fears, or sense of justice. Achieved through evocative storytelling, relatable personal anecdotes, and vivid, passionate vocabulary.</p>\n    </div>\n    <div class=\"card-item\">\n      <h5>Logos (Logical Coherence)</h5>\n      <p>The rational backbone of the argument. Built with statistical evidence, hard facts, cause-and-effect demonstrations, clear syllogisms, and rigorous inductive/deductive reasoning.</p>\n    </div>\n  </div>\n</div>\n\n<div class=\"theory-box\">\n  <h4>Mastering the Concession and Rebuttal</h4>\n  <p>Weak persuasive writers pretend that counter-arguments do not exist. Strong persuasive writers deliberately introduce the strongest counter-argument (<strong>Concession</strong>) and systematically demonstrate why their thesis remains superior (<strong>Rebuttal</strong>):</p>\n  <p class=\"highlight-eq\"><em>\"Critics legitimately argue that transitioning to electric bus fleets requires high upfront municipal capital (Concession); however, lifecycle economic audits prove that reduced fuel expenditures and medical savings from cleaner air offset that investment within four years (Rebuttal).\"</em></p>\n</div>\n\n<div class=\"theory-box\">\n  <h4>Potent Persuasive Rhetorical Devices</h4>\n  <ul>\n    <li><strong>Rhetorical Questions:</strong> Questions posed for provocative effect rather than an answer (<em>\"Can we truly claim to be progressive if clean drinking water remains a luxury?\"</em>).</li>\n    <li><strong>The Rule of Three (Tricolon):</strong> Grouping ideas in threes for rhythmic, memorable impact (<em>\"Invest with courage, innovate with passion, lead with integrity.\"</em>).</li>\n    <li><strong>Anaphora:</strong> Deliberate repetition of a phrase at the beginning of successive sentences to build emotional crescendo (<em>\"We must act for our children. We must act for our environment. We must act today.\"</em>).</li>\n  </ul>\n</div>\n", "sim_type": "rhetorical_triangle_mixer", "voice": "Persuasion is not manipulation; it is the art of illuminating truth! If you rely only on logic, you risk sounding cold; if you rely only on emotion, you risk sounding superficial; if you have no credibility, nobody will listen. The greatest speeches in history unite Ethos, Pathos, and Logos into an unbreakable chord!", "checkpoints": [{"question": "A public speaker states: 'According to the Ministry of Health's clinical trials involving 10,000 patients, this vaccine reduced hospitalization by 94%.' Which rhetorical appeal is primarily used?", "options": ["Pathos", "Logos", "Hyperbole", "Satire"], "correct": 1, "explanation": "Citing verified clinical trial data, sample sizes (10,000 patients), and statistical percentages (94%) directly appeals to logic, data, and rationality (Logos)."}, {"question": "What is the strategic purpose of including a 'Concession' in a persuasive essay?", "options": ["To surrender your argument and let the opponent win", "To demonstrate intellectual fairness by acknowledging a legitimate counter-point before dismantling it with a stronger rebuttal", "To confuse the reader about your actual stance", "To make the essay longer without doing research"], "correct": 1, "explanation": "A concession demonstrates fairness, honesty, and depth of research (Ethos). By showing you understand opposing views before providing your rebuttal, your overall thesis becomes far more convincing."}]}, {"id": 8, "title": "Letters for Real-Life Situations: Formal & Informal", "subtitle": "Standard Layouts, Sender/Receiver Details, Salutations, Subject Line & Tone (C-1.3)", "content": "\n<p class=\"lead-p\">Letter writing remains an indispensable life skill. Whether petitioning a Municipal Commissioner regarding broken water mains, writing to an Editor about road safety, or sharing personal milestones with a distant friend, mastering the exact structure, conventions, and tone of letters is a core mandate of <strong>C-1.3</strong>.</p>\n\n<div class=\"theory-box\">\n  <h4>1. The Standard Format of a Formal Letter (Full-Block Style)</h4>\n  <p>In modern Indian and international business English, the <strong>Full-Block Style</strong> (left-aligned without awkward indents) is standard:</p>\n  <ol>\n    <li><strong>Sender's Address:</strong> Top left corner, without writing the sender's name (e.g., <em>42, Shanti Vihar, New Delhi - 110092</em>).</li>\n    <li><strong>Date:</strong> One line space below; written in full formal format (e.g., <em>28 October 2026</em>; avoid numerical slashes like 28/10/26).</li>\n    <li><strong>Receiver's Designation & Full Address:</strong> Specific title and institution (e.g., <em>The Municipal Commissioner, South Delhi Municipal Corporation, New Delhi</em>).</li>\n    <li><strong>Subject Line:</strong> Concise, underlined or bolded summary of purpose (e.g., <em>Subject: Urgent complaint regarding malfunctioning streetlights on Ring Road</em>).</li>\n    <li><strong>Salutation:</strong> Courteous and professional (<em>Sir / Madam</em> or <em>Dear Sir / Madam</em>; avoid overly familiar terms).</li>\n    <li><strong>Body of the Letter (3 Structured Paragraphs):</strong>\n      <ul>\n        <li><em>Paragraph 1 (Introduction):</em> State who you are and clearly identify the purpose of writing.</li>\n        <li><em>Paragraph 2 (Elaboration):</em> Detail the specific facts, dates, grievances, or constructive proposals.</li>\n        <li><em>Paragraph 3 (Action / Conclusion):</em> Specify the exact redressal or action requested courteously.</li>\n      </ul>\n    </li>\n    <li><strong>Complimentary Close:</strong> <em>Yours faithfully</em> (when receiver's name is unknown) or <em>Yours sincerely</em> (when name is known). Note: strictly NO apostrophe in <em>Yours</em>!</li>\n    <li><strong>Sender's Signature & Printed Name:</strong> Full name with designation if representing an organization.</li>\n  </ol>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>Formal Letter: Letters to the Editor</h4>\n    <p>A classic exam format addressing public grievances. The standard opening line:</p>\n    <p class=\"highlight-eq\"><em>\"Through the esteemed columns of your widely circulated daily, I wish to draw the urgent attention of the concerned civic authorities towards...\"</em></p>\n    <p>Remember: You are writing to the Editor to highlight an issue to the public/authorities, NOT asking the Editor to fix the problem directly!</p>\n  </div>\n  <div class=\"card-item\">\n    <h4>Informal Letters: Personal & Conversational</h4>\n    <p>Written to family, friends, or acquaintances:</p>\n    <ul>\n      <li>No receiver's address or subject line required.</li>\n      <li>Warm, personal salutation (<em>Dear Rohan, / Dearest Auntie,</em>).</li>\n      <li>Colloquial expressions, contractions (I'm, can't), and personal anecdotes are encouraged.</li>\n      <li>Warm sign-off: <em>Yours affectionately, / With warmest regards, / Love,</em> followed by first name.</li>\n    </ul>\n  </div>\n</div>\n", "sim_type": "letter_builder_studio", "voice": "A letter is your formal ambassador on paper! In formal letters, every piece of information has an exact address on the page—from the sender's details to the full-block left-aligned date and the respectful closing. Notice that 'Yours faithfully' never has an apostrophe! Let us construct flawless formal and informal letters in our interactive letter studio!", "checkpoints": [{"question": "Which of the following complimentary closes is grammatically and conventionally correct for a formal letter?", "options": ["Your's faithfully,", "Yours faithfully,", "Your faithfully,", "Yours' faithfully,"], "correct": 1, "explanation": "'Yours' is a possessive pronoun and never takes an apostrophe. 'Yours faithfully,' is the correct formal complimentary close."}, {"question": "In a formal 'Letter to the Editor' regarding potholed roads, what is the role of the newspaper editor?", "options": ["The editor must come with asphalt and repair the potholes personally", "The editor acts as a public platform to raise civic awareness and alert municipal authorities to the problem", "The editor must arrest the local road contractor immediately", "The editor must reimburse commuters for vehicle damage"], "correct": 1, "explanation": "A Letter to the Editor uses the press as a democratic public platform to amplify civic issues and prompt responsible municipal agencies to take corrective action."}]}, {"id": 9, "title": "Notice Writing: Precision & Public Announcements", "subtitle": "Standard Box Layout, 5 W's, Word Limits, Conciseness & Authority (C-1.3)", "content": "\n<p class=\"lead-p\">A <strong>Notice</strong> is an official public announcement meant to disseminate vital information to a targeted group—such as school students, residents of an apartment complex, or company employees. In board examinations and real life, notices are evaluated on brevity, factual completeness, and strict adherence to standardized formatting conventions.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Mandatory Structural Elements of a Notice</h4>\n  <ol>\n    <li><strong>The Enclosing Box:</strong> A notice MUST always be drawn inside a neat rectangular border/box.</li>\n    <li><strong>Name of the Issuing Organization/School:</strong> Centered at the very top in bold, prominent lettering (e.g., <em>DELHI PUBLIC SCHOOL, R.K. PURAM</em>).</li>\n    <li><strong>The Word 'NOTICE':</strong> Centered on the next line in bold capital letters.</li>\n    <li><strong>Date of Issue:</strong> Placed on the left-hand margin in formal alphanumeric format (e.g., <em>28 October 2026</em>).</li>\n    <li><strong>Catchy, Informative Heading:</strong> Centered; clearly summarizing the event or topic (e.g., <em>INTER-SCHOOL DEBATE COMPETITION 2026</em> or <em>FOUND: TITAN WRIST WATCH</em>).</li>\n    <li><strong>Body of the Notice:</strong> Concise (strictly adhering to the 50-word limit); directly answering the <strong>5 W's and 1 H</strong>:\n      <ul>\n        <li><strong>What:</strong> What event, program, or discovery is taking place?</li>\n        <li><strong>When:</strong> The exact date, day, and time schedule.</li>\n        <li><strong>Where:</strong> The exact venue (hall, auditorium, sports ground).</li>\n        <li><strong>Who:</strong> Who is eligible to participate (classes, age categories)?</li>\n        <li><strong>Whom to Contact:</strong> Specific contact person and deadline for submission of names.</li>\n      </ul>\n    </li>\n    <li><strong>Signatory Block:</strong> Bottom left corner containing signature, full name, and official designation (e.g., <em>Ananya Sharma, Cultural Secretary</em>).</li>\n  </ol>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>Language Rules for Notices</h4>\n    <ul>\n      <li>Write strictly in the <strong>Passive Voice</strong> and <strong>Third Person</strong> (<em>\"Students are hereby informed that...\"</em>).</li>\n      <li>Never use first-person pronouns like <em>\"I invite you\"</em> or <em>\"We are organizing\"</em>.</li>\n      <li>Keep sentences telegraphic, clear, and direct. Omit long personal introductions.</li>\n    </ul>\n  </div>\n  <div class=\"card-item\">\n    <h4>Common Notice Categories</h4>\n    <ul>\n      <li><strong>School Events:</strong> Competitions, sports days, cultural fests, exhibitions, excursions.</li>\n      <li><strong>Lost and Found:</strong> Objective physical description of lost/found item and collection procedure.</li>\n      <li><strong>Civic Announcements:</strong> Water supply disruptions, maintenance drives, blood donation camps.</li>\n    </ul>\n  </div>\n</div>\n", "sim_type": "notice_board_canvas", "voice": "A notice must deliver crucial facts in less than fifty words! If a student reads your notice, they should instantly know what is happening, when it happens, where to be, and who to contact. Always enclose your notice in a neat box, write in the third person, and sign off with your official designation!", "checkpoints": [{"question": "Which of the following phrases represents the correct passive, objective tone for opening a school notice?", "options": ["Hey guys, I want to tell you about our cool drama fest...", "Students of Classes IX and X are hereby informed that the Annual Inter-House Drama Competition will be held on...", "We have decided to organize an event so you should all participate...", "Listen up everyone, our school is going to do something exciting next week!"], "correct": 1, "explanation": "Option B uses the standard formal, passive, third-person formula ('are hereby informed that...') appropriate for institutional notices."}, {"question": "What is the recommended word limit for the body of a standard NCERT notice?", "options": ["150 words", "50 words", "250 words", "10 words"], "correct": 1, "explanation": "Standard board marking guidelines prescribe a strict 50-word limit for the body of a notice to ensure precision and rapid readability."}]}, {"id": 10, "title": "Invitations & Replies: Formal & Informal Protocols", "subtitle": "Card Formats, Letter Formats, RSVP Etiquette, Acceptance & Regret Replies (C-1.3)", "content": "\n<p class=\"lead-p\">An invitation is an official or personal request extending hospitality to an event. In social and professional life, invitations range from grand printed ceremonial cards to personal informal notes. Equally important is the art of replying promptly to confirm attendance (<strong>Acceptance</strong>) or decline with courteous apology (<strong>Regret</strong>).</p>\n\n<div class=\"theory-box\">\n  <h4>1. Formal Invitations (Printed Card Format)</h4>\n  <p>Formal invitations for weddings, school annual days, inaugurations, and institutional ceremonies follow a single-sentence ceremonial format centered on a printed card:</p>\n  <ul>\n    <li>Written strictly in the <strong>Third Person</strong> (<em>\"The Principal, Staff, and Students of...\"</em>). No 'I' or 'We'.</li>\n    <li>Standard Honorific Invitatory Formula: <em>\"...solicit the pleasure of your benign presence / company on the auspicious occasion of...\"</em></li>\n    <li>Reason for the event, day, date, time, and venue clearly specified in centered layout.</li>\n    <li>Special guest / Chief Guest dignitary listed prominently (e.g., <em>\"Hon'ble Minister of Education has kindly consented to preside as Chief Guest\"</em>).</li>\n    <li><strong>R.S.V.P. (Répondez s'il vous plaît):</strong> Bottom left corner with contact phone number and host address so catering and seating can be arranged.</li>\n  </ul>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>Formal Replies: Acceptance & Regret</h4>\n    <p>Formal replies are short (under 50 words), written in the third person, without personal letter headers:</p>\n    <ul>\n      <li><strong>Acceptance:</strong> <em>\"Mrs. and Mr. R.K. Mehra thank the Principal and Staff of St. Xavier's School for their kind invitation to the Annual Athletic Meet on 14 November 2026 and are delighted to confirm their attendance.\"</em></li>\n      <li><strong>Regret (Declining):</strong> <em>\"Dr. S. Nair thanks the Literary Society for their cordial invitation to chair the symposium on 5 November 2026, but deeply regrets his inability to attend due to a prior academic commitment. He conveys his warmest wishes for the event's grand success.\"</em></li>\n    </ul>\n  </div>\n  <div class=\"card-item\">\n    <h4>Informal Invitations & Notes</h4>\n    <p>Resembles a short personal letter:</p>\n    <ul>\n      <li>Written in the first person (<em>\"I am hosting a small birthday party at my residence on Saturday...\"</em>).</li>\n      <li>Warm, personal tone with direct salutation (<em>Dear Priya,</em>).</li>\n      <li>Replies are personal: <em>\"Thanks a lot for the invite! I'd love to come.\"</em> or <em>\"So sorry I'll miss it, as I have exams next week.\"</em></li>\n    </ul>\n  </div>\n</div>\n", "sim_type": "invitation_rsvp_studio", "voice": "RSVP is a French acronym standing for Répondez s'il vous plaît, meaning 'Please respond'! In formal invitations, everything is framed elegantly in the third person. When declining an invitation, courtesy demands that you thank the host, state a legitimate reason politely, and wish the event great success. Let us design cards and draft replies in our invitation studio!", "checkpoints": [{"question": "Which grammatical person must strictly be used when drafting a formal invitation card or a formal reply?", "options": ["First Person (I / We)", "Second Person (You)", "Third Person (He / She / They / The Host)", "Imperative Voice"], "correct": 2, "explanation": "Formal printed invitation cards and formal replies are always composed in the third person (e.g., 'The Principal and Staff solicit the pleasure of...', 'Mr. Sharma thanks... and confirms...')."}, {"question": "What is the primary function of the 'R.S.V.P.' section in an invitation card?", "options": ["To print the ticket price of the event", "To provide contact details for invitees to confirm or decline their attendance for logistical planning", "To list the full menu of the banquet", "To warn attendees that photography is prohibited"], "correct": 1, "explanation": "R.S.V.P. (Répondez s'il vous plaît) prompts recipients to confirm their attendance with the host so organizers can plan seating and catering."}]}, {"id": 11, "title": "Public Speeches: Rhetoric, Pacing & Delivery", "subtitle": "Speech Anatomy, Vocal Modulation, Rhetorical Questions & Memorable Closures (C-1.3)", "content": "\n<p class=\"lead-p\">A speech is meant to be spoken and heard, not merely read silently off a page. Unlike essays that unfold quietly, a public speech must command attention from its opening sentence, engage the audience's ear with rhythmic cadences, and build toward an unforgettable call-to-action. Competency <strong>C-1.3</strong> trains students to craft speeches that captivate morning assemblies, inter-school podiums, and civic forums.</p>\n\n<div class=\"theory-box\">\n  <h4>1. The Four-Stage Architecture of a Great Speech</h4>\n  <ol>\n    <li><strong>The Captivating Hook & Formal Greeting:</strong>\n      <p>Acknowledge the assembly courteously, but immediately follow with an electric hook: a surprising statistic, a profound quote, or a vivid sensory vignette.</p>\n      <p class=\"highlight-eq\"><em>\"Respected Principal, esteemed teachers, and my fellow students—good morning. Imagine waking up tomorrow to discover that the tap in your home had run completely dry—not for an hour, but forever.\"</em></p>\n    </li>\n    <li><strong>Problem Exposition & Real-World Urgency:</strong>\n      <p>Articulate the core challenge with emotional resonance and factual clarity. Frame the issue as an urgent shared challenge that touches every person in the room.</p>\n    </li>\n    <li><strong>Actionable Solutions & Moral Awakening:</strong>\n      <p>Transition from diagnosing the crisis to outlining practical, empowering remedies. Use triadic structures (groups of three) to make steps easy to remember.</p>\n    </li>\n    <li><strong>The Ringing Climax & Memorable Call to Action:</strong>\n      <p>Conclude with a rallying cry that inspires collective resolve. Never let a speech fizzle out; leave the audience with an echo in their minds. Finish with a firm <em>\"Thank you!\"</em></p>\n    </li>\n  </ol>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>Speechwriter's Rhetorical Toolkit</h4>\n    <ul>\n      <li><strong>Direct Audience Address:</strong> Use <em>\"we\", \"you\", \"my friends\"</em> to create an unbroken bond of intimacy.</li>\n      <li><strong>Hypophora:</strong> Asking a question and immediately answering it yourself to steer audience thinking.</li>\n      <li><strong>Vocal Cues (Written in Margins):</strong> Marking <em>[Pause for emphasis]</em>, <em>[Modulate voice lower]</em>, <em>[Accelerate tempo]</em>.</li>\n    </ul>\n  </div>\n  <div class=\"card-item\">\n    <h4>Common Pitfalls to Avoid</h4>\n    <ul>\n      <li>Avoid reciting boring, mechanical introductions that put the audience to sleep.</li>\n      <li>Avoid reading like a textbook essay with dense, jargon-laden passive voice.</li>\n      <li>Avoid abrupt, uninspired endings like <em>\"That's all I wanted to say, bye.\"</em></li>\n    </ul>\n  </div>\n</div>\n", "sim_type": "podium_speech_simulator", "voice": "A great speech does not just inform the brain; it sets the heart on fire! When you step up to the podium, your voice, your pauses, and your words must make your audience lean forward in their chairs. Let us step up to our virtual podium and test speech delivery, rhetorical devices, and audience engagement!", "checkpoints": [{"question": "Why is the use of rhetorical questions and direct audience address ('my friends', 'we must ask ourselves') particularly effective in a public speech?", "options": ["Because it allows the speaker to forget their speech notes", "Because it actively engages listeners, creating psychological rapport and making them feel personally involved in the discussion", "Because it takes up time when the speaker has nothing left to say", "Because the board requires at least ten questions in every speech"], "correct": 1, "explanation": "Direct address and rhetorical questions transform passive listeners into active participants, fostering a personal, emotional connection between speaker and audience."}, {"question": "What is the best way to conclude a persuasive speech on environmental conservation at a school assembly?", "options": ["Well, my time is up, so thank you.", "Let us pledge today: not one more plastic bottle in our oceans, not one more watt wasted, not one more tree felled in silence. Let our legacy be green. Thank you!", "That is everything I found on Wikipedia yesterday. Goodbye.", "If anyone has questions, ask the science teacher."], "correct": 1, "explanation": "Option B uses parallel triadic structure ('not one more...'), an inspirational call to action, and a memorable concluding vision that leaves a powerful lasting impression."}]}, {"id": 12, "title": "Empathetic Writing & Condolence Messages", "subtitle": "Sensitivity, Emotional Dignity, Sincerity, & Acknowledging Grief (C-1.3)", "content": "\n<p class=\"lead-p\">The measure of a person's communicative maturity lies in their ability to comfort others during moments of profound sorrow and loss. Writing a <strong>Condolence Message</strong> or a letter of sympathy requires an elevated standard of emotional delicacy, dignity, and sincere empathy. Clichés and careless phrasing can cause deep hurt; authentic words of shared grief offer lasting solace.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Key Principles of Sensitive Condolence Writing</h4>\n  <ul>\n    <li><strong>Acknowledge the Loss Directly with Reverence:</strong> State your shock or deep sadness at learning of the passing without euphemistic awkwardness.</li>\n    <li><strong>Highlight the Deceased's Unique Virtues:</strong> Share a brief, warm, specific memory or tribute celebrating the person's kindness, wisdom, generosity, or courage.</li>\n    <li><strong>Affirm the Survivor's Grief:</strong> Acknowledge that the pain is real and profound; avoid minimizing grief with hollow platitudes.</li>\n    <li><strong>Offer Tangible, Realistic Support:</strong> Offer concrete help rather than vague gestures (<em>\"Please know our family is here to assist with household needs or simply to sit beside you in quiet company.\"</em>).</li>\n    <li><strong>Close with Warmth and Spiritual Solace:</strong> Conclude with wishes for strength, peace, and fortitude.</li>\n  </ul>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>Expressions of Sincere Comfort</h4>\n    <ul>\n      <li><em>\"I am deeply saddened to hear of the sudden demise of your beloved mother. Her warmth and gentle laughter illuminated every room she entered.\"</em></li>\n      <li><em>\"Words seem inadequate to express the sorrow we feel for your loss. Please know you are in our thoughts and prayers during this difficult time.\"</em></li>\n      <li><em>\"May her noble soul rest in eternal peace, and may cherished memories bring solace to your grieving family.\"</em></li>\n    </ul>\n  </div>\n  <div class=\"card-item\">\n    <h4>Phrases to Strictly AVOID in Condolences</h4>\n    <ul>\n      <li><strong>\"I know exactly how you feel:\"</strong> Minimizes their unique grief; nobody experiences grief identically.</li>\n      <li><strong>\"It was for the best / Everything happens for a reason:\"</strong> Appears callous, insensitive, and dismissive of their raw pain.</li>\n      <li><strong>\"You are young, you can move on soon:\"</strong> Highly offensive and hurtful to someone mourning a loss.</li>\n    </ul>\n  </div>\n</div>\n", "sim_type": "empathy_condolence_lab", "voice": "In moments of sorrow, words have the power to heal or to wound. Writing a condolence note requires quiet dignity, genuine warmth, and absolute sincerity. Avoid hollow clichés like 'I know how you feel'. Instead, celebrate the deceased person's virtues and offer steady, unconditional support.", "checkpoints": [{"question": "Which of the following phrases is most appropriate and comforting to include in a letter of condolence to a grieving friend?", "options": ["Cheer up! Life moves fast and you shouldn't cry so much.", "Everything happens for a reason, so try to forget about it quickly.", "Your father's generosity, wisdom, and warm smile touched everyone who knew him. May his cherished memories bring comfort to your heart.", "Well, at least he lived a long life, so you shouldn't feel too bad."], "correct": 2, "explanation": "Option C pays sincere tribute to the specific virtues of the deceased (generosity, wisdom, warm smile) and offers compassionate comfort without dismissive or insensitive clichés."}, {"question": "Why is saying 'I know exactly how you feel' discouraged in professional condolence and empathetic writing?", "options": ["Because the phrase is grammatically incorrect", "Because grief is intensely personal, and claiming to know 'exactly' how another feels can seem presumptuous and diminish their unique sorrow", "Because condolence letters must only contain quotes from classical poetry", "Because letters must never exceed ten words"], "correct": 1, "explanation": "Grief is deeply individual. Claiming to know 'exactly' how someone feels risks centering yourself rather than validating the mourner's personal, unique pain."}]}, {"id": 13, "title": "Creative Slogans & Advertising Copywriting", "subtitle": "Classified Ads vs Commercial Display, Punchy Wordplay, Sloganeering & AIDA Model (C-1.3)", "content": "\n<p class=\"lead-p\">Advertising copy and slogan writing are forms of micro-literature. In an era saturated with visual media and fleeting attention spans, the ability to communicate a compelling message in a single sentence or a compact classified box is an invaluable economic and communicative skill. Under <strong>C-1.3</strong>, students master both concise newspaper classifieds and memorable creative slogans.</p>\n\n<div class=\"theory-box\">\n  <h4>1. The Classic Classified Advertisement</h4>\n  <p>Classified advertisements in newspapers are charged by the word or line, requiring extreme conciseness, factual density, and standardized headings. Always drawn in a neat box:</p>\n  <ul>\n    <li><strong>SITUATION VACANT:</strong> Specify post, required qualification, experience, salary package, and application procedure (e.g., <em>WANTED: PGT English teacher with minimum 5 years CBSE experience...</em>).</li>\n    <li><strong>TO LET / FOR SALE:</strong> State property type, location, square footage, amenities, expected rent/price, and contact details.</li>\n    <li><strong>LOST AND FOUND:</strong> Objective details of item (color, brand, distinguishing marks), approximate location lost, and reward offered.</li>\n  </ul>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>The Art of the Creative Slogan</h4>\n    <p>A memorable slogan uses poetic compression to champion social causes or brand identities:</p>\n    <ul>\n      <li><strong>Alliteration & Consonance:</strong> <em>\"Plant Plastic-Free Pathways!\"</em></li>\n      <li><strong>Rhyme & Rhythm:</strong> <em>\"Save Water Today, Cherish Tomorrow's Ray!\"</em></li>\n      <li><strong>Antithesis & Contrast:</strong> <em>\"Small Actions, Monumental Impacts.\"</em></li>\n      <li><strong>Puns & Wordplay:</strong> <em>\"Don't Trash Our Future—Recycle It!\"</em></li>\n    </ul>\n  </div>\n  <div class=\"card-item\">\n    <h4>The Commercial AIDA Formula</h4>\n    <p>Every commercial display advertisement is built on the four-step psychological ladder:</p>\n    <ul>\n      <li><strong>A — Attention:</strong> High-impact bold headline.</li>\n      <li><strong>I — Interest:</strong> Fascinating feature or benefit.</li>\n      <li><strong>D — Desire:</strong> Solving a real emotional or practical need.</li>\n      <li><strong>A — Action:</strong> Unambiguous Call to Action (CTA).</li>\n    </ul>\n  </div>\n</div>\n", "sim_type": "ad_copy_slogan_canvas", "voice": "Can you capture the essence of a product or a social revolution in seven words? That is the magic of copy and slogan writing! From newspaper classified ads that save words to catchy slogans that stick in human memory for decades, let us write punchy, persuasive copy in our advertising studio!", "checkpoints": [{"question": "Which of the following slogans for a tree plantation drive effectively uses the poetic device of alliteration?", "options": ["Plant trees to save the environment because it is good.", "Plant Promising Pines for Peaceful Parks!", "Trees give oxygen so do not cut them down.", "Every student should plant one seedling tomorrow."], "correct": 1, "explanation": "Option B uses alliteration—the repeated 'P' sound ('Plant Promising Pines for Peaceful Parks')—creating a memorable, rhythmic slogan."}, {"question": "What is the primary characteristic of a newspaper 'Classified Advertisement'?", "options": ["It contains 500 words of fictional storytelling with elaborate illustrations", "It is compact, factual, highly economical, uses concise phrases, and is organized under specific classified headings in a box", "It must be written in poetic rhyming couplets", "It is an informal dialogue between two classmates"], "correct": 1, "explanation": "Classified ads are concise, strictly factual announcements formatted under standardized headings (e.g., Situation Vacant, To Let) to maximize information in minimal space."}]}, {"id": 14, "title": "Journalistic Writing: Magazine & Newspaper Articles", "subtitle": "Headlines, Bylines, The Inverted Pyramid, Lead Paragraphs & Feature Angles (C-1.3)", "content": "\n<p class=\"lead-p\">Writing articles for school magazines, local newsletters, or print newspapers allows students to voice informed opinions on societal, scientific, and cultural issues. Journalistic writing balances investigative fact-gathering with engaging narrative prose to inform, educate, and provoke positive civic contemplation.</p>\n\n<div class=\"theory-box\">\n  <h4>1. The Structural Anatomy of an Article</h4>\n  <ol>\n    <li><strong>Eye-Catching Headline:</strong> Punchy, creative, and thought-provoking; should hint at the central theme without giving away the entire essay (e.g., <em>\"The Digital Mirage: Is Screen Addiction Stealing Our Youth?\"</em>).</li>\n    <li><strong>Byline:</strong> Author's name and designation placed directly beneath the headline (e.g., <em>By Kabir Verma, Class IX-A</em>).</li>\n    <li><strong>The Hook & Lead Paragraph:</strong> Introduces the topical issue with urgency. Uses a dramatic contrast, recent survey findings, or a poignant real-world vignette to captivate the reader immediately.</li>\n    <li><strong>Analytical Body Paragraphs (2 to 3 paragraphs):</strong>\n      <ul>\n        <li>Examines the socio-economic or environmental causes underlying the issue.</li>\n        <li>Provides balanced statistical data, expert citations, and comparative insights.</li>\n        <li>Explores the human consequences on daily life, health, or culture.</li>\n      </ul>\n    </li>\n    <li><strong>Visionary Conclusion:</strong> Offers forward-looking solutions, community initiatives, and a resonant moral takeaway that leaves the reader inspired.</li>\n  </ol>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>The Inverted Pyramid of News Writing</h4>\n    <p>Unlike mystery novels where the climax is hidden at the end, journalistic news writing places the most critical information at the top:</p>\n    <ul>\n      <li><strong>Top (The Lead):</strong> Who, What, Where, When, Why, and How (The essential news story).</li>\n      <li><strong>Middle (The Body):</strong> Context, quotes from officials/witnesses, and supporting details.</li>\n      <li><strong>Base (The Tail):</strong> Historical background and minor trivia.</li>\n    </ul>\n  </div>\n  <div class=\"card-item\">\n    <h4>Editorial Voice & Stylistic Flair</h4>\n    <p>An article is not a dry report; it reflects your analytical voice:</p>\n    <ul>\n      <li>Use active, energetic verbs (<em>\"ignited, transformed, dismantled\"</em>).</li>\n      <li>Avoid self-absorbed diary entries (<em>\"When I woke up yesterday...\"</em>).</li>\n      <li>Balance critical diagnosis of problems with pragmatic, hopeful solutions.</li>\n    </ul>\n  </div>\n</div>\n", "sim_type": "article_newsroom_layout", "voice": "Journalism is literature in a hurry! When you write an article for your school magazine or community newspaper, your headline must hook the reader's eye, your byline claims responsibility for truth, and your arguments must shed light on real issues. Let us step into our virtual newsroom and publish articles with journalistic flair!", "checkpoints": [{"question": "In the standard format of a magazine article, where is the 'Byline' placed?", "options": ["At the very bottom of the bibliography", "Directly beneath the article's headline", "Inside a footnote on page 4", "In the table of contents only"], "correct": 1, "explanation": "The byline, crediting the author's name (e.g., 'By Tanya Roy, Student Editor'), is placed directly underneath the main headline."}, {"question": "What distinguishes the 'Inverted Pyramid' of journalism from traditional fiction storytelling?", "options": ["The inverted pyramid puts the most crucial facts (Who, What, Where, When) right at the beginning", "The inverted pyramid hides the main point until the final paragraph", "The inverted pyramid cannot use complete sentences", "The inverted pyramid is only used for poetry"], "correct": 0, "explanation": "The Inverted Pyramid model places the most critical, foundational news information in the opening lead paragraph, followed by decreasingly essential details."}]}, {"id": 15, "title": "Scripting for Digital Media: Audio, Video & Podcasts", "subtitle": "Two-Column AV Scripts, Sound Effects (SFX), Visual Cues & Narrative Pacing (C-1.4)", "content": "\n<p class=\"lead-p\">In the 21st century, literacy extends beyond print. Podcasts, educational videos, documentaries, and interactive webinars have become primary modes of public learning. Under <strong>C-1.4</strong>, students learn to write <strong>Audio-Visual (AV) Scripts</strong> where spoken dialogue is tightly synchronized with camera angles, visual graphics, sound effects (SFX), and music transitions.</p>\n\n<div class=\"theory-box\">\n  <h4>1. The Industry Standard Two-Column AV Script</h4>\n  <p>Media producers use a split-column format to align what the audience <em>sees</em> with what the audience <em>hears</em>:</p>\n  <div class=\"grid-2col\">\n    <div class=\"card-item\">\n      <h5>LEFT COLUMN: VIDEO / VISUAL CUES</h5>\n      <ul>\n        <li><strong>Camera Angles:</strong> Wide Shot (WS), Medium Shot (MS), Close-Up (CU).</li>\n        <li><strong>Visual Graphics:</strong> On-screen text, infographics, archival photos, animations.</li>\n        <li><strong>Lighting & Movement:</strong> Camera pan, zoom in, transition cuts (Fade In, Cross Dissolve).</li>\n      </ul>\n    </div>\n    <div class=\"card-item\">\n      <h5>RIGHT COLUMN: AUDIO / DIALOGUE</h5>\n      <ul>\n        <li><strong>Character Dialogue / Voiceover (VO):</strong> The exact spoken words.</li>\n        <li><strong>Sound Effects (SFX):</strong> Concrete sounds (<em>[SFX: Thunderclaps, footsteps, bell chime]</em>).</li>\n        <li><strong>Music Beds (BGM):</strong> Background score (<em>[BGM: Upbeat, energetic synth swells]</em>).</li>\n      </ul>\n    </div>\n  </div>\n</div>\n\n<div class=\"theory-box\">\n  <h4>Writing for the Ear: Principles of Audio Scripting</h4>\n  <ul>\n    <li><strong>Conversational Rhythm:</strong> Write sentences that breathe naturally. Read your script aloud; if you run out of breath, the sentence is too long!</li>\n    <li><strong>Audio Signposts:</strong> In a podcast or radio play, listeners cannot see the setting; the audio must paint the scene (<em>\"As we stand here at the misty summit of Kanchenjunga...\"</em>).</li>\n    <li><strong>Timing & Pacing:</strong> Professional broadcast English averages <strong>130 to 150 words per minute</strong>. A 300-word script equals roughly two minutes of airtime.</li>\n  </ul>\n</div>\n", "sim_type": "av_script_teleprompter", "voice": "When you write for video and audio, you are writing in two dimensions at once: pictures and sound! A two-column script tells the director what the camera sees on the left and tells the actors and sound engineers what the audience hears on the right. Let us produce a live digital podcast in our multimedia studio!", "checkpoints": [{"question": "In a professional two-column audio-visual (AV) script, what content belongs in the left-hand column?", "options": ["Actor salary contracts", "Visual cues, camera angles (CU, WS), transitions, and on-screen graphics", "The spoken dialogue and music cues", "The movie ticket receipts"], "correct": 1, "explanation": "In standard two-column AV scripts, the left column specifies visual instructions (camera shots, graphics, actions), while the right column contains spoken audio, dialogue, and sound effects."}, {"question": "Why is writing for audio and podcasts different from writing an academic textbook chapter?", "options": ["Audio writing cannot use complete sentences or facts", "Audio writing must be crafted 'for the ear' with conversational rhythm, natural pauses, and auditory scene-setting because listeners cannot re-read a page", "Audio writing must be whispered throughout the recording", "Audio writing only uses rhyming poetry"], "correct": 1, "explanation": "Writing for the ear requires conversational phrasing, natural breathing cadences, clear audio signposts, and rhythmic pacing since listeners cannot glance back at earlier lines."}]}, {"id": 16, "title": "Professional Email Writing & Digital Netiquette", "subtitle": "Subject Lines, Salutations, Concise Body Architecture, Attachments & Cyber Ethics (C-1.4)", "content": "\n<p class=\"lead-p\">Email is the universal nervous system of the digital academic and professional world. Unlike casual instant messaging on social media, sending a professional email demands strict digital etiquette (<strong>Netiquette</strong>), security consciousness, clear subject lines, and courteous conciseness. A poorly written email reflects badly on the sender; an articulate, professional email opens doors to scholarships, internships, and collaborations.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Anatomy of a Flawless Professional Email</h4>\n  <ul>\n    <li><strong>Subject Line:</strong> Informative, specific, and actionable. Never leave it blank or write vague words like <em>\"Query\"</em> or <em>\"Help\"</em>. Example: <em>\"Application for Student Science Internship — Rohan Verma (Class IX-B)\"</em>.</li>\n    <li><strong>Professional Salutation:</strong> <em>\"Dear Professor Sen,\"</em> or <em>\"Dear Dr. Mukherjee,\"</em>. Avoid casual greetings like <em>\"Hey\"</em> or <em>\"What's up\"</em> in formal correspondence.</li>\n    <li><strong>Opening Purpose:</strong> State the exact reason for the email in the very first sentence (<em>\"I am writing to inquire about the eligibility criteria for the National Youth Science Olympiad.\"</em>).</li>\n    <li><strong>Structured Core Message:</strong> Use short paragraphs and bullet points for multiple queries or action items to maximize scannability.</li>\n    <li><strong>Clear Call to Action & Gratitude:</strong> State what response or timeline you anticipate (<em>\"I would appreciate the opportunity to submit my project proposal by Friday. Thank you for your time and guidance.\"</em>).</li>\n    <li><strong>Professional Sign-Off:</strong> <em>\"Sincerely, / Warm regards,\"</em> followed by your full name, class, roll number, school name, and contact details.</li>\n  </ul>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>Golden Rules of Digital Netiquette</h4>\n    <ul>\n      <li><strong>Avoid ALL CAPS:</strong> WRITING IN CAPITAL LETTERS IS PERCEIVED AS SHOUTING and is considered rude.</li>\n      <li><strong>Use 'Reply All' with Extreme Caution:</strong> Only reply to everyone if every recipient genuinely needs the update; avoid cluttering inboxes.</li>\n      <li><strong>CC vs BCC:</strong> Use <strong>CC (Carbon Copy)</strong> for transparent visibility; use <strong>BCC (Blind Carbon Copy)</strong> to protect recipient email privacy during mass announcements.</li>\n    </ul>\n  </div>\n  <div class=\"card-item\">\n    <h4>Attachment Discipline</h4>\n    <p>Always name your files professionally before attaching them:</p>\n    <ul>\n      <li><strong>Poor:</strong> <code>Document123_final_final(2).docx</code></li>\n      <li><strong>Professional:</strong> <code>Rohan_Verma_Science_Project_Synopsis.pdf</code></li>\n      <li>Always reference the attachment in the email body: <em>\"Please find attached my project synopsis in PDF format.\"</em></li>\n    </ul>\n  </div>\n</div>\n", "sim_type": "email_netiquette_simulator", "voice": "An email is often the very first impression you make on a mentor, admissions officer, or employer! Write an informative subject line, state your purpose directly in the first sentence, use clean bullet points, and never shout in all caps. Let us master modern email craft and digital netiquette in our interactive inbox simulator!", "checkpoints": [{"question": "Which of the following email subject lines is the most professional and effective?", "options": ["URGENT PLEASE READ THIS RIGHT NOW!!!!!", "Query", "Request for Recommendation Letter — Ananya Roy (Class IX-A)", "Hey sir, have a question for you"], "correct": 2, "explanation": "Option C clearly summarizes the exact purpose of the email along with the sender's full name and class, enabling the recipient to immediately understand and prioritize the message."}, {"question": "When should the Blind Carbon Copy (BCC) field be used in professional email communication?", "options": ["To hide all the email text from the main recipient", "To send an email to a large group of people while keeping their personal email addresses private and invisible to each other", "To ensure the email bypasses all spam filters automatically", "To send an email without attaching any files"], "correct": 1, "explanation": "BCC protects recipient privacy by concealing individual email addresses from everyone else on the distribution list during mass announcements."}]}, {"id": 17, "title": "Mastery Quiz Challenge I: Foundations & Registers", "subtitle": "Comprehensive 10-Question Challenge on CG-1 & C-1.1 with Step-by-Step Solutions", "content": "\n<p class=\"lead-p\">Welcome to <strong>Mastery Quiz Challenge I</strong>! Test your foundational grasp of the dynamic communication loop, the 7 C's, sociolinguistic registers, polite disagreement strategies, and debate reasoning architecture. Click <strong>View Solution</strong> on any question to examine detailed teacher walk-throughs.</p>\n<div class=\"theory-box\">\n  <h4>Topic Coverage in this Challenge</h4>\n  <ul>\n    <li>Communication Loop: Senders, Channels, Decoding, Feedback & Noise</li>\n    <li>The 7 C's of Effective Written Communication</li>\n    <li>Martin Joos's 5 Registers: Frozen, Formal, Consultative, Casual, Intimate</li>\n    <li>Reasoned Debate: AREI Framework, Ad Hominem & Straw Man Fallacies</li>\n  </ul>\n</div>\n", "sim_type": "quiz_slide", "voice": "Welcome to Quiz Challenge Part 1! Let us put your knowledge of communication loops, registers, and debate reasoning to the test. Answer each question carefully, and click View Solution to explore detailed step-by-step solutions!", "quiz_range": [1, 10]}, {"id": 18, "title": "Mastery Quiz Challenge II: Narrative & Descriptive Craft", "subtitle": "Comprehensive 10-Question Challenge on C-1.2 with Step-by-Step Solutions", "content": "\n<p class=\"lead-p\">Welcome to <strong>Mastery Quiz Challenge II</strong>! This challenge evaluates your mastery of creative writing craft: Freytag's dramatic plot pyramid, sensory imagery palettes, 'Show, Don't Tell' transformations, points of view, and figurative devices. Click <strong>View Solution</strong> on any question for comprehensive rubrics.</p>\n<div class=\"theory-box\">\n  <h4>Topic Coverage in this Challenge</h4>\n  <ul>\n    <li>Plot Anatomy: Exposition, Inciting Incident, Rising Action, Climax, Denouement</li>\n    <li>Point of View: First Person, Third Person Limited, Third Person Omniscient</li>\n    <li>Multi-Sensory Palette: Visual, Auditory, Olfactory, Gustatory, Tactile Imagery</li>\n    <li>Figurative Devices: Similes, Metaphors, Personification, Onomatopoeia</li>\n  </ul>\n</div>\n", "sim_type": "quiz_slide", "voice": "Welcome to Quiz Challenge Part 2! Here we test your narrative and descriptive storytelling skills—from plot arcs and sensory imagery to figurative language. Challenge your creative writing instincts and review each solution modal!", "quiz_range": [11, 20]}, {"id": 19, "title": "Mastery Quiz Challenge III: Rhetoric & Real-Life Writing", "subtitle": "Comprehensive 10-Question Challenge on C-1.2 & C-1.3 with Step-by-Step Solutions", "content": "\n<p class=\"lead-p\">Welcome to <strong>Mastery Quiz Challenge III</strong>! This challenge tests expository PEEL structure, Aristotelian rhetorical appeals (Ethos, Pathos, Logos), formal full-block letters, notice writing standards, and invitation protocols. Click <strong>View Solution</strong> to inspect grading criteria and model answers.</p>\n<div class=\"theory-box\">\n  <h4>Topic Coverage in this Challenge</h4>\n  <ul>\n    <li>Expository Essay Architecture: PEEL Model & Cohesive Transitional Devices</li>\n    <li>Persuasive Rhetoric: Ethos, Pathos, Logos, Tricolon & Concession-Rebuttal</li>\n    <li>Formal Letters: Sender Details, Subject Line, Salutations & Complimentary Close</li>\n    <li>Notices & Invitations: 5 W's, Standard Enclosing Box & RSVP Protocols</li>\n  </ul>\n</div>\n", "sim_type": "quiz_slide", "voice": "Welcome to Quiz Challenge Part 3! We now evaluate your command over formal letters, school notices, invitation cards, and Aristotelian persuasive rhetoric. Analyze each prompt with precision!", "quiz_range": [21, 30]}, {"id": 20, "title": "Mastery Quiz Challenge IV: Journalism & Digital Media", "subtitle": "Comprehensive 10-Question Challenge on C-1.3 & C-1.4 with Step-by-Step Solutions", "content": "\n<p class=\"lead-p\">Welcome to the final <strong>Mastery Quiz Challenge IV</strong>! This culminating assessment examines public speech delivery, empathetic condolence phrasing, creative advertising slogans, magazine article architecture, audio-visual scriptwriting, and professional email netiquette. Click <strong>View Solution</strong> for in-depth explanations.</p>\n<div class=\"theory-box\">\n  <h4>Topic Coverage in this Challenge</h4>\n  <ul>\n    <li>Public Speech Delivery: Rhythmic Hooks, Triads & Memorable Calls-to-Action</li>\n    <li>Empathetic Writing: Condolence Etiquette, Sincerity & Avoidance of Platitudes</li>\n    <li>Advertising & Slogans: Classified Format vs Creative Sloganeering & AIDA Model</li>\n    <li>Journalism & New Media: The Inverted Pyramid, Two-Column AV Scripts & Email Netiquette</li>\n  </ul>\n</div>\n", "sim_type": "quiz_slide", "voice": "Congratulations on reaching the final Mastery Challenge! From public speeches and magazine articles to cutting-edge audio-visual scripts and professional emails, demonstrate your complete mastery of English communication. When you finish, you will have completed the entire Class 9 English Chapter 1 curriculum!", "quiz_range": [31, 40]}];
+    const quizData = [{"num": 1, "question": "In the human communication model, what is the term for any physical, emotional, or linguistic factor that distorts the transmission of a message?", "options": ["Encoding", "Channeling", "Noise / Barrier", "Feedback"], "correct": 2, "solution": "Step 1: The communication loop comprises Sender, Encoding, Message, Channel, Decoding, Receiver, Feedback, and Noise.\nStep 2: 'Noise' or 'Barriers' refer to any interference (physical loud sounds, poor internet connection, complex jargon, psychological prejudice) that hampers accurate reception.\nStep 3: Hence, Noise / Barrier is the correct term."}, {"num": 2, "question": "Which of the '7 C's of Communication' ensures that an essay presents verified facts and data rather than vague generalities?", "options": ["Courtesy", "Concreteness", "Conciseness", "Cheerfulness"], "correct": 1, "solution": "Step 1: The 7 C's are Clarity, Conciseness, Concreteness, Correctness, Coherence, Completeness, and Courtesy.\nStep 2: 'Concreteness' means grounding your writing in specific, tangible facts, numbers, and active descriptions rather than abstract, vague assertions."}, {"num": 3, "question": "Which sociolinguistic register is utilized in the text of the Constitution of India and the National Anthem?", "options": ["Casual Register", "Frozen Register", "Consultative Register", "Intimate Register"], "correct": 1, "solution": "Step 1: According to Martin Joos, language that remains static, immutable, ceremonial, and recited verbatim belongs to the 'Frozen' (or Static) register.\nStep 2: The Constitution and National Anthem are classic exemplars of the Frozen register."}, {"num": 4, "question": "A student in a classroom debate says: 'My opponent's argument that school uniforms promote equality is completely absurd because everyone knows she just wants to wear whatever she wants.' Which logical fallacy is committed?", "options": ["Ad Hominem", "Straw Man", "Hasty Generalization", "False Dilemma"], "correct": 0, "solution": "Step 1: An Ad Hominem fallacy occurs when a debater attacks the personal desires, character, or motives of the speaker rather than critically analyzing the logical argument itself.\nStep 2: Claiming 'she just wants to wear whatever she wants' attacks personal motive rather than refuting the sociological correlation between uniforms and student equality."}, {"num": 5, "question": "What does the letter 'R' stand for in the 'AREI' debate argument construction model?", "options": ["Repetition", "Reasoning", "Rhetoric", "Reaction"], "correct": 1, "solution": "Step 1: The AREI argument structure consists of:\n- A = Assertion (Claim)\n- R = Reasoning (Logical explanation of Why/How)\n- E = Evidence (Facts, statistics, case studies)\n- I = Impact (Real-world consequence and significance)."}, {"num": 6, "question": "During a committee discussion, which of the following is the most constructive way to express disagreement with a peer's suggestion?", "options": ["That is the most ridiculous idea I have heard today.", "I see the merit in your proposal, but I have concerns regarding its budgetary feasibility because...", "You clearly don't know anything about finance so be quiet.", "Let's just ignore what she said and move on."], "correct": 1, "solution": "Step 1: Competency C-1.1 emphasizes courteous, reasoned disagreement in social contexts.\nStep 2: Option B acknowledges the peer's intention ('I see the merit...') while grounding the objection in rational, objective constraints ('budgetary feasibility because...')."}, {"num": 7, "question": "Which register is typically employed during a professional parent-teacher meeting discussing a student's academic progress?", "options": ["Intimate Register", "Consultative Register", "Frozen Register", "Slang Register"], "correct": 1, "solution": "Step 1: The 'Consultative' register is standard for professional two-way interactions between experts/professionals and clients/students where background context is exchanged with polite, respectful formality without personal intimacy."}, {"num": 8, "question": "A debater states: 'Either we ban all smartphones in schools completely, or all students will fail their board exams.' Which logical fallacy does this illustrate?", "options": ["Slippery Slope", "False Dilemma (Black-and-White Thinking)", "Ad Hominem", "Bandwagon Fallacy"], "correct": 1, "solution": "Step 1: A False Dilemma artificially restricts a multifaceted situation into two extreme mutually exclusive alternatives, ignoring moderate, balanced possibilities (such as regulated educational smartphone use)."}, {"num": 9, "question": "In the communication loop, what process does the sender perform when transforming an idea into words and symbols?", "options": ["Decoding", "Encoding", "Filtering", "Receiving"], "correct": 1, "solution": "Step 1: 'Encoding' is the sender's cognitive process of converting internal concepts, thoughts, and emotions into communicable verbal or written symbols."}, {"num": 10, "question": "What is the primary objective of reaching 'Consensus' at the conclusion of a collaborative group discussion?", "options": ["To force everyone to surrender their beliefs to the loudest person", "To synthesize differing viewpoints into a mutually acceptable, cohesive resolution", "To vote repeatedly until the meeting runs out of time", "To prove that only one person in the group was right"], "correct": 1, "solution": "Step 1: Reaching consensus (C-1.1) means integrating diverse, constructive insights into an agreed-upon, practical conclusion that advances the shared goals of the collective group."}, {"num": 11, "question": "In Freytag's Pyramid of dramatic structure, what is the critical moment called where tension peaks and the central conflict turns decisively?", "options": ["Exposition", "Inciting Incident", "Climax", "Denouement"], "correct": 2, "solution": "Step 1: Freytag's Pyramid follows: Exposition -> Inciting Incident -> Rising Action -> Climax -> Falling Action -> Denouement.\nStep 2: The Climax is the turning point and emotional summit where the protagonist directly confronts the central obstacle."}, {"num": 12, "question": "Which sentence is an example of effective 'Show, Don't Tell' writing depicting freezing weather?", "options": ["The weather outside was very cold.", "It was so cold that everyone felt chilled.", "Frost coated the window panes in jagged crystalline ferns, and our breath plumed into thick white clouds the instant we stepped onto the porch.", "The thermometer showed a very low temperature."], "correct": 2, "solution": "Step 1: 'Show, Don't Tell' relies on vivid sensory evidence and physiological details.\nStep 2: Option C paints visual imagery ('frost coated the window panes in jagged crystalline ferns') and kinetic sensation ('breath plumed into thick white clouds') without once using the dull phrase 'it was very cold'."}, {"num": 13, "question": "Which literary device is used in the sentence: 'The old rusty gate screeched in agony as the nocturnal gale pushed against it'?", "options": ["Metaphor and Personification", "Oxymoron", "Hyperbole only", "Euphemism"], "correct": 0, "solution": "Step 1: Giving the gate human capability to feel and express 'agony' is Personification.\nStep 2: Describing its sound through the emotive vocalization 'screeched' also acts metaphorically and onomatopoeically."}, {"num": 14, "question": "Which point of view uses a narrator who knows the private thoughts, hidden secrets, and backgrounds of all characters simultaneously?", "options": ["First Person Subjective", "Second Person Imperative", "Third Person Omniscient", "Third Person Limited"], "correct": 2, "solution": "Step 1: 'Omniscient' comes from Latin roots meaning 'all-knowing'.\nStep 2: A Third Person Omniscient narrator possesses unrestricted access to the inner mental states, histories, and motives of every character across the entire narrative world."}, {"num": 15, "question": "What sensory imagery is primarily evoked by: 'The pungent aroma of charred garlic and crushed black peppercorns sizzled in the cast-iron skillet'?", "options": ["Olfactory and Auditory", "Tactile only", "Visual only", "Kinesthetic only"], "correct": 0, "solution": "Step 1: 'Pungent aroma' and 'charred garlic' evoke smell (Olfactory).\nStep 2: 'Sizzled' evokes sound (Auditory and Onomatopoeia).\nStep 3: Hence, Olfactory and Auditory imagery are primarily evoked."}, {"num": 16, "question": "In narrative plotting, what is the role of the 'Denouement' (Resolution)?", "options": ["To introduce the main villain for the first time", "To unravel lingering plot threads and establish a new status quo following the climax", "To restart the conflict from scratch", "To list the dictionary meanings of difficult words"], "correct": 1, "solution": "Step 1: 'Denouement' (French for 'untying the knot') occurs after the falling action.\nStep 2: It resolves remaining questions, shows how the protagonist has changed, and establishes a stable new normal."}, {"num": 17, "question": "Which of the following lines contains a clear Simile?", "options": ["Her eyes were sparkling emeralds.", "The classroom was a bustling beehive of frantic activity.", "The weary traveler moved as sluggishly as a wounded snail under the scorching sun.", "Time is a thief that steals our youth in silence."], "correct": 2, "solution": "Step 1: A Simile uses explicit comparative markers such as 'like' or 'as'.\nStep 2: 'As sluggishly as a wounded snail' is a direct simile. (Options A, B, and D are metaphors)."}, {"num": 18, "question": "In descriptive writing, what does establishing a 'Dominant Impression' mean?", "options": ["Using words in all-capital letters to look dominant", "Selecting details that unify the entire description around a single overarching mood, such as gloom, serenity, or chaos", "Listing every single object in the room without emotional connection", "Telling the reader that they must agree with you"], "correct": 1, "solution": "Step 1: A dominant impression is the central mood or thematic atmosphere (e.g., suffocating humidity, peaceful twilight) around which all sensory details are harmonized."}, {"num": 19, "question": "What is the primary drawback of writing a personal narrative in the First Person ('I') point of view?", "options": ["It cannot be read aloud", "The narrator can only report what they personally observe, hear, or experience, lacking access to other characters' private thoughts", "It is illegal in school examinations", "It requires writing in rhyming couplets"], "correct": 1, "solution": "Step 1: First person POV creates great emotional intimacy, but its limitation is strictly subjective scope—the narrator cannot reveal what other characters think or events occurring in other places out of their sight."}, {"num": 20, "question": "Identify the figure of speech in: 'The thunder crashed, banged, and roared across the midnight valley.'", "options": ["Onomatopoeia", "Oxymoron", "Understatement", "Irony"], "correct": 0, "solution": "Step 1: Words like 'crashed', 'banged', and 'roared' mimic the natural acoustic sounds of thunder, exemplifying Onomatopoeia."}, {"num": 21, "question": "In the PEEL model of expository paragraph structuring, what does the letter 'E' immediately following 'P' represent?", "options": ["Entertainment", "Evidence / Example", "Emotion", "Exaggeration"], "correct": 1, "solution": "Step 1: The PEEL paragraph structure stands for:\n- P = Point (Topic sentence)\n- E = Evidence / Example (Facts, citations, data)\n- E = Explanation / Elaboration (Analysis linking evidence to point)\n- L = Link (Transition back to thesis or forward to next paragraph)."}, {"num": 22, "question": "Which rhetorical appeal does Martin Luther King Jr. invoke in his famous line: 'I have a dream that my four little children will one day live in a nation where they will not be judged by the color of their skin but by the content of their character'?", "options": ["Logos primarily", "Pathos and Ethos (Emotional and Moral Resonance)", "Ad Hominem", "Circumlocution"], "correct": 1, "solution": "Step 1: Citing his four young children evokes parental love, hope, and universal human empathy (Pathos), while appealing to justice and character invokes profound moral integrity (Ethos)."}, {"num": 23, "question": "In a formal Full-Block style letter, where are the sender's address, date, and salutation positioned?", "options": ["Centered on the page with 5-space indentation", "Aligned strictly to the left-hand margin without arbitrary indentations", "Right-aligned at the top and left-aligned at the bottom", "Scattered across alternating margins"], "correct": 1, "solution": "Step 1: The modern Full-Block format mandates that all components—Sender's address, Date, Receiver's address, Subject, Salutation, Body paragraphs, and Complimentary close—align flush with the left margin."}, {"num": 24, "question": "What is the correct complementary close for an official formal letter written to an unknown institutional authority?", "options": ["Yours lovingly,", "Yours faithfully,", "Your's truly,", "Yours' faithfully,"], "correct": 1, "solution": "Step 1: When the recipient's personal name is unknown (addressed to 'Sir / Madam' or 'The Manager'), 'Yours faithfully,' is standard.\nStep 2: Remember: 'Yours' never takes an apostrophe."}, {"num": 25, "question": "Which of the following items is MANDATORY in the presentation of a formal school notice according to CBSE / NCERT guidelines?", "options": ["It must be enclosed completely inside a rectangular box/border", "It must contain at least three hand-drawn colored pictures", "It must be signed by at least ten students", "It must be printed on parchment paper"], "correct": 0, "solution": "Step 1: CBSE and NCERT guidelines require every notice to be enclosed within a clearly defined rectangular box or border, with the word 'NOTICE' and issuing institution centered at the top."}, {"num": 26, "question": "In a formal printed invitation card for a school Annual Athletic Meet, how should the host be designated?", "options": ["I, Principal Sharma, and my staff...", "The Principal, Staff, and Students of Modern Academy...", "We the teachers invite you guys...", "Hey parents, come to our playground..."], "correct": 1, "solution": "Step 1: Formal invitation cards must strictly use third-person phrasing: 'The Principal, Staff, and Students of [School Name] request the pleasure of your company...'"}, {"num": 27, "question": "What is the Latin phrase 'Tricolon' (The Rule of Three) commonly used for in persuasive speeches?", "options": ["Writing three separate essays on the same day", "Grouping words, phrases, or clauses in triplets for rhythmic impact and memory retention (e.g., 'Life, liberty, and the pursuit of happiness')", "Asking three classmates to deliver your speech", "Speaking in three foreign languages simultaneously"], "correct": 1, "solution": "Step 1: A Tricolon is a rhetorical device that groups ideas in threes (e.g., 'Veni, vidi, vici' or 'Government of the people, by the people, for the people') because the human ear finds triplets rhythmic and memorable."}, {"num": 28, "question": "Which cohesive transition best signals the addition of a reinforcing analytical point in an expository essay?", "options": ["Conversely", "Furthermore", "Nevertheless", "On the other hand"], "correct": 1, "solution": "Step 1: 'Furthermore', 'Moreover', and 'In addition' signal that the writer is providing an additional supporting fact or reinforcing perspective in alignment with the previous point."}, {"num": 29, "question": "In a formal letter of complaint regarding defective merchandise, what should the final paragraph contain?", "options": ["Insults directed at the shopkeeper's family", "A clear, polite statement of the specific remedy requested (e.g., immediate replacement or full refund within seven days)", "A fictional poem about shopping", "A threat to break the shop's display window"], "correct": 1, "solution": "Step 1: The closing paragraph of a complaint letter must articulate the specific, reasonable action requested (replacement, repair, or refund) along with a polite timeframe."}, {"num": 30, "question": "When declining a formal invitation due to a prior engagement, what tone should the formal reply embody?", "options": ["Angry and annoyed that you were bothered", "Courteous, appreciative of the honor, stating a brief polite reason for absence, and wishing the event success", "Completely silent without sending any response", "Informal and sarcastic"], "correct": 1, "solution": "Step 1: A formal regret note expresses gratitude for the invitation, expresses genuine regret, mentions a legitimate reason (prior commitment), and extends warm wishes for the success of the function."}, {"num": 31, "question": "What is the structural lead of a newspaper article designed around the 'Inverted Pyramid' framework?", "options": ["A lengthy poem describing the sunrise", "The essential 5 W's and 1 H (Who, What, Where, When, Why, How) summarizing the core event", "The personal diary reflection of the reporter's childhood", "A list of upcoming television programs"], "correct": 1, "solution": "Step 1: The lead paragraph in the Inverted Pyramid format synthesizes the primary news facts (Who, What, Where, When, Why, How) so readers grasp the core development immediately."}, {"num": 32, "question": "In public speaking, what does the technique 'Hypophora' entail?", "options": ["Speaking in a monotone whisper without looking up", "Posing a thought-provoking question to the audience and immediately answering it yourself to guide their reasoning", "Yelling at the top of your lungs for five minutes", "Singing the speech to the tune of a film song"], "correct": 1, "solution": "Step 1: Hypophora is a classical rhetorical figure where the speaker raises a question (e.g., 'Why must we act today?') and immediately provides the answer ('Because tomorrow the damage to our groundwater will be irreversible.')."}, {"num": 33, "question": "Which of the following headlines follows the standard rules of newspaper article journalism?", "options": ["Yesterday something bad happened to the road in our city", "Raging Yamuna Inundates Ring Road: Over 5,000 Evacuated to Relief Camps", "I think roads should be maintained better by the government", "Floods are not nice for anyone living nearby"], "correct": 1, "solution": "Step 1: A journalistic headline must be punchy, fact-rich, active, and summarize the event crisply without personal pronouns. Option B is an authentic headline."}, {"num": 34, "question": "In an audio-visual (AV) broadcast script, what does the abbreviation 'SFX' denote?", "options": ["Special Foreign Exchange", "Sound Effects", "Screen Font Size", "Silent Film Extra"], "correct": 1, "solution": "Step 1: In media scriptwriting, SFX stands for Sound Effects (e.g., door creaking, siren wailing, rain pattering)."}, {"num": 35, "question": "Why is writing an entire professional email in CAPITAL LETTERS considered a serious violation of netiquette?", "options": ["Capital letters consume three times more computer memory", "Typing in all capital letters is universally interpreted in digital communication as aggressive shouting", "Capital letters cannot be read by email servers", "It turns the text into an unreadable foreign language"], "correct": 1, "solution": "Step 1: In internet culture and digital netiquette, typing in all capital letters represents shouting, appearing aggressive, unprofessional, and abrasive."}, {"num": 36, "question": "In a two-column video script, what information is placed in the right-hand column?", "options": ["Camera zoom directions and lighting details", "Spoken dialogue, voiceover narration, and sound effects (SFX / BGM)", "The director's home address", "Costume designer receipts"], "correct": 1, "solution": "Step 1: Two-column AV scripts split into Video/Visuals on the left and Audio/Dialogue/Music on the right."}, {"num": 37, "question": "Which of the following represents the most appropriate opening for a letter of condolence to a classmate whose grandmother passed away?", "options": ["Hey, cheer up! Everyone's grandparents pass away eventually.", "I was deeply grieved to learn of the sad demise of your beloved grandmother. Her gentle kindness and warm stories will always be fondly remembered.", "Don't worry about school work, just forget about it.", "It's good that she is gone because she was old."], "correct": 1, "solution": "Step 1: Option B expresses deep, respectful sorrow, honors the personal qualities of the grandmother (gentle kindness, warm stories), and maintains dignity."}, {"num": 38, "question": "In the AIDA model of commercial advertising copywriting, what does the final 'A' signify?", "options": ["Alphabet", "Action (Call to Action / Purchasing step)", "Argument", "Applause"], "correct": 1, "solution": "Step 1: The AIDA formula represents:\n- A = Attention\n- I = Interest\n- D = Desire\n- A = Action (The clear next step prompting the consumer to buy, subscribe, or register)."}, {"num": 39, "question": "What is the average spoken word rate per minute recommended for pacing educational podcasts and broadcast audio scripts?", "options": ["50 words per minute", "130 to 150 words per minute", "350 words per minute", "600 words per minute"], "correct": 1, "solution": "Step 1: Broadcast speech standards recommend a natural pacing of 130 to 150 words per minute. Faster speeds hinder comprehension, while slower speeds cause listener disengagement."}, {"num": 40, "question": "In modern email communication, why is sending an attachment with a file name like 'Rohan_Sharma_Science_Project.pdf' preferred over 'doc1.pdf'?", "options": ["Because file names with names are required by cyber law", "Because descriptive file names clearly identify the document and author, preventing loss, confusion, or being mistaken for spam", "Because email servers refuse to deliver files with less than ten letters", "Because it makes the file open twice as fast"], "correct": 1, "solution": "Step 1: Professional file naming etiquette ensures that the recipient immediately identifies the contents and author without having to open and rename files, demonstrating organizational maturity."}];
+
+    let currentSlideIndex = 0;
+    let isSpeaking = false;
+    let synth = window.speechSynthesis;
+    let currentUtterance = null;
+    let mouthInterval = null;
+
+    // Initialize application
+    window.addEventListener('DOMContentLoaded', () => {
+      renderSlide(0);
+      setupSpeechSynthesis();
+    });
+
+    function setupSpeechSynthesis() {
+      if ('speechSynthesis' in window) {
+        synth.onvoiceschanged = () => {
+          // Voices ready
+        };
+      }
+    }
+
+    function renderSlide(index) {
+      currentSlideIndex = index;
+      const slide = slides[index];
+
+      // Update slide indicator
+      document.getElementById('slideIndicator').textContent = `Slide ${index + 1} / ${slides.length}`;
+      document.getElementById('slideTitle').textContent = slide.title;
+      document.getElementById('slideSubtitle').textContent = slide.subtitle;
+      document.getElementById('slideContent').innerHTML = slide.content;
+
+      // Handle Last Slide Notice & Next Button
+      const lastSlideNotice = document.getElementById('lastSlideNotice');
+      const nextBtn = document.getElementById('nextBtn');
+      const prevBtn = document.getElementById('prevBtn');
+
+      prevBtn.disabled = (index === 0);
+
+      if (index === slides.length - 1) {
+        lastSlideNotice.style.display = 'block';
+        nextBtn.style.display = 'none';
+      } else {
+        lastSlideNotice.style.display = 'none';
+        nextBtn.style.display = 'inline-flex';
+      }
+
+      // Handle Checkpoints vs Quiz Section
+      const checkpointsSection = document.getElementById('checkpointsSection');
+      const quizSection = document.getElementById('quizSection');
+
+      if (slide.checkpoints && slide.checkpoints.length > 0) {
+        checkpointsSection.style.display = 'block';
+        quizSection.style.display = 'none';
+        renderCheckpoints(slide.checkpoints);
+      } else if (slide.quiz_range) {
+        checkpointsSection.style.display = 'none';
+        quizSection.style.display = 'block';
+        renderQuizQuestions(slide.quiz_range[0], slide.quiz_range[1]);
+      } else {
+        checkpointsSection.style.display = 'none';
+        quizSection.style.display = 'none';
+      }
+
+      // Update Teacher Speech & Auto-narrate
+      document.getElementById('teacherSpeech').textContent = slide.voice;
+      speakText(slide.voice);
+
+      // Render Dedicated Bespoke Simulator
+      renderSimulator(slide.sim_type);
+    }
+
+    function nextSlide() {
+      if (currentSlideIndex < slides.length - 1) {
+        renderSlide(currentSlideIndex + 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlideIndex > 0) {
+        renderSlide(currentSlideIndex - 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // Checkpoints Renderer
+    function renderCheckpoints(checkpoints) {
+      const container = document.getElementById('checkpointsList');
+      container.innerHTML = '';
+
+      checkpoints.forEach((cp, qIdx) => {
+        const card = document.createElement('div');
+        card.className = 'checkpoint-card';
+        card.innerHTML = `
+          <p class="q-text">Q${qIdx + 1}: ${cp.question}</p>
+          <div class="options-grid" id="cp_opts_${qIdx}">
+            ${cp.options.map((opt, oIdx) => `
+              <button class="option-btn" onclick="checkAnswer(${qIdx}, ${oIdx}, ${cp.correct}, this)">
+                ${String.fromCharCode(65 + oIdx)}. ${opt}
+              </button>
+            `).join('')}
+          </div>
+          <div class="checkpoint-feedback" id="cp_fb_${qIdx}"></div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function checkAnswer(qIdx, selected, correct, btn) {
+      const parent = document.getElementById(`cp_opts_${qIdx}`);
+      const buttons = parent.querySelectorAll('.option-btn');
+      const fb = document.getElementById(`cp_fb_${qIdx}`);
+      const currentSlide = slides[currentSlideIndex];
+      const explanation = currentSlide.checkpoints[qIdx].explanation;
+
+      buttons.forEach(b => b.disabled = true);
+
+      if (selected === correct) {
+        btn.classList.add('correct');
+        fb.className = 'checkpoint-feedback show correct-fb';
+        fb.innerHTML = `<strong>✓ Correct!</strong> ${explanation}`;
+      } else {
+        btn.classList.add('wrong');
+        buttons[correct].classList.add('correct');
+        fb.className = 'checkpoint-feedback show wrong-fb';
+        fb.innerHTML = `<strong>✗ Incorrect.</strong> ${explanation}`;
+      }
+    }
+
+    // Quiz Questions Renderer
+    function renderQuizQuestions(startNum, endNum) {
+      const container = document.getElementById('quizList');
+      container.innerHTML = '';
+
+      const subset = quizData.filter(q => q.num >= startNum && q.num <= endNum);
+
+      subset.forEach(q => {
+        const card = document.createElement('div');
+        card.className = 'quiz-item';
+        card.innerHTML = `
+          <div class="quiz-header">
+            <span class="quiz-num">Question ${q.num} of 40</span>
+            <button class="view-solution-btn" onclick="openSolutionModal(${q.num})">View Solution</button>
+          </div>
+          <p class="q-text" style="font-weight: 600; margin-bottom: 12px; color: #f8fafc;">${q.question}</p>
+          <div class="options-grid" id="quiz_opts_${q.num}">
+            ${q.options.map((opt, oIdx) => `
+              <button class="option-btn" onclick="checkQuizAnswer(${q.num}, ${oIdx}, ${q.correct}, this)">
+                ${String.fromCharCode(65 + oIdx)}. ${opt}
+              </button>
+            `).join('')}
+          </div>
+          <div class="checkpoint-feedback" id="quiz_fb_${q.num}"></div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function checkQuizAnswer(qNum, selected, correct, btn) {
+      const parent = document.getElementById(`quiz_opts_${qNum}`);
+      const buttons = parent.querySelectorAll('.option-btn');
+      const fb = document.getElementById(`quiz_fb_${qNum}`);
+
+      buttons.forEach(b => b.disabled = true);
+
+      if (selected === correct) {
+        btn.classList.add('correct');
+        fb.className = 'checkpoint-feedback show correct-fb';
+        fb.innerHTML = `<strong>✓ Correct!</strong> Click 'View Solution' for detailed step-by-step analysis.`;
+      } else {
+        btn.classList.add('wrong');
+        buttons[correct].classList.add('correct');
+        fb.className = 'checkpoint-feedback show wrong-fb';
+        fb.innerHTML = `<strong>✗ Incorrect.</strong> Click 'View Solution' to see the model explanation.`;
+      }
+    }
+
+    // Solution Modal Operations
+    function openSolutionModal(qNum) {
+      const q = quizData.find(item => item.num === qNum);
+      if (!q) return;
+
+      document.getElementById('modalTitle').textContent = `Question ${q.num} Solution & Analysis`;
+      document.getElementById('modalBody').textContent = q.solution;
+      document.getElementById('solutionModal').style.display = 'flex';
+    }
+
+    function closeSolutionModal() {
+      document.getElementById('solutionModal').style.display = 'none';
+    }
+
+    // Voiceover Speech Engine
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) return;
+      stopSpeech();
+
+      currentUtterance = new SpeechSynthesisUtterance(text);
+      currentUtterance.lang = 'en-US';
+      currentUtterance.rate = 0.95;
+      currentUtterance.pitch = 1.05;
+
+      const voices = synth.getVoices();
+      const femaleVoice = voices.find(v => v.lang.includes('en') && (v.name.includes('Female') || v.name.includes('Zira') || v.name.includes('Samantha') || v.name.includes('Google US English')));
+      if (femaleVoice) currentUtterance.voice = femaleVoice;
+
+      currentUtterance.onstart = () => {
+        isSpeaking = true;
+        document.getElementById('voiceIcon').textContent = '⏹';
+        document.getElementById('voiceLabel').textContent = 'Stop Voiceover';
+        startMouthAnimation();
+      };
+
+      currentUtterance.onend = () => {
+        stopMouthAnimation();
+      };
+
+      currentUtterance.onerror = () => {
+        stopMouthAnimation();
+      };
+
+      synth.speak(currentUtterance);
+    }
+
+    function toggleSpeech() {
+      if (isSpeaking) {
+        stopSpeech();
+      } else {
+        const text = slides[currentSlideIndex].voice;
+        speakText(text);
+      }
+    }
+
+    function replaySpeech() {
+      const text = slides[currentSlideIndex].voice;
+      speakText(text);
+    }
+
+    function stopSpeech() {
+      if ('speechSynthesis' in window) {
+        synth.cancel();
+      }
+      stopMouthAnimation();
+    }
+
+    function startMouthAnimation() {
+      const mouth = document.getElementById('teacherMouth');
+      if (!mouth) return;
+      clearInterval(mouthInterval);
+      mouthInterval = setInterval(() => {
+        const ry = (Math.random() * 4 + 1.5).toFixed(1);
+        mouth.setAttribute('ry', ry);
+      }, 120);
+    }
+
+    function stopMouthAnimation() {
+      isSpeaking = false;
+      document.getElementById('voiceIcon').textContent = '🔊';
+      document.getElementById('voiceLabel').textContent = 'Play Voiceover';
+      clearInterval(mouthInterval);
+      const mouth = document.getElementById('teacherMouth');
+      if (mouth) mouth.setAttribute('ry', '1.5');
+    }
+
+    // ==========================================
+    // 16 BESPOKE INTERACTIVE SIMULATORS
+    // ==========================================
+    function renderSimulator(type) {
+      const svg = document.getElementById('simSvg');
+      const controls = document.getElementById('simControls');
+      const title = document.getElementById('simTitle');
+
+      switch(type) {
+        case 'comm_loop_matrix':
+          title.textContent = 'Dynamic Communication Loop & Noise Matrix';
+          renderCommLoopSim(svg, controls);
+          break;
+        case 'social_register_slider':
+          title.textContent = 'Sociolinguistic Register Continuum Studio';
+          renderRegisterSim(svg, controls);
+          break;
+        case 'debate_arena_builder':
+          title.textContent = 'AREI Debate Reasoning Arena & Fallacy Detector';
+          renderDebateSim(svg, controls);
+          break;
+        case 'freytags_pyramid_lab':
+          title.textContent = "Freytag's Narrative Plot Arc & Suspense Studio";
+          renderFreytagSim(svg, controls);
+          break;
+        case 'sensory_imagery_palette':
+          title.textContent = "5-Senses Imagery Palette & Show-Don't-Tell Studio";
+          renderSensorySim(svg, controls);
+          break;
+        case 'expository_structure_builder':
+          title.textContent = "Expository PEEL Structuring & Transitions Lab";
+          renderExpositorySim(svg, controls);
+          break;
+        case 'rhetorical_triangle_mixer':
+          title.textContent = "Aristotle's Rhetoric Mixer: Ethos, Pathos, Logos";
+          renderRhetoricSim(svg, controls);
+          break;
+        case 'letter_builder_studio':
+          title.textContent = "Full-Block Formal & Informal Letter Architect";
+          renderLetterSim(svg, controls);
+          break;
+        case 'notice_board_canvas':
+          title.textContent = "Official Notice Board & 5 W's Protocol Studio";
+          renderNoticeSim(svg, controls);
+          break;
+        case 'invitation_rsvp_studio':
+          title.textContent = 'Formal Invitation Card & RSVP Reply Studio';
+          renderInvitationSim(svg, controls);
+          break;
+        case 'podium_speech_simulator':
+          title.textContent = 'Public Speech Podium Delivery & Rhetoric Lab';
+          renderSpeechSim(svg, controls);
+          break;
+        case 'empathy_condolence_lab':
+          title.textContent = 'Empathetic Condolence & Sensitivity Workshop';
+          renderCondolenceSim(svg, controls);
+          break;
+        case 'ad_copy_slogan_canvas':
+          title.textContent = 'Advertising Copy & Creative Slogan Canvas';
+          renderAdCopySim(svg, controls);
+          break;
+        case 'article_newsroom_layout':
+          title.textContent = 'School Magazine Newsroom & Inverted Pyramid Lab';
+          renderArticleSim(svg, controls);
+          break;
+        case 'av_script_teleprompter':
+          title.textContent = 'Two-Column AV Digital Script & Teleprompter';
+          renderAvScriptSim(svg, controls);
+          break;
+        case 'email_netiquette_simulator':
+          title.textContent = 'Professional Email & Netiquette Audit Studio';
+          renderEmailSim(svg, controls);
+          break;
+        default:
+          title.textContent = 'Interactive Mastery Challenge Dashboard';
+          renderQuizDashboardSim(svg, controls);
+      }
+    }
+
+    // 1. Communication Loop Simulator
+    function renderCommLoopSim(svg, controls) {
+      svg.innerHTML = `
+        <defs>
+          <marker id="loopArrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#06b6d4" />
+          </marker>
+          <marker id="fbArrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#10b981" />
+          </marker>
+        </defs>
+        <!-- Sender Box -->
+        <rect x="25" y="60" width="100" height="70" rx="8" fill="#1e1b4b" stroke="#6366f1" stroke-width="2" />
+        <text x="75" y="90" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">SENDER</text>
+        <text x="75" y="110" fill="#c7d2fe" font-size="10" text-anchor="middle">(Encoder)</text>
+        
+        <!-- Forward Message Path -->
+        <path id="msgPath" d="M 125 80 Q 220 40 315 80" fill="none" stroke="#06b6d4" stroke-width="3" marker-end="url(#loopArrow)" />
+        <rect id="msgTag" x="180" y="35" width="80" height="22" rx="4" fill="#0284c7" />
+        <text x="220" y="50" fill="#fff" font-size="10" font-weight="bold" text-anchor="middle">Message</text>
+        
+        <!-- Receiver Box -->
+        <rect x="315" y="60" width="100" height="70" rx="8" fill="#042f2e" stroke="#10b981" stroke-width="2" />
+        <text x="365" y="90" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">RECEIVER</text>
+        <text x="365" y="110" fill="#a7f3d0" font-size="10" text-anchor="middle">(Decoder)</text>
+        
+        <!-- Feedback Path -->
+        <path id="fbPath" d="M 315 110 Q 220 150 125 110" fill="none" stroke="#10b981" stroke-width="3" stroke-dasharray="5 3" marker-end="url(#fbArrow)" />
+        <text x="220" y="152" fill="#10b981" font-size="11" font-weight="bold" text-anchor="middle">Feedback Loop</text>
+
+        <!-- Noise Barrier Cloud -->
+        <rect id="noiseBox" x="170" y="170" width="100" height="35" rx="8" fill="rgba(244, 63, 94, 0.2)" stroke="#f43f5e" stroke-dasharray="3 3" />
+        <text x="220" y="192" fill="#f43f5e" font-size="11" font-weight="bold" text-anchor="middle">NOISE: 10%</text>
+
+        <!-- Fidelity HUD -->
+        <rect x="40" y="225" width="360" height="42" rx="6" fill="#0f172a" stroke="#06b6d4" />
+        <text id="loopFidelityText" x="220" y="250" fill="#06b6d4" font-size="13" font-weight="bold" text-anchor="middle">Clarity Fidelity: 90% (Smooth Transmission)</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Channel Interference (Noise):</span>
+          <input type="range" id="noiseSlider" min="0" max="90" value="10">
+          <span class="control-val" id="noiseVal">10%</span>
+        </div>
+        <div class="control-row">
+          <span>Transmission Channel:</span>
+          <select id="channelSelect" style="background:#0f172a; color:#fff; padding:6px 10px; border-radius:6px; border:1px solid #475569;">
+            <option value="formal_letter">Full-Block Formal Letter</option>
+            <option value="email">Professional Email</option>
+            <option value="speech">Public Speech at Assembly</option>
+            <option value="podcast">Digital Audio Podcast</option>
+          </select>
+        </div>
+      `;
+
+      function updateLoop() {
+        const noise = parseInt(document.getElementById('noiseSlider').value);
+        document.getElementById('noiseVal').textContent = `${noise}%`;
+        const fidelity = 100 - noise;
+
+        const noiseBox = document.getElementById('noiseBox');
+        noiseBox.querySelector('text').textContent = `NOISE: ${noise}%`;
+        noiseBox.setAttribute('fill', `rgba(244, 63, 94, ${0.1 + noise / 100 * 0.5})`);
+
+        const fidelityText = document.getElementById('loopFidelityText');
+        if (fidelity > 70) {
+          fidelityText.textContent = `Clarity Fidelity: ${fidelity}% (Message Decoded Accurately)`;
+          fidelityText.setAttribute('fill', '#10b981');
+        } else if (fidelity > 40) {
+          fidelityText.textContent = `Clarity Fidelity: ${fidelity}% (Moderate Distortion / Misunderstanding)`;
+          fidelityText.setAttribute('fill', '#f59e0b');
+        } else {
+          fidelityText.textContent = `Clarity Fidelity: ${fidelity}% (Severe Breakdown / Communication Failure)`;
+          fidelityText.setAttribute('fill', '#f43f5e');
+        }
+      }
+
+      document.getElementById('noiseSlider').addEventListener('input', updateLoop);
+      document.getElementById('channelSelect').addEventListener('change', (e) => {
+        const channel = e.target.value;
+        const msgTag = document.getElementById('msgTag').querySelector('text');
+        if (channel === 'formal_letter') msgTag.textContent = 'Letter';
+        else if (channel === 'email') msgTag.textContent = 'Email';
+        else if (channel === 'speech') msgTag.textContent = 'Speech';
+        else msgTag.textContent = 'Podcast';
+      });
+    }
+
+    // 2. Sociolinguistic Register Slider
+    function renderRegisterSim(svg, controls) {
+      const registerData = [
+        { name: "1. Frozen (Static)", example: "Oaths, Constitution, National Anthem", text: "\"I do solemnly swear that I will bear true faith and allegiance...\"", color: "#a855f7" },
+        { name: "2. Formal", example: "Principal leave letter, Academic essays", text: "\"I am writing to formally request a one-day leave of absence due to an urgent family commitment.\"", color: "#3b82f6" },
+        { name: "3. Consultative", example: "Doctor-patient, Teacher-student review", text: "\"Could you explain where you encountered difficulty in this chapter, and we will review it?\"", color: "#06b6d4" },
+        { name: "4. Casual", example: "Classmates at recess, sports ground", text: "\"Hey, toss me that ball real quick, gotta run to the canteen!\"", color: "#10b981" },
+        { name: "5. Intimate", example: "Family members, closest childhood friend", text: "\"Bhai, save me some dessert! You know I'm starving.\"", color: "#f59e0b" }
+      ];
+
+      svg.innerHTML = `
+        <rect x="20" y="20" width="400" height="240" rx="10" fill="#0f172a" stroke="#6366f1" stroke-width="1.5" />
+        <text id="regTitle" x="220" y="50" fill="#6366f1" font-size="14" font-weight="bold" text-anchor="middle">2. Formal Register</text>
+        <text id="regContext" x="220" y="75" fill="#94a3b8" font-size="11" text-anchor="middle">Context: Principal leave letter, Academic essays</text>
+        
+        <!-- Register Preview Speech Card -->
+        <rect x="35" y="100" width="370" height="90" rx="8" fill="#1e1b4b" stroke="#38bdf8" />
+        <foreignObject x="45" y="105" width="350" height="80">
+          <div xmlns="http://www.w3.org/1999/xhtml" id="regSpeechText" style="color:#e0e7ff; font-size:12px; line-height:1.5; font-style:italic;">
+            "I am writing to formally request a one-day leave of absence due to an urgent family commitment."
+          </div>
+        </foreignObject>
+
+        <!-- Continuum Indicator Bar -->
+        <line x1="40" y1="225" x2="400" y2="225" stroke="#334155" stroke-width="6" stroke-linecap="round" />
+        <circle id="regSliderPoint" cx="130" cy="225" r="9" fill="#3b82f6" stroke="#fff" stroke-width="2" />
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Sociolinguistic Register Level:</span>
+          <input type="range" id="regRange" min="0" max="4" value="1">
+          <span class="control-val" id="regVal">Formal</span>
+        </div>
+      `;
+
+      document.getElementById('regRange').addEventListener('input', (e) => {
+        const idx = parseInt(e.target.value);
+        const data = registerData[idx];
+
+        document.getElementById('regTitle').textContent = data.name;
+        document.getElementById('regTitle').setAttribute('fill', data.color);
+        document.getElementById('regContext').textContent = `Context: ${data.example}`;
+        document.getElementById('regSpeechText').textContent = data.text;
+        document.getElementById('regVal').textContent = data.name.split('.')[1].trim();
+
+        const cx = 40 + idx * 90;
+        const pt = document.getElementById('regSliderPoint');
+        pt.setAttribute('cx', cx);
+        pt.setAttribute('fill', data.color);
+      });
+    }
+
+    // 3. Debate Arena Simulator
+    function renderDebateSim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="20" y="20" width="400" height="240" rx="10" fill="#090d16" stroke="#06b6d4" stroke-width="1.5" />
+        <text x="220" y="45" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">MOTION: 'Artificial Intelligence Tools Should Be Integrated in High Schools'</text>
+        
+        <!-- 4 AREI Pillars -->
+        <g id="areiG">
+          <rect x="30" y="70" width="85" height="120" rx="6" fill="#1e1b4b" stroke="#6366f1" />
+          <text x="72" y="92" fill="#c7d2fe" font-size="11" font-weight="bold" text-anchor="middle">ASSERTION</text>
+          <foreignObject x="35" y="100" width="75" height="85">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="font-size:9px; color:#e0e7ff; line-height:1.3;">AI provides individualized feedback.</div>
+          </foreignObject>
+
+          <rect x="125" y="70" width="85" height="120" rx="6" fill="#042f2e" stroke="#10b981" />
+          <text x="167" y="92" fill="#a7f3d0" font-size="11" font-weight="bold" text-anchor="middle">REASONING</text>
+          <foreignObject x="130" y="100" width="75" height="85">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="font-size:9px; color:#a7f3d0; line-height:1.3;">Algorithms adapt to unique learning pace.</div>
+          </foreignObject>
+
+          <rect x="220" y="70" width="85" height="120" rx="6" fill="#172554" stroke="#3b82f6" />
+          <text x="262" y="92" fill="#bfdbfe" font-size="11" font-weight="bold" text-anchor="middle">EVIDENCE</text>
+          <foreignObject x="225" y="100" width="75" height="85">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="font-size:9px; color:#bfdbfe; line-height:1.3;">UNESCO 2024: 32% retention boost.</div>
+          </foreignObject>
+
+          <rect x="315" y="70" width="85" height="120" rx="6" fill="#451a03" stroke="#f59e0b" />
+          <text x="357" y="92" fill="#fde68a" font-size="11" font-weight="bold" text-anchor="middle">IMPACT</text>
+          <foreignObject x="320" y="100" width="75" height="85">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="font-size:9px; color:#fde68a; line-height:1.3;">Closes the educational divide.</div>
+          </foreignObject>
+        </g>
+
+        <!-- Fallacy Shield Status -->
+        <rect x="40" y="205" width="360" height="40" rx="6" fill="#0f172a" stroke="#10b981" />
+        <text id="fallacyStatus" x="220" y="230" fill="#10b981" font-size="12" font-weight="bold" text-anchor="middle">Argument Integrity: 100% (No Fallacies Detected)</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Simulate Opponent Fallacy Attack:</span>
+          <select id="fallacySelect" style="background:#0f172a; color:#fff; padding:6px 10px; border-radius:6px; border:1px solid #475569;">
+            <option value="none">Principled Logical Rebuttal</option>
+            <option value="ad_hominem">Ad Hominem (Attacking Speaker's Age)</option>
+            <option value="straw_man">Straw Man (Misrepresenting Proposal)</option>
+            <option value="false_dilemma">False Dilemma (Black-or-White Extreme)</option>
+          </select>
+        </div>
+      `;
+
+      document.getElementById('fallacySelect').addEventListener('change', (e) => {
+        const status = document.getElementById('fallacyStatus');
+        const val = e.target.value;
+        if (val === 'none') {
+          status.textContent = 'Argument Integrity: 100% (Principled Logical Rebuttal)';
+          status.setAttribute('fill', '#10b981');
+        } else if (val === 'ad_hominem') {
+          status.textContent = 'FLAGGED: Ad Hominem Fallacy (Attacking character, not ideas!)';
+          status.setAttribute('fill', '#f43f5e');
+        } else if (val === 'straw_man') {
+          status.textContent = 'FLAGGED: Straw Man Fallacy (Exaggerating & distorting position!)';
+          status.setAttribute('fill', '#f59e0b');
+        } else {
+          status.textContent = 'FLAGGED: False Dilemma (Falsely claiming only 2 extremes exist!)';
+          status.setAttribute('fill', '#f59e0b');
+        }
+      });
+    }
+
+    // 4. Freytag's Pyramid Simulator
+    function renderFreytagSim(svg, controls) {
+      svg.innerHTML = `
+        <!-- Pyramid Arc Path -->
+        <polyline points="40,210 110,180 220,60 320,160 400,210" fill="none" stroke="#6366f1" stroke-width="4" stroke-linecap="round" />
+        <circle id="plotMarker" cx="220" cy="60" r="10" fill="#f59e0b" stroke="#fff" stroke-width="2" />
+        
+        <!-- Plot Stage Labels -->
+        <text x="40" y="235" fill="#94a3b8" font-size="10" text-anchor="middle">Exposition</text>
+        <text x="110" y="200" fill="#94a3b8" font-size="10" text-anchor="middle">Inciting</text>
+        <text x="220" y="45" fill="#f59e0b" font-size="12" font-weight="bold" text-anchor="middle">CLIMAX</text>
+        <text x="320" y="180" fill="#94a3b8" font-size="10" text-anchor="middle">Falling</text>
+        <text x="400" y="235" fill="#94a3b8" font-size="10" text-anchor="middle">Resolution</text>
+
+        <!-- Plot Event Card -->
+        <rect x="40" y="90" width="160" height="70" rx="8" fill="rgba(15, 23, 42, 0.9)" stroke="#6366f1" />
+        <text id="plotStageName" x="120" y="112" fill="#06b6d4" font-size="11" font-weight="bold" text-anchor="middle">3. Climax (Turning Point)</text>
+        <foreignObject x="45" y="120" width="150" height="36">
+          <div xmlns="http://www.w3.org/1999/xhtml" id="plotDesc" style="font-size:9px; color:#e2e8f0; line-height:1.2;">
+            Aarav confronts his deepest fear during the storm.
+          </div>
+        </foreignObject>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Narrative Plot Stage:</span>
+          <input type="range" id="stageSlider" min="0" max="4" value="2">
+          <span class="control-val" id="stageVal">Climax</span>
+        </div>
+      `;
+
+      const stages = [
+        { name: "1. Exposition", desc: "Setting: Quiet mountain hamlet. Ordinary status quo.", cx: 40, cy: 210, color: "#94a3b8" },
+        { name: "2. Inciting Incident", desc: "An urgent distress radio call arrives; power grid fails.", cx: 110, cy: 180, color: "#38bdf8" },
+        { name: "3. Climax", desc: "Aarav crosses the swaying rope bridge amidst howling wind.", cx: 220, cy: 60, color: "#f59e0b" },
+        { name: "4. Falling Action", desc: "The stranded travelers are safely escorted to shelter.", cx: 320, cy: 160, color: "#10b981" },
+        { name: "5. Resolution", desc: "Dawn breaks; Aarav discovers his own inner resilience.", cx: 400, cy: 210, color: "#a855f7" }
+      ];
+
+      document.getElementById('stageSlider').addEventListener('input', (e) => {
+        const idx = parseInt(e.target.value);
+        const st = stages[idx];
+
+        document.getElementById('plotStageName').textContent = st.name;
+        document.getElementById('plotStageName').setAttribute('fill', st.color);
+        document.getElementById('plotDesc').textContent = st.desc;
+        document.getElementById('stageVal').textContent = st.name.split('.')[1].trim();
+
+        const m = document.getElementById('plotMarker');
+        m.setAttribute('cx', st.cx);
+        m.setAttribute('cy', st.cy);
+        m.setAttribute('fill', st.color);
+      });
+    }
+
+    // 5. Sensory Imagery Studio
+    function renderSensorySim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="20" y="20" width="400" height="240" rx="10" fill="#0f172a" stroke="#06b6d4" stroke-width="1.5" />
+        <text id="senseTitle" x="220" y="50" fill="#06b6d4" font-size="14" font-weight="bold" text-anchor="middle">Sense: Olfactory (Smell)</text>
+        
+        <!-- Flat Telling vs Rich Showing -->
+        <rect x="35" y="70" width="370" height="65" rx="6" fill="#1e1b4b" stroke="#f43f5e" />
+        <text x="45" y="88" fill="#f43f5e" font-size="10" font-weight="bold">FLAT TELLING (Lacks Sensory Detail):</text>
+        <text id="flatTell" x="45" y="112" fill="#cbd5e1" font-size="11">"The kitchen smelled like food."</text>
+
+        <rect x="35" y="145" width="370" height="95" rx="6" fill="#042f2e" stroke="#10b981" />
+        <text x="45" y="165" fill="#10b981" font-size="10" font-weight="bold">RICH SHOWING (Multi-Sensory Palette):</text>
+        <foreignObject x="45" y="172" width="350" height="60">
+          <div xmlns="http://www.w3.org/1999/xhtml" id="richShow" style="font-size:11px; color:#a7f3d0; line-height:1.4;">
+            "The pungent aroma of roasted cardamom and spluttering mustard seeds drifted into the verandah, rich with the warmth of ginger."
+          </div>
+        </foreignObject>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Active Sensory Palette:</span>
+          <select id="senseSelect" style="background:#0f172a; color:#fff; padding:6px 10px; border-radius:6px; border:1px solid #475569;">
+            <option value="olfactory">Olfactory (Smell)</option>
+            <option value="auditory">Auditory (Sound)</option>
+            <option value="tactile">Tactile (Touch / Texture)</option>
+            <option value="visual">Visual (Sight / Color)</option>
+            <option value="gustatory">Gustatory (Taste)</option>
+          </select>
+        </div>
+      `;
+
+      const senseMap = {
+        olfactory: {
+          title: "Sense: Olfactory (Smell)",
+          tell: "\"The kitchen smelled like food.\"",
+          show: "\"The pungent aroma of roasted cardamom and spluttering mustard seeds drifted into the verandah, rich with the warmth of ginger.\""
+        },
+        auditory: {
+          title: "Sense: Auditory (Sound)",
+          tell: "\"The forest was noisy.\"",
+          show: "\"Dry twigs snapped underfoot as crickets thrummed a feverish rhythm, punctuated by the mournful hoot of a horned owl.\""
+        },
+        tactile: {
+          title: "Sense: Tactile (Touch & Temperature)",
+          tell: "\"The water was cold.\"",
+          show: "\"I dipped my hand into the glacial stream; a thousand icy needles pricked my fingertips, numbing my skin to the bone.\""
+        },
+        visual: {
+          title: "Sense: Visual (Sight & Geometry)",
+          tell: "\"The sunset was colorful.\"",
+          show: "\"Amber light bleeding into violet shadows set the jagged mountain peaks ablaze, as silhouettes of cranes carved through the crimson dusk.\""
+        },
+        gustatory: {
+          title: "Sense: Gustatory (Taste)",
+          tell: "\"The fruit was sour.\"",
+          show: "\"A sharp, electric jolt of raw green mango seasoned with rock salt and roasted chili powder detonated across my tongue.\""
+        }
+      };
+
+      document.getElementById('senseSelect').addEventListener('change', (e) => {
+        const s = senseMap[e.target.value];
+        document.getElementById('senseTitle').textContent = s.title;
+        document.getElementById('flatTell').textContent = s.tell;
+        document.getElementById('richShow').textContent = s.show;
+      });
+    }
+
+    // 6. Expository PEEL Structure Simulator
+    function renderExpositorySim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="20" y="20" width="400" height="240" rx="10" fill="#0f172a" stroke="#6366f1" stroke-width="1.5" />
+        <text x="220" y="45" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">PEEL PARAGRAPH ARCHITECT</text>
+        
+        <rect id="peelBox" x="35" y="65" width="370" height="135" rx="8" fill="#1e1b4b" stroke="#38bdf8" />
+        <text id="peelBadge" x="48" y="90" fill="#38bdf8" font-size="11" font-weight="bold">POINT (Topic Sentence)</text>
+        <foreignObject x="48" y="100" width="345" height="90">
+          <div xmlns="http://www.w3.org/1999/xhtml" id="peelText" style="color:#e2e8f0; font-size:11px; line-height:1.45;">
+            "Renewable energy investments generate substantially higher employment multiplier ratios compared to fossil fuel infrastructure."
+          </div>
+        </foreignObject>
+
+        <!-- Cohesive Transition Bar -->
+        <rect x="35" y="210" width="370" height="35" rx="6" fill="#042f2e" stroke="#10b981" />
+        <text id="peelTransition" x="220" y="232" fill="#10b981" font-size="11" font-weight="bold" text-anchor="middle">Transition Bridge: "Furthermore, empirical fiscal audits demonstrate..."</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Inspect PEEL Component:</span>
+          <select id="peelSelect" style="background:#0f172a; color:#fff; padding:6px 10px; border-radius:6px; border:1px solid #475569;">
+            <option value="P">P — Point (Topic Sentence)</option>
+            <option value="E1">E — Evidence (Data & Study Citation)</option>
+            <option value="E2">E — Explanation (Analytical Link)</option>
+            <option value="L">L — Link (Transition to Next Idea)</option>
+          </select>
+        </div>
+      `;
+
+      const peelData = {
+        P: {
+          badge: "POINT (Topic Sentence)",
+          text: "\"Renewable energy investments generate substantially higher employment multiplier ratios compared to fossil fuel infrastructure.\"",
+          color: "#38bdf8",
+          trans: "Signpost: \"First and foremost, economic data indicates...\""
+        },
+        E1: {
+          badge: "EVIDENCE (Concrete Citations & Data)",
+          text: "\"According to the International Labour Organization (ILO 2024 Report), solar installation creates 3.8 times more local jobs per dollar invested than coal.\"",
+          color: "#f59e0b",
+          trans: "Signpost: \"Specifically, empirical findings reveal that...\""
+        },
+        E2: {
+          badge: "EXPLANATION (Analytical Reasoning)",
+          text: "\"This disparity arises because decentralized distributed solar grids require domestic labor for maintenance and distribution, preventing capital flight to overseas refineries.\"",
+          color: "#10b981",
+          trans: "Signpost: \"This clearly demonstrates that...\""
+        },
+        L: {
+          badge: "LINK (Connection to Broader Thesis)",
+          text: "\"Consequently, prioritizing green infrastructure not only fulfills environmental mandates but serves as a vital catalyst for equitable domestic economic revival.\"",
+          color: "#a855f7",
+          trans: "Signpost: \"Therefore, in addition to environmental dividends...\""
+        }
+      };
+
+      document.getElementById('peelSelect').addEventListener('change', (e) => {
+        const d = peelData[e.target.value];
+        document.getElementById('peelBadge').textContent = d.badge;
+        document.getElementById('peelBadge').setAttribute('fill', d.color);
+        document.getElementById('peelText').textContent = d.text;
+        document.getElementById('peelTransition').textContent = d.trans;
+      });
+    }
+
+    // 7. Rhetoric Mixer (Ethos, Pathos, Logos)
+    function renderRhetoricSim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="20" y="20" width="400" height="240" rx="10" fill="#070b14" stroke="#6366f1" stroke-width="1.5" />
+        <text x="220" y="45" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">ARISTOTELIAN PERSUASION TRIANGLE</text>
+        
+        <!-- Triangle Graphic -->
+        <polygon points="220,65 100,175 340,175" fill="rgba(99, 102, 241, 0.15)" stroke="#6366f1" stroke-width="2" />
+        <text x="220" y="80" fill="#a855f7" font-size="11" font-weight="bold" text-anchor="middle">ETHOS (Credibility)</text>
+        <text x="80" y="190" fill="#f43f5e" font-size="11" font-weight="bold">PATHOS (Emotion)</text>
+        <text x="360" y="190" fill="#06b6d4" font-size="11" font-weight="bold" text-anchor="end">LOGOS (Logic)</text>
+
+        <!-- Persuasion Score HUD -->
+        <rect x="35" y="205" width="370" height="42" rx="6" fill="#0f172a" stroke="#10b981" />
+        <text id="rhetoricScore" x="220" y="231" fill="#10b981" font-size="13" font-weight="bold" text-anchor="middle">Persuasive Impact Index: 85% (Balanced & Potent)</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Ethos (Authority & Integrity):</span>
+          <input type="range" id="ethosRange" min="10" max="100" value="80">
+          <span class="control-val" id="ethosVal">80%</span>
+        </div>
+        <div class="control-row">
+          <span>Pathos (Emotional Connection):</span>
+          <input type="range" id="pathosRange" min="10" max="100" value="85">
+          <span class="control-val" id="pathosVal">85%</span>
+        </div>
+        <div class="control-row">
+          <span>Logos (Statistical Logic):</span>
+          <input type="range" id="logosRange" min="10" max="100" value="90">
+          <span class="control-val" id="logosVal">90%</span>
+        </div>
+      `;
+
+      function updateRhetoric() {
+        const e = parseInt(document.getElementById('ethosRange').value);
+        const p = parseInt(document.getElementById('pathosRange').value);
+        const l = parseInt(document.getElementById('logosRange').value);
+
+        document.getElementById('ethosVal').textContent = `${e}%`;
+        document.getElementById('pathosVal').textContent = `${p}%`;
+        document.getElementById('logosVal').textContent = `${l}%`;
+
+        const score = Math.round((e * 0.3) + (p * 0.35) + (l * 0.35));
+        const hud = document.getElementById('rhetoricScore');
+        if (score >= 80) {
+          hud.textContent = `Persuasive Impact Index: ${score}% (Masterful Classical Harmony)`;
+          hud.setAttribute('fill', '#10b981');
+        } else if (score >= 50) {
+          hud.textContent = `Persuasive Impact Index: ${score}% (Moderate; Needs Stronger Evidence)`;
+          hud.setAttribute('fill', '#f59e0b');
+        } else {
+          hud.textContent = `Persuasive Impact Index: ${score}% (Weak; Unconvincing Argument)`;
+          hud.setAttribute('fill', '#f43f5e');
+        }
+      }
+
+      document.getElementById('ethosRange').addEventListener('input', updateRhetoric);
+      document.getElementById('pathosRange').addEventListener('input', updateRhetoric);
+      document.getElementById('logosRange').addEventListener('input', updateRhetoric);
+    }
+
+    // 8. Letter Builder Studio
+    function renderLetterSim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="20" y="15" width="400" height="250" rx="8" fill="#f8fafc" stroke="#94a3b8" />
+        <!-- Letter Sheet Simulator -->
+        <g fill="#0f172a" font-size="8.5" font-family="monospace">
+          <text x="35" y="35" font-weight="bold">42, Shanti Vihar, New Delhi - 110092</text>
+          <text x="35" y="50">28 October 2026</text>
+          
+          <text x="35" y="70" font-weight="bold">The Municipal Commissioner,</text>
+          <text x="35" y="82">South Delhi Municipal Corporation, New Delhi</text>
+          
+          <text x="35" y="102" font-weight="bold" fill="#0369a1">Subject: Complaint regarding malfunctioning streetlights</text>
+          <text x="35" y="118">Sir / Madam,</text>
+          
+          <text x="35" y="134">Through this letter, I wish to draw your immediate attention towards...</text>
+          <text x="35" y="146">For the past three weeks, our streetlights have remained unlit, creating...</text>
+          <text x="35" y="158">I request you to kindly deploy an inspection team to rectify the issue.</text>
+          
+          <text x="35" y="180">Thanking you,</text>
+          <text x="35" y="195" font-weight="bold">Yours faithfully,</text>
+          <text x="35" y="208">Ananya Sharma</text>
+        </g>
+        
+        <!-- Format Annotation Tag -->
+        <rect x="250" y="215" width="160" height="24" rx="4" fill="#1e1b4b" stroke="#6366f1" />
+        <text x="330" y="231" fill="#c7d2fe" font-size="9" font-weight="bold" text-anchor="middle">Full-Block Left Alignment ✓</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Letter Format Template:</span>
+          <select id="letterFormatSelect" style="background:#0f172a; color:#fff; padding:6px 10px; border-radius:6px; border:1px solid #475569;">
+            <option value="formal_complaint">Formal Letter of Complaint</option>
+            <option value="editor">Letter to the Newspaper Editor</option>
+            <option value="informal">Informal Letter to Friend</option>
+          </select>
+        </div>
+      `;
+
+      document.getElementById('letterFormatSelect').addEventListener('change', (e) => {
+        // Update letter preview dynamically
+      });
+    }
+
+    // 9. Notice Board Canvas
+    function renderNoticeSim(svg, controls) {
+      svg.innerHTML = `
+        <!-- Outer Notice Box Border (Mandatory) -->
+        <rect x="20" y="15" width="400" height="250" rx="4" fill="#020617" stroke="#38bdf8" stroke-width="2.5" />
+        
+        <!-- Header: Organization -->
+        <text x="220" y="42" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">DELHI PUBLIC SCHOOL, R.K. PURAM</text>
+        <text x="220" y="65" fill="#f59e0b" font-size="15" font-weight="900" letter-spacing="3" text-anchor="middle">NOTICE</text>
+        
+        <!-- Date -->
+        <text x="35" y="88" fill="#94a3b8" font-size="9.5">Date: 28 October 2026</text>
+        
+        <!-- Topic Heading -->
+        <text id="noticeHeading" x="220" y="110" fill="#38bdf8" font-size="11" font-weight="bold" text-anchor="middle">INTER-SCHOOL SCIENCE EXHIBITION 2026</text>
+        <line x1="100" y1="115" x2="340" y2="115" stroke="#38bdf8" stroke-width="1" />
+        
+        <!-- Body (5 W's) -->
+        <foreignObject x="35" y="125" width="370" height="85">
+          <div xmlns="http://www.w3.org/1999/xhtml" id="noticeBodyText" style="color:#e2e8f0; font-size:10px; line-height:1.45;">
+            Students of Classes IX and X are hereby informed that the Annual Inter-School Science Exhibition will be held on 15 November 2026 in the Senior Auditorium from 9:00 AM to 3:00 PM. Interested teams must submit their working model abstracts to the undersigned by 5 November.
+          </div>
+        </foreignObject>
+        
+        <!-- Signatory Block -->
+        <text x="35" y="230" fill="#fff" font-size="9.5" font-weight="bold">Rohan Verma</text>
+        <text x="35" y="244" fill="#94a3b8" font-size="9">Science Club Secretary</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Notice Category:</span>
+          <select id="noticeTypeSelect" style="background:#0f172a; color:#fff; padding:6px 10px; border-radius:6px; border:1px solid #475569;">
+            <option value="science_fest">Event: Inter-School Science Exhibition</option>
+            <option value="lost_found">Lost & Found: Titan Wristwatch</option>
+            <option value="debate">Competition: Inter-House Debate</option>
+          </select>
+        </div>
+      `;
+
+      document.getElementById('noticeTypeSelect').addEventListener('change', (e) => {
+        const heading = document.getElementById('noticeHeading');
+        const body = document.getElementById('noticeBodyText');
+        if (e.target.value === 'lost_found') {
+          heading.textContent = 'FOUND: TITAN WRISTWATCH';
+          body.textContent = "A black leather-strapped Titan analog wristwatch was found near the basketball court on 27 October during the lunch interval. The rightful owner may claim it from the Vice Principal's office after providing proof of ownership within three days.";
+        } else if (e.target.value === 'debate') {
+          heading.textContent = 'INTER-HOUSE DEBATE COMPETITION';
+          body.textContent = 'The English Literary Society is organizing the Inter-House Debate Competition on 10 November 2026 in the school library at 10:00 AM. Motion: "Digital Media Fosters True Learning". Two participants per house may register with the undersigned by 2 November.';
+        } else {
+          heading.textContent = 'INTER-SCHOOL SCIENCE EXHIBITION 2026';
+          body.textContent = 'Students of Classes IX and X are hereby informed that the Annual Inter-School Science Exhibition will be held on 15 November 2026 in the Senior Auditorium from 9:00 AM to 3:00 PM. Interested teams must submit their working model abstracts to the undersigned by 5 November.';
+        }
+      });
+    }
+
+    // 10. Invitation & RSVP Studio
+    function renderInvitationSim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="25" y="20" width="390" height="240" rx="10" fill="#111827" stroke="#f59e0b" stroke-width="2" />
+        <rect x="35" y="30" width="370" height="220" rx="8" fill="none" stroke="#f59e0b" stroke-dasharray="4 2" />
+        
+        <text x="220" y="55" fill="#fde68a" font-size="11" font-weight="bold" text-anchor="middle">The Principal, Staff &amp; Students of</text>
+        <text x="220" y="75" fill="#fff" font-size="13" font-weight="900" text-anchor="middle">ST. XAVIER'S SENIOR SECONDARY SCHOOL</text>
+        <text x="220" y="95" fill="#cbd5e1" font-size="10" font-style="italic" text-anchor="middle">solicit the pleasure of your benign company on the occasion of</text>
+        
+        <text x="220" y="120" fill="#f59e0b" font-size="14" font-weight="bold" text-anchor="middle">ANNUAL ATHLETIC MEET 2026</text>
+        
+        <text x="220" y="145" fill="#e2e8f0" font-size="10" text-anchor="middle">on Saturday, 14 November 2026 at 9:30 AM</text>
+        <text x="220" y="162" fill="#e2e8f0" font-size="10" text-anchor="middle">Venue: School Athletic Stadium, Civil Lines</text>
+        
+        <text x="220" y="185" fill="#38bdf8" font-size="10" font-weight="bold" text-anchor="middle">Chief Guest: Smt. P.T. Usha (Member of Parliament)</text>
+        
+        <text x="50" y="225" fill="#94a3b8" font-size="9" font-weight="bold">R.S.V.P.</text>
+        <text x="50" y="238" fill="#cbd5e1" font-size="8">Ph: 011-23847291</text>
+        <text x="380" y="238" fill="#94a3b8" font-size="8" text-anchor="end">Admit One • Please be seated by 9:00 AM</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Reply Generator:</span>
+          <select id="rsvpSelect" style="background:#0f172a; color:#fff; padding:6px 10px; border-radius:6px; border:1px solid #475569;">
+            <option value="accept">Formal Acceptance Reply</option>
+            <option value="regret">Formal Regret (Declining) Reply</option>
+          </select>
+        </div>
+        <div id="rsvpReplyBox" style="background:#0f172a; border:1px solid #38bdf8; border-radius:6px; padding:10px; font-size:10px; color:#e0e7ff;">
+          "Mrs. &amp; Mr. R.K. Mehra thank the Principal and Staff of St. Xavier's School for their cordial invitation to the Annual Athletic Meet on 14 November 2026 and are delighted to confirm their attendance."
+        </div>
+      `;
+
+      document.getElementById('rsvpSelect').addEventListener('change', (e) => {
+        const box = document.getElementById('rsvpReplyBox');
+        if (e.target.value === 'regret') {
+          box.innerHTML = `"Dr. S. Nair thanks the Principal and Staff for their kind invitation to the Annual Athletic Meet on 14 November 2026, but deeply regrets his inability to attend due to a prior academic conference. He conveys his warmest wishes for the event's grand success."`;
+        } else {
+          box.innerHTML = `"Mrs. &amp; Mr. R.K. Mehra thank the Principal and Staff of St. Xavier's School for their cordial invitation to the Annual Athletic Meet on 14 November 2026 and are delighted to confirm their attendance."`;
+        }
+      });
+    }
+
+    // 11. Podium Speech Simulator
+    function renderSpeechSim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="20" y="20" width="400" height="240" rx="10" fill="#0b0f19" stroke="#6366f1" stroke-width="1.5" />
+        
+        <!-- Podium Graphic -->
+        <polygon points="180,240 260,240 245,150 195,150" fill="#334155" stroke="#475569" />
+        <rect x="180" y="140" width="80" height="15" rx="3" fill="#1e293b" />
+        <!-- Microphones -->
+        <line x1="205" y1="140" x2="195" y2="120" stroke="#94a3b8" stroke-width="2" />
+        <circle cx="195" cy="120" r="3" fill="#f43f5e" />
+        <line x1="235" y1="140" x2="245" y2="120" stroke="#94a3b8" stroke-width="2" />
+        <circle cx="245" cy="120" r="3" fill="#f43f5e" />
+
+        <!-- Speech Teleprompter Box -->
+        <rect x="35" y="35" width="370" height="75" rx="8" fill="#1e1b4b" stroke="#06b6d4" />
+        <foreignObject x="45" y="42" width="350" height="60">
+          <div xmlns="http://www.w3.org/1999/xhtml" id="teleprompterText" style="color:#e0e7ff; font-size:11px; line-height:1.45; font-weight:600;">
+            "Respected Principal, teachers, and dear friends: Imagine waking up to discover that the world had run out of clean drinking water..."
+          </div>
+        </foreignObject>
+
+        <!-- Delivery Pacing Meter -->
+        <text id="paceText" x="220" y="215" fill="#10b981" font-size="12" font-weight="bold" text-anchor="middle">Pacing: 140 words/min (Optimal Broadcast Delivery)</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Rhetorical Hook Strategy:</span>
+          <select id="speechHookSelect" style="background:#0f172a; color:#fff; padding:6px 10px; border-radius:6px; border:1px solid #475569;">
+            <option value="question">Provocative Hypothetical Question</option>
+            <option value="statistic">Shocking Empirical Statistic</option>
+            <option value="story">Poignant Personal Narrative Vignette</option>
+          </select>
+        </div>
+      `;
+
+      document.getElementById('speechHookSelect').addEventListener('change', (e) => {
+        const t = document.getElementById('teleprompterText');
+        if (e.target.value === 'statistic') {
+          t.innerHTML = '"According to the World Bank, over two billion people lack safely managed drinking water at home. Every single minute, three children succumb to waterborne diseases..."';
+        } else if (e.target.value === 'story') {
+          t.innerHTML = '"Last summer in my ancestral village, I watched an eight-year-old girl walk five kilometers under a blistering 45-degree sun carrying a brass pot of murky well water..."';
+        } else {
+          t.innerHTML = '"Respected Principal, teachers, and dear friends: Imagine waking up to discover that the world had run out of clean drinking water..."';
+        }
+      });
+    }
+
+    // 12. Empathetic Condolence Simulator
+    function renderCondolenceSim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="20" y="20" width="400" height="240" rx="10" fill="#0f172a" stroke="#a855f7" stroke-width="1.5" />
+        <text x="220" y="48" fill="#d8b4fe" font-size="13" font-weight="bold" text-anchor="middle">EMPATHETIC CONDOLENCE MESSAGE STUDIO</text>
+        
+        <!-- Sensitivity Analyzer Card -->
+        <rect x="35" y="70" width="370" height="120" rx="8" fill="#1e1b4b" stroke="#c084fc" />
+        <foreignObject x="45" y="80" width="350" height="100">
+          <div xmlns="http://www.w3.org/1999/xhtml" id="condolenceBody" style="color:#e9d5ff; font-size:11px; line-height:1.5;">
+            "I was deeply saddened to hear of the sudden passing of your beloved mother. Her gentle warmth, wisdom, and comforting smile touched everyone who knew her. May cherished memories bring peace to your grieving heart."
+          </div>
+        </foreignObject>
+
+        <!-- Etiquette Checklist HUD -->
+        <rect x="35" y="205" width="370" height="40" rx="6" fill="#042f2e" stroke="#10b981" />
+        <text id="empathyScore" x="220" y="230" fill="#10b981" font-size="12" font-weight="bold" text-anchor="middle">Sensitivity Rating: 100% (Dignified & Sincere)</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Test Phrasing Sensitivity:</span>
+          <select id="condolenceSelect" style="background:#0f172a; color:#fff; padding:6px 10px; border-radius:6px; border:1px solid #475569;">
+            <option value="dignified">Dignified Tribute (Celebrates Specific Virtues)</option>
+            <option value="cliche">Cliché Trap ("I know exactly how you feel")</option>
+            <option value="insensitive">Insensitive Platitude ("It was for the best")</option>
+          </select>
+        </div>
+      `;
+
+      document.getElementById('condolenceSelect').addEventListener('change', (e) => {
+        const b = document.getElementById('condolenceBody');
+        const s = document.getElementById('empathyScore');
+        if (e.target.value === 'cliche') {
+          b.innerHTML = `"Hey, I know exactly how you feel! Don't worry, you'll move on soon enough."`;
+          s.textContent = 'FLAGGED: Avoid "I know how you feel" (Minimizes individual grief!)';
+          s.setAttribute('fill', '#f59e0b');
+        } else if (e.target.value === 'insensitive') {
+          b.innerHTML = `"Everything happens for a reason, so it was probably for the best. Try not to feel bad."`;
+          s.textContent = 'REJECTED: Highly Insensitive & Dismissive Platitude!';
+          s.setAttribute('fill', '#f43f5e');
+        } else {
+          b.innerHTML = `"I was deeply saddened to hear of the sudden passing of your beloved mother. Her gentle warmth, wisdom, and comforting smile touched everyone who knew her. May cherished memories bring peace to your grieving heart."`;
+          s.textContent = 'Sensitivity Rating: 100% (Dignified & Sincere)';
+          s.setAttribute('fill', '#10b981');
+        }
+      });
+    }
+
+    // 13. Slogan & Advertisement Simulator
+    function renderAdCopySim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="20" y="20" width="400" height="240" rx="10" fill="#090d16" stroke="#f59e0b" stroke-width="1.5" />
+        <text x="220" y="45" fill="#f59e0b" font-size="13" font-weight="bold" text-anchor="middle">CLASSIFIED ADVERTISEMENT BOX</text>
+        
+        <!-- Standard Classified Box -->
+        <rect x="40" y="60" width="360" height="130" rx="4" fill="#18181b" stroke="#f59e0b" stroke-width="1.5" />
+        <text id="adCategory" x="220" y="82" fill="#fff" font-size="11" font-weight="bold" letter-spacing="1.5" text-anchor="middle">SITUATION VACANT</text>
+        <line x1="120" y1="87" x2="320" y2="87" stroke="#f59e0b" stroke-width="1" />
+        
+        <foreignObject x="50" y="95" width="340" height="85">
+          <div xmlns="http://www.w3.org/1999/xhtml" id="adCopyText" style="color:#f4f4f5; font-size:10px; line-height:1.4; font-family:monospace;">
+            WANTED: Energetic PGT English teacher for prestigious CBSE school. Candidate must possess M.A. (English), B.Ed., min 5 yrs exp. Remuneration commensurate with merits. Apply with CV within 7 days to Box No. 824, The Hindu, New Delhi.
+          </div>
+        </foreignObject>
+
+        <!-- Slogan Banner -->
+        <rect x="40" y="205" width="360" height="40" rx="6" fill="#1e1b4b" stroke="#38bdf8" />
+        <text id="sloganDisplay" x="220" y="230" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">SLOGAN: "Plant Plastic-Free Pathways!"</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Ad Copy Category:</span>
+          <select id="adSelect" style="background:#0f172a; color:#fff; padding:6px 10px; border-radius:6px; border:1px solid #475569;">
+            <option value="vacant">Situation Vacant</option>
+            <option value="sale">For Sale (Automobile)</option>
+            <option value="lost">Lost & Found</option>
+          </select>
+        </div>
+      `;
+
+      document.getElementById('adSelect').addEventListener('change', (e) => {
+        const cat = document.getElementById('adCategory');
+        const text = document.getElementById('adCopyText');
+        if (e.target.value === 'sale') {
+          cat.textContent = 'FOR SALE';
+          text.textContent = 'FOR SALE: 2022 Honda City ZX, white, single owner, driven 24,000 km, fully insured, pristine mechanical condition, power steering, alloy wheels. Expected price ₹9.5 Lakhs (negotiable). Contact Rajesh, Ph: 98102XXXXX.';
+        } else if (e.target.value === 'lost') {
+          cat.textContent = 'LOST AND FOUND';
+          text.textContent = 'LOST: Black leather document folder containing Class X certificates and passport in Delhi Metro Yellow Line on 27 Oct at 5 PM. Finder will be suitably rewarded. Kindly contact Priya at 98711XXXXX.';
+        } else {
+          cat.textContent = 'SITUATION VACANT';
+          text.textContent = 'WANTED: Energetic PGT English teacher for prestigious CBSE school. Candidate must possess M.A. (English), B.Ed., min 5 yrs exp. Remuneration commensurate with merits. Apply with CV within 7 days to Box No. 824, The Hindu, New Delhi.';
+        }
+      });
+    }
+
+    // 14. Magazine Article Newsroom Simulator
+    function renderArticleSim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="20" y="15" width="400" height="250" rx="8" fill="#f8fafc" stroke="#334155" />
+        
+        <!-- Newspaper Header -->
+        <text x="220" y="40" fill="#0f172a" font-size="13" font-weight="900" text-anchor="middle">The Digital Mirage: Is Screen Addiction Stealing Our Youth?</text>
+        <text x="220" y="55" fill="#475569" font-size="9" font-style="italic" text-anchor="middle">By Kabir Verma, Class IX-A (Student Editor)</text>
+        <line x1="40" y1="62" x2="400" y2="62" stroke="#cbd5e1" stroke-width="1.5" />
+
+        <!-- 2 Column Newspaper Print Layout -->
+        <foreignObject x="35" y="70" width="175" height="180">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="color:#0f172a; font-size:8.5px; line-height:1.4; text-align:justify;">
+            Walk into any classroom, park, or living room today, and you will witness a silent epidemic: heads tilted downward, pupils illuminated by the cold blue glow of handheld screens. What was envisioned as an informational superhighway has morphed into a digital labyrinth. According to recent surveys, Indian adolescents spend an average of six hours daily on non-academic screen scrolling.
+          </div>
+        </foreignObject>
+
+        <foreignObject x="225" y="70" width="175" height="180">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="color:#0f172a; font-size:8.5px; line-height:1.4; text-align:justify;">
+            The ramifications are alarming: disrupted sleep cycles, dwindling attention spans, and an unprecedented erosion of interpersonal face-to-face empathy. Yet, the remedy is not reactionary technophobia, but digital mindfulness. Schools must institute mandatory screen-free sports hours and cultivate deep offline reading habits.
+          </div>
+        </foreignObject>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Article Editorial Angle:</span>
+          <select id="angleSelect" style="background:#0f172a; color:#fff; padding:6px 10px; border-radius:6px; border:1px solid #475569;">
+            <option value="tech">Digital Addiction & Mental Health</option>
+            <option value="climate">Climate Action & Youth Movements</option>
+          </select>
+        </div>
+      `;
+    }
+
+    // 15. AV Digital Script Teleprompter
+    function renderAvScriptSim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="20" y="20" width="400" height="240" rx="10" fill="#020617" stroke="#38bdf8" stroke-width="1.5" />
+        <text x="220" y="45" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">TWO-COLUMN AUDIO-VISUAL (AV) BROADCAST SCRIPT</text>
+        
+        <!-- Column Dividing Line -->
+        <line x1="200" y1="55" x2="200" y2="245" stroke="#334155" stroke-width="1.5" stroke-dasharray="3 3" />
+        <text x="110" y="70" fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle">VIDEO / VISUAL CUES</text>
+        <text x="310" y="70" fill="#10b981" font-size="10" font-weight="bold" text-anchor="middle">AUDIO / DIALOGUE &amp; SFX</text>
+        
+        <foreignObject x="30" y="80" width="160" height="150">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="color:#cbd5e1; font-size:8.5px; line-height:1.4;">
+            <strong>[0:00 - 0:08]</strong><br/>
+            WIDE SHOT (WS): Misty Himalayan ridge at sunrise. Drone camera slowly pans left.<br/><br/>
+            <strong>[0:08 - 0:15]</strong><br/>
+            CLOSE UP (CU): Weathered hands of an elderly tea farmer sorting green leaves into a wicker basket.
+          </div>
+        </foreignObject>
+
+        <foreignObject x="210" y="80" width="190" height="150">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="color:#a7f3d0; font-size:8.5px; line-height:1.4;">
+            <strong>[SFX: Gentle morning breeze whistling; distant temple bells chiming]</strong><br/><br/>
+            <strong>NARRATOR (VO):</strong> "Long before dawn touches the cities of the plains, the silence of the mountains yields to a centuries-old tradition..."
+          </div>
+        </foreignObject>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Script Teleprompter Mode:</span>
+          <button class="sim-action-btn" onclick="alert('Teleprompter running at 140 WPM.')">▶ Run Teleprompter Sync</button>
+        </div>
+      `;
+    }
+
+    // 16. Email Netiquette Simulator
+    function renderEmailSim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="20" y="15" width="400" height="250" rx="8" fill="#0f172a" stroke="#06b6d4" stroke-width="1.5" />
+        
+        <!-- Email Header Fields -->
+        <g fill="#94a3b8" font-size="9">
+          <text x="35" y="38" font-weight="bold">To:</text>
+          <text x="65" y="38" fill="#e2e8f0">director.olympiad@scienceindia.org</text>
+          
+          <text x="35" y="55" font-weight="bold">Subject:</text>
+          <text id="emailSubj" x="80" y="55" fill="#38bdf8" font-weight="bold">Inquiry Regarding Youth Science Olympiad Eligibility — Rohan Verma</text>
+          
+          <text x="35" y="72" font-weight="bold">Attachment:</text>
+          <text x="100" y="72" fill="#10b981">📎 Rohan_Verma_Project_Abstract.pdf (1.2 MB)</text>
+        </g>
+        <line x1="30" y1="80" x2="410" y2="80" stroke="#334155" />
+
+        <!-- Email Body -->
+        <foreignObject x="35" y="85" width="370" height="120">
+          <div xmlns="http://www.w3.org/1999/xhtml" id="emailBodyText" style="color:#e2e8f0; font-size:9.5px; line-height:1.45;">
+            Dear Dr. Sen,<br/><br/>
+            I am writing to respectfully inquire about the eligibility criteria for the upcoming National Youth Science Olympiad 2026. I am a Class IX student at Delhi Public School and have developed a working solar desalination prototype.<br/><br/>
+            Please find attached my project abstract for your preliminary perusal. I look forward to your guidance.<br/><br/>
+            Warm regards,<br/>
+            <strong>Rohan Verma</strong> | Class IX-B
+          </div>
+        </foreignObject>
+
+        <!-- Netiquette Audit Tag -->
+        <rect x="35" y="215" width="370" height="35" rx="6" fill="#042f2e" stroke="#10b981" />
+        <text id="netiquetteScore" x="220" y="237" fill="#10b981" font-size="11" font-weight="bold" text-anchor="middle">Netiquette Audit: 100% Passed (Polite, Specific Subject, Safe Attachment)</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Netiquette Audit Test:</span>
+          <select id="emailTestSelect" style="background:#0f172a; color:#fff; padding:6px 10px; border-radius:6px; border:1px solid #475569;">
+            <option value="prof">Professional Formal Inquiry</option>
+            <option value="caps">All-Caps Violation (Shouting)</option>
+            <option value="vague">Vague Subject Line &amp; Unnamed Attachment</option>
+          </select>
+        </div>
+      `;
+
+      document.getElementById('emailTestSelect').addEventListener('change', (e) => {
+        const s = document.getElementById('emailSubj');
+        const b = document.getElementById('emailBodyText');
+        const audit = document.getElementById('netiquetteScore');
+        if (e.target.value === 'caps') {
+          s.textContent = 'URGENT ANSWER ME RIGHT NOW!!!!!';
+          b.innerHTML = 'WHY HAVENT YOU REPLIED TO MY EMAIL YET??? I NEED TO KNOW THE DATES IMMEDIATELY!!!!';
+          audit.textContent = 'FAILED: All-Caps Shouting & Aggressive Tone Violation!';
+          audit.setAttribute('fill', '#f43f5e');
+        } else if (e.target.value === 'vague') {
+          s.textContent = 'Help';
+          b.innerHTML = 'Hey, check this out and tell me what you think. See attachment.';
+          audit.textContent = 'FAILED: Vague Subject Line & Casual Greeting in Professional Context';
+          audit.setAttribute('fill', '#f59e0b');
+        } else {
+          s.textContent = 'Inquiry Regarding Youth Science Olympiad Eligibility — Rohan Verma';
+          b.innerHTML = 'Dear Dr. Sen,<br/><br/>I am writing to respectfully inquire about the eligibility criteria for the upcoming National Youth Science Olympiad 2026. I am a Class IX student at Delhi Public School and have developed a working solar desalination prototype.<br/><br/>Please find attached my project abstract for your preliminary perusal. I look forward to your guidance.<br/><br/>Warm regards,<br/><strong>Rohan Verma</strong> | Class IX-B';
+          audit.textContent = 'Netiquette Audit: 100% Passed (Polite, Specific Subject, Safe Attachment)';
+          audit.setAttribute('fill', '#10b981');
+        }
+      });
+    }
+
+    // Quiz Dashboard Simulator
+    function renderQuizDashboardSim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="20" y="20" width="400" height="240" rx="10" fill="#0f172a" stroke="#6366f1" stroke-width="1.5" />
+        <text x="220" y="55" fill="#f8fafc" font-size="14" font-weight="bold" text-anchor="middle">ENGLISH COMMUNICATION MASTERY CHALLENGE</text>
+        <circle cx="220" cy="125" r="45" fill="none" stroke="#6366f1" stroke-width="8" stroke-dasharray="280" stroke-dashoffset="40" />
+        <text x="220" y="132" fill="#06b6d4" font-size="16" font-weight="bold" text-anchor="middle">40 Qs</text>
+        <text x="220" y="195" fill="#a7f3d0" font-size="11" font-weight="bold" text-anchor="middle">Comprehensive Competency Assessment (CG-1)</text>
+        <text x="220" y="225" fill="#94a3b8" font-size="10" text-anchor="middle">Select your answers and click "View Solution" for detailed teacher rubrics.</text>
+      `;
+      controls.innerHTML = `
+        <div style="text-align: center; color: #94a3b8; font-size: 0.85rem; padding: 10px;">
+          Active Challenge Section: Review solutions to reinforce key communication rules.
+        </div>
+      `;
+    }
+
+  </script>
+</body>
+</html>

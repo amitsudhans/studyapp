@@ -1,0 +1,2006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 9 Science • Chapter 10: Force and Laws of Motion</title>
+  
+  <!-- KaTeX for crisp mathematical formulas -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+  <style>
+    :root {
+      --bg-primary: #0a0e17;
+      --bg-secondary: #121826;
+      --card-bg: rgba(26, 34, 53, 0.85);
+      --card-border: rgba(99, 130, 201, 0.25);
+      --accent-cyan: #00e5ff;
+      --accent-blue: #3d7eff;
+      --accent-purple: #9d4edd;
+      --accent-green: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-red: #ef4444;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --font-stack: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 20%, #152038 0%, var(--bg-primary) 80%);
+      color: var(--text-main);
+      font-family: var(--font-stack);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Top Navigation Bar */
+    header.top-nav {
+      background: rgba(18, 24, 38, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-badge {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+      color: #050b14;
+      font-weight: 800;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .nav-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .nav-stats {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .slide-indicator {
+      font-size: 0.9rem;
+      color: var(--accent-cyan);
+      font-weight: 600;
+      background: rgba(0, 229, 255, 0.1);
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(0, 229, 255, 0.3);
+    }
+
+    /* Layout Container */
+    .lab-container {
+      max-width: 1440px;
+      margin: 20px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 480px;
+      gap: 24px;
+    }
+
+    @media (max-width: 1080px) {
+      .lab-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Slide Card */
+    .slide-viewport {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+      min-height: 720px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slide-header {
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 16px;
+    }
+
+    .slide-header h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .slide-header h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--accent-cyan);
+      margin-top: 4px;
+    }
+
+    .slide-body {
+      flex: 1;
+    }
+
+    .lead-p {
+      font-size: 1.05rem;
+      margin-bottom: 18px;
+      color: #cbd5e1;
+    }
+
+    .theory-box {
+      background: rgba(15, 23, 42, 0.6);
+      border-left: 4px solid var(--accent-blue);
+      padding: 16px 20px;
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 20px;
+    }
+
+    .theory-box h4 {
+      color: #38bdf8;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    .highlight-eq {
+      background: rgba(0, 229, 255, 0.08);
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      border-radius: 8px;
+      padding: 10px 16px;
+      margin: 12px 0;
+      text-align: center;
+      color: #e0f2fe;
+      font-size: 1.15rem;
+    }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .grid-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2col, .grid-3col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 14px 18px;
+    }
+
+    .card-item h4, .card-item h5 {
+      color: var(--accent-cyan);
+      margin-bottom: 6px;
+    }
+
+    /* Checkpoints within slides */
+    .checkpoints-section {
+      margin-top: 24px;
+      background: rgba(18, 24, 38, 0.7);
+      border: 1px solid rgba(99, 130, 201, 0.3);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .checkpoints-header {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent-amber);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .checkpoint-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .checkpoint-card p.q-text {
+      font-weight: 600;
+      color: #f8fafc;
+      margin-bottom: 10px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .option-btn {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+      padding: 8px 12px;
+      border-radius: 6px;
+      text-align: left;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background: rgba(59, 130, 246, 0.2);
+      border-color: rgba(59, 130, 246, 0.5);
+      color: #fff;
+    }
+
+    .option-btn.correct {
+      background: rgba(16, 185, 129, 0.25) !important;
+      border-color: var(--accent-green) !important;
+      color: #a7f3d0 !important;
+      font-weight: 600;
+    }
+
+    .option-btn.wrong {
+      background: rgba(239, 68, 68, 0.25) !important;
+      border-color: var(--accent-red) !important;
+      color: #fca5a5 !important;
+    }
+
+    .checkpoint-feedback {
+      margin-top: 10px;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      display: none;
+    }
+
+    .checkpoint-feedback.show {
+      display: block;
+    }
+
+    .checkpoint-feedback.correct-fb {
+      background: rgba(16, 185, 129, 0.15);
+      border-left: 3px solid var(--accent-green);
+      color: #6ee7b7;
+    }
+
+    .checkpoint-feedback.wrong-fb {
+      background: rgba(239, 68, 68, 0.15);
+      border-left: 3px solid var(--accent-red);
+      color: #fca5a5;
+    }
+
+    /* Quiz Slide Styles */
+    .quiz-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .quiz-item {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 16px;
+      transition: border-color 0.2s;
+    }
+
+    .quiz-item:hover {
+      border-color: rgba(99, 130, 201, 0.4);
+    }
+
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .quiz-num {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      background: rgba(0, 229, 255, 0.1);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .view-solution-btn {
+      background: transparent;
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .view-solution-btn:hover {
+      background: var(--accent-cyan);
+      color: #050b14;
+    }
+
+    /* Right Column: Teacher Avatar & Interactive Simulators */
+    .interactive-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Teacher Avatar Box */
+    .teacher-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .avatar-wrapper {
+      width: 120px;
+      height: 120px;
+      position: relative;
+      margin-bottom: 12px;
+    }
+
+    .avatar-svg {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: radial-gradient(circle, #3b82f6 0%, #1e1b4b 100%);
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    }
+
+    .teacher-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .teacher-role {
+      font-size: 0.82rem;
+      color: var(--accent-cyan);
+      margin-bottom: 14px;
+    }
+
+    .speech-bubble {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      position: relative;
+      line-height: 1.5;
+      text-align: left;
+      width: 100%;
+      min-height: 70px;
+    }
+
+    .voice-controls {
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .voice-btn {
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      color: #93c5fd;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .voice-btn:hover {
+      background: rgba(59, 130, 246, 0.3);
+      color: #fff;
+    }
+
+    /* Simulator Panel Box */
+    .simulator-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .simulator-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 10px;
+    }
+
+    .sim-canvas-area {
+      background: #060911;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      height: 280px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sim-controls {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .control-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+    }
+
+    .control-row input[type="range"] {
+      flex: 1;
+      accent-color: var(--accent-cyan);
+    }
+
+    .control-val {
+      font-family: monospace;
+      color: var(--accent-cyan);
+      min-width: 48px;
+      text-align: right;
+    }
+
+    .sim-btn-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .sim-action-btn {
+      flex: 1;
+      background: rgba(30, 41, 59, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #e2e8f0;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .sim-action-btn:hover {
+      background: rgba(59, 130, 246, 0.3);
+      color: #fff;
+    }
+
+    /* Bottom Slide Controls */
+    footer.bottom-bar {
+      max-width: 1440px;
+      margin: 10px auto 40px;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-btn {
+      background: linear-gradient(135deg, var(--accent-blue), #1d4ed8);
+      border: none;
+      color: #fff;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(59, 130, 246, 0.6);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    /* Last Slide Notice (Strictly required) */
+    .last-slide-notice {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid var(--accent-green);
+      color: #6ee7b7;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+    }
+
+    /* Modal for Detailed Step-by-Step Solutions */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      max-width: 600px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    .modal-close:hover {
+      color: #fff;
+    }
+
+    .modal-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-bottom: 12px;
+    }
+
+    .modal-body {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-brand">
+      <span class="nav-badge">NCERT • Class 9</span>
+      <span class="nav-title">Chapter 10: Force and Laws of Motion</span>
+    </div>
+    <div class="nav-stats">
+      <span class="slide-indicator" id="slideIndicator">Slide 1 / 20</span>
+    </div>
+  </header>
+
+  <!-- Main Laboratory Layout -->
+  <main class="lab-container">
+    
+    <!-- Left Column: Slide Viewport -->
+    <section class="slide-viewport">
+      <div class="slide-header">
+        <h2 id="slideTitle">Loading...</h2>
+        <h3 id="slideSubtitle">...</h3>
+      </div>
+      
+      <div class="slide-body" id="slideContent">
+        <!-- Dynamic content injected here -->
+      </div>
+
+      <!-- In-Slide Checkpoints Section -->
+      <div class="checkpoints-section" id="checkpointsSection" style="display: none;">
+        <div class="checkpoints-header">
+          <span>⚡ Interactive In-Slide Concept Checkpoints</span>
+        </div>
+        <div id="checkpointsList"></div>
+      </div>
+
+      <!-- Quiz Questions Section (Slides 17 to 20) -->
+      <div id="quizSection" style="display: none;">
+        <div class="quiz-container" id="quizList"></div>
+      </div>
+
+      <!-- Strict Last Slide Notice -->
+      <div id="lastSlideNotice" class="last-slide-notice">
+        You have reached the last slide of this chapter
+      </div>
+    </section>
+
+    <!-- Right Column: Teacher Avatar & Interactive Simulators -->
+    <aside class="interactive-panel">
+      
+      <!-- Teacher Avatar Box -->
+      <div class="teacher-box">
+        <div class="avatar-wrapper">
+          <svg class="avatar-svg" viewBox="0 0 100 100">
+            <!-- Neck & Body -->
+            <path d="M30 85 C30 70, 70 70, 70 85 Z" fill="#3b82f6" />
+            <!-- Head & Face -->
+            <circle cx="50" cy="45" r="24" fill="#fed7aa" />
+            <!-- Hair -->
+            <path d="M26 45 C26 25, 74 25, 74 45 C74 30, 26 30, 26 45 Z" fill="#475569" />
+            <!-- Glasses -->
+            <rect x="36" y="40" width="10" height="7" rx="2" fill="none" stroke="#0284c7" stroke-width="2" />
+            <rect x="54" y="40" width="10" height="7" rx="2" fill="none" stroke="#0284c7" stroke-width="2" />
+            <line x1="46" y1="43" x2="54" y2="43" stroke="#0284c7" stroke-width="2" />
+            <!-- Eyes -->
+            <circle cx="41" cy="43" r="1.5" fill="#0f172a" />
+            <circle cx="59" cy="43" r="1.5" fill="#0f172a" />
+            <!-- Animated Talking Mouth -->
+            <ellipse id="teacherMouth" cx="50" cy="56" rx="4" ry="1.5" fill="#e11d48" />
+          </svg>
+        </div>
+        <div class="teacher-title">Science Mentor</div>
+        <div class="teacher-role">Senior Dynamics & Mechanics Guide</div>
+        <div class="speech-bubble" id="teacherSpeech">
+          Welcome to the Force and Laws of Motion Laboratory!
+        </div>
+        <div class="voice-controls">
+          <button class="voice-btn" id="voiceToggleBtn" onclick="toggleSpeech()">
+            <span id="voiceIcon">🔊</span> <span id="voiceLabel">Play Voiceover</span>
+          </button>
+          <button class="voice-btn" onclick="replaySpeech()">
+            <span>🔄</span> <span>Replay</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Interactive Dynamic Simulator -->
+      <div class="simulator-box">
+        <div class="simulator-title">
+          <span id="simTitle">Bespoke Interactive Lab</span>
+          <span style="font-size: 0.75rem; color: var(--accent-cyan); font-weight: normal;">LIVE SVG</span>
+        </div>
+        
+        <div class="sim-canvas-area" id="simCanvasArea">
+          <svg id="simSvg" width="100%" height="100%" viewBox="0 0 440 280">
+            <!-- Dynamic SVG elements injected by simulator renderer -->
+          </svg>
+        </div>
+
+        <div class="sim-controls" id="simControls">
+          <!-- Interactive Sliders / Buttons -->
+        </div>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <!-- Bottom Navigation Bar -->
+  <footer class="bottom-bar">
+    <button class="nav-btn" id="prevBtn" onclick="prevSlide()">
+      <span>⬅ Previous Slide</span>
+    </button>
+    <div style="color: var(--text-muted); font-size: 0.9rem;">
+      NCERT Science Class 9 • Chapter 10
+    </div>
+    <button class="nav-btn" id="nextBtn" onclick="nextSlide()">
+      <span>Next Slide ➡</span>
+    </button>
+  </footer>
+
+  <!-- Detailed Solution Pop-up Modal -->
+  <div class="modal-overlay" id="solutionModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeSolutionModal()">&times;</button>
+      <div class="modal-title" id="modalTitle">Question Solution</div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    const slides = [{"id": 1, "title": "Introduction to Force & Vector Nature", "subtitle": "Push, Pull, Magnitude, Direction & Free Body Diagrams (C-2.1)", "content": "\n<p class=\"lead-p\">In everyday life, we observe objects at rest beginning to move, moving bodies slowing down, speeding up, or veering around corners. An external agency is required to cause these changes\u2014this physical interaction is called <strong>Force</strong>.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Defining Force & Its Observable Effects</h4>\n  <p>A <strong>force</strong> is a push, pull, or mutual interaction on an object resulting from its interaction with another entity. A force can:</p>\n  <ul>\n    <li><strong>Change the state of rest or motion:</strong> Push a stalled car to roll forward, or brake a bicycle to rest.</li>\n    <li><strong>Alter the speed of an object:</strong> Accelerate a falling ball downwards or decelerate an upward throw.</li>\n    <li><strong>Change the direction of motion:</strong> A cricket batsman deflecting an oncoming ball with a bat.</li>\n    <li><strong>Change the shape or dimensions:</strong> Squeezing a rubber ball, stretching a spring, or flattening dough.</li>\n  </ul>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>Vector Character of Force</h4>\n    <p>Force possesses both <strong>magnitude</strong> (how strong it is) and <strong>direction</strong> (where it points). If you push a door with a force of $10\\text{ N}$ to open it, pushing in the opposite direction will slam it shut! Represented mathematically as $\\vec{F}$.</p>\n  </div>\n  <div class=\"card-item\">\n    <h4>SI Unit of Force: The Newton (N)</h4>\n    <p>The standard International System (SI) unit of force is the <strong>Newton</strong>, symbolized as $\\text{N}$. Named in honour of Sir Isaac Newton, $1\\text{ N} = 1\\text{ kg}\\cdot\\text{m/s}^2$. In CGS units, force is measured in dynes ($1\\text{ N} = 10^5\\text{ dynes}$).</p>\n  </div>\n</div>\n", "sim_type": "force_vector", "voice": "Welcome to the Force and Laws of Motion Master Laboratory! In this foundational session, we explore what force truly is: a push or pull that can initiate, stop, or redirect motion. Crucially, force is a vector quantity having both magnitude and direction. Let us experiment with our interactive vector simulator!", "checkpoints": [{"question": "Which of the following physical quantities is completely characterized only when both magnitude and direction are specified?", "options": ["Mass", "Force", "Speed", "Time"], "correct": 1, "explanation": "Force is a vector quantity requiring both magnitude (e.g. 15 N) and spatial direction (e.g. eastward). Mass, speed, and time are scalar quantities."}, {"question": "What is the equivalent fundamental SI unit representation of 1 Newton (N)?", "options": ["1 kg\u00b7m/s", "1 kg\u00b7m/s\u00b2", "1 kg\u00b2/m\u00b7s", "1 g\u00b7cm/s\u00b2"], "correct": 1, "explanation": "From Newton's second law F = ma, 1 Newton equals 1 kilogram accelerated at 1 meter per second squared, or 1 kg\u00b7m/s\u00b2."}]}, {"id": 2, "title": "Balanced vs Unbalanced Forces", "subtitle": "Equilibrium, Net Force (\u03a3F), and Acceleration (C-2.1, C-8.1)", "content": "\n<p class=\"lead-p\">When multiple forces act simultaneously on a body, their combined influence is determined by their vector sum, known as the <strong>Net Force ($\\Sigma \\vec{F}$)</strong> or resultant force.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Balanced Forces ($\\Sigma \\vec{F} = 0$)</h4>\n  <p>If the resultant of all forces acting on a body is zero, the forces are termed <strong>balanced forces</strong>:</p>\n  <ul>\n    <li>They <strong>cannot</strong> change the state of rest or uniform motion of an object.</li>\n    <li>An object at rest remains at rest; an object moving at constant velocity continues moving at identical speed in a straight line.</li>\n    <li>Balanced forces <strong>can</strong> alter the shape or size of an object (e.g., compressing a balloon between two hands with equal opposing forces).</li>\n  </ul>\n</div>\n\n<div class=\"theory-box\">\n  <h4>2. Unbalanced Forces ($\\Sigma \\vec{F} \\neq 0$)</h4>\n  <p>If the resultant of all forces acting on a body is non-zero, an <strong>unbalanced net force</strong> exists:</p>\n  <ul>\n    <li>An unbalanced force always produces an <strong>acceleration</strong> ($a = \\frac{\\Sigma F}{m}$) in the direction of the net force.</li>\n    <li>It changes the object's speed, direction of motion, or both.</li>\n    <li>To accelerate an object from rest, an external unbalanced force is strictly necessary.</li>\n  </ul>\n</div>\n", "sim_type": "balanced_tug_of_war", "voice": "Consider a block on a horizontal tabletop. When two opposite teams pull a rope with identical forces of 50 Newtons each, the net force is zero. The forces are balanced, and the rope remains stationary. But add just one more Newton to either side, and the forces become unbalanced, causing instant acceleration in the direction of the net force!", "checkpoints": [{"question": "When a wooden block on a table is pulled to the left with 35 N and to the right with 35 N simultaneously, the net force acting on the block is:", "options": ["70 N to the right", "35 N downward", "0 N (Balanced)", "1 N to the left"], "correct": 2, "explanation": "Forces acting in opposite directions along the same line subtract: 35 N - 35 N = 0 N. The forces are balanced, and no acceleration occurs."}, {"question": "Which of the following can balanced forces cause on an object?", "options": ["A change in linear velocity", "A change in shape or size", "An acceleration from rest", "A change in direction of travel"], "correct": 1, "explanation": "Balanced forces have zero net force, so they cannot cause acceleration or velocity change. However, opposing balanced forces can compress, stretch, or deform an object's physical shape."}]}, {"id": 3, "title": "The Force of Friction", "subtitle": "Microscopic Interlocking, Static vs Kinetic, & Resistance to Motion (C-2.1)", "content": "\n<p class=\"lead-p\">Why does a rolling ball on a grass lawn eventually grind to a halt without anyone touching it? The answer lies in contact resistance: the <strong>Force of Friction</strong>.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Nature and Direction of Friction</h4>\n  <p><strong>Friction</strong> is an opposing contact force that arises between two surfaces in contact whenever one body moves or attempts to slide across another. It acts parallel to the contact interface and <strong>always opposes the relative motion</strong> (or impending motion) between surfaces.</p>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>Microscopic Origin of Friction</h4>\n    <p>Even polished surfaces possess microscopic hills and valleys (asperities). When two surfaces touch, these microscopic asperities interlock and form cold-welded junctions. To initiate motion, an applied force must shear these microscopic junctions.</p>\n  </div>\n  <div class=\"card-item\">\n    <h4>Classification of Friction</h4>\n    <ul>\n      <li><strong>Static Friction ($f_s$):</strong> Opposes impending motion when the body is at rest. Self-adjusting up to a maximum threshold called <em>limiting friction</em> ($f_{\\text{max}} = \\mu_s N$).</li>\n      <li><strong>Kinetic / Sliding Friction ($f_k$):</strong> Resistance during active relative sliding. Slightly less than limiting static friction ($f_k < f_{\\text{max}}$).</li>\n      <li><strong>Rolling Friction ($f_r$):</strong> Resistance when a cylinder or sphere rolls over a surface. Greatly reduced ($f_r \\ll f_k$), which is why wheels were humanity's greatest mechanical invention!</li>\n    </ul>\n  </div>\n</div>\n", "sim_type": "friction_breakaway", "voice": "Friction is a subtle contact force. When you gently push a heavy crate, it doesn't budge because static friction pushes back with an exactly equal opposing force. As you push harder, static friction grows until it hits its maximum limiting threshold. Once you break past this limit, kinetic friction takes over, and the crate begins to slide!", "checkpoints": [{"question": "What happens to the static frictional force between a stationary box and the floor as you increase your pushing force from 10 N to 20 N (before the box starts moving)?", "options": ["Static friction stays constant at 10 N", "Static friction increases to 20 N to maintain equilibrium", "Static friction drops to zero", "Static friction becomes negative"], "correct": 1, "explanation": "Static friction is a self-adjusting force. Up to its maximum limiting value, it increases in exact lockstep with the applied pushing force so the net horizontal force remains zero."}, {"question": "Why are ball bearings used in bicycle hubs and automobile wheel axles?", "options": ["To increase sliding friction", "To replace sliding friction with much smaller rolling friction", "To eliminate the normal reaction force", "To increase the gravitational mass"], "correct": 1, "explanation": "Rolling friction is significantly smaller than sliding friction. By using spherical ball bearings, sliding contact is converted to rolling contact, dramatically reducing energy losses."}]}, {"id": 4, "title": "Galileo's Inclined Plane & Demise of Aristotelian Fallacy", "subtitle": "The Revolutionary Thought Experiment Leading to Newton's First Law (C-2.1, C-8.2)", "content": "\n<p class=\"lead-p\">For nearly two thousand years, Western philosophy was dominated by <strong>Aristotle's fallacy</strong>: the belief that a constant external force is required to keep a body in uniform continuous motion. Galileo Galilei shattered this dogma through ingenious inclined plane thought experiments.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Galileo's Double Inclined Plane Observations</h4>\n  <p>Galileo studied the motion of marble spheres rolling on smooth double inclined planes:</p>\n  <ul>\n    <li>A marble rolling down an inclined plane accelerates due to downward gravity.</li>\n    <li>Climbing up the opposite incline, the marble decelerates until it reaches virtually the <strong>exact same vertical height</strong> from which it was released.</li>\n    <li>When the slope of the second incline is reduced, the marble must travel a <strong>longer distance</strong> along the slope to reach that identical release height.</li>\n  </ul>\n</div>\n\n<div class=\"theory-box\">\n  <h4>2. The Grand Deduction for a Horizontal Plane</h4>\n  <p>Galileo asked: What if the second plane is made completely <strong>horizontal</strong> (slope angle $\\theta = 0^{\\circ}$)?</p>\n  <p class=\"highlight-eq\">$$\\text{If the second plane is horizontal, the marble will never reach its initial release height,}$$ $$\\text{and must continue moving indefinitely in a straight line at constant velocity!}$$</p>\n  <p>In the real world, the marble stops only because of unavoidable contact friction and air resistance. In a frictionless ideal realm, <strong>no force is required to sustain uniform motion</strong>!</p>\n</div>\n", "sim_type": "galileo_inclined_planes", "voice": "Galileo's thought experiment was one of the greatest leaps in scientific history. By releasing a marble down an incline and watching it climb an opposite ramp to the exact same vertical height, Galileo realized that if the second ramp is made perfectly horizontal, the ball must travel forward forever in an eternal quest to regain its height! Thus, uniform motion does not need a sustaining force.", "checkpoints": [{"question": "According to Galileo's thought experiment on a frictionless double inclined plane, if the second plane is made completely flat and horizontal, a released marble will:", "options": ["Stop immediately after reaching the base", "Travel a finite distance of 10 meters and halt", "Continue moving with constant velocity indefinitely", "Turn around and return to the first incline"], "correct": 2, "explanation": "Because the marble seeks its release height and a horizontal plane never rises, in the absence of friction the marble will continue moving forward indefinitely at constant velocity."}, {"question": "What did Galileo demonstrate about the cause of an object slowing down in everyday life?", "options": ["Objects naturally want to be at rest because of Aristotle's natural state", "Retardation is caused by opposing contact friction, not an inherent desire to stop", "Mass decreases as an object travels forward", "Gravity pulls objects backward along a horizontal floor"], "correct": 1, "explanation": "Galileo proved that objects slow down and halt solely due to external resistive forces like friction and air drag. Without friction, motion continues indefinitely."}]}, {"id": 5, "title": "Newton's First Law of Motion & Inertia", "subtitle": "The Law of Inertia: Inertia of Rest, Motion, & Direction (C-2.1)", "content": "\n<p class=\"lead-p\">Building upon Galileo's revolutionary insights, Sir Isaac Newton formulated the foundations of classical mechanics in his 1687 treatise <em>Philosophiae Naturalis Principia Mathematica</em>.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Statement of Newton's First Law of Motion</h4>\n  <p class=\"highlight-eq\">$$\\text{An object remains in a state of rest or of uniform motion in a straight line}$$ $$\\text{unless compelled to change that state by an applied external unbalanced force.}$$</p>\n  <p>Newton's First Law is also universally known as the <strong>Law of Inertia</strong>. It asserts that bodies are inherently inert\u2014they cannot self-initiate, alter, or terminate their state of motion.</p>\n</div>\n\n<div class=\"theory-box\">\n  <h4>2. The Three Manifestations of Inertia</h4>\n  <div class=\"grid-3col\">\n    <div class=\"card-item\">\n      <h5>Inertia of Rest</h5>\n      <p>Tendency of a stationary body to stay at rest. When a carpet is beaten with a stick, the carpet accelerates away while dust particles stay stationary due to inertia of rest and drop down under gravity.</p>\n    </div>\n    <div class=\"card-item\">\n      <h5>Inertia of Motion</h5>\n      <p>Tendency of a moving body to maintain its forward speed. When a speeding bus applies sudden emergency brakes, passengers lunge forward because their upper bodies retain forward velocity.</p>\n    </div>\n    <div class=\"card-item\">\n      <h5>Inertia of Direction</h5>\n      <p>Tendency to preserve straight-line direction. When a car negotiates a sharp curve, passengers lean radially outward because their bodies tend to continue traveling in a straight line.</p>\n    </div>\n  </div>\n</div>\n", "sim_type": "coin_card_flick", "voice": "Newton's First Law reveals that matter possesses an intrinsic resistance to any change in its motion, called inertia. Consider the classic coin-on-a-card trick: when you flick the index card rapidly, the card slides away, but the heavy coin remains in place due to its inertia of rest, dropping straight down into the glass beaker below!", "checkpoints": [{"question": "When a horse suddenly begins galloping forward from rest, an inexperienced rider tends to fall backward. This everyday phenomenon is explained by:", "options": ["Inertia of direction", "Inertia of rest", "Newton's Third Law alone", "Inertia of motion"], "correct": 1, "explanation": "The lower part of the rider's body in contact with the saddle moves forward with the horse, while the upper body tends to remain at rest due to inertia of rest, causing a backward tilt."}, {"question": "Why do safety seat belts in automobiles save lives during high-speed head-on collisions?", "options": ["They increase the car's engine power", "They prevent passengers from continuing forward at high speed due to inertia of motion", "They eliminate all frictional forces between tires and road", "They convert kinetic energy into gravitational mass"], "correct": 1, "explanation": "When a vehicle decelerates violently upon impact, passengers continue moving forward at the pre-collision velocity due to inertia of motion. Seat belts provide the necessary restraining force."}]}, {"id": 6, "title": "Inertia and Mass", "subtitle": "Quantitative Measure of Inertia, Force Resistance, & Comparison (C-2.1)", "content": "\n<p class=\"lead-p\">While all matter possesses inertia, do all objects exhibit the exact same resistance to motion changes? Certainly not! A tennis ball is easily swatted, whereas kicking a boulder of identical volume will break your toe.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Mass as the Quantitative Measure of Inertia</h4>\n  <p>The <strong>mass</strong> of a body is the quantitative measure of its inertia:</p>\n  <ul>\n    <li>The greater the mass of an object, the greater its inertia, and the greater the force required to produce a given acceleration.</li>\n    <li>A light toy car ($m = 0.2\\text{ kg}$) can be halted effortlessly with one finger. A loaded freight train ($m = 5000\\text{ tonnes}$) traveling at the same modest speed requires kilometers of track and immense braking force to halt!</li>\n  </ul>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>Comparing Inertia in Common Pairs</h4>\n    <ul>\n      <li><strong>Football vs Stone:</strong> A stone of equal size has far greater density and mass, hence far greater inertia.</li>\n      <li><strong>Bicycle vs Locomotive:</strong> The locomotive has thousands of times more mass, meaning enormous resistance to starting or stopping.</li>\n      <li><strong>One Rupee Coin vs Five Rupee Coin:</strong> The heavier 5-rupee coin exhibits greater inertia.</li>\n    </ul>\n  </div>\n  <div class=\"card-item\">\n    <h4>Inertial Mass vs Gravitational Mass</h4>\n    <p><strong>Inertial mass</strong> measures resistance to acceleration ($m_i = F/a$). <strong>Gravitational mass</strong> measures gravitational attraction ($m_g = W/g$). As Einstein later highlighted in General Relativity, experiments demonstrate that inertial mass and gravitational mass are strictly equivalent to extreme precision!</p>\n  </div>\n</div>\n", "sim_type": "mass_inertia_push", "voice": "Mass is the true quantitative measure of inertia. In our comparison track simulator, notice what happens when we apply an identical pushing force of 50 Newtons to a light 2-kilogram cart versus a heavy 20-kilogram iron block. The light cart accelerates rapidly, while the heavy block barely creeps forward due to its tenfold greater inertia!", "checkpoints": [{"question": "Which of the following objects has the greatest inertia?", "options": ["A rubber ball of mass 200 g", "A bicycle of mass 12 kg", "A car of mass 1200 kg", "A loaded train of mass 2,000,000 kg"], "correct": 3, "explanation": "Inertia is directly proportional to mass. The loaded train possesses the largest mass, therefore it exhibits the greatest inertia."}, {"question": "If you apply an identical horizontal force of 20 N to an empty cardboard box (mass 1 kg) and a stone block (mass 10 kg), what is the ratio of their accelerations (a_box : a_stone)?", "options": ["1 : 1", "1 : 10", "10 : 1", "100 : 1"], "correct": 2, "explanation": "From a = F/m, a_box = 20/1 = 20 m/s\u00b2, while a_stone = 20/10 = 2 m/s\u00b2. The ratio of accelerations is 20 : 2 = 10 : 1."}]}, {"id": 7, "title": "Linear Momentum: The Quantity of Motion", "subtitle": "Combining Mass and Velocity, Vector Definition, and Units (C-2.1)", "content": "\n<p class=\"lead-p\">Why does a tiny bullet fired from a rifle easily pierce through thick timber, while a lead pellet of the same mass thrown gently by hand bounces off harmlessly? Conversely, why can a massive barge moving at barely 1 km/h crush a concrete pier? The answer requires combining mass and velocity: <strong>Momentum</strong>.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Definition of Linear Momentum ($\\vec{p}$)</h4>\n  <p>The <strong>momentum</strong> of a body is defined as the product of its mass ($m$) and velocity ($\\vec{v}$):</p>\n  <p class=\"highlight-eq\">$$\\vec{p} = m \\cdot \\vec{v}$$</p>\n  <ul>\n    <li><strong>Vector Quantity:</strong> Momentum has both magnitude and direction. Its direction is <strong>identical to the direction of velocity</strong>.</li>\n    <li><strong>SI Unit:</strong> Kilogram-meter per second ($\\text{kg}\\cdot\\text{m/s}$ or $\\text{N}\\cdot\\text{s}$).</li>\n    <li>If a body is at rest ($v = 0$), its linear momentum is strictly zero, regardless of its mass.</li>\n  </ul>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>Magnitude Proportionality</h4>\n    <p>For a constant mass, momentum is directly proportional to velocity ($p \\propto v$). For objects moving at equal speed, momentum is directly proportional to mass ($p \\propto m$). Thus, a heavy truck at $20\\text{ m/s}$ has vastly more momentum than a car at $20\\text{ m/s}$.</p>\n  </div>\n  <div class=\"card-item\">\n    <h4>Stopping Force Relationship</h4>\n    <p>To bring a moving body to rest, an opposing force must reduce its momentum to zero. A larger initial momentum requires either a much larger stopping force or a much longer duration of braking.</p>\n  </div>\n</div>\n", "sim_type": "momentum_visualizer", "voice": "Momentum, introduced by Newton as the quantity of motion, is the product of mass and velocity. Notice how a tiny 10-gram bullet traveling at 400 meters per second packs a momentum of 4 kilogram meters per second\u2014the exact same momentum as a 4-kilogram medicine ball rolling at 1 meter per second! Both require identical stopping impulses.", "checkpoints": [{"question": "A cricket ball of mass 0.15 kg is bowled at a speed of 40 m/s. What is its linear momentum?", "options": ["0.15 kg\u00b7m/s", "6.0 kg\u00b7m/s", "60 kg\u00b7m/s", "266.7 kg\u00b7m/s"], "correct": 1, "explanation": "Linear momentum p = m \u00b7 v = 0.15 kg \u00d7 40 m/s = 6.0 kg\u00b7m/s in the direction of the ball's motion."}, {"question": "If an object's mass is doubled while its velocity is halved, what happens to its linear momentum?", "options": ["It quadruples", "It doubles", "It remains unchanged", "It decreases by half"], "correct": 2, "explanation": "New momentum p' = (2m) \u00d7 (v/2) = m \u00b7 v = p. The linear momentum remains completely unchanged."}]}, {"id": 8, "title": "Newton's Second Law of Motion", "subtitle": "Rate of Change of Momentum, Mathematical Derivation (F = ma) (C-2.1)", "content": "\n<p class=\"lead-p\">While the First Law explains what happens when no net force acts, the <strong>Second Law of Motion</strong> provides the quantitative bridge between an applied unbalanced force and the resulting change in motion.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Formal Statement of Newton's Second Law</h4>\n  <p class=\"highlight-eq\">$$\\text{The rate of change of momentum of an object is directly proportional to}$$ $$\\text{the applied unbalanced force and takes place in the direction of the force.}$$</p>\n</div>\n\n<div class=\"theory-box\">\n  <h4>2. Mathematical Derivation of $F = ma$</h4>\n  <p>Consider a body of mass $m$ moving with initial velocity $\\vec{u}$. When an unbalanced force $\\vec{F}$ is applied for time duration $t$, its velocity changes to $\\vec{v}$:</p>\n  <ul>\n    <li>Initial momentum: $p_1 = m \\cdot u$</li>\n    <li>Final momentum after time $t$: $p_2 = m \\cdot v$</li>\n    <li>Change in momentum: $\\Delta p = p_2 - p_1 = m(v - u)$</li>\n    <li>Rate of change of momentum: $\\frac{\\Delta p}{t} = \\frac{m(v - u)}{t} = m \\cdot a$ &nbsp;&nbsp;(since $a = \\frac{v - u}{t}$)</li>\n  </ul>\n  <p>According to the Second Law: $F \\propto \\frac{\\Delta p}{t} \\implies F \\propto m \\cdot a \\implies F = k \\cdot m \\cdot a$</p>\n  <p>By defining <strong>one unit of force</strong> as the force producing an acceleration of $1\\text{ m/s}^2$ in a mass of $1\\text{ kg}$, the constant of proportionality becomes $k = 1$!</p>\n  <p class=\"highlight-eq\">$$F = m \\cdot a$$</p>\n</div>\n", "sim_type": "newton_second_law_cart", "voice": "Newton's Second Law is the crown jewel of dynamics: F equals m times a! Force equals mass times acceleration. It tells us that to accelerate a heavier body, you need proportionally more force; and for a given force, a lighter mass accelerates much faster. Let us test this live on our dynamic air-track cart simulator!", "checkpoints": [{"question": "A force of 25 N acts on a stationary cart of mass 5 kg for 3 seconds. What acceleration is produced in the cart?", "options": ["0.2 m/s\u00b2", "5.0 m/s\u00b2", "15.0 m/s\u00b2", "125.0 m/s\u00b2"], "correct": 1, "explanation": "From Newton's second law F = ma, the acceleration a = F / m = 25 N / 5 kg = 5.0 m/s\u00b2."}, {"question": "Newton's First Law of Motion can be mathematically deduced from the Second Law F = ma by setting:", "options": ["m = 0", "F = 0, which implies a = 0 (velocity remains constant)", "a = infinity", "v = u + at"], "correct": 1, "explanation": "If the net force F = 0, then since mass m \u2260 0, acceleration a must be 0. Zero acceleration means velocity does not change: an object at rest stays at rest, and an object in motion maintains uniform velocity."}]}, {"id": 9, "title": "Impulse of Force & Everyday Applications", "subtitle": "Force-Time Cushioning, Catching Cricket Balls, & Airbags (C-2.1, C-8.1)", "content": "\n<p class=\"lead-p\">Why does a cricket fielder draw their hands backward while taking a high catch? Why do athletes land on sand pits rather than concrete slabs? The concept of <strong>Impulse</strong> explains these critical safety mechanics.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Defining Impulse ($J$)</h4>\n  <p><strong>Impulse</strong> is the product of an applied force and the duration of time over which it acts:</p>\n  <p class=\"highlight-eq\">$$J = F \\cdot \\Delta t = \\Delta p = m(v - u)$$</p>\n  <p>Impulse equals the total change in momentum! Rearranging for average force reveals the golden rule of impact mechanics:</p>\n  <p class=\"highlight-eq\">$$F = \\frac{\\Delta p}{\\Delta t}$$</p>\n  <p>For a fixed change in momentum $\\Delta p$, <strong>increasing the time interval $\\Delta t$ dramatically reduces the impact force $F$</strong>!</p>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>Everyday Cushioning Mechanics</h4>\n    <ul>\n      <li><strong>Catching a Cricket Ball:</strong> Pulling hands backward extends contact time $\\Delta t$, reducing impact force on the hands and preventing injury.</li>\n      <li><strong>High Jump Pits:</strong> Landing on foam cushions or sand increases stopping time, keeping impact forces on joints safe.</li>\n      <li><strong>Car Crumple Zones & Airbags:</strong> Modern cars deform on impact, prolonging collision duration so occupants experience survivable decelerations.</li>\n    </ul>\n  </div>\n  <div class=\"card-item\">\n    <h4>Karate Strike: Minimizing Time</h4>\n    <p>A karate master does the exact opposite: striking a pile of tiles with lightning speed so contact time $\\Delta t$ is infinitesimal (milliseconds). This concentrates the momentum transfer into an enormous, shattering peak force!</p>\n  </div>\n</div>\n", "sim_type": "impulse_catcher", "voice": "The impulse equation reveals a life-saving secret: force equals change in momentum divided by time. When catching a fast cricket ball, if you keep your hands stiff, stopping time is tiny, producing a painful sting. By pulling your hands backward, you increase the stopping time, slashing the peak force by more than seventy percent!", "checkpoints": [{"question": "Why does a fielder pull their hands backward while catching a fast cricket ball?", "options": ["To decrease the change in momentum", "To increase the time duration of impact, thereby reducing the average force on hands", "To increase the ball's final momentum", "To decrease the ball's mass"], "correct": 1, "explanation": "By pulling the hands back, the fielder increases the stopping time \u0394t. Since F = \u0394p / \u0394t, a larger \u0394t reduces the peak impact force on the palms."}, {"question": "A rubber ball of mass 0.2 kg moving at 15 m/s strikes a wall and bounces back at 15 m/s. If the impact lasts 0.05 seconds, what is the average force exerted on the wall?", "options": ["60 N", "120 N", "30 N", "0 N"], "correct": 1, "explanation": "Initial momentum p\u2081 = 0.2 \u00d7 15 = 3 kg\u00b7m/s. Rebound momentum p\u2082 = 0.2 \u00d7 (-15) = -3 kg\u00b7m/s. Change in momentum \u0394p = -3 - 3 = -6 kg\u00b7m/s. Magnitude of force F = |\u0394p| / \u0394t = 6 / 0.05 = 120 N."}]}, {"id": 10, "title": "Newton's Third Law of Motion", "subtitle": "Action and Reaction, Paired Interactions, & Different Bodies (C-2.1)", "content": "\n<p class=\"lead-p\">Forces never occur in isolation as lonely entities. Whenever you push against a brick wall, the wall pushes back on your hands with equal vigor. This fundamental symmetry is articulated by <strong>Newton's Third Law of Motion</strong>.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Statement of Newton's Third Law</h4>\n  <p class=\"highlight-eq\">$$\\text{To every action, there is always an equal and opposite reaction.}$$</p>\n  <p>Mathematically, if object $A$ exerts a force $\\vec{F}_{AB}$ on object $B$, then object $B$ simultaneously exerts a force $\\vec{F}_{BA}$ on object $A$ such that:</p>\n  <p class=\"highlight-eq\">$$\\vec{F}_{AB} = -\\vec{F}_{BA}$$</p>\n</div>\n\n<div class=\"theory-box\">\n  <h4>2. Critical Subtleties of the Third Law</h4>\n  <ul>\n    <li><strong>Forces Always Occur in Pairs:</strong> There is no such thing as an isolated single force in the universe.</li>\n    <li><strong>Action and Reaction Act on DIFFERENT Bodies:</strong> Force $\\vec{F}_{AB}$ acts on body $B$, while force $\\vec{F}_{BA}$ acts on body $A$.</li>\n    <li><strong>They NEVER Cancel Each Other:</strong> Because action and reaction act on separate bodies, they cannot form a balanced pair on a single object.</li>\n    <li><strong>Simultaneous Occurrence:</strong> Neither force precedes the other; action and reaction arise and terminate at the exact same instant.</li>\n  </ul>\n</div>\n", "sim_type": "spring_balance_pair", "voice": "Newton's Third Law states that every action has an equal and opposite reaction. A vital trap students often fall into is asking: if action and reaction are equal and opposite, why don't they cancel each other out? The answer is profound: action and reaction act on two completely different objects! They cannot cancel because they act on separate bodies.", "checkpoints": [{"question": "Why do the action and reaction forces described in Newton's Third Law NOT cancel each other out?", "options": ["Because they are not actually equal in magnitude", "Because one acts slightly after the other", "Because they act on two different bodies, not on the same body", "Because one is a scalar and the other is a vector"], "correct": 2, "explanation": "For two forces to balance and cancel, they must act on the same body. Action acts on body B, while reaction acts on body A; hence they act on distinct bodies and cannot cancel."}, {"question": "Two spring balances A and B are hooked together. Balance A is fixed to a wall, while Balance B is pulled with a force of 40 N. What will be the reading on Balance A?", "options": ["0 N", "20 N", "40 N", "80 N"], "correct": 2, "explanation": "By Newton's Third Law, if balance B pulls balance A with 40 N, balance A pulls back on balance B with an equal force of 40 N. Both balances will read exactly 40 N."}]}, {"id": 11, "title": "Everyday Applications of Newton's Third Law", "subtitle": "Walking, Rowing Boats, Rocket Propulsion, & Recoil (C-2.1, C-8.1)", "content": "\n<p class=\"lead-p\">From the simple act of taking a step to launching interplanetary probes into deep space, Newton's Third Law governs dynamic propulsion throughout the cosmos.</p>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>1. Walking on the Ground</h4>\n    <p>To walk forward, your shoe pushes backward and downward against the ground (<strong>Action</strong>). By the third law, the ground pushes forward and upward against your foot with an equal and opposite force (<strong>Reaction</strong>). On frictionless polished ice or banana peels, you cannot push backward, so no forward reaction force is generated, causing you to slip!</p>\n  </div>\n  <div class=\"card-item\">\n    <h4>2. Rowing a Boat</h4>\n    <p>A rower pushes water backward with oars (<strong>Action</strong>). The displaced water pushes the oars and boat forward with an equal reaction force (<strong>Reaction</strong>). Stepping off a boat onto the shore pushes the boat backward into the water as you leap forward.</p>\n  </div>\n</div>\n\n<div class=\"theory-box\">\n  <h4>3. Rocket and Jet Engine Propulsion</h4>\n  <p>Inside a rocket combustion chamber, burning propellant produces high-pressure gas that is ejected downward through a nozzle at supersonic speed (<strong>Action force on gas</strong>). The escaping gas exerts an equal, upward reaction thrust on the rocket body (<strong>Reaction force on rocket</strong>). Crucially, rockets operate flawlessly in the vacuum of space because they do not push against atmospheric air\u2014they push against their own expelled exhaust gases!</p>\n</div>\n", "sim_type": "rocket_propulsion", "voice": "Think about how a rocket ascends into orbit. It does not push against the launch pad or atmospheric air. Inside the combustion chamber, burning gases are expelled downward at tremendous speeds. By Newton's Third Law, the exiting exhaust pushes back upward on the rocket with tremendous thrust, propelling it into space!", "checkpoints": [{"question": "Can a chemical rocket accelerate in the complete vacuum of outer space where there is no air to push against?", "options": ["No, because rockets need atmospheric air to push against", "Yes, because rocket thrust is the reaction force exerted by escaping exhaust gases on the rocket body", "No, because gravity is zero in deep space", "Only if solar wind is blowing"], "correct": 1, "explanation": "Rockets accelerate in a vacuum because thrust is generated by Newton's Third Law: ejecting high-speed mass backward creates an equal forward reaction on the rocket, independent of surrounding air."}, {"question": "When a swimmer pushes water backward with their hands and feet, what propels the swimmer forward?", "options": ["The buoyant force alone", "The reaction force exerted by the water pushing forward on the swimmer", "The gravitational attraction of the pool floor", "Surface tension of water"], "correct": 1, "explanation": "Pushing water backward is the action force; the water exerting an equal forward force on the swimmer's body is the reaction force that produces forward acceleration."}]}, {"id": 12, "title": "Law of Conservation of Linear Momentum", "subtitle": "Derivation from 2nd & 3rd Laws, Isolated Systems (C-2.1, C-8.2)", "content": "\n<p class=\"lead-p\">When two bodies interact, collide, or explode apart, does the total motion of the system change? When no external force interferes, the answer is a profound <strong>NO</strong>: total linear momentum is strictly conserved.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Statement of Conservation of Momentum</h4>\n  <p class=\"highlight-eq\">$$\\text{In an isolated system (where net external force is zero), the total linear momentum}$$ $$\\text{of colliding or interacting bodies remains completely constant.}$$</p>\n</div>\n\n<div class=\"theory-box\">\n  <h4>2. Elegant Derivation from Newton's Laws</h4>\n  <p>Consider two spheres of masses $m_1$ and $m_2$ with initial velocities $u_1$ and $u_2$ colliding head-on for a contact duration $\\Delta t$, separating with final velocities $v_1$ and $v_2$:</p>\n  <ul>\n    <li>Force exerted by sphere 1 on sphere 2: $F_{21} = m_2 \\cdot \\frac{v_2 - u_2}{\\Delta t}$ &nbsp;&nbsp;(Newton's 2nd Law)</li>\n    <li>Force exerted by sphere 2 on sphere 1: $F_{12} = m_1 \\cdot \\frac{v_1 - u_1}{\\Delta t}$ &nbsp;&nbsp;(Newton's 2nd Law)</li>\n    <li>By Newton's 3rd Law, these interaction forces are equal and opposite: $F_{21} = -F_{12}$</li>\n  </ul>\n  <p>Substituting expressions:</p>\n  <p class=\"highlight-eq\">$$m_2 \\frac{v_2 - u_2}{\\Delta t} = -m_1 \\frac{v_1 - u_1}{\\Delta t}$$</p>\n  <p>Multiplying by $\\Delta t$ and rearranging terms:</p>\n  <p class=\"highlight-eq\">$$m_1 u_1 + m_2 u_2 = m_1 v_1 + m_2 v_2$$</p>\n  <p class=\"highlight-eq\">$$\\Sigma \\vec{p}_{\\text{initial}} = \\Sigma \\vec{p}_{\\text{final}}$$</p>\n</div>\n", "sim_type": "collision_carts", "voice": "The Law of Conservation of Momentum is one of nature's universal conservation laws. By combining Newton's Second and Third Laws, we prove that during any collision, the total momentum before impact precisely equals the total momentum after impact, provided no external unbalanced force acts!", "checkpoints": [{"question": "Under what condition is the total linear momentum of a system of interacting particles strictly conserved?", "options": ["Only when all collisions are perfectly elastic", "When the net external force acting on the system is zero", "Only at zero degrees Celsius", "When gravitational forces are doubled"], "correct": 1, "explanation": "Conservation of momentum strictly requires an isolated system, meaning the vector sum of all external forces acting on the system must be zero (\u03a3F_ext = 0)."}, {"question": "A cart of mass 2 kg moving at 6 m/s collides and locks together with a stationary cart of mass 4 kg. What is their combined final speed?", "options": ["1 m/s", "2 m/s", "3 m/s", "6 m/s"], "correct": 1, "explanation": "Initial momentum = (2 \u00d7 6) + (4 \u00d7 0) = 12 kg\u00b7m/s. After locking together, total mass = 2 + 4 = 6 kg. By conservation of momentum, 12 = 6 \u00d7 v_final \u27f9 v_final = 2 m/s."}]}, {"id": 13, "title": "Recoil Velocity of Firearms & Explosions", "subtitle": "Derivation of Recoil Formula & Safety Mechanics (C-2.1, C-8.1)", "content": "\n<p class=\"lead-p\">When a firearm discharges a bullet, the shooter experiences a sharp backward kick known as <strong>recoil</strong>. This recoil is a direct manifestation of conservation of linear momentum.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Derivation of Recoil Velocity ($V_g$)</h4>\n  <p>Consider a gun of mass $M$ loaded with a bullet of mass $m$. Before firing, both are at rest:</p>\n  <ul>\n    <li>Total initial momentum: $p_{\\text{initial}} = (M + m) \\cdot 0 = 0$</li>\n    <li>Upon firing, the bullet emerges forward with velocity $v$. The gun kicks backward with recoil velocity $V_g$.</li>\n    <li>Total final momentum: $p_{\\text{final}} = m \\cdot v + M \\cdot V_g$</li>\n  </ul>\n  <p>Since no external horizontal force acts on the gun-bullet system:</p>\n  <p class=\"highlight-eq\">$$p_{\\text{initial}} = p_{\\text{final}} \\implies 0 = m \\cdot v + M \\cdot V_g$$</p>\n  <p class=\"highlight-eq\">$$V_g = -\\frac{m \\cdot v}{M}$$</p>\n  <p>The negative sign confirms that the gun moves in the <strong>opposite direction</strong> to the bullet!</p>\n</div>\n\n<div class=\"theory-box\">\n  <h4>2. Why Firearms Are Built Heavy</h4>\n  <p>Because the gun's mass $M$ appears in the denominator, making the gun significantly heavier than the bullet ($M \\gg m$) ensures the recoil velocity $V_g$ remains small and manageable, protecting the shooter's shoulder from severe injury.</p>\n</div>\n", "sim_type": "cannon_recoil", "voice": "Why does a heavy rifle kick backward when fired? Before pulling the trigger, total momentum is zero. When the light bullet shoots forward with massive velocity, the heavy rifle must recoil backward with equal and opposite momentum so the total system momentum remains zero! Because the rifle is much heavier, its recoil speed is relatively small.", "checkpoints": [{"question": "A bullet of mass 20 g (0.02 kg) is fired horizontally with a velocity of 300 m/s from a rifle of mass 3.0 kg. What is the recoil velocity of the rifle?", "options": ["-2.0 m/s", "-0.2 m/s", "+20 m/s", "-6.0 m/s"], "correct": 0, "explanation": "Using recoil formula V_g = -(m \u00b7 v) / M = -(0.02 kg \u00d7 300 m/s) / 3.0 kg = -6.0 / 3.0 = -2.0 m/s (backward)."}, {"question": "If a hunter fires a rifle while holding it loosely away from their shoulder rather than pressed firmly against it, the perceived kick is much more painful because:", "options": ["The rifle mass is isolated, so it recoils at full speed and strikes the shoulder with high kinetic impact", "The bullet speed decreases", "Gravity doubles during firing", "The momentum of the bullet changes direction"], "correct": 0, "explanation": "Pressing the rifle firmly against the shoulder couples the rifle's mass to the shooter's body mass (M_total = M_rifle + M_body), dramatically slashing the recoil speed."}]}, {"id": 14, "title": "Experimental Apparatus & Data Collection", "subtitle": "Spring Balances, Air Tracks, Photogates, & Graphical Inferences (C-8.2)", "content": "\n<p class=\"lead-p\">Science progresses through rigorous quantitative instrumentation. In investigating forces and acceleration, physicists utilize specialized tools to isolate variables and eliminate experimental error.</p>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>1. Linear Air Tracks & Photogates</h4>\n    <p>A hollow aluminum rail perforated with tiny air jets suspends gliders on a cushion of air, reducing contact friction virtually to zero. Optoelectronic photogates record the exact microsecond a flag breaks an infrared beam, providing ultra-precise velocity and acceleration data.</p>\n  </div>\n  <div class=\"card-item\">\n    <h4>2. Calibrated Spring Balances</h4>\n    <p>Spring balances operate on Hooke's Law ($F = k \\cdot x$), where spring extension $x$ is directly proportional to applied force $F$. Used in pairs to demonstrate Newton's Third Law and measure static friction breakaway thresholds.</p>\n  </div>\n</div>\n\n<div class=\"theory-box\">\n  <h4>3. Graphical Verification of $F = ma$ and $p = mv$</h4>\n  <div class=\"grid-2col\">\n    <div>\n      <h5>Force vs Acceleration Graph ($F$ vs $a$)</h5>\n      <p>Plotting applied force on the y-axis against acceleration on the x-axis yields a straight line passing through the origin. The <strong>slope of the line equals the inertial mass</strong> of the object:</p>\n      <p class=\"highlight-eq\">$$\\text{Slope} = \\frac{\\Delta F}{\\Delta a} = m$$</p>\n    </div>\n    <div>\n      <h5>Momentum vs Velocity Graph ($p$ vs $v$)</h5>\n      <p>Plotting linear momentum on the y-axis against velocity on the x-axis produces a linear graph whose <strong>slope represents the mass</strong> ($m = \\frac{\\Delta p}{\\Delta v}$).</p>\n    </div>\n  </div>\n</div>\n", "sim_type": "virtual_air_track", "voice": "In modern physics laboratories, we eliminate friction using linear air tracks and measure motion with photogate sensors. When we plot applied force against acceleration, the data forms a perfect straight line passing through the origin. The slope of this line gives the exact inertial mass of the glider!", "checkpoints": [{"question": "In an experiment verifying Newton's Second Law, a student plots Force (F) on the vertical axis and Acceleration (a) on the horizontal axis. What physical property does the slope of this line represent?", "options": ["Velocity", "Inertial Mass", "Displacement", "Gravitational Constant"], "correct": 1, "explanation": "Since F = m \u00b7 a, rearranging gives m = F / a. On a graph of F versus a, the slope \u0394F / \u0394a directly represents the object's mass."}, {"question": "Why is an air track preferred over a normal wooden ramp when verifying the conservation of momentum?", "options": ["Because air tracks increase the gravitational pull", "Because air cushion reduces external friction to near-zero, satisfying the isolated system condition", "Because gliders become lighter on an air track", "Because photogates only function with air"], "correct": 1, "explanation": "Momentum is strictly conserved only when net external force is zero. An air track floats the gliders on air, virtually eliminating friction so external forces are negligible."}]}, {"id": 15, "title": "Comprehensive Problem-Solving Workshop", "subtitle": "Combining Kinematic Equations with F = ma & Apparent Weight (C-8.1)", "content": "\n<p class=\"lead-p\">Mastery in dynamics requires connecting kinematic formulas ($v = u + at$, $s = ut + \\frac{1}{2}at^2$, $v^2 = u^2 + 2as$) with Newton's dynamic laws ($F = ma$).</p>\n\n<div class=\"theory-box\">\n  <h4>1. Multi-Step Stopping Force Problem</h4>\n  <p><strong>Problem:</strong> A car of mass $1000\\text{ kg}$ traveling at $72\\text{ km/h}$ is brought to rest over a distance of $50\\text{ m}$ by applying brakes. Calculate the required braking force.</p>\n  <ul>\n    <li>Convert speed to SI: $u = 72 \\times \\frac{5}{18} = 20\\text{ m/s}$, $v = 0\\text{ m/s}$, $s = 50\\text{ m}$</li>\n    <li>Use third kinematic equation: $v^2 = u^2 + 2as \\implies 0 = 20^2 + 2 \\cdot a \\cdot 50$</li>\n    <li>$100 a = -400 \\implies a = -4\\text{ m/s}^2$ (retardation)</li>\n    <li>Apply Newton's Second Law: $F = m \\cdot a = 1000 \\times (-4) = -4000\\text{ N}$</li>\n    <li><strong>Answer:</strong> The required braking force is $4000\\text{ N}$ directed opposite to motion.</li>\n  </ul>\n</div>\n\n<div class=\"theory-box\">\n  <h4>2. Apparent Weight in an Elevator / Lift</h4>\n  <p>A passenger of mass $m$ standing on a weighing scale inside a lift experiences normal floor reaction $N$:</p>\n  <ul>\n    <li><strong>Lift moving with constant velocity ($a = 0$):</strong> $N = mg$ (True weight).</li>\n    <li><strong>Lift accelerating upward with acceleration $+a$:</strong> $N - mg = ma \\implies N = m(g + a)$ (Feels heavier).</li>\n    <li><strong>Lift accelerating downward with acceleration $-a$:</strong> $mg - N = ma \\implies N = m(g - a)$ (Feels lighter).</li>\n    <li><strong>Free-fall (cable snaps, $a = g$):</strong> $N = m(g - g) = 0$ (Complete weightlessness!).</li>\n  </ul>\n</div>\n", "sim_type": "elevator_scale", "voice": "By connecting kinematics with Newton's Second Law, we solve complex real-world challenges! Consider standing on a scale inside an elevator. When the elevator accelerates upward, the floor pushes up harder with normal force m times g plus a, making you feel heavier. If the elevator cable snaps and enters free fall, the scale reads zero\u2014you experience weightlessness!", "checkpoints": [{"question": "A person of mass 60 kg stands on a weighing scale in an elevator accelerating upward at 2 m/s\u00b2 (take g = 9.8 m/s\u00b2). What reading does the scale show?", "options": ["588 N", "468 N", "708 N", "120 N"], "correct": 2, "explanation": "In an upward accelerating elevator, apparent weight N = m(g + a) = 60 \u00d7 (9.8 + 2.0) = 60 \u00d7 11.8 = 708 N."}, {"question": "A bullet of mass 10 g leaves a rifle barrel of length 0.8 m with a muzzle speed of 400 m/s. Assuming uniform acceleration from rest, what is the average accelerating force on the bullet?", "options": ["100 N", "1,000 N", "2,000 N", "10,000 N"], "correct": 1, "explanation": "u = 0, v = 400 m/s, s = 0.8 m. Using v\u00b2 = u\u00b2 + 2as \u27f9 400\u00b2 = 2 \u00d7 a \u00d7 0.8 \u27f9 160,000 = 1.6 a \u27f9 a = 100,000 m/s\u00b2. Mass m = 0.01 kg. F = m \u00d7 a = 0.01 \u00d7 100,000 = 1,000 N."}]}, {"id": 16, "title": "Indian Scientific Heritage & Modern Frontiers", "subtitle": "Acharya Kanad's Vaisheshika Sutras & The Four Fundamental Forces (C-8.1)", "content": "\n<p class=\"lead-p\">The human quest to comprehend force and motion spans millennia\u2014from ancient Indian philosophical atomism to modern relativistic and quantum field theories.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Ancient Indian Foundations: Acharya Kanad (~600 BCE)</h4>\n  <p>Centuries before Galileo and Newton, the ancient Indian sage <strong>Acharya Kanad</strong> founded the <em>Vaisheshika</em> school of natural philosophy. In his <em>Vaisheshika Sutras</em>, Kanad categorized motion (*Karma*) and recognized the causes of physical action:</p>\n  <ul>\n    <li><strong>Vega (Impressed Motion / Momentum):</strong> Kanad identified *Vega* as the quality produced in an object by an applied impulse (*Prayatna*) that enables continued movement.</li>\n    <li><strong>Samskara (Tendency / Inertia):</strong> Recognized that an object continues in its state of activity (*Vega*) until counteracted by opposing substances or contact resistance (*Samyoga*).</li>\n    <li>Kanad systematically classified five fundamental modes of mechanical motion: upward throw (*Utksepana*), downward throw (*Avaksepana*), contraction (*Akuncana*), expansion (*Prasarana*), and transverse motion (*Gamana*).</li>\n  </ul>\n</div>\n\n<div class=\"theory-box\">\n  <h4>2. Modern Scientific Frontier: The 4 Fundamental Forces & Relativity</h4>\n  <div class=\"grid-2col\">\n    <div>\n      <h5>The 4 Fundamental Forces of Nature</h5>\n      <ol>\n        <li><strong>Gravitational Force:</strong> Universal attraction between masses (weakest, infinite range).</li>\n        <li><strong>Electromagnetic Force:</strong> Interactions between charges (manifests as contact friction, tension, normal force!).</li>\n        <li><strong>Strong Nuclear Force:</strong> Binds quarks inside protons/neutrons (strongest force, subatomic range).</li>\n        <li><strong>Weak Nuclear Force:</strong> Governs radioactive beta decay (extremely short range).</li>\n      </ol>\n    </div>\n    <div>\n      <h5>Relativistic Limit ($v \\to c$)</h5>\n      <p>Newton's $F = ma$ is a low-speed approximation ($v \\ll c$). As velocities approach the speed of light ($c = 3 \\times 10^8\\text{ m/s}$), momentum becomes relativistic: $\\vec{p} = \\gamma m \\vec{v}$, where $\\gamma = \\frac{1}{\\sqrt{1 - v^2/c^2}}$. No amount of force can ever accelerate a massive object to the speed of light!</p>\n    </div>\n  </div>\n</div>\n", "sim_type": "fundamental_forces", "voice": "Our exploration concludes with a historical bridge: in sixth century BCE India, Acharya Kanad formulated the concept of Vega, recognizing that an impressed action sustains motion until counteracted by contact forces. In the modern era, we discover that all everyday contact forces like friction and normal reaction are manifestations of the fundamental electromagnetic interaction!", "checkpoints": [{"question": "What ancient Indian philosophical term did Acharya Kanad use in the Vaisheshika Sutras to denote the impressed tendency or momentum that sustains motion?", "options": ["Pancha Mahabhuta", "Vega", "Rasa", "Prakriti"], "correct": 1, "explanation": "In the Vaisheshika Sutras, Acharya Kanad used the term 'Vega' to describe the impressed motion or momentum that sustains a body's continuous movement."}, {"question": "To which of the four fundamental forces of nature do everyday contact forces like friction, tension, and normal reaction ultimately belong?", "options": ["Gravitational force", "Strong nuclear force", "Electromagnetic force", "Weak nuclear force"], "correct": 2, "explanation": "At the microscopic level, contact friction, string tension, and normal floor reactions arise from electrostatic repulsions between electrons in the outer shells of atoms, making them electromagnetic."}]}, {"id": 17, "title": "Mastery Quiz Challenge I: Forces & Inertia", "subtitle": "Questions 1\u201310 \u2022 Comprehensive Diagnostic with Step-by-Step Solutions", "content": "<p class=\"lead-p\">Test your mastery of force vectors, balanced vs unbalanced forces, friction types, Galileo's thought experiments, and the three manifestations of inertia. Click 'View Solution' on any question to examine detailed step-by-step reasoning.</p>", "sim_type": "quiz_slide", "voice": "Welcome to Quiz Challenge One! These ten questions test your grasp of balanced forces, friction, Galileo's inclined plane experiment, and the law of inertia. Give each question your best thought before checking the step-by-step solution modal.", "quiz_range": [1, 10]}, {"id": 18, "title": "Mastery Quiz Challenge II: Momentum & Second Law", "subtitle": "Questions 11\u201320 \u2022 Quantitative Calculations with Step-by-Step Solutions", "content": "<p class=\"lead-p\">Evaluate your calculation skills on linear momentum, rate of change of momentum, F = ma derivations, impulse mechanics, and impact-time cushioning. Click 'View Solution' for detailed mathematical workings.</p>", "sim_type": "quiz_slide", "voice": "Welcome to Quiz Challenge Two! Here we focus on the quantitative mathematics of Newton's Second Law, momentum calculations, impulse, and safety engineering. Work out the numbers carefully!", "quiz_range": [11, 20]}, {"id": 19, "title": "Mastery Quiz Challenge III: Third Law & Conservation", "subtitle": "Questions 21\u201330 \u2022 Action-Reaction Pairs, Recoil, & Collisions", "content": "<p class=\"lead-p\">Assess your conceptual and numerical mastery of paired interactions, simultaneous action-reaction forces, collision momentum balance, and firearm recoil mechanics. Inspect each solution popup for clear explanations.</p>", "sim_type": "quiz_slide", "voice": "Quiz Challenge Three examines Newton's Third Law and the universal conservation of linear momentum. Remember the critical rule: action and reaction act on two different bodies and never cancel each other!", "quiz_range": [21, 30]}, {"id": 20, "title": "Mastery Quiz Challenge IV: Advanced Dynamics", "subtitle": "Questions 31\u201340 \u2022 Integrated Kinematics, Apparent Weight, & Frontiers", "content": "<p class=\"lead-p\">The final test of your mechanics mastery! Tackle multi-step kinematic braking, elevator scale readings, connected masses, Indian historical heritage, and relativistic momentum limits. Click 'View Solution' for complete step-by-step derivations.</p>", "sim_type": "quiz_slide", "voice": "You have reached the final mastery challenge of Chapter 10! These ten multi-step questions integrate kinematics, elevator dynamics, and modern physics. Excellent work reaching the end of Force and Laws of Motion!", "quiz_range": [31, 40]}];
+    const quizData = [{"num": 1, "question": "An object moves with a constant velocity of 12 m/s along a straight, frictionless horizontal surface. What is the net external force acting on the object?", "options": ["12 N in the direction of motion", "0 N", "Depends on the mass of the object", "9.8 N downward"], "correct": 1, "solution": "Step 1: Understand Newton's First Law. An object moving with constant velocity has zero acceleration (a = 0).\nStep 2: Apply Newton's Second Law: F_net = m \u00b7 a = m \u00b7 0 = 0 N.\nConclusion: When velocity is constant, the net force is strictly zero."}, {"num": 2, "question": "A heavy wooden crate resting on a concrete floor does not move when pushed with a horizontal force of 40 N. What is the magnitude of the static frictional force opposing the push?", "options": ["0 N", "40 N", "Less than 40 N", "Greater than 40 N"], "correct": 1, "solution": "Step 1: The crate remains in static equilibrium (a = 0).\nStep 2: By Newton's First Law, horizontal forces must balance: F_applied - f_static = 0.\nStep 3: Therefore, f_static = F_applied = 40 N.\nConclusion: Static friction self-adjusts to exactly match the applied force until limiting friction is reached."}, {"num": 3, "question": "When a tree branch is vigorously shaken, leaves and ripe fruits detach and fall to the ground. This phenomenon is primarily caused by:", "options": ["Inertia of motion of the leaves", "Inertia of rest of the leaves and fruits", "Newton's Third Law alone", "Centripetal acceleration"], "correct": 1, "solution": "Step 1: When the branch is shaken, the branch moves rapidly back and forth.\nStep 2: The leaves and fruits, due to their inertia of rest, tend to remain in their original stationary positions.\nStep 3: This differential displacement creates immense shear stress at the stalks, causing them to detach and fall under gravity."}, {"num": 4, "question": "A passenger in a moving car is thrown outward while taking a sharp turn at high speed. This is an example of:", "options": ["Inertia of rest", "Inertia of motion", "Inertia of direction", "Gravitational deflection"], "correct": 2, "solution": "Step 1: An object in motion tends to continue traveling in a straight line unless acted upon by an external force (Inertia of Direction).\nStep 2: When the car veers into a curved path, the passenger's body tends to maintain its straight-line tangential path, manifesting as an apparent outward tilt relative to the car."}, {"num": 5, "question": "In Galileo's double inclined plane experiment, what would happen to a marble released from a height h on an incline if the opposing plane has an angle of zero (horizontal) and friction is absent?", "options": ["It travels a distance equal to h and stops", "It continues moving at constant velocity indefinitely", "It slows down due to gravity", "It oscillates back and forth"], "correct": 1, "solution": "Step 1: On the second incline, the marble attempts to reach its release height h.\nStep 2: If the second plane is horizontal, it never rises to height h.\nStep 3: In the absence of friction, the marble must continue rolling forward at constant velocity indefinitely."}, {"num": 6, "question": "Which of the following bodies has the greatest inertia?", "options": ["A five-rupee coin", "A one-rupee coin", "A 100-rupee note", "A postage stamp"], "correct": 0, "solution": "Step 1: Inertia is a direct quantitative property of mass.\nStep 2: Among the choices, a five-rupee coin has the highest mass (approximately 9 grams), compared to ~3.8 g for a one-rupee coin and fractions of a gram for paper notes/stamps.\nConclusion: The five-rupee coin possesses the greatest inertia."}, {"num": 7, "question": "Two forces of 12 N and 5 N act concurrently on a 2 kg block at a 90\u00b0 right angle to each other. What is the magnitude of the resulting acceleration?", "options": ["3.5 m/s\u00b2", "6.5 m/s\u00b2", "8.5 m/s\u00b2", "17.0 m/s\u00b2"], "correct": 1, "solution": "Step 1: Find the magnitude of the resultant force using vector addition for perpendicular vectors:\nF_net = \u221a(F\u2081\u00b2 + F\u2082\u00b2) = \u221a(12\u00b2 + 5\u00b2) = \u221a(144 + 25) = \u221a169 = 13 N.\nStep 2: Apply Newton's Second Law: a = F_net / m = 13 N / 2 kg = 6.5 m/s\u00b2."}, {"num": 8, "question": "A force of 10 N acts on a body of mass 2 kg initially at rest. What distance does the body cover in the first 4 seconds?", "options": ["20 m", "40 m", "80 m", "160 m"], "correct": 1, "solution": "Step 1: Calculate acceleration: a = F / m = 10 N / 2 kg = 5 m/s\u00b2.\nStep 2: Use kinematic equation s = ut + \u00bdat\u00b2.\nSince the body starts from rest, u = 0.\nStep 3: s = 0 + \u00bd(5)(4\u00b2) = \u00bd \u00d7 5 \u00d7 16 = 40 m."}, {"num": 9, "question": "Why does an athlete run a certain distance before taking a long jump?", "options": ["To gain inertia of rest", "To gain inertia of motion which aids in achieving a longer leap", "To decrease their mass", "To increase friction between shoes and runway"], "correct": 1, "solution": "Step 1: Running before the jump imparts high horizontal forward velocity to the athlete's body.\nStep 2: At takeoff, this velocity is retained due to inertia of motion, which combines with vertical leap velocity to yield a significantly longer parabolic trajectory."}, {"num": 10, "question": "If the action force acting on an object is 50 N directed due North, what is the reaction force?", "options": ["50 N directed due North", "50 N directed due South acting on the other body", "0 N", "100 N directed due South"], "correct": 1, "solution": "Step 1: According to Newton's Third Law, for every action there is an equal and opposite reaction.\nStep 2: The reaction force is strictly equal in magnitude (50 N), strictly opposite in direction (due South), and acts on the body that initiated the action."}, {"num": 11, "question": "A 1500 kg automobile moving at 20 m/s is brought to rest in 5 seconds by the brakes. What is the average braking force applied?", "options": ["3000 N", "6000 N", "15,000 N", "30,000 N"], "correct": 1, "solution": "Step 1: Calculate acceleration: a = (v - u) / t = (0 - 20) / 5 = -4 m/s\u00b2.\nStep 2: Calculate force: F = m \u00b7 a = 1500 kg \u00d7 (-4 m/s\u00b2) = -6000 N.\nConclusion: The magnitude of the braking force is 6000 N directed opposite to motion."}, {"num": 12, "question": "What is the momentum of an elephant of mass 4000 kg strolling at a leisurely pace of 1.5 m/s?", "options": ["2667 kg\u00b7m/s", "6000 kg\u00b7m/s", "60,000 kg\u00b7m/s", "4000 kg\u00b7m/s"], "correct": 1, "solution": "Step 1: Formula for linear momentum: p = m \u00b7 v.\nStep 2: Substitute values: p = 4000 kg \u00d7 1.5 m/s = 6000 kg\u00b7m/s in the direction of motion."}, {"num": 13, "question": "A constant force acts on an object of mass 5 kg for a duration of 2 seconds, increasing its velocity from 3 m/s to 7 m/s. What is the magnitude of the applied force?", "options": ["5 N", "10 N", "20 N", "25 N"], "correct": 1, "solution": "Step 1: Find acceleration: a = (v - u) / t = (7 - 3) / 2 = 4 / 2 = 2 m/s\u00b2.\nStep 2: Apply Newton's Second Law: F = m \u00b7 a = 5 kg \u00d7 2 m/s\u00b2 = 10 N."}, {"num": 14, "question": "Which of the following graphs of Momentum (p) versus Velocity (v) for an object of constant mass is correct?", "options": ["A parabola opening upward", "A horizontal line parallel to the v-axis", "A straight line passing through the origin with slope equal to mass", "A hyperbola asymptotic to both axes"], "correct": 2, "solution": "Step 1: The equation relating momentum and velocity is p = m \u00b7 v.\nStep 2: For constant mass m, this is of the form y = mx, which is a straight line passing through the origin (0, 0) whose slope \u0394p/\u0394v equals the mass m."}, {"num": 15, "question": "A hammer of mass 500 g (0.5 kg) moving at 50 m/s strikes a nail and drives it into wood, coming to rest in 0.01 seconds. What is the average force exerted by the hammer on the nail?", "options": ["250 N", "2500 N", "5000 N", "25,000 N"], "correct": 1, "solution": "Step 1: Initial momentum p\u2081 = 0.5 kg \u00d7 50 m/s = 25 kg\u00b7m/s.\nStep 2: Final momentum p\u2082 = 0.\nStep 3: Change in momentum \u0394p = 0 - 25 = -25 kg\u00b7m/s.\nStep 4: Average force F = |\u0394p| / \u0394t = 25 / 0.01 = 2500 N."}, {"num": 16, "question": "A body of mass m is moving with speed v. If its kinetic energy is doubled, what happens to its linear momentum?", "options": ["It doubles", "It remains the same", "It increases by a factor of \u221a2", "It quadruples"], "correct": 2, "solution": "Step 1: Relationship between kinetic energy KE and momentum p: KE = p\u00b2 / (2m) \u27f9 p = \u221a(2m \u00b7 KE).\nStep 2: If KE' = 2 \u00b7 KE, then p' = \u221a(2m \u00b7 2KE) = \u221a2 \u00b7 \u221a(2m \u00b7 KE) = \u221a2 \u00b7 p.\nConclusion: Linear momentum increases by a factor of \u221a2 (approximately 1.414 times)."}, {"num": 17, "question": "Why are ceramic teacups more likely to shatter when dropped onto a hard stone floor than when dropped from the same height onto a thick carpet?", "options": ["The stone floor increases the teacup's change in momentum", "The carpet increases the duration of impact, reducing the peak impact force", "The carpet absorbs all gravitational energy before impact", "The teacup's mass is greater on stone"], "correct": 1, "solution": "Step 1: Dropped from the same height, the teacup reaches both surfaces with identical momentum and must be brought to rest (same \u0394p).\nStep 2: On stone, stopping time \u0394t is nearly zero (milliseconds), yielding an enormous peak force F = \u0394p/\u0394t that shatters the ceramic.\nStep 3: On carpet, the fibers compress, prolonging \u0394t and keeping the impact force below the fracture limit."}, {"num": 18, "question": "A force of 5 N produces an acceleration of 8 m/s\u00b2 on a mass m\u2081, and an acceleration of 24 m/s\u00b2 on a mass m\u2082. What acceleration would the same force produce if both masses are tied together?", "options": ["4 m/s\u00b2", "6 m/s\u00b2", "12 m/s\u00b2", "16 m/s\u00b2"], "correct": 1, "solution": "Step 1: Find individual masses: m\u2081 = F / a\u2081 = 5 / 8 kg; m\u2082 = F / a\u2082 = 5 / 24 kg.\nStep 2: Total combined mass M = m\u2081 + m\u2082 = 5/8 + 5/24 = 15/24 + 5/24 = 20/24 = 5/6 kg.\nStep 3: Acceleration of combined mass: a = F / M = 5 / (5/6) = 5 \u00d7 (6/5) = 6 m/s\u00b2."}, {"num": 19, "question": "What is the SI unit of impulse?", "options": ["N/s", "N\u00b7s (or kg\u00b7m/s)", "N\u00b7m", "kg\u00b7m\u00b2/s"], "correct": 1, "solution": "Step 1: Impulse is defined as Force \u00d7 time (J = F \u00b7 \u0394t).\nStep 2: Therefore, its SI unit is Newton-second (N\u00b7s).\nStep 3: In fundamental units: 1 N\u00b7s = (1 kg\u00b7m/s\u00b2) \u00b7 s = 1 kg\u00b7m/s, which is identical to the unit of linear momentum."}, {"num": 20, "question": "A cricket ball of mass 160 g (0.16 kg) moving at 30 m/s is hit by a bat, returning directly along its original path at 20 m/s. If the contact lasts 0.02 s, what is the average force exerted by the bat?", "options": ["80 N", "200 N", "400 N", "800 N"], "correct": 2, "solution": "Step 1: Taking initial direction as positive: u = +30 m/s, v = -20 m/s.\nStep 2: Change in momentum \u0394p = m(v - u) = 0.16 \u00d7 (-20 - 30) = 0.16 \u00d7 (-50) = -8.0 kg\u00b7m/s.\nStep 3: Average force F = |\u0394p| / \u0394t = 8.0 / 0.02 = 400 N opposite to initial motion."}, {"num": 21, "question": "When a person jumps out of a small rowing boat onto a river bank, what happens to the boat?", "options": ["The boat remains stationary", "The boat moves forward toward the bank", "The boat moves backward away from the bank into the river", "The boat sinks vertically"], "correct": 2, "solution": "Step 1: To leap forward onto the bank, the person's feet push backward on the boat (Action).\nStep 2: By Newton's Third Law, the boat exerts an equal and opposite forward force on the person (Reaction).\nStep 3: As a result of the backward action force on the boat, the light boat accelerates backward away from the bank."}, {"num": 22, "question": "A gun of mass 4 kg fires a bullet of mass 50 g (0.05 kg) with a muzzle velocity of 400 m/s. What is the recoil velocity of the gun?", "options": ["-2.5 m/s", "-5.0 m/s", "-10.0 m/s", "-20.0 m/s"], "correct": 1, "solution": "Step 1: Before firing, total momentum is zero: p_initial = 0.\nStep 2: By conservation of momentum: m_bullet \u00b7 v_bullet + M_gun \u00b7 V_recoil = 0.\nStep 3: (0.05 \u00d7 400) + (4 \u00d7 V_recoil) = 0 \u27f9 20 + 4 V_recoil = 0 \u27f9 V_recoil = -20 / 4 = -5.0 m/s (backward)."}, {"num": 23, "question": "Why is it difficult for a fireman to hold a hose-pipe which ejects large streams of water at a high velocity?", "options": ["The hose becomes very heavy due to water weight", "The high-speed escaping water exerts an equal and opposite backward reaction force on the hose", "Friction between water and the nozzle turns into heat", "Atmospheric pressure pushes the hose backward"], "correct": 1, "solution": "Step 1: The nozzle accelerates huge volumes of water forward at immense velocity (Action).\nStep 2: By Newton's Third Law, the exiting water stream exerts an equal and opposite backward reaction force on the hose.\nStep 3: The fireman must exert significant muscular force to counter this backward reaction thrust."}, {"num": 24, "question": "Two objects of masses 100 g (0.1 kg) and 200 g (0.2 kg) are moving along the same line in the same direction with velocities of 2 m/s and 1 m/s respectively. They collide, and after collision, the first object moves at 1.67 m/s. What is the velocity of the second object?", "options": ["0.50 m/s", "1.165 m/s", "1.50 m/s", "2.00 m/s"], "correct": 1, "solution": "Step 1: Initial momentum = (0.1 \u00d7 2) + (0.2 \u00d7 1) = 0.2 + 0.2 = 0.40 kg\u00b7m/s.\nStep 2: Final momentum = (0.1 \u00d7 1.67) + (0.2 \u00d7 v\u2082) = 0.167 + 0.2 v\u2082.\nStep 3: By conservation of momentum: 0.40 = 0.167 + 0.2 v\u2082 \u27f9 0.2 v\u2082 = 0.40 - 0.167 = 0.233 \u27f9 v\u2082 = 0.233 / 0.2 = 1.165 m/s."}, {"num": 25, "question": "A rocket of mass 1000 kg consumes propellant at a rate of 40 kg/s, ejecting exhaust gas at 2000 m/s relative to the rocket. What is the initial upward thrust force produced on the rocket?", "options": ["50 N", "20,000 N", "80,000 N", "800,000 N"], "correct": 2, "solution": "Step 1: Rocket thrust is given by the rate of momentum ejection: F_thrust = v_exhaust \u00d7 (\u0394m / \u0394t).\nStep 2: Substitute values: F_thrust = 2000 m/s \u00d7 40 kg/s = 80,000 N.\nConclusion: The escaping gases exert an upward reaction thrust of 80,000 N."}, {"num": 26, "question": "A horse pulls a cart forward. According to Newton's Third Law, the cart pulls the horse backward with an equal and opposite force. Why does the horse-cart system accelerate forward?", "options": ["Because the horse's pull on the cart is slightly greater than the cart's pull on the horse", "Because the forward friction/reaction force exerted by the ground on the horse's hooves exceeds the backward resistive forces on the cart", "Because Newton's Third Law does not apply to living animals", "Because the cart's wheels eliminate all mass"], "correct": 1, "solution": "Step 1: Action-reaction between horse and cart are internal forces.\nStep 2: To find the acceleration of the horse-cart system, we analyze external horizontal forces on the system.\nStep 3: The horse pushes backward on the ground; the ground pushes forward on the horse's hooves (F_ground). The ground exerts backward rolling friction on the cart wheels (f_cart).\nStep 4: If F_ground > f_cart, the net external force is forward, causing the entire system to accelerate!"}, {"num": 27, "question": "A stationary bomb of mass 12 kg explodes into two fragments of masses 4 kg and 8 kg. If the velocity of the 4 kg fragment is 20 m/s, what is the speed of the 8 kg fragment?", "options": ["5 m/s", "10 m/s", "15 m/s", "20 m/s"], "correct": 1, "solution": "Step 1: Before explosion, the bomb is at rest: p_initial = 0.\nStep 2: The explosion is driven by internal chemical forces, so total momentum is conserved.\nStep 3: p_final = m\u2081v\u2081 + m\u2082v\u2082 = 0 \u27f9 (4 \u00d7 20) + (8 \u00d7 v\u2082) = 0 \u27f9 80 + 8 v\u2082 = 0 \u27f9 v\u2082 = -10 m/s.\nConclusion: The 8 kg piece flies in the opposite direction at a speed of 10 m/s."}, {"num": 28, "question": "Can an internal force change the total linear momentum of an isolated system?", "options": ["Yes, if the internal force is very large", "No, because internal forces occur in equal and opposite pairs whose vector sum is strictly zero", "Yes, during an inelastic collision", "Only in a vacuum"], "correct": 1, "solution": "Step 1: By Newton's Third Law, every internal force exerted by particle i on particle j is balanced by an equal and opposite internal force exerted by j on i (F_ij = -F_ji).\nStep 2: Summing all internal forces: \u03a3 F_internal = 0.\nConclusion: Internal forces can alter individual constituent velocities, but can NEVER change the total momentum of the system."}, {"num": 29, "question": "A girl of mass 40 kg jumps with a horizontal velocity of 5 m/s onto a stationary cart with frictionless wheels of mass 3 kg. What is her velocity as the cart starts moving?", "options": ["4.65 m/s", "5.00 m/s", "3.75 m/s", "2.50 m/s"], "correct": 0, "solution": "Step 1: Total initial momentum = (m_girl \u00d7 v_girl) + (m_cart \u00d7 v_cart) = (40 \u00d7 5) + (3 \u00d7 0) = 200 kg\u00b7m/s.\nStep 2: After jumping onto the cart, combined mass M = 40 + 3 = 43 kg.\nStep 3: By conservation of momentum: 200 = 43 \u00d7 v_final \u27f9 v_final = 200 / 43 \u2248 4.65 m/s."}, {"num": 30, "question": "An astronaut of mass 80 kg floating freely in deep space throws a 0.5 kg wrench at 20 m/s away from their spacecraft. What is the astronaut's resulting recoil speed?", "options": ["0.125 m/s", "0.25 m/s", "1.25 m/s", "2.50 m/s"], "correct": 0, "solution": "Step 1: Initial momentum p_initial = 0.\nStep 2: By conservation of momentum: m_wrench \u00b7 v_wrench + M_astro \u00b7 V_astro = 0.\nStep 3: (0.5 \u00d7 20) + (80 \u00d7 V_astro) = 0 \u27f9 10 + 80 V_astro = 0 \u27f9 V_astro = -10 / 80 = -0.125 m/s."}, {"num": 31, "question": "A student of mass 50 kg stands inside an elevator that accelerates downward at 3 m/s\u00b2 (take g = 9.8 m/s\u00b2). What reading does a spring scale beneath their feet display?", "options": ["640 N", "490 N", "340 N", "150 N"], "correct": 2, "solution": "Step 1: In a downward accelerating frame, equation of motion is: mg - N = ma.\nStep 2: Rearranging for normal contact force N: N = m(g - a).\nStep 3: Substitute values: N = 50 kg \u00d7 (9.8 - 3.0 m/s\u00b2) = 50 \u00d7 6.8 = 340 N.\nConclusion: The scale reads 340 N (the student feels noticeably lighter)."}, {"num": 32, "question": "If the cable supporting an elevator snaps and the cabin falls freely under gravity, what will be the apparent weight of a passenger inside?", "options": ["Equal to their true weight mg", "Double their true weight", "Zero (Complete Weightlessness)", "Infinite"], "correct": 2, "solution": "Step 1: In free fall, downward acceleration a = g.\nStep 2: Apparent weight formula: N = m(g - a) = m(g - g) = 0 N.\nConclusion: The passenger and floor accelerate downward at the identical rate g; the floor exerts zero contact force on the passenger, producing complete weightlessness."}, {"num": 33, "question": "A block of mass 10 kg is placed on a rough horizontal surface with coefficient of static friction \u03bc_s = 0.4. If a horizontal pull of 30 N is applied, what is the frictional force acting on the block? (Take g = 9.8 m/s\u00b2)", "options": ["39.2 N", "30 N", "9.2 N", "0 N"], "correct": 1, "solution": "Step 1: Calculate normal reaction: N = mg = 10 \u00d7 9.8 = 98 N.\nStep 2: Calculate maximum limiting static friction: f_max = \u03bc_s \u00d7 N = 0.4 \u00d7 98 = 39.2 N.\nStep 3: Compare applied force F = 30 N with f_max. Since F < f_max, the block does NOT move!\nStep 4: Because the block is stationary, static friction self-adjusts to exactly balance the applied force: f_static = F_applied = 30 N."}, {"num": 34, "question": "Two masses m\u2081 = 2 kg and m\u2082 = 3 kg are connected by a light inextensible string passing over a frictionless pulley (Atwood's machine). Taking g = 10 m/s\u00b2, what is the acceleration of the system?", "options": ["1.0 m/s\u00b2", "2.0 m/s\u00b2", "5.0 m/s\u00b2", "10.0 m/s\u00b2"], "correct": 1, "solution": "Step 1: For Atwood's machine, the net pulling force is the difference in gravitational weights: F_net = (m\u2082 - m\u2081)g = (3 - 2) \u00d7 10 = 10 N.\nStep 2: The total mass accelerated is (m\u2081 + m\u2082) = 2 + 3 = 5 kg.\nStep 3: Acceleration a = F_net / M_total = 10 N / 5 kg = 2.0 m/s\u00b2."}, {"num": 35, "question": "A bullet of mass 20 g moving at 250 m/s penetrates 12.5 cm (0.125 m) into a target before stopping. What is the average resistive force exerted by the target on the bullet?", "options": ["500 N", "2500 N", "5000 N", "10,000 N"], "correct": 2, "solution": "Step 1: u = 250 m/s, v = 0, s = 0.125 m.\nStep 2: Use kinematic relation v\u00b2 = u\u00b2 + 2as \u27f9 0 = 250\u00b2 + 2a(0.125) \u27f9 0 = 62,500 + 0.25 a \u27f9 a = -62,500 / 0.25 = -250,000 m/s\u00b2.\nStep 3: Bullet mass m = 20 g = 0.02 kg.\nStep 4: Resistive force F = m \u00b7 |a| = 0.02 kg \u00d7 250,000 m/s\u00b2 = 5000 N."}, {"num": 36, "question": "A vehicle of mass M is traveling at speed v. If the driver applies maximum braking and the vehicle stops in distance d, what would the stopping distance be if the initial speed were doubled to 2v under identical braking force?", "options": ["d", "2d", "4d", "8d"], "correct": 2, "solution": "Step 1: From kinematics, v\u00b2 = u\u00b2 + 2as \u27f9 0 = u\u00b2 - 2ad \u27f9 d = u\u00b2 / (2a).\nStep 2: Since braking force F and mass M are unchanged, deceleration a = F/M is constant.\nStep 3: Stopping distance is directly proportional to the square of initial velocity: d \u221d u\u00b2.\nStep 4: If u is doubled (2u), d' = (2u)\u00b2 / 2a = 4 \u00b7 [u\u00b2 / 2a] = 4d."}, {"num": 37, "question": "In the Vaisheshika philosophy of ancient India (~600 BCE), Acharya Kanad categorized 'Vega' as a quality of substances that:", "options": ["Destroys all atomic structure", "Acts as the impressed momentum that sustains continuous motion until opposed", "Creates gravitational attraction between planets", "Explains the emission of light from fire"], "correct": 1, "solution": "Step 1: In Vaisheshika Sutras (Chapter 5), Acharya Kanad introduced 'Vega' (impressed motion/momentum).\nStep 2: Kanad observed that when an object is set into motion by an effort (prayatna), Vega is generated within it, which sustains motion in a given direction until counteracted by opposing contacts (friction/resistance)."}, {"num": 38, "question": "Which of the four fundamental forces of nature is responsible for keeping the protons and neutrons tightly bound inside an atomic nucleus?", "options": ["Gravitational force", "Electromagnetic force", "Strong nuclear force", "Weak nuclear force"], "correct": 2, "solution": "Step 1: Protons are positively charged and experience intense electrostatic repulsion within the tiny femtometer scale of the nucleus.\nStep 2: The Strong Nuclear Force is an attractive, short-range fundamental interaction (~100 times stronger than electromagnetism) that overcomes this repulsion to bind protons and neutrons together."}, {"num": 39, "question": "According to Einstein's Special Theory of Relativity, why can no massive object ever be accelerated to reach or exceed the speed of light (c)?", "options": ["Friction in outer space becomes infinite", "As velocity approaches c, relativistic momentum and effective inertial resistance approach infinity, requiring infinite force", "Gravity pulls the object backward into the past", "The object shrinks to zero mass"], "correct": 1, "solution": "Step 1: In relativistic mechanics, momentum is p = \u03b3 m v, where the Lorentz factor \u03b3 = 1 / \u221a(1 - v\u00b2/c\u00b2).\nStep 2: As v approaches c (v \u2192 c), \u221a(1 - v\u00b2/c\u00b2) approaches 0, causing \u03b3 and momentum p to diverge to infinity (p \u2192 \u221e).\nStep 3: Accelerating a particle to c would require an infinite impulse and infinite energy, establishing c as the ultimate cosmic speed limit."}, {"num": 40, "question": "A 100 kg astronaut holds a 10 kg medicine ball while standing on frictionless ice. The astronaut throws the ball horizontally at 8 m/s. How much work was done by the astronaut's muscles during the throw?", "options": ["320 J", "352 J", "640 J", "704 J"], "correct": 1, "solution": "Step 1: By conservation of momentum, m_ball \u00b7 v_ball + M_astro \u00b7 V_astro = 0 \u27f9 (10 \u00d7 8) + (100 \u00d7 V_astro) = 0 \u27f9 V_astro = -80 / 100 = -0.8 m/s.\nStep 2: Work done by muscles equals total kinetic energy generated:\nW = KE_ball + KE_astronaut.\nStep 3: KE_ball = \u00bd m v\u00b2 = \u00bd \u00d7 10 \u00d7 8\u00b2 = 5 \u00d7 64 = 320 J.\nStep 4: KE_astronaut = \u00bd M V\u00b2 = \u00bd \u00d7 100 \u00d7 (-0.8)\u00b2 = 50 \u00d7 0.64 = 32 J.\nStep 5: Total work = 320 J + 32 J = 352 J."}];
+
+    let currentSlideIndex = 0;
+    let isSpeaking = false;
+    let synth = window.speechSynthesis;
+    let currentUtterance = null;
+    let mouthInterval = null;
+
+    // Initialize application
+    window.addEventListener('DOMContentLoaded', () => {
+      renderSlide(0);
+      setupSpeechSynthesis();
+    });
+
+    function setupSpeechSynthesis() {
+      if ('speechSynthesis' in window) {
+        synth.onvoiceschanged = () => {
+          // Voices ready
+        };
+      }
+    }
+
+    function renderSlide(index) {
+      currentSlideIndex = index;
+      const slide = slides[index];
+
+      // Update slide indicator
+      document.getElementById('slideIndicator').textContent = `Slide ${index + 1} / ${slides.length}`;
+      document.getElementById('slideTitle').textContent = slide.title;
+      document.getElementById('slideSubtitle').textContent = slide.subtitle;
+      document.getElementById('slideContent').innerHTML = slide.content;
+
+      // Handle Last Slide Notice & Next Button
+      const lastSlideNotice = document.getElementById('lastSlideNotice');
+      const nextBtn = document.getElementById('nextBtn');
+      const prevBtn = document.getElementById('prevBtn');
+
+      prevBtn.disabled = (index === 0);
+
+      if (index === slides.length - 1) {
+        lastSlideNotice.style.display = 'block';
+        nextBtn.style.display = 'none';
+      } else {
+        lastSlideNotice.style.display = 'none';
+        nextBtn.style.display = 'inline-flex';
+      }
+
+      // Handle Checkpoints vs Quiz Section
+      const checkpointsSection = document.getElementById('checkpointsSection');
+      const quizSection = document.getElementById('quizSection');
+
+      if (slide.checkpoints && slide.checkpoints.length > 0) {
+        checkpointsSection.style.display = 'block';
+        quizSection.style.display = 'none';
+        renderCheckpoints(slide.checkpoints);
+      } else if (slide.quiz_range) {
+        checkpointsSection.style.display = 'none';
+        quizSection.style.display = 'block';
+        renderQuizQuestions(slide.quiz_range[0], slide.quiz_range[1]);
+      } else {
+        checkpointsSection.style.display = 'none';
+        quizSection.style.display = 'none';
+      }
+
+      // Update Teacher Speech & Auto-narrate
+      document.getElementById('teacherSpeech').textContent = slide.voice;
+      speakText(slide.voice);
+
+      // Render Dedicated Bespoke Simulator
+      renderSimulator(slide.sim_type);
+
+      // Render KaTeX Math
+      if (window.renderMathInElement) {
+        renderMathInElement(document.getElementById('slideContent'), {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlideIndex < slides.length - 1) {
+        renderSlide(currentSlideIndex + 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlideIndex > 0) {
+        renderSlide(currentSlideIndex - 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // Checkpoints Renderer
+    function renderCheckpoints(checkpoints) {
+      const container = document.getElementById('checkpointsList');
+      container.innerHTML = '';
+
+      checkpoints.forEach((cp, qIdx) => {
+        const card = document.createElement('div');
+        card.className = 'checkpoint-card';
+        card.innerHTML = `
+          <p class="q-text">Q${qIdx + 1}: ${cp.question}</p>
+          <div class="options-grid" id="cp_opts_${qIdx}">
+            ${cp.options.map((opt, oIdx) => `
+              <button class="option-btn" onclick="checkAnswer(${qIdx}, ${oIdx}, ${cp.correct}, this)">
+                ${String.fromCharCode(65 + oIdx)}. ${opt}
+              </button>
+            `).join('')}
+          </div>
+          <div class="checkpoint-feedback" id="cp_fb_${qIdx}"></div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function checkAnswer(qIdx, selected, correct, btn) {
+      const parent = document.getElementById(`cp_opts_${qIdx}`);
+      const buttons = parent.querySelectorAll('.option-btn');
+      const fb = document.getElementById(`cp_fb_${qIdx}`);
+      const currentSlide = slides[currentSlideIndex];
+      const explanation = currentSlide.checkpoints[qIdx].explanation;
+
+      buttons.forEach(b => b.disabled = true);
+
+      if (selected === correct) {
+        btn.classList.add('correct');
+        fb.className = 'checkpoint-feedback show correct-fb';
+        fb.innerHTML = `<strong>✓ Correct!</strong> ${explanation}`;
+      } else {
+        btn.classList.add('wrong');
+        buttons[correct].classList.add('correct');
+        fb.className = 'checkpoint-feedback show wrong-fb';
+        fb.innerHTML = `<strong>✗ Incorrect.</strong> ${explanation}`;
+      }
+    }
+
+    // Quiz Questions Renderer
+    function renderQuizQuestions(startNum, endNum) {
+      const container = document.getElementById('quizList');
+      container.innerHTML = '';
+
+      const subset = quizData.filter(q => q.num >= startNum && q.num <= endNum);
+
+      subset.forEach(q => {
+        const card = document.createElement('div');
+        card.className = 'quiz-item';
+        card.innerHTML = `
+          <div class="quiz-header">
+            <span class="quiz-num">Question ${q.num} of 40</span>
+            <button class="view-solution-btn" onclick="openSolutionModal(${q.num})">View Solution</button>
+          </div>
+          <p class="q-text" style="font-weight: 600; margin-bottom: 12px; color: #f8fafc;">${q.question}</p>
+          <div class="options-grid" id="quiz_opts_${q.num}">
+            ${q.options.map((opt, oIdx) => `
+              <button class="option-btn" onclick="checkQuizAnswer(${q.num}, ${oIdx}, ${q.correct}, this)">
+                ${String.fromCharCode(65 + oIdx)}. ${opt}
+              </button>
+            `).join('')}
+          </div>
+          <div class="checkpoint-feedback" id="quiz_fb_${q.num}"></div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function checkQuizAnswer(qNum, selected, correct, btn) {
+      const parent = document.getElementById(`quiz_opts_${qNum}`);
+      const buttons = parent.querySelectorAll('.option-btn');
+      const fb = document.getElementById(`quiz_fb_${qNum}`);
+
+      buttons.forEach(b => b.disabled = true);
+
+      if (selected === correct) {
+        btn.classList.add('correct');
+        fb.className = 'checkpoint-feedback show correct-fb';
+        fb.innerHTML = `<strong>✓ Correct!</strong> Click 'View Solution' for complete step-by-step mathematical reasoning.`;
+      } else {
+        btn.classList.add('wrong');
+        buttons[correct].classList.add('correct');
+        fb.className = 'checkpoint-feedback show wrong-fb';
+        fb.innerHTML = `<strong>✗ Incorrect.</strong> Click 'View Solution' to examine the complete derivation.`;
+      }
+    }
+
+    // Solution Modal
+    function openSolutionModal(qNum) {
+      const item = quizData.find(q => q.num === qNum);
+      if (!item) return;
+
+      document.getElementById('modalTitle').textContent = `Step-by-Step Solution • Question ${item.num}`;
+      document.getElementById('modalBody').textContent = item.solution;
+      document.getElementById('solutionModal').classList.add('active');
+    }
+
+    function closeSolutionModal() {
+      document.getElementById('solutionModal').classList.remove('active');
+    }
+
+    // Speech & Teacher Mouth Animation
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) return;
+      synth.cancel();
+      stopMouth();
+
+      const cleanText = text.replace(/\$/g, '');
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.rate = 1.0;
+      utterance.pitch = 1.05;
+      utterance.lang = 'en-US';
+
+      const voices = synth.getVoices();
+      const preferred = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Female') || v.name.includes('Natural') || v.name.includes('Samantha')));
+      if (preferred) utterance.voice = preferred;
+
+      utterance.onstart = () => {
+        isSpeaking = true;
+        document.getElementById('voiceLabel').textContent = 'Pause Voiceover';
+        startMouth();
+      };
+
+      utterance.onend = () => {
+        isSpeaking = false;
+        document.getElementById('voiceLabel').textContent = 'Play Voiceover';
+        stopMouth();
+      };
+
+      utterance.onerror = () => {
+        isSpeaking = false;
+        document.getElementById('voiceLabel').textContent = 'Play Voiceover';
+        stopMouth();
+      };
+
+      currentUtterance = utterance;
+      synth.speak(utterance);
+    }
+
+    function toggleSpeech() {
+      if (synth.speaking) {
+        if (synth.paused) {
+          synth.resume();
+          document.getElementById('voiceLabel').textContent = 'Pause Voiceover';
+          startMouth();
+        } else {
+          synth.pause();
+          document.getElementById('voiceLabel').textContent = 'Resume Voiceover';
+          stopMouth();
+        }
+      } else {
+        const slide = slides[currentSlideIndex];
+        speakText(slide.voice);
+      }
+    }
+
+    function replaySpeech() {
+      const slide = slides[currentSlideIndex];
+      speakText(slide.voice);
+    }
+
+    function startMouth() {
+      stopMouth();
+      const mouth = document.getElementById('teacherMouth');
+      let open = false;
+      mouthInterval = setInterval(() => {
+        open = !open;
+        mouth.setAttribute('ry', open ? '5' : '1.5');
+      }, 180);
+    }
+
+    function stopMouth() {
+      if (mouthInterval) clearInterval(mouthInterval);
+      const mouth = document.getElementById('teacherMouth');
+      if (mouth) mouth.setAttribute('ry', '1.5');
+    }
+
+    // 16 Bespoke Interactive SVG Simulators
+    function renderSimulator(type) {
+      const svg = document.getElementById('simSvg');
+      const controls = document.getElementById('simControls');
+      const title = document.getElementById('simTitle');
+
+      svg.innerHTML = '';
+      controls.innerHTML = '';
+
+      switch (type) {
+        case 'force_vector':
+          title.textContent = '2D Vector Tug & Net Force Manipulator';
+          renderForceVectorSim(svg, controls);
+          break;
+        case 'balanced_tug_of_war':
+          title.textContent = 'Balanced vs Unbalanced Forces Lab';
+          renderBalancedTugSim(svg, controls);
+          break;
+        case 'friction_breakaway':
+          title.textContent = 'Friction & Microscopic Asperities Lab';
+          renderFrictionSim(svg, controls);
+          break;
+        case 'galileo_inclined_planes':
+          title.textContent = "Galileo's Double Inclined Plane Lab";
+          renderGalileoSim(svg, controls);
+          break;
+        case 'coin_card_flick':
+          title.textContent = 'Inertia of Rest: Coin & Card Experiment';
+          renderCoinCardSim(svg, controls);
+          break;
+        case 'mass_inertia_push':
+          title.textContent = 'Mass as Quantitative Measure of Inertia';
+          renderMassInertiaSim(svg, controls);
+          break;
+        case 'momentum_visualizer':
+          title.textContent = 'Linear Momentum (p = mv) Comparator';
+          renderMomentumSim(svg, controls);
+          break;
+        case 'newton_second_law_cart':
+          title.textContent = "Newton's Second Law Dynamic Cart (F = ma)";
+          renderSecondLawSim(svg, controls);
+          break;
+        case 'impulse_catcher':
+          title.textContent = 'Impulse (J = F·Δt) & Cushioning Laboratory';
+          renderImpulseSim(svg, controls);
+          break;
+        case 'spring_balance_pair':
+          title.textContent = "Newton's Third Law: Paired Spring Balances";
+          renderSpringBalanceSim(svg, controls);
+          break;
+        case 'rocket_propulsion':
+          title.textContent = 'Newtonian Rocket Thrust & Action-Reaction';
+          renderRocketSim(svg, controls);
+          break;
+        case 'collision_carts':
+          title.textContent = 'Conservation of Linear Momentum Track';
+          renderCollisionSim(svg, controls);
+          break;
+        case 'cannon_recoil':
+          title.textContent = 'Firearm & Cannon Recoil Mechanics';
+          renderCannonSim(svg, controls);
+          break;
+        case 'virtual_air_track':
+          title.textContent = 'Linear Air Track & Photogate Verification';
+          renderAirTrackSim(svg, controls);
+          break;
+        case 'elevator_scale':
+          title.textContent = 'Apparent Weight inside an Elevator';
+          renderElevatorSim(svg, controls);
+          break;
+        case 'fundamental_forces':
+          title.textContent = 'The 4 Fundamental Forces & Relativity Limit';
+          renderFundamentalForcesSim(svg, controls);
+          break;
+        default:
+          title.textContent = 'Interactive Mastery Challenge Dashboard';
+          renderQuizDashboardSim(svg, controls);
+      }
+    }
+
+    // 1. Force Vector Simulator
+    function renderForceVectorSim(svg, controls) {
+      svg.innerHTML = `
+        <defs>
+          <marker id="arrowhead1" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#00e5ff" />
+          </marker>
+          <marker id="arrowhead2" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#f59e0b" />
+          </marker>
+          <marker id="arrowheadNet" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+            <polygon points="0 0, 10 4, 0 8" fill="#10b981" />
+          </marker>
+        </defs>
+        <line x1="220" y1="20" x2="220" y2="260" stroke="#1e293b" stroke-width="2" stroke-dasharray="4" />
+        <line x1="20" y1="140" x2="420" y2="140" stroke="#1e293b" stroke-width="2" stroke-dasharray="4" />
+        <!-- Origin mass -->
+        <circle cx="220" cy="140" r="16" fill="#3b82f6" />
+        <text x="220" y="145" fill="#fff" font-size="11" font-weight="bold" text-anchor="middle">m</text>
+        <!-- Vector F1 -->
+        <line id="vecF1" x1="220" y1="140" x2="320" y2="140" stroke="#00e5ff" stroke-width="4" marker-end="url(#arrowhead1)" />
+        <text id="labelF1" x="325" y="135" fill="#00e5ff" font-size="12" font-weight="bold">F1 = 50 N</text>
+        <!-- Vector F2 -->
+        <line id="vecF2" x1="220" y1="140" x2="220" y2="60" stroke="#f59e0b" stroke-width="4" marker-end="url(#arrowhead2)" />
+        <text id="labelF2" x="225" y="55" fill="#f59e0b" font-size="12" font-weight="bold">F2 = 40 N</text>
+        <!-- Resultant Net Force -->
+        <line id="vecNet" x1="220" y1="140" x2="320" y2="60" stroke="#10b981" stroke-width="5" marker-end="url(#arrowheadNet)" />
+        <text id="labelNet" x="325" y="55" fill="#10b981" font-size="13" font-weight="bold">F_net = 64.0 N</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Horizontal Force F1 (East):</span>
+          <input type="range" id="f1Slider" min="-80" max="80" value="50">
+          <span class="control-val" id="f1Val">50 N</span>
+        </div>
+        <div class="control-row">
+          <span>Vertical Force F2 (North):</span>
+          <input type="range" id="f2Slider" min="-80" max="80" value="40">
+          <span class="control-val" id="f2Val">40 N</span>
+        </div>
+      `;
+
+      function updateVectors() {
+        const f1 = parseFloat(document.getElementById('f1Slider').value);
+        const f2 = parseFloat(document.getElementById('f2Slider').value);
+
+        document.getElementById('f1Val').textContent = `${f1} N`;
+        document.getElementById('f2Val').textContent = `${f2} N`;
+
+        const x1 = 220 + f1 * 1.8;
+        const y1 = 140;
+        document.getElementById('vecF1').setAttribute('x2', x1);
+        document.getElementById('vecF1').setAttribute('y2', y1);
+        document.getElementById('labelF1').setAttribute('x', x1 + (f1 >= 0 ? 8 : -60));
+        document.getElementById('labelF1').setAttribute('y', y1 - 8);
+        document.getElementById('labelF1').textContent = `F1 = ${Math.abs(f1)} N`;
+
+        const x2 = 220;
+        const y2 = 140 - f2 * 1.8;
+        document.getElementById('vecF2').setAttribute('x2', x2);
+        document.getElementById('vecF2').setAttribute('y2', y2);
+        document.getElementById('labelF2').setAttribute('x', x2 + 8);
+        document.getElementById('labelF2').setAttribute('y', y2 - 8);
+        document.getElementById('labelF2').textContent = `F2 = ${Math.abs(f2)} N`;
+
+        const xNet = 220 + f1 * 1.8;
+        const yNet = 140 - f2 * 1.8;
+        const fNetMag = Math.sqrt(f1 * f1 + f2 * f2).toFixed(1);
+        document.getElementById('vecNet').setAttribute('x2', xNet);
+        document.getElementById('vecNet').setAttribute('y2', yNet);
+        document.getElementById('labelNet').setAttribute('x', xNet + 8);
+        document.getElementById('labelNet').setAttribute('y', yNet - 8);
+        document.getElementById('labelNet').textContent = `F_net = ${fNetMag} N`;
+      }
+
+      document.getElementById('f1Slider').addEventListener('input', updateVectors);
+      document.getElementById('f2Slider').addEventListener('input', updateVectors);
+    }
+
+    // 2. Balanced vs Unbalanced Tug-of-War Simulator
+    function renderBalancedTugSim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="20" y="180" width="400" height="12" fill="#334155" />
+        <!-- Block -->
+        <rect id="tugBlock" x="180" y="120" width="80" height="60" rx="8" fill="#3b82f6" stroke="#60a5fa" stroke-width="2" />
+        <text id="tugBlockText" x="220" y="155" fill="#fff" font-size="14" font-weight="bold" text-anchor="middle">5 kg</text>
+        <!-- Pull Arrows -->
+        <line id="arrowLeft" x1="180" y1="150" x2="100" y2="150" stroke="#f43f5e" stroke-width="6" />
+        <line id="arrowRight" x1="260" y1="150" x2="340" y2="150" stroke="#10b981" stroke-width="6" />
+        <!-- Force Badges -->
+        <text id="textLeft" x="90" y="145" fill="#f43f5e" font-size="13" font-weight="bold" text-anchor="end">F_left: 50 N</text>
+        <text id="textRight" x="350" y="145" fill="#10b981" font-size="13" font-weight="bold">F_right: 50 N</text>
+        <!-- State Badge -->
+        <rect x="130" y="30" width="180" height="32" rx="6" fill="#1e293b" stroke="#00e5ff" stroke-width="1.5" />
+        <text id="balanceStatus" x="220" y="52" fill="#00e5ff" font-size="13" font-weight="bold" text-anchor="middle">BALANCED (ΣF = 0 N)</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Left Team Force:</span>
+          <input type="range" id="leftForce" min="0" max="100" value="50">
+          <span class="control-val" id="leftVal">50 N</span>
+        </div>
+        <div class="control-row">
+          <span>Right Team Force:</span>
+          <input type="range" id="rightForce" min="0" max="100" value="50">
+          <span class="control-val" id="rightVal">50 N</span>
+        </div>
+      `;
+
+      let posX = 180;
+      let animId = null;
+
+      function updateTug() {
+        const fl = parseFloat(document.getElementById('leftForce').value);
+        const fr = parseFloat(document.getElementById('rightForce').value);
+        document.getElementById('leftVal').textContent = `${fl} N`;
+        document.getElementById('rightVal').textContent = `${fr} N`;
+
+        document.getElementById('arrowLeft').setAttribute('x2', 180 - fl * 1.2);
+        document.getElementById('arrowRight').setAttribute('x2', 260 + fr * 1.2);
+        document.getElementById('textLeft').textContent = `F_left: ${fl} N`;
+        document.getElementById('textRight').textContent = `F_right: ${fr} N`;
+
+        const net = fr - fl;
+        const status = document.getElementById('balanceStatus');
+        if (net === 0) {
+          status.textContent = 'BALANCED (ΣF = 0 N, a = 0)';
+          status.setAttribute('fill', '#00e5ff');
+        } else if (net > 0) {
+          const a = (net / 5).toFixed(1);
+          status.textContent = `UNBALANCED (Net: +${net} N ➡ a = ${a} m/s²)`;
+          status.setAttribute('fill', '#10b981');
+        } else {
+          const a = (Math.abs(net) / 5).toFixed(1);
+          status.textContent = `UNBALANCED (Net: -${Math.abs(net)} N ⬅ a = ${a} m/s²)`;
+          status.setAttribute('fill', '#f43f5e');
+        }
+      }
+
+      document.getElementById('leftForce').addEventListener('input', updateTug);
+      document.getElementById('rightForce').addEventListener('input', updateTug);
+    }
+
+    // 3. Friction Simulator
+    function renderFrictionSim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="20" y="190" width="400" height="20" fill="#334155" />
+        <!-- Microscopic zoom circle -->
+        <circle cx="90" cy="70" r="45" fill="#0f172a" stroke="#38bdf8" stroke-width="2" />
+        <path d="M55 70 Q65 60 75 70 T95 70 T115 70 T125 70" fill="none" stroke="#60a5fa" stroke-width="3" />
+        <path d="M55 72 Q65 82 75 72 T95 72 T115 72 T125 72" fill="none" stroke="#94a3b8" stroke-width="3" />
+        <text x="90" y="125" fill="#38bdf8" font-size="10" text-anchor="middle">Microscopic Interlocking</text>
+        <!-- Block -->
+        <rect id="fricBlock" x="200" y="130" width="80" height="60" rx="6" fill="#d97706" />
+        <text x="240" y="165" fill="#fff" font-size="14" font-weight="bold" text-anchor="middle">10 kg</text>
+        <!-- Pull Force Arrow -->
+        <line id="pullLine" x1="280" y1="160" x2="330" y2="160" stroke="#10b981" stroke-width="5" />
+        <!-- Friction Arrow -->
+        <line id="fricLine" x1="200" y1="160" x2="160" y2="160" stroke="#ef4444" stroke-width="5" />
+        <text id="pullText" x="335" y="155" fill="#10b981" font-size="12" font-weight="bold">F_pull: 20 N</text>
+        <text id="fricText" x="155" y="155" fill="#ef4444" font-size="12" font-weight="bold" text-anchor="end">f_s: 20 N</text>
+        <!-- Gauge -->
+        <rect x="200" y="30" width="180" height="24" rx="4" fill="#1e293b" />
+        <rect id="gaugeBar" x="200" y="30" width="60" height="24" rx="4" fill="#f59e0b" />
+        <text id="gaugeText" x="290" y="47" fill="#fff" font-size="11" font-weight="bold" text-anchor="middle">Static Limit: 39.2 N</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Applied Pull Force:</span>
+          <input type="range" id="pullSlider" min="0" max="80" value="20">
+          <span class="control-val" id="pullVal">20 N</span>
+        </div>
+        <div class="control-row">
+          <span>Surface Material:</span>
+          <select id="surfaceSelect" style="background:#1e293b; color:#fff; padding:4px 8px; border-radius:4px; border:1px solid #475569;">
+            <option value="0.4" selected>Wood on Concrete (μ = 0.4)</option>
+            <option value="0.1">Steel on Ice (μ = 0.1)</option>
+            <option value="0.7">Rubber on Asphalt (μ = 0.7)</option>
+          </select>
+        </div>
+      `;
+
+      function updateFriction() {
+        const pull = parseFloat(document.getElementById('pullSlider').value);
+        const mu = parseFloat(document.getElementById('surfaceSelect').value);
+        const normal = 10 * 9.8;
+        const fMax = (mu * normal).toFixed(1);
+
+        document.getElementById('pullVal').textContent = `${pull} N`;
+        document.getElementById('gaugeText').textContent = `Max Limit: ${fMax} N`;
+
+        let fActual = 0;
+        let isSliding = pull > fMax;
+
+        if (!isSliding) {
+          fActual = pull;
+          document.getElementById('fricText').textContent = `f_static: ${fActual.toFixed(1)} N`;
+          document.getElementById('gaugeBar').setAttribute('width', Math.min(180, (pull / fMax) * 180));
+          document.getElementById('gaugeBar').setAttribute('fill', '#f59e0b');
+        } else {
+          fActual = (mu * 0.8 * normal).toFixed(1); // kinetic slightly lower
+          document.getElementById('fricText').textContent = `f_kinetic: ${fActual} N (SLIDING!)`;
+          document.getElementById('gaugeBar').setAttribute('width', 180);
+          document.getElementById('gaugeBar').setAttribute('fill', '#10b981');
+        }
+
+        document.getElementById('pullLine').setAttribute('x2', 280 + pull * 1.5);
+        document.getElementById('pullText').textContent = `F_pull: ${pull} N`;
+        document.getElementById('pullText').setAttribute('x', 285 + pull * 1.5);
+
+        document.getElementById('fricLine').setAttribute('x2', 200 - fActual * 1.5);
+      }
+
+      document.getElementById('pullSlider').addEventListener('input', updateFriction);
+      document.getElementById('surfaceSelect').addEventListener('change', updateFriction);
+    }
+
+    // 4. Galileo Inclined Plane Simulator
+    function renderGalileoSim(svg, controls) {
+      svg.innerHTML = `
+        <!-- Left Incline -->
+        <line x1="40" y1="60" x2="180" y2="200" stroke="#64748b" stroke-width="4" />
+        <!-- Horizontal Base -->
+        <line x1="180" y1="200" x2="220" y2="200" stroke="#64748b" stroke-width="4" />
+        <!-- Right Incline (Dynamic slope) -->
+        <line id="rightIncline" x1="220" y1="200" x2="360" y2="60" stroke="#00e5ff" stroke-width="4" />
+        <!-- Initial Release Height Line -->
+        <line x1="30" y1="60" x2="410" y2="60" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4" />
+        <text x="380" y="52" fill="#f59e0b" font-size="11">Initial Height (h)</text>
+        <!-- Marble Ball -->
+        <circle id="galileoBall" cx="40" cy="52" r="10" fill="#38bdf8" />
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Opposite Incline Angle:</span>
+          <input type="range" id="rampAngle" min="0" max="60" value="45">
+          <span class="control-val" id="angleVal">45°</span>
+        </div>
+        <div class="sim-btn-row">
+          <button class="sim-action-btn" onclick="animateGalileo()">▶ Release Marble</button>
+          <button class="sim-action-btn" onclick="resetGalileo()">↺ Reset</button>
+        </div>
+      `;
+
+      document.getElementById('rampAngle').addEventListener('input', (e) => {
+        const deg = parseFloat(e.target.value);
+        document.getElementById('angleVal').textContent = `${deg}°`;
+        if (deg === 0) {
+          document.getElementById('rightIncline').setAttribute('x2', 420);
+          document.getElementById('rightIncline').setAttribute('y2', 200);
+        } else {
+          const rad = (deg * Math.PI) / 180;
+          const deltaY = 140; // 200 - 60
+          const deltaX = deltaY / Math.tan(rad);
+          document.getElementById('rightIncline').setAttribute('x2', Math.min(420, 220 + deltaX));
+          document.getElementById('rightIncline').setAttribute('y2', 60);
+        }
+      });
+
+      window.animateGalileo = () => {
+        const ball = document.getElementById('galileoBall');
+        const deg = parseFloat(document.getElementById('rampAngle').value);
+        let t = 0;
+        const interval = setInterval(() => {
+          t += 0.02;
+          if (t <= 1) {
+            // Down first ramp
+            const cx = 40 + t * 140;
+            const cy = 52 + t * 140;
+            ball.setAttribute('cx', cx);
+            ball.setAttribute('cy', cy);
+          } else if (t <= 1.2) {
+            // Flat base
+            const cx = 180 + (t - 1) * 200;
+            ball.setAttribute('cx', Math.min(220, cx));
+            ball.setAttribute('cy', 192);
+          } else if (t <= 2.2) {
+            // Up second ramp or horizontal forever
+            if (deg === 0) {
+              const cx = 220 + (t - 1.2) * 200;
+              ball.setAttribute('cx', cx);
+              ball.setAttribute('cy', 192);
+            } else {
+              const progress = (t - 1.2);
+              const x2 = parseFloat(document.getElementById('rightIncline').getAttribute('x2'));
+              const cx = 220 + progress * (x2 - 220);
+              const cy = 192 - progress * 140;
+              ball.setAttribute('cx', cx);
+              ball.setAttribute('cy', cy);
+            }
+          } else {
+            clearInterval(interval);
+          }
+        }, 20);
+      };
+
+      window.resetGalileo = () => {
+        const ball = document.getElementById('galileoBall');
+        ball.setAttribute('cx', 40);
+        ball.setAttribute('cy', 52);
+      };
+    }
+
+    // 5. Coin Card Flick Simulator
+    function renderCoinCardSim(svg, controls) {
+      svg.innerHTML = `
+        <!-- Glass Tumbler -->
+        <polygon points="170,120 180,220 260,220 270,120" fill="none" stroke="#38bdf8" stroke-width="3" />
+        <!-- Index Card -->
+        <rect id="flickCard" x="140" y="112" width="160" height="8" rx="2" fill="#f8fafc" />
+        <!-- Five Rupee Coin -->
+        <circle id="flickCoin" cx="220" cy="100" r="14" fill="#f59e0b" stroke="#b45309" stroke-width="2" />
+        <text id="coinLabel" x="220" y="105" fill="#78350f" font-size="11" font-weight="bold" text-anchor="middle">₹5</text>
+        <text x="220" y="250" fill="#94a3b8" font-size="11" text-anchor="middle">Glass Tumbler</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="sim-btn-row">
+          <button class="sim-action-btn" onclick="flickCardRapidly()">⚡ Rapid Flick (Inertia of Rest)</button>
+          <button class="sim-action-btn" onclick="flickCardSlowly()">🐢 Slow Pull (Frictional Drag)</button>
+          <button class="sim-action-btn" onclick="resetCoinCard()">↺ Reset</button>
+        </div>
+      `;
+
+      window.flickCardRapidly = () => {
+        const card = document.getElementById('flickCard');
+        const coin = document.getElementById('flickCoin');
+        const label = document.getElementById('coinLabel');
+
+        // Card accelerates away to right
+        card.style.transition = 'transform 0.15s ease-out';
+        card.style.transform = 'translateX(240px)';
+
+        // Coin drops straight down due to inertia of rest
+        setTimeout(() => {
+          coin.style.transition = 'transform 0.35s cubic-bezier(.5,0,1,1)';
+          coin.style.transform = 'translateY(110px)';
+          label.style.transition = 'transform 0.35s cubic-bezier(.5,0,1,1)';
+          label.style.transform = 'translateY(110px)';
+        }, 100);
+      };
+
+      window.flickCardSlowly = () => {
+        const card = document.getElementById('flickCard');
+        const coin = document.getElementById('flickCoin');
+        const label = document.getElementById('coinLabel');
+
+        // Both move together due to static friction
+        card.style.transition = 'transform 1s ease-in-out';
+        card.style.transform = 'translateX(100px)';
+        coin.style.transition = 'transform 1s ease-in-out';
+        coin.style.transform = 'translateX(100px)';
+        label.style.transition = 'transform 1s ease-in-out';
+        label.style.transform = 'translateX(100px)';
+      };
+
+      window.resetCoinCard = () => {
+        const card = document.getElementById('flickCard');
+        const coin = document.getElementById('flickCoin');
+        const label = document.getElementById('coinLabel');
+        card.style.transform = 'none';
+        coin.style.transform = 'none';
+        label.style.transform = 'none';
+      };
+    }
+
+    // 6. Mass Inertia Push Simulator
+    function renderMassInertiaSim(svg, controls) {
+      svg.innerHTML = `
+        <!-- Track 1: Light Mass -->
+        <rect x="20" y="80" width="400" height="6" fill="#334155" />
+        <rect id="cartLight" x="40" y="46" width="40" height="34" rx="4" fill="#00e5ff" />
+        <text x="60" y="68" fill="#0f172a" font-size="11" font-weight="bold" text-anchor="middle">1 kg</text>
+        <text id="accLight" x="380" y="40" fill="#00e5ff" font-size="12" font-weight="bold" text-anchor="end">a = 20 m/s²</text>
+
+        <!-- Track 2: Heavy Mass -->
+        <rect x="20" y="200" width="400" height="6" fill="#334155" />
+        <rect id="cartHeavy" x="40" y="150" width="80" height="50" rx="4" fill="#ec4899" />
+        <text x="80" y="180" fill="#fff" font-size="14" font-weight="bold" text-anchor="middle">10 kg</text>
+        <text id="accHeavy" x="380" y="150" fill="#ec4899" font-size="12" font-weight="bold" text-anchor="end">a = 2 m/s²</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Pushing Force Applied to Both:</span>
+          <input type="range" id="pushForce" min="5" max="50" value="20">
+          <span class="control-val" id="pushVal">20 N</span>
+        </div>
+        <div class="sim-btn-row">
+          <button class="sim-action-btn" onclick="triggerPusher()">▶ Apply Equal Push Force</button>
+        </div>
+      `;
+
+      window.triggerPusher = () => {
+        const f = parseFloat(document.getElementById('pushForce').value);
+        const a1 = (f / 1).toFixed(1);
+        const a2 = (f / 10).toFixed(1);
+
+        document.getElementById('accLight').textContent = `a = ${a1} m/s²`;
+        document.getElementById('accHeavy').textContent = `a = ${a2} m/s²`;
+
+        const c1 = document.getElementById('cartLight');
+        const c2 = document.getElementById('cartHeavy');
+
+        c1.style.transition = 'transform 0.4s ease-out';
+        c1.style.transform = 'translateX(300px)';
+
+        c2.style.transition = 'transform 1.5s ease-out';
+        c2.style.transform = 'translateX(100px)';
+
+        setTimeout(() => {
+          c1.style.transform = 'none';
+          c2.style.transform = 'none';
+        }, 2000);
+      };
+
+      document.getElementById('pushForce').addEventListener('input', (e) => {
+        document.getElementById('pushVal').textContent = `${e.target.value} N`;
+      });
+    }
+
+    // 7. Momentum Visualizer
+    function renderMomentumSim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="20" y="30" width="400" height="100" rx="8" fill="#1e293b" />
+        <rect x="20" y="150" width="400" height="100" rx="8" fill="#1e293b" />
+        <!-- Object 1 -->
+        <text x="35" y="55" fill="#38bdf8" font-size="12" font-weight="bold">Object 1 (Bullet / Sports Ball)</text>
+        <circle id="obj1" cx="60" cy="90" r="15" fill="#38bdf8" />
+        <line id="pLine1" x1="60" y1="90" x2="160" y2="90" stroke="#00e5ff" stroke-width="4" />
+        <text id="pText1" x="170" y="94" fill="#00e5ff" font-size="12" font-weight="bold">p = 20 kg·m/s</text>
+
+        <!-- Object 2 -->
+        <text x="35" y="175" fill="#f59e0b" font-size="12" font-weight="bold">Object 2 (Loaded Truck / Boulder)</text>
+        <rect id="obj2" x="45" y="195" width="40" height="30" rx="4" fill="#f59e0b" />
+        <line id="pLine2" x1="85" y1="210" x2="285" y2="210" stroke="#f59e0b" stroke-width="6" />
+        <text id="pText2" x="295" y="214" fill="#f59e0b" font-size="12" font-weight="bold">p = 80 kg·m/s</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Obj 1 Velocity:</span>
+          <input type="range" id="v1Slider" min="1" max="100" value="40">
+          <span class="control-val" id="v1Val">40 m/s</span>
+        </div>
+        <div class="control-row">
+          <span>Obj 2 Mass:</span>
+          <input type="range" id="m2Slider" min="1" max="50" value="20">
+          <span class="control-val" id="m2Val">20 kg</span>
+        </div>
+      `;
+
+      function updateMomentum() {
+        const v1 = parseFloat(document.getElementById('v1Slider').value);
+        const m1 = 0.5; // fixed 0.5 kg
+        const p1 = (m1 * v1).toFixed(1);
+
+        const m2 = parseFloat(document.getElementById('m2Slider').value);
+        const v2 = 4; // fixed 4 m/s
+        const p2 = (m2 * v2).toFixed(1);
+
+        document.getElementById('v1Val').textContent = `${v1} m/s`;
+        document.getElementById('m2Val').textContent = `${m2} kg`;
+
+        document.getElementById('pLine1').setAttribute('x2', 60 + p1 * 3);
+        document.getElementById('pText1').setAttribute('x', 65 + p1 * 3);
+        document.getElementById('pText1').textContent = `p = ${p1} kg·m/s`;
+
+        document.getElementById('pLine2').setAttribute('x2', 85 + p2 * 2.5);
+        document.getElementById('pText2').setAttribute('x', 90 + p2 * 2.5);
+        document.getElementById('pText2').textContent = `p = ${p2} kg·m/s`;
+      }
+
+      document.getElementById('v1Slider').addEventListener('input', updateMomentum);
+      document.getElementById('m2Slider').addEventListener('input', updateMomentum);
+    }
+
+    // 8. Newton's Second Law Simulator
+    function renderSecondLawSim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="20" y="190" width="400" height="10" fill="#334155" />
+        <!-- Cart on Air Track -->
+        <rect id="cartFMA" x="80" y="130" width="90" height="60" rx="8" fill="#10b981" />
+        <circle cx="100" cy="190" r="8" fill="#64748b" />
+        <circle cx="150" cy="190" r="8" fill="#64748b" />
+        <text id="cartLabel" x="125" y="165" fill="#042f2e" font-size="14" font-weight="bold" text-anchor="middle">m = 5 kg</text>
+        <!-- Pull Force Cord -->
+        <line id="fLine" x1="170" y1="160" x2="260" y2="160" stroke="#f59e0b" stroke-width="4" />
+        <text id="fText" x="270" y="165" fill="#f59e0b" font-size="13" font-weight="bold">F = 25 N</text>
+        <!-- Real-time HUD -->
+        <rect x="120" y="30" width="200" height="50" rx="8" fill="#0f172a" stroke="#10b981" />
+        <text x="220" y="52" fill="#94a3b8" font-size="11" text-anchor="middle">ACCELERATION (a = F / m)</text>
+        <text id="accDisplay" x="220" y="72" fill="#10b981" font-size="18" font-weight="bold" text-anchor="middle">5.00 m/s²</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Unbalanced Force (F):</span>
+          <input type="range" id="forceF" min="5" max="60" value="25">
+          <span class="control-val" id="forceVal">25 N</span>
+        </div>
+        <div class="control-row">
+          <span>Cart Mass (m):</span>
+          <input type="range" id="massM" min="1" max="15" value="5">
+          <span class="control-val" id="massVal">5 kg</span>
+        </div>
+      `;
+
+      function updateFMA() {
+        const f = parseFloat(document.getElementById('forceF').value);
+        const m = parseFloat(document.getElementById('massM').value);
+        const a = (f / m).toFixed(2);
+
+        document.getElementById('forceVal').textContent = `${f} N`;
+        document.getElementById('massVal').textContent = `${m} kg`;
+        document.getElementById('cartLabel').textContent = `m = ${m} kg`;
+        document.getElementById('fText').textContent = `F = ${f} N`;
+        document.getElementById('accDisplay').textContent = `${a} m/s²`;
+      }
+
+      document.getElementById('forceF').addEventListener('input', updateFMA);
+      document.getElementById('massM').addEventListener('input', updateFMA);
+    }
+
+    // 9. Impulse Simulator
+    function renderImpulseSim(svg, controls) {
+      svg.innerHTML = `
+        <text x="220" y="30" fill="#38bdf8" font-size="13" font-weight="bold" text-anchor="middle">Impulse: J = F · Δt = Δp</text>
+        <!-- Force curve graph -->
+        <rect x="50" y="50" width="340" height="150" fill="#0f172a" stroke="#334155" />
+        <line x1="60" y1="180" x2="380" y2="180" stroke="#64748b" />
+        <line x1="60" y1="60" x2="60" y2="180" stroke="#64748b" />
+        <text x="40" y="70" fill="#94a3b8" font-size="10">F (N)</text>
+        <text x="370" y="195" fill="#94a3b8" font-size="10">t (s)</text>
+        <!-- Peak curve -->
+        <path id="curvePath" d="M 120 180 Q 150 70 180 180 Z" fill="rgba(239, 68, 68, 0.4)" stroke="#ef4444" stroke-width="3" />
+        <text id="curveLabel" x="220" y="235" fill="#ef4444" font-size="13" font-weight="bold" text-anchor="middle">Stiff Hands: Tiny Δt (0.05s) ⟹ Peak Force = 600 N</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="sim-btn-row">
+          <button class="sim-action-btn" onclick="setStiffHands()">🏏 Stiff Fixed Hands (High Peak Force)</button>
+          <button class="sim-action-btn" onclick="setCushionedHands()">🤲 Retreating Hands (Cushioned Impact)</button>
+        </div>
+      `;
+
+      window.setStiffHands = () => {
+        document.getElementById('curvePath').setAttribute('d', 'M 120 180 Q 140 60 160 180 Z');
+        document.getElementById('curvePath').setAttribute('fill', 'rgba(239, 68, 68, 0.4)');
+        document.getElementById('curvePath').setAttribute('stroke', '#ef4444');
+        document.getElementById('curveLabel').textContent = 'Stiff Hands: Tiny Δt (0.03s) ⟹ Peak Force = 800 N (Ouch!)';
+        document.getElementById('curveLabel').setAttribute('fill', '#ef4444');
+      };
+
+      window.setCushionedHands = () => {
+        document.getElementById('curvePath').setAttribute('d', 'M 100 180 Q 200 130 300 180 Z');
+        document.getElementById('curvePath').setAttribute('fill', 'rgba(16, 185, 129, 0.4)');
+        document.getElementById('curvePath').setAttribute('stroke', '#10b981');
+        document.getElementById('curveLabel').textContent = 'Retreating Hands: Large Δt (0.25s) ⟹ Peak Force = 96 N (Safe!)';
+        document.getElementById('curveLabel').setAttribute('fill', '#10b981');
+      };
+    }
+
+    // 10. Spring Balance Pair Simulator
+    function renderSpringBalanceSim(svg, controls) {
+      svg.innerHTML = `
+        <!-- Fixed Wall -->
+        <rect x="20" y="80" width="16" height="120" fill="#475569" />
+        <line x1="36" y1="140" x2="60" y2="140" stroke="#94a3b8" stroke-width="3" />
+        <!-- Spring Balance A -->
+        <rect x="60" y="110" width="140" height="60" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="2" />
+        <text x="130" y="130" fill="#38bdf8" font-size="11" font-weight="bold" text-anchor="middle">Balance A</text>
+        <text id="balADial" x="130" y="155" fill="#fff" font-size="16" font-weight="bold" text-anchor="middle">40 N</text>
+        <!-- Hook Connection -->
+        <circle cx="200" cy="140" r="6" fill="none" stroke="#f59e0b" stroke-width="3" />
+        <circle cx="208" cy="140" r="6" fill="none" stroke="#f59e0b" stroke-width="3" />
+        <!-- Spring Balance B -->
+        <rect x="214" y="110" width="140" height="60" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="2" />
+        <text x="284" y="130" fill="#10b981" font-size="11" font-weight="bold" text-anchor="middle">Balance B</text>
+        <text id="balBDial" x="284" y="155" fill="#fff" font-size="16" font-weight="bold" text-anchor="middle">40 N</text>
+        <!-- Pull Hand -->
+        <line x1="354" y1="140" x2="390" y2="140" stroke="#f59e0b" stroke-width="4" />
+        <text x="400" y="145" fill="#f59e0b" font-size="13" font-weight="bold">Pull</text>
+        <text x="220" y="220" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">F_AB = -F_BA (Equal and Opposite Readings!)</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Pull Force on Balance B:</span>
+          <input type="range" id="springPull" min="0" max="100" value="40">
+          <span class="control-val" id="springVal">40 N</span>
+        </div>
+      `;
+
+      document.getElementById('springPull').addEventListener('input', (e) => {
+        const val = e.target.value;
+        document.getElementById('springVal').textContent = `${val} N`;
+        document.getElementById('balADial').textContent = `${val} N`;
+        document.getElementById('balBDial').textContent = `${val} N`;
+      });
+    }
+
+    // 11. Rocket Propulsion Simulator
+    function renderRocketSim(svg, controls) {
+      svg.innerHTML = `
+        <!-- Launch Pad -->
+        <rect x="180" y="240" width="80" height="10" fill="#475569" />
+        <!-- Rocket Body -->
+        <g id="rocketGroup" transform="translate(0, 0)">
+          <path d="M220 50 L240 90 L240 180 L200 180 L200 90 Z" fill="#e2e8f0" stroke="#3b82f6" stroke-width="2" />
+          <!-- Fins -->
+          <polygon points="200,160 180,185 200,185" fill="#ef4444" />
+          <polygon points="240,160 260,185 240,185" fill="#ef4444" />
+          <!-- Flame Exhaust -->
+          <polygon id="flame" points="210,185 220,230 230,185" fill="#f59e0b" opacity="0.8" />
+        </g>
+        <text x="100" y="80" fill="#38bdf8" font-size="12">Action: Gases expelled downward</text>
+        <text x="100" y="100" fill="#10b981" font-size="12">Reaction: Upward thrust on rocket</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="sim-btn-row">
+          <button class="sim-action-btn" onclick="launchRocket()">🚀 Ignite & Launch</button>
+          <button class="sim-action-btn" onclick="resetRocket()">↺ Reset</button>
+        </div>
+      `;
+
+      window.launchRocket = () => {
+        const rocket = document.getElementById('rocketGroup');
+        const flame = document.getElementById('flame');
+        flame.setAttribute('opacity', '1');
+        rocket.style.transition = 'transform 2s cubic-bezier(.4,0,.2,1)';
+        rocket.style.transform = 'translateY(-160px)';
+      };
+
+      window.resetRocket = () => {
+        const rocket = document.getElementById('rocketGroup');
+        const flame = document.getElementById('flame');
+        flame.setAttribute('opacity', '0.4');
+        rocket.style.transform = 'none';
+      };
+    }
+
+    // 12. Collision Carts Simulator
+    function renderCollisionSim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="20" y="180" width="400" height="10" fill="#334155" />
+        <!-- Cart 1 -->
+        <rect id="colCart1" x="50" y="130" width="60" height="40" rx="4" fill="#00e5ff" />
+        <text id="colLabel1" x="80" y="155" fill="#042f2e" font-size="12" font-weight="bold" text-anchor="middle">2 kg</text>
+        <!-- Cart 2 -->
+        <rect id="colCart2" x="250" y="130" width="80" height="40" rx="4" fill="#f59e0b" />
+        <text id="colLabel2" x="290" y="155" fill="#78350f" font-size="12" font-weight="bold" text-anchor="middle">4 kg</text>
+        <!-- HUD -->
+        <rect x="70" y="30" width="300" height="45" rx="6" fill="#1e293b" />
+        <text id="hudInitialP" x="220" y="50" fill="#00e5ff" font-size="12" font-weight="bold" text-anchor="middle">Initial Momentum: 12.0 kg·m/s</text>
+        <text id="hudFinalP" x="220" y="68" fill="#10b981" font-size="12" font-weight="bold" text-anchor="middle">Final Momentum: 12.0 kg·m/s (CONSERVED!)</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="sim-btn-row">
+          <button class="sim-action-btn" onclick="runCollisionInelastic()">💥 Inelastic Collision (Stick Together)</button>
+          <button class="sim-action-btn" onclick="resetCollision()">↺ Reset</button>
+        </div>
+      `;
+
+      window.runCollisionInelastic = () => {
+        const c1 = document.getElementById('colCart1');
+        const c2 = document.getElementById('colCart2');
+
+        c1.style.transition = 'transform 0.8s linear';
+        c1.style.transform = 'translateX(140px)';
+
+        setTimeout(() => {
+          c1.style.transition = 'transform 1.2s linear';
+          c2.style.transition = 'transform 1.2s linear';
+          c1.style.transform = 'translateX(240px)';
+          c2.style.transform = 'translateX(100px)';
+        }, 800);
+      };
+
+      window.resetCollision = () => {
+        document.getElementById('colCart1').style.transform = 'none';
+        document.getElementById('colCart2').style.transform = 'none';
+      };
+    }
+
+    // 13. Cannon Recoil Simulator
+    function renderCannonSim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="20" y="200" width="400" height="10" fill="#334155" />
+        <!-- Cannon Mount -->
+        <g id="cannonBody" transform="translate(0, 0)">
+          <rect x="140" y="140" width="80" height="50" rx="8" fill="#475569" stroke="#94a3b8" />
+          <polygon points="200,150 260,140 260,165 200,165" fill="#334155" />
+          <circle cx="160" cy="200" r="10" fill="#1e293b" />
+          <circle cx="200" cy="200" r="10" fill="#1e293b" />
+          <text x="180" y="170" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">M = 500 kg</text>
+        </g>
+        <!-- Cannonball -->
+        <circle id="cannonBall" cx="260" cy="152" r="8" fill="#ef4444" />
+        <!-- Readout -->
+        <text id="recoilReadout" x="220" y="60" fill="#38bdf8" font-size="13" font-weight="bold" text-anchor="middle">0 = m·v + M·V ⟹ Recoil Speed = -0.4 m/s</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="sim-btn-row">
+          <button class="sim-action-btn" onclick="fireCannon()">💣 Fire Cannon!</button>
+          <button class="sim-action-btn" onclick="resetCannon()">↺ Reload</button>
+        </div>
+      `;
+
+      window.fireCannon = () => {
+        const ball = document.getElementById('cannonBall');
+        const cannon = document.getElementById('cannonBody');
+
+        ball.style.transition = 'transform 0.4s ease-out';
+        ball.style.transform = 'translateX(160px)';
+
+        cannon.style.transition = 'transform 0.3s ease-out';
+        cannon.style.transform = 'translateX(-30px)';
+      };
+
+      window.resetCannon = () => {
+        document.getElementById('cannonBall').style.transform = 'none';
+        document.getElementById('cannonBody').style.transform = 'none';
+      };
+    }
+
+    // 14. Virtual Air Track Simulator
+    function renderAirTrackSim(svg, controls) {
+      svg.innerHTML = `
+        <!-- Air Track Rail -->
+        <rect x="30" y="160" width="380" height="20" rx="3" fill="#0284c7" />
+        <!-- Air jets dots -->
+        ${Array.from({length: 18}, (_, i) => `<circle cx="${45 + i * 20}" cy="170" r="2" fill="#fff" opacity="0.6"/>`).join('')}
+        <!-- Photogates -->
+        <rect x="120" y="110" width="10" height="60" fill="#f59e0b" />
+        <rect x="280" y="110" width="10" height="60" fill="#f59e0b" />
+        <text x="125" y="100" fill="#f59e0b" font-size="10" text-anchor="middle">Gate 1</text>
+        <text x="285" y="100" fill="#f59e0b" font-size="10" text-anchor="middle">Gate 2</text>
+        <!-- Glider -->
+        <polygon id="airGlider" points="50,158 80,135 110,158" fill="#10b981" />
+        <!-- Pulley & Hanging Weight -->
+        <circle cx="410" cy="170" r="10" fill="#64748b" />
+        <line x1="110" y1="145" x2="410" y2="145" stroke="#e2e8f0" stroke-width="2" />
+        <rect x="405" y="175" width="10" height="20" fill="#ef4444" />
+      `;
+
+      controls.innerHTML = `
+        <div class="sim-btn-row">
+          <button class="sim-action-btn" onclick="runAirGlider()">▶ Release Glider</button>
+        </div>
+      `;
+
+      window.runAirGlider = () => {
+        const g = document.getElementById('airGlider');
+        g.style.transition = 'transform 1s cubic-bezier(.4,0,.2,1)';
+        g.style.transform = 'translateX(280px)';
+        setTimeout(() => {
+          g.style.transform = 'none';
+        }, 2000);
+      };
+    }
+
+    // 15. Elevator Simulator
+    function renderElevatorSim(svg, controls) {
+      svg.innerHTML = `
+        <!-- Elevator Shaft -->
+        <rect x="140" y="30" width="160" height="220" fill="#0f172a" stroke="#334155" stroke-width="2" />
+        <!-- Elevator Cabin -->
+        <g id="elevatorCabin" transform="translate(0, 40)">
+          <rect x="150" y="60" width="140" height="120" fill="#1e293b" stroke="#38bdf8" />
+          <!-- Passenger -->
+          <circle cx="220" cy="110" r="14" fill="#fed7aa" />
+          <line x1="220" y1="124" x2="220" y2="155" stroke="#3b82f6" stroke-width="4" />
+          <!-- Scale -->
+          <rect x="195" y="160" width="50" height="10" fill="#f59e0b" />
+        </g>
+        <text id="elevStatus" x="220" y="240" fill="#00e5ff" font-size="12" font-weight="bold" text-anchor="middle">Stationary: N = mg = 588 N</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="sim-btn-row">
+          <button class="sim-action-btn" onclick="elevMove('up')">⬆ Accelerate Up (N = m(g+a))</button>
+          <button class="sim-action-btn" onclick="elevMove('down')">⬇ Accelerate Down (N = m(g-a))</button>
+          <button class="sim-action-btn" onclick="elevMove('freefall')">⚡ Free Fall (N = 0)</button>
+        </div>
+      `;
+
+      window.elevMove = (mode) => {
+        const cabin = document.getElementById('elevatorCabin');
+        const status = document.getElementById('elevStatus');
+        if (mode === 'up') {
+          cabin.style.transition = 'transform 0.8s ease-out';
+          cabin.style.transform = 'translateY(10px)';
+          status.textContent = 'Accelerating Up (+2 m/s²): N = 708 N (Heavier!)';
+          status.setAttribute('fill', '#10b981');
+        } else if (mode === 'down') {
+          cabin.style.transition = 'transform 0.8s ease-out';
+          cabin.style.transform = 'translateY(70px)';
+          status.textContent = 'Accelerating Down (-2 m/s²): N = 468 N (Lighter!)';
+          status.setAttribute('fill', '#f59e0b');
+        } else {
+          cabin.style.transition = 'transform 0.5s ease-in';
+          cabin.style.transform = 'translateY(90px)';
+          status.textContent = 'FREE FALL (a = g): N = 0 N (WEIGHTLESSNESS!)';
+          status.setAttribute('fill', '#ef4444');
+        }
+      };
+    }
+
+    // 16. Fundamental Forces Simulator
+    function renderFundamentalForcesSim(svg, controls) {
+      svg.innerHTML = `
+        <!-- 4 Circles for Forces -->
+        <g transform="translate(60, 70)">
+          <circle cx="0" cy="0" r="35" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" stroke-width="2" />
+          <text x="0" y="5" fill="#3b82f6" font-size="10" font-weight="bold" text-anchor="middle">Gravitational</text>
+        </g>
+        <g transform="translate(160, 70)">
+          <circle cx="0" cy="0" r="35" fill="rgba(0, 229, 255, 0.2)" stroke="#00e5ff" stroke-width="2" />
+          <text x="0" y="5" fill="#00e5ff" font-size="10" font-weight="bold" text-anchor="middle">Electromagnetic</text>
+        </g>
+        <g transform="translate(260, 70)">
+          <circle cx="0" cy="0" r="35" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" stroke-width="2" />
+          <text x="0" y="5" fill="#10b981" font-size="10" font-weight="bold" text-anchor="middle">Strong Nuclear</text>
+        </g>
+        <g transform="translate(360, 70)">
+          <circle cx="0" cy="0" r="35" fill="rgba(236, 72, 153, 0.2)" stroke="#ec4899" stroke-width="2" />
+          <text x="0" y="5" fill="#ec4899" font-size="10" font-weight="bold" text-anchor="middle">Weak Nuclear</text>
+        </g>
+        <!-- Relativistic graph -->
+        <rect x="40" y="140" width="360" height="90" fill="#0f172a" stroke="#334155" />
+        <path d="M 50 210 Q 250 200 350 150" fill="none" stroke="#f59e0b" stroke-width="3" />
+        <text x="220" y="250" fill="#f59e0b" font-size="11" font-weight="bold" text-anchor="middle">Relativistic Momentum p = γmv Diverges as v ➡ c</text>
+      `;
+
+      controls.innerHTML = `
+        <div style="font-size:0.85rem; color:#94a3b8; text-align:center;">
+          Everyday contact forces (friction, tension, normal reaction) are fundamentally <strong>Electromagnetic</strong>.
+        </div>
+      `;
+    }
+
+    // Quiz Dashboard Sim (For Slides 17 to 20)
+    function renderQuizDashboardSim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="30" y="30" width="380" height="220" rx="12" fill="#0f172a" stroke="#334155" />
+        <circle cx="220" cy="110" r="50" fill="rgba(0, 229, 255, 0.1)" stroke="#00e5ff" stroke-width="3" />
+        <text x="220" y="105" fill="#00e5ff" font-size="28" font-weight="bold" text-anchor="middle">40</text>
+        <text x="220" y="125" fill="#94a3b8" font-size="11" text-anchor="middle">TOTAL QUESTIONS</text>
+        <text x="220" y="195" fill="#10b981" font-size="14" font-weight="bold" text-anchor="middle">Click 'View Solution' for Step-by-Step Derivations</text>
+      `;
+      controls.innerHTML = `
+        <div style="text-align:center; font-size:0.85rem; color:#94a3b8;">
+          All 40 questions feature complete mathematical workings and conceptual justifications.
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>

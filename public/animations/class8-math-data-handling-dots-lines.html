@@ -1,0 +1,2790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 8 Mathematics • Chapter 12: Data Handling (Tales by Dots and Lines) Master Lab</title>
+  
+  <!-- KaTeX CSS & JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script>
+    function triggerMathRender(el) {
+      if (window.renderMathInElement) {
+        window.renderMathInElement(el || document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="if (window.triggerMathRender) triggerMathRender(document.body);"></script>
+
+  <style>
+    :root {
+      --bg-primary: #070b14;
+      --bg-secondary: #0f172a;
+      --card-bg: rgba(15, 23, 42, 0.85);
+      --card-border: rgba(99, 102, 241, 0.25);
+      --accent-indigo: #6366f1;
+      --accent-cyan: #06b6d4;
+      --accent-amber: #f59e0b;
+      --accent-emerald: #10b981;
+      --accent-rose: #f43f5e;
+      --accent-purple: #a855f7;
+      --accent-teal: #14b8a6;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at top right, #1e1b4b 0%, #070b14 65%);
+      color: var(--text-main);
+      font-family: var(--font-stack);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Sticky Header */
+    header {
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid var(--card-border);
+      backdrop-filter: blur(12px);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-badge {
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .header-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #e2e8f0;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .slide-indicator {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      background: rgba(6, 182, 212, 0.1);
+      padding: 4px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(6, 182, 212, 0.25);
+    }
+
+    .speech-btn {
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid var(--accent-indigo);
+      color: #c7d2fe;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .speech-btn:hover {
+      background: rgba(99, 102, 241, 0.3);
+      color: #fff;
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      max-width: 1380px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Lesson Grid Layout (Slides 1-16) */
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 1024px) {
+      .lesson-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card-header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 12px;
+    }
+
+    .slide-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .slide-subtitle {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+    }
+
+    .avatar-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      padding: 10px 14px;
+      border-radius: 12px;
+    }
+
+    .avatar-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1, #06b6d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 4px 10px rgba(99, 102, 241, 0.4);
+    }
+
+    .avatar-text {
+      font-size: 13px;
+      color: #cbd5e1;
+    }
+    .avatar-name {
+      font-weight: 700;
+      color: #a5b4fc;
+    }
+
+    .theory-box {
+      font-size: 14.5px;
+      color: #cbd5e1;
+      line-height: 1.7;
+    }
+    .theory-box p {
+      margin-bottom: 10px;
+    }
+    .theory-box ul {
+      margin-left: 20px;
+      margin-bottom: 10px;
+    }
+    .theory-box li {
+      margin-bottom: 6px;
+    }
+
+    .key-points-box {
+      background: rgba(16, 185, 129, 0.08);
+      border-left: 4px solid var(--accent-emerald);
+      padding: 12px 16px;
+      border-radius: 0 10px 10px 0;
+    }
+    .key-points-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #6ee7b7;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .key-points-list {
+      list-style-type: none;
+      font-size: 13.5px;
+      color: #d1fae5;
+    }
+    .key-points-list li {
+      margin-bottom: 4px;
+      position: relative;
+      padding-left: 18px;
+    }
+    .key-points-list li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: #34d399;
+      font-size: 11px;
+    }
+
+    .formula-banner {
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 12px 18px;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 15px;
+      color: #fde68a;
+    }
+
+    /* Checkpoints Section */
+    .checkpoint-section {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .checkpoint-card {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .checkpoint-q {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #f1f5f9;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .option-btn {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      color: #e2e8f0;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+    }
+    .option-btn:hover:not(:disabled) {
+      background: rgba(99, 102, 241, 0.25);
+      border-color: var(--accent-indigo);
+      color: #fff;
+    }
+    .option-btn.correct {
+      background: rgba(16, 185, 129, 0.25) !important;
+      border-color: var(--accent-emerald) !important;
+      color: #6ee7b7 !important;
+      font-weight: 700;
+    }
+    .option-btn.incorrect {
+      background: rgba(244, 63, 94, 0.25) !important;
+      border-color: var(--accent-rose) !important;
+      color: #fca5a5 !important;
+    }
+
+    .feedback-box {
+      font-size: 12.5px;
+      line-height: 1.5;
+      padding: 10px 14px;
+      border-radius: 8px;
+      display: none;
+    }
+    .feedback-box.show {
+      display: block;
+    }
+    .feedback-box.correct-box {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid var(--accent-emerald);
+      color: #a7f3d0;
+    }
+    .feedback-box.incorrect-box {
+      background: rgba(244, 63, 94, 0.15);
+      border: 1px solid var(--accent-rose);
+      color: #fecdd3;
+    }
+
+    /* Simulator Canvas Container */
+    .sim-card {
+      background: #090e1a;
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+    }
+
+    .sim-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 10px;
+    }
+
+    .sim-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sim-canvas-area {
+      background: #030712;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sim-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.6);
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .control-label {
+      font-size: 12px;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+    .control-slider {
+      accent-color: var(--accent-indigo);
+      cursor: pointer;
+    }
+    .control-val {
+      font-size: 12px;
+      color: var(--accent-cyan);
+      font-weight: 700;
+      min-width: 32px;
+    }
+
+    .sim-btn {
+      background: rgba(99, 102, 241, 0.2);
+      border: 1px solid var(--accent-indigo);
+      color: #c7d2fe;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .sim-btn:hover {
+      background: rgba(99, 102, 241, 0.4);
+      color: #fff;
+    }
+    .sim-btn.active {
+      background: var(--accent-indigo);
+      color: #fff;
+    }
+
+    .sim-stats-bar {
+      display: flex;
+      gap: 16px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 12.5px;
+      color: #cbd5e1;
+    }
+    .stat-pill {
+      display: flex;
+      gap: 6px;
+    }
+    .stat-pill strong {
+      color: var(--accent-cyan);
+    }
+
+    /* Quiz Slide Styles (Slides 17 to 20) */
+    .quiz-container {
+      display: none;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .quiz-header-card {
+      background: linear-gradient(135deg, rgba(30, 27, 75, 0.8), rgba(15, 23, 42, 0.9));
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .quiz-title-area h2 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .quiz-title-area p {
+      font-size: 13.5px;
+      color: var(--accent-cyan);
+      margin-top: 4px;
+    }
+
+    .quiz-score-pill {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid var(--accent-emerald);
+      color: #6ee7b7;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .quiz-questions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .quiz-item-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .q-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .q-num-badge {
+      background: rgba(99, 102, 241, 0.25);
+      color: #a5b4fc;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 12px;
+    }
+
+    .sol-btn {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid var(--accent-amber);
+      color: #fcd34d;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s ease;
+    }
+    .sol-btn:hover {
+      background: rgba(245, 158, 11, 0.3);
+      color: #fff;
+    }
+
+    /* Navigation Footer */
+    footer {
+      background: rgba(15, 23, 42, 0.95);
+      border-top: 1px solid var(--card-border);
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      bottom: 0;
+      z-index: 100;
+    }
+
+    .nav-btn {
+      background: linear-gradient(135deg, #4f46e5, #6366f1);
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .nav-btn:hover:not(:disabled) {
+      background: linear-gradient(135deg, #4338ca, #4f46e5);
+      transform: translateY(-1px);
+    }
+    .nav-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .last-slide-notice {
+      color: #34d399;
+      font-size: 13.5px;
+      font-weight: 700;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid #10b981;
+      padding: 8px 18px;
+      border-radius: 20px;
+      display: none;
+    }
+
+    /* Modal Backdrop */
+    .modal-backdrop {
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Header Navigation -->
+  <header>
+    <div class="header-left">
+      <span class="header-badge">CLASS 8 • MATHEMATICS • CHAPTER 12</span>
+      <span class="header-title">Data Handling: Tales by Dots and Lines Master Lab</span>
+    </div>
+    <div class="header-right">
+      <div class="slide-indicator" id="slideNumDisplay">Slide 1 of 20</div>
+      <button class="speech-btn" id="voiceToggleBtn" onclick="toggleVoice()">
+        <span id="speakerIcon">🔊</span>
+        <span id="voiceStatusText">Listen</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Slide Workspace -->
+  <main>
+    <!-- Lesson Slide (Slides 1 to 16) -->
+    <div class="lesson-grid" id="lessonGrid">
+      <!-- Left Column: Pedagogical Theory & Checkpoints -->
+      <div class="card">
+        <div class="card-header">
+          <div class="slide-title">
+            <span id="slideIcon">📊</span>
+            <span id="slideHeading">Title Here</span>
+          </div>
+          <div class="slide-subtitle" id="slideSubheading">Subtitle Here</div>
+        </div>
+
+        <div class="avatar-box">
+          <div class="avatar-icon">🧑‍🏫</div>
+          <div class="avatar-text">
+            <span class="avatar-name">Mathematics Mentor:</span>
+            <span id="mentorBrief">Welcome to Chapter 12. Let us explore the tales told by data, balancing means, robust medians, and visual graphs!</span>
+          </div>
+        </div>
+
+        <div class="theory-box" id="theoryContent">
+          <!-- Slide HTML content populated here -->
+        </div>
+
+        <div class="formula-banner" id="formulaBanner">
+          <!-- Formula content here -->
+        </div>
+
+        <div class="key-points-box">
+          <div class="key-points-title">Core Principles to Remember</div>
+          <ul class="key-points-list" id="keyTakeawaysList">
+            <!-- Key takeaways here -->
+          </ul>
+        </div>
+
+        <!-- In-Slide Conceptual Checkpoints -->
+        <div class="checkpoint-section" id="checkpointContainer">
+          <div style="font-size: 13px; font-weight: 700; color: #a5b4fc; text-transform: uppercase; letter-spacing: 0.5px;">
+            In-Slide Conceptual Checkpoints
+          </div>
+          <div id="checkpointsList"></div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Bespoke Simulator -->
+      <div class="sim-card">
+        <div class="sim-header">
+          <div class="sim-title">
+            <span>🔬</span>
+            <span id="simTitle">Interactive Statistical Simulator</span>
+          </div>
+          <div class="sim-stats-bar" id="simStatsBar">
+            <!-- Stats pills populated here -->
+          </div>
+        </div>
+
+        <div class="sim-canvas-area" id="simCanvasArea">
+          <!-- Dynamic Canvas/SVG injected here -->
+        </div>
+
+        <div class="sim-controls" id="simControls">
+          <!-- Controls injected here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz Slide (Slides 17 to 20) -->
+    <div class="quiz-container" id="quizContainer">
+      <div class="quiz-header-card">
+        <div class="quiz-title-area">
+          <h2 id="quizTitle">Mastery Quiz Challenge</h2>
+          <p id="quizSubtitle">Answer all 10 questions to master these statistical concepts.</p>
+        </div>
+        <div class="quiz-score-pill" id="quizScorePill">Score: 0 / 10</div>
+      </div>
+
+      <div class="quiz-questions-list" id="quizQuestionsList">
+        <!-- 10 Questions injected here -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Navigation Footer -->
+  <footer>
+    <button class="nav-btn" id="prevBtn" onclick="prevSlide()" disabled>
+      <span>←</span> Previous
+    </button>
+
+    <div id="lastSlideNotice" class="last-slide-notice">
+      You have reached the last slide of this chapter
+    </div>
+
+    <button class="nav-btn" id="nextBtn" onclick="nextSlide()">
+      Next <span>→</span>
+    </button>
+  </footer>
+
+  <!-- Mathematical Solution Pop-up Modal -->
+  <div id="solutionModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop" style="position:fixed; top:0; left:0; width:100vw; height:100vh; display:none; align-items:center; justify-content:center; z-index:1000;">
+    <div class="bg-slate-900 border border-amber-500/40 rounded-2xl max-w-xl w-full p-6 shadow-2xl relative" style="background:#0f172a; border:1px solid rgba(245, 158, 11, 0.4); border-radius:16px; max-width:600px; width:90%; padding:24px; box-shadow:0 25px 50px -12px rgba(0,0,0,0.8); position:relative;">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px; margin-bottom:16px;">
+        <div style="font-size:16px; font-weight:800; color:#fbbf24; display:flex; align-items:center; gap:8px;">
+          <span>💡</span> Step-by-Step Mathematical Solution
+        </div>
+        <button onclick="closeSolutionModal()" style="background:none; border:none; color:#94a3b8; font-size:20px; font-weight:700; cursor:pointer;">✕</button>
+      </div>
+
+      <div id="modalQuestionText" style="font-size:13.5px; color:#94a3b8; margin-bottom:14px; font-weight:600;"></div>
+      <div id="modalSolutionBody" style="font-size:14px; color:#e2e8f0; line-height:1.7; background:rgba(15,23,42,0.6); padding:16px; border-radius:10px; border:1px solid rgba(255,255,255,0.05);"></div>
+
+      <div style="margin-top:18px; text-align:right;">
+        <button onclick="closeSolutionModal()" style="background:rgba(245, 158, 11, 0.2); border:1px solid #f59e0b; color:#fbbf24; padding:8px 20px; border-radius:8px; font-size:13px; font-weight:700; cursor:pointer;">
+          Understood
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Injected slides data from python
+    const SLIDES = [{"id": 1, "title": "Tales by Dots and Lines", "subtitle": "The Art & Science of Data Storytelling", "content": "<p>In our modern world, we are surrounded by a constant deluge of numbers\u2014sports scores, weather forecasts, school attendance, and screen time. But raw lists of numbers are silent until we give them a voice. <strong>Data Handling</strong> is the art and science of organizing, summarizing, and presenting numbers so that meaningful stories emerge.</p><p class='mt-2'>A single dot on a number line marks an individual observation. Stacking multiple dots builds a <strong>dot plot</strong>, revealing frequency, spread, and clusters at a glance. Connecting sequential dots across time gives birth to a <strong>line graph</strong>, capturing continuous trends and trajectories.</p>", "key_takeaways": ["Data handling translates raw numerical records into clear, actionable visual stories.", "A dot plot displays individual frequencies along an ordered scale, highlighting clusters and gaps.", "Connecting consecutive data points with line segments reveals rates of change over time."], "formula": "$$\\text{Data Handling: } \\text{Collect} \\to \\text{Organise (Tables)} \\to \\text{Analyse (Mean/Median)} \\to \\text{Visualise}$$", "simulator_type": "tales_dots_lines_intro", "checkpoints": [{"question": "What primary advantage does a dot plot offer over a simple unorganized list of raw test scores?", "options": ["It automatically multiplies all test scores by 10", "It immediately reveals the distribution, clusters, most frequent values (mode), and extreme gaps", "It hides the lowest scores so everyone feels successful", "It requires no axes or measurement scale"], "correct": 1, "explanation": "A dot plot visualizes the distribution of data points along an ordered number line, making clusters, peaks (mode), and data spread instantly apparent."}, {"question": "When is a line graph more appropriate to use than a static bar chart?", "options": ["When comparing completely unrelated categories like favorite fruit flavors", "When tracking continuous change over a continuous variable such as time, temperature, or age", "When the data contains only two numbers", "When no numbers are available"], "correct": 1, "explanation": "Line graphs excel at showing continuous trends over time (e.g., hourly temperature, annual population, daily rainfall) because line segments represent continuous transitions."}]}, {"id": 2, "title": "The Balancing Act", "subtitle": "Arithmetic Mean as the Center of Mass & Fulcrum", "content": "<p>We often calculate the <strong>arithmetic mean</strong> (or average) by adding all values and dividing by the count: $\\bar{x} = \\frac{\\sum x_i}{N}$. But what does this number physically represent?</p><p class='mt-2'>Think of the data points as identical weights placed along a balanced physical seesaw (number line). The arithmetic mean $\\bar{x}$ is the exact <strong>fulcrum (balance point)</strong> where the seesaw rests in perfect horizontal equilibrium!</p><p class='mt-2'>At the mean, the sum of all positive deviations (weights to the right) exactly balances the sum of all negative deviations (weights to the left):</p><div class='p-2 bg-indigo-950/40 rounded border border-indigo-700/40 text-center font-bold text-indigo-200'>$$\\sum_{i=1}^N (x_i - \\bar{x}) = 0$$</div>", "key_takeaways": ["The arithmetic mean is the physical center of mass (balance fulcrum) of the dataset.", "The sum of algebraic deviations of all observations from their arithmetic mean is always strictly zero.", "Mean balances total numerical values, making it sensitive to every single observation."], "formula": "$$\\bar{x} = \\frac{\\sum_{i=1}^N x_i}{N} \\iff \\sum_{i=1}^N (x_i - \\bar{x}) = 0$$", "simulator_type": "balancing_act_mean_fulcrum", "checkpoints": [{"question": "If the numbers $2, 4, 6, 8, 10$ have an arithmetic mean of $6$, what is the sum of their deviations $(x_i - 6)$?", "options": ["30", "12", "0", "-6"], "correct": 2, "explanation": "Deviations are: $(2-6) + (4-6) + (6-6) + (8-6) + (10-6) = -4 + (-2) + 0 + 2 + 4 = 0$. The sum of deviations about the mean is always zero!"}, {"question": "On a physical seesaw with unit weights placed at positions $3, 7, 8$, at which position must the fulcrum be placed for the seesaw to balance?", "options": ["Position 5", "Position 6", "Position 7", "Position 8"], "correct": 1, "explanation": "The balance fulcrum is the arithmetic mean: $\\bar{x} = \\frac{3 + 7 + 8}{3} = \\frac{18}{3} = 6$."}]}, {"id": 3, "title": "Unchanging Mean", "subtitle": "Properties of Mean Under Shifts & Uniform Scaling", "content": "<p>How does the arithmetic mean behave when we modify every observation in a dataset? The mean follows elegant mathematical transformation laws:</p><ul class='list-disc pl-5 mt-2 space-y-1'><li><strong>Addition / Subtraction Invariance:</strong> If a constant value $c$ is added to every data point ($x_i' = x_i + c$), the new mean shifts by exactly $c$: $\\bar{x}_{\\text{new}} = \\bar{x} + c$.</li><li><strong>Multiplication / Division Scaling:</strong> If every data point is multiplied by a factor $k$ ($x_i' = k \\cdot x_i$), the new mean is multiplied by the same factor: $\\bar{x}_{\\text{new}} = k \\cdot \\bar{x}$.</li><li><strong>Compensating Changes:</strong> If you increase one value by $+5$ and decrease another value by $-5$, the total sum remains unchanged, so the arithmetic mean remains <strong>strictly unchanged</strong>!</li></ul>", "key_takeaways": ["Adding constant $c$ to all values shifts the mean by $+c$: $\\overline{x+c} = \\bar{x} + c$.", "Multiplying all values by factor $k$ scales the mean by $k$: $\\overline{kx} = k\\bar{x}$.", "Internal transfers between observations that preserve the total sum leave the mean unchanged."], "formula": "$$\\overline{a x + b} = a \\bar{x} + b, \\quad \\text{Sum Preservation: } \\Delta \\left(\\sum x_i\\right) = 0 \\implies \\Delta \\bar{x} = 0$$", "simulator_type": "unchanging_mean_properties", "checkpoints": [{"question": "The mean score of 20 students in a math test was 65. If the teacher awards 5 bonus grace marks to every student, what is the new mean score?", "options": ["65", "70", "75", "130"], "correct": 1, "explanation": "When a constant $c = 5$ is added to every observation, the mean increases by exactly $c$: $\\bar{x}_{\\text{new}} = 65 + 5 = 70$."}, {"question": "In a dataset of 5 numbers with mean 24, one number is increased by 8 and another is decreased by 8. What happens to the mean?", "options": ["The mean increases by 8", "The mean decreases by 8", "The mean remains unchanged at 24", "The mean cannot be determined"], "correct": 2, "explanation": "The net change to the sum is $+8 - 8 = 0$. Since the total sum and count remain unchanged, the arithmetic mean remains exactly 24."}]}, {"id": 4, "title": "Outlier Impact", "subtitle": "Mean Sensitivity vs. Median Robustness to Outliers", "content": "<p>While the arithmetic mean is an excellent summary for symmetric data, it has a serious vulnerability: <strong>extreme outliers</strong>.</p><p class='mt-2'>Consider five friends earning monthly pocket money of $\\text{Rs } 100, 120, 130, 150, 1000$. The single wealthy friend pulls the mean up to $\\frac{1500}{5} = \\text{Rs } 300$, which is higher than what $80\\%$ of the group earns!</p><p class='mt-2'>In contrast, the <strong>Median</strong> (the middle value when arranged in order: $\\text{Rs } 130$) is <strong>robust</strong>. If the richest friend received $\\text{Rs } 10,000$ instead of $\\text{Rs } 1,000$, the mean would jump to $\\text{Rs } 2,100$, while the median would remain <strong>completely unchanged</strong> at $\\text{Rs } 130$!</p>", "key_takeaways": ["An outlier is an observation that lies an abnormal distance from other values in the data.", "The arithmetic mean is highly sensitive to extreme outliers because it incorporates every magnitude.", "The median is robust (resistant) to extreme values because it depends only on ordinal position."], "formula": "$$\\text{Mean Sensitivity: } \\bar{x} \\propto x_{\\text{outlier}}, \\quad \\text{Median Robustness: } \\text{Median } = x_{\\left(\\frac{N+1}{2}\\right)} \\text{ (Unaffected by magnitude)}$$", "simulator_type": "outlier_robustness_comparator", "checkpoints": [{"question": "Which measure of central tendency is preferred when reporting household income in a city with both low earners and a few billionaires?", "options": ["Arithmetic Mean", "Median", "Highest score only", "Total sum only"], "correct": 1, "explanation": "Billionaires create extreme positive outliers that heavily distort the arithmetic mean upwards. The median represents the true middle household, providing a far more realistic picture."}, {"question": "For the dataset $5, 7, 8, 10, 100$, what are the median and mean respectively?", "options": ["Median = 8, Mean = 26", "Median = 26, Mean = 8", "Median = 8, Mean = 8", "Median = 10, Mean = 30"], "correct": 0, "explanation": "Arranged in order: $5, 7, 8, 10, 100$. The middle value is $8$ (Median). The sum is $130$, so the Mean is $130 / 5 = 26$."}]}, {"id": 5, "title": "Finding Median", "subtitle": "Odd vs Even Counts, Ordered Ranks & Percentile Half", "content": "<p>The <strong>Median</strong> is the value of the middle observation when data are sorted in ascending or descending numerical order. It divides a distribution into two equal halves (50% below, 50% above):</p><ul class='list-disc pl-5 mt-2 space-y-1'><li><strong>Odd Number of Observations ($N = 2k + 1$):</strong> There is a unique single middle element at rank position:</li></ul><div class='p-1 bg-indigo-950/40 rounded border border-indigo-700/40 text-center font-bold text-indigo-200'>$$\\text{Position} = \\frac{N + 1}{2}$$</div><ul class='list-disc pl-5 mt-2 space-y-1'><li><strong>Even Number of Observations ($N = 2k$):</strong> There are two middle elements at positions $\\frac{N}{2}$ and $\\frac{N}{2} + 1$. The median is their arithmetic average:</li></ul><div class='p-1 bg-indigo-950/40 rounded border border-indigo-700/40 text-center font-bold text-indigo-200'>$$\\text{Median} = \\frac{x_{(N/2)} + x_{(N/2 + 1)}}{2}$$</div>", "key_takeaways": ["Data MUST always be sorted in order before determining the median.", "For odd $N$: Median is the unique middle value at position $\\frac{N+1}{2}$.", "For even $N$: Median is the average of the two middle values at $\\frac{N}{2}$ and $\\frac{N}{2}+1$."], "formula": "$$\\text{Median} = \\begin{cases} x_{\\left(\\frac{N+1}{2}\\right)}, & N \\text{ odd} \\\\[6pt] \\frac{x_{(N/2)} + x_{(N/2 + 1)}}{2}, & N \\text{ even} \\end{cases}$$", "simulator_type": "median_ordered_ranker", "checkpoints": [{"question": "What is the median of the scores: $14, 6, 22, 9, 18, 30$?", "options": ["15", "16", "18", "20"], "correct": 1, "explanation": "Step 1: Sort in ascending order: $6, 9, 14, 18, 22, 30$.<br>Step 2: Here $N = 6$ (even). The middle positions are $6/2 = 3$rd (value 14) and 4th (value 18).<br>Step 3: Average = $\\frac{14 + 18}{2} = \\frac{32}{2} = 16$."}, {"question": "If an 11-student cricket squad has scores arranged in order, which player's score is the team median?", "options": ["The 5th player", "The 6th player", "The 7th player", "Average of 5th and 6th"], "correct": 1, "explanation": "For odd $N = 11$, position $= \\frac{11 + 1}{2} = \\frac{12}{2} = 6$th player."}]}, {"id": 6, "title": "Finding the Unknown", "subtitle": "Inverse Statistical Reasoning & Algebraic Balancing", "content": "<p>In real-world testing and scientific analysis, we frequently know the overall mean or median and need to solve for a missing or unknown data entry $x$.</p><p class='mt-2'>Because the arithmetic mean relates to the total sum via:</p><div class='p-2 bg-indigo-950/40 rounded border border-indigo-700/40 text-center font-bold text-indigo-200'>$$\\text{Total Sum} = N \\times \\bar{x}$$</div><p class='mt-2'>We can set up a simple linear algebraic equation. For example, if a student scored $70, 75, 85, 90$ in four tests and needs an overall mean of $82$ across five tests, what must she score in the 5th test?</p><p class='mt-2'>$$\\text{Required Sum} = 5 \\times 82 = 410$$<br>$$\\text{Current Sum} = 70 + 75 + 85 + 90 = 320$$<br>$$x = 410 - 320 = 90\\text{ marks!}$$</p>", "key_takeaways": ["Use the total sum identity: $\\sum x_i = N \\times \\bar{x}$.", "The missing value is the difference between the required total and current partial sum.", "Inverse reasoning turns statistical averages into straightforward linear equations."], "formula": "$$x_{\\text{missing}} = \\left(N \\times \\bar{x}\\right) - \\sum_{i=1}^{N-1} x_i$$", "simulator_type": "finding_unknown_equation_solver", "checkpoints": [{"question": "The mean of five numbers is 20. Four of the numbers are 15, 18, 22, and 25. What is the fifth number?", "options": ["18", "20", "22", "24"], "correct": 1, "explanation": "Total sum required $= 5 \\times 20 = 100$.<br>Sum of known four numbers $= 15 + 18 + 22 + 25 = 80$.<br>Fifth number $= 100 - 80 = 20$."}, {"question": "A bowler had a mean of 4 wickets per match across 6 matches. In the 7th match, how many wickets must he take to raise his overall mean to 5?", "options": ["7 wickets", "9 wickets", "11 wickets", "12 wickets"], "correct": 2, "explanation": "Total wickets required across 7 matches $= 7 \\times 5 = 35$.<br>Current wickets in 6 matches $= 6 \\times 4 = 24$.<br>Wickets needed $= 35 - 24 = 11$ wickets."}]}, {"id": 7, "title": "Frequency Tables", "subtitle": "Grouped Counts, Weighted Totals & Cumulative Frequency", "content": "<p>When datasets contain hundreds of numbers with repeated values, listing each number individually is impractical. Instead, data are tabulated in a <strong>frequency table</strong> ($x_i$ with frequency $f_i$):</p><ul class='list-disc pl-5 mt-2 space-y-1'><li><strong>Weighted Mean:</strong> Multiply each value $x_i$ by its frequency $f_i$ to find sub-totals, sum them up, and divide by total observations $N = \\sum f_i$:</li></ul><div class='p-1 bg-indigo-950/40 rounded border border-indigo-700/40 text-center font-bold text-indigo-200'>$$\\bar{x} = \\frac{\\sum f_i x_i}{\\sum f_i}$$</div><ul class='list-disc pl-5 mt-2 space-y-1'><li><strong>Median via Cumulative Frequency ($cf$):</strong> Running cumulative sums pinpoint the exact category containing the $\\frac{N}{2}$-th or $\\frac{N+1}{2}$-th observation without needing to expand the list.</li></ul>", "key_takeaways": ["Frequency $f_i$ represents how many times value $x_i$ occurs in the dataset.", "Total observations $N = \\sum f_i$; total numerical sum is $\\sum f_i x_i$.", "Cumulative frequency tracks the running sum of frequencies to locate the median item."], "formula": "$$\\bar{x} = \\frac{\\sum_{i=1}^k f_i x_i}{\\sum_{i=1}^k f_i}, \\quad N = \\sum f_i, \\quad \\text{Median} \\implies \\text{Value where } cf \\ge \\frac{N+1}{2}$$", "simulator_type": "frequency_table_mean_median", "checkpoints": [{"question": "In a class, 5 students scored 10 marks, and 15 students scored 20 marks. What is the weighted mean score?", "options": ["15 marks", "17.5 marks", "18 marks", "16.5 marks"], "correct": 1, "explanation": "Total sum $= (5 \\times 10) + (15 \\times 20) = 50 + 300 = 350$.<br>Total students $= 5 + 15 = 20$.<br>Mean $= \\frac{350}{20} = 17.5$ marks."}, {"question": "In a survey of 31 people, cumulative frequencies for family sizes 2, 3, 4, 5 are 6, 14, 25, 31. What is the median family size?", "options": ["Size 2", "Size 3", "Size 4", "Size 5"], "correct": 2, "explanation": "With $N = 31$, the median observation is the $\\frac{31 + 1}{2} = 16$th person. Looking at cumulative frequencies: $cf(3) = 14$ and $cf(4) = 25$. Since 16 falls between 15 and 25, the median is 4."}]}, {"id": 8, "title": "Spreadsheets", "subtitle": "Formulas, Cell References & Digital Data Tables", "content": "<p>In modern digital workplaces and scientific research, computations are automated using computer <strong>spreadsheets</strong> (like Google Sheets, Microsoft Excel, or LibreOffice Calc):</p><ul class='list-disc pl-5 mt-2 space-y-1'><li><strong>Grid Architecture:</strong> Data is organized into <strong>columns</strong> labeled with letters ($A, B, C, \\dots$) and <strong>rows</strong> labeled with numbers ($1, 2, 3, \\dots$). The intersection is a unique <strong>cell address</strong> (e.g., $B4$).</li><li><strong>Formula Syntax:</strong> Every mathematical formula begins with an equals sign ($=$).</li><li><strong>Standard Statistical Functions:</strong></li></ul><div class='p-2 bg-indigo-950/40 rounded border border-indigo-700/40 text-center font-bold text-indigo-200'><code>=SUM(A1:A10)</code> &nbsp;|&nbsp; <code>=AVERAGE(B2:B20)</code> &nbsp;|&nbsp; <code>=MEDIAN(C1:C15)</code></div>", "key_takeaways": ["Cells are referenced by column letter followed by row number (e.g., A1, D12).", "Formulas always begin with an equals sign ($=$) to trigger calculation rather than text display.", "Dynamic recalculation updates all formulas automatically when raw cell values change."], "formula": "$$\\text{Range Syntax: } \\text{Cell}_{\\text{start}} : \\text{Cell}_{\\text{end}} \\implies \\text{e.g., } =\\text{AVERAGE}(A1:A20)$$", "simulator_type": "spreadsheet_formula_studio", "checkpoints": [{"question": "What must precede every formula in a digital spreadsheet software?", "options": ["A dollar sign ($)", "An equals sign (=)", "A hashtag (#)", "An asterisk (*)"], "correct": 1, "explanation": "In all spreadsheet programs, entering an equals sign ($=$) signals to the software that the cell contains an executable formula rather than plain text or a static number."}, {"question": "If cell A1 contains 10, A2 contains 20, and A3 contains 30, what will the formula '=AVERAGE(A1:A3)' display?", "options": ["60", "20", "30", "10"], "correct": 1, "explanation": "The AVERAGE function computes the arithmetic mean: $\\frac{10 + 20 + 30}{3} = \\frac{60}{3} = 20$."}]}, {"id": 9, "title": "Reading Data", "subtitle": "Misleading Baselines, Scaling & Critical Literacy", "content": "<p>A chart is worth a thousand words\u2014but only if drawn honestly! Graphical representations can unintentionally (or deliberately) mislead viewers if the visual scale is distorted.</p><ul class='list-disc pl-5 mt-2 space-y-1'><li><strong>The Truncated Graph (Broken Baseline):</strong> Starting a bar graph's vertical axis at $90$ instead of $0$ can make a tiny $2\\%$ difference look like a massive $300\\%$ increase! Always check if the vertical axis starts at zero.</li><li><strong>Proportional Area Principle:</strong> The visual area of a graphical symbol must be directly proportional to the numerical quantity it represents. Doubling both width and height quadruples area ($2 \\times 2 = 4$), visually exaggerating the data!</li><li><strong>Scale Consistency:</strong> Equal intervals on the axis must represent equal increments in quantity.</li></ul>", "key_takeaways": ["Always inspect the vertical scale: verify if it begins at zero or uses a break/kink (zigzag).", "Truncated axes visually exaggerate trivial differences between quantities.", "Area scaling must match linear proportions to avoid visual deception."], "formula": "$$\\text{Visual Integrity Rule: } \\frac{\\text{Graphic Height / Area}}{\\text{Data Value}} = \\text{Constant Scale Factor}$$", "simulator_type": "data_visualization_scale_lab", "checkpoints": [{"question": "Why is a bar chart with a vertical axis starting at 95% instead of 0% potentially misleading?", "options": ["It makes differences between 96% and 98% appear enormous rather than slight", "It changes the math test scores of students", "It cannot be printed in black and white", "It is illegal under geometry rules"], "correct": 0, "explanation": "Truncating the vertical axis exaggerates small variations, making a minor 2% difference appear visually four or five times larger than it actually is."}, {"question": "What symbol is drawn on a coordinate axis when a large gap of unused values is omitted from zero to the first value?", "options": ["A circular ring", "A kink (zigzag / broken line symbol)", "A question mark", "An arrow pointing up"], "correct": 1, "explanation": "A kink (zigzag or break mark) is standard convention indicating that the scale does not start from zero continuously, alerting readers to read values carefully."}]}, {"id": 10, "title": "Line Graphs", "subtitle": "Continuous Trajectories, Slopes & Interpolation", "content": "<p>A <strong>line graph</strong> displays information as a series of data points called 'markers' connected by straight line segments. It is the premier tool for displaying how a continuous variable changes over continuous intervals of time.</p><ul class='list-disc pl-5 mt-2 space-y-1'><li><strong>Horizontal Axis ($X$):</strong> Represents the independent variable (usually time: hours, days, months, years).</li><li><strong>Vertical Axis ($Y$):</strong> Represents the dependent variable being measured (e.g., patient temperature, stock price, rainfall).</li><li><strong>Interpreting Slopes:</strong> A steep upward slope indicates rapid increase; a horizontal flat line indicates zero change (stability); a downward slope indicates decrease.</li><li><strong>Interpolation:</strong> Estimating intermediate values between recorded data points by reading along the connecting segment.</li></ul>", "key_takeaways": ["Line graphs track dynamic continuous trends over unbroken intervals of time.", "The steepness (slope) of a line segment directly reflects the rate of change.", "Horizontal line segments represent intervals of constancy (zero change)."], "formula": "$$\\text{Rate of Change (Slope)} = \\frac{\\Delta y}{\\Delta x} = \\frac{y_2 - y_1}{x_2 - x_1}$$", "simulator_type": "line_graph_slope_navigator", "checkpoints": [{"question": "In a hospital patient's 24-hour temperature chart, what does a flat horizontal segment between 2 PM and 6 PM indicate?", "options": ["The patient's temperature increased rapidly", "The patient's temperature remained completely steady at the same degree", "The thermometer was broken", "The patient was not breathing"], "correct": 1, "explanation": "A horizontal segment means $\\Delta y = 0$; the temperature value remained constant throughout that 4-hour time interval."}, {"question": "Between 9 AM ($20^\\circ\\text{C}$) and 11 AM ($28^\\circ\\text{C}$), what was the average rate of temperature rise per hour?", "options": ["$4^\\circ\\text{C per hour}$", "$8^\\circ\\text{C per hour}$", "$2^\\circ\\text{C per hour}$", "$14^\\circ\\text{C per hour}$"], "correct": 0, "explanation": "Rate of change $= \\frac{\\Delta y}{\\Delta t} = \\frac{28 - 20}{11 - 9} = \\frac{8}{2} = 4^\\circ\\text{C per hour}$."}]}, {"id": 11, "title": "Orbital Traffic", "subtitle": "Orbital Debris, Satellite Congestion & Exponential Growth", "content": "<p>Since the launch of Sputnik in 1957, thousands of artificial satellites have been launched into Low Earth Orbit (LEO). Today, over $10,000$ active satellites and millions of pieces of space debris travel at speeds exceeding $28,000\\text{ km/h}$!</p><p class='mt-2'>Statistical analysis reveals an alarming trend known as the <strong>Kessler Syndrome</strong>: as orbital density increases, the collision frequency rises non-linearly. A collision between two satellites generates thousands of high-speed fragments, triggering a cascading chain reaction of further collisions.</p><p class='mt-2'>Tracking orbital traffic via time-series line graphs allows space agencies like ISRO, NASA, and ESA to predict close encounters (conjunctions) and perform collision avoidance maneuvers in real time.</p>", "key_takeaways": ["Orbital traffic data exhibits steep exponential growth over recent decades.", "Kessler syndrome describes cascading space debris generation through collision feedback loops.", "Statistical tracking and conjunction analysis are vital for protecting space infrastructure."], "formula": "$$\\text{Collision Probability } P \\propto \\text{Debris Density } \\rho^2 \\times \\text{Relative Velocity } v_{\\text{rel}}$$", "simulator_type": "space_jam_orbital_traffic", "checkpoints": [{"question": "Why does a cascading collision in low Earth orbit (Kessler Syndrome) represent a severe global crisis?", "options": ["It will cause satellites to fall into our drinking water reservoirs immediately", "It could create a dense debris belt that renders low Earth orbits unusable for communications, navigation, and weather forecasting for generations", "It changes the gravitational constant of the Earth", "It will make the Moon disappear"], "correct": 1, "explanation": "Millions of fragments traveling at hyper-velocity could destroy communication satellites, GPS navigation, and weather observatories, effectively blinding modern civilization."}, {"question": "If active satellites increased from 2,000 in 2019 to 10,000 in 2024, what was the average annual increase?", "options": ["800 per year", "1,600 per year", "2,000 per year", "4,000 per year"], "correct": 1, "explanation": "Net increase $= 10,000 - 2,000 = 8,000$ satellites over 5 years. Rate $= \\frac{8,000}{5} = 1,600$ satellites per year."}]}, {"id": 12, "title": "Rain Patterns", "subtitle": "Seasonality, Monsoons & Moving Averages", "content": "<p>Rainfall is the lifeblood of agriculture, water supply, and ecology across the Indian subcontinent. Yet daily rainfall readings are notoriously erratic\u2014a torrential cloudburst one afternoon may be followed by three dry days.</p><p class='mt-2'>How do meteorologists extract clear trends from noisy data? They use two powerful tools:</p><ul class='list-disc pl-5 mt-2 space-y-1'><li><strong>Seasonal Aggregation:</strong> Tabulating rainfall by month or season clearly reveals the Indian South-West Monsoon peak (June to September).</li><li><strong>Moving Averages:</strong> By replacing each day's reading with the average of the surrounding 7 days or 30 days, short-term noise is smoothed out, revealing the underlying seasonal tide.</li></ul>", "key_takeaways": ["Time series data frequently exhibits cyclical seasonal patterns alongside random noise.", "Moving averages smooth out short-term fluctuations to reveal underlying macro trends.", "Monsoon precipitation charts guide agricultural planning, dam storage, and disaster mitigation."], "formula": "$$\\text{3-Period Moving Average: } M_t = \\frac{x_{t-1} + x_t + x_{t+1}}{3}$$", "simulator_type": "rain_pattern_time_series", "checkpoints": [{"question": "What is the primary mathematical purpose of computing a moving average on rainfall time-series data?", "options": ["To make the rainfall numbers look bigger for farmers", "To filter out short-term random daily noise and highlight true seasonal patterns and long-term trends", "To convert millimeters into liters", "To stop the rain from falling"], "correct": 1, "explanation": "A moving average smooths out erratic daily spikes, allowing meteorologists and planners to track smooth seasonal trajectories and long-term climatic trends."}, {"question": "For monthly rainfall of June ($150\\text{ mm}$), July ($300\\text{ mm}$), and August ($270\\text{ mm}$), what is the 3-month average?", "options": ["$220\\text{ mm}$", "$240\\text{ mm}$", "$250\\text{ mm}$", "$270\\text{ mm}$"], "correct": 1, "explanation": "Average $= \\frac{150 + 300 + 270}{3} = \\frac{720}{3} = 240\\text{ mm}$."}]}, {"id": 13, "title": "Infographics", "subtitle": "Visual Storytelling, Proportional Icons & Cognitive Clarity", "content": "<p>An <strong>infographic</strong> (information graphic) is a visual representation of data designed to present complex statistical ideas quickly and clearly to a broad audience.</p><ul class='list-disc pl-5 mt-2 space-y-1'><li><strong>Pictograms (Isotypes):</strong> Using repeated icons where each icon represents a fixed unit quantity (e.g., \ud83d\udeb9 = 1,000 citizens, \ud83d\udca7 = 50 liters). This makes abstract numbers immediately relatable.</li><li><strong>Hierarchy & Flow:</strong> Effective infographics guide the reader's eye from the core question to key findings and conclusions through color coding and visual callouts.</li><li><strong>Statistical Ethics:</strong> Good infographics never sacrifice numerical accuracy for artistic flashiness. All symbols must adhere to strict mathematical proportions!</li></ul>", "key_takeaways": ["Infographics combine graphic design with statistical data to convey information intuitively.", "In pictograms, each icon represents a standardized fixed numerical quantity.", "Proportionality must be strictly maintained to ensure visual honesty."], "formula": "$$\\text{Icon Count} = \\frac{\\text{Total Quantity}}{\\text{Value per Icon}} \\implies N_{\\text{icons}} = \\frac{Q}{V_{\\text{icon}}}$$", "simulator_type": "infographics_visual_storyteller", "checkpoints": [{"question": "In a village water infographic, if 1 droplet symbol represents 250 liters of water, how many symbols represent 1,500 liters?", "options": ["4 symbols", "5 symbols", "6 symbols", "8 symbols"], "correct": 2, "explanation": "Number of symbols $= \\frac{1,500}{250} = 6$ droplet symbols."}, {"question": "What is the primary danger when an graphic designer doubles both the width and height of an icon to represent a doubled quantity?", "options": ["The icon turns upside down", "The area of the icon quadruples ($2 \\times 2 = 4$), visually exaggerating the quantity by 400% instead of 200%", "The ink becomes invisible", "The icon disappears"], "correct": 1, "explanation": "Scaling both linear dimensions doubles area quadratically ($2^2 = 4$), giving the false visual impression of a four-fold increase rather than a two-fold increase."}]}, {"id": 14, "title": "Strip Charts", "subtitle": "Strip Charts, Segmented Proportions & 100% Stacks", "content": "<p>A <strong>segmented strip chart</strong> (or 100% stacked bar) is a powerful tool for displaying how a whole quantity is partitioned into categorical proportions:</p><ul class='list-disc pl-5 mt-2 space-y-1'><li><strong>Single Bar Division:</strong> A single continuous rectangular strip represents $100\\%$ of the whole. The strip is sliced into colored segments whose lengths are exactly proportional to each component's percentage share.</li><li><strong>Direct Linear Comparison:</strong> Unlike circular pie charts where readers must gauge angles, human eyes are exceptionally skilled at comparing linear segment lengths along a straight strip!</li><li><strong>Side-by-Side Strips:</strong> Comparing two parallel strips (e.g., Household Budget in 2020 vs 2025) instantly highlights shifting priorities and percentage changes.</li></ul>", "key_takeaways": ["A 100% strip chart divides a single linear bar into proportional colored segments.", "The sum of all segment percentages along the strip must equal exactly $100\\%$.", "Linear lengths along a strip are easier for human eyes to compare accurately than circular angles in pie charts."], "formula": "$$\\text{Segment Length } L_i = \\frac{P_i}{100} \\times L_{\\text{total}}, \\quad \\sum P_i = 100\\%$$", "simulator_type": "strip_chart_percentage_segmenter", "checkpoints": [{"question": "On a $20\\text{ cm}$ long percentage strip chart, what length should represent food expenditure that accounts for $35\\%$ of the budget?", "options": ["$5\\text{ cm}$", "$7\\text{ cm}$", "$8.5\\text{ cm}$", "$10\\text{ cm}$"], "correct": 1, "explanation": "Segment length $= 35\\% \\times 20\\text{ cm} = \\frac{35}{100} \\times 20 = 7\\text{ cm}$."}, {"question": "Why do many modern data analysts prefer stacked strip charts over circular pie charts?", "options": ["Rectangles are cheaper to draw than circles", "Human visual perception judges linear lengths far more accurately than angular sector wedges", "Pie charts can only show two categories", "Strip charts only work on computers"], "correct": 1, "explanation": "Extensive cognitive science research demonstrates that human eyes judge one-dimensional lengths along a common scale with much higher precision than angles or areas of circular sectors."}]}, {"id": 15, "title": "Sleep & Focus Story", "subtitle": "Sleep Habits, Alertness & Bivariate Correlation", "content": "<p>In the engaging statistical case study <em>'Sleepy-Deepy'</em>, students surveyed classmates to investigate a critical question: <strong>Does sleep duration affect classroom alertness and academic focus?</strong></p><ul class='list-disc pl-5 mt-2 space-y-1'><li><strong>Bivariate Data:</strong> Each student contributed two paired measurements: hours of night sleep ($X$) and an alertness test score out of 100 ($Y$).</li><li><strong>Scatter Plot & Trend:</strong> Plotting pairs as points $(x_i, y_i)$ reveals a clear positive trend: students sleeping fewer than 6 hours consistently had lower alertness scores (mean 58), while those with 8 to 9 hours of sleep maintained top alertness (mean 88).</li><li><strong>Correlation vs Causation:</strong> While high sleep correlates with alertness, researchers must also consider confounding factors like late-night screen time and nutrition!</li></ul>", "key_takeaways": ["Bivariate data explores the relationship between two distinct numerical variables.", "Scatter plots reveal positive, negative, or zero correlation between paired variables.", "A strong statistical correlation suggests a relationship but requires scientific control to prove causation."], "formula": "$$\\text{Paired Observations: } (x_i, y_i) \\implies \\text{Positive Correlation: As } X \\uparrow, Y \\uparrow$$", "simulator_type": "sleepy_deepy_data_story", "checkpoints": [{"question": "In the Sleepy-Deepy study, if students who slept more hours generally achieved higher alertness scores, what type of correlation exists?", "options": ["Negative correlation", "Positive correlation", "Zero correlation", "Inverse quadratic correlation"], "correct": 1, "explanation": "When both variables increase together (more sleep hours $\\implies$ higher alertness), the relationship exhibits a positive correlation."}, {"question": "Does a strong statistical correlation between sleep and grades prove that sleeping 15 hours a day will automatically make you score 100%?", "options": ["Yes, because correlation always equals direct linear causation", "No; correlation demonstrates an association, but extreme excessive sleep may indicate other health issues and beyond optimal sleep (8-9 hrs) returns plateau", "Yes, sleep is the only factor in learning", "No, because math does not apply to biology"], "correct": 1, "explanation": "Correlation does not imply unlimited causation. Healthy sleep within optimal boundaries (8-9 hrs) supports cognitive performance, but excessive sleep yields diminishing returns."}]}, {"id": 16, "title": "Game of Hex", "subtitle": "Nash's Hex Theorem, No-Tie Topology & Master Matrix", "content": "<p><strong>It's Puzzle Time: The Game of Hex</strong> was invented independently by Danish mathematician Piet Hein (1942) and Nobel laureate John Nash (1948). Played on an $11 \\times 11$ (or $7 \\times 7$) grid of regular hexagons:</p><ul class='list-disc pl-5 mt-2 space-y-1'><li><strong>Rules:</strong> Two players (Red and Blue) take turns placing colored stones on empty hex cells. Red attempts to connect the North and South borders; Blue attempts to connect the East and West borders.</li><li><strong>The No-Tie Theorem:</strong> Nash proved using the Brouwer fixed-point theorem that <strong>Hex can NEVER end in a draw</strong>! Because a connected path for one player topologically blocks the other, exactly one player must win!</li><li><strong>Chapter Summary Matrix:</strong> Arithmetic Mean balances total values (center of mass); Median divides sorted ranks into equal halves; Line graphs track continuous change; Infographics communicate data ethically.</li></ul>", "key_takeaways": ["Hex is a pure strategy game played on a rhombus of regular hexagons with NO draws possible.", "John Nash's Hex Theorem proves that one player must always form an unbroken crossing path.", "Statistical summary: Mean $\\bar{x} = \\frac{\\sum x_i}{N}$; Median $= x_{\\left(\\frac{N+1}{2}\\right)}$; sum of deviations $\\sum (x_i - \\bar{x}) = 0$."], "formula": "$$\\text{Hex Theorem: } P(\\text{Draw}) = 0 \\implies \\text{Winner } \\in \\{ \\text{Red}, \\text{Blue} \\} \\text{ (No Ties Possible)}$$", "simulator_type": "game_of_hex_puzzle_lab", "checkpoints": [{"question": "Why is the Game of Hex mathematically celebrated in game theory and topology?", "options": ["It has 100 different dice", "It is mathematically proven that the game can NEVER end in a draw; one player is guaranteed to win", "It can only be played on circular boards", "It was invented by ancient Roman gladiators"], "correct": 1, "explanation": "John Nash proved that the topology of the hexagonal planar graph guarantees an unbroken path for one player inevitably blocks the other, making a draw mathematically impossible."}, {"question": "What is the single most important summary equation defining the arithmetic mean as a balance point?", "options": ["$\\sum (x_i - \\bar{x}) = 0$", "$\\sum x_i = 0$", "$\\bar{x} = \\text{Median}$", "$\\bar{x}^2 = N$"], "correct": 0, "explanation": "The defining balance condition of the arithmetic mean is that the sum of all signed deviations around it equals zero: $\\sum (x_i - \\bar{x}) = 0$."}]}, {"id": 17, "title": "Mastery Challenge \u2022 Part I", "subtitle": "Mean, Fulcrum Balance & Invariant Operations", "type": "quiz_slide", "questions": [{"id": "q1", "question": "What is the arithmetic mean of the numbers: 12, 15, 18, 21, 24?", "options": ["16", "18", "20", "21"], "correct": 1, "solution": "Step 1: Calculate the sum of all numbers: $12 + 15 + 18 + 21 + 24 = 90$.<br>Step 2: Count of numbers $N = 5$.<br>Step 3: Mean $\\bar{x} = \\frac{90}{5} = 18$.<br>(Notice that for an evenly spaced arithmetic progression with odd count, the mean is simply the middle number, 18)."}, {"id": "q2", "question": "What is the physical interpretation of the arithmetic mean on a number line?", "options": ["The leftmost point", "The rightmost point", "The center of mass (balance fulcrum) where net torque is zero", "The midpoint between the minimum and maximum"], "correct": 2, "solution": "Step 1: Treat each data point as a unit mass along a beam.<br>Step 2: The fulcrum balance position is where clockwise moments equal counterclockwise moments.<br>Step 3: This occurs exactly at $\\bar{x}$, where $\\sum (x_i - \\bar{x}) = 0$."}, {"id": "q3", "question": "If the mean of 6 numbers is 35, what is their total sum?", "options": ["180", "210", "240", "280"], "correct": 1, "solution": "Step 1: Use the relationship $\\text{Total Sum} = N \\times \\bar{x}$.<br>Step 2: Total Sum $= 6 \\times 35 = 210$."}, {"id": "q4", "question": "The mean weight of 8 students is 42 kg. If every student gains exactly 3 kg over the vacation, what is the new mean weight?", "options": ["42 kg", "45 kg", "48 kg", "50 kg"], "correct": 1, "solution": "Step 1: By the linear shift property of arithmetic mean, adding a constant $c$ to every value shifts the mean by $+c$.<br>Step 2: New mean $= 42 + 3 = 45\\text{ kg}$."}, {"id": "q5", "question": "A dataset of 10 numbers has a mean of 15. If each number is multiplied by 4, what is the new mean?", "options": ["15", "30", "60", "90"], "correct": 2, "solution": "Step 1: Multiplying all observations by a constant factor $k$ multiplies the mean by $k$.<br>Step 2: New mean $= 15 \\times 4 = 60$."}, {"id": "q6", "question": "In a dataset, the sum of deviations of 7 observations from the number 14 is +21. What is the actual arithmetic mean?", "options": ["14", "17", "21", "24"], "correct": 1, "solution": "Step 1: Recall $\\sum (x_i - A) = \\sum x_i - N \\cdot A$.<br>Step 2: $\\sum x_i = 7 \\times 14 + 21 = 98 + 21 = 119$.<br>Step 3: Actual mean $\\bar{x} = \\frac{119}{7} = 17$ (or $\\bar{x} = A + \\frac{\\sum d_i}{N} = 14 + \\frac{21}{7} = 14 + 3 = 17$)."}, {"id": "q7", "question": "If the mean of 5 observations $x, x+2, x+4, x+6, x+8$ is 15, what is the value of $x$?", "options": ["9", "11", "13", "15"], "correct": 1, "solution": "Step 1: Sum $= x + (x+2) + (x+4) + (x+6) + (x+8) = 5x + 20$.<br>Step 2: Mean $= \\frac{5x + 20}{5} = x + 4$.<br>Step 3: Set $x + 4 = 15 \\implies x = 15 - 4 = 11$."}, {"id": "q8", "question": "Five numbers have a mean of 28. If one number 40 is excluded from the dataset, what is the mean of the remaining 4 numbers?", "options": ["24", "25", "26", "27"], "correct": 1, "solution": "Step 1: Original total sum $= 5 \\times 28 = 140$.<br>Step 2: Subtract the excluded number: $140 - 40 = 100$.<br>Step 3: New count $= 4$.<br>Step 4: New mean $= \\frac{100}{4} = 25$."}, {"id": "q9", "question": "What is the sum of the deviations of observations: 3, 7, 11, 15 from their mean?", "options": ["0", "4", "9", "36"], "correct": 0, "solution": "Step 1: Mean $= \\frac{3 + 7 + 11 + 15}{4} = \\frac{36}{4} = 9$.<br>Step 2: Deviations: $(3-9) + (7-9) + (11-9) + (15-9) = -6 + (-2) + 2 + 6 = 0$.<br>Step 3: The sum of deviations around the mean is universally zero."}, {"id": "q10", "question": "The mean of 100 items was calculated as 50. It was later found that one observation was misread as 80 instead of the correct value 30. What is the corrected mean?", "options": ["49.5", "50.5", "48.0", "51.0"], "correct": 0, "solution": "Step 1: Incorrect total sum $= 100 \\times 50 = 5000$.<br>Step 2: Subtract wrong value and add correct value: Correct sum $= 5000 - 80 + 30 = 4950$.<br>Step 3: Corrected mean $= \\frac{4950}{100} = 49.5$."}]}, {"id": 18, "title": "Mastery Challenge \u2022 Part II", "subtitle": "Median, Outliers & Missing Values", "type": "quiz_slide", "questions": [{"id": "q11", "question": "What is the median of the dataset: 8, 3, 14, 2, 9, 21, 6?", "options": ["6", "8", "9", "14"], "correct": 1, "solution": "Step 1: Sort in ascending order: $2, 3, 6, 8, 9, 14, 21$.<br>Step 2: Count $N = 7$ (odd).<br>Step 3: Middle position is $\\frac{7+1}{2} = 4$th position.<br>Step 4: The 4th number is 8."}, {"id": "q12", "question": "What is the median of the numbers: 15, 22, 9, 31, 18, 27?", "options": ["18", "20", "21", "22"], "correct": 1, "solution": "Step 1: Sort in ascending order: $9, 15, 18, 22, 27, 31$.<br>Step 2: Count $N = 6$ (even).<br>Step 3: Middle elements are at positions $6/2 = 3$rd (value 18) and 4th (value 22).<br>Step 4: Median $= \\frac{18 + 22}{2} = \\frac{40}{2} = 20$."}, {"id": "q13", "question": "Why is the median unaffected when an extreme outlier of 1,000,000 is appended to the numbers 2, 4, 6, 8, 10?", "options": ["Because math ignores big numbers", "Because the median depends on positional rank order, not the magnitude of the extreme tail values", "Because 1,000,000 divides by zero", "Because 6 is lucky"], "correct": 1, "solution": "Step 1: The median is a positional measure of central tendency.<br>Step 2: Outliers change the magnitude of total sums, but only count as a single item in the rank order.<br>Step 3: Hence, the median is robust against extreme values."}, {"id": "q14", "question": "The median of observations 11, 12, 14, x-2, x+4, 20, 22, 25 arranged in ascending order is 17. What is the value of x?", "options": ["14", "15", "16", "18"], "correct": 2, "solution": "Step 1: $N = 8$ (even). The middle two terms are at positions 4th ($x-2$) and 5th ($x+4$).<br>Step 2: Median $= \\frac{(x-2) + (x+4)}{2} = \\frac{2x + 2}{2} = x + 1$.<br>Step 3: Set $x + 1 = 17 \\implies x = 16$."}, {"id": "q15", "question": "A student has scores 78, 82, 86, and 90. What score must she obtain in the 5th test to achieve an overall average of 85?", "options": ["87", "89", "91", "93"], "correct": 1, "solution": "Step 1: Total required sum $= 5 \\times 85 = 425$.<br>Step 2: Current sum $= 78 + 82 + 86 + 90 = 336$.<br>Step 3: Required 5th score $= 425 - 336 = 89$."}, {"id": "q16", "question": "If the mean of 4 numbers is 12 and the mean of another 6 numbers is 17, what is the combined mean of all 10 numbers?", "options": ["14.5", "15.0", "15.2", "16.0"], "correct": 1, "solution": "Step 1: Sum of first group $= 4 \\times 12 = 48$.<br>Step 2: Sum of second group $= 6 \\times 17 = 102$.<br>Step 3: Total combined sum $= 48 + 102 = 150$.<br>Step 4: Combined mean $= \\frac{150}{4 + 6} = \\frac{150}{10} = 15.0$."}, {"id": "q17", "question": "In an ordered dataset of 9 integers, what is the rank position of the median?", "options": ["4th", "5th", "6th", "Between 4th and 5th"], "correct": 1, "solution": "Step 1: For odd $N = 9$, position is $\\frac{9+1}{2} = \\frac{10}{2} = 5$th observation."}, {"id": "q18", "question": "In a symmetric bell-shaped distribution, what is the relationship between the arithmetic mean, median, and mode?", "options": ["Mean > Median > Mode", "Mean < Median < Mode", "Mean = Median = Mode", "They have no relationship"], "correct": 2, "solution": "Step 1: In a perfectly symmetric unimodal distribution, the balance point (mean), the middle rank (median), and the peak frequency (mode) coincide at the exact same central value: $\\text{Mean} = \\text{Median} = \\text{Mode}$."}, {"id": "q19", "question": "If you replace the highest observation in a sorted dataset of 11 numbers with a number 50 units higher, what happens to the median?", "options": ["The median increases by 50", "The median decreases by 50", "The median remains strictly unchanged", "The median doubles"], "correct": 2, "solution": "Step 1: The median of 11 sorted numbers is the 6th number.<br>Step 2: Replacing the 11th number with an even larger value leaves the 6th position and its value completely untouched.<br>Step 3: The median remains strictly unchanged."}, {"id": "q20", "question": "The mean of $x, x+3, x+5, x+7, x+10$ is 15. What is the median?", "options": ["10", "14", "15", "17"], "correct": 2, "solution": "Step 1: Sum $= 5x + 25$.<br>Step 2: Mean $= \\frac{5x + 25}{5} = x + 5 = 15 \\implies x = 10$.<br>Step 3: The numbers are $10, 13, 15, 17, 20$.<br>Step 4: The median is the 3rd number, which is 15."}]}, {"id": 19, "title": "Mastery Challenge \u2022 Part III", "subtitle": "Frequency Tables, Spreadsheets & Line Graphs", "type": "quiz_slide", "questions": [{"id": "q21", "question": "A table shows marks $x = [5, 10, 15]$ with frequencies $f = [2, 5, 3]$. What is the mean mark?", "options": ["10.0", "10.5", "11.0", "11.5"], "correct": 1, "solution": "Step 1: Calculate $f_i x_i$:<br>$5 \\times 2 = 10$<br>$10 \\times 5 = 50$<br>$15 \\times 3 = 45$<br>Step 2: $\\sum f_i x_i = 10 + 50 + 45 = 105$.<br>Step 3: $\\sum f_i = 2 + 5 + 3 = 10$.<br>Step 4: $\\bar{x} = \\frac{105}{10} = 10.5$."}, {"id": "q22", "question": "In a spreadsheet, what does the formula '=SUM(B2:B6)' compute?", "options": ["The average of cells B2 and B6 only", "The total sum of all numerical values in cells B2, B3, B4, B5, and B6", "The difference B2 - B6", "The number of cells in row 2"], "correct": 1, "solution": "Step 1: The colon ($:$) denotes a contiguous range of cells.<br>Step 2: The SUM function adds every cell from starting cell B2 through ending cell B6 inclusive."}, {"id": "q23", "question": "In a digital spreadsheet, which formula correctly computes the median of cells D1 through D25?", "options": ["=MID(D1:D25)", "=MEDIAN(D1:D25)", "=CENTER(D1:D25)", "=AVERAGE(D1:D25)"], "correct": 1, "solution": "Step 1: The built-in standard statistical function for median is <code>=MEDIAN(range)</code>."}, {"id": "q24", "question": "What is the slope (rate of change) on a line graph connecting point (2 hr, 60 km) to (5 hr, 210 km)?", "options": ["30 km/h", "40 km/h", "50 km/h", "60 km/h"], "correct": 2, "solution": "Step 1: Rate of change $= \\frac{\\Delta y}{\\Delta x} = \\frac{210 - 60}{5 - 2} = \\frac{150}{3} = 50\\text{ km/h}$."}, {"id": "q25", "question": "On a distance-time line graph, what does a horizontal line segment signify?", "options": ["Traveling at maximum speed", "Moving backward", "Stationary (stopped, speed = 0)", "Moving with constant acceleration"], "correct": 2, "solution": "Step 1: A horizontal line has slope zero ($\\Delta y = 0$).<br>Step 2: Distance does not change as time elapses, meaning the object is stationary."}, {"id": "q26", "question": "Why is a zigzag (kink) symbol used near the origin on an axis of a line graph?", "options": ["To show where the paper was torn", "To indicate that the scale between 0 and the first displayed value has been truncated or omitted", "To show that data is negative", "To mark a speed bump"], "correct": 1, "explanation": "A kink (zigzag line) alerts readers that values from zero up to the start of the data range are omitted, preventing misinterpretation of spatial distances."}, {"id": "q27", "question": "If daily temperatures recorded for 5 consecutive days are 28\u00b0C, 31\u00b0C, 29\u00b0C, 33\u00b0C, 34\u00b0C, what is the 3-day moving average centered on Day 3?", "options": ["29.0\u00b0C", "30.0\u00b0C", "31.0\u00b0C", "32.0\u00b0C"], "correct": 2, "solution": "Step 1: A 3-day moving average centered on Day 3 averages Day 2, Day 3, and Day 4.<br>Step 2: Average $= \\frac{31 + 29 + 33}{3} = \\frac{93}{3} = 31.0^\\circ\\text{C}$."}, {"id": "q28", "question": "In a discrete frequency distribution with 50 total items, in which cumulative frequency category does the median fall?", "options": ["Category containing cf = 10", "First category where cumulative frequency reaches or exceeds 25.5 (or 25/26)", "Category with the highest single frequency", "Category with the lowest frequency"], "correct": 1, "solution": "Step 1: With $N = 50$, the median rank is between 25th and 26th.<br>Step 2: We locate the first category whose cumulative frequency is $\\ge 25$."}, {"id": "q29", "question": "What is the primary role of independent variables in coordinate line plotting?", "options": ["They are plotted on the vertical y-axis and depend on the other variable", "They are plotted on the horizontal x-axis and represent the controlled input (like elapsed time)", "They are always multiplied by zero", "They can only take negative values"], "correct": 1, "solution": "Step 1: By universal mathematical convention, independent variables (time, input stages) are assigned to the horizontal X-axis, while dependent observed responses are plotted along the vertical Y-axis."}, {"id": "q30", "question": "If an astronaut's heart rate was 72 bpm at t = 0 min, 120 bpm at t = 4 min, and 120 bpm at t = 8 min, what was the average rate of increase during the first 4 minutes?", "options": ["10 bpm/min", "12 bpm/min", "15 bpm/min", "24 bpm/min"], "correct": 1, "solution": "Step 1: $\\Delta y = 120 - 72 = 48\\text{ bpm}$.<br>Step 2: $\\Delta t = 4 - 0 = 4\\text{ min}$.<br>Step 3: Rate of increase $= \\frac{48}{4} = 12\\text{ bpm per minute}$."}]}, {"id": 20, "title": "Mastery Challenge \u2022 Part IV", "subtitle": "Infographics, Strip Charts & Game of Hex", "type": "quiz_slide", "questions": [{"id": "q31", "question": "In an infographic pictogram, 1 tree symbol represents planting 500 saplings. How many tree symbols represent 3,500 saplings?", "options": ["5 symbols", "6 symbols", "7 symbols", "8 symbols"], "correct": 2, "solution": "Step 1: Number of symbols $= \\frac{\\text{Total}}{\\text{Value per symbol}} = \\frac{3,500}{500} = 7$ symbols."}, {"id": "q32", "question": "On a 100% segmented strip chart of total length 25 cm, what length is assigned to an activity that takes 40% of the day?", "options": ["8 cm", "10 cm", "12 cm", "15 cm"], "correct": 1, "solution": "Step 1: Segment length $= 40\\% \\times 25\\text{ cm} = \\frac{40}{100} \\times 25 = 10\\text{ cm}$."}, {"id": "q33", "question": "What is the sum of all percentages represented in a complete segmented strip chart?", "options": ["50%", "90%", "100%", "360%"], "correct": 2, "solution": "Step 1: A strip chart represents a complete whole partitioned into parts.<br>Step 2: The sum of all parts of a whole is always strictly $100\\%$ (unlike circular pie charts where angles sum to $360^\\circ$)."}, {"id": "q34", "question": "In the Sleepy-Deepy study, what does a negative correlation between evening screen time and sleep duration indicate?", "options": ["More screen time is associated with fewer hours of sleep", "More screen time is associated with more hours of sleep", "Screen time has zero relationship with sleep", "Students never use screens"], "correct": 0, "solution": "Step 1: Negative correlation means that as one variable increases, the other variable decreases.<br>Step 2: As evening screen time increases, hours of sleep decrease."}, {"id": "q35", "question": "Who were the two mathematicians who independently invented the Game of Hex?", "options": ["Isaac Newton and Gottfried Leibniz", "Piet Hein and John Nash", "Euclid and Pythagoras", "Aryabhata and Bhaskara"], "correct": 1, "solution": "Step 1: Piet Hein invented the game in 1942 at the Niels Bohr Institute.<br>Step 2: John Nash re-invented it independently in 1948 at Princeton University."}, {"id": "q36", "question": "What profound mathematical theorem did John Nash prove about the Game of Hex?", "options": ["It can only be won by the player who moves second", "Hex can NEVER end in a tie (draw); exactly one player must win", "The game must always last more than 100 moves", "The game has no winning strategy"], "correct": 1, "solution": "Step 1: Using the topology of the hexagonal planar graph and the Brouwer fixed-point theorem, Nash proved that Hex cannot end in a draw.<br>Step 2: An unbroken chain of hexagons connecting one player's sides automatically prevents the opponent from connecting theirs."}, {"id": "q37", "question": "A student surveys 50 peers and finds that 30 walk to school, 15 cycle, and 5 take a bus. In a 10 cm strip chart, what length represents students who cycle?", "options": ["1.5 cm", "3.0 cm", "4.5 cm", "6.0 cm"], "correct": 1, "solution": "Step 1: Fraction of cyclists $= \\frac{15}{50} = 0.30 = 30\\%$.<br>Step 2: Length on a $10\\text{ cm}$ strip $= 30\\% \\times 10\\text{ cm} = 3.0\\text{ cm}$."}, {"id": "q38", "question": "If a line graph shows a downward sloping curve from left to right, what does it signify about the relationship?", "options": ["As time increases, the measured quantity decreases", "The measured quantity is accelerating upwards", "The slope is positive", "The rate of change is zero"], "correct": 0, "solution": "Step 1: Downward slope means negative gradient ($\\Delta y < 0$ as $\\Delta x > 0$).<br>Step 2: The measured quantity decreases over time."}, {"id": "q39", "question": "Why is the arithmetic mean called a 'measure of central tendency'?", "options": ["Because it is always located at the exact geographic center of India", "Because it identifies a single central value around which data points tend to cluster and balance", "Because it only works for circular shapes", "Because it ignores all numbers except the middle one"], "correct": 1, "solution": "Step 1: Measures of central tendency summarize an entire distribution of numbers into a single representative value around which observations cluster and balance."}, {"id": "q40", "question": "In a dataset where Mean = 25 and Median = 25, if the lowest number 5 is reduced to 1, what happens to the Mean and Median?", "options": ["Both Mean and Median decrease", "Mean decreases, while Median remains unchanged at 25", "Mean remains unchanged, while Median decreases", "Both Mean and Median remain unchanged"], "correct": 1, "solution": "Step 1: Reducing an observation lowers the total sum, so the arithmetic mean decreases ($\\bar{x}_{\\text{new}} < 25$).<br>Step 2: The rank order of the middle value is unaffected because reducing the lowest value keeps it in the lowest position.<br>Step 3: Hence, the Median remains completely unchanged at 25."}]}];
+
+    let currentSlideIndex = 0;
+    let isSpeaking = false;
+    let synth = window.speechSynthesis;
+    let quizUserScores = {};
+
+    function triggerMathRender(el) {
+      if (window.renderMathInElement) {
+        renderMathInElement(el || document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    function loadSlide(index) {
+      if (index < 0 || index >= SLIDES.length) return;
+      currentSlideIndex = index;
+      stopSpeech();
+
+      const slide = SLIDES[index];
+      const indicator = document.getElementById('slideNumDisplay');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const lastNotice = document.getElementById('lastSlideNotice');
+      const lessonGrid = document.getElementById('lessonGrid');
+      const quizContainer = document.getElementById('quizContainer');
+
+      indicator.textContent = `Slide ${index + 1} of ${SLIDES.length}`;
+      prevBtn.disabled = (index === 0);
+
+      if (index === SLIDES.length - 1) {
+        nextBtn.style.display = 'none';
+        lastNotice.style.display = 'block';
+      } else {
+        nextBtn.style.display = 'inline-block';
+        lastNotice.style.display = 'none';
+      }
+
+      if (index < 16) {
+        // Lesson Slide
+        lessonGrid.style.display = 'grid';
+        quizContainer.style.display = 'none';
+
+        document.getElementById('slideHeading').textContent = slide.title;
+        document.getElementById('slideSubheading').textContent = slide.subtitle;
+        document.getElementById('theoryContent').innerHTML = slide.content;
+        document.getElementById('formulaBanner').innerHTML = slide.formula;
+        
+        const takeaways = document.getElementById('keyTakeawaysList');
+        takeaways.innerHTML = '';
+        slide.key_takeaways.forEach(pt => {
+          const li = document.createElement('li');
+          li.textContent = pt;
+          takeaways.appendChild(li);
+        });
+
+        renderCheckpoints(slide.checkpoints);
+        renderSimulator(slide.simulator_type);
+      } else {
+        // Dedicated Quiz Slide (Slides 17 to 20)
+        lessonGrid.style.display = 'none';
+        quizContainer.style.display = 'flex';
+
+        document.getElementById('quizTitle').textContent = slide.title;
+        document.getElementById('quizSubtitle').textContent = slide.subtitle;
+        renderQuizSlide(slide.questions);
+      }
+
+      setTimeout(() => {
+        triggerMathRender(document.body);
+      }, 50);
+    }
+
+    function prevSlide() {
+      if (currentSlideIndex > 0) {
+        loadSlide(currentSlideIndex - 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlideIndex < SLIDES.length - 1) {
+        loadSlide(currentSlideIndex + 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // ==========================================
+    // In-Slide Conceptual Checkpoints
+    // ==========================================
+    function renderCheckpoints(checkpoints) {
+      const list = document.getElementById('checkpointsList');
+      list.innerHTML = '';
+
+      if (!checkpoints || checkpoints.length === 0) {
+        document.getElementById('checkpointContainer').style.display = 'none';
+        return;
+      }
+      document.getElementById('checkpointContainer').style.display = 'flex';
+
+      checkpoints.forEach((cp, cpIdx) => {
+        const card = document.createElement('div');
+        card.className = 'checkpoint-card';
+        card.innerHTML = `
+          <div class="checkpoint-q"><strong>Checkpoint ${cpIdx + 1}:</strong> ${cp.question}</div>
+          <div class="options-grid" id="cpOptions${cpIdx}"></div>
+          <div class="feedback-box" id="cpFeedback${cpIdx}"></div>
+        `;
+
+        const optGrid = card.querySelector(`#cpOptions${cpIdx}`);
+        const feedback = card.querySelector(`#cpFeedback${cpIdx}`);
+
+        cp.options.forEach((opt, optIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'option-btn';
+          btn.innerHTML = `<span style="font-weight:700; color:#38bdf8;">${String.fromCharCode(65 + optIdx)}.</span> <span>${opt}</span>`;
+          btn.onclick = () => {
+            const allBtns = optGrid.querySelectorAll('.option-btn');
+            allBtns.forEach(b => b.disabled = true);
+
+            if (optIdx === cp.correct) {
+              btn.classList.add('correct');
+              feedback.className = 'feedback-box show correct-box';
+              feedback.innerHTML = `<strong>✓ Excellent!</strong> ${cp.explanation}`;
+            } else {
+              btn.classList.add('incorrect');
+              allBtns[cp.correct].classList.add('correct');
+              feedback.className = 'feedback-box show incorrect-box';
+              feedback.innerHTML = `<strong>✗ Not quite.</strong> ${cp.explanation}`;
+            }
+            triggerMathRender(feedback);
+          };
+          optGrid.appendChild(btn);
+        });
+
+        list.appendChild(card);
+      });
+    }
+
+    // ==========================================
+    // Mastery Quiz Slides (10 questions per slide)
+    // ==========================================
+    function renderQuizSlide(questions) {
+      const container = document.getElementById('quizQuestionsList');
+      container.innerHTML = '';
+      quizUserScores[currentSlideIndex] = quizUserScores[currentSlideIndex] || { correct: 0, answered: 0 };
+
+      updateQuizScoreDisplay();
+
+      questions.forEach((q, qIdx) => {
+        const qCard = document.createElement('div');
+        qCard.className = 'quiz-item-card';
+        qCard.innerHTML = `
+          <div class="q-top-row">
+            <span class="q-num-badge">Question ${qIdx + 1} of 10</span>
+            <button class="sol-btn" onclick="openSolutionModal(${currentSlideIndex}, ${qIdx})">
+              <span>💡</span> View Solution
+            </button>
+          </div>
+          <div style="font-size: 14.5px; font-weight: 600; color: #f8fafc; line-height: 1.5;">${q.question}</div>
+          <div class="options-grid" id="quizOpts${qIdx}"></div>
+          <div class="feedback-box" id="quizFeed${qIdx}"></div>
+        `;
+
+        const optGrid = qCard.querySelector(`#quizOpts${qIdx}`);
+        const feed = qCard.querySelector(`#quizFeed${qIdx}`);
+
+        q.options.forEach((opt, optIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'option-btn';
+          btn.innerHTML = `<span style="font-weight:700; color:#38bdf8;">${String.fromCharCode(65 + optIdx)}.</span> <span>${opt}</span>`;
+
+          btn.onclick = () => {
+            const allBtns = optGrid.querySelectorAll('.option-btn');
+            allBtns.forEach(b => b.disabled = true);
+
+            quizUserScores[currentSlideIndex].answered++;
+
+            if (optIdx === q.correct) {
+              btn.classList.add('correct');
+              feed.className = 'feedback-box show correct-box';
+              feed.innerHTML = `<strong>✓ Correct!</strong> Well reasoned.`;
+              quizUserScores[currentSlideIndex].correct++;
+            } else {
+              btn.classList.add('incorrect');
+              allBtns[q.correct].classList.add('correct');
+              feed.className = 'feedback-box show incorrect-box';
+              feed.innerHTML = `<strong>✗ Incorrect.</strong> Review the step-by-step solution.`;
+            }
+            updateQuizScoreDisplay();
+          };
+          optGrid.appendChild(btn);
+        });
+
+        container.appendChild(qCard);
+      });
+    }
+
+    function updateQuizScoreDisplay() {
+      const scorePill = document.getElementById('quizScorePill');
+      const score = quizUserScores[currentSlideIndex] || { correct: 0, answered: 0 };
+      scorePill.textContent = `Score: ${score.correct} / 10`;
+    }
+
+    // Modal logic
+    function openSolutionModal(slideIdx, qIdx) {
+      const q = SLIDES[slideIdx].questions[qIdx];
+      document.getElementById('modalQuestionText').innerHTML = `<strong>Question:</strong> ${q.question}`;
+      document.getElementById('modalSolutionBody').innerHTML = q.solution;
+
+      const modal = document.getElementById('solutionModal');
+      modal.style.display = 'flex';
+      triggerMathRender(modal);
+    }
+
+    function closeSolutionModal() {
+      document.getElementById('solutionModal').style.display = 'none';
+    }
+
+    // Audio narration Web Speech API
+    function toggleVoice() {
+      if (isSpeaking) {
+        stopSpeech();
+      } else {
+        startSpeech();
+      }
+    }
+
+    function startSpeech() {
+      if (!synth) return;
+      stopSpeech();
+
+      const slide = SLIDES[currentSlideIndex];
+      let textToRead = "";
+
+      if (currentSlideIndex < 16) {
+        textToRead = `${slide.title}. ${slide.subtitle}. `;
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = slide.content;
+        textToRead += tempDiv.textContent || tempDiv.innerText || "";
+      } else {
+        textToRead = `${slide.title}. ${slide.subtitle}. Please answer the ten mastery challenge questions.`;
+      }
+
+      const utter = new SpeechSynthesisUtterance(textToRead);
+      utter.rate = 0.95;
+      utter.pitch = 1.0;
+
+      utter.onend = () => {
+        isSpeaking = false;
+        updateVoiceButton();
+      };
+      utter.onerror = () => {
+        isSpeaking = false;
+        updateVoiceButton();
+      };
+
+      synth.speak(utter);
+      isSpeaking = true;
+      updateVoiceButton();
+    }
+
+    function stopSpeech() {
+      if (synth && synth.speaking) {
+        synth.cancel();
+      }
+      isSpeaking = false;
+      updateVoiceButton();
+    }
+
+    function updateVoiceButton() {
+      const btn = document.getElementById('voiceToggleBtn');
+      const icon = document.getElementById('speakerIcon');
+      const txt = document.getElementById('voiceStatusText');
+
+      if (isSpeaking) {
+        btn.style.background = 'rgba(239, 68, 68, 0.2)';
+        btn.style.borderColor = '#ef4444';
+        icon.textContent = '⏹️';
+        txt.textContent = 'Stop';
+      } else {
+        btn.style.background = 'rgba(99, 102, 241, 0.15)';
+        btn.style.borderColor = 'var(--accent-indigo)';
+        icon.textContent = '🔊';
+        txt.textContent = 'Listen';
+      }
+    }
+
+    // ==========================================
+    // 16 Bespoke Interactive SVG Simulators
+    // ==========================================
+    function renderSimulator(simType) {
+      const title = document.getElementById('simTitle');
+      const stats = document.getElementById('simStatsBar');
+      const canvas = document.getElementById('simCanvasArea');
+      const controls = document.getElementById('simControls');
+
+      canvas.innerHTML = '';
+      controls.innerHTML = '';
+      stats.innerHTML = '';
+
+      switch (simType) {
+        case 'tales_dots_lines_intro':
+          renderTalesDotsLinesIntro(title, stats, canvas, controls);
+          break;
+        case 'balancing_act_mean_fulcrum':
+          renderBalancingActMeanFulcrum(title, stats, canvas, controls);
+          break;
+        case 'unchanging_mean_properties':
+          renderUnchangingMeanProperties(title, stats, canvas, controls);
+          break;
+        case 'outlier_robustness_comparator':
+          renderOutlierRobustnessComparator(title, stats, canvas, controls);
+          break;
+        case 'median_ordered_ranker':
+          renderMedianOrderedRanker(title, stats, canvas, controls);
+          break;
+        case 'finding_unknown_equation_solver':
+          renderFindingUnknownEquationSolver(title, stats, canvas, controls);
+          break;
+        case 'frequency_table_mean_median':
+          renderFrequencyTableMeanMedian(title, stats, canvas, controls);
+          break;
+        case 'spreadsheet_formula_studio':
+          renderSpreadsheetFormulaStudio(title, stats, canvas, controls);
+          break;
+        case 'data_visualization_scale_lab':
+          renderDataVisualizationScaleLab(title, stats, canvas, controls);
+          break;
+        case 'line_graph_slope_navigator':
+          renderLineGraphSlopeNavigator(title, stats, canvas, controls);
+          break;
+        case 'space_jam_orbital_traffic':
+          renderSpaceJamOrbitalTraffic(title, stats, canvas, controls);
+          break;
+        case 'rain_pattern_time_series':
+          renderRainPatternTimeSeries(title, stats, canvas, controls);
+          break;
+        case 'infographics_visual_storyteller':
+          renderInfographicsVisualStoryteller(title, stats, canvas, controls);
+          break;
+        case 'strip_chart_percentage_segmenter':
+          renderStripChartPercentageSegmenter(title, stats, canvas, controls);
+          break;
+        case 'sleepy_deepy_data_story':
+          renderSleepyDeepyDataStory(title, stats, canvas, controls);
+          break;
+        case 'game_of_hex_puzzle_lab':
+          renderGameOfHexPuzzleLab(title, stats, canvas, controls);
+          break;
+        default:
+          title.textContent = 'Statistical Visualiser';
+          canvas.innerHTML = '<div style="color:#94a3b8;">Simulator loading...</div>';
+      }
+    }
+
+    // 1. Tales by Dots and Lines
+    function renderTalesDotsLinesIntro(title, stats, canvas, controls) {
+      title.textContent = "Dot Plot & Frequency Line Generator";
+      let points = [2, 3, 3, 5, 5, 5, 6, 8, 8, 9];
+      let showLine = false;
+
+      function updateStats() {
+        const n = points.length;
+        const freqMap = {};
+        for (let i = 1; i <= 10; i++) freqMap[i] = 0;
+        points.forEach(p => { if (freqMap[p] !== undefined) freqMap[p]++; });
+
+        let maxF = 0;
+        let modes = [];
+        for (let k = 1; k <= 10; k++) {
+          if (freqMap[k] > maxF) {
+            maxF = freqMap[k];
+            modes = [k];
+          } else if (freqMap[k] === maxF && maxF > 0) {
+            modes.push(k);
+          }
+        }
+
+        const sum = points.reduce((acc, v) => acc + v, 0);
+        const mean = n > 0 ? (sum / n).toFixed(2) : "0.00";
+
+        let median = "0.00";
+        if (n > 0) {
+          const sorted = [...points].sort((a, b) => a - b);
+          const mid = Math.floor(n / 2);
+          if (n % 2 !== 0) {
+            median = sorted[mid].toString();
+          } else {
+            median = ((sorted[mid - 1] + sorted[mid]) / 2).toFixed(1);
+          }
+        }
+
+        const modeStr = maxF > 0 ? `${modes.join(', ')} (Freq: ${maxF})` : 'None';
+
+        stats.innerHTML = `
+          <div class="stat-pill">Data Count (N): <strong id="dotN">${n}</strong></div>
+          <div class="stat-pill">Mean (x̄): <strong id="dotMean" style="color:#a855f7;">${mean}</strong></div>
+          <div class="stat-pill">Median (M): <strong id="dotMedian" style="color:#10b981;">${median}</strong></div>
+          <div class="stat-pill">Peak Mode: <strong id="dotMode" style="color:#38bdf8;">${modeStr}</strong></div>
+        `;
+      }
+
+      function updateControls() {
+        controls.innerHTML = `
+          <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap; width:100%; margin-bottom:8px;">
+            <span style="font-size:12px; color:#94a3b8; font-weight:700;">Drop Dot at:</span>
+            ${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(v => `
+              <button class="sim-btn" style="padding:4px 9px; min-width:28px; font-weight:700; font-size:12px;" onclick="addPoint(${v})">${v}</button>
+            `).join('')}
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; width:100%;">
+            <button class="sim-btn" onclick="addPoint(Math.floor(Math.random() * 10) + 1)">🎲 Random Dot</button>
+            <button class="sim-btn" onclick="removeLastPoint()">↩ Remove Last</button>
+            <button class="sim-btn" onclick="resetPoints()">🔄 Reset</button>
+            <button class="sim-btn ${showLine ? 'active' : ''}" id="btnToggleLine" onclick="toggleLine()">📈 ${showLine ? 'Hide' : 'Show'} Line Graph</button>
+          </div>
+        `;
+      }
+
+      function draw() {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        // Subtle guide text at top
+        const tip = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        tip.setAttribute("x", "230");
+        tip.setAttribute("y", "26");
+        tip.setAttribute("fill", "#94a3b8");
+        tip.setAttribute("font-size", "11");
+        tip.setAttribute("font-weight", "500");
+        tip.setAttribute("text-anchor", "middle");
+        tip.textContent = "👆 Click column or tap buttons to drop dots • Toggle line graph for trend";
+        svg.appendChild(tip);
+
+        // Axis line
+        const axis = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        axis.setAttribute("x1", "30");
+        axis.setAttribute("y1", "300");
+        axis.setAttribute("x2", "430");
+        axis.setAttribute("y2", "300");
+        axis.setAttribute("stroke", "#64748b");
+        axis.setAttribute("stroke-width", "2.5");
+        svg.appendChild(axis);
+
+        // Frequency mapping
+        const freqMap = {};
+        for (let i = 1; i <= 10; i++) freqMap[i] = 0;
+        points.forEach(p => { if (freqMap[p] !== undefined) freqMap[p]++; });
+
+        const maxCount = Math.max(...Object.values(freqMap), 1);
+        const dy = maxCount > 8 ? Math.max(12, Math.floor(220 / maxCount)) : 22;
+        const dotR = Math.min(8.5, Math.max(4.5, Math.floor(dy * 0.4)));
+
+        // Gridlines
+        for (let yLevel = 1; yLevel <= Math.min(maxCount, 8); yLevel++) {
+          const gridY = 300 - yLevel * dy;
+          const gLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+          gLine.setAttribute("x1", "35");
+          gLine.setAttribute("y1", gridY);
+          gLine.setAttribute("x2", "425");
+          gLine.setAttribute("y2", gridY);
+          gLine.setAttribute("stroke", "rgba(255,255,255,0.05)");
+          gLine.setAttribute("stroke-dasharray", "3,3");
+          svg.appendChild(gLine);
+        }
+
+        // Column interactive click areas and ticks
+        for (let i = 1; i <= 10; i++) {
+          const x = 35 + i * 36;
+
+          // Clickable column zone
+          const colHitbox = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+          colHitbox.setAttribute("x", x - 17);
+          colHitbox.setAttribute("y", "35");
+          colHitbox.setAttribute("width", "34");
+          colHitbox.setAttribute("height", "265");
+          colHitbox.setAttribute("fill", "transparent");
+          colHitbox.setAttribute("rx", "4");
+          colHitbox.style.cursor = "pointer";
+          colHitbox.addEventListener("mouseenter", () => {
+            colHitbox.setAttribute("fill", "rgba(99, 102, 241, 0.12)");
+          });
+          colHitbox.addEventListener("mouseleave", () => {
+            colHitbox.setAttribute("fill", "transparent");
+          });
+          colHitbox.addEventListener("click", () => {
+            window.addPoint(i);
+          });
+          svg.appendChild(colHitbox);
+
+          // Tick marks
+          const tick = document.createElementNS("http://www.w3.org/2000/svg", "line");
+          tick.setAttribute("x1", x);
+          tick.setAttribute("y1", "300");
+          tick.setAttribute("x2", x);
+          tick.setAttribute("y2", "308");
+          tick.setAttribute("stroke", "#94a3b8");
+          tick.setAttribute("stroke-width", "2");
+          svg.appendChild(tick);
+
+          // Number label
+          const lbl = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          lbl.setAttribute("x", x);
+          lbl.setAttribute("y", "328");
+          lbl.setAttribute("fill", "#cbd5e1");
+          lbl.setAttribute("font-size", "12");
+          lbl.setAttribute("font-weight", "bold");
+          lbl.setAttribute("text-anchor", "middle");
+          lbl.textContent = i;
+          svg.appendChild(lbl);
+        }
+
+        // Collect line vertices
+        const linePts = [];
+        for (let val = 1; val <= 10; val++) {
+          const count = freqMap[val];
+          const x = 35 + val * 36;
+          const y = 300 - count * dy;
+          linePts.push({ x, y, count });
+
+          // Stacked dots
+          for (let c = 1; c <= count; c++) {
+            const dotY = 300 - c * dy;
+            const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            dot.setAttribute("cx", x);
+            dot.setAttribute("cy", dotY);
+            dot.setAttribute("r", dotR);
+            dot.setAttribute("fill", "#6366f1");
+            dot.setAttribute("stroke", "#c7d2fe");
+            dot.setAttribute("stroke-width", "1.5");
+            dot.style.cursor = "pointer";
+            dot.addEventListener("click", (e) => {
+              e.stopPropagation();
+              window.removePoint(val);
+            });
+            svg.appendChild(dot);
+          }
+
+          // Count badge on top if non-zero
+          if (count > 0) {
+            const cntTxt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            cntTxt.setAttribute("x", x);
+            cntTxt.setAttribute("y", 300 - count * dy - (dotR + 4));
+            cntTxt.setAttribute("fill", "#38bdf8");
+            cntTxt.setAttribute("font-size", "10");
+            cntTxt.setAttribute("font-weight", "bold");
+            cntTxt.setAttribute("text-anchor", "middle");
+            cntTxt.textContent = count;
+            svg.appendChild(cntTxt);
+          }
+        }
+
+        // Draw Line Graph if enabled
+        if (showLine) {
+          // Area fill under polygon
+          const areaPoints = [
+            `${linePts[0].x},300`,
+            ...linePts.map(p => `${p.x},${p.y}`),
+            `${linePts[linePts.length - 1].x},300`
+          ].join(' ');
+
+          const areaPoly = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+          areaPoly.setAttribute("points", areaPoints);
+          areaPoly.setAttribute("fill", "rgba(56, 189, 248, 0.15)");
+          svg.appendChild(areaPoly);
+
+          // Path line
+          const pathD = linePts.map((p, idx) => `${idx === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+          const line = document.createElementNS("http://www.w3.org/2000/svg", "path");
+          line.setAttribute("d", pathD);
+          line.setAttribute("fill", "none");
+          line.setAttribute("stroke", "#38bdf8");
+          line.setAttribute("stroke-width", "2.5");
+          svg.appendChild(line);
+
+          // Vertex markers
+          linePts.forEach(p => {
+            const vDot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            vDot.setAttribute("cx", p.x);
+            vDot.setAttribute("cy", p.y);
+            vDot.setAttribute("r", "4");
+            vDot.setAttribute("fill", "#38bdf8");
+            vDot.setAttribute("stroke", "#070b14");
+            vDot.setAttribute("stroke-width", "1.5");
+            svg.appendChild(vDot);
+          });
+        }
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+
+        updateStats();
+        updateControls();
+      }
+
+      window.addPoint = (val) => {
+        if (points.length < 50) {
+          points.push(val);
+          draw();
+        }
+      };
+
+      window.removePoint = (val) => {
+        const idx = points.lastIndexOf(val);
+        if (idx !== -1) {
+          points.splice(idx, 1);
+          draw();
+        }
+      };
+
+      window.removeLastPoint = () => {
+        if (points.length > 0) {
+          points.pop();
+          draw();
+        }
+      };
+
+      window.resetPoints = () => {
+        points = [2, 3, 3, 5, 5, 5, 6, 8, 8, 9];
+        draw();
+      };
+
+      window.toggleLine = () => {
+        showLine = !showLine;
+        draw();
+      };
+
+      draw();
+    }
+
+    // 2. The Balancing Act (Mean as Fulcrum)
+    function renderBalancingActMeanFulcrum(title, stats, canvas, controls) {
+      title.textContent = "The Balancing Act: Arithmetic Mean as the Seesaw Fulcrum";
+      let weights = [2, 4, 9];
+      let fulcrum = 5.0; // Mean is (2+4+9)/3 = 5.0
+
+      stats.innerHTML = `
+        <div class="stat-pill">True Mean: <strong id="meanVal">5.0</strong></div>
+        <div class="stat-pill">Fulcrum: <strong id="fulcrumVal">5.0</strong></div>
+        <div class="stat-pill">Net Torque: <strong id="torqueVal" style="color:#34d399;">0.00 (Equilibrium)</strong></div>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-group">
+          <span class="control-label">Move Fulcrum:</span>
+          <input type="range" class="control-slider" min="1" max="9" step="0.1" value="5.0" id="fulcrumSlider">
+          <span class="control-val" id="fulcrumText">5.0</span>
+        </div>
+        <button class="sim-btn" onclick="setBalanced()">Auto-Balance</button>
+      `;
+
+      function draw() {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        const actualMean = weights.reduce((a, b) => a + b, 0) / weights.length;
+        const torque = weights.reduce((acc, w) => acc + (w - fulcrum), 0);
+        const tiltAngle = Math.max(-15, Math.min(15, torque * 4)); // degrees
+
+        const rad = (tiltAngle * Math.PI) / 180;
+        const cx = 40 + fulcrum * 38;
+        const cy = 230;
+
+        // Fulcrum stand
+        const triangle = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+        triangle.setAttribute("points", `${cx},${cy} ${cx - 20},${cy + 45} ${cx + 20},${cy + 45}`);
+        triangle.setAttribute("fill", Math.abs(torque) < 0.1 ? "#10b981" : "#f59e0b");
+        triangle.setAttribute("stroke", "#f8fafc");
+        triangle.setAttribute("stroke-width", "2");
+        svg.appendChild(triangle);
+
+        // Ground base
+        const ground = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        ground.setAttribute("x1", "40");
+        ground.setAttribute("y1", cy + 45);
+        ground.setAttribute("x2", "420");
+        ground.setAttribute("y2", cy + 45);
+        ground.setAttribute("stroke", "#64748b");
+        ground.setAttribute("stroke-width", "3");
+        svg.appendChild(ground);
+
+        // Seesaw Beam rotated around (cx, cy)
+        const gBeam = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        gBeam.setAttribute("transform", `rotate(${tiltAngle}, ${cx}, ${cy})`);
+
+        const beam = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        beam.setAttribute("x", "40");
+        beam.setAttribute("y", cy - 8);
+        beam.setAttribute("width", "380");
+        beam.setAttribute("height", "16");
+        beam.setAttribute("rx", "6");
+        beam.setAttribute("fill", "#6366f1");
+        beam.setAttribute("stroke", "#818cf8");
+        beam.setAttribute("stroke-width", "2");
+        gBeam.appendChild(beam);
+
+        // Scale ticks along beam
+        for (let i = 1; i <= 9; i++) {
+          const bx = 40 + i * 38;
+          const tick = document.createElementNS("http://www.w3.org/2000/svg", "line");
+          tick.setAttribute("x1", bx);
+          tick.setAttribute("y1", cy - 8);
+          tick.setAttribute("x2", bx);
+          tick.setAttribute("y2", cy + 8);
+          tick.setAttribute("stroke", "#e2e8f0");
+          tick.setAttribute("stroke-width", "1.5");
+          gBeam.appendChild(tick);
+
+          const lbl = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          lbl.setAttribute("x", bx);
+          lbl.setAttribute("y", cy + 24);
+          lbl.setAttribute("fill", "#cbd5e1");
+          lbl.setAttribute("font-size", "11");
+          lbl.setAttribute("text-anchor", "middle");
+          lbl.textContent = i;
+          gBeam.appendChild(lbl);
+        }
+
+        // Draw weights on beam
+        weights.forEach(w => {
+          const wx = 40 + w * 38;
+          const weightBox = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+          weightBox.setAttribute("x", wx - 14);
+          weightBox.setAttribute("y", cy - 36);
+          weightBox.setAttribute("width", "28");
+          weightBox.setAttribute("height", "28");
+          weightBox.setAttribute("rx", "5");
+          weightBox.setAttribute("fill", "#f43f5e");
+          weightBox.setAttribute("stroke", "#fda4af");
+          weightBox.setAttribute("stroke-width", "2");
+          gBeam.appendChild(weightBox);
+
+          const wText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          wText.setAttribute("x", wx);
+          wText.setAttribute("y", cy - 18);
+          wText.setAttribute("fill", "#fff");
+          wText.setAttribute("font-size", "12");
+          wText.setAttribute("font-weight", "bold");
+          wText.setAttribute("text-anchor", "middle");
+          wText.textContent = "1kg";
+          gBeam.appendChild(wText);
+        });
+
+        svg.appendChild(gBeam);
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+
+        document.getElementById('meanVal').textContent = actualMean.toFixed(1);
+        document.getElementById('fulcrumVal').textContent = fulcrum.toFixed(1);
+        document.getElementById('torqueVal').textContent = Math.abs(torque) < 0.05 ? "0.00 (Balanced!)" : `${torque > 0 ? '+' : ''}${torque.toFixed(2)}`;
+        document.getElementById('torqueVal').style.color = Math.abs(torque) < 0.05 ? "#34d399" : "#f43f5e";
+        document.getElementById('fulcrumText').textContent = fulcrum.toFixed(1);
+      }
+
+      window.setBalanced = () => {
+        fulcrum = 5.0;
+        document.getElementById('fulcrumSlider').value = 5.0;
+        draw();
+      };
+
+      document.getElementById('fulcrumSlider').oninput = (e) => {
+        fulcrum = parseFloat(e.target.value);
+        draw();
+      };
+
+      draw();
+    }
+
+    // 3. Unchanging Mean & Shifts
+    function renderUnchangingMeanProperties(title, stats, canvas, controls) {
+      title.textContent = "Unchanging Mean: Shift (+c) & Scale (×k) Invariance";
+      let shift = 0;
+      let scale = 1.0;
+      const baseData = [4, 6, 8, 10, 12]; // base mean = 8
+
+      stats.innerHTML = `
+        <div class="stat-pill">Base Mean: <strong>8.0</strong></div>
+        <div class="stat-pill">Transformed Mean: <strong id="transMean" style="color:#fbbf24;">8.0</strong></div>
+        <div class="stat-pill">Formula: <strong id="transFormula">1.0 × 8 + 0 = 8.0</strong></div>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-group">
+          <span class="control-label">Shift (+c):</span>
+          <input type="range" class="control-slider" min="-5" max="10" value="0" id="shiftSlider">
+          <span class="control-val" id="shiftText">+0</span>
+        </div>
+        <div class="control-group">
+          <span class="control-label">Scale (×k):</span>
+          <input type="range" class="control-slider" min="0.5" max="2.5" step="0.5" value="1.0" id="scaleSlider">
+          <span class="control-val" id="scaleText">×1.0</span>
+        </div>
+      `;
+
+      function draw() {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        // Transformed data
+        const currentData = baseData.map(x => x * scale + shift);
+        const currentMean = 8.0 * scale + shift;
+
+        // Number line
+        const axis = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        axis.setAttribute("x1", "30");
+        axis.setAttribute("y1", "200");
+        axis.setAttribute("x2", "430");
+        axis.setAttribute("y2", "200");
+        axis.setAttribute("stroke", "#64748b");
+        axis.setAttribute("stroke-width", "2");
+        svg.appendChild(axis);
+
+        // Draw points
+        currentData.forEach(val => {
+          const px = 30 + (val / 40) * 400;
+          if (px >= 20 && px <= 440) {
+            const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            dot.setAttribute("cx", px);
+            dot.setAttribute("cy", "200");
+            dot.setAttribute("r", "8");
+            dot.setAttribute("fill", "#38bdf8");
+            dot.setAttribute("stroke", "#0284c7");
+            dot.setAttribute("stroke-width", "2");
+            svg.appendChild(dot);
+          }
+        });
+
+        // Mean indicator arrow
+        const mx = 30 + (currentMean / 40) * 400;
+        if (mx >= 20 && mx <= 440) {
+          const arrow = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+          arrow.setAttribute("points", `${mx},182 ${mx - 8},160 ${mx + 8},160`);
+          arrow.setAttribute("fill", "#f59e0b");
+          svg.appendChild(arrow);
+
+          const meanTxt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          meanTxt.setAttribute("x", mx);
+          meanTxt.setAttribute("y", "148");
+          meanTxt.setAttribute("fill", "#fbbf24");
+          meanTxt.setAttribute("font-size", "13");
+          meanTxt.setAttribute("font-weight", "bold");
+          meanTxt.setAttribute("text-anchor", "middle");
+          meanTxt.textContent = `Mean = ${currentMean.toFixed(1)}`;
+          svg.appendChild(meanTxt);
+        }
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+
+        document.getElementById('transMean').textContent = currentMean.toFixed(1);
+        document.getElementById('transFormula').textContent = `${scale.toFixed(1)} × 8 + (${shift}) = ${currentMean.toFixed(1)}`;
+        document.getElementById('shiftText').textContent = shift >= 0 ? `+${shift}` : `${shift}`;
+        document.getElementById('scaleText').textContent = `×${scale.toFixed(1)}`;
+      }
+
+      document.getElementById('shiftSlider').oninput = (e) => {
+        shift = parseInt(e.target.value);
+        draw();
+      };
+      document.getElementById('scaleSlider').oninput = (e) => {
+        scale = parseFloat(e.target.value);
+        draw();
+      };
+
+      draw();
+    }
+
+    // 4. Outlier Robustness: Mean vs Median
+    function renderOutlierRobustnessComparator(title, stats, canvas, controls) {
+      title.textContent = "Relatively Unchanged: Mean Sensitivity vs Median Robustness";
+      let outlier = 30; // initial dataset: 10, 15, 20, 25, 30
+
+      stats.innerHTML = `
+        <div class="stat-pill">Outlier Value: <strong id="outVal">30</strong></div>
+        <div class="stat-pill">Arithmetic Mean: <strong id="outMean" style="color:#f43f5e;">20.0</strong></div>
+        <div class="stat-pill">Median: <strong id="outMed" style="color:#10b981;">20.0</strong></div>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-group">
+          <span class="control-label">Drag 5th Value (Outlier):</span>
+          <input type="range" class="control-slider" min="30" max="180" step="5" value="30" id="outlierSlider">
+          <span class="control-val" id="outlierValText">30</span>
+        </div>
+      `;
+
+      function draw() {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        const data = [10, 15, 20, 25, outlier];
+        const mean = (10 + 15 + 20 + 25 + outlier) / 5;
+        const median = 20; // sorted 3rd element is always 20 for outlier >= 25
+
+        // Number line (0 to 200)
+        const axis = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        axis.setAttribute("x1", "40");
+        axis.setAttribute("y1", "220");
+        axis.setAttribute("x2", "420");
+        axis.setAttribute("y2", "220");
+        axis.setAttribute("stroke", "#64748b");
+        axis.setAttribute("stroke-width", "2");
+        svg.appendChild(axis);
+
+        // Data points
+        data.forEach((val, idx) => {
+          const px = 40 + (val / 200) * 380;
+          const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+          dot.setAttribute("cx", px);
+          dot.setAttribute("cy", "220");
+          dot.setAttribute("r", idx === 4 ? "10" : "7");
+          dot.setAttribute("fill", idx === 4 ? "#f43f5e" : "#6366f1");
+          dot.setAttribute("stroke", "#fff");
+          dot.setAttribute("stroke-width", "2");
+          svg.appendChild(dot);
+        });
+
+        // Median Marker (Green vertical line)
+        const medX = 40 + (median / 200) * 380;
+        const medLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        medLine.setAttribute("x1", medX);
+        medLine.setAttribute("y1", "120");
+        medLine.setAttribute("x2", medX);
+        medLine.setAttribute("y2", "240");
+        medLine.setAttribute("stroke", "#10b981");
+        medLine.setAttribute("stroke-width", "3.5");
+        medLine.setAttribute("stroke-dasharray", "6,4");
+        svg.appendChild(medLine);
+
+        const medText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        medText.setAttribute("x", medX);
+        medText.setAttribute("y", "105");
+        medText.setAttribute("fill", "#6ee7b7");
+        medText.setAttribute("font-size", "12");
+        medText.setAttribute("font-weight", "bold");
+        medText.setAttribute("text-anchor", "middle");
+        medText.textContent = "MEDIAN = 20 (Unchanged!)";
+        svg.appendChild(medText);
+
+        // Mean Marker (Red vertical arrow)
+        const meanX = 40 + (mean / 200) * 380;
+        const meanArrow = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        meanArrow.setAttribute("x1", meanX);
+        meanArrow.setAttribute("y1", "160");
+        meanArrow.setAttribute("x2", meanX);
+        meanArrow.setAttribute("y2", "220");
+        meanArrow.setAttribute("stroke", "#f43f5e");
+        meanArrow.setAttribute("stroke-width", "3.5");
+        svg.appendChild(meanArrow);
+
+        const meanText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        meanText.setAttribute("x", meanX);
+        meanText.setAttribute("y", "150");
+        meanText.setAttribute("fill", "#fca5a5");
+        meanText.setAttribute("font-size", "12");
+        meanText.setAttribute("font-weight", "bold");
+        meanText.setAttribute("text-anchor", "middle");
+        meanText.textContent = `MEAN = ${mean.toFixed(1)}`;
+        svg.appendChild(meanText);
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+
+        document.getElementById('outVal').textContent = outlier;
+        document.getElementById('outMean').textContent = mean.toFixed(1);
+        document.getElementById('outMed').textContent = "20.0 (Robust!)";
+        document.getElementById('outlierValText').textContent = outlier;
+      }
+
+      document.getElementById('outlierSlider').oninput = (e) => {
+        outlier = parseInt(e.target.value);
+        draw();
+      };
+
+      draw();
+    }
+
+    // 5. Tinkering with Median (Odd vs Even)
+    function renderMedianOrderedRanker(title, stats, canvas, controls) {
+      title.textContent = "Tinkering with Median: Odd vs Even Rank Splitting";
+      let isEven = false;
+
+      stats.innerHTML = `
+        <div class="stat-pill">Count (N): <strong id="medCount">7 (Odd)</strong></div>
+        <div class="stat-pill">Rank: <strong id="medRank">(7+1)/2 = 4th Item</strong></div>
+        <div class="stat-pill">Median: <strong id="medVal" style="color:#10b981;">18</strong></div>
+      `;
+
+      controls.innerHTML = `
+        <button class="sim-btn active" id="btnOdd" onclick="setCount(false)">Odd Count (N = 7)</button>
+        <button class="sim-btn" id="btnEven" onclick="setCount(true)">Even Count (N = 8)</button>
+      `;
+
+      function draw() {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        const data = isEven ? [6, 9, 14, 18, 22, 28, 32, 40] : [6, 9, 14, 18, 22, 28, 35];
+        const n = data.length;
+        const boxW = 44;
+        const startX = (460 - n * (boxW + 10)) / 2;
+
+        data.forEach((val, i) => {
+          const x = startX + i * (boxW + 10);
+          const y = 140;
+          const isMid = isEven ? (i === 3 || i === 4) : (i === 3);
+
+          const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+          rect.setAttribute("x", x);
+          rect.setAttribute("y", y);
+          rect.setAttribute("width", boxW);
+          rect.setAttribute("height", "55");
+          rect.setAttribute("rx", "8");
+          rect.setAttribute("fill", isMid ? "rgba(16, 185, 129, 0.4)" : "rgba(99, 102, 241, 0.2)");
+          rect.setAttribute("stroke", isMid ? "#10b981" : "#6366f1");
+          rect.setAttribute("stroke-width", isMid ? "3" : "1.5");
+          svg.appendChild(rect);
+
+          const txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          txt.setAttribute("x", x + boxW / 2);
+          txt.setAttribute("y", y + 34);
+          txt.setAttribute("fill", isMid ? "#6ee7b7" : "#e2e8f0");
+          txt.setAttribute("font-size", "16");
+          txt.setAttribute("font-weight", "bold");
+          txt.setAttribute("text-anchor", "middle");
+          txt.textContent = val;
+          svg.appendChild(txt);
+
+          // Rank label
+          const rTxt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          rTxt.setAttribute("x", x + boxW / 2);
+          rTxt.setAttribute("y", y + 78);
+          rTxt.setAttribute("fill", "#94a3b8");
+          rTxt.setAttribute("font-size", "11");
+          rTxt.setAttribute("text-anchor", "middle");
+          rTxt.textContent = `Rank ${i + 1}`;
+          svg.appendChild(rTxt);
+        });
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+
+        if (isEven) {
+          document.getElementById('medCount').textContent = '8 (Even)';
+          document.getElementById('medRank').textContent = 'Avg of 4th (18) & 5th (22)';
+          document.getElementById('medVal').textContent = '20.0';
+        } else {
+          document.getElementById('medCount').textContent = '7 (Odd)';
+          document.getElementById('medRank').textContent = '(7+1)/2 = 4th Item';
+          document.getElementById('medVal').textContent = '18.0';
+        }
+      }
+
+      window.setCount = (even) => {
+        isEven = even;
+        document.getElementById('btnOdd').className = `sim-btn ${!even ? 'active' : ''}`;
+        document.getElementById('btnEven').className = `sim-btn ${even ? 'active' : ''}`;
+        draw();
+      };
+
+      draw();
+    }
+
+    // 6. Finding the Unknown
+    function renderFindingUnknownEquationSolver(title, stats, canvas, controls) {
+      title.textContent = "Finding the Unknown: Inverse Mean Equation Solver";
+      let missingX = 75; // Target mean = 80 for 5 tests, sum = 400. Known 4: 70, 75, 80, 85 (sum=310) => X = 90
+
+      stats.innerHTML = `
+        <div class="stat-pill">Target Mean: <strong>80.0</strong></div>
+        <div class="stat-pill">Current Test 5 Score: <strong id="unkX">${missingX}</strong></div>
+        <div class="stat-pill">Current Mean: <strong id="currMean" style="color:#f59e0b;">77.0</strong></div>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-group">
+          <span class="control-label">Tune Score X:</span>
+          <input type="range" class="control-slider" min="50" max="100" value="75" id="unkSlider">
+          <span class="control-val" id="unkSliderText">75</span>
+        </div>
+      `;
+
+      function draw() {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        const sum = 70 + 75 + 80 + 85 + missingX;
+        const mean = sum / 5;
+        const isMatched = Math.abs(mean - 80) < 0.1;
+
+        // Balance scales graphic
+        svg.innerHTML = `
+          <!-- Target Mean Box -->
+          <rect x="50" y="80" width="160" height="90" rx="12" fill="rgba(99, 102, 241, 0.25)" stroke="#6366f1" stroke-width="2"/>
+          <text x="130" y="115" fill="#a5b4fc" font-size="12" font-weight="bold" text-anchor="middle">TARGET MEAN</text>
+          <text x="130" y="145" fill="#fff" font-size="24" font-weight="800" text-anchor="middle">80.0</text>
+          <text x="130" y="160" fill="#94a3b8" font-size="11" text-anchor="middle">Sum Required: 400</text>
+
+          <!-- Actual Total Sum Box -->
+          <rect x="250" y="80" width="160" height="90" rx="12" fill="${isMatched ? 'rgba(16, 185, 129, 0.3)' : 'rgba(244, 63, 94, 0.2)'}" stroke="${isMatched ? '#10b981' : '#f43f5e'}" stroke-width="2"/>
+          <text x="330" y="115" fill="${isMatched ? '#6ee7b7' : '#fca5a5'}" font-size="12" font-weight="bold" text-anchor="middle">CURRENT MEAN</text>
+          <text x="330" y="145" fill="#fff" font-size="24" font-weight="800" text-anchor="middle">${mean.toFixed(1)}</text>
+          <text x="330" y="160" fill="#94a3b8" font-size="11" text-anchor="middle">Total Sum: ${sum} / 400</text>
+
+          <!-- Equation Display -->
+          <text x="230" y="240" fill="#e2e8f0" font-size="15" font-weight="bold" text-anchor="middle">
+            (70 + 75 + 80 + 85 + X) ÷ 5 = 80
+          </text>
+          <text x="230" y="275" fill="${isMatched ? '#34d399' : '#fbbf24'}" font-size="16" font-weight="800" text-anchor="middle">
+            ${isMatched ? '✓ PERFECT! Required Score X = 90' : `310 + X = 400 ⟹ Needed X = 90 (Current X = ${missingX})`}
+          </text>
+        `;
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+
+        document.getElementById('unkX').textContent = missingX;
+        document.getElementById('currMean').textContent = mean.toFixed(1);
+        document.getElementById('currMean').style.color = isMatched ? '#34d399' : '#f59e0b';
+        document.getElementById('unkSliderText').textContent = missingX;
+      }
+
+      document.getElementById('unkSlider').oninput = (e) => {
+        missingX = parseInt(e.target.value);
+        draw();
+      };
+
+      draw();
+    }
+
+    // 7. Mean & Median with Frequencies
+    function renderFrequencyTableMeanMedian(title, stats, canvas, controls) {
+      title.textContent = "Frequency Distribution: Weighted Mean & Cumulative Median";
+      let weights = [10, 20, 30, 40];
+      let freqs = [3, 8, 12, 7]; // Total N = 30
+
+      stats.innerHTML = `
+        <div class="stat-pill">Total Items (N): <strong id="ftN">30</strong></div>
+        <div class="stat-pill">Weighted Mean: <strong id="ftMean" style="color:#38bdf8;">27.67</strong></div>
+        <div class="stat-pill">Median Class: <strong id="ftMed" style="color:#10b981;">30</strong></div>
+      `;
+
+      controls.innerHTML = `
+        <button class="sim-btn" onclick="bumpFreq(1)">+ Count at 20</button>
+        <button class="sim-btn" onclick="bumpFreq(2)">+ Count at 30</button>
+        <button class="sim-btn" onclick="resetFreqs()">Reset</button>
+      `;
+
+      function draw() {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        let totalN = 0, sumFX = 0;
+        let cf = 0;
+        const rows = weights.map((w, i) => {
+          const f = freqs[i];
+          totalN += f;
+          sumFX += w * f;
+          cf += f;
+          return { w, f, fx: w * f, cf };
+        });
+
+        const mean = sumFX / totalN;
+        const medianPos = (totalN + 1) / 2;
+        let medianVal = 10;
+        for (let r of rows) {
+          if (r.cf >= medianPos) { medianVal = r.w; break; }
+        }
+
+        // Table Header
+        svg.innerHTML = `
+          <rect x="30" y="30" width="400" height="35" fill="rgba(99, 102, 241, 0.4)" rx="6"/>
+          <text x="70" y="52" fill="#c7d2fe" font-size="12" font-weight="bold">Value (x)</text>
+          <text x="160" y="52" fill="#c7d2fe" font-size="12" font-weight="bold">Frequency (f)</text>
+          <text x="260" y="52" fill="#c7d2fe" font-size="12" font-weight="bold">f · x</text>
+          <text x="360" y="52" fill="#c7d2fe" font-size="12" font-weight="bold">Cum. Freq (cf)</text>
+        `;
+
+        rows.forEach((r, idx) => {
+          const y = 80 + idx * 42;
+          const isMed = r.w === medianVal;
+          const rowBg = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+          rowBg.setAttribute("x", "30");
+          rowBg.setAttribute("y", y);
+          rowBg.setAttribute("width", "400");
+          rowBg.setAttribute("height", "36");
+          rowBg.setAttribute("fill", isMed ? "rgba(16, 185, 129, 0.25)" : (idx % 2 === 0 ? "rgba(255, 255, 255, 0.03)" : "rgba(255, 255, 255, 0.07)"));
+          rowBg.setAttribute("stroke", isMed ? "#10b981" : "none");
+          rowBg.setAttribute("rx", "4");
+          svg.appendChild(rowBg);
+
+          svg.innerHTML += `
+            <text x="70" y="${y + 22}" fill="#fff" font-size="13" font-weight="bold">${r.w}</text>
+            <text x="160" y="${y + 22}" fill="#38bdf8" font-size="13" font-weight="bold">${r.f}</text>
+            <text x="260" y="${y + 22}" fill="#fbbf24" font-size="13">${r.fx}</text>
+            <text x="360" y="${y + 22}" fill="#a7f3d0" font-size="13" font-weight="bold">${r.cf}</text>
+          `;
+        });
+
+        // Summary Bar
+        svg.innerHTML += `
+          <rect x="30" y="260" width="400" height="50" rx="8" fill="rgba(15, 23, 42, 0.9)" stroke="#6366f1" stroke-width="1.5"/>
+          <text x="50" y="290" fill="#cbd5e1" font-size="13">
+            Mean = ${sumFX} ÷ ${totalN} = <tspan fill="#38bdf8" font-weight="bold">${mean.toFixed(2)}</tspan> | Median (Item ${medianPos.toFixed(1)}) = <tspan fill="#34d399" font-weight="bold">${medianVal}</tspan>
+          </text>
+        `;
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+
+        document.getElementById('ftN').textContent = totalN;
+        document.getElementById('ftMean').textContent = mean.toFixed(2);
+        document.getElementById('ftMed').textContent = medianVal;
+      }
+
+      window.bumpFreq = (idx) => {
+        freqs[idx]++;
+        draw();
+      };
+      window.resetFreqs = () => {
+        freqs = [3, 8, 12, 7];
+        draw();
+      };
+
+      draw();
+    }
+
+    // 8. Spreadsheets
+    function renderSpreadsheetFormulaStudio(title, stats, canvas, controls) {
+      title.textContent = "Spreadsheets: Interactive Cells, Ranges & Formulas";
+      let cellValues = [14, 22, 18, 30, 26];
+
+      stats.innerHTML = `
+        <div class="stat-pill">Range: <strong>A1:A5</strong></div>
+        <div class="stat-pill">=AVERAGE: <strong id="spAvg" style="color:#38bdf8;">22.0</strong></div>
+        <div class="stat-pill">=MEDIAN: <strong id="spMed" style="color:#10b981;">22.0</strong></div>
+      `;
+
+      controls.innerHTML = `
+        <button class="sim-btn" onclick="modifyCell(0, 5)">A1 +5</button>
+        <button class="sim-btn" onclick="modifyCell(3, 10)">A4 +10</button>
+        <button class="sim-btn" onclick="resetCells()">Reset Data</button>
+      `;
+
+      function draw() {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        const sum = cellValues.reduce((a, b) => a + b, 0);
+        const avg = sum / cellValues.length;
+        const sorted = [...cellValues].sort((a, b) => a - b);
+        const med = sorted[2];
+
+        // Spreadsheet grid layout
+        svg.innerHTML = `
+          <!-- Header Row -->
+          <rect x="50" y="30" width="40" height="30" fill="#1e293b" stroke="#475569"/>
+          <rect x="90" y="30" width="130" height="30" fill="#334155" stroke="#475569"/>
+          <text x="155" y="50" fill="#e2e8f0" font-size="12" font-weight="bold" text-anchor="middle">Column A</text>
+
+          <!-- Formula Bar -->
+          <rect x="240" y="30" width="190" height="30" fill="#0f172a" stroke="#6366f1" rx="4"/>
+          <text x="250" y="50" fill="#a5b4fc" font-size="11" font-family="monospace">fx: =AVERAGE(A1:A5)</text>
+        `;
+
+        cellValues.forEach((val, i) => {
+          const y = 60 + i * 32;
+          svg.innerHTML += `
+            <rect x="50" y="${y}" width="40" height="32" fill="#1e293b" stroke="#475569"/>
+            <text x="70" y="${y + 20}" fill="#94a3b8" font-size="12" font-weight="bold" text-anchor="middle">${i + 1}</text>
+
+            <rect x="90" y="${y}" width="130" height="32" fill="rgba(255, 255, 255, 0.04)" stroke="#475569"/>
+            <text x="155" y="${y + 21}" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">${val}</text>
+          `;
+        });
+
+        // Function Output Cards (Right Side)
+        svg.innerHTML += `
+          <g transform="translate(240, 75)">
+            <rect width="190" height="45" rx="6" fill="rgba(99, 102, 241, 0.15)" stroke="#6366f1"/>
+            <text x="12" y="20" fill="#a5b4fc" font-size="10" font-weight="bold">=SUM(A1:A5)</text>
+            <text x="12" y="37" fill="#fff" font-size="16" font-weight="800">${sum}</text>
+          </g>
+
+          <g transform="translate(240, 130)">
+            <rect width="190" height="45" rx="6" fill="rgba(6, 182, 212, 0.15)" stroke="#06b6d4"/>
+            <text x="12" y="20" fill="#67e8f9" font-size="10" font-weight="bold">=AVERAGE(A1:A5)</text>
+            <text x="12" y="37" fill="#fff" font-size="16" font-weight="800">${avg.toFixed(1)}</text>
+          </g>
+
+          <g transform="translate(240, 185)">
+            <rect width="190" height="45" rx="6" fill="rgba(16, 185, 129, 0.15)" stroke="#10b981"/>
+            <text x="12" y="20" fill="#6ee7b7" font-size="10" font-weight="bold">=MEDIAN(A1:A5)</text>
+            <text x="12" y="37" fill="#fff" font-size="16" font-weight="800">${med}</text>
+          </g>
+        `;
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+
+        document.getElementById('spAvg').textContent = avg.toFixed(1);
+        document.getElementById('spMed').textContent = med;
+      }
+
+      window.modifyCell = (idx, delta) => {
+        cellValues[idx] += delta;
+        draw();
+      };
+      window.resetCells = () => {
+        cellValues = [14, 22, 18, 30, 26];
+        draw();
+      };
+
+      draw();
+    }
+
+    // 9. Visualising & Interpreting Data (Scale Integrity)
+    function renderDataVisualizationScaleLab(title, stats, canvas, controls) {
+      title.textContent = "Data Visualisation: Misleading Truncated Axes vs True Scale";
+      let truncated = true;
+
+      stats.innerHTML = `
+        <div class="stat-pill">Axis Mode: <strong id="scMode">Truncated Baseline (Starts at 90)</strong></div>
+        <div class="stat-pill">Visual Distortion: <strong id="scDistort" style="color:#f43f5e;">Exaggerated ~400%</strong></div>
+      `;
+
+      controls.innerHTML = `
+        <button class="sim-btn active" id="btnTrunc" onclick="setScaleMode(true)">Truncated Axis (Starts at 90)</button>
+        <button class="sim-btn" id="btnZero" onclick="setScaleMode(false)">Honest Axis (Starts at 0)</button>
+      `;
+
+      function draw() {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        const vA = 94; // Product A score
+        const vB = 98; // Product B score
+
+        const yBase = 280;
+        let hA, hB, yAxisText;
+
+        if (truncated) {
+          // Range 90 to 100
+          hA = ((vA - 90) / 10) * 180;
+          hB = ((vB - 90) / 10) * 180;
+          yAxisText = ["90", "95", "100"];
+        } else {
+          // Range 0 to 100
+          hA = (vA / 100) * 180;
+          hB = (vB / 100) * 180;
+          yAxisText = ["0", "50", "100"];
+        }
+
+        // Axis
+        svg.innerHTML = `
+          <line x1="80" y1="80" x2="80" y2="${yBase}" stroke="#64748b" stroke-width="2"/>
+          <line x1="80" y1="${yBase}" x2="380" y2="${yBase}" stroke="#64748b" stroke-width="2"/>
+        `;
+
+        if (truncated) {
+          // Kink zigzag symbol near origin
+          svg.innerHTML += `
+            <path d="M 76 265 L 84 260 L 76 255 L 84 250 L 80 245" fill="none" stroke="#f59e0b" stroke-width="2.5"/>
+          `;
+        }
+
+        // Ticks
+        yAxisText.forEach((lbl, idx) => {
+          const y = yBase - idx * 90;
+          svg.innerHTML += `
+            <line x1="72" y1="${y}" x2="80" y2="${y}" stroke="#94a3b8" stroke-width="2"/>
+            <text x="62" y="${y + 4}" fill="#cbd5e1" font-size="11" text-anchor="end">${lbl}%</text>
+          `;
+        });
+
+        // Bar A
+        svg.innerHTML += `
+          <rect x="130" y="${yBase - hA}" width="70" height="${hA}" fill="rgba(99, 102, 241, 0.7)" stroke="#818cf8" stroke-width="2" rx="4"/>
+          <text x="165" y="${yBase - hA - 10}" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">94%</text>
+          <text x="165" y="${yBase + 24}" fill="#a5b4fc" font-size="12" font-weight="bold" text-anchor="middle">Brand A</text>
+        `;
+
+        // Bar B
+        svg.innerHTML += `
+          <rect x="250" y="${yBase - hB}" width="70" height="${hB}" fill="rgba(16, 185, 129, 0.7)" stroke="#34d399" stroke-width="2" rx="4"/>
+          <text x="285" y="${yBase - hB - 10}" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">98%</text>
+          <text x="285" y="${yBase + 24}" fill="#6ee7b7" font-size="12" font-weight="bold" text-anchor="middle">Brand B</text>
+        `;
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+
+        document.getElementById('scMode').textContent = truncated ? 'Truncated Baseline (Starts at 90)' : 'Honest Baseline (Starts at 0)';
+        document.getElementById('scDistort').textContent = truncated ? 'Exaggerated ~400% visual gap!' : 'True 4% difference';
+        document.getElementById('scDistort').style.color = truncated ? '#f43f5e' : '#34d399';
+      }
+
+      window.setScaleMode = (t) => {
+        truncated = t;
+        document.getElementById('btnTrunc').className = `sim-btn ${t ? 'active' : ''}`;
+        document.getElementById('btnZero').className = `sim-btn ${!t ? 'active' : ''}`;
+        draw();
+      };
+
+      draw();
+    }
+
+    // 10. Line Graphs & Slopes
+    function renderLineGraphSlopeNavigator(title, stats, canvas, controls) {
+      title.textContent = "Line Graphs: Tracking Continuous Trajectories & Slopes";
+      let activeSeg = 1; // 0: 6AM-10AM, 1: 10AM-2PM, 2: 2PM-6PM
+
+      const pts = [
+        { t: "6 AM", val: 18 },
+        { t: "10 AM", val: 26 },
+        { t: "2 PM", val: 34 },
+        { t: "6 PM", val: 34 },
+        { t: "10 PM", val: 22 }
+      ];
+
+      stats.innerHTML = `
+        <div class="stat-pill">Interval: <strong id="lgInterval">10 AM to 2 PM</strong></div>
+        <div class="stat-pill">Rate of Change: <strong id="lgSlope" style="color:#34d399;">+2.0°C / hour</strong></div>
+      `;
+
+      controls.innerHTML = `
+        <button class="sim-btn" onclick="setSeg(0)">6 AM – 10 AM (Morning Rise)</button>
+        <button class="sim-btn active" id="btnS1" onclick="setSeg(1)">10 AM – 2 PM (Peak Rise)</button>
+        <button class="sim-btn" id="btnS2" onclick="setSeg(2)">2 PM – 6 PM (Plateau Flat)</button>
+        <button class="sim-btn" id="btnS3" onclick="setSeg(3)">6 PM – 10 PM (Night Drop)</button>
+      `;
+
+      function draw() {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        const xBase = 60, yBase = 280;
+
+        // Axes
+        svg.innerHTML = `
+          <line x1="${xBase}" y1="60" x2="${xBase}" y2="${yBase}" stroke="#64748b" stroke-width="2"/>
+          <line x1="${xBase}" y1="${yBase}" x2="420" y2="${yBase}" stroke="#64748b" stroke-width="2"/>
+        `;
+
+        const coords = pts.map((p, i) => {
+          const x = xBase + i * 85;
+          const y = yBase - (p.val / 40) * 200;
+          return { x, y, ...p };
+        });
+
+        // Draw line segments
+        for (let i = 0; i < coords.length - 1; i++) {
+          const isSelected = i === activeSeg;
+          const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+          line.setAttribute("x1", coords[i].x);
+          line.setAttribute("y1", coords[i].y);
+          line.setAttribute("x2", coords[i+1].x);
+          line.setAttribute("y2", coords[i+1].y);
+          line.setAttribute("stroke", isSelected ? "#f59e0b" : "#6366f1");
+          line.setAttribute("stroke-width", isSelected ? "4.5" : "2.5");
+          svg.appendChild(line);
+        }
+
+        // Points
+        coords.forEach((p, i) => {
+          const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+          dot.setAttribute("cx", p.x);
+          dot.setAttribute("cy", p.y);
+          dot.setAttribute("r", "6");
+          dot.setAttribute("fill", "#fff");
+          dot.setAttribute("stroke", "#38bdf8");
+          dot.setAttribute("stroke-width", "2");
+          svg.appendChild(dot);
+
+          svg.innerHTML += `
+            <text x="${p.x}" y="${p.y - 12}" fill="#38bdf8" font-size="11" font-weight="bold" text-anchor="middle">${p.val}°C</text>
+            <text x="${p.x}" y="${yBase + 22}" fill="#cbd5e1" font-size="11" text-anchor="middle">${p.t}</text>
+          `;
+        });
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+
+        const p1 = pts[activeSeg];
+        const p2 = pts[activeSeg + 1];
+        const dt = 4; // 4 hours
+        const dy = p2.val - p1.val;
+        const slope = dy / dt;
+
+        document.getElementById('lgInterval').textContent = `${p1.t} to ${p2.t}`;
+        document.getElementById('lgSlope').textContent = slope === 0 ? "0.0°C / hr (Constant Temperature)" : `${slope > 0 ? '+' : ''}${slope.toFixed(2)}°C / hr`;
+        document.getElementById('lgSlope').style.color = slope > 0 ? "#34d399" : (slope < 0 ? "#f43f5e" : "#fbbf24");
+      }
+
+      window.setSeg = (idx) => {
+        activeSeg = idx;
+        draw();
+      };
+
+      draw();
+    }
+
+    // 11. Space Jam: Orbital Traffic
+    function renderSpaceJamOrbitalTraffic(title, stats, canvas, controls) {
+      title.textContent = "Space Jam: Exponential Satellite Traffic in Low Earth Orbit";
+      let year = 2024;
+
+      const satData = {
+        1960: { sats: 50, debris: 200 },
+        1980: { sats: 400, debris: 4500 },
+        2000: { sats: 900, debris: 9000 },
+        2020: { sats: 3500, debris: 25000 },
+        2024: { sats: 10000, debris: 36000 },
+        2030: { sats: 25000, debris: 60000 }
+      };
+
+      stats.innerHTML = `
+        <div class="stat-pill">Year: <strong id="orbYear">2024</strong></div>
+        <div class="stat-pill">Active Satellites: <strong id="orbSats" style="color:#38bdf8;">10,000</strong></div>
+        <div class="stat-pill">Debris Pieces (>10cm): <strong id="orbDebris" style="color:#f43f5e;">36,000</strong></div>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-group">
+          <span class="control-label">Year:</span>
+          <input type="range" class="control-slider" min="1960" max="2030" step="10" value="2024" id="yearSlider">
+          <span class="control-val" id="yearValText">2024</span>
+        </div>
+      `;
+
+      function draw() {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "-200 -180 400 360");
+
+        // Earth
+        const earth = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        earth.setAttribute("cx", "0");
+        earth.setAttribute("cy", "0");
+        earth.setAttribute("r", "55");
+        earth.setAttribute("fill", "#1d4ed8");
+        earth.setAttribute("stroke", "#38bdf8");
+        earth.setAttribute("stroke-width", "2");
+        svg.appendChild(earth);
+
+        // Orbital shells
+        const shell1 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        shell1.setAttribute("cx", "0");
+        shell1.setAttribute("cy", "0");
+        shell1.setAttribute("r", "95");
+        shell1.setAttribute("fill", "none");
+        shell1.setAttribute("stroke", "rgba(99, 102, 241, 0.3)");
+        shell1.setAttribute("stroke-dasharray", "4,4");
+        svg.appendChild(shell1);
+
+        const shell2 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        shell2.setAttribute("cx", "0");
+        shell2.setAttribute("cy", "0");
+        shell2.setAttribute("r", "140");
+        shell2.setAttribute("fill", "none");
+        shell2.setAttribute("stroke", "rgba(244, 63, 94, 0.25)");
+        shell2.setAttribute("stroke-dasharray", "4,4");
+        svg.appendChild(shell2);
+
+        // Density cloud particles based on year
+        const closestYear = [1960, 1980, 2000, 2020, 2024, 2030].reduce((prev, curr) => Math.abs(curr - year) < Math.abs(prev - year) ? curr : prev);
+        const data = satData[closestYear];
+        const particleCount = Math.min(180, Math.floor(data.sats / 120) + 15);
+
+        for (let i = 0; i < particleCount; i++) {
+          const angle = Math.random() * 2 * Math.PI;
+          const dist = 65 + Math.random() * 85;
+          const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+          dot.setAttribute("cx", dist * Math.cos(angle));
+          dot.setAttribute("cy", dist * Math.sin(angle));
+          dot.setAttribute("r", Math.random() > 0.8 ? "2.5" : "1.5");
+          dot.setAttribute("fill", Math.random() > 0.4 ? "#38bdf8" : "#f43f5e");
+          svg.appendChild(dot);
+        }
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+
+        document.getElementById('orbYear').textContent = closestYear;
+        document.getElementById('orbSats').textContent = data.sats.toLocaleString();
+        document.getElementById('orbDebris').textContent = data.debris.toLocaleString();
+        document.getElementById('yearValText').textContent = closestYear;
+      }
+
+      document.getElementById('yearSlider').oninput = (e) => {
+        year = parseInt(e.target.value);
+        draw();
+      };
+
+      draw();
+    }
+
+    // 12. Catch the Pattern in Rain (Monsoon Seasonal Curves)
+    function renderRainPatternTimeSeries(title, stats, canvas, controls) {
+      title.textContent = "Catch the Pattern in Rain: Seasonal Monsoons & Moving Averages";
+      let showMA = true;
+
+      const rain = [
+        { m: "Jan", v: 15 }, { m: "Feb", v: 20 }, { m: "Mar", v: 25 }, { m: "Apr", v: 45 },
+        { m: "May", v: 90 }, { m: "Jun", v: 210 }, { m: "Jul", v: 340 }, { m: "Aug", v: 310 },
+        { m: "Sep", v: 180 }, { m: "Oct", v: 80 }, { m: "Nov", v: 30 }, { m: "Dec", v: 15 }
+      ];
+
+      stats.innerHTML = `
+        <div class="stat-pill">Monsoon Peak: <strong style="color:#38bdf8;">July (340 mm)</strong></div>
+        <div class="stat-pill">Smoothing: <strong id="maStatus">3-Month Moving Average Active</strong></div>
+      `;
+
+      controls.innerHTML = `
+        <button class="sim-btn active" id="btnToggleMA" onclick="toggleMA()">Toggle 3-Month Moving Average</button>
+      `;
+
+      function draw() {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        const xBase = 45, yBase = 290;
+
+        // Bars
+        rain.forEach((d, i) => {
+          const x = xBase + i * 33;
+          const h = (d.v / 360) * 210;
+          const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+          rect.setAttribute("x", x);
+          rect.setAttribute("y", yBase - h);
+          rect.setAttribute("width", "22");
+          rect.setAttribute("height", h);
+          rect.setAttribute("fill", "rgba(6, 182, 212, 0.4)");
+          rect.setAttribute("stroke", "#0891b2");
+          rect.setAttribute("stroke-width", "1");
+          rect.setAttribute("rx", "3");
+          svg.appendChild(rect);
+
+          svg.innerHTML += `
+            <text x="${x + 11}" y="${yBase + 18}" fill="#94a3b8" font-size="10" text-anchor="middle">${d.m}</text>
+          `;
+        });
+
+        // 3-Month Moving Average Line
+        if (showMA) {
+          const maPts = [];
+          for (let i = 1; i < rain.length - 1; i++) {
+            const ma = (rain[i-1].v + rain[i].v + rain[i+1].v) / 3;
+            const x = xBase + i * 33 + 11;
+            const y = yBase - (ma / 360) * 210;
+            maPts.push({ x, y });
+          }
+
+          const pathD = maPts.map((p, idx) => `${idx === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+          const line = document.createElementNS("http://www.w3.org/2000/svg", "path");
+          line.setAttribute("d", pathD);
+          line.setAttribute("fill", "none");
+          line.setAttribute("stroke", "#fbbf24");
+          line.setAttribute("stroke-width", "3");
+          svg.appendChild(line);
+
+          maPts.forEach(p => {
+            const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            c.setAttribute("cx", p.x);
+            c.setAttribute("cy", p.y);
+            c.setAttribute("r", "4");
+            c.setAttribute("fill", "#f59e0b");
+            svg.appendChild(c);
+          });
+        }
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+
+        document.getElementById('maStatus').textContent = showMA ? '3-Month Moving Average Active (Golden Line)' : 'Raw Monthly Bars Only';
+      }
+
+      window.toggleMA = () => {
+        showMA = !showMA;
+        document.getElementById('btnToggleMA').className = `sim-btn ${showMA ? 'active' : ''}`;
+        draw();
+      };
+
+      draw();
+    }
+
+    // 13. Infographics
+    function renderInfographicsVisualStoryteller(title, stats, canvas, controls) {
+      title.textContent = "Infographics: Pictograms & Standardized Proportional Icons";
+      let iconUnit = 50; // 1 icon = 50 liters
+      let totalQty = 350;
+
+      stats.innerHTML = `
+        <div class="stat-pill">Total Quantity: <strong id="infoTotal">350 Liters</strong></div>
+        <div class="stat-pill">Icon Unit Scale: <strong>1 💧 = 50 Liters</strong></div>
+        <div class="stat-pill">Icons Displayed: <strong id="infoCount" style="color:#38bdf8;">7 Icons</strong></div>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-group">
+          <span class="control-label">Total Water (L):</span>
+          <input type="range" class="control-slider" min="100" max="600" step="50" value="350" id="infoSlider">
+          <span class="control-val" id="infoValText">350</span>
+        </div>
+      `;
+
+      function draw() {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        const numIcons = totalQty / iconUnit;
+
+        svg.innerHTML = `
+          <text x="230" y="60" fill="#38bdf8" font-size="16" font-weight="bold" text-anchor="middle">
+            VILLAGE WATER HARVESTING AUDIT
+          </text>
+          <text x="230" y="85" fill="#94a3b8" font-size="12" text-anchor="middle">
+            Key: Each Droplet (💧) = 50 Liters
+          </text>
+        `;
+
+        // Render icons in a clean grid
+        for (let i = 0; i < numIcons; i++) {
+          const col = i % 6;
+          const row = Math.floor(i / 6);
+          const x = 70 + col * 55;
+          const y = 140 + row * 65;
+
+          // Water droplet SVG path
+          svg.innerHTML += `
+            <g transform="translate(${x}, ${y})">
+              <path d="M 0 -22 C 12 -5 18 8 18 18 C 18 28 10 36 0 36 C -10 36 -18 28 -18 18 C -18 8 -12 -5 0 -22 Z"
+                    fill="rgba(6, 182, 212, 0.7)" stroke="#38bdf8" stroke-width="2"/>
+            </g>
+          `;
+        }
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+
+        document.getElementById('infoTotal').textContent = `${totalQty} Liters`;
+        document.getElementById('infoCount').textContent = `${numIcons} Droplet Icons`;
+        document.getElementById('infoValText').textContent = totalQty;
+      }
+
+      document.getElementById('infoSlider').oninput = (e) => {
+        totalQty = parseInt(e.target.value);
+        draw();
+      };
+
+      draw();
+    }
+
+    // 14. What can a Strip Say?
+    function renderStripChartPercentageSegmenter(title, stats, canvas, controls) {
+      title.textContent = "What can a Strip Say? 100% Segmented Strip Charts";
+      let sleep = 8;
+      let study = 6;
+      let play = 4;
+      let others = 6; // sum = 24 hours
+
+      stats.innerHTML = `
+        <div class="stat-pill">Total: <strong>24 Hours (100%)</strong></div>
+        <div class="stat-pill">Sleep: <strong id="strpSleep">33.3%</strong></div>
+        <div class="stat-pill">Study: <strong id="strpStudy">25.0%</strong></div>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-group">
+          <span class="control-label">Study Hours:</span>
+          <input type="range" class="control-slider" min="2" max="10" value="6" id="studySlider">
+          <span class="control-val" id="studyVal">6h</span>
+        </div>
+      `;
+
+      function draw() {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        others = Math.max(1, 24 - (sleep + study + play));
+        const total = sleep + study + play + others;
+
+        const pSleep = (sleep / total) * 100;
+        const pStudy = (study / total) * 100;
+        const pPlay = (play / total) * 100;
+        const pOther = (others / total) * 100;
+
+        const stripW = 380;
+        const startX = 40;
+        const y = 140;
+
+        const wSleep = (pSleep / 100) * stripW;
+        const wStudy = (pStudy / 100) * stripW;
+        const wPlay = (pPlay / 100) * stripW;
+        const wOther = (pOther / 100) * stripW;
+
+        svg.innerHTML = `
+          <text x="230" y="80" fill="#fff" font-size="16" font-weight="bold" text-anchor="middle">
+            STUDENT 24-HOUR DAILY ROUTINE STRIP
+          </text>
+
+          <!-- Outer frame -->
+          <rect x="${startX}" y="${y}" width="${stripW}" height="60" rx="8" fill="none" stroke="#64748b" stroke-width="2"/>
+
+          <!-- Sleep Segment -->
+          <rect x="${startX}" y="${y}" width="${wSleep}" height="60" fill="#6366f1" rx="6"/>
+          <text x="${startX + wSleep/2}" y="${y + 35}" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">Sleep (${pSleep.toFixed(0)}%)</text>
+
+          <!-- Study Segment -->
+          <rect x="${startX + wSleep}" y="${y}" width="${wStudy}" height="60" fill="#06b6d4"/>
+          <text x="${startX + wSleep + wStudy/2}" y="${y + 35}" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">Study (${pStudy.toFixed(0)}%)</text>
+
+          <!-- Play Segment -->
+          <rect x="${startX + wSleep + wStudy}" y="${y}" width="${wPlay}" height="60" fill="#10b981"/>
+          <text x="${startX + wSleep + wStudy + wPlay/2}" y="${y + 35}" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">Play (${pPlay.toFixed(0)}%)</text>
+
+          <!-- Others Segment -->
+          <rect x="${startX + wSleep + wStudy + wPlay}" y="${y}" width="${wOther}" height="60" fill="#f59e0b" rx="6"/>
+          <text x="${startX + wSleep + wStudy + wPlay + wOther/2}" y="${y + 35}" fill="#fff" font-size="11" font-weight="bold" text-anchor="middle">Others</text>
+        `;
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+
+        document.getElementById('strpSleep').textContent = `${pSleep.toFixed(1)}%`;
+        document.getElementById('strpStudy').textContent = `${pStudy.toFixed(1)}%`;
+        document.getElementById('studyVal').textContent = `${study}h`;
+      }
+
+      document.getElementById('studySlider').oninput = (e) => {
+        study = parseInt(e.target.value);
+        draw();
+      };
+
+      draw();
+    }
+
+    // 15. Sleepy-Deepy Data Story
+    function renderSleepyDeepyDataStory(title, stats, canvas, controls) {
+      title.textContent = "Data Story: Sleepy-Deepy (Bivariate Scatter & Correlation)";
+
+      const data = [
+        { sleep: 4.5, score: 50 },
+        { sleep: 5.5, score: 62 },
+        { sleep: 6.0, score: 68 },
+        { sleep: 7.0, score: 76 },
+        { sleep: 7.5, score: 82 },
+        { sleep: 8.0, score: 90 },
+        { sleep: 8.5, score: 94 },
+        { sleep: 9.0, score: 92 }
+      ];
+
+      stats.innerHTML = `
+        <div class="stat-pill">Surveyed Students: <strong>8</strong></div>
+        <div class="stat-pill">Correlation: <strong style="color:#34d399;">Strong Positive (+0.96)</strong></div>
+      `;
+
+      controls.innerHTML = `
+        <span style="font-size:12px; color:#cbd5e1;">More sleep hours consistently associate with higher classroom alertness scores.</span>
+      `;
+
+      function draw() {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        const xBase = 60, yBase = 280;
+
+        // Axes
+        svg.innerHTML = `
+          <line x1="${xBase}" y1="50" x2="${xBase}" y2="${yBase}" stroke="#64748b" stroke-width="2"/>
+          <line x1="${xBase}" y1="${yBase}" x2="420" y2="${yBase}" stroke="#64748b" stroke-width="2"/>
+          <text x="240" y="325" fill="#cbd5e1" font-size="12" font-weight="bold" text-anchor="middle">Night Sleep Duration (Hours)</text>
+          <text x="25" y="160" fill="#cbd5e1" font-size="12" font-weight="bold" transform="rotate(-90 25 160)" text-anchor="middle">Alertness Score</text>
+        `;
+
+        // Regression line
+        svg.innerHTML += `
+          <line x1="${xBase + (4.0/10)*340}" y1="${yBase - (45/100)*220}" x2="${xBase + (9.5/10)*340}" y2="${yBase - (98/100)*220}" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="5,4"/>
+        `;
+
+        // Points
+        data.forEach(p => {
+          const px = xBase + (p.sleep / 10) * 340;
+          const py = yBase - (p.score / 100) * 220;
+
+          const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+          dot.setAttribute("cx", px);
+          dot.setAttribute("cy", py);
+          dot.setAttribute("r", "7");
+          dot.setAttribute("fill", "#06b6d4");
+          dot.setAttribute("stroke", "#e0f2fe");
+          dot.setAttribute("stroke-width", "2");
+          svg.appendChild(dot);
+        });
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+      }
+
+      draw();
+    }
+
+    // 16. Game of Hex Puzzle Lab
+    function renderGameOfHexPuzzleLab(title, stats, canvas, controls) {
+      title.textContent = "It's Puzzle Time: The Game of Hex (No Draws Theorem)";
+      let grid = {}; // 'r,c' -> 'red' | 'blue' | null
+      let currentTurn = 'red';
+
+      stats.innerHTML = `
+        <div class="stat-pill">Current Turn: <strong id="hexTurn" style="color:#f43f5e;">Red (Connect North-South)</strong></div>
+        <div class="stat-pill">Game Rule: <strong style="color:#38bdf8;">Ties Mathematically Impossible!</strong></div>
+      `;
+
+      controls.innerHTML = `
+        <button class="sim-btn" onclick="resetHex()">Clear Board</button>
+      `;
+
+      function draw() {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("viewBox", "0 0 460 360");
+
+        const R = 22;
+        const dx = R * Math.sqrt(3);
+        const dy = R * 1.5;
+
+        // Draw 5x5 hex board
+        for (let r = 0; r < 5; r++) {
+          for (let c = 0; c < 5; c++) {
+            const cx = 130 + c * dx + r * (dx / 2);
+            const cy = 70 + r * dy;
+            const key = `${r},${c}`;
+            const state = grid[key];
+
+            const hex = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+            const pts = [];
+            for (let a = 0; a < 6; a++) {
+              const ang = (a * 60 - 30) * (Math.PI / 180);
+              pts.push(`${cx + R * Math.cos(ang)},${cy + R * Math.sin(ang)}`);
+            }
+            hex.setAttribute("points", pts.join(' '));
+
+            let fill = "rgba(255, 255, 255, 0.08)";
+            if (state === 'red') fill = "#f43f5e";
+            if (state === 'blue') fill = "#38bdf8";
+
+            hex.setAttribute("fill", fill);
+            hex.setAttribute("stroke", "#475569");
+            hex.setAttribute("stroke-width", "1.5");
+            hex.style.cursor = "pointer";
+
+            hex.onclick = () => {
+              if (!grid[key]) {
+                grid[key] = currentTurn;
+                currentTurn = (currentTurn === 'red') ? 'blue' : 'red';
+                draw();
+              }
+            };
+
+            svg.appendChild(hex);
+          }
+        }
+
+        // Red Borders (North and South)
+        svg.innerHTML += `
+          <text x="230" y="35" fill="#f43f5e" font-size="13" font-weight="800" text-anchor="middle">▲ RED GOAL (NORTH) ▲</text>
+          <text x="320" y="275" fill="#f43f5e" font-size="13" font-weight="800" text-anchor="middle">▼ RED GOAL (SOUTH) ▼</text>
+          <text x="60" y="150" fill="#38bdf8" font-size="13" font-weight="800" text-anchor="middle">◄ BLUE</text>
+          <text x="400" y="200" fill="#38bdf8" font-size="13" font-weight="800" text-anchor="middle">BLUE ►</text>
+        `;
+
+        canvas.innerHTML = '';
+        canvas.appendChild(svg);
+
+        document.getElementById('hexTurn').textContent = currentTurn === 'red' ? 'Red (North-South)' : 'Blue (East-West)';
+        document.getElementById('hexTurn').style.color = currentTurn === 'red' ? '#f43f5e' : '#38bdf8';
+      }
+
+      window.resetHex = () => {
+        grid = {};
+        currentTurn = 'red';
+        draw();
+      };
+
+      draw();
+    }
+
+    // Initial load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => loadSlide(0));
+    } else {
+      loadSlide(0);
+    }
+    window.addEventListener('load', () => {
+      triggerMathRender(document.body);
+    });
+  </script>
+</body>
+</html>

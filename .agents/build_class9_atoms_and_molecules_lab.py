@@ -122,7 +122,7 @@ def generate_html():
             <div class="bg-gradient-to-br from-slate-900 via-slate-900 to-cyan-950/40 border border-slate-800 rounded-2xl p-4 shadow-xl flex items-center gap-4 relative overflow-hidden">
                 <div class="absolute -right-8 -top-8 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none"></div>
 
-                <!-- Professor Sophia Avatar SVG -->
+                <!-- Mentor Avatar SVG -->
                 <div class="relative w-16 h-16 shrink-0 rounded-2xl bg-slate-800 border-2 border-cyan-400/40 p-1 flex items-center justify-center shadow-lg">
                     <svg viewBox="0 0 100 100" class="w-full h-full">
                         <!-- Lab Coat & Collar -->

@@ -1,0 +1,2112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 8 Mathematics • Chapter 7: Comparing Quantities — Proportional Reasoning Lab</title>
+  
+  <!-- KaTeX CSS & JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="triggerMathRender(document.body);"></script>
+
+  <style>
+    :root {
+      --bg-primary: #070b14;
+      --bg-secondary: #0f172a;
+      --card-bg: rgba(15, 23, 42, 0.85);
+      --card-border: rgba(99, 102, 241, 0.25);
+      --accent-indigo: #6366f1;
+      --accent-cyan: #06b6d4;
+      --accent-amber: #f59e0b;
+      --accent-emerald: #10b981;
+      --accent-rose: #f43f5e;
+      --accent-purple: #a855f7;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at top right, #1e1b4b 0%, #070b14 65%);
+      color: var(--text-main);
+      font-family: var(--font-stack);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* KaTeX equation enhancements */
+    .katex {
+      font-size: 1.08em;
+      color: inherit;
+    }
+    .katex-display {
+      margin: 0.6em 0 !important;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 4px 0;
+    }
+    .katex-display > .katex {
+      white-space: normal;
+    }
+
+    /* Header Nav */
+    header {
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .header-badge {
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .header-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #e2e8f0;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .slide-indicator {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+    }
+
+    .speech-btn {
+      background: rgba(99, 102, 241, 0.2);
+      border: 1px solid var(--accent-indigo);
+      color: #c7d2fe;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .speech-btn:hover {
+      background: rgba(99, 102, 241, 0.35);
+      color: #fff;
+    }
+    .speech-btn.speaking {
+      background: rgba(244, 63, 94, 0.25);
+      border-color: var(--accent-rose);
+      color: #fecdd3;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      max-width: 1380px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Slide Header Card */
+    .slide-header {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px 24px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    .slide-tag {
+      color: var(--accent-amber);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .slide-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+      line-height: 1.25;
+    }
+
+    .slide-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Mentor Bar */
+    .mentor-bar {
+      background: rgba(30, 41, 59, 0.7);
+      border-left: 4px solid var(--accent-cyan);
+      border-radius: 12px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .mentor-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #06b6d4, #4f46e5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .mentor-avatar svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .avatar-mouth {
+      transition: all 0.15s ease;
+    }
+    .speaking .avatar-mouth {
+      animation: mouthTalk 0.3s infinite alternate;
+    }
+    @keyframes mouthTalk {
+      0% { transform: scaleY(0.4); }
+      100% { transform: scaleY(1.4); }
+    }
+
+    .mentor-text {
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: #e2e8f0;
+      font-style: italic;
+    }
+
+    .mentor-name {
+      font-weight: 700;
+      color: var(--accent-cyan);
+      font-style: normal;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    /* Content Layout: 2 Columns for Lesson Slides */
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .lesson-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Left Column: Theory & In-Slide Checkpoints */
+    .theory-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .theory-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      line-height: 1.65;
+      font-size: 14.5px;
+      color: #cbd5e1;
+    }
+
+    .theory-card h4 {
+      color: #fff;
+      font-size: 16px;
+      margin-top: 14px;
+      margin-bottom: 8px;
+    }
+
+    .theory-card p {
+      margin-bottom: 12px;
+    }
+
+    .theory-card ul, .theory-card ol {
+      margin-left: 20px;
+      margin-bottom: 12px;
+    }
+
+    .theory-card li {
+      margin-bottom: 6px;
+    }
+
+    /* Checkpoints Box */
+    .checkpoints-container {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 16px;
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .checkpoint-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--accent-amber);
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .checkpoint-card {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .checkpoint-q {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #f1f5f9;
+      margin-bottom: 12px;
+      line-height: 1.45;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .option-btn {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background: rgba(99, 102, 241, 0.15);
+      border-color: var(--accent-indigo);
+      color: #fff;
+    }
+
+    .option-btn.correct {
+      background: rgba(16, 185, 129, 0.2) !important;
+      border-color: var(--accent-emerald) !important;
+      color: #a7f3d0 !important;
+      font-weight: 600;
+    }
+
+    .option-btn.incorrect {
+      background: rgba(244, 63, 94, 0.2) !important;
+      border-color: var(--accent-rose) !important;
+      color: #fecdd3 !important;
+    }
+
+    .feedback-box {
+      margin-top: 10px;
+      font-size: 12.5px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      line-height: 1.4;
+      display: none;
+    }
+    .feedback-box.show {
+      display: block;
+    }
+    .feedback-box.correct-box {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid var(--accent-emerald);
+      color: #6ee7b7;
+    }
+    .feedback-box.incorrect-box {
+      background: rgba(244, 63, 94, 0.15);
+      border: 1px solid var(--accent-rose);
+      color: #fda4af;
+    }
+
+    /* Right Column: Simulator & Controls */
+    .sim-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: sticky;
+      top: 80px;
+    }
+
+    .sim-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 12px;
+    }
+
+    .sim-head h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sim-badge {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(99, 102, 241, 0.2);
+      color: #a5b4fc;
+      font-weight: 600;
+    }
+
+    .sim-viewport {
+      background: #090e1a;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      min-height: 330px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sim-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: rgba(30, 41, 59, 0.5);
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .sim-btn {
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .sim-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+    .sim-btn.active {
+      background: linear-gradient(135deg, #10b981, #06b6d4);
+    }
+
+    .sim-slider-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12.5px;
+      color: #cbd5e1;
+    }
+    .sim-slider-group span:first-child {
+      min-width: 90px;
+    }
+    .sim-slider-group input[type="range"] {
+      flex: 1;
+      accent-color: var(--accent-cyan);
+      cursor: pointer;
+    }
+
+    /* Quiz Slides: 4 Dedicated Slides (10 questions each) */
+    .quiz-container {
+      display: none;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .quiz-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+    }
+
+    .quiz-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .q-num-badge {
+      background: rgba(99, 102, 241, 0.25);
+      color: #a5b4fc;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 12px;
+    }
+
+    .sol-btn {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid var(--accent-amber);
+      color: #fcd34d;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s ease;
+    }
+    .sol-btn:hover {
+      background: rgba(245, 158, 11, 0.3);
+      color: #fff;
+    }
+
+    /* Navigation Footer */
+    footer {
+      background: rgba(15, 23, 42, 0.95);
+      border-top: 1px solid var(--card-border);
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      bottom: 0;
+      z-index: 100;
+    }
+
+    .nav-btn {
+      background: linear-gradient(135deg, #4f46e5, #6366f1);
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .nav-btn:hover:not(:disabled) {
+      background: linear-gradient(135deg, #4338ca, #4f46e5);
+      transform: translateY(-1px);
+    }
+    .nav-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .last-slide-notice {
+      color: #34d399;
+      font-size: 13.5px;
+      font-weight: 700;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid #10b981;
+      padding: 8px 18px;
+      border-radius: 20px;
+      display: none;
+    }
+
+    /* Modal Backdrop */
+    .modal-backdrop {
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Header Navigation -->
+  <header>
+    <div class="header-left">
+      <span class="header-badge">CLASS 8 • MATHEMATICS • CHAPTER 7</span>
+      <span class="header-title">Comparing Quantities: Proportional Reasoning Lab</span>
+    </div>
+    <div class="header-right">
+      <div class="slide-indicator" id="slideNumDisplay">Slide 1 of 20</div>
+      <button class="speech-btn" id="voiceToggleBtn" onclick="toggleVoice()">
+        <span id="speakerIcon">🔊</span>
+        <span id="voiceStatusText">Listen</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Slide Workspace -->
+  <main>
+    <!-- Slide Header Card -->
+    <section class="slide-header">
+      <div class="slide-tag" id="slideTag">CHAPTER 7 • SLIDE 1 OF 20</div>
+      <h1 class="slide-title" id="slideTitle">7.1 Detecting Patterns in Growth & Change</h1>
+      <p class="slide-subtitle" id="slideSubtitle">Relative Scaling vs. Absolute Difference</p>
+    </section>
+
+    <!-- Mentor Bar with Synchronized Talking Avatar -->
+    <section class="mentor-bar" id="mentorContainer">
+      <div class="mentor-avatar" id="mentorAvatar">
+        <svg viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="44" fill="#1e293b" stroke="#38bdf8" stroke-width="3"/>
+          <circle cx="35" cy="42" r="5" fill="#38bdf8"/>
+          <circle cx="65" cy="42" r="5" fill="#38bdf8"/>
+          <path class="avatar-mouth" d="M 38 66 Q 50 74 62 66" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="mentor-name">Mathematics Mentor</div>
+        <div class="mentor-text" id="mentorVoiceText">
+          Welcome to our laboratory on proportional reasoning!
+        </div>
+      </div>
+    </section>
+
+    <!-- Lesson Slide Layout: 2 Columns (Used for Slides 1 to 16) -->
+    <div class="lesson-grid" id="lessonGrid">
+      <!-- Left Column: Rich Theory & In-Slide Checkpoints -->
+      <div class="theory-panel">
+        <div class="theory-card" id="theoryContent">
+          <!-- Populated dynamically -->
+        </div>
+
+        <!-- In-Slide Conceptual Checkpoints (2 per lesson slide) -->
+        <div class="checkpoints-container" id="checkpointContainer">
+          <div class="checkpoint-header">
+            <span>⚡</span> Conceptual Checkpoints (Test Your Understanding)
+          </div>
+          <div id="checkpointsList" style="display:flex; flex-direction:column; gap:14px;">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Simulator Panel -->
+      <section class="sim-panel" id="simulatorPanel">
+        <div class="sim-head">
+          <h3 id="simTitle">
+            <span>🔬</span> Interactive Lab Simulator
+          </h3>
+          <span class="sim-badge" id="simBadge">Live Explorer</span>
+        </div>
+        <div class="sim-viewport" id="simViewport">
+          <!-- Canvas / SVG Visuals Populated Dynamically -->
+        </div>
+        <div class="sim-controls" id="simControls">
+          <!-- Sliders and Buttons Populated Dynamically -->
+        </div>
+      </section>
+    </div>
+
+    <!-- Quiz Challenge Slides Container (Slides 17 to 20: 10 questions each) -->
+    <div class="quiz-container" id="quizContainer">
+      <!-- 10 Questions for the current quiz slide -->
+      <div class="quiz-grid" id="quizGrid"></div>
+    </div>
+  </main>
+
+  <!-- Sticky Navigation Footer -->
+  <footer>
+    <button class="nav-btn" id="prevBtn" onclick="prevSlide()" disabled>
+      ← Previous Slide
+    </button>
+    <div id="lastSlideNotice" class="last-slide-notice">
+      You have reached the last slide of this chapter
+    </div>
+    <button class="nav-btn" id="nextBtn" onclick="nextSlide()">
+      Next Slide →
+    </button>
+  </footer>
+
+  <!-- Universal Pop-up Solution Modal -->
+  <div id="solutionModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop" style="position:fixed; top:0; left:0; width:100vw; height:100vh; display:none; align-items:center; justify-content:center; z-index:1000;">
+    <div style="background:#0f172a; border:1px solid #6366f1; border-radius:16px; max-width:620px; width:95%; padding:24px; position:relative; box-shadow:0 20px 35px -5px rgba(0,0,0,0.8);">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+        <h3 id="modalTitle" style="color:#fcd34d; font-size:16px; font-weight:700; display:flex; align-items:center; gap:8px;">
+          <span>💡</span> Detailed Mathematical Solution
+        </h3>
+        <button onclick="closeSolutionModal()" style="background:none; border:none; color:#94a3b8; font-size:20px; cursor:pointer; padding:4px 8px;">✕</button>
+      </div>
+      <div id="modalBody" style="font-size:14px; line-height:1.65; color:#e2e8f0; max-height:60vh; overflow-y:auto; padding-right:8px;">
+        <!-- Solution math and explanation -->
+      </div>
+      <div style="margin-top:16px; text-align:right;">
+        <button onclick="closeSolutionModal()" style="background:#4f46e5; color:#fff; border:none; padding:8px 18px; border-radius:8px; font-size:13px; font-weight:700; cursor:pointer;">Close Solution</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Injected Data
+    const slides = [{"id": 1, "title": "7.1 Detecting Patterns in Growth & Change", "subtitle": "Relative Scaling vs. Absolute Difference", "content": "\n<p>Consider two saplings: Plant A grows from $10\\text{ cm}$ to $20\\text{ cm}$, while Plant B grows from $100\\text{ cm}$ to $110\\text{ cm}$ over the same month.</p>\n<ul>\n  <li><strong>Additive Comparison:</strong> Both plants grew by exactly $10\\text{ cm}$ ($20 - 10 = 10$, $110 - 100 = 10$). Additively, their growth is identical.</li>\n  <li><strong>Multiplicative Comparison:</strong> Plant A has <em>doubled</em> in height ($\\frac{20}{10} = 2$, a $100\\%$ increase), whereas Plant B increased by only one-tenth of its initial height ($\\frac{110}{100} = 1.1$, a $10\\%$ increase).</li>\n</ul>\n<p>Proportional reasoning begins when we recognise that a change of $10\\text{ cm}$ on a $10\\text{ cm}$ plant is vastly more dramatic than a $10\\text{ cm}$ change on a $100\\text{ cm}$ tree. We compare quantities relatively through multiplication and division rather than mere subtraction.</p>\n", "sim_type": "additive_vs_multiplicative_growth_lab", "voice": "Welcome to our laboratory on proportional reasoning! When quantities grow or shrink, we can measure change in two fundamentally different ways: additive change (the absolute difference) and multiplicative change (the relative scaling factor). Understanding this distinction is the cornerstone of higher mathematics.", "checkpoints": [{"q": "A baby weighs $3\text{ kg}$ and gains $3\text{ kg}$ in 6 months. An adult weighs $60\text{ kg}$ and gains $3\text{ kg}$. In which case is the relative change greater?", "options": ["Both have identical relative change because both gained 3 kg", "The baby, because the weight doubled (100% relative increase compared to 5% for the adult)", "The adult, because the adult has more total mass", "Neither, relative change cannot be computed for different weights"], "ans": 1, "feedback": "Correct! The baby's relative growth is 3/3 = 100% increase (doubled), whereas the adult's is 3/60 = 5% increase. Proportional reasoning focuses on relative scaling."}, {"q": "Which of the following scenarios represents pure multiplicative scaling rather than an additive shift?", "options": ["Adding 5 marks of grace to every student's test score", "Enlarging a photograph so that every side length is multiplied by 3", "Increasing everyone's salary by a flat ₹2,000 bonus", "A clock ticking forward by 15 minutes"], "ans": 1, "feedback": "Correct! Multiplying side lengths by 3 scales every dimension proportionally by a factor of 3 without distorting shapes."}]}, {"id": 2, "title": "7.2 Comparing Quantities by Division: Understanding Ratios", "subtitle": "Antecedents, Consequents & Dimensionless Scalars", "content": "\n<p>If $a$ and $b$ are two quantities of the same physical dimension measured in identical units (with $b \\neq 0$), the ratio of $a$ to $b$ is written as:</p>\n$$\\text{Ratio} = a : b = \\frac{a}{b}$$\n<ul>\n  <li><strong>Antecedent:</strong> The first term $a$ is called the antecedent (meaning 'that which goes before').</li>\n  <li><strong>Consequent:</strong> The second term $b$ is called the consequent (meaning 'that which follows').</li>\n  <li><strong>Crucial Property 1 — Units Must Match:</strong> To compare $50\\text{ paise}$ to ₹$2$, we must first express both in paise ($50\\text{ paise} : 200\\text{ paise} = 50:200 = 1:4$) or both in rupees ($0.5 : 2 = 1:4$).</li>\n  <li><strong>Crucial Property 2 — Dimensionless Nature:</strong> Because the units cancel out in division, a ratio is a pure number with <em>no units</em>.</li>\n  <li><strong>Crucial Property 3 — Order Matters:</strong> In general, $a : b \\neq b : a$ (unless $a = b$). The ratio of boys to girls ($3:2$) is not the same as the ratio of girls to boys ($2:3$).</li>\n</ul>\n", "sim_type": "ratio_anatomy_and_units_lab", "voice": "A ratio is a mathematical comparison of two quantities of the same kind, expressed in the same unit, obtained by division. Let us explore its formal notation, terminology, and key constraints.", "checkpoints": [{"q": "What is the ratio of $75\text{ cm}$ to $1.5\text{ metres}$?", "options": ["75 : 1.5", "50 : 1", "1 : 2", "2 : 1"], "ans": 2, "feedback": "Correct! Convert 1.5 metres to 150 cm. Then the ratio is 75 cm : 150 cm = 75/150 = 1/2, or 1 : 2."}, {"q": "Why does a ratio have no units (e.g., neither kg nor seconds)?", "options": ["Because units are omitted to save writing time", "Because a ratio is obtained by dividing two quantities with the same units, so the units cancel out", "Because ratios only apply to numbers without physical dimensions", "Because modern SI units do not allow units on fractions"], "ans": 1, "feedback": "Correct! When dividing quantities of identical dimensions, [unit]/[unit] cancels completely, yielding a dimensionless scalar."}]}, {"id": 3, "title": "7.3 Expressing Ratios in Lowest Terms", "subtitle": "Reduction via GCD & Equivalent Ratio Families", "content": "\n<p>Two ratios $a : b$ and $c : d$ are said to be <strong>equivalent</strong> if $\\frac{a}{b} = \\frac{c}{d}$. Multiplying or dividing both terms by any non-zero real number $m$ preserves the ratio:</p>\n$$a : b = (a \\times m) : (b \\times m) = \\left(\\frac{a}{m}\\right) : \\left(\\frac{b}{m}\\right) \\quad (m \\neq 0)$$\n<p><strong>Definition of Simplest (Lowest) Form:</strong></p>\n<p>A ratio $a : b$ is in its simplest form if:</p>\n<ol>\n  <li>Both $a$ and $b$ are integers ($a, b \\in \\mathbb{Z}^+$), and</li>\n  <li>The greatest common divisor of $a$ and $b$ is $1$: $\\gcd(a, b) = 1$.</li>\n</ol>\n<p><strong>Algorithm for Reduction:</strong></p>\n$$\\text{Simplest Form of } 84 : 126 = \\frac{84 \\div \\gcd(84, 126)}{126 \\div \\gcd(84, 126)} = \\frac{84 \\div 42}{126 \\div 42} = 2 : 3$$\n", "sim_type": "equivalent_ratios_and_gcd_reducer", "voice": "Just like fractions, ratios have infinite equivalent representations. A ratio is in its simplest form when its antecedent and consequent are coprime integers.", "checkpoints": [{"q": "Reduce the ratio $144 : 216$ to its simplest form.", "options": ["12 : 18", "4 : 6", "2 : 3", "3 : 2"], "ans": 2, "feedback": "Correct! gcd(144, 216) = 72. 144/72 = 2 and 216/72 = 3. In simplest form, the ratio is 2 : 3."}, {"q": "Which ratio is NOT equivalent to $3 : 5$?", "options": ["9 : 15", "18 : 30", "0.6 : 1", "15 : 20"], "ans": 3, "feedback": "Correct! 15 : 20 reduces to 3 : 4, which is not equivalent to 3 : 5 (which equals 0.6)."}]}, {"id": 4, "title": "Comparing Ratios with Precision", "subtitle": "Cross-Multiplication Principle & Balance Scales", "content": "\n<p>To compare two positive ratios $a : b$ and $c : d$, we compare the fractions $\\frac{a}{b}$ and $\\frac{c}{d}$:</p>\n$$\\frac{a}{b} \\gtrless \\frac{c}{d} \\iff a \\cdot d \\gtrless b \\cdot c$$\n<ul>\n  <li>If $a \\cdot d > b \\cdot c$, then $a : b > c : d$.</li>\n  <li>If $a \\cdot d < b \\cdot c$, then $a : b < c : d$.</li>\n  <li>If $a \\cdot d = b \\cdot c$, then the ratios are equivalent: $a : b = c : d$.</li>\n</ul>\n<p><strong>Example: Which is larger: $4 : 7$ or $5 : 9$?</strong></p>\n$$\\text{Product of first extreme and mean: } 4 \\times 9 = 36$$\n$$\\text{Product of first mean and extreme: } 7 \\times 5 = 35$$\n<p>Since $36 > 35$, we conclude that $\\frac{4}{7} > \\frac{5}{9}$, meaning $4 : 7$ represents a greater concentration or proportion than $5 : 9$.</p>\n", "sim_type": "ratio_comparison_balance_scale", "voice": "When comparing two ratios $a : b$ and $c : d$, we determine which fraction is greater. The cross-multiplication technique allows us to compare any two ratios instantaneously.", "checkpoints": [{"q": "Which ratio is greater: $5 : 8$ or $7 : 11$?", "options": ["5 : 8 is greater because 55 > 56", "7 : 11 is greater because 7 × 8 = 56 is greater than 5 × 11 = 55", "They are exactly equal", "Cannot be determined without a calculator"], "ans": 1, "feedback": "Correct! 5/8 vs 7/11: cross products are 5 × 11 = 55 and 8 × 7 = 56. Since 56 > 55, 7/11 > 5/8."}, {"q": "Three runner ratios (distance in km : time in minutes) are A = 3:10, B = 5:16, C = 7:24. Who ran the fastest (highest km per minute)?", "options": ["Runner A (0.300 km/min)", "Runner B (0.3125 km/min)", "Runner C (0.2917 km/min)", "All three ran at identical speeds"], "ans": 1, "feedback": "Correct! 3/10 = 0.3000, 5/16 = 0.3125, 7/24 = 0.29167. Runner B has the highest ratio."}]}, {"id": 5, "title": "The Fundamental Law of Proportion", "subtitle": "Product of Extremes = Product of Means (ad = bc)", "content": "\n<p>An equality of two ratios is called a <strong>proportion</strong>. Four quantities $a, b, c, d$ are in proportion if:</p>\n$$a : b = c : d \\quad \\text{or} \\quad a : b :: c : d$$\n<p>Here, $a, b, c, d$ are called the <strong>terms</strong> of the proportion:</p>\n<ul>\n  <li><strong>Extremes:</strong> The first term $a$ and fourth term $d$ sit at the outer boundaries.</li>\n  <li><strong>Means:</strong> The second term $b$ and third term $c$ sit in the middle.</li>\n</ul>\n<p><strong>The Fundamental Law of Proportion:</strong></p>\n$$\\frac{a}{b} = \\frac{c}{d} \\implies a \\cdot d = b \\cdot c$$\n$$\\mathbf{\\text{Product of Extremes} = \\text{Product of Means}}$$\n<p>This single algebraic law enables us to find any one missing term if the other three are known!</p>\n$$d = \\frac{b \\cdot c}{a}, \\quad c = \\frac{a \\cdot d}{b}, \\quad b = \\frac{a \\cdot d}{c}, \\quad a = \\frac{b \\cdot c}{d}$$\n", "sim_type": "fundamental_proportion_extremes_means_engine", "voice": "When two ratios are equal, they form a proportion! This equality connects four numbers with an extraordinary property: the product of the outer terms equals the product of the inner terms.", "checkpoints": [{"q": "Find the value of $x$ such that $6 : 9 :: 10 : x$ form a proportion.", "options": ["12", "15", "18", "20"], "ans": 1, "feedback": "Correct! Product of extremes = Product of means: 6 × x = 9 × 10 = 90. Therefore, x = 90 / 6 = 15."}, {"q": "Are the numbers 14, 21, 22, 33 in proportion in that order?", "options": ["No, because 14 + 33 ≠ 21 + 22", "Yes, because 14 × 33 = 462 and 21 × 22 = 462", "No, because 22 is an even number", "Yes, but only if reversed"], "ans": 1, "feedback": "Correct! Extremes product = 14 × 33 = 462; Means product = 21 × 22 = 462. Because they are equal, 14, 21, 22, 33 are in proportion."}]}, {"id": 6, "title": "Continued Proportion & The Geometric Mean", "subtitle": "Mean Proportional b = √(ac) & Third Proportional", "content": "\n<p>Three positive numbers $a, b, c$ are in <strong>continued proportion</strong> if:</p>\n$$a : b = b : c \\iff \\frac{a}{b} = \\frac{b}{c}$$\n<ul>\n  <li>Here, $b$ is called the <strong>mean proportional</strong> (or geometric mean) between $a$ and $c$.</li>\n  <li>$c$ is called the <strong>third proportional</strong> to $a$ and $b$.</li>\n</ul>\n<p>Applying the fundamental law ($ad = bc$ where $d = c$):</p>\n$$b \\cdot b = a \\cdot c \\implies b^2 = ac \\implies \\mathbf{b = \\sqrt{ac}}$$\n<p><strong>Example:</strong> Find the mean proportional between $4$ and $16$.</p>\n$$b = \\sqrt{4 \\times 16} = \\sqrt{64} = 8$$\n<p>Verification: $4 : 8 = 1 : 2$ and $8 : 16 = 1 : 2$. The ratios are identical!</p>\n", "sim_type": "continued_proportion_and_mean_proportional", "voice": "What happens when the middle terms of a proportion coincide? Three quantities $a, b, c$ are said to be in continued proportion if the ratio of the first to the second equals the ratio of the second to the third.", "checkpoints": [{"q": "What is the mean proportional between $9$ and $25$?", "options": ["17", "15", "225", "12.5"], "ans": 1, "feedback": "Correct! b = √(9 × 25) = √(225) = 15. Check: 9:15 = 3:5 and 15:25 = 3:5."}, {"q": "Find the third proportional to $8$ and $12$.", "options": ["16", "18", "20", "24"], "ans": 1, "feedback": "Correct! If 8, 12, c are in continued proportion: 8/12 = 12/c => 8c = 144 => c = 144 / 8 = 18."}]}, {"id": 7, "title": "7.4 Applying Proportional Thinking to Real Situations", "subtitle": "Direct Variation, Constant Unit Rate & Linear Growth", "content": "\n<p>If two quantities $x$ and $y$ are in <strong>direct proportion</strong>, their ratio remains constant throughout:</p>\n$$\\frac{y}{x} = k \\quad (\\text{constant of proportionality}) \\implies \\mathbf{y = k \\cdot x}$$\n<p>When plotted on a Cartesian plane, direct proportion always yields a <strong>straight line passing through the origin $(0,0)$</strong>.</p>\n<p><strong>The Classical Unitary Method:</strong></p>\n<ol>\n  <li><strong>Step 1 (Find Unit Value):</strong> Divide the total given value by the number of units to find the value of 1 single unit: $k = \\frac{y_1}{x_1}$.</li>\n  <li><strong>Step 2 (Scale Up):</strong> Multiply this unit value by the required number of units $x_2$: $y_2 = k \\cdot x_2$.</li>\n</ol>\n<p><em>Example:</em> If $12$ notebooks cost ₹$360$, what is the cost of $7$ notebooks?</p>\n$$\\text{Cost of 1 notebook} = \\frac{360}{12} = \\text{₹}30$$\n$$\\text{Cost of 7 notebooks} = 7 \\times 30 = \\text{₹}210$$\n", "sim_type": "direct_variation_and_unit_rate_graph", "voice": "Two quantities $x$ and $y$ vary directly if an increase in $x$ causes a proportional increase in $y$, keeping their ratio constant. This constant ratio is the unit rate.", "checkpoints": [{"q": "A car travels $180\text{ km}$ on $12\text{ litres}$ of petrol. How far will it travel on $20\text{ litres}$ under identical driving conditions?", "options": ["240 km", "270 km", "300 km", "320 km"], "ans": 2, "feedback": "Correct! Unit rate = 180 km / 12 litres = 15 km/litre. For 20 litres: 20 × 15 = 300 km."}, {"q": "Which of the following graphs represents two quantities in direct proportion?", "options": ["A curved parabola opening upwards", "A horizontal flat line", "A straight line passing through the origin (0,0)", "A straight line with a non-zero y-intercept"], "ans": 2, "feedback": "Correct! Direct variation y = kx is a linear equation with y-intercept 0, passing through (0,0)."}]}, {"id": 8, "title": "The Coffee Dilemma: Proportions in Everyday Mixtures", "subtitle": "Decoction Concentrations & Part-to-Whole Relationships", "content": "\n<p>When preparing filter coffee, we blend dark concentrated decoction with fresh milk:</p>\n<ul>\n  <li><strong>Part-to-Part Ratio:</strong> If a recipe calls for $1$ cup of decoction to $4$ cups of milk, the ratio is:\n  $$\\text{Decoction} : \\text{Milk} = 1 : 4$$</li>\n  <li><strong>Total Mixture (Whole):</strong> The total volume is $1 + 4 = 5$ parts.</li>\n  <li><strong>Part-to-Whole Fractions:</strong>\n  $$\\text{Fraction of Decoction} = \\frac{1}{1 + 4} = \\frac{1}{5} = 20\\%$$\n  $$\\text{Fraction of Milk} = \\frac{4}{1 + 4} = \\frac{4}{5} = 80\\%$$</li>\n</ul>\n<p><strong>Comparing Strengths:</strong></p>\n<p>Cup A has decoction to milk in ratio $1 : 3$ (Concentration $= \\frac{1}{4} = 25\\%$).<br>\nCup B has decoction to milk in ratio $2 : 7$ (Concentration $= \\frac{2}{9} \\approx 22.2\\%$).<br>\nSince $25\\% > 22.2\\%$, Cup A is stronger (more intense coffee flavour) than Cup B!</p>\n", "sim_type": "filter_coffee_decoction_strength_mixer", "voice": "The traditional South Indian filter coffee offers a delicious demonstration of ratios! We must distinguish carefully between part-to-part ratios and part-to-whole fractions.", "checkpoints": [{"q": "A juice blend has syrup and water in the ratio $2 : 5$. What fraction of the total juice is water?", "options": ["2/5", "5/2", "5/7", "2/7"], "ans": 2, "feedback": "Correct! Total parts = 2 + 5 = 7. Water constitutes 5 parts out of 7 total parts, so the fraction is 5/7."}, {"q": "Mixture X has coffee-to-milk ratio 3 : 7. Mixture Y has coffee-to-milk ratio 1 : 2. Which mixture is stronger (higher coffee concentration)?", "options": ["Mixture X, because 3 > 1", "Mixture Y, because coffee fraction is 1/3 (33.3%) compared to 3/10 (30.0%) for X", "Both have identical coffee strength", "Cannot be compared without knowing total volume"], "ans": 1, "feedback": "Correct! In X, coffee fraction is 3/(3+7) = 3/10 = 30%. In Y, coffee fraction is 1/(1+2) = 1/3 ≈ 33.33%. Mixture Y has higher concentration."}]}, {"id": 9, "title": "Trairāśika — The Rule of Three", "subtitle": "Ancient Indian Mathematical Heritage: Pramāṇa, Phala, Icchā", "content": "\n<p>The Sanskrit word <em>Trairāśika</em> literally means 'consisting of three quantities'. Given three known quantities, we compute the fourth unknown.</p>\n<p>The three given terms have specific classical Sanskrit technical names:</p>\n<ol>\n  <li><strong>Pramāṇa (प्रमाण — Measure / Standard):</strong> The known baseline argument.</li>\n  <li><strong>Phala (फल — Fruit / Yield):</strong> The result or benefit produced by the <em>Pramāṇa</em>.</li>\n  <li><strong>Icchā (इच्छा — Desire / Requisition):</strong> The question quantity for which we seek the outcome.</li>\n  <li><strong>Icchā-Phala (इच्छाफल — Fruit of Desire):</strong> The unknown result to be found.</li>\n</ol>\n<p><strong>Āryabhaṭa\\'s Verse (Āryabhaṭīya, Gaṇitapāda, Verse 26):</strong></p>\n$$\\text{त्रैराशिकफलराशिं तमथेच्छाराशिना हतं कृत्वा ।}$$\n$$\\text{लब्धं प्रमाणभजितं तस्मादिच्छाफलं भवति ॥}$$\n<p><strong>The Universal Trairāśika Formula:</strong></p>\n$$\\mathbf{\\text{Icchā-Phala} = \\frac{\\text{Phala} \\times \\text{Icchā}}{\\text{Pramāṇa}}}$$\n<p><em>Example:</em> If $5\\text{ pala}$ of saffron (Pramāṇa) costs $12\\text{ suvarṇa}$ (Phala), what is the cost of $8\\text{ pala}$ (Icchā)?</p>\n$$\\text{Icchā-Phala} = \\frac{12 \\times 8}{5} = \\frac{96}{5} = 19.2\\text{ suvarṇa}$$\n", "sim_type": "trairasika_ancient_rule_of_three_engine", "voice": "Long before modern algebraic equations, ancient Indian mathematicians developed Trairāśika (त्रैराशिक)—the Rule of Three. Celebrated by Āryabhaṭa (499 CE) and Brahmagupta (628 CE), it was taught across Arabia and medieval Europe as the master key of commerce.", "checkpoints": [{"q": "In the classical Trairāśika problem: 'If 8 metres of cloth cost ₹240, what is the cost of 15 metres?', identify the 'Phala' (Fruit).", "options": ["8 metres", "15 metres", "₹240", "₹450"], "ans": 2, "feedback": "Correct! Pramāṇa (Measure) = 8 metres, Phala (Fruit/Yield) = ₹240, Icchā (Desire) = 15 metres. The cost produced by the measure is the Phala."}, {"q": "Using Āryabhaṭa's formula, if 6 workers build 18 tables in a day, how many tables will 11 workers build at the same pace?", "options": ["27 tables", "33 tables", "36 tables", "44 tables"], "ans": 1, "feedback": "Correct! Icchā-phala = (Phala × Icchā) / Pramāṇa = (18 × 11) / 6 = 3 × 11 = 33 tables."}]}, {"id": 10, "title": "7.5 Proportional Distribution: Fair but Unequal Shares", "subtitle": "Dividing Quantities & Assets in a Specified Ratio a : b", "content": "\n<p>To divide a given quantity $T$ between two persons/parts in the ratio $a : b$:</p>\n<ol>\n  <li><strong>Step 1: Total Number of Parts:</strong> Sum the terms of the ratio:\n  $$\\text{Total Parts} = a + b$$</li>\n  <li><strong>Step 2: Value of One Single Part:</strong>\n  $$\\text{One Part} = \\frac{T}{a + b}$$</li>\n  <li><strong>Step 3: Calculate Individual Shares:</strong>\n  $$\\text{First Share} = a \\times \\left(\\frac{T}{a + b}\\right) = \\frac{a}{a + b} \\times T$$\n  $$\\text{Second Share} = b \\times \\left(\\frac{T}{a + b}\\right) = \\frac{b}{a + b} \\times T$$</li>\n  <li><strong>Step 4: Check Invariance:</strong> Ensure First Share + Second Share $= T$.</li>\n</ol>\n<p><em>Example:</em> Divide ₹$1,200$ between Aarav and Diya in the ratio $3 : 5$.</p>\n$$\\text{Total Parts} = 3 + 5 = 8$$\n$$\\text{Aarav\\'s Share} = \\frac{3}{8} \\times 1200 = 3 \\times 150 = \\text{₹}450$$\n$$\\text{Diya\\'s Share} = \\frac{5}{8} \\times 1200 = 5 \\times 150 = \\text{₹}750$$\n$$\\text{Verification: } 450 + 750 = 1200\\text{ and } 450 : 750 = 3 : 5$$\n", "sim_type": "two_way_fair_sharing_ratio_divider", "voice": "Fair division in the real world is rarely equal division. When profits, resources, or tasks are distributed in proportion to investment, effort, or need, we divide a whole into specified ratio shares.", "checkpoints": [{"q": "Divide 60 sweets between two children in the ratio $2 : 3$. How many sweets does the first child get?", "options": ["20", "24", "30", "36"], "ans": 1, "feedback": "Correct! Total parts = 2 + 3 = 5. Value of 1 part = 60 / 5 = 12. First child gets 2 × 12 = 24 sweets. Second gets 3 × 12 = 36 sweets."}, {"q": "The perimeter of a rectangle is $56\text{ cm}$. The ratio of its length to breadth is $4 : 3$. What is its length?", "options": ["12 cm", "14 cm", "16 cm", "24 cm"], "ans": 2, "feedback": "Correct! Length + Breadth = Perimeter / 2 = 56 / 2 = 28 cm. Total parts = 4 + 3 = 7. Length = (4/7) × 28 = 16 cm. (Breadth = 12 cm)."}]}, {"id": 11, "title": "Multi-Way Proportional Allocation (a : b : c)", "subtitle": "Extended Ratios & Polygon Angle Partitions", "content": "\n<p>To divide a quantity $T$ among three recipients in the ratio $a : b : c$:</p>\n$$\\text{Total Parts} = a + b + c$$\n$$\\text{Share of } A = \\frac{a}{a + b + c} \\times T$$\n$$\\text{Share of } B = \\frac{b}{a + b + c} \\times T$$\n$$\\text{Share of } C = \\frac{c}{a + b + c} \\times T$$\n<p><strong>Example:</strong> In a triangle, the angles are in the ratio $2 : 3 : 5$. Find all three angles.</p>\n<p>Since the sum of interior angles of a triangle is always $180^\\circ$:</p>\n$$\\text{Total Parts} = 2 + 3 + 5 = 10$$\n$$\\angle 1 = \\frac{2}{10} \\times 180^\\circ = 36^\\circ$$\n$$\\angle 2 = \\frac{3}{10} \\times 180^\\circ = 54^\\circ$$\n$$\\angle 3 = \\frac{5}{10} \\times 180^\\circ = 90^\\circ$$\n<p>This is a right-angled triangle with acute angles $36^\\circ$ and $54^\\circ$!</p>\n", "sim_type": "three_way_compound_partition_lab", "voice": "Proportional distribution naturally generalises to three or more partners. The principle remains unchanged: find the sum of all ratio parts and allocate accordingly.", "checkpoints": [{"q": "A sum of ₹3,600 is shared among P, Q, and R in the ratio 1 : 3 : 5. How much more money does R receive than P?", "options": ["₹1,200", "₹1,600", "₹2,000", "₹800"], "ans": 1, "feedback": "Correct! Total parts = 1 + 3 + 5 = 9. One part = 3600 / 9 = ₹400. P receives 1 × 400 = ₹400. R receives 5 × 400 = ₹2,000. Difference = 2000 - 400 = ₹1,600."}, {"q": "The sides of a triangle are in the ratio 3 : 4 : 5 and its perimeter is $48\text{ cm}$. What is the length of the longest side?", "options": ["16 cm", "20 cm", "24 cm", "12 cm"], "ans": 1, "feedback": "Correct! Total parts = 3 + 4 + 5 = 12. One part = 48 / 12 = 4 cm. Longest side = 5 × 4 = 20 cm."}]}, {"id": 12, "title": "Scaling Quantities Up and Down", "subtitle": "Multipliers for Proportional Increase and Decrease", "content": "\n<p>When a quantity $Q$ is increased or decreased in the ratio $a : b$:</p>\n$$\\mathbf{Q_{\\text{new}} = Q_{\\text{original}} \\times \\frac{a}{b}}$$\n<ul>\n  <li><strong>Ratio of Increase:</strong> If $a > b$, then $\\frac{a}{b} > 1$. The quantity grows.\n  <br><em>Example:</em> An athlete\\'s salary of ₹$40,000$ increases in the ratio $5 : 4$:\n  $$\\text{New Salary} = 40000 \\times \\frac{5}{4} = \\text{₹}50,000$$</li>\n  <li><strong>Ratio of Decrease:</strong> If $a < b$, then $\\frac{a}{b} < 1$. The quantity contracts.\n  <br><em>Example:</em> A weight of $80\\text{ kg}$ is reduced in the ratio $7 : 8$:\n  $$\\text{New Weight} = 80 \\times \\frac{7}{8} = 70\\text{ kg}$$</li>\n</ul>\n<p>Notice the convention: 'in the ratio $a : b$' means $\\frac{\\text{New}}{\\text{Original}} = \\frac{a}{b}$.</p>\n", "sim_type": "ratio_scaling_magnifier_increase_decrease", "voice": "We can view a ratio as a dynamic operator that scales quantities up or down. To change a quantity in the ratio a : b means multiplying it by the fraction a/b.", "checkpoints": [{"q": "A price of ₹150 is increased in the ratio $6 : 5$. What is the new price?", "options": ["₹160", "₹175", "₹180", "₹195"], "ans": 2, "feedback": "Correct! New price = 150 × (6/5) = 30 × 6 = ₹180."}, {"q": "The population of a town of 45,000 decreases in the ratio $8 : 9$ during a drought. What is the new population?", "options": ["40,000", "38,000", "42,000", "36,000"], "ans": 0, "feedback": "Correct! New population = 45000 × (8/9) = 5000 × 8 = 40,000."}]}, {"id": 13, "title": "7.6 Changing Units via Proportional Scaling", "subtitle": "Ratio Multipliers, Dimensional Analysis & Speed Conversion", "content": "\n<p>Because $1\\text{ kilometre} = 1000\\text{ metres}$, the ratio:</p>\n$$\\frac{1000\\text{ m}}{1\\text{ km}} = 1 \\quad \\text{and} \\quad \\frac{1\\text{ km}}{1000\\text{ m}} = 1$$\n<p>Multiplying any measurement by a ratio that equals $1$ changes its unit representation without altering its physical magnitude!</p>\n<p><strong>The Famous Speed Conversion Factor: $\\mathbf{km/h \\to m/s}$</strong></p>\n$$1\\text{ km/h} = \\frac{1\\text{ km}}{1\\text{ h}} = \\frac{1000\\text{ m}}{3600\\text{ s}} = \\frac{10\\text{ m}}{36\\text{ s}} = \\mathbf{\\frac{5}{18}\\text{ m/s}}$$\n<ul>\n  <li>To convert from $\\mathbf{km/h}$ to $\\mathbf{m/s}$: Multiply by $\\mathbf{\\frac{5}{18}}$.\n  <br><em>Example:</em> $72\\text{ km/h} = 72 \\times \\frac{5}{18} = 4 \\times 5 = 20\\text{ m/s}$.</li>\n  <li>To convert from $\\mathbf{m/s}$ to $\\mathbf{km/h}$: Multiply by $\\mathbf{\\frac{18}{5}}$.\n  <br><em>Example:</em> $25\\text{ m/s} = 25 \\times \\frac{18}{5} = 5 \\times 18 = 90\\text{ km/h}$.</li>\n</ul>\n", "sim_type": "dimensional_analysis_speed_converter", "voice": "Unit conversion is nothing more than proportional reasoning in disguise! By multiplying by a unit ratio whose value equals 1, units cancel like algebraic variables.", "checkpoints": [{"q": "Convert $54\text{ km/h}$ to metres per second ($\text{m/s}$).", "options": ["10 m/s", "15 m/s", "18 m/s", "20 m/s"], "ans": 1, "feedback": "Correct! 54 × (5/18) = 3 × 5 = 15 m/s."}, {"q": "A cheetah sprints at $30\text{ m/s}$. What is its speed in $\text{km/h}$?", "options": ["96 km/h", "108 km/h", "120 km/h", "84 km/h"], "ans": 1, "feedback": "Correct! 30 × (18/5) = 6 × 18 = 108 km/h."}]}, {"id": 14, "title": "Scale Drawings, Blueprints & Map Representations", "subtitle": "Representative Fractions (R.F.) & Actual Ground Dimensions", "content": "\n<p>The <strong>scale of a drawing</strong> is the ratio of map distance to actual real-world ground distance:</p>\n$$\\mathbf{\\text{Scale}} = \\frac{\\text{Distance on Map / Drawing}}{\\text{Actual Distance in Real Life}}$$\n<p>When expressed as a ratio of identical units, it is called the <strong>Representative Fraction (R.F.)</strong>.</p>\n<p><em>Example:</em> A map has a scale of $1 : 250,000$.</p>\n<p>This means $1\\text{ cm}$ on the map represents $250,000\\text{ cm}$ on the ground.</p>\n$$250,000\\text{ cm} = \\frac{250000}{100}\\text{ m} = 2500\\text{ m} = 2.5\\text{ km}$$\n<p>If two cities are $6\\text{ cm}$ apart on this map, their actual separation is:</p>\n$$\\text{Real Distance} = 6 \\times 2.5\\text{ km} = 15\\text{ km}$$\n", "sim_type": "map_scale_blueprint_rf_explorer", "voice": "Architects, cartographers, and engineers cannot draw buildings or continents at full size. Scale drawings use a fixed ratio—the Representative Fraction—to shrink or expand reality faithfully.", "checkpoints": [{"q": "On an architectural blueprint with scale $1 : 50$, a bedroom wall measures $8\text{ cm}$. What is the actual length of the wall in metres?", "options": ["2 metres", "3.2 metres", "4 metres", "5 metres"], "ans": 2, "feedback": "Correct! Actual length = 8 cm × 50 = 400 cm = 4 metres."}, {"q": "Two towns are $120\text{ km}$ apart. On a map, they are separated by $4\text{ cm}$. What is the map scale (Representative Fraction)?", "options": ["1 : 30,000", "1 : 300,000", "1 : 3,000,000", "1 : 30,000,000"], "ans": 2, "feedback": "Correct! 120 km = 120,000 m = 12,000,000 cm. Scale = 4 cm / 12,000,000 cm = 1 / 3,000,000 (1 : 3,000,000)."}]}, {"id": 15, "title": "CORE PRINCIPLES & CONCEPT RECAP", "subtitle": "The Master Matrix of Proportional Reasoning", "content": "\n<table style=\"width:100%; border-collapse:collapse; margin-top:10px; font-size:13px; text-align:left;\">\n  <thead>\n    <tr style=\"background:#1e293b; color:#38bdf8; border-bottom:2px solid #334155;\">\n      <th style=\"padding:8px;\">Concept</th>\n      <th style=\"padding:8px;\">Core Formula / Condition</th>\n      <th style=\"padding:8px;\">Key Rule / Heritage</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr style=\"border-bottom:1px solid #334155;\">\n      <td style=\"padding:8px; font-weight:bold; color:#f8fafc;\">Ratio $a:b$</td>\n      <td style=\"padding:8px;\">$a/b$ ($b \\neq 0$), $\\gcd(a,b)=1$</td>\n      <td style=\"padding:8px; color:#94a3b8;\">Same units; pure dimensionless number</td>\n    </tr>\n    <tr style=\"border-bottom:1px solid #334155;\">\n      <td style=\"padding:8px; font-weight:bold; color:#f8fafc;\">Proportion $a:b :: c:d$</td>\n      <td style=\"padding:8px;\">$a \\cdot d = b \\cdot c$</td>\n      <td style=\"padding:8px; color:#94a3b8;\">Product of Extremes = Product of Means</td>\n    </tr>\n    <tr style=\"border-bottom:1px solid #334155;\">\n      <td style=\"padding:8px; font-weight:bold; color:#f8fafc;\">Mean Proportional</td>\n      <td style=\"padding:8px;\">$b = \\sqrt{ac}$</td>\n      <td style=\"padding:8px; color:#94a3b8;\">Geometric mean in continued proportion</td>\n    </tr>\n    <tr style=\"border-bottom:1px solid #334155;\">\n      <td style=\"padding:8px; font-weight:bold; color:#f8fafc;\">Trairāśika</td>\n      <td style=\"padding:8px;\">$\\text{Icchā-phala} = \\frac{\\text{Phala} \\times \\text{Icchā}}{\\text{Pramāṇa}}$</td>\n      <td style=\"padding:8px; color:#94a3b8;\">Ancient Indian Rule of Three (Āryabhaṭa)</td>\n    </tr>\n    <tr style=\"border-bottom:1px solid #334155;\">\n      <td style=\"padding:8px; font-weight:bold; color:#f8fafc;\">Sharing in Ratio $a:b$</td>\n      <td style=\"padding:8px;\">Share $= \\frac{a}{a+b} \\times T$</td>\n      <td style=\"padding:8px; color:#94a3b8;\">Part-to-whole partition of total $T$</td>\n    </tr>\n    <tr style=\"border-bottom:1px solid #334155;\">\n      <td style=\"padding:8px; font-weight:bold; color:#f8fafc;\">Speed Conversion</td>\n      <td style=\"padding:8px;\">$\\text{km/h} \\times \\frac{5}{18} = \\text{m/s}$</td>\n      <td style=\"padding:8px; color:#94a3b8;\">Dimensional analysis identity ratio</td>\n    </tr>\n  </tbody>\n</table>\n", "sim_type": "proportional_reasoning_grand_matrix", "voice": "We have explored the complete spectrum of proportional thinking. Review this master synthesis table connecting every concept, formula, and real-world application.", "checkpoints": [{"q": "Which property uniquely characterizes four numbers $a, b, c, d$ being in proportion?", "options": ["a + d = b + c", "a · d = b · c", "a - b = c - d", "a² + b² = c² + d²"], "ans": 1, "feedback": "Correct! Product of extremes equals product of means (ad = bc)."}, {"q": "When converting $108\text{ km/h}$ to $\text{m/s}$, what is the final result?", "options": ["25 m/s", "30 m/s", "36 m/s", "40 m/s"], "ans": 1, "feedback": "Correct! 108 × (5/18) = 6 × 5 = 30 m/s."}]}, {"id": 16, "title": "BRAIN BUSTERS & RATIO RIDDLES", "subtitle": "Detective Room Challenges & Proportional Puzzles", "content": "\n<p><strong>Puzzle 1: The Alchemist\\'s Elixir</strong><br>\nA flask contains gold and silver liquid in ratio $3 : 2$. If $10\\text{ mL}$ of pure silver is added, the new ratio becomes $1 : 1$. How much gold liquid is in the flask?</p>\n<p><strong>Puzzle 2: The Two Candies Mystery</strong><br>\nPriya and Kabir have candies in ratio $7 : 5$. Priya gives Kabir $6$ candies, and now their candy counts are exactly equal! How many candies did Priya start with?</p>\n<p><strong>Puzzle 3: The Ancient Caravan Speed</strong><br>\nA desert caravan travels at $18\\text{ km/h}$. A message runner dashes alongside at $7.5\\text{ m/s}$. Who is travelling faster?</p>\n<p><strong>Puzzle 4: The Vanishing Fourth Term</strong><br>\nFind $y$ such that $y, 24, 54, y$ form a valid continued proportion where $y$ is the mean proportional between the first and last pair.</p>\n", "sim_type": "puzzle_time_ratio_detective_room", "voice": "Put your proportional reasoning to the ultimate test! Solve these four enigmatic detective puzzles by balancing mixtures, uncovering unknown extremes, and reversing transformations.", "checkpoints": [{"q": "In Puzzle 2 (Priya and Kabir candies 7:5, Priya gives 6 candies and counts become equal): How many total candies do they have together?", "options": ["48 candies", "60 candies", "72 candies", "84 candies"], "ans": 2, "feedback": "Correct! Let Priya have 7x and Kabir have 5x. 7x - 6 = 5x + 6 => 2x = 12 => x = 6. Total = 12x = 72 candies! (Priya had 42, Kabir had 30. After transfer, both have 36)."}, {"q": "In Puzzle 3: Caravan at $18\text{ km/h}$ vs Runner at $7.5\text{ m/s}$. Who is faster?", "options": ["The caravan, because 18 > 7.5", "The runner, because 7.5 m/s = 27 km/h, which is much faster than 18 km/h", "Both move at identical speeds", "The runner is slower because 7.5 × 18/5 = 15 km/h"], "ans": 1, "feedback": "Correct! 7.5 m/s × (18/5) = 1.5 × 18 = 27 km/h! The runner is significantly faster than the 18 km/h caravan."}]}, {"id": 17, "title": "Mastery Challenge — Part I (Questions 1 to 10)", "subtitle": "Foundations of Ratios, Lowest Terms & Relative Scaling", "content": "<p>Select the single correct option for each question. Real-time feedback and step-by-step mathematical reasoning are available for every item.</p>", "sim_type": "quiz_slide", "voice": "Welcome to Part I of the Mastery Challenge. You will tackle 10 questions testing your mastery of additive vs multiplicative thinking, ratio definitions, simplest form reductions, and equivalent ratios. Click '💡 View Solution' on any question to study the full deduction.", "checkpoints": [], "quiz_range": [1, 10]}, {"id": 18, "title": "Mastery Challenge — Part II (Questions 11 to 20)", "subtitle": "Proportions, Geometric Means & Trairāśika", "content": "<p>Work carefully through these 10 intermediate problems. Verify your calculations with the step-by-step solution modals.</p>", "sim_type": "quiz_slide", "voice": "In Part II, we examine the fundamental law of proportion ($ad = bc$), mean proportionals, continued proportion chains, and Āryabhaṭa's ancient Indian Rule of Three (Trairāśika).", "checkpoints": [], "quiz_range": [11, 20]}, {"id": 19, "title": "Mastery Challenge — Part III (Questions 21 to 30)", "subtitle": "Everyday Mixtures, Unequal Sharing & Scaling Operators", "content": "<p>Solve these 10 applied word problems. Use part-to-whole fractions and part-to-part conversions with confidence.</p>", "sim_type": "quiz_slide", "voice": "Part III challenges your applied proportional reasoning: filter coffee concentration formulas, dividing assets and perimeters in given ratios, and multi-way compound partitioning.", "checkpoints": [], "quiz_range": [21, 30]}, {"id": 20, "title": "Mastery Challenge — Part IV (Questions 31 to 40)", "subtitle": "Unit Transformations, Map Scales & Multi-Step Reasoning", "content": "<p>Complete the final 10 questions to achieve complete mastery of Proportional Reasoning.</p>", "sim_type": "quiz_slide", "voice": "Congratulations on reaching the final frontier! Part IV features 10 advanced problems covering dimensional analysis unit conversions, architectural scale blueprints, speed transformations, and composite ratio riddles.", "checkpoints": [], "quiz_range": [31, 40]}];
+    const quizQuestions = [{"num": 1, "slide": 17, "question": "What is the ratio of $500\\text{ mL}$ to $2\\text{ litres}$ in simplest form?", "options": ["250 : 1", "1 : 4", "1 : 40", "5 : 2"], "correct": 1, "solution": "First, express both quantities in identical units. $2\\text{ litres} = 2000\\text{ mL}$.\\n\\nNow form the ratio:\\n$$\\frac{500\\text{ mL}}{2000\\text{ mL}} = \\frac{500}{2000} = \\frac{1}{4}$$\\n\\nIn simplest form, the ratio is $\\mathbf{1 : 4}$."}, {"num": 2, "slide": 17, "question": "Which of the following comparisons represents multiplicative reasoning rather than additive reasoning?", "options": ["Rohan is 5 years older than Sohan", "A tree grew by 20 cm this summer", "The population of a bacterial colony tripled overnight", "A test score increased from 70 to 80 marks"], "correct": 2, "solution": "Additive reasoning measures difference through subtraction ($A - B$). Multiplicative reasoning measures scaling factor through multiplication or division ($A / B$). 'Tripled overnight' means multiplying by 3, which is pure multiplicative reasoning."}, {"num": 3, "slide": 17, "question": "In a school club of 45 members, there are 20 boys and 25 girls. What is the ratio of girls to the total number of members in simplest form?", "options": ["4 : 5", "5 : 4", "5 : 9", "4 : 9"], "correct": 2, "solution": "Number of girls = 25.\\nTotal members = 45.\\n\\nRatio of girls to total members:\\n$$\\frac{25}{45} = \\frac{25 \\div 5}{45 \\div 5} = \\frac{5}{9}$$\\n\\nIn simplest form, the ratio is $\\mathbf{5 : 9}$."}, {"num": 4, "slide": 17, "question": "Reduce the ratio $210 : 315$ to its simplest form.", "options": ["2 : 3", "3 : 2", "14 : 21", "4 : 5"], "correct": 0, "solution": "We determine the greatest common divisor $\\gcd(210, 315)$:\\n$$210 = 2 \\times 3 \\times 5 \\times 7$$\\n$$315 = 3^2 \\times 5 \\times 7$$\\n$$\\gcd(210, 315) = 3 \\times 5 \\times 7 = 105$$\\n\\nDivide both terms by 105:\\n$$\\frac{210 \\div 105}{315 \\div 105} = \\frac{2}{3} = \\mathbf{2 : 3}$$"}, {"num": 5, "slide": 17, "question": "Find the ratio of $2.5\\text{ kg}$ to $750\\text{ g}$ in simplest form.", "options": ["1 : 3", "10 : 3", "5 : 3", "25 : 7"], "correct": 1, "solution": "Convert $2.5\\text{ kg}$ to grams:\\n$$2.5\\text{ kg} = 2.5 \\times 1000\\text{ g} = 2500\\text{ g}$$\\n\\nForm the ratio:\\n$$\\frac{2500}{750} = \\frac{250}{75} = \\frac{10}{3} = \\mathbf{10 : 3}$$"}, {"num": 6, "slide": 17, "question": "If the ratio $4 : 7$ is equivalent to $28 : x$, find the value of $x$.", "options": ["42", "49", "56", "35"], "correct": 1, "solution": "Set up the equivalence of fractions:\\n$$\\frac{4}{7} = \\frac{28}{x}$$\\n\\nNotice that the numerator is multiplied by $7$ ($4 \\times 7 = 28$). To maintain equivalence, the denominator must also be multiplied by $7$:\\n$$x = 7 \\times 7 = \\mathbf{49}$$\\n\\nAlternatively, cross-multiply: $4x = 7 \\times 28 = 196 \\implies x = 196 / 4 = 49$."}, {"num": 7, "slide": 17, "question": "Simplify the fractional ratio $\\frac{2}{3} : \\frac{5}{6}$ into simplest integer form.", "options": ["4 : 5", "5 : 4", "2 : 5", "12 : 15"], "correct": 0, "solution": "To eliminate the denominators, find the LCM of denominators $3$ and $6$, which is $6$. Multiply both terms by $6$:\\n$$\\left(\\frac{2}{3} \\times 6\\right) : \\left(\\frac{5}{6} \\times 6\\right) = 4 : 5$$\\n\\nSince $\\gcd(4, 5) = 1$, the simplest form is $\\mathbf{4 : 5}$."}, {"num": 8, "slide": 17, "question": "Which of the two ratios is larger: $3 : 5$ or $7 : 12$?", "options": ["3 : 5 is larger because 36 > 35", "7 : 12 is larger because 7 > 3", "They are exactly equal", "Cannot be determined without a common numerator"], "correct": 0, "solution": "Compare $\\frac{3}{5}$ and $\\frac{7}{12}$ using cross-multiplication:\\n$$\\text{Left product: } 3 \\times 12 = 36$$\\n$$\\text{Right product: } 5 \\times 7 = 35$$\\n\\nSince $36 > 35$, we have $\\frac{3}{5} > \\frac{7}{12}$.\\nTherefore, $\\mathbf{3 : 5}$ is larger (0.60 > 0.5833)."}, {"num": 9, "slide": 17, "question": "Express the decimal ratio $1.2 : 1.8$ in simplest whole-number form.", "options": ["12 : 18", "6 : 9", "2 : 3", "3 : 2"], "correct": 2, "solution": "Multiply both terms by 10 to clear the decimal point:\\n$$1.2 : 1.8 = 12 : 18$$\\n\\nNow divide both terms by their GCD, $\\gcd(12, 18) = 6$:\\n$$\\frac{12 \\div 6}{18 \\div 6} = \\frac{2}{3} = \\mathbf{2 : 3}$$"}, {"num": 10, "slide": 17, "question": "A car uses 4 litres of diesel to travel 64 km. What is the ratio of distance (in km) to fuel (in litres) in simplest form?", "options": ["1 : 16", "16 : 1", "4 : 64", "32 : 2"], "correct": 1, "solution": "Ratio of distance to fuel is:\\n$$\\frac{64}{4} = \\frac{16}{1} = \\mathbf{16 : 1}$$\\n\\nThis indicates the vehicle travels 16 km per litre of fuel."}, {"num": 11, "slide": 18, "question": "Find the missing term $x$ such that $4 : 7 :: 16 : x$ forms a valid proportion.", "options": ["24", "28", "32", "36"], "correct": 1, "solution": "By the fundamental law of proportion, the product of extremes equals the product of means:\\n$$4 \\cdot x = 7 \\cdot 16$$\\n$$4x = 112$$\\n$$x = \\frac{112}{4} = \\mathbf{28}$$"}, {"num": 12, "slide": 18, "question": "Which of the following sets of four numbers forms a proportion in the given order?", "options": ["12, 18, 20, 30", "10, 15, 20, 25", "8, 12, 14, 24", "6, 9, 15, 20"], "correct": 0, "solution": "Test each option using $\\text{Product of Extremes} = \\text{Product of Means}$:\\n\\nFor option A (12, 18, 20, 30):\\n$$\\text{Extremes: } 12 \\times 30 = 360$$\\n$$\\text{Means: } 18 \\times 20 = 360$$\\n\\nSince $360 = 360$, the numbers $\\mathbf{12, 18, 20, 30}$ form a proportion."}, {"num": 13, "slide": 18, "question": "Find the mean proportional between $16$ and $36$.", "options": ["24", "26", "28", "30"], "correct": 0, "solution": "If $b$ is the mean proportional between $a$ and $c$, then $b^2 = ac \\implies b = \\sqrt{ac}$.\\n\\nHere $a = 16$ and $c = 36$:\\n$$b = \\sqrt{16 \\times 36} = \\sqrt{16} \\times \\sqrt{36} = 4 \\times 6 = \\mathbf{24}$$\\n\\nCheck: $16 : 24 = 2 : 3$ and $24 : 36 = 2 : 3$."}, {"num": 14, "slide": 18, "question": "Find the third proportional to $9$ and $12$.", "options": ["15", "16", "18", "20"], "correct": 1, "solution": "If $c$ is the third proportional to $a$ and $b$, then $a : b :: b : c$:\\n$$\\frac{9}{12} = \\frac{12}{c}$$\\n$$9c = 12 \\times 12 = 144$$\\n$$c = \\frac{144}{9} = \\mathbf{16}$$"}, {"num": 15, "slide": 18, "question": "What is the fourth proportional to $5, 8,$ and $15$?", "options": ["20", "22", "24", "25"], "correct": 2, "solution": "Let $d$ be the fourth proportional. Then $5 : 8 :: 15 : d$:\\n$$5 \\cdot d = 8 \\cdot 15$$\\n$$5d = 120$$\\n$$d = \\frac{120}{5} = \\mathbf{24}$$"}, {"num": 16, "slide": 18, "question": "If $8$ pens cost ₹$96$, what is the cost of $14$ such pens?", "options": ["₹144", "₹168", "₹180", "₹196"], "correct": 1, "solution": "Using the unitary method:\\n$$\\text{Cost of 1 pen} = \\frac{96}{8} = \\text{₹}12$$\\n$$\\text{Cost of 14 pens} = 14 \\times 12 = \\mathbf{\\text{₹}168}$$"}, {"num": 17, "slide": 18, "question": "In ancient Indian mathematics (Trairāśika), if $7\\text{ kg}$ of dates yield $28\\text{ coins}$, identify the 'Pramāṇa' (Measure) and 'Phala' (Fruit).", "options": ["Pramāṇa = 28 coins, Phala = 7 kg", "Pramāṇa = 7 kg, Phala = 28 coins", "Pramāṇa = 4 coins, Phala = 1 kg", "Both are called Icchā"], "correct": 1, "solution": "In Trairāśika:\\n- **Pramāṇa (प्रमाण):** The given measure or baseline argument ($7\\text{ kg}$).\\n- **Phala (फल):** The resulting fruit or yield produced by that measure ($28\\text{ coins}$).\\n- **Icchā (इच्छा):** The requisition or question amount."}, {"num": 18, "slide": 18, "question": "Using Āryabhaṭa's Trairāśika rule $\\text{Icchā-Phala} = \\frac{\\text{Phala} \\times \\text{Icchā}}{\\text{Pramāṇa}}$, if $5\\text{ metres}$ of cloth cost ₹$350$, find the cost of $13\\text{ metres}$.", "options": ["₹780", "₹840", "₹910", "₹950"], "correct": 2, "solution": "Pramāṇa = $5$, Phala = $350$, Icchā = $13$:\\n$$\\text{Icchā-Phala} = \\frac{350 \\times 13}{5} = 70 \\times 13 = \\mathbf{\\text{₹}910}$$"}, {"num": 19, "slide": 18, "question": "Quantity $y$ is directly proportional to $x$. When $x = 4$, $y = 28$. Find $y$ when $x = 9$.", "options": ["56", "63", "70", "72"], "correct": 1, "solution": "Since $y$ varies directly as $x$:\\n$$k = \\frac{y}{x} = \\frac{28}{4} = 7$$\\n\\nWhen $x = 9$:\\n$$y = k \\cdot x = 7 \\times 9 = \\mathbf{63}$$"}, {"num": 20, "slide": 18, "question": "What is the mean proportional between $3$ and $27$?", "options": ["6", "9", "12", "15"], "correct": 1, "solution": "$$b = \\sqrt{a \\cdot c} = \\sqrt{3 \\times 27} = \\sqrt{81} = \\mathbf{9}$$\\n\\nCheck: $3 : 9 = 1 : 3$ and $9 : 27 = 1 : 3$."}, {"num": 21, "slide": 19, "question": "A recipe for traditional filter coffee uses decoction and milk in the ratio $2 : 5$. How much decoction is required to prepare $350\\text{ mL}$ of coffee?", "options": ["70 mL", "100 mL", "125 mL", "140 mL"], "correct": 1, "solution": "Total ratio parts = $2 + 5 = 7$ parts.\\nVolume of 1 part = $\\frac{350\\text{ mL}}{7} = 50\\text{ mL}$.\\n\\nDecoction volume ($2$ parts):\\n$$2 \\times 50\\text{ mL} = \\mathbf{100\\text{ mL}}$$\\n(Milk required = $5 \\times 50 = 250\\text{ mL}$)."}, {"num": 22, "slide": 19, "question": "Cup A has decoction to milk in ratio $1 : 4$. Cup B has decoction to milk in ratio $2 : 7$. Which cup has a stronger coffee concentration?", "options": ["Cup A is stronger (20% coffee vs 22.2% coffee in Cup B)", "Cup B is stronger (22.2% coffee vs 20% coffee in Cup A)", "Both have identical strength", "Cannot be compared without knowing total volume"], "correct": 1, "solution": "Calculate the part-to-whole fraction of coffee decoction in each cup:\\n- **Cup A:** $\\frac{1}{1 + 4} = \\frac{1}{5} = 0.20 = 20\\%$\\n- **Cup B:** $\\frac{2}{2 + 7} = \\frac{2}{9} \\approx 0.222 = 22.2\\%$\\n\\nSince $22.2\\% > 20\\%$, **Cup B** is stronger."}, {"num": 23, "slide": 19, "question": "Divide ₹$2,400$ between Amar and Bhuvan in the ratio $3 : 5$. What is Bhuvan's share?", "options": ["₹900", "₹1,200", "₹1,500", "₹1,600"], "correct": 2, "solution": "Total parts = $3 + 5 = 8$.\\nValue of 1 part = $\\frac{2400}{8} = \\text{₹}300$.\\n\\nBhuvan's share ($5$ parts):\\n$$5 \\times 300 = \\mathbf{\\text{₹}1,500}$$\\n(Amar's share = $3 \\times 300 = \\text{₹}900$)."}, {"num": 24, "slide": 19, "question": "A bag containing $75\\text{ kg}$ of rice is shared between two families in the ratio $2 : 3$. What is the difference in kilograms between their shares?", "options": ["10 kg", "15 kg", "20 kg", "25 kg"], "correct": 1, "solution": "Total parts = $2 + 3 = 5$.\\n1 part = $\\frac{75}{5} = 15\\text{ kg}$.\\n\\nFamily 1 share = $2 \\times 15 = 30\\text{ kg}$.\\nFamily 2 share = $3 \\times 15 = 45\\text{ kg}$.\\n\\nDifference between shares:\\n$$45 - 30 = \\mathbf{15\\text{ kg}}$$"}, {"num": 25, "slide": 19, "question": "A sum of ₹$4,500$ is shared among P, Q, and R in the ratio $2 : 3 : 4$. How much does Q receive?", "options": ["₹1,000", "₹1,500", "₹2,000", "₹1,250"], "correct": 1, "solution": "Total parts = $2 + 3 + 4 = 9$.\\nValue of 1 part = $\\frac{4500}{9} = \\text{₹}500$.\\n\\nQ's share ($3$ parts):\\n$$3 \\times 500 = \\mathbf{\\text{₹}1,500}$$\\n(P receives ₹1,000 and R receives ₹2,000)."}, {"num": 26, "slide": 19, "question": "The perimeter of a triangle is $60\\text{ cm}$ and its side lengths are in the ratio $3 : 4 : 5$. What is the length of the shortest side?", "options": ["12 cm", "15 cm", "18 cm", "20 cm"], "correct": 1, "solution": "Total parts = $3 + 4 + 5 = 12$.\\n1 part = $\\frac{60\\text{ cm}}{12} = 5\\text{ cm}$.\\n\\nShortest side corresponds to the smallest term ($3$ parts):\\n$$3 \\times 5\\text{ cm} = \\mathbf{15\\text{ cm}}$$\\n(The three sides are $15\\text{ cm}, 20\\text{ cm},$ and $25\\text{ cm}$)."}, {"num": 27, "slide": 19, "question": "The interior angles of a quadrilateral are in the ratio $1 : 2 : 3 : 4$. What is the measure of the largest angle?", "options": ["108°", "120°", "144°", "160°"], "correct": 2, "solution": "The sum of interior angles of any quadrilateral is $360^\\circ$.\\nTotal parts = $1 + 2 + 3 + 4 = 10$.\\n1 part = $\\frac{360^\\circ}{10} = 36^\\circ$.\\n\\nLargest angle ($4$ parts):\\n$$4 \\times 36^\\circ = \\mathbf{144^\\circ}$$\\n(The four angles are $36^\\circ, 72^\\circ, 108^\\circ,$ and $144^\\circ$)."}, {"num": 28, "slide": 19, "question": "An athlete's weight of $60\\text{ kg}$ is increased in the ratio $7 : 6$. What is the new weight?", "options": ["66 kg", "70 kg", "72 kg", "75 kg"], "correct": 1, "solution": "When a quantity $Q$ is changed in the ratio $a : b$:\\n$$Q_{\\text{new}} = Q_{\\text{original}} \\times \\frac{a}{b}$$\\n$$Q_{\\text{new}} = 60 \\times \\frac{7}{6} = 10 \\times 7 = \\mathbf{70\\text{ kg}}$$"}, {"num": 29, "slide": 19, "question": "A book priced at ₹$800$ is reduced in the ratio $4 : 5$ during a sale. What is the discounted price?", "options": ["₹600", "₹640", "₹680", "₹720"], "correct": 1, "solution": "$$Q_{\\text{new}} = Q_{\\text{original}} \\times \\frac{a}{b}$$\\n$$Q_{\\text{new}} = 800 \\times \\frac{4}{5} = 160 \\times 4 = \\mathbf{\\text{₹}640}$$"}, {"num": 30, "slide": 19, "question": "A container holds a mixture of milk and water in the ratio $5 : 3$. If $4\\text{ litres}$ of water are added, the ratio becomes $1 : 1$. What was the original volume of milk?", "options": ["8 litres", "10 litres", "12 litres", "15 litres"], "correct": 1, "solution": "Let milk = $5x$ and water = $3x$.\\nWhen $4\\text{ litres}$ of water are added:\\n$$\\frac{5x}{3x + 4} = \\frac{1}{1}$$\\n$$5x = 3x + 4 \\implies 2x = 4 \\implies x = 2$$\\n\\nOriginal volume of milk:\\n$$5x = 5 \\times 2 = \\mathbf{10\\text{ litres}}$$\\n(Original water was $3 \\times 2 = 6\\text{ litres}$; after adding $4\\text{ L}$, water is $10\\text{ L}$, making the ratio $10:10 = 1:1$)."}, {"num": 31, "slide": 20, "question": "Convert a speed of $90\\text{ km/h}$ to metres per second ($\\text{m/s}$).", "options": ["20 m/s", "22.5 m/s", "25 m/s", "28 m/s"], "correct": 2, "solution": "Multiply by the standard dimensional conversion factor $\\frac{5}{18}$:\\n$$90 \\times \\frac{5}{18} = 5 \\times 5 = \\mathbf{25\\text{ m/s}}$$"}, {"num": 32, "slide": 20, "question": "A sprinter runs at $20\\text{ m/s}$. What is the sprinter's speed in $\\text{km/h}$?", "options": ["60 km/h", "72 km/h", "80 km/h", "84 km/h"], "correct": 1, "solution": "Multiply by the reciprocal conversion factor $\\frac{18}{5}$:\\n$$20 \\times \\frac{18}{5} = 4 \\times 18 = \\mathbf{72\\text{ km/h}}$$"}, {"num": 33, "slide": 20, "question": "Convert $3.6\\text{ km/h}$ into centimetres per second ($\\text{cm/s}$).", "options": ["10 cm/s", "50 cm/s", "100 cm/s", "1000 cm/s"], "correct": 2, "solution": "First convert to m/s:\\n$$3.6 \\times \\frac{5}{18} = 0.2 \\times 5 = 1\\text{ m/s}$$\\n\\nNow convert metres to centimetres ($1\\text{ m} = 100\\text{ cm}$):\\n$$1\\text{ m/s} = \\mathbf{100\\text{ cm/s}}$$"}, {"num": 34, "slide": 20, "question": "A topographical map has a scale of $1 : 100,000$. The distance between two landmarks on the map is $4.5\\text{ cm}$. What is the actual ground distance in kilometres?", "options": ["0.45 km", "4.5 km", "45 km", "450 km"], "correct": 1, "solution": "Actual distance = $4.5\\text{ cm} \\times 100,000 = 450,000\\text{ cm}$.\\n\\nConvert cm to metres:\\n$$\\frac{450,000}{100} = 4,500\\text{ metres}$$\\n\\nConvert metres to kilometres:\\n$$\\frac{4,500}{1000} = \\mathbf{4.5\\text{ km}}$$"}, {"num": 35, "slide": 20, "question": "On an architectural blueprint, $1\\text{ cm}$ represents $2.5\\text{ metres}$ of real length. If a conference hall is $15\\text{ metres}$ long, what will be its length on the blueprint?", "options": ["4.5 cm", "5 cm", "6 cm", "7.5 cm"], "correct": 2, "solution": "Blueprint length:\\n$$\\frac{15\\text{ m}}{2.5\\text{ m/cm}} = \\frac{15}{2.5} = \\mathbf{6\\text{ cm}}$$"}, {"num": 36, "slide": 20, "question": "What is the compound ratio of $2 : 3$ and $9 : 4$?", "options": ["1 : 1", "3 : 2", "2 : 3", "18 : 7"], "correct": 1, "solution": "The compound ratio of $a : b$ and $c : d$ is $(a \\times c) : (b \\times d)$:\\n$$\\frac{2 \\times 9}{3 \\times 4} = \\frac{18}{12} = \\frac{3}{2} = \\mathbf{3 : 2}$$"}, {"num": 37, "slide": 20, "question": "The duplicate ratio of $3 : 5$ is:", "options": ["6 : 10", "9 : 25", "27 : 125", "√3 : √5"], "correct": 1, "solution": "The duplicate ratio of $a : b$ is $a^2 : b^2$:\\n$$3^2 : 5^2 = \\mathbf{9 : 25}$$"}, {"num": 38, "slide": 20, "question": "Two numbers are in the ratio $5 : 7$. If $6$ is added to both numbers, their ratio becomes $3 : 4$. Find the smaller number.", "options": ["20", "25", "30", "35"], "correct": 2, "solution": "Let the numbers be $5x$ and $7x$.\\n$$\\frac{5x + 6}{7x + 6} = \\frac{3}{4}$$\\n$$4(5x + 6) = 3(7x + 6)$$\\n$$20x + 24 = 21x + 18$$\\n$$21x - 20x = 24 - 18 \\implies x = 6$$\\n\\nSmaller number = $5x = 5 \\times 6 = \\mathbf{30}$.\\n(Larger number is $7 \\times 6 = 42$)."}, {"num": 39, "slide": 20, "question": "An alloy contains gold and copper in the ratio $3 : 1$. The total weight is $120\\text{ g}$. How many grams of pure copper must be added so that the ratio of gold to copper becomes $2 : 1$?", "options": ["10 g", "15 g", "20 g", "25 g"], "correct": 1, "solution": "Total parts = $3 + 1 = 4$.\\n1 part = $\\frac{120}{4} = 30\\text{ g}$.\\nGold = $3 \\times 30 = 90\\text{ g}$, Copper = $1 \\times 30 = 30\\text{ g}$.\\n\\nLet $c$ grams of copper be added:\\n$$\\frac{90}{30 + c} = \\frac{2}{1}$$\\n$$2(30 + c) = 90$$\\n$$60 + 2c = 90 \\implies 2c = 30 \\implies c = \\mathbf{15\\text{ g}}$$"}, {"num": 40, "slide": 20, "question": "Train A covers $360\\text{ km}$ in $4\\text{ hours}$. Train B travels at a constant speed of $28\\text{ m/s}$. Which train is faster?", "options": ["Train A is faster (90 km/h vs 100.8 km/h)", "Train B is faster (100.8 km/h vs 90 km/h for Train A)", "Both have identical speeds", "Cannot be compared without knowing length of trains"], "correct": 1, "solution": "Speed of Train A:\\n$$\\frac{360\\text{ km}}{4\\text{ h}} = 90\\text{ km/h}$$\\n\\nConvert Train B's speed from m/s to km/h:\\n$$28 \\times \\frac{18}{5} = \\frac{504}{5} = 100.8\\text{ km/h}$$\\n\\nSince $100.8\\text{ km/h} > 90\\text{ km/h}$, **Train B** is faster."}];
+
+    let currentSlideIndex = 0;
+    let isSpeaking = false;
+    let synth = window.speechSynthesis;
+    let currentUtterance = null;
+
+    // Helper: Trigger KaTeX Rendering
+    function triggerMathRender(element) {
+      if (window.renderMathInElement) {
+        renderMathInElement(element || document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    // ==========================================
+    // Slide Navigation & State Management
+    // ==========================================
+    function loadSlide(index) {
+      if (index < 0 || index >= slides.length) return;
+      currentSlideIndex = index;
+      stopVoice();
+
+      const slide = slides[index];
+
+      // Update Header & Metas
+      document.getElementById('slideNumDisplay').textContent = `Slide ${index + 1} of ${slides.length}`;
+      document.getElementById('slideTag').textContent = `CHAPTER 7 • SLIDE ${index + 1} OF 20`;
+      document.getElementById('slideTitle').textContent = slide.title;
+      document.getElementById('slideSubtitle').textContent = slide.subtitle;
+      document.getElementById('mentorVoiceText').textContent = slide.voice;
+
+      const lessonGrid = document.getElementById('lessonGrid');
+      const quizContainer = document.getElementById('quizContainer');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const lastNotice = document.getElementById('lastSlideNotice');
+
+      prevBtn.disabled = (index === 0);
+
+      if (index === slides.length - 1) {
+        nextBtn.style.display = 'none';
+        lastNotice.style.display = 'block';
+      } else {
+        nextBtn.style.display = 'inline-block';
+        lastNotice.style.display = 'none';
+      }
+
+      if (index < 16) {
+        // Lesson Slide
+        lessonGrid.style.display = 'grid';
+        quizContainer.style.display = 'none';
+
+        document.getElementById('theoryContent').innerHTML = slide.content;
+        renderCheckpoints(slide.checkpoints);
+        renderSimulator(slide.sim_type);
+      } else {
+        // Dedicated Quiz Slide (Slides 17 to 20)
+        lessonGrid.style.display = 'none';
+        quizContainer.style.display = 'flex';
+
+        renderQuizSlide(slide.quiz_range);
+      }
+
+      setTimeout(() => {
+        triggerMathRender(document.body);
+      }, 50);
+    }
+
+    function prevSlide() {
+      if (currentSlideIndex > 0) {
+        loadSlide(currentSlideIndex - 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlideIndex < slides.length - 1) {
+        loadSlide(currentSlideIndex + 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // ==========================================
+    // In-Slide Conceptual Checkpoints
+    // ==========================================
+    function renderCheckpoints(checkpoints) {
+      const list = document.getElementById('checkpointsList');
+      list.innerHTML = '';
+
+      if (!checkpoints || checkpoints.length === 0) {
+        document.getElementById('checkpointContainer').style.display = 'none';
+        return;
+      }
+      document.getElementById('checkpointContainer').style.display = 'flex';
+
+      checkpoints.forEach((cp, cpIdx) => {
+        const card = document.createElement('div');
+        card.className = 'checkpoint-card';
+        card.innerHTML = `
+          <div class="checkpoint-q"><strong>Q${cpIdx + 1}:</strong> ${cp.q}</div>
+          <div class="options-grid" id="cpOptions${cpIdx}"></div>
+          <div class="feedback-box" id="cpFeedback${cpIdx}"></div>
+        `;
+
+        const optGrid = card.querySelector(`#cpOptions${cpIdx}`);
+        const feedback = card.querySelector(`#cpFeedback${cpIdx}`);
+
+        cp.options.forEach((opt, optIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'option-btn';
+          btn.innerHTML = `<span style="font-weight:700; color:#38bdf8;">${String.fromCharCode(65 + optIdx)}.</span> <span>${opt}</span>`;
+          btn.onclick = () => {
+            const allBtns = optGrid.querySelectorAll('.option-btn');
+            allBtns.forEach(b => b.disabled = true);
+
+            if (optIdx === cp.ans) {
+              btn.classList.add('correct');
+              feedback.className = 'feedback-box show correct-box';
+              feedback.innerHTML = `<strong>✓ Correct!</strong> ${cp.feedback}`;
+            } else {
+              btn.classList.add('incorrect');
+              allBtns[cp.ans].classList.add('correct');
+              feedback.className = 'feedback-box show incorrect-box';
+              feedback.innerHTML = `<strong>✗ Incorrect.</strong> ${cp.feedback}`;
+            }
+            triggerMathRender(feedback);
+          };
+          optGrid.appendChild(btn);
+        });
+
+        list.appendChild(card);
+      });
+    }
+
+    // ==========================================
+    // Mastery Quiz Slides (10 questions per slide)
+    // ==========================================
+    function renderQuizSlide(range) {
+      const grid = document.getElementById('quizGrid');
+      grid.innerHTML = '';
+
+      if (!range) return;
+      const [startNum, endNum] = range;
+      const questions = quizQuestions.filter(q => q.num >= startNum && q.num <= endNum);
+
+      questions.forEach((q) => {
+        const card = document.createElement('div');
+        card.className = 'quiz-card';
+        card.innerHTML = `
+          <div class="quiz-card-head">
+            <span class="q-num-badge">Question ${q.num} of 40</span>
+            <button class="sol-btn" onclick="openSolutionModal(${q.num})">
+              <span>💡</span> View Solution
+            </button>
+          </div>
+          <div class="checkpoint-q">${q.question}</div>
+          <div class="options-grid" id="qGrid${q.num}"></div>
+          <div class="feedback-box" id="qFeedback${q.num}"></div>
+        `;
+
+        const optGrid = card.querySelector(`#qGrid${q.num}`);
+        const feedback = card.querySelector(`#qFeedback${q.num}`);
+
+        q.options.forEach((optText, optIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'option-btn';
+          btn.innerHTML = `<span style="font-weight:700; color:#38bdf8;">${String.fromCharCode(65 + optIdx)}.</span> <span>${optText}</span>`;
+          btn.onclick = () => {
+            const allBtns = optGrid.querySelectorAll('.option-btn');
+            allBtns.forEach(b => b.disabled = true);
+
+            if (optIdx === q.correct) {
+              btn.classList.add('correct');
+              feedback.className = 'feedback-box show correct-box';
+              feedback.innerHTML = `<strong>✓ Excellent!</strong> Correct Answer. Click "View Solution" to inspect the complete proof.`;
+            } else {
+              btn.classList.add('incorrect');
+              allBtns[q.correct].classList.add('correct');
+              feedback.className = 'feedback-box show incorrect-box';
+              feedback.innerHTML = `<strong>✗ Not quite.</strong> Option (${String.fromCharCode(65 + q.correct)}) is correct. Click "View Solution" for detailed reasoning.`;
+            }
+          };
+          optGrid.appendChild(btn);
+        });
+
+        grid.appendChild(card);
+      });
+    }
+
+    // ==========================================
+    // Solution Modal
+    // ==========================================
+    function openSolutionModal(qNum) {
+      const q = quizQuestions.find(item => item.num === qNum);
+      if (!q) return;
+
+      const modal = document.getElementById('solutionModal');
+      document.getElementById('modalTitle').innerHTML = `<span>💡</span> Solution: Question ${q.num} of 40`;
+      document.getElementById('modalBody').innerHTML = `
+        <div style="margin-bottom:12px; font-weight:600; color:#94a3b8;">${q.question}</div>
+        <div style="background:rgba(30,41,59,0.7); border:1px solid #334155; border-radius:10px; padding:16px;">
+          ${q.solution}
+        </div>
+      `;
+      modal.style.display = 'flex';
+      setTimeout(() => {
+        triggerMathRender(document.getElementById('modalBody'));
+      }, 50);
+    }
+
+    function closeSolutionModal() {
+      document.getElementById('solutionModal').style.display = 'none';
+    }
+
+    // ==========================================
+    // Voice Narration (Web Speech API)
+    // ==========================================
+    function toggleVoice() {
+      if (isSpeaking) {
+        stopVoice();
+      } else {
+        startVoice();
+      }
+    }
+
+    function startVoice() {
+      if (!('speechSynthesis' in window)) {
+        alert("Your browser does not support text-to-speech audio narration.");
+        return;
+      }
+      stopVoice();
+
+      const text = slides[currentSlideIndex].voice;
+      currentUtterance = new SpeechSynthesisUtterance(text);
+      currentUtterance.rate = 0.95;
+      currentUtterance.pitch = 1.0;
+
+      currentUtterance.onstart = () => {
+        isSpeaking = true;
+        document.getElementById('voiceToggleBtn').classList.add('speaking');
+        document.getElementById('voiceStatusText').textContent = 'Pause';
+        document.getElementById('mentorAvatar').classList.add('speaking');
+      };
+
+      currentUtterance.onend = () => {
+        stopVoice();
+      };
+
+      currentUtterance.onerror = () => {
+        stopVoice();
+      };
+
+      synth.speak(currentUtterance);
+    }
+
+    function stopVoice() {
+      if (synth && synth.speaking) {
+        synth.cancel();
+      }
+      isSpeaking = false;
+      const btn = document.getElementById('voiceToggleBtn');
+      if (btn) btn.classList.remove('speaking');
+      const txt = document.getElementById('voiceStatusText');
+      if (txt) txt.textContent = 'Listen';
+      const av = document.getElementById('mentorAvatar');
+      if (av) av.classList.remove('speaking');
+    }
+
+    // ==========================================
+    // 16 Bespoke Interactive Simulators
+    // ==========================================
+    function renderSimulator(type) {
+      const vp = document.getElementById('simViewport');
+      const controls = document.getElementById('simControls');
+      const title = document.getElementById('simTitle');
+      const badge = document.getElementById('simBadge');
+
+      vp.innerHTML = '';
+      controls.innerHTML = '';
+
+      switch (type) {
+        case 'additive_vs_multiplicative_growth_lab':
+          renderSim1(vp, controls, title, badge);
+          break;
+        case 'ratio_anatomy_and_units_lab':
+          renderSim2(vp, controls, title, badge);
+          break;
+        case 'equivalent_ratios_and_gcd_reducer':
+          renderSim3(vp, controls, title, badge);
+          break;
+        case 'ratio_comparison_balance_scale':
+          renderSim4(vp, controls, title, badge);
+          break;
+        case 'fundamental_proportion_extremes_means_engine':
+          renderSim5(vp, controls, title, badge);
+          break;
+        case 'continued_proportion_and_mean_proportional':
+          renderSim6(vp, controls, title, badge);
+          break;
+        case 'direct_variation_and_unit_rate_graph':
+          renderSim7(vp, controls, title, badge);
+          break;
+        case 'filter_coffee_decoction_strength_mixer':
+          renderSim8(vp, controls, title, badge);
+          break;
+        case 'trairasika_ancient_rule_of_three_engine':
+          renderSim9(vp, controls, title, badge);
+          break;
+        case 'two_way_fair_sharing_ratio_divider':
+          renderSim10(vp, controls, title, badge);
+          break;
+        case 'three_way_compound_partition_lab':
+          renderSim11(vp, controls, title, badge);
+          break;
+        case 'ratio_scaling_magnifier_increase_decrease':
+          renderSim12(vp, controls, title, badge);
+          break;
+        case 'dimensional_analysis_speed_converter':
+          renderSim13(vp, controls, title, badge);
+          break;
+        case 'map_scale_blueprint_rf_explorer':
+          renderSim14(vp, controls, title, badge);
+          break;
+        case 'proportional_reasoning_grand_matrix':
+          renderSim15(vp, controls, title, badge);
+          break;
+        case 'puzzle_time_ratio_detective_room':
+          renderSim16(vp, controls, title, badge);
+          break;
+        default:
+          vp.innerHTML = '<div style="color:#64748b;">Simulator loading...</div>';
+      }
+    }
+
+    // Sim 1: Additive vs. Multiplicative Growth Comparator
+    function renderSim1(vp, controls, title, badge) {
+      title.innerHTML = '<span>🌱</span> Additive vs. Multiplicative Growth';
+      badge.textContent = 'Relative Scaling Lab';
+
+      let h1 = 10;
+      let dh = 10;
+      let h2 = 100;
+
+      function update() {
+        const relA = ((dh / h1) * 100).toFixed(1);
+        const relB = ((dh / h2) * 100).toFixed(1);
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <svg viewBox="0 0 400 210" style="max-width:380px; width:100%;">
+              <!-- Ground line -->
+              <line x1="20" y1="180" x2="380" y2="180" stroke="#334155" stroke-width="3"/>
+              <text x="200" y="200" fill="#64748b" font-size="11" text-anchor="middle">Ground Baseline</text>
+
+              <!-- Plant A -->
+              <g transform="translate(100, 180)">
+                <rect x="-18" y="${-h1 * 2}" width="36" height="${h1 * 2}" fill="#059669" rx="4"/>
+                <rect x="-18" y="${-(h1 + dh) * 2}" width="36" height="${dh * 2}" fill="#38bdf8" rx="4"/>
+                <text x="0" y="${-h1}" fill="#ecfdf5" font-size="11" font-weight="bold" text-anchor="middle">${h1} cm</text>
+                <text x="0" y="${-(h1 + dh/2) * 2 + 4}" fill="#082f49" font-size="11" font-weight="bold" text-anchor="middle">+${dh}</text>
+                <text x="0" y="16" fill="#10b981" font-size="12" font-weight="bold" text-anchor="middle">Plant A (Sapling)</text>
+              </g>
+
+              <!-- Plant B -->
+              <g transform="translate(280, 180)">
+                <rect x="-24" y="${-h2 * 1.0}" width="48" height="${h2 * 1.0}" fill="#1e3a8a" rx="4"/>
+                <rect x="-24" y="${-(h2 + dh) * 1.0}" width="48" height="${dh * 1.0}" fill="#38bdf8" rx="4"/>
+                <text x="0" y="${-h2 * 0.5}" fill="#bfdbfe" font-size="11" font-weight="bold" text-anchor="middle">${h2} cm</text>
+                <text x="0" y="${-(h2 + dh/2) * 1.0 + 4}" fill="#082f49" font-size="10" font-weight="bold" text-anchor="middle">+${dh}</text>
+                <text x="0" y="16" fill="#60a5fa" font-size="12" font-weight="bold" text-anchor="middle">Plant B (Tree)</text>
+              </g>
+            </svg>
+
+            <div style="margin-top:8px; background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+              <strong>Additive Change:</strong> Both plants grew by identical <strong>${dh} cm</strong>!
+              <br><strong>Multiplicative Scaling:</strong>
+              Plant A: <span style="color:#34d399; font-weight:bold;">+${relA}%</span> (${h1 + dh}/${h1} = ${((h1+dh)/h1).toFixed(2)}×) vs. 
+              Plant B: <span style="color:#38bdf8; font-weight:bold;">+${relB}%</span> (${h2 + dh}/${h2} = ${((h2+dh)/h2).toFixed(2)}×)
+            </div>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <div class="sim-slider-group">
+          <span>Plant A Initial:</span>
+          <input type="range" id="h1Slider" min="5" max="30" value="${h1}">
+          <span id="h1Val">${h1} cm</span>
+        </div>
+        <div class="sim-slider-group">
+          <span>Growth Added (Δh):</span>
+          <input type="range" id="dhSlider" min="2" max="25" value="${dh}">
+          <span id="dhVal">${dh} cm</span>
+        </div>
+        <div class="sim-slider-group">
+          <span>Plant B Initial:</span>
+          <input type="range" id="h2Slider" min="60" max="140" value="${h2}">
+          <span id="h2Val">${h2} cm</span>
+        </div>
+      `;
+
+      controls.querySelector('#h1Slider').oninput = (e) => {
+        h1 = parseInt(e.target.value);
+        controls.querySelector('#h1Val').textContent = `${h1} cm`;
+        update();
+      };
+      controls.querySelector('#dhSlider').oninput = (e) => {
+        dh = parseInt(e.target.value);
+        controls.querySelector('#dhVal').textContent = `${dh} cm`;
+        update();
+      };
+      controls.querySelector('#h2Slider').oninput = (e) => {
+        h2 = parseInt(e.target.value);
+        controls.querySelector('#h2Val').textContent = `${h2} cm`;
+        update();
+      };
+
+      update();
+    }
+
+    // Sim 2: Ratio Explorer & Dimensionless Scale
+    function renderSim2(vp, controls, title, badge) {
+      title.innerHTML = '<span>📐</span> Ratio Anatomy & Units Cancellation';
+      badge.textContent = 'Dimensionless Scalar';
+
+      let a = 75;
+      let b = 150;
+
+      function gcd(x, y) { return y === 0 ? x : gcd(y, x % y); }
+
+      function update() {
+        const g = gcd(a, b);
+        const simpA = a / g;
+        const simpB = b / g;
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <svg viewBox="0 0 380 180" style="max-width:360px; width:100%;">
+              <!-- Antecedent Bar -->
+              <rect x="30" y="35" width="${Math.min(300, a * 1.5)}" height="36" fill="#3b82f6" rx="6"/>
+              <text x="35" y="25" fill="#93c5fd" font-size="11" font-weight="bold">Antecedent a = ${a} cm</text>
+              <text x="${35 + Math.min(280, a * 1.5)/2}" y="58" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">${a} cm</text>
+
+              <!-- Consequent Bar -->
+              <rect x="30" y="105" width="${Math.min(300, b * 1.5)}" height="36" fill="#f59e0b" rx="6"/>
+              <text x="35" y="95" fill="#fcd34d" font-size="11" font-weight="bold">Consequent b = ${b} cm</text>
+              <text x="${35 + Math.min(280, b * 1.5)/2}" y="128" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">${b} cm</text>
+            </svg>
+
+            <div style="margin-top:8px; background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+              <strong>Ratio:</strong> $\\frac{a}{b} = \\frac{${a}\\text{ cm}}{${b}\\text{ cm}} = \\frac{${a}}{${b}} = \\mathbf{${simpA} : ${simpB}}$
+              <br><span style="color:#34d399;">Units cancelled out! The ratio is a pure dimensionless scalar: ${(simpA/simpB).toFixed(3)}</span>
+            </div>
+          </div>
+        `;
+        triggerMathRender(vp);
+      }
+
+      controls.innerHTML = `
+        <div class="sim-slider-group">
+          <span>Antecedent (a):</span>
+          <input type="range" id="aSim2" min="20" max="150" value="${a}">
+          <span id="aSim2Val">${a} cm</span>
+        </div>
+        <div class="sim-slider-group">
+          <span>Consequent (b):</span>
+          <input type="range" id="bSim2" min="50" max="250" value="${b}">
+          <span id="bSim2Val">${b} cm</span>
+        </div>
+      `;
+
+      controls.querySelector('#aSim2').oninput = (e) => {
+        a = parseInt(e.target.value);
+        controls.querySelector('#aSim2Val').textContent = `${a} cm`;
+        update();
+      };
+      controls.querySelector('#bSim2').oninput = (e) => {
+        b = parseInt(e.target.value);
+        controls.querySelector('#bSim2Val').textContent = `${b} cm`;
+        update();
+      };
+
+      update();
+    }
+
+    // Sim 3: Equivalent Ratios & GCD Reducer
+    function renderSim3(vp, controls, title, badge) {
+      title.innerHTML = '<span>⚙️</span> Equivalent Ratios & GCD Reduction';
+      badge.textContent = 'Coprime Simplifier';
+
+      let num = 84;
+      let den = 126;
+
+      function gcd(x, y) { return y === 0 ? x : gcd(y, x % y); }
+
+      function update() {
+        const g = gcd(num, den);
+        const sNum = num / g;
+        const sDen = den / g;
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="font-size:24px; font-weight:800; color:#38bdf8; margin-bottom:8px;">
+              ${num} : ${den}
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #334155; border-radius:10px; padding:12px; margin-bottom:10px; font-size:13px; color:#e2e8f0;">
+              <div>Greatest Common Divisor $\\gcd(${num}, ${den}) = \\mathbf{${g}}$</div>
+              <div style="margin-top:6px; font-size:14px;">
+                $\\frac{${num} \\div ${g}}{${den} \\div ${g}} = \\mathbf{${sNum} : ${sDen}}$
+                <span style="color:#34d399; font-weight:bold; margin-left:8px;">(Simplest Form)</span>
+              </div>
+            </div>
+
+            <div style="font-size:12px; color:#94a3b8; margin-bottom:6px;">Equivalent Ratio Family:</div>
+            <div style="display:flex; justify-content:center; gap:8px; flex-wrap:wrap;">
+              <span style="background:rgba(99,102,241,0.2); border:1px solid #6366f1; padding:4px 8px; border-radius:6px; font-size:12px; color:#c7d2fe;">${sNum} : ${sDen}</span>
+              <span style="background:rgba(99,102,241,0.2); border:1px solid #6366f1; padding:4px 8px; border-radius:6px; font-size:12px; color:#c7d2fe;">${sNum*2} : ${sDen*2}</span>
+              <span style="background:rgba(99,102,241,0.2); border:1px solid #6366f1; padding:4px 8px; border-radius:6px; font-size:12px; color:#c7d2fe;">${sNum*3} : ${sDen*3}</span>
+              <span style="background:rgba(99,102,241,0.2); border:1px solid #6366f1; padding:4px 8px; border-radius:6px; font-size:12px; color:#c7d2fe;">${sNum*4} : ${sDen*4}</span>
+              <span style="background:rgba(99,102,241,0.2); border:1px solid #6366f1; padding:4px 8px; border-radius:6px; font-size:12px; color:#c7d2fe;">${sNum*5} : ${sDen*5}</span>
+            </div>
+          </div>
+        `;
+        triggerMathRender(vp);
+      }
+
+      controls.innerHTML = `
+        <div class="sim-slider-group">
+          <span>First Term:</span>
+          <input type="range" id="sim3Num" min="12" max="180" step="6" value="${num}">
+          <span id="sim3NumVal">${num}</span>
+        </div>
+        <div class="sim-slider-group">
+          <span>Second Term:</span>
+          <input type="range" id="sim3Den" min="12" max="240" step="6" value="${den}">
+          <span id="sim3DenVal">${den}</span>
+        </div>
+      `;
+
+      controls.querySelector('#sim3Num').oninput = (e) => {
+        num = parseInt(e.target.value);
+        controls.querySelector('#sim3NumVal').textContent = num;
+        update();
+      };
+      controls.querySelector('#sim3Den').oninput = (e) => {
+        den = parseInt(e.target.value);
+        controls.querySelector('#sim3DenVal').textContent = den;
+        update();
+      };
+
+      update();
+    }
+
+    // Sim 4: Ratio Comparison Balance Scale
+    function renderSim4(vp, controls, title, badge) {
+      title.innerHTML = '<span>⚖️</span> Ratio Comparison Balance Scale';
+      badge.textContent = 'Cross-Product Decider';
+
+      let a = 4, b = 7;
+      let c = 5, d = 9;
+
+      function update() {
+        const leftVal = a / b;
+        const rightVal = c / d;
+        const prodLeft = a * d;
+        const prodRight = b * c;
+
+        let tilt = 0;
+        if (prodLeft > prodRight) tilt = -10;
+        else if (prodLeft < prodRight) tilt = 10;
+
+        let statusText = '';
+        if (prodLeft > prodRight) {
+          statusText = `<span style="color:#34d399; font-weight:bold;">${a} : ${b} is GREATER</span> (${prodLeft} > ${prodRight})`;
+        } else if (prodLeft < prodRight) {
+          statusText = `<span style="color:#f59e0b; font-weight:bold;">${c} : ${d} is GREATER</span> (${prodLeft} < ${prodRight})`;
+        } else {
+          statusText = `<span style="color:#38bdf8; font-weight:bold;">EQUIVALENT RATIOS</span> (${prodLeft} = ${prodRight})`;
+        }
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <svg viewBox="0 0 380 180" style="max-width:360px; width:100%;">
+              <!-- Fulcrum -->
+              <polygon points="190,120 170,165 210,165" fill="#475569"/>
+              <circle cx="190" cy="120" r="5" fill="#38bdf8"/>
+
+              <!-- Beam with rotation -->
+              <g transform="rotate(${tilt}, 190, 120)">
+                <line x1="60" y1="120" x2="320" y2="120" stroke="#94a3b8" stroke-width="5" stroke-linecap="round"/>
+
+                <!-- Left Pan -->
+                <line x1="75" y1="120" x2="75" y2="145" stroke="#64748b" stroke-width="2"/>
+                <path d="M 45 145 Q 75 160 105 145 Z" fill="#3b82f6"/>
+                <text x="75" y="140" fill="#fff" font-size="11" font-weight="bold" text-anchor="middle">${a}/${b}</text>
+
+                <!-- Right Pan -->
+                <line x1="305" y1="120" x2="305" y2="145" stroke="#64748b" stroke-width="2"/>
+                <path d="M 275 145 Q 305 160 335 145 Z" fill="#f59e0b"/>
+                <text x="305" y="140" fill="#fff" font-size="11" font-weight="bold" text-anchor="middle">${c}/${d}</text>
+              </g>
+            </svg>
+
+            <div style="margin-top:6px; background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+              Left Ratio: ${a}/${b} = ${leftVal.toFixed(3)} | Right Ratio: ${c}/${d} = ${rightVal.toFixed(3)}
+              <br>Cross-Product: a·d = ${prodLeft} vs b·c = ${prodRight}
+              <br>${statusText}
+            </div>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <div>
+            <div class="sim-slider-group"><span>a:</span><input type="range" id="sim4A" min="1" max="15" value="${a}"><span id="v4A">${a}</span></div>
+            <div class="sim-slider-group"><span>b:</span><input type="range" id="sim4B" min="1" max="15" value="${b}"><span id="v4B">${b}</span></div>
+          </div>
+          <div>
+            <div class="sim-slider-group"><span>c:</span><input type="range" id="sim4C" min="1" max="15" value="${c}"><span id="v4C">${c}</span></div>
+            <div class="sim-slider-group"><span>d:</span><input type="range" id="sim4D" min="1" max="15" value="${d}"><span id="v4D">${d}</span></div>
+          </div>
+        </div>
+      `;
+
+      controls.querySelector('#sim4A').oninput = (e) => { a = parseInt(e.target.value); controls.querySelector('#v4A').textContent = a; update(); };
+      controls.querySelector('#sim4B').oninput = (e) => { b = parseInt(e.target.value); controls.querySelector('#v4B').textContent = b; update(); };
+      controls.querySelector('#sim4C').oninput = (e) => { c = parseInt(e.target.value); controls.querySelector('#v4C').textContent = c; update(); };
+      controls.querySelector('#sim4D').oninput = (e) => { d = parseInt(e.target.value); controls.querySelector('#v4D').textContent = d; update(); };
+
+      update();
+    }
+
+    // Sim 5: Fundamental Proportion Engine
+    function renderSim5(vp, controls, title, badge) {
+      title.innerHTML = '<span>🔗</span> Fundamental Law of Proportion';
+      badge.textContent = 'Extremes = Means';
+
+      let a = 6, b = 9, c = 10;
+
+      function update() {
+        let d = ((b * c) / a).toFixed(2);
+        if (d.endsWith('.00')) d = parseInt(d);
+
+        const prodExtremes = (a * d).toFixed(1);
+        const prodMeans = (b * c).toFixed(1);
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="display:flex; justify-content:center; align-items:center; gap:8px; font-size:22px; font-weight:800; margin-bottom:12px;">
+              <span style="background:#1e3a8a; color:#93c5fd; padding:6px 14px; border-radius:8px;">${a}</span>
+              <span style="color:#64748b;">:</span>
+              <span style="background:#78350f; color:#fde68a; padding:6px 14px; border-radius:8px;">${b}</span>
+              <span style="color:#38bdf8; font-size:24px;">::</span>
+              <span style="background:#78350f; color:#fde68a; padding:6px 14px; border-radius:8px;">${c}</span>
+              <span style="color:#64748b;">:</span>
+              <span style="background:#1e3a8a; color:#93c5fd; padding:6px 14px; border-radius:8px; border:2px dashed #38bdf8;">${d}</span>
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #334155; border-radius:10px; padding:12px; font-size:13px; color:#e2e8f0;">
+              <div><strong>Product of Extremes:</strong> a · d = ${a} × ${d} = <span style="color:#38bdf8; font-weight:bold;">${prodExtremes}</span></div>
+              <div style="margin-top:4px;"><strong>Product of Means:</strong> b · c = ${b} × ${c} = <span style="color:#f59e0b; font-weight:bold;">${prodMeans}</span></div>
+              <div style="margin-top:8px; color:#34d399; font-weight:bold;">
+                ✓ Fundamental Equality Verified: a · d = b · c
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <div class="sim-slider-group">
+          <span>First Extreme (a):</span>
+          <input type="range" id="sim5A" min="2" max="20" value="${a}">
+          <span id="v5A">${a}</span>
+        </div>
+        <div class="sim-slider-group">
+          <span>First Mean (b):</span>
+          <input type="range" id="sim5B" min="2" max="25" value="${b}">
+          <span id="v5B">${b}</span>
+        </div>
+        <div class="sim-slider-group">
+          <span>Second Mean (c):</span>
+          <input type="range" id="sim5C" min="2" max="30" value="${c}">
+          <span id="v5C">${c}</span>
+        </div>
+      `;
+
+      controls.querySelector('#sim5A').oninput = (e) => { a = parseInt(e.target.value); controls.querySelector('#v5A').textContent = a; update(); };
+      controls.querySelector('#sim5B').oninput = (e) => { b = parseInt(e.target.value); controls.querySelector('#v5B').textContent = b; update(); };
+      controls.querySelector('#sim5C').oninput = (e) => { c = parseInt(e.target.value); controls.querySelector('#v5C').textContent = c; update(); };
+
+      update();
+    }
+
+    // Sim 6: Continued Proportion & Mean Proportional
+    function renderSim6(vp, controls, title, badge) {
+      title.innerHTML = '<span>🔲</span> Continued Proportion & Mean Proportional';
+      badge.textContent = 'b = √(ac)';
+
+      let a = 4;
+      let c = 16;
+
+      function update() {
+        const b = Math.sqrt(a * c).toFixed(2);
+        const area = a * c;
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <svg viewBox="0 0 380 180" style="max-width:360px; width:100%;">
+              <!-- Rectangle a x c -->
+              <g transform="translate(60, 40)">
+                <rect x="0" y="0" width="${Math.min(130, c * 5)}" height="${Math.min(90, a * 10)}" fill="rgba(59, 130, 246, 0.4)" stroke="#3b82f6" stroke-width="2"/>
+                <text x="${Math.min(65, c * 2.5)}" y="-6" fill="#93c5fd" font-size="10" text-anchor="middle">c = ${c}</text>
+                <text x="-8" y="${Math.min(45, a * 5)}" fill="#93c5fd" font-size="10" text-anchor="end">a = ${a}</text>
+                <text x="${Math.min(65, c * 2.5)}" y="${Math.min(50, a * 5 + 4)}" fill="#fff" font-size="11" font-weight="bold" text-anchor="middle">Area = ${area}</text>
+              </g>
+
+              <!-- Equal Square b x b -->
+              <g transform="translate(240, 40)">
+                <rect x="0" y="0" width="${Math.min(100, b * 7)}" height="${Math.min(100, b * 7)}" fill="rgba(16, 185, 129, 0.4)" stroke="#10b981" stroke-width="2"/>
+                <text x="${Math.min(50, b * 3.5)}" y="-6" fill="#6ee7b7" font-size="10" text-anchor="middle">b = ${b}</text>
+                <text x="-8" y="${Math.min(50, b * 3.5)}" fill="#6ee7b7" font-size="10" text-anchor="end">b = ${b}</text>
+                <text x="${Math.min(50, b * 3.5)}" y="${Math.min(55, b * 3.5 + 4)}" fill="#fff" font-size="11" font-weight="bold" text-anchor="middle">b² = ${area}</text>
+              </g>
+            </svg>
+
+            <div style="margin-top:6px; background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+              Mean Proportional $b = \\sqrt{a \\cdot c} = \\sqrt{${a} \\times ${c}} = \\mathbf{${b}}$
+              <br>Check: ${a} : ${b} = ${b} : ${c} (Equal geometric ratio)
+            </div>
+          </div>
+        `;
+        triggerMathRender(vp);
+      }
+
+      controls.innerHTML = `
+        <div class="sim-slider-group">
+          <span>First Term (a):</span>
+          <input type="range" id="sim6A" min="1" max="25" value="${a}">
+          <span id="v6A">${a}</span>
+        </div>
+        <div class="sim-slider-group">
+          <span>Third Term (c):</span>
+          <input type="range" id="sim6C" min="1" max="36" value="${c}">
+          <span id="v6C">${c}</span>
+        </div>
+      `;
+
+      controls.querySelector('#sim6A').oninput = (e) => { a = parseInt(e.target.value); controls.querySelector('#v6A').textContent = a; update(); };
+      controls.querySelector('#sim6C').oninput = (e) => { c = parseInt(e.target.value); controls.querySelector('#v6C').textContent = c; update(); };
+
+      update();
+    }
+
+    // Sim 7: Direct Variation & Unit Rate Graph
+    function renderSim7(vp, controls, title, badge) {
+      title.innerHTML = '<span>📈</span> Direct Variation & Constant Unit Rate';
+      badge.textContent = 'Linear Ray (0,0)';
+
+      let k = 15;
+      let x = 6;
+
+      function update() {
+        const y = k * x;
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <svg viewBox="0 0 380 190" style="max-width:360px; width:100%;">
+              <!-- Grid and axes -->
+              <line x1="40" y1="150" x2="350" y2="150" stroke="#475569" stroke-width="2"/>
+              <line x1="40" y1="20" x2="40" y2="150" stroke="#475569" stroke-width="2"/>
+              <text x="350" y="165" fill="#94a3b8" font-size="10">x (Units)</text>
+              <text x="30" y="20" fill="#94a3b8" font-size="10" text-anchor="end">y (Total)</text>
+
+              <!-- Ray through origin -->
+              <line x1="40" y1="150" x2="320" y2="30" stroke="#38bdf8" stroke-width="3"/>
+
+              <!-- Point (x, y) -->
+              <circle cx="${40 + x * 22}" cy="${150 - (y/250)*120}" r="6" fill="#f59e0b"/>
+              <line x1="${40 + x * 22}" y1="150" x2="${40 + x * 22}" y2="${150 - (y/250)*120}" stroke="#f59e0b" stroke-dasharray="3,3"/>
+              <line x1="40" y1="${150 - (y/250)*120}" x2="${40 + x * 22}" y2="${150 - (y/250)*120}" stroke="#f59e0b" stroke-dasharray="3,3"/>
+
+              <text x="${40 + x * 22 + 8}" y="${150 - (y/250)*120 - 4}" fill="#fcd34d" font-size="11" font-weight="bold">(${x}, ${y})</text>
+            </svg>
+
+            <div style="margin-top:4px; background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+              Unit Rate (Slope): $k = \\frac{y}{x} = \\mathbf{${k}}$ per unit
+              <br>Direct Proportion Formula: $y = k \\cdot x = ${k} \\times ${x} = \\mathbf{${y}}$
+            </div>
+          </div>
+        `;
+        triggerMathRender(vp);
+      }
+
+      controls.innerHTML = `
+        <div class="sim-slider-group">
+          <span>Unit Rate (k):</span>
+          <input type="range" id="sim7K" min="5" max="25" value="${k}">
+          <span id="v7K">${k}</span>
+        </div>
+        <div class="sim-slider-group">
+          <span>Quantity (x):</span>
+          <input type="range" id="sim7X" min="1" max="12" value="${x}">
+          <span id="v7X">${x}</span>
+        </div>
+      `;
+
+      controls.querySelector('#sim7K').oninput = (e) => { k = parseInt(e.target.value); controls.querySelector('#v7K').textContent = k; update(); };
+      controls.querySelector('#sim7X').oninput = (e) => { x = parseInt(e.target.value); controls.querySelector('#v7X').textContent = x; update(); };
+
+      update();
+    }
+
+    // Sim 8: Filter Coffee Decoction & Strength Mixer
+    function renderSim8(vp, controls, title, badge) {
+      title.innerHTML = '<span>☕</span> Filter Coffee! Decoction & Strength Mixer';
+      badge.textContent = 'Part-to-Whole Ratio';
+
+      let dec = 2;
+      let milk = 5;
+
+      function update() {
+        const total = dec + milk;
+        const conc = ((dec / total) * 100).toFixed(1);
+
+        const factor = (dec / total);
+        const r = Math.round(226 - factor * 180);
+        const g = Math.round(203 - factor * 182);
+        const b = Math.round(181 - factor * 179);
+        const colorHex = `rgb(${r}, ${g}, ${b})`;
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <svg viewBox="0 0 380 180" style="max-width:360px; width:100%;">
+              <!-- Glass Tumbler / Dabarah -->
+              <path d="M 140 30 L 150 150 Q 190 160 230 150 L 240 30 Z" fill="rgba(255,255,255,0.08)" stroke="#94a3b8" stroke-width="2"/>
+              <!-- Liquid fill -->
+              <path d="M 144 60 L 150 150 Q 190 160 230 150 L 236 60 Z" fill="${colorHex}"/>
+              <!-- Coffee Foam Top -->
+              <ellipse cx="190" cy="60" rx="46" ry="8" fill="#fde68a" opacity="0.6"/>
+              <text x="190" y="110" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">${conc}% Strength</text>
+            </svg>
+
+            <div style="margin-top:4px; background:#0f172a; border:1px solid #334155; border-radius:8px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+              <strong>Part-to-Part:</strong> Decoction : Milk = <strong>${dec} : ${milk}</strong>
+              <br><strong>Part-to-Whole:</strong> Total = ${total} cups | Decoction fraction = $\\frac{${dec}}{${total}} = \\mathbf{${conc}\\%}$
+            </div>
+          </div>
+        `;
+        triggerMathRender(vp);
+      }
+
+      controls.innerHTML = `
+        <div class="sim-slider-group">
+          <span>Decoction (cups):</span>
+          <input type="range" id="sim8D" min="1" max="5" value="${dec}">
+          <span id="v8D">${dec}</span>
+        </div>
+        <div class="sim-slider-group">
+          <span>Milk (cups):</span>
+          <input type="range" id="sim8M" min="1" max="10" value="${milk}">
+          <span id="v8M">${milk}</span>
+        </div>
+      `;
+
+      controls.querySelector('#sim8D').oninput = (e) => { dec = parseInt(e.target.value); controls.querySelector('#v8D').textContent = dec; update(); };
+      controls.querySelector('#sim8M').oninput = (e) => { milk = parseInt(e.target.value); controls.querySelector('#v8M').textContent = milk; update(); };
+
+      update();
+    }
+
+    // Sim 9: Trairasika Ancient Rule of Three Engine
+    function renderSim9(vp, controls, title, badge) {
+      title.innerHTML = '<span>📜</span> Trairāśika: The Rule of Three Engine';
+      badge.textContent = 'Ancient Indian Heritage';
+
+      let pramana = 8;
+      let phala = 240;
+      let iccha = 15;
+
+      function update() {
+        const icchaPhala = ((phala * iccha) / pramana).toFixed(1);
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="display:flex; justify-content:center; gap:10px; margin-bottom:12px; flex-wrap:wrap;">
+              <div style="background:#1e293b; border:1px solid #38bdf8; border-radius:8px; padding:8px 12px; min-width:90px;">
+                <div style="font-size:10px; color:#38bdf8; font-weight:bold;">Pramāṇa (प्रमाण)</div>
+                <div style="font-size:16px; font-weight:800; color:#fff;">${pramana} m</div>
+              </div>
+              <div style="background:#1e293b; border:1px solid #f59e0b; border-radius:8px; padding:8px 12px; min-width:90px;">
+                <div style="font-size:10px; color:#f59e0b; font-weight:bold;">Phala (फल)</div>
+                <div style="font-size:16px; font-weight:800; color:#fff;">₹${phala}</div>
+              </div>
+              <div style="background:#1e293b; border:1px solid #10b981; border-radius:8px; padding:8px 12px; min-width:90px;">
+                <div style="font-size:10px; color:#10b981; font-weight:bold;">Icchā (इच्छा)</div>
+                <div style="font-size:16px; font-weight:800; color:#fff;">${iccha} m</div>
+              </div>
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #6366f1; border-radius:10px; padding:12px; font-size:13px; color:#e2e8f0;">
+              <div><strong>Āryabhaṭa's Universal Formula:</strong></div>
+              <div style="margin:6px 0; font-size:14px; color:#a5b4fc;">
+                $\\text{Icchā-Phala} = \\frac{\\text{Phala} \\times \\text{Icchā}}{\\text{Pramāṇa}} = \\frac{${phala} \\times ${iccha}}{${pramana}} = \\mathbf{₹${icchaPhala}}$
+              </div>
+              <div style="color:#34d399; font-weight:bold; font-size:12px;">Fruit of Desire Obtained!</div>
+            </div>
+          </div>
+        `;
+        triggerMathRender(vp);
+      }
+
+      controls.innerHTML = `
+        <div class="sim-slider-group">
+          <span>Pramāṇa (x₁):</span>
+          <input type="range" id="sim9Pr" min="2" max="20" value="${pramana}">
+          <span id="v9Pr">${pramana} m</span>
+        </div>
+        <div class="sim-slider-group">
+          <span>Phala (y₁):</span>
+          <input type="range" id="sim9Ph" min="50" max="600" step="10" value="${phala}">
+          <span id="v9Ph">₹${phala}</span>
+        </div>
+        <div class="sim-slider-group">
+          <span>Icchā (x₂):</span>
+          <input type="range" id="sim9Ic" min="3" max="30" value="${iccha}">
+          <span id="v9Ic">${iccha} m</span>
+        </div>
+      `;
+
+      controls.querySelector('#sim9Pr').oninput = (e) => { pramana = parseInt(e.target.value); controls.querySelector('#v9Pr').textContent = `${pramana} m`; update(); };
+      controls.querySelector('#sim9Ph').oninput = (e) => { phala = parseInt(e.target.value); controls.querySelector('#v9Ph').textContent = `₹${phala}`; update(); };
+      controls.querySelector('#sim9Ic').oninput = (e) => { iccha = parseInt(e.target.value); controls.querySelector('#v9Ic').textContent = `${iccha} m`; update(); };
+
+      update();
+    }
+
+    // Sim 10: Two-Way Fair Sharing Ratio Divider
+    function renderSim10(vp, controls, title, badge) {
+      title.innerHTML = '<span>🍰</span> Two-Way Fair Sharing (a : b)';
+      badge.textContent = 'Proportional Allocation';
+
+      let total = 1200;
+      let a = 3;
+      let b = 5;
+
+      function update() {
+        const totalParts = a + b;
+        const onePart = total / totalParts;
+        const shareA = (a * onePart).toFixed(1);
+        const shareB = (b * onePart).toFixed(1);
+        const pctA = ((a / totalParts) * 100).toFixed(1);
+        const pctB = ((b / totalParts) * 100).toFixed(1);
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="font-size:18px; font-weight:800; color:#f8fafc; margin-bottom:10px;">
+              Total: ₹${total} (Divided in Ratio ${a} : ${b})
+            </div>
+
+            <!-- Segmented Bar -->
+            <div style="height:36px; display:flex; border-radius:8px; overflow:hidden; border:2px solid #334155; margin-bottom:12px;">
+              <div style="width:${pctA}%; background:#3b82f6; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:bold; font-size:12px;">
+                Share A (${pctA}%)
+              </div>
+              <div style="width:${pctB}%; background:#f59e0b; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:bold; font-size:12px;">
+                Share B (${pctB}%)
+              </div>
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #334155; border-radius:10px; padding:12px; font-size:13px; color:#cbd5e1;">
+              Total Parts = ${a} + ${b} = <strong>${totalParts} parts</strong> (₹${onePart.toFixed(1)} per part)
+              <br><strong>Person A (${a} parts):</strong> $\\frac{${a}}{${totalParts}} \\times ${total} = \\mathbf{₹${shareA}}$
+              <br><strong>Person B (${b} parts):</strong> $\\frac{${b}}{${totalParts}} \\times ${total} = \\mathbf{₹${shareB}}$
+            </div>
+          </div>
+        `;
+        triggerMathRender(vp);
+      }
+
+      controls.innerHTML = `
+        <div class="sim-slider-group">
+          <span>Total Asset (T):</span>
+          <input type="range" id="sim10T" min="200" max="3000" step="100" value="${total}">
+          <span id="v10T">₹${total}</span>
+        </div>
+        <div class="sim-slider-group">
+          <span>Ratio Term a:</span>
+          <input type="range" id="sim10A" min="1" max="8" value="${a}">
+          <span id="v10A">${a}</span>
+        </div>
+        <div class="sim-slider-group">
+          <span>Ratio Term b:</span>
+          <input type="range" id="sim10B" min="1" max="8" value="${b}">
+          <span id="v10B">${b}</span>
+        </div>
+      `;
+
+      controls.querySelector('#sim10T').oninput = (e) => { total = parseInt(e.target.value); controls.querySelector('#v10T').textContent = `₹${total}`; update(); };
+      controls.querySelector('#sim10A').oninput = (e) => { a = parseInt(e.target.value); controls.querySelector('#v10A').textContent = a; update(); };
+      controls.querySelector('#sim10B').oninput = (e) => { b = parseInt(e.target.value); controls.querySelector('#v10B').textContent = b; update(); };
+
+      update();
+    }
+
+    // Sim 11: Three-Way Compound Partition Lab
+    function renderSim11(vp, controls, title, badge) {
+      title.innerHTML = '<span>🔺</span> Three-Way Partition & Triangle Angles';
+      badge.textContent = 'a : b : c Splitter';
+
+      let a = 2, b = 3, c = 5;
+
+      function update() {
+        const totalParts = a + b + c;
+        const degA = ((a / totalParts) * 180).toFixed(1);
+        const degB = ((b / totalParts) * 180).toFixed(1);
+        const degC = ((c / totalParts) * 180).toFixed(1);
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="font-size:16px; font-weight:800; color:#38bdf8; margin-bottom:8px;">
+              Angle Ratio: ${a} : ${b} : ${c} (Sum = 180°)
+            </div>
+
+            <div style="display:flex; justify-content:center; gap:8px; margin-bottom:10px;">
+              <div style="background:#1e3a8a; padding:8px 12px; border-radius:8px; color:#93c5fd;">
+                <strong>∠A:</strong> ${degA}°
+              </div>
+              <div style="background:#78350f; padding:8px 12px; border-radius:8px; color:#fde68a;">
+                <strong>∠B:</strong> ${degB}°
+              </div>
+              <div style="background:#064e3b; padding:8px 12px; border-radius:8px; color:#a7f3d0;">
+                <strong>∠C:</strong> ${degC}°
+              </div>
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #334155; border-radius:10px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+              Total Parts = ${a} + ${b} + ${c} = <strong>${totalParts} parts</strong>
+              <br>$\\angle A = \\frac{${a}}{${totalParts}} \\times 180^\\circ = \\mathbf{${degA}^\\circ}$ | 
+              $\\angle B = \\frac{${b}}{${totalParts}} \\times 180^\\circ = \\mathbf{${degB}^\\circ}$ | 
+              $\\angle C = \\frac{${c}}{${totalParts}} \\times 180^\\circ = \\mathbf{${degC}^\\circ}$
+            </div>
+          </div>
+        `;
+        triggerMathRender(vp);
+      }
+
+      controls.innerHTML = `
+        <div class="sim-slider-group">
+          <span>Part a:</span>
+          <input type="range" id="sim11A" min="1" max="6" value="${a}">
+          <span id="v11A">${a}</span>
+        </div>
+        <div class="sim-slider-group">
+          <span>Part b:</span>
+          <input type="range" id="sim11B" min="1" max="6" value="${b}">
+          <span id="v11B">${b}</span>
+        </div>
+        <div class="sim-slider-group">
+          <span>Part c:</span>
+          <input type="range" id="sim11C" min="1" max="6" value="${c}">
+          <span id="v11C">${c}</span>
+        </div>
+      `;
+
+      controls.querySelector('#sim11A').oninput = (e) => { a = parseInt(e.target.value); controls.querySelector('#v11A').textContent = a; update(); };
+      controls.querySelector('#sim11B').oninput = (e) => { b = parseInt(e.target.value); controls.querySelector('#v11B').textContent = b; update(); };
+      controls.querySelector('#sim11C').oninput = (e) => { c = parseInt(e.target.value); controls.querySelector('#v11C').textContent = c; update(); };
+
+      update();
+    }
+
+    // Sim 12: Ratio Scaling Magnifier
+    function renderSim12(vp, controls, title, badge) {
+      title.innerHTML = '<span>🔍</span> Ratio Scaling Magnifier (Increase/Decrease)';
+      badge.textContent = 'Multiplicative Operator';
+
+      let orig = 150;
+      let a = 6, b = 5;
+
+      function update() {
+        const scaled = (orig * (a / b)).toFixed(1);
+        const factor = (a / b).toFixed(2);
+        const isInc = a >= b;
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="display:flex; justify-content:center; align-items:center; gap:20px; margin-bottom:12px;">
+              <div style="background:#1e293b; border:1px solid #475569; padding:10px 16px; border-radius:10px;">
+                <div style="font-size:11px; color:#94a3b8;">Original Quantity</div>
+                <div style="font-size:20px; font-weight:800; color:#fff;">${orig}</div>
+              </div>
+
+              <div style="font-size:22px; color:#38bdf8;">× ${a}/${b} →</div>
+
+              <div style="background:#1e293b; border:1px solid ${isInc ? '#10b981' : '#f43f5e'}; padding:10px 16px; border-radius:10px;">
+                <div style="font-size:11px; color:${isInc ? '#6ee7b7' : '#fda4af'};">${isInc ? 'Increased' : 'Decreased'} Quantity</div>
+                <div style="font-size:20px; font-weight:800; color:#fff;">${scaled}</div>
+              </div>
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #334155; border-radius:10px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+              Multiplier Factor = $\\frac{${a}}{${b}} = \\mathbf{${factor}\\times}$
+              <br><span style="color:${isInc ? '#34d399' : '#f87171'}; font-weight:bold;">
+                ${isInc ? '▲ Growth Factor' : '▼ Reduction Factor'}: ${isInc ? '+' : ''}${(((a/b)-1)*100).toFixed(1)}%
+              </span>
+            </div>
+          </div>
+        `;
+        triggerMathRender(vp);
+      }
+
+      controls.innerHTML = `
+        <div class="sim-slider-group">
+          <span>Original Q:</span>
+          <input type="range" id="sim12Q" min="50" max="400" step="10" value="${orig}">
+          <span id="v12Q">${orig}</span>
+        </div>
+        <div class="sim-slider-group">
+          <span>Scaling Term a:</span>
+          <input type="range" id="sim12A" min="1" max="10" value="${a}">
+          <span id="v12A">${a}</span>
+        </div>
+        <div class="sim-slider-group">
+          <span>Scaling Term b:</span>
+          <input type="range" id="sim12B" min="1" max="10" value="${b}">
+          <span id="v12B">${b}</span>
+        </div>
+      `;
+
+      controls.querySelector('#sim12Q').oninput = (e) => { orig = parseInt(e.target.value); controls.querySelector('#v12Q').textContent = orig; update(); };
+      controls.querySelector('#sim12A').oninput = (e) => { a = parseInt(e.target.value); controls.querySelector('#v12A').textContent = a; update(); };
+      controls.querySelector('#sim12B').oninput = (e) => { b = parseInt(e.target.value); controls.querySelector('#v12B').textContent = b; update(); };
+
+      update();
+    }
+
+    // Sim 13: Dimensional Analysis Speed Converter
+    function renderSim13(vp, controls, title, badge) {
+      title.innerHTML = '<span>⚡</span> Dimensional Analysis: Speed Converter (5/18)';
+      badge.textContent = 'km/h ⇄ m/s';
+
+      let kmh = 72;
+
+      function update() {
+        const ms = (kmh * (5 / 18)).toFixed(1);
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="display:flex; justify-content:center; align-items:center; gap:16px; margin-bottom:12px;">
+              <div style="background:#1e293b; border:1px solid #38bdf8; border-radius:10px; padding:10px 18px;">
+                <div style="font-size:11px; color:#38bdf8; font-weight:bold;">Kilometres / Hour</div>
+                <div style="font-size:24px; font-weight:800; color:#fff;">${kmh} km/h</div>
+              </div>
+              <div style="font-size:24px; color:#f59e0b;">⇄</div>
+              <div style="background:#1e293b; border:1px solid #10b981; border-radius:10px; padding:10px 18px;">
+                <div style="font-size:11px; color:#10b981; font-weight:bold;">Metres / Second</div>
+                <div style="font-size:24px; font-weight:800; color:#fff;">${ms} m/s</div>
+              </div>
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #334155; border-radius:10px; padding:12px; font-size:13px; color:#cbd5e1;">
+              <strong>Step-by-Step Dimensional Conversion Chain:</strong>
+              <div style="margin-top:6px;">
+                ${kmh} $\\frac{\\text{km}}{\\text{h}} \\times \\frac{1000\\text{ m}}{1\\text{ km}} \\times \\frac{1\\text{ h}}{3600\\text{ s}} = ${kmh} \\times \\frac{5}{18} = \\mathbf{${ms}\\text{ m/s}}$
+              </div>
+            </div>
+          </div>
+        `;
+        triggerMathRender(vp);
+      }
+
+      controls.innerHTML = `
+        <div class="sim-slider-group">
+          <span>Speed (km/h):</span>
+          <input type="range" id="sim13S" min="18" max="180" step="9" value="${kmh}">
+          <span id="v13S">${kmh} km/h</span>
+        </div>
+      `;
+
+      controls.querySelector('#sim13S').oninput = (e) => {
+        kmh = parseInt(e.target.value);
+        controls.querySelector('#v13S').textContent = `${kmh} km/h`;
+        update();
+      };
+
+      update();
+    }
+
+    // Sim 14: Scale Drawings & Map Blueprint Explorer
+    function renderSim14(vp, controls, title, badge) {
+      title.innerHTML = '<span>🗺️</span> Scale Drawings & Map Blueprint Explorer';
+      badge.textContent = 'Representative Fraction';
+
+      let mapCm = 6;
+      let rf = 250000;
+
+      function update() {
+        const groundCm = mapCm * rf;
+        const groundM = groundCm / 100;
+        const groundKm = groundM / 1000;
+
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="display:flex; justify-content:center; gap:16px; margin-bottom:12px;">
+              <div style="background:#1e293b; border:1px solid #6366f1; border-radius:8px; padding:10px 16px;">
+                <div style="font-size:11px; color:#a5b4fc;">Distance on Map</div>
+                <div style="font-size:20px; font-weight:800; color:#fff;">${mapCm} cm</div>
+              </div>
+              <div style="background:#1e293b; border:1px solid #10b981; border-radius:8px; padding:10px 16px;">
+                <div style="font-size:11px; color:#6ee7b7;">Actual Ground Distance</div>
+                <div style="font-size:20px; font-weight:800; color:#fff;">${groundKm} km</div>
+              </div>
+            </div>
+
+            <div style="background:#0f172a; border:1px solid #334155; border-radius:10px; padding:10px; font-size:12.5px; color:#cbd5e1;">
+              <strong>Representative Fraction (R.F.):</strong> 1 : ${rf.toLocaleString()}
+              <br>$1\\text{ cm}$ on map = ${rf.toLocaleString()}$\\text{ cm} = ${(rf/100000).toFixed(2)}\\text{ km}$ on ground
+              <br>Actual Distance = ${mapCm} $\\times ${(rf/100000).toFixed(2)}\\text{ km} = \\mathbf{${groundKm}\\text{ km}}$
+            </div>
+          </div>
+        `;
+        triggerMathRender(vp);
+      }
+
+      controls.innerHTML = `
+        <div class="sim-slider-group">
+          <span>Map Distance:</span>
+          <input type="range" id="sim14M" min="1" max="15" value="${mapCm}">
+          <span id="v14M">${mapCm} cm</span>
+        </div>
+        <div class="sim-slider-group">
+          <span>Scale (R.F.):</span>
+          <select id="sim14RF" style="background:#1e293b; color:#fff; border:1px solid #475569; padding:4px 8px; border-radius:6px; flex:1;">
+            <option value="50000">1 : 50,000 (1 cm = 0.5 km)</option>
+            <option value="100000">1 : 100,000 (1 cm = 1.0 km)</option>
+            <option value="250000" selected>1 : 250,000 (1 cm = 2.5 km)</option>
+            <option value="1000000">1 : 1,000,000 (1 cm = 10.0 km)</option>
+          </select>
+        </div>
+      `;
+
+      controls.querySelector('#sim14M').oninput = (e) => { mapCm = parseInt(e.target.value); controls.querySelector('#v14M').textContent = `${mapCm} cm`; update(); };
+      controls.querySelector('#sim14RF').onchange = (e) => { rf = parseInt(e.target.value); update(); };
+
+      update();
+    }
+
+    // Sim 15: Proportional Reasoning Grand Matrix
+    function renderSim15(vp, controls, title, badge) {
+      title.innerHTML = '<span>🏛️</span> Proportional Reasoning Grand Matrix';
+      badge.textContent = 'Pillars of Comparison';
+
+      const pillars = [
+        { name: "Ratio", formula: "a : b = a/b", desc: "Comparison of two same-unit quantities by division; pure dimensionless number." },
+        { name: "Proportion", formula: "a · d = b · c", desc: "Equality of two ratios. Product of extremes equals product of means." },
+        { name: "Mean Proportional", formula: "b = √(ac)", desc: "Geometric mean in continued proportion a : b = b : c." },
+        { name: "Trairāśika", formula: "(Phala × Icchā) / Pramāṇa", desc: "Ancient Indian Rule of Three for direct commercial proportion." },
+        { name: "Sharing a:b", formula: "Share = [a/(a+b)] × T", desc: "Fair partitive allocation of total T across ratio weights." },
+        { name: "Unit Factor", formula: "km/h × (5/18) = m/s", desc: "Multiplying by unit identity ratio for dimensional conversion." }
+      ];
+
+      let selected = 0;
+
+      function update() {
+        const p = pillars[selected];
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="font-size:20px; font-weight:800; color:#38bdf8; margin-bottom:6px;">
+              Pillar ${selected + 1}: ${p.name}
+            </div>
+            <div style="background:#1e293b; border:1px solid #6366f1; border-radius:10px; padding:12px; margin-bottom:12px;">
+              <div style="font-size:16px; font-weight:bold; color:#fde68a;">${p.formula}</div>
+              <div style="font-size:13px; color:#cbd5e1; margin-top:6px;">${p.desc}</div>
+            </div>
+          </div>
+        `;
+        triggerMathRender(vp);
+      }
+
+      controls.innerHTML = `
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px;">
+          ${pillars.map((p, idx) => `
+            <button class="sim-btn" style="padding:6px 4px; font-size:11px;" onclick="selectPillar(${idx})">${p.name}</button>
+          `).join('')}
+        </div>
+      `;
+
+      window.selectPillar = (idx) => {
+        selected = idx;
+        update();
+      };
+
+      update();
+    }
+
+    // Sim 16: IT'S PUZZLE TIME! Interactive Detective Room
+    function renderSim16(vp, controls, title, badge) {
+      title.innerHTML = '<span>🕵️‍♂️</span> Detective Room: Proportional Mysteries';
+      badge.textContent = 'Brainteasers Lab';
+
+      let puzzleIdx = 0;
+      const puzzles = [
+        {
+          title: "Puzzle 1: The Alchemist's Elixir",
+          q: "Gold and silver liquids are in ratio 3 : 2. After adding 10 mL of silver, the ratio becomes 1 : 1. How much gold is in the flask?",
+          ans: "30",
+          unit: "mL",
+          solution: "Let gold = 3x and silver = 2x. 3x / (2x + 10) = 1/1 => 3x = 2x + 10 => x = 10. Gold = 3 × 10 = 30 mL."
+        },
+        {
+          title: "Puzzle 2: Priya and Kabir's Candies",
+          q: "Priya and Kabir have candies in ratio 7 : 5. Priya gives Kabir 6 candies, and now they have equal numbers! How many candies did Priya start with?",
+          ans: "42",
+          unit: "candies",
+          solution: "Let Priya = 7x, Kabir = 5x. 7x - 6 = 5x + 6 => 2x = 12 => x = 6. Priya had 7 × 6 = 42 candies!"
+        },
+        {
+          title: "Puzzle 3: Caravan vs. Runner Speed",
+          q: "Caravan speed = 18 km/h. Message runner speed = 7.5 m/s. What is the runner's speed in km/h?",
+          ans: "27",
+          unit: "km/h",
+          solution: "7.5 m/s × (18/5) = 1.5 × 18 = 27 km/h. The runner is faster than the 18 km/h caravan!"
+        }
+      ];
+
+      function update() {
+        const p = puzzles[puzzleIdx];
+        vp.innerHTML = `
+          <div style="width:100%; text-align:center;">
+            <div style="font-size:16px; font-weight:800; color:#f59e0b; margin-bottom:8px;">${p.title}</div>
+            <div style="font-size:13px; color:#e2e8f0; line-height:1.5; margin-bottom:12px; background:#0f172a; padding:10px; border-radius:8px;">
+              ${p.q}
+            </div>
+            <div id="puzzleFeedback" style="font-size:13px; font-weight:bold; min-height:24px;"></div>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <div style="display:flex; gap:6px; margin-bottom:8px;">
+          <button class="sim-btn" onclick="switchPuzzle(0)">Puzzle 1</button>
+          <button class="sim-btn" onclick="switchPuzzle(1)">Puzzle 2</button>
+          <button class="sim-btn" onclick="switchPuzzle(2)">Puzzle 3</button>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <input type="text" id="puzzleInput" placeholder="Enter number..." style="background:#1e293b; color:#fff; border:1px solid #475569; padding:8px 12px; border-radius:8px; flex:1;">
+          <button class="sim-btn" onclick="checkPuzzle()">Verify</button>
+        </div>
+      `;
+
+      window.switchPuzzle = (i) => {
+        puzzleIdx = i;
+        update();
+      };
+
+      window.checkPuzzle = () => {
+        const input = document.getElementById('puzzleInput').value.trim();
+        const p = puzzles[puzzleIdx];
+        const fb = document.getElementById('puzzleFeedback');
+        if (input === p.ans) {
+          fb.style.color = '#34d399';
+          fb.innerHTML = `✓ Brilliant deduction! Solution: ${p.solution}`;
+        } else {
+          fb.style.color = '#f87171';
+          fb.innerHTML = `✗ Not quite. Keep reasoning! (Hint answer: ${p.ans} ${p.unit})`;
+        }
+      };
+
+      update();
+    }
+
+    // Initial Load
+    window.onload = () => {
+      loadSlide(0);
+    };
+  </script>
+</body>
+</html>

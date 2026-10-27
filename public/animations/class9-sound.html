@@ -1,0 +1,1835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 9 Science • Chapter 12: Sound</title>
+  
+  <!-- KaTeX for crisp mathematical formulas -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+  <style>
+    :root {
+      --bg-primary: #0a0e17;
+      --bg-secondary: #121826;
+      --card-bg: rgba(26, 34, 53, 0.85);
+      --card-border: rgba(99, 130, 201, 0.25);
+      --accent-cyan: #00e5ff;
+      --accent-blue: #3d7eff;
+      --accent-purple: #9d4edd;
+      --accent-green: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-red: #ef4444;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --font-stack: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 20%, #152038 0%, var(--bg-primary) 80%);
+      color: var(--text-main);
+      font-family: var(--font-stack);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Top Navigation Bar */
+    header.top-nav {
+      background: rgba(18, 24, 38, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-badge {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+      color: #050b14;
+      font-weight: 800;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .nav-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .nav-stats {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .slide-indicator {
+      font-size: 0.9rem;
+      color: var(--accent-cyan);
+      font-weight: 600;
+      background: rgba(0, 229, 255, 0.1);
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(0, 229, 255, 0.3);
+    }
+
+    /* Layout Container */
+    .lab-container {
+      max-width: 1440px;
+      margin: 20px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 440px;
+      gap: 24px;
+    }
+
+    @media (max-width: 1040px) {
+      .lab-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Slide Card */
+    .slide-viewport {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+      min-height: 640px;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      overflow-x: hidden;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .slide-header {
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 16px;
+    }
+
+    .slide-header h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .slide-header h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--accent-cyan);
+      margin-top: 4px;
+    }
+
+    .slide-body {
+      flex: 1;
+    }
+
+    .lead-p {
+      font-size: 1.05rem;
+      margin-bottom: 18px;
+      color: #cbd5e1;
+    }
+
+    .theory-box {
+      background: rgba(15, 23, 42, 0.6);
+      border-left: 4px solid var(--accent-blue);
+      padding: 16px 20px;
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 20px;
+    }
+
+    .theory-box h4 {
+      color: #38bdf8;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    .highlight-eq {
+      background: rgba(0, 229, 255, 0.08);
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      border-radius: 8px;
+      padding: 10px 16px;
+      margin: 12px 0;
+      text-align: center;
+      color: #e0f2fe;
+      font-size: 1.15rem;
+    }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .grid-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2col, .grid-3col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 14px 18px;
+    }
+
+    .card-item h4, .card-item h5 {
+      color: var(--accent-cyan);
+      margin-bottom: 6px;
+    }
+
+    /* Checkpoints within slides */
+    .checkpoints-section {
+      margin-top: 24px;
+      background: rgba(18, 24, 38, 0.7);
+      border: 1px solid rgba(99, 130, 201, 0.3);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .checkpoints-header {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent-amber);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .checkpoint-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .checkpoint-card p.q-text {
+      font-weight: 600;
+      color: #f8fafc;
+      margin-bottom: 10px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .option-btn {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+      padding: 8px 12px;
+      border-radius: 6px;
+      text-align: left;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background: rgba(59, 130, 246, 0.2);
+      border-color: rgba(59, 130, 246, 0.5);
+      color: #fff;
+    }
+
+    .option-btn.correct {
+      background: rgba(16, 185, 129, 0.25) !important;
+      border-color: var(--accent-green) !important;
+      color: #a7f3d0 !important;
+      font-weight: 600;
+    }
+
+    .option-btn.wrong {
+      background: rgba(239, 68, 68, 0.25) !important;
+      border-color: var(--accent-red) !important;
+      color: #fca5a5 !important;
+    }
+
+    .checkpoint-feedback {
+      margin-top: 10px;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      display: none;
+    }
+
+    .checkpoint-feedback.show {
+      display: block;
+    }
+
+    .checkpoint-feedback.correct-fb {
+      background: rgba(16, 185, 129, 0.15);
+      border-left: 3px solid var(--accent-green);
+      color: #6ee7b7;
+    }
+
+    .checkpoint-feedback.wrong-fb {
+      background: rgba(239, 68, 68, 0.15);
+      border-left: 3px solid var(--accent-red);
+      color: #fca5a5;
+    }
+
+    /* Quiz Slide Styles */
+    .quiz-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .quiz-item {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 16px;
+      transition: border-color 0.2s;
+    }
+
+    .quiz-item:hover {
+      border-color: rgba(99, 130, 201, 0.4);
+    }
+
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .quiz-num {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      background: rgba(0, 229, 255, 0.1);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .view-solution-btn {
+      background: transparent;
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .view-solution-btn:hover {
+      background: var(--accent-cyan);
+      color: #050b14;
+    }
+
+    /* Right Column: Teacher Avatar & Interactive Simulators */
+    .interactive-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Teacher Avatar Box */
+    .teacher-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .avatar-wrapper {
+      width: 120px;
+      height: 120px;
+      position: relative;
+      margin-bottom: 12px;
+    }
+
+    .avatar-svg {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: radial-gradient(circle, #3b82f6 0%, #1e1b4b 100%);
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    }
+
+    .teacher-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .teacher-role {
+      font-size: 0.82rem;
+      color: var(--accent-cyan);
+      margin-bottom: 14px;
+    }
+
+    .speech-bubble {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      position: relative;
+      line-height: 1.5;
+      text-align: left;
+      width: 100%;
+      min-height: 70px;
+    }
+
+    .voice-controls {
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .voice-btn {
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      color: #93c5fd;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .voice-btn:hover {
+      background: rgba(59, 130, 246, 0.3);
+      color: #fff;
+    }
+
+    /* Simulator Panel Box */
+    .simulator-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .simulator-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 10px;
+    }
+
+    .sim-canvas-area {
+      background: #060911;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      height: 280px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sim-controls {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .control-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+    }
+
+    .control-row input[type="range"] {
+      flex: 1;
+      accent-color: var(--accent-cyan);
+    }
+
+    .control-val {
+      font-family: monospace;
+      color: var(--accent-cyan);
+      min-width: 48px;
+      text-align: right;
+    }
+
+    .sim-btn-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .sim-action-btn {
+      flex: 1;
+      background: rgba(30, 41, 59, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #e2e8f0;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .sim-action-btn:hover {
+      background: rgba(59, 130, 246, 0.3);
+      color: #fff;
+    }
+
+    /* Bottom Slide Controls */
+    footer.bottom-bar {
+      max-width: 1440px;
+      margin: 10px auto 40px;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-btn {
+      background: linear-gradient(135deg, var(--accent-blue), #1d4ed8);
+      border: none;
+      color: #fff;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(59, 130, 246, 0.6);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    /* Last Slide Notice (Strictly required) */
+    .last-slide-notice {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid var(--accent-green);
+      color: #6ee7b7;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+    }
+
+    /* Modal for Detailed Step-by-Step Solutions */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      max-width: 600px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    .modal-close:hover {
+      color: #fff;
+    }
+
+    .modal-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-bottom: 12px;
+    }
+
+    .modal-body {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-brand">
+      <span class="nav-badge">NCERT • Class 9</span>
+      <span class="nav-title">Chapter 12: Sound</span>
+    </div>
+    <div class="nav-stats">
+      <span class="slide-indicator" id="slideIndicator">Slide 1 / 20</span>
+    </div>
+  </header>
+
+  <!-- Main Laboratory Layout -->
+  <main class="lab-container">
+    
+    <!-- Left Column: Slide Viewport -->
+    <section class="slide-viewport">
+      <div class="slide-header">
+        <h2 id="slideTitle">Loading...</h2>
+        <h3 id="slideSubtitle">...</h3>
+      </div>
+      
+      <div class="slide-body" id="slideContent">
+        <!-- Dynamic content injected here -->
+      </div>
+
+      <!-- In-Slide Checkpoints Section -->
+      <div class="checkpoints-section" id="checkpointsSection" style="display: none;">
+        <div class="checkpoints-header">
+          <span>⚡ Interactive In-Slide Concept Checkpoints</span>
+        </div>
+        <div id="checkpointsList"></div>
+      </div>
+
+      <!-- Quiz Questions Section (Slides 17 to 20) -->
+      <div id="quizSection" style="display: none;">
+        <div class="quiz-container" id="quizList"></div>
+      </div>
+
+      <!-- Strict Last Slide Notice -->
+      <div id="lastSlideNotice" class="last-slide-notice">
+        You have reached the last slide of this chapter
+      </div>
+    </section>
+
+    <!-- Right Column: Teacher Avatar & Interactive Simulators -->
+    <aside class="interactive-panel">
+      
+      <!-- Teacher Avatar Box -->
+      <div class="teacher-box">
+        <div class="avatar-wrapper">
+          <svg class="avatar-svg" viewBox="0 0 100 100">
+            <!-- Neck & Body -->
+            <path d="M30 85 C30 70, 70 70, 70 85 Z" fill="#3b82f6" />
+            <!-- Head & Face -->
+            <circle cx="50" cy="45" r="24" fill="#fed7aa" />
+            <!-- Hair -->
+            <path d="M26 45 C26 25, 74 25, 74 45 C74 30, 26 30, 26 45 Z" fill="#475569" />
+            <!-- Glasses -->
+            <rect x="36" y="40" width="10" height="7" rx="2" fill="none" stroke="#0284c7" stroke-width="2" />
+            <rect x="54" y="40" width="10" height="7" rx="2" fill="none" stroke="#0284c7" stroke-width="2" />
+            <line x1="46" y1="43" x2="54" y2="43" stroke="#0284c7" stroke-width="2" />
+            <!-- Eyes -->
+            <circle cx="41" cy="43" r="1.5" fill="#0f172a" />
+            <circle cx="59" cy="43" r="1.5" fill="#0f172a" />
+            <!-- Animated Talking Mouth -->
+            <ellipse id="teacherMouth" cx="50" cy="56" rx="4" ry="1.5" fill="#e11d48" />
+          </svg>
+        </div>
+        <div class="teacher-title">Science Mentor</div>
+        <div class="teacher-role">Senior Acoustics & Wave Physics Guide</div>
+        <div class="speech-bubble" id="teacherSpeech">
+          Welcome to the Sound Master Laboratory!
+        </div>
+        <div class="voice-controls">
+          <button class="voice-btn" id="voiceToggleBtn" onclick="toggleSpeech()">
+            <span id="voiceIcon">🔊</span> <span id="voiceLabel">Play Voiceover</span>
+          </button>
+          <button class="voice-btn" onclick="replaySpeech()">
+            <span>🔄</span> <span>Replay</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Interactive Dynamic Simulator -->
+      <div class="simulator-box">
+        <div class="simulator-title">
+          <span id="simTitle">Bespoke Interactive Lab</span>
+          <span style="font-size: 0.75rem; color: var(--accent-cyan); font-weight: normal;">LIVE SVG</span>
+        </div>
+        
+        <div class="sim-canvas-area" id="simCanvasArea">
+          <svg id="simSvg" width="100%" height="100%" viewBox="0 0 440 280">
+            <!-- Dynamic SVG elements injected by simulator renderer -->
+          </svg>
+        </div>
+
+        <div class="sim-controls" id="simControls">
+          <!-- Interactive Sliders / Buttons -->
+        </div>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <!-- Bottom Navigation Bar -->
+  <footer class="bottom-bar">
+    <button class="nav-btn" id="prevBtn" onclick="prevSlide()">
+      <span>⬅ Previous Slide</span>
+    </button>
+    <div style="color: var(--text-muted); font-size: 0.9rem;">
+      NCERT Science Class 9 • Chapter 12
+    </div>
+    <button class="nav-btn" id="nextBtn" onclick="nextSlide()">
+      <span>Next Slide ➡</span>
+    </button>
+  </footer>
+
+  <!-- Detailed Solution Pop-up Modal -->
+  <div class="modal-overlay" id="solutionModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeSolutionModal()">&times;</button>
+      <div class="modal-title" id="modalTitle">Question Solution</div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    const slides = [{"id": 1, "title": "Production of Sound via Mechanical Vibrations", "subtitle": "Oscillating Sources, Tuning Forks, Vocal Cords, & Musical Columns (C-2.7)", "content": "\n<p class=\"lead-p\">Every sound we hear\u2014from the melodious notes of a flute to the roar of thunder\u2014originates from a single physical phenomenon: <strong>mechanical vibration</strong>. A vibration is a rapid, periodic back-and-forth motion of an object about its central equilibrium position.</p>\n\n<div class=\"theory-box\">\n  <h4>1. How Vibrating Bodies Produce Sound</h4>\n  <p>When an object vibrates, it repeatedly strikes and pushes against the adjacent molecules of the surrounding medium, setting those particles into rhythmic oscillation. As these oscillations propagate outward, they reach our ears and stimulate the auditory nerve, producing the sensation of hearing.</p>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>Everyday Sound Sources</h4>\n    <ul>\n      <li><strong>Vibrating Strings:</strong> Sitar, veena, guitar, violin, and piano wires vibrate when plucked, struck, or bowed.</li>\n      <li><strong>Vibrating Membranes:</strong> The stretched skins of a tabla, mridangam, or drum oscillate when tapped.</li>\n      <li><strong>Vibrating Air Columns:</strong> Flutes, clarinets, whistles, and pipe organs create sound as air columns inside tubes resonate.</li>\n      <li><strong>Vibrating Prongs:</strong> Striking a laboratory tuning fork against a rubber pad sets its steel prongs into rapid vibration.</li>\n    </ul>\n  </div>\n  <div class=\"card-item\">\n    <h4>Human Vocal Mechanism (The Larynx)</h4>\n    <p>In humans, sound is generated by the <strong>voice box (larynx)</strong> located at the upper end of the windpipe. Two muscular bands called <strong>vocal cords</strong> stretch across the larynx, leaving a narrow slit for airflow. When lungs expel air through the slit, the vocal cords vibrate rapidly, producing speech and song!</p>\n  </div>\n</div>\n", "sim_type": "tuning_fork_vibration", "voice": "Welcome to the Sound Master Laboratory! In this chapter, we explore acoustics: the science of sound. Sound is produced whenever an object vibrates\u2014whether it is a steel tuning fork, a stretched tabla membrane, or the vocal cords in your throat! Let us experiment with our interactive tuning fork simulator.", "checkpoints": [{"question": "What is the fundamental physical cause of all sound production in nature?", "options": ["Chemical oxidation of gases", "Rapid back-and-forth mechanical vibrations of an object", "Nuclear fission inside solids", "Magnetic dipole oscillations"], "correct": 1, "explanation": "Sound is universally produced by mechanical vibrations\u2014periodic back-and-forth oscillations of matter that disturb the surrounding medium."}, {"question": "Which anatomical structure in the human body vibrates to produce speech sounds?", "options": ["The diaphragm", "The vocal cords in the larynx", "The trachea cartilage", "The bronchial tubes"], "correct": 1, "explanation": "Human speech is produced when air forced through the larynx causes the stretched vocal cords to vibrate."}]}, {"id": 2, "title": "Propagation of Sound: Need for a Material Medium", "subtitle": "Solids, Liquids, Gases, & The Electric Bell Jar Vacuum Experiment (C-2.7)", "content": "\n<p class=\"lead-p\">Once sound is produced by a vibrating source, how does it travel to our ears? Unlike electromagnetic light waves which can travel through the vast emptiness of outer space, <strong>sound is a mechanical wave that strictly requires a material medium to propagate</strong>.</p>\n\n<div class=\"theory-box\">\n  <h4>1. The Bell Jar Experiment in a Vacuum</h4>\n  <p>To demonstrate that sound cannot travel through a vacuum, Robert Boyle and later physicists designed the classic <strong>Bell Jar Experiment</strong>:</p>\n  <ul>\n    <li>An electric ringing bell is suspended inside an airtight glass bell jar connected to a vacuum suction pump.</li>\n    <li>When the electrical switch is pressed, the bell hammer strikes the gong, and the ringing sound is clearly heard through the glass.</li>\n    <li>As the vacuum pump is turned on and air is gradually evacuated from the jar, the sound becomes fainter and fainter.</li>\n    <li>When a complete vacuum is achieved, <strong>no sound is heard at all</strong>, even though the hammer is visibly seen violently striking the gong!</li>\n  </ul>\n</div>\n\n<div class=\"theory-box\">\n  <h4>2. Why Can Astronauts on the Moon Not Talk Directly?</h4>\n  <p>The Moon has no atmosphere (it is an airless vacuum). Even if an astronaut yells at maximum volume right next to another astronaut, the sound cannot travel between them. Astronauts must communicate using <strong>radio transceivers</strong>, because radio waves are electromagnetic waves that propagate through vacuums effortlessly at the speed of light ($3 \\times 10^8\\text{ m/s}$).</p>\n</div>\n", "sim_type": "bell_jar_vacuum", "voice": "Sound cannot travel through empty space! In our bell jar simulator, notice what happens as we turn on the vacuum pump. As air molecules are evacuated from the chamber, the ringing sound fades into total silence, even while the hammer continues to strike the gong. This proves that sound strictly demands a material medium to propagate.", "checkpoints": [{"question": "What happens to the sound of an electric bell ringing inside a bell jar as the air is gradually removed by a vacuum pump?", "options": ["The sound becomes louder and higher pitched", "The sound becomes fainter and eventually becomes completely inaudible", "The sound remains at the exact same loudness", "The sound turns into visible light"], "correct": 1, "explanation": "Because sound requires material molecules to transmit mechanical vibrations, evacuating the air removes the medium, making the sound completely inaudible."}, {"question": "Why do astronauts walking on the surface of the Moon use radio headsets to communicate with each other?", "options": ["Because Moon gravity is too weak to hold sound", "Because sound waves cannot travel through the vacuum of the lunar surface", "Because their vocal cords stop vibrating on the Moon", "Because radio waves travel slower than sound"], "correct": 1, "explanation": "The Moon lacks an atmosphere. In this vacuum, mechanical sound waves cannot propagate, necessitating electromagnetic radio communication."}]}, {"id": 3, "title": "Sound as a Longitudinal Wave", "subtitle": "Compressions (C), Rarefactions (R), & Parallel Particle Oscillations (C-2.7)", "content": "\n<p class=\"lead-p\">How do air particles transmit sound energy across a room? Sound travels through fluids (air and water) as a <strong>longitudinal mechanical wave</strong>.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Defining a Longitudinal Wave</h4>\n  <p>A wave in which the individual particles of the medium oscillate <strong>parallel (back and forth)</strong> to the direction of wave propagation is called a <strong>longitudinal wave</strong>.</p>\n  <p><em>(In contrast, a transverse wave\u2014such as ripples on a pond or light\u2014has particle oscillations perpendicular to wave propagation.)</em></p>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>Compressions ($C$)</h4>\n    <p>When a vibrating prong moves outward, it pushes and compresses the air immediately in front of it, creating a localized region of <strong>high pressure and high particle density</strong>. This packet of crowded particles is called a <strong>Compression ($C$)</strong>.</p>\n  </div>\n  <div class=\"card-item\">\n    <h4>Rarefactions ($R$)</h4>\n    <p>When the prong swings backward, it creates a localized pocket of low pressure where adjacent air expands into the void, forming a region of <strong>low pressure and low particle density</strong>. This stretched region is called a <strong>Rarefaction ($R$)</strong>.</p>\n  </div>\n</div>\n\n<div class=\"theory-box\">\n  <h4>2. The Wave of Disturbance (Particles Do Not Travel Across the Room!)</h4>\n  <p>A critical misconception among students is believing that individual air molecules travel all the way from the speaker's mouth to the listener's ear. <strong>They do not!</strong> Individual particles merely oscillate back and forth about their mean positions; it is the <strong>disturbance and energy</strong> that travels across the room.</p>\n</div>\n", "sim_type": "longitudinal_slinky_density", "voice": "Sound travels through air as a longitudinal wave! When a vibrating object pushes forward, it squeezes air molecules into a high-pressure compression. When it pulls back, it creates a low-pressure rarefaction. Remember: the air particles do not travel across the room\u2014they simply oscillate in place, passing the disturbance along like a falling line of dominoes!", "checkpoints": [{"question": "In a longitudinal sound wave traveling through air, how do individual air particles move relative to the direction of the wave?", "options": ["Perpendicular (up and down) to the wave direction", "Parallel (back and forth) along the direction of wave propagation", "In complete circular orbits without returning", "They remain permanently stationary while empty space moves"], "correct": 1, "explanation": "In a longitudinal wave, medium particles oscillate parallel (back and forth) along the exact same axis as wave propagation."}, {"question": "What physical characteristics define a Compression (C) in a sound wave?", "options": ["Low pressure and low particle density", "High pressure and high particle density", "Zero pressure and zero mass", "Maximum transverse displacement"], "correct": 1, "explanation": "Compressions are regions where oscillating particles are crowded tightly together, producing higher density and higher pressure than equilibrium."}]}, {"id": 4, "title": "Graphical Representation of a Sound Wave", "subtitle": "Density-Pressure Curves, Crests, Troughs, & Wavelength (\u03bb) (C-2.7)", "content": "\n<p class=\"lead-p\">Although sound is a longitudinal compression wave, physicists visually represent it as a smooth sinusoidal curve plotting <strong>Density or Pressure deviations</strong> against Distance or Time.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Mapping Compressions and Rarefactions to Waveforms</h4>\n  <ul>\n    <li><strong>Crests (Peaks):</strong> Represent regions of maximum positive density and pressure\u2014the <strong>Compressions ($C$)</strong>.</li>\n    <li><strong>Troughs (Valleys):</strong> Represent regions of maximum negative density and pressure\u2014the <strong>Rarefactions ($R$)</strong>.</li>\n    <li><strong>Zero Center Line:</strong> Represents the ambient, undisturbed equilibrium atmospheric density and pressure of the medium.</li>\n  </ul>\n</div>\n\n<div class=\"theory-box\">\n  <h4>2. Defining Wavelength ($\\lambda$)</h4>\n  <p>The <strong>wavelength</strong> (symbolized by the Greek letter lambda, $\\lambda$) is the physical spatial length of one complete wave cycle:</p>\n  <p class=\"highlight-eq\">$$\\lambda = \\text{Distance between two consecutive Compressions } (C-C) = \\text{Distance between two consecutive Rarefactions } (R-R)$$</p>\n  <ul>\n    <li>On the graphical waveform, it equals the distance between two consecutive crests or two consecutive troughs.</li>\n    <li><strong>SI Unit of Wavelength:</strong> Metre ($\text{m}$).</li>\n  </ul>\n</div>\n", "sim_type": "density_waveform_plotter", "voice": "To analyze sound mathematically, we plot density or pressure against distance. Compressions become wave peaks or crests, while rarefactions become wave valleys or troughs. The distance between two consecutive peaks is the wavelength, symbolized by the Greek letter lambda, measured in metres.", "checkpoints": [{"question": "On a graphical pressure-distance representation of a sound wave, what physical region does a wave peak (crest) correspond to?", "options": ["A rarefaction", "A compression", "A vacuum void", "A region of absolute zero temperature"], "correct": 1, "explanation": "A crest on the density-pressure curve represents the peak positive deviation, which corresponds to a high-density, high-pressure compression."}, {"question": "If the distance between a compression and the immediately adjacent rarefaction in a sound wave is 0.85 m, what is the wavelength of the sound wave?", "options": ["0.425 m", "0.85 m", "1.70 m", "3.40 m"], "correct": 2, "explanation": "The distance from a compression to the adjacent rarefaction is half a wavelength (\u03bb / 2). Therefore, \u03bb = 2 \u00d7 0.85 m = 1.70 m."}]}, {"id": 5, "title": "Wave Characteristics: Frequency, Time Period, & Amplitude", "subtitle": "Quantitative Foundations: Hertz (Hz), Period (T = 1/\u03bd), & Amplitude (A) (C-2.7)", "content": "\n<p class=\"lead-p\">Every musical note and mechanical acoustic wave is fundamentally characterized by three cardinal parameters: <strong>Frequency</strong>, <strong>Time Period</strong>, and <strong>Amplitude</strong>.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Frequency ($\\nu$ or $f$)</h4>\n  <p>The <strong>frequency</strong> of a sound wave is the number of complete oscillations (compressions and rarefactions) that pass a fixed point per second:</p>\n  <p class=\"highlight-eq\">$$\\nu = \\frac{\\text{Number of Oscillations}}{\\text{Total Time } (t)}$$</p>\n  <p><strong>SI Unit:</strong> <strong>Hertz (Hz)</strong>, named after German physicist Heinrich Hertz. $1\\text{ Hz} = 1\\text{ cycle per second} = 1\\text{ s}^{-1}$. A tuning fork marked $512\\text{ Hz}$ completes 512 oscillations every second!</p>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>Time Period ($T$)</h4>\n    <p>The time taken by the wave to complete <strong>one full oscillation</strong> (or the time taken for one full wavelength to pass a fixed point):</p>\n    <p class=\"highlight-eq\">$$T = \\frac{1}{\\nu} \\iff \\nu = \\frac{1}{T}$$</p>\n    <p><strong>SI Unit:</strong> Second ($\text{s}$). If $\\nu = 100\\text{ Hz}$, $T = \\frac{1}{100} = 0.01\\text{ s}$.</p>\n  </div>\n  <div class=\"card-item\">\n    <h4>Amplitude ($A$)</h4>\n    <p>The magnitude of <strong>maximum displacement or disturbance</strong> of medium particles from their central mean equilibrium position. Determines the energy and loudness of the sound wave!</p>\n  </div>\n</div>\n", "sim_type": "frequency_period_synthesizer", "voice": "Frequency tells us how many wave cycles occur per second, measured in Hertz. The time period is the duration of one complete cycle\u2014they are exact reciprocals: T equals one over nu! Amplitude is the height of the wave, measuring how far particles are displaced from rest. Let us synthesize live waveforms and listen to their frequencies!", "checkpoints": [{"question": "A sound source completes 600 full oscillations in 3 seconds. What is the frequency and time period of the sound wave?", "options": ["\u03bd = 200 Hz, T = 0.005 s", "\u03bd = 1800 Hz, T = 0.0005 s", "\u03bd = 600 Hz, T = 3 s", "\u03bd = 20 Hz, T = 0.05 s"], "correct": 0, "explanation": "Frequency \u03bd = 600 / 3 = 200 Hz. Time period T = 1 / \u03bd = 1 / 200 = 0.005 s."}, {"question": "If the time period of a vibrating violin string is 0.002 seconds, what is its frequency?", "options": ["20 Hz", "200 Hz", "500 Hz", "2000 Hz"], "correct": 2, "explanation": "\u03bd = 1 / T = 1 / 0.002 = 1000 / 2 = 500 Hz."}]}, {"id": 6, "title": "Speed of Sound: Derivation of v = \u03bd\u00b7\u03bb", "subtitle": "Wave Velocity Formula, Medium Dependence, & Numerical Calculations (C-2.7)", "content": "\n<p class=\"lead-p\">How rapidly does a sound wave propagate through space? The relationship connecting wave speed, wavelength, and frequency is the fundamental equation of all wave mechanics.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Mathematical Derivation of $v = \\nu \\lambda$</h4>\n  <p>By basic kinematics, speed is defined as distance divided by time:</p>\n  <p class=\"highlight-eq\">$$\\text{Speed } (v) = \\frac{\\text{Distance}}{\\text{Time}}$$</p>\n  <p>In one complete time period ($T$), a wave advances by a distance equal to exactly one wavelength ($\\lambda$):</p>\n  <p class=\"highlight-eq\">$$v = \\frac{\\lambda}{T}$$</p>\n  <p>Since frequency is the reciprocal of the time period ($\\nu = \\frac{1}{T}$), we substitute to obtain:</p>\n  <p class=\"highlight-eq\">$$v = \\nu \\cdot \\lambda$$</p>\n  <p class=\"highlight-eq\">$$\\text{Speed of Wave} = \\text{Frequency} \\times \\text{Wavelength}$$</p>\n</div>\n\n<div class=\"theory-box\">\n  <h4>2. Critical Principle: Wave Speed is Governed by the Medium</h4>\n  <p>In a given uniform medium at a constant temperature, the <strong>speed of sound ($v$) is constant</strong>. If frequency $\\nu$ is doubled, the wavelength $\\lambda$ automatically halves so that their product $v = \\nu \\lambda$ remains unchanged!</p>\n</div>\n", "sim_type": "wave_speed_calculator", "voice": "The wave speed formula is remarkably simple yet profound: v equals nu times lambda! Speed equals frequency times wavelength. In any given medium, sound speed is fixed. If you sing a note with double the frequency, its wavelength compresses by half so their product remains identical to the speed of sound in the room!", "checkpoints": [{"question": "A sound wave has a frequency of 2000 Hz (2 kHz) and travels in air with a speed of 340 m/s. What is its wavelength?", "options": ["0.17 m (17 cm)", "1.7 m", "5.88 m", "680,000 m"], "correct": 0, "explanation": "From v = \u03bd \u00b7 \u03bb \u27f9 \u03bb = v / \u03bd = 340 m/s / 2000 Hz = 0.17 m = 17 cm."}, {"question": "A sound wave of wavelength 0.68 m travels through a gas at 340 m/s. How long does it take for one complete wave cycle to pass a listener?", "options": ["0.002 s", "0.02 s", "0.5 s", "2.0 s"], "correct": 0, "explanation": "Frequency \u03bd = v / \u03bb = 340 / 0.68 = 500 Hz. Time period T = 1 / \u03bd = 1 / 500 = 0.002 s."}]}, {"id": 7, "title": "Human Perception: Pitch, Loudness, and Timbre", "subtitle": "Frequency Shrillness, Decibels & Amplitude\u00b2, and Harmonic Quality (C-2.7, C-5.3)", "content": "\n<p class=\"lead-p\">The human brain translates physical wave attributes into vivid auditory sensations: we distinguish between shrill and deep voices, whisper soft secrets, and differentiate a piano from a flute playing the exact same note!</p>\n\n<div class=\"theory-box\">\n  <h4>1. Pitch (Governed by Frequency $\\nu$)</h4>\n  <p><strong>Pitch</strong> is the subjective sensation of how \"shrill\" or \"grave\" a sound is:</p>\n  <ul>\n    <li><strong>High Pitch (High Frequency):</strong> Rapid vibrations yield shrill sounds (whistle, mosquito buzzing, child's voice, bird chirp).</li>\n    <li><strong>Low Pitch (Low Frequency):</strong> Slower vibrations yield deep, bass sounds (drum beat, roar of a lion, adult male voice).</li>\n  </ul>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>Loudness (Governed by Amplitude $A$)</h4>\n    <p><strong>Loudness</strong> is the psychological perception of sound energy reaching the ear. It is directly proportional to the <strong>square of amplitude</strong>:</p>\n    <p class=\"highlight-eq\">$$\\text{Loudness} \\propto A^2$$</p>\n    <p>If you strike a drum harder, doubling the vibration amplitude, the sound becomes <strong>4 times as loud</strong>! Measured in decibels ($\text{dB}$). Whispers $\u0007pprox 30\\text{ dB}$; conversation $\u0007pprox 60\\text{ dB}$; jet takeoff $> 130\\text{ dB}$.</p>\n  </div>\n  <div class=\"card-item\">\n    <h4>Quality or Timbre</h4>\n    <p>The acoustic characteristic that enables us to distinguish between two musical notes having the <strong>identical pitch and identical loudness</strong> played on different instruments (e.g. violin vs trumpet). Timbre is determined by the complex mixture of natural <strong>overtones and harmonics</strong> in the waveform.</p>\n  </div>\n</div>\n", "sim_type": "pitch_loudness_timbre_sim", "voice": "How do our ears perceive sound? Frequency governs pitch: high frequencies sound shrill like a whistle, while low frequencies sound deep like a bass drum. Amplitude governs loudness, scaling with amplitude squared! And timbre or quality allows your ear to instantly tell apart a flute from a violin even when both play the exact same note at the exact same volume.", "checkpoints": [{"question": "If the vibration amplitude of a guitar string is tripled (3A), how does the loudness of the emitted sound change?", "options": ["It increases by 3 times", "It increases by 6 times", "It increases by 9 times", "It remains the same"], "correct": 2, "explanation": "Loudness is directly proportional to the square of the amplitude (Loudness \u221d A\u00b2). If amplitude is multiplied by 3, loudness increases by 3\u00b2 = 9 times."}, {"question": "A flute and a violin simultaneously play a musical note of identical frequency (440 Hz) and equal loudness. Which property enables a listener to distinguish between them?", "options": ["Velocity", "Wavelength", "Quality or Timbre (Harmonic Spectrum)", "Frequency alone"], "correct": 2, "explanation": "Timbre (or quality) is determined by the waveform and combination of overtones/harmonics, allowing the human ear to distinguish different instruments playing the same pitch and volume."}]}, {"id": 8, "title": "Audible Range: Infrasound & Ultrasound", "subtitle": "Human Hearing Spectrum (20 Hz \u2013 20 kHz), Animal Biosonar, & Echolocation (C-2.7)", "content": "\n<p class=\"lead-p\">The acoustic universe extends far beyond human perception. The range of frequencies that human ears can detect is called the <strong>audible range</strong>.</p>\n\n<div class=\"theory-box\">\n  <h4>1. The Spectrum of Acoustic Frequencies</h4>\n  <div class=\"grid-3col\">\n    <div class=\"card-item\">\n      <h5>Infrasound / Infrasonic</h5>\n      <p><strong>Frequency $< 20\\text{ Hz}$</strong></p>\n      <ul>\n        <li>Inaudible to human ears.</li>\n        <li>Produced by earthquakes, volcanic tremors, ocean waves, and avalanches.</li>\n        <li>Used by <strong>elephants</strong> and <strong>whales</strong> to communicate across tens of kilometers; rhinoceroses communicate at $5\\text{ Hz}$!</li>\n      </ul>\n    </div>\n    <div class=\"card-item\">\n      <h5>Audible Range</h5>\n      <p><strong>$20\\text{ Hz}$ to $20,000\\text{ Hz}$ ($20\\text{ kHz}$)</strong></p>\n      <ul>\n        <li>Standard human hearing limit.</li>\n        <li>Children under 5 and dogs can hear up to $25\\text{ kHz}$.</li>\n        <li>With aging, human sensitivity to high frequencies ($> 15\\text{ kHz}$) gradually deteriorates.</li>\n      </ul>\n    </div>\n    <div class=\"card-item\">\n      <h5>Ultrasound / Ultrasonic</h5>\n      <p><strong>Frequency $> 20,000\\text{ Hz}$ ($20\\text{ kHz}$)</strong></p>\n      <ul>\n        <li>Inaudible to human ears.</li>\n        <li>Emitted by <strong>bats</strong>, <strong>dolphins</strong>, and <strong>porpoises</strong> for echolocation.</li>\n        <li>Dogs can hear silent Galton whistles ($> 20\\text{ kHz}$) used in canine training.</li>\n      </ul>\n    </div>\n  </div>\n</div>\n", "sim_type": "hearing_spectrum_dial", "voice": "The human ear detects a specific acoustic window: twenty Hertz to twenty thousand Hertz. Frequencies below twenty Hertz are infrasonic\u2014felt by elephants during earthquakes. Frequencies above twenty thousand Hertz are ultrasonic\u2014used by bats and dolphins as natural sonar to hunt in complete darkness!", "checkpoints": [{"question": "What is the standard audible frequency range of hearing for a healthy young human being?", "options": ["1 Hz to 100 Hz", "20 Hz to 20,000 Hz (20 kHz)", "200 Hz to 2,000 Hz", "20,000 Hz to 2,000,000 Hz"], "correct": 1, "explanation": "The human ear detects sounds in the frequency range from 20 Hz to 20,000 Hz (20 kHz)."}, {"question": "Which of the following animals utilizes infrasonic sound waves below 20 Hz to communicate across vast geographic distances?", "options": ["Bats", "Elephants", "Dolphins", "Dogs"], "correct": 1, "explanation": "Elephants and whales produce powerful infrasonic rumbles (down to 14 Hz) that travel through the ground and air across many kilometers."}]}, {"id": 9, "title": "Speed of Sound in Different Media", "subtitle": "Solids vs Liquids vs Gases, Temperature Effects, & Thunder vs Lightning (C-2.7)", "content": "\n<p class=\"lead-p\">Does sound travel at the same speed through all substances? Not at all! The velocity of sound depends fundamentally on the <strong>density, elasticity, and temperature</strong> of the transmitting medium.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Hierarchy of Sound Speed: Solids $>$ Liquids $>$ Gases</h4>\n  <p>In solids, atoms are bonded by rigid, tight crystalline springs that snap back rapidly, transmitting vibrations with immense speed. In gases, molecules are spaced far apart, colliding only intermittently.</p>\n  <div class=\"grid-3col\">\n    <div class=\"card-item\">\n      <h5>Solids (Fastest)</h5>\n      <ul>\n        <li>Aluminum: $\\approx 6420\\text{ m/s}$</li>\n        <li>Steel / Iron: $\\approx 5960\\text{ m/s}$</li>\n        <li>Glass: $\\approx 5640\\text{ m/s}$</li>\n      </ul>\n    </div>\n    <div class=\"card-item\">\n      <h5>Liquids (Intermediate)</h5>\n      <ul>\n        <li>Sea Water: $\\approx 1531\\text{ m/s}$</li>\n        <li>Distilled Water: $\\approx 1498\\text{ m/s}$</li>\n        <li>Ethanol: $\\approx 1207\\text{ m/s}$</li>\n      </ul>\n    </div>\n    <div class=\"card-item\">\n      <h5>Gases (Slowest)</h5>\n      <ul>\n        <li>Hydrogen: $\\approx 1284\\text{ m/s}$</li>\n        <li>Air at $22^{\\circ}\\text{C}$: $\\approx 344\\text{ m/s}$</li>\n        <li>Air at $0^{\\circ}\\text{C}$: $\\approx 331\\text{ m/s}$</li>\n      </ul>\n    </div>\n  </div>\n</div>\n\n<div class=\"theory-box\">\n  <h4>2. Environmental Factors Influencing Sound Speed</h4>\n  <ul>\n    <li><strong>Temperature:</strong> In any gas, speed increases with rising temperature ($v \\propto \\sqrt{T}$). In air, speed increases by roughly $0.61\\text{ m/s}$ for each $1^{\\circ}\\text{C}$ rise.</li>\n    <li><strong>Humidity:</strong> Moist air is less dense than dry air; hence sound travels slightly faster in humid air.</li>\n    <li><strong>Lightning vs Thunder:</strong> Light travels at $300,000,000\\text{ m/s}$, while thunder sound crawls at only $344\\text{ m/s}$. We see the flash instantly, but hear thunder seconds later!</li>\n  </ul>\n</div>\n", "sim_type": "medium_speed_race", "voice": "Sound travels dramatically faster in solids than in air! In a steel rail, sound races at nearly six thousand meters per second\u2014seventeen times faster than in air! In our three-track race simulator, watch what happens when we fire a sound pulse through Air, Water, and Steel simultaneously.", "checkpoints": [{"question": "Through which of the following media does sound travel at the HIGHEST velocity?", "options": ["Air at 20\u00b0C", "Pure distilled water", "A solid steel bar", "A total vacuum"], "correct": 2, "explanation": "Sound travels fastest in solids due to high elastic restoring forces and tightly packed atomic lattices. In steel, sound travels at nearly 6000 m/s, compared to ~1500 m/s in water and ~344 m/s in air."}, {"question": "During a thunderstorm, you observe a brilliant flash of lightning and hear thunder 3 seconds later. If the speed of sound is 344 m/s, how far away is the storm?", "options": ["114.7 m", "344 m", "1,032 m (\u2248 1 km)", "3,000 m"], "correct": 2, "explanation": "Since light arrives virtually instantaneously, distance = speed \u00d7 time = 344 m/s \u00d7 3 s = 1032 m \u2248 1.03 km."}]}, {"id": 10, "title": "Reflection of Sound & Laws of Acoustic Reflection", "subtitle": "Bouncing Waves, Goniometers, Megaphones, & Stethoscopes (C-2.7)", "content": "\n<p class=\"lead-p\">Just like light rays reflecting off a polished silver mirror, sound waves bounce when they strike a hard surface (such as a brick wall, cliff face, or metal sheet). This is the <strong>Reflection of Sound</strong>.</p>\n\n<div class=\"theory-box\">\n  <h4>1. The Laws of Reflection of Sound</h4>\n  <ol>\n    <li>The incident sound wave, the reflected sound wave, and the normal to the reflecting surface at the point of incidence all lie in the <strong>same plane</strong>.</li>\n    <li>The angle of incidence ($\\angle i$) strictly equals the angle of reflection ($\\angle r$):</li>\n  </ol>\n  <p class=\"highlight-eq\">$$\\angle i = \\angle r$$</p>\n  <p>Unlike light (which requires an optically polished mirror), sound waves have long wavelengths (metres to centimetres) and reflect efficiently off rough walls and plaster surfaces.</p>\n</div>\n\n<div class=\"grid-2col\">\n  <div class=\"card-item\">\n    <h4>Megaphones and Horns</h4>\n    <p>Megaphones and trumpets feature conical expanding horns. Successive multiple reflections inside the tube prevent sound from spreading out spherically in all directions, channeling acoustic energy into a concentrated forward beam.</p>\n  </div>\n  <div class=\"card-item\">\n    <h4>Medical Stethoscopes</h4>\n    <p>In a physician's stethoscope, tiny heart and lung sounds are captured by the chest piece diaphragm and guided through a flexible rubber tube to the ear tips via <strong>continuous multiple reflections</strong> off the internal tube walls without energy leakage.</p>\n  </div>\n</div>\n", "sim_type": "sound_reflection_goniometer", "voice": "Sound follows the exact same reflection laws as light: the angle of incidence equals the angle of reflection! Medical stethoscopes and megaphone horns exploit repeated internal reflections to guide sound directly into the ear without dissipating energy.", "checkpoints": [{"question": "What physical principle allows a medical stethoscope to transmit faint heartbeats clearly to a doctor's ears?", "options": ["Nuclear resonance", "Multiple reflections of sound waves along the inside of the rubber tube", "Complete absorption of sound waves", "Total conversion of sound into magnetic flux"], "correct": 1, "explanation": "A stethoscope uses continuous multiple internal reflections along the hollow walls of the tube to channel acoustic waves to the physician's ears with minimal loss."}, {"question": "If a sound wave strikes a smooth concrete wall at an angle of incidence of 35\u00b0 with the normal, what is the angle of reflection?", "options": ["0\u00b0", "35\u00b0", "55\u00b0", "70\u00b0"], "correct": 1, "explanation": "By the law of acoustic reflection, angle of reflection equals angle of incidence: \u2220r = \u2220i = 35\u00b0."}]}, {"id": 11, "title": "Echoes: Persistence of Hearing & Minimum Distance", "subtitle": "Derivation of the 17.2-Metre Rule & Persistence of Hearing (C-2.7)", "content": "\n<p class=\"lead-p\">If you shout or clap near a tall mountain cliff or an abandoned monument, you hear your own voice repeated a split second later. This distinct acoustic repetition is called an <strong>Echo</strong>.</p>\n\n<div class=\"theory-box\">\n  <h4>1. The Biological Constraint: Persistence of Hearing</h4>\n  <p>The sensation of any sound persists in the human brain for approximately <strong>$0.1\\text{ seconds}$ ($1/10\\text{th of a second}$)</strong>. If a reflected sound arrives within $0.1\\text{ s}$, the brain blends it with the original sound. To hear a distinct, separate echo, the reflected sound must reach the ear <strong>at least $0.1\\text{ seconds}$ after the direct sound</strong>!</p>\n</div>\n\n<div class=\"theory-box\">\n  <h4>2. Mathematical Derivation of Minimum Echo Distance ($d_{\\text{min}}$)</h4>\n  <p>Let the minimum distance from the sound source to the reflecting obstacle be $d$. The sound must travel to the obstacle and return back to the observer, covering a total round-trip distance of $2d$:</p>\n  <p class=\"highlight-eq\">$$\\text{Total Distance} = \\text{Speed of Sound } (v) \\times \\text{Time Interval } (t)$$</p>\n  <p class=\"highlight-eq\">$$2d = v \\cdot t \\implies d = \\frac{v \\cdot t}{2}$$</p>\n  <p>Taking the speed of sound in air at $22^{\\circ}\\text{C}$ as $v = 344\\text{ m/s}$ and minimum time $t = 0.1\\text{ s}$:</p>\n  <p class=\"highlight-eq\">$$d_{\\text{min}} = \\frac{344\\text{ m/s} \\times 0.1\\text{ s}}{2} = \\frac{34.4\\text{ m}}{2} = 17.2\\text{ metres}$$</p>\n  <p>To hear a distinct echo at normal room temperature, the reflecting obstacle must be situated at a <strong>minimum distance of $17.2\\text{ metres}$</strong>!</p>\n</div>\n", "sim_type": "echo_distance_cliff", "voice": "Why don't we hear echoes in an ordinary bedroom? The human brain holds onto any sound for a tenth of a second, called the persistence of hearing. To hear a distinct echo, sound must travel to the wall and back in at least zero point one seconds. At normal room temperature, this establishes a strict minimum distance of seventeen point two metres!", "checkpoints": [{"question": "What is the biological time duration for which the sensation of sound persists in the human brain (persistence of hearing)?", "options": ["0.01 s", "0.1 s", "1.0 s", "10.0 s"], "correct": 1, "explanation": "The human brain retains auditory impressions for approximately 0.1 seconds (1/10th of a second)."}, {"question": "A person standing in front of a cliff claps and hears the echo 1.5 seconds later. If the speed of sound is 344 m/s, how far away is the cliff?", "options": ["172 m", "258 m", "516 m", "1,032 m"], "correct": 1, "explanation": "Total distance traveled by sound = 2d = v \u00b7 t = 344 m/s \u00d7 1.5 s = 516 m. Therefore, cliff distance d = 516 / 2 = 258 m."}]}, {"id": 12, "title": "Reverberation & Architectural Acoustics", "subtitle": "Acoustic Blur, Absorption Materials, & Auditorium Design (C-2.7)", "content": "\n<p class=\"lead-p\">When a lecture is given in an empty, unfurnished auditorium, the speech often sounds garbled, hollow, and unintelligible. This phenomenon is known as <strong>Reverberation</strong>.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Defining Reverberation</h4>\n  <p><strong>Reverberation</strong> is the persistent prolongation of sound in an enclosed hall caused by continuous, repeated reflections off the walls, ceiling, and floor even after the original source has ceased emitting sound.</p>\n  <ul>\n    <li>If reverberation time ($RT_{60}$) is too long, successive spoken words overlap, blurring speech into an incoherent hum.</li>\n    <li>If reverberation time is too short (dead room), music sounds dry and lifeless.</li>\n  </ul>\n</div>\n\n<div class=\"theory-box\">\n  <h4>2. Architectural Engineering Solutions</h4>\n  <p>To reduce excessive reverberation in auditoriums, concert halls, and cinema theaters, acoustical architects install <strong>sound-absorbent materials</strong>:</p>\n  <ul>\n    <li>Covering walls and ceilings with <strong>compressed porous fiberboards, acoustic plaster, or perforated acoustic tiles</strong>.</li>\n    <li>Hanging heavy, textured drapes and curtains over windows and bare walls.</li>\n    <li>Upholstering seating with sound-absorbent fabrics (so seats absorb sound even when empty!).</li>\n    <li>Designing <strong>curved ceilings</strong> behind stages so sound reflects uniformly across the entire hall.</li>\n  </ul>\n</div>\n", "sim_type": "auditorium_reverberation", "voice": "Reverberation is the prolonged ringing of sound caused by endless bounces in an enclosed room. In cinema halls and auditoriums, excessive reverberation blurs speech. Architects solve this by lining walls with porous sound-absorbing acoustic panels and heavy curtains, optimizing reverberation time for crystal clear sound.", "checkpoints": [{"question": "Why are the walls and ceilings of cinema halls and auditoriums lined with perforated tiles and heavy curtains?", "options": ["To reflect sound waves repeatedly and increase reverberation", "To absorb sound waves and prevent excessive, blurring reverberation", "To prevent air from entering the hall", "To create multiple echoes"], "correct": 1, "explanation": "Porous tiles and heavy draperies absorb sound energy, dampening repeated reflections and reducing reverberation time to make speech crisp and intelligible."}, {"question": "Why is the ceiling of a modern concert hall constructed with a concave curved shape?", "options": ["To trap all sound at the front row", "To reflect sound evenly to all corners of the auditorium after reflection", "To reduce building construction cost", "To absorb high-frequency sounds completely"], "correct": 1, "explanation": "A curved ceiling acts like an acoustic parabolic reflector, distributing reflected sound waves uniformly to all seats across the entire auditorium."}]}, {"id": 13, "title": "SONAR & Natural Echolocation", "subtitle": "Sound Navigation And Ranging, Ultrasonic Beams, & Marine Navigation (C-2.7)", "content": "\n<p class=\"lead-p\">Light waves cannot penetrate more than a few hundred meters into murky ocean depths. To navigate, map sea trenches, and track underwater vessels, maritime vessels rely on <strong>SONAR</strong>.</p>\n\n<div class=\"theory-box\">\n  <h4>1. How SONAR Operates</h4>\n  <p><strong>SONAR</strong> stands for <strong>SO</strong>und <strong>N</strong>avigation <strong>A</strong>nd <strong>R</strong>anging. Installed on ships and submarines, it consists of a <strong>Transmitter</strong> and a <strong>Detector (Receiver)</strong>:</p>\n  <ul>\n    <li>The transmitter produces and emits high-frequency ultrasonic waves downward through seawater.</li>\n    <li>The ultrasonic waves travel through water, strike an object (seabed, submarine, or sunken wreck), and reflect back.</li>\n    <li>The detector senses the reflected ultrasonic echo and converts it into electrical signals on an oscilloscope.</li>\n  </ul>\n</div>\n\n<div class=\"theory-box\">\n  <h4>2. Mathematical Formulation of Seabed Depth ($d$)</h4>\n  <p>If the time lapse between pulse transmission and echo reception is $t$, and the speed of sound in seawater is $v$:</p>\n  <p class=\"highlight-eq\">$$2d = v \\cdot t \\implies d = \\frac{v \\cdot t}{2}$$</p>\n  <p>This technique is also known as <strong>Echo Ranging</strong>.</p>\n</div>\n\n<div class=\"theory-box\">\n  <h4>3. Natural Biosonar (Bats & Dolphins)</h4>\n  <p>Bats emit ultrasonic squeaks ($20\\text{ to }100\\text{ kHz}$). By analyzing the subtle time delay, frequency shift (Doppler effect), and intensity of returning echoes from their prey, bats navigate around obstacles and catch tiny mosquitoes in pitch darkness!</p>\n</div>\n", "sim_type": "submarine_sonar_sim", "voice": "SONAR stands for Sound Navigation and Ranging. Ships emit ultrasonic pulses into the ocean depths. By timing how long the echo takes to bounce back from the seabed, onboard computers calculate the exact depth using distance equals velocity times time divided by two. Bats perform this exact math subconsciously in milliseconds while hunting at night!", "checkpoints": [{"question": "A research ship uses SONAR to map the ocean floor. An ultrasonic pulse is sent downward and its echo is detected 4.0 seconds later. If sound travels at 1530 m/s in seawater, what is the depth of the ocean bed?", "options": ["765 m", "1,530 m", "3,060 m (3.06 km)", "6,120 m"], "correct": 2, "explanation": "2d = v \u00b7 t \u27f9 d = (v \u00b7 t) / 2 = (1530 m/s \u00d7 4.0 s) / 2 = 6120 / 2 = 3060 m = 3.06 km."}, {"question": "Why do bats use high-frequency ultrasound rather than audible low-frequency sound for echolocation?", "options": ["Because ultrasound has a very short wavelength, allowing it to detect and reflect off tiny insects without spreading out (diffracting)", "Because ultrasound travels faster than light in air", "Because audible sound cannot bounce off any surfaces", "Because bats have no lungs"], "correct": 0, "explanation": "High-frequency ultrasound has an extremely short wavelength (millimetres), allowing it to form sharp, narrow beams that reflect crisply off small targets like moths without diffracting around them."}]}, {"id": 14, "title": "Medical & Industrial Applications of Ultrasound", "subtitle": "Flaw Detection, Ultrasonography, Echocardiography, & Lithotripsy (C-2.7)", "content": "\n<p class=\"lead-p\">Ultrasound waves possess extraordinary penetrating power and short wavelengths, making them indispensable across modern medical diagnostics and heavy industrial engineering.</p>\n\n<div class=\"theory-box\">\n  <h4>1. Industrial Non-Destructive Testing (NDT)</h4>\n  <p>Ultrasound is used to inspect metallic components inside airplane wings, bridge girders, and nuclear reactor pressure vessels:</p>\n  <ul>\n    <li>Ultrasonic waves are passed through a metal block. Detectors on the opposite face record the transmitted signal.</li>\n    <li>If there is even an invisible microscopic crack or void inside the block, the ultrasonic beam reflects prematurely from the flaw defect, alerting engineers before catastrophic failure occurs!</li>\n  </ul>\n</div>\n\n<div class=\"theory-box\">\n  <h4>2. Medical Diagnostic & Therapeutic Applications</h4>\n  <div class=\"grid-2col\">\n    <div class=\"card-item\">\n      <h5>Ultrasonography & Echocardiography</h5>\n      <ul>\n        <li><strong>Ultrasonography (USG):</strong> Ultrasonic pulses reflect off internal organ boundaries (liver, gallbladder, kidneys, uterus). Completely safe because it uses non-ionizing acoustic waves (unlike X-rays).</li>\n        <li><strong>Echocardiography (ECG):</strong> Ultrasonic imaging of beating heart valves and blood flow.</li>\n      </ul>\n    </div>\n    <div class=\"card-item\">\n      <h5>Ultrasonic Cleaning & Lithotripsy</h5>\n      <ul>\n        <li><strong>Ultrasonic Cleaning:</strong> High-frequency vibrations in a liquid tank generate microscopic cavitation bubbles that scrub complex machinery, jewelry, and electronic chips.</li>\n        <li><strong>Lithotripsy:</strong> Focused high-energy ultrasonic shockwaves break kidney stones into fine gravel passed painlessly in urine.</li>\n      </ul>\n    </div>\n  </div>\n</div>\n", "sim_type": "ultrasound_flaw_scanner", "voice": "Ultrasound is a medical and engineering superpower! Because of its tiny wavelength, ultrasound can penetrate deep into steel bridge girders to detect hidden internal cracks. In medicine, ultrasonography generates clear live images of internal organs and developing babies safely without harmful X-ray radiation.", "checkpoints": [{"question": "How does an industrial ultrasound probe detect a hidden internal crack inside an aluminum aircraft wing?", "options": ["By heating the crack until it glows", "Ultrasonic waves reflect prematurely from the defect boundary and reveal its position on a detector", "By turning the metal into liquid", "By measuring electrical resistance of the air"], "correct": 1, "explanation": "Any internal flaw or void acts as an acoustic boundary that reflects part of the ultrasonic pulse prematurely, producing an unmistakable early peak on the detector's oscilloscope."}, {"question": "What medical procedure uses focused high-energy ultrasound waves to break kidney stones without surgical incision?", "options": ["Dialysis", "Electrocardiography", "Lithotripsy", "Chemotherapy"], "correct": 2, "explanation": "Ultrasonic lithotripsy directs high-energy shockwaves to shatter brittle kidney stones into tiny fragments that pass naturally."}]}, {"id": 15, "title": "Comprehensive Problem-Solving Workshop", "subtitle": "Thunderstorm Delays, Dual Cliff Reflections, & Sonar Calculations (C-8.1)", "content": "\n<p class=\"lead-p\">Mastery of sound requires applying kinematic relations ($v = \\frac{s}{t}$ and $v = \\nu \\lambda$) to multi-boundary acoustic reflections.</p>\n\n<div class=\"theory-box\">\n  <h4>1. The Dual-Cliff Echo Problem</h4>\n  <p><strong>Problem:</strong> A person standing between two parallel vertical cliffs fires a gun. He hears the first echo after $2\\text{ seconds}$ and the second echo after $3\\text{ seconds}$. Calculate the total distance between the two cliffs (speed of sound in air $= 340\\text{ m/s}$).</p>\n  <ul>\n    <li>Let distance to nearer cliff be $d_1$, and to farther cliff be $d_2$.</li>\n    <li>First echo: $2d_1 = v \\cdot t_1 \\implies 2d_1 = 340 \\times 2 \\implies d_1 = 340\\text{ m}$</li>\n    <li>Second echo: $2d_2 = v \\cdot t_2 \\implies 2d_2 = 340 \\times 3 \\implies d_2 = \\frac{1020}{2} = 510\\text{ m}$</li>\n    <li>Total distance between cliffs: $D = d_1 + d_2 = 340\\text{ m} + 510\\text{ m} = 850\\text{ m}$</li>\n  </ul>\n</div>\n\n<div class=\"theory-box\">\n  <h4>2. Ultrasonic SONAR Pulse Analysis</h4>\n  <p>A submarine emits an ultrasonic ping towards a seabed ridge. The reflected wave is recorded $1.6\\text{ s}$ later. If seawater sound speed is $1500\\text{ m/s}$:</p>\n  <ul>\n    <li>Distance to ridge: $d = \\frac{v \\cdot t}{2} = \\frac{1500 \\times 1.6}{2} = 1500 \\times 0.8 = 1200\\text{ m}$ ($1.2\\text{ km}$).</li>\n  </ul>\n</div>\n", "sim_type": "dual_cliff_echo_sim", "voice": "Let us solve real-world acoustic challenges! When standing between two cliffs, sound travels in both directions. The first echo comes from the closer cliff, and the second from the farther cliff. Adding the two calculated distances gives the total span between the cliffs!", "checkpoints": [{"question": "A person standing between two parallel cliffs claps. He hears the first echo after 1.0 s and the second echo after 2.0 s. What is the separation between the cliffs? (Speed of sound = 340 m/s)", "options": ["340 m", "510 m", "680 m", "1020 m"], "correct": 1, "explanation": "d\u2081 = (340 \u00d7 1.0) / 2 = 170 m. d\u2082 = (340 \u00d7 2.0) / 2 = 340 m. Total distance D = d\u2081 + d\u2082 = 170 + 340 = 510 m."}, {"question": "A sonar signal sent from a boat returns from a sunken wreck after 0.8 s. If sound speed in water is 1500 m/s, how deep is the wreck?", "options": ["300 m", "600 m", "1200 m", "2400 m"], "correct": 1, "explanation": "d = (v \u00b7 t) / 2 = (1500 \u00d7 0.8) / 2 = 1200 / 2 = 600 m."}]}, {"id": 16, "title": "Indian Heritage in Acoustics & Modern Frontiers", "subtitle": "Gol Gumbaz Whispering Gallery, Sir C.V. Raman's Mridangam Acoustics (C-5.3, C-6.1)", "content": "\n<p class=\"lead-p\">India possesses an extraordinary heritage in architectural acoustics and musical physics, crowned by the discoveries of Nobel laureate Sir C.V. Raman.</p>\n\n<div class=\"theory-box\">\n  <h4>1. The Whispering Gallery of Gol Gumbaz (~1656 CE)</h4>\n  <p>The <strong>Gol Gumbaz</strong> in Vijayapura (Bijapur), Karnataka\u2014mausoleum of Sultan Mohammed Adil Shah\u2014boasts the second-largest unsupported dome in the world (diameter $\\approx 44\\text{ m}$):</p>\n  <ul>\n    <li>The circular interior gallery acts as a premier <strong>Whispering Gallery</strong>: acoustic waves skim tangentially along the curved dome surface by continuous multiple reflection.</li>\n    <li>A single clap or shout echoes <strong>10 to 11 times distinctly</strong>!</li>\n    <li>Even the faintest whisper is heard with astonishing clarity across the full $44\\text{ m}$ diameter of the dome.</li>\n  </ul>\n</div>\n\n<div class=\"theory-box\">\n  <h4>2. Sir C.V. Raman's Groundbreaking Work on Indian Drums</h4>\n  <p>Before his Nobel Prize in 1930 for light scattering, <strong>Sir Chandrasekhara Venkata Raman</strong> conducted seminal acoustic research on Indian percussion instruments: the <strong>Mridangam</strong> and <strong>Tabla</strong>:</p>\n  <ul>\n    <li>Western circular drum heads (kettledrums, snare drums) vibrate with non-harmonic, inharmonic overtones that sound harsh or noisy.</li>\n    <li>Raman proved that the heavy circular black patch (*Syahi* or *Karanai*) applied to the center of the mridangam skin provides a non-uniform mass distribution.</li>\n    <li>This ingenious traditional Indian design forces the circular membrane to vibrate with <strong>true harmonic overtones</strong> ($1:2:3:4:5$), producing a uniquely musical, resonant tone matched by no Western drum!</li>\n  </ul>\n</div>\n", "sim_type": "gol_gumbaz_raman_sim", "voice": "Our exploration concludes with India's rich acoustic heritage. At the Gol Gumbaz in Karnataka, a whisper travels forty-four meters around the giant dome, echoing over ten times! And Nobel laureate Sir C.V. Raman proved that the black paste on an Indian mridangam drum head forces it to vibrate with pure harmonic overtones\u2014making it the most musically perfect drum in the world!", "checkpoints": [{"question": "What architectural acoustic feature makes the Gol Gumbaz in Vijayapura (Bijapur) internationally famous?", "options": ["Complete silence where no sound can travel", "A whispering gallery where a faint whisper is heard across 44 metres and claps echo 10 to 11 times", "Walls made entirely of gold that absorb all sound", "Electronic sound amplifiers built into the stone"], "correct": 1, "explanation": "The circular whispering gallery of Gol Gumbaz uses tangential multiple acoustic reflections along its curved dome to echo sounds 10 to 11 times and transmit whispers 44 m across."}, {"question": "What did Nobel laureate Sir C.V. Raman scientifically discover regarding the acoustics of the Indian mridangam and tabla?", "options": ["They produce ultrasound above 50 kHz", "The black loading patch (Syahi) forces the drum membrane to vibrate with harmonic overtones, producing a melodious musical quality", "They only vibrate in a vacuum", "They cannot produce any standing waves"], "correct": 1, "explanation": "Raman proved that the black loading patch (Syahi) alters mass distribution across the drum skin, compelling it to produce true harmonic overtones unlike Western non-harmonic drums."}]}, {"id": 17, "title": "Mastery Quiz Challenge I: Waves & Propagation", "subtitle": "Questions 1\u201310 \u2022 Comprehensive Diagnostic with Step-by-Step Solutions", "content": "<p class=\"lead-p\">Test your mastery of mechanical vibrations, medium requirements, the bell jar vacuum experiment, longitudinal waves, compressions, and rarefactions. Click 'View Solution' for detailed step-by-step reasoning.</p>", "sim_type": "quiz_slide", "voice": "Welcome to Quiz Challenge One! These ten questions test your grasp of sound production, vacuum experiments, and longitudinal wave mechanics. Give each question your best thought before inspecting the solution modal.", "quiz_range": [1, 10]}, {"id": 18, "title": "Mastery Quiz Challenge II: Wave Equations & Pitch", "subtitle": "Questions 11\u201320 \u2022 Quantitative Calculations with Step-by-Step Solutions", "content": "<p class=\"lead-p\">Evaluate your skills on wave frequency (\u03bd), time period (T), wavelength (\u03bb), the speed formula v = \u03bd\u03bb, pitch, loudness (A\u00b2), and the infrasonic/ultrasonic spectrum. Click 'View Solution' for complete derivations.</p>", "sim_type": "quiz_slide", "voice": "Welcome to Quiz Challenge Two! Here we focus on wave speed mathematics, frequencies, decibel loudness, and human hearing limits. Work out each calculation carefully!", "quiz_range": [11, 20]}, {"id": 19, "title": "Mastery Quiz Challenge III: Echoes & Reverberation", "subtitle": "Questions 21\u201330 \u2022 Minimum Echo Distance (17.2 m), Hall Acoustics, & Stethoscopes", "content": "<p class=\"lead-p\">Assess your conceptual and numerical mastery of acoustic reflection laws, persistence of hearing (0.1 s), echo calculations, reverberation damping, and sound-absorbing architecture. Inspect each solution popup for detailed workings.</p>", "sim_type": "quiz_slide", "voice": "Quiz Challenge Three examines echoes, persistence of hearing, and auditorium reverberation. Remember that sound must travel to the wall and back, meaning total distance is two times d!", "quiz_range": [21, 30]}, {"id": 20, "title": "Mastery Quiz Challenge IV: Advanced Acoustics & Heritage", "subtitle": "Questions 31\u201340 \u2022 SONAR Depth Equations, Gol Gumbaz, & Raman's Harmonics", "content": "<p class=\"lead-p\">The final test of your acoustic mastery! Tackle multi-step SONAR depth tracking, dual-cliff echoes, industrial flaw detection, Gol Gumbaz whispering galleries, and Sir C.V. Raman's mridangam physics. Click 'View Solution' for complete step-by-step derivations.</p>", "sim_type": "quiz_slide", "voice": "You have reached the final mastery challenge of Chapter 12! These ten multi-step questions integrate marine SONAR, medical ultrasound, and India's rich acoustic heritage. Outstanding work completing Sound!", "quiz_range": [31, 40]}];
+    const quizData = [{"num": 1, "question": "A vibrating tuning fork prong pushes against surrounding air molecules. What localized region does this forward stroke create?", "options": ["A rarefaction", "A compression", "A vacuum void", "A thermal plasma"], "correct": 1, "solution": "Step 1: When a vibrating prong pushes forward into the medium, it compresses the air molecules directly ahead of it.\nStep 2: This creates a region of high density and high pressure, called a Compression (C)."}, {"num": 2, "question": "An alarm clock is placed inside an airtight container. As air is pumped out until a vacuum is created, the ticking sound ceases to be heard. This confirms that:", "options": ["Sound waves are electromagnetic waves", "Sound waves require a material medium to propagate", "The clock stopped ticking because of low pressure", "Gravity stopped acting on the clock"], "correct": 1, "solution": "Step 1: Sound is a mechanical wave produced by particle vibrations.\nStep 2: Without matter (in a vacuum), there are no particles to transmit the mechanical disturbance.\nConclusion: Sound strictly requires a material medium for propagation."}, {"num": 3, "question": "In a longitudinal sound wave, the distance between two consecutive compressions is known as the:", "options": ["Amplitude", "Frequency", "Wavelength", "Time Period"], "correct": 2, "solution": "Step 1: By definition, the distance between two consecutive regions of maximum compression (C to C) or two consecutive rarefactions (R to R) is one complete spatial cycle.\nStep 2: This spatial length is defined as the Wavelength (\u03bb)."}, {"num": 4, "question": "A sound wave has a frequency of 500 Hz. What is the time period of one complete oscillation?", "options": ["0.002 s", "0.02 s", "0.5 s", "2.0 s"], "correct": 0, "solution": "Step 1: Relationship between time period T and frequency \u03bd: T = 1 / \u03bd.\nStep 2: Substitute values: T = 1 / 500 = 0.002 s (2 milliseconds)."}, {"num": 5, "question": "A sound wave travels with a speed of 330 m/s in air. If its frequency is 660 Hz, what is its wavelength?", "options": ["0.5 m", "1.0 m", "2.0 m", "217,800 m"], "correct": 0, "solution": "Step 1: Formula connecting speed, frequency, and wavelength: v = \u03bd \u00b7 \u03bb.\nStep 2: Rearrange for wavelength: \u03bb = v / \u03bd.\nStep 3: Substitute values: \u03bb = 330 m/s / 660 Hz = 0.5 m (50 cm)."}, {"num": 6, "question": "Which acoustic property of a sound wave determines its perceived 'pitch'?", "options": ["Amplitude", "Frequency", "Wave velocity", "Surface area of the listener's ear"], "correct": 1, "solution": "Step 1: Pitch is the physiological sensation of sound frequency.\nStep 2: High frequency corresponds to high pitch (shrill sound); low frequency corresponds to low pitch (grave, bass sound)."}, {"num": 7, "question": "If the amplitude of a sound wave is increased by a factor of 4, by what factor does its loudness increase?", "options": ["2 times", "4 times", "8 times", "16 times"], "correct": 3, "solution": "Step 1: Loudness is directly proportional to the square of amplitude: Loudness \u221d A\u00b2.\nStep 2: If amplitude is multiplied by 4, new loudness \u221d (4A)\u00b2 = 16 A\u00b2.\nConclusion: Loudness increases by 16 times."}, {"num": 8, "question": "Which of the following frequency ranges represents ultrasound?", "options": ["Below 20 Hz", "Between 20 Hz and 20,000 Hz", "Above 20,000 Hz (20 kHz)", "Only above 1,000,000 Hz"], "correct": 2, "solution": "Step 1: Frequencies below 20 Hz are infrasound.\nStep 2: Frequencies between 20 Hz and 20 kHz are humanly audible.\nStep 3: Frequencies above 20 kHz (20,000 Hz) are classified as ultrasound."}, {"num": 9, "question": "Through which medium does sound propagate with the fastest velocity?", "options": ["Air at 25\u00b0C", "Pure distilled water", "A solid iron rail", "Interstellar space vacuum"], "correct": 2, "solution": "Step 1: Sound velocity is highest in solids due to high elasticity and closely packed atomic lattices.\nStep 2: Sound travels at ~5960 m/s in iron, ~1500 m/s in water, ~344 m/s in air, and 0 m/s in vacuum."}, {"num": 10, "question": "Why is the flash of lightning in the sky seen seconds before the roar of thunder is heard?", "options": ["Thunder is produced minutes after lightning occurs", "Speed of light (3 \u00d7 10\u2078 m/s) is vastly greater than speed of sound (344 m/s)", "The human eye reacts slower than the ear", "Sound waves are bent by clouds"], "correct": 1, "solution": "Step 1: Lightning and thunder are created simultaneously in the lightning channel.\nStep 2: Light travels at c = 3 \u00d7 10\u2078 m/s, reaching the observer almost instantaneously.\nStep 3: Sound travels at roughly 344 m/s, taking approximately 3 seconds to cover each kilometer."}, {"num": 11, "question": "A sound wave has a wavelength of 0.85 m and travels at 340 m/s. What is its frequency, and is it audible to humans?", "options": ["\u03bd = 400 Hz (Audible)", "\u03bd = 289 Hz (Inaudible)", "\u03bd = 40 Hz (Inaudible)", "\u03bd = 40,000 Hz (Ultrasound)"], "correct": 0, "solution": "Step 1: Calculate frequency: \u03bd = v / \u03bb = 340 m/s / 0.85 m = 400 Hz.\nStep 2: Compare with human audible range (20 Hz to 20,000 Hz).\nStep 3: Since 400 Hz falls squarely within this range, it is clearly audible."}, {"num": 12, "question": "What is the minimum distance between an observer and a tall reflecting wall required to hear a distinct echo in air at 22\u00b0C (speed of sound = 344 m/s)?", "options": ["8.6 m", "17.2 m", "34.4 m", "68.8 m"], "correct": 1, "solution": "Step 1: Persistence of hearing in the human brain is t = 0.1 s.\nStep 2: Total round-trip distance traveled by sound = 2d = v \u00b7 t.\nStep 3: 2d = 344 m/s \u00d7 0.1 s = 34.4 m \u27f9 d = 34.4 / 2 = 17.2 m."}, {"num": 13, "question": "On a hot summer day at 40\u00b0C, the speed of sound in air increases to 355 m/s. How does this affect the minimum distance required to hear an echo?", "options": ["The minimum distance decreases", "The minimum distance increases to 17.75 m", "The minimum distance remains strictly 17.2 m", "Echoes become impossible to hear"], "correct": 1, "solution": "Step 1: Minimum distance formula: d_min = (v \u00b7 t) / 2 where t = 0.1 s.\nStep 2: d_min = (355 \u00d7 0.1) / 2 = 35.5 / 2 = 17.75 m.\nConclusion: Higher temperature increases sound speed, raising the required minimum echo distance."}, {"num": 14, "question": "The persistent prolongation of sound in a hall caused by repeated reflections from walls, floor, and ceiling is called:", "options": ["Refraction", "Reverberation", "Dispersion", "Rarefaction"], "correct": 1, "solution": "Step 1: When sound bounces repeatedly off enclosed surfaces without sufficient absorption, the reflections overlap.\nStep 2: This prolonged acoustic persistence is defined as Reverberation."}, {"num": 15, "question": "A ship's SONAR system emits an ultrasonic wave into seawater and records the reflected echo from the seabed 2.4 seconds later. If the speed of sound in seawater is 1500 m/s, what is the seabed depth?", "options": ["900 m", "1,800 m (1.8 km)", "3,600 m", "7,200 m"], "correct": 1, "solution": "Step 1: Total distance traveled by the round-trip pulse is 2d = v \u00b7 t.\nStep 2: 2d = 1500 m/s \u00d7 2.4 s = 3600 m.\nStep 3: Depth d = 3600 / 2 = 1800 m = 1.8 km."}, {"num": 16, "question": "Which of the following animals navigates and hunts prey in pitch darkness using ultrasonic echolocation?", "options": ["Owls", "Bats", "Eagles", "Hawks"], "correct": 1, "solution": "Step 1: Bats emit high-frequency ultrasonic chirps (20 to 100 kHz).\nStep 2: By analyzing the time delay and direction of reflected echoes, bats construct a high-resolution acoustic map of their surroundings to capture insects in total darkness."}, {"num": 17, "question": "A bat emits an ultrasonic squeak at 40 kHz. If sound speed in air is 340 m/s, what is the wavelength of the bat's signal?", "options": ["8.5 mm (0.0085 m)", "8.5 cm", "8.5 m", "13.6 m"], "correct": 0, "solution": "Step 1: Convert frequency to Hz: \u03bd = 40 kHz = 40,000 Hz.\nStep 2: Wavelength \u03bb = v / \u03bd = 340 / 40,000 = 0.0085 m = 8.5 mm."}, {"num": 18, "question": "Which of the following musical instruments produces sound through the vibration of air columns?", "options": ["Sitar", "Tabla", "Flute", "Violin"], "correct": 2, "solution": "Step 1: Sitar and violin use vibrating strings.\nStep 2: Tabla uses a vibrating membrane.\nStep 3: A flute produces sound when a jet of air across the embouchure hole excites resonant standing waves in its internal air column."}, {"num": 19, "question": "If the distance between an observer and a sound source is doubled in an open field, what happens to the intensity of the sound arriving at the observer's ear?", "options": ["It doubles", "It halves", "It decreases to 1/4th of its original value (inverse square law)", "It remains constant"], "correct": 2, "solution": "Step 1: In an open space, sound waves expand spherically from a point source.\nStep 2: Intensity follows the inverse-square law: Intensity \u221d 1 / r\u00b2.\nStep 3: If distance r is doubled (2r), intensity becomes 1 / (2r)\u00b2 = 1 / 4 of original intensity."}, {"num": 20, "question": "An ultrasonic wave is favored over an audible sound wave for medical scanning because:", "options": ["It has a longer wavelength that bends around bones", "Its high frequency gives it a short wavelength that can form sharp beams and resolve small anatomical details", "It travels at the speed of light", "It has zero energy"], "correct": 1, "solution": "Step 1: Wavelength is inversely proportional to frequency (\u03bb = v / \u03bd).\nStep 2: High ultrasonic frequency means tiny millimeter wavelengths.\nStep 3: Short wavelengths minimize diffraction and produce sharp, high-resolution diagnostic images."}, {"num": 21, "question": "A person stands 680 m from a mountain cliff and shouts. After how many seconds will he hear the echo if the speed of sound is 340 m/s?", "options": ["1.0 s", "2.0 s", "4.0 s", "8.0 s"], "correct": 2, "solution": "Step 1: Round-trip distance traveled by the sound: 2d = 2 \u00d7 680 m = 1360 m.\nStep 2: Time interval t = 2d / v = 1360 m / 340 m/s = 4.0 s."}, {"num": 22, "question": "A tuning fork produces 256 compressions and 256 rarefactions in 1 second. What is its frequency?", "options": ["128 Hz", "256 Hz", "512 Hz", "1024 Hz"], "correct": 1, "solution": "Step 1: One complete wave cycle consists of one compression paired with one rarefaction.\nStep 2: 256 compressions and 256 rarefactions represent exactly 256 full wave cycles.\nStep 3: Frequency = 256 cycles per second = 256 Hz."}, {"num": 23, "question": "Why does a loud sound produced in a furnished living room with carpet, sofa, and curtains NOT produce noticeable reverberation?", "options": ["Because sound speed drops to zero on carpet", "Because soft, porous upholstery absorbs acoustic reflections, keeping reverberation time extremely short", "Because air pressure is higher in furnished rooms", "Because curtains bend sound into light"], "correct": 1, "solution": "Step 1: Furnishings like carpets, drapes, and cushioned sofas are porous acoustic absorbers.\nStep 2: They dissipate sound energy as microscopic friction within fibers, drastically shortening reverberation time and eliminating echoing persistence."}, {"num": 24, "question": "A girl stands between two parallel cliffs and claps. She hears the first echo after 1.5 seconds and the second echo after 2.5 seconds. What is the total distance between the two cliffs? (Speed of sound = 340 m/s)", "options": ["340 m", "680 m", "850 m", "1,360 m"], "correct": 1, "solution": "Step 1: Distance to nearer cliff: d\u2081 = (v \u00b7 t\u2081) / 2 = (340 \u00d7 1.5) / 2 = 255 m.\nStep 2: Distance to farther cliff: d\u2082 = (v \u00b7 t\u2082) / 2 = (340 \u00d7 2.5) / 2 = 425 m.\nStep 3: Total separation between cliffs: D = d\u2081 + d\u2082 = 255 + 425 = 680 m."}, {"num": 25, "question": "Which component of a sound wave determines its objective physical 'intensity' (W/m\u00b2)?", "options": ["Wave velocity alone", "The amount of sound energy passing per unit area per second", "The pitch perceived by the human brain", "The geographical altitude of the sound source"], "correct": 1, "solution": "Step 1: Intensity is an objective physical quantity defined as acoustic power per unit area (W/m\u00b2).\nStep 2: It measures the rate of energy flow through a perpendicular unit area."}, {"num": 26, "question": "What is the frequency of a sound wave whose time period is 0.05 seconds?", "options": ["5 Hz", "20 Hz", "50 Hz", "200 Hz"], "correct": 1, "solution": "Step 1: Relationship: \u03bd = 1 / T.\nStep 2: Substitute: \u03bd = 1 / 0.05 = 100 / 5 = 20 Hz (the lowest threshold of human hearing)."}, {"num": 27, "question": "An underwater submarine fires an active SONAR pulse toward an incoming torpedo. The echo is detected 0.6 seconds later. If sound speed in seawater is 1520 m/s, how far away is the torpedo?", "options": ["228 m", "456 m", "912 m", "1,824 m"], "correct": 1, "solution": "Step 1: Round-trip distance formula: 2d = v \u00b7 t.\nStep 2: d = (v \u00b7 t) / 2 = (1520 m/s \u00d7 0.6 s) / 2 = 912 / 2 = 456 m."}, {"num": 28, "question": "Why do rhinoceroses communicate using sound frequencies around 5 Hz?", "options": ["Because 5 Hz sound travels through air and ground with minimal atmospheric absorption over many kilometers", "Because their vocal cords are too small for high frequencies", "Because 5 Hz sound travels faster than 1000 Hz sound", "Because it frightens predators"], "correct": 0, "solution": "Step 1: Low-frequency infrasonic waves (around 5 Hz) have very long wavelengths.\nStep 2: Long wavelengths experience very little atmospheric attenuation and scatter minimally around trees and terrain, allowing long-distance territorial communication."}, {"num": 29, "question": "A sound wave has a frequency of 1000 Hz and a wavelength of 0.34 m. How long will it take for this sound to travel a distance of 1.7 km?", "options": ["0.5 s", "2.0 s", "5.0 s", "10.0 s"], "correct": 2, "solution": "Step 1: Calculate wave speed: v = \u03bd \u00b7 \u03bb = 1000 Hz \u00d7 0.34 m = 340 m/s.\nStep 2: Convert distance to meters: s = 1.7 km = 1700 m.\nStep 3: Time taken: t = s / v = 1700 m / 340 m/s = 5.0 s."}, {"num": 30, "question": "A curved soundboard is placed behind the stage in a concert auditorium. What optical principle does this device emulate acoustically?", "options": ["A plane mirror forming virtual images", "A concave parabolic mirror reflecting waves from its focus into parallel beams", "A prism dispersing light into colors", "A polarizing filter"], "correct": 1, "solution": "Step 1: The stage performer is placed near the focal point of the concave soundboard.\nStep 2: Following the law of reflection (\u2220i = \u2220r), waves reflecting off the concave surface are directed forward in a broad, parallel beam to reach all audience members evenly."}, {"num": 31, "question": "In the famous whispering gallery of the Gol Gumbaz in Vijayapura (Bijapur), a faint whisper is heard crisply 44 m across the dome because:", "options": ["Electronic microphones are hidden inside the mortar", "Sound waves undergo continuous multiple tangential reflections along the curved dome surface with minimal divergence", "The air inside is compressed to 10 atmospheres", "The dome is made of pure magnetic quartz"], "correct": 1, "solution": "Step 1: In a circular domed whispering gallery, sound waves strike the curved walls at glancing angles.\nStep 2: Multiple successive reflections creep tangentially around the perimeter with negligible energy dissipation, allowing whispers to be heard clearly across the full 44 m diameter."}, {"num": 32, "question": "How did Nobel laureate Sir C.V. Raman explain the musical, melodious tone of the Indian mridangam compared to noisy Western drums?", "options": ["The mridangam shell is carved from jackfruit wood", "The central black loading patch (Syahi/Karanai) alters mass distribution, forcing the membrane to vibrate with harmonic overtones (1:2:3:4:5)", "The mridangam vibrates in a vacuum", "The skin vibrates at frequencies above 30 kHz"], "correct": 1, "solution": "Step 1: A uniform circular membrane produces inharmonic Bessel function overtones that sound unmusical.\nStep 2: Raman proved that the dense central black paste (Syahi) non-uniformly loads the membrane, shifting overtone modes into an exact harmonic sequence (octaves and fifths)."}, {"num": 33, "question": "An ultrasound scanner operating at 2.5 MHz (2.5 \u00d7 10\u2076 Hz) is used to image human liver tissue where sound speed is 1540 m/s. What is the spatial wavelength of the ultrasound in the tissue?", "options": ["0.616 mm (6.16 \u00d7 10\u207b\u2074 m)", "6.16 mm", "6.16 cm", "3.85 m"], "correct": 0, "solution": "Step 1: Formula: \u03bb = v / \u03bd.\nStep 2: Substitute values: \u03bb = 1540 m/s / (2.5 \u00d7 10\u2076 s\u207b\u00b9) = 0.000616 m = 0.616 mm.\nConclusion: Sub-millimeter wavelength enables resolving fine tissue structures."}, {"num": 34, "question": "A sound wave is traveling from aluminum into air. Given that sound speed in aluminum is 6400 m/s and in air is 340 m/s, what happens to its frequency and wavelength?", "options": ["Frequency decreases, wavelength remains the same", "Frequency remains constant; wavelength decreases significantly", "Both frequency and wavelength increase", "Wavelength increases, frequency doubles"], "correct": 1, "solution": "Step 1: When a wave crosses from one medium to another, its frequency \u03bd remains strictly constant (determined solely by the source).\nStep 2: From v = \u03bd \u00b7 \u03bb \u27f9 \u03bb = v / \u03bd. Since speed v drops from 6400 to 340 m/s, wavelength \u03bb decreases proportionally."}, {"num": 35, "question": "A metal casting of thickness 0.4 m is tested with ultrasound. An echo from a hidden internal crack returns 40 microseconds (40 \u00d7 10\u207b\u2076 s) after transmission. If sound speed in the metal is 5000 m/s, at what depth from the surface is the crack located?", "options": ["0.1 m (10 cm)", "0.2 m (20 cm)", "0.3 m (30 cm)", "0.4 m (at the back wall)"], "correct": 0, "solution": "Step 1: Round-trip distance formula: 2d = v \u00b7 t.\nStep 2: 2d = 5000 m/s \u00d7 (40 \u00d7 10\u207b\u2076 s) = 0.20 m.\nStep 3: Depth of flaw: d = 0.20 / 2 = 0.10 m = 10 cm."}, {"num": 36, "question": "Why does a person standing in a deep canyon hear their echo repeat multiple times (e.g., 5 or 6 times in sequence)?", "options": ["Because sound creates new energy as it travels", "Because sound undergoes multiple reflections between various opposing canyon walls at different distances", "Because air molecules multiply the wave", "Because the frequency increases on each bounce"], "correct": 1, "solution": "Step 1: In a canyon, multiple rock faces exist at unequal distances.\nStep 2: Sound bounces repeatedly back and forth between these asymmetric walls, with each reflection arriving at a different time delay, creating a cascading sequence of echoes."}, {"num": 37, "question": "If an explosion occurs on the surface of the Moon, an observer on Earth equipped with ultra-sensitive acoustic microphones will hear the explosion after:", "options": ["Approximately 1.3 seconds", "Approximately 8.3 minutes", "Never, because sound cannot travel through the vacuum of outer space", "Approximately 24 hours"], "correct": 2, "solution": "Step 1: Space between the Moon and Earth is an extreme vacuum.\nStep 2: Sound is a mechanical wave requiring a material medium.\nConclusion: No sound from the Moon can ever reach Earth."}, {"num": 38, "question": "In acoustic levitation, small water droplets or insects are suspended mid-air without touching anything. This is achieved by:", "options": ["Anti-gravity magnetic fields", "Creating standing ultrasonic waves whose pressure nodes exert acoustic radiation pressure balancing gravity", "Supercooling the air into liquid nitrogen", "Using nuclear repulsion"], "correct": 1, "solution": "Step 1: Two opposing ultrasonic transducers create a standing acoustic wave with stationary nodes and antinodes.\nStep 2: The intense localized acoustic radiation pressure at the nodes counteracts gravity, trapping small particles securely mid-air."}, {"num": 39, "question": "What is the frequency of a musical note 'Middle C' whose time period is approximately 3.9 milliseconds (0.0039 s)?", "options": ["256 Hz", "440 Hz", "512 Hz", "1000 Hz"], "correct": 0, "solution": "Step 1: Frequency \u03bd = 1 / T.\nStep 2: \u03bd = 1 / 0.0039 s \u2248 256.4 Hz (standard scientific pitch for Middle C)."}, {"num": 40, "question": "A hunter fires a rifle between two vertical hills. The first echo is heard after 2 seconds, and the second echo is heard 1 second after the first echo (at 3 seconds). If the speed of sound is 340 m/s, what is the distance between the two hills?", "options": ["510 m", "850 m", "1020 m", "1700 m"], "correct": 1, "solution": "Step 1: First echo time t\u2081 = 2 s \u27f9 d\u2081 = (340 \u00d7 2) / 2 = 340 m.\nStep 2: Second echo time t\u2082 = 3 s \u27f9 d\u2082 = (340 \u00d7 3) / 2 = 510 m.\nStep 3: Total separation between the hills D = d\u2081 + d\u2082 = 340 + 510 = 850 m."}];
+
+    let currentSlideIndex = 0;
+    let isSpeaking = false;
+    let synth = window.speechSynthesis;
+    let currentUtterance = null;
+    let mouthInterval = null;
+
+    // Initialize application
+    window.addEventListener('DOMContentLoaded', () => {
+      renderSlide(0);
+      setupSpeechSynthesis();
+    });
+
+    function setupSpeechSynthesis() {
+      if ('speechSynthesis' in window) {
+        synth.onvoiceschanged = () => {
+          // Voices ready
+        };
+      }
+    }
+
+    function renderSlide(index) {
+      currentSlideIndex = index;
+      const slide = slides[index];
+
+      // Update slide indicator
+      document.getElementById('slideIndicator').textContent = `Slide ${index + 1} / ${slides.length}`;
+      document.getElementById('slideTitle').textContent = slide.title;
+      document.getElementById('slideSubtitle').textContent = slide.subtitle;
+      document.getElementById('slideContent').innerHTML = slide.content;
+
+      // Handle Last Slide Notice & Next Button
+      const lastSlideNotice = document.getElementById('lastSlideNotice');
+      const nextBtn = document.getElementById('nextBtn');
+      const prevBtn = document.getElementById('prevBtn');
+
+      prevBtn.disabled = (index === 0);
+
+      if (index === slides.length - 1) {
+        lastSlideNotice.style.display = 'block';
+        nextBtn.style.display = 'none';
+      } else {
+        lastSlideNotice.style.display = 'none';
+        nextBtn.style.display = 'inline-flex';
+      }
+
+      // Handle Checkpoints vs Quiz Section
+      const checkpointsSection = document.getElementById('checkpointsSection');
+      const quizSection = document.getElementById('quizSection');
+
+      if (slide.checkpoints && slide.checkpoints.length > 0) {
+        checkpointsSection.style.display = 'block';
+        quizSection.style.display = 'none';
+        renderCheckpoints(slide.checkpoints);
+      } else if (slide.quiz_range) {
+        checkpointsSection.style.display = 'none';
+        quizSection.style.display = 'block';
+        renderQuizQuestions(slide.quiz_range[0], slide.quiz_range[1]);
+      } else {
+        checkpointsSection.style.display = 'none';
+        quizSection.style.display = 'none';
+      }
+
+      // Update Teacher Speech & Auto-narrate
+      document.getElementById('teacherSpeech').textContent = slide.voice;
+      speakText(slide.voice);
+
+      // Render Dedicated Bespoke Simulator
+      renderSimulator(slide.sim_type);
+
+      // Render KaTeX Math
+      if (window.renderMathInElement) {
+        renderMathInElement(document.getElementById('slideContent'), {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlideIndex < slides.length - 1) {
+        renderSlide(currentSlideIndex + 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlideIndex > 0) {
+        renderSlide(currentSlideIndex - 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // Checkpoints Renderer
+    function renderCheckpoints(checkpoints) {
+      const container = document.getElementById('checkpointsList');
+      container.innerHTML = '';
+
+      checkpoints.forEach((cp, qIdx) => {
+        const card = document.createElement('div');
+        card.className = 'checkpoint-card';
+        card.innerHTML = `
+          <p class="q-text">Q${qIdx + 1}: ${cp.question}</p>
+          <div class="options-grid" id="cp_opts_${qIdx}">
+            ${cp.options.map((opt, oIdx) => `
+              <button class="option-btn" onclick="checkAnswer(${qIdx}, ${oIdx}, ${cp.correct}, this)">
+                ${String.fromCharCode(65 + oIdx)}. ${opt}
+              </button>
+            `).join('')}
+          </div>
+          <div class="checkpoint-feedback" id="cp_fb_${qIdx}"></div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function checkAnswer(qIdx, selected, correct, btn) {
+      const parent = document.getElementById(`cp_opts_${qIdx}`);
+      const buttons = parent.querySelectorAll('.option-btn');
+      const fb = document.getElementById(`cp_fb_${qIdx}`);
+      const currentSlide = slides[currentSlideIndex];
+      const explanation = currentSlide.checkpoints[qIdx].explanation;
+
+      buttons.forEach(b => b.disabled = true);
+
+      if (selected === correct) {
+        btn.classList.add('correct');
+        fb.className = 'checkpoint-feedback show correct-fb';
+        fb.innerHTML = `<strong>✓ Correct!</strong> ${explanation}`;
+      } else {
+        btn.classList.add('wrong');
+        buttons[correct].classList.add('correct');
+        fb.className = 'checkpoint-feedback show wrong-fb';
+        fb.innerHTML = `<strong>✗ Incorrect.</strong> ${explanation}`;
+      }
+    }
+
+    // Quiz Questions Renderer
+    function renderQuizQuestions(startNum, endNum) {
+      const container = document.getElementById('quizList');
+      container.innerHTML = '';
+
+      const subset = quizData.filter(q => q.num >= startNum && q.num <= endNum);
+
+      subset.forEach(q => {
+        const card = document.createElement('div');
+        card.className = 'quiz-item';
+        card.innerHTML = `
+          <div class="quiz-header">
+            <span class="quiz-num">Question ${q.num} of 40</span>
+            <button class="view-solution-btn" onclick="openSolutionModal(${q.num})">View Solution</button>
+          </div>
+          <p class="q-text" style="font-weight: 600; margin-bottom: 12px; color: #f8fafc;">${q.question}</p>
+          <div class="options-grid" id="quiz_opts_${q.num}">
+            ${q.options.map((opt, oIdx) => `
+              <button class="option-btn" onclick="checkQuizAnswer(${q.num}, ${oIdx}, ${q.correct}, this)">
+                ${String.fromCharCode(65 + oIdx)}. ${opt}
+              </button>
+            `).join('')}
+          </div>
+          <div class="checkpoint-feedback" id="quiz_fb_${q.num}"></div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function checkQuizAnswer(qNum, selected, correct, btn) {
+      const parent = document.getElementById(`quiz_opts_${qNum}`);
+      const buttons = parent.querySelectorAll('.option-btn');
+      const fb = document.getElementById(`quiz_fb_${qNum}`);
+
+      buttons.forEach(b => b.disabled = true);
+
+      if (selected === correct) {
+        btn.classList.add('correct');
+        fb.className = 'checkpoint-feedback show correct-fb';
+        fb.innerHTML = `<strong>✓ Correct!</strong> Click 'View Solution' for complete step-by-step mathematical reasoning.`;
+      } else {
+        btn.classList.add('wrong');
+        buttons[correct].classList.add('correct');
+        fb.className = 'checkpoint-feedback show wrong-fb';
+        fb.innerHTML = `<strong>✗ Incorrect.</strong> Click 'View Solution' to examine the complete derivation.`;
+      }
+    }
+
+    // Solution Modal
+    function openSolutionModal(qNum) {
+      const item = quizData.find(q => q.num === qNum);
+      if (!item) return;
+
+      document.getElementById('modalTitle').textContent = `Step-by-Step Solution • Question ${item.num}`;
+      document.getElementById('modalBody').textContent = item.solution;
+      document.getElementById('solutionModal').classList.add('active');
+    }
+
+    function closeSolutionModal() {
+      document.getElementById('solutionModal').classList.remove('active');
+    }
+
+    // Speech & Teacher Mouth Animation
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) return;
+      synth.cancel();
+      stopMouth();
+
+      const cleanText = text.replace(/\$/g, '');
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.rate = 1.0;
+      utterance.pitch = 1.05;
+      utterance.lang = 'en-US';
+
+      const voices = synth.getVoices();
+      const preferred = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Female') || v.name.includes('Natural') || v.name.includes('Samantha')));
+      if (preferred) utterance.voice = preferred;
+
+      utterance.onstart = () => {
+        isSpeaking = true;
+        document.getElementById('voiceLabel').textContent = 'Pause Voiceover';
+        startMouth();
+      };
+
+      utterance.onend = () => {
+        isSpeaking = false;
+        document.getElementById('voiceLabel').textContent = 'Play Voiceover';
+        stopMouth();
+      };
+
+      utterance.onerror = () => {
+        isSpeaking = false;
+        document.getElementById('voiceLabel').textContent = 'Play Voiceover';
+        stopMouth();
+      };
+
+      currentUtterance = utterance;
+      synth.speak(utterance);
+    }
+
+    function toggleSpeech() {
+      if (synth.speaking) {
+        if (synth.paused) {
+          synth.resume();
+          document.getElementById('voiceLabel').textContent = 'Pause Voiceover';
+          startMouth();
+        } else {
+          synth.pause();
+          document.getElementById('voiceLabel').textContent = 'Resume Voiceover';
+          stopMouth();
+        }
+      } else {
+        const slide = slides[currentSlideIndex];
+        speakText(slide.voice);
+      }
+    }
+
+    function replaySpeech() {
+      const slide = slides[currentSlideIndex];
+      speakText(slide.voice);
+    }
+
+    function startMouth() {
+      stopMouth();
+      const mouth = document.getElementById('teacherMouth');
+      let open = false;
+      mouthInterval = setInterval(() => {
+        open = !open;
+        mouth.setAttribute('ry', open ? '5' : '1.5');
+      }, 180);
+    }
+
+    function stopMouth() {
+      if (mouthInterval) clearInterval(mouthInterval);
+      const mouth = document.getElementById('teacherMouth');
+      if (mouth) mouth.setAttribute('ry', '1.5');
+    }
+
+    // 16 Bespoke Interactive SVG Simulators
+    function renderSimulator(type) {
+      const svg = document.getElementById('simSvg');
+      const controls = document.getElementById('simControls');
+      const title = document.getElementById('simTitle');
+
+      svg.innerHTML = '';
+      controls.innerHTML = '';
+
+      switch (type) {
+        case 'tuning_fork_vibration':
+          title.textContent = 'Vibrating Tuning Fork & Air Wavefronts';
+          renderTuningForkSim(svg, controls);
+          break;
+        case 'bell_jar_vacuum':
+          title.textContent = 'Bell Jar Vacuum Chamber Laboratory';
+          renderBellJarSim(svg, controls);
+          break;
+        case 'longitudinal_slinky_density':
+          title.textContent = 'Longitudinal Compressions & Rarefactions';
+          renderSlinkySim(svg, controls);
+          break;
+        case 'density_waveform_plotter':
+          title.textContent = 'Density-Pressure to Sinusoidal Wave Plotter';
+          renderWavePlotterSim(svg, controls);
+          break;
+        case 'frequency_period_synthesizer':
+          title.textContent = 'Audio Waveform & Pitch Tone Synthesizer';
+          renderAudioSynthSim(svg, controls);
+          break;
+        case 'wave_speed_calculator':
+          title.textContent = 'Wave Speed Relationship: v = ν · λ';
+          renderWaveSpeedSim(svg, controls);
+          break;
+        case 'pitch_loudness_timbre_sim':
+          title.textContent = 'Pitch (ν), Loudness (A²), & Harmonic Timbre';
+          renderPerceptionSim(svg, controls);
+          break;
+        case 'hearing_spectrum_dial':
+          title.textContent = 'Infrasound, Audible Range, & Ultrasound Dial';
+          renderHearingSpectrumSim(svg, controls);
+          break;
+        case 'medium_speed_race':
+          title.textContent = 'Speed of Sound Race: Air vs Water vs Steel';
+          renderMediumSpeedRaceSim(svg, controls);
+          break;
+        case 'sound_reflection_goniometer':
+          title.textContent = 'Laws of Sound Reflection (∠i = ∠r) Goniometer';
+          renderReflectionGoniometerSim(svg, controls);
+          break;
+        case 'echo_distance_cliff':
+          title.textContent = 'Echo Distance & 17.2m Biological Threshold';
+          renderEchoCliffSim(svg, controls);
+          break;
+        case 'auditorium_reverberation':
+          title.textContent = 'Auditorium Reverberation & Acoustic Absorption';
+          renderAuditoriumSim(svg, controls);
+          break;
+        case 'submarine_sonar_sim':
+          title.textContent = 'Active Marine SONAR Echo Ranging Simulator';
+          renderSonarSim(svg, controls);
+          break;
+        case 'ultrasound_flaw_scanner':
+          title.textContent = 'Industrial Ultrasound Flaw & Crack Scanner';
+          renderUltrasoundFlawSim(svg, controls);
+          break;
+        case 'dual_cliff_echo_sim':
+          title.textContent = 'Dual Cliff Multi-Echo Kinematic Challenge';
+          renderDualCliffSim(svg, controls);
+          break;
+        case 'gol_gumbaz_raman_sim':
+          title.textContent = 'Gol Gumbaz Whispering Gallery & Raman Mridangam';
+          renderGolGumbazSim(svg, controls);
+          break;
+        default:
+          title.textContent = 'Interactive Mastery Challenge Dashboard';
+          renderQuizDashboardSim(svg, controls);
+      }
+    }
+
+    // 1. Tuning Fork Simulator
+    function renderTuningForkSim(svg, controls) {
+      svg.innerHTML = `
+        <!-- Tuning Fork Body -->
+        <path d="M 80 180 L 100 180 L 100 120 L 120 120 L 120 40 L 110 40 L 110 110 L 90 110 L 90 40 L 80 40 Z" fill="#94a3b8" stroke="#cbd5e1" stroke-width="2" />
+        <rect x="85" y="180" width="10" height="60" rx="3" fill="#64748b" />
+        <!-- Radiating sound arcs -->
+        <g id="soundArcs" transform="translate(120, 80)">
+          <path d="M 10 -30 A 30 30 0 0 1 10 30" fill="none" stroke="#00e5ff" stroke-width="3" opacity="0.9" />
+          <path d="M 30 -50 A 50 50 0 0 1 30 50" fill="none" stroke="#00e5ff" stroke-width="3" opacity="0.7" />
+          <path d="M 50 -70 A 70 70 0 0 1 50 70" fill="none" stroke="#00e5ff" stroke-width="3" opacity="0.5" />
+          <path d="M 70 -90 A 90 90 0 0 1 70 90" fill="none" stroke="#00e5ff" stroke-width="3" opacity="0.3" />
+        </g>
+        <text id="forkFrequency" x="260" y="50" fill="#00e5ff" font-size="14" font-weight="bold" text-anchor="middle">Frequency: 512 Hz (512 cycles/sec)</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Fork Frequency (Hz):</span>
+          <input type="range" id="forkFreqSlider" min="256" max="1024" step="128" value="512">
+          <span class="control-val" id="forkFreqVal">512 Hz</span>
+        </div>
+        <div class="sim-btn-row">
+          <button class="sim-action-btn" onclick="strikeFork()">🔨 Strike Tuning Fork</button>
+        </div>
+      `;
+
+      document.getElementById('forkFreqSlider').addEventListener('input', (e) => {
+        const f = e.target.value;
+        document.getElementById('forkFreqVal').textContent = `${f} Hz`;
+        document.getElementById('forkFrequency').textContent = `Frequency: ${f} Hz (${f} cycles/sec)`;
+      });
+
+      window.strikeFork = () => {
+        const arcs = document.getElementById('soundArcs');
+        arcs.style.transition = 'transform 0.1s ease';
+        arcs.style.transform = 'translate(130px, 80px)';
+        setTimeout(() => {
+          arcs.style.transform = 'translate(120px, 80px)';
+        }, 100);
+      };
+    }
+
+    // 2. Bell Jar Vacuum Simulator
+    function renderBellJarSim(svg, controls) {
+      svg.innerHTML = `
+        <!-- Table Base -->
+        <rect x="100" y="210" width="240" height="15" fill="#334155" />
+        <!-- Glass Jar Outline -->
+        <path d="M 130 210 L 130 90 A 90 90 0 0 1 310 90 L 310 210 Z" fill="rgba(56, 189, 248, 0.1)" stroke="#38bdf8" stroke-width="3" />
+        <!-- Electric Bell Suspension -->
+        <rect x="215" y="70" width="10" height="40" fill="#94a3b8" />
+        <!-- Bell Gong -->
+        <circle cx="220" cy="130" r="24" fill="#f59e0b" stroke="#d97706" stroke-width="2" />
+        <!-- Hammer -->
+        <circle id="bellHammer" cx="190" cy="130" r="6" fill="#ef4444" />
+        <!-- Vacuum Air Molecules -->
+        <g id="airParticles">
+          ${Array.from({length: 24}, (_, i) => `<circle cx="${150 + (i % 6) * 25}" cy="${100 + Math.floor(i / 6) * 25}" r="3" fill="#cbd5e1" class="air-mol" />`).join('')}
+        </g>
+        <!-- Sound Meter Readout -->
+        <rect x="80" y="235" width="280" height="35" rx="6" fill="#1e293b" />
+        <text id="vacuumSoundStatus" x="220" y="258" fill="#10b981" font-size="13" font-weight="bold" text-anchor="middle">Pressure: 1.0 atm | Sound: LOUD (Ringing heard)</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="sim-btn-row">
+          <button class="sim-action-btn" onclick="evacuateAir()">💨 Turn ON Vacuum Pump</button>
+          <button class="sim-action-btn" onclick="restoreAir()">🔄 Re-admit Air (Normal Pressure)</button>
+        </div>
+      `;
+
+      window.evacuateAir = () => {
+        const particles = document.querySelectorAll('.air-mol');
+        particles.forEach(p => p.style.opacity = '0.05');
+        const status = document.getElementById('vacuumSoundStatus');
+        status.textContent = 'Pressure: 0.001 atm | Sound: SILENT (Cannot travel in vacuum!)';
+        status.setAttribute('fill', '#ef4444');
+      };
+
+      window.restoreAir = () => {
+        const particles = document.querySelectorAll('.air-mol');
+        particles.forEach(p => p.style.opacity = '1');
+        const status = document.getElementById('vacuumSoundStatus');
+        status.textContent = 'Pressure: 1.0 atm | Sound: LOUD (Medium restored)';
+        status.setAttribute('fill', '#10b981');
+      };
+    }
+
+    // 3. Slinky & Particle Density Simulator
+    function renderSlinkySim(svg, controls) {
+      svg.innerHTML = `
+        <text x="220" y="30" fill="#38bdf8" font-size="13" font-weight="bold" text-anchor="middle">Longitudinal Wave: Particles oscillate parallel to wave</text>
+        <!-- Compressions & Rarefactions visualizer -->
+        <g id="slinkyLines" transform="translate(40, 70)">
+          ${Array.from({length: 28}, (_, i) => `<line x1="${i * 12}" y1="0" x2="${i * 12}" y2="60" stroke="#00e5ff" stroke-width="3" class="slinky-coil" />`).join('')}
+        </g>
+        <text x="90" y="160" fill="#f59e0b" font-size="12" font-weight="bold" text-anchor="middle">Compression (C)</text>
+        <text x="180" y="160" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">Rarefaction (R)</text>
+        <text x="270" y="160" fill="#f59e0b" font-size="12" font-weight="bold" text-anchor="middle">Compression (C)</text>
+        <line x1="90" y1="180" x2="270" y2="180" stroke="#10b981" stroke-width="2" />
+        <text x="180" y="200" fill="#10b981" font-size="12" font-weight="bold" text-anchor="middle">Wavelength (λ) between two compressions</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="sim-btn-row">
+          <button class="sim-action-btn" onclick="pulseSlinky()">〰️ Send Longitudinal Pulse</button>
+        </div>
+      `;
+
+      window.pulseSlinky = () => {
+        const coils = document.querySelectorAll('.slinky-coil');
+        coils.forEach((c, idx) => {
+          c.style.transition = 'transform 0.4s ease';
+          c.style.transform = `translateX(${Math.sin(idx * 0.5) * 8}px)`;
+          setTimeout(() => {
+            c.style.transform = 'none';
+          }, 500);
+        });
+      };
+    }
+
+    // 4. Waveform Plotter Simulator
+    function renderWavePlotterSim(svg, controls) {
+      svg.innerHTML = `
+        <!-- Baseline Center -->
+        <line x1="30" y1="140" x2="410" y2="140" stroke="#64748b" stroke-width="2" stroke-dasharray="4" />
+        <text x="40" y="70" fill="#94a3b8" font-size="10">Pressure (+ΔP, Crest / C)</text>
+        <text x="40" y="220" fill="#94a3b8" font-size="10">Pressure (-ΔP, Trough / R)</text>
+        <!-- Sine Waveform -->
+        <path id="sinePlot" d="M 40 140 Q 85 60 130 140 T 220 140 T 310 140 T 400 140" fill="none" stroke="#00e5ff" stroke-width="4" />
+        <circle id="trackerDot" cx="130" cy="140" r="8" fill="#f59e0b" />
+        <text id="trackerLabel" x="220" y="35" fill="#f59e0b" font-size="13" font-weight="bold" text-anchor="middle">Tracking Crest: Compression (Max Density)</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Wave Position Scanner:</span>
+          <input type="range" id="wavePos" min="40" max="400" value="130">
+          <span class="control-val" id="wavePosVal">130</span>
+        </div>
+      `;
+
+      document.getElementById('wavePos').addEventListener('input', (e) => {
+        const x = parseFloat(e.target.value);
+        document.getElementById('wavePosVal').textContent = x;
+        const dot = document.getElementById('trackerDot');
+        const label = document.getElementById('trackerLabel');
+
+        const y = 140 - 80 * Math.sin(((x - 40) / 90) * Math.PI);
+        dot.setAttribute('cx', x);
+        dot.setAttribute('cy', y);
+
+        if (y < 100) {
+          label.textContent = 'At Crest: High Pressure Compression (C)';
+          label.setAttribute('fill', '#f59e0b');
+        } else if (y > 180) {
+          label.textContent = 'At Trough: Low Pressure Rarefaction (R)';
+          label.setAttribute('fill', '#38bdf8');
+        } else {
+          label.textContent = 'At Zero-Crossing: Normal Equilibrium Density';
+          label.setAttribute('fill', '#10b981');
+        }
+      });
+    }
+
+    // 5. Audio Synth Simulator
+    function renderAudioSynthSim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="40" y="40" width="360" height="180" rx="10" fill="#0f172a" stroke="#334155" />
+        <line x1="50" y1="130" x2="390" y2="130" stroke="#475569" />
+        <!-- Waveform Path -->
+        <path id="synthWave" d="M 50 130 Q 80 80 110 130 T 170 130 T 230 130 T 290 130 T 350 130" fill="none" stroke="#10b981" stroke-width="4" />
+        <text id="synthReadout" x="220" y="250" fill="#10b981" font-size="13" font-weight="bold" text-anchor="middle">Frequency: 440 Hz (Note A4) | Amplitude: 50%</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Frequency (Pitch):</span>
+          <input type="range" id="synthFreq" min="220" max="880" value="440">
+          <span class="control-val" id="synthFreqVal">440 Hz</span>
+        </div>
+        <div class="control-row">
+          <span>Amplitude (Loudness):</span>
+          <input type="range" id="synthAmp" min="10" max="80" value="50">
+          <span class="control-val" id="synthAmpVal">50</span>
+        </div>
+        <div class="sim-btn-row">
+          <button class="sim-action-btn" onclick="playBeepTone()">🔊 Play Audio Pitch Tone</button>
+        </div>
+      `;
+
+      function updateSynth() {
+        const freq = parseFloat(document.getElementById('synthFreq').value);
+        const amp = parseFloat(document.getElementById('synthAmp').value);
+        document.getElementById('synthFreqVal').textContent = `${freq} Hz`;
+        document.getElementById('synthAmpVal').textContent = `${amp}`;
+
+        document.getElementById('synthReadout').textContent = `Frequency: ${freq} Hz | Amplitude: ${amp}%`;
+
+        // Update SVG path
+        const wave = document.getElementById('synthWave');
+        const wavelength = 34000 / freq; // visual scaling
+        let d = 'M 50 130 ';
+        for (let x = 50; x < 390; x += 10) {
+          const y = 130 - amp * Math.sin(((x - 50) / wavelength) * 2 * Math.PI);
+          d += `L ${x} ${y} `;
+        }
+        wave.setAttribute('d', d);
+      }
+
+      document.getElementById('synthFreq').addEventListener('input', updateSynth);
+      document.getElementById('synthAmp').addEventListener('input', updateSynth);
+
+      window.playBeepTone = () => {
+        try {
+          const ctx = new (window.AudioContext || window.webkitAudioContext)();
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          const freq = parseFloat(document.getElementById('synthFreq').value);
+          const amp = parseFloat(document.getElementById('synthAmp').value) / 100;
+          osc.frequency.value = freq;
+          gain.gain.value = amp * 0.2;
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start();
+          setTimeout(() => {
+            osc.stop();
+            ctx.close();
+          }, 500);
+        } catch(e) {
+          console.log(e);
+        }
+      };
+      updateSynth();
+    }
+
+    // 6. Wave Speed Simulator
+    function renderWaveSpeedSim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="60" y="30" width="320" height="90" rx="8" fill="#1e293b" stroke="#00e5ff" />
+        <text x="220" y="55" fill="#94a3b8" font-size="11" text-anchor="middle">SPEED FORMULA: v = ν · λ</text>
+        <text id="waveFormulaVal" x="220" y="85" fill="#00e5ff" font-size="16" font-weight="bold" text-anchor="middle">v = 500 Hz × 0.68 m = 340.0 m/s</text>
+        <text x="220" y="105" fill="#10b981" font-size="11" text-anchor="middle">(Constant Sound Speed in Air at 20°C)</text>
+
+        <!-- Dynamic graphical waveform -->
+        <rect x="40" y="140" width="360" height="90" fill="#0f172a" stroke="#334155" />
+        <path id="speedWavePath" d="M 40 185 Q 85 145 130 185 T 220 185 T 310 185 T 400 185" fill="none" stroke="#10b981" stroke-width="4" />
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Frequency (ν):</span>
+          <input type="range" id="waveNu" min="200" max="1000" step="50" value="500">
+          <span class="control-val" id="waveNuVal">500 Hz</span>
+        </div>
+      `;
+
+      document.getElementById('waveNu').addEventListener('input', (e) => {
+        const nu = parseFloat(e.target.value);
+        document.getElementById('waveNuVal').textContent = `${nu} Hz`;
+        const v = 340.0;
+        const lambda = (v / nu).toFixed(2);
+        document.getElementById('waveFormulaVal').textContent = `v = ${nu} Hz × ${lambda} m = 340.0 m/s`;
+      });
+    }
+
+    // 7. Perception Simulator
+    function renderPerceptionSim(svg, controls) {
+      svg.innerHTML = `
+        <!-- Pitch Box -->
+        <rect x="30" y="40" width="180" height="100" rx="8" fill="#1e293b" />
+        <text x="120" y="65" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">Pitch (Frequency)</text>
+        <text id="pitchLabelText" x="120" y="95" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">High Pitch (Shrill)</text>
+        <text x="120" y="125" fill="#94a3b8" font-size="10" text-anchor="middle">Whistle / Mosquito / Bird</text>
+
+        <!-- Loudness Box -->
+        <rect x="230" y="40" width="180" height="100" rx="8" fill="#1e293b" />
+        <text x="320" y="65" fill="#f59e0b" font-size="12" font-weight="bold" text-anchor="middle">Loudness (Amplitude²)</text>
+        <text id="loudLabelText" x="320" y="95" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">60 dB (Normal Talk)</text>
+        <text x="320" y="125" fill="#94a3b8" font-size="10" text-anchor="middle">Loudness ∝ A²</text>
+
+        <!-- Timbre Spectrum Box -->
+        <rect x="30" y="160" width="380" height="80" rx="8" fill="#0f172a" stroke="#10b981" />
+        <text x="220" y="185" fill="#10b981" font-size="12" font-weight="bold" text-anchor="middle">Timbre / Quality: Identical Pitch & Loudness</text>
+        <text id="timbreStatus" x="220" y="215" fill="#cbd5e1" font-size="11" text-anchor="middle">Flute (Pure Sine) vs Violin (Rich Multi-Harmonics)</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="sim-btn-row">
+          <button class="sim-action-btn" onclick="setPerceptionMode('shrill')">🦟 Shrill Whistle (High ν)</button>
+          <button class="sim-action-btn" onclick="setPerceptionMode('bass')">🦁 Lion Roar (Low ν)</button>
+          <button class="sim-action-btn" onclick="setPerceptionMode('loud')">📢 Shout (High Amp)</button>
+        </div>
+      `;
+
+      window.setPerceptionMode = (mode) => {
+        if (mode === 'shrill') {
+          document.getElementById('pitchLabelText').textContent = 'High Pitch (2500 Hz)';
+          document.getElementById('pitchLabelText').setAttribute('fill', '#00e5ff');
+        } else if (mode === 'bass') {
+          document.getElementById('pitchLabelText').textContent = 'Low Bass (80 Hz)';
+          document.getElementById('pitchLabelText').setAttribute('fill', '#f59e0b');
+        } else {
+          document.getElementById('loudLabelText').textContent = '95 dB (Loud Shout)';
+          document.getElementById('loudLabelText').setAttribute('fill', '#ef4444');
+        }
+      };
+    }
+
+    // 8. Hearing Spectrum Simulator
+    function renderHearingSpectrumSim(svg, controls) {
+      svg.innerHTML = `
+        <!-- Spectrum Bar -->
+        <rect x="40" y="120" width="100" height="40" fill="#f59e0b" />
+        <text x="90" y="145" fill="#0f172a" font-size="11" font-weight="bold" text-anchor="middle">Infrasound</text>
+        <text x="90" y="110" fill="#f59e0b" font-size="10" text-anchor="middle">&lt; 20 Hz</text>
+
+        <rect x="140" y="120" width="160" height="40" fill="#10b981" />
+        <text x="220" y="145" fill="#0f172a" font-size="12" font-weight="bold" text-anchor="middle">Audible to Humans</text>
+        <text x="220" y="110" fill="#10b981" font-size="10" text-anchor="middle">20 Hz – 20,000 Hz</text>
+
+        <rect x="300" y="120" width="100" height="40" fill="#38bdf8" />
+        <text x="350" y="145" fill="#0f172a" font-size="11" font-weight="bold" text-anchor="middle">Ultrasound</text>
+        <text x="350" y="110" fill="#38bdf8" font-size="10" text-anchor="middle">&gt; 20 kHz</text>
+
+        <!-- Needle Marker -->
+        <polygon id="specNeedle" points="220,170 210,195 230,195" fill="#ef4444" />
+        <text id="specNeedleText" x="220" y="225" fill="#ef4444" font-size="14" font-weight="bold" text-anchor="middle">Frequency: 1,000 Hz (Audible)</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Frequency Slider:</span>
+          <input type="range" id="specSlider" min="1" max="100" value="50">
+          <span class="control-val" id="specVal">1 kHz</span>
+        </div>
+      `;
+
+      document.getElementById('specSlider').addEventListener('input', (e) => {
+        const val = parseFloat(e.target.value);
+        const needle = document.getElementById('specNeedle');
+        const text = document.getElementById('specNeedleText');
+        const x = 40 + (val / 100) * 360;
+        needle.setAttribute('points', `${x},170 ${x - 10},195 ${x + 10},195`);
+        text.setAttribute('x', x);
+
+        if (x < 140) {
+          text.textContent = 'Infrasonic (Elephant / Quake)';
+          text.setAttribute('fill', '#f59e0b');
+        } else if (x <= 300) {
+          text.textContent = 'Audible to Humans';
+          text.setAttribute('fill', '#10b981');
+        } else {
+          text.textContent = 'Ultrasonic (Bat / Dolphin)';
+          text.setAttribute('fill', '#38bdf8');
+        }
+      });
+    }
+
+    // 9. Medium Speed Race Simulator
+    function renderMediumSpeedRaceSim(svg, controls) {
+      svg.innerHTML = `
+        <!-- Track 1: Steel -->
+        <rect x="40" y="60" width="360" height="25" fill="#334155" />
+        <text x="50" y="77" fill="#fff" font-size="11" font-weight="bold">Steel Rail (5960 m/s)</text>
+        <circle id="steelPulse" cx="200" cy="72" r="8" fill="#10b981" />
+
+        <!-- Track 2: Water -->
+        <rect x="40" y="115" width="360" height="25" fill="#0369a1" />
+        <text x="50" y="132" fill="#fff" font-size="11" font-weight="bold">Water Pipe (1500 m/s)</text>
+        <circle id="waterPulse" cx="200" cy="127" r="8" fill="#38bdf8" />
+
+        <!-- Track 3: Air -->
+        <rect x="40" y="170" width="360" height="25" fill="#1e293b" />
+        <text x="50" y="187" fill="#fff" font-size="11" font-weight="bold">Air (344 m/s)</text>
+        <circle id="airPulse" cx="200" cy="182" r="8" fill="#f59e0b" />
+
+        <text x="220" y="240" fill="#38bdf8" font-size="13" font-weight="bold" text-anchor="middle">Hierarchy: Solids &gt; Liquids &gt; Gases</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="sim-btn-row">
+          <button class="sim-action-btn" onclick="startMediumRace()">🏁 Race Sound Pulses!</button>
+        </div>
+      `;
+
+      window.startMediumRace = () => {
+        const s = document.getElementById('steelPulse');
+        const w = document.getElementById('waterPulse');
+        const a = document.getElementById('airPulse');
+
+        s.style.transition = 'transform 0.15s linear';
+        s.style.transform = 'translateX(180px)';
+
+        w.style.transition = 'transform 0.6s linear';
+        w.style.transform = 'translateX(180px)';
+
+        a.style.transition = 'transform 2.0s linear';
+        a.style.transform = 'translateX(180px)';
+
+        setTimeout(() => {
+          s.style.transform = 'none';
+          w.style.transform = 'none';
+          a.style.transform = 'none';
+        }, 3000);
+      };
+    }
+
+    // 10. Sound Reflection Goniometer
+    function renderReflectionGoniometerSim(svg, controls) {
+      svg.innerHTML = `
+        <!-- Reflecting Wall -->
+        <rect x="210" y="20" width="20" height="220" fill="#475569" stroke="#94a3b8" />
+        <line x1="220" y1="20" x2="220" y2="240" stroke="#cbd5e1" stroke-width="2" />
+        <line x1="80" y1="130" x2="360" y2="130" stroke="#64748b" stroke-dasharray="4" />
+        <!-- Normal line label -->
+        <text x="140" y="125" fill="#94a3b8" font-size="10">Normal</text>
+
+        <!-- Incident Tube -->
+        <line id="incTube" x1="100" y1="60" x2="220" y2="130" stroke="#00e5ff" stroke-width="6" />
+        <!-- Reflected Tube -->
+        <line id="refTube" x1="220" y1="130" x2="100" y2="200" stroke="#f59e0b" stroke-width="6" />
+
+        <text id="gonReadout" x="220" y="260" fill="#10b981" font-size="13" font-weight="bold" text-anchor="middle">Law of Acoustic Reflection: ∠i = 40° = ∠r = 40°</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Incident Angle (∠i):</span>
+          <input type="range" id="gonAngle" min="15" max="60" value="40">
+          <span class="control-val" id="gonAngleVal">40°</span>
+        </div>
+      `;
+
+      document.getElementById('gonAngle').addEventListener('input', (e) => {
+        const deg = parseFloat(e.target.value);
+        document.getElementById('gonAngleVal').textContent = `${deg}°`;
+        const rad = (deg * Math.PI) / 180;
+        const len = 140;
+
+        const xInc = 220 - len * Math.cos(rad);
+        const yInc = 130 - len * Math.sin(rad);
+        document.getElementById('incTube').setAttribute('x1', xInc);
+        document.getElementById('incTube').setAttribute('y1', yInc);
+
+        const xRef = 220 - len * Math.cos(rad);
+        const yRef = 130 + len * Math.sin(rad);
+        document.getElementById('refTube').setAttribute('x2', xRef);
+        document.getElementById('refTube').setAttribute('y2', yRef);
+
+        document.getElementById('gonReadout').textContent = `Law of Acoustic Reflection: ∠i = ${deg}° = ∠r = ${deg}°`;
+      });
+    }
+
+    // 11. Echo Distance Simulator
+    function renderEchoCliffSim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="20" y="210" width="400" height="10" fill="#334155" />
+        <!-- Observer -->
+        <circle cx="60" cy="180" r="10" fill="#00e5ff" />
+        <!-- Reflecting Cliff Face -->
+        <polygon id="cliffFace" points="260,60 280,60 280,210 260,210" fill="#78350f" stroke="#b45309" stroke-width="2" />
+        <!-- Distance Line -->
+        <line id="echoDistLine" x1="60" y1="225" x2="260" y2="225" stroke="#f59e0b" stroke-width="3" />
+        <text id="echoDistText" x="160" y="245" fill="#f59e0b" font-size="12" font-weight="bold" text-anchor="middle">Distance: 17.2 m (Threshold)</text>
+        <text id="echoVerdict" x="220" y="40" fill="#10b981" font-size="13" font-weight="bold" text-anchor="middle">Echo Heard Distinctly (Round Trip Time = 0.10 s)</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Cliff Distance:</span>
+          <input type="range" id="cliffSlider" min="5" max="50" value="17.2" step="0.5">
+          <span class="control-val" id="cliffVal">17.2 m</span>
+        </div>
+      `;
+
+      document.getElementById('cliffSlider').addEventListener('input', (e) => {
+        const d = parseFloat(e.target.value);
+        document.getElementById('cliffVal').textContent = `${d} m`;
+        const v = 344;
+        const time = ((2 * d) / v).toFixed(3);
+
+        const x = 60 + d * 5;
+        document.getElementById('cliffFace').setAttribute('points', `${x},60 ${x + 20},60 ${x + 20},210 ${x},210`);
+        document.getElementById('echoDistLine').setAttribute('x2', x);
+        document.getElementById('echoDistText').setAttribute('x', 60 + (d * 5) / 2);
+        document.getElementById('echoDistText').textContent = `Distance: ${d} m`;
+
+        const verdict = document.getElementById('echoVerdict');
+        if (d >= 17.2) {
+          verdict.textContent = `Echo Heard Distinctly! (Time Delay = ${time} s ≥ 0.10 s)`;
+          verdict.setAttribute('fill', '#10b981');
+        } else {
+          verdict.textContent = `No Echo! Sound blurs into original (Time = ${time} s &lt; 0.10 s)`;
+          verdict.setAttribute('fill', '#ef4444');
+        }
+      });
+    }
+
+    // 12. Auditorium Reverberation Simulator
+    function renderAuditoriumSim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="50" y="40" width="340" height="180" rx="8" fill="#1e293b" stroke="#334155" />
+        <!-- Stage Speaker -->
+        <circle cx="90" cy="130" r="14" fill="#38bdf8" />
+        <!-- Audience -->
+        <circle cx="340" cy="130" r="14" fill="#f59e0b" />
+        <!-- Acoustic Panels on walls -->
+        <rect id="panelTop" x="120" y="42" width="200" height="8" fill="#10b981" />
+        <rect id="panelBottom" x="120" y="210" width="200" height="8" fill="#10b981" />
+        <!-- Status -->
+        <text id="reverbStatus" x="220" y="250" fill="#10b981" font-size="13" font-weight="bold" text-anchor="middle">Acoustic Panels ON: RT60 = 0.8 s (Speech is Crisp & Clear)</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="sim-btn-row">
+          <button class="sim-action-btn" onclick="togglePanels(true)">✅ Install Acoustic Curtains/Panels</button>
+          <button class="sim-action-btn" onclick="togglePanels(false)">❌ Bare Concrete Walls (High Reverb)</button>
+        </div>
+      `;
+
+      window.togglePanels = (on) => {
+        const pt = document.getElementById('panelTop');
+        const pb = document.getElementById('panelBottom');
+        const status = document.getElementById('reverbStatus');
+        if (on) {
+          pt.setAttribute('fill', '#10b981');
+          pb.setAttribute('fill', '#10b981');
+          status.textContent = 'Acoustic Panels ON: RT60 = 0.8 s (Speech is Crisp & Clear)';
+          status.setAttribute('fill', '#10b981');
+        } else {
+          pt.setAttribute('fill', '#475569');
+          pb.setAttribute('fill', '#475569');
+          status.textContent = 'Bare Walls: RT60 = 3.5 s (Excessive Reverberation Blur!)';
+          status.setAttribute('fill', '#ef4444');
+        }
+      };
+    }
+
+    // 13. Submarine SONAR Simulator
+    function renderSonarSim(svg, controls) {
+      svg.innerHTML = `
+        <!-- Ocean Surface -->
+        <line x1="20" y1="50" x2="420" y2="50" stroke="#38bdf8" stroke-width="3" />
+        <!-- Ship Hull -->
+        <polygon points="60,50 140,50 120,80 80,80" fill="#475569" stroke="#94a3b8" />
+        <!-- Seabed -->
+        <path d="M 20 220 Q 150 200 250 230 T 420 215 L 420 250 L 20 250 Z" fill="#78350f" />
+        <!-- SONAR Beam -->
+        <line id="sonarBeam" x1="100" y1="80" x2="100" y2="210" stroke="#00e5ff" stroke-width="4" stroke-dasharray="6" />
+        <!-- Oscilloscope Box -->
+        <rect x="220" y="70" width="180" height="90" rx="8" fill="#0f172a" stroke="#00e5ff" />
+        <text x="310" y="95" fill="#fff" font-size="11" font-weight="bold" text-anchor="middle">SONAR Depth Scope</text>
+        <text id="sonarEchoTime" x="310" y="120" fill="#00e5ff" font-size="13" font-weight="bold" text-anchor="middle">Time Delay t = 2.0 s</text>
+        <text id="sonarDepthCalc" x="310" y="145" fill="#10b981" font-size="13" font-weight="bold" text-anchor="middle">Depth d = 1,500 m</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Seabed Depth:</span>
+          <input type="range" id="sonarSlider" min="500" max="3000" step="100" value="1500">
+          <span class="control-val" id="sonarVal">1500 m</span>
+        </div>
+        <div class="sim-btn-row">
+          <button class="sim-action-btn" onclick="pingSonar()">📡 Send Ultrasonic Ping</button>
+        </div>
+      `;
+
+      document.getElementById('sonarSlider').addEventListener('input', (e) => {
+        const d = parseFloat(e.target.value);
+        document.getElementById('sonarVal').textContent = `${d} m`;
+        const v = 1500;
+        const t = ((2 * d) / v).toFixed(2);
+        document.getElementById('sonarEchoTime').textContent = `Time Delay t = ${t} s`;
+        document.getElementById('sonarDepthCalc').textContent = `Depth d = ${d} m`;
+      });
+
+      window.pingSonar = () => {
+        const beam = document.getElementById('sonarBeam');
+        beam.style.stroke = '#f59e0b';
+        setTimeout(() => {
+          beam.style.stroke = '#00e5ff';
+        }, 400);
+      };
+    }
+
+    // 14. Ultrasound Flaw Scanner
+    function renderUltrasoundFlawSim(svg, controls) {
+      svg.innerHTML = `
+        <!-- Aluminum Block -->
+        <rect x="80" y="80" width="280" height="110" rx="4" fill="#64748b" stroke="#cbd5e1" stroke-width="2" />
+        <!-- Ultrasonic Transducer Probe -->
+        <rect id="usProbe" x="140" y="55" width="40" height="25" rx="3" fill="#00e5ff" />
+        <!-- Hidden Internal Crack -->
+        <ellipse cx="220" cy="135" rx="15" ry="4" fill="#ef4444" />
+        <text x="220" y="155" fill="#fca5a5" font-size="10" text-anchor="middle">Hidden Crack</text>
+        <!-- Oscilloscope Waveform -->
+        <text id="flawScopeText" x="220" y="240" fill="#10b981" font-size="13" font-weight="bold" text-anchor="middle">Scanning: Premature Reflection Echo Detected!</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="control-row">
+          <span>Probe Position:</span>
+          <input type="range" id="probePos" min="90" max="310" value="140">
+          <span class="control-val" id="probeVal">140</span>
+        </div>
+      `;
+
+      document.getElementById('probePos').addEventListener('input', (e) => {
+        const x = parseFloat(e.target.value);
+        document.getElementById('probeVal').textContent = x;
+        document.getElementById('usProbe').setAttribute('x', x);
+        const status = document.getElementById('flawScopeText');
+        if (Math.abs(x - 200) < 25) {
+          status.textContent = 'DEFECT FOUND! Crack Echo at depth 5.5 cm!';
+          status.setAttribute('fill', '#ef4444');
+        } else {
+          status.textContent = 'Solid Metal: Clear Back-Wall Reflection Echo';
+          status.setAttribute('fill', '#10b981');
+        }
+      });
+    }
+
+    // 15. Dual Cliff Echo Simulator
+    function renderDualCliffSim(svg, controls) {
+      svg.innerHTML = `
+        <!-- Cliff 1 (Left) -->
+        <rect x="30" y="40" width="30" height="180" fill="#78350f" />
+        <!-- Cliff 2 (Right) -->
+        <rect x="380" y="40" width="30" height="180" fill="#78350f" />
+        <!-- Shooter in middle -->
+        <circle id="cliffShooter" cx="170" cy="180" r="10" fill="#00e5ff" />
+        <line x1="60" y1="230" x2="380" y2="230" stroke="#f59e0b" stroke-width="2" />
+        <text id="dualCliffStats" x="220" y="255" fill="#f59e0b" font-size="12" font-weight="bold" text-anchor="middle">Total Distance D = d1 + d2 = 340m + 510m = 850 m</text>
+      `;
+
+      controls.innerHTML = `
+        <div class="sim-btn-row">
+          <button class="sim-action-btn" onclick="fireDualShot()">🔫 Fire Pistol (Echo 1 at 2s, Echo 2 at 3s)</button>
+        </div>
+      `;
+
+      window.fireDualShot = () => {
+        const s = document.getElementById('cliffShooter');
+        s.setAttribute('fill', '#ef4444');
+        setTimeout(() => {
+          s.setAttribute('fill', '#00e5ff');
+        }, 300);
+      };
+    }
+
+    // 16. Gol Gumbaz Whispering Gallery Simulator
+    function renderGolGumbazSim(svg, controls) {
+      svg.innerHTML = `
+        <!-- Circular Dome Perimeter -->
+        <circle cx="220" cy="130" r="100" fill="none" stroke="#f59e0b" stroke-width="4" />
+        <!-- Tangential multiple reflection path -->
+        <polygon points="120,130 149,59 220,30 291,59 320,130 291,201 220,230 149,201" fill="none" stroke="#00e5ff" stroke-width="2" stroke-dasharray="4" />
+        <!-- Speaker & Listener -->
+        <circle cx="120" cy="130" r="8" fill="#10b981" />
+        <text x="100" y="135" fill="#10b981" font-size="11" font-weight="bold">Whisper</text>
+        <circle cx="320" cy="130" r="8" fill="#38bdf8" />
+        <text x="340" y="135" fill="#38bdf8" font-size="11" font-weight="bold">Audible</text>
+        <text x="220" y="255" fill="#f59e0b" font-size="12" font-weight="bold" text-anchor="middle">Gol Gumbaz Whispering Gallery (Claps echo 10+ times!)</text>
+      `;
+
+      controls.innerHTML = `
+        <div style="font-size:0.85rem; color:#94a3b8; text-align:center;">
+          Tangential reflections along the 44-metre circular dome carry faint whispers across the entire hall!
+        </div>
+      `;
+    }
+
+    // Quiz Dashboard Sim (For Slides 17 to 20)
+    function renderQuizDashboardSim(svg, controls) {
+      svg.innerHTML = `
+        <rect x="30" y="30" width="380" height="220" rx="12" fill="#0f172a" stroke="#334155" />
+        <circle cx="220" cy="110" r="50" fill="rgba(0, 229, 255, 0.1)" stroke="#00e5ff" stroke-width="3" />
+        <text x="220" y="105" fill="#00e5ff" font-size="28" font-weight="bold" text-anchor="middle">40</text>
+        <text x="220" y="125" fill="#94a3b8" font-size="11" text-anchor="middle">TOTAL QUESTIONS</text>
+        <text x="220" y="195" fill="#10b981" font-size="14" font-weight="bold" text-anchor="middle">Click 'View Solution' for Step-by-Step Derivations</text>
+      `;
+      controls.innerHTML = `
+        <div style="text-align:center; font-size:0.85rem; color:#94a3b8;">
+          All 40 questions feature complete mathematical workings and conceptual justifications.
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>

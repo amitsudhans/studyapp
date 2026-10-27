@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 8 Science • Chapter 3: Health, Diseases & Prevention Master Lab</title>
+  
+  <!-- KaTeX CSS & JS with safe early trigger definition -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script>
+    function triggerMathRender(el) {
+      if (window.renderMathInElement) {
+        window.renderMathInElement(el || document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="if (window.triggerMathRender) triggerMathRender(document.body);"></script>
+
+  <style>
+    :root {
+      --bg-primary: #070d18;
+      --bg-secondary: #0f172a;
+      --card-bg: rgba(15, 23, 42, 0.88);
+      --card-border: rgba(6, 182, 212, 0.25);
+      --accent-cyan: #06b6d4;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-rose: #f43f5e;
+      --accent-purple: #a855f7;
+      --accent-blue: #3b82f6;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at top right, #083344 0%, #070d18 70%);
+      color: var(--text-main);
+      font-family: var(--font-stack);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #06b6d4, #3b82f6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+    }
+
+    .brand-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(to right, #67e8f9, #93c5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-main);
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .btn:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: var(--accent-cyan);
+      transform: translateY(-1px);
+    }
+
+    .btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0891b2, #2563eb);
+      border-color: #06b6d4;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      box-shadow: 0 0 16px rgba(6, 182, 212, 0.4);
+    }
+
+    .slide-badge {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      background: rgba(6, 182, 212, 0.12);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      padding: 0.3rem 0.75rem;
+      border-radius: 9999px;
+      letter-spacing: 0.03em;
+    }
+
+    main {
+      flex: 1;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    /* Lesson Grid Layout */
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .lesson-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .panel {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel-header {
+      margin-bottom: 1.25rem;
+    }
+
+    .panel-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+
+    .panel-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.25;
+    }
+
+    .panel-sub {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-top: 0.35rem;
+    }
+
+    /* Avatar & Narration Box */
+    .avatar-card {
+      background: rgba(6, 182, 212, 0.08);
+      border: 1px solid rgba(6, 182, 212, 0.25);
+      border-radius: 14px;
+      padding: 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 52px;
+      height: 52px;
+      flex-shrink: 0;
+    }
+
+    .avatar-face {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0e7490, #1d4ed8);
+      border: 2px solid var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 0 12px rgba(6, 182, 212, 0.4);
+    }
+
+    .avatar-speaking {
+      animation: pulseAvatar 1.4s infinite alternate;
+    }
+
+    @keyframes pulseAvatar {
+      from { transform: scale(1); box-shadow: 0 0 8px rgba(6, 182, 212, 0.4); }
+      to { transform: scale(1.08); box-shadow: 0 0 20px rgba(59, 130, 246, 0.8); }
+    }
+
+    .voice-control-btn {
+      background: rgba(6, 182, 212, 0.2);
+      border: 1px solid var(--accent-cyan);
+      color: #fff;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 0.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .voice-control-btn:hover {
+      background: var(--accent-cyan);
+      color: #070d18;
+    }
+
+    /* Key points / Takeaways */
+    .takeaway-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-top: 1rem;
+    }
+
+    .takeaway-list li {
+      position: relative;
+      padding-left: 1.6rem;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #e2e8f0;
+    }
+
+    .takeaway-list li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent-emerald);
+      font-weight: bold;
+    }
+
+    /* In-Slide Checkpoints */
+    .checkpoint-box {
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .checkpoint-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .checkpoint-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-amber);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .checkpoint-item {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 0.85rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .checkpoint-q {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #f1f5f9;
+      margin-bottom: 0.6rem;
+    }
+
+    .checkpoint-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+    }
+
+    .cp-opt-btn {
+      text-align: left;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+      padding: 0.45rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .cp-opt-btn:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: var(--accent-cyan);
+    }
+
+    .cp-opt-btn.correct {
+      background: rgba(16, 185, 129, 0.25) !important;
+      border-color: #10b981 !important;
+      color: #a7f3d0 !important;
+      font-weight: 600;
+    }
+
+    .cp-opt-btn.incorrect {
+      background: rgba(244, 63, 94, 0.25) !important;
+      border-color: #f43f5e !important;
+      color: #fecdd3 !important;
+    }
+
+    .cp-feedback {
+      margin-top: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      line-height: 1.4;
+      display: none;
+    }
+
+    .cp-feedback.show-correct {
+      display: block;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #6ee7b7;
+    }
+
+    .cp-feedback.show-incorrect {
+      display: block;
+      background: rgba(244, 63, 94, 0.15);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+      color: #fda4af;
+    }
+
+    /* Simulator Panel */
+    .sim-panel {
+      background: #090e1a;
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      min-height: 540px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .sim-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .sim-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .sim-stats {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-pill {
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      color: #cbd5e1;
+    }
+
+    .stat-pill strong {
+      color: var(--accent-cyan);
+    }
+
+    .sim-canvas-wrapper {
+      flex: 1;
+      min-height: 380px;
+      background: #040711;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sim-controls {
+      margin-top: 0.85rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .sim-ctrl-group {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+
+    .sim-slider {
+      accent-color: var(--accent-cyan);
+      cursor: pointer;
+    }
+
+    /* Quiz Slides (17 to 20) */
+    .quiz-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .quiz-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 1.25rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      transition: all 0.2s ease;
+    }
+
+    .quiz-card:hover {
+      border-color: rgba(6, 182, 212, 0.3);
+    }
+
+    .quiz-q-num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+
+    .quiz-q-text {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.85rem;
+      line-height: 1.45;
+    }
+
+    .quiz-opts {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    @media (min-width: 640px) {
+      .quiz-opts {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .quiz-opt-btn {
+      text-align: left;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+      padding: 0.6rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .quiz-opt-btn:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: var(--accent-cyan);
+    }
+
+    .quiz-opt-btn.correct {
+      background: rgba(16, 185, 129, 0.25) !important;
+      border-color: #10b981 !important;
+      color: #6ee7b7 !important;
+      font-weight: 600;
+    }
+
+    .quiz-opt-btn.incorrect {
+      background: rgba(244, 63, 94, 0.25) !important;
+      border-color: #f43f5e !important;
+      color: #fecdd3 !important;
+    }
+
+    .quiz-btn-solution {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: #fbbf24;
+      padding: 0.4rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
+    }
+
+    .quiz-btn-solution:hover {
+      background: rgba(245, 158, 11, 0.3);
+      border-color: #f59e0b;
+    }
+
+    /* Solution Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .modal-card {
+      background: #0b1329;
+      border: 1px solid var(--accent-amber);
+      border-radius: 16px;
+      max-width: 650px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 1.75rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+      position: relative;
+    }
+
+    .modal-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fbbf24;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .modal-close-btn:hover {
+      background: rgba(244, 63, 94, 0.5);
+    }
+
+    .modal-solution-text {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #e2e8f0;
+      white-space: pre-line;
+      margin-top: 1rem;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1rem;
+      border-radius: 10px;
+      border-left: 3px solid var(--accent-amber);
+    }
+
+    /* Terminal Slide Banner */
+    .last-slide-banner {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.15));
+      border: 1px solid var(--accent-emerald);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+      display: none;
+      margin-top: 1.5rem;
+    }
+
+    .last-slide-banner h3 {
+      color: #6ee7b7;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .last-slide-banner p {
+      color: #cbd5e1;
+      font-size: 0.85rem;
+    }
+
+    /* Footer Navigation */
+    footer {
+      background: rgba(15, 23, 42, 0.9);
+      border-top: 1px solid var(--card-border);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(10px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header>
+    <div class="brand">
+      <div class="brand-icon">🩺</div>
+      <div>
+        <div class="brand-title">Class 8 Science • Chapter 3: Health, Diseases & Prevention</div>
+        <div class="brand-sub">NCERT Interactive Laboratory & Animated Concept Studio</div>
+      </div>
+    </div>
+    <div class="nav-controls">
+      <span class="slide-badge" id="slideNumDisplay">Slide 1 of 20</span>
+      <button class="btn" id="prevBtn" onclick="prevSlide()" disabled>← Previous</button>
+      <button class="btn btn-primary" id="nextBtn" onclick="nextSlide()">Next →</button>
+    </div>
+  </header>
+
+  <!-- Main Slide Container -->
+  <main>
+    <!-- Lesson Grid (Slides 1 to 16) -->
+    <div class="lesson-grid" id="lessonGrid">
+      <!-- Left Column: Theory & Narrative -->
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-tag" id="slideBadgeTag">Holistic Wellness</span>
+          <h1 class="panel-title" id="slideHeading">Defining True Health</h1>
+          <div class="panel-sub" id="slideSubheading">WHO Definition: Beyond the Mere Absence of Disease</div>
+        </div>
+
+        <!-- Teacher Voice Avatar -->
+        <div class="avatar-card">
+          <div class="avatar-wrapper">
+            <div class="avatar-face" id="teacherAvatar">👩‍⚕️</div>
+          </div>
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--accent-cyan);">Dr. Meera • Public Health Mentor</div>
+            <p style="font-size: 0.8rem; color: #cbd5e1; margin-top: 0.2rem;" id="narrationSummary">
+              Explore the holistic dimensions of health, disease prevention, vaccines, and medical breakthroughs.
+            </p>
+            <button class="voice-control-btn" id="voiceToggleBtn" onclick="toggleVoice()">
+              <span id="voiceIcon">🔊</span> <span id="voiceBtnText">Listen to Teacher Explanation</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Core Theory Text -->
+        <div id="theoryContent"></div>
+
+        <!-- Key Takeaways -->
+        <div style="margin-top: 1.25rem;">
+          <h4 style="font-size: 0.85rem; font-weight: 700; color: var(--accent-emerald); text-transform: uppercase; letter-spacing: 0.05em;">
+            Key Scientific Takeaways
+          </h4>
+          <ul class="takeaway-list" id="keyTakeawaysList"></ul>
+        </div>
+
+        <!-- In-Slide Checkpoints (2 Questions with Solutions) -->
+        <div class="checkpoint-box" id="checkpointContainer">
+          <div class="checkpoint-header">
+            <div class="checkpoint-title">⚡ Checkpoint Inquiries (2 Concept Checks)</div>
+          </div>
+          <div id="checkpointsList"></div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Bespoke Simulator -->
+      <div class="sim-panel">
+        <div class="sim-header">
+          <div class="sim-title" id="simTitle">🩺 Health & Wellness Simulator</div>
+          <div class="sim-stats" id="simStats"></div>
+        </div>
+        <div class="sim-canvas-wrapper" id="simCanvas"></div>
+        <div class="sim-controls" id="simControls"></div>
+      </div>
+    </div>
+
+    <!-- Quiz Container (Slides 17 to 20) -->
+    <div class="quiz-container" id="quizContainer" style="display: none;">
+      <div class="panel">
+        <div class="panel-header" style="text-align: center;">
+          <span class="panel-tag" style="color: var(--accent-amber);">Mastery Assessment Series</span>
+          <h1 class="panel-title" id="quizTitle">Mastery Challenge</h1>
+          <div class="panel-sub" id="quizSubtitle">Answer all 10 questions to test your conceptual clarity.</div>
+          <div style="margin-top: 0.75rem;">
+            <span class="slide-badge" style="background: rgba(245, 158, 11, 0.15); border-color: #f59e0b; color: #fbbf24;" id="quizScoreBadge">
+              Score: 0 / 10
+            </span>
+          </div>
+        </div>
+        <div id="quizQuestionsGrid" style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;"></div>
+      </div>
+    </div>
+
+    <!-- Terminal Slide Notice -->
+    <div class="last-slide-banner" id="lastSlideNotice" style="display: none;">
+      <h3>🎉 You have reached the last slide of this chapter!</h3>
+      <p>Congratulations! You have mastered NCERT Class 8 Science Chapter 3: Health, Diseases, and Prevention.</p>
+    </div>
+  </main>
+
+  <!-- Footer Navigation -->
+  <footer>
+    <div style="font-size: 0.8rem; color: #64748b;">
+      Class 8 Science • Chapter 3 • Health, Diseases & Prevention Master Laboratory
+    </div>
+    <div class="nav-controls">
+      <button class="btn" onclick="prevSlide()">← Back</button>
+      <button class="btn btn-primary" id="footerNextBtn" onclick="nextSlide()">Continue Next →</button>
+    </div>
+  </footer>
+
+  <!-- Pop-Up Solution Modal -->
+  <div class="modal-backdrop" id="solutionModal" style="display: none;">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeSolutionModal()">✕</button>
+      <div class="modal-title">
+        <span>💡</span> Step-by-Step Scientific Solution
+      </div>
+      <div id="modalQuestionText" style="font-size: 0.95rem; font-weight: 600; color: #fff; margin-bottom: 0.5rem;"></div>
+      <div class="modal-solution-text" id="modalSolutionBody"></div>
+    </div>
+  </div>
+
+  <script>
+    const SLIDES = [{"id": 1, "title": "Defining True Health", "subtitle": "WHO Definition: Beyond the Mere Absence of Disease", "badge": "Holistic Wellness", "narration": "Welcome to Chapter 3: Health, Diseases, and Prevention. What does it really mean to be healthy? For decades, people assumed that if you weren't bedridden with a fever, you were healthy. The World Health Organization revolutionized this view by declaring that health is a state of complete physical, mental, and social well-being, and not merely the absence of disease.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                Health is a dynamic, positive condition of vitality. According to the <strong>World Health Organization (WHO)</strong>:\n            </p>\n            <div class=\"p-3.5 rounded-xl bg-cyan-950/30 border border-cyan-500/40 my-3\">\n                <p class=\"text-xs text-cyan-200 font-semibold italic text-center leading-relaxed\">\n                    \"Health is a state of complete physical, mental, and social well-being, and not merely the absence of disease or infirmity.\"\n                </p>\n            </div>\n            <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2.5 my-3 text-xs\">\n                <div class=\"p-3 rounded-lg bg-slate-900/60 border border-emerald-500/30\">\n                    <span class=\"font-bold text-emerald-400 block mb-1\">1. Physical Health</span>\n                    <p class=\"text-slate-300\">A strong, active body whose organ systems operate smoothly, free from pain, illness, or structural impairment.</p>\n                </div>\n                <div class=\"p-3 rounded-lg bg-slate-900/60 border border-indigo-500/30\">\n                    <span class=\"font-bold text-indigo-400 block mb-1\">2. Mental Health</span>\n                    <p class=\"text-slate-300\">Emotional balance, resilience in coping with daily stress, clarity of thought, and self-confidence.</p>\n                </div>\n                <div class=\"p-3 rounded-lg bg-slate-900/60 border border-purple-500/30\">\n                    <span class=\"font-bold text-purple-400 block mb-1\">3. Social Health</span>\n                    <p class=\"text-slate-300\">Positive interpersonal relationships, empathy, meaningful communication, and harmonious adaptation within peer groups and society.</p>\n                </div>\n            </div>\n            <p class=\"text-xs text-slate-400 leading-relaxed\">\n                A truly healthy person performs tasks efficiently, handles difficult emotional challenges calmly, and contributes constructively to family and community.\n            </p>\n        ", "key_points": ["The WHO defines health as complete physical, mental, and social well-being, not just absence of disease.", "Physical health reflects proper physiological organ functioning and energetic stamina.", "Mental health involves emotional resilience, stress management, and psychological peace.", "Social health denotes positive interpersonal connections, empathy, and constructive social adjustment."], "sim_id": "who_triad_health_sim", "checkpoints": [{"question": "According to the World Health Organization (WHO), what is the complete definition of health?", "options": ["A state of complete physical, mental, and social well-being, and not merely the absence of disease", "Having big muscles and being able to lift heavy weights", "Never needing to visit a doctor or hospital in life", "Drinking eight glasses of cold water every hour"], "correct": 0, "explanation": "WHO defines health holistically across three interdependent pillars: physical vitality, mental clarity/emotional balance, and positive social well-being."}, {"question": "Which of the following is an essential characteristic of a socially healthy individual?", "options": ["Maintaining positive relationships, communicating well, and adjusting harmoniously in society", "Isolating completely from family and never speaking to friends", "Having zero emotions and never laughing", "Spending ten hours daily playing solo video games"], "correct": 0, "explanation": "Social health is reflected in healthy relationships, meaningful family time, empathy, and positive adaptation within community groups."}]}, {"id": 2, "title": "Ayurvedic Health Wisdom", "subtitle": "Dinacharya, Ritucharya, Prakriti, and Inner Balance", "badge": "Traditional Indian Medicine", "narration": "Thousands of years before modern medicine, ancient Indian thinkers developed Ayurveda, the science of life. Ayurveda teaches that health is an exquisite harmony between body, mind, and the natural environment. This balance is preserved through daily routines called Dinacharya, seasonal adaptation called Ritucharya, and mindful living.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                In <strong>Ayurveda</strong>, true health (<em>Swastha</em>) is achieved when there is equilibrium among bodily humors (<em>Doshas</em>), digestive fire (<em>Agni</em>), tissues (<em>Dhatus</em>), and a peaceful state of mind and senses.\n            </p>\n            <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-2 text-xs\">\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-amber-500/30\">\n                    <h4 class=\"font-bold text-amber-300 text-sm mb-1\">Dinacharya & Ritucharya</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        • <strong>Dinacharya (Daily Routine):</strong> Waking before sunrise (<em>Brahma Muhurta</em>), oral and physical hygiene, tongue cleaning, oil pulling, regular bowel evacuation, physical exercise, and consistent meal timings.<br>\n                        • <strong>Ritucharya (Seasonal Routine):</strong> Adjusting diet, clothing, and lifestyle to align with changes in external temperature, humidity, and planetary seasons.\n                    </p>\n                </div>\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-teal-500/30\">\n                    <h4 class=\"font-bold text-teal-300 text-sm mb-1\">Prakriti, Diet, and Yoga</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        • <strong>Prakriti:</strong> Eating fresh, wholesome, natural food customized to one's unique biological constitution.<br>\n                        • <strong>Mindful Recovery:</strong> Practicing <em>Yoga asanas</em>, <em>Pranayama</em> (controlled breath work), and meditation to quieten mental anxiety and ensure deep, restorative sleep.\n                    </p>\n                </div>\n            </div>\n        ", "key_points": ["Ayurveda views health as an equilibrium between body, mind, and the external environment.", "Dinacharya outlines disciplined daily routines, including early rising, hygiene, and timed meals.", "Ritucharya prescribes seasonal dietary and lifestyle adjustments to match climate transitions.", "Yoga, Pranayama, and meditation cultivate emotional calm, reducing stress and strengthening vitality."], "sim_id": "ayurveda_dinacharya_clock_sim", "checkpoints": [{"question": "What is the Ayurvedic concept of 'Dinacharya'?", "options": ["A disciplined daily routine including early rising, hygiene, exercise, and regular meal timings", "A medical surgery performed once every five years", "Eating only sweet desserts during festivals", "Sleeping continuously for eighteen hours during monsoon"], "correct": 0, "explanation": "Dinacharya refers to healthy daily habits practiced consistently from morning until bedtime to maintain bodily harmony and disease resistance."}, {"question": "How does 'Ritucharya' guide an individual in maintaining health across the year?", "options": ["By adapting food, clothing, and habits according to seasonal climatic changes", "By avoiding all water during winter months", "By eating exactly the same food in identical quantities every day of life", "By staying indoors without sunlight all summer"], "correct": 0, "explanation": "Ritucharya provides guidelines for altering diet and lifestyle in response to seasonal shifts (such as summer heat, monsoons, and winter cold) to prevent seasonal illness."}]}, {"id": 3, "title": "Healthy Lifestyle Habits", "subtitle": "Nutrition, Physical Activity, Screen Time, and Substance Rejection", "badge": "Preventive Lifestyle", "narration": "Our daily lifestyle choices act like deposits into our personal health bank account. What we eat, how much we move, and what we choose to reject directly determine our disease vulnerability. A balanced diet, outdoor play, limited screen time, and a firm 'NO' to harmful substances build an unbreakable shield of health.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                Health depends heavily on conscious daily behavioral habits:\n            </p>\n            <div class=\"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 my-2 text-xs\">\n                <div class=\"p-2.5 rounded-lg bg-slate-900/60 border border-emerald-500/30\">\n                    <span class=\"font-bold text-emerald-400\">1. Balanced Whole-Food Diet</span>\n                    <p class=\"text-slate-300 mt-1\">Rich in fresh fruits, green leafy vegetables, legumes, whole grains, and nuts. Strictly minimize ultra-processed snacks, refined sugars, and trans-fats.</p>\n                </div>\n                <div class=\"p-2.5 rounded-lg bg-slate-900/60 border border-cyan-500/30\">\n                    <span class=\"font-bold text-cyan-400\">2. Daily Physical Activity</span>\n                    <p class=\"text-slate-300 mt-1\">At least 60 minutes of brisk outdoor games, cycling, walking, or sports to strengthen cardiac muscle, bones, and metabolic stamina.</p>\n                </div>\n                <div class=\"p-2.5 rounded-lg bg-slate-900/60 border border-amber-500/30\">\n                    <span class=\"font-bold text-amber-400\">3. Limiting Screen Time</span>\n                    <p class=\"text-slate-300 mt-1\">Excessive phone, TV, and computer use triggers digital eye strain, sedentary obesity, irregular sleep cycles, and adolescent anxiety.</p>\n                </div>\n                <div class=\"p-2.5 rounded-lg bg-slate-900/60 border border-indigo-500/30\">\n                    <span class=\"font-bold text-indigo-400\">4. Restorative Sleep</span>\n                    <p class=\"text-slate-300 mt-1\">8 to 9 hours of undisturbed sleep enables cellular repair, memory consolidation, growth hormone release, and immune fortification.</p>\n                </div>\n                <div class=\"p-2.5 rounded-lg bg-slate-900/60 border border-rose-500/30 col-span-1 sm:col-span-2 lg:col-span-1\">\n                    <span class=\"font-bold text-rose-400\">5. Saying 'NO' to Toxins</span>\n                    <p class=\"text-slate-300 mt-1\">A resolute, non-negotiable rejection of tobacco (smoking/chewing), alcohol, and addictive drugs that permanently destroy organs.</p>\n                </div>\n            </div>\n        ", "key_points": ["A balanced diet rich in whole grains, fruits, and vegetables prevents nutritional and chronic disorders.", "60 minutes of daily physical exercise enhances cardiovascular strength and metabolic health.", "Excess screen time promotes sedentary obesity, insomnia, and psychological stress.", "Saying a firm 'NO' to tobacco, alcohol, and drugs protects vital organs and mental integrity."], "sim_id": "lifestyle_balance_meter_sim", "checkpoints": [{"question": "What health hazards are directly linked to prolonged, excessive recreational screen time in children and teens?", "options": ["Sedentary obesity, eye strain, disrupted sleep cycles, and anxiety", "Instant growth of thick bones and teeth", "Permanent loss of all body hair", "Immunity to all viral infections"], "correct": 0, "explanation": "Excessive screen use reduces physical activity (causing obesity), exposes eyes to blue light before bed (causing insomnia), and increases anxiety."}, {"question": "Why is regular 8-hour sleep indispensable for maintaining long-term physical health?", "options": ["It allows tissues to repair, releases growth hormones, consolidates memory, and strengthens immunity", "It stops all digestion and freezes blood in veins", "It turns carbohydrates into pure calcium", "It prevents fingernails from growing"], "correct": 0, "explanation": "During sleep, the body performs cellular maintenance, cleanses brain metabolic waste, releases growth hormones, and synthesizes immune cytokines."}]}, {"id": 4, "title": "Environment & Emotions", "subtitle": "Clean Air (AQI), Pure Water, and Mental-Social Bonding", "badge": "Ecological & Social Health", "narration": "Our bodies do not exist in a vacuum. Every breath connects us to the atmosphere, every sip connects us to water reservoirs, and every conversation shapes our nervous system. High Air Quality Index pollution causes respiratory disease, while social isolation breeds loneliness and chronic stress.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                Health is deeply intertwined with environmental conditions and emotional-social support networks.\n            </p>\n            <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-2 text-xs\">\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-teal-500/30\">\n                    <h4 class=\"font-bold text-teal-300 text-sm mb-1\">Environmental Health & AQI</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        • <strong>Air Quality Index (AQI):</strong> Tracks airborne particulate matter ($\\text{PM}_{2.5}, \\text{PM}_{10}$) and toxic gases ($\\text{SO}_2, \\text{NO}_2, \\text{CO}$). High AQI ($>200-300$) severely inflames lungs, triggering asthma and bronchitis.<br>\n                        • <strong>Safe Water & Sanitation:</strong> Access to clean, boiled/filtered water prevents deadly waterborne pathogens (cholera, typhoid, hepatitis).\n                    </p>\n                </div>\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-purple-500/30\">\n                    <h4 class=\"font-bold text-purple-300 text-sm mb-1\">Emotional Wellness & Social Connection</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        Human beings are inherently social animals. Spending quality time laughing, talking, and collaborating with family and friends releases positive neurotransmitters (endorphins, oxytocin), lowers blood pressure, alleviates stress, and prevents the debilitating trap of loneliness and depression.\n                    </p>\n                </div>\n            </div>\n        ", "key_points": ["The Air Quality Index (AQI) monitors atmospheric pollution levels to assess respiratory health risks.", "Clean air, pure drinking water, and hygienic community sanitation prevent disease outbreaks.", "Emotional health thrives on positive family relationships, open dialogue, and shared laughter.", "Social isolation and loneliness cause chronic stress, elevating risks for cardiovascular and mental disorders."], "sim_id": "aqi_environmental_health_sim", "checkpoints": [{"question": "What is the primary purpose of the Air Quality Index (AQI)?", "options": ["To measure and report the levels of air pollutants and forecast public respiratory health risk", "To determine the amount of sugar present in drinking water", "To count the number of birds flying across a city", "To measure the speed of sound underground"], "correct": 0, "explanation": "The AQI is a standardized scale that tracks air pollutants (like PM2.5, PM10, ozone, and toxic gases) to inform citizens about air safety."}, {"question": "How do positive social interactions, family conversations, and laughter benefit physiological health?", "options": ["They reduce stress hormones, trigger mood-boosting endorphins, and alleviate loneliness", "They cause blood to stop circulating to the brain", "They turn stomach acid into solid stone", "They make red blood cells disappear"], "correct": 0, "explanation": "Social bonding and laughter lower cortisol (stress hormone), release endorphins, support immune resilience, and buffer against depression."}]}, {"id": 5, "title": "Symptoms vs. Signs", "subtitle": "Subjective Experiences vs Objective Clinical Indicators", "badge": "Clinical Diagnostics", "narration": "When something goes wrong inside the body, it communicates through subtle signals. But doctors make a crucial distinction between what the patient feels and what medical tests can verify: symptoms versus signs. Recognizing both is essential for accurate medical diagnosis.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                When disease disrupts normal physiological functioning, the body manifests distress through two distinct channels:\n            </p>\n            <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-2 text-xs\">\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-amber-500/30\">\n                    <h4 class=\"font-bold text-amber-300 text-sm mb-1\">Symptoms (Subjective Sensations)</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        • <strong>Definition:</strong> Subjective experiences that are felt and reported <em>only</em> by the patient. Others cannot directly observe, touch, or measure them.<br>\n                        • <strong>Examples:</strong> Headache, throbbing abdominal pain, generalized fatigue, nausea, dizziness, chills, or muscle aches.<br>\n                        • <em>A doctor must ask the patient to describe their symptoms.</em>\n                    </p>\n                </div>\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-cyan-500/30\">\n                    <h4 class=\"font-bold text-cyan-300 text-sm mb-1\">Signs (Objective Indicators)</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        • <strong>Definition:</strong> Objective evidence of illness that can be seen, heard, felt, or measured by an observer, physician, or diagnostic instrument.<br>\n                        • <strong>Examples:</strong> High fever measured on a thermometer ($39^\\circ\\text{C}$), visible red skin rash, elevated blood pressure reading, physical joint swelling, or an abnormal blood test count.\n                    </p>\n                </div>\n            </div>\n        ", "key_points": ["Symptoms are subjective sensations felt exclusively by the individual (e.g., headache, dizziness, fatigue).", "Signs are objective indicators directly observable and measurable by doctors (e.g., fever, rash, blood pressure).", "Symptoms indicate that a patient feels unwell; signs point toward specific biological pathologies.", "Doctors synthesize both reported symptoms and measured signs to reach an accurate clinical diagnosis."], "sim_id": "symptoms_vs_signs_clinician_sim", "checkpoints": [{"question": "Which of the following is an example of a subjective 'symptom' rather than an objective 'sign'?", "options": ["A throbbing headache felt by a student", "A body temperature of 102°F recorded on a digital thermometer", "A red circular skin rash visible on the arm", "A blood pressure reading of 140/90 mmHg"], "correct": 0, "explanation": "A headache is felt internally by the patient (subjective symptom). Thermometer readings, visible rashes, and blood pressure numbers can be measured by others (objective signs)."}, {"question": "What is the defining characteristic of a clinical 'sign' of illness?", "options": ["It can be directly seen, measured, or tested by a doctor or diagnostic instrument", "It is an imaginary feeling that cannot be tested", "It only occurs when dreaming during sleep", "It is felt only by the patient and completely invisible to all doctors"], "correct": 0, "explanation": "A sign is an objective, measurable indication of disease—such as a fever, swelling, high blood pressure, or abnormal laboratory test result."}]}, {"id": 6, "title": "Understanding Disease", "subtitle": "Homeostatic Disruption: Acute vs Chronic Illnesses", "badge": "General Pathology", "narration": "A disease is not a mystery; it is a physiological breakdown where normal bodily or mental functioning is disrupted. Diseases can be brief and sharp, known as acute illnesses, or they can linger for months and years as chronic conditions, which currently represent the number one cause of death in India.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                A <strong>disease</strong> (literally <em>dis-ease</em> or lack of ease) is a condition that impairs the normal functioning of tissues, organs, or mental faculties.\n            </p>\n            <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-2 text-xs\">\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-blue-500/30\">\n                    <h4 class=\"font-bold text-blue-300 text-sm mb-1\">Acute Diseases</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        • Onset is sudden and rapid.<br>\n                        • Duration is short (lasting a few days to a couple of weeks).<br>\n                        • Usually cured completely with proper treatment or immune response without causing long-term organ damage.<br>\n                        • <strong>Examples:</strong> Common cold, viral influenza, acute cholera, malaria fever.\n                    </p>\n                </div>\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-rose-500/30\">\n                    <h4 class=\"font-bold text-rose-300 text-sm mb-1\">Chronic Diseases</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        • Onset is often slow and insidious.<br>\n                        • Duration is long-lasting (persisting for <strong>more than 3 months</strong> or lifelong).<br>\n                        • Causes gradual, permanent damage to vital organ systems and requires continuous management.<br>\n                        • <strong>Examples:</strong> Diabetes, hypertension, asthma, chronic kidney disease, cancer.\n                    </p>\n                </div>\n            </div>\n            <p class=\"text-xs text-slate-400 mt-2\">\n                In India today, chronic non-communicable diseases account for over $60\\%$ of total annual mortalities.\n            </p>\n        ", "key_points": ["A disease is any condition that impairs the normal anatomical or physiological functioning of the body.", "Acute diseases develop rapidly and resolve within days or weeks (e.g., common cold, flu).", "Chronic diseases persist for more than 3 months, often lasting years or a lifetime (e.g., diabetes, asthma).", "Chronic diseases are currently the leading cause of mortality in India and worldwide."], "sim_id": "disease_classification_tree_sim", "checkpoints": [{"question": "What is the standard medical definition of a 'chronic disease'?", "options": ["An illness that persists for more than three months, often requiring prolonged management", "An infection that lasts for less than twenty minutes", "A disease that can only be caught during a total solar eclipse", "A condition that affects only domestic birds"], "correct": 0, "explanation": "Chronic diseases (such as diabetes, chronic kidney disease, and cancer) persist for more than 3 months and cause long-term physiological changes."}, {"question": "Which of the following is an acute illness that appears suddenly and generally resolves in a week or two?", "options": ["Common cold", "Type-2 Diabetes", "Chronic osteoarthritis", "Hypertension"], "correct": 0, "explanation": "The common cold is an acute viral infection that starts suddenly, runs its course over 7 to 10 days, and resolves completely."}]}, {"id": 7, "title": "Communicable Diseases", "subtitle": "Infectious Pathogens: Bacteria, Viruses, Fungi, Protozoa & Worms", "badge": "Infectious Pathology", "narration": "Communicable diseases are illnesses caused by microscopic invaders called pathogens that can spread from an infected person to a healthy host. From the common cold virus to cholera bacteria, malaria parasites, and intestinal roundworms, pathogens use varied tricks to transmit through communities.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                <strong>Communicable (infectious) diseases</strong> are caused by biological agents called <strong>pathogens</strong> that reproduce inside a host and can be transmitted to other individuals.\n            </p>\n            <div class=\"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 my-2 text-xs\">\n                <div class=\"p-2.5 rounded-lg bg-slate-900/60 border border-amber-500/30\">\n                    <span class=\"font-bold text-amber-400\">1. Bacterial Diseases</span>\n                    <p class=\"text-slate-300 mt-1\"><strong>Tuberculosis (TB):</strong> <em>Mycobacterium tuberculosis</em> attacking lungs.<br><strong>Cholera & Typhoid:</strong> Waterborne bacterial infections causing severe diarrhea and high fever.</p>\n                </div>\n                <div class=\"p-2.5 rounded-lg bg-slate-900/60 border border-purple-500/30\">\n                    <span class=\"font-bold text-purple-400\">2. Viral Diseases</span>\n                    <p class=\"text-slate-300 mt-1\"><strong>Common Cold & Influenza:</strong> Respiratory tract viruses.<br><strong>Chickenpox & Measles:</strong> Highly contagious rash and fever.<br><strong>Dengue & Polio:</strong> Vector-borne or waterborne neuro/vascular viruses.</p>\n                </div>\n                <div class=\"p-2.5 rounded-lg bg-slate-900/60 border border-cyan-500/30\">\n                    <span class=\"font-bold text-cyan-400\">3. Protozoan Parasites</span>\n                    <p class=\"text-slate-300 mt-1\"><strong>Malaria:</strong> <em>Plasmodium</em> destroying RBCs, transmitted by female <em>Anopheles</em> mosquitoes.<br><strong>Amoebic Dysentery:</strong> Intestinal protozoan ulcers.</p>\n                </div>\n                <div class=\"p-2.5 rounded-lg bg-slate-900/60 border border-rose-500/30\">\n                    <span class=\"font-bold text-rose-400\">4. Fungal Infections</span>\n                    <p class=\"text-slate-300 mt-1\"><strong>Ringworm:</strong> Dermatophyte fungal skin lesions.<br><strong>Athlete's Foot:</strong> Fungal scaling between toes in warm, moist footwear.</p>\n                </div>\n                <div class=\"p-2.5 rounded-lg bg-slate-900/60 border border-emerald-500/30 col-span-1 sm:col-span-2 lg:col-span-1\">\n                    <span class=\"font-bold text-emerald-400\">5. Parasitic Worms (Helminths)</span>\n                    <p class=\"text-slate-300 mt-1\"><strong>Ascariasis:</strong> Intestinal roundworms (<em>Ascaris</em>) transmitted through soil contaminated with fecal eggs, causing malnutrition and abdominal pain.</p>\n                </div>\n            </div>\n        ", "key_points": ["Communicable diseases are caused by microscopic pathogens and spread from person to person.", "Pathogens span bacteria, viruses, fungi, protozoa, and parasitic worms (helminths).", "Bacterial examples: Tuberculosis, Cholera, Typhoid.", "Viral examples: Common cold, Influenza, Measles, Chickenpox, Dengue, Polio.", "Parasitic examples: Malaria (protozoan) and Ascariasis (intestinal roundworm)."], "sim_id": "pathogen_gallery_communicable_sim", "checkpoints": [{"question": "Which of the following communicable diseases is caused by an intestinal parasitic worm (helminth)?", "options": ["Ascariasis (roundworm infection)", "Tuberculosis", "Common cold", "Malaria"], "correct": 0, "explanation": "Ascariasis is caused by the large intestinal roundworm Ascaris lumbricoides, a parasitic helminth transmitted via fecally contaminated soil or water."}, {"question": "What is the key defining feature of communicable diseases?", "options": ["They are caused by pathogens and can spread from an infected person to a healthy person", "They can only be inherited genetically from grandparents", "They are caused exclusively by eating excess salt", "They can never be cured by any medicine"], "correct": 0, "explanation": "Communicable diseases are infectious illnesses caused by pathogens (viruses, bacteria, parasites) capable of spreading between individuals."}]}, {"id": 8, "title": "Non-Communicable Diseases", "subtitle": "NCDs, Lifestyle Factors, Genetics, and Nutritional Deficiencies", "badge": "Chronic Pathology", "narration": "You cannot 'catch' diabetes or asthma from sitting next to someone on a bus. These are non-communicable diseases. They are not caused by germs and do not spread between people. Instead, they stem from genetic predispositions, aging, environmental pollution, poor diets, and nutritional deficiencies.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                <strong>Non-Communicable Diseases (NCDs)</strong> are non-infectious health conditions that cannot be transmitted from person to person.\n            </p>\n            <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-2 text-xs\">\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-rose-500/30\">\n                    <h4 class=\"font-bold text-rose-300 text-sm mb-1\">Major Lifestyle & Genetic NCDs</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        • <strong>Diabetes Mellitus:</strong> Inability to regulate blood glucose due to insufficient insulin secretion or cellular insulin resistance.<br>\n                        • <strong>Asthma:</strong> Chronic inflammatory hypersensitivity of bronchial airways triggered by dust, pollen, or pollution.<br>\n                        • <strong>Cancer:</strong> Uncontrolled, abnormal cell division and tissue invasion linked to tobacco, chemical mutagens, and radiation.\n                    </p>\n                </div>\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-amber-500/30\">\n                    <h4 class=\"font-bold text-amber-300 text-sm mb-1\">Nutritional Deficiency Diseases</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        Caused by a specific lack of essential micronutrients in the daily diet:\n                        <br>• <strong>Scurvy:</strong> Deficiency of Vitamin C (ascorbic acid), causing bleeding gums and loose teeth.\n                        <br>• <strong>Anaemia:</strong> Deficiency of Iron, resulting in low hemoglobin, pale skin, and extreme fatigue.\n                        <br>• <strong>Goitre:</strong> Deficiency of Iodine, causing enlargement of the thyroid gland in the neck.\n                    </p>\n                </div>\n            </div>\n        ", "key_points": ["Non-communicable diseases (NCDs) do not spread between people and are not caused by pathogens.", "NCDs arise from genetic susceptibility, unhealthy lifestyle, aging, and environmental exposure.", "Major chronic NCDs include diabetes, cardiovascular diseases, asthma, and cancer.", "Deficiency diseases stem from lack of micronutrients: Scurvy (Vitamin C), Anaemia (Iron), Goitre (Iodine)."], "sim_id": "ncd_deficiency_disease_lab_sim", "checkpoints": [{"question": "Which of the following deficiency diseases is caused by a lack of dietary Iodine in drinking water and salt?", "options": ["Goitre (swelling of the thyroid gland in the neck)", "Scurvy", "Anaemia", "Cholera"], "correct": 0, "explanation": "Iodine is required to synthesize thyroxine hormone. Iodine deficiency leads to enlargement of the thyroid gland, known as goitre."}, {"question": "Can an individual catch diabetes or asthma by sitting next to or shaking hands with an affected patient?", "options": ["No, because these are non-communicable diseases not caused by infectious pathogens", "Yes, they spread instantly through sneezes", "Yes, they are transmitted by mosquitoes", "Only if they share drinking water"], "correct": 0, "explanation": "Diabetes and asthma are non-communicable diseases linked to genetics, lifestyle, and immune regulation; they cannot be transmitted between people."}]}, {"id": 9, "title": "Modes of Transmission", "subtitle": "Air, Contact, Fomites, Water, Food, and Insect Vectors", "badge": "Epidemiology", "narration": "How does a virus travel from one classroom desk to another? Pathogens have evolved several distinct routes to infect new hosts: floating through aerosol droplets, jumping across skin contact, hitching a ride on shared towels, hiding in contaminated food and water, or flying inside blood-sucking insect vectors.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                Transmission routes determine how rapidly an epidemic can spread through a population:\n            </p>\n            <div class=\"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 my-2 text-xs\">\n                <div class=\"p-2.5 rounded-lg bg-slate-900/60 border border-cyan-500/30\">\n                    <span class=\"font-bold text-cyan-400\">1. Airborne Droplets (Aerosols)</span>\n                    <p class=\"text-slate-300 mt-1\">Coughing or sneezing expels thousands of pathogen-laden micro-droplets inhaled by nearby people (Common cold, Flu, Tuberculosis, COVID-19).</p>\n                </div>\n                <div class=\"p-2.5 rounded-lg bg-slate-900/60 border border-emerald-500/30\">\n                    <span class=\"font-bold text-emerald-400\">2. Direct Contact</span>\n                    <p class=\"text-slate-300 mt-1\">Skin-to-skin touch, handshakes, or kissing transfers microbes directly (Ringworm, scabies, conjunctivitis).</p>\n                </div>\n                <div class=\"p-2.5 rounded-lg bg-slate-900/60 border border-purple-500/30\">\n                    <span class=\"font-bold text-purple-400\">3. Indirect Contact (Fomites)</span>\n                    <p class=\"text-slate-300 mt-1\">Sharing inanimate objects—towels, bedsheets, clothes, utensils, door handles, or phone screens that harbor viable germs.</p>\n                </div>\n                <div class=\"p-2.5 rounded-lg bg-slate-900/60 border border-blue-500/30\">\n                    <span class=\"font-bold text-blue-400\">4. Contaminated Food & Water</span>\n                    <p class=\"text-slate-300 mt-1\">Fecal-oral transmission when food or water contains sewage runoff or fly contaminants (Cholera, Typhoid, Hepatitis A, Polio).</p>\n                </div>\n                <div class=\"p-2.5 rounded-lg bg-slate-900/60 border border-amber-500/30 col-span-1 sm:col-span-2 lg:col-span-1\">\n                    <span class=\"font-bold text-amber-400\">5. Vectors & Animal Bites</span>\n                    <p class=\"text-slate-300 mt-1\">Biological carriers: Female <em>Anopheles</em> mosquito (Malaria), <em>Aedes</em> mosquito (Dengue), houseflies, or rabid dog bites (Rabies).</p>\n                </div>\n            </div>\n        ", "key_points": ["Pathogens spread via airborne droplets, direct contact, fomites, contaminated food/water, and vectors.", "A single sneeze can eject thousands of microscopic aerosol droplets loaded with respiratory viruses.", "Fomites are contaminated inanimate objects (towels, utensils, door knobs) that transmit infections.", "Biological vectors (mosquitoes, flies) and rabid animal bites transmit blood-borne and systemic pathogens."], "sim_id": "transmission_routes_epidemic_sim", "checkpoints": [{"question": "What is the medical term for contaminated inanimate objects (like shared towels, utensils, or door handles) that transfer disease?", "options": ["Fomites", "Vectors", "Plastids", "Antibodies"], "correct": 0, "explanation": "Fomites are inanimate objects (towels, clothes, door knobs, cups) capable of absorbing and harboring infectious pathogens to transmit them indirectly."}, {"question": "Which of the following diseases is transmitted by the bite of an infected animal suffering from viral encephalitis?", "options": ["Rabies (from rabid dog, bat, or monkey bites)", "Cholera", "Scurvy", "Tuberculosis"], "correct": 0, "explanation": "Rabies is a fatal viral neurological disease transmitted through the saliva of infected animals (most commonly dogs) via bites or deep scratches."}]}, {"id": 10, "title": "Hygiene & Sanitation", "subtitle": "Community Sanitation, Handwashing, and Vector Barriers", "badge": "Preventive Sanitation", "narration": "Preventing an infection is a thousand times better than treating one. Simple sanitation actions—washing hands with soap, ending open defecation, covering coughs, and sleeping under mosquito nets—cut disease transmission chains in communities instantly.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                Breaking the chain of disease transmission relies on personal hygiene and community public health infrastructure:\n            </p>\n            <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-2 text-xs\">\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-emerald-500/30\">\n                    <h4 class=\"font-bold text-emerald-300 text-sm mb-1\">Personal Hygiene Habits</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        • <strong>20-Second Handwashing:</strong> Rubbing palms, finger webs, and nail beds with soap physically dissolves the lipid envelope of viruses and sweeps away bacterial colonies.<br>\n                        • <strong>Respiratory Etiquette:</strong> Covering mouth and nose with a tissue or bent elbow when coughing or sneezing.<br>\n                        • <strong>Food Safety:</strong> Washing raw produce thoroughly, drinking boiled water, and covering cooked meals.\n                    </p>\n                </div>\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-teal-500/30\">\n                    <h4 class=\"font-bold text-teal-300 text-sm mb-1\">Community Sanitation & Vector Control</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        • <strong>Ending Open Defecation:</strong> Constructing household and public toilets protects drinking water aquifers from fecal contamination.<br>\n                        • <strong>Vector Eradication:</strong> Draining waterlogged coolers, tires, and ditches eliminates mosquito breeding sites.<br>\n                        • <strong>Bed Nets & Repellents:</strong> Sleeping under insecticide-treated mosquito nets blocks nocturnal vector bites.\n                    </p>\n                </div>\n            </div>\n        ", "key_points": ["Washing hands with soap and clean water for 20 seconds physically disrupts viral membranes and removes bacteria.", "Community sanitation campaigns (stopping open defecation) safeguard public water reservoirs.", "Covering coughs and sneezes prevents the airborne dispersal of respiratory pathogen aerosols.", "Eliminating stagnant water puddles destroys mosquito breeding grounds, preventing malaria and dengue."], "sim_id": "sanitation_barrier_hygiene_sim", "checkpoints": [{"question": "Why is washing hands with soap and water for at least 20 seconds far superior to just rinsing with plain water?", "options": ["Soap molecules dissolve the protective lipid (fat) membrane of viruses and detach bacterial biofilms", "Soap permanently freezes the skin so germs cannot move", "Soap turns water into pure alcohol", "Soap adds layers of rock over skin pores"], "correct": 0, "explanation": "Soap is amphipathic: its hydrophobic tails penetrate and rupture the lipid outer bilayer of viruses and bacteria, washing the fragments away."}, {"question": "What is the primary public health benefit of community campaigns that eliminate open defecation?", "options": ["Preventing fecal pathogens from contaminating drinking water sources, rivers, and soil", "Reducing global atmospheric carbon dioxide by half", "Increasing the speed of municipal buses", "Lowering the price of vegetables in markets"], "correct": 0, "explanation": "Proper sanitation and toilet use prevent human feces from contaminating groundwater and soil, eliminating the primary transmission route of cholera, typhoid, and worms."}]}, {"id": 11, "title": "Immunity Fortress", "subtitle": "Innate Barriers, White Blood Cells, and Acquired Immunity", "badge": "Immunology", "narration": "Inside your body stands an extraordinary standing army: your immune system. It works around the clock, deploying physical barricades like unbroken skin, chemical weapons like stomach acid, and patrolling battalions of white blood cells that recognize, hunt, and destroy invading pathogens.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                <strong>Immunity</strong> is the body's natural capacity to recognize, resist, and overcome pathogenic infections and foreign toxins:\n            </p>\n            <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-2 text-xs\">\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-blue-500/30\">\n                    <h4 class=\"font-bold text-blue-300 text-sm mb-1\">Innate (Non-Specific) Barriers</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        • <strong>Physical Shield:</strong> Intact keratinized skin blocks entry; mucosal membranes trap airborne particles.<br>\n                        • <strong>Chemical Traps:</strong> Tears and saliva contain <em>lysozyme</em> enzymes that digest bacterial walls; gastric juice contains hydrochloric acid ($\\text{HCl}$, $\\text{pH } 1.5$) that burns swallowed germs.<br>\n                        • <strong>Phagocytes:</strong> Macrophages and neutrophils crawl out of capillaries to engulf and digest germs.\n                    </p>\n                </div>\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-indigo-500/30\">\n                    <h4 class=\"font-bold text-indigo-300 text-sm mb-1\">Acquired (Specific) Immunity</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        • <strong>B-Lymphocytes:</strong> Produce Y-shaped <strong>antibodies</strong> custom-tailored to neutralize specific pathogen antigens.<br>\n                        • <strong>T-Lymphocytes:</strong> Destroy infected host cells.<br>\n                        • <strong>Immunological Memory:</strong> Memory B-cells persist for decades, ensuring an immediate, massive antibody response if the same pathogen invades again.\n                    </p>\n                </div>\n            </div>\n        ", "key_points": ["Immunity is the body's ability to resist and neutralize pathogens through immune defenses.", "Innate immunity provides immediate, non-specific protection via skin, stomach acid, and phagocytes.", "Acquired immunity develops specific Y-shaped antibodies customized against individual pathogens.", "Memory cells retain immunological recall, neutralizing repeat infections before symptoms can appear."], "sim_id": "immune_system_patrol_sim", "checkpoints": [{"question": "What is the role of memory B-cells created during an initial infection or vaccination?", "options": ["They remember the specific antigen to rapidly produce large amounts of antibodies upon re-infection", "They digest human bone marrow to create calcium", "They turn into red blood cells to transport oxygen", "They leave the human body through breath"], "correct": 0, "explanation": "Memory B-cells persist in lymph nodes, 'remembering' the pathogen so that upon future exposure, they produce neutralizing antibodies instantly."}, {"question": "Which of the following serves as a chemical barrier in the body's innate defense system?", "options": ["Hydrochloric acid (HCl) in gastric juice killing swallowed microbes", "Muscle fibers pulling bones", "Nerve cells transmitting electricity", "Hair follicles on the head"], "correct": 0, "explanation": "Gastric hydrochloric acid (pH 1.5–2) is a potent chemical barrier that destroys the cell membranes and denatures proteins of ingested microbes."}]}, {"id": 12, "title": "Vaccines & Protection", "subtitle": "Training the Immune System Without Causing Illness", "badge": "Preventive Immunization", "narration": "What if you could give your immune system target practice against a dangerous enemy before the real battle ever begins? That is the genius of a vaccine. Vaccines train your white blood cells using harmless, weakened, or dead germs so your body builds lifetime antibodies safely.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                A <strong>vaccine</strong> is a biological preparation that safely stimulates the immune system to produce antibodies and memory cells, providing <strong>acquired immunity</strong>:\n            </p>\n            <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-2 text-xs\">\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-emerald-500/30\">\n                    <h4 class=\"font-bold text-emerald-300 text-sm mb-1\">What Are Vaccines Made Of?</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        Vaccines contain harmless components that cannot cause full-blown illness:\n                        <br>• <strong>Attenuated:</strong> Live, greatly weakened pathogens (e.g., Oral Polio, MMR).\n                        <br>• <strong>Inactivated:</strong> Killed pathogens (e.g., Rabies, Hepatitis A).\n                        <br>• <strong>Subunits / Toxoids:</strong> Purified protein fragments or inactivated toxins (e.g., Tetanus toxoid, Hepatitis B).\n                        <br>• <strong>mRNA:</strong> Genetic instructions directing cells to synthesize a harmless viral spike protein temporarily.\n                    </p>\n                </div>\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-teal-500/30\">\n                    <h4 class=\"font-bold text-teal-300 text-sm mb-1\">Strictly Preventive, Not Curative</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        A vaccine is <strong>strictly preventive</strong>: it must be administered <em>before</em> infection to train antibodies and build memory cells. It is not an antibiotic and cannot cure an active infection once the disease has fully taken hold.\n                    </p>\n                </div>\n            </div>\n        ", "key_points": ["Vaccines introduce weakened, killed, or fragment antigens to induce acquired immunity safely.", "They train the immune system to synthesize custom antibodies and long-lived memory cells.", "Vaccines are strictly preventive tools administered before exposure, not curative treatments.", "Immunization provides individual protection and builds community-wide herd immunity."], "sim_id": "vaccine_mechanism_trainer_sim", "checkpoints": [{"question": "Why are vaccines classified as 'preventive' rather than 'curative' medicines?", "options": ["They train the immune system beforehand to prevent infection, but cannot cure an ongoing active illness", "They only work when taken after a person has fully recovered", "They kill all bacteria in the blood within three seconds", "They can only be swallowed with cold fruit juice"], "correct": 0, "explanation": "Vaccines train the immune system proactively by stimulating memory cell creation. Once someone is already severely sick, antibiotics or antivirals are needed, not vaccines."}, {"question": "What biological material can be used to manufacture a safe, effective vaccine?", "options": ["Weakened (attenuated) germs, killed pathogens, harmless protein fragments, or genetic instructions", "Concentrated crude oil and kerosene", "Boiled salt and bleach", "Ground glass powders"], "correct": 0, "explanation": "Vaccines utilize weakened pathogens, inactivated microbes, purified antigen fragments, or mRNA instructions to stimulate antibody defense safely."}]}, {"id": 13, "title": "Vaccine Milestones & India", "subtitle": "Edward Jenner, Smallpox Eradication, Vaccine Maitri & Dr. M.K. Bhan", "badge": "Vaccinology History", "narration": "The story of vaccines spans continents and centuries. From ancient Indian teekedaars practicing variolation to Edward Jenner's 1796 smallpox breakthrough, vaccines eliminated smallpox from Earth by 1979. Today, India is the pharmacy of the world, producing billions of doses and developing life-saving pediatric vaccines.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                Vaccine science has transformed human history from deadly epidemics to global eradication:\n            </p>\n            <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-2 text-xs\">\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-amber-500/30\">\n                    <h4 class=\"font-bold text-amber-300 text-sm mb-1\">Jenner & Smallpox Eradication (1979)</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        • <strong>Ancient Variolation:</strong> Long before modern medicine, traditional Indian practitioners (<em>teekedaars</em>) transferred mild smallpox fluid into skin scratches to induce immunity.<br>\n                        • <strong>Edward Jenner (1796):</strong> Observed that milkmaids infected with mild cowpox never caught smallpox. He inoculated James Phipps with cowpox fluid, creating the first modern vaccine.<br>\n                        • <strong>1979 Global Eradication:</strong> Through global mass vaccination campaigns, the WHO declared smallpox completely eradicated in 1979.\n                    </p>\n                </div>\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-cyan-500/30\">\n                    <h4 class=\"font-bold text-cyan-300 text-sm mb-1\">India: Global Vaccine Leader</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        • <strong>Vaccine Maitri:</strong> India manufactures over $60\\%$ of global childhood vaccines, supplying doses to over 100 countries.<br>\n                        • <strong>Dr. Maharaj Kishan Bhan (1947–2020):</strong> Renowned Indian pediatric scientist who isolated a unique neonatal strain (116E) to develop the world's most affordable indigenous <strong>Rotavirus vaccine (Rotavac)</strong>, protecting millions of infants from deadly diarrheal dehydration.\n                    </p>\n                </div>\n            </div>\n        ", "key_points": ["Edward Jenner created the world's first vaccine in 1796 using cowpox virus against smallpox.", "Traditional Indian variolation was practiced historically by teekedaars to induce immunity.", "Global mass vaccination successfully eradicated smallpox worldwide by 1979.", "India is a global vaccine manufacturing powerhouse (Vaccine Maitri).", "Indian scientist Dr. Maharaj Kishan Bhan developed the indigenous, affordable Rotavirus vaccine for children."], "sim_id": "vaccine_milestones_india_sim", "checkpoints": [{"question": "Which deadly epidemic disease was officially certified as globally eradicated by the WHO in 1979 due to universal vaccination?", "options": ["Smallpox", "Cholera", "Tuberculosis", "Malaria"], "correct": 0, "explanation": "Smallpox is the first and only human infectious disease to be completely eradicated from the planet through global coordinated vaccination campaigns."}, {"question": "What major public health contribution was achieved by Indian pediatric scientist Dr. Maharaj Kishan Bhan?", "options": ["Developing an affordable, indigenous Rotavirus vaccine (Rotavac) to protect children from severe diarrhea", "Inventing the compound glass microscope", "Discovering the penicillin antibiotic mold", "Designing the first steam railway engine"], "correct": 0, "explanation": "Dr. M.K. Bhan pioneered the development of India's low-cost Rotavirus vaccine, saving tens of thousands of infants from fatal diarrheal dehydration."}]}, {"id": 14, "title": "Antibiotics & Fleming", "subtitle": "Penicillin (1928), Cell Wall Targeting, and Ineffectiveness Against Viruses", "badge": "Pharmacology", "narration": "Before the 20th century, a tiny infected scratch or dental infection could be a death sentence. In 1928, Scottish bacteriologist Alexander Fleming made an accidental discovery on an unwashed Petri dish that launched the antibiotic era: a green mold that dissolved surrounding bacteria. That mold produced penicillin.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                <strong>Antibiotics</strong> are specialized biochemical medicines derived from microorganisms that kill or inhibit the replication of susceptible bacteria:\n            </p>\n            <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-2 text-xs\">\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-cyan-500/30\">\n                    <h4 class=\"font-bold text-cyan-300 text-sm mb-1\">Alexander Fleming & Penicillin (1928)</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        British bacteriologist <strong>Alexander Fleming</strong> returned to his laboratory to find that a stray green mold, <em>Penicillium notatum</em>, had contaminated a culture plate of <em>Staphylococcus</em> bacteria. A clear, bacteria-free zone surrounded the mold where bacterial cells had dissolved. He isolated the active compound and named it <strong>Penicillin</strong>.\n                    </p>\n                </div>\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-rose-500/30\">\n                    <h4 class=\"font-bold text-rose-300 text-sm mb-1\">Why Antibiotics Fail on Viruses</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        Antibiotics target structures unique to bacteria (such as the peptidoglycan cell wall or 70S bacterial ribosomes).<br>\n                        <strong>Antibiotics DO NOT work against viruses</strong> (like common cold, flu, COVID-19, or dengue) or protozoa, because viruses lack cell walls and reproduce inside host cells. Taking antibiotics for viral colds is completely useless and dangerous.\n                    </p>\n                </div>\n            </div>\n        ", "key_points": ["Alexander Fleming discovered the first natural antibiotic, Penicillin, from Penicillium mold in 1928.", "Antibiotics specifically kill or inhibit bacteria by disrupting bacterial cell walls or ribosomes.", "Antibiotics have zero therapeutic effect against viruses (such as colds, flu, and measles) or protozoa.", "Taking antibiotics for viral respiratory illnesses provides no cure and fuels antibiotic resistance."], "sim_id": "fleming_penicillin_petri_sim", "checkpoints": [{"question": "Why do doctors strictly advise that antibiotics should NEVER be taken for a common cold or viral flu?", "options": ["Colds and flu are caused by viruses, and antibiotics target structures found only in bacteria", "Antibiotics make cold viruses ten times larger in size", "Antibiotics turn drinking water into poison inside the throat", "Antibiotics only work when taken during heavy rainfall"], "correct": 0, "explanation": "Antibiotics target bacterial features (like peptidoglycan cell walls). Viruses lack these structures and are completely unaffected by antibacterial medications."}, {"question": "Which scientist discovered Penicillin in 1928 after observing mold halting bacterial growth in a petri dish?", "options": ["Alexander Fleming", "Edward Jenner", "Robert Hooke", "Antonie van Leeuwenhoek"], "correct": 0, "explanation": "Alexander Fleming discovered penicillin in 1928 when the green mold Penicillium notatum contaminated his Staphylococcus bacterial culture."}]}, {"id": 15, "title": "Resistance & Pioneers", "subtitle": "Superbugs, Traditional Systems, and Kamal Ranadive's Cancer Research", "badge": "Modern Medical Frontiers", "narration": "Miracle medicines can lose their power if abused. Today, humanity faces a crisis known as antibiotic resistance: bacteria that survive medications and multiply into unstoppable superbugs. Meanwhile, researchers combine traditional knowledge from Ayurveda with pioneering biomedical breakthroughs, like Dr. Kamal Ranadive's cancer research.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                The future of medical treatment depends on conserving antibiotic effectiveness and integrating traditional natural wellness with cellular oncology:\n            </p>\n            <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-2 text-xs\">\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-rose-500/30\">\n                    <h4 class=\"font-bold text-rose-300 text-sm mb-1\">The Superbug Crisis: Antibiotic Resistance</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        • <strong>Mechanism:</strong> When antibiotics are misused (taken without prescription or stopped prematurely before finishing the full course), partially resistant bacteria survive and mutate.<br>\n                        • <strong>Threat:</strong> These 'superbugs' spread through water, food, and hospitals, making common infections like pneumonia and urinary tract infections untreatable.\n                    </p>\n                </div>\n                <div class=\"p-3 rounded-xl bg-slate-900/60 border border-cyan-500/30\">\n                    <h4 class=\"font-bold text-cyan-300 text-sm mb-1\">Traditional Systems & Kamal Ranadive</h4>\n                    <p class=\"text-slate-300 leading-relaxed\">\n                        • <strong>Ayurveda, Siddha & Unani:</strong> Utilize herbs, natural oils, and mineral preparations to support baseline immunity and manage lifestyle imbalances.<br>\n                        • <strong>Kamal Ranadive (1917–2001):</strong> Pioneering Indian biomedical scientist at the Cancer Research Centre in Mumbai. She established India's first tissue culture laboratory and conducted breakthrough research linking hormones, viral pathogens, tobacco chewing, and diet to cancer.\n                    </p>\n                </div>\n            </div>\n        ", "key_points": ["Antibiotic resistance arises when bacteria mutate to survive drugs due to misuse or incomplete courses.", "Resistant superbugs threaten to make standard bacterial infections untreatable by modern medicine.", "Traditional healthcare systems (Ayurveda, Siddha, Unani) use natural herbal preparations for wellness.", "Biomedical pioneer Dr. Kamal Ranadive established India's first tissue culture lab, studying cancer causes."], "sim_id": "antibiotic_resistance_superbug_sim", "checkpoints": [{"question": "What dangerous consequence occurs when a patient stops taking prescribed antibiotics early as soon as they feel slightly better?", "options": ["Surviving partially resistant bacteria multiply and evolve into multi-drug-resistant 'superbugs'", "All body cells turn into pure water", "The patient develops smallpox instantly", "The stomach permanently stops producing digestive acid"], "correct": 0, "explanation": "Failing to complete the full antibiotic course leaves resilient bacteria alive to develop resistance mutations, creating dangerous superbugs."}, {"question": "What was the landmark scientific contribution of Indian biomedical pioneer Dr. Kamal Ranadive (1917–2001)?", "options": ["Establishing India's first tissue culture lab and researching links between viruses, hormones, tobacco, and cancer", "Inventing the optical telescope", "Discovering the element oxygen", "Writing the first Ayurvedic text on surgery"], "correct": 0, "explanation": "Dr. Kamal Ranadive established India's first tissue culture facility and conducted pioneering research into the causative links between tobacco, hormones, and cancer."}]}, {"id": 16, "title": "Master Synthesis Matrix", "subtitle": "Health Pillars, Disease Classes, and Preventive Milestones", "badge": "Chapter Synthesis", "narration": "We have explored the full spectrum of human health, from WHO definitions and Ayurvedic routines to infectious pathogens, non-communicable diseases, vaccines, and antibiotics. Here is our master synthesis matrix connecting health pillars, diagnostic signals, disease types, and treatments.", "theory": "\n            <p class=\"text-base text-slate-300 mb-3 leading-relaxed\">\n                Review this master comparative matrix synthesizing the core concepts of Class 8 Science Chapter 3:\n            </p>\n            <div class=\"overflow-x-auto my-2\">\n                <table class=\"w-full text-left text-xs border-collapse\">\n                    <thead>\n                        <tr class=\"border-b border-slate-700 bg-slate-900/80 text-cyan-400 font-bold\">\n                            <th class=\"p-2\">Dimension</th>\n                            <th class=\"p-2\">Key Criteria</th>\n                            <th class=\"p-2\">Examples</th>\n                            <th class=\"p-2\">Underlying Cause</th>\n                            <th class=\"p-2\">Prevention / Intervention</th>\n                        </tr>\n                    </thead>\n                    <tbody class=\"divide-y divide-slate-800 text-slate-300\">\n                        <tr class=\"hover:bg-slate-900/40\">\n                            <td class=\"p-2 font-bold text-emerald-400\">Holistic Health</td>\n                            <td class=\"p-2\">Physical, Mental, Social balance</td>\n                            <td class=\"p-2\">Stamina, emotional calm, social bonds</td>\n                            <td class=\"p-2\">Dinacharya, Ritucharya, nutrition</td>\n                            <td class=\"p-2 text-cyan-300 font-mono\">Exercise, sleep, Yoga, zero tobacco</td>\n                        </tr>\n                        <tr class=\"hover:bg-slate-900/40\">\n                            <td class=\"p-2 font-bold text-amber-400\">Diagnosis</td>\n                            <td class=\"p-2\">Symptoms vs Signs</td>\n                            <td class=\"p-2\">Headache/nausea vs fever ($39^\\circ\\text{C}$), rash</td>\n                            <td class=\"p-2\">Subjective feeling vs objective test</td>\n                            <td class=\"p-2 text-cyan-300 font-mono\">Clinical examination & diagnostic tests</td>\n                        </tr>\n                        <tr class=\"hover:bg-slate-900/40\">\n                            <td class=\"p-2 font-bold text-purple-400\">Communicable</td>\n                            <td class=\"p-2\">Spread by pathogens</td>\n                            <td class=\"p-2\">TB, Cholera, Flu, Dengue, Malaria, Worms</td>\n                            <td class=\"p-2\">Bacteria, viruses, protozoa, helminths</td>\n                            <td class=\"p-2 text-cyan-300 font-mono\">Hygiene, boiled water, sanitation, vaccines</td>\n                        </tr>\n                        <tr class=\"hover:bg-slate-900/40\">\n                            <td class=\"p-2 font-bold text-rose-400\">Non-Communicable</td>\n                            <td class=\"p-2\">Non-infectious, chronic</td>\n                            <td class=\"p-2\">Diabetes, Asthma, Cancer, Scurvy, Goitre</td>\n                            <td class=\"p-2\">Lifestyle, genetics, nutrient deficits</td>\n                            <td class=\"p-2 text-cyan-300 font-mono\">Diet, iodine, active living, avoiding toxins</td>\n                        </tr>\n                        <tr class=\"hover:bg-slate-900/40\">\n                            <td class=\"p-2 font-bold text-cyan-400\">Medical Tools</td>\n                            <td class=\"p-2\">Vaccines vs Antibiotics</td>\n                            <td class=\"p-2\">Smallpox, Rotavac vs Penicillin</td>\n                            <td class=\"p-2\">Preventive immunity vs bacterial cure</td>\n                            <td class=\"p-2 text-cyan-300 font-mono\">Complete course, no viral antibiotic use</td>\n                        </tr>\n                    </tbody>\n                </table>\n            </div>\n        ", "key_points": ["Health integrates physical fitness, emotional stability, and harmonious social relationships.", "Symptoms are subjective patient sensations; signs are objective clinical measurements.", "Communicable diseases spread through pathogens; NCDs arise from genetics, diet, and lifestyle.", "Vaccines train immunity preventively, while antibiotics specifically cure bacterial infections."], "sim_id": "health_disease_master_matrix_sim", "checkpoints": [{"question": "Which combination correctly contrasts vaccines and antibiotics?", "options": ["Vaccines are strictly preventive tools training immunity; antibiotics are curative medicines targeting bacteria", "Vaccines kill all viruses in seconds; antibiotics build memory cells", "Vaccines are taken after a disease is cured; antibiotics are taken before birth", "Vaccines and antibiotics are identical chemical sugar pills"], "correct": 0, "explanation": "Vaccines prevent disease by training immune memory beforehand, while antibiotics treat and cure active bacterial infections."}, {"question": "Which set of diseases represents non-communicable nutritional deficiency disorders?", "options": ["Scurvy (Vitamin C), Anaemia (Iron), and Goitre (Iodine)", "Cholera, Typhoid, and Tuberculosis", "Malaria, Dengue, and Chikungunya", "Influenza, Measles, and Chickenpox"], "correct": 0, "explanation": "Scurvy, anaemia, and goitre are non-communicable nutritional deficiencies caused by specific lack of Vitamin C, Iron, and Iodine."}]}, {"id": 17, "title": "Mastery Challenge • Part I", "subtitle": "Questions 1–10: WHO Health Definition, Ayurveda, Lifestyle & Symptoms vs Signs", "badge": "Exam Certification", "narration": "Test your mastery of foundational health concepts. Click Solution on any question to view step-by-step scientific explanations.", "theory": "<p class='text-sm text-slate-300'>Challenge questions covering WHO definition, Ayurveda dinacharya/ritucharya, diet, screen time limits, AQI air pollution, and symptoms vs signs.</p>", "key_points": ["Attempt all 10 questions independently.", "Review step-by-step scientific solutions.", "Master the distinction between subjective symptoms and objective clinical signs."], "is_quiz_slide": true, "quiz_range": "1–10", "questions": [{"id": 1, "question": "How does the World Health Organization (WHO) formally define health?", "options": ["A state of complete physical, mental, and social well-being, and not merely the absence of disease", "Having a normal body weight without requiring glasses", "Never having to sleep more than four hours a night", "Having a high bank balance and owning property"], "correct": 0, "solution": "Step 1: The WHO constitution (1948) defines health beyond mere absence of physical illness.\nStep 2: It encompasses three interconnected dimensions: physical bodily functioning, mental-emotional resilience, and healthy social adaptation."}, {"id": 2, "question": "In the Ayurvedic health system, what does 'Dinacharya' refer to?", "options": ["A healthy daily routine aligned with natural body rhythms, including early rising, hygiene, and timed meals", "A seasonal festival celebrated once a year", "An invasive surgical operation performed on organs", "A heavy workout performed exclusively at midnight"], "correct": 0, "solution": "Step 1: 'Dina' means day, and 'charya' means routine or conduct.\nStep 2: Dinacharya prescribes waking early (Brahma Muhurta), oral hygiene, exercise, mindful eating, and regular sleep to maintain constitutional balance."}, {"id": 3, "question": "What is the Ayurvedic principle of 'Ritucharya'?", "options": ["Modifying diet, clothing, and lifestyle in response to seasonal changes in climate", "Exercising for ten continuous hours on Sunday", "Fasting completely for six months", "Drinking only cold refrigerated soda in winter"], "correct": 0, "solution": "Step 1: 'Ritu' means season in Sanskrit.\nStep 2: Ritucharya details dietary and behavioral modifications for each season (summer, monsoon, autumn, winter) to preserve bodily homeostasis."}, {"id": 4, "question": "What health issues are commonly triggered by excessive recreational screen time on phones, TVs, and tablets in youth?", "options": ["Sedentary obesity, digital eye strain, disrupted sleep cycles, and anxiety", "Sudden loss of all red blood cells", "Growing three times taller than normal", "Development of gills for underwater breathing"], "correct": 0, "solution": "Step 1: Prolonged screen viewing reduces physical exercise, contributing to obesity.\nStep 2: Blue light suppresses melatonin, disturbing sleep architecture.\nStep 3: Passive digital consumption correlates with eye strain and anxiety."}, {"id": 5, "question": "What does the Air Quality Index (AQI) track and indicate for public health?", "options": ["Concentrations of airborne pollutants (PM2.5, PM10, gases) to assess public respiratory health risk", "The percentage of salt present in coastal ocean water", "The amount of nitrogen gas absorbed by tree roots", "The volume of rain falling in a single cloud"], "correct": 0, "solution": "Step 1: AQI monitors atmospheric air quality by tracking particulate matter (PM2.5, PM10) and toxic gases (SO₂, NO₂, CO).\nStep 2: Higher AQI numbers indicate dangerous pollution levels that trigger asthma, bronchitis, and cardiac stress."}, {"id": 6, "question": "What is a major difference between a clinical 'symptom' and a clinical 'sign'?", "options": ["Symptoms are subjective experiences felt only by the patient; signs are objective indicators observed or measured by doctors", "Symptoms can only be measured by thermometers; signs are felt only by family members", "Symptoms always require surgery; signs never require any treatment", "Symptoms only happen to plants; signs only happen to animals"], "correct": 0, "solution": "Step 1: Symptoms (e.g., headache, nausea, dizziness) are subjective sensations reported by the patient.\nStep 2: Signs (e.g., fever on a thermometer, high blood pressure, visible rash) can be measured or observed by a physician."}, {"id": 7, "question": "Which of the following is a subjective symptom rather than an objective clinical sign?", "options": ["Feeling extreme fatigue and dizziness", "A body temperature of 102.5°F measured on a thermometer", "A blood pressure reading of 150/95 mmHg", "A visible red rash spreading over the chest"], "correct": 0, "solution": "Step 1: Fatigue and dizziness are internal sensations felt only by the individual patient (symptoms).\nStep 2: Thermometer temperatures, blood pressure values, and visible rashes can be objectively examined and measured (signs)."}, {"id": 8, "question": "Why is regular practice of Pranayama (breathing exercises) and Yoga beneficial for mental and physical health?", "options": ["It activates the parasympathetic nervous system, reduces stress hormones, and enhances concentration", "It stops the heart from beating completely", "It eliminates the need to drink water or eat food", "It changes human blood color from red to green"], "correct": 0, "solution": "Step 1: Controlled breathing (Pranayama) stimulates the vagus nerve, calming the sympathetic 'fight-or-flight' stress response.\nStep 2: This reduces cortisol levels, improves oxygenation, and sharpens mental focus."}, {"id": 9, "question": "Why does spending quality time talking, laughing, and socializing with family and friends promote emotional well-being?", "options": ["It triggers the release of positive neurotransmitters like endorphins and oxytocin, buffering against loneliness", "It increases the body's cholesterol levels", "It prevents bones from absorbing calcium", "It forces brain cells to stop thinking"], "correct": 0, "solution": "Step 1: Positive social connection releases endorphins and oxytocin, hormones associated with bonding and happiness.\nStep 2: This reduces chronic loneliness, lowers cardiovascular strain, and boosts psychological resilience."}, {"id": 10, "question": "What is the standard medical definition of a 'disease'?", "options": ["A condition that disrupts or impairs the normal physiological or psychological functioning of the body or mind", "Feeling slightly tired after running a marathon", "Having to wake up early on Monday morning", "Drinking water that is not ice-cold"], "correct": 0, "solution": "Step 1: Disease represents a pathological disruption of physiological homeostasis.\nStep 2: It impairs specific organs, tissues, or mental functions, producing characteristic signs and symptoms."}]}, {"id": 18, "title": "Mastery Challenge • Part II", "subtitle": "Questions 11–20: Communicable Pathogens, NCDs, Deficiency Diseases & Transmission", "badge": "Exam Certification", "narration": "Mastery challenge part two covers communicable pathogens, chronic NCDs in India, nutritional deficiencies, and transmission modes.", "theory": "<p class='text-sm text-slate-300'>Challenge questions covering bacteria, viruses, protozoa, helminths, scurvy, goitre, anaemia, aerosols, fomites, and vectors.</p>", "key_points": ["Differentiate between communicable and non-communicable disorders.", "Analyze deficiency diseases caused by micronutrient deficits.", "Understand the 5 primary routes of infectious disease transmission."], "is_quiz_slide": true, "quiz_range": "11–20", "questions": [{"id": 11, "question": "What is a 'communicable disease'?", "options": ["An infectious illness caused by pathogens that can spread from an infected person to a healthy individual", "A disease caused exclusively by genetic mutations passed from grandparents", "An injury caused by falling down stairs", "A condition caused by drinking boiled milk"], "correct": 0, "solution": "Step 1: Communicable diseases are infectious.\nStep 2: They are caused by biological pathogens (bacteria, viruses, fungi, protozoa, helminths) and transmit across individuals via air, water, contact, or vectors."}, {"id": 12, "question": "Which of the following communicable diseases is caused by an intestinal parasitic roundworm (helminth)?", "options": ["Ascariasis (Ascaris lumbricoides)", "Tuberculosis", "Influenza", "Malaria"], "correct": 0, "solution": "Step 1: *Ascaris lumbricoides* is a giant intestinal roundworm.\nStep 2: Ingestion of microscopic eggs from fecally contaminated soil or unwashed vegetables causes ascariasis, leading to abdominal pain and nutritional loss."}, {"id": 13, "question": "Why are conditions like Type-2 Diabetes, Asthma, and Hypertension classified as 'Non-Communicable Diseases' (NCDs)?", "options": ["They are not caused by infectious pathogens and cannot spread from person to person", "They only last for two hours before disappearing", "They are caused by mosquito bites during winter", "They can be completely cured by drinking fruit juice once"], "correct": 0, "solution": "Step 1: Non-communicable diseases (NCDs) are non-infectious.\nStep 2: They stem from genetic predisposition, metabolic dysregulation, aging, and lifestyle factors; they cannot be transmitted between people."}, {"id": 14, "question": "What is the duration threshold used by medical professionals to classify an illness as a 'chronic disease'?", "options": ["Persisting for more than three months", "Lasting for less than 24 hours", "Lasting exactly seven days", "Lasting only during night hours"], "correct": 0, "solution": "Step 1: In medical epidemiology, chronic diseases are defined as conditions persisting for 3 months or longer.\nStep 2: They often require ongoing medical management and are the leading cause of death in India."}, {"id": 15, "question": "Scurvy is a non-communicable nutritional deficiency disease characterized by bleeding gums and poor wound healing. It is caused by a lack of:", "options": ["Vitamin C (Ascorbic acid)", "Vitamin D", "Calcium", "Iron"], "correct": 0, "solution": "Step 1: Vitamin C (ascorbic acid) is essential for collagen protein synthesis.\nStep 2: Deficiency of Vitamin C leads to scurvy, causing capillary fragility, bleeding gums, loose teeth, and delayed wound healing."}, {"id": 16, "question": "Anaemia, characterized by extreme fatigue, weakness, and pale skin, is most commonly caused by a dietary deficiency of which mineral?", "options": ["Iron (essential for hemoglobin synthesis)", "Sodium", "Potassium", "Chlorine"], "correct": 0, "solution": "Step 1: Iron is the core mineral required to synthesize hemoglobin in red blood cells.\nStep 2: Dietary iron deficiency impairs oxygen transport, resulting in nutritional anaemia, chronic fatigue, and pallor."}, {"id": 17, "question": "Goitre, a condition characterized by a visible swelling in the neck due to an enlarged thyroid gland, is caused by a deficiency of:", "options": ["Iodine", "Vitamin A", "Vitamin B1", "Magnesium"], "correct": 0, "solution": "Step 1: The thyroid gland requires dietary iodine to manufacture thyroxine hormones.\nStep 2: Lack of iodine causes the thyroid gland to swell in an attempt to capture available iodine, forming a goitre."}, {"id": 18, "question": "How are airborne respiratory diseases like the common cold, measles, influenza, and tuberculosis transmitted?", "options": ["Through microscopic aerosol droplets expelled when an infected person sneezes or coughs", "Exclusively through drinking pasteurized milk", "By looking at an infected person through clean glass", "By walking under the shadow of a tree at night"], "correct": 0, "solution": "Step 1: Coughing and sneezing release thousands of pathogen-laden aerosol droplets into the surrounding air.\nStep 2: Susceptible individuals inhale these airborne droplets, contracting respiratory tract infections."}, {"id": 19, "question": "What is the epidemiological term for contaminated inanimate objects—such as shared towels, bedsheets, cups, or doorknobs—that transmit pathogens?", "options": ["Fomites", "Vectors", "Antibiotics", "Antigens"], "correct": 0, "solution": "Step 1: Fomites are non-living objects (towels, clothes, utensils, door handles, phone screens) capable of carrying infectious pathogens indirectly from one person to another."}, {"id": 20, "question": "Which of the following pairs correctly matches a biological vector with the disease it transmits to humans?", "options": ["Female Anopheles mosquito • Malaria | Aedes mosquito • Dengue", "Housefly • Rabies | Honeybee • Cholera", "Culex mosquito • Scurvy | Ant • Diabetes", "Butterfly • Tuberculosis | Earthworm • Common Cold"], "correct": 0, "solution": "Step 1: Female *Anopheles* mosquitoes transmit the protozoan *Plasmodium* (Malaria).\nStep 2: *Aedes aegypti* mosquitoes transmit the Dengue virus."}]}, {"id": 19, "title": "Mastery Challenge • Part III", "subtitle": "Questions 21–30: Hygiene, Immunity, Vaccine Principles & Historical Milestones", "badge": "Exam Certification", "narration": "Part three tests your understanding of personal hygiene, innate vs acquired immunity, vaccine training mechanisms, Edward Jenner, and Indian vaccine leadership.", "theory": "<p class='text-sm text-slate-300'>Challenge questions covering handwashing lipid disruption, community sanitation, antibodies, Jenner 1796, smallpox 1979 eradication, and Vaccine Maitri.</p>", "key_points": ["Master innate barriers and memory cell immunological dynamics.", "Explain why vaccines are strictly preventive tools.", "Connect Indian variolation history with modern public health leadership."], "is_quiz_slide": true, "quiz_range": "21–30", "questions": [{"id": 21, "question": "Why is washing hands with soap and water for 20 seconds so effective at neutralizing enveloped viruses like Influenza and Coronaviruses?", "options": ["Soap molecules have hydrophobic tails that insert into and dissolve the viral lipid outer membrane, rupturing the virus", "Soap freezes the virus at room temperature into ice", "Soap converts virus proteins into pure sugar", "Soap generates strong electrical shocks that kill germs"], "correct": 0, "solution": "Step 1: Enveloped viruses are surrounded by a lipid (fat) membrane.\nStep 2: Soap molecules are amphipathic. Their hydrophobic tails wedge into the lipid bilayer, prying it apart and destroying the virus."}, {"id": 22, "question": "What is the primary public health benefit of community campaigns that end open defecation and provide sanitary toilets?", "options": ["Preventing fecal pathogens from contaminating drinking water sources, rivers, and agricultural soil", "Lowering the temperature of clouds to make it rain every day", "Making streets smell like flower perfume", "Eliminating the need for humans to sleep"], "correct": 0, "solution": "Step 1: Open defecation allows human feces containing bacteria, viruses, and worm eggs to seep into drinking water and topsoil.\nStep 2: Sanitary toilet facilities sever this fecal-oral transmission chain, preventing cholera, typhoid, hepatitis, and ascariasis."}, {"id": 23, "question": "What is the body's 'immune system'?", "options": ["A complex network of physical barriers, white blood cells, antibodies, and organs that defends against pathogens", "A bone structure located exclusively inside the kneecap", "A collection of teeth used for chewing vegetables", "A muscular pump that sends air into the stomach"], "correct": 0, "solution": "Step 1: The immune system comprises skin barriers, gastric acid, lymphoid organs, white blood cells (phagocytes, lymphocytes), and antibodies.\nStep 2: It identifies foreign antigens, destroys invaders, and generates immunological memory."}, {"id": 24, "question": "How does a vaccine train the immune system to produce long-lasting acquired immunity?", "options": ["By introducing weakened, killed, or fragment antigens so the body safely generates antibodies and memory cells", "By injecting living lethal poisons to test if the body can survive", "By removing all white blood cells from circulation", "By freezing the bone marrow"], "correct": 0, "solution": "Step 1: Vaccines expose the immune system to harmless versions of pathogen antigens.\nStep 2: The body mounts a primary immune response, generating protective antibodies and long-lived memory B-cells without causing clinical disease."}, {"id": 25, "question": "Why are vaccines strictly classified as 'preventive' rather than 'curative' medical tools?", "options": ["They must be administered before infection to build protective immunity; they cannot cure an active, established illness", "They can only be given to people who have already suffered from the disease for five years", "They dissolve inside the blood after three seconds", "They only work when taken together with boiling tea"], "correct": 0, "solution": "Step 1: Vaccines prepare the body's defenses proactively.\nStep 2: Once an individual is already infected and acutely sick, antibiotics, antivirals, or antitoxins are required, not vaccines."}, {"id": 26, "question": "How did English physician Edward Jenner develop the world's first modern vaccine in 1796?", "options": ["He inoculated a boy with fluid from a cowpox pustule, demonstrating cross-protection against lethal smallpox", "He boiled smallpox scabs and fed them to horses", "He extracted penicillin from green bread mold", "He discovered the compound microscope"], "correct": 0, "solution": "Step 1: Jenner noticed milkmaids infected with benign cowpox were immune to smallpox.\nStep 2: In 1796, he inoculated James Phipps with cowpox pustule fluid.\nStep 3: When later exposed to smallpox, the boy was completely immune, proving cross-protective vaccination."}, {"id": 27, "question": "What was the traditional practice of 'variolation' practiced in ancient India by traditional practitioners (teekedaars)?", "options": ["Inoculating individuals with mild smallpox material to induce a mild, immunizing infection before modern vaccines existed", "Boiling all water in earthen pots before sunrise", "Wearing copper bangles to ward off mosquitoes", "Injecting snake venom into tree bark"], "correct": 0, "solution": "Step 1: Long before Jenner, Indian 'teekedaars' practiced variolation.\nStep 2: They scratched skin and applied dried scabs from mild smallpox cases, providing acquired immunity despite higher risks than modern vaccines."}, {"id": 28, "question": "In what year was smallpox officially declared completely eradicated worldwide by the World Health Organization?", "options": ["1979", "1900", "1850", "2015"], "correct": 0, "solution": "Step 1: Global coordinated mass vaccination campaigns led by the WHO successfully broke the transmission chain of smallpox.\nStep 2: The disease was officially declared globally eradicated in 1979."}, {"id": 29, "question": "What is 'Vaccine Maitri' in the context of India's global public health contributions?", "options": ["An initiative through which India manufactured and supplied millions of life-saving vaccine doses to over 100 countries", "A festival celebrated by planting neem trees", "A military exercise conducted on ships", "A program to build electronic computers for schools"], "correct": 0, "solution": "Step 1: India is a global leader in vaccine manufacturing, supplying over 60% of international childhood vaccines.\nStep 2: Through Vaccine Maitri, India supplied millions of vaccine doses to developing nations across the globe."}, {"id": 30, "question": "What breakthrough public health achievement was led by Indian pediatric scientist Dr. Maharaj Kishan Bhan?", "options": ["Isolating a neonatal rotavirus strain (116E) to develop an affordable, indigenous Rotavirus vaccine (Rotavac)", "Inventing the first chemical antibiotic", "Discovering the cellular nucleus under a microscope", "Eradicating the common cold from the world"], "correct": 0, "solution": "Step 1: Dr. M.K. Bhan discovered a unique rotavirus strain in neonates in New Delhi.\nStep 2: He championed the development of Rotavac, an affordable indigenous vaccine that protects millions of children from fatal diarrheal dehydration."}]}, {"id": 20, "title": "Mastery Challenge • Part IV", "subtitle": "Questions 31–40: Fleming & Penicillin, Resistance Superbugs & Pioneer Research", "badge": "Exam Certification", "narration": "The final mastery challenge covers Fleming's penicillin, viral ineffectiveness of antibiotics, antibiotic resistance superbugs, and Dr. Kamal Ranadive's cancer research.", "theory": "<p class='text-sm text-slate-300'>Challenge questions covering Alexander Fleming (1928), bacterial cell wall inhibition, causes of antibiotic resistance, and Dr. Kamal Ranadive's oncology legacy.</p>", "key_points": ["Understand why antibiotics cannot cure colds, flu, or viral illnesses.", "Analyze the biological crisis of antibiotic resistance superbugs.", "Synthesize traditional Indian medicine with modern biomedical oncology."], "is_quiz_slide": true, "quiz_range": "31–40", "questions": [{"id": 31, "question": "What are antibiotics, and what class of pathogens do they specifically target?", "options": ["Medicines that kill or inhibit bacteria by targeting bacterial cell structures; they do NOT work on viruses", "Medicines that destroy only viruses while leaving bacteria alive", "Chemical fertilizers used to grow wheat faster", "Vitamins that replace the need for drinking water"], "correct": 0, "solution": "Step 1: Antibiotics are antibacterial compounds derived from microorganisms or synthesized chemically.\nStep 2: They selectively destroy bacterial cell walls or ribosomes and have zero effect on viral pathogens."}, {"id": 32, "question": "Who discovered the first natural antibiotic, Penicillin, in 1928, and how did he make the discovery?", "options": ["Alexander Fleming; he observed that a green mold (Penicillium notatum) had destroyed surrounding Staphylococcus bacteria in a petri dish", "Edward Jenner; by milking cows in England", "Robert Hooke; by slicing dead cork bark", "Louis Pasteur; by boiling grape juice"], "correct": 0, "solution": "Step 1: In 1928, Scottish scientist Alexander Fleming noticed a contaminated Petri dish with *Penicillium notatum* mold.\nStep 2: The mold secreted a substance that lysed surrounding *Staphylococcus* bacterial colonies, leading to the discovery of penicillin."}, {"id": 33, "question": "Why do antibiotics have zero effect on viral diseases like the common cold, influenza, measles, or COVID-19?", "options": ["Viruses lack bacterial cell walls, peptidoglycan, and ribosomes; they use host cell machinery to replicate", "Viruses eat antibiotics as food and grow ten times faster", "Antibiotics are too large to enter the human stomach", "Viruses can only be killed by boiling water"], "correct": 0, "solution": "Step 1: Antibiotics target specific bacterial metabolic pathways and peptidoglycan cell walls.\nStep 2: Viruses are acellular and hijack human host cell machinery; they lack the targets that antibiotics attack."}, {"id": 34, "question": "What is the biological definition of 'Antibiotic Resistance'?", "options": ["The phenomenon where bacteria survive, multiply, and evade destruction despite the presence of antibiotic drugs", "The human body becoming completely immune to all diseases permanently", "A person forgetting to take their vitamins with breakfast", "Antibiotic tablets dissolving too quickly in a glass of water"], "correct": 0, "solution": "Step 1: Antibiotic resistance occurs when bacterial populations evolve defense mechanisms (such as beta-lactamase enzymes or efflux pumps).\nStep 2: Standard antibiotic medications become ineffective, allowing resistant 'superbugs' to survive and spread."}, {"id": 35, "question": "Which human behaviors directly drive the dangerous emergence of antibiotic-resistant 'superbugs'?", "options": ["Overusing antibiotics for viral colds, purchasing them without prescriptions, and failing to finish the full prescribed course", "Drinking too much boiled water", "Exercising outdoors in morning sunlight", "Eating fresh green vegetables every day"], "correct": 0, "solution": "Step 1: Inappropriate antibiotic use (for viral infections) and premature discontinuation allow partially resistant bacteria to survive.\nStep 2: These surviving bacteria multiply, share resistance genes on plasmids, and produce untreatable superbug strains."}, {"id": 36, "question": "What was the landmark scientific contribution of Indian biomedical pioneer Dr. Kamal Ranadive (1917–2001)?", "options": ["Establishing India's first tissue culture laboratory and researching causative links between tobacco, hormones, and cancer", "Inventing the modern stethoscope", "Discovering the chemical structure of table salt", "Developing the first steam locomotive engine"], "correct": 0, "solution": "Step 1: Dr. Kamal Ranadive was a trailblazing biomedical researcher at the Cancer Research Centre in Mumbai.\nStep 2: She founded India's first tissue culture facility and conducted breakthrough research on the carcinogenesis of tobacco chewing, hormones, and viruses."}, {"id": 37, "question": "How do traditional Indian systems of medicine (like Ayurveda, Siddha, and Unani) contribute to holistic public health?", "options": ["By utilizing natural herbs, diet, and lifestyle routines to promote preventive wellness and manage chronic imbalances", "By replacing all hospitals and banning modern surgery", "By producing synthetic antibiotics inside plastic factories", "By advising people never to wash their hands"], "correct": 0, "solution": "Step 1: Traditional systems emphasize preventive lifestyle harmony, seasonal routines, and herbal therapeutics.\nStep 2: They complement modern medicine by fostering long-term metabolic health and disease prevention."}, {"id": 38, "question": "Which combination of public health measures is most effective for preventing the spread of mosquito-borne diseases like malaria and dengue?", "options": ["Eliminating stagnant water puddles, using mosquito repellents, and sleeping under insecticide-treated bed nets", "Taking antibiotic capsules every morning", "Eating raw lemons without water", "Closing all windows and refusing to let fresh air into rooms"], "correct": 0, "solution": "Step 1: Draining standing water in coolers, buckets, and ditches eliminates mosquito breeding.\nStep 2: Bed nets and repellents prevent vector bites, breaking transmission of malaria and dengue."}, {"id": 39, "question": "Why is oral and respiratory etiquette (covering mouth and nose with a tissue or bent elbow when sneezing) essential in classrooms and public spaces?", "options": ["It intercepts and traps aerosol droplets, preventing the airborne transmission of flu, colds, and tuberculosis to others", "It makes the classroom look cleaner for photographs", "It turns sound waves into oxygen gas", "It prevents teeth from falling out"], "correct": 0, "solution": "Step 1: Sneezing releases thousands of high-velocity microscopic aerosol droplets containing pathogens.\nStep 2: Covering the mouth and nose with a tissue or elbow blocks droplet dispersal, protecting surrounding people."}, {"id": 40, "question": "Which of the following summaries accurately unifies the core lessons of Class 8 Science Chapter 3 on health and disease?", "options": ["True health integrates physical, mental, and social wellness; infections are prevented by hygiene and vaccines, while bacterial diseases are treated with antibiotics without misuse", "Health is merely the absence of a fever, and all diseases can be cured by taking antibiotics every day", "Non-communicable diseases are caused by dirty air alone and can be cured by vaccines", "Drinking soda and watching ten hours of television daily is the best way to maintain mental health"], "correct": 0, "solution": "Step 1: Chapter 3 establishes that health is multidimensional (physical, mental, social).\nStep 2: Prevention combines balanced lifestyle, clean environment, hygiene, and vaccines.\nStep 3: Antibiotics selectively cure bacterial infections and must be preserved against superbug resistance."}]}];
+
+    let currentSlideIndex = 0;
+    let isSpeaking = false;
+    let synth = window.speechSynthesis;
+    let quizScores = {};
+
+    function loadSlide(index) {
+      if (index < 0 || index >= SLIDES.length) return;
+      currentSlideIndex = index;
+      stopSpeech();
+
+      const slide = SLIDES[index];
+      const indicator = document.getElementById('slideNumDisplay');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const footerNextBtn = document.getElementById('footerNextBtn');
+      const lastNotice = document.getElementById('lastSlideNotice');
+      const lessonGrid = document.getElementById('lessonGrid');
+      const quizContainer = document.getElementById('quizContainer');
+
+      indicator.textContent = `Slide ${index + 1} of ${SLIDES.length}`;
+      prevBtn.disabled = (index === 0);
+
+      if (index === SLIDES.length - 1) {
+        nextBtn.style.display = 'none';
+        footerNextBtn.style.display = 'none';
+        lastNotice.style.display = 'block';
+      } else {
+        nextBtn.style.display = 'inline-flex';
+        footerNextBtn.style.display = 'inline-flex';
+        lastNotice.style.display = 'none';
+      }
+
+      if (index < 16) {
+        // Content Slide
+        lessonGrid.style.display = 'grid';
+        quizContainer.style.display = 'none';
+
+        document.getElementById('slideBadgeTag').textContent = slide.badge || "Scientific Concept";
+        document.getElementById('slideHeading').textContent = slide.title;
+        document.getElementById('slideSubheading').textContent = slide.subtitle;
+        document.getElementById('theoryContent').innerHTML = slide.theory;
+        document.getElementById('narrationSummary').textContent = slide.narration.substring(0, 160) + '...';
+
+        const takeaways = document.getElementById('keyTakeawaysList');
+        takeaways.innerHTML = '';
+        (slide.key_points || []).forEach(pt => {
+          const li = document.createElement('li');
+          li.textContent = pt;
+          takeaways.appendChild(li);
+        });
+
+        renderCheckpoints(slide.checkpoints);
+        renderSimulator(slide.sim_id);
+      } else {
+        // Quiz Slides (17 to 20)
+        lessonGrid.style.display = 'none';
+        quizContainer.style.display = 'flex';
+
+        document.getElementById('quizTitle').textContent = slide.title;
+        document.getElementById('quizSubtitle').textContent = slide.subtitle;
+        renderQuizSlide(slide.questions);
+      }
+
+      setTimeout(() => {
+        triggerMathRender(document.body);
+      }, 50);
+    }
+
+    function prevSlide() {
+      if (currentSlideIndex > 0) {
+        loadSlide(currentSlideIndex - 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlideIndex < SLIDES.length - 1) {
+        loadSlide(currentSlideIndex + 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // In-Slide Checkpoints Renderer
+    function renderCheckpoints(checkpoints) {
+      const list = document.getElementById('checkpointsList');
+      list.innerHTML = '';
+
+      if (!checkpoints || checkpoints.length === 0) {
+        document.getElementById('checkpointContainer').style.display = 'none';
+        return;
+      }
+      document.getElementById('checkpointContainer').style.display = 'block';
+
+      checkpoints.forEach((cp, cpIdx) => {
+        const item = document.createElement('div');
+        item.className = 'checkpoint-item';
+
+        const qText = document.createElement('div');
+        qText.className = 'checkpoint-q';
+        qText.innerHTML = `<strong>Q${cpIdx + 1}:</strong> ${cp.question}`;
+        item.appendChild(qText);
+
+        const optsDiv = document.createElement('div');
+        optsDiv.className = 'checkpoint-options';
+
+        const fbDiv = document.createElement('div');
+        fbDiv.className = 'cp-feedback';
+
+        cp.options.forEach((optText, optIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'cp-opt-btn';
+          btn.innerHTML = optText;
+
+          btn.onclick = () => {
+            const allBtns = optsDiv.querySelectorAll('.cp-opt-btn');
+            allBtns.forEach(b => b.disabled = true);
+
+            if (optIdx === cp.correct) {
+              btn.classList.add('correct');
+              fbDiv.className = 'cp-feedback show-correct';
+              fbDiv.innerHTML = `<strong>✔ Correct!</strong> ${cp.explanation}`;
+            } else {
+              btn.classList.add('incorrect');
+              allBtns[cp.correct].classList.add('correct');
+              fbDiv.className = 'cp-feedback show-incorrect';
+              fbDiv.innerHTML = `<strong>✖ Not quite.</strong> ${cp.explanation}`;
+            }
+          };
+
+          optsDiv.appendChild(btn);
+        });
+
+        item.appendChild(optsDiv);
+        item.appendChild(fbDiv);
+        list.appendChild(item);
+      });
+    }
+
+    // Quiz Slide Renderer
+    function renderQuizSlide(questions) {
+      const grid = document.getElementById('quizQuestionsGrid');
+      grid.innerHTML = '';
+      quizScores[currentSlideIndex] = quizScores[currentSlideIndex] || {};
+
+      questions.forEach((q, idx) => {
+        const card = document.createElement('div');
+        card.className = 'quiz-card';
+
+        const qNum = document.createElement('div');
+        qNum.className = 'quiz-q-num';
+        qNum.textContent = `Question ${idx + 1} of 10`;
+        card.appendChild(qNum);
+
+        const qText = document.createElement('div');
+        qText.className = 'quiz-q-text';
+        qText.innerHTML = q.question;
+        card.appendChild(qText);
+
+        const optsDiv = document.createElement('div');
+        optsDiv.className = 'quiz-opts';
+
+        const solBtn = document.createElement('button');
+        solBtn.className = 'quiz-btn-solution';
+        solBtn.innerHTML = '💡 View Step-by-Step Solution';
+        solBtn.onclick = () => openSolutionModal(currentSlideIndex, idx);
+
+        q.options.forEach((optText, optIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'quiz-opt-btn';
+          btn.innerHTML = optText;
+
+          if (quizScores[currentSlideIndex][idx] !== undefined) {
+            btn.disabled = true;
+            if (optIdx === q.correct) btn.classList.add('correct');
+            if (quizScores[currentSlideIndex][idx] === optIdx && optIdx !== q.correct) {
+              btn.classList.add('incorrect');
+            }
+            solBtn.style.display = 'inline-flex';
+          }
+
+          btn.onclick = () => {
+            const allBtns = optsDiv.querySelectorAll('.quiz-opt-btn');
+            allBtns.forEach(b => b.disabled = true);
+            quizScores[currentSlideIndex][idx] = optIdx;
+
+            if (optIdx === q.correct) {
+              btn.classList.add('correct');
+            } else {
+              btn.classList.add('incorrect');
+              allBtns[q.correct].classList.add('correct');
+            }
+            solBtn.style.display = 'inline-flex';
+            updateQuizScore();
+          };
+
+          optsDiv.appendChild(btn);
+        });
+
+        card.appendChild(optsDiv);
+        card.appendChild(solBtn);
+        grid.appendChild(card);
+      });
+
+      updateQuizScore();
+    }
+
+    function updateQuizScore() {
+      const scores = quizScores[currentSlideIndex] || {};
+      let correctCount = 0;
+      const questions = SLIDES[currentSlideIndex].questions;
+
+      for (let idx in scores) {
+        if (scores[idx] === questions[idx].correct) correctCount++;
+      }
+
+      document.getElementById('quizScoreBadge').textContent = `Score: ${correctCount} / 10`;
+    }
+
+    function openSolutionModal(slideIdx, qIdx) {
+      const q = SLIDES[slideIdx].questions[qIdx];
+      document.getElementById('modalQuestionText').innerHTML = `<strong>Question:</strong> ${q.question}`;
+      document.getElementById('modalSolutionBody').innerHTML = q.solution;
+
+      const modal = document.getElementById('solutionModal');
+      modal.style.display = 'flex';
+      triggerMathRender(modal);
+    }
+
+    function closeSolutionModal() {
+      document.getElementById('solutionModal').style.display = 'none';
+    }
+
+    // Audio narration Web Speech API
+    function toggleVoice() {
+      if (isSpeaking) {
+        stopSpeech();
+      } else {
+        startSpeech();
+      }
+    }
+
+    function startSpeech() {
+      if (!synth) return;
+      const slide = SLIDES[currentSlideIndex];
+      const utterText = `${slide.title}. ${slide.subtitle}. ${slide.narration}`;
+
+      const utter = new SpeechSynthesisUtterance(utterText);
+      utter.rate = 0.95;
+      utter.pitch = 1.0;
+
+      utter.onend = () => {
+        isSpeaking = false;
+        updateVoiceButton();
+      };
+
+      synth.speak(utter);
+      isSpeaking = true;
+      updateVoiceButton();
+    }
+
+    function stopSpeech() {
+      if (synth && synth.speaking) {
+        synth.cancel();
+      }
+      isSpeaking = false;
+      updateVoiceButton();
+    }
+
+    function updateVoiceButton() {
+      const btn = document.getElementById('voiceToggleBtn');
+      const icon = document.getElementById('voiceIcon');
+      const text = document.getElementById('voiceBtnText');
+      const face = document.getElementById('teacherAvatar');
+
+      if (isSpeaking) {
+        icon.textContent = '⏹';
+        text.textContent = 'Stop Narration';
+        btn.style.background = '#e11d48';
+        face.classList.add('avatar-speaking');
+      } else {
+        icon.textContent = '🔊';
+        text.textContent = 'Listen to Teacher Explanation';
+        btn.style.background = 'rgba(6, 182, 212, 0.2)';
+        face.classList.remove('avatar-speaking');
+      }
+    }
+
+    // Simulator Dispatcher
+    function renderSimulator(simType) {
+      const title = document.getElementById('simTitle');
+      const stats = document.getElementById('simStats');
+      const canvas = document.getElementById('simCanvas');
+      const controls = document.getElementById('simControls');
+
+      canvas.innerHTML = '';
+      controls.innerHTML = '';
+      stats.innerHTML = '';
+
+      switch (simType) {
+        case 'who_triad_health_sim':
+          renderWhoTriadHealthSim(title, stats, canvas, controls);
+          break;
+        case 'ayurveda_dinacharya_clock_sim':
+          renderAyurvedaClockSim(title, stats, canvas, controls);
+          break;
+        case 'lifestyle_balance_meter_sim':
+          renderLifestyleBalanceMeterSim(title, stats, canvas, controls);
+          break;
+        case 'aqi_environmental_health_sim':
+          renderAqiEnvironmentalHealthSim(title, stats, canvas, controls);
+          break;
+        case 'symptoms_vs_signs_clinician_sim':
+          renderSymptomsVsSignsSim(title, stats, canvas, controls);
+          break;
+        case 'disease_classification_tree_sim':
+          renderDiseaseClassificationTreeSim(title, stats, canvas, controls);
+          break;
+        case 'pathogen_gallery_communicable_sim':
+          renderPathogenGallerySim(title, stats, canvas, controls);
+          break;
+        case 'ncd_deficiency_disease_lab_sim':
+          renderNcdDeficiencyLabSim(title, stats, canvas, controls);
+          break;
+        case 'transmission_routes_epidemic_sim':
+          renderTransmissionRoutesSim(title, stats, canvas, controls);
+          break;
+        case 'sanitation_barrier_hygiene_sim':
+          renderSanitationBarrierSim(title, stats, canvas, controls);
+          break;
+        case 'immune_system_patrol_sim':
+          renderImmuneSystemPatrolSim(title, stats, canvas, controls);
+          break;
+        case 'vaccine_mechanism_trainer_sim':
+          renderVaccineMechanismSim(title, stats, canvas, controls);
+          break;
+        case 'vaccine_milestones_india_sim':
+          renderVaccineMilestonesIndiaSim(title, stats, canvas, controls);
+          break;
+        case 'fleming_penicillin_petri_sim':
+          renderFlemingPenicillinSim(title, stats, canvas, controls);
+          break;
+        case 'antibiotic_resistance_superbug_sim':
+          renderAntibioticResistanceSim(title, stats, canvas, controls);
+          break;
+        case 'health_disease_master_matrix_sim':
+          renderHealthDiseaseMasterMatrixSim(title, stats, canvas, controls);
+          break;
+        default:
+          title.textContent = 'Laboratory Visualizer';
+          canvas.innerHTML = '<div style="color:#94a3b8;">Simulator loading...</div>';
+      }
+    }
+
+    // 1. WHO Triad Health Simulator
+    function renderWhoTriadHealthSim(title, stats, canvas, controls) {
+      title.textContent = "WHO Holistic Health Triangle: 3 Pillars";
+      let phys = 90;
+      let ment = 85;
+      let soc = 80;
+
+      function update() {
+        const total = Math.round((phys + ment + soc) / 3);
+        stats.innerHTML = `
+          <div class="stat-pill">Physical: <strong>${phys}%</strong></div>
+          <div class="stat-pill">Mental: <strong>${ment}%</strong></div>
+          <div class="stat-pill">Social: <strong>${soc}%</strong></div>
+          <div class="stat-pill">Holistic Health: <strong style="color:${total > 75 ? '#10b981' : '#f59e0b'}">${total}%</strong></div>
+        `;
+
+        canvas.innerHTML = `
+          <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+            <svg width="360" height="280" viewBox="0 0 360 280">
+              <!-- Outer reference triangle -->
+              <polygon points="180,30 50,230 310,230" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2" stroke-dasharray="4,4"/>
+              
+              <!-- Dynamic user health polygon -->
+              <polygon points="180,${30 + (100 - ment) * 0.8} ${50 + (100 - phys) * 0.7},${230 - (100 - phys) * 0.4} ${310 - (100 - soc) * 0.7},${230 - (100 - soc) * 0.4}" fill="rgba(6, 182, 212, 0.35)" stroke="#06b6d4" stroke-width="3"/>
+              
+              <!-- Vertex Labels -->
+              <circle cx="180" cy="30" r="14" fill="#a855f7"/>
+              <text x="180" y="34" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">🧠</text>
+              <text x="180" y="15" text-anchor="middle" fill="#c084fc" font-size="10" font-weight="700">Mental (${ment}%)</text>
+
+              <circle cx="50" cy="230" r="14" fill="#10b981"/>
+              <text x="50" y="234" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">💪</text>
+              <text x="50" y="255" text-anchor="middle" fill="#6ee7b7" font-size="10" font-weight="700">Physical (${phys}%)</text>
+
+              <circle cx="310" cy="230" r="14" fill="#3b82f6"/>
+              <text x="310" y="234" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">🤝</text>
+              <text x="310" y="255" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="700">Social (${soc}%)</text>
+
+              <text x="180" y="150" text-anchor="middle" fill="#fff" font-size="22" font-weight="800">${total}%</text>
+              <text x="180" y="170" text-anchor="middle" fill="#cbd5e1" font-size="9">Well-being Score</text>
+            </svg>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <div class="sim-ctrl-group">
+          <span>Physical:</span>
+          <input type="range" class="sim-slider" id="slPhys" min="30" max="100" value="${phys}" style="width:70px;">
+        </div>
+        <div class="sim-ctrl-group">
+          <span>Mental:</span>
+          <input type="range" class="sim-slider" id="slMent" min="30" max="100" value="${ment}" style="width:70px;">
+        </div>
+        <div class="sim-ctrl-group">
+          <span>Social:</span>
+          <input type="range" class="sim-slider" id="slSoc" min="30" max="100" value="${soc}" style="width:70px;">
+        </div>
+      `;
+
+      controls.querySelector('#slPhys').oninput = (e) => { phys = parseInt(e.target.value); update(); };
+      controls.querySelector('#slMent').oninput = (e) => { ment = parseInt(e.target.value); update(); };
+      controls.querySelector('#slSoc').oninput = (e) => { soc = parseInt(e.target.value); update(); };
+
+      update();
+    }
+
+    // 2. Ayurveda Dinacharya & Ritucharya Simulator
+    function renderAyurvedaClockSim(title, stats, canvas, controls) {
+      title.textContent = "Ayurvedic 24-Hour Biological Rhythm Clock";
+      let hour = 6; // 6 AM
+
+      const routineMap = {
+        4: { time: "4:30 AM", phase: "Brahma Muhurta", act: "Wake before dawn, prayer, deep meditation, clear mind." },
+        6: { time: "6:00 AM", phase: "Shaucha & Vyayama", act: "Oral hygiene, tongue cleaning, oil pulling, warm water, morning walk." },
+        8: { time: "8:00 AM", phase: "Yoga & Pranayama", act: "Surya Namaskar, breath regulation, mindful energizing." },
+        12: { time: "12:30 PM", phase: "Madhyahna (Peak Agni)", act: "Primary balanced meal tailored to body constitution (Prakriti)." },
+        18: { time: "6:30 PM", phase: "Sandhya (Evening Calm)", act: "Light wholesome dinner, family conversation, relaxing walk." },
+        22: { time: "10:00 PM", phase: "Nidra (Restorative Sleep)", act: "Unplug screens, calm darkness, 8 hours deep tissue cellular recovery." }
+      };
+
+      function update() {
+        const cur = routineMap[hour] || routineMap[6];
+        stats.innerHTML = `
+          <div class="stat-pill">Time: <strong>${cur.time}</strong></div>
+          <div class="stat-pill">Cycle: <strong>${cur.phase}</strong></div>
+        `;
+
+        canvas.innerHTML = `
+          <div style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:1rem; text-align:center;">
+            <svg width="220" height="220" viewBox="0 0 220 220">
+              <circle cx="110" cy="110" r="95" fill="#0f172a" stroke="#d97706" stroke-width="4"/>
+              
+              <!-- 6 hour ticks -->
+              <circle cx="110" cy="25" r="10" fill="${hour === 4 ? '#f59e0b' : '#334155'}"/>
+              <text x="110" y="29" text-anchor="middle" fill="#fff" font-size="8">4AM</text>
+
+              <circle cx="170" cy="60" r="10" fill="${hour === 6 ? '#f59e0b' : '#334155'}"/>
+              <text x="170" y="64" text-anchor="middle" fill="#fff" font-size="8">6AM</text>
+
+              <circle cx="195" cy="110" r="10" fill="${hour === 8 ? '#f59e0b' : '#334155'}"/>
+              <text x="195" y="114" text-anchor="middle" fill="#fff" font-size="8">8AM</text>
+
+              <circle cx="110" cy="195" r="10" fill="${hour === 12 ? '#f59e0b' : '#334155'}"/>
+              <text x="110" y="199" text-anchor="middle" fill="#fff" font-size="8">12PM</text>
+
+              <circle cx="25" cy="110" r="10" fill="${hour === 18 ? '#f59e0b' : '#334155'}"/>
+              <text x="25" y="114" text-anchor="middle" fill="#fff" font-size="8">6PM</text>
+
+              <circle cx="50" cy="60" r="10" fill="${hour === 22 ? '#f59e0b' : '#334155'}"/>
+              <text x="50" y="64" text-anchor="middle" fill="#fff" font-size="8">10PM</text>
+
+              <!-- Center hub -->
+              <circle cx="110" cy="110" r="38" fill="#18181b" stroke="#f59e0b" stroke-width="2"/>
+              <text x="110" y="108" text-anchor="middle" fill="#fde047" font-size="11" font-weight="700">Dinacharya</text>
+              <text x="110" y="122" text-anchor="middle" fill="#94a3b8" font-size="8">Routines</text>
+            </svg>
+            <h4 style="color:#fbbf24; margin-top:0.5rem; font-size:1rem;">${cur.phase} (${cur.time})</h4>
+            <p style="font-size:0.8rem; color:#cbd5e1; max-width:380px;">${cur.act}</p>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <button class="btn" id="h4">4:30 AM</button>
+        <button class="btn btn-primary" id="h6">6:00 AM</button>
+        <button class="btn" id="h8">8:00 AM</button>
+        <button class="btn" id="h12">12:30 PM</button>
+        <button class="btn" id="h18">6:30 PM</button>
+        <button class="btn" id="h22">10:00 PM</button>
+      `;
+
+      controls.querySelector('#h4').onclick = () => { hour = 4; update(); };
+      controls.querySelector('#h6').onclick = () => { hour = 6; update(); };
+      controls.querySelector('#h8').onclick = () => { hour = 8; update(); };
+      controls.querySelector('#h12').onclick = () => { hour = 12; update(); };
+      controls.querySelector('#h18').onclick = () => { hour = 18; update(); };
+      controls.querySelector('#h22').onclick = () => { hour = 22; update(); };
+
+      update();
+    }
+
+    // 3. Lifestyle Balance Meter Simulator
+    function renderLifestyleBalanceMeterSim(title, stats, canvas, controls) {
+      title.textContent = "Lifestyle Health Dashboard & Risk Analyzer";
+      let exercise = 60; // mins
+      let screen = 2; // hours
+      let noSubstances = true;
+
+      function update() {
+        const score = Math.min(100, Math.round((exercise / 60) * 40 + (screen <= 2 ? 30 : Math.max(0, 30 - (screen - 2) * 8)) + (noSubstances ? 30 : 0)));
+        stats.innerHTML = `
+          <div class="stat-pill">Activity: <strong>${exercise} mins</strong></div>
+          <div class="stat-pill">Screen Time: <strong>${screen} hrs</strong></div>
+          <div class="stat-pill">Toxins: <strong>${noSubstances ? 'Strictly Rejected' : 'Danger Present'}</strong></div>
+          <div class="stat-pill">Lifestyle Vitality: <strong style="color:${score > 75 ? '#10b981' : '#f43f5e'}">${score}%</strong></div>
+        `;
+
+        canvas.innerHTML = `
+          <div style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+            <svg width="340" height="220" viewBox="0 0 340 220">
+              <circle cx="170" cy="130" r="80" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="16"/>
+              <circle cx="170" cy="130" r="80" fill="none" stroke="${score > 75 ? '#10b981' : score > 50 ? '#f59e0b' : '#f43f5e'}" stroke-width="16" stroke-dasharray="502" stroke-dashoffset="${502 - (score / 100) * 251}" transform="rotate(-180, 170, 130)"/>
+              
+              <text x="170" y="125" text-anchor="middle" fill="#fff" font-size="32" font-weight="800">${score}%</text>
+              <text x="170" y="150" text-anchor="middle" fill="#94a3b8" font-size="11">Habit Vitality Index</text>
+            </svg>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <div class="sim-ctrl-group">
+          <span>Exercise (mins):</span>
+          <input type="range" class="sim-slider" id="exSl" min="10" max="90" value="${exercise}" style="width:70px;">
+        </div>
+        <div class="sim-ctrl-group">
+          <span>Screen Time (hrs):</span>
+          <input type="range" class="sim-slider" id="scSl" min="1" max="8" value="${screen}" style="width:70px;">
+        </div>
+        <button class="btn ${noSubstances ? 'btn-primary' : ''}" id="toxBtn">${noSubstances ? '🚫 Firm NO to Tobacco/Drugs' : '⚠️ Substances Consumed'}</button>
+      `;
+
+      controls.querySelector('#exSl').oninput = (e) => { exercise = parseInt(e.target.value); update(); };
+      controls.querySelector('#scSl').oninput = (e) => { screen = parseInt(e.target.value); update(); };
+      controls.querySelector('#toxBtn').onclick = () => { noSubstances = !noSubstances; update(); };
+
+      update();
+    }
+
+    // 4. AQI & Environmental Health Simulator
+    function renderAqiEnvironmentalHealthSim(title, stats, canvas, controls) {
+      title.textContent = "Air Quality Index (AQI) & Respiratory Health";
+      let aqi = 45; // Good
+
+      function update() {
+        const cat = aqi <= 50 ? { label: "Good (0–50)", color: "#10b981", effect: "Air quality satisfactory, minimal health risk." }
+                  : aqi <= 100 ? { label: "Moderate (51–100)", color: "#f59e0b", effect: "Acceptable; sensitive individuals may cough." }
+                  : aqi <= 200 ? { label: "Poor (101–200)", color: "#f97316", effect: "Breathing discomfort to people with lung/heart disease." }
+                  : { label: "Severe (>200)", color: "#f43f5e", effect: "Health emergency! Respiratory illness to general public." };
+
+        stats.innerHTML = `
+          <div class="stat-pill">AQI Level: <strong style="color:${cat.color}">${aqi}</strong></div>
+          <div class="stat-pill">Category: <strong>${cat.label}</strong></div>
+        `;
+
+        canvas.innerHTML = `
+          <div style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:1.5rem; text-align:center;">
+            <svg width="340" height="180" viewBox="0 0 340 180">
+              <!-- AQI Gauge arc -->
+              <path d="M 50 140 A 120 120 0 0 1 290 140" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="18"/>
+              <path d="M 50 140 A 120 120 0 0 1 290 140" fill="none" stroke="${cat.color}" stroke-width="18" stroke-dasharray="377" stroke-dashoffset="${377 - (aqi / 350) * 377}"/>
+              
+              <text x="170" y="125" text-anchor="middle" fill="#fff" font-size="28" font-weight="800">AQI ${aqi}</text>
+              <text x="170" y="148" text-anchor="middle" fill="${cat.color}" font-size="12" font-weight="700">${cat.label}</text>
+            </svg>
+            <p style="font-size:0.85rem; color:#cbd5e1; max-width:380px;">${cat.effect}</p>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <button class="btn btn-primary" id="aGood">Clean Air (45)</button>
+        <button class="btn" id="aMod">Moderate (85)</button>
+        <button class="btn" id="aPoor">Poor (160)</button>
+        <button class="btn" id="aSev">Severe Smog (320)</button>
+      `;
+
+      controls.querySelector('#aGood').onclick = () => { aqi = 45; update(); };
+      controls.querySelector('#aMod').onclick = () => { aqi = 85; update(); };
+      controls.querySelector('#aPoor').onclick = () => { aqi = 160; update(); };
+      controls.querySelector('#aSev').onclick = () => { aqi = 320; update(); };
+
+      update();
+    }
+
+    // 5. Symptoms vs Signs Clinical Simulator
+    function renderSymptomsVsSignsSim(title, stats, canvas, controls) {
+      title.textContent = "Clinical Diagnosis: Symptoms vs Signs";
+
+      stats.innerHTML = `
+        <div class="stat-pill">Patient: <strong>Subjective Symptoms</strong></div>
+        <div class="stat-pill">Doctor: <strong>Objective Measurable Signs</strong></div>
+      `;
+
+      canvas.innerHTML = `
+        <svg width="100%" height="100%" viewBox="0 0 460 280">
+          <!-- Patient Box (Symptoms) -->
+          <g transform="translate(30, 40)">
+            <rect width="185" height="190" rx="12" fill="#18181b" stroke="#f59e0b" stroke-width="2"/>
+            <text x="92" y="30" text-anchor="middle" fill="#fde047" font-size="12" font-weight="700">Symptoms (Patient Feels)</text>
+            <text x="20" y="70" fill="#cbd5e1" font-size="11">• "My head throbs with pain"</text>
+            <text x="20" y="100" fill="#cbd5e1" font-size="11">• "I feel dizzy & nauseous"</text>
+            <text x="20" y="130" fill="#cbd5e1" font-size="11">• "Extreme fatigue & chills"</text>
+            <text x="92" y="170" text-anchor="middle" fill="#94a3b8" font-size="9">Subjective Experiences</text>
+          </g>
+
+          <!-- Doctor Box (Signs) -->
+          <g transform="translate(245, 40)">
+            <rect width="185" height="190" rx="12" fill="#0f172a" stroke="#06b6d4" stroke-width="2"/>
+            <text x="92" y="30" text-anchor="middle" fill="#67e8f9" font-size="12" font-weight="700">Signs (Doctor Measures)</text>
+            <text x="20" y="70" fill="#cbd5e1" font-size="11">• Temp: 102.5°F (Thermometer)</text>
+            <text x="20" y="100" fill="#cbd5e1" font-size="11">• BP: 140/90 mmHg (Cuff)</text>
+            <text x="20" y="130" fill="#cbd5e1" font-size="11">• Red erythematous skin rash</text>
+            <text x="92" y="170" text-anchor="middle" fill="#94a3b8" font-size="9">Objective Clinical Tests</text>
+          </g>
+        </svg>
+      `;
+
+      controls.innerHTML = `
+        <div style="font-size:0.75rem; color:#94a3b8;">
+          Symptoms are subjective internal feelings reported by the patient; signs are objective indicators tested and verified by medical tools.
+        </div>
+      `;
+    }
+
+    // 6. Disease Classification Tree Simulator
+    function renderDiseaseClassificationTreeSim(title, stats, canvas, controls) {
+      title.textContent = "Classification: Communicable vs Non-Communicable";
+
+      stats.innerHTML = `
+        <div class="stat-pill">Infectious: <strong>Pathogen Transmission</strong></div>
+        <div class="stat-pill">NCDs: <strong>Lifestyle, Genetics, Aging</strong></div>
+      `;
+
+      canvas.innerHTML = `
+        <svg width="100%" height="100%" viewBox="0 0 460 280">
+          <!-- Root -->
+          <rect x="170" y="20" width="120" height="35" rx="8" fill="#1e1b4b" stroke="#a855f7" stroke-width="2"/>
+          <text x="230" y="42" text-anchor="middle" fill="#e9d5ff" font-size="11" font-weight="700">DISEASES</text>
+
+          <!-- Lines -->
+          <line x1="230" y1="55" x2="110" y2="100" stroke="#64748b" stroke-width="2"/>
+          <line x1="230" y1="55" x2="350" y2="100" stroke="#64748b" stroke-width="2"/>
+
+          <!-- Branch 1: Communicable -->
+          <rect x="30" y="100" width="160" height="130" rx="10" fill="rgba(6, 182, 212, 0.15)" stroke="#06b6d4" stroke-width="2"/>
+          <text x="110" y="125" text-anchor="middle" fill="#67e8f9" font-size="11" font-weight="700">Communicable (Infectious)</text>
+          <text x="45" y="150" fill="#cbd5e1" font-size="10">• Caused by pathogens</text>
+          <text x="45" y="170" fill="#cbd5e1" font-size="10">• Spreads person-to-person</text>
+          <text x="45" y="195" fill="#a5f3fc" font-size="9">TB, Flu, Cholera, Dengue</text>
+
+          <!-- Branch 2: NCDs -->
+          <rect x="270" y="100" width="160" height="130" rx="10" fill="rgba(244, 63, 94, 0.15)" stroke="#f43f5e" stroke-width="2"/>
+          <text x="350" y="125" text-anchor="middle" fill="#fda4af" font-size="11" font-weight="700">Non-Communicable (NCDs)</text>
+          <text x="285" y="150" fill="#cbd5e1" font-size="10">• Non-infectious</text>
+          <text x="285" y="170" fill="#cbd5e1" font-size="10">• Chronic (>3 months)</text>
+          <text x="285" y="195" fill="#fecdd3" font-size="9">Diabetes, Asthma, Cancer</text>
+        </svg>
+      `;
+
+      controls.innerHTML = `
+        <div style="font-size:0.75rem; color:#94a3b8;">
+          Communicable diseases spread via microbes. Chronic NCDs persist for over 3 months and account for over 60% of annual mortality in India.
+        </div>
+      `;
+    }
+
+    // 7. Pathogen Gallery Simulator
+    function renderPathogenGallerySim(title, stats, canvas, controls) {
+      title.textContent = "Pathogen Classes: Bacteria, Viruses, Protozoa & Worms";
+      let pClass = 'bacteria';
+
+      const pathogens = {
+        bacteria: { name: "Bacteria", eg: "Tuberculosis, Cholera, Typhoid", treat: "Curable with specific antibiotics", color: "#f59e0b" },
+        virus: { name: "Viruses", eg: "Common Cold, Flu, Measles, Dengue, Polio", treat: "Prevented by vaccines; antibiotics useless", color: "#a855f7" },
+        protozoa: { name: "Protozoa", eg: "Malaria (Plasmodium), Amoebic Dysentery", treat: "Antimalarial drugs; mosquito net barriers", color: "#06b6d4" },
+        worm: { name: "Parasitic Worms (Helminths)", eg: "Ascariasis (Intestinal Roundworms)", treat: "Anti-helminthic deworming tablets", color: "#10b981" }
+      };
+
+      function update() {
+        const cur = pathogens[pClass];
+        stats.innerHTML = `
+          <div class="stat-pill">Class: <strong style="color:${cur.color}">${cur.name}</strong></div>
+          <div class="stat-pill">Diseases: <strong>${cur.eg}</strong></div>
+        `;
+
+        canvas.innerHTML = `
+          <div style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:1.5rem; text-align:center;">
+            <div style="width:120px; height:120px; border-radius:50%; background:#0f172a; border:3px solid ${cur.color}; display:flex; align-items:center; justify-content:center; margin-bottom:1rem; box-shadow:0 0 20px ${cur.color}44;">
+              <span style="font-size:2.5rem;">${pClass === 'bacteria' ? '🧫' : pClass === 'virus' ? '🧬' : pClass === 'protozoa' ? '🔬' : '🪱'}</span>
+            </div>
+            <h3 style="color:${cur.color}; font-size:1.2rem; font-weight:700;">${cur.name}</h3>
+            <p style="color:#cbd5e1; font-size:0.9rem; margin-top:0.35rem; max-width:400px;"><strong>Examples:</strong> ${cur.eg}</p>
+            <p style="color:#6ee7b7; font-size:0.8rem; margin-top:0.25rem;"><strong>Treatment/Control:</strong> ${cur.treat}</p>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <button class="btn btn-primary" id="pBact">Bacteria</button>
+        <button class="btn" id="pVir">Viruses</button>
+        <button class="btn" id="pProt">Protozoa</button>
+        <button class="btn" id="pWorm">Parasitic Worms</button>
+      `;
+
+      controls.querySelector('#pBact').onclick = () => { pClass = 'bacteria'; update(); };
+      controls.querySelector('#pVir').onclick = () => { pClass = 'virus'; update(); };
+      controls.querySelector('#pProt').onclick = () => { pClass = 'protozoa'; update(); };
+      controls.querySelector('#pWorm').onclick = () => { pClass = 'worm'; update(); };
+
+      update();
+    }
+
+    // 8. NCD & Deficiency Diseases Simulator
+    function renderNcdDeficiencyLabSim(title, stats, canvas, controls) {
+      title.textContent = "Deficiency Diseases: Scurvy, Anaemia & Goitre";
+      let def = 'scurvy';
+
+      const defMap = {
+        scurvy: { name: "Scurvy", cause: "Vitamin C Deficiency", sym: "Bleeding gums, fragile skin capillaries, delayed wound healing.", remedy: "Citrus fruits, amla, oranges, lemons.", color: "#f59e0b" },
+        anaemia: { name: "Anaemia", cause: "Iron Deficiency", sym: "Low hemoglobin, pale skin/eyes, extreme fatigue, breathlessness.", remedy: "Green leafy spinach, jaggery, lentils, iron supplements.", color: "#f43f5e" },
+        goitre: { name: "Goitre", cause: "Iodine Deficiency", sym: "Enlargement of the thyroid gland creating swollen neck mass.", remedy: "Iodized table salt, seafood.", color: "#06b6d4" }
+      };
+
+      function update() {
+        const cur = defMap[def];
+        stats.innerHTML = `
+          <div class="stat-pill">Deficiency: <strong style="color:${cur.color}">${cur.name}</strong></div>
+          <div class="stat-pill">Missing Nutrient: <strong>${cur.cause}</strong></div>
+        `;
+
+        canvas.innerHTML = `
+          <div style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:1.5rem; text-align:center;">
+            <div style="width:110px; height:110px; border-radius:50%; background:#1e1b4b; border:3px solid ${cur.color}; display:flex; align-items:center; justify-content:center; margin-bottom:1rem;">
+              <span style="font-size:2.5rem;">${def === 'scurvy' ? '🍋' : def === 'anaemia' ? '🩸' : '🧂'}</span>
+            </div>
+            <h3 style="color:${cur.color}; font-size:1.2rem; font-weight:700;">${cur.name} (${cur.cause})</h3>
+            <p style="color:#fecdd3; font-size:0.85rem; margin-top:0.35rem; max-width:400px;"><strong>Clinical Signs:</strong> ${cur.sym}</p>
+            <p style="color:#6ee7b7; font-size:0.8rem; margin-top:0.35rem;"><strong>Dietary Remedy:</strong> ${cur.remedy}</p>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <button class="btn btn-primary" id="dSc">🍋 Scurvy (Vit C)</button>
+        <button class="btn" id="dAn">🩸 Anaemia (Iron)</button>
+        <button class="btn" id="dGo">🧂 Goitre (Iodine)</button>
+      `;
+
+      controls.querySelector('#dSc').onclick = () => { def = 'scurvy'; update(); };
+      controls.querySelector('#dAn').onclick = () => { def = 'anaemia'; update(); };
+      controls.querySelector('#dGo').onclick = () => { def = 'goitre'; update(); };
+
+      update();
+    }
+
+    // 9. Transmission Routes Simulator
+    function renderTransmissionRoutesSim(title, stats, canvas, controls) {
+      title.textContent = "5 Primary Modes of Disease Transmission";
+
+      stats.innerHTML = `
+        <div class="stat-pill">Vectors: <strong>Mosquitoes & Houseflies</strong></div>
+        <div class="stat-pill">Vehicles: <strong>Air, Water, Fomites, Contact</strong></div>
+      `;
+
+      canvas.innerHTML = `
+        <svg width="100%" height="100%" viewBox="0 0 460 280">
+          <circle cx="230" cy="140" r="45" fill="#e11d48"/>
+          <text x="230" y="145" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">Infected Host</text>
+
+          <!-- 5 routes branching out -->
+          <g transform="translate(90, 60)">
+            <rect width="90" height="40" rx="6" fill="#0f172a" stroke="#06b6d4"/>
+            <text x="45" y="24" text-anchor="middle" fill="#67e8f9" font-size="9" font-weight="700">1. Air Droplets</text>
+          </g>
+
+          <g transform="translate(280, 60)">
+            <rect width="90" height="40" rx="6" fill="#0f172a" stroke="#10b981"/>
+            <text x="45" y="24" text-anchor="middle" fill="#6ee7b7" font-size="9" font-weight="700">2. Direct Contact</text>
+          </g>
+
+          <g transform="translate(330, 160)">
+            <rect width="90" height="40" rx="6" fill="#0f172a" stroke="#f59e0b"/>
+            <text x="45" y="24" text-anchor="middle" fill="#fde047" font-size="9" font-weight="700">3. Fomites (Towels)</text>
+          </g>
+
+          <g transform="translate(185, 220)">
+            <rect width="90" height="40" rx="6" fill="#0f172a" stroke="#3b82f6"/>
+            <text x="45" y="24" text-anchor="middle" fill="#93c5fd" font-size="9" font-weight="700">4. Food & Water</text>
+          </g>
+
+          <g transform="translate(40, 160)">
+            <rect width="90" height="40" rx="6" fill="#0f172a" stroke="#ec4899"/>
+            <text x="45" y="24" text-anchor="middle" fill="#fbcfe8" font-size="9" font-weight="700">5. Vectors (Mosquito)</text>
+          </g>
+        </svg>
+      `;
+
+      controls.innerHTML = `
+        <div style="font-size:0.75rem; color:#94a3b8;">
+          Infectious microbes spread via airborne aerosols, physical skin contact, shared towels (fomites), contaminated food/water, and insect vectors.
+        </div>
+      `;
+    }
+
+    // 10. Sanitation Barrier Simulator
+    function renderSanitationBarrierSim(title, stats, canvas, controls) {
+      title.textContent = "Multi-Barrier Public Health Shields";
+      let soap = true;
+      let sanitation = true;
+      let net = true;
+
+      function update() {
+        stats.innerHTML = `
+          <div class="stat-pill">Soap Washing: <strong>${soap ? 'Ruptures Viral Lipids' : 'Off'}</strong></div>
+          <div class="stat-pill">Toilets: <strong>${sanitation ? 'Protects Water Aquifers' : 'Off'}</strong></div>
+          <div class="stat-pill">Bed Nets: <strong>${net ? 'Blocks Nocturnal Vectors' : 'Off'}</strong></div>
+        `;
+
+        canvas.innerHTML = `
+          <svg width="100%" height="100%" viewBox="0 0 460 260">
+            <!-- Barrier 1 -->
+            <g transform="translate(40, 50)">
+              <rect width="110" height="150" rx="10" fill="${soap ? 'rgba(16, 185, 129, 0.2)' : 'rgba(255,255,255,0.02)'}" stroke="${soap ? '#10b981' : '#475569'}" stroke-width="2"/>
+              <text x="55" y="40" text-anchor="middle" font-size="24">🧼</text>
+              <text x="55" y="80" text-anchor="middle" fill="#a7f3d0" font-size="10" font-weight="700">20s Handwash</text>
+              <text x="55" y="110" text-anchor="middle" fill="#cbd5e1" font-size="8">${soap ? 'Viral Lipid Rupture' : 'Germs Transmitted'}</text>
+            </g>
+
+            <!-- Barrier 2 -->
+            <g transform="translate(175, 50)">
+              <rect width="110" height="150" rx="10" fill="${sanitation ? 'rgba(6, 182, 212, 0.2)' : 'rgba(255,255,255,0.02)'}" stroke="${sanitation ? '#06b6d4' : '#475569'}" stroke-width="2"/>
+              <text x="55" y="40" text-anchor="middle" font-size="24">🚻</text>
+              <text x="55" y="80" text-anchor="middle" fill="#67e8f9" font-size="10" font-weight="700">Sanitary Toilets</text>
+              <text x="55" y="110" text-anchor="middle" fill="#cbd5e1" font-size="8">${sanitation ? 'No Fecal Runoff' : 'Contaminates Wells'}</text>
+            </g>
+
+            <!-- Barrier 3 -->
+            <g transform="translate(310, 50)">
+              <rect width="110" height="150" rx="10" fill="${net ? 'rgba(245, 158, 11, 0.2)' : 'rgba(255,255,255,0.02)'}" stroke="${net ? '#f59e0b' : '#475569'}" stroke-width="2"/>
+              <text x="55" y="40" text-anchor="middle" font-size="24">🛏</text>
+              <text x="55" y="80" text-anchor="middle" fill="#fde047" font-size="10" font-weight="700">Mosquito Nets</text>
+              <text x="55" y="110" text-anchor="middle" fill="#cbd5e1" font-size="8">${net ? 'Blocks Malaria' : 'Vector Biting'}</text>
+            </g>
+          </svg>
+        `;
+      }
+
+      controls.innerHTML = `
+        <button class="btn" id="tSoap">🧼 Handwash</button>
+        <button class="btn" id="tSan">🚻 Toilets</button>
+        <button class="btn" id="tNet">🛏 Bed Nets</button>
+      `;
+
+      controls.querySelector('#tSoap').onclick = () => { soap = !soap; update(); };
+      controls.querySelector('#tSan').onclick = () => { sanitation = !sanitation; update(); };
+      controls.querySelector('#tNet').onclick = () => { net = !net; update(); };
+
+      update();
+    }
+
+    // 11. Immune System Patrol Simulator
+    function renderImmuneSystemPatrolSim(title, stats, canvas, controls) {
+      title.textContent = "White Blood Cell Patrol & Phagocytosis";
+      let active = false;
+
+      function update() {
+        stats.innerHTML = `
+          <div class="stat-pill">Defense: <strong>Innate Phagocytes & B-Cells</strong></div>
+          <div class="stat-pill">Status: <strong style="color:${active ? '#10b981' : '#f59e0b'}">${active ? 'Pathogen Engulfed & Neutralized' : 'Patrolling Bloodstream'}</strong></div>
+        `;
+
+        canvas.innerHTML = `
+          <svg width="100%" height="100%" viewBox="0 0 460 260">
+            <!-- Blood vessel -->
+            <rect x="20" y="60" width="420" height="140" rx="12" fill="#450a0a" stroke="#b91c1c" stroke-width="3"/>
+            <text x="230" y="50" text-anchor="middle" fill="#fca5a5" font-size="10" font-weight="700">Capillary Lumen</text>
+
+            <!-- Red Blood Cells -->
+            <ellipse cx="80" cy="110" rx="16" ry="10" fill="#dc2626"/>
+            <ellipse cx="380" cy="140" rx="16" ry="10" fill="#dc2626"/>
+
+            <!-- Macrophage Phagocyte -->
+            <g transform="translate(${active ? 200 : 150}, 130) transition: transform 0.4s ease;">
+              <circle cx="0" cy="0" r="32" fill="rgba(16, 185, 129, 0.6)" stroke="#10b981" stroke-width="3"/>
+              <text x="0" y="4" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">WBC</text>
+            </g>
+
+            <!-- Bacteria -->
+            <g transform="translate(240, 130)">
+              <rect x="0" y="-8" width="24" height="14" rx="7" fill="${active ? '#64748b' : '#f59e0b'}"/>
+              <text x="12" y="24" text-anchor="middle" fill="${active ? '#94a3b8' : '#fed7aa'}" font-size="9">Bacteria</text>
+            </g>
+          </svg>
+        `;
+      }
+
+      controls.innerHTML = `
+        <button class="btn btn-primary" id="tEngulf">${active ? 'Reset Patrol' : '🔬 Launch Phagocytosis Attack'}</button>
+      `;
+
+      controls.querySelector('#tEngulf').onclick = () => { active = !active; update(); };
+      update();
+    }
+
+    // 12. Vaccine Mechanism Simulator
+    function renderVaccineMechanismSim(title, stats, canvas, controls) {
+      title.textContent = "Vaccine Target Practice: Creating Memory Cells";
+      let stage = 1;
+
+      const stages = [
+        { title: "1. Weakened Antigen Inoculated", desc: "Harmless components enter bloodstream; cannot cause disease." },
+        { title: "2. B-Cells Synthesize Antibodies", desc: "Immune system custom-manufactures Y-shaped IgG antibodies." },
+        { title: "3. Memory Cells Formed", desc: "Long-lived memory B-cells store genetic blueprint for decades." },
+        { title: "4. Rapid Secondary Immunity", desc: "Upon wild germ contact, explosive antibody release kills pathogen instantly." }
+      ];
+
+      function update() {
+        const cur = stages[stage - 1];
+        stats.innerHTML = `
+          <div class="stat-pill">Phase: <strong>${cur.title}</strong></div>
+          <div class="stat-pill">Status: <strong>Strictly Preventive</strong></div>
+        `;
+
+        canvas.innerHTML = `
+          <div style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:1rem; text-align:center;">
+            <svg width="400" height="200" viewBox="0 0 400 200">
+              <!-- Timeline line -->
+              <line x1="50" y1="100" x2="350" y2="100" stroke="#334155" stroke-width="4"/>
+              
+              ${stages.map((_, i) => `
+                <circle cx="${50 + i * 100}" cy="100" r="${stage === (i+1) ? 18 : 12}" fill="${stage === (i+1) ? '#06b6d4' : '#1e293b'}" stroke="${stage === (i+1) ? '#67e8f9' : '#64748b'}" stroke-width="2"/>
+                <text x="${50 + i * 100}" y="104" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">${i+1}</text>
+              `).join('')}
+            </svg>
+            <h4 style="color:#67e8f9; font-size:1.1rem; margin-top:0.25rem;">${cur.title}</h4>
+            <p style="color:#cbd5e1; font-size:0.85rem; max-width:400px;">${cur.desc}</p>
+          </div>
+        `;
+      }
+
+      controls.innerHTML = `
+        <button class="btn" id="v1">1. Inject</button>
+        <button class="btn" id="v2">2. Antibodies</button>
+        <button class="btn" id="v3">3. Memory</button>
+        <button class="btn" id="v4">4. Shield</button>
+      `;
+
+      controls.querySelector('#v1').onclick = () => { stage = 1; update(); };
+      controls.querySelector('#v2').onclick = () => { stage = 2; update(); };
+      controls.querySelector('#v3').onclick = () => { stage = 3; update(); };
+      controls.querySelector('#v4').onclick = () => { stage = 4; update(); };
+
+      update();
+    }
+
+    // 13. Vaccine Milestones India Simulator
+    function renderVaccineMilestonesIndiaSim(title, stats, canvas, controls) {
+      title.textContent = "Vaccine Milestones: Jenner to Vaccine Maitri";
+
+      stats.innerHTML = `
+        <div class="stat-pill">Jenner: <strong>1796 Cowpox / Smallpox</strong></div>
+        <div class="stat-pill">Eradication: <strong>1979 Smallpox Gone</strong></div>
+        <div class="stat-pill">Dr. M.K. Bhan: <strong>Rotavirus Rotavac</strong></div>
+      `;
+
+      canvas.innerHTML = `
+        <svg width="100%" height="100%" viewBox="0 0 460 260">
+          <g transform="translate(30, 40)">
+            <rect width="185" height="180" rx="10" fill="#0f172a" stroke="#f59e0b" stroke-width="2"/>
+            <text x="92" y="30" text-anchor="middle" fill="#fde047" font-size="11" font-weight="700">Historical Foundations</text>
+            <text x="15" y="65" fill="#cbd5e1" font-size="9">• Indian Teekedaars (Variolation)</text>
+            <text x="15" y="95" fill="#cbd5e1" font-size="9">• Edward Jenner (1796 Cowpox)</text>
+            <text x="15" y="125" fill="#10b981" font-size="9" font-weight="700">• 1979: Smallpox Eradicated!</text>
+          </g>
+
+          <g transform="translate(245, 40)">
+            <rect width="185" height="180" rx="10" fill="#0f172a" stroke="#06b6d4" stroke-width="2"/>
+            <text x="92" y="30" text-anchor="middle" fill="#67e8f9" font-size="11" font-weight="700">Indian Global Leadership</text>
+            <text x="15" y="65" fill="#cbd5e1" font-size="9">• >60% World Childhood Doses</text>
+            <text x="15" y="95" fill="#cbd5e1" font-size="9">• Vaccine Maitri to 100+ nations</text>
+            <text x="15" y="125" fill="#67e8f9" font-size="9" font-weight="700">• Dr. M.K. Bhan (Rotavac 116E)</text>
+          </g>
+        </svg>
+      `;
+
+      controls.innerHTML = `
+        <div style="font-size:0.75rem; color:#94a3b8;">
+          From Jenner's 1796 smallpox vaccine to India's Vaccine Maitri and Dr. M.K. Bhan's Rotavirus vaccine, immunization shields human civilization.
+        </div>
+      `;
+    }
+
+    // 14. Fleming Penicillin Simulator
+    function renderFlemingPenicillinSim(title, stats, canvas, controls) {
+      title.textContent = "Alexander Fleming's 1928 Penicillin Discovery";
+
+      stats.innerHTML = `
+        <div class="stat-pill">Mold: <strong>Penicillium notatum</strong></div>
+        <div class="stat-pill">Bacteria: <strong>Staphylococcus lysed</strong></div>
+      `;
+
+      canvas.innerHTML = `
+        <svg width="100%" height="100%" viewBox="0 0 460 260">
+          <circle cx="230" cy="130" r="105" fill="#0f172a" stroke="#cbd5e1" stroke-width="4"/>
+          <!-- Bacterial lawn -->
+          <circle cx="230" cy="130" r="100" fill="#fef08a" opacity="0.6"/>
+
+          <!-- Clear Zone of Inhibition -->
+          <circle cx="230" cy="130" r="50" fill="#070d18" stroke="#06b6d4" stroke-width="2" stroke-dasharray="4,4"/>
+
+          <!-- Central Mold Colony -->
+          <circle cx="230" cy="130" r="18" fill="#047857" stroke="#34d399" stroke-width="2"/>
+          <text x="230" y="134" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">Mold</text>
+
+          <text x="230" y="70" text-anchor="middle" fill="#67e8f9" font-size="10" font-weight="700">Zone of Bacterial Lysis (Penicillin)</text>
+          <text x="230" y="210" text-anchor="middle" fill="#713f12" font-size="9">Staphylococcus Bacterial Lawn</text>
+        </svg>
+      `;
+
+      controls.innerHTML = `
+        <div style="font-size:0.75rem; color:#94a3b8;">
+          Fleming noticed the green mold Penicillium secreted a compound that dissolved surrounding bacteria. Penicillin targets peptidoglycan cell walls.
+        </div>
+      `;
+    }
+
+    // 15. Antibiotic Resistance Simulator
+    function renderAntibioticResistanceSim(title, stats, canvas, controls) {
+      title.textContent = "Antibiotic Resistance & Dr. Kamal Ranadive";
+      let day = 1;
+
+      function update() {
+        stats.innerHTML = `
+          <div class="stat-pill">Timeline: <strong>Day ${day}</strong></div>
+          <div class="stat-pill">Threat: <strong>${day === 7 ? 'Mutant Superbug Outbreak' : 'Normal Infection'}</strong></div>
+        `;
+
+        canvas.innerHTML = `
+          <svg width="100%" height="100%" viewBox="0 0 460 260">
+            <!-- Left: Resistance progression -->
+            <g transform="translate(30, 30)">
+              <rect width="200" height="200" rx="10" fill="#18181b" stroke="${day === 7 ? '#f43f5e' : '#f59e0b'}" stroke-width="2"/>
+              <text x="100" y="25" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">Bacterial Population</text>
+              
+              ${day === 1 ? `
+                <circle cx="50" cy="70" r="12" fill="#10b981"/>
+                <circle cx="100" cy="70" r="12" fill="#10b981"/>
+                <circle cx="150" cy="70" r="12" fill="#10b981"/>
+                <circle cx="75" cy="120" r="12" fill="#10b981"/>
+                <circle cx="125" cy="120" r="12" fill="#f43f5e"/>
+                <text x="100" y="170" text-anchor="middle" fill="#cbd5e1" font-size="8">Sensitive (Green) vs 1 Mutant (Red)</text>
+              ` : day === 3 ? `
+                <circle cx="100" cy="80" r="14" fill="#f43f5e"/>
+                <circle cx="130" cy="120" r="14" fill="#f43f5e"/>
+                <text x="100" y="170" text-anchor="middle" fill="#fde047" font-size="8">Patient Stops Medicine Early!</text>
+              ` : `
+                <circle cx="50" cy="60" r="14" fill="#f43f5e"/>
+                <circle cx="100" cy="60" r="14" fill="#f43f5e"/>
+                <circle cx="150" cy="60" r="14" fill="#f43f5e"/>
+                <circle cx="75" cy="110" r="14" fill="#f43f5e"/>
+                <circle cx="125" cy="110" r="14" fill="#f43f5e"/>
+                <text x="100" y="170" text-anchor="middle" fill="#fda4af" font-size="9" font-weight="700">100% Resistant Superbug Colony</text>
+              `}
+            </g>
+
+            <!-- Right: Dr. Kamal Ranadive Cancer Research -->
+            <g transform="translate(250, 30)">
+              <rect width="180" height="200" rx="10" fill="#0f172a" stroke="#06b6d4" stroke-width="2"/>
+              <text x="90" y="25" text-anchor="middle" fill="#67e8f9" font-size="10" font-weight="700">Dr. Kamal Ranadive (1917–2001)</text>
+              <text x="15" y="65" fill="#cbd5e1" font-size="8">• Founded 1st Tissue Culture Lab</text>
+              <text x="15" y="95" fill="#cbd5e1" font-size="8">• Cancer Research Centre, Mumbai</text>
+              <text x="15" y="125" fill="#cbd5e1" font-size="8">• Linked Tobacco & Viruses to Cancer</text>
+              <text x="90" y="170" text-anchor="middle" fill="#a7f3d0" font-size="9" font-weight="700">Biomedical Pioneer</text>
+            </g>
+          </svg>
+        `;
+      }
+
+      controls.innerHTML = `
+        <button class="btn btn-primary" id="d1">Day 1: Start</button>
+        <button class="btn" id="d3">Day 3: Miss Dose</button>
+        <button class="btn" id="d7">Day 7: Superbug</button>
+      `;
+
+      controls.querySelector('#d1').onclick = () => { day = 1; update(); };
+      controls.querySelector('#d3').onclick = () => { day = 3; update(); };
+      controls.querySelector('#d7').onclick = () => { day = 7; update(); };
+
+      update();
+    }
+
+    // 16. Health & Disease Master Matrix Simulator
+    function renderHealthDiseaseMasterMatrixSim(title, stats, canvas, controls) {
+      title.textContent = "Master Comparative Synthesis Matrix";
+
+      stats.innerHTML = `
+        <div class="stat-pill">Chapter: <strong>Health, Diseases & Prevention</strong></div>
+        <div class="stat-pill">Scope: <strong>Curative & Preventive Medicine</strong></div>
+      `;
+
+      canvas.innerHTML = `
+        <div style="width:100%; height:100%; overflow-y:auto; padding:0.75rem;">
+          <div style="display:grid; grid-template-columns:1fr; gap:0.5rem;">
+            <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:0.6rem;">
+              <strong style="color:var(--accent-emerald);">WHO Health & Ayurvedic Wisdom</strong>
+              <div style="font-size:0.75rem; color:#cbd5e1;">Physical, mental, social wellness. Dinacharya routines, Ritucharya seasonal shifts, Yoga, Pranayama.</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:0.6rem;">
+              <strong style="color:var(--accent-amber);">Symptoms vs Signs & Disease Classes</strong>
+              <div style="font-size:0.75rem; color:#cbd5e1;">Subjective feelings vs objective clinical measurements. Communicable (germs) vs NCDs (diabetes, asthma, scurvy).</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:0.6rem;">
+              <strong style="color:var(--accent-cyan);">Vaccines & National Milestones</strong>
+              <div style="font-size:0.75rem; color:#cbd5e1;">Preventive training of memory B-cells. Jenner 1796, Smallpox 1979 eradication, Vaccine Maitri, Dr. M.K. Bhan.</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:0.6rem;">
+              <strong style="color:var(--accent-rose);">Antibiotics, Superbugs & Dr. Ranadive</strong>
+              <div style="font-size:0.75rem; color:#cbd5e1;">Fleming Penicillin 1928, ineffectiveness on viruses, resistance crisis, and Dr. Kamal Ranadive cancer oncology.</div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      controls.innerHTML = `
+        <div style="font-size:0.75rem; color:#94a3b8;">
+          Synthesis matrix connecting holistic lifestyle, clinical diagnostics, disease classes, and pharmaceutical milestones.
+        </div>
+      `;
+    }
+
+    // Initialize on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      loadSlide(0);
+    });
+  </script>
+</body>
+</html>
