@@ -1010,6 +1010,111 @@
                     titleText = "NCERT Class 8 Science — Chapter 3: Health, Diseases and Prevention Master Lab";
                     badgeText = "Class 8 • NCERT Science";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
+                } else if (type === 'class8-science-electric-current' || type === 'chapter4-science-class8' || type === 'electric-current-and-effects-class8' || type === 'class8-electric-current' || type === 'class8-science-electricity' || type === 'electric-current-class8' || type === 'electric-current-and-its-effects') {
+                    fileUrl = "{{ asset('animations/class8-science-electric-current.html') }}";
+                    titleText = "NCERT Class 8 Science — Chapter 4: Electric Current, Magnetism & Cells Master Lab";
+                    badgeText = "Class 8 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class8-science-force-buoyancy' || type === 'chapter5-science-class8' || type === 'force-and-buoyancy-class8' || type === 'class8-force-buoyancy' || type === 'class8-science-force' || type === 'forces-and-pressure-class8' || type === 'force-and-its-effects') {
+                    fileUrl = "{{ asset('animations/class8-science-force-buoyancy.html') }}";
+                    titleText = "NCERT Class 8 Science — Chapter 5: Force, Types of Forces & Buoyancy Master Lab";
+                    badgeText = "Class 8 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/20 text-sky-300 border border-sky-500/30 shrink-0";
+                } else if (type === 'class8-science-pressure-winds' || type === 'chapter6-science-class8' || type === 'pressure-and-winds-class8' || type === 'class8-pressure-winds' || type === 'class8-science-pressure' || type === 'winds-storms-cyclones-class8' || type === 'pressure-winds-and-cyclones') {
+                    fileUrl = "{{ asset('animations/class8-science-pressure-winds.html') }}";
+                    titleText = "NCERT Class 8 Science — Chapter 6: Pressure, Winds, Storms & Cyclones Master Lab";
+                    badgeText = "Class 8 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/20 text-sky-300 border border-sky-500/30 shrink-0";
+                } else if (type === 'class8-science-particles-matter' || type === 'chapter7-science-class8' || type === 'particles-and-matter-class8' || type === 'class8-particles-matter' || type === 'class8-science-particles' || type === 'particulate-nature-matter-class8' || type === 'particles-matter-class8') {
+                    fileUrl = "{{ asset('animations/class8-science-particles-matter.html') }}";
+                    titleText = "NCERT Class 8 Science — Chapter 7: Particles and Matter Master Lab";
+                    badgeText = "Class 8 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/20 text-sky-300 border border-sky-500/30 shrink-0";
+                } else if (type === 'class8-science-elements-compounds' || type === 'chapter8-science-class8' || type === 'elements-compounds-and-mixtures' || type === 'class8-elements-compounds' || type === 'class8-science-elements' || type === 'pure-substances-and-mixtures' || type === 'elements-compounds-mixtures-class8') {
+                    fileUrl = "{{ asset('animations/class8-science-elements-compounds.html') }}";
+                    titleText = "NCERT Class 8 Science — Chapter 8: Elements, Compounds, and Mixtures Master Lab";
+                    badgeText = "Class 8 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/20 text-sky-300 border border-sky-500/30 shrink-0";
+                } else if (type === 'class8-science-solutions-density' || type === 'chapter9-science-class8' || type === 'solutions-solubility-and-density' || type === 'class8-solutions-density' || type === 'class8-science-solutions' || type === 'nature-of-solutions-and-density' || type === 'solutions-and-density-class8') {
+                    fileUrl = "{{ asset('animations/class8-science-solutions-density.html') }}";
+                    titleText = "NCERT Class 8 Science — Chapter 9: Solutions, Solubility, and Density Master Lab";
+                    badgeText = "Class 8 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/20 text-sky-300 border border-sky-500/30 shrink-0";
+                } else if (type === 'class8-science-light-optics' || type === 'chapter10-science-class8' || type === 'light-and-optics-class8' || type === 'class8-light-optics' || type === 'class8-science-light' || type === 'reflection-and-refraction-class8' || type === 'spherical-mirrors-and-lenses') {
+                    fileUrl = "{{ asset('animations/class8-science-light-optics.html') }}";
+                    titleText = "NCERT Class 8 Science — Chapter 10: Light and Optics Master Lab";
+                    badgeText = "Class 8 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class8-science-astronomy-calendars' || type === 'chapter11-science-class8' || type === 'astronomy-and-calendars-class8' || type === 'class8-astronomy-calendars' || type === 'class8-science-astronomy' || type === 'phases-of-the-moon-and-calendars' || type === 'moon-phases-and-satellites') {
+                    fileUrl = "{{ asset('animations/class8-science-astronomy-calendars.html') }}";
+                    titleText = "NCERT Class 8 Science — Chapter 11: Astronomy and Calendars Master Lab";
+                    badgeText = "Class 8 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
+                } else if (type === 'class8-science-nature-harmony' || type === 'chapter12-science-class8' || type === 'how-nature-works-in-harmony' || type === 'class8-nature-harmony' || type === 'class8-science-ecosystems' || type === 'nature-works-in-harmony-class8' || type === 'ecosystems-and-communities') {
+                    fileUrl = "{{ asset('animations/class8-science-nature-harmony.html') }}";
+                    titleText = "NCERT Class 8 Science — Chapter 12: How Nature Works in Harmony Master Lab";
+                    badgeText = "Class 8 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'class8-science-earth-life-planet' || type === 'chapter13-science-class8' || type === 'earth-unique-life-sustaining-planet' || type === 'class8-earth-life-planet' || type === 'class8-science-earth-planet' || type === 'our-home-earth-unique-planet' || type === 'earth-life-sustaining-planet') {
+                    fileUrl = "{{ asset('animations/class8-science-earth-life-planet.html') }}";
+                    titleText = "NCERT Class 8 Science — Chapter 13: Our Home: Earth, a Unique Life Sustaining Planet Master Lab";
+                    badgeText = "Class 8 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/20 text-sky-300 border border-sky-500/30 shrink-0";
+                } else if (type === 'class7-math-large-numbers' || type === 'chapter1-math-class7' || type === 'large-numbers-around-us' || type === 'class7-large-numbers' || type === 'class7-math-large-numbers-around-us' || type === 'numbers-around-us-class7' || type === 'large-numbers-class7') {
+                    fileUrl = "{{ asset('animations/class7-math-large-numbers.html') }}";
+                    titleText = "NCERT Class 7 Mathematics — Chapter 1: Large Numbers Around Us Master Lab";
+                    badgeText = "Class 7 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'class7-math-arithmetic-expressions' || type === 'chapter2-math-class7' || type === 'arithmetic-expressions' || type === 'class7-arithmetic-expressions' || type === 'class7-math-expressions' || type === 'expressions-class7' || type === 'arithmetic-expressions-class7') {
+                    fileUrl = "{{ asset('animations/class7-math-arithmetic-expressions.html') }}";
+                    titleText = "NCERT Class 7 Mathematics — Chapter 2: Arithmetic Expressions Master Lab";
+                    badgeText = "Class 7 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/20 text-sky-300 border border-sky-500/30 shrink-0";
+                } else if (type === 'class7-math-decimals' || type === 'chapter3-math-class7' || type === 'a-peek-beyond-the-point' || type === 'class7-a-peek-beyond-the-point' || type === 'class7-math-peek-beyond-the-point' || type === 'decimals-class7' || type === 'class7-decimals') {
+                    fileUrl = "{{ asset('animations/class7-math-decimals.html') }}";
+                    titleText = "NCERT Class 7 Mathematics — Chapter 3: A Peek Beyond the Point (Decimals) Master Lab";
+                    badgeText = "Class 7 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
+                } else if (type === 'class7-math-expressions-letter-numbers' || type === 'chapter4-math-class7' || type === 'expressions-using-letter-numbers' || type === 'class7-expressions-letter-numbers' || type === 'letter-numbers-class7' || type === 'class7-math-algebraic-expressions' || type === 'using-letter-numbers-class7') {
+                    fileUrl = "{{ asset('animations/class7-math-expressions-letter-numbers.html') }}";
+                    titleText = "NCERT Class 7 Mathematics — Chapter 4: Expressions Using Letter-Numbers Master Lab";
+                    badgeText = "Class 7 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class7-math-parallel-intersecting-lines' || type === 'chapter5-math-class7' || type === 'parallel-and-intersecting-lines' || type === 'class7-parallel-intersecting-lines' || type === 'parallel-lines-class7' || type === 'class7-math-lines-angles' || type === 'intersecting-lines-class7') {
+                    fileUrl = "{{ asset('animations/class7-math-parallel-intersecting-lines.html') }}";
+                    titleText = "NCERT Class 7 Mathematics — Chapter 5: Parallel and Intersecting Lines Master Lab";
+                    badgeText = "Class 7 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'class7-math-number-play' || type === 'chapter6-math-class7' || type === 'number-play' || type === 'class7-number-play' || type === 'number-play-class7' || type === 'class7-math-playing-with-numbers' || type === 'playing-with-numbers-class7') {
+                    fileUrl = "{{ asset('animations/class7-math-number-play.html') }}";
+                    titleText = "NCERT Class 7 Mathematics — Chapter 6: Number Play Master Lab";
+                    badgeText = "Class 7 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30 shrink-0";
+                } else if (type === 'class7-math-tale-of-three-intersecting-lines' || type === 'chapter7-math-class7' || type === 'tale-of-three-intersecting-lines' || type === 'class7-tale-of-three-intersecting-lines' || type === 'tale-of-three-lines-class7' || type === 'class7-math-triangles' || type === 'triangles-class7' || type === 'class7-triangles') {
+                    fileUrl = "{{ asset('animations/class7-math-tale-of-three-intersecting-lines.html') }}";
+                    titleText = "NCERT Class 7 Mathematics — Chapter 7: A Tale of Three Intersecting Lines Master Lab";
+                    badgeText = "Class 7 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class7-math-working-with-fractions' || type === 'chapter8-math-class7' || type === 'working-with-fractions' || type === 'class7-working-with-fractions' || type === 'working-with-fractions-class7' || type === 'class7-math-fractions' || type === 'fractions-class7' || type === 'class7-fractions') {
+                    fileUrl = "{{ asset('animations/class7-math-working-with-fractions.html') }}";
+                    titleText = "NCERT Class 7 Mathematics — Chapter 8: Working with Fractions Master Lab";
+                    badgeText = "Class 7 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class7-math-geometric-twins' || type === 'chapter9-math-class7' || type === 'geometric-twins' || type === 'class7-geometric-twins' || type === 'geometric-twins-class7' || type === 'class7-math-congruence' || type === 'congruence-class7' || type === 'class7-congruence') {
+                    fileUrl = "{{ asset('animations/class7-math-geometric-twins.html') }}";
+                    titleText = "NCERT Class 7 Mathematics — Chapter 9: Geometric Twins (Congruence) Master Lab";
+                    badgeText = "Class 7 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
+                } else if (type === 'class7-math-operations-with-integers' || type === 'chapter10-math-class7' || type === 'operations-with-integers' || type === 'class7-operations-with-integers' || type === 'operations-with-integers-class7' || type === 'class7-math-integers' || type === 'integers-class7' || type === 'class7-integers') {
+                    fileUrl = "{{ asset('animations/class7-math-operations-with-integers.html') }}";
+                    titleText = "NCERT Class 7 Mathematics — Chapter 10: Operations with Integers Master Lab";
+                    badgeText = "Class 7 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
+                } else if (type === 'class7-math-finding-common-ground' || type === 'chapter11-math-class7' || type === 'finding-common-ground' || type === 'class7-finding-common-ground' || type === 'finding-common-ground-class7' || type === 'class7-math-hcf-lcm' || type === 'hcf-lcm-class7' || type === 'class7-hcf-lcm') {
+                    fileUrl = "{{ asset('animations/class7-math-finding-common-ground.html') }}";
+                    titleText = "NCERT Class 7 Mathematics — Chapter 11: Finding Common Ground (HCF & LCM) Master Lab";
+                    badgeText = "Class 7 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
                 }
 
                 if (iframe.src !== fileUrl) {

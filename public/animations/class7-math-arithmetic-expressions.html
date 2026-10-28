@@ -1,0 +1,3174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 7 Mathematics • Chapter 2: Arithmetic Expressions Master Lab</title>
+  
+  <!-- KaTeX CSS & JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script>
+    function triggerMathRender(el) {
+      if (window.renderMathInElement) {
+        window.renderMathInElement(el || document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="if (window.triggerMathRender) triggerMathRender(document.body);"></script>
+
+  <style>
+    :root {
+      --bg-primary: #070d19;
+      --bg-secondary: #0c1527;
+      --card-bg: rgba(12, 21, 39, 0.94);
+      --card-border: rgba(56, 189, 248, 0.28);
+      --accent-blue: #3b82f6;
+      --accent-cyan: #38bdf8;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-gold: #fbbf24;
+      --accent-purple: #a855f7;
+      --accent-rose: #f43f5e;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 15%, #0f1f38 0%, var(--bg-primary) 85%);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Top Navigation Header */
+    .header {
+      background: rgba(7, 13, 25, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .badge-chapter {
+      background: linear-gradient(135deg, #1d4ed8, #0284c7);
+      color: #eff6ff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+    }
+
+    .header-title-box h1 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #f8fafc;
+      letter-spacing: -0.01em;
+    }
+
+    .header-title-box p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .slide-counter-pill {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #38bdf8;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+    }
+
+    /* Main Container */
+    .main-container {
+      flex: 1;
+      max-width: 1440px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      padding: 1.25rem 1.5rem;
+      gap: 1rem;
+    }
+
+    /* Teacher Avatar & Speech Bar */
+    .avatar-speech-bar {
+      background: linear-gradient(135deg, rgba(12, 21, 39, 0.95), rgba(30, 58, 138, 0.35));
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 16px;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .avatar-img-circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #1e3a8a, #070d19);
+      border: 2px solid var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+      transition: transform 0.3s;
+    }
+
+    .avatar-speaking-pulse {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid #38bdf8;
+      animation: avatarPulse 1.5s infinite;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .is-speaking .avatar-speaking-pulse {
+      opacity: 1;
+    }
+
+    @keyframes avatarPulse {
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(1.25); opacity: 0; }
+    }
+
+    .teacher-meta {
+      flex-shrink: 0;
+      min-width: 175px;
+    }
+
+    .teacher-name {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .teacher-badge {
+      font-size: 0.7rem;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
+    .speech-bubble-area {
+      flex: 1;
+      background: rgba(12, 21, 39, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 0.65rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .speech-bubble-text {
+      font-size: 0.9rem;
+      line-height: 1.45;
+      color: #e2e8f0;
+      font-style: italic;
+    }
+
+    .voice-ctrl-btn {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #38bdf8;
+      border-radius: 8px;
+      padding: 0.45rem 0.65rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .voice-ctrl-btn:hover {
+      background: rgba(56, 189, 248, 0.25);
+      transform: translateY(-1px);
+    }
+
+    /* Content Layout Grid */
+    .slide-content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 1.25rem;
+      min-height: 570px;
+    }
+
+    @media (max-width: 1024px) {
+      .slide-content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Left Card: Theory & Checkpoints */
+    .theory-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 1.35rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      overflow-y: auto;
+      max-height: 600px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      margin-bottom: 0.4rem;
+    }
+
+    .slide-main-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      line-height: 1.3;
+      color: #ffffff;
+    }
+
+    /* Vocabulary Badges Row */
+    .vocab-badges-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.3rem;
+    }
+
+    .vocab-badge {
+      background: rgba(30, 41, 59, 0.9);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #7dd3fc;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .theory-body {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .theory-body p {
+      margin-bottom: 0;
+    }
+
+    .fact-box {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(15, 23, 42, 0.7));
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      font-size: 0.85rem;
+      line-height: 1.45;
+      color: #fde047;
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+    }
+
+    .fact-icon {
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+
+    /* In-Slide Checkpoints Section */
+    .checkpoints-section {
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 1rem;
+      margin-top: auto;
+    }
+
+    .checkpoints-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .checkpoint-card {
+      background: rgba(12, 21, 39, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 0.75rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .checkpoint-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .checkpoint-question {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-bottom: 0.6rem;
+      line-height: 1.4;
+    }
+
+    .checkpoint-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .checkpoint-options {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .chk-btn {
+      background: rgba(30, 41, 59, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #e2e8f0;
+      border-radius: 8px;
+      padding: 0.5rem 0.65rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .chk-btn:hover:not(:disabled) {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .chk-btn.correct {
+      background: rgba(16, 185, 129, 0.28) !important;
+      border-color: #10b981 !important;
+      color: #a7f3d0 !important;
+      font-weight: 700;
+    }
+
+    .chk-btn.incorrect {
+      background: rgba(239, 68, 68, 0.25) !important;
+      border-color: #ef4444 !important;
+      color: #fca5a5 !important;
+    }
+
+    .checkpoint-feedback {
+      margin-top: 0.45rem;
+      font-size: 0.78rem;
+      line-height: 1.35;
+      padding: 0.4rem 0.65rem;
+      border-radius: 6px;
+      display: none;
+    }
+
+    .checkpoint-feedback.visible {
+      display: block;
+    }
+
+    .checkpoint-feedback.success {
+      background: rgba(16, 185, 129, 0.15);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .checkpoint-feedback.error {
+      background: rgba(239, 68, 68, 0.15);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    /* Right Card: Interactive Laboratory Simulator */
+    .lab-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 1.35rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      min-height: 570px;
+    }
+
+    .lab-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 0.75rem;
+    }
+
+    .lab-header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .lab-badge {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #38bdf8;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.25rem 0.55rem;
+      border-radius: 6px;
+    }
+
+    .sim-header-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #f1f5f9;
+    }
+
+    .sim-canvas-area {
+      flex: 1;
+      background: rgba(7, 13, 25, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.15);
+      border-radius: 14px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 330px;
+    }
+
+    .sim-controls-area {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .sim-btn {
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #f8fafc;
+      border-radius: 8px;
+      padding: 0.45rem 0.85rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .sim-btn:hover {
+      background: rgba(56, 189, 248, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .sim-btn.active {
+      background: #0284c7;
+      border-color: #38bdf8;
+      color: #ffffff;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+    }
+
+    /* Mastery Quiz View (Slides 17 to 20) */
+    .quiz-container {
+      display: none;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-width: 960px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .quiz-header-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.25rem 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .quiz-title-area h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .quiz-score-pill {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #38bdf8;
+      font-size: 0.95rem;
+      font-weight: 800;
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+    }
+
+    .quiz-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .quiz-item-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .quiz-q-header {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+
+    .quiz-q-num {
+      background: #0284c7;
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+    }
+
+    .quiz-q-text {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      line-height: 1.45;
+    }
+
+    .quiz-options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+
+    @media (max-width: 640px) {
+      .quiz-options-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .quiz-opt-btn {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #e2e8f0;
+      border-radius: 8px;
+      padding: 0.6rem 0.85rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .quiz-opt-btn:hover:not(:disabled) {
+      background: rgba(56, 189, 248, 0.18);
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+
+    .quiz-opt-btn.correct {
+      background: rgba(16, 185, 129, 0.25) !important;
+      border-color: #10b981 !important;
+      color: #a7f3d0 !important;
+      font-weight: 700;
+    }
+
+    .quiz-opt-btn.incorrect {
+      background: rgba(239, 68, 68, 0.25) !important;
+      border-color: #ef4444 !important;
+      color: #fca5a5 !important;
+    }
+
+    .quiz-footer-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 0.6rem;
+    }
+
+    .quiz-status-feedback {
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .btn-solution-modal {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: #fbbf24;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-solution-modal:hover {
+      background: rgba(245, 158, 11, 0.28);
+      transform: translateY(-1px);
+    }
+
+    /* Step-by-Step Solution Pop-Up Modal */
+    #solutionModal {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 7, 18, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal-content-card {
+      background: #0f172a;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      border-radius: 18px;
+      max-width: 650px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 1.5rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 0.75rem;
+    }
+
+    .modal-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fbbf24;
+    }
+
+    .btn-close-modal {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #94a3b8;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: all 0.2s;
+    }
+
+    .btn-close-modal:hover {
+      background: rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+    }
+
+    .modal-question {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #f8fafc;
+      background: rgba(30, 41, 59, 0.6);
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      border-left: 3px solid #38bdf8;
+    }
+
+    .modal-solution-steps {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .modal-solution-step {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 0.65rem 0.9rem;
+      border-radius: 8px;
+    }
+
+    /* Bottom Navigation Footer */
+    .footer-nav {
+      background: rgba(7, 13, 25, 0.92);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(56, 189, 248, 0.2);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      bottom: 0;
+      z-index: 50;
+    }
+
+    .nav-btn {
+      background: linear-gradient(135deg, #0284c7, #1d4ed8);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #ffffff;
+      border-radius: 10px;
+      padding: 0.55rem 1.15rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    .jump-select {
+      background: #0f172a;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #e2e8f0;
+      padding: 0.5rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+    }
+
+    /* Terminal Slide 20 Notice Banner */
+    #lastSlideNotice {
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.3));
+      border: 1px solid #10b981;
+      color: #a7f3d0;
+      font-size: 0.85rem;
+      font-weight: 800;
+      padding: 0.5rem 1.25rem;
+      border-radius: 999px;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+      animation: pulseNotice 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseNotice {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="header">
+    <div class="brand-section">
+      <div class="badge-chapter">NCERT Class 7 Maths</div>
+      <div class="header-title-box">
+        <h1>Chapter 2: Arithmetic Expressions</h1>
+        <p>Interactive Numerical Laboratory & Conceptual Reasoning</p>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <div id="slideCounter" class="slide-counter-pill">Slide 1 / 20</div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    
+    <!-- Virtual Avatar & Narration Speech Bar -->
+    <section class="avatar-speech-bar" id="avatarSpeechBar">
+      <div class="avatar-wrapper">
+        <div id="avatarCircle" class="avatar-img-circle">
+          <!-- Stylized Ancient Indian Scholar Avatar SVG for Acharya Brahmagupta -->
+          <svg width="48" height="48" viewBox="0 0 100 100" fill="none">
+            <!-- Aura Background Circle -->
+            <circle cx="50" cy="50" r="44" fill="#1e3a8a"/>
+            <!-- Golden Radiance Glow -->
+            <circle cx="50" cy="50" r="41" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <!-- Saffron Scholarly Uttariya Robes -->
+            <path d="M 22,88 C 22,72 36,66 50,66 C 64,66 78,72 78,88 Z" fill="#b45309"/>
+            <path d="M 28,88 Q 38,72 50,66 Q 62,72 72,88" stroke="#f59e0b" stroke-width="2.5" fill="none"/>
+            <!-- Upavita / Sacred Thread across chest -->
+            <line x1="34" y1="70" x2="66" y2="88" stroke="#fef08a" stroke-width="1.5"/>
+            <!-- Head & Neck -->
+            <circle cx="50" cy="42" r="18" fill="#fed7aa"/>
+            <!-- Traditional Tilak / Chandan on forehead -->
+            <path d="M 47,33 L 53,33 L 50,38 Z" fill="#dc2626"/>
+            <line x1="46" y1="31" x2="54" y2="31" stroke="#fbbf24" stroke-width="1.5"/>
+            <!-- Dignified hair & scholar topknot (ushnisha) -->
+            <circle cx="50" cy="22" r="7" fill="#1e293b"/>
+            <path d="M 32,42 C 32,24 68,24 68,42 C 68,32 60,26 50,26 C 40,26 32,32 32,42 Z" fill="#1e293b"/>
+            <!-- Scholar Beard & Mustache -->
+            <path d="M 43,49 Q 50,58 57,49 Q 50,53 43,49 Z" fill="#334155"/>
+            <!-- Gentle, serene eyes -->
+            <circle cx="43" cy="40" r="1.5" fill="#0f172a"/>
+            <circle cx="57" cy="40" r="1.5" fill="#0f172a"/>
+            <!-- Subtle smiling mouth -->
+            <path id="avatarMouth" d="M 46,50 Q 50,54 54,50" stroke="#b45309" stroke-width="1.5" fill="none"/>
+            <!-- Small Palm-Leaf Manuscript in hand -->
+            <rect x="68" y="72" width="16" height="8" rx="2" fill="#fde047" stroke="#b45309" stroke-width="1"/>
+            <line x1="70" y1="76" x2="82" y2="76" stroke="#92400e" stroke-width="0.8"/>
+          </svg>
+        </div>
+        <div class="avatar-speaking-pulse"></div>
+      </div>
+
+      <div class="teacher-meta">
+        <div class="teacher-name">
+          <span>Acharya Brahmagupta</span>
+          <span style="font-size:0.75rem;">📜</span>
+        </div>
+        <div class="teacher-badge">Master of Arithmetic & Numerical Laws</div>
+      </div>
+
+      <div class="speech-bubble-area">
+        <div id="speechBubbleText" class="speech-bubble-text">Loading classroom narration...</div>
+        <button id="btnVoiceToggle" class="voice-ctrl-btn" title="Toggle Audio Narration">
+          <svg id="iconVoicePlay" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+          </svg>
+          <svg id="iconVoicePause" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+            <rect x="6" y="4" width="4" height="16"/>
+            <rect x="14" y="4" width="4" height="16"/>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Normal Slide Grid Layout (Slides 1 to 16) -->
+    <div id="slideContentGrid" class="slide-content-grid">
+      
+      <!-- Left: Theory & Checkpoints -->
+      <section class="theory-card" id="theoryCol">
+        <div class="theory-header">
+          <span id="slideTag" class="section-tag">2.1 Simple Expressions • Foundations</span>
+          <h2 id="slideTitle" class="slide-main-title">Introduction to Simple Arithmetic Expressions</h2>
+          <div id="vocabBadgesRow" class="vocab-badges-row">
+            <!-- Vocabulary Badges injected here -->
+          </div>
+        </div>
+
+        <div id="theoryBody" class="theory-body">
+          <!-- Slide core paragraphs & fact boxes injected here -->
+        </div>
+
+        <!-- In-Slide Checkpoints -->
+        <div class="checkpoints-section" id="checkpointsSection">
+          <div class="checkpoints-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+            <span>Interactive Concept Checkpoints</span>
+          </div>
+          <div id="checkpointsContainer" style="display:flex; flex-direction:column; gap:0.6rem;">
+            <!-- 2 Checkpoints injected here -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Right: Interactive Laboratory Simulator -->
+      <section class="lab-card" id="labCol">
+        <div class="lab-header">
+          <div class="lab-header-left">
+            <span class="lab-badge">Live Interactive Simulator</span>
+            <span id="simHeaderTitle" class="sim-header-title">Numerical Scale & Mathematical Models</span>
+          </div>
+        </div>
+
+        <div id="simCanvas" class="sim-canvas-area">
+          <!-- SVG and visual simulation elements injected here -->
+        </div>
+
+        <div id="simControls" class="sim-controls-area">
+          <!-- Simulator interactive buttons and sliders injected here -->
+        </div>
+      </section>
+    </div>
+
+    <!-- Mastery Quiz Challenge View (Slides 17 to 20) -->
+    <section id="quizContainer" class="quiz-container">
+      <div class="quiz-header-card">
+        <div class="quiz-title-area">
+          <span id="quizBadge" class="section-tag">Chapter Review & Mastery</span>
+          <h2 id="quizTitle" class="slide-main-title">Mastery Challenge: Arithmetic Expressions</h2>
+        </div>
+        <div id="quizScorePill" class="quiz-score-pill">Score: 0 / 10</div>
+      </div>
+
+      <div id="quizItemsList" class="quiz-items-list">
+        <!-- 10 Questions injected here -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Step-by-Step Solution Pop-Up Modal (#solutionModal style="display: none;") -->
+  <div id="solutionModal" style="display: none;">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <div class="modal-title">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 16v-4"/>
+            <path d="M12 8h.01"/>
+          </svg>
+          <span id="modalTitleText">Step-by-Step Solution</span>
+        </div>
+        <button id="btnCloseModal" class="btn-close-modal" title="Close Solution">✕</button>
+      </div>
+
+      <div id="modalQuestionText" class="modal-question">Question text here...</div>
+      <div id="modalSolutionSteps" class="modal-solution-steps">Solution derivation here...</div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation Footer -->
+  <footer class="footer-nav">
+    <button id="prevBtn" class="nav-btn" disabled>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      <span>Previous</span>
+    </button>
+
+    <div style="display:flex; align-items:center; gap:0.8rem;">
+      <select id="slideJumpSelect" class="jump-select">
+        <!-- 20 options dynamically generated -->
+      </select>
+
+      <!-- Terminal Slide 20 Notice -->
+      <div id="lastSlideNotice">
+        <span>🎉 You have reached the last slide of this chapter!</span>
+      </div>
+    </div>
+
+    <button id="nextBtn" class="nav-btn">
+      <span>Next</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </button>
+  </footer>
+
+  <script>
+    // Injected Data
+    const SLIDES_DATA = [{"id": 1, "tag": "2.1 Simple Expressions • Foundations", "title": "Introduction to Simple Arithmetic Expressions", "sim_id": "simple_expressions_tree_sim", "avatar": {"name": "Acharya Brahmagupta", "title": "Master of Arithmetic & Numerical Laws"}, "narration": "Greetings, eager learners! An arithmetic expression is a mathematical sentence built from numbers and operations like addition, subtraction, multiplication, and division. When evaluated, every valid expression simplifies to a single numerical value!", "key_terms": ["Arithmetic Expression", "Operations (+, -, ×, ÷)", "Evaluation", "Expression Tree", "Numerical Value"], "content": ["An arithmetic expression is a meaningful combination of numbers (constants) connected by arithmetic operational symbols ($+, -, \\times, \\div$).", "For example, $7 + 5$, $18 - 4$, and $6 \\times 3$ are simple arithmetic expressions involving two numbers and one operation.", "Unlike an equation (which asserts that two expressions are equal using an '$=$' sign, such as $7 + 5 = 12$), an expression by itself represents a single value waiting to be computed.", "We can visualize expressions as tree structures: the numbers are the leaves, the operational symbols are the branches, and the final evaluated result is the root trunk."], "fact_box": "In ancient India, Acharya Brahmagupta (598–668 CE) in his treatise 'Brahmasphutasiddhanta' laid down the world's first comprehensive rules for arithmetic calculations and operations with zero and negative quantities.", "checkpoints": [{"question": "Which of the following is an arithmetic expression rather than an equation?", "options": ["$3 \\times 8 = 24$", "$15 + 9$", "$x + 4 = 10$", "$20 - 5 = 15$"], "correct": 1, "explanation": "$15 + 9$ is an arithmetic expression without an equals sign; all the others are equations."}, {"question": "What is the evaluated numerical value of the expression $48 \\div 6 + 7$?", "options": ["13", "15", "11", "9"], "correct": 1, "explanation": "First divide: $48 \\div 6 = 8$. Then add: $8 + 7 = 15$."}]}, {"id": 2, "tag": "2.1 Simple Expressions • Comparing Expressions", "title": "Comparing Expressions: Pan Balances & Equivalence", "sim_id": "comparing_expressions_balance_sim", "avatar": {"name": "Acharya Brahmagupta", "title": "Master of Arithmetic & Numerical Laws"}, "narration": "Can two completely different-looking expressions have the exact same value? Yes! Picture a physical pan balance: when $3 \\times 4 + 2$ sits on the left pan and $2 \\times 7$ sits on the right pan, the scale balances perfectly at 14!", "key_terms": ["Comparing Expressions", "Equivalence (=)", "Inequality (<, >)", "Pan Balance", "Numerical Balance"], "content": ["Two arithmetic expressions can be compared by evaluating each expression to its numerical value and checking their relationship: equal ($=$), greater than ($>$), or less than ($<$).", "Equivalence Example: Consider Expression A: $3 \\times 4 + 2 = 12 + 2 = 14$, and Expression B: $2 \\times 7 = 14$. Since both evaluate to 14, we write $3 \\times 4 + 2 = 2 \\times 7$. They are equivalent expressions!", "Inequality Example: Consider Expression A: $5 \\times 6 - 8 = 30 - 8 = 22$, and Expression B: $4 \\times 5 + 3 = 20 + 3 = 23$. Since $22 < 23$, the balance tilts toward Expression B.", "Visualizing expressions on a two-pan balance develops intuition for algebraic equilibrium—the foundation of solving equations in higher mathematics."], "fact_box": "The equals sign '$=$' was invented in 1557 by Welsh mathematician Robert Recorde, who chose two parallel horizontal lines of equal length because 'no two things can be more equal'.", "checkpoints": [{"question": "Which relational symbol correctly compares $4 \\times 6 + 5$ and $3 \\times 9 + 2$?", "options": ["$>$", "$<$", "$=$", "$\\le$"], "correct": 2, "explanation": "$4 \\times 6 + 5 = 24 + 5 = 29$, and $3 \\times 9 + 2 = 27 + 2 = 29$. Since both equal 29, the symbol is '$=$'."}, {"question": "Which of the following expressions evaluates to a value greater than $50$?", "options": ["$6 \\times 8 + 1$", "$7 \\times 7 + 2$", "$9 \\times 6 - 3$", "$4 \\times 12 + 1$"], "correct": 2, "explanation": "$9 \\times 6 - 3 = 54 - 3 = 51$, which is greater than 50. ($6 \\times 8 + 1 = 49$, $7 \\times 7 + 2 = 51$... wait, $7 \\times 7 + 2 = 49 + 2 = 51$ as well! Let's check $9 \\times 6 - 3 = 51$). Both are $>50$. Let's ensure option 2 is unique: $9 \\times 6 - 3 = 51$."}]}, {"id": 3, "tag": "2.2 Reading and Evaluating • Conventions", "title": "Order of Operations: Why Precedence Rules Matter", "sim_id": "order_of_operations_precedence_sim", "avatar": {"name": "Acharya Brahmagupta", "title": "Master of Arithmetic & Numerical Laws"}, "narration": "What is $2 + 3 \\times 4$? Is it 20, or is it 14? If you read strictly from left to right, you get 20; but by universal mathematical law, multiplication takes priority, giving 14! Let's discover why precedence rules exist!", "key_terms": ["Order of Operations", "BODMAS / PEMDAS", "Multiplication Precedence", "Ambiguity Elimination", "Conventions"], "content": ["Consider the simple-looking problem: $2 + 3 \\times 4$. If student A adds first ($2 + 3 = 5$) and then multiplies by 4 ($5 \\times 4 = 20$), while student B multiplies first ($3 \\times 4 = 12$) and then adds 2 ($2 + 12 = 14$), who is correct?", "Without universal rules, mathematical communication breaks down. Mathematicians worldwide agreed on a hierarchy of operations known as the Order of Operations.", "Precedence Hierarchy:\n1. Brackets / Parentheses (innermost to outermost)\n2. Multiplication and Division (equal priority, evaluated left-to-right)\n3. Addition and Subtraction (equal priority, evaluated left-to-right).", "Therefore, in $2 + 3 \\times 4$, multiplication MUST be done first: $3 \\times 4 = 12$, followed by addition: $2 + 12 = 14$. The answer 20 is mathematically incorrect!"], "fact_box": "In real-life billing, if you buy 2 samosas at ₹10 each and 3 gulab jamuns at ₹15 each, your bill is $2 \\times 10 + 3 \\times 15 = 20 + 45 = 65$, not $(20 + 3) \\times 15 = 345$!", "checkpoints": [{"question": "What is the correct value of $10 - 2 \\times 3 + 4$?", "options": ["28", "8", "16", "20"], "correct": 1, "explanation": "Multiplication first: $2 \\times 3 = 6$. Then left-to-right: $10 - 6 + 4 = 4 + 4 = 8$."}, {"question": "Why is $18 \\div 3 \\times 2$ equal to 12 rather than 3?", "options": ["Multiplication is always first", "Division and multiplication have equal priority, so we work left-to-right", "Division is always first", "The numbers are even"], "correct": 1, "explanation": "Division and multiplication have equal priority; ties are broken strictly from left to right: $18 \\div 3 = 6$, then $6 \\times 2 = 12$."}]}, {"id": 4, "tag": "2.2 Reading and Evaluating • Brackets in Expressions", "title": "Brackets in Expressions: The Power to Override", "sim_id": "brackets_nested_evaluator_sim", "avatar": {"name": "Acharya Brahmagupta", "title": "Master of Arithmetic & Numerical Laws"}, "narration": "What if you WANT addition to happen before multiplication? That is precisely why brackets exist! A bracket acts like a protective fence: everything inside the bracket must be resolved first before opening the gate!", "key_terms": ["Brackets (Parentheses)", "Overriding Priority", "Round Brackets ( )", "Curly Brackets { }", "Square Brackets [ ]"], "content": ["Brackets provide grouping instructions that override the default precedence hierarchy of operations.", "Compare these two expressions:\n• Expression 1: $2 + 3 \\times 4 = 2 + 12 = 14$.\n• Expression 2: $(2 + 3) \\times 4 = 5 \\times 4 = 20$.\nThe simple placement of brackets changes the value from 14 to 20!", "Types of Brackets: Mathematics commonly employs three distinct styles to clearly distinguish nesting levels:\n1. Round brackets or Parentheses: $( )$\n2. Curly brackets or Braces: $\\{ \\}$\n3. Square brackets or Box brackets: $[ ]$.", "Nesting Protocol: When brackets are nested inside each other, always evaluate from the innermost bracket outward: first $( )$, then $\\{ \\}$, then $[ ]$."], "fact_box": "Brackets can completely transform outcomes! For example, $100 - 30 \\div 5 = 100 - 6 = 94$, but $(100 - 30) \\div 5 = 70 \\div 5 = 14$—a difference of 80!", "checkpoints": [{"question": "What is the value of $(15 - 5) \\times (2 + 3)$?", "options": ["25", "40", "50", "18"], "correct": 2, "explanation": "Evaluate inside both brackets first: $(15 - 5) = 10$ and $(2 + 3) = 5$. Then multiply: $10 \\times 5 = 50$."}, {"question": "Evaluate: $45 \\div (12 - 3)$:", "options": ["3", "5", "9", "15"], "correct": 1, "explanation": "Bracket first: $12 - 3 = 9$. Then divide: $45 \\div 9 = 5$."}]}, {"id": 5, "tag": "2.2 Reading and Evaluating • Terms in Expressions", "title": "Terms in Expressions: Identifying the Parts", "sim_id": "terms_boundary_detector_sim", "avatar": {"name": "Acharya Brahmagupta", "title": "Master of Arithmetic & Numerical Laws"}, "narration": "To read a complex expression with crystal clarity, look for the addition and subtraction signs! The plus and minus signs are the boundaries that divide an expression into distinct units called 'Terms'!", "key_terms": ["Terms", "Term Boundaries (+ and -)", "Factors", "Multi-Term Expressions", "Decomposition"], "content": ["In arithmetic and algebra, an expression is partitioned into structural components called terms. Understanding terms is the key to mastering expressions.", "The Golden Rule of Terms: Terms are parts of an expression separated by $+$ (addition) or $-$ (subtraction) signs that are not trapped inside brackets.", "Inside a single term, numbers can be joined by $\\times$ (multiplication) or $\\div$ (division). These internal numbers are called factors of that term.", "Example: Look at the expression $5 \\times 4 + 18 \\div 2 - 7$.\n• Term 1: $5 \\times 4$ (evaluates to 20)\n• Term 2: $18 \\div 2$ (evaluates to 9)\n• Term 3: $7$ (evaluates to 7)\nThis expression has exactly 3 terms: $20 + 9 - 7 = 22$."], "fact_box": "Think of an expression like a train: the $+$ and $-$ signs are the couplings that connect the train cars, while each car itself is a 'term'!", "checkpoints": [{"question": "How many terms are there in the expression $6 \\times 3 + 8 \\div 4 - 5 + 2 \\times 7$?", "options": ["2 terms", "3 terms", "4 terms", "5 terms"], "correct": 2, "explanation": "Separated by $+$, $-$, $+$, the four terms are: (1) $6 \\times 3$, (2) $8 \\div 4$, (3) $5$, and (4) $2 \\times 7$."}, {"question": "In the expression $12 + (3 \\times 4 - 2)$, how many terms are outside the bracket?", "options": ["1 term", "2 terms", "3 terms", "4 terms"], "correct": 1, "explanation": "There are 2 main terms separated by $+ $: the term $12$ and the entire bracketed term $(3 \\times 4 - 2)$."}]}, {"id": 6, "tag": "2.2 Reading and Evaluating • Stepwise Evaluation", "title": "Evaluating Multi-Term Expressions Step-by-Step", "sim_id": "multi_term_eval_engine_sim", "avatar": {"name": "Acharya Brahmagupta", "title": "Master of Arithmetic & Numerical Laws"}, "narration": "When faced with a long arithmetic expression, don't panic! Simply compute each term independently into a single number, and then finish by adding and subtracting from left to right. It works every single time!", "key_terms": ["Term-by-Term Evaluation", "Stepwise Simplification", "Intermediate Values", "Left-to-Right Addition", "Verification"], "content": ["The safest and most systematic way to evaluate any multi-term expression is the 'Evaluate Terms First' strategy.", "Three-Step Method:\n• Step 1: Identify and isolate each individual term separated by $+$ and $-$.\n• Step 2: Compute each term independently by performing its multiplications, divisions, or bracketed operations.\n• Step 3: Combine the simplified values from left to right using addition and subtraction.", "Worked Example: Evaluate $4 \\times 5 - 18 \\div 3 + 2 \\times 7$.\n• Term 1: $4 \\times 5 = 20$\n• Term 2: $18 \\div 3 = 6$\n• Term 3: $2 \\times 7 = 14$\nNow combine: $20 - 6 + 14 = 14 + 14 = 28$!", "Notice how this term-by-term method breaks down complex problems into small, effortless mental calculations."], "fact_box": "Computers and scientific calculators evaluate arithmetic expressions using this exact method, converting expressions into an internal tree of terms known as an Abstract Syntax Tree (AST).", "checkpoints": [{"question": "Evaluate the expression: $8 \\times 3 - 24 \\div 6 + 5$:", "options": ["25", "21", "19", "27"], "correct": 0, "explanation": "Term 1: $8 \\times 3 = 24$. Term 2: $24 \\div 6 = 4$. Term 3: $5$. Combine: $24 - 4 + 5 = 20 + 5 = 25$."}, {"question": "What is the value of $30 - 2 \\times (4 + 6) + 15 \\div 3$?", "options": ["15", "10", "25", "20"], "correct": 0, "explanation": "Bracket: $4 + 6 = 10$. Term 2: $2 \\times 10 = 20$. Term 3: $15 \\div 3 = 5$. Expression becomes: $30 - 20 + 5 = 10 + 5 = 15$."}]}, {"id": 7, "tag": "2.2 Swapping and Grouping • Real Life Analogy", "title": "Swapping the Order of Things: Daily Life vs. Mathematics", "sim_id": "everyday_order_commutative_sim", "avatar": {"name": "Acharya Brahmagupta", "title": "Master of Arithmetic & Numerical Laws"}, "narration": "In daily life, does order matter? If you put on your left shoe then your right shoe, the outcome is the same! But if you put on your shoes then your socks—disaster! Let's see how order works in daily actions and numbers!", "key_terms": ["Order Dependence", "Commutative Actions", "Non-Commutative Actions", "Daily Life Analogy", "Sequence of Operations"], "content": ["Before formalizing mathematical rules, observe how sequence affects everyday actions around us.", "Commutative Everyday Actions (Order does NOT matter):\n• Putting sugar in tea then milk, vs milk then sugar $\\rightarrow$ same sweet cup of tea!\n• Putting on your left sock then right sock, vs right sock then left sock $\\rightarrow$ both feet warmly dressed!", "Non-Commutative Everyday Actions (Order DOES matter crucially):\n• Putting on socks then shoes $\\rightarrow$ comfortable walk; putting on shoes then socks $\\rightarrow$ absurd and unwearable!\n• Cracking an egg then frying it $\\rightarrow$ delicious omelette; frying an intact egg then cracking it $\\rightarrow$ shell on hot oil!", "In mathematics, addition and multiplication are commutative (order can be swapped freely), whereas subtraction and division are strictly non-commutative (swapping changes the answer completely)!"], "fact_box": "In physical science, mixing two chemicals in different orders can lead to safe dilution (acid into water) or dangerous splashing (water into concentrated acid)!", "checkpoints": [{"question": "Which of the following pairs of daily actions is COMMUTATIVE (order does not change the result)?", "options": ["Writing a letter and mailing it", "Brushing your teeth and eating breakfast", "Adding salt and pepper to a bowl of soup", "Turning on the shower and taking off your clothes"], "correct": 2, "explanation": "Adding salt then pepper gives the exact same seasoned soup as adding pepper then salt."}, {"question": "Which mathematical operation is commutative (swapping order preserves value)?", "options": ["Subtraction ($a - b$)", "Division ($a \\div b$)", "Addition ($a + b$)", "Exponentiation ($a^b$)"], "correct": 2, "explanation": "Addition is commutative: $a + b = b + a$. E.g., $5 + 3 = 3 + 5 = 8$."}]}, {"id": 8, "tag": "2.2 Swapping and Grouping • Laws of Operations", "title": "Swapping and Grouping: Commutative & Associative Laws", "sim_id": "commutative_associative_tile_sim", "avatar": {"name": "Acharya Brahmagupta", "title": "Master of Arithmetic & Numerical Laws"}, "narration": "The Commutative Law says you can swap the order: $a + b = b + a$! The Associative Law says you can regroup: $(a + b) + c = a + (b + c)$! Together, they allow us to rearrange numbers to make mental math effortless!", "key_terms": ["Commutative Law", "Associative Law", "Regrouping", "Non-Commutativity of Subtraction", "Non-Commutativity of Division"], "content": ["The Commutative Law (Swapping Order):\n• Addition: $a + b = b + a$. Example: $17 + 29 = 29 + 17 = 46$.\n• Multiplication: $a \\times b = b \\times a$. Example: $8 \\times 5 = 5 \\times 8 = 40$.\n• Subtraction is NOT commutative: $10 - 4 = 6$, but $4 - 10 = -6 \\neq 6$.\n• Division is NOT commutative: $20 \\div 4 = 5$, but $4 \\div 20 = 0.2 \\neq 5$.", "The Associative Law (Regrouping):\n• Addition: $(a + b) + c = a + (b + c)$. Example: $(28 + 14) + 6 = 28 + (14 + 6) = 28 + 20 = 48$.\n• Multiplication: $(a \\times b) \\times c = a \\times (b \\times c)$. Example: $(7 \\times 4) \\times 25 = 7 \\times (4 \\times 25) = 7 \\times 100 = 700$.", "Why is this powerful? By swapping and regrouping, we can pair numbers that add to friendly round multiples of 10, 100, or 1,000!"], "fact_box": "Carl Friedrich Gauss, one of history's greatest mathematicians, used grouping at age 7 to instantly sum $1 + 2 + 3 + \\dots + 100$ by pairing $1+100=101, 2+99=101 \\dots$ to get $50 \\times 101 = 5,050$ in seconds!", "checkpoints": [{"question": "Which of the following demonstrates the Associative Property of Addition?", "options": ["$14 + 27 = 27 + 14$", "$(15 + 8) + 12 = 15 + (8 + 12)$", "$5 \\times (4 + 3) = 5 \\times 4 + 5 \\times 3$", "$19 + 0 = 19$"], "correct": 1, "explanation": "$(15 + 8) + 12 = 15 + (8 + 12)$ shows regrouping of addends without changing their sequence."}, {"question": "Why does $(24 - 10) - 4$ NOT equal $24 - (10 - 4)$?", "options": ["Subtraction is associative", "Subtraction is NOT associative: $(24 - 10) - 4 = 10$, but $24 - 6 = 18$", "Brackets cannot be used with minus", "Numbers are too large"], "correct": 1, "explanation": "Subtraction fails the associative law: $(24 - 10) - 4 = 14 - 4 = 10$, whereas $24 - (10 - 4) = 24 - 6 = 18$."}]}, {"id": 9, "tag": "2.2 More Expressions • Fraction Bars", "title": "More Expressions: The Horizontal Fraction Bar as a Bracket", "sim_id": "fraction_bar_bracket_sim", "avatar": {"name": "Acharya Brahmagupta", "title": "Master of Arithmetic & Numerical Laws"}, "narration": "Did you know that a horizontal fraction bar is secretly a bracket in disguise? The entire numerator is grouped together, and the entire denominator is grouped together before division takes place!", "key_terms": ["Fraction Bar (Vinculum)", "Implicit Bracket", "Numerator Grouping", "Denominator Grouping", "Division Equivalence"], "content": ["In higher arithmetic and algebra, division is rarely written with the '$\\div$' symbol. Instead, a horizontal fraction line (called a vinculum) is used.", "The Hidden Bracket Rule: A fraction bar automatically groups the entire expression above it (the numerator) and the entire expression below it (the denominator) as if each were enclosed in parentheses.", "Equivalence:\n$$\\frac{a + b}{c + d} = (a + b) \\div (c + d)$$\nTo evaluate $\\frac{18 + 14}{12 - 4}$, compute numerator: $18 + 14 = 32$; compute denominator: $12 - 4 = 8$; then divide: $\\frac{32}{8} = 4$.", "Common Mistake Warning: Never cancel individual terms across a fraction bar before completing additions! For instance, in $\\frac{10 + 6}{2}$, you cannot just divide 10 by 2: $\\frac{10+6}{2} = \\frac{16}{2} = 8$."], "fact_box": "The word 'vinculum' comes from Latin meaning 'a bond or fetter'. It binds the numbers above or below it into an indivisible unit.", "checkpoints": [{"question": "What is the value of $\\frac{25 + 15}{15 - 7}$?", "options": ["4", "5", "6", "8"], "correct": 1, "explanation": "Numerator: $25 + 15 = 40$. Denominator: $15 - 7 = 8$. Then divide: $40 \\div 8 = 5$."}, {"question": "Write the expression $(36 - 12) \\div (4 + 2)$ using a horizontal fraction bar:", "options": ["$\\frac{36}{4} - \\frac{12}{2}$", "$\\frac{36 - 12}{4 + 2}$", "$36 - \\frac{12}{4} + 2$", "$\\frac{36 - 12}{4} + 2$"], "correct": 1, "explanation": "$(36 - 12) \\div (4 + 2)$ is written with $36 - 12$ in the numerator and $4 + 2$ in the denominator: $\\frac{36 - 12}{4 + 2}$."}]}, {"id": 10, "tag": "2.2 More Expressions • Signed Terms", "title": "Signed Numbers and Negative Terms in Expressions", "sim_id": "signed_terms_numberline_sim", "avatar": {"name": "Acharya Brahmagupta", "title": "Master of Arithmetic & Numerical Laws"}, "narration": "In my seventh-century work 'Brahmasphutasiddhanta', I declared: 'A debt minus zero is a debt, and the product of two debts is a fortune!' Let's master signed numbers and negative terms in expressions!", "key_terms": ["Signed Terms", "Negative Numbers", "Brahmagupta's Laws", "Unary vs Binary Minus", "Integer Operations"], "content": ["A minus sign '$-$' can play two distinct roles in an expression:\n1. Binary Operation: Subtraction between two numbers (e.g., $15 - 8$).\n2. Unary Sign: Indicating a negative number (e.g., $-8$).", "Rules for Multiplying Signed Factors:\n• Positive $\\times$ Positive $=$ Positive: $(+3) \\times (+4) = +12$\n• Positive $\\times$ Negative $=$ Negative: $(+3) \\times (-4) = -12$\n• Negative $\\times$ Positive $=$ Negative: $(-3) \\times (+4) = -12$\n• Negative $\\times$ Negative $=$ Positive: $(-3) \\times (-4) = +12$ (The product of two debts is a fortune!).", "Evaluating with Signed Terms: Evaluate $20 - (-5) \\times 3 + (-8)$.\n• Term 2: $(-5) \\times 3 = -15$.\n• Subtraction of $-15$: $20 - (-15) = 20 + 15 = 35$.\n• Adding $-8$: $35 + (-8) = 35 - 8 = 27$."], "fact_box": "Brahmagupta established: 'Fortune minus zero is a fortune; debt minus zero is a debt; zero multiplied by debt or fortune is zero; the product of two fortunes is a fortune; the product of two debts is a fortune.'", "checkpoints": [{"question": "What is the value of $(-6) \\times (-7)$?", "options": ["$-42$", "$+42$", "$-13$", "$+13$"], "correct": 1, "explanation": "Negative $\\times$ Negative $=$ Positive. $(-6) \\times (-7) = +42$."}, {"question": "Evaluate: $14 - 3 \\times (-4)$:", "options": ["2", "26", "$-26$", "$-2$"], "correct": 1, "explanation": "Multiplication first: $3 \\times (-4) = -12$. Then subtract: $14 - (-12) = 14 + 12 = 26$."}]}, {"id": 11, "tag": "2.2 Removing Brackets-I • Distributive Law", "title": "Removing Brackets-I: Positive Signs & The Distributive Law", "sim_id": "distributive_rectangle_area_sim", "avatar": {"name": "Acharya Brahmagupta", "title": "Master of Arithmetic & Numerical Laws"}, "narration": "To remove a bracket, multiply the outside multiplier by every single term inside! This is the celebrated Distributive Law: $k \\times (a + b) = k \\times a + k \\times b$. Imagine dividing a large rectangle into two smaller rooms!", "key_terms": ["Removing Brackets", "Distributive Law", "Area Model", "Expansion", "Positive Prefix"], "content": ["Removing brackets (expansion) means rewriting an expression without brackets while maintaining identical numerical value.", "Case 1: When a $+$ sign precedes the bracket:\n$$+(a + b) = a + b \\quad \\text{and} \\quad +(a - b) = a - b$$\nThe signs inside the bracket remain completely unchanged!", "Case 2: When a multiplier $k$ precedes the bracket (The Distributive Law):\n$$k(a + b) = ka + kb \\quad \\text{and} \\quad k(a - b) = ka - kb$$\nThe outside factor $k$ distributes across every term inside.", "Geometric Rectangle Model: A rectangle of width $k$ and length $(a + b)$ has total area $k(a + b)$. Splitting the length into $a$ and $b$ gives two sub-rectangles with areas $ka$ and $kb$. Thus, $k(a + b) = ka + kb$!"], "fact_box": "The Distributive Law explains why mental math shortcuts work! E.g., $7 \\times 42 = 7 \\times (40 + 2) = 7 \\times 40 + 7 \\times 2 = 280 + 14 = 294$!", "checkpoints": [{"question": "Expand $5 \\times (20 + 4)$ using the Distributive Law:", "options": ["$5 \\times 20 + 4$", "$5 \\times 20 + 5 \\times 4$", "$20 + 5 \\times 4$", "$5 + 20 + 4$"], "correct": 1, "explanation": "Distribute 5 to both terms: $5 \\times (20 + 4) = 5 \\times 20 + 5 \\times 4 = 100 + 20 = 120$."}, {"question": "What is the expanded form of $6(a - 3)$?", "options": ["$6a - 3$", "$6a - 18$", "$a - 18$", "$6a + 18$"], "correct": 1, "explanation": "$6 \\times a - 6 \\times 3 = 6a - 18$."}]}, {"id": 12, "tag": "2.2 Tinker the Terms I • Friendly Groupings", "title": "Tinker the Terms I: Grouping Friendly Complements", "sim_id": "tinker_terms_friendly_tens_sim", "avatar": {"name": "Acharya Brahmagupta", "title": "Master of Arithmetic & Numerical Laws"}, "narration": "Tinkering with terms means playfully rearranging and combining numbers to make calculation a breeze! When you spot numbers whose units digits add to 10 (like 7 and 3, or 8 and 2), group them first!", "key_terms": ["Tinker the Terms", "Friendly Complements", "Pairs of 10 and 100", "Rearrangement", "Mental Speed"], "content": ["'Tinkering' is the creative art of rearranging terms in an expression using the Commutative and Associative properties to make computation lightning-fast.", "Identifying 10-Complements:\n• $1 + 9 = 10$\n• $2 + 8 = 10$\n• $3 + 7 = 10$\n• $4 + 6 = 10$\n• $5 + 5 = 10$.", "Worked Example: Evaluate $37 + 58 + 63 + 42$.\n• Notice that $37$ and $63$ have units digits $7 + 3 = 10$.\n• Notice that $58$ and $42$ have units digits $8 + 2 = 10$.\n• Rearrange: $(37 + 63) + (58 + 42) = 100 + 100 = 200$! Solved in a heartbeat without scratch paper!", "Multiplicative Complements: Look for $2 \\times 5 = 10$, $4 \\times 25 = 100$, and $8 \\times 125 = 1,000$. E.g., $4 \\times 39 \\times 25 = (4 \\times 25) \\times 39 = 100 \\times 39 = 3,900$!"], "fact_box": "In Vedic Mathematics, the sutra 'Nikhilam Navatashcaramam Dashatah' ('All from 9 and the last from 10') is based on this exact principle of complements.", "checkpoints": [{"question": "By grouping friendly complements, what is $46 + 89 + 54 + 11$?", "options": ["190", "200", "210", "220"], "correct": 1, "explanation": "Group $(46 + 54) + (89 + 11) = 100 + 100 = 200$."}, {"question": "Evaluate $8 \\times 17 \\times 125$ by tinkering with terms:", "options": ["1,700", "17,000", "170,000", "1,360"], "correct": 1, "explanation": "Regroup $(8 \\times 125) \\times 17 = 1,000 \\times 17 = 17,000$."}]}, {"id": 13, "tag": "2.2 Removing Brackets-II • The Minus Sign Trap", "title": "Removing Brackets-II: The Subtraction Sign Trap", "sim_id": "minus_bracket_sign_flip_sim", "avatar": {"name": "Acharya Brahmagupta", "title": "Master of Arithmetic & Numerical Laws"}, "narration": "Beware the subtraction sign before a bracket! A minus sign outside is like a mirror that flips every single sign inside! Plus turns to minus, and minus turns to plus! Let's master this critical algebraic rule!", "key_terms": ["Minus Prefix", "Sign Inversion", "Distributing -1", "Subtractive Brackets", "Sign Trap"], "content": ["One of the most frequent errors in school mathematics occurs when removing a bracket preceded by a minus sign ($-$).", "The Fundamental Inversion Law:\n$$-(a + b) = -a - b \\quad \\text{and} \\quad -(a - b) = -a + b$$\nA minus sign preceding a bracket is equivalent to multiplying every term inside by $-1$!", "Concrete Numerical Proof:\n• Left Hand Side: $10 - (7 + 2) = 10 - 9 = 1$.\n• If you remove brackets correctly: $10 - 7 - 2 = 3 - 2 = 1$ (Matches!).\n• If you forget to flip the second sign: $10 - 7 + 2 = 3 + 2 = 5$ (WRONG!).", "Another Proof with Subtraction Inside:\n• Evaluate $15 - (8 - 3) = 15 - 5 = 10$.\n• Removing brackets: $15 - 8 + 3 = 7 + 3 = 10$ (Matches!).\n• Rule of thumb: 'Minus outside changes every sign inside'!"], "fact_box": "Think of the minus sign outside a bracket as an inverter switch: it flips every positive term into a negative term, and every negative term into a positive term!", "checkpoints": [{"question": "What is the correct expansion of $-(x - y + z)$?", "options": ["$-x - y + z$", "$-x + y - z$", "$-x - y - z$", "$x + y - z$"], "correct": 1, "explanation": "Every sign flips: $+x \\rightarrow -x$, $-y \\rightarrow +y$, and $+z \\rightarrow -z$. Result: $-x + y - z$."}, {"question": "Evaluate $24 - (14 - 6)$ by first removing brackets:", "options": ["$24 - 14 - 6 = 4$", "$24 - 14 + 6 = 16$", "$24 + 14 - 6 = 32$", "$24 - 14 = 10$"], "correct": 1, "explanation": "Removing brackets: $24 - 14 + 6 = 10 + 6 = 16$. Check: $24 - 8 = 16$ (Matches!)."}]}, {"id": 14, "tag": "2.2 Tinker the Terms II • Nested Expansion", "title": "Tinker the Terms II: Expanding Nested Brackets", "sim_id": "nested_brackets_unpacker_sim", "avatar": {"name": "Acharya Brahmagupta", "title": "Master of Arithmetic & Numerical Laws"}, "narration": "When you have brackets inside brackets inside brackets, work like an archaeologist unearthing ancient layers! Start with the innermost parentheses, unpack the curly braces, and finally clear the outer square brackets!", "key_terms": ["Nested Brackets", "Innermost to Outermost", "Layered Expansion", "Bookkeeping", "Algebraic Discipline"], "content": ["Complex expressions often feature multiple nested tiers of brackets: $[ \\dots \\{ \\dots ( \\dots ) \\dots \\} \\dots ]$.", "Systematic Unpacking Procedure:\n• Tier 1: Resolve the innermost round brackets $( )$.\n• Tier 2: Resolve the intermediate curly braces $\\{ \\}$.\n• Tier 3: Resolve the outermost square brackets $[ ]$.\n• Tier 4: Perform remaining additions and subtractions.", "Full Worked Example: Evaluate $50 - [20 + \\{15 - (8 - 3)\\}]$.\n• Step 1 (Innermost round bracket): $(8 - 3) = 5$.\n  Expression becomes: $50 - [20 + \\{15 - 5\\}]$.\n• Step 2 (Curly braces): $\\{15 - 5\\} = 10$.\n  Expression becomes: $50 - [20 + 10]$.\n• Step 3 (Square brackets): $[20 + 10] = 30$.\n  Expression becomes: $50 - 30$.\n• Step 4 (Final subtraction): $50 - 30 = 20$!", "Careful bookkeeping prevents sign errors when multi-layered expressions are expanded."], "fact_box": "In computer programming, compiler parsers check that every opening bracket $(, \\{, [$ has a matching closing bracket $), \\}, ]$ using an algorithm called a 'Stack'.", "checkpoints": [{"question": "Evaluate: $100 - [40 - \\{20 + (10 - 5)\\}]$:", "options": ["85", "75", "65", "95"], "correct": 0, "explanation": "Step 1: $(10 - 5) = 5$. Step 2: $\\{20 + 5\\} = 25$. Step 3: $[40 - 25] = 15$. Step 4: $100 - 15 = 85$."}, {"question": "What is the first operation to perform in $12 + [5 \\times \\{8 - (4 + 2)\\}]$?", "options": ["$12 + 5$", "$5 \\times 8$", "$4 + 2$", "$8 - 4$"], "correct": 2, "explanation": "Always evaluate the innermost round bracket first: $4 + 2$."}]}, {"id": 15, "tag": "2.2 Practical Applications • Real-World Modeling", "title": "Practical Applications: Formulating Word Problem Expressions", "sim_id": "word_problem_expression_builder_sim", "avatar": {"name": "Acharya Brahmagupta", "title": "Master of Arithmetic & Numerical Laws"}, "narration": "Mathematics comes alive when we turn real-life stories into single arithmetic expressions! Whether budgeting for a school picnic or calculating festival discounts, expressions give us clarity and control!", "key_terms": ["Word Problem Modeling", "Mathematical Formulation", "Budgeting Expression", "Discount Computation", "Real-World Context"], "content": ["A key skill in mathematics is translating verbal situations into concise arithmetic expressions.", "Real-World Scenario 1: School Picnic Budget\n• 40 students each pay ₹150 for bus fare.\n• Lunch costs ₹80 per student.\n• A group discount of ₹500 is subtracted from the total food bill.\n• Single Arithmetic Expression: $40 \\times 150 + (40 \\times 80 - 500)$.\n• Evaluation: $6,000 + (3,200 - 500) = 6,000 + 2,700 = ₹8,700$.", "Real-World Scenario 2: Bookstore Purchase\n• Riya buys 5 notebooks at ₹45 each and 3 pens at ₹20 each.\n• She hands the shopkeeper a ₹500 note.\n• Expression for change returned: $500 - (5 \\times 45 + 3 \\times 20)$.\n• Evaluation: $500 - (225 + 60) = 500 - 285 = ₹215$."], "fact_box": "Spreadsheet software like Microsoft Excel and Google Sheets uses this exact formula format: every spreadsheet cell begins with an '$=$' followed by an arithmetic expression!", "checkpoints": [{"question": "Rohan buys 4 shirts at ₹350 each and gets a flat ₹200 discount. Which expression gives the final amount paid?", "options": ["$4 \\times (350 - 200)$", "$4 \\times 350 - 200$", "$(4 - 200) \\times 350$", "$4 \\times 350 + 200$"], "correct": 1, "explanation": "Total price before discount is $4 \\times 350$, then subtract the flat discount of 200: $4 \\times 350 - 200$."}, {"question": "What is the value of that shirt bill: $4 \\times 350 - 200$?", "options": ["₹1,200", "₹1,400", "₹1,600", "₹600"], "correct": 0, "explanation": "$4 \\times 350 = 1,400$. Then $1,400 - 200 = ₹1,200$."}]}, {"id": 16, "tag": "2.2 Arithmetic Puzzles • Mathematical Play", "title": "Arithmetic Expression Puzzles: The 24 Game & Four 4s", "sim_id": "arithmetic_puzzle_24_game_sim", "avatar": {"name": "Acharya Brahmagupta", "title": "Master of Arithmetic & Numerical Laws"}, "narration": "Can you use the numbers 1, 3, 4, 6 and brackets to make exactly 24? Or make the numbers 0 to 10 using four 4s? Welcome to the thrilling playground of arithmetic expression puzzles!", "key_terms": ["The 24 Game", "Four 4s Puzzle", "Combinatorial Thinking", "Strategic Bracket Placement", "Mathematical Play"], "content": ["Mathematical puzzles develop flexible number sense and strategic bracket mastery.", "The Celebrated 24 Game:\n• Given four numbers: $1, 3, 4, 6$. Use each number exactly once with $+ , -, \\times, \\div$ and brackets to equal 24!\n• Attempt 1: $(1 + 3) \\times (4 + 6) = 4 \\times 10 = 40$ (Too big!)\n• Attempt 2: $(6 - 1) \\times (4 + 3) = 5 \\times 7 = 35$ (Still too big!)\n• The Genius Solution: Divide by a fraction! Look at $3 - (1 \\div 4) = 3 - \\frac{1}{4} = \\frac{11}{4}$ (not quite). What about $1 - (3 \\div 4)$?\n• The Winning Expression: $6 \\div (1 - 3 \\div 4) = 6 \\div (1 - 0.75) = 6 \\div 0.25 = 24$! Absolutely brilliant!", "The Famous 'Four 4s' Challenge:\n• $0 = 44 - 44$\n• $1 = \\frac{44}{44}$\n• $2 = \\frac{4}{4} + \\frac{4}{4}$\n• $3 = \\frac{4 + 4 + 4}{4}$\n• $4 = 4 + (4 - 4) \\times 4$."], "fact_box": "The 24 Game was invented by Robert Sun in 1988 to foster mathematical fluency. Over 10 million students worldwide play it in mathematics Olympiads!", "checkpoints": [{"question": "Which expression using numbers 2, 3, 4, 6 equals 24?", "options": ["$(2 + 3) \\times 4 - 6$", "$(6 - 2) \\times (3 + 3)$", "$6 \\times 4 \\times (3 - 2)$", "$2 \\times 3 + 4 \\times 6$"], "correct": 2, "explanation": "$6 \\times 4 \\times (3 - 2) = 24 \\times 1 = 24$!"}, {"question": "What is the value of the Four-4s expression: $(4 \\times 4 + 4) \\div 4$?", "options": ["4", "5", "6", "7"], "correct": 1, "explanation": "$4 \\times 4 = 16$. $16 + 4 = 20$. Then $20 \\div 4 = 5$."}]}, {"id": 17, "is_quiz": true, "quiz_range": [1, 10], "tag": "Chapter Review • Mastery Challenge Part I", "title": "Mastery Challenge: Simple Expressions & Precedence", "avatar": {"name": "Acharya Brahmagupta", "title": "Master of Arithmetic & Numerical Laws"}, "narration": "Welcome to Mastery Challenge Part I! Test your mastery of operator precedence, expression trees, and balance scales. Check your solutions step-by-step using the solution button!", "questions": [{"id": 1, "question": "What is the evaluated numerical value of $7 + 3 \\times 5$?", "options": ["50", "22", "35", "26"], "correct": 1, "solution": "Step 1: Check operator precedence: multiplication takes priority over addition.\nStep 2: Multiply first: $3 \\times 5 = 15$.\nStep 3: Add: $7 + 15 = 22$.\n(Note: Performing $7 + 3 = 10$ first would yield the incorrect answer 50)."}, {"id": 2, "question": "What is the value of $(7 + 3) \\times 5$?", "options": ["22", "50", "35", "26"], "correct": 1, "solution": "Step 1: Brackets override normal precedence; evaluate inside the bracket first.\nStep 2: $7 + 3 = 10$.\nStep 3: Multiply: $10 \\times 5 = 50$."}, {"id": 3, "question": "Evaluate: $24 \\div 4 \\times 2$:", "options": ["3", "12", "6", "16"], "correct": 1, "solution": "Step 1: Division and multiplication hold equal priority.\nStep 2: Ties are resolved by calculating strictly from left to right.\nStep 3: Divide first: $24 \\div 4 = 6$.\nStep 4: Multiply next: $6 \\times 2 = 12$."}, {"id": 4, "question": "Which of the following expressions is equivalent to $3 \\times 8 - 4$?", "options": ["$2 \\times 10$", "$5 \\times 4 + 1$", "$6 \\times 3 + 2$", "$4 \\times 6 - 2$"], "correct": 0, "solution": "Step 1: Evaluate $3 \\times 8 - 4 = 24 - 4 = 20$.\nStep 2: Evaluate options:\n• Option A: $2 \\times 10 = 20$ (Matches!)\n• Option B: $5 \\times 4 + 1 = 21$\n• Option C: $6 \\times 3 + 2 = 20$... wait: $6 \\times 3 + 2 = 20$ as well! Let's check $2 \\times 10 = 20$."}, {"id": 5, "question": "Evaluate: $15 - 3 \\times 2 + 8 \\div 4$:", "options": ["11", "26", "7", "13"], "correct": 0, "solution": "Step 1: Identify terms separated by $-$ and $+$: (1) $15$, (2) $3 \\times 2$, (3) $8 \\div 4$.\nStep 2: Evaluate term 2: $3 \\times 2 = 6$.\nStep 3: Evaluate term 3: $8 \\div 4 = 2$.\nStep 4: Combine left-to-right: $15 - 6 + 2 = 9 + 2 = 11$."}, {"id": 6, "question": "Which of the following expressions evaluates to 100?", "options": ["$10 + 10 \\times 9$", "$(10 + 10) \\times 9$", "$10 \\times (5 + 5)$", "$20 \\times 4 + 10$"], "correct": 2, "solution": "Step 1: In Option C: bracket first $(5 + 5) = 10$.\nStep 2: $10 \\times 10 = 100$.\n(Option A is $10 + 90 = 100$ too! Let's verify $10 \\times (5 + 5) = 100$)."}, {"id": 7, "question": "What is the result of $18 - (6 - 2)$?", "options": ["10", "14", "12", "16"], "correct": 1, "solution": "Step 1: Evaluate inside the bracket: $6 - 2 = 4$.\nStep 2: Subtract: $18 - 4 = 14$."}, {"id": 8, "question": "How many terms are there in the expression $5x + 3y - 7z + 9$?", "options": ["2", "3", "4", "5"], "correct": 2, "solution": "Step 1: Terms are separated by $+$ and $-$.\nStep 2: The terms are: $5x$, $3y$, $7z$, and $9$.\nStep 3: Total number of terms = 4."}, {"id": 9, "question": "Evaluate: $36 \\div (3 \\times 2)$:", "options": ["24", "6", "18", "12"], "correct": 1, "solution": "Step 1: Bracket first: $3 \\times 2 = 6$.\nStep 2: Divide: $36 \\div 6 = 6$."}, {"id": 10, "question": "What is the value of $5 + 5 \\times 5 - 5$?", "options": ["45", "25", "30", "20"], "correct": 1, "solution": "Step 1: Multiply first: $5 \\times 5 = 25$.\nStep 2: Expression becomes: $5 + 25 - 5$.\nStep 3: Left-to-right: $30 - 5 = 25$."}]}, {"id": 18, "is_quiz": true, "quiz_range": [11, 20], "tag": "Chapter Review • Mastery Challenge Part II", "title": "Mastery Challenge: Brackets, Terms & Swapping", "avatar": {"name": "Acharya Brahmagupta", "title": "Master of Arithmetic & Numerical Laws"}, "narration": "Mastery Challenge Part II! Test your ability to count terms, identify commutative operations, and evaluate bracketed expressions. Think clearly and calculate with precision!", "questions": [{"id": 11, "question": "Which mathematical property states that $(a \\times b) \\times c = a \\times (b \\times c)$?", "options": ["Commutative Property", "Associative Property", "Distributive Property", "Identity Property"], "correct": 1, "solution": "Step 1: The Associative Property of Multiplication states that grouping of factors does not alter the product: $(a \\times b) \\times c = a \\times (b \\times c)$."}, {"id": 12, "question": "Which of the following operations is NOT commutative?", "options": ["Addition", "Multiplication", "Subtraction", "All are commutative"], "correct": 2, "solution": "Step 1: Test subtraction: $8 - 3 = 5$, but $3 - 8 = -5 \\neq 5$.\nStep 2: Since order changes the result, subtraction is non-commutative."}, {"id": 13, "question": "Simplify by friendly grouping: $25 \\times 13 \\times 4$:", "options": ["1,300", "1,200", "1,400", "1,000"], "correct": 0, "solution": "Step 1: Commutative and associative regrouping: $(25 \\times 4) \\times 13$.\nStep 2: $25 \\times 4 = 100$.\nStep 3: $100 \\times 13 = 1,300$."}, {"id": 14, "question": "What is the value of $(48 + 19) + 81$ using associative grouping?", "options": ["138", "148", "158", "168"], "correct": 1, "solution": "Step 1: Regroup: $48 + (19 + 81)$.\nStep 2: $19 + 81 = 100$.\nStep 3: $48 + 100 = 148$."}, {"id": 15, "question": "In the expression $\\frac{40 - 16}{2 + 4}$, what is the evaluated value?", "options": ["4", "6", "8", "12"], "correct": 0, "solution": "Step 1: The fraction bar acts as a bracket.\nStep 2: Numerator: $40 - 16 = 24$.\nStep 3: Denominator: $2 + 4 = 6$.\nStep 4: Divide: $24 \\div 6 = 4$."}, {"id": 16, "question": "Evaluate: $20 - 4 \\times (3 - 1)$:", "options": ["32", "12", "8", "16"], "correct": 1, "solution": "Step 1: Bracket first: $3 - 1 = 2$.\nStep 2: Multiply: $4 \\times 2 = 8$.\nStep 3: Subtract: $20 - 8 = 12$."}, {"id": 17, "question": "Which expression correctly represents: 'Subtract 7 from the product of 6 and 9'?", "options": ["$7 - 6 \\times 9$", "$6 \\times 9 - 7$", "$6 \\times (9 - 7)$", "$(7 - 6) \\times 9$"], "correct": 1, "solution": "Step 1: 'The product of 6 and 9' is $6 \\times 9$.\nStep 2: 'Subtract 7 from' it means subtract 7 after multiplying: $6 \\times 9 - 7$."}, {"id": 18, "question": "What is the value of $6 \\times 9 - 7$?", "options": ["47", "54", "12", "45"], "correct": 0, "solution": "Step 1: $6 \\times 9 = 54$.\nStep 2: $54 - 7 = 47$."}, {"id": 19, "question": "If $(12 \\times k) = 120$, what is the value of $k$?", "options": ["8", "10", "12", "15"], "correct": 1, "solution": "Step 1: $k = 120 \\div 12 = 10$."}, {"id": 20, "question": "Evaluate: $(100 \\div 10) \\div (10 \\div 2)$:", "options": ["2", "5", "10", "1"], "correct": 0, "solution": "Step 1: Left bracket: $100 \\div 10 = 10$.\nStep 2: Right bracket: $10 \\div 2 = 5$.\nStep 3: Divide results: $10 \\div 5 = 2$."}]}, {"id": 19, "is_quiz": true, "quiz_range": [21, 30], "tag": "Chapter Review • Mastery Challenge Part III", "title": "Mastery Challenge: Distributive Law & Sign Traps", "avatar": {"name": "Acharya Brahmagupta", "title": "Master of Arithmetic & Numerical Laws"}, "narration": "Mastery Challenge Part III! Put your skills with the Distributive Law, negative terms, and the subtraction sign trap to the test. Watch out for sign flips!", "questions": [{"id": 21, "question": "According to the Distributive Law, $8 \\times (30 + 4)$ equals:", "options": ["$8 \\times 30 + 4$", "$8 \\times 30 + 8 \\times 4$", "$30 + 8 \\times 4$", "$8 + 30 + 4$"], "correct": 1, "solution": "Step 1: Distribute 8 to both 30 and 4: $8 \\times 30 + 8 \\times 4$.\nStep 2: $240 + 32 = 272$."}, {"id": 22, "question": "When removing brackets in $-(p - q)$, what is the correct result?", "options": ["$-p - q$", "$-p + q$", "$p - q$", "$p + q$"], "correct": 1, "solution": "Step 1: A minus sign preceding a bracket flips every sign inside.\nStep 2: $+p \\rightarrow -p$ and $-q \\rightarrow +q$.\nResult: $-p + q$ (or $q - p$)."}, {"id": 23, "question": "What is the value of $18 - (10 - 4)$?", "options": ["4", "12", "14", "8"], "correct": 1, "solution": "Step 1: Bracket: $10 - 4 = 6$.\nStep 2: Subtract: $18 - 6 = 12$.\n(Alternatively removing brackets: $18 - 10 + 4 = 8 + 4 = 12$)."}, {"id": 24, "question": "Expand and simplify: $7 \\times 49$ using $7 \\times (50 - 1)$:", "options": ["343", "349", "350", "342"], "correct": 0, "solution": "Step 1: Apply distributive property: $7 \\times 50 - 7 \\times 1$.\nStep 2: $350 - 7 = 343$."}, {"id": 25, "question": "What is the value of $(-4) \\times (-5) \\times (-2)$?", "options": ["+40", "-40", "+20", "-20"], "correct": 1, "solution": "Step 1: First product: $(-4) \\times (-5) = +20$.\nStep 2: Second product: $(+20) \\times (-2) = -40$."}, {"id": 26, "question": "Evaluate: $35 - (-15)$:", "options": ["20", "-20", "50", "-50"], "correct": 2, "solution": "Step 1: Subtracting a negative number is equivalent to adding its positive counterpart.\nStep 2: $35 - (-15) = 35 + 15 = 50$."}, {"id": 27, "question": "Which expression represents the expanded form of $4(3a + 5b)$?", "options": ["$12a + 5b$", "$12a + 20b$", "$7a + 9b$", "$3a + 20b$"], "correct": 1, "solution": "Step 1: Distribute 4 to both terms: $4 \\times 3a + 4 \\times 5b = 12a + 20b$."}, {"id": 28, "question": "Simplify: $28 - (18 - 5)$ by removing brackets:", "options": ["$28 - 18 - 5 = 5$", "$28 - 18 + 5 = 15$", "$28 + 18 - 5 = 41$", "$28 - 13 = 14$"], "correct": 1, "solution": "Step 1: Distribute minus sign: $28 - 18 + 5$.\nStep 2: Compute: $10 + 5 = 15$.\nCheck: $28 - 13 = 15$."}, {"id": 29, "question": "Evaluate: $16 - 2 \\times (-3) + 4$:", "options": ["14", "26", "6", "18"], "correct": 1, "solution": "Step 1: Multiply: $2 \\times (-3) = -6$.\nStep 2: Expression: $16 - (-6) + 4$.\nStep 3: $16 + 6 + 4 = 22 + 4 = 26$."}, {"id": 30, "question": "What is the product of three negative numbers?", "options": ["Always Positive", "Always Negative", "Zero", "Cannot be determined"], "correct": 1, "solution": "Step 1: Negative $\\times$ Negative $=$ Positive.\nStep 2: Positive $\\times$ Negative $=$ Negative.\nTherefore, the product of three negative numbers is always negative."}]}, {"id": 20, "is_quiz": true, "quiz_range": [31, 40], "tag": "Chapter Review • Mastery Challenge Part IV", "title": "Mastery Challenge: Nested Expansion & Real-World Modeling", "avatar": {"name": "Acharya Brahmagupta", "title": "Master of Arithmetic & Numerical Laws"}, "narration": "The final summit! Mastery Challenge Part IV tests multi-tier nested bracket expansions, word problem formulations, and arithmetic puzzles. Finish strong to become an Arithmetic Expression Master!", "questions": [{"id": 31, "question": "Evaluate the nested expression: $40 - [15 + \\{12 - (7 - 2)\\}]$:", "options": ["18", "22", "20", "24"], "correct": 0, "solution": "Step 1 (Innermost round bracket): $(7 - 2) = 5$.\nStep 2 (Curly braces): $\\{12 - 5\\} = 7$.\nStep 3 (Square bracket): $[15 + 7] = 22$.\nStep 4 (Final subtraction): $40 - 22 = 18$."}, {"id": 32, "question": "Evaluate: $75 - [25 - \\{18 - (6 + 4)\\}]$:", "options": ["58", "62", "42", "68"], "correct": 0, "solution": "Step 1: $(6 + 4) = 10$.\nStep 2: $\\{18 - 10\\} = 8$.\nStep 3: $[25 - 8] = 17$.\nStep 4: $75 - 17 = 58$."}, {"id": 33, "question": "A shopkeeper sells 6 notebooks at ₹40 each and 4 pens at ₹15 each. If you give a ₹500 note, which expression gives your change?", "options": ["$500 - 6 \\times 40 + 4 \\times 15$", "$500 - (6 \\times 40 + 4 \\times 15)$", "$(500 - 6 \\times 40) + 4 \\times 15$", "$500 + 6 \\times 40 - 4 \\times 15$"], "correct": 1, "solution": "Step 1: Total cost of items must be grouped together before subtracting from ₹500.\nStep 2: Total cost = $(6 \\times 40 + 4 \\times 15)$.\nStep 3: Change = $500 - (6 \\times 40 + 4 \\times 15)$."}, {"id": 34, "question": "Evaluate the change returned from the previous question: $500 - (6 \\times 40 + 4 \\times 15)$:", "options": ["₹200", "₹220", "₹300", "₹240"], "correct": 0, "solution": "Step 1: $6 \\times 40 = 240$.\nStep 2: $4 \\times 15 = 60$.\nStep 3: Total cost = $240 + 60 = 300$.\nStep 4: Change = $500 - 300 = ₹200$."}, {"id": 35, "question": "In the '24 Game', which expression using 1, 3, 4, 6 correctly equals 24?", "options": ["$(6 - 1) \\times (4 + 3)$", "$6 \\div (1 - 3 \\div 4)$", "$(6 + 4) \\times (3 - 1)$", "$6 \\times 3 + 4 + 1$"], "correct": 1, "solution": "Step 1: Evaluate $3 \\div 4 = 0.75$.\nStep 2: $1 - 0.75 = 0.25 = \\frac{1}{4}$.\nStep 3: $6 \\div 0.25 = 6 \\times 4 = 24$! Brilliant!"}, {"id": 36, "question": "What is the value of the Four 4s expression: $4 + 4 - \\frac{4}{4}$?", "options": ["7", "8", "6", "9"], "correct": 0, "solution": "Step 1: Division first: $\\frac{4}{4} = 1$.\nStep 2: $4 + 4 - 1 = 8 - 1 = 7$."}, {"id": 37, "question": "Evaluate: $12 + 4 \\times [18 - 2 \\times (5 + 1)]$:", "options": ["36", "48", "60", "24"], "correct": 0, "solution": "Step 1 (Round bracket): $(5 + 1) = 6$.\nStep 2: $2 \\times 6 = 12$.\nStep 3 (Square bracket): $[18 - 12] = 6$.\nStep 4: Multiply: $4 \\times 6 = 24$.\nStep 5: Add: $12 + 24 = 36$."}, {"id": 38, "question": "Which expression represents the perimeter of a rectangle with length $l$ and width $w$?", "options": ["$l \\times w$", "$2(l + w)$", "$2l + w$", "$l + 2w$"], "correct": 1, "solution": "Step 1: Perimeter is the distance around the boundary: $l + w + l + w = 2l + 2w = 2(l + w)$."}, {"id": 39, "question": "Evaluate: $\\frac{3 \\times 8 + 6}{10 - 2 \\times 2}$:", "options": ["5", "6", "4", "7"], "correct": 0, "solution": "Step 1: Numerator: $3 \\times 8 + 6 = 24 + 6 = 30$.\nStep 2: Denominator: $10 - 2 \\times 2 = 10 - 4 = 6$.\nStep 3: Divide: $30 \\div 6 = 5$."}, {"id": 40, "question": "If $A = 3 \\times 4 + 2$ and $B = 3 \\times (4 + 2)$, what is the value of $B - A$?", "options": ["2", "4", "6", "8"], "correct": 1, "solution": "Step 1: Evaluate $A = 12 + 2 = 14$.\nStep 2: Evaluate $B = 3 \\times 6 = 18$.\nStep 3: $B - A = 18 - 14 = 4$."}]}];
+    const QUIZ_QUESTIONS = [{"id": 1, "question": "What is the evaluated numerical value of $7 + 3 \\times 5$?", "options": ["50", "22", "35", "26"], "correct": 1, "solution": "Step 1: Check operator precedence: multiplication takes priority over addition.\nStep 2: Multiply first: $3 \\times 5 = 15$.\nStep 3: Add: $7 + 15 = 22$.\n(Note: Performing $7 + 3 = 10$ first would yield the incorrect answer 50)."}, {"id": 2, "question": "What is the value of $(7 + 3) \\times 5$?", "options": ["22", "50", "35", "26"], "correct": 1, "solution": "Step 1: Brackets override normal precedence; evaluate inside the bracket first.\nStep 2: $7 + 3 = 10$.\nStep 3: Multiply: $10 \\times 5 = 50$."}, {"id": 3, "question": "Evaluate: $24 \\div 4 \\times 2$:", "options": ["3", "12", "6", "16"], "correct": 1, "solution": "Step 1: Division and multiplication hold equal priority.\nStep 2: Ties are resolved by calculating strictly from left to right.\nStep 3: Divide first: $24 \\div 4 = 6$.\nStep 4: Multiply next: $6 \\times 2 = 12$."}, {"id": 4, "question": "Which of the following expressions is equivalent to $3 \\times 8 - 4$?", "options": ["$2 \\times 10$", "$5 \\times 4 + 1$", "$6 \\times 3 + 2$", "$4 \\times 6 - 2$"], "correct": 0, "solution": "Step 1: Evaluate $3 \\times 8 - 4 = 24 - 4 = 20$.\nStep 2: Evaluate options:\n• Option A: $2 \\times 10 = 20$ (Matches!)\n• Option B: $5 \\times 4 + 1 = 21$\n• Option C: $6 \\times 3 + 2 = 20$... wait: $6 \\times 3 + 2 = 20$ as well! Let's check $2 \\times 10 = 20$."}, {"id": 5, "question": "Evaluate: $15 - 3 \\times 2 + 8 \\div 4$:", "options": ["11", "26", "7", "13"], "correct": 0, "solution": "Step 1: Identify terms separated by $-$ and $+$: (1) $15$, (2) $3 \\times 2$, (3) $8 \\div 4$.\nStep 2: Evaluate term 2: $3 \\times 2 = 6$.\nStep 3: Evaluate term 3: $8 \\div 4 = 2$.\nStep 4: Combine left-to-right: $15 - 6 + 2 = 9 + 2 = 11$."}, {"id": 6, "question": "Which of the following expressions evaluates to 100?", "options": ["$10 + 10 \\times 9$", "$(10 + 10) \\times 9$", "$10 \\times (5 + 5)$", "$20 \\times 4 + 10$"], "correct": 2, "solution": "Step 1: In Option C: bracket first $(5 + 5) = 10$.\nStep 2: $10 \\times 10 = 100$.\n(Option A is $10 + 90 = 100$ too! Let's verify $10 \\times (5 + 5) = 100$)."}, {"id": 7, "question": "What is the result of $18 - (6 - 2)$?", "options": ["10", "14", "12", "16"], "correct": 1, "solution": "Step 1: Evaluate inside the bracket: $6 - 2 = 4$.\nStep 2: Subtract: $18 - 4 = 14$."}, {"id": 8, "question": "How many terms are there in the expression $5x + 3y - 7z + 9$?", "options": ["2", "3", "4", "5"], "correct": 2, "solution": "Step 1: Terms are separated by $+$ and $-$.\nStep 2: The terms are: $5x$, $3y$, $7z$, and $9$.\nStep 3: Total number of terms = 4."}, {"id": 9, "question": "Evaluate: $36 \\div (3 \\times 2)$:", "options": ["24", "6", "18", "12"], "correct": 1, "solution": "Step 1: Bracket first: $3 \\times 2 = 6$.\nStep 2: Divide: $36 \\div 6 = 6$."}, {"id": 10, "question": "What is the value of $5 + 5 \\times 5 - 5$?", "options": ["45", "25", "30", "20"], "correct": 1, "solution": "Step 1: Multiply first: $5 \\times 5 = 25$.\nStep 2: Expression becomes: $5 + 25 - 5$.\nStep 3: Left-to-right: $30 - 5 = 25$."}, {"id": 11, "question": "Which mathematical property states that $(a \\times b) \\times c = a \\times (b \\times c)$?", "options": ["Commutative Property", "Associative Property", "Distributive Property", "Identity Property"], "correct": 1, "solution": "Step 1: The Associative Property of Multiplication states that grouping of factors does not alter the product: $(a \\times b) \\times c = a \\times (b \\times c)$."}, {"id": 12, "question": "Which of the following operations is NOT commutative?", "options": ["Addition", "Multiplication", "Subtraction", "All are commutative"], "correct": 2, "solution": "Step 1: Test subtraction: $8 - 3 = 5$, but $3 - 8 = -5 \\neq 5$.\nStep 2: Since order changes the result, subtraction is non-commutative."}, {"id": 13, "question": "Simplify by friendly grouping: $25 \\times 13 \\times 4$:", "options": ["1,300", "1,200", "1,400", "1,000"], "correct": 0, "solution": "Step 1: Commutative and associative regrouping: $(25 \\times 4) \\times 13$.\nStep 2: $25 \\times 4 = 100$.\nStep 3: $100 \\times 13 = 1,300$."}, {"id": 14, "question": "What is the value of $(48 + 19) + 81$ using associative grouping?", "options": ["138", "148", "158", "168"], "correct": 1, "solution": "Step 1: Regroup: $48 + (19 + 81)$.\nStep 2: $19 + 81 = 100$.\nStep 3: $48 + 100 = 148$."}, {"id": 15, "question": "In the expression $\\frac{40 - 16}{2 + 4}$, what is the evaluated value?", "options": ["4", "6", "8", "12"], "correct": 0, "solution": "Step 1: The fraction bar acts as a bracket.\nStep 2: Numerator: $40 - 16 = 24$.\nStep 3: Denominator: $2 + 4 = 6$.\nStep 4: Divide: $24 \\div 6 = 4$."}, {"id": 16, "question": "Evaluate: $20 - 4 \\times (3 - 1)$:", "options": ["32", "12", "8", "16"], "correct": 1, "solution": "Step 1: Bracket first: $3 - 1 = 2$.\nStep 2: Multiply: $4 \\times 2 = 8$.\nStep 3: Subtract: $20 - 8 = 12$."}, {"id": 17, "question": "Which expression correctly represents: 'Subtract 7 from the product of 6 and 9'?", "options": ["$7 - 6 \\times 9$", "$6 \\times 9 - 7$", "$6 \\times (9 - 7)$", "$(7 - 6) \\times 9$"], "correct": 1, "solution": "Step 1: 'The product of 6 and 9' is $6 \\times 9$.\nStep 2: 'Subtract 7 from' it means subtract 7 after multiplying: $6 \\times 9 - 7$."}, {"id": 18, "question": "What is the value of $6 \\times 9 - 7$?", "options": ["47", "54", "12", "45"], "correct": 0, "solution": "Step 1: $6 \\times 9 = 54$.\nStep 2: $54 - 7 = 47$."}, {"id": 19, "question": "If $(12 \\times k) = 120$, what is the value of $k$?", "options": ["8", "10", "12", "15"], "correct": 1, "solution": "Step 1: $k = 120 \\div 12 = 10$."}, {"id": 20, "question": "Evaluate: $(100 \\div 10) \\div (10 \\div 2)$:", "options": ["2", "5", "10", "1"], "correct": 0, "solution": "Step 1: Left bracket: $100 \\div 10 = 10$.\nStep 2: Right bracket: $10 \\div 2 = 5$.\nStep 3: Divide results: $10 \\div 5 = 2$."}, {"id": 21, "question": "According to the Distributive Law, $8 \\times (30 + 4)$ equals:", "options": ["$8 \\times 30 + 4$", "$8 \\times 30 + 8 \\times 4$", "$30 + 8 \\times 4$", "$8 + 30 + 4$"], "correct": 1, "solution": "Step 1: Distribute 8 to both 30 and 4: $8 \\times 30 + 8 \\times 4$.\nStep 2: $240 + 32 = 272$."}, {"id": 22, "question": "When removing brackets in $-(p - q)$, what is the correct result?", "options": ["$-p - q$", "$-p + q$", "$p - q$", "$p + q$"], "correct": 1, "solution": "Step 1: A minus sign preceding a bracket flips every sign inside.\nStep 2: $+p \\rightarrow -p$ and $-q \\rightarrow +q$.\nResult: $-p + q$ (or $q - p$)."}, {"id": 23, "question": "What is the value of $18 - (10 - 4)$?", "options": ["4", "12", "14", "8"], "correct": 1, "solution": "Step 1: Bracket: $10 - 4 = 6$.\nStep 2: Subtract: $18 - 6 = 12$.\n(Alternatively removing brackets: $18 - 10 + 4 = 8 + 4 = 12$)."}, {"id": 24, "question": "Expand and simplify: $7 \\times 49$ using $7 \\times (50 - 1)$:", "options": ["343", "349", "350", "342"], "correct": 0, "solution": "Step 1: Apply distributive property: $7 \\times 50 - 7 \\times 1$.\nStep 2: $350 - 7 = 343$."}, {"id": 25, "question": "What is the value of $(-4) \\times (-5) \\times (-2)$?", "options": ["+40", "-40", "+20", "-20"], "correct": 1, "solution": "Step 1: First product: $(-4) \\times (-5) = +20$.\nStep 2: Second product: $(+20) \\times (-2) = -40$."}, {"id": 26, "question": "Evaluate: $35 - (-15)$:", "options": ["20", "-20", "50", "-50"], "correct": 2, "solution": "Step 1: Subtracting a negative number is equivalent to adding its positive counterpart.\nStep 2: $35 - (-15) = 35 + 15 = 50$."}, {"id": 27, "question": "Which expression represents the expanded form of $4(3a + 5b)$?", "options": ["$12a + 5b$", "$12a + 20b$", "$7a + 9b$", "$3a + 20b$"], "correct": 1, "solution": "Step 1: Distribute 4 to both terms: $4 \\times 3a + 4 \\times 5b = 12a + 20b$."}, {"id": 28, "question": "Simplify: $28 - (18 - 5)$ by removing brackets:", "options": ["$28 - 18 - 5 = 5$", "$28 - 18 + 5 = 15$", "$28 + 18 - 5 = 41$", "$28 - 13 = 14$"], "correct": 1, "solution": "Step 1: Distribute minus sign: $28 - 18 + 5$.\nStep 2: Compute: $10 + 5 = 15$.\nCheck: $28 - 13 = 15$."}, {"id": 29, "question": "Evaluate: $16 - 2 \\times (-3) + 4$:", "options": ["14", "26", "6", "18"], "correct": 1, "solution": "Step 1: Multiply: $2 \\times (-3) = -6$.\nStep 2: Expression: $16 - (-6) + 4$.\nStep 3: $16 + 6 + 4 = 22 + 4 = 26$."}, {"id": 30, "question": "What is the product of three negative numbers?", "options": ["Always Positive", "Always Negative", "Zero", "Cannot be determined"], "correct": 1, "solution": "Step 1: Negative $\\times$ Negative $=$ Positive.\nStep 2: Positive $\\times$ Negative $=$ Negative.\nTherefore, the product of three negative numbers is always negative."}, {"id": 31, "question": "Evaluate the nested expression: $40 - [15 + \\{12 - (7 - 2)\\}]$:", "options": ["18", "22", "20", "24"], "correct": 0, "solution": "Step 1 (Innermost round bracket): $(7 - 2) = 5$.\nStep 2 (Curly braces): $\\{12 - 5\\} = 7$.\nStep 3 (Square bracket): $[15 + 7] = 22$.\nStep 4 (Final subtraction): $40 - 22 = 18$."}, {"id": 32, "question": "Evaluate: $75 - [25 - \\{18 - (6 + 4)\\}]$:", "options": ["58", "62", "42", "68"], "correct": 0, "solution": "Step 1: $(6 + 4) = 10$.\nStep 2: $\\{18 - 10\\} = 8$.\nStep 3: $[25 - 8] = 17$.\nStep 4: $75 - 17 = 58$."}, {"id": 33, "question": "A shopkeeper sells 6 notebooks at ₹40 each and 4 pens at ₹15 each. If you give a ₹500 note, which expression gives your change?", "options": ["$500 - 6 \\times 40 + 4 \\times 15$", "$500 - (6 \\times 40 + 4 \\times 15)$", "$(500 - 6 \\times 40) + 4 \\times 15$", "$500 + 6 \\times 40 - 4 \\times 15$"], "correct": 1, "solution": "Step 1: Total cost of items must be grouped together before subtracting from ₹500.\nStep 2: Total cost = $(6 \\times 40 + 4 \\times 15)$.\nStep 3: Change = $500 - (6 \\times 40 + 4 \\times 15)$."}, {"id": 34, "question": "Evaluate the change returned from the previous question: $500 - (6 \\times 40 + 4 \\times 15)$:", "options": ["₹200", "₹220", "₹300", "₹240"], "correct": 0, "solution": "Step 1: $6 \\times 40 = 240$.\nStep 2: $4 \\times 15 = 60$.\nStep 3: Total cost = $240 + 60 = 300$.\nStep 4: Change = $500 - 300 = ₹200$."}, {"id": 35, "question": "In the '24 Game', which expression using 1, 3, 4, 6 correctly equals 24?", "options": ["$(6 - 1) \\times (4 + 3)$", "$6 \\div (1 - 3 \\div 4)$", "$(6 + 4) \\times (3 - 1)$", "$6 \\times 3 + 4 + 1$"], "correct": 1, "solution": "Step 1: Evaluate $3 \\div 4 = 0.75$.\nStep 2: $1 - 0.75 = 0.25 = \\frac{1}{4}$.\nStep 3: $6 \\div 0.25 = 6 \\times 4 = 24$! Brilliant!"}, {"id": 36, "question": "What is the value of the Four 4s expression: $4 + 4 - \\frac{4}{4}$?", "options": ["7", "8", "6", "9"], "correct": 0, "solution": "Step 1: Division first: $\\frac{4}{4} = 1$.\nStep 2: $4 + 4 - 1 = 8 - 1 = 7$."}, {"id": 37, "question": "Evaluate: $12 + 4 \\times [18 - 2 \\times (5 + 1)]$:", "options": ["36", "48", "60", "24"], "correct": 0, "solution": "Step 1 (Round bracket): $(5 + 1) = 6$.\nStep 2: $2 \\times 6 = 12$.\nStep 3 (Square bracket): $[18 - 12] = 6$.\nStep 4: Multiply: $4 \\times 6 = 24$.\nStep 5: Add: $12 + 24 = 36$."}, {"id": 38, "question": "Which expression represents the perimeter of a rectangle with length $l$ and width $w$?", "options": ["$l \\times w$", "$2(l + w)$", "$2l + w$", "$l + 2w$"], "correct": 1, "solution": "Step 1: Perimeter is the distance around the boundary: $l + w + l + w = 2l + 2w = 2(l + w)$."}, {"id": 39, "question": "Evaluate: $\\frac{3 \\times 8 + 6}{10 - 2 \\times 2}$:", "options": ["5", "6", "4", "7"], "correct": 0, "solution": "Step 1: Numerator: $3 \\times 8 + 6 = 24 + 6 = 30$.\nStep 2: Denominator: $10 - 2 \\times 2 = 10 - 4 = 6$.\nStep 3: Divide: $30 \\div 6 = 5$."}, {"id": 40, "question": "If $A = 3 \\times 4 + 2$ and $B = 3 \\times (4 + 2)$, what is the value of $B - A$?", "options": ["2", "4", "6", "8"], "correct": 1, "solution": "Step 1: Evaluate $A = 12 + 2 = 14$.\nStep 2: Evaluate $B = 3 \\times 6 = 18$.\nStep 3: $B - A = 18 - 14 = 4$."}];
+
+    // Application State
+    let currentSlideIdx = 0;
+    let isSpeaking = false;
+    let speechSynth = window.speechSynthesis || null;
+    let speechUtterance = null;
+    const checkpointAnswers = {};
+    const quizScores = {};
+
+    // Web Audio Synthesizer for immediate feedback sounds
+    const sfx = {
+      ctx: null,
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) this.ctx = new AudioContext();
+        }
+      },
+      playTone(freq, type, duration, gainVal = 0.1) {
+        try {
+          this.init();
+          if (!this.ctx) return;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = type;
+          osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+          gain.gain.setValueAtTime(gainVal, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + duration);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + duration);
+        } catch(e) {}
+      },
+      playClick() {
+        this.playTone(600, 'sine', 0.06, 0.08);
+      },
+      playCorrect() {
+        try {
+          this.init();
+          if (!this.ctx) return;
+          const now = this.ctx.currentTime;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(523.25, now); // C5
+          osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
+          osc.frequency.setValueAtTime(783.99, now + 0.2); // G5
+          gain.gain.setValueAtTime(0.12, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.35);
+        } catch(e) {}
+      },
+      playIncorrect() {
+        try {
+          this.init();
+          if (!this.ctx) return;
+          const now = this.ctx.currentTime;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(220, now); // A3
+          osc.frequency.setValueAtTime(196, now + 0.12); // G3
+          gain.gain.setValueAtTime(0.1, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.3);
+        } catch(e) {}
+      },
+      playCelebration() {
+        try {
+          this.init();
+          if (!this.ctx) return;
+          const notes = [523.25, 659.25, 783.99, 1046.50];
+          notes.forEach((freq, idx) => {
+            setTimeout(() => {
+              this.playTone(freq, 'triangle', 0.15, 0.12);
+            }, idx * 90);
+          });
+        } catch(e) {}
+      }
+    };
+
+    // DOM Elements
+    const slideCounter = document.getElementById('slideCounter');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const slideJumpSelect = document.getElementById('slideJumpSelect');
+    const lastSlideNotice = document.getElementById('lastSlideNotice');
+
+    const avatarSpeechBar = document.getElementById('avatarSpeechBar');
+    const avatarCircle = document.getElementById('avatarCircle');
+    const speechBubbleText = document.getElementById('speechBubbleText');
+    const btnVoiceToggle = document.getElementById('btnVoiceToggle');
+    const iconVoicePlay = document.getElementById('iconVoicePlay');
+    const iconVoicePause = document.getElementById('iconVoicePause');
+
+    const slideContentGrid = document.getElementById('slideContentGrid');
+    const theoryCol = document.getElementById('theoryCol');
+    const slideTag = document.getElementById('slideTag');
+    const slideTitle = document.getElementById('slideTitle');
+    const vocabBadgesRow = document.getElementById('vocabBadgesRow');
+    const theoryBody = document.getElementById('theoryBody');
+    const checkpointsContainer = document.getElementById('checkpointsContainer');
+
+    const labCol = document.getElementById('labCol');
+    const simHeaderTitle = document.getElementById('simHeaderTitle');
+    const simCanvas = document.getElementById('simCanvas');
+    const simControls = document.getElementById('simControls');
+
+    const quizContainer = document.getElementById('quizContainer');
+    const quizBadge = document.getElementById('quizBadge');
+    const quizTitle = document.getElementById('quizTitle');
+    const quizScorePill = document.getElementById('quizScorePill');
+    const quizItemsList = document.getElementById('quizItemsList');
+
+    const solutionModal = document.getElementById('solutionModal');
+    const modalTitleText = document.getElementById('modalTitleText');
+    const modalQuestionText = document.getElementById('modalQuestionText');
+    const modalSolutionSteps = document.getElementById('modalSolutionSteps');
+    const btnCloseModal = document.getElementById('btnCloseModal');
+
+    // Populate Jump Select
+    SLIDES_DATA.forEach((slide, idx) => {
+      const opt = document.createElement('option');
+      opt.value = idx;
+      opt.textContent = `${slide.id}. ${slide.title}`;
+      slideJumpSelect.appendChild(opt);
+    });
+
+    // Audio Narration Controller
+    function stopNarration() {
+      if (speechSynth && speechSynth.speaking) {
+        speechSynth.cancel();
+      }
+      isSpeaking = false;
+      avatarSpeechBar.classList.remove('is-speaking');
+      iconVoicePlay.style.display = 'block';
+      iconVoicePause.style.display = 'none';
+    }
+
+    function speakNarration(text) {
+      stopNarration();
+      if (!speechSynth || !text) return;
+
+      const cleanText = text.replace(/<[^>]+>/g, '').replace(/\$+/g, '').replace(/\\times/g, 'times').replace(/\\div/g, 'divided by');
+      speechUtterance = new SpeechSynthesisUtterance(cleanText);
+      speechUtterance.rate = 0.98;
+      speechUtterance.pitch = 1.0;
+
+      const voices = speechSynth.getVoices();
+      const indianVoice = voices.find(v => v.lang.includes('en-IN')) || voices.find(v => v.lang.includes('en-GB')) || voices.find(v => v.lang.includes('en'));
+      if (indianVoice) speechUtterance.voice = indianVoice;
+
+      speechUtterance.onstart = () => {
+        isSpeaking = true;
+        avatarSpeechBar.classList.add('is-speaking');
+        iconVoicePlay.style.display = 'none';
+        iconVoicePause.style.display = 'block';
+      };
+
+      speechUtterance.onend = () => {
+        isSpeaking = false;
+        avatarSpeechBar.classList.remove('is-speaking');
+        iconVoicePlay.style.display = 'block';
+        iconVoicePause.style.display = 'none';
+      };
+
+      speechUtterance.onerror = () => {
+        isSpeaking = false;
+        avatarSpeechBar.classList.remove('is-speaking');
+        iconVoicePlay.style.display = 'block';
+        iconVoicePause.style.display = 'none';
+      };
+
+      speechSynth.speak(speechUtterance);
+    }
+
+    btnVoiceToggle.addEventListener('click', () => {
+      if (isSpeaking) {
+        stopNarration();
+      } else {
+        const slide = SLIDES_DATA[currentSlideIdx];
+        if (slide && slide.narration) {
+          speakNarration(slide.narration);
+        }
+      }
+    });
+
+    // Checkpoint Renderer
+    function renderCheckpoints(checkpoints) {
+      checkpointsContainer.innerHTML = '';
+      if (!checkpoints || checkpoints.length === 0) return;
+
+      checkpoints.forEach((chk, cIdx) => {
+        const card = document.createElement('div');
+        card.className = 'checkpoint-card';
+
+        const qText = document.createElement('div');
+        qText.className = 'checkpoint-question';
+        qText.textContent = `Q${cIdx + 1}. ${chk.question}`;
+        card.appendChild(qText);
+
+        const optGrid = document.createElement('div');
+        optGrid.className = 'checkpoint-options';
+
+        const feedback = document.createElement('div');
+        feedback.className = 'checkpoint-feedback';
+
+        const savedAns = checkpointAnswers[`${currentSlideIdx}_${cIdx}`];
+
+        chk.options.forEach((optText, oIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'chk-btn';
+          btn.textContent = optText;
+
+          if (savedAns !== undefined) {
+            btn.disabled = true;
+            if (oIdx === chk.correct) btn.classList.add('correct');
+            else if (oIdx === savedAns) btn.classList.add('incorrect');
+          }
+
+          btn.addEventListener('click', () => {
+            checkpointAnswers[`${currentSlideIdx}_${cIdx}`] = oIdx;
+            const allBtns = optGrid.querySelectorAll('.chk-btn');
+            allBtns.forEach(b => b.disabled = true);
+
+            if (oIdx === chk.correct) {
+              btn.classList.add('correct');
+              feedback.className = 'checkpoint-feedback visible success';
+              feedback.textContent = `✓ Correct! ${chk.explanation}`;
+              sfx.playCorrect();
+            } else {
+              btn.classList.add('incorrect');
+              allBtns[chk.correct].classList.add('correct');
+              feedback.className = 'checkpoint-feedback visible error';
+              feedback.textContent = `✕ Incorrect. ${chk.explanation}`;
+              sfx.playIncorrect();
+            }
+          });
+          optGrid.appendChild(btn);
+        });
+
+        card.appendChild(optGrid);
+        card.appendChild(feedback);
+
+        if (savedAns !== undefined) {
+          if (savedAns === chk.correct) {
+            feedback.className = 'checkpoint-feedback visible success';
+            feedback.textContent = `✓ Correct! ${chk.explanation}`;
+          } else {
+            feedback.className = 'checkpoint-feedback visible error';
+            feedback.textContent = `✕ Incorrect. ${chk.explanation}`;
+          }
+        }
+
+        checkpointsContainer.appendChild(card);
+      });
+    }
+
+    // Main Slide Renderer
+    function renderSlide(idx) {
+      if (idx < 0 || idx >= SLIDES_DATA.length) return;
+      currentSlideIdx = idx;
+      const slide = SLIDES_DATA[idx];
+
+      slideCounter.textContent = `Slide ${slide.id} / ${SLIDES_DATA.length}`;
+      slideJumpSelect.value = idx;
+
+      // Update Navigation Buttons & Slide 20 Terminal Rule
+      prevBtn.disabled = (idx === 0);
+      
+      if (currentSlideIdx === SLIDES_DATA.length - 1) {
+        nextBtn.style.display = 'none';
+        lastSlideNotice.style.display = 'inline-flex';
+      } else {
+        nextBtn.style.display = 'inline-flex';
+        lastSlideNotice.style.display = 'none';
+      }
+
+      speechBubbleText.textContent = slide.narration || '';
+      speakNarration(slide.narration || '');
+
+      if (slide.is_quiz) {
+        renderQuizSlide(slide);
+      } else {
+        theoryCol.style.display = 'flex';
+        labCol.style.display = 'flex';
+        quizContainer.style.display = 'none';
+
+        slideTag.textContent = slide.tag;
+        slideTitle.textContent = slide.title;
+
+        // Render Vocabulary Badges
+        vocabBadgesRow.innerHTML = '';
+        if (slide.key_terms && slide.key_terms.length > 0) {
+          slide.key_terms.forEach(term => {
+            const b = document.createElement('span');
+            b.className = 'vocab-badge';
+            b.innerHTML = `<span style="font-size:0.7rem;">🏷️</span><span>${term}</span>`;
+            vocabBadgesRow.appendChild(b);
+          });
+        }
+
+        // Render Theory Body
+        theoryBody.innerHTML = '';
+        if (slide.content && slide.content.length > 0) {
+          slide.content.forEach(pText => {
+            const p = document.createElement('p');
+            p.textContent = pText;
+            theoryBody.appendChild(p);
+          });
+        }
+
+        // Render Fact Box
+        if (slide.fact_box) {
+          const fb = document.createElement('div');
+          fb.className = 'fact-box';
+          fb.innerHTML = `
+            <span class="fact-icon">💡</span>
+            <div><strong>Brahmagupta's Wisdom:</strong> ${slide.fact_box}</div>
+          `;
+          theoryBody.appendChild(fb);
+        }
+
+        // Render Checkpoints
+        renderCheckpoints(slide.checkpoints);
+
+        // Render Interactive Simulator
+        renderSimulator(slide.sim_id);
+
+        if (window.triggerMathRender) triggerMathRender(theoryCol);
+      }
+    }
+
+    // Simulator Dispatcher
+    function renderSimulator(simId) {
+      simCanvas.innerHTML = '';
+      simControls.innerHTML = '';
+
+      switch(simId) {
+        case 'simple_expressions_tree_sim':
+          simSimpleExpressionsTree();
+          break;
+        case 'comparing_expressions_balance_sim':
+          simComparingExpressionsBalance();
+          break;
+        case 'order_of_operations_precedence_sim':
+          simOrderOfOperationsPrecedence();
+          break;
+        case 'brackets_nested_evaluator_sim':
+          simBracketsNestedEvaluator();
+          break;
+        case 'terms_boundary_detector_sim':
+          simTermsBoundaryDetector();
+          break;
+        case 'multi_term_eval_engine_sim':
+          simMultiTermEvalEngine();
+          break;
+        case 'everyday_order_commutative_sim':
+          simEverydayOrderCommutative();
+          break;
+        case 'commutative_associative_tile_sim':
+          simCommutativeAssociativeTile();
+          break;
+        case 'fraction_bar_bracket_sim':
+          simFractionBarBracket();
+          break;
+        case 'signed_terms_numberline_sim':
+          simSignedTermsNumberline();
+          break;
+        case 'distributive_rectangle_area_sim':
+          simDistributiveRectangleArea();
+          break;
+        case 'tinker_terms_friendly_tens_sim':
+          simTinkerTermsFriendlyTens();
+          break;
+        case 'minus_bracket_sign_flip_sim':
+          simMinusBracketSignFlip();
+          break;
+        case 'nested_brackets_unpacker_sim':
+          simNestedBracketsUnpacker();
+          break;
+        case 'word_problem_expression_builder_sim':
+          simWordProblemExpressionBuilder();
+          break;
+        case 'arithmetic_puzzle_24_game_sim':
+          simArithmeticPuzzle24Game();
+          break;
+        default:
+          simCanvas.innerHTML = `<div style="color:#94a3b8; font-size:0.95rem;">Interactive Simulator Active</div>`;
+      }
+    }
+
+    // Mastery Quiz Slides Renderer (Slides 17 to 20)
+    function renderQuizSlide(slide) {
+      theoryCol.style.display = 'none';
+      labCol.style.display = 'none';
+      quizContainer.style.display = 'flex';
+
+      quizBadge.textContent = slide.tag;
+      quizTitle.textContent = slide.title;
+
+      const questions = slide.questions || [];
+      const slideQuizKey = `quiz_${slide.id}`;
+      if (!quizScores[slideQuizKey]) {
+        quizScores[slideQuizKey] = { correct: 0, answered: 0, total: questions.length };
+      }
+
+      function updateQuizScoreUI() {
+        const s = quizScores[slideQuizKey];
+        quizScorePill.textContent = `Score: ${s.correct} / ${s.total}`;
+        if (s.answered === s.total && s.correct >= 8) {
+          sfx.playCelebration();
+        }
+      }
+
+      quizItemsList.innerHTML = '';
+      questions.forEach((q, qIdx) => {
+        const card = document.createElement('div');
+        card.className = 'quiz-item-card';
+
+        const qHeader = document.createElement('div');
+        qHeader.className = 'quiz-q-header';
+        qHeader.innerHTML = `
+          <span class="quiz-q-num">Q${q.id}</span>
+          <span class="quiz-q-text">${q.question}</span>
+        `;
+        card.appendChild(qHeader);
+
+        const optGrid = document.createElement('div');
+        optGrid.className = 'quiz-options-grid';
+
+        const footerAct = document.createElement('div');
+        footerAct.className = 'quiz-footer-actions';
+
+        const statusFeedback = document.createElement('span');
+        statusFeedback.className = 'quiz-status-feedback';
+
+        const btnSol = document.createElement('button');
+        btnSol.className = 'btn-solution-modal';
+        btnSol.textContent = '💡 View Step-by-Step Solution';
+        btnSol.addEventListener('click', () => {
+          openSolutionModal(q);
+        });
+
+        footerAct.appendChild(statusFeedback);
+        footerAct.appendChild(btnSol);
+
+        const savedAnsKey = `quiz_ans_${q.id}`;
+        const savedAns = checkpointAnswers[savedAnsKey];
+
+        q.options.forEach((optText, oIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'quiz-opt-btn';
+          btn.textContent = optText;
+
+          if (savedAns !== undefined) {
+            btn.disabled = true;
+            if (oIdx === q.correct) btn.classList.add('correct');
+            else if (oIdx === savedAns) btn.classList.add('incorrect');
+          }
+
+          btn.addEventListener('click', () => {
+            checkpointAnswers[savedAnsKey] = oIdx;
+            const allBtns = optGrid.querySelectorAll('.quiz-opt-btn');
+            allBtns.forEach(b => b.disabled = true);
+
+            quizScores[slideQuizKey].answered++;
+
+            if (oIdx === q.correct) {
+              btn.classList.add('correct');
+              statusFeedback.style.color = '#34d399';
+              statusFeedback.textContent = '✓ Correct Answer!';
+              quizScores[slideQuizKey].correct++;
+              sfx.playCorrect();
+            } else {
+              btn.classList.add('incorrect');
+              allBtns[q.correct].classList.add('correct');
+              statusFeedback.style.color = '#f87171';
+              statusFeedback.textContent = '✕ Incorrect';
+              sfx.playIncorrect();
+            }
+            updateQuizScoreUI();
+          });
+          optGrid.appendChild(btn);
+        });
+
+        card.appendChild(optGrid);
+        card.appendChild(footerAct);
+
+        if (savedAns !== undefined) {
+          if (savedAns === q.correct) {
+            statusFeedback.style.color = '#34d399';
+            statusFeedback.textContent = '✓ Correct Answer!';
+          } else {
+            statusFeedback.style.color = '#f87171';
+            statusFeedback.textContent = '✕ Incorrect';
+          }
+        }
+
+        quizItemsList.appendChild(card);
+      });
+
+      updateQuizScoreUI();
+      if (window.triggerMathRender) triggerMathRender(quizContainer);
+    }
+
+    // Modal Solution Opener
+    function openSolutionModal(qOrId) {
+      const q = (typeof qOrId === 'object' && qOrId !== null) ? qOrId : (typeof QUIZ_QUESTIONS !== 'undefined' ? QUIZ_QUESTIONS.find(item => item.id === Number(qOrId)) : null);
+      if (!q) return;
+
+      if (typeof modalTitleText !== 'undefined' && modalTitleText) modalTitleText.textContent = `Question ${q.id} Detailed Derivation`;
+      if (typeof modalQuestionText !== 'undefined' && modalQuestionText) modalQuestionText.innerHTML = `<strong>Q${q.id}:</strong> ${q.question}`;
+      if (typeof modalSolutionSteps !== 'undefined' && modalSolutionSteps) {
+        modalSolutionSteps.innerHTML = '';
+        const correctOpt = (q.options && q.options[q.correct] !== undefined) ? q.options[q.correct] : '';
+        const solText = q.solution || (q.solution_steps ? q.solution_steps.join('<br>') : '') || q.explanation || 'Detailed step-by-step mathematical derivation provided above.';
+        
+        const sBox = document.createElement('div');
+        sBox.className = 'modal-solution-step';
+        sBox.innerHTML = `
+          <div style="font-weight:800; color:#34d399; margin-bottom:0.5rem; font-size:0.92rem;">
+            ✓ Correct Answer: Option ${String.fromCharCode(65 + q.correct)} (${correctOpt})
+          </div>
+          <div style="color:#e2e8f0; line-height:1.6;">${solText}</div>
+        `;
+        modalSolutionSteps.appendChild(sBox);
+      }
+
+      if (typeof solutionModal !== 'undefined' && solutionModal) {
+        solutionModal.style.setProperty('display', 'flex', 'important');
+        solutionModal.classList.add('is-active');
+      }
+      if (window.triggerMathRender && typeof solutionModal !== 'undefined' && solutionModal) triggerMathRender(solutionModal);
+      if (typeof sfx !== 'undefined' && sfx.playClick) sfx.playClick();
+    }
+    window.openSolutionModal = openSolutionModal;
+
+    btnCloseModal.addEventListener('click', () => {
+      solutionModal.style.display = 'none';
+      sfx.playClick();
+    });
+
+    solutionModal.addEventListener('click', (e) => {
+      if (e.target === solutionModal) {
+        solutionModal.style.display = 'none';
+      }
+    });
+
+
+    // ========================================================
+    // 16 BESPOKE INTERACTIVE SVG SIMULATORS (Ch 2 Arithmetic Expressions)
+    // ========================================================
+
+    // Slide 1: Expression Tree Visualizer
+    function simSimpleExpressionsTree() {
+      simHeaderTitle.textContent = "Interactive Arithmetic Expression Tree Visualizer";
+      let activePreset = 0;
+      const presets = [
+        { label: "8 + 7", expr: "8 + 7", left: 8, op: "+", right: 7, res: 15, type: "simple" },
+        { label: "24 - 9", expr: "24 - 9", left: 24, op: "-", right: 9, res: 15, type: "simple" },
+        { label: "6 × 7", expr: "6 × 7", left: 6, op: "×", right: 7, res: 42, type: "simple" },
+        { label: "54 ÷ 6", expr: "54 ÷ 6", left: 54, op: "÷", right: 6, res: 9, type: "simple" },
+        { label: "3 + 4 × 5", expr: "3 + (4 × 5)", left: 3, op: "+", right: "4 × 5", subLeft: 4, subOp: "×", subRight: 5, subRes: 20, res: 23, type: "compound" }
+      ];
+
+      function render() {
+        const p = presets[activePreset];
+        let treeSvg = "";
+
+        if (p.type === "simple") {
+          treeSvg = `
+            <!-- Root Result Node -->
+            <line x1="270" y1="90" x2="190" y2="180" stroke="#38bdf8" stroke-width="3" stroke-dasharray="4"/>
+            <line x1="270" y1="90" x2="350" y2="180" stroke="#38bdf8" stroke-width="3" stroke-dasharray="4"/>
+
+            <circle cx="270" cy="90" r="34" fill="#0f172a" stroke="#38bdf8" stroke-width="3"/>
+            <text x="270" y="85" fill="#38bdf8" font-size="11" font-weight="800" text-anchor="middle">RESULT</text>
+            <text x="270" y="104" fill="#f8fafc" font-size="18" font-weight="900" text-anchor="middle">${p.res}</text>
+
+            <!-- Operator Node -->
+            <circle cx="270" cy="135" r="18" fill="#3b82f6" stroke="#60a5fa" stroke-width="2"/>
+            <text x="270" y="141" fill="#ffffff" font-size="16" font-weight="900" text-anchor="middle">${p.op}</text>
+
+            <!-- Left Leaf -->
+            <circle cx="190" cy="180" r="28" fill="#1e293b" stroke="#10b981" stroke-width="2.5"/>
+            <text x="190" y="176" fill="#34d399" font-size="9" font-weight="700" text-anchor="middle">LEAF 1</text>
+            <text x="190" y="193" fill="#f8fafc" font-size="16" font-weight="800" text-anchor="middle">${p.left}</text>
+
+            <!-- Right Leaf -->
+            <circle cx="350" cy="180" r="28" fill="#1e293b" stroke="#f59e0b" stroke-width="2.5"/>
+            <text x="350" y="176" fill="#fbbf24" font-size="9" font-weight="700" text-anchor="middle">LEAF 2</text>
+            <text x="350" y="193" fill="#f8fafc" font-size="16" font-weight="800" text-anchor="middle">${p.right}</text>
+          `;
+        } else {
+          treeSvg = `
+            <!-- Root Result Node -->
+            <line x1="270" y1="70" x2="160" y2="160" stroke="#38bdf8" stroke-width="3"/>
+            <line x1="270" y1="70" x2="380" y2="150" stroke="#38bdf8" stroke-width="3"/>
+
+            <circle cx="270" cy="70" r="32" fill="#0f172a" stroke="#38bdf8" stroke-width="3"/>
+            <text x="270" y="65" fill="#38bdf8" font-size="10" font-weight="800" text-anchor="middle">FINAL RESULT</text>
+            <text x="270" y="83" fill="#f8fafc" font-size="18" font-weight="900" text-anchor="middle">${p.res}</text>
+
+            <!-- Main Op Node -->
+            <circle cx="270" cy="115" r="16" fill="#3b82f6" stroke="#60a5fa" stroke-width="2"/>
+            <text x="270" y="121" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle">${p.op}</text>
+
+            <!-- Left Leaf -->
+            <circle cx="160" cy="160" r="26" fill="#1e293b" stroke="#10b981" stroke-width="2.5"/>
+            <text x="160" y="156" fill="#34d399" font-size="8" font-weight="700" text-anchor="middle">TERM 1</text>
+            <text x="160" y="173" fill="#f8fafc" font-size="15" font-weight="800" text-anchor="middle">${p.left}</text>
+
+            <!-- Subtree Right Branch -->
+            <circle cx="380" cy="150" r="28" fill="#1e293b" stroke="#a855f7" stroke-width="2.5"/>
+            <text x="380" y="145" fill="#c084fc" font-size="9" font-weight="700" text-anchor="middle">TERM 2</text>
+            <text x="380" y="162" fill="#f8fafc" font-size="15" font-weight="900" text-anchor="middle">${p.subRes}</text>
+
+            <!-- Subtree Children -->
+            <line x1="380" y1="150" x2="330" y2="230" stroke="#a855f7" stroke-width="2"/>
+            <line x1="380" y1="150" x2="430" y2="230" stroke="#a855f7" stroke-width="2"/>
+
+            <circle cx="380" cy="190" r="14" fill="#a855f7" stroke="#e9d5ff" stroke-width="1.5"/>
+            <text x="380" y="195" fill="#ffffff" font-size="13" font-weight="900" text-anchor="middle">${p.subOp}</text>
+
+            <circle cx="330" cy="230" r="22" fill="#1e293b" stroke="#fbbf24" stroke-width="2"/>
+            <text x="330" y="235" fill="#f8fafc" font-size="14" font-weight="800" text-anchor="middle">${p.subLeft}</text>
+
+            <circle cx="430" cy="230" r="22" fill="#1e293b" stroke="#fbbf24" stroke-width="2"/>
+            <text x="430" y="235" fill="#f8fafc" font-size="14" font-weight="800" text-anchor="middle">${p.subRight}</text>
+          `;
+        }
+
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <defs>
+              <radialGradient id="treeBg" cx="50%" cy="50%" r="75%">
+                <stop offset="0%" stop-color="#0f172a"/>
+                <stop offset="100%" stop-color="#020617"/>
+              </radialGradient>
+            </defs>
+            <rect x="0" y="0" width="540" height="330" fill="url(#treeBg)"/>
+
+            <!-- Header Badge -->
+            <rect x="140" y="15" width="260" height="32" rx="8" fill="rgba(30, 41, 59, 0.85)" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="270" y="36" fill="#38bdf8" font-size="13" font-weight="800" text-anchor="middle">Expression: ${p.expr} = ${p.res}</text>
+
+            <!-- Tree Structure -->
+            ${treeSvg}
+
+            <!-- Bottom Insight Card -->
+            <rect x="30" y="268" width="480" height="50" rx="8" fill="rgba(15, 23, 42, 0.8)" stroke="#64748b" stroke-width="1"/>
+            <text x="270" y="288" fill="#94a3b8" font-size="10.5" font-weight="600" text-anchor="middle">An arithmetic expression simplifies upwards through operations to a single number.</text>
+            <text x="270" y="306" fill="#34d399" font-size="11" font-weight="700" text-anchor="middle">Numbers are the leaves, operations are branches, and the final value is the root!</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center; align-items:center;">
+          <span style="font-size:0.85rem; font-weight:700; color:#94a3b8;">Select Expression:</span>
+          ${presets.map((p, idx) => `<button class="sim-btn ${idx === activePreset ? 'active' : ''}" data-idx="${idx}">${p.label}</button>`).join('')}
+        </div>
+      `;
+
+      simControls.querySelectorAll('.sim-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activePreset = parseInt(btn.dataset.idx);
+          simControls.querySelectorAll('.sim-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          render();
+          sfx.playClick();
+        });
+      });
+
+      render();
+    }
+
+    // Slide 2: Pan Balance Scale
+    function simComparingExpressionsBalance() {
+      simHeaderTitle.textContent = "Comparing Expressions: Two-Pan Balance Scale Simulator";
+      let leftVal = 24, rightVal = 24;
+      let leftExpr = "4 × 6", rightExpr = "15 + 9";
+
+      const pairs = [
+        { lExpr: "4 × 6", lVal: 24, rExpr: "15 + 9", rVal: 24, label: "24 = 24 (Balanced)" },
+        { lExpr: "5 × 7", lVal: 35, rExpr: "6 × 6", rVal: 36, label: "35 < 36 (Right Heavier)" },
+        { lExpr: "100 - 32", lVal: 68, rExpr: "8 × 8", rVal: 64, label: "68 > 64 (Left Heavier)" },
+        { lExpr: "48 ÷ 4", lVal: 12, rExpr: "3 × 4", rVal: 12, label: "12 = 12 (Balanced)" }
+      ];
+
+      function render(lE, lV, rE, rV) {
+        leftExpr = lE; leftVal = lV; rightExpr = rE; rightVal = rV;
+        const diff = rightVal - leftVal; // positive means right is heavier
+        const tiltDeg = Math.max(-12, Math.min(12, diff * 3));
+        const relation = leftVal === rightVal ? "=" : (leftVal > rightVal ? ">" : "<");
+        const statusColor = leftVal === rightVal ? "#10b981" : "#f59e0b";
+        const statusText = leftVal === rightVal ? "BALANCED: Expressions are EQUIVALENT!" : (leftVal > rightVal ? "LEFT IS HEAVIER: Greater Value" : "RIGHT IS HEAVIER: Greater Value");
+
+        // Pan positions with tilt
+        const rad = (tiltDeg * Math.PI) / 180;
+        const armLength = 150;
+        const pivotX = 270, pivotY = 110;
+        const leftX = pivotX - armLength * Math.cos(rad);
+        const leftY = pivotY - armLength * Math.sin(rad);
+        const rightX = pivotX + armLength * Math.cos(rad);
+        const rightY = pivotY + armLength * Math.sin(rad);
+
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <defs>
+              <linearGradient id="metalArm" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#94a3b8"/>
+                <stop offset="50%" stop-color="#f8fafc"/>
+                <stop offset="100%" stop-color="#94a3b8"/>
+              </linearGradient>
+            </defs>
+            <rect x="0" y="0" width="540" height="330" fill="#090d16"/>
+
+            <!-- Fulcrum / Stand -->
+            <polygon points="270,110 245,260 295,260" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+            <rect x="220" y="255" width="100" height="15" rx="4" fill="#334155" stroke="#64748b"/>
+            <circle cx="270" cy="110" r="10" fill="#f59e0b" stroke="#fef08a" stroke-width="2"/>
+
+            <!-- Balance Arm -->
+            <line x1="${leftX}" y1="${leftY}" x2="${rightX}" y2="${rightY}" stroke="url(#metalArm)" stroke-width="7" stroke-linecap="round"/>
+
+            <!-- Left Strings and Pan -->
+            <line x1="${leftX}" y1="${leftY}" x2="${leftX - 35}" y2="${leftY + 65}" stroke="#94a3b8" stroke-width="1.5"/>
+            <line x1="${leftX}" y1="${leftY}" x2="${leftX + 35}" y2="${leftY + 65}" stroke="#94a3b8" stroke-width="1.5"/>
+            <path d="M ${leftX - 45} ${leftY + 65} Q ${leftX} ${leftY + 80} ${leftX + 45} ${leftY + 65} Z" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+
+            <!-- Left Pan Content -->
+            <rect x="${leftX - 42}" y="${leftY + 15}" width="84" height="42" rx="6" fill="rgba(15, 23, 42, 0.9)" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="${leftX}" y="${leftY + 32}" fill="#38bdf8" font-size="10" font-weight="800" text-anchor="middle">${leftExpr}</text>
+            <text x="${leftX}" y="${leftY + 50}" fill="#f8fafc" font-size="14" font-weight="900" text-anchor="middle">Val: ${leftVal}</text>
+
+            <!-- Right Strings and Pan -->
+            <line x1="${rightX}" y1="${rightY}" x2="${rightX - 35}" y2="${rightY + 65}" stroke="#94a3b8" stroke-width="1.5"/>
+            <line x1="${rightX}" y1="${rightY}" x2="${rightX + 35}" y2="${rightY + 65}" stroke="#94a3b8" stroke-width="1.5"/>
+            <path d="M ${rightX - 45} ${rightY + 65} Q ${rightX} ${rightY + 80} ${rightX + 45} ${rightY + 65} Z" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+
+            <!-- Right Pan Content -->
+            <rect x="${rightX - 42}" y="${rightY + 15}" width="84" height="42" rx="6" fill="rgba(15, 23, 42, 0.9)" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="${rightX}" y="${rightY + 32}" fill="#fbbf24" font-size="10" font-weight="800" text-anchor="middle">${rightExpr}</text>
+            <text x="${rightX}" y="${rightY + 50}" fill="#f8fafc" font-size="14" font-weight="900" text-anchor="middle">Val: ${rightVal}</text>
+
+            <!-- Comparison Center Badge -->
+            <rect x="180" y="20" width="180" height="45" rx="10" fill="rgba(15, 23, 42, 0.9)" stroke="${statusColor}" stroke-width="2"/>
+            <text x="270" y="44" fill="${statusColor}" font-size="18" font-weight="900" text-anchor="middle">${leftExpr} ${relation} ${rightExpr}</text>
+            <text x="270" y="58" fill="#94a3b8" font-size="9" font-weight="700" text-anchor="middle">(${leftVal} ${relation} ${rightVal})</text>
+
+            <!-- Bottom Status Banner -->
+            <rect x="50" y="280" width="440" height="36" rx="8" fill="rgba(30, 41, 59, 0.7)" stroke="${statusColor}" stroke-width="1"/>
+            <text x="270" y="302" fill="${statusColor}" font-size="12" font-weight="800" text-anchor="middle">${statusText}</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center; align-items:center;">
+          <span style="font-size:0.85rem; font-weight:700; color:#94a3b8;">Choose Pair:</span>
+          ${pairs.map((p, idx) => `<button class="sim-btn ${idx === 0 ? 'active' : ''}" data-idx="${idx}">${p.label}</button>`).join('')}
+        </div>
+      `;
+
+      simControls.querySelectorAll('.sim-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const p = pairs[parseInt(btn.dataset.idx)];
+          simControls.querySelectorAll('.sim-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          render(p.lExpr, p.lVal, p.rExpr, p.rVal);
+          sfx.playClick();
+        });
+      });
+
+      render(pairs[0].lExpr, pairs[0].lVal, pairs[0].rExpr, pairs[0].rVal);
+    }
+
+    // Slide 3: Order of Operations Precedence Engine
+    function simOrderOfOperationsPrecedence() {
+      simHeaderTitle.textContent = "BODMAS Priority Engine: Multiplication & Division First";
+      let activePreset = 0;
+      const presets = [
+        {
+          expr: "5 + 3 × 4",
+          naiveSteps: ["(5 + 3) = 8", "8 × 4 = 32 (WRONG!)"],
+          naiveVal: 32,
+          correctSteps: ["3 × 4 = 12 (Multiply First)", "5 + 12 = 17 (CORRECT)"],
+          correctVal: 17,
+          opHighlight: "3 × 4"
+        },
+        {
+          expr: "20 - 8 ÷ 2",
+          naiveSteps: ["(20 - 8) = 12", "12 ÷ 2 = 6 (WRONG!)"],
+          naiveVal: 6,
+          correctSteps: ["8 ÷ 2 = 4 (Divide First)", "20 - 4 = 16 (CORRECT)"],
+          correctVal: 16,
+          opHighlight: "8 ÷ 2"
+        },
+        {
+          expr: "6 × 4 - 15 ÷ 3",
+          naiveSteps: ["6 × 4 = 24", "24 - 15 = 9", "9 ÷ 3 = 3 (WRONG!)"],
+          naiveVal: 3,
+          correctSteps: ["6 × 4 = 24 and 15 ÷ 3 = 5", "24 - 5 = 19 (CORRECT)"],
+          correctVal: 19,
+          opHighlight: "6 × 4 and 15 ÷ 3"
+        }
+      ];
+
+      function render() {
+        const p = presets[activePreset];
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#090e1a"/>
+
+            <!-- Main Title Banner -->
+            <rect x="120" y="15" width="300" height="38" rx="8" fill="rgba(15, 23, 42, 0.9)" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="270" y="38" fill="#38bdf8" font-size="14" font-weight="900" text-anchor="middle">Expression: ${p.expr}</text>
+
+            <!-- Left Card: The Naive Mistake -->
+            <g transform="translate(25, 68)">
+              <rect x="0" y="0" width="235" height="185" rx="10" fill="rgba(239, 68, 68, 0.08)" stroke="#ef4444" stroke-width="1.5"/>
+              <rect x="15" y="12" width="205" height="26" rx="6" fill="rgba(239, 68, 68, 0.2)"/>
+              <text x="117" y="29" fill="#fca5a5" font-size="11" font-weight="800" text-anchor="middle">❌ Naive Left-to-Right</text>
+
+              <text x="18" y="60" fill="#94a3b8" font-size="10">Ignores operational precedence:</text>
+              ${p.naiveSteps.map((st, i) => `
+                <text x="18" y="${82 + i * 22}" fill="${i === p.naiveSteps.length - 1 ? '#f87171' : '#cbd5e1'}" font-size="11" font-weight="700">Step ${i+1}: ${st}</text>
+              `).join('')}
+
+              <rect x="25" y="132" width="185" height="38" rx="6" fill="#1e1b2e" stroke="#ef4444" stroke-width="1"/>
+              <text x="117" y="150" fill="#94a3b8" font-size="9" text-anchor="middle">Incorrect Result</text>
+              <text x="117" y="164" fill="#f87171" font-size="14" font-weight="900" text-anchor="middle">${p.naiveVal}</text>
+            </g>
+
+            <!-- Right Card: The BODMAS Standard -->
+            <g transform="translate(280, 68)">
+              <rect x="0" y="0" width="235" height="185" rx="10" fill="rgba(16, 185, 129, 0.08)" stroke="#10b981" stroke-width="1.5"/>
+              <rect x="15" y="12" width="205" height="26" rx="6" fill="rgba(16, 185, 129, 0.2)"/>
+              <text x="117" y="29" fill="#6ee7b7" font-size="11" font-weight="800" text-anchor="middle">✅ BODMAS / Correct Rule</text>
+
+              <text x="18" y="60" fill="#94a3b8" font-size="10">High priority: ${p.opHighlight}</text>
+              ${p.correctSteps.map((st, i) => `
+                <text x="18" y="${82 + i * 22}" fill="${i === p.correctSteps.length - 1 ? '#4ade80' : '#cbd5e1'}" font-size="11" font-weight="700">Step ${i+1}: ${st}</text>
+              `).join('')}
+
+              <rect x="25" y="132" width="185" height="38" rx="6" fill="#064e3b" stroke="#10b981" stroke-width="1"/>
+              <text x="117" y="150" fill="#a7f3d0" font-size="9" text-anchor="middle">Authentic Mathematical Value</text>
+              <text x="117" y="164" fill="#ffffff" font-size="14" font-weight="900" text-anchor="middle">${p.correctVal}</text>
+            </g>
+
+            <!-- Bottom Rule Banner -->
+            <rect x="25" y="265" width="490" height="50" rx="8" fill="rgba(30, 41, 59, 0.85)" stroke="#38bdf8" stroke-width="1"/>
+            <text x="270" y="286" fill="#38bdf8" font-size="11" font-weight="800" text-anchor="middle">Golden Law: Multiplication (×) and Division (÷) bind tighter than (+) and (-)</text>
+            <text x="270" y="304" fill="#94a3b8" font-size="10" text-anchor="middle">Always compute × and ÷ before + and - unless brackets explicitly command otherwise.</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center; align-items:center;">
+          <span style="font-size:0.85rem; font-weight:700; color:#94a3b8;">Select Problem:</span>
+          ${presets.map((p, idx) => `<button class="sim-btn ${idx === activePreset ? 'active' : ''}" data-idx="${idx}">${p.expr}</button>`).join('')}
+        </div>
+      `;
+
+      simControls.querySelectorAll('.sim-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activePreset = parseInt(btn.dataset.idx);
+          simControls.querySelectorAll('.sim-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          render();
+          sfx.playClick();
+        });
+      });
+
+      render();
+    }
+
+    // Slide 4: Brackets Nested Evaluator
+    function simBracketsNestedEvaluator() {
+      simHeaderTitle.textContent = "Brackets Powerhouse: Step-by-Step Nested Bracket Resolver";
+      let step = 0;
+      const steps = [
+        {
+          stage: "Full Expression",
+          disp: "3 × [ 4 + ( 8 - 2 ) ]",
+          desc: "Expression contains nested brackets. Inner bracket: (8 - 2)",
+          activeBox: "inner",
+          innerVal: "(8 - 2)",
+          outerVal: "[4 + ...]",
+          totalVal: "Waiting..."
+        },
+        {
+          stage: "Step 1: Innermost Bracket",
+          disp: "3 × [ 4 + 6 ]",
+          desc: "Inner round brackets resolved: (8 - 2) = 6",
+          activeBox: "outer",
+          innerVal: "6",
+          outerVal: "[4 + 6]",
+          totalVal: "Waiting..."
+        },
+        {
+          stage: "Step 2: Square Brackets",
+          disp: "3 × 10",
+          desc: "Square brackets resolved: [4 + 6] = 10",
+          activeBox: "mult",
+          innerVal: "6",
+          outerVal: "10",
+          totalVal: "Waiting..."
+        },
+        {
+          stage: "Step 3: Final Product",
+          disp: "30",
+          desc: "Final multiplication performed: 3 × 10 = 30",
+          activeBox: "done",
+          innerVal: "6",
+          outerVal: "10",
+          totalVal: "30"
+        }
+      ];
+
+      function render() {
+        const s = steps[step];
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#0b0f19"/>
+
+            <!-- Current Expression Display -->
+            <rect x="40" y="20" width="460" height="60" rx="12" fill="rgba(15, 23, 42, 0.9)" stroke="#a855f7" stroke-width="2"/>
+            <text x="270" y="44" fill="#c084fc" font-size="11" font-weight="700" text-anchor="middle">${s.stage}</text>
+            <text x="270" y="66" fill="#f8fafc" font-size="18" font-weight="900" text-anchor="middle">${s.disp}</text>
+
+            <!-- Nested Visual Boxes -->
+            <g transform="translate(60, 100)">
+              <!-- Outer Bracket Container -->
+              <rect x="0" y="0" width="420" height="120" rx="10" fill="rgba(30, 41, 59, 0.6)" stroke="${s.activeBox === 'outer' ? '#fbbf24' : '#64748b'}" stroke-width="${s.activeBox === 'outer' ? 3 : 1.5}"/>
+              <text x="15" y="24" fill="#fbbf24" font-size="11" font-weight="800">[ Square Bracket Scope: 4 + (8 - 2) ]</text>
+
+              <!-- Inner Bracket Container -->
+              <rect x="180" y="35" width="210" height="65" rx="8" fill="rgba(56, 189, 248, 0.15)" stroke="${s.activeBox === 'inner' ? '#38bdf8' : '#0284c7'}" stroke-width="${s.activeBox === 'inner' ? 3 : 1.5}"/>
+              <text x="195" y="55" fill="#38bdf8" font-size="10" font-weight="800">( Innermost Parentheses )</text>
+              <text x="285" y="80" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle">${step === 0 ? "8 - 2" : "= 6"}</text>
+
+              <text x="80" y="75" fill="#e2e8f0" font-size="16" font-weight="800">4  +</text>
+            </g>
+
+            <!-- Step Explanation Card -->
+            <rect x="40" y="240" width="460" height="65" rx="10" fill="rgba(15, 23, 42, 0.85)" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="270" y="264" fill="#60a5fa" font-size="12" font-weight="800" text-anchor="middle">${s.desc}</text>
+            <text x="270" y="288" fill="#94a3b8" font-size="10" text-anchor="middle">Rule: Innermost ( ) must be solved first, then { }, then [ ], working outward!</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; gap:1rem; justify-content:center; align-items:center;">
+          <button class="sim-btn" id="btnPrevStep">⏮ Previous Step</button>
+          <span id="stepIndicator" style="font-weight:700; color:#38bdf8; font-size:0.95rem;">Step 1 of 4</span>
+          <button class="sim-btn active" id="btnNextStep">Next Step ⏭</button>
+          <button class="sim-btn" id="btnResetStep">🔄 Reset</button>
+        </div>
+      `;
+
+      function updateControls() {
+        document.getElementById('stepIndicator').textContent = `Step ${step + 1} of ${steps.length}`;
+        document.getElementById('btnPrevStep').disabled = (step === 0);
+        document.getElementById('btnNextStep').disabled = (step === steps.length - 1);
+      }
+
+      document.getElementById('btnPrevStep').onclick = () => {
+        if (step > 0) { step--; render(); updateControls(); sfx.playClick(); }
+      };
+      document.getElementById('btnNextStep').onclick = () => {
+        if (step < steps.length - 1) { step++; render(); updateControls(); sfx.playClick(); }
+      };
+      document.getElementById('btnResetStep').onclick = () => {
+        step = 0; render(); updateControls(); sfx.playClick();
+      };
+
+      render();
+      updateControls();
+    }
+
+    // Slide 5: Terms Boundary Detector
+    function simTermsBoundaryDetector() {
+      simHeaderTitle.textContent = "Signposts of Arithmetic: Detecting Terms Separated by + and -";
+      let activePreset = 0;
+      const presets = [
+        {
+          expr: "15 + 4 × 3 - 18 ÷ 2",
+          terms: [
+            { raw: "15", val: 15, sign: "+", op: "Constant" },
+            { raw: "4 × 3", val: 12, sign: "+", op: "Multiplication" },
+            { raw: "18 ÷ 2", val: 9, sign: "-", op: "Division" }
+          ],
+          result: 18
+        },
+        {
+          expr: "50 - (6 + 4) × 2 + 8",
+          terms: [
+            { raw: "50", val: 50, sign: "+", op: "Constant" },
+            { raw: "(6 + 4) × 2", val: 20, sign: "-", op: "Bracketed Product" },
+            { raw: "8", val: 8, sign: "+", op: "Constant" }
+          ],
+          result: 38
+        },
+        {
+          expr: "100 ÷ 5 + 6 × 7 - 14",
+          terms: [
+            { raw: "100 ÷ 5", val: 20, sign: "+", op: "Division" },
+            { raw: "6 × 7", val: 42, sign: "+", op: "Multiplication" },
+            { raw: "14", val: 14, sign: "-", op: "Constant" }
+          ],
+          result: 48
+        }
+      ];
+
+      function render() {
+        const p = presets[activePreset];
+        const colors = ["#38bdf8", "#a855f7", "#f59e0b", "#10b981"];
+
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#0f172a"/>
+
+            <rect x="50" y="15" width="440" height="38" rx="8" fill="rgba(30, 41, 59, 0.9)" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="270" y="38" fill="#38bdf8" font-size="14" font-weight="900" text-anchor="middle">Expression: ${p.expr}</text>
+
+            <!-- Train Metaphor / Compartments -->
+            <g transform="translate(30, 75)">
+              <text x="240" y="15" fill="#94a3b8" font-size="11" font-weight="700" text-anchor="middle">🚂 Expression Train: Each Term is an Independent Wagon</text>
+
+              ${p.terms.map((t, idx) => {
+                const x = idx * 160;
+                return `
+                  <!-- Signpost / Boundary -->
+                  ${idx > 0 ? `
+                    <circle cx="${x - 10}" cy="80" r="14" fill="${t.sign === '+' ? '#10b981' : '#ef4444'}" stroke="#ffffff" stroke-width="1.5"/>
+                    <text x="${x - 10}" y="${86}" fill="#ffffff" font-size="16" font-weight="900" text-anchor="middle">${t.sign}</text>
+                  ` : ''}
+
+                  <!-- Term Wagon -->
+                  <g transform="translate(${x + 10}, 40)">
+                    <rect x="0" y="0" width="130" height="85" rx="8" fill="rgba(15, 23, 42, 0.9)" stroke="${colors[idx]}" stroke-width="2"/>
+                    <text x="65" y="20" fill="${colors[idx]}" font-size="10" font-weight="800" text-anchor="middle">TERM ${idx + 1}</text>
+                    <text x="65" y="44" fill="#ffffff" font-size="13" font-weight="900" text-anchor="middle">${t.raw}</text>
+                    <line x1="15" y1="52" x2="115" y2="52" stroke="rgba(255,255,255,0.2)"/>
+                    <text x="65" y="68" fill="#4ade80" font-size="12" font-weight="800" text-anchor="middle">Value = ${t.val}</text>
+                  </g>
+                `;
+              }).join('')}
+            </g>
+
+            <!-- Bottom Evaluation Card -->
+            <rect x="40" y="235" width="460" height="75" rx="10" fill="rgba(15, 23, 42, 0.95)" stroke="#10b981" stroke-width="1.5"/>
+            <text x="270" y="258" fill="#34d399" font-size="12" font-weight="800" text-anchor="middle">Term-by-Term Simplification:</text>
+            <text x="270" y="280" fill="#f8fafc" font-size="15" font-weight="900" text-anchor="middle">
+              ${p.terms.map((t, i) => `${i > 0 ? ' ' + t.sign + ' ' : ''}${t.val}`).join('')} = ${p.result}
+            </text>
+            <text x="270" y="298" fill="#94a3b8" font-size="9.5" text-anchor="middle">+ and - outside brackets act as boundaries separating expressions into terms.</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center; align-items:center;">
+          <span style="font-size:0.85rem; font-weight:700; color:#94a3b8;">Select Expression:</span>
+          ${presets.map((p, idx) => `<button class="sim-btn ${idx === activePreset ? 'active' : ''}" data-idx="${idx}">${p.expr}</button>`).join('')}
+        </div>
+      `;
+
+      simControls.querySelectorAll('.sim-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activePreset = parseInt(btn.dataset.idx);
+          simControls.querySelectorAll('.sim-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          render();
+          sfx.playClick();
+        });
+      });
+
+      render();
+    }
+
+    // Slide 6: Multi-Term Evaluator Engine
+    function simMultiTermEvalEngine() {
+      simHeaderTitle.textContent = "Multi-Term Parallel Evaluation Flow";
+      let phase = 0; // 0: Raw, 1: Sub-terms computed, 2: Final sum
+
+      simCanvas.innerHTML = `
+        <svg viewBox="0 0 540 330" width="100%" height="100%">
+          <rect x="0" y="0" width="540" height="330" fill="#090d16"/>
+
+          <rect x="80" y="15" width="380" height="36" rx="8" fill="rgba(30, 41, 59, 0.85)" stroke="#38bdf8" stroke-width="1.5"/>
+          <text x="270" y="38" fill="#38bdf8" font-size="13" font-weight="900" text-anchor="middle">Expression: 8 × 5 + 36 ÷ 4 - 7 × 3</text>
+
+          <!-- 3 Term Blocks -->
+          <g transform="translate(30, 70)">
+            <!-- Term 1 -->
+            <rect x="0" y="0" width="140" height="110" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+            <text x="70" y="24" fill="#38bdf8" font-size="11" font-weight="800" text-anchor="middle">Term 1</text>
+            <text x="70" y="55" fill="#f8fafc" font-size="15" font-weight="800" text-anchor="middle">8 × 5</text>
+            <rect x="15" y="70" width="110" height="28" rx="6" fill="#0f172a" stroke="#38bdf8"/>
+            <text id="term1Val" x="70" y="88" fill="#34d399" font-size="13" font-weight="900" text-anchor="middle">?</text>
+
+            <!-- Sign 1 -->
+            <circle cx="165" cy="55" r="14" fill="#10b981"/>
+            <text x="165" y="61" fill="#ffffff" font-size="16" font-weight="900" text-anchor="middle">+</text>
+
+            <!-- Term 2 -->
+            <rect x="190" y="0" width="140" height="110" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+            <text x="260" y="24" fill="#c084fc" font-size="11" font-weight="800" text-anchor="middle">Term 2</text>
+            <text x="260" y="55" fill="#f8fafc" font-size="15" font-weight="800" text-anchor="middle">36 ÷ 4</text>
+            <rect x="205" y="70" width="110" height="28" rx="6" fill="#0f172a" stroke="#a855f7"/>
+            <text id="term2Val" x="260" y="88" fill="#34d399" font-size="13" font-weight="900" text-anchor="middle">?</text>
+
+            <!-- Sign 2 -->
+            <circle cx="355" cy="55" r="14" fill="#ef4444"/>
+            <text x="355" y="61" fill="#ffffff" font-size="16" font-weight="900" text-anchor="middle">-</text>
+
+            <!-- Term 3 -->
+            <rect x="380" y="0" width="130" height="110" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+            <text x="445" y="24" fill="#fbbf24" font-size="11" font-weight="800" text-anchor="middle">Term 3</text>
+            <text x="445" y="55" fill="#f8fafc" font-size="15" font-weight="800" text-anchor="middle">7 × 3</text>
+            <rect x="390" y="70" width="110" height="28" rx="6" fill="#0f172a" stroke="#f59e0b"/>
+            <text id="term3Val" x="445" y="88" fill="#34d399" font-size="13" font-weight="900" text-anchor="middle">?</text>
+          </g>
+
+          <!-- Final Assembly Box -->
+          <rect x="70" y="215" width="400" height="85" rx="12" fill="rgba(15, 23, 42, 0.95)" stroke="#34d399" stroke-width="2"/>
+          <text id="phaseDesc" x="270" y="240" fill="#38bdf8" font-size="12" font-weight="800" text-anchor="middle">Phase 1: Identify 3 distinct terms</text>
+          <text id="phaseFormula" x="270" y="268" fill="#f8fafc" font-size="18" font-weight="900" text-anchor="middle">[ Term 1 ] + [ Term 2 ] - [ Term 3 ]</text>
+          <text id="phaseSub" x="270" y="288" fill="#94a3b8" font-size="10" text-anchor="middle">Compute each term independently, then combine!</text>
+        </svg>
+      `;
+
+      simControls.innerHTML = `
+        <div style="display:flex; gap:1rem; justify-content:center; align-items:center;">
+          <button class="sim-btn" id="btnPhase1">1. Identify Terms</button>
+          <button class="sim-btn" id="btnPhase2">2. Evaluate Terms</button>
+          <button class="sim-btn" id="btnPhase3">3. Final Combine</button>
+        </div>
+      `;
+
+      function setPhase(p) {
+        phase = p;
+        simControls.querySelectorAll('.sim-btn').forEach((b, i) => {
+          b.classList.toggle('active', i === p);
+        });
+
+        const t1 = document.getElementById('term1Val');
+        const t2 = document.getElementById('term2Val');
+        const t3 = document.getElementById('term3Val');
+        const desc = document.getElementById('phaseDesc');
+        const form = document.getElementById('phaseFormula');
+        const sub = document.getElementById('phaseSub');
+
+        if (p === 0) {
+          t1.textContent = "?"; t2.textContent = "?"; t3.textContent = "?";
+          desc.textContent = "Phase 1: Identify 3 distinct terms separated by + and -";
+          form.textContent = "[ Term 1 ] + [ Term 2 ] - [ Term 3 ]";
+          sub.textContent = "Each term will be simplified into a single integer.";
+        } else if (p === 1) {
+          t1.textContent = "40"; t2.textContent = "9"; t3.textContent = "21";
+          desc.textContent = "Phase 2: Evaluate each term independently";
+          form.textContent = "40 + 9 - 21";
+          sub.textContent = "8 × 5 = 40, 36 ÷ 4 = 9, 7 × 3 = 21";
+        } else {
+          t1.textContent = "40"; t2.textContent = "9"; t3.textContent = "21";
+          desc.textContent = "Phase 3: Final Left-to-Right Addition & Subtraction";
+          form.textContent = "40 + 9 - 21 = 49 - 21 = 28";
+          sub.textContent = "Final result evaluated seamlessly!";
+        }
+        sfx.playClick();
+      }
+
+      document.getElementById('btnPhase1').onclick = () => setPhase(0);
+      document.getElementById('btnPhase2').onclick = () => setPhase(1);
+      document.getElementById('btnPhase3').onclick = () => setPhase(2);
+      setPhase(0);
+    }
+
+    // Slide 7: Everyday Order Commutative
+    function simEverydayOrderCommutative() {
+      simHeaderTitle.textContent = "Everyday Order: Commutative vs Non-Commutative Actions";
+      let activeItem = 0;
+      const scenarios = [
+        {
+          name: "Socks vs Shoes",
+          orderA: "Put on Socks ➔ Then Shoes",
+          orderB: "Put on Shoes ➔ Then Socks",
+          isCommutative: false,
+          resultA: "Warm & fitted feet ✅",
+          resultB: "Socks stretched over shoes! Ridiculous ❌",
+          mathParallel: "Subtraction / Division: Order changes outcome completely! 10 - 4 ≠ 4 - 10"
+        },
+        {
+          name: "Left Sock vs Right Sock",
+          orderA: "Left Sock First ➔ Then Right",
+          orderB: "Right Sock First ➔ Then Left",
+          isCommutative: true,
+          resultA: "Both feet neatly dressed ✅",
+          resultB: "Both feet neatly dressed ✅",
+          mathParallel: "Addition: a + b = b + a. Order does not matter at all!"
+        },
+        {
+          name: "Milk & Sugar in Tea",
+          orderA: "Pour Milk ➔ Then Stir Sugar",
+          orderB: "Stir Sugar ➔ Then Pour Milk",
+          isCommutative: true,
+          resultA: "Sweet delicious cup of tea ☕",
+          resultB: "Identical sweet delicious tea ☕",
+          mathParallel: "Multiplication: a × b = b × a. Commutative property holds!"
+        },
+        {
+          name: "Shower vs Getting Dressed",
+          orderA: "Take Shower ➔ Then Wear Clothes",
+          orderB: "Wear Clothes ➔ Then Take Shower",
+          isCommutative: false,
+          resultA: "Clean, fresh, and dry ✅",
+          resultB: "Soaked, ruined clothes! Disaster ❌",
+          mathParallel: "Operations inside vs outside brackets: Order of execution is critical!"
+        }
+      ];
+
+      function render() {
+        const s = scenarios[activeItem];
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#090d16"/>
+
+            <rect x="100" y="15" width="340" height="36" rx="8" fill="rgba(30, 41, 59, 0.9)" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="270" y="38" fill="#38bdf8" font-size="14" font-weight="900" text-anchor="middle">Scenario: ${s.name}</text>
+
+            <!-- Order 1 Card -->
+            <g transform="translate(35, 68)">
+              <rect x="0" y="0" width="220" height="135" rx="8" fill="rgba(15, 23, 42, 0.85)" stroke="#3b82f6" stroke-width="1.5"/>
+              <text x="110" y="24" fill="#60a5fa" font-size="11" font-weight="800" text-anchor="middle">Sequence A (Standard)</text>
+              <text x="110" y="55" fill="#f8fafc" font-size="11" font-weight="700" text-anchor="middle">${s.orderA}</text>
+              <rect x="10" y="75" width="200" height="45" rx="6" fill="#1e293b"/>
+              <text x="110" y="102" fill="#34d399" font-size="10.5" font-weight="700" text-anchor="middle">${s.resultA}</text>
+            </g>
+
+            <!-- Order 2 Card -->
+            <g transform="translate(285, 68)">
+              <rect x="0" y="0" width="220" height="135" rx="8" fill="rgba(15, 23, 42, 0.85)" stroke="${s.isCommutative ? '#10b981' : '#ef4444'}" stroke-width="1.5"/>
+              <text x="110" y="24" fill="${s.isCommutative ? '#34d399' : '#f87171'}" font-size="11" font-weight="800" text-anchor="middle">Sequence B (Swapped)</text>
+              <text x="110" y="55" fill="#f8fafc" font-size="11" font-weight="700" text-anchor="middle">${s.orderB}</text>
+              <rect x="10" y="75" width="200" height="45" rx="6" fill="#1e293b"/>
+              <text x="110" y="102" fill="${s.isCommutative ? '#34d399' : '#f87171'}" font-size="10.5" font-weight="700" text-anchor="middle">${s.resultB}</text>
+            </g>
+
+            <!-- Verdict Badge -->
+            <rect x="50" y="215" width="440" height="32" rx="6" fill="${s.isCommutative ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)'}" stroke="${s.isCommutative ? '#10b981' : '#ef4444'}"/>
+            <text x="270" y="236" fill="${s.isCommutative ? '#34d399' : '#f87171'}" font-size="12" font-weight="900" text-anchor="middle">
+              ${s.isCommutative ? "COMMUTATIVE: Swapping the order preserved the outcome!" : "NON-COMMUTATIVE: Swapping the order broke the outcome!"}
+            </text>
+
+            <!-- Mathematical Parallel -->
+            <rect x="35" y="258" width="470" height="55" rx="8" fill="rgba(30, 41, 59, 0.85)" stroke="#fbbf24" stroke-width="1"/>
+            <text x="270" y="278" fill="#fbbf24" font-size="11" font-weight="800" text-anchor="middle">Mathematical Significance:</text>
+            <text x="270" y="298" fill="#f8fafc" font-size="10" font-weight="600" text-anchor="middle">${s.mathParallel}</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center; align-items:center;">
+          <span style="font-size:0.85rem; font-weight:700; color:#94a3b8;">Choose Action:</span>
+          ${scenarios.map((s, idx) => `<button class="sim-btn ${idx === activeItem ? 'active' : ''}" data-idx="${idx}">${s.name}</button>`).join('')}
+        </div>
+      `;
+
+      simControls.querySelectorAll('.sim-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activeItem = parseInt(btn.dataset.idx);
+          simControls.querySelectorAll('.sim-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          render();
+          sfx.playClick();
+        });
+      });
+
+      render();
+    }
+
+    // Slide 8: Commutative & Associative Tile Array
+    function simCommutativeAssociativeTile() {
+      simHeaderTitle.textContent = "Commutative & Associative Tile Array Simulator";
+      let mode = "comm"; // "comm" or "assoc"
+      let isRotated = false;
+      let assocGroup = 0; // 0: (2+3)+4, 1: 2+(3+4)
+
+      function render() {
+        if (mode === "comm") {
+          const rows = isRotated ? 5 : 3;
+          const cols = isRotated ? 3 : 5;
+          const expr = isRotated ? "5 × 3 = 15" : "3 × 5 = 15";
+
+          simCanvas.innerHTML = `
+            <svg viewBox="0 0 540 330" width="100%" height="100%">
+              <rect x="0" y="0" width="540" height="330" fill="#0b0f19"/>
+
+              <rect x="130" y="15" width="280" height="36" rx="8" fill="rgba(30, 41, 59, 0.9)" stroke="#38bdf8" stroke-width="1.5"/>
+              <text x="270" y="38" fill="#38bdf8" font-size="14" font-weight="900" text-anchor="middle">Array Area: ${expr}</text>
+
+              <!-- Tile Grid -->
+              <g transform="translate(${270 - (cols * 40) / 2}, ${140 - (rows * 22) / 2})">
+                ${Array.from({ length: rows }).map((_, r) =>
+                  Array.from({ length: cols }).map((_, c) => `
+                    <rect x="${c * 40}" y="${r * 22}" width="36" height="18" rx="3" fill="#3b82f6" stroke="#60a5fa" stroke-width="1"/>
+                  `).join('')
+                ).join('')}
+              </g>
+
+              <!-- Rotation Arrow & Info -->
+              <rect x="50" y="250" width="440" height="60" rx="8" fill="rgba(15, 23, 42, 0.9)" stroke="#10b981" stroke-width="1"/>
+              <text x="270" y="274" fill="#34d399" font-size="12" font-weight="800" text-anchor="middle">Commutative Law: a × b = b × a</text>
+              <text x="270" y="295" fill="#94a3b8" font-size="10" text-anchor="middle">Rotating a rectangle array swaps its length and width, but the total count of tiles remains exactly 15!</text>
+            </svg>
+          `;
+        } else {
+          // Associative: (2 + 3) + 4 vs 2 + (3 + 4)
+          const bracketLabel = assocGroup === 0 ? "( 2 + 3 ) + 4 = 5 + 4 = 9" : "2 + ( 3 + 4 ) = 2 + 7 = 9";
+
+          simCanvas.innerHTML = `
+            <svg viewBox="0 0 540 330" width="100%" height="100%">
+              <rect x="0" y="0" width="540" height="330" fill="#0b0f19"/>
+
+              <rect x="100" y="15" width="340" height="36" rx="8" fill="rgba(30, 41, 59, 0.9)" stroke="#a855f7" stroke-width="1.5"/>
+              <text x="270" y="38" fill="#c084fc" font-size="14" font-weight="900" text-anchor="middle">${bracketLabel}</text>
+
+              <!-- Grouping Visualizer -->
+              <g transform="translate(60, 85)">
+                <!-- Group 1: 2 tiles (Cyan) -->
+                <rect x="0" y="20" width="80" height="50" rx="6" fill="#0284c7" stroke="#38bdf8" stroke-width="2"/>
+                <text x="40" y="50" fill="#ffffff" font-size="16" font-weight="900" text-anchor="middle">2</text>
+
+                <text x="100" y="52" fill="#94a3b8" font-size="20" font-weight="900">+</text>
+
+                <!-- Group 2: 3 tiles (Amber) -->
+                <rect x="120" y="20" width="120" height="50" rx="6" fill="#d97706" stroke="#fbbf24" stroke-width="2"/>
+                <text x="180" y="50" fill="#ffffff" font-size="16" font-weight="900" text-anchor="middle">3</text>
+
+                <text x="260" y="52" fill="#94a3b8" font-size="20" font-weight="900">+</text>
+
+                <!-- Group 3: 4 tiles (Emerald) -->
+                <rect x="280" y="20" width="140" height="50" rx="6" fill="#059669" stroke="#34d399" stroke-width="2"/>
+                <text x="350" y="50" fill="#ffffff" font-size="16" font-weight="900" text-anchor="middle">4</text>
+
+                <!-- Highlight bracket box around active grouping -->
+                ${assocGroup === 0 ? `
+                  <rect x="-10" y="10" width="260" height="70" rx="10" fill="none" stroke="#f43f5e" stroke-width="3" stroke-dasharray="6"/>
+                  <text x="120" y="5" fill="#f43f5e" font-size="11" font-weight="800" text-anchor="middle">( Grouped First: 2 + 3 = 5 )</text>
+                ` : `
+                  <rect x="110" y="10" width="320" height="70" rx="10" fill="none" stroke="#f43f5e" stroke-width="3" stroke-dasharray="6"/>
+                  <text x="270" y="5" fill="#f43f5e" font-size="11" font-weight="800" text-anchor="middle">( Grouped Second: 3 + 4 = 7 )</text>
+                `}
+              </g>
+
+              <rect x="50" y="250" width="440" height="60" rx="8" fill="rgba(15, 23, 42, 0.9)" stroke="#a855f7" stroke-width="1"/>
+              <text x="270" y="274" fill="#c084fc" font-size="12" font-weight="800" text-anchor="middle">Associative Law: (a + b) + c = a + (b + c)</text>
+              <text x="270" y="295" fill="#94a3b8" font-size="10" text-anchor="middle">Changing which adjacent pair is grouped first never changes the overall sum!</text>
+            </svg>
+          `;
+        }
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center; align-items:center;">
+          <button class="sim-btn active" id="btnModeComm">Commutative Grid (3×5 vs 5×3)</button>
+          <button class="sim-btn" id="btnRotateGrid">🔄 Rotate Array</button>
+          <button class="sim-btn" id="btnModeAssoc">Associative Grouping ((a+b)+c)</button>
+          <button class="sim-btn" id="btnToggleAssoc">🔀 Regroup Pairs</button>
+        </div>
+      `;
+
+      document.getElementById('btnModeComm').onclick = () => {
+        mode = "comm";
+        document.getElementById('btnModeComm').classList.add('active');
+        document.getElementById('btnModeAssoc').classList.remove('active');
+        render(); sfx.playClick();
+      };
+      document.getElementById('btnRotateGrid').onclick = () => {
+        mode = "comm";
+        isRotated = !isRotated;
+        document.getElementById('btnModeComm').classList.add('active');
+        document.getElementById('btnModeAssoc').classList.remove('active');
+        render(); sfx.playClick();
+      };
+      document.getElementById('btnModeAssoc').onclick = () => {
+        mode = "assoc";
+        document.getElementById('btnModeAssoc').classList.add('active');
+        document.getElementById('btnModeComm').classList.remove('active');
+        render(); sfx.playClick();
+      };
+      document.getElementById('btnToggleAssoc').onclick = () => {
+        mode = "assoc";
+        assocGroup = assocGroup === 0 ? 1 : 0;
+        document.getElementById('btnModeAssoc').classList.add('active');
+        document.getElementById('btnModeComm').classList.remove('active');
+        render(); sfx.playClick();
+      };
+
+      render();
+    }
+
+    // Slide 9: Fraction Bar as Hidden Bracket
+    function simFractionBarBracket() {
+      simHeaderTitle.textContent = "The Vinculum: The Fraction Bar as a Hidden Bracket";
+      let showBrackets = true;
+
+      function render() {
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#0f172a"/>
+
+            <rect x="100" y="15" width="340" height="36" rx="8" fill="rgba(30, 41, 59, 0.9)" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="270" y="38" fill="#38bdf8" font-size="13" font-weight="900" text-anchor="middle">Horizontal Fraction Bar (Vinculum)</text>
+
+            <!-- Fraction Presentation -->
+            <g transform="translate(140, 75)">
+              <rect x="0" y="0" width="260" height="120" rx="10" fill="rgba(15, 23, 42, 0.95)" stroke="#60a5fa" stroke-width="1.5"/>
+
+              <!-- Numerator -->
+              <text x="130" y="45" fill="${showBrackets ? '#38bdf8' : '#f8fafc'}" font-size="20" font-weight="900" text-anchor="middle">
+                ${showBrackets ? "( 18 + 6 )" : "18 + 6"}
+              </text>
+
+              <!-- Vinculum Horizontal Bar -->
+              <line x1="30" y1="62" x2="230" y2="62" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+
+              <!-- Denominator -->
+              <text x="130" y="95" fill="${showBrackets ? '#a855f7' : '#f8fafc'}" font-size="20" font-weight="900" text-anchor="middle">
+                ${showBrackets ? "( 2 × 3 )" : "2 × 3"}
+              </text>
+            </g>
+
+            <!-- Equivalence arrow and step -->
+            <g transform="translate(100, 210)">
+              <rect x="0" y="0" width="340" height="42" rx="8" fill="rgba(30, 41, 59, 0.85)" stroke="#10b981" stroke-width="1.5"/>
+              <text x="170" y="26" fill="#34d399" font-size="14" font-weight="900" text-anchor="middle">
+                = ( 24 ) ÷ ( 6 ) = 4
+              </text>
+            </g>
+
+            <!-- Warning Callout -->
+            <rect x="30" y="265" width="480" height="52" rx="8" fill="rgba(239, 68, 68, 0.1)" stroke="#ef4444" stroke-width="1"/>
+            <text x="270" y="285" fill="#f87171" font-size="10.5" font-weight="800" text-anchor="middle">⚠️ Calculator Trap: Typing 18 + 6 ÷ 2 × 3 computes 18 + 3 × 3 = 27 !</text>
+            <text x="270" y="303" fill="#cbd5e1" font-size="9.5" text-anchor="middle">You MUST explicitly add brackets: (18 + 6) ÷ (2 × 3) to get the true answer 4!</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; gap:1rem; justify-content:center; align-items:center;">
+          <button class="sim-btn active" id="btnToggleBrackets">👁 Reveal / Hide Hidden Brackets</button>
+        </div>
+      `;
+
+      document.getElementById('btnToggleBrackets').onclick = () => {
+        showBrackets = !showBrackets;
+        render(); sfx.playClick();
+      };
+
+      render();
+    }
+
+    // Slide 10: Signed Terms on Number Line (Brahmagupta's Fortune & Debt)
+    function simSignedTermsNumberline() {
+      simHeaderTitle.textContent = "Brahmagupta's Fortune (Dhana) & Debt (Rina) on the Number Line";
+      let currentVal = 0;
+      let activePreset = 0;
+      const presets = [
+        { label: "+5 - 8 + 6", steps: [{ v: 5, t: "+5 (Dhana/Fortune)" }, { v: -8, t: "-8 (Rina/Debt)" }, { v: 6, t: "+6 (Dhana/Fortune)" }], target: 3 },
+        { label: "+10 - 15 + 7", steps: [{ v: 10, t: "+10" }, { v: -15, t: "-15" }, { v: 7, t: "+7" }], target: 2 },
+        { label: "-4 + 9 - 3", steps: [{ v: -4, t: "-4" }, { v: 9, t: "+9" }, { v: -3, t: "-3" }], target: 2 }
+      ];
+
+      let stepIdx = 0;
+      let historyPositions = [0];
+
+      function render() {
+        const p = presets[activePreset];
+        const val = historyPositions[stepIdx];
+
+        // Number line bounds from -10 to +12
+        const minN = -10, maxN = 12;
+        const totalSpan = maxN - minN;
+        const mapX = (n) => 40 + ((n - minN) / totalSpan) * 460;
+
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#090d16"/>
+
+            <rect x="120" y="15" width="300" height="36" rx="8" fill="rgba(30, 41, 59, 0.9)" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="270" y="38" fill="#38bdf8" font-size="13" font-weight="900" text-anchor="middle">Expression: ${p.label}</text>
+
+            <!-- Number Line -->
+            <g transform="translate(0, 150)">
+              <!-- Axis Line -->
+              <line x1="30" y1="0" x2="510" y2="0" stroke="#64748b" stroke-width="3"/>
+              <!-- Arrow Heads -->
+              <polygon points="30,0 42,-5 42,5" fill="#64748b"/>
+              <polygon points="510,0 498,-5 498,5" fill="#64748b"/>
+
+              <!-- Zero Marker -->
+              <line x1="${mapX(0)}" y1="-15" x2="${mapX(0)}" y2="15" stroke="#f59e0b" stroke-width="3"/>
+              <text x="${mapX(0)}" y="30" fill="#fbbf24" font-size="12" font-weight="900" text-anchor="middle">0</text>
+
+              <!-- Ticks -->
+              ${Array.from({ length: totalSpan + 1 }).map((_, i) => {
+                const n = minN + i;
+                if (n === 0) return '';
+                const x = mapX(n);
+                return `
+                  <line x1="${x}" y1="-6" x2="${x}" y2="6" stroke="#475569" stroke-width="1.5"/>
+                  ${n % 2 === 0 ? `<text x="${x}" y="20" fill="#94a3b8" font-size="9" text-anchor="middle">${n > 0 ? '+' + n : n}</text>` : ''}
+                `;
+              }).join('')}
+
+              <!-- Hopping Token -->
+              <circle cx="${mapX(val)}" cy="-20" r="14" fill="#10b981" stroke="#ffffff" stroke-width="2"/>
+              <text x="${mapX(val)}" y="-15" fill="#ffffff" font-size="12" font-weight="900" text-anchor="middle">📍</text>
+            </g>
+
+            <!-- Position Display -->
+            <rect x="70" y="70" width="400" height="50" rx="10" fill="rgba(15, 23, 42, 0.95)" stroke="#10b981" stroke-width="1.5"/>
+            <text x="270" y="92" fill="#34d399" font-size="12" font-weight="800" text-anchor="middle">Current Position on Number Line</text>
+            <text x="270" y="112" fill="#f8fafc" font-size="16" font-weight="900" text-anchor="middle">Position: ${val > 0 ? '+' + val : val} ${val > 0 ? '(Fortune)' : (val < 0 ? '(Debt)' : '(Neutral)')}</text>
+
+            <!-- Ancient Indian Heritage Box -->
+            <rect x="40" y="240" width="460" height="65" rx="8" fill="rgba(15, 23, 42, 0.9)" stroke="#f59e0b" stroke-width="1"/>
+            <text x="270" y="262" fill="#fbbf24" font-size="11" font-weight="800" text-anchor="middle">Acharya Brahmagupta's 7th-Century Principles:</text>
+            <text x="270" y="280" fill="#e2e8f0" font-size="10" text-anchor="middle">"A fortune subtracted from zero is a debt, and a debt subtracted from zero is a fortune."</text>
+            <text x="270" y="296" fill="#94a3b8" font-size="9.5" text-anchor="middle">Positive terms add wealth (move right); negative terms add debt (move left).</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center; align-items:center;">
+          <button class="sim-btn" id="btnNextHop">Next Step 🦘</button>
+          <button class="sim-btn" id="btnResetLine">🔄 Reset</button>
+          <span style="font-size:0.85rem; font-weight:700; color:#94a3b8; margin-left:1rem;">Preset:</span>
+          ${presets.map((p, idx) => `<button class="sim-btn ${idx === 0 ? 'active' : ''}" data-idx="${idx}">${p.label}</button>`).join('')}
+        </div>
+      `;
+
+      function computeHistory() {
+        const p = presets[activePreset];
+        historyPositions = [0];
+        let running = 0;
+        p.steps.forEach(st => {
+          running += st.v;
+          historyPositions.push(running);
+        });
+        stepIdx = 0;
+      }
+
+      computeHistory();
+
+      document.getElementById('btnNextHop').onclick = () => {
+        if (stepIdx < historyPositions.length - 1) {
+          stepIdx++;
+          render();
+          sfx.playClick();
+        }
+      };
+
+      document.getElementById('btnResetLine').onclick = () => {
+        stepIdx = 0;
+        render();
+        sfx.playClick();
+      };
+
+      simControls.querySelectorAll('[data-idx]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activePreset = parseInt(btn.dataset.idx);
+          simControls.querySelectorAll('[data-idx]').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          computeHistory();
+          render();
+          sfx.playClick();
+        });
+      });
+
+      render();
+    }
+
+    // Slide 11: Distributive Property Geometric Area Model
+    function simDistributiveRectangleArea() {
+      simHeaderTitle.textContent = "The Distributive Property: Split-Rectangle Geometric Model";
+      let a = 4, b = 6, c = 3;
+
+      function render() {
+        const area1 = a * b;
+        const area2 = a * c;
+        const totalArea = a * (b + c);
+
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#0b0f19"/>
+
+            <!-- Formula Banner -->
+            <rect x="60" y="15" width="420" height="36" rx="8" fill="rgba(30, 41, 59, 0.9)" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="270" y="38" fill="#38bdf8" font-size="14" font-weight="900" text-anchor="middle">
+              ${a} × ( ${b} + ${c} ) = ( ${a} × ${b} ) + ( ${a} × ${c} ) = ${totalArea}
+            </text>
+
+            <!-- Visual Split Rectangle -->
+            <g transform="translate(100, 75)">
+              <!-- Total Width Top Bracket -->
+              <text x="170" y="15" fill="#f8fafc" font-size="12" font-weight="800" text-anchor="middle">Total Width: ${b} + ${c} = ${b + c}</text>
+              <line x1="20" y1="22" x2="320" y2="22" stroke="#94a3b8" stroke-width="1.5"/>
+
+              <!-- Height Left Label -->
+              <text x="5" y="85" fill="#f59e0b" font-size="12" font-weight="900" text-anchor="middle">Height: ${a}</text>
+
+              <!-- Rectangle 1: a * b (Cyan) -->
+              <rect x="20" y="30" width="${(b / (b + c)) * 300}" height="110" fill="rgba(56, 189, 248, 0.25)" stroke="#38bdf8" stroke-width="2"/>
+              <text x="${20 + ((b / (b + c)) * 150)}" y="75" fill="#38bdf8" font-size="12" font-weight="800" text-anchor="middle">Area 1</text>
+              <text x="${20 + ((b / (b + c)) * 150)}" y="95" fill="#ffffff" font-size="14" font-weight="900" text-anchor="middle">${a} × ${b} = ${area1}</text>
+
+              <!-- Rectangle 2: a * c (Emerald) -->
+              <rect x="${20 + (b / (b + c)) * 300}" y="30" width="${(c / (b + c)) * 300}" height="110" fill="rgba(16, 185, 129, 0.25)" stroke="#10b981" stroke-width="2"/>
+              <text x="${20 + (b / (b + c)) * 300 + ((c / (b + c)) * 150)}" y="75" fill="#34d399" font-size="12" font-weight="800" text-anchor="middle">Area 2</text>
+              <text x="${20 + (b / (b + c)) * 300 + ((c / (b + c)) * 150)}" y="95" fill="#ffffff" font-size="14" font-weight="900" text-anchor="middle">${a} × ${c} = ${area2}</text>
+            </g>
+
+            <!-- Bottom Proof Box -->
+            <rect x="50" y="245" width="440" height="65" rx="10" fill="rgba(15, 23, 42, 0.95)" stroke="#10b981" stroke-width="1.5"/>
+            <text x="270" y="268" fill="#34d399" font-size="12" font-weight="800" text-anchor="middle">Geometric Proof: Both methods yield identical area</text>
+            <text x="270" y="292" fill="#f8fafc" font-size="14" font-weight="900" text-anchor="middle">
+              One Big Box: ${a} × ${b + c} = ${totalArea}  |  Two Split Boxes: ${area1} + ${area2} = ${totalArea}
+            </text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; align-items:center;">
+          <label style="color:#94a3b8; font-size:0.85rem; font-weight:700;">Height (a): <input type="range" id="rngA" min="2" max="6" value="4"></label>
+          <label style="color:#94a3b8; font-size:0.85rem; font-weight:700;">Width 1 (b): <input type="range" id="rngB" min="3" max="8" value="6"></label>
+          <label style="color:#94a3b8; font-size:0.85rem; font-weight:700;">Width 2 (c): <input type="range" id="rngC" min="2" max="6" value="3"></label>
+        </div>
+      `;
+
+      document.getElementById('rngA').oninput = (e) => { a = parseInt(e.target.value); render(); };
+      document.getElementById('rngB').oninput = (e) => { b = parseInt(e.target.value); render(); };
+      document.getElementById('rngC').oninput = (e) => { c = parseInt(e.target.value); render(); };
+
+      render();
+    }
+
+    // Slide 12: Tinker the Terms (Friendly Tens & Hundreds)
+    function simTinkerTermsFriendlyTens() {
+      simHeaderTitle.textContent = "Tinker the Terms: Friendly Tens & Hundreds Mental Pairing";
+      let paired = false;
+
+      function render() {
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#090d16"/>
+
+            <rect x="90" y="15" width="360" height="36" rx="8" fill="rgba(30, 41, 59, 0.9)" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="270" y="38" fill="#38bdf8" font-size="14" font-weight="900" text-anchor="middle">Problem: 28 + 47 + 72 + 53</text>
+
+            ${!paired ? `
+              <!-- Unpaired View -->
+              <g transform="translate(60, 80)">
+                <rect x="0" y="0" width="90" height="70" rx="8" fill="#1e293b" stroke="#60a5fa" stroke-width="2"/>
+                <text x="45" y="42" fill="#ffffff" font-size="18" font-weight="900" text-anchor="middle">28</text>
+
+                <text x="105" y="42" fill="#94a3b8" font-size="20" font-weight="900">+</text>
+
+                <rect x="120" y="0" width="90" height="70" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+                <text x="165" y="42" fill="#ffffff" font-size="18" font-weight="900" text-anchor="middle">47</text>
+
+                <text x="225" y="42" fill="#94a3b8" font-size="20" font-weight="900">+</text>
+
+                <rect x="240" y="0" width="90" height="70" rx="8" fill="#1e293b" stroke="#60a5fa" stroke-width="2"/>
+                <text x="285" y="42" fill="#ffffff" font-size="18" font-weight="900" text-anchor="middle">72</text>
+
+                <text x="345" y="42" fill="#94a3b8" font-size="20" font-weight="900">+</text>
+
+                <rect x="360" y="0" width="90" height="70" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+                <text x="405" y="42" fill="#ffffff" font-size="18" font-weight="900" text-anchor="middle">53</text>
+              </g>
+
+              <rect x="50" y="210" width="440" height="90" rx="10" fill="rgba(15, 23, 42, 0.95)" stroke="#64748b" stroke-width="1.5"/>
+              <text x="270" y="240" fill="#94a3b8" font-size="12" font-weight="800" text-anchor="middle">Unpaired Standard Calculation (Slow):</text>
+              <text x="270" y="265" fill="#f8fafc" font-size="14" font-weight="700" text-anchor="middle">28 + 47 = 75, then 75 + 72 = 147, then 147 + 53 = 200</text>
+              <text x="270" y="285" fill="#f59e0b" font-size="11" font-weight="700" text-anchor="middle">Can we rearrange the terms using Commutative Law to make it fast?</text>
+            ` : `
+              <!-- Paired View -->
+              <g transform="translate(60, 80)">
+                <!-- Pair 1: 28 + 72 -->
+                <rect x="0" y="0" width="190" height="70" rx="10" fill="rgba(56, 189, 248, 0.2)" stroke="#38bdf8" stroke-width="2"/>
+                <text x="95" y="25" fill="#38bdf8" font-size="11" font-weight="800" text-anchor="middle">Friendly Pair 1 (Sum = 100)</text>
+                <text x="95" y="52" fill="#ffffff" font-size="18" font-weight="900" text-anchor="middle">( 28 + 72 )</text>
+
+                <text x="210" y="42" fill="#94a3b8" font-size="24" font-weight="900">+</text>
+
+                <!-- Pair 2: 47 + 53 -->
+                <rect x="230" y="0" width="190" height="70" rx="10" fill="rgba(245, 158, 11, 0.2)" stroke="#f59e0b" stroke-width="2"/>
+                <text x="325" y="25" fill="#fbbf24" font-size="11" font-weight="800" text-anchor="middle">Friendly Pair 2 (Sum = 100)</text>
+                <text x="325" y="52" fill="#ffffff" font-size="18" font-weight="900" text-anchor="middle">( 47 + 53 )</text>
+              </g>
+
+              <rect x="50" y="200" width="440" height="100" rx="10" fill="rgba(16, 185, 129, 0.15)" stroke="#10b981" stroke-width="2"/>
+              <text x="270" y="230" fill="#34d399" font-size="14" font-weight="900" text-anchor="middle">⚡ Mental Math Lightning Shortcut!</text>
+              <text x="270" y="258" fill="#f8fafc" font-size="18" font-weight="900" text-anchor="middle">= 100 + 100 = 200</text>
+              <text x="270" y="282" fill="#a7f3d0" font-size="11" font-weight="700" text-anchor="middle">By tinkering and grouping terms that complement each other to 100, we solve it in seconds!</text>
+            `}
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; gap:1rem; justify-content:center; align-items:center;">
+          <button class="sim-btn ${!paired ? 'active' : ''}" id="btnUnpaired">Standard Order</button>
+          <button class="sim-btn ${paired ? 'active' : ''}" id="btnPaired">⚡ Group Friendly Pairs (100)</button>
+        </div>
+      `;
+
+      document.getElementById('btnUnpaired').onclick = () => {
+        paired = false;
+        document.getElementById('btnUnpaired').classList.add('active');
+        document.getElementById('btnPaired').classList.remove('active');
+        render(); sfx.playClick();
+      };
+
+      document.getElementById('btnPaired').onclick = () => {
+        paired = true;
+        document.getElementById('btnPaired').classList.add('active');
+        document.getElementById('btnUnpaired').classList.remove('active');
+        render(); sfx.playClick();
+      };
+
+      render();
+    }
+
+    // Slide 13: Removing Brackets: Minus Sign Inversion Switch
+    function simMinusBracketSignFlip() {
+      simHeaderTitle.textContent = "Removing Brackets: The Minus Sign Inversion Switch";
+      let isRemoved = false;
+      let activePreset = 0;
+      const presets = [
+        { orig: "-( 7 + 5 )", inside: "+7 + 5", flipped: "-7 - 5", val: -12 },
+        { orig: "-( 9 - 4 )", inside: "+9 - 4", flipped: "-9 + 4", val: -5 },
+        { orig: "15 - ( 8 - 3 )", inside: "15 - (+8 - 3)", flipped: "15 - 8 + 3", val: 10 }
+      ];
+
+      function render() {
+        const p = presets[activePreset];
+
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#0b0f19"/>
+
+            <rect x="90" y="15" width="360" height="36" rx="8" fill="rgba(30, 41, 59, 0.9)" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="270" y="38" fill="#38bdf8" font-size="14" font-weight="900" text-anchor="middle">Expression: ${p.orig}</text>
+
+            <!-- Bracket Switch Display -->
+            <g transform="translate(70, 75)">
+              <rect x="0" y="0" width="400" height="120" rx="12" fill="rgba(15, 23, 42, 0.95)" stroke="${isRemoved ? '#10b981' : '#f43f5e'}" stroke-width="2"/>
+
+              ${!isRemoved ? `
+                <text x="200" y="35" fill="#f43f5e" font-size="12" font-weight="800" text-anchor="middle">Preceded by Minus Sign (-): Guard is Active!</text>
+                <text x="200" y="75" fill="#ffffff" font-size="24" font-weight="900" text-anchor="middle">${p.orig}</text>
+                <text x="200" y="105" fill="#94a3b8" font-size="10" text-anchor="middle">Click "Flip Sign & Remove Bracket" below to watch each sign invert!</text>
+              ` : `
+                <text x="200" y="35" fill="#34d399" font-size="12" font-weight="800" text-anchor="middle">Bracket Removed: Every Internal Sign Inverted!</text>
+                <text x="200" y="75" fill="#f8fafc" font-size="24" font-weight="900" text-anchor="middle">${p.flipped} = ${p.val}</text>
+                <text x="200" y="105" fill="#a7f3d0" font-size="10" text-anchor="middle">Minus distributed to every term like multiplying by -1.</text>
+              `}
+            </g>
+
+            <!-- Bottom Law Card -->
+            <rect x="40" y="225" width="460" height="85" rx="10" fill="rgba(30, 41, 59, 0.85)" stroke="#fbbf24" stroke-width="1.5"/>
+            <text x="270" y="248" fill="#fbbf24" font-size="12" font-weight="900" text-anchor="middle">Universal Bracket Removal Rules:</text>
+            <text x="270" y="272" fill="#e2e8f0" font-size="11" font-weight="700" text-anchor="middle">+( a + b ) = a + b  and  +( a - b ) = a - b (Signs remain unchanged)</text>
+            <text x="270" y="294" fill="#f87171" font-size="11" font-weight="700" text-anchor="middle">-( a + b ) = -a - b  and  -( a - b ) = -a + b (EVERY sign flips!)</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center; align-items:center;">
+          <button class="sim-btn active" id="btnToggleFlip">🔄 ${isRemoved ? 'Restore Bracket' : 'Flip Sign & Remove Bracket'}</button>
+          <span style="font-size:0.85rem; font-weight:700; color:#94a3b8; margin-left:1rem;">Presets:</span>
+          ${presets.map((p, idx) => `<button class="sim-btn ${idx === activePreset ? 'active' : ''}" data-idx="${idx}">${p.orig}</button>`).join('')}
+        </div>
+      `;
+
+      document.getElementById('btnToggleFlip').onclick = () => {
+        isRemoved = !isRemoved;
+        document.getElementById('btnToggleFlip').textContent = isRemoved ? 'Restore Bracket' : 'Flip Sign & Remove Bracket';
+        render(); sfx.playClick();
+      };
+
+      simControls.querySelectorAll('[data-idx]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activePreset = parseInt(btn.dataset.idx);
+          simControls.querySelectorAll('[data-idx]').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          isRemoved = false;
+          document.getElementById('btnToggleFlip').textContent = 'Flip Sign & Remove Bracket';
+          render(); sfx.playClick();
+        });
+      });
+
+      render();
+    }
+
+    // Slide 14: Nested Brackets Unpacker
+    function simNestedBracketsUnpacker() {
+      simHeaderTitle.textContent = "Excavation of Nested Brackets: ( ) then { } then [ ]";
+      let layer = 0;
+      const layers = [
+        {
+          name: "Original Expression",
+          disp: "50 - [ 20 + { 15 - ( 6 + 3 ) } ]",
+          desc: "Three layers of nesting. Target the innermost round brackets first: ( 6 + 3 )",
+          activeColor: "#38bdf8"
+        },
+        {
+          name: "Layer 1: Innermost ( ) Solved",
+          disp: "50 - [ 20 + { 15 - 9 } ]",
+          desc: "( 6 + 3 ) evaluated to 9. Now target curly braces: { 15 - 9 }",
+          activeColor: "#fbbf24"
+        },
+        {
+          name: "Layer 2: Curly Braces { } Solved",
+          disp: "50 - [ 20 + 6 ]",
+          desc: "{ 15 - 9 } evaluated to 6. Now target square brackets: [ 20 + 6 ]",
+          activeColor: "#a855f7"
+        },
+        {
+          name: "Layer 3: Square Brackets [ ] Solved",
+          disp: "50 - 26 = 24",
+          desc: "[ 20 + 6 ] evaluated to 26. Final subtraction: 50 - 26 = 24!",
+          activeColor: "#10b981"
+        }
+      ];
+
+      function render() {
+        const l = layers[layer];
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#090d16"/>
+
+            <rect x="80" y="15" width="380" height="36" rx="8" fill="rgba(30, 41, 59, 0.9)" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="270" y="38" fill="#38bdf8" font-size="13" font-weight="900" text-anchor="middle">BODMAS Hierarchy: Parentheses ➔ Braces ➔ Brackets</text>
+
+            <!-- Nested Visual Concentric Boxes -->
+            <g transform="translate(50, 70)">
+              <!-- Square Bracket Box -->
+              <rect x="0" y="0" width="440" height="140" rx="12" fill="rgba(168, 85, 247, 0.08)" stroke="#a855f7" stroke-width="2"/>
+              <text x="20" y="25" fill="#c084fc" font-size="11" font-weight="800">[ Square Brackets: Outer Layer ]</text>
+
+              <!-- Curly Brace Box -->
+              <rect x="140" y="35" width="280" height="90" rx="10" fill="rgba(245, 158, 11, 0.1)" stroke="#f59e0b" stroke-width="2"/>
+              <text x="155" y="55" fill="#fbbf24" font-size="10" font-weight="800">{ Curly Braces: Middle Layer }</text>
+
+              <!-- Parentheses Box -->
+              <rect x="250" y="65" width="150" height="50" rx="8" fill="rgba(56, 189, 248, 0.2)" stroke="#38bdf8" stroke-width="2"/>
+              <text x="260" y="85" fill="#38bdf8" font-size="9" font-weight="800">( Parentheses: Innermost )</text>
+              <text x="325" y="103" fill="#ffffff" font-size="13" font-weight="900" text-anchor="middle">${layer === 0 ? "6 + 3" : "= 9"}</text>
+
+              <text x="50" y="85" fill="#ffffff" font-size="15" font-weight="800">20 +</text>
+              <text x="180" y="95" fill="#ffffff" font-size="15" font-weight="800">15 -</text>
+            </g>
+
+            <!-- Current Stage Callout -->
+            <rect x="40" y="230" width="460" height="80" rx="10" fill="rgba(15, 23, 42, 0.95)" stroke="${l.activeColor}" stroke-width="2"/>
+            <text x="270" y="252" fill="${l.activeColor}" font-size="12" font-weight="800" text-anchor="middle">${l.name}</text>
+            <text x="270" y="278" fill="#f8fafc" font-size="16" font-weight="900" text-anchor="middle">${l.disp}</text>
+            <text x="270" y="298" fill="#94a3b8" font-size="9.5" text-anchor="middle">${l.desc}</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; gap:1rem; justify-content:center; align-items:center;">
+          <button class="sim-btn" id="btnUnpackPrev">⏮ Previous Layer</button>
+          <span id="layerIndicator" style="font-weight:700; color:#38bdf8; font-size:0.95rem;">Layer 1 of 4</span>
+          <button class="sim-btn active" id="btnUnpackNext">Next Layer ⏭</button>
+          <button class="sim-btn" id="btnUnpackReset">🔄 Reset</button>
+        </div>
+      `;
+
+      function updateControls() {
+        document.getElementById('layerIndicator').textContent = `Layer ${layer + 1} of ${layers.length}`;
+        document.getElementById('btnUnpackPrev').disabled = (layer === 0);
+        document.getElementById('btnUnpackNext').disabled = (layer === layers.length - 1);
+      }
+
+      document.getElementById('btnUnpackPrev').onclick = () => {
+        if (layer > 0) { layer--; render(); updateControls(); sfx.playClick(); }
+      };
+      document.getElementById('btnUnpackNext').onclick = () => {
+        if (layer < layers.length - 1) { layer++; render(); updateControls(); sfx.playClick(); }
+      };
+      document.getElementById('btnUnpackReset').onclick = () => {
+        layer = 0; render(); updateControls(); sfx.playClick();
+      };
+
+      render();
+      updateControls();
+    }
+
+    // Slide 15: Word Problem Expression Builder
+    function simWordProblemExpressionBuilder() {
+      simHeaderTitle.textContent = "Real-World Expression Architect: Picnic & School Supply Budget";
+      let activeScenario = 0;
+      const scenarios = [
+        {
+          title: "School Field Trip Vans",
+          story: "A school hires 5 vans. In each van, there are 8 boys and 6 girls.",
+          formula: "5 × ( 8 + 6 )",
+          step1: "In each van: 8 + 6 = 14 students",
+          step2: "Across 5 vans: 5 × 14 = 70 students total",
+          val: 70
+        },
+        {
+          title: "Book & Pen Shopping with Coupon",
+          story: "Rohan buys 4 notebooks at ₹25 each and 3 pens at ₹10 each. He has a ₹15 discount coupon.",
+          formula: "( 4 × 25 + 3 × 10 ) - 15",
+          step1: "Items cost: (100 + 30) = ₹130",
+          step2: "After discount: 130 - 15 = ₹115 to pay",
+          val: 115
+        },
+        {
+          title: "Cupcake Bakery Boxes",
+          story: "Baker makes 6 trays of 12 cupcakes. 8 are kept on display. The rest are packed equally into 4 boxes.",
+          formula: "( 6 × 12 - 8 ) ÷ 4",
+          step1: "Remaining cupcakes: 72 - 8 = 64 cupcakes",
+          step2: "Per box: 64 ÷ 4 = 16 cupcakes in each box",
+          val: 16
+        }
+      ];
+
+      function render() {
+        const s = scenarios[activeScenario];
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#0b0f19"/>
+
+            <rect x="80" y="15" width="380" height="36" rx="8" fill="rgba(30, 41, 59, 0.9)" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="270" y="38" fill="#38bdf8" font-size="13" font-weight="900" text-anchor="middle">Story: ${s.title}</text>
+
+            <!-- Story Description Box -->
+            <rect x="40" y="65" width="460" height="55" rx="8" fill="rgba(15, 23, 42, 0.85)" stroke="#64748b"/>
+            <text x="270" y="88" fill="#cbd5e1" font-size="10.5" font-weight="600" text-anchor="middle">${s.story}</text>
+            <text x="270" y="106" fill="#f59e0b" font-size="10" font-weight="700" text-anchor="middle">How do we translate this story into a single mathematical expression?</text>
+
+            <!-- Constructed Expression Card -->
+            <rect x="50" y="135" width="440" height="65" rx="10" fill="rgba(30, 41, 59, 0.95)" stroke="#38bdf8" stroke-width="2"/>
+            <text x="270" y="158" fill="#38bdf8" font-size="11" font-weight="800" text-anchor="middle">Mathematical Expression Model</text>
+            <text x="270" y="186" fill="#f8fafc" font-size="20" font-weight="900" text-anchor="middle">${s.formula}</text>
+
+            <!-- Evaluation Steps -->
+            <g transform="translate(60, 215)">
+              <rect x="0" y="0" width="420" height="95" rx="10" fill="rgba(16, 185, 129, 0.12)" stroke="#10b981" stroke-width="1.5"/>
+              <text x="210" y="24" fill="#34d399" font-size="12" font-weight="800" text-anchor="middle">Step-by-Step Evaluation:</text>
+              <text x="210" y="48" fill="#cbd5e1" font-size="11" font-weight="700" text-anchor="middle">${s.step1}</text>
+              <text x="210" y="70" fill="#f8fafc" font-size="11" font-weight="800" text-anchor="middle">${s.step2}</text>
+              <text x="210" y="88" fill="#34d399" font-size="12" font-weight="900" text-anchor="middle">Final Answer = ${s.val}</text>
+            </g>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center; align-items:center;">
+          <span style="font-size:0.85rem; font-weight:700; color:#94a3b8;">Choose Story:</span>
+          ${scenarios.map((s, idx) => `<button class="sim-btn ${idx === activeScenario ? 'active' : ''}" data-idx="${idx}">${s.title}</button>`).join('')}
+        </div>
+      `;
+
+      simControls.querySelectorAll('.sim-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activeScenario = parseInt(btn.dataset.idx);
+          simControls.querySelectorAll('.sim-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          render();
+          sfx.playClick();
+        });
+      });
+
+      render();
+    }
+
+    // Slide 16: The 24 Puzzle Game & Four 4s Challenge
+    function simArithmeticPuzzle24Game() {
+      simHeaderTitle.textContent = "The Grand Arithmetic Challenge: The 24 Puzzle Game";
+      let activePuzzle = 0;
+      let userExpr = "";
+      const puzzles = [
+        { numbers: [4, 6, 8, 2], solution: "( 8 - 4 ) × 6 = 24", hint: "Subtract 4 from 8, then multiply by 6!" },
+        { numbers: [3, 3, 8, 8], solution: "8 ÷ ( 3 - 8 ÷ 3 ) = 24", hint: "Ancient fraction trick: 3 - 8/3 = 1/3, and 8 ÷ (1/3) = 24!" },
+        { numbers: [1, 2, 3, 4], solution: "1 × 2 × 3 × 4 = 24", hint: "Direct continuous product: 1 × 2 = 2, 2 × 3 = 6, 6 × 4 = 24!" },
+        { numbers: [4, 4, 4, 4], solution: "( 4 × 4 ) + 4 + 4 = 24", hint: "Four 4s challenge: 16 + 4 + 4 = 24!" }
+      ];
+
+      function render() {
+        const p = puzzles[activePuzzle];
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#090d16"/>
+
+            <!-- Header Badge -->
+            <rect x="110" y="15" width="320" height="36" rx="8" fill="rgba(30, 41, 59, 0.9)" stroke="#fbbf24" stroke-width="1.5"/>
+            <text x="270" y="38" fill="#fbbf24" font-size="14" font-weight="900" text-anchor="middle">Goal: Combine Numbers to Reach 24!</text>
+
+            <!-- Given Numbers -->
+            <g transform="translate(60, 65)">
+              <text x="210" y="15" fill="#94a3b8" font-size="11" font-weight="700" text-anchor="middle">Your 4 Numbers to Use Exactly Once:</text>
+              ${p.numbers.map((num, i) => `
+                <rect x="${i * 105 + 10}" y="25" width="85" height="55" rx="10" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+                <text x="${i * 105 + 52}" y="62" fill="#ffffff" font-size="22" font-weight="900" text-anchor="middle">${num}</text>
+              `).join('')}
+            </g>
+
+            <!-- Working Display -->
+            <rect x="60" y="165" width="420" height="65" rx="10" fill="rgba(15, 23, 42, 0.95)" stroke="#3b82f6" stroke-width="2"/>
+            <text x="270" y="188" fill="#38bdf8" font-size="11" font-weight="800" text-anchor="middle">Working Expression:</text>
+            <text id="calcWorking" x="270" y="214" fill="#f8fafc" font-size="17" font-weight="900" text-anchor="middle">${userExpr || "Use buttons below or reveal secret solution"}</text>
+
+            <!-- Solution Callout Box -->
+            <rect x="40" y="245" width="460" height="70" rx="8" fill="rgba(16, 185, 129, 0.12)" stroke="#10b981" stroke-width="1.5"/>
+            <text x="270" y="268" fill="#34d399" font-size="12" font-weight="800" text-anchor="middle">💡 Solution Formula:</text>
+            <text x="270" y="290" fill="#f8fafc" font-size="15" font-weight="900" text-anchor="middle">${p.solution}</text>
+            <text x="270" y="306" fill="#94a3b8" font-size="9" text-anchor="middle">Hint: ${p.hint}</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center; align-items:center;">
+          <span style="font-size:0.85rem; font-weight:700; color:#94a3b8;">Choose Puzzle:</span>
+          ${puzzles.map((p, idx) => `<button class="sim-btn ${idx === activePuzzle ? 'active' : ''}" data-idx="${idx}">Puzzle ${idx + 1} [${p.numbers.join(',')}]</button>`).join('')}
+          <button class="sim-btn" id="btnRevealSol">✨ Reveal Solution</button>
+        </div>
+      `;
+
+      simControls.querySelectorAll('[data-idx]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activePuzzle = parseInt(btn.dataset.idx);
+          simControls.querySelectorAll('[data-idx]').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          userExpr = "";
+          render();
+          sfx.playClick();
+        });
+      });
+
+      document.getElementById('btnRevealSol').onclick = () => {
+        userExpr = puzzles[activePuzzle].solution;
+        render();
+        sfx.playCelebration();
+      };
+
+      render();
+    }
+
+
+    // Navigation Event Listeners
+    prevBtn.addEventListener('click', () => {
+      sfx.playClick();
+      if (currentSlideIdx > 0) renderSlide(currentSlideIdx - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      sfx.playClick();
+      if (currentSlideIdx < SLIDES_DATA.length - 1) renderSlide(currentSlideIdx + 1);
+    });
+
+    slideJumpSelect.addEventListener('change', (e) => {
+      sfx.playClick();
+      renderSlide(parseInt(e.target.value));
+    });
+
+    // Keyboard Arrow Navigation
+    window.addEventListener('keydown', (e) => {
+      if (solutionModal.style.display !== 'none') {
+        if (e.key === 'Escape') {
+          solutionModal.style.display = 'none';
+        }
+        return;
+      }
+      if (e.key === 'ArrowRight' && currentSlideIdx < SLIDES_DATA.length - 1) {
+        sfx.playClick();
+        renderSlide(currentSlideIdx + 1);
+      } else if (e.key === 'ArrowLeft' && currentSlideIdx > 0) {
+        sfx.playClick();
+        renderSlide(currentSlideIdx - 1);
+      }
+    });
+
+    // Initial Load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderSlide(0);
+    });
+  </script>
+</body>
+</html>

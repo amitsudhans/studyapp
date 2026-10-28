@@ -1,0 +1,3052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 7 Mathematics • Chapter 3: A Peek Beyond the Point (Decimals) Master Lab</title>
+  
+  <!-- KaTeX CSS & JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script>
+    function triggerMathRender(el) {
+      if (window.renderMathInElement) {
+        window.renderMathInElement(el || document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="if (window.triggerMathRender) triggerMathRender(document.body);"></script>
+
+  <style>
+    :root {
+      --bg-primary: #070d19;
+      --bg-secondary: #0c1527;
+      --card-bg: rgba(12, 21, 39, 0.94);
+      --card-border: rgba(56, 189, 248, 0.28);
+      --accent-blue: #3b82f6;
+      --accent-cyan: #38bdf8;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-gold: #fbbf24;
+      --accent-purple: #a855f7;
+      --accent-rose: #f43f5e;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 15%, #0d2238 0%, var(--bg-primary) 85%);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Top Navigation Header */
+    .header {
+      background: rgba(7, 13, 25, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .badge-chapter {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: #eff6ff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+    }
+
+    .header-title-box h1 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #f8fafc;
+      letter-spacing: -0.01em;
+    }
+
+    .header-title-box p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .slide-counter-pill {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #38bdf8;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+    }
+
+    /* Main Container */
+    .main-container {
+      flex: 1;
+      max-width: 1440px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      padding: 1.25rem 1.5rem;
+      gap: 1rem;
+    }
+
+    /* Teacher Avatar & Speech Bar */
+    .avatar-speech-bar {
+      background: linear-gradient(135deg, rgba(12, 21, 39, 0.95), rgba(2, 132, 199, 0.35));
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 16px;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .avatar-img-circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #0369a1, #070d19);
+      border: 2px solid var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+      transition: transform 0.3s;
+    }
+
+    .avatar-speaking-pulse {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid #38bdf8;
+      animation: avatarPulse 1.5s infinite;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .is-speaking .avatar-speaking-pulse {
+      opacity: 1;
+    }
+
+    @keyframes avatarPulse {
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(1.25); opacity: 0; }
+    }
+
+    .teacher-meta {
+      flex-shrink: 0;
+      min-width: 175px;
+    }
+
+    .teacher-name {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .teacher-badge {
+      font-size: 0.7rem;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
+    .speech-bubble-area {
+      flex: 1;
+      background: rgba(12, 21, 39, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 0.65rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .speech-bubble-text {
+      font-size: 0.9rem;
+      line-height: 1.45;
+      color: #e2e8f0;
+      font-style: italic;
+    }
+
+    .voice-ctrl-btn {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #38bdf8;
+      border-radius: 8px;
+      padding: 0.45rem 0.65rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .voice-ctrl-btn:hover {
+      background: rgba(56, 189, 248, 0.25);
+      transform: translateY(-1px);
+    }
+
+    /* Content Layout Grid */
+    .slide-content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 1.25rem;
+      min-height: 570px;
+    }
+
+    @media (max-width: 1024px) {
+      .slide-content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Left Card: Theory & Checkpoints */
+    .theory-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 1.35rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      overflow-y: auto;
+      max-height: 600px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      margin-bottom: 0.4rem;
+    }
+
+    .slide-main-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      line-height: 1.3;
+      color: #ffffff;
+    }
+
+    /* Vocabulary Badges Row */
+    .vocab-badges-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.3rem;
+    }
+
+    .vocab-badge {
+      background: rgba(30, 41, 59, 0.9);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #7dd3fc;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .theory-body {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .theory-body p {
+      margin-bottom: 0;
+    }
+
+    .fact-box {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(15, 23, 42, 0.7));
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      font-size: 0.85rem;
+      line-height: 1.45;
+      color: #fde047;
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+    }
+
+    .fact-icon {
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+
+    /* In-Slide Checkpoints Section */
+    .checkpoints-section {
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 1rem;
+      margin-top: auto;
+    }
+
+    .checkpoints-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .checkpoint-card {
+      background: rgba(12, 21, 39, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 0.75rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .checkpoint-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .checkpoint-question {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-bottom: 0.6rem;
+      line-height: 1.4;
+    }
+
+    .checkpoint-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .checkpoint-options {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .chk-btn {
+      background: rgba(30, 41, 59, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #e2e8f0;
+      border-radius: 8px;
+      padding: 0.5rem 0.65rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .chk-btn:hover:not(:disabled) {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .chk-btn.correct {
+      background: rgba(16, 185, 129, 0.28) !important;
+      border-color: #10b981 !important;
+      color: #a7f3d0 !important;
+      font-weight: 700;
+    }
+
+    .chk-btn.incorrect {
+      background: rgba(239, 68, 68, 0.25) !important;
+      border-color: #ef4444 !important;
+      color: #fca5a5 !important;
+    }
+
+    .checkpoint-feedback {
+      margin-top: 0.45rem;
+      font-size: 0.78rem;
+      line-height: 1.35;
+      padding: 0.4rem 0.65rem;
+      border-radius: 6px;
+      display: none;
+    }
+
+    .checkpoint-feedback.visible {
+      display: block;
+    }
+
+    .checkpoint-feedback.success {
+      background: rgba(16, 185, 129, 0.15);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .checkpoint-feedback.error {
+      background: rgba(239, 68, 68, 0.15);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    /* Right Card: Interactive Laboratory Simulator */
+    .lab-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 1.35rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      min-height: 570px;
+    }
+
+    .lab-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 0.75rem;
+    }
+
+    .lab-header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .lab-badge {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #38bdf8;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.25rem 0.55rem;
+      border-radius: 6px;
+    }
+
+    .sim-header-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #f1f5f9;
+    }
+
+    .sim-canvas-area {
+      flex: 1;
+      background: rgba(7, 13, 25, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.15);
+      border-radius: 14px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 330px;
+    }
+
+    .sim-controls-area {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .sim-btn {
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #f8fafc;
+      border-radius: 8px;
+      padding: 0.45rem 0.85rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .sim-btn:hover {
+      background: rgba(56, 189, 248, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .sim-btn.active {
+      background: #0284c7;
+      border-color: #38bdf8;
+      color: #ffffff;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+    }
+
+    /* Mastery Quiz View (Slides 17 to 20) */
+    .quiz-container {
+      display: none;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-width: 960px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .quiz-header-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.25rem 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .quiz-title-area h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .quiz-score-pill {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #38bdf8;
+      font-size: 0.95rem;
+      font-weight: 800;
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+    }
+
+    .quiz-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .quiz-item-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .quiz-q-header {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+
+    .quiz-q-num {
+      background: #0284c7;
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+    }
+
+    .quiz-q-text {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      line-height: 1.45;
+    }
+
+    .quiz-options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+
+    @media (max-width: 640px) {
+      .quiz-options-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .quiz-opt-btn {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #e2e8f0;
+      border-radius: 8px;
+      padding: 0.6rem 0.85rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .quiz-opt-btn:hover:not(:disabled) {
+      background: rgba(56, 189, 248, 0.18);
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+
+    .quiz-opt-btn.correct {
+      background: rgba(16, 185, 129, 0.25) !important;
+      border-color: #10b981 !important;
+      color: #a7f3d0 !important;
+      font-weight: 700;
+    }
+
+    .quiz-opt-btn.incorrect {
+      background: rgba(239, 68, 68, 0.25) !important;
+      border-color: #ef4444 !important;
+      color: #fca5a5 !important;
+    }
+
+    .quiz-footer-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 0.6rem;
+    }
+
+    .quiz-status-feedback {
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .btn-solution-modal {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: #fbbf24;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-solution-modal:hover {
+      background: rgba(245, 158, 11, 0.28);
+      transform: translateY(-1px);
+    }
+
+    /* Step-by-Step Solution Pop-Up Modal */
+    #solutionModal {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 7, 18, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal-content-card {
+      background: #0f172a;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      border-radius: 18px;
+      max-width: 650px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 1.5rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 0.75rem;
+    }
+
+    .modal-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fbbf24;
+    }
+
+    .btn-close-modal {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #94a3b8;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: all 0.2s;
+    }
+
+    .btn-close-modal:hover {
+      background: rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+    }
+
+    .modal-question {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #f8fafc;
+      background: rgba(30, 41, 59, 0.6);
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      border-left: 3px solid #38bdf8;
+    }
+
+    .modal-solution-steps {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .modal-solution-step {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 0.65rem 0.9rem;
+      border-radius: 8px;
+    }
+
+    /* Bottom Navigation Footer */
+    .footer-nav {
+      background: rgba(7, 13, 25, 0.92);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(56, 189, 248, 0.2);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      bottom: 0;
+      z-index: 50;
+    }
+
+    .nav-btn {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #ffffff;
+      border-radius: 10px;
+      padding: 0.55rem 1.15rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    .jump-select {
+      background: #0f172a;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #e2e8f0;
+      padding: 0.5rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+    }
+
+    /* Terminal Slide 20 Notice Banner */
+    #lastSlideNotice {
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.3));
+      border: 1px solid #10b981;
+      color: #a7f3d0;
+      font-size: 0.85rem;
+      font-weight: 800;
+      padding: 0.5rem 1.25rem;
+      border-radius: 999px;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+      animation: pulseNotice 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseNotice {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="header">
+    <div class="brand-section">
+      <div class="badge-chapter">NCERT Class 7 Maths</div>
+      <div class="header-title-box">
+        <h1>Chapter 3: A Peek Beyond the Point (Decimals)</h1>
+        <p>Interactive Numerical Laboratory & Conceptual Reasoning</p>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <div id="slideCounter" class="slide-counter-pill">Slide 1 / 20</div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    
+    <!-- Virtual Avatar & Narration Speech Bar -->
+    <section class="avatar-speech-bar" id="avatarSpeechBar">
+      <div class="avatar-wrapper">
+        <div id="avatarCircle" class="avatar-img-circle">
+          <!-- Stylized Ancient Indian Astronomer Avatar SVG for Acharya Aryabhata -->
+          <svg width="48" height="48" viewBox="0 0 100 100" fill="none">
+            <!-- Aura Background Circle -->
+            <circle cx="50" cy="50" r="44" fill="#0369a1"/>
+            <!-- Starlight Celestial Radiance Rings -->
+            <circle cx="50" cy="50" r="41" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="2 3"/>
+            <circle cx="50" cy="50" r="38" stroke="#fef08a" stroke-width="0.8" stroke-dasharray="1 4"/>
+            <!-- Scholarly Indigo Silk Robes -->
+            <path d="M 22,88 C 22,72 36,66 50,66 C 64,66 78,72 78,88 Z" fill="#075985"/>
+            <path d="M 28,88 Q 38,72 50,66 Q 62,72 72,88" stroke="#38bdf8" stroke-width="2" fill="none"/>
+            <!-- Upavita / Sacred Thread across chest -->
+            <line x1="34" y1="70" x2="66" y2="88" stroke="#fde047" stroke-width="1.5"/>
+            <!-- Head & Neck -->
+            <circle cx="50" cy="42" r="18" fill="#fed7aa"/>
+            <!-- Celestial Chandan Tilak on forehead -->
+            <circle cx="50" cy="34" r="2.5" fill="#dc2626"/>
+            <line x1="45" y1="32" x2="55" y2="32" stroke="#fef08a" stroke-width="1.2"/>
+            <!-- Dignified scholar topknot (ushnisha) & hair -->
+            <circle cx="50" cy="22" r="7" fill="#0f172a"/>
+            <path d="M 32,42 C 32,24 68,24 68,42 C 68,32 60,26 50,26 C 40,26 32,32 32,42 Z" fill="#0f172a"/>
+            <!-- Astronomer's trim beard -->
+            <path d="M 44,50 Q 50,57 56,50 Q 50,53 44,50 Z" fill="#334155"/>
+            <!-- Eyes studying celestial coordinates -->
+            <circle cx="43" cy="41" r="1.5" fill="#0f172a"/>
+            <circle cx="57" cy="41" r="1.5" fill="#0f172a"/>
+            <!-- Serene smile -->
+            <path id="avatarMouth" d="M 46,50 Q 50,54 54,50" stroke="#b45309" stroke-width="1.5" fill="none"/>
+            <!-- Armillary Sphere / Celestial Globe in hand -->
+            <circle cx="76" cy="74" r="10" stroke="#facc15" stroke-width="1.5" fill="none"/>
+            <line x1="68" y1="74" x2="84" y2="74" stroke="#facc15" stroke-width="1"/>
+            <ellipse cx="76" cy="74" rx="8" ry="4" stroke="#38bdf8" stroke-width="1" fill="none"/>
+          </svg>
+        </div>
+        <div class="avatar-speaking-pulse"></div>
+      </div>
+
+      <div class="teacher-meta">
+        <div class="teacher-name">
+          <span>Acharya Aryabhata</span>
+          <span style="font-size:0.75rem;">🔭</span>
+        </div>
+        <div class="teacher-badge">Pioneer of Decimal Place Value & Astronomy</div>
+      </div>
+
+      <div class="speech-bubble-area">
+        <div id="speechBubbleText" class="speech-bubble-text">Loading classroom narration...</div>
+        <button id="btnVoiceToggle" class="voice-ctrl-btn" title="Toggle Audio Narration">
+          <svg id="iconVoicePlay" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+          </svg>
+          <svg id="iconVoicePause" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+            <rect x="6" y="4" width="4" height="16"/>
+            <rect x="14" y="4" width="4" height="16"/>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Normal Slide Grid Layout (Slides 1 to 16) -->
+    <div id="slideContentGrid" class="slide-content-grid">
+      
+      <!-- Left: Theory & Checkpoints -->
+      <section class="theory-card" id="theoryCol">
+        <div class="theory-header">
+          <span id="slideTag" class="section-tag">3.1 The Need for Smaller Units • Foundations</span>
+          <h2 id="slideTitle" class="slide-main-title">The Need for Smaller Units: Beyond Whole Markings</h2>
+          <div id="vocabBadgesRow" class="vocab-badges-row">
+            <!-- Vocabulary Badges injected here -->
+          </div>
+        </div>
+
+        <div id="theoryBody" class="theory-body">
+          <!-- Slide core paragraphs & fact boxes injected here -->
+        </div>
+
+        <!-- In-Slide Checkpoints -->
+        <div class="checkpoints-section" id="checkpointsSection">
+          <div class="checkpoints-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+            <span>Interactive Concept Checkpoints</span>
+          </div>
+          <div id="checkpointsContainer" style="display:flex; flex-direction:column; gap:0.6rem;">
+            <!-- 2 Checkpoints injected here -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Right: Interactive Laboratory Simulator -->
+      <section class="lab-card" id="labCol">
+        <div class="lab-header">
+          <div class="lab-header-left">
+            <span class="lab-badge">Live Interactive Simulator</span>
+            <span id="simHeaderTitle" class="sim-header-title">Numerical Scale & Mathematical Models</span>
+          </div>
+        </div>
+
+        <div id="simCanvas" class="sim-canvas-area">
+          <!-- SVG and visual simulation elements injected here -->
+        </div>
+
+        <div id="simControls" class="sim-controls-area">
+          <!-- Simulator interactive buttons and sliders injected here -->
+        </div>
+      </section>
+    </div>
+
+    <!-- Mastery Quiz Challenge View (Slides 17 to 20) -->
+    <section id="quizContainer" class="quiz-container">
+      <div class="quiz-header-card">
+        <div class="quiz-title-area">
+          <span id="quizBadge" class="section-tag">Chapter Review & Mastery</span>
+          <h2 id="quizTitle" class="slide-main-title">Mastery Challenge: Decimals</h2>
+        </div>
+        <div id="quizScorePill" class="quiz-score-pill">Score: 0 / 10</div>
+      </div>
+
+      <div id="quizItemsList" class="quiz-items-list">
+        <!-- 10 Questions injected here -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Step-by-Step Solution Pop-Up Modal (#solutionModal style="display: none;") -->
+  <div id="solutionModal" style="display: none;">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <div class="modal-title">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 16v-4"/>
+            <path d="M12 8h.01"/>
+          </svg>
+          <span id="modalTitleText">Step-by-Step Solution</span>
+        </div>
+        <button id="btnCloseModal" class="btn-close-modal" title="Close Solution">✕</button>
+      </div>
+
+      <div id="modalQuestionText" class="modal-question">Question text here...</div>
+      <div id="modalSolutionSteps" class="modal-solution-steps">Solution derivation here...</div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation Footer -->
+  <footer class="footer-nav">
+    <button id="prevBtn" class="nav-btn" disabled>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      <span>Previous</span>
+    </button>
+
+    <div style="display:flex; align-items:center; gap:0.8rem;">
+      <select id="slideJumpSelect" class="jump-select">
+        <!-- 20 options dynamically generated -->
+      </select>
+
+      <!-- Terminal Slide 20 Notice -->
+      <div id="lastSlideNotice">
+        <span>🎉 You have reached the last slide of this chapter!</span>
+      </div>
+    </div>
+
+    <button id="nextBtn" class="nav-btn">
+      <span>Next</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </button>
+  </footer>
+
+  <script>
+    // Injected Data
+    const SLIDES_DATA = [{"id": 1, "tag": "3.1 The Need for Smaller Units • Foundations", "title": "The Need for Smaller Units: Beyond Whole Markings", "sim_id": "need_for_smaller_units_sim", "avatar": {"name": "Acharya Aryabhata", "title": "Pioneer of Decimal Place Value & Astronomy"}, "narration": "Welcome, seekers of mathematical truth! When measuring objects in nature—like a tiny seed, the width of a beetle, or the thickness of paper—whole units like 1 centimetre or 2 metres fall short. We require smaller, fractional subdivisions to capture true physical reality!", "key_terms": ["Subdivision", "Precision", "Fractional Units", "Measurement Gap", "Continuous Scale"], "content": ["Whole numbers ($1, 2, 3, \\dots$) count discrete objects like apples or cows. But continuous physical quantities like length, weight, and volume rarely coincide with whole unit marks.", "If an insect is longer than $2\\text{ cm}$ but shorter than $3\\text{ cm}$, simply saying 'about $2$' or 'about $3$' loses critical scientific precision.", "To measure with high accuracy, human civilization devised the system of equal subdivisions—splitting each standard unit into smaller, identical pieces.", "Our universal base-10 number system naturally divides every unit into ten equal parts, and each tenth into ten further parts, unlocking the magnificent realm of decimals!"], "fact_box": "In 499 CE, Acharya Aryabhata composed the famous aphorism 'Sthanam sthanam dasha gunam syat' (from place to place, each is ten times the preceding), crystallizing the decimal place-value principle that powers modern science.", "checkpoints": [{"question": "Why are whole numbers alone insufficient for measuring continuous quantities like length?", "options": ["Because physical objects often lie between whole unit markings", "Because whole numbers cannot be multiplied", "Because rulers only have whole numbers", "Because whole numbers only apply to liquids"], "correct": 0, "explanation": "Continuous lengths rarely match whole units exactly; objects frequently fall in the interval between consecutive whole marks, necessitating subdivisions."}, {"question": "If a pencil's length lies halfway between $7\\text{ cm}$ and $8\\text{ cm}$, what fraction of a centimetre beyond $7\\text{ cm}$ is it?", "options": ["$\\frac{1}{4}\\text{ cm}$", "$\\frac{1}{2}\\text{ cm}$", "$\\frac{3}{4}\\text{ cm}$", "$\\frac{1}{10}\\text{ cm}$"], "correct": 1, "explanation": "Halfway between 7 and 8 represents an extra half unit, or $\\frac{1}{2}\\text{ cm}$ ($0.5\\text{ cm}$)."}]}, {"id": 2, "tag": "3.2 A Tenth Part • Decimals Unveiled", "title": "A Tenth Part: The First Step Beyond the Whole", "sim_id": "tenth_part_strip_sim", "avatar": {"name": "Acharya Aryabhata", "title": "Pioneer of Decimal Place Value & Astronomy"}, "narration": "When we divide one whole unit into ten equal parts, each part is called one-tenth. In decimal notation, we place a dot—the decimal point—and write it as zero point one (0.1). Ten of these tenths unite to reconstruct the full whole!", "key_terms": ["One-Tenth (1/10)", "Decimal Point", "0.1", "Tenths Place", "Unit Reconstruction"], "content": ["When $1$ whole unit is sliced into $10$ equal parts, each single slice is one-tenth, written as the fraction $\\frac{1}{10}$.", "In decimal notation, this fractional value is written as $0.1$. The dot separating the whole number part ($0$) from the fractional part ($1$) is called the decimal point.", "Two tenths is $\\frac{2}{10} = 0.2$; five tenths is $\\frac{5}{10} = 0.5$; nine tenths is $\\frac{9}{10} = 0.9$.", "Ten tenths together make one whole: $10 \\times \\frac{1}{10} = \\frac{10}{10} = 1.0$. The decimal point marks the threshold between whole units and fractional parts."], "fact_box": "The word 'decimal' comes from the Latin 'decimus', meaning tenth, rooted in the ten fingers of human hands used since antiquity for counting.", "checkpoints": [{"question": "How is seven-tenths written in decimal notation?", "options": ["0.07", "7.10", "0.7", "7.0"], "correct": 2, "explanation": "Seven-tenths is $\\frac{7}{10} = 0.7$. The first digit immediately after the decimal point represents tenths."}, {"question": "What is the result when ten tenths ($10 \\times 0.1$) are combined?", "options": ["0.10", "1.0", "10.0", "0.01"], "correct": 1, "explanation": "Ten tenths make one complete whole: $10 \\times 0.1 = 1.0$."}]}, {"id": 3, "tag": "3.2 A Tenth Part • Metric Ruler", "title": "Millimetres & Centimetres: Tenths in Action", "sim_id": "mm_cm_ruler_sim", "avatar": {"name": "Acharya Aryabhata", "title": "Pioneer of Decimal Place Value & Astronomy"}, "narration": "Look at any standard school ruler! The distance between 0 and 1 centimetre is divided into ten tiny spaces. Each tiny space is one millimetre. Thus, 1 millimetre is exactly one-tenth of a centimetre, or 0.1 cm!", "key_terms": ["Millimetre (mm)", "Centimetre (cm)", "1 mm = 0.1 cm", "Ruler Ticks", "Linear Measurement"], "content": ["Every standard metric ruler explicitly displays tenths! Each centimetre ($1\\text{ cm}$) is subdivided into $10$ equal intervals called millimetres ($1\\text{ mm}$).", "Therefore, $1\\text{ mm} = \\frac{1}{10}\\text{ cm} = 0.1\\text{ cm}$.", "If an eraser measures $3\\text{ cm}$ and $6\\text{ mm}$, we can write its total length in centimetres as $3 + \\frac{6}{10}\\text{ cm} = 3.6\\text{ cm}$.", "A pin measuring $48\\text{ mm}$ can be expressed in centimetres by dividing by $10$: $\\frac{48}{10}\\text{ cm} = 4.8\\text{ cm}$ ($4$ whole centimetres and $8$ tenths of a centimetre)."], "fact_box": "The metric system was adopted globally because its unit conversions are powers of 10 ($10, 100, 1000$), perfectly mirroring decimal arithmetic without awkward conversion fractions.", "checkpoints": [{"question": "How do you express $8\\text{ mm}$ in centimetres using decimals?", "options": ["$8.0\\text{ cm}$", "$0.08\\text{ cm}$", "$0.8\\text{ cm}$", "$80\\text{ cm}$"], "correct": 2, "explanation": "Since $1\\text{ mm} = 0.1\\text{ cm}$, $8\\text{ mm} = \\frac{8}{10}\\text{ cm} = 0.8\\text{ cm}$."}, {"question": "A notebook's thickness is $14\\text{ mm}$. What is this thickness in centimetres?", "options": ["$1.4\\text{ cm}$", "$0.14\\text{ cm}$", "$14.0\\text{ cm}$", "$1.04\\text{ cm}$"], "correct": 0, "explanation": "$14\\text{ mm} = \\frac{14}{10}\\text{ cm} = 1.4\\text{ cm}$."}]}, {"id": 4, "tag": "3.3 A Hundredth Part • Finer Subdivisions", "title": "A Hundredth Part: Dividing Tenths into Ten Slices", "sim_id": "hundredth_grid_sim", "avatar": {"name": "Acharya Aryabhata", "title": "Pioneer of Decimal Place Value & Astronomy"}, "narration": "What happens when even a tenth is too coarse? We divide each tenth part into ten further equal slices! This cuts the whole unit into one hundred equal pieces. Each tiny cell is one-hundredth, or 0.01!", "key_terms": ["One-Hundredth (1/100)", "0.01", "100-Grid", "Hundredths Place", "Two Decimal Places"], "content": ["When $1$ whole is divided into $100$ equal parts, each part is one-hundredth, written as $\\frac{1}{100}$.", "In decimal notation, one-hundredth is written as $0.01$. The second digit to the right of the decimal point occupies the hundredths place.", "Notice the stepping scale: $10$ hundredths make $1$ tenth ($\\frac{10}{100} = \\frac{1}{10} = 0.10 = 0.1$), and $100$ hundredths make $1$ whole ($\\frac{100}{100} = 1.00 = 1$).", "If $25$ squares in a $100$-grid are shaded, the shaded region represents $\\frac{25}{100} = 0.25$ ($2$ tenths and $5$ hundredths)."], "fact_box": "A square grid with 10 rows and 10 columns provides a complete visual proof that 0.1 and 0.10 represent identical physical areas: 1 full column of 10 hundredths equals 1 tenth!", "checkpoints": [{"question": "How is the fraction $\\frac{3}{100}$ written as a decimal?", "options": ["0.3", "0.03", "3.00", "0.003"], "correct": 1, "explanation": "Three hundredths requires the digit 3 in the second place after the decimal point: $0.03$."}, {"question": "How many hundredths ($0.01$) are needed to make one-tenth ($0.1$)?", "options": ["100", "1", "10", "5"], "correct": 2, "explanation": "$10 \\times \\frac{1}{100} = \\frac{10}{100} = \\frac{1}{10} = 0.1$. Exactly 10 hundredths equal 1 tenth."}]}, {"id": 5, "tag": "3.3 A Hundredth Part • Currency", "title": "Rupees and Paise: Hundredths in Daily Life", "sim_id": "rupees_paise_currency_sim", "avatar": {"name": "Acharya Aryabhata", "title": "Pioneer of Decimal Place Value & Astronomy"}, "narration": "Every time you spend money in India, you are using hundredths! One rupee consists of 100 paise. Therefore, one paisa is exactly one-hundredth of a rupee, written as ₹0.01!", "key_terms": ["Rupee (₹)", "Paisa (p)", "1 Paisa = ₹0.01", "Currency Decimals", "Commercial Arithmetic"], "content": ["In Indian currency, $1\\text{ Rupee} = 100\\text{ Paise}$.", "This directly establishes that $1\\text{ paisa} = \\frac{1}{100}\\text{ rupee} = ₹0.01$.", "Fifty paise is $\\frac{50}{100}\\text{ rupee} = ₹0.50$ (or half a rupee).", "Be very careful with single-digit paise! $5\\text{ paise} = \\frac{5}{100}\\text{ rupee} = ₹0.05$, NOT $₹0.5$ (which would be $50\\text{ paise}$).", "If an item costs $25\\text{ rupees and } 75\\text{ paise}$, it is written compactly as $₹25.75$."], "fact_box": "India transitioned to the metric 'Naya Paisa' decimal coinage on April 1, 1957, replacing the older system of 1 Rupee = 16 Annas = 64 Paise with the clean base-10 system of 100 Paise.", "checkpoints": [{"question": "How is $6\\text{ paise}$ correctly written in rupees?", "options": ["₹0.6", "₹0.06", "₹6.0", "₹0.60"], "correct": 1, "explanation": "$6\\text{ paise} = \\frac{6}{100}\\text{ rupee} = ₹0.06$. Writing ₹0.6 would mean 60 paise!"}, {"question": "What is $₹4.50$ equal to in paise?", "options": ["45 paise", "405 paise", "450 paise", "4050 paise"], "correct": 2, "explanation": "$4\\text{ rupees} = 400\\text{ paise}$, plus $50\\text{ paise} = 450\\text{ paise}$ total."}]}, {"id": 6, "tag": "3.4 Decimal Place Value • Positional System", "title": "Decimal Place Value: The Grand Positional Matrix", "sim_id": "decimal_place_value_matrix_sim", "avatar": {"name": "Acharya Aryabhata", "title": "Pioneer of Decimal Place Value & Astronomy"}, "narration": "Observe the seamless symmetry of our number system! As you travel left, each place is multiplied by 10 (Ones, Tens, Hundreds). As you travel right past the decimal point, each place is divided by 10 (Tenths, Hundredths, Thousandths)!", "key_terms": ["Place Value Chart", "Tenths (1/10)", "Hundredths (1/100)", "Thousandths (1/1000)", "Positional Weight"], "content": ["The decimal system extends our standard whole-number place-value columns to the right of the ones place using division by $10$.", "Columns to the left of the decimal point: Hundreds ($100$), Tens ($10$), Ones ($1$).", "Columns to the right of the decimal point: Tenths ($\\frac{1}{10} = 0.1$), Hundredths ($\\frac{1}{100} = 0.01$), Thousandths ($\\frac{1}{1000} = 0.001$).", "In the number $253.486$:", "• 2 is in Hundreds ($200$), 5 in Tens ($50$), 3 in Ones ($3$)", "• 4 is in Tenths ($0.4$), 8 in Hundredths ($0.08$), 6 in Thousandths ($0.006$)."], "fact_box": "In Sanskrit, ancient Indian mathematicians named powers of ten up to trillions and beyond, and described sub-unit fractions as 'Dashamsha' (tenth), 'Shatamsha' (hundredth), and 'Sahasramsha' (thousandth).", "checkpoints": [{"question": "In the number $47.382$, what is the place value of the digit $8$?", "options": ["8 Tens", "8 Tenths (0.8)", "8 Hundredths (0.08)", "8 Thousandths (0.008)"], "correct": 2, "explanation": "The digit 8 is in the second place after the decimal point, which is the hundredths place ($0.08$)."}, {"question": "What is the value of a place column compared to the column immediately to its right?", "options": ["10 times greater", "10 times smaller", "100 times greater", "Identical"], "correct": 0, "explanation": "Every place column is exactly 10 times the value of the column immediately to its right ($10 \\times \\frac{1}{100} = \\frac{1}{10}$)."}]}, {"id": 7, "tag": "3.4 Decimal Place Value • Properties", "title": "Expanded Notation & The Trailing Zeroes Law", "sim_id": "expanded_form_trailing_zeroes_sim", "avatar": {"name": "Acharya Aryabhata", "title": "Pioneer of Decimal Place Value & Astronomy"}, "narration": "Every decimal can be broken down into its expanded sum of parts. And here is a magical law: attaching extra zeroes to the very end of a decimal does NOT change its value at all! 0.5, 0.50, and 0.500 are all identical!", "key_terms": ["Expanded Notation", "Trailing Zeroes", "Equivalent Decimals", "Padding Zeroes", "Invariance"], "content": ["We can write any decimal in expanded form as the sum of its whole and fractional components:", "$36.47 = (3 \\times 10) + (6 \\times 1) + \\left(4 \\times \\frac{1}{10}\\right) + \\left(7 \\times \\frac{1}{100}\\right)$", "Trailing Zeroes Law: Adding zeroes at the extreme right end of the decimal part does not alter the number's numerical value.", "For example: $0.7 = 0.70 = 0.700$. Why? Because $7\\text{ tenths} = 70\\text{ hundredths} = 700\\text{ thousandths}$!", "However, never insert zeroes between the decimal point and digits: $0.7 \\neq 0.07$ (7 tenths is ten times larger than 7 hundredths!)."], "fact_box": "Trailing zeroes are immensely useful in computation! By padding decimals with trailing zeroes (making 3.4 into 3.40), we easily align columns to add, subtract, and compare numbers.", "checkpoints": [{"question": "Which of the following decimals is equivalent in value to $0.6$?", "options": ["0.06", "0.60", "6.0", "0.006"], "correct": 1, "explanation": "$0.60$ has a trailing zero at the end; $60\\text{ hundredths} = 6\\text{ tenths} = 0.6$."}, {"question": "What is the expanded form of $5.04$?", "options": ["$5 + \\frac{4}{10}$", "$5 + \\frac{4}{100}$", "$5 + \\frac{4}{1000}$", "$50 + 4$"], "correct": 1, "explanation": "In 5.04, there are 5 ones, 0 tenths, and 4 hundredths: $5 + \\frac{4}{100}$."}]}, {"id": 8, "tag": "3.5 Units of Measurement • Metric Length", "title": "Metric Length Conversions: Moving the Decimal Point", "sim_id": "metric_length_converter_sim", "avatar": {"name": "Acharya Aryabhata", "title": "Pioneer of Decimal Place Value & Astronomy"}, "narration": "The beauty of metric length is that every unit transition is a power of ten! Converting from a smaller unit to a larger unit simply shifts the decimal point to the left: 10 mm = 1 cm, 100 cm = 1 m, and 1000 m = 1 km!", "key_terms": ["Metric Ladder", "Centimetre to Metre", "Metre to Kilometre", "Decimal Shift", "Scale Conversion"], "content": ["Length relationships in the metric system:", "• $1\\text{ cm} = 10\\text{ mm} \\implies 1\\text{ mm} = 0.1\\text{ cm}$", "• $1\\text{ m} = 100\\text{ cm} \\implies 1\\text{ cm} = \\frac{1}{100}\\text{ m} = 0.01\\text{ m}$", "• $1\\text{ km} = 1000\\text{ m} \\implies 1\\text{ m} = \\frac{1}{1000}\\text{ km} = 0.001\\text{ km}$", "Examples:", "• $45\\text{ cm}$ in metres: $\\frac{45}{100}\\text{ m} = 0.45\\text{ m}$", "• $2\\text{ m } 35\\text{ cm}$: $2 + 0.35 = 2.35\\text{ m}$", "• $850\\text{ m}$ in kilometres: $\\frac{850}{1000}\\text{ km} = 0.850\\text{ km} = 0.85\\text{ km}$."], "fact_box": "The metre was originally defined during the French Revolution as one ten-millionth of the distance from the Earth's equator to the North Pole along a meridian through Paris.", "checkpoints": [{"question": "How is $7\\text{ cm}$ expressed in metres?", "options": ["$0.7\\text{ m}$", "$0.07\\text{ m}$", "$7.0\\text{ m}$", "$0.007\\text{ m}$"], "correct": 1, "explanation": "Since $1\\text{ m} = 100\\text{ cm}$, $7\\text{ cm} = \\frac{7}{100}\\text{ m} = 0.07\\text{ m}$."}, {"question": "Express $2350\\text{ m}$ in kilometres using decimals.", "options": ["$23.5\\text{ km}$", "$2.35\\text{ km}$", "$0.235\\text{ km}$", "$235.0\\text{ km}$"], "correct": 1, "explanation": "Dividing by $1000$: $2350 \\div 1000 = 2.35\\text{ km}$."}]}, {"id": 9, "tag": "3.5 Units of Measurement • Mass & Capacity", "title": "Mass and Capacity: Thousandths in Action", "sim_id": "mass_capacity_scales_sim", "avatar": {"name": "Acharya Aryabhata", "title": "Pioneer of Decimal Place Value & Astronomy"}, "narration": "When measuring the weight of vegetables or the volume of milk, we encounter thousandths! Since 1 kilogram has 1000 grams, 1 gram is 0.001 kg. Similarly, 1 millilitre is 0.001 litres!", "key_terms": ["Gram (g) to Kilogram (kg)", "Millilitre (mL) to Litre (L)", "Thousandths (0.001)", "Laboratory Balance", "Measuring Cylinder"], "content": ["Mass (Weight) Conversion:", "• $1\\text{ kg} = 1000\\text{ g} \\implies 1\\text{ g} = \\frac{1}{1000}\\text{ kg} = 0.001\\text{ kg}$", "• A mango weighing $350\\text{ g}$ is $\\frac{350}{1000}\\text{ kg} = 0.35\\text{ kg}$.", "• Watch out for small weights: $5\\text{ g} = \\frac{5}{1000}\\text{ kg} = 0.005\\text{ kg}$, NOT $0.05\\text{ kg}$ (which is $50\\text{ g}$)!", "Capacity (Volume) Conversion:", "• $1\\text{ L} = 1000\\text{ mL} \\implies 1\\text{ mL} = \\frac{1}{1000}\\text{ L} = 0.001\\text{ L}$", "• A juice bottle holding $750\\text{ mL}$ holds $\\frac{750}{1000}\\text{ L} = 0.75\\text{ L}$."], "fact_box": "In the metric system, 1 millilitre of pure water at 4°C weighs exactly 1 gram, creating a perfect unified link between volume and mass!", "checkpoints": [{"question": "How do you write $45\\text{ g}$ in kilograms?", "options": ["$0.45\\text{ kg}$", "$0.045\\text{ kg}$", "$4.5\\text{ kg}$", "$0.0045\\text{ kg}$"], "correct": 1, "explanation": "$45\\text{ g} = \\frac{45}{1000}\\text{ kg} = 0.045\\text{ kg}$. Three digits after decimal are needed for thousandths."}, {"question": "A medicine bottle contains $250\\text{ mL}$ of syrup. What is this volume in litres?", "options": ["$2.5\\text{ L}$", "$0.025\\text{ L}$", "$0.25\\text{ L}$", "$25.0\\text{ L}$"], "correct": 2, "explanation": "$250\\text{ mL} = \\frac{250}{1000}\\text{ L} = 0.25\\text{ L}$."}]}, {"id": 10, "tag": "3.6 Locating & Comparing • Number Line", "title": "Locating Decimals on the Number Line: Infinite Zoom", "sim_id": "number_line_zoom_sim", "avatar": {"name": "Acharya Aryabhata", "title": "Pioneer of Decimal Place Value & Astronomy"}, "narration": "Imagine having a microscope that zooms into the number line! Between any two whole numbers, like 1 and 2, lies an entire world of tenths. And between two tenths lies a world of hundredths! Every decimal has an exact home on the line.", "key_terms": ["Number Line", "Magnification", "Subdivision Ticks", "Intervals", "Exact Coordinates"], "content": ["To locate a decimal on the number line, we identify its neighboring whole numbers first.", "Example: Where is $1.4$ located?", "1. Find the interval between $1$ and $2$.", "2. Divide the unit interval into $10$ equal sections (representing tenths: $1.1, 1.2, 1.3, 1.4, \\dots$).", "3. Count $4$ tick marks to the right of $1$. That exact point is $1.4$!", "For hundredths (e.g. $1.47$), zoom into the gap between $1.4$ and $1.5$, divide that tiny segment into $10$ hundredths ticks, and move $7$ ticks past $1.4$."], "fact_box": "Between ANY two decimal numbers on the number line—no matter how close (like 0.1 and 0.2)—there exist an infinite number of other decimal numbers! Mathematicians call this property the 'density' of numbers.", "checkpoints": [{"question": "Between which two whole numbers does the decimal $3.7$ lie?", "options": ["2 and 3", "3 and 4", "7 and 8", "30 and 40"], "correct": 1, "explanation": "Since $3.7$ has 3 as its whole number part and 7 tenths, it lies strictly between 3 and 4."}, {"question": "Which decimal is located exactly midway between $2.4$ and $2.6$?", "options": ["2.45", "2.5", "2.55", "3.0"], "correct": 1, "explanation": "Halfway between 4 tenths and 6 tenths is 5 tenths: $2.5$."}]}, {"id": 11, "tag": "3.6 Locating & Comparing • Comparison Rules", "title": "Comparing Decimals: The Place-by-Place Duel", "sim_id": "comparing_decimals_duel_sim", "avatar": {"name": "Acharya Aryabhata", "title": "Pioneer of Decimal Place Value & Astronomy"}, "narration": "Never be fooled by the number of digits in a decimal! To compare two decimals, first compare their whole parts. If they are equal, compare tenths; if tenths are equal, compare hundredths. Padding trailing zeroes makes comparisons crystal clear!", "key_terms": ["Comparison Rules", "Whole Part Priority", "Tenths Duel", "Hundredths Duel", "Zero Padding"], "content": ["Rule 1: Whole Number Part First. The decimal with the greater whole number is always greater. Example: $6.1 > 4.999$ because $6 > 4$.", "Rule 2: Tenths Place Comparison. If whole parts are equal, compare the tenths digit. Example: $0.7 > 0.68$ because $7\\text{ tenths} > 6\\text{ tenths}$.", "Rule 3: Hundredths and Beyond. If tenths are equal, inspect hundredths. Example: $2.48 > 2.45$ because $8 > 5$ in the hundredths place.", "The Zero-Padding Secret: Many students falsely think $0.45 > 0.7$ because $45 > 7$. Pad $0.7$ with a zero to make it $0.70$! Now it is obvious: $0.70 > 0.45$!"], "fact_box": "In Olympic sprint races, victory is determined by hundredths or thousandths of a second. In the 2024 Paris 100m final, the gold and silver were separated by just 0.005 seconds!", "checkpoints": [{"question": "Which decimal is larger: $0.8$ or $0.75$?", "options": ["$0.75$ because 75 is greater than 8", "$0.8$ because 8 tenths (0.80) is greater than 7 tenths (0.75)", "Both are equal", "Cannot be determined"], "correct": 1, "explanation": "Pad $0.8$ with a zero to get $0.80$. Since $80\\text{ hundredths} > 75\\text{ hundredths}$, $0.8 > 0.75$."}, {"question": "Which of the following is true?", "options": ["$3.05 > 3.5$", "$0.09 > 0.1$", "$1.2 = 1.20$", "$5.4 < 5.04$"], "correct": 2, "explanation": "$1.2$ and $1.20$ represent the exact same value (trailing zero invariance)."}]}, {"id": 12, "tag": "3.7 Addition & Subtraction • Columnar Addition", "title": "Addition of Decimals: Precision Alignment", "sim_id": "decimal_addition_alignment_sim", "avatar": {"name": "Acharya Aryabhata", "title": "Pioneer of Decimal Place Value & Astronomy"}, "narration": "The golden rule of decimal addition is simple yet sacred: align the decimal points vertically in a straight column! This guarantees that ones add to ones, tenths add to tenths, and hundredths add to hundredths with proper carrying!", "key_terms": ["Vertical Alignment", "Column Addition", "Carrying Tenths", "Place-by-Place Sum", "Pad with Zeroes"], "content": ["Step 1: Write the numbers in a vertical column such that their decimal points line up in an exact straight vertical line.", "Step 2: Pad shorter numbers with trailing zeroes so all numbers have the same count of decimal places.", "Step 3: Add from right to left, carrying over just like normal whole-number addition.", "Step 4: Drop the decimal point straight down into the answer row.", "Example: Add $14.6 + 5.75$:", "  1 4 . 6 0   (padded with zero)", "+ 0 5 . 7 5", "-----------", "  2 0 . 3 5   (6 tenths + 7 tenths = 13 tenths = 1 whole carried + 3 tenths)"], "fact_box": "Misaligning decimal points during addition is the most common mathematical mistake made by students worldwide. Always check that the dots line up like buttons on a shirt!", "checkpoints": [{"question": "What is $4.5 + 2.38$?", "options": ["6.43", "6.88", "6.8", "6.48"], "correct": 1, "explanation": "Pad $4.5$ as $4.50$: $4.50 + 2.38 = 6.88$."}, {"question": "If you add $0.9 + 0.3$, what is the result?", "options": ["0.12", "1.2", "1.02", "0.012"], "correct": 1, "explanation": "$9\\text{ tenths} + 3\\text{ tenths} = 12\\text{ tenths} = 1\\text{ whole and } 2\\text{ tenths} = 1.2$."}]}, {"id": 13, "tag": "3.7 Addition & Subtraction • Columnar Subtraction", "title": "Subtraction of Decimals: Regrouping Across the Point", "sim_id": "decimal_subtraction_borrow_sim", "avatar": {"name": "Acharya Aryabhata", "title": "Pioneer of Decimal Place Value & Astronomy"}, "narration": "Subtraction also demands strict decimal point alignment. When subtracting a larger digit from a smaller one, we borrow across place values—even borrowing 1 whole unit to create 10 tenths, or 1 tenth to create 10 hundredths!", "key_terms": ["Decimal Subtraction", "Regrouping / Borrowing", "Zero Padding", "Vertical Alignment", "Difference"], "content": ["Step 1: Place the larger number on top, aligning the decimal points vertically.", "Step 2: Crucial Step! Always pad the minuend (top number) with trailing zeroes if it has fewer decimal digits than the bottom number.", "Step 3: Subtract from right to left, borrowing across columns when needed ($1\\text{ one} = 10\\text{ tenths}$, $1\\text{ tenth} = 10\\text{ hundredths}$).", "Example: Subtract $8.4 - 3.75$:", "  8 . 4 0   (zero padded to allow borrowing)", "- 3 . 7 5", "---------", "  4 . 6 5   (borrow from 4 to make 10 hundredths; borrow from 8 to make 13 tenths)"], "fact_box": "Forgetting to write the trailing zero in 8.40 before subtracting 3.75 often leads students to mistakenly copy down the 5! Always pad empty spaces with zeroes before subtracting.", "checkpoints": [{"question": "What is $10.0 - 4.65$?", "options": ["5.45", "5.35", "6.35", "5.65"], "correct": 1, "explanation": "$10.00 - 4.65 = 5.35$."}, {"question": "A cloth piece of $5.2\\text{ m}$ has $1.8\\text{ m}$ cut off. What length remains?", "options": ["$3.4\\text{ m}$", "$4.4\\text{ m}$", "$3.6\\text{ m}$", "$4.6\\text{ m}$"], "correct": 0, "explanation": "$5.2 - 1.8 = 3.4\\text{ m}$."}]}, {"id": 14, "tag": "3.7 Addition & Subtraction • Sequences & Estimation", "title": "Decimal Patterns & Fast Mental Estimation", "sim_id": "decimal_sequences_estimator_sim", "avatar": {"name": "Acharya Aryabhata", "title": "Pioneer of Decimal Place Value & Astronomy"}, "narration": "Mathematicians look for patterns! Decimal sequences progress by constant increments. Furthermore, before calculating complicated sums, wise minds always estimate using whole numbers to catch silly errors before they happen!", "key_terms": ["Decimal Patterns", "Common Difference", "Mental Estimation", "Sanity Check", "Rounding to Wholes"], "content": ["Decimal Sequences: Just like whole numbers, decimals follow predictable arithmetic rules.", "Look at the sequence: $1.2, 1.5, 1.8, 2.1, \\dots$ (each term increases by $0.3$).", "What comes next? $2.1 + 0.3 = 2.4$, then $2.7$, then $3.0$!", "Fast Mental Estimation: Before adding $24.85 + 51.15$, round each to the nearest whole:", "$25 + 51 = 76$.", "When you calculate the exact sum ($76.00$), your estimate instantly verifies that your decimal point is positioned in the right place!"], "fact_box": "In astronomical calculations, Aryabhata estimated the length of a solar year as 365.25868 days—an astonishing decimal precision achieved 1,500 years ago using pattern analysis without modern clocks!", "checkpoints": [{"question": "What is the next term in the sequence $0.4, 0.8, 1.2, 1.6, \\dots$?", "options": ["1.8", "2.0", "1.10", "2.2"], "correct": 1, "explanation": "Each term increases by $0.4$. Therefore, $1.6 + 0.4 = 2.0$."}, {"question": "What is the best quick estimate for $39.8 + 19.1$?", "options": ["50", "60", "70", "40"], "correct": 1, "explanation": "Round $39.8 \\approx 40$ and $19.1 \\approx 20$. The quick mental estimate is $40 + 20 = 60$ (exact: 58.9)."}]}, {"id": 15, "tag": "3.8 More on the Decimal System • Critical Thinking", "title": "Deceptive Dots: Not All Dots Are Decimals!", "sim_id": "cricket_time_deceptive_dots_sim", "avatar": {"name": "Acharya Aryabhata", "title": "Pioneer of Decimal Place Value & Astronomy"}, "narration": "Beware, clever thinkers! In everyday life, people often use a dot to separate two quantities, but that dot is NOT a true mathematical decimal! Cricket overs and time clocks operate on base-6 and base-60, not base-10!", "key_terms": ["Deceptive Notations", "Cricket Overs (Base 6)", "Time Hours & Mins (Base 60)", "True Decimals (Base 10)", "Dot Disambiguation"], "content": ["In real life, a dot is frequently used as a punctuation separator rather than a true base-10 decimal point:", "1. Cricket Overs: A scorecard reads `5.5 overs`. This does NOT mean $5\\frac{5}{10}$ overs! It means $5$ overs and $5$ balls. Since $1\\text{ over} = 6\\text{ balls}$, the next ball makes it $6.0$ overs, NOT $5.6$!", "True decimal of 5 overs and 3 balls: $5 + \\frac{3}{6} = 5.5$ overs.", "2. Time Display: A clock showing `4.30` means $4\\text{ hours and } 30\\text{ minutes}$. In true decimals, $30\\text{ minutes} = \\frac{30}{60}\\text{ hour} = 0.5\\text{ hour}$, so it is $4.5\\text{ hours}$, not $4.3$!", "3. Currency vs Software: Version `2.9` followed by `2.10` is a software version tag, not a mathematical decimal ($2.10 < 2.9$ in math, but version 2.10 is newer than 2.9)."], "fact_box": "Babylonian astronomers used a base-60 (sexagesimal) system 4,000 years ago, which is why we still have 60 seconds in a minute, 60 minutes in an hour, and 360 degrees in a circle!", "checkpoints": [{"question": "A cricket bowler bowls 3 overs and 3 balls. How is this written on a scorecard vs as a true decimal?", "options": ["Scorecard: 3.3 overs; True Decimal: 3.5 overs", "Scorecard: 3.5 overs; True Decimal: 3.3 overs", "Both are 3.3 overs", "Scorecard: 3.6 overs; True Decimal: 3.3 overs"], "correct": 0, "explanation": "On a cricket scorecard, it is written `3.3` (3 overs, 3 balls). In true decimals, 3 balls is half an over ($\\frac{3}{6} = 0.5$), making it $3.5$ overs."}, {"question": "What is 2 hours and 15 minutes expressed as a true mathematical decimal of hours?", "options": ["2.15 hours", "2.25 hours", "2.5 hours", "2.3 hours"], "correct": 1, "explanation": "$15\\text{ minutes} = \\frac{15}{60}\\text{ hour} = \\frac{1}{4}\\text{ hour} = 0.25\\text{ hour}$. Thus, it is $2.25$ hours."}]}, {"id": 16, "tag": "3.8 More on the Decimal System • Synthesis", "title": "Decimal Power: Catastrophic Shifts & Ancient Heritage", "sim_id": "decimal_point_displacement_sim", "avatar": {"name": "Acharya Aryabhata", "title": "Pioneer of Decimal Place Value & Astronomy"}, "narration": "A decimal point may be tiny, but displacing it by a single place multiplies or divides a quantity by 10! In medicine, finance, and rocket engineering, a misplaced decimal point can cause immense catastrophe. Treat the decimal point with the utmost reverence!", "key_terms": ["Displacement Error", "Scale Distortion", "Medicine Dosages", "Financial Accuracy", "Aryabhata's Legacy"], "content": ["The Power of the Dot: Shifting a decimal point one place to the right multiplies by $10$; shifting it one place to the left divides by $10$.", "Real-World Consequences of Misplaced Decimals:", "• Medicine: A prescription intended as $0.5\\text{ mg}$ typed as $5.0\\text{ mg}$ delivers a ten-fold overdose, which can be fatal.", "• Finance: Depositing $₹500.00$ entered as $₹50.00$ or $₹5000.0$ creates an immediate banking error.", "• Space Exploration: In 1999, the Mars Climate Orbiter was lost because one engineering team used imperial units (pound-force) while another used metric decimals (newtons), miscalculating the trajectory by decimal factors.", "Historical Legacy: Ancient India gave the world zero and the decimal place-value system, enabling modern science, computers, and global trade."], "fact_box": "The Spanish scholar John of Seville and Italian mathematician Fibonacci introduced the Hindu-Arabic decimal system to medieval Europe, calling it 'Modus Indorum' (the Method of the Indians).", "checkpoints": [{"question": "If the decimal point in the number $3.45$ is shifted one place to the right, what is the new number and its relationship to the original?", "options": ["0.345 (10 times smaller)", "34.5 (10 times larger)", "345 (100 times larger)", "3.450 (equal value)"], "correct": 1, "explanation": "Shifting the decimal point one place to the right multiplies by 10, producing $34.5$."}, {"question": "Which historic Indian mathematician stated 'Sthanam sthanam dasha gunam syat'?", "options": ["Acharya Aryabhata", "Varahamihira", "Brahmagupta", "Bhaskara II"], "correct": 0, "explanation": "Acharya Aryabhata stated this in 499 CE in the Ganitapada section of Aryabhatiya."}]}, {"id": 17, "tag": "Chapter Review • Mastery Challenge I", "title": "Mastery Challenge I: Foundations, Tenths & Measurement", "sim_id": null, "is_quiz": true, "quiz_range": [1, 10], "avatar": {"name": "Acharya Aryabhata", "title": "Pioneer of Decimal Place Value & Astronomy"}, "narration": "Now begins your supreme test of mastery! Answer these ten questions on fractional tenths, millimetres, and basic decimal concepts. Click 'View Step-by-Step Solution' whenever you need guidance.", "questions": [{"id": 1, "question": "What fraction of a whole unit does the first digit to the right of the decimal point represent?", "options": ["One-hundredth (1/100)", "One-tenth (1/10)", "One-thousandth (1/1000)", "One-tenth of a tenth"], "correct": 1, "solution_steps": ["In our standard base-10 positional matrix, the decimal point separates whole units (ones) from fractional subdivisions.", "Moving one step right from the ones place divides by 10.", "Therefore, the first position after the point is the Tenths place ($\\frac{1}{10}$ or $0.1$)."]}, {"id": 2, "question": "Express $35\\text{ mm}$ in centimetres using decimal notation.", "options": ["$0.35\\text{ cm}$", "$3.5\\text{ cm}$", "$35.0\\text{ cm}$", "$0.035\\text{ cm}$"], "correct": 1, "solution_steps": ["Recall the metric relation: $10\\text{ mm} = 1\\text{ cm}$, which means $1\\text{ mm} = \\frac{1}{10}\\text{ cm} = 0.1\\text{ cm}$.", "Divide the millimetres by 10: $\\frac{35}{10}\\text{ cm} = 3.5\\text{ cm}$.", "This corresponds to 3 full centimetres and 5 tenths of a centimetre."]}, {"id": 3, "question": "How many tenths ($0.1$) must be added together to make the whole number $3$?", "options": ["10", "20", "30", "300"], "correct": 2, "solution_steps": ["One whole unit consists of $10$ tenths ($10 \\times 0.1 = 1.0$).", "To make $3$ complete whole units: $3 \\times 10 = 30$ tenths.", "Calculation check: $30 \\times \\frac{1}{10} = \\frac{30}{10} = 3$."]}, {"id": 4, "question": "A carpenter measures a board as $4\\text{ cm and } 7\\text{ mm}$. What is this length in centimetres?", "options": ["$4.07\\text{ cm}$", "$4.7\\text{ cm}$", "$47\\text{ cm}$", "$0.47\\text{ cm}$"], "correct": 1, "solution_steps": ["The measurement has a whole number part of $4\\text{ cm}$.", "The fractional part is $7\\text{ mm} = \\frac{7}{10}\\text{ cm} = 0.7\\text{ cm}$.", "Combining both parts: $4 + 0.7 = 4.7\\text{ cm}$."]}, {"id": 5, "question": "Which of the following points lies strictly between $0.8$ and $0.9$ on the number line?", "options": ["0.85", "0.79", "0.91", "0.085"], "correct": 0, "solution_steps": ["Write the boundary numbers with two decimal places: $0.80$ and $0.90$.", "Examine the options: $0.85$ satisfies $0.80 < 0.85 < 0.90$.", "Thus, $0.85$ lies strictly within the interval."]}, {"id": 6, "question": "What is the decimal representation of the fraction $1\\frac{3}{10}$?", "options": ["1.03", "1.3", "13.0", "0.13"], "correct": 1, "solution_steps": ["The mixed fraction is $1 + \\frac{3}{10}$.", "Here, $1$ is the whole number before the decimal point, and $\\frac{3}{10}$ is $3$ tenths.", "Putting them together yields $1.3$."]}, {"id": 7, "question": "A seed measures $4\\text{ mm}$ in width. How is this written in centimetres?", "options": ["$0.04\\text{ cm}$", "$0.4\\text{ cm}$", "$4.0\\text{ cm}$", "$40\\text{ cm}$"], "correct": 1, "solution_steps": ["Since $1\\text{ mm} = 0.1\\text{ cm}$, multiply 4 by 0.1:", "$4 \\times 0.1 = 0.4\\text{ cm}$."]}, {"id": 8, "question": "If you divide $1\\text{ metre}$ into $10$ equal parts, what is each part called?", "options": ["1 centimetre", "1 millimetre", "1 decimetre", "1 kilometre"], "correct": 2, "solution_steps": ["One-tenth of a metre is a decimetre ($1\\text{ dm} = 10\\text{ cm} = 0.1\\text{ m}$).", "10 decimetres equal 1 metre."]}, {"id": 9, "question": "What is the value of $0.1 + 0.1 + 0.1 + 0.1 + 0.1$?", "options": ["0.05", "0.5", "5.0", "0.005"], "correct": 1, "solution_steps": ["Adding five equal tenths: $5 \\times 0.1 = 0.5$.", "This represents half of one whole unit ($0.5 = \\frac{1}{2}$)."]}, {"id": 10, "question": "Which decimal corresponds to the point exactly halfway between $0$ and $1$?", "options": ["0.1", "0.25", "0.5", "0.75"], "correct": 2, "solution_steps": ["Half of 1 is $\\frac{1}{2}$.", "Convert $\\frac{1}{2}$ to tenths: $\\frac{1 \\times 5}{2 \\times 5} = \\frac{5}{10} = 0.5$."]}]}, {"id": 18, "tag": "Chapter Review • Mastery Challenge II", "title": "Mastery Challenge II: Hundredths, Currency & Expanded Form", "sim_id": null, "is_quiz": true, "quiz_range": [11, 20], "avatar": {"name": "Acharya Aryabhata", "title": "Pioneer of Decimal Place Value & Astronomy"}, "narration": "Onward to Challenge II! Here we explore hundredths, rupees and paise conversions, expanded notation, and the behavior of trailing zeroes.", "questions": [{"id": 11, "question": "How is $45\\text{ paise}$ written in rupees using decimal notation?", "options": ["₹4.5", "₹0.45", "₹0.045", "₹45.0"], "correct": 1, "solution_steps": ["Since $1\\text{ rupee} = 100\\text{ paise}$, $1\\text{ paisa} = \\frac{1}{100}\\text{ rupee} = ₹0.01$.", "For $45\\text{ paise}$: $\\frac{45}{100}\\text{ rupee} = ₹0.45$."]}, {"id": 12, "question": "Convert $8\\text{ rupees and } 5\\text{ paise}$ into decimal rupees.", "options": ["₹8.5", "₹8.50", "₹8.05", "₹85.0"], "correct": 2, "solution_steps": ["Whole rupees: $₹8$.", "Paise part: $5\\text{ paise} = \\frac{5}{100}\\text{ rupee} = ₹0.05$.", "Combine: $8 + 0.05 = ₹8.05$. (Note: ₹8.50 would mean 50 paise)."]}, {"id": 13, "question": "In a $100$-square grid, $64$ squares are shaded blue. What decimal part of the grid is shaded?", "options": ["0.064", "6.4", "0.64", "64.0"], "correct": 2, "solution_steps": ["The fraction shaded is $\\frac{64}{100}$.", "In decimal notation, $\\frac{64}{100} = 0.64$ ($6$ tenths and $4$ hundredths)."]}, {"id": 14, "question": "What is the place value of the digit $7$ in the number $52.473$?", "options": ["7 Tens", "7 Tenths", "7 Hundredths (0.07)", "7 Thousandths"], "correct": 2, "solution_steps": ["First digit after decimal: 4 (Tenths place = $0.4$).", "Second digit after decimal: 7 (Hundredths place = $0.07$).", "Therefore, the place value of 7 is $7\\text{ hundredths}$ or $0.07$."]}, {"id": 15, "question": "Which of the following decimals has the smallest numerical value?", "options": ["0.4", "0.04", "0.40", "0.040"], "correct": 1, "solution_steps": ["Compare place by place: $0.4 = 0.40 = 4\\text{ tenths}$.", "$0.04 = 0.040 = 4\\text{ hundredths}$.", "Since $0.04 = 0.040$ and both are smaller than $0.4$, $0.04$ (or $0.040$) is the smallest."]}, {"id": 16, "question": "What is the expanded form of the decimal $38.25$?", "options": ["$30 + 8 + \\frac{2}{10} + \\frac{5}{100}$", "$3 + 8 + \\frac{2}{10} + \\frac{5}{10}$", "$300 + 80 + 2 + 5$", "$30 + 8 + \\frac{25}{10}$"], "correct": 0, "solution_steps": ["Deconstruct each digit by its positional weight:", "3 Tens = $30$", "8 Ones = $8$", "2 Tenths = $\\frac{2}{10}$", "5 Hundredths = $\\frac{5}{100}$", "Sum = $30 + 8 + \\frac{2}{10} + \\frac{5}{100}$."]}, {"id": 17, "question": "Which statement regarding trailing zeroes in decimals is TRUE?", "options": ["Adding a trailing zero multiplies the number by 10", "Adding trailing zeroes after the decimal part does not change its value", "Trailing zeroes must always be removed before addition", "0.5 is greater than 0.50"], "correct": 1, "solution_steps": ["The Trailing Zeroes Invariance Theorem states that appending zeroes to the extreme right of the decimal part leaves the value unchanged.", "$0.5 = \\frac{5}{10} = \\frac{50}{100} = 0.50$."]}, {"id": 18, "question": "Convert the fraction $\\frac{7}{100}$ to decimal form.", "options": ["0.7", "0.07", "7.00", "0.007"], "correct": 1, "solution_steps": ["Division by 100 shifts the decimal point two places left.", "$7.0 \\rightarrow 0.07$."]}, {"id": 19, "question": "How many paise are there in $₹12.75$?", "options": ["1275 paise", "127.5 paise", "12.75 paise", "12075 paise"], "correct": 0, "solution_steps": ["To convert rupees to paise, multiply by 100:", "$12.75 \\times 100 = 1275\\text{ paise}$."]}, {"id": 20, "question": "What number is formed by: 4 Tens + 2 Ones + 9 Tenths + 1 Hundredth?", "options": ["42.19", "42.91", "429.1", "4.291"], "correct": 1, "solution_steps": ["Whole number part: $4 \\times 10 + 2 \\times 1 = 42$.", "Fractional part: $9$ tenths and $1$ hundredth $= 0.91$.", "Combined number: $42.91$."]}]}, {"id": 19, "tag": "Chapter Review • Mastery Challenge III", "title": "Mastery Challenge III: Metric Scales, Number Lines & Comparing", "sim_id": null, "is_quiz": true, "quiz_range": [21, 30], "avatar": {"name": "Acharya Aryabhata", "title": "Pioneer of Decimal Place Value & Astronomy"}, "narration": "Excellent progress! Challenge III examines metric conversions (m, km, kg, L), plotting coordinates on the number line, and rigorous decimal comparison strategies.", "questions": [{"id": 21, "question": "Express $85\\text{ cm}$ in metres using decimals.", "options": ["$8.5\\text{ m}$", "$0.85\\text{ m}$", "$0.085\\text{ m}$", "$85.0\\text{ m}$"], "correct": 1, "solution_steps": ["Since $1\\text{ m} = 100\\text{ cm}$, divide by 100:", "$\\frac{85}{100}\\text{ m} = 0.85\\text{ m}$."]}, {"id": 22, "question": "Convert $3\\text{ m } 4\\text{ cm}$ into metres.", "options": ["$3.4\\text{ m}$", "$3.40\\text{ m}$", "$3.04\\text{ m}$", "$34.0\\text{ m}$"], "correct": 2, "solution_steps": ["Whole metres: $3\\text{ m}$.", "Centimetres converted: $4\\text{ cm} = \\frac{4}{100}\\text{ m} = 0.04\\text{ m}$.", "Sum: $3 + 0.04 = 3.04\\text{ m}$."]}, {"id": 23, "question": "Express $450\\text{ m}$ in kilometres.", "options": ["$4.5\\text{ km}$", "$0.45\\text{ km}$", "$0.045\\text{ km}$", "$45.0\\text{ km}$"], "correct": 1, "solution_steps": ["Since $1\\text{ km} = 1000\\text{ m}$, divide by 1000:", "$\\frac{450}{1000}\\text{ km} = 0.450\\text{ km} = 0.45\\text{ km}$."]}, {"id": 24, "question": "A parcel weighs $2\\text{ kg } 75\\text{ g}$. What is its weight in kilograms?", "options": ["$2.75\\text{ kg}$", "$2.075\\text{ kg}$", "$2.0075\\text{ kg}$", "$27.5\\text{ kg}$"], "correct": 1, "solution_steps": ["$1\\text{ kg} = 1000\\text{ g}$, so $75\\text{ g} = \\frac{75}{1000}\\text{ kg} = 0.075\\text{ kg}$.", "Total weight = $2 + 0.075 = 2.075\\text{ kg}$."]}, {"id": 25, "question": "Which decimal is GREATER: $0.7$ or $0.69$?", "options": ["$0.69$ because 69 is greater than 7", "$0.7$ because 7 tenths (0.70) is greater than 6 tenths (0.69)", "They are equal", "Cannot compare different digit counts"], "correct": 1, "solution_steps": ["Pad $0.7$ with a trailing zero to give $0.70$.", "Compare hundredths: $0.70$ has 7 tenths, while $0.69$ has 6 tenths.", "Since $7 > 6$, $0.7 > 0.69$."]}, {"id": 26, "question": "Arrange in descending order: $0.5, 0.05, 0.55, 0.505$.", "options": ["$0.55 > 0.505 > 0.5 > 0.05$", "$0.55 > 0.5 > 0.505 > 0.05$", "$0.505 > 0.55 > 0.5 > 0.05$", "$0.05 > 0.5 > 0.505 > 0.55$"], "correct": 0, "solution_steps": ["Pad all numbers to three decimal places:", "$0.550, 0.505, 0.500, 0.050$.", "Comparing from largest to smallest: $550 > 505 > 500 > 50$.", "Order: $0.55 > 0.505 > 0.5 > 0.05$."]}, {"id": 27, "question": "Where does the number $2.63$ lie on the number line?", "options": ["Between 2.6 and 2.7", "Between 2.0 and 2.6", "Between 2.7 and 2.8", "Between 3.0 and 4.0"], "correct": 0, "solution_steps": ["Write the tenths with two decimal places: $2.60$ and $2.70$.", "Clearly, $2.60 < 2.63 < 2.70$.", "Thus, $2.63$ lies between $2.6$ and $2.7$."]}, {"id": 28, "question": "How many millilitres are in $1.5\\text{ litres}$ of water?", "options": ["150 mL", "1500 mL", "15 mL", "15000 mL"], "correct": 1, "solution_steps": ["Since $1\\text{ L} = 1000\\text{ mL}$, multiply by 1000:", "$1.5 \\times 1000 = 1500\\text{ mL}$."]}, {"id": 29, "question": "Compare: $4.08$ [ ? ] $4.80$. What symbol fits in the bracket?", "options": [">", "<", "=", "≥"], "correct": 1, "solution_steps": ["Whole parts are both 4.", "Compare tenths: $4.08$ has 0 tenths; $4.80$ has 8 tenths.", "Since $0 < 8$, $4.08 < 4.80$."]}, {"id": 30, "question": "Express $5\\text{ metres}$ in kilometres using decimals.", "options": ["$0.5\\text{ km}$", "$0.05\\text{ km}$", "$0.005\\text{ km}$", "$0.0005\\text{ km}$"], "correct": 2, "solution_steps": ["$1\\text{ km} = 1000\\text{ m}$, so $5\\text{ m} = \\frac{5}{1000}\\text{ km} = 0.005\\text{ km}$."]}]}, {"id": 20, "tag": "Chapter Review • Mastery Challenge IV", "title": "Mastery Challenge IV: Operations, Deceptive Dots & Synthesis", "sim_id": null, "is_quiz": true, "quiz_range": [31, 40], "avatar": {"name": "Acharya Aryabhata", "title": "Pioneer of Decimal Place Value & Astronomy"}, "narration": "The final summit! Challenge IV tests decimal column addition, borrowing subtraction, sequence extrapolation, and deceptive dot distinctions. Complete this to claim your decimal mastery certificate!", "questions": [{"id": 31, "question": "Calculate the sum: $18.4 + 9.75$.", "options": ["27.15", "28.15", "28.19", "27.79"], "correct": 1, "solution_steps": ["Pad $18.4$ with a zero: $18.40$.", "Align decimal points and add:", "  1 8 . 4 0", "+ 0 9 . 7 5", "-----------", "  2 8 . 1 5"]}, {"id": 32, "question": "Calculate the difference: $25.0 - 13.68$.", "options": ["11.32", "11.42", "12.32", "11.68"], "correct": 0, "solution_steps": ["Pad $25.0$ to two decimal places: $25.00$.", "Borrow across columns:", "  2 5 . 0 0", "- 1 3 . 6 8", "-----------", "  1 1 . 3 2"]}, {"id": 33, "question": "Rina bought an exercise book for ₹18.50 and a pen for ₹12.75. If she handed a ₹50 note, how much change did she receive?", "options": ["₹18.75", "₹19.25", "₹18.25", "₹20.75"], "correct": 0, "solution_steps": ["Step 1: Total money spent = $18.50 + 12.75 = ₹31.25$.", "Step 2: Change received = $50.00 - 31.25 = ₹18.75$."]}, {"id": 34, "question": "What is the next term in the arithmetic sequence: $3.25, 3.50, 3.75, \\dots$?", "options": ["3.85", "4.00", "4.25", "3.100"], "correct": 1, "solution_steps": ["Find the common difference: $3.50 - 3.25 = 0.25$.", "Add $0.25$ to the last term: $3.75 + 0.25 = 4.00$ (or 4)."]}, {"id": 35, "question": "Why is a cricket scorecard entry of '4.2 overs' NOT equal to 4.2 in standard base-10 decimals?", "options": ["Because 1 over consists of 6 balls, making 2 balls equal to 2/6 = 0.333... overs", "Because cricket uses roman numerals", "Because overs cannot be added", "Because 4.2 overs is 42 balls"], "correct": 0, "solution_steps": ["In cricket, the dot is a separator between overs and balls (base-6).", "4 overs and 2 balls is $4 + \\frac{2}{6} = 4\\frac{1}{3} \\approx 4.333\\dots$ overs.", "In base-10 decimals, $4.2$ means $4\\frac{2}{10} = 4\\frac{1}{5}$, which is a completely different fraction."]}, {"id": 36, "question": "A digital clock reads 5:45. What is this time duration expressed as a true decimal number of hours?", "options": ["5.45 hours", "5.75 hours", "5.30 hours", "5.50 hours"], "correct": 1, "solution_steps": ["There are 60 minutes in an hour.", "$45\\text{ minutes} = \\frac{45}{60}\\text{ hour} = \\frac{3}{4}\\text{ hour} = 0.75\\text{ hour}$.", "Combined duration = $5 + 0.75 = 5.75\\text{ hours}$."]}, {"id": 37, "question": "If a nurse misreads a medicine dosage of $0.25\\text{ mg}$ as $2.5\\text{ mg}$, by what factor is the patient overdosed?", "options": ["2 times", "5 times", "10 times", "100 times"], "correct": 2, "solution_steps": ["Calculate the ratio: $\\frac{2.5}{0.25} = 10$.", "Shifting the decimal point one place to the right multiplies the quantity by 10, creating a dangerous 10-fold overdose."]}, {"id": 38, "question": "Estimate the sum $48.92 + 31.08$ by rounding each to the nearest whole number.", "options": ["70", "80", "90", "75"], "correct": 1, "solution_steps": ["Round $48.92$ to nearest whole: $49$.", "Round $31.08$ to nearest whole: $31$.", "Sum = $49 + 31 = 80$. (Exact sum is also $80.00$!)."]}, {"id": 39, "question": "Evaluate: $7.85 + 4.2 - 3.65$.", "options": ["8.40", "8.50", "8.20", "8.35"], "correct": 0, "solution_steps": ["Step 1 (Addition): $7.85 + 4.20 = 12.05$.", "Step 2 (Subtraction): $12.05 - 3.65 = 8.40$."]}, {"id": 40, "question": "What is the result when $100$ is multiplied by $0.01$?", "options": ["0.1", "1", "10", "0.001"], "correct": 1, "solution_steps": ["One-hundredth is $\\frac{1}{100}$.", "$100 \\times 0.01 = 100 \\times \\frac{1}{100} = 1.0 = 1$.", "100 hundredths make exactly 1 whole!"]}]}];
+    const QUIZ_QUESTIONS = [{"id": 1, "question": "What fraction of a whole unit does the first digit to the right of the decimal point represent?", "options": ["One-hundredth (1/100)", "One-tenth (1/10)", "One-thousandth (1/1000)", "One-tenth of a tenth"], "correct": 1, "solution_steps": ["In our standard base-10 positional matrix, the decimal point separates whole units (ones) from fractional subdivisions.", "Moving one step right from the ones place divides by 10.", "Therefore, the first position after the point is the Tenths place ($\\frac{1}{10}$ or $0.1$)."]}, {"id": 2, "question": "Express $35\\text{ mm}$ in centimetres using decimal notation.", "options": ["$0.35\\text{ cm}$", "$3.5\\text{ cm}$", "$35.0\\text{ cm}$", "$0.035\\text{ cm}$"], "correct": 1, "solution_steps": ["Recall the metric relation: $10\\text{ mm} = 1\\text{ cm}$, which means $1\\text{ mm} = \\frac{1}{10}\\text{ cm} = 0.1\\text{ cm}$.", "Divide the millimetres by 10: $\\frac{35}{10}\\text{ cm} = 3.5\\text{ cm}$.", "This corresponds to 3 full centimetres and 5 tenths of a centimetre."]}, {"id": 3, "question": "How many tenths ($0.1$) must be added together to make the whole number $3$?", "options": ["10", "20", "30", "300"], "correct": 2, "solution_steps": ["One whole unit consists of $10$ tenths ($10 \\times 0.1 = 1.0$).", "To make $3$ complete whole units: $3 \\times 10 = 30$ tenths.", "Calculation check: $30 \\times \\frac{1}{10} = \\frac{30}{10} = 3$."]}, {"id": 4, "question": "A carpenter measures a board as $4\\text{ cm and } 7\\text{ mm}$. What is this length in centimetres?", "options": ["$4.07\\text{ cm}$", "$4.7\\text{ cm}$", "$47\\text{ cm}$", "$0.47\\text{ cm}$"], "correct": 1, "solution_steps": ["The measurement has a whole number part of $4\\text{ cm}$.", "The fractional part is $7\\text{ mm} = \\frac{7}{10}\\text{ cm} = 0.7\\text{ cm}$.", "Combining both parts: $4 + 0.7 = 4.7\\text{ cm}$."]}, {"id": 5, "question": "Which of the following points lies strictly between $0.8$ and $0.9$ on the number line?", "options": ["0.85", "0.79", "0.91", "0.085"], "correct": 0, "solution_steps": ["Write the boundary numbers with two decimal places: $0.80$ and $0.90$.", "Examine the options: $0.85$ satisfies $0.80 < 0.85 < 0.90$.", "Thus, $0.85$ lies strictly within the interval."]}, {"id": 6, "question": "What is the decimal representation of the fraction $1\\frac{3}{10}$?", "options": ["1.03", "1.3", "13.0", "0.13"], "correct": 1, "solution_steps": ["The mixed fraction is $1 + \\frac{3}{10}$.", "Here, $1$ is the whole number before the decimal point, and $\\frac{3}{10}$ is $3$ tenths.", "Putting them together yields $1.3$."]}, {"id": 7, "question": "A seed measures $4\\text{ mm}$ in width. How is this written in centimetres?", "options": ["$0.04\\text{ cm}$", "$0.4\\text{ cm}$", "$4.0\\text{ cm}$", "$40\\text{ cm}$"], "correct": 1, "solution_steps": ["Since $1\\text{ mm} = 0.1\\text{ cm}$, multiply 4 by 0.1:", "$4 \\times 0.1 = 0.4\\text{ cm}$."]}, {"id": 8, "question": "If you divide $1\\text{ metre}$ into $10$ equal parts, what is each part called?", "options": ["1 centimetre", "1 millimetre", "1 decimetre", "1 kilometre"], "correct": 2, "solution_steps": ["One-tenth of a metre is a decimetre ($1\\text{ dm} = 10\\text{ cm} = 0.1\\text{ m}$).", "10 decimetres equal 1 metre."]}, {"id": 9, "question": "What is the value of $0.1 + 0.1 + 0.1 + 0.1 + 0.1$?", "options": ["0.05", "0.5", "5.0", "0.005"], "correct": 1, "solution_steps": ["Adding five equal tenths: $5 \\times 0.1 = 0.5$.", "This represents half of one whole unit ($0.5 = \\frac{1}{2}$)."]}, {"id": 10, "question": "Which decimal corresponds to the point exactly halfway between $0$ and $1$?", "options": ["0.1", "0.25", "0.5", "0.75"], "correct": 2, "solution_steps": ["Half of 1 is $\\frac{1}{2}$.", "Convert $\\frac{1}{2}$ to tenths: $\\frac{1 \\times 5}{2 \\times 5} = \\frac{5}{10} = 0.5$."]}, {"id": 11, "question": "How is $45\\text{ paise}$ written in rupees using decimal notation?", "options": ["₹4.5", "₹0.45", "₹0.045", "₹45.0"], "correct": 1, "solution_steps": ["Since $1\\text{ rupee} = 100\\text{ paise}$, $1\\text{ paisa} = \\frac{1}{100}\\text{ rupee} = ₹0.01$.", "For $45\\text{ paise}$: $\\frac{45}{100}\\text{ rupee} = ₹0.45$."]}, {"id": 12, "question": "Convert $8\\text{ rupees and } 5\\text{ paise}$ into decimal rupees.", "options": ["₹8.5", "₹8.50", "₹8.05", "₹85.0"], "correct": 2, "solution_steps": ["Whole rupees: $₹8$.", "Paise part: $5\\text{ paise} = \\frac{5}{100}\\text{ rupee} = ₹0.05$.", "Combine: $8 + 0.05 = ₹8.05$. (Note: ₹8.50 would mean 50 paise)."]}, {"id": 13, "question": "In a $100$-square grid, $64$ squares are shaded blue. What decimal part of the grid is shaded?", "options": ["0.064", "6.4", "0.64", "64.0"], "correct": 2, "solution_steps": ["The fraction shaded is $\\frac{64}{100}$.", "In decimal notation, $\\frac{64}{100} = 0.64$ ($6$ tenths and $4$ hundredths)."]}, {"id": 14, "question": "What is the place value of the digit $7$ in the number $52.473$?", "options": ["7 Tens", "7 Tenths", "7 Hundredths (0.07)", "7 Thousandths"], "correct": 2, "solution_steps": ["First digit after decimal: 4 (Tenths place = $0.4$).", "Second digit after decimal: 7 (Hundredths place = $0.07$).", "Therefore, the place value of 7 is $7\\text{ hundredths}$ or $0.07$."]}, {"id": 15, "question": "Which of the following decimals has the smallest numerical value?", "options": ["0.4", "0.04", "0.40", "0.040"], "correct": 1, "solution_steps": ["Compare place by place: $0.4 = 0.40 = 4\\text{ tenths}$.", "$0.04 = 0.040 = 4\\text{ hundredths}$.", "Since $0.04 = 0.040$ and both are smaller than $0.4$, $0.04$ (or $0.040$) is the smallest."]}, {"id": 16, "question": "What is the expanded form of the decimal $38.25$?", "options": ["$30 + 8 + \\frac{2}{10} + \\frac{5}{100}$", "$3 + 8 + \\frac{2}{10} + \\frac{5}{10}$", "$300 + 80 + 2 + 5$", "$30 + 8 + \\frac{25}{10}$"], "correct": 0, "solution_steps": ["Deconstruct each digit by its positional weight:", "3 Tens = $30$", "8 Ones = $8$", "2 Tenths = $\\frac{2}{10}$", "5 Hundredths = $\\frac{5}{100}$", "Sum = $30 + 8 + \\frac{2}{10} + \\frac{5}{100}$."]}, {"id": 17, "question": "Which statement regarding trailing zeroes in decimals is TRUE?", "options": ["Adding a trailing zero multiplies the number by 10", "Adding trailing zeroes after the decimal part does not change its value", "Trailing zeroes must always be removed before addition", "0.5 is greater than 0.50"], "correct": 1, "solution_steps": ["The Trailing Zeroes Invariance Theorem states that appending zeroes to the extreme right of the decimal part leaves the value unchanged.", "$0.5 = \\frac{5}{10} = \\frac{50}{100} = 0.50$."]}, {"id": 18, "question": "Convert the fraction $\\frac{7}{100}$ to decimal form.", "options": ["0.7", "0.07", "7.00", "0.007"], "correct": 1, "solution_steps": ["Division by 100 shifts the decimal point two places left.", "$7.0 \\rightarrow 0.07$."]}, {"id": 19, "question": "How many paise are there in $₹12.75$?", "options": ["1275 paise", "127.5 paise", "12.75 paise", "12075 paise"], "correct": 0, "solution_steps": ["To convert rupees to paise, multiply by 100:", "$12.75 \\times 100 = 1275\\text{ paise}$."]}, {"id": 20, "question": "What number is formed by: 4 Tens + 2 Ones + 9 Tenths + 1 Hundredth?", "options": ["42.19", "42.91", "429.1", "4.291"], "correct": 1, "solution_steps": ["Whole number part: $4 \\times 10 + 2 \\times 1 = 42$.", "Fractional part: $9$ tenths and $1$ hundredth $= 0.91$.", "Combined number: $42.91$."]}, {"id": 21, "question": "Express $85\\text{ cm}$ in metres using decimals.", "options": ["$8.5\\text{ m}$", "$0.85\\text{ m}$", "$0.085\\text{ m}$", "$85.0\\text{ m}$"], "correct": 1, "solution_steps": ["Since $1\\text{ m} = 100\\text{ cm}$, divide by 100:", "$\\frac{85}{100}\\text{ m} = 0.85\\text{ m}$."]}, {"id": 22, "question": "Convert $3\\text{ m } 4\\text{ cm}$ into metres.", "options": ["$3.4\\text{ m}$", "$3.40\\text{ m}$", "$3.04\\text{ m}$", "$34.0\\text{ m}$"], "correct": 2, "solution_steps": ["Whole metres: $3\\text{ m}$.", "Centimetres converted: $4\\text{ cm} = \\frac{4}{100}\\text{ m} = 0.04\\text{ m}$.", "Sum: $3 + 0.04 = 3.04\\text{ m}$."]}, {"id": 23, "question": "Express $450\\text{ m}$ in kilometres.", "options": ["$4.5\\text{ km}$", "$0.45\\text{ km}$", "$0.045\\text{ km}$", "$45.0\\text{ km}$"], "correct": 1, "solution_steps": ["Since $1\\text{ km} = 1000\\text{ m}$, divide by 1000:", "$\\frac{450}{1000}\\text{ km} = 0.450\\text{ km} = 0.45\\text{ km}$."]}, {"id": 24, "question": "A parcel weighs $2\\text{ kg } 75\\text{ g}$. What is its weight in kilograms?", "options": ["$2.75\\text{ kg}$", "$2.075\\text{ kg}$", "$2.0075\\text{ kg}$", "$27.5\\text{ kg}$"], "correct": 1, "solution_steps": ["$1\\text{ kg} = 1000\\text{ g}$, so $75\\text{ g} = \\frac{75}{1000}\\text{ kg} = 0.075\\text{ kg}$.", "Total weight = $2 + 0.075 = 2.075\\text{ kg}$."]}, {"id": 25, "question": "Which decimal is GREATER: $0.7$ or $0.69$?", "options": ["$0.69$ because 69 is greater than 7", "$0.7$ because 7 tenths (0.70) is greater than 6 tenths (0.69)", "They are equal", "Cannot compare different digit counts"], "correct": 1, "solution_steps": ["Pad $0.7$ with a trailing zero to give $0.70$.", "Compare hundredths: $0.70$ has 7 tenths, while $0.69$ has 6 tenths.", "Since $7 > 6$, $0.7 > 0.69$."]}, {"id": 26, "question": "Arrange in descending order: $0.5, 0.05, 0.55, 0.505$.", "options": ["$0.55 > 0.505 > 0.5 > 0.05$", "$0.55 > 0.5 > 0.505 > 0.05$", "$0.505 > 0.55 > 0.5 > 0.05$", "$0.05 > 0.5 > 0.505 > 0.55$"], "correct": 0, "solution_steps": ["Pad all numbers to three decimal places:", "$0.550, 0.505, 0.500, 0.050$.", "Comparing from largest to smallest: $550 > 505 > 500 > 50$.", "Order: $0.55 > 0.505 > 0.5 > 0.05$."]}, {"id": 27, "question": "Where does the number $2.63$ lie on the number line?", "options": ["Between 2.6 and 2.7", "Between 2.0 and 2.6", "Between 2.7 and 2.8", "Between 3.0 and 4.0"], "correct": 0, "solution_steps": ["Write the tenths with two decimal places: $2.60$ and $2.70$.", "Clearly, $2.60 < 2.63 < 2.70$.", "Thus, $2.63$ lies between $2.6$ and $2.7$."]}, {"id": 28, "question": "How many millilitres are in $1.5\\text{ litres}$ of water?", "options": ["150 mL", "1500 mL", "15 mL", "15000 mL"], "correct": 1, "solution_steps": ["Since $1\\text{ L} = 1000\\text{ mL}$, multiply by 1000:", "$1.5 \\times 1000 = 1500\\text{ mL}$."]}, {"id": 29, "question": "Compare: $4.08$ [ ? ] $4.80$. What symbol fits in the bracket?", "options": [">", "<", "=", "≥"], "correct": 1, "solution_steps": ["Whole parts are both 4.", "Compare tenths: $4.08$ has 0 tenths; $4.80$ has 8 tenths.", "Since $0 < 8$, $4.08 < 4.80$."]}, {"id": 30, "question": "Express $5\\text{ metres}$ in kilometres using decimals.", "options": ["$0.5\\text{ km}$", "$0.05\\text{ km}$", "$0.005\\text{ km}$", "$0.0005\\text{ km}$"], "correct": 2, "solution_steps": ["$1\\text{ km} = 1000\\text{ m}$, so $5\\text{ m} = \\frac{5}{1000}\\text{ km} = 0.005\\text{ km}$."]}, {"id": 31, "question": "Calculate the sum: $18.4 + 9.75$.", "options": ["27.15", "28.15", "28.19", "27.79"], "correct": 1, "solution_steps": ["Pad $18.4$ with a zero: $18.40$.", "Align decimal points and add:", "  1 8 . 4 0", "+ 0 9 . 7 5", "-----------", "  2 8 . 1 5"]}, {"id": 32, "question": "Calculate the difference: $25.0 - 13.68$.", "options": ["11.32", "11.42", "12.32", "11.68"], "correct": 0, "solution_steps": ["Pad $25.0$ to two decimal places: $25.00$.", "Borrow across columns:", "  2 5 . 0 0", "- 1 3 . 6 8", "-----------", "  1 1 . 3 2"]}, {"id": 33, "question": "Rina bought an exercise book for ₹18.50 and a pen for ₹12.75. If she handed a ₹50 note, how much change did she receive?", "options": ["₹18.75", "₹19.25", "₹18.25", "₹20.75"], "correct": 0, "solution_steps": ["Step 1: Total money spent = $18.50 + 12.75 = ₹31.25$.", "Step 2: Change received = $50.00 - 31.25 = ₹18.75$."]}, {"id": 34, "question": "What is the next term in the arithmetic sequence: $3.25, 3.50, 3.75, \\dots$?", "options": ["3.85", "4.00", "4.25", "3.100"], "correct": 1, "solution_steps": ["Find the common difference: $3.50 - 3.25 = 0.25$.", "Add $0.25$ to the last term: $3.75 + 0.25 = 4.00$ (or 4)."]}, {"id": 35, "question": "Why is a cricket scorecard entry of '4.2 overs' NOT equal to 4.2 in standard base-10 decimals?", "options": ["Because 1 over consists of 6 balls, making 2 balls equal to 2/6 = 0.333... overs", "Because cricket uses roman numerals", "Because overs cannot be added", "Because 4.2 overs is 42 balls"], "correct": 0, "solution_steps": ["In cricket, the dot is a separator between overs and balls (base-6).", "4 overs and 2 balls is $4 + \\frac{2}{6} = 4\\frac{1}{3} \\approx 4.333\\dots$ overs.", "In base-10 decimals, $4.2$ means $4\\frac{2}{10} = 4\\frac{1}{5}$, which is a completely different fraction."]}, {"id": 36, "question": "A digital clock reads 5:45. What is this time duration expressed as a true decimal number of hours?", "options": ["5.45 hours", "5.75 hours", "5.30 hours", "5.50 hours"], "correct": 1, "solution_steps": ["There are 60 minutes in an hour.", "$45\\text{ minutes} = \\frac{45}{60}\\text{ hour} = \\frac{3}{4}\\text{ hour} = 0.75\\text{ hour}$.", "Combined duration = $5 + 0.75 = 5.75\\text{ hours}$."]}, {"id": 37, "question": "If a nurse misreads a medicine dosage of $0.25\\text{ mg}$ as $2.5\\text{ mg}$, by what factor is the patient overdosed?", "options": ["2 times", "5 times", "10 times", "100 times"], "correct": 2, "solution_steps": ["Calculate the ratio: $\\frac{2.5}{0.25} = 10$.", "Shifting the decimal point one place to the right multiplies the quantity by 10, creating a dangerous 10-fold overdose."]}, {"id": 38, "question": "Estimate the sum $48.92 + 31.08$ by rounding each to the nearest whole number.", "options": ["70", "80", "90", "75"], "correct": 1, "solution_steps": ["Round $48.92$ to nearest whole: $49$.", "Round $31.08$ to nearest whole: $31$.", "Sum = $49 + 31 = 80$. (Exact sum is also $80.00$!)."]}, {"id": 39, "question": "Evaluate: $7.85 + 4.2 - 3.65$.", "options": ["8.40", "8.50", "8.20", "8.35"], "correct": 0, "solution_steps": ["Step 1 (Addition): $7.85 + 4.20 = 12.05$.", "Step 2 (Subtraction): $12.05 - 3.65 = 8.40$."]}, {"id": 40, "question": "What is the result when $100$ is multiplied by $0.01$?", "options": ["0.1", "1", "10", "0.001"], "correct": 1, "solution_steps": ["One-hundredth is $\\frac{1}{100}$.", "$100 \\times 0.01 = 100 \\times \\frac{1}{100} = 1.0 = 1$.", "100 hundredths make exactly 1 whole!"]}];
+
+    // Application State
+    let currentSlideIdx = 0;
+    let isSpeaking = false;
+    let speechSynth = window.speechSynthesis || null;
+    let speechUtterance = null;
+    const checkpointAnswers = {};
+    const quizScores = {};
+
+    // Web Audio Synthesizer for immediate feedback sounds
+    const sfx = {
+      ctx: null,
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) this.ctx = new AudioContext();
+        }
+      },
+      playTone(freq, type, duration, gainVal = 0.1) {
+        try {
+          this.init();
+          if (!this.ctx) return;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = type;
+          osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+          gain.gain.setValueAtTime(gainVal, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + duration);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + duration);
+        } catch(e) {}
+      },
+      playClick() {
+        this.playTone(600, 'sine', 0.06, 0.08);
+      },
+      playCorrect() {
+        try {
+          this.init();
+          if (!this.ctx) return;
+          const now = this.ctx.currentTime;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(523.25, now); // C5
+          osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
+          osc.frequency.setValueAtTime(783.99, now + 0.2); // G5
+          gain.gain.setValueAtTime(0.12, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.35);
+        } catch(e) {}
+      },
+      playIncorrect() {
+        try {
+          this.init();
+          if (!this.ctx) return;
+          const now = this.ctx.currentTime;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(220, now); // A3
+          osc.frequency.setValueAtTime(196, now + 0.12); // G3
+          gain.gain.setValueAtTime(0.1, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.3);
+        } catch(e) {}
+      },
+      playCelebration() {
+        try {
+          this.init();
+          if (!this.ctx) return;
+          const notes = [523.25, 659.25, 783.99, 1046.50];
+          notes.forEach((freq, idx) => {
+            setTimeout(() => {
+              this.playTone(freq, 'triangle', 0.15, 0.12);
+            }, idx * 90);
+          });
+        } catch(e) {}
+      }
+    };
+
+    // DOM Elements
+    const slideCounter = document.getElementById('slideCounter');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const slideJumpSelect = document.getElementById('slideJumpSelect');
+    const lastSlideNotice = document.getElementById('lastSlideNotice');
+
+    const avatarSpeechBar = document.getElementById('avatarSpeechBar');
+    const avatarCircle = document.getElementById('avatarCircle');
+    const speechBubbleText = document.getElementById('speechBubbleText');
+    const btnVoiceToggle = document.getElementById('btnVoiceToggle');
+    const iconVoicePlay = document.getElementById('iconVoicePlay');
+    const iconVoicePause = document.getElementById('iconVoicePause');
+
+    const slideContentGrid = document.getElementById('slideContentGrid');
+    const theoryCol = document.getElementById('theoryCol');
+    const slideTag = document.getElementById('slideTag');
+    const slideTitle = document.getElementById('slideTitle');
+    const vocabBadgesRow = document.getElementById('vocabBadgesRow');
+    const theoryBody = document.getElementById('theoryBody');
+    const checkpointsContainer = document.getElementById('checkpointsContainer');
+
+    const labCol = document.getElementById('labCol');
+    const simHeaderTitle = document.getElementById('simHeaderTitle');
+    const simCanvas = document.getElementById('simCanvas');
+    const simControls = document.getElementById('simControls');
+
+    const quizContainer = document.getElementById('quizContainer');
+    const quizBadge = document.getElementById('quizBadge');
+    const quizTitle = document.getElementById('quizTitle');
+    const quizScorePill = document.getElementById('quizScorePill');
+    const quizItemsList = document.getElementById('quizItemsList');
+
+    const solutionModal = document.getElementById('solutionModal');
+    const modalTitleText = document.getElementById('modalTitleText');
+    const modalQuestionText = document.getElementById('modalQuestionText');
+    const modalSolutionSteps = document.getElementById('modalSolutionSteps');
+    const btnCloseModal = document.getElementById('btnCloseModal');
+
+    // Populate Jump Select
+    SLIDES_DATA.forEach((slide, idx) => {
+      const opt = document.createElement('option');
+      opt.value = idx;
+      opt.textContent = `${slide.id}. ${slide.title}`;
+      slideJumpSelect.appendChild(opt);
+    });
+
+    // Audio Narration Controller
+    function stopNarration() {
+      if (speechSynth && speechSynth.speaking) {
+        speechSynth.cancel();
+      }
+      isSpeaking = false;
+      avatarSpeechBar.classList.remove('is-speaking');
+      iconVoicePlay.style.display = 'block';
+      iconVoicePause.style.display = 'none';
+    }
+
+    function speakNarration(text) {
+      stopNarration();
+      if (!speechSynth || !text) return;
+
+      const cleanText = text.replace(/<[^>]+>/g, '').replace(/\$+/g, '').replace(/\\times/g, 'times').replace(/\\div/g, 'divided by');
+      speechUtterance = new SpeechSynthesisUtterance(cleanText);
+      speechUtterance.rate = 0.98;
+      speechUtterance.pitch = 1.0;
+
+      const voices = speechSynth.getVoices();
+      const indianVoice = voices.find(v => v.lang.includes('en-IN')) || voices.find(v => v.lang.includes('en-GB')) || voices.find(v => v.lang.includes('en'));
+      if (indianVoice) speechUtterance.voice = indianVoice;
+
+      speechUtterance.onstart = () => {
+        isSpeaking = true;
+        avatarSpeechBar.classList.add('is-speaking');
+        iconVoicePlay.style.display = 'none';
+        iconVoicePause.style.display = 'block';
+      };
+
+      speechUtterance.onend = () => {
+        isSpeaking = false;
+        avatarSpeechBar.classList.remove('is-speaking');
+        iconVoicePlay.style.display = 'block';
+        iconVoicePause.style.display = 'none';
+      };
+
+      speechUtterance.onerror = () => {
+        isSpeaking = false;
+        avatarSpeechBar.classList.remove('is-speaking');
+        iconVoicePlay.style.display = 'block';
+        iconVoicePause.style.display = 'none';
+      };
+
+      speechSynth.speak(speechUtterance);
+    }
+
+    btnVoiceToggle.addEventListener('click', () => {
+      if (isSpeaking) {
+        stopNarration();
+      } else {
+        const slide = SLIDES_DATA[currentSlideIdx];
+        if (slide && slide.narration) {
+          speakNarration(slide.narration);
+        }
+      }
+    });
+
+    // Checkpoint Renderer
+    function renderCheckpoints(checkpoints) {
+      checkpointsContainer.innerHTML = '';
+      if (!checkpoints || checkpoints.length === 0) return;
+
+      checkpoints.forEach((chk, cIdx) => {
+        const card = document.createElement('div');
+        card.className = 'checkpoint-card';
+
+        const qText = document.createElement('div');
+        qText.className = 'checkpoint-question';
+        qText.textContent = `Q${cIdx + 1}. ${chk.question}`;
+        card.appendChild(qText);
+
+        const optGrid = document.createElement('div');
+        optGrid.className = 'checkpoint-options';
+
+        const feedback = document.createElement('div');
+        feedback.className = 'checkpoint-feedback';
+
+        const savedAns = checkpointAnswers[`${currentSlideIdx}_${cIdx}`];
+
+        chk.options.forEach((optText, oIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'chk-btn';
+          btn.textContent = optText;
+
+          if (savedAns !== undefined) {
+            btn.disabled = true;
+            if (oIdx === chk.correct) btn.classList.add('correct');
+            else if (oIdx === savedAns) btn.classList.add('incorrect');
+          }
+
+          btn.addEventListener('click', () => {
+            checkpointAnswers[`${currentSlideIdx}_${cIdx}`] = oIdx;
+            const allBtns = optGrid.querySelectorAll('.chk-btn');
+            allBtns.forEach(b => b.disabled = true);
+
+            if (oIdx === chk.correct) {
+              btn.classList.add('correct');
+              feedback.className = 'checkpoint-feedback visible success';
+              feedback.textContent = `✓ Correct! ${chk.explanation}`;
+              sfx.playCorrect();
+            } else {
+              btn.classList.add('incorrect');
+              allBtns[chk.correct].classList.add('correct');
+              feedback.className = 'checkpoint-feedback visible error';
+              feedback.textContent = `✕ Incorrect. ${chk.explanation}`;
+              sfx.playIncorrect();
+            }
+          });
+          optGrid.appendChild(btn);
+        });
+
+        card.appendChild(optGrid);
+        card.appendChild(feedback);
+
+        if (savedAns !== undefined) {
+          if (savedAns === chk.correct) {
+            feedback.className = 'checkpoint-feedback visible success';
+            feedback.textContent = `✓ Correct! ${chk.explanation}`;
+          } else {
+            feedback.className = 'checkpoint-feedback visible error';
+            feedback.textContent = `✕ Incorrect. ${chk.explanation}`;
+          }
+        }
+
+        checkpointsContainer.appendChild(card);
+      });
+    }
+
+    // Main Slide Renderer
+    function renderSlide(idx) {
+      if (idx < 0 || idx >= SLIDES_DATA.length) return;
+      currentSlideIdx = idx;
+      const slide = SLIDES_DATA[idx];
+
+      slideCounter.textContent = `Slide ${slide.id} / ${SLIDES_DATA.length}`;
+      slideJumpSelect.value = idx;
+
+      // Update Navigation Buttons & Slide 20 Terminal Rule
+      prevBtn.disabled = (idx === 0);
+      
+      if (currentSlideIdx === SLIDES_DATA.length - 1) {
+        nextBtn.style.display = 'none';
+        lastSlideNotice.style.display = 'inline-flex';
+      } else {
+        nextBtn.style.display = 'inline-flex';
+        lastSlideNotice.style.display = 'none';
+      }
+
+      speechBubbleText.textContent = slide.narration || '';
+      speakNarration(slide.narration || '');
+
+      if (slide.is_quiz) {
+        renderQuizSlide(slide);
+      } else {
+        theoryCol.style.display = 'flex';
+        labCol.style.display = 'flex';
+        quizContainer.style.display = 'none';
+
+        slideTag.textContent = slide.tag;
+        slideTitle.textContent = slide.title;
+
+        // Render Vocabulary Badges
+        vocabBadgesRow.innerHTML = '';
+        if (slide.key_terms && slide.key_terms.length > 0) {
+          slide.key_terms.forEach(term => {
+            const b = document.createElement('span');
+            b.className = 'vocab-badge';
+            b.innerHTML = `<span style="font-size:0.7rem;">🏷️</span><span>${term}</span>`;
+            vocabBadgesRow.appendChild(b);
+          });
+        }
+
+        // Render Theory Body
+        theoryBody.innerHTML = '';
+        if (slide.content && slide.content.length > 0) {
+          slide.content.forEach(pText => {
+            const p = document.createElement('p');
+            p.textContent = pText;
+            theoryBody.appendChild(p);
+          });
+        }
+
+        // Render Fact Box
+        if (slide.fact_box) {
+          const fb = document.createElement('div');
+          fb.className = 'fact-box';
+          fb.innerHTML = `
+            <span class="fact-icon">💡</span>
+            <div><strong>Aryabhata's Wisdom:</strong> ${slide.fact_box}</div>
+          `;
+          theoryBody.appendChild(fb);
+        }
+
+        // Render Checkpoints
+        renderCheckpoints(slide.checkpoints);
+
+        // Render Interactive Simulator
+        renderSimulator(slide.sim_id);
+
+        if (window.triggerMathRender) triggerMathRender(theoryCol);
+      }
+    }
+
+    // Simulator Dispatcher
+    function renderSimulator(simId) {
+      simCanvas.innerHTML = '';
+      simControls.innerHTML = '';
+
+      switch(simId) {
+        case 'need_for_smaller_units_sim':
+          simNeedForSmallerUnits();
+          break;
+        case 'tenth_part_strip_sim':
+          simTenthPartStrip();
+          break;
+        case 'mm_cm_ruler_sim':
+          simMmCmRuler();
+          break;
+        case 'hundredth_grid_sim':
+          simHundredthGrid();
+          break;
+        case 'rupees_paise_currency_sim':
+          simRupeesPaiseCurrency();
+          break;
+        case 'decimal_place_value_matrix_sim':
+          simDecimalPlaceValueMatrix();
+          break;
+        case 'expanded_form_trailing_zeroes_sim':
+          simExpandedFormTrailingZeroes();
+          break;
+        case 'metric_length_converter_sim':
+          simMetricLengthConverter();
+          break;
+        case 'mass_capacity_scales_sim':
+          simMassCapacityScales();
+          break;
+        case 'number_line_zoom_sim':
+          simNumberLineZoom();
+          break;
+        case 'comparing_decimals_duel_sim':
+          simComparingDecimalsDuel();
+          break;
+        case 'decimal_addition_alignment_sim':
+          simDecimalAdditionAlignment();
+          break;
+        case 'decimal_subtraction_borrow_sim':
+          simDecimalSubtractionBorrow();
+          break;
+        case 'decimal_sequences_estimator_sim':
+          simDecimalSequencesEstimator();
+          break;
+        case 'cricket_time_deceptive_dots_sim':
+          simCricketTimeDeceptiveDots();
+          break;
+        case 'decimal_point_displacement_sim':
+          simDecimalPointDisplacement();
+          break;
+        default:
+          simCanvas.innerHTML = `<div style="color:#94a3b8; font-size:0.95rem;">Interactive Simulator Active</div>`;
+      }
+    }
+
+    // Mastery Quiz Slides Renderer (Slides 17 to 20)
+    function renderQuizSlide(slide) {
+      theoryCol.style.display = 'none';
+      labCol.style.display = 'none';
+      quizContainer.style.display = 'flex';
+
+      quizBadge.textContent = slide.tag;
+      quizTitle.textContent = slide.title;
+
+      const questions = slide.questions || [];
+      const slideQuizKey = `quiz_${slide.id}`;
+      if (!quizScores[slideQuizKey]) {
+        quizScores[slideQuizKey] = { correct: 0, answered: 0, total: questions.length };
+      }
+
+      function updateQuizScoreUI() {
+        const s = quizScores[slideQuizKey];
+        quizScorePill.textContent = `Score: ${s.correct} / ${s.total}`;
+        if (s.answered === s.total && s.correct >= 8) {
+          sfx.playCelebration();
+        }
+      }
+
+      quizItemsList.innerHTML = '';
+      questions.forEach((q, qIdx) => {
+        const card = document.createElement('div');
+        card.className = 'quiz-item-card';
+
+        const qHeader = document.createElement('div');
+        qHeader.className = 'quiz-q-header';
+        qHeader.innerHTML = `
+          <span class="quiz-q-num">Q${q.id}</span>
+          <span class="quiz-q-text">${q.question}</span>
+        `;
+        card.appendChild(qHeader);
+
+        const optGrid = document.createElement('div');
+        optGrid.className = 'quiz-options-grid';
+
+        const footerAct = document.createElement('div');
+        footerAct.className = 'quiz-footer-actions';
+
+        const statusFeedback = document.createElement('span');
+        statusFeedback.className = 'quiz-status-feedback';
+
+        const btnSol = document.createElement('button');
+        btnSol.className = 'btn-solution-modal';
+        btnSol.textContent = '💡 View Step-by-Step Solution';
+        btnSol.addEventListener('click', () => {
+          openSolutionModal(q);
+        });
+
+        footerAct.appendChild(statusFeedback);
+        footerAct.appendChild(btnSol);
+
+        const savedAnsKey = `quiz_ans_${q.id}`;
+        const savedAns = checkpointAnswers[savedAnsKey];
+
+        q.options.forEach((optText, oIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'quiz-opt-btn';
+          btn.textContent = optText;
+
+          if (savedAns !== undefined) {
+            btn.disabled = true;
+            if (oIdx === q.correct) btn.classList.add('correct');
+            else if (oIdx === savedAns) btn.classList.add('incorrect');
+          }
+
+          btn.addEventListener('click', () => {
+            checkpointAnswers[savedAnsKey] = oIdx;
+            const allBtns = optGrid.querySelectorAll('.quiz-opt-btn');
+            allBtns.forEach(b => b.disabled = true);
+
+            quizScores[slideQuizKey].answered++;
+
+            if (oIdx === q.correct) {
+              btn.classList.add('correct');
+              statusFeedback.style.color = '#34d399';
+              statusFeedback.textContent = '✓ Correct Answer!';
+              quizScores[slideQuizKey].correct++;
+              sfx.playCorrect();
+            } else {
+              btn.classList.add('incorrect');
+              allBtns[q.correct].classList.add('correct');
+              statusFeedback.style.color = '#f87171';
+              statusFeedback.textContent = '✕ Incorrect';
+              sfx.playIncorrect();
+            }
+            updateQuizScoreUI();
+          });
+          optGrid.appendChild(btn);
+        });
+
+        card.appendChild(optGrid);
+        card.appendChild(footerAct);
+
+        if (savedAns !== undefined) {
+          if (savedAns === q.correct) {
+            statusFeedback.style.color = '#34d399';
+            statusFeedback.textContent = '✓ Correct Answer!';
+          } else {
+            statusFeedback.style.color = '#f87171';
+            statusFeedback.textContent = '✕ Incorrect';
+          }
+        }
+
+        quizItemsList.appendChild(card);
+      });
+
+      updateQuizScoreUI();
+      if (window.triggerMathRender) triggerMathRender(quizContainer);
+    }
+
+    // Modal Solution Opener
+    function openSolutionModal(qOrId) {
+      const q = (typeof qOrId === 'object' && qOrId !== null) ? qOrId : (typeof QUIZ_QUESTIONS !== 'undefined' ? QUIZ_QUESTIONS.find(item => item.id === Number(qOrId)) : null);
+      if (!q) return;
+
+      if (typeof modalTitleText !== 'undefined' && modalTitleText) modalTitleText.textContent = `Question ${q.id} Detailed Derivation`;
+      if (typeof modalQuestionText !== 'undefined' && modalQuestionText) modalQuestionText.innerHTML = `<strong>Q${q.id}:</strong> ${q.question}`;
+      if (typeof modalSolutionSteps !== 'undefined' && modalSolutionSteps) {
+        modalSolutionSteps.innerHTML = '';
+        const correctOpt = (q.options && q.options[q.correct] !== undefined) ? q.options[q.correct] : '';
+        const solText = q.solution || (q.solution_steps ? q.solution_steps.join('<br>') : '') || q.explanation || 'Detailed step-by-step mathematical derivation provided above.';
+        
+        const sBox = document.createElement('div');
+        sBox.className = 'modal-solution-step';
+        sBox.innerHTML = `
+          <div style="font-weight:800; color:#34d399; margin-bottom:0.5rem; font-size:0.92rem;">
+            ✓ Correct Answer: Option ${String.fromCharCode(65 + q.correct)} (${correctOpt})
+          </div>
+          <div style="color:#e2e8f0; line-height:1.6;">${solText}</div>
+        `;
+        modalSolutionSteps.appendChild(sBox);
+      }
+
+      if (typeof solutionModal !== 'undefined' && solutionModal) {
+        solutionModal.style.setProperty('display', 'flex', 'important');
+        solutionModal.classList.add('is-active');
+      }
+      if (window.triggerMathRender && typeof solutionModal !== 'undefined' && solutionModal) triggerMathRender(solutionModal);
+      if (typeof sfx !== 'undefined' && sfx.playClick) sfx.playClick();
+    }
+    window.openSolutionModal = openSolutionModal;
+
+    btnCloseModal.addEventListener('click', () => {
+      solutionModal.style.display = 'none';
+      sfx.playClick();
+    });
+
+    solutionModal.addEventListener('click', (e) => {
+      if (e.target === solutionModal) {
+        solutionModal.style.display = 'none';
+      }
+    });
+
+
+    // ========================================================
+    // 16 BESPOKE INTERACTIVE SVG SIMULATORS (Ch 3 Decimals)
+    // ========================================================
+
+    // Slide 1: Need for Smaller Units (Magnifier on Continuous Scale)
+    function simNeedForSmallerUnits() {
+      simHeaderTitle.textContent = "The Need for Smaller Units: Beyond Whole Markings";
+      let activeItem = 0;
+      const items = [
+        { name: "Carpenter's Wood Screw", wholePart: 2, fracPart: 0.4, label: "2.4 cm (2 cm + 4 mm)" },
+        { name: "Pencil Lead Tip", wholePart: 0, fracPart: 0.7, label: "0.7 cm (7 mm)" },
+        { name: "Banyan Leaf Stem", wholePart: 3, fracPart: 0.8, label: "3.8 cm (3 cm + 8 mm)" },
+        { name: "Golden Beetle Width", wholePart: 1, fracPart: 0.6, label: "1.6 cm (1 cm + 6 mm)" }
+      ];
+
+      function render() {
+        const itm = items[activeItem];
+        const objWidth = (itm.wholePart + itm.fracPart) * 80;
+
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <defs>
+              <linearGradient id="rulerWood" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#fef08a"/>
+                <stop offset="100%" stop-color="#ca8a04"/>
+              </linearGradient>
+            </defs>
+            <rect x="0" y="0" width="540" height="330" fill="#090d16"/>
+
+            <!-- Header Badge -->
+            <rect x="110" y="15" width="320" height="34" rx="8" fill="rgba(30, 41, 59, 0.9)" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="270" y="37" fill="#38bdf8" font-size="13" font-weight="900" text-anchor="middle">Object: ${itm.name}</text>
+
+            <!-- Physical Object to Measure -->
+            <g transform="translate(60, 75)">
+              <rect x="0" y="0" width="${objWidth}" height="28" rx="6" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+              <text x="${objWidth / 2}" y="19" fill="#0f172a" font-size="11" font-weight="900" text-anchor="middle">${itm.name}</text>
+
+              <!-- Measurement Arrow -->
+              <line x1="0" y1="36" x2="${objWidth}" y2="36" stroke="#f59e0b" stroke-width="2"/>
+              <polygon points="0,36 8,32 8,40" fill="#f59e0b"/>
+              <polygon points="${objWidth},36 ${objWidth - 8},32 ${objWidth - 8},40" fill="#f59e0b"/>
+              <text x="${objWidth / 2}" y="52" fill="#fbbf24" font-size="12" font-weight="900" text-anchor="middle">Exact Length = ${itm.label}</text>
+            </g>
+
+            <!-- Standard Metric Ruler with Ticks -->
+            <g transform="translate(60, 145)">
+              <!-- Ruler Body -->
+              <rect x="0" y="0" width="420" height="65" rx="4" fill="url(#rulerWood)" stroke="#854d0e" stroke-width="2"/>
+
+              <!-- Centimetre and Millimetre markings (0 to 5 cm) -->
+              ${Array.from({ length: 6 }).map((_, cm) => {
+                const x = cm * 80;
+                return `
+                  <!-- Whole CM Mark -->
+                  <line x1="${x}" y1="0" x2="${x}" y2="28" stroke="#1e293b" stroke-width="2.5"/>
+                  <text x="${x}" y="45" fill="#1e293b" font-size="14" font-weight="900" text-anchor="middle">${cm}</text>
+                  ${cm < 5 ? Array.from({ length: 9 }).map((_, mm) => {
+                    const mmX = x + (mm + 1) * 8;
+                    const h = (mm === 4) ? 18 : 10;
+                    return `<line x1="${mmX}" y1="0" x2="${mmX}" y2="${h}" stroke="#334155" stroke-width="${mm === 4 ? 1.5 : 1}"/>`;
+                  }).join('') : ''}
+                `;
+              }).join('')}
+              <text x="405" y="58" fill="#451a03" font-size="9" font-weight="800">CENTIMETRES (cm)</text>
+            </g>
+
+            <!-- Bottom Insight Card -->
+            <rect x="40" y="235" width="460" height="75" rx="10" fill="rgba(15, 23, 42, 0.95)" stroke="#10b981" stroke-width="1.5"/>
+            <text x="270" y="258" fill="#34d399" font-size="12" font-weight="800" text-anchor="middle">Why Whole Numbers Fall Short:</text>
+            <text x="270" y="278" fill="#f8fafc" font-size="13" font-weight="700" text-anchor="middle">This object ends between ${itm.wholePart} cm and ${itm.wholePart + 1} cm marks.</text>
+            <text x="270" y="296" fill="#94a3b8" font-size="10.5" text-anchor="middle">Subdividing each 1 cm into 10 tenths (mm) gives the precise measurement: ${itm.label}!</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center; align-items:center;">
+          <span style="font-size:0.85rem; font-weight:700; color:#94a3b8;">Choose Object:</span>
+          ${items.map((itm, idx) => `<button class="sim-btn ${idx === activeItem ? 'active' : ''}" data-idx="${idx}">${itm.name}</button>`).join('')}
+        </div>
+      `;
+
+      simControls.querySelectorAll('.sim-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activeItem = parseInt(btn.dataset.idx);
+          simControls.querySelectorAll('.sim-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          render();
+          sfx.playClick();
+        });
+      });
+
+      render();
+    }
+
+    // Slide 2: A Tenth Part Strip Visualizer
+    function simTenthPartStrip() {
+      simHeaderTitle.textContent = "A Tenth Part: Slicing 1 Whole into 10 Equal Strips";
+      let count = 4; // 4 tenths selected
+
+      function render() {
+        const decimalVal = (count / 10).toFixed(1);
+        const fractionVal = `${count}/10`;
+        const percentage = count * 10;
+
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#070d19"/>
+
+            <!-- Header Badge -->
+            <rect x="110" y="15" width="320" height="34" rx="8" fill="rgba(30, 41, 59, 0.9)" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="270" y="37" fill="#38bdf8" font-size="13" font-weight="900" text-anchor="middle">
+              Value: ${fractionVal} = ${decimalVal} (${percentage}%)
+            </text>
+
+            <!-- 1 Whole Bar divided into 10 Strips -->
+            <g transform="translate(60, 75)">
+              <text x="210" y="15" fill="#94a3b8" font-size="11" font-weight="700" text-anchor="middle">1 WHOLE UNIT DIVIDED INTO 10 EQUAL TENTH STRIPS</text>
+              <rect x="0" y="25" width="420" height="70" rx="8" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+
+              ${Array.from({ length: 10 }).map((_, i) => {
+                const isShaded = i < count;
+                const fillCol = isShaded ? "#0284c7" : "transparent";
+                const borderCol = isShaded ? "#38bdf8" : "#475569";
+                return `
+                  <rect x="${i * 42}" y="25" width="42" height="70" fill="${fillCol}" stroke="${borderCol}" stroke-width="1.5"/>
+                  <text x="${i * 42 + 21}" y="65" fill="${isShaded ? '#ffffff' : '#64748b'}" font-size="12" font-weight="900" text-anchor="middle">0.1</text>
+                  <text x="${i * 42 + 21}" y="82" fill="${isShaded ? '#a7f3d0' : '#475569'}" font-size="9" text-anchor="middle">1/10</text>
+                `;
+              }).join('')}
+            </g>
+
+            <!-- Math Equivalence Cards -->
+            <g transform="translate(60, 185)">
+              <rect x="0" y="0" width="130" height="60" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+              <text x="65" y="24" fill="#38bdf8" font-size="10" font-weight="800" text-anchor="middle">Tenths Count</text>
+              <text x="65" y="48" fill="#ffffff" font-size="18" font-weight="900" text-anchor="middle">${count} tenths</text>
+
+              <rect x="145" y="0" width="130" height="60" rx="8" fill="#0f172a" stroke="#fbbf24" stroke-width="1.5"/>
+              <text x="210" y="24" fill="#fbbf24" font-size="10" font-weight="800" text-anchor="middle">Fraction Form</text>
+              <text x="210" y="48" fill="#ffffff" font-size="18" font-weight="900" text-anchor="middle">${fractionVal}</text>
+
+              <rect x="290" y="0" width="130" height="60" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+              <text x="355" y="24" fill="#34d399" font-size="10" font-weight="800" text-anchor="middle">Decimal Form</text>
+              <text x="355" y="48" fill="#ffffff" font-size="18" font-weight="900" text-anchor="middle">${decimalVal}</text>
+            </g>
+
+            <!-- Bottom Takeaway -->
+            <rect x="40" y="260" width="460" height="50" rx="8" fill="rgba(15, 23, 42, 0.9)" stroke="#64748b" stroke-width="1"/>
+            <text x="270" y="280" fill="#34d399" font-size="11" font-weight="800" text-anchor="middle">Ten tenths ($10 \\times 0.1$) combine together to make exactly 1 whole!</text>
+            <text x="270" y="298" fill="#94a3b8" font-size="9.5" text-anchor="middle">The decimal point separates whole numbers from tenths: 0.1, 0.2, 0.3, ... 0.9, 1.0</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; gap:0.6rem; justify-content:center; align-items:center;">
+          <label style="color:#94a3b8; font-size:0.85rem; font-weight:700;">Shaded Tenths (0 to 10): 
+            <input type="range" id="rngTenths" min="0" max="10" value="${count}" style="vertical-align:middle; width:150px;">
+          </label>
+          <button class="sim-btn" id="btnTenthFull">Full Unit (1.0)</button>
+          <button class="sim-btn" id="btnTenthHalf">Half Unit (0.5)</button>
+          <button class="sim-btn" id="btnTenthReset">Reset (0.0)</button>
+        </div>
+      `;
+
+      document.getElementById('rngTenths').oninput = (e) => {
+        count = parseInt(e.target.value);
+        render();
+      };
+      document.getElementById('btnTenthFull').onclick = () => {
+        count = 10;
+        document.getElementById('rngTenths').value = 10;
+        render(); sfx.playCelebration();
+      };
+      document.getElementById('btnTenthHalf').onclick = () => {
+        count = 5;
+        document.getElementById('rngTenths').value = 5;
+        render(); sfx.playClick();
+      };
+      document.getElementById('btnTenthReset').onclick = () => {
+        count = 0;
+        document.getElementById('rngTenths').value = 0;
+        render(); sfx.playClick();
+      };
+
+      render();
+    }
+
+    // Slide 3: Millimetres & Centimetres Caliper / Ruler
+    function simMmCmRuler() {
+      simHeaderTitle.textContent = "Metric Ruler: 1 Millimetre = 0.1 Centimetre";
+      let mmVal = 28; // 28 mm = 2.8 cm
+
+      function render() {
+        const cmVal = (mmVal / 10).toFixed(1);
+        const wholeCm = Math.floor(mmVal / 10);
+        const remMm = mmVal % 10;
+        const arrowX = 60 + (mmVal * 8);
+
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#090d16"/>
+
+            <!-- Display Screen -->
+            <rect x="100" y="15" width="340" height="50" rx="10" fill="rgba(15, 23, 42, 0.95)" stroke="#38bdf8" stroke-width="2"/>
+            <text x="270" y="38" fill="#38bdf8" font-size="12" font-weight="800" text-anchor="middle">DIGITAL METRIC CONVERTER</text>
+            <text x="270" y="58" fill="#ffffff" font-size="18" font-weight="900" text-anchor="middle">
+              ${mmVal} mm = ${cmVal} cm (${wholeCm} cm and ${remMm} mm)
+            </text>
+
+            <!-- Detailed Millimetre-Centimetre Ruler -->
+            <g transform="translate(60, 95)">
+              <rect x="0" y="0" width="420" height="75" rx="6" fill="#fef08a" stroke="#ca8a04" stroke-width="2"/>
+
+              <!-- Ticks up to 5 cm (50 mm) -->
+              ${Array.from({ length: 6 }).map((_, c) => {
+                const x = c * 80;
+                return `
+                  <line x1="${x}" y1="0" x2="${x}" y2="35" stroke="#1e293b" stroke-width="2.5"/>
+                  <text x="${x}" y="55" fill="#1e293b" font-size="15" font-weight="900" text-anchor="middle">${c}</text>
+                  ${c < 5 ? Array.from({ length: 9 }).map((_, m) => {
+                    const mx = x + (m + 1) * 8;
+                    const h = (m === 4) ? 22 : 12;
+                    return `<line x1="${mx}" y1="0" x2="${mx}" y2="${h}" stroke="#334155" stroke-width="${m === 4 ? 1.5 : 1}"/>`;
+                  }).join('') : ''}
+                `;
+              }).join('')}
+              <text x="405" y="68" fill="#854d0e" font-size="9" font-weight="800">cm</text>
+            </g>
+
+            <!-- Pointer Pin Marking the Selected mm -->
+            <polygon points="${arrowX},180 ${arrowX - 8},195 ${arrowX + 8},195" fill="#f43f5e"/>
+            <line x1="${arrowX}" y1="170" x2="${arrowX}" y2="95" stroke="#f43f5e" stroke-width="2" stroke-dasharray="3 3"/>
+            <text x="${arrowX}" y="212" fill="#f43f5e" font-size="12" font-weight="900" text-anchor="middle">${cmVal} cm</text>
+
+            <!-- Bottom Explanation Card -->
+            <rect x="50" y="235" width="440" height="75" rx="10" fill="rgba(30, 41, 59, 0.85)" stroke="#10b981" stroke-width="1.5"/>
+            <text x="270" y="258" fill="#34d399" font-size="12" font-weight="800" text-anchor="middle">Rule: 1 mm = 1/10 cm = 0.1 cm</text>
+            <text x="270" y="280" fill="#f8fafc" font-size="14" font-weight="900" text-anchor="middle">${mmVal} mm = ${mmVal} ÷ 10 = ${cmVal} cm</text>
+            <text x="270" y="298" fill="#94a3b8" font-size="10" text-anchor="middle">Converting millimetres to centimetres is simply a single decimal division by 10!</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; gap:0.8rem; justify-content:center; align-items:center;">
+          <label style="color:#94a3b8; font-size:0.85rem; font-weight:700;">Length in mm: 
+            <input type="range" id="rngMm" min="1" max="50" value="${mmVal}" style="vertical-align:middle; width:160px;">
+          </label>
+          <button class="sim-btn" data-val="8">8 mm</button>
+          <button class="sim-btn" data-val="14">14 mm</button>
+          <button class="sim-btn" data-val="36">36 mm</button>
+          <button class="sim-btn" data-val="45">45 mm</button>
+        </div>
+      `;
+
+      document.getElementById('rngMm').oninput = (e) => {
+        mmVal = parseInt(e.target.value);
+        render();
+      };
+
+      simControls.querySelectorAll('[data-val]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          mmVal = parseInt(btn.dataset.val);
+          document.getElementById('rngMm').value = mmVal;
+          render();
+          sfx.playClick();
+        });
+      });
+
+      render();
+    }
+
+    // Slide 4: A Hundredth Part 100-Grid Matrix
+    function simHundredthGrid() {
+      simHeaderTitle.textContent = "A Hundredth Part: The 100-Square Matrix (0.01 to 1.00)";
+      let hundredthsCount = 37;
+
+      function render() {
+        const decVal = (hundredthsCount / 100).toFixed(2);
+        const tenths = Math.floor(hundredthsCount / 10);
+        const remHund = hundredthsCount % 10;
+
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#080e1a"/>
+
+            <!-- 10x10 Grid (200x200 px) -->
+            <g transform="translate(45, 60)">
+              <rect x="0" y="0" width="200" height="200" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+              ${Array.from({ length: 100 }).map((_, i) => {
+                const r = Math.floor(i / 10);
+                const c = i % 10;
+                const isShaded = i < hundredthsCount;
+                return `
+                  <rect x="${c * 20}" y="${r * 20}" width="20" height="20" fill="${isShaded ? '#0284c7' : 'transparent'}" stroke="${isShaded ? '#38bdf8' : '#334155'}" stroke-width="0.8"/>
+                `;
+              }).join('')}
+            </g>
+
+            <!-- Information & Place Breakdown Panel -->
+            <g transform="translate(270, 60)">
+              <rect x="0" y="0" width="230" height="200" rx="12" fill="rgba(15, 23, 42, 0.95)" stroke="#38bdf8" stroke-width="1.5"/>
+              <text x="115" y="26" fill="#38bdf8" font-size="12" font-weight="800" text-anchor="middle">HUNDREDTHS MATRIX</text>
+              <line x1="15" y1="36" x2="215" y2="36" stroke="rgba(56, 189, 248, 0.3)"/>
+
+              <text x="15" y="60" fill="#94a3b8" font-size="10">Fraction Shaded:</text>
+              <text x="15" y="80" fill="#ffffff" font-size="16" font-weight="900">${hundredthsCount} / 100</text>
+
+              <text x="15" y="108" fill="#94a3b8" font-size="10">Decimal Representation:</text>
+              <text x="15" y="132" fill="#34d399" font-size="22" font-weight="900">${decVal}</text>
+
+              <rect x="12" y="145" width="206" height="42" rx="6" fill="#1e293b"/>
+              <text x="115" y="162" fill="#fbbf24" font-size="10" font-weight="800" text-anchor="middle">Place Breakdown:</text>
+              <text x="115" y="178" fill="#f8fafc" font-size="11" font-weight="700" text-anchor="middle">${tenths} Tenths + ${remHund} Hundredths</text>
+            </g>
+
+            <!-- Bottom Insight -->
+            <rect x="40" y="275" width="460" height="42" rx="8" fill="rgba(30, 41, 59, 0.85)" stroke="#64748b" stroke-width="1"/>
+            <text x="270" y="295" fill="#cbd5e1" font-size="10.5" font-weight="700" text-anchor="middle">10 hundredths = 1 tenth (0.10 = 0.1). 100 hundredths = 1 whole (1.00 = 1).</text>
+            <text x="270" y="309" fill="#38bdf8" font-size="9.5" text-anchor="middle">The second place after the dot represents hundredths (1/100).</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; gap:0.6rem; justify-content:center; align-items:center;">
+          <label style="color:#94a3b8; font-size:0.85rem; font-weight:700;">Shaded Hundredths (0 to 100): 
+            <input type="range" id="rngHund" min="0" max="100" value="${hundredthsCount}" style="vertical-align:middle; width:150px;">
+          </label>
+          <button class="sim-btn" data-v="10">10 (0.10)</button>
+          <button class="sim-btn" data-v="25">25 (0.25)</button>
+          <button class="sim-btn" data-v="50">50 (0.50)</button>
+          <button class="sim-btn" data-v="75">75 (0.75)</button>
+        </div>
+      `;
+
+      document.getElementById('rngHund').oninput = (e) => {
+        hundredthsCount = parseInt(e.target.value);
+        render();
+      };
+
+      simControls.querySelectorAll('[data-v]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          hundredthsCount = parseInt(btn.dataset.v);
+          document.getElementById('rngHund').value = hundredthsCount;
+          render();
+          sfx.playClick();
+        });
+      });
+
+      render();
+    }
+
+    // Slide 5: Rupees and Paise Currency Piggy Bank
+    function simRupeesPaiseCurrency() {
+      simHeaderTitle.textContent = "Rupees and Paise: 1 Paisa = ₹0.01 (Hundredths in Currency)";
+      let totalPaise = 85;
+
+      function render() {
+        const rupeesStr = (totalPaise / 100).toFixed(2);
+        const wholeRupees = Math.floor(totalPaise / 100);
+        const paisePart = totalPaise % 100;
+
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#090d16"/>
+
+            <!-- Piggy Bank / Wallet Display Card -->
+            <g transform="translate(60, 20)">
+              <rect x="0" y="0" width="420" height="90" rx="12" fill="rgba(15, 23, 42, 0.95)" stroke="#fbbf24" stroke-width="2"/>
+              <text x="210" y="28" fill="#fbbf24" font-size="12" font-weight="800" text-anchor="middle">INDIAN DECIMAL CURRENCY BANK</text>
+
+              <text x="210" y="58" fill="#ffffff" font-size="26" font-weight="900" text-anchor="middle">₹ ${rupeesStr}</text>
+              <text x="210" y="78" fill="#34d399" font-size="11" font-weight="700" text-anchor="middle">
+                = ${totalPaise} Paise (${wholeRupees} Rupee${wholeRupees === 1 ? '' : 's'} and ${paisePart} Paise)
+              </text>
+            </g>
+
+            <!-- Coins Showcase -->
+            <g transform="translate(60, 125)">
+              <rect x="0" y="0" width="420" height="105" rx="10" fill="rgba(30, 41, 59, 0.7)" stroke="#64748b" stroke-width="1.5"/>
+              <text x="210" y="22" fill="#94a3b8" font-size="11" font-weight="700" text-anchor="middle">Tap Coins to Add to Balance (1 Rupee = 100 Paise):</text>
+
+              <!-- Coin 5p -->
+              <circle cx="50" cy="62" r="22" fill="#713f12" stroke="#eab308" stroke-width="2"/>
+              <text x="50" y="66" fill="#fef08a" font-size="11" font-weight="900" text-anchor="middle">5p</text>
+              <text x="50" y="96" fill="#94a3b8" font-size="8" text-anchor="middle">₹0.05</text>
+
+              <!-- Coin 10p -->
+              <circle cx="130" cy="62" r="23" fill="#1e293b" stroke="#94a3b8" stroke-width="2"/>
+              <text x="130" y="66" fill="#f8fafc" font-size="11" font-weight="900" text-anchor="middle">10p</text>
+              <text x="130" y="96" fill="#94a3b8" font-size="8" text-anchor="middle">₹0.10</text>
+
+              <!-- Coin 25p -->
+              <circle cx="210" cy="62" r="24" fill="#0f766e" stroke="#2dd4bf" stroke-width="2"/>
+              <text x="210" y="66" fill="#ccfbf1" font-size="11" font-weight="900" text-anchor="middle">25p</text>
+              <text x="210" y="96" fill="#94a3b8" font-size="8" text-anchor="middle">₹0.25</text>
+
+              <!-- Coin 50p -->
+              <circle cx="290" cy="62" r="25" fill="#1d4ed8" stroke="#60a5fa" stroke-width="2"/>
+              <text x="290" y="66" fill="#dbeafe" font-size="11" font-weight="900" text-anchor="middle">50p</text>
+              <text x="290" y="96" fill="#94a3b8" font-size="8" text-anchor="middle">₹0.50</text>
+
+              <!-- Coin ₹1 -->
+              <circle cx="370" cy="62" r="26" fill="#b45309" stroke="#fbbf24" stroke-width="2.5"/>
+              <text x="370" y="66" fill="#fef08a" font-size="12" font-weight="900" text-anchor="middle">₹1</text>
+              <text x="370" y="96" fill="#94a3b8" font-size="8" text-anchor="middle">100p</text>
+            </g>
+
+            <!-- Warning Card on 5p vs 50p -->
+            <rect x="40" y="245" width="460" height="65" rx="8" fill="rgba(239, 68, 68, 0.12)" stroke="#ef4444" stroke-width="1"/>
+            <text x="270" y="268" fill="#f87171" font-size="11" font-weight="800" text-anchor="middle">⚠️ Beware the Single-Digit Trap!</text>
+            <text x="270" y="286" fill="#f8fafc" font-size="11" font-weight="700" text-anchor="middle">5 paise = ₹0.05 (5 hundredths). Writing ₹0.5 means 50 paise (5 tenths)!</text>
+            <text x="270" y="302" fill="#94a3b8" font-size="9.5" text-anchor="middle">Always use two decimal places for paise: ₹1.05 ≠ ₹1.50</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center; align-items:center;">
+          <button class="sim-btn" id="btnAdd5">+ 5p</button>
+          <button class="sim-btn" id="btnAdd10">+ 10p</button>
+          <button class="sim-btn" id="btnAdd25">+ 25p</button>
+          <button class="sim-btn" id="btnAdd50">+ 50p</button>
+          <button class="sim-btn" id="btnAdd100">+ ₹1 (100p)</button>
+          <button class="sim-btn" id="btnCoinReset" style="border-color:#ef4444; color:#fca5a5;">Reset</button>
+        </div>
+      `;
+
+      document.getElementById('btnAdd5').onclick = () => { totalPaise += 5; render(); sfx.playClick(); };
+      document.getElementById('btnAdd10').onclick = () => { totalPaise += 10; render(); sfx.playClick(); };
+      document.getElementById('btnAdd25').onclick = () => { totalPaise += 25; render(); sfx.playClick(); };
+      document.getElementById('btnAdd50').onclick = () => { totalPaise += 50; render(); sfx.playClick(); };
+      document.getElementById('btnAdd100').onclick = () => { totalPaise += 100; render(); sfx.playCelebration(); };
+      document.getElementById('btnCoinReset').onclick = () => { totalPaise = 0; render(); sfx.playClick(); };
+
+      render();
+    }
+
+    // Slide 6: Decimal Place Value Matrix Table
+    function simDecimalPlaceValueMatrix() {
+      simHeaderTitle.textContent = "The Base-10 Place Value Matrix: Tens, Ones, Tenths, Hundredths";
+      let activePreset = 0;
+      const presets = [
+        { label: "253.48", h: 2, t: 5, o: 3, th: 4, hth: 8, mth: 0 },
+        { label: "47.382", h: 0, t: 4, o: 7, th: 3, hth: 8, mth: 2 },
+        { label: "8.05", h: 0, t: 0, o: 8, th: 0, hth: 5, mth: 0 },
+        { label: "105.7", h: 1, t: 0, o: 5, th: 7, hth: 0, mth: 0 }
+      ];
+
+      function render() {
+        const p = presets[activePreset];
+
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#070d19"/>
+
+            <!-- Header Badge -->
+            <rect x="120" y="15" width="300" height="36" rx="8" fill="rgba(30, 41, 59, 0.9)" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="270" y="38" fill="#38bdf8" font-size="14" font-weight="900" text-anchor="middle">Number: ${p.label}</text>
+
+            <!-- Matrix Columns -->
+            <g transform="translate(35, 70)">
+              <!-- Hundreds -->
+              <rect x="0" y="0" width="70" height="120" rx="8" fill="#0f172a" stroke="#64748b"/>
+              <text x="35" y="22" fill="#94a3b8" font-size="9" font-weight="800" text-anchor="middle">HUNDREDS</text>
+              <text x="35" y="36" fill="#64748b" font-size="8" text-anchor="middle">(100)</text>
+              <text x="35" y="80" fill="#ffffff" font-size="28" font-weight="900" text-anchor="middle">${p.h}</text>
+              <text x="35" y="105" fill="#38bdf8" font-size="9" text-anchor="middle">${p.h * 100}</text>
+
+              <!-- Tens -->
+              <rect x="75" y="0" width="70" height="120" rx="8" fill="#0f172a" stroke="#64748b"/>
+              <text x="110" y="22" fill="#94a3b8" font-size="9" font-weight="800" text-anchor="middle">TENS</text>
+              <text x="110" y="36" fill="#64748b" font-size="8" text-anchor="middle">(10)</text>
+              <text x="110" y="80" fill="#ffffff" font-size="28" font-weight="900" text-anchor="middle">${p.t}</text>
+              <text x="110" y="105" fill="#38bdf8" font-size="9" text-anchor="middle">${p.t * 10}</text>
+
+              <!-- Ones -->
+              <rect x="150" y="0" width="70" height="120" rx="8" fill="#0f172a" stroke="#64748b"/>
+              <text x="185" y="22" fill="#94a3b8" font-size="9" font-weight="800" text-anchor="middle">ONES</text>
+              <text x="185" y="36" fill="#64748b" font-size="8" text-anchor="middle">(1)</text>
+              <text x="185" y="80" fill="#ffffff" font-size="28" font-weight="900" text-anchor="middle">${p.o}</text>
+              <text x="185" y="105" fill="#38bdf8" font-size="9" text-anchor="middle">${p.o * 1}</text>
+
+              <!-- DECIMAL POINT -->
+              <circle cx="235" cy="80" r="7" fill="#f43f5e"/>
+              <text x="235" y="105" fill="#f43f5e" font-size="9" font-weight="900" text-anchor="middle">DOT</text>
+
+              <!-- Tenths -->
+              <rect x="250" y="0" width="70" height="120" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+              <text x="285" y="22" fill="#38bdf8" font-size="9" font-weight="800" text-anchor="middle">TENTHS</text>
+              <text x="285" y="36" fill="#94a3b8" font-size="8" text-anchor="middle">(1/10)</text>
+              <text x="285" y="80" fill="#38bdf8" font-size="28" font-weight="900" text-anchor="middle">${p.th}</text>
+              <text x="285" y="105" fill="#a7f3d0" font-size="9" text-anchor="middle">${(p.th * 0.1).toFixed(1)}</text>
+
+              <!-- Hundredths -->
+              <rect x="325" y="0" width="70" height="120" rx="8" fill="#1e293b" stroke="#fbbf24" stroke-width="2"/>
+              <text x="360" y="22" fill="#fbbf24" font-size="9" font-weight="800" text-anchor="middle">HUNDREDTHS</text>
+              <text x="360" y="36" fill="#94a3b8" font-size="8" text-anchor="middle">(1/100)</text>
+              <text x="360" y="80" fill="#fbbf24" font-size="28" font-weight="900" text-anchor="middle">${p.hth}</text>
+              <text x="360" y="105" fill="#a7f3d0" font-size="9" text-anchor="middle">${(p.hth * 0.01).toFixed(2)}</text>
+
+              <!-- Thousandths -->
+              <rect x="400" y="0" width="70" height="120" rx="8" fill="#0f172a" stroke="#64748b"/>
+              <text x="435" y="22" fill="#94a3b8" font-size="8" font-weight="800" text-anchor="middle">THOUSANDTHS</text>
+              <text x="435" y="36" fill="#64748b" font-size="8" text-anchor="middle">(1/1000)</text>
+              <text x="435" y="80" fill="#ffffff" font-size="28" font-weight="900" text-anchor="middle">${p.mth}</text>
+              <text x="435" y="105" fill="#38bdf8" font-size="9" text-anchor="middle">${(p.mth * 0.001).toFixed(3)}</text>
+            </g>
+
+            <!-- Aryabhata's Law Banner -->
+            <rect x="35" y="215" width="470" height="95" rx="10" fill="rgba(15, 23, 42, 0.95)" stroke="#10b981" stroke-width="1.5"/>
+            <text x="270" y="240" fill="#34d399" font-size="12" font-weight="900" text-anchor="middle">Acharya Aryabhata's Law: Sthanam Sthanam Dasha Gunam Syat</text>
+            <text x="270" y="265" fill="#f8fafc" font-size="11.5" font-weight="700" text-anchor="middle">
+              Moving Left ➔ Multiplies by 10 (÷10 ➔ ×1 ➔ ×10 ➔ ×100)
+            </text>
+            <text x="270" y="285" fill="#38bdf8" font-size="11.5" font-weight="700" text-anchor="middle">
+              Moving Right ➔ Divides by 10 (×100 ➔ ×10 ➔ ×1 ➔ ÷10 ➔ ÷100 ➔ ÷1000)
+            </text>
+            <text x="270" y="302" fill="#94a3b8" font-size="9" text-anchor="middle">The decimal point marks the sacred boundary between whole units and fractional subdivisions.</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center; align-items:center;">
+          <span style="font-size:0.85rem; font-weight:700; color:#94a3b8;">Select Number:</span>
+          ${presets.map((p, idx) => `<button class="sim-btn ${idx === activePreset ? 'active' : ''}" data-idx="${idx}">${p.label}</button>`).join('')}
+        </div>
+      `;
+
+      simControls.querySelectorAll('.sim-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activePreset = parseInt(btn.dataset.idx);
+          simControls.querySelectorAll('.sim-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          render();
+          sfx.playClick();
+        });
+      });
+
+      render();
+    }
+
+    // Slide 7: Expanded Form & Trailing Zeroes Invariance
+    function simExpandedFormTrailingZeroes() {
+      simHeaderTitle.textContent = "Expanded Notation & Trailing Zeroes Invariance (0.4 = 0.40 = 0.400)";
+      let trailingMode = 0; // 0: 0.4, 1: 0.40, 2: 0.400
+
+      function render() {
+        const valStr = trailingMode === 0 ? "0.4" : (trailingMode === 1 ? "0.40" : "0.400");
+        const shadedPercent = 40;
+
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#090d16"/>
+
+            <!-- Value Display -->
+            <rect x="140" y="15" width="260" height="40" rx="8" fill="rgba(30, 41, 59, 0.9)" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="270" y="41" fill="#38bdf8" font-size="18" font-weight="900" text-anchor="middle">Decimal: ${valStr}</text>
+
+            <!-- Visual Bar Representation -->
+            <g transform="translate(60, 75)">
+              <text x="210" y="18" fill="#94a3b8" font-size="11" font-weight="700" text-anchor="middle">Physical Area Shaded Remains Exactly Identical (40%):</text>
+              <rect x="0" y="28" width="420" height="50" rx="6" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/>
+              <rect x="0" y="28" width="${420 * 0.4}" height="50" rx="6" fill="#0284c7" stroke="#38bdf8" stroke-width="2"/>
+              <text x="${(420 * 0.4) / 2}" y="58" fill="#ffffff" font-size="14" font-weight="900" text-anchor="middle">40% Shaded</text>
+            </g>
+
+            <!-- Equivalence Formula Cards -->
+            <g transform="translate(60, 170)">
+              <rect x="0" y="0" width="130" height="65" rx="8" fill="#0f172a" stroke="${trailingMode === 0 ? '#38bdf8' : '#475569'}" stroke-width="${trailingMode === 0 ? 2 : 1}"/>
+              <text x="65" y="24" fill="#38bdf8" font-size="11" font-weight="800" text-anchor="middle">Tenths Form</text>
+              <text x="65" y="46" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle">4/10 = 0.4</text>
+
+              <rect x="145" y="0" width="130" height="65" rx="8" fill="#0f172a" stroke="${trailingMode === 1 ? '#fbbf24' : '#475569'}" stroke-width="${trailingMode === 1 ? 2 : 1}"/>
+              <text x="210" y="24" fill="#fbbf24" font-size="11" font-weight="800" text-anchor="middle">Hundredths Form</text>
+              <text x="210" y="46" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle">40/100 = 0.40</text>
+
+              <rect x="290" y="0" width="130" height="65" rx="8" fill="#0f172a" stroke="${trailingMode === 2 ? '#10b981' : '#475569'}" stroke-width="${trailingMode === 2 ? 2 : 1}"/>
+              <text x="355" y="24" fill="#34d399" font-size="11" font-weight="800" text-anchor="middle">Thousandths Form</text>
+              <text x="355" y="46" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle">400/1000 = 0.400</text>
+            </g>
+
+            <!-- Takeaway Banner -->
+            <rect x="40" y="250" width="460" height="65" rx="10" fill="rgba(15, 23, 42, 0.95)" stroke="#10b981" stroke-width="1.5"/>
+            <text x="270" y="272" fill="#34d399" font-size="12" font-weight="800" text-anchor="middle">The Trailing Zeroes Invariance Law:</text>
+            <text x="270" y="292" fill="#f8fafc" font-size="14" font-weight="900" text-anchor="middle">0.4 = 0.40 = 0.400 (Equal Quantities!)</text>
+            <text x="270" y="306" fill="#94a3b8" font-size="9" text-anchor="middle">Adding zeroes to the end of a decimal does NOT multiply by 10; it only re-expresses it in smaller slices!</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; gap:1rem; justify-content:center; align-items:center;">
+          <button class="sim-btn ${trailingMode === 0 ? 'active' : ''}" id="btnTrail0">View 0.4 (Tenths)</button>
+          <button class="sim-btn ${trailingMode === 1 ? 'active' : ''}" id="btnTrail1">View 0.40 (Hundredths)</button>
+          <button class="sim-btn ${trailingMode === 2 ? 'active' : ''}" id="btnTrail2">View 0.400 (Thousandths)</button>
+        </div>
+      `;
+
+      document.getElementById('btnTrail0').onclick = () => { trailingMode = 0; render(); sfx.playClick(); };
+      document.getElementById('btnTrail1').onclick = () => { trailingMode = 1; render(); sfx.playClick(); };
+      document.getElementById('btnTrail2').onclick = () => { trailingMode = 2; render(); sfx.playClick(); };
+
+      render();
+    }
+
+    // Slide 8: Metric Length Ladder Converter (mm, cm, m, km)
+    function simMetricLengthConverter() {
+      simHeaderTitle.textContent = "Metric Length Ladder: Power-of-10 Decimal Shifts";
+      let val = 2450; // default in mm or cm
+
+      function render() {
+        const mm = val;
+        const cm = (val / 10).toFixed(2);
+        const m = (val / 1000).toFixed(3);
+        const km = (val / 1000000).toFixed(6);
+
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#070d19"/>
+
+            <!-- Metric Ladder Steps -->
+            <g transform="translate(50, 30)">
+              <!-- Millimetres -->
+              <rect x="0" y="180" width="100" height="60" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+              <text x="50" y="202" fill="#38bdf8" font-size="11" font-weight="800" text-anchor="middle">Millimetres (mm)</text>
+              <text x="50" y="225" fill="#ffffff" font-size="13" font-weight="900" text-anchor="middle">${mm} mm</text>
+
+              <!-- Arrow /10 -->
+              <text x="120" y="165" fill="#fbbf24" font-size="11" font-weight="900" text-anchor="middle">÷ 10 ➔</text>
+
+              <!-- Centimetres -->
+              <rect x="140" y="130" width="100" height="60" rx="8" fill="#1e293b" stroke="#fbbf24" stroke-width="2"/>
+              <text x="190" y="152" fill="#fbbf24" font-size="11" font-weight="800" text-anchor="middle">Centimetres (cm)</text>
+              <text x="190" y="175" fill="#ffffff" font-size="13" font-weight="900" text-anchor="middle">${cm} cm</text>
+
+              <!-- Arrow /100 -->
+              <text x="260" y="115" fill="#34d399" font-size="11" font-weight="900" text-anchor="middle">÷ 100 ➔</text>
+
+              <!-- Metres -->
+              <rect x="280" y="80" width="100" height="60" rx="8" fill="#1e293b" stroke="#34d399" stroke-width="2"/>
+              <text x="330" y="102" fill="#34d399" font-size="11" font-weight="800" text-anchor="middle">Metres (m)</text>
+              <text x="330" y="125" fill="#ffffff" font-size="13" font-weight="900" text-anchor="middle">${m} m</text>
+
+              <!-- Arrow /1000 -->
+              <text x="400" y="65" fill="#a855f7" font-size="11" font-weight="900" text-anchor="middle">÷ 1000 ➔</text>
+
+              <!-- Kilometres -->
+              <rect x="420" y="30" width="90" height="60" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+              <text x="465" y="52" fill="#c084fc" font-size="10" font-weight="800" text-anchor="middle">Kilometres (km)</text>
+              <text x="465" y="75" fill="#ffffff" font-size="11" font-weight="900" text-anchor="middle">${km} km</text>
+            </g>
+
+            <!-- Output Summary Box -->
+            <rect x="50" y="255" width="440" height="65" rx="10" fill="rgba(15, 23, 42, 0.95)" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="270" y="278" fill="#38bdf8" font-size="12" font-weight="800" text-anchor="middle">Seamless Metric Conversions via Decimal Point Movement:</text>
+            <text x="270" y="300" fill="#f8fafc" font-size="14" font-weight="900" text-anchor="middle">
+              ${mm} mm = ${cm} cm = ${m} m
+            </text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center; align-items:center;">
+          <span style="font-size:0.85rem; font-weight:700; color:#94a3b8;">Preset Measurements:</span>
+          <button class="sim-btn" data-v="850">850 mm</button>
+          <button class="sim-btn active" data-v="2450">2,450 mm</button>
+          <button class="sim-btn" data-v="15000">15,000 mm</button>
+          <button class="sim-btn" data-v="350000">3,50,000 mm</button>
+        </div>
+      `;
+
+      simControls.querySelectorAll('.sim-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          val = parseInt(btn.dataset.v);
+          simControls.querySelectorAll('.sim-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          render();
+          sfx.playClick();
+        });
+      });
+
+      render();
+    }
+
+    // Slide 9: Mass & Capacity Laboratory Scale & Cylinder
+    function simMassCapacityScales() {
+      simHeaderTitle.textContent = "Mass & Capacity: Grams to Kilograms, Millilitres to Litres (Thousandths)";
+      let mode = "mass"; // "mass" or "capacity"
+      let val = 450; // grams or mL
+
+      function render() {
+        if (mode === "mass") {
+          const kgStr = (val / 1000).toFixed(3);
+          simCanvas.innerHTML = `
+            <svg viewBox="0 0 540 330" width="100%" height="100%">
+              <rect x="0" y="0" width="540" height="330" fill="#090d16"/>
+
+              <rect x="110" y="15" width="320" height="36" rx="8" fill="rgba(30, 41, 59, 0.9)" stroke="#fbbf24" stroke-width="1.5"/>
+              <text x="270" y="38" fill="#fbbf24" font-size="13" font-weight="900" text-anchor="middle">DIGITAL LABORATORY BALANCE (MASS)</text>
+
+              <!-- Digital Scale Graphic -->
+              <g transform="translate(140, 75)">
+                <!-- Weighing Pan -->
+                <rect x="30" y="0" width="200" height="15" rx="4" fill="#94a3b8" stroke="#f8fafc" stroke-width="1.5"/>
+                <!-- Item on Pan -->
+                <circle cx="130" cy="-25" r="24" fill="#10b981" stroke="#34d399" stroke-width="2"/>
+                <text x="130" y="-20" fill="#ffffff" font-size="12" font-weight="900" text-anchor="middle">${val} g</text>
+
+                <!-- Base Body -->
+                <path d="M 10,15 L 250,15 L 230,130 L 30,130 Z" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+
+                <!-- LCD Display Screen -->
+                <rect x="50" y="45" width="160" height="55" rx="8" fill="#022c22" stroke="#10b981" stroke-width="2"/>
+                <text x="130" y="80" fill="#34d399" font-size="22" font-weight="900" text-anchor="middle">${kgStr} kg</text>
+                <text x="130" y="94" fill="#a7f3d0" font-size="9" text-anchor="middle">(${val} grams)</text>
+              </g>
+
+              <!-- Formula Box -->
+              <rect x="50" y="235" width="440" height="75" rx="10" fill="rgba(15, 23, 42, 0.95)" stroke="#10b981" stroke-width="1.5"/>
+              <text x="270" y="258" fill="#34d399" font-size="12" font-weight="800" text-anchor="middle">Mass Rule: 1 kg = 1000 g ➔ 1 g = 1/1000 kg = 0.001 kg</text>
+              <text x="270" y="280" fill="#ffffff" font-size="14" font-weight="900" text-anchor="middle">${val} g = ${val} ÷ 1000 = ${kgStr} kg</text>
+              <text x="270" y="298" fill="#94a3b8" font-size="10" text-anchor="middle">Notice three decimal places: 5 g = 0.005 kg, 50 g = 0.050 kg, 500 g = 0.500 kg!</text>
+            </svg>
+          `;
+        } else {
+          // Capacity: mL to L
+          const lStr = (val / 1000).toFixed(3);
+          simCanvas.innerHTML = `
+            <svg viewBox="0 0 540 330" width="100%" height="100%">
+              <rect x="0" y="0" width="540" height="330" fill="#090d16"/>
+
+              <rect x="110" y="15" width="320" height="36" rx="8" fill="rgba(30, 41, 59, 0.9)" stroke="#38bdf8" stroke-width="1.5"/>
+              <text x="270" y="38" fill="#38bdf8" font-size="13" font-weight="900" text-anchor="middle">GRADUATED CYLINDER (CAPACITY)</text>
+
+              <!-- Measuring Cylinder Graphic -->
+              <g transform="translate(190, 65)">
+                <!-- Glass Cylinder -->
+                <rect x="0" y="0" width="80" height="150" rx="4" fill="rgba(56, 189, 248, 0.1)" stroke="#38bdf8" stroke-width="2"/>
+                <!-- Liquid Fill -->
+                <rect x="2" y="${150 - (val / 1000) * 140}" width="76" height="${(val / 1000) * 140}" fill="#0284c7" opacity="0.8"/>
+                <!-- Cylinder Ticks -->
+                <line x1="60" y1="30" x2="80" y2="30" stroke="#ffffff" stroke-width="1.5"/>
+                <text x="50" y="34" fill="#ffffff" font-size="9">750</text>
+                <line x1="60" y1="75" x2="80" y2="75" stroke="#ffffff" stroke-width="1.5"/>
+                <text x="50" y="79" fill="#ffffff" font-size="9">500</text>
+                <line x1="60" y1="115" x2="80" y2="115" stroke="#ffffff" stroke-width="1.5"/>
+                <text x="50" y="119" fill="#ffffff" font-size="9">250</text>
+
+                <!-- Value Callout -->
+                <rect x="100" y="45" width="150" height="60" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+                <text x="175" y="70" fill="#38bdf8" font-size="12" font-weight="800" text-anchor="middle">${val} mL</text>
+                <text x="175" y="92" fill="#ffffff" font-size="16" font-weight="900" text-anchor="middle">= ${lStr} L</text>
+              </g>
+
+              <rect x="50" y="235" width="440" height="75" rx="10" fill="rgba(15, 23, 42, 0.95)" stroke="#38bdf8" stroke-width="1.5"/>
+              <text x="270" y="258" fill="#38bdf8" font-size="12" font-weight="800" text-anchor="middle">Capacity Rule: 1 L = 1000 mL ➔ 1 mL = 1/1000 L = 0.001 L</text>
+              <text x="270" y="280" fill="#ffffff" font-size="14" font-weight="900" text-anchor="middle">${val} mL = ${val} ÷ 1000 = ${lStr} Litres</text>
+              <text x="270" y="298" fill="#94a3b8" font-size="10" text-anchor="middle">Volume in litres directly corresponds to thousandths of a litre!</text>
+            </svg>
+          `;
+        }
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; gap:0.6rem; justify-content:center; align-items:center;">
+          <button class="sim-btn ${mode === 'mass' ? 'active' : ''}" id="btnMassMode">⚖️ Mass (g ➔ kg)</button>
+          <button class="sim-btn ${mode === 'capacity' ? 'active' : ''}" id="btnCapMode">🧪 Capacity (mL ➔ L)</button>
+          <span style="color:#94a3b8; font-size:0.85rem; font-weight:700; margin-left:0.5rem;">Amount:</span>
+          <button class="sim-btn" data-v="5">5</button>
+          <button class="sim-btn" data-v="75">75</button>
+          <button class="sim-btn active" data-v="450">450</button>
+          <button class="sim-btn" data-v="825">825</button>
+        </div>
+      `;
+
+      document.getElementById('btnMassMode').onclick = () => { mode = "mass"; render(); sfx.playClick(); };
+      document.getElementById('btnCapMode').onclick = () => { mode = "capacity"; render(); sfx.playClick(); };
+
+      simControls.querySelectorAll('[data-v]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          val = parseInt(btn.dataset.v);
+          simControls.querySelectorAll('[data-v]').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          render();
+          sfx.playClick();
+        });
+      });
+
+      render();
+    }
+
+    // Slide 10: Number Line Zoomable Locator
+    function simNumberLineZoom() {
+      simHeaderTitle.textContent = "Locating Decimals on the Number Line: Infinite Zoom";
+      let zoomLevel = 1; // 1: 0 to 3 wholes, 2: 1 to 2 tenths, 3: 1.4 to 1.5 hundredths
+
+      function render() {
+        let lineSvg = "";
+        let desc = "";
+
+        if (zoomLevel === 1) {
+          // Whole numbers 0, 1, 2, 3
+          desc = "Level 1: Whole Number View (0 to 3). Target decimal: 1.4 lies between 1 and 2.";
+          lineSvg = `
+            <line x1="40" y1="90" x2="480" y2="90" stroke="#64748b" stroke-width="3"/>
+            ${[0, 1, 2, 3].map((w, i) => {
+              const x = 50 + i * 140;
+              return `
+                <line x1="${x}" y1="75" x2="${x}" y2="105" stroke="#38bdf8" stroke-width="2.5"/>
+                <text x="${x}" y="125" fill="#f8fafc" font-size="16" font-weight="900" text-anchor="middle">${w}</text>
+              `;
+            }).join('')}
+
+            <!-- Highlight interval 1 to 2 -->
+            <rect x="185" y="70" width="150" height="40" rx="8" fill="rgba(56, 189, 248, 0.15)" stroke="#38bdf8" stroke-dasharray="4"/>
+            <text x="260" y="60" fill="#38bdf8" font-size="11" font-weight="800" text-anchor="middle">🔍 Click 'Zoom to Tenths' Below</text>
+          `;
+        } else if (zoomLevel === 2) {
+          // Tenths view between 1.0 and 2.0
+          desc = "Level 2: Tenths Magnification (1.0 to 2.0). 1.4 is 4 ticks to the right of 1.0!";
+          lineSvg = `
+            <line x1="40" y1="90" x2="480" y2="90" stroke="#64748b" stroke-width="3"/>
+            ${Array.from({ length: 11 }).map((_, i) => {
+              const x = 50 + i * 42;
+              const val = (1.0 + i * 0.1).toFixed(1);
+              const isTarget = (i === 4);
+              return `
+                <line x1="${x}" y1="${isTarget ? '65' : '75'}" x2="${x}" y2="${isTarget ? '115' : '105'}" stroke="${isTarget ? '#f43f5e' : '#38bdf8'}" stroke-width="${isTarget ? 3 : 1.5}"/>
+                <text x="${x}" y="128" fill="${isTarget ? '#f43f5e' : '#cbd5e1'}" font-size="${isTarget ? '13' : '10'}" font-weight="${isTarget ? '900' : '700'}" text-anchor="middle">${val}</text>
+                ${isTarget ? `
+                  <circle cx="${x}" cy="50" r="12" fill="#f43f5e"/>
+                  <text x="${x}" y="55" fill="#ffffff" font-size="11" font-weight="900" text-anchor="middle">📍</text>
+                  <text x="${x}" y="32" fill="#f43f5e" font-size="12" font-weight="900" text-anchor="middle">1.4 TARGET</text>
+                ` : ''}
+              `;
+            }).join('')}
+          `;
+        } else {
+          // Hundredths view between 1.40 and 1.50
+          desc = "Level 3: Hundredths Super-Zoom (1.40 to 1.50). Locating 1.47!";
+          lineSvg = `
+            <line x1="40" y1="90" x2="480" y2="90" stroke="#64748b" stroke-width="3"/>
+            ${Array.from({ length: 11 }).map((_, i) => {
+              const x = 50 + i * 42;
+              const val = (1.40 + i * 0.01).toFixed(2);
+              const isTarget = (i === 7);
+              return `
+                <line x1="${x}" y1="${isTarget ? '65' : '75'}" x2="${x}" y2="${isTarget ? '115' : '105'}" stroke="${isTarget ? '#10b981' : '#fbbf24'}" stroke-width="${isTarget ? 3 : 1.5}"/>
+                <text x="${x}" y="128" fill="${isTarget ? '#34d399' : '#cbd5e1'}" font-size="${isTarget ? '12' : '9.5'}" font-weight="${isTarget ? '900' : '700'}" text-anchor="middle">${val}</text>
+                ${isTarget ? `
+                  <circle cx="${x}" cy="50" r="12" fill="#10b981"/>
+                  <text x="${x}" y="55" fill="#ffffff" font-size="11" font-weight="900" text-anchor="middle">📍</text>
+                  <text x="${x}" y="32" fill="#34d399" font-size="12" font-weight="900" text-anchor="middle">1.47 TARGET</text>
+                ` : ''}
+              `;
+            }).join('')}
+          `;
+        }
+
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#080e1a"/>
+
+            <rect x="90" y="15" width="360" height="34" rx="8" fill="rgba(30, 41, 59, 0.9)" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="270" y="37" fill="#38bdf8" font-size="13" font-weight="900" text-anchor="middle">Magnification Level ${zoomLevel} of 3</text>
+
+            <!-- Dynamic SVG Number Line -->
+            ${lineSvg}
+
+            <!-- Explanation Card -->
+            <rect x="40" y="230" width="460" height="80" rx="10" fill="rgba(15, 23, 42, 0.95)" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="270" y="255" fill="#38bdf8" font-size="12" font-weight="800" text-anchor="middle">${desc}</text>
+            <text x="270" y="278" fill="#f8fafc" font-size="11" text-anchor="middle">Every decimal has an exact geographic address on the number line.</text>
+            <text x="270" y="296" fill="#94a3b8" font-size="9.5" text-anchor="middle">Subdividing by 10 continuously uncovers tenths, hundredths, thousandths...</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; gap:1rem; justify-content:center; align-items:center;">
+          <button class="sim-btn ${zoomLevel === 1 ? 'active' : ''}" id="btnZoom1">1. Wholes (0 to 3)</button>
+          <button class="sim-btn ${zoomLevel === 2 ? 'active' : ''}" id="btnZoom2">2. Zoom Tenths (1.0 - 2.0)</button>
+          <button class="sim-btn ${zoomLevel === 3 ? 'active' : ''}" id="btnZoom3">3. Super-Zoom (1.40 - 1.50)</button>
+        </div>
+      `;
+
+      document.getElementById('btnZoom1').onclick = () => { zoomLevel = 1; render(); sfx.playClick(); };
+      document.getElementById('btnZoom2').onclick = () => { zoomLevel = 2; render(); sfx.playClick(); };
+      document.getElementById('btnZoom3').onclick = () => { zoomLevel = 3; render(); sfx.playCelebration(); };
+
+      render();
+    }
+
+    // Slide 11: Comparing Decimals Duel Balance
+    function simComparingDecimalsDuel() {
+      simHeaderTitle.textContent = "Comparing Decimals: Place-by-Place Duel (Whole, Tenths, Hundredths)";
+      let activeDuel = 0;
+      const duels = [
+        { numA: "0.8", padA: "0.80", numB: "0.75", padB: "0.75", winner: "A", reason: "8 Tenths > 7 Tenths (0.80 > 0.75)" },
+        { numA: "3.45", padA: "3.45", numB: "3.4", padB: "3.40", winner: "A", reason: "Same wholes & tenths, but 5 hundredths > 0 hundredths" },
+        { numA: "6.1", padA: "6.100", numB: "4.999", padB: "4.999", winner: "A", reason: "Whole parts duel: 6 > 4 (Immediate victory for 6.1!)" },
+        { numA: "1.2", padA: "1.20", numB: "1.20", padB: "1.20", winner: "Equal", reason: "Trailing zero invariance: 1.2 and 1.20 are exactly identical" }
+      ];
+
+      function render() {
+        const d = duels[activeDuel];
+        const statusColor = d.winner === "A" ? "#38bdf8" : (d.winner === "B" ? "#fbbf24" : "#10b981");
+        const symbol = d.winner === "A" ? ">" : (d.winner === "B" ? "<" : "=");
+
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#090d16"/>
+
+            <!-- Main Comparison Verdict Badge -->
+            <rect x="130" y="15" width="280" height="42" rx="10" fill="rgba(15, 23, 42, 0.95)" stroke="${statusColor}" stroke-width="2"/>
+            <text x="270" y="42" fill="${statusColor}" font-size="20" font-weight="900" text-anchor="middle">
+              ${d.numA}  ${symbol}  ${d.numB}
+            </text>
+
+            <!-- Side-by-Side Comparison Cards -->
+            <g transform="translate(45, 75)">
+              <!-- Card A -->
+              <rect x="0" y="0" width="210" height="130" rx="10" fill="rgba(56, 189, 248, 0.1)" stroke="#38bdf8" stroke-width="2"/>
+              <text x="105" y="24" fill="#38bdf8" font-size="12" font-weight="800" text-anchor="middle">DECIMAL A</text>
+              <text x="105" y="60" fill="#ffffff" font-size="28" font-weight="900" text-anchor="middle">${d.numA}</text>
+              <rect x="25" y="80" width="160" height="34" rx="6" fill="#0f172a" stroke="#38bdf8"/>
+              <text x="105" y="102" fill="#7dd3fc" font-size="11" font-weight="700" text-anchor="middle">Padded: ${d.padA}</text>
+
+              <!-- VS Badge -->
+              <circle cx="225" cy="65" r="16" fill="#f59e0b"/>
+              <text x="225" y="70" fill="#ffffff" font-size="12" font-weight="900" text-anchor="middle">VS</text>
+
+              <!-- Card B -->
+              <rect x="240" y="0" width="210" height="130" rx="10" fill="rgba(245, 158, 11, 0.1)" stroke="#fbbf24" stroke-width="2"/>
+              <text x="345" y="24" fill="#fbbf24" font-size="12" font-weight="800" text-anchor="middle">DECIMAL B</text>
+              <text x="345" y="60" fill="#ffffff" font-size="28" font-weight="900" text-anchor="middle">${d.numB}</text>
+              <rect x="265" y="80" width="160" height="34" rx="6" fill="#0f172a" stroke="#fbbf24"/>
+              <text x="345" y="102" fill="#fde047" font-size="11" font-weight="700" text-anchor="middle">Padded: ${d.padB}</text>
+            </g>
+
+            <!-- Comparison Logic Derivation -->
+            <rect x="40" y="225" width="460" height="85" rx="10" fill="rgba(15, 23, 42, 0.95)" stroke="${statusColor}" stroke-width="1.5"/>
+            <text x="270" y="248" fill="${statusColor}" font-size="12" font-weight="800" text-anchor="middle">Pedagogical Step-by-Step Reason:</text>
+            <text x="270" y="272" fill="#f8fafc" font-size="13" font-weight="800" text-anchor="middle">${d.reason}</text>
+            <text x="270" y="295" fill="#94a3b8" font-size="10" text-anchor="middle">Step 1: Check wholes. Step 2: Check tenths. Step 3: Check hundredths. Zero-padding prevents traps!</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center; align-items:center;">
+          <span style="font-size:0.85rem; font-weight:700; color:#94a3b8;">Choose Duel:</span>
+          ${duels.map((d, idx) => `<button class="sim-btn ${idx === activeDuel ? 'active' : ''}" data-idx="${idx}">${d.numA} vs ${d.numB}</button>`).join('')}
+        </div>
+      `;
+
+      simControls.querySelectorAll('.sim-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activeDuel = parseInt(btn.dataset.idx);
+          simControls.querySelectorAll('.sim-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          render();
+          sfx.playClick();
+        });
+      });
+
+      render();
+    }
+
+    // Slide 12: Addition of Decimals Alignment & Carrying
+    function simDecimalAdditionAlignment() {
+      simHeaderTitle.textContent = "Decimal Column Addition: Vertical Alignment & Carrying";
+      let step = 0; // 0: unaligned/setup, 1: aligned & padded, 2: hundredths added, 3: tenths added (carry), 4: final sum
+
+      const steps = [
+        {
+          title: "Problem: Add 14.6 + 5.75",
+          disp: ["  14.6", "+  5.75"],
+          desc: "Step 1: Notice that 14.6 has 1 decimal place while 5.75 has 2.",
+          showRes: false
+        },
+        {
+          title: "Step 1: Align Dots & Pad Trailing Zero",
+          disp: ["  14.60  (padded with 0)", "+  5.75"],
+          desc: "Always align decimal points vertically and pad with zero to equalize places!",
+          showRes: false
+        },
+        {
+          title: "Step 2: Add Hundredths Column",
+          disp: ["  14.60", "+  5.75", "-------", "      5  (0 + 5 = 5 hundredths)"],
+          desc: "0 hundredths + 5 hundredths = 5 hundredths in the hundredths column.",
+          showRes: false
+        },
+        {
+          title: "Step 3: Add Tenths Column & Carry 1",
+          disp: ["  [1]   (carried to ones)", "  14.60", "+  5.75", "-------", "     .35  (6 + 7 = 13 tenths)"],
+          desc: "6 tenths + 7 tenths = 13 tenths = 1 whole (carried) and 3 tenths remaining.",
+          showRes: false
+        },
+        {
+          title: "Step 4: Final Sum Evaluated!",
+          disp: ["  14.60", "+  5.75", "-------", "  20.35  (1 + 14 + 5 = 20)"],
+          desc: "Drop the decimal point straight down! Final answer = 20.35",
+          showRes: true
+        }
+      ];
+
+      function render() {
+        const s = steps[step];
+
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#090d16"/>
+
+            <rect x="100" y="15" width="340" height="36" rx="8" fill="rgba(30, 41, 59, 0.9)" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="270" y="38" fill="#38bdf8" font-size="13" font-weight="900" text-anchor="middle">${s.title}</text>
+
+            <!-- Column Working Sheet -->
+            <g transform="translate(140, 65)">
+              <rect x="0" y="0" width="260" height="145" rx="10" fill="rgba(15, 23, 42, 0.95)" stroke="#10b981" stroke-width="2"/>
+              ${s.disp.map((line, idx) => `
+                <text x="130" y="${32 + idx * 26}" fill="${idx === s.disp.length - 1 ? (s.showRes ? '#34d399' : '#fbbf24') : '#f8fafc'}" font-size="16" font-family="monospace" font-weight="900" text-anchor="middle">${line}</text>
+              `).join('')}
+            </g>
+
+            <!-- Explanation Card -->
+            <rect x="40" y="225" width="460" height="85" rx="10" fill="rgba(30, 41, 59, 0.85)" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="270" y="248" fill="#38bdf8" font-size="12" font-weight="800" text-anchor="middle">${s.desc}</text>
+            <text x="270" y="272" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">Golden Rule: Dots MUST align in a straight vertical line!</text>
+            <text x="270" y="292" fill="#94a3b8" font-size="9.5" text-anchor="middle">Carrying over operates identically to whole numbers: 10 tenths = 1 one, 10 hundredths = 1 tenth.</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; gap:1rem; justify-content:center; align-items:center;">
+          <button class="sim-btn" id="btnAddPrev">⏮ Prev Step</button>
+          <span id="addStepLbl" style="color:#38bdf8; font-weight:700;">Step 1 of 5</span>
+          <button class="sim-btn active" id="btnAddNext">Next Step ⏭</button>
+          <button class="sim-btn" id="btnAddReset">🔄 Reset</button>
+        </div>
+      `;
+
+      function updateControls() {
+        document.getElementById('addStepLbl').textContent = `Step ${step + 1} of ${steps.length}`;
+        document.getElementById('btnAddPrev').disabled = (step === 0);
+        document.getElementById('btnAddNext').disabled = (step === steps.length - 1);
+      }
+
+      document.getElementById('btnAddPrev').onclick = () => {
+        if (step > 0) { step--; render(); updateControls(); sfx.playClick(); }
+      };
+      document.getElementById('btnAddNext').onclick = () => {
+        if (step < steps.length - 1) {
+          step++; render(); updateControls();
+          if (step === steps.length - 1) sfx.playCelebration(); else sfx.playClick();
+        }
+      };
+      document.getElementById('btnAddReset').onclick = () => {
+        step = 0; render(); updateControls(); sfx.playClick();
+      };
+
+      render();
+      updateControls();
+    }
+
+    // Slide 13: Subtraction of Decimals with Borrowing
+    function simDecimalSubtractionBorrow() {
+      simHeaderTitle.textContent = "Decimal Column Subtraction: Regrouping & Borrowing Across the Point";
+      let step = 0;
+
+      const steps = [
+        {
+          title: "Problem: Subtract 8.4 - 3.75",
+          disp: ["   8.4", "-  3.75"],
+          desc: "Warning: Never subtract without padding the top number with zeroes first!",
+          showRes: false
+        },
+        {
+          title: "Step 1: Pad Minuend with Trailing Zero",
+          disp: ["   8.40  (padded zero)", "-  3.75"],
+          desc: "Now we see clearly: we must subtract 5 hundredths from 0 hundredths!",
+          showRes: false
+        },
+        {
+          title: "Step 2: Borrow 1 Tenth as 10 Hundredths",
+          disp: ["      3  10", "   8.40", "-  3.75", "-------", "      5  (10 - 5 = 5 hundredths)"],
+          desc: "Borrow 1 from 4 tenths ➔ 4 becomes 3 tenths; 0 becomes 10 hundredths.",
+          showRes: false
+        },
+        {
+          title: "Step 3: Borrow 1 One as 10 Tenths",
+          disp: ["   7 13", "   8.40", "-  3.75", "-------", "     .65  (13 - 7 = 6 tenths)"],
+          desc: "Borrow 1 from 8 ones ➔ 8 becomes 7 ones; 3 tenths becomes 13 tenths.",
+          showRes: false
+        },
+        {
+          title: "Step 4: Subtract Ones & Final Result!",
+          disp: ["   8.40", "-  3.75", "-------", "   4.65  (7 - 3 = 4)"],
+          desc: "7 - 3 = 4 ones. Final difference = 4.65!",
+          showRes: true
+        }
+      ];
+
+      function render() {
+        const s = steps[step];
+
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#090d16"/>
+
+            <rect x="100" y="15" width="340" height="36" rx="8" fill="rgba(30, 41, 59, 0.9)" stroke="#fbbf24" stroke-width="1.5"/>
+            <text x="270" y="38" fill="#fbbf24" font-size="13" font-weight="900" text-anchor="middle">${s.title}</text>
+
+            <!-- Column Working Sheet -->
+            <g transform="translate(140, 65)">
+              <rect x="0" y="0" width="260" height="145" rx="10" fill="rgba(15, 23, 42, 0.95)" stroke="#f59e0b" stroke-width="2"/>
+              ${s.disp.map((line, idx) => `
+                <text x="130" y="${28 + idx * 24}" fill="${idx === s.disp.length - 1 ? (s.showRes ? '#34d399' : '#f87171') : '#f8fafc'}" font-size="15" font-family="monospace" font-weight="900" text-anchor="middle">${line}</text>
+              `).join('')}
+            </g>
+
+            <!-- Explanation Card -->
+            <rect x="40" y="225" width="460" height="85" rx="10" fill="rgba(30, 41, 59, 0.85)" stroke="#fbbf24" stroke-width="1.5"/>
+            <text x="270" y="248" fill="#fbbf24" font-size="12" font-weight="800" text-anchor="middle">${s.desc}</text>
+            <text x="270" y="272" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">Regrouping Law: 1 whole = 10 tenths, 1 tenth = 10 hundredths.</text>
+            <text x="270" y="292" fill="#94a3b8" font-size="9.5" text-anchor="middle">Check your answer by adding back: 4.65 + 3.75 = 8.40 ✅</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; gap:1rem; justify-content:center; align-items:center;">
+          <button class="sim-btn" id="btnSubPrev">⏮ Prev Step</button>
+          <span id="subStepLbl" style="color:#fbbf24; font-weight:700;">Step 1 of 5</span>
+          <button class="sim-btn active" id="btnSubNext">Next Step ⏭</button>
+          <button class="sim-btn" id="btnSubReset">🔄 Reset</button>
+        </div>
+      `;
+
+      function updateControls() {
+        document.getElementById('subStepLbl').textContent = `Step ${step + 1} of ${steps.length}`;
+        document.getElementById('btnSubPrev').disabled = (step === 0);
+        document.getElementById('btnSubNext').disabled = (step === steps.length - 1);
+      }
+
+      document.getElementById('btnSubPrev').onclick = () => {
+        if (step > 0) { step--; render(); updateControls(); sfx.playClick(); }
+      };
+      document.getElementById('btnSubNext').onclick = () => {
+        if (step < steps.length - 1) {
+          step++; render(); updateControls();
+          if (step === steps.length - 1) sfx.playCelebration(); else sfx.playClick();
+        }
+      };
+      document.getElementById('btnSubReset').onclick = () => {
+        step = 0; render(); updateControls(); sfx.playClick();
+      };
+
+      render();
+      updateControls();
+    }
+
+    // Slide 14: Decimal Sequences & Estimation Explorer
+    function simDecimalSequencesEstimator() {
+      simHeaderTitle.textContent = "Decimal Patterns & Fast Mental Estimation Sanity Checks";
+      let activePreset = 0;
+      const presets = [
+        { seq: [0.4, 0.8, 1.2, 1.6], diff: 0.4, next: 2.0, nextNext: 2.4, label: "Tenths Pattern (+0.4)" },
+        { seq: [1.25, 1.50, 1.75, 2.00], diff: 0.25, next: 2.25, nextNext: 2.50, label: "Quarter Pattern (+0.25)" },
+        { seq: [5.8, 5.5, 5.2, 4.9], diff: -0.3, next: 4.6, nextNext: 4.3, label: "Decreasing Sequence (-0.3)" }
+      ];
+
+      function render() {
+        const p = presets[activePreset];
+
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#080e1a"/>
+
+            <rect x="110" y="15" width="320" height="36" rx="8" fill="rgba(30, 41, 59, 0.9)" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="270" y="38" fill="#38bdf8" font-size="13" font-weight="900" text-anchor="middle">Sequence: ${p.label}</text>
+
+            <!-- Sequence Train Blocks -->
+            <g transform="translate(40, 75)">
+              ${p.seq.map((val, idx) => `
+                <rect x="${idx * 85}" y="20" width="70" height="55" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+                <text x="${idx * 85 + 35}" y="52" fill="#ffffff" font-size="16" font-weight="900" text-anchor="middle">${val}</text>
+                ${idx < 3 ? `
+                  <text x="${idx * 85 + 77}" y="52" fill="#fbbf24" font-size="11" font-weight="900" text-anchor="middle">➔</text>
+                ` : ''}
+              `).join('')}
+
+              <!-- Next Predicted Term -->
+              <text x="330" y="52" fill="#34d399" font-size="14" font-weight="900" text-anchor="middle">➔</text>
+              <rect x="345" y="20" width="70" height="55" rx="8" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" stroke-width="2"/>
+              <text x="380" y="52" fill="#34d399" font-size="16" font-weight="900" text-anchor="middle">${p.next}</text>
+
+              <!-- Next-Next Term -->
+              <text x="425" y="52" fill="#34d399" font-size="14" font-weight="900" text-anchor="middle">➔</text>
+              <rect x="440" y="20" width="70" height="55" rx="8" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" stroke-width="2"/>
+              <text x="475" y="52" fill="#34d399" font-size="16" font-weight="900" text-anchor="middle">${p.nextNext}</text>
+            </g>
+
+            <!-- Estimation Strategy Card -->
+            <g transform="translate(45, 165)">
+              <rect x="0" y="0" width="450" height="65" rx="10" fill="rgba(15, 23, 42, 0.95)" stroke="#fbbf24" stroke-width="1.5"/>
+              <text x="225" y="25" fill="#fbbf24" font-size="11" font-weight="800" text-anchor="middle">⚡ Quick Mental Estimation Sanity Check</text>
+              <text x="225" y="48" fill="#f8fafc" font-size="13" font-weight="700" text-anchor="middle">
+                Calculate $24.85 + 51.15$: Round to $25 + 51 = 76$!
+              </text>
+            </g>
+
+            <!-- Bottom Insight -->
+            <rect x="45" y="245" width="450" height="65" rx="8" fill="rgba(30, 41, 59, 0.85)" stroke="#64748b" stroke-width="1"/>
+            <text x="270" y="268" fill="#34d399" font-size="11" font-weight="800" text-anchor="middle">Common Step (Difference): ${p.diff > 0 ? '+' : ''}${p.diff}</text>
+            <text x="270" y="288" fill="#94a3b8" font-size="10" text-anchor="middle">Estimating before calculating guarantees you will catch any misplaced decimal point!</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center; align-items:center;">
+          <span style="font-size:0.85rem; font-weight:700; color:#94a3b8;">Choose Pattern:</span>
+          ${presets.map((p, idx) => `<button class="sim-btn ${idx === activePreset ? 'active' : ''}" data-idx="${idx}">${p.label}</button>`).join('')}
+        </div>
+      `;
+
+      simControls.querySelectorAll('.sim-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activePreset = parseInt(btn.dataset.idx);
+          simControls.querySelectorAll('.sim-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          render();
+          sfx.playClick();
+        });
+      });
+
+      render();
+    }
+
+    // Slide 15: Deceptive Dots (Cricket Overs & Time vs True Decimals)
+    function simCricketTimeDeceptiveDots() {
+      simHeaderTitle.textContent = "Deceptive Dots: Not All Dots Are Decimals (Cricket & Time)";
+      let activeCase = 0; // 0: Cricket Overs, 1: Clock Time, 2: Software Version
+
+      const cases = [
+        {
+          title: "Cricket Overs Scoreboard",
+          dotDisp: "Scorecard: 5.5 overs",
+          dotMeaning: "5 overs and 5 balls (1 over = 6 balls)",
+          mathEquivalent: "5 + 5/6 = 5.833... overs",
+          trap: "Mistake: Thinking 5.5 overs means 5 and a half overs! In cricket, 5.3 is 5 and a half overs (3/6 = 0.5)!",
+          base: "Base 6 (Balls)"
+        },
+        {
+          title: "Clock Time Format",
+          dotDisp: "Digital Clock: 4.30 hours",
+          dotMeaning: "4 hours and 30 minutes (1 hour = 60 minutes)",
+          mathEquivalent: "4 + 30/60 = 4.5 hours (Half an hour!)",
+          trap: "Mistake: Treating 4.30 as 4.3 hours. In decimals, 4.3 hours is 4 hours and 18 minutes!",
+          base: "Base 60 (Sexagesimal)"
+        },
+        {
+          title: "Software Version Numbers",
+          dotDisp: "Software: App Version 2.10",
+          dotMeaning: "Major Release 2, Minor Feature Update 10",
+          mathEquivalent: "Not a number! 2.10 follows 2.9 (chronological)",
+          trap: "Mistake: In mathematics 2.10 = 2.1 < 2.9. But software 2.10 is newer than version 2.9!",
+          base: "Hierarchical String Index"
+        }
+      ];
+
+      function render() {
+        const c = cases[activeCase];
+
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#090d16"/>
+
+            <rect x="110" y="15" width="320" height="36" rx="8" fill="rgba(30, 41, 59, 0.9)" stroke="#fbbf24" stroke-width="1.5"/>
+            <text x="270" y="38" fill="#fbbf24" font-size="13" font-weight="900" text-anchor="middle">Scenario: ${c.title}</text>
+
+            <!-- Deceptive Dot Display Card -->
+            <g transform="translate(60, 65)">
+              <rect x="0" y="0" width="200" height="110" rx="10" fill="rgba(239, 68, 68, 0.15)" stroke="#ef4444" stroke-width="2"/>
+              <text x="100" y="24" fill="#f87171" font-size="11" font-weight="800" text-anchor="middle">Everyday Separator Dot</text>
+              <text x="100" y="60" fill="#ffffff" font-size="16" font-weight="900" text-anchor="middle">${c.dotDisp}</text>
+              <text x="100" y="90" fill="#fca5a5" font-size="9.5" text-anchor="middle">${c.base}</text>
+            </g>
+
+            <!-- True Mathematical Decimal Card -->
+            <g transform="translate(280, 65)">
+              <rect x="0" y="0" width="200" height="110" rx="10" fill="rgba(16, 185, 129, 0.15)" stroke="#10b981" stroke-width="2"/>
+              <text x="100" y="24" fill="#34d399" font-size="11" font-weight="800" text-anchor="middle">True Base-10 Decimal</text>
+              <text x="100" y="60" fill="#ffffff" font-size="15" font-weight="900" text-anchor="middle">${c.mathEquivalent}</text>
+              <text x="100" y="90" fill="#a7f3d0" font-size="9.5" text-anchor="middle">Base 10 (Tenths / Hundredths)</text>
+            </g>
+
+            <!-- Pitfall Warning Card -->
+            <rect x="40" y="195" width="460" height="115" rx="10" fill="rgba(15, 23, 42, 0.95)" stroke="#fbbf24" stroke-width="1.5"/>
+            <text x="270" y="220" fill="#fbbf24" font-size="12" font-weight="800" text-anchor="middle">⚠️ The Cognitive Trap Explained:</text>
+            <text x="270" y="245" fill="#f8fafc" font-size="11" font-weight="700" text-anchor="middle">${c.trap}</text>
+            <text x="270" y="270" fill="#cbd5e1" font-size="10.5" text-anchor="middle">Meaning: ${c.dotMeaning}</text>
+            <text x="270" y="295" fill="#38bdf8" font-size="10" font-weight="700" text-anchor="middle">Mathematical decimals ALWAYS divide by powers of 10 (10, 100, 1000)!</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center; align-items:center;">
+          <button class="sim-btn ${activeCase === 0 ? 'active' : ''}" id="btnCase0">🏏 Cricket Overs (Base 6)</button>
+          <button class="sim-btn ${activeCase === 1 ? 'active' : ''}" id="btnCase1">⏰ Clock Time (Base 60)</button>
+          <button class="sim-btn ${activeCase === 2 ? 'active' : ''}" id="btnCase2">💻 Software Versions</button>
+        </div>
+      `;
+
+      document.getElementById('btnCase0').onclick = () => { activeCase = 0; render(); sfx.playClick(); };
+      document.getElementById('btnCase1').onclick = () => { activeCase = 1; render(); sfx.playClick(); };
+      document.getElementById('btnCase2').onclick = () => { activeCase = 2; render(); sfx.playClick(); };
+
+      render();
+    }
+
+    // Slide 16: Decimal Point Displacement & Floating Point Power
+    function simDecimalPointDisplacement() {
+      simHeaderTitle.textContent = "The Floating Point: Shifting the Dot (×10 or ÷10 Catastrophes)";
+      let shift = 0; // -1: 0.25, 0: 2.5, +1: 25.0
+
+      function render() {
+        let valStr = "";
+        let impact = "";
+        let color = "#38bdf8";
+
+        if (shift === -1) {
+          valStr = "0.25 mg";
+          impact = "10 times smaller! Underdose: Ineffective treatment.";
+          color = "#fbbf24";
+        } else if (shift === 0) {
+          valStr = "2.50 mg";
+          impact = "Standard prescribed therapeutic dose ✅ Safe & effective.";
+          color = "#10b981";
+        } else {
+          valStr = "25.0 mg";
+          impact = "10 times larger! 1000% Fatal Overdose ☠️ Critical Medical Emergency!";
+          color = "#ef4444";
+        }
+
+        simCanvas.innerHTML = `
+          <svg viewBox="0 0 540 330" width="100%" height="100%">
+            <rect x="0" y="0" width="540" height="330" fill="#090d16"/>
+
+            <!-- Main Title Banner -->
+            <rect x="90" y="15" width="360" height="36" rx="8" fill="rgba(30, 41, 59, 0.9)" stroke="${color}" stroke-width="1.5"/>
+            <text x="270" y="38" fill="${color}" font-size="13" font-weight="900" text-anchor="middle">Dosage Scale: ${valStr}</text>
+
+            <!-- Floating Point Shifting Display -->
+            <g transform="translate(100, 75)">
+              <rect x="0" y="0" width="340" height="110" rx="12" fill="rgba(15, 23, 42, 0.95)" stroke="${color}" stroke-width="2"/>
+              <text x="170" y="32" fill="#94a3b8" font-size="11" font-weight="800" text-anchor="middle">DOSAGE REGISTER</text>
+              <text x="170" y="75" fill="${color}" font-size="34" font-weight="900" text-anchor="middle">${valStr}</text>
+              <text x="170" y="98" fill="#f8fafc" font-size="11" font-weight="700" text-anchor="middle">${impact}</text>
+            </g>
+
+            <!-- Historical Wisdom & Law Card -->
+            <rect x="40" y="210" width="460" height="100" rx="10" fill="rgba(30, 41, 59, 0.85)" stroke="#fbbf24" stroke-width="1.5"/>
+            <text x="270" y="235" fill="#fbbf24" font-size="12" font-weight="900" text-anchor="middle">The Immense Power of the Decimal Point:</text>
+            <text x="270" y="260" fill="#f8fafc" font-size="11.5" font-weight="700" text-anchor="middle">Shifting right 1 place ➔ Multiplies by 10</text>
+            <text x="270" y="280" fill="#f8fafc" font-size="11.5" font-weight="700" text-anchor="middle">Shifting left 1 place ➔ Divides by 10</text>
+            <text x="270" y="298" fill="#38bdf8" font-size="10" text-anchor="middle">From Aryabhata in 499 CE to modern rocketry, decimal precision governs our universe!</text>
+          </svg>
+        `;
+      }
+
+      simControls.innerHTML = `
+        <div style="display:flex; gap:1rem; justify-content:center; align-items:center;">
+          <button class="sim-btn ${shift === -1 ? 'active' : ''}" id="btnShiftLeft">⬅ Shift Dot Left (÷10: 0.25 mg)</button>
+          <button class="sim-btn ${shift === 0 ? 'active' : ''}" id="btnShiftNorm">🎯 Normal (2.5 mg)</button>
+          <button class="sim-btn ${shift === 1 ? 'active' : ''}" id="btnShiftRight" style="border-color:#ef4444; color:#fca5a5;">Shift Dot Right (×10: 25 mg) ➔</button>
+        </div>
+      `;
+
+      document.getElementById('btnShiftLeft').onclick = () => { shift = -1; render(); sfx.playClick(); };
+      document.getElementById('btnShiftNorm').onclick = () => { shift = 0; render(); sfx.playClick(); };
+      document.getElementById('btnShiftRight').onclick = () => { shift = 1; render(); sfx.playIncorrect(); };
+
+      render();
+    }
+
+
+    // Navigation Event Listeners
+    prevBtn.addEventListener('click', () => {
+      sfx.playClick();
+      if (currentSlideIdx > 0) renderSlide(currentSlideIdx - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      sfx.playClick();
+      if (currentSlideIdx < SLIDES_DATA.length - 1) renderSlide(currentSlideIdx + 1);
+    });
+
+    slideJumpSelect.addEventListener('change', (e) => {
+      sfx.playClick();
+      renderSlide(parseInt(e.target.value));
+    });
+
+    // Keyboard Arrow Navigation
+    window.addEventListener('keydown', (e) => {
+      if (solutionModal.style.display !== 'none') {
+        if (e.key === 'Escape') {
+          solutionModal.style.display = 'none';
+        }
+        return;
+      }
+      if (e.key === 'ArrowRight' && currentSlideIdx < SLIDES_DATA.length - 1) {
+        sfx.playClick();
+        renderSlide(currentSlideIdx + 1);
+      } else if (e.key === 'ArrowLeft' && currentSlideIdx > 0) {
+        sfx.playClick();
+        renderSlide(currentSlideIdx - 1);
+      }
+    });
+
+    // Initial Load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderSlide(0);
+    });
+  </script>
+</body>
+</html>
