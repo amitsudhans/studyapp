@@ -1,0 +1,1945 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Class 7 Science • Chapter 2: Acids, Bases, and Salts Master Lab</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fdf4ff',
+              100: '#fae8ff',
+              500: '#d946ef',
+              600: '#c026d3',
+              700: '#a21caf',
+              900: '#701a75',
+              950: '#4a044e'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- KaTeX for High-Fidelity Math & Chemical Formula Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="if (window.renderAllMath) window.renderAllMath();"></script>
+
+  <style>
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+    .slide-transition {
+      transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .modal-backdrop {
+      background-color: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans antialiased select-none">
+
+  <!-- TOP APP BAR -->
+  <header class="border-b border-slate-800 bg-slate-900/90 backdrop-blur sticky top-0 z-40 px-4 py-2.5 flex items-center justify-between">
+    <div class="flex items-center space-x-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-500 to-amber-500 flex items-center justify-center shadow-lg shadow-purple-500/20 text-white font-bold text-lg">
+        ⚗️
+      </div>
+      <div>
+        <div class="text-xs font-bold text-amber-400 uppercase tracking-wider">NCERT Class 7 Science • Chapter 2</div>
+        <h1 class="text-sm sm:text-base font-extrabold text-slate-100 flex items-center gap-2">
+          <span>Acids, Bases, and Salts</span>
+          <span class="text-[11px] px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 font-semibold">Master Lab</span>
+        </h1>
+      </div>
+    </div>
+
+    <!-- Slide Index Navigation Controls -->
+    <div class="flex items-center space-x-2">
+      <button id="prevBtn" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200 transition active:scale-95 flex items-center gap-1 cursor-pointer">
+        <span>◀</span> <span class="hidden sm:inline">Prev</span>
+      </button>
+      
+      <div class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-xs font-mono font-bold text-amber-400">
+        <span id="currentSlideDisplay">1</span> / <span id="totalSlidesDisplay">20</span>
+      </div>
+
+      <button id="nextBtn" class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-purple-600 to-amber-600 hover:from-purple-500 hover:to-amber-500 text-xs font-bold text-white shadow-md shadow-purple-600/30 transition active:scale-95 flex items-center gap-1 cursor-pointer">
+        <span class="hidden sm:inline">Next</span> <span>▶</span>
+      </button>
+
+      <!-- TOC Quick Drawer Toggle -->
+      <button id="tocBtn" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition" title="Table of Contents">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- TABLE OF CONTENTS OVERLAY -->
+  <div id="tocModal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-2xl max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="px-5 py-3.5 border-b border-slate-800 flex items-center justify-between">
+        <h3 class="font-bold text-amber-400 text-sm sm:text-base flex items-center gap-2">
+          <span>📑</span> Table of Contents • Chapter 2: Acids, Bases, and Salts
+        </h3>
+        <button id="closeTocBtn" class="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition">✕</button>
+      </div>
+      <div id="tocList" class="p-4 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN VIEWPORT CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-5 flex flex-col">
+    
+    <!-- SLIDE WORKSPACE (DYNAMIC CONTAINER) -->
+    <div id="slideContainer" class="flex-1 flex flex-col">
+      <!-- Active slide rendered dynamically -->
+    </div>
+
+    <!-- TERMINAL SLIDE NOTICE (SLIDE 20 TERMINAL ENFORCEMENT) -->
+    <div id="lastSlideNotice" class="hidden mt-4 p-4 rounded-2xl bg-gradient-to-r from-emerald-950/80 to-slate-900 border border-emerald-500/40 text-center shadow-xl">
+      <div class="text-emerald-400 font-extrabold text-base mb-1 flex items-center justify-center gap-2">
+        <span>🎉</span> You have reached the last slide of this chapter.
+      </div>
+      <p class="text-xs text-slate-300 max-w-xl mx-auto">
+        Outstanding work! You have completed the study of acids, bases, natural indicators (litmus, red rose, turmeric, olfactory indicators), exothermic neutralisation reactions, titration dynamics, real-world neutralisation applications (ant bites, soil treatment, industrial wastewater, antacids, and oral hygiene), and the inspiring scientific legacy of Acharya Prafulla Chandra Ray!
+      </p>
+      <div class="mt-3 flex items-center justify-center gap-2">
+        <button onclick="goToSlide(1)" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition">
+          ↺ Review from Slide 1
+        </button>
+        <button onclick="openSolutionModal(0, 0)" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition shadow-lg shadow-emerald-600/30">
+          View Master Solutions
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- MENTOR AVATAR FLOATING DOCK -->
+  <aside class="sticky bottom-0 z-30 bg-slate-900/90 border-t border-slate-800 px-4 py-2 flex items-center justify-between text-xs">
+    <div class="flex items-center space-x-3">
+      <div class="relative">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-600 to-amber-600 flex items-center justify-center text-white font-bold text-sm shadow-md shadow-purple-600/30 ring-2 ring-purple-400/40">
+          ⚗️
+        </div>
+        <span class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-slate-950"></span>
+      </div>
+      <div>
+        <div class="font-extrabold text-amber-300 flex items-center gap-1.5">
+          <span>Acharya Prafulla Chandra Ray</span>
+          <span class="text-[10px] text-slate-400 font-normal hidden sm:inline">• Father of Indian Chemistry & Founder of Bengal Chemicals</span>
+        </div>
+        <div id="mentorVoiceText" class="text-[11px] text-slate-300 line-clamp-1 italic">
+          "Welcome to nature's chemical laboratory! Substances all around us speak in the language of acids, bases, and indicators. Let us explore with curiosity and safety."
+        </div>
+      </div>
+    </div>
+    
+    <div class="flex items-center space-x-2">
+      <button id="mentorSpeakBtn" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1 transition" title="Speak mentor insight">
+        <span>🔊</span> <span class="hidden sm:inline">Narrate</span>
+      </button>
+      <button id="soundToggleBtn" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs transition" title="Toggle Sound FX">
+        🔔
+      </button>
+    </div>
+  </aside>
+
+  <!-- STEP-BY-STEP POP-UP SOLUTION MODAL -->
+  <div id="solutionModal" style="display: none; z-index: 99999 !important;" class="fixed inset-0 modal-backdrop flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-purple-500/50 rounded-2xl w-full max-w-xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      <div class="px-5 py-3.5 border-b border-slate-800 bg-slate-950/70 flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <span class="text-amber-400 text-lg">💡</span>
+          <h3 id="solutionModalTitle" class="font-extrabold text-amber-400 text-sm sm:text-base">
+            Detailed Step-by-Step Derivation
+          </h3>
+        </div>
+        <button id="closeSolutionModalBtn" class="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition">✕</button>
+      </div>
+      <div class="p-5 overflow-y-auto text-xs sm:text-sm text-slate-200 space-y-3" id="solutionModalBody">
+        <!-- Injected via openSolutionModal -->
+      </div>
+      <div class="px-5 py-3 border-t border-slate-800 bg-slate-950/70 flex justify-end">
+        <button id="solutionOkBtn" class="px-4 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition shadow-md shadow-purple-600/30">
+          Got It, Continue!
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT ENGINE -->
+  <script>
+    // Injected slides data
+    const SLIDES_DATA = [{"id": 1, "type": "concept_slide", "title": "Nature - Our Science Laboratory", "subtitle": "Classifying Everyday Substances: Acids, Bases, and Neutral Matter", "content": "\n          <p>Look around your kitchen, garden, and medicine cabinet: nature has surrounded us with thousands of chemical compounds. In ancient times, people classified foods and materials by direct sensory experience\u2014taste and touch.</p>\n          <p class=\"mt-2\">Through these observations, substances are classified into three major groups:</p>\n          <ul class=\"list-disc pl-5 mt-1 space-y-1 text-slate-300\">\n            <li><strong>Acidic Substances (Acids):</strong> Taste characteristically <strong>sour</strong>. The word <em>acid</em> derives from the Latin <em>acere</em>, meaning sour. Examples: citric acid in lemons and oranges, acetic acid in vinegar, lactic acid in curd, and tartaric acid in tamarind.</li>\n            <li><strong>Basic Substances (Bases):</strong> Taste characteristically <strong>bitter</strong> and feel <strong>slippery or soapy</strong> to the touch. Examples: sodium hydroxide in washing soaps, sodium hydrogen carbonate in baking soda, and calcium hydroxide in lime water.</li>\n            <li><strong>Neutral Substances:</strong> Neither acidic nor basic. They do not taste sour or bitter, and do not alter indicator colors. Examples: pure distilled water, common salt ($\\text{NaCl}$) solution, and cane sugar ($\\text{C}_{12}\\text{H}_{22}\\text{O}_{11}$) solution.</li>\n          </ul>\n          <p class=\"mt-2 text-rose-300 font-semibold text-xs\">\u26a0\ufe0f Cardinal Laboratory Safety Rule: NEVER taste or touch unknown chemical substances! Many strong acids (like concentrated sulfuric acid) and strong bases (like caustic soda) are intensely corrosive to human skin.</p>\n        ", "formula": "$$\\text{Substance Spectrum}: \\underbrace{\\text{Acids (Sour, pH } < 7)}_{\\text{Citric, Acetic, Lactic}} \\quad \\longleftrightarrow \\quad \\underbrace{\\text{Neutral (pH } = 7)}_{\\text{Pure } \\text{H}_2\\text{O}, \\text{ NaCl}} \\quad \\longleftrightarrow \\quad \\underbrace{\\text{Bases (Bitter, Soapy, pH } > 7)}_{\\text{NaOH, } \\text{NaHCO}_3, \\text{ Ca(OH)}_2}$$", "key_takeaways": ["Acids taste sour and contain hydrogen ions; the word originates from Latin 'acere' (sour).", "Bases feel slippery/soapy, taste bitter, and neutralize acids.", "Neutral substances are neither acidic nor basic (e.g., pure water, table salt, sugar).", "Never taste laboratory chemicals to test acidity; use safe chemical indicators instead."], "checkpoints": [{"question": "Which of the following common household substances is naturally acidic?", "options": ["Baking soda solution", "Lemon juice (citric acid)", "Washing soap lather", "Lime water (calcium hydroxide)"], "correct": 1, "explanation": "Lemon juice contains citric acid and ascorbic acid, giving it a characteristic sour taste and acidic chemical behavior."}, {"question": "Why is it strictly forbidden to determine whether a laboratory chemical is an acid or base by tasting it?", "options": ["Because all chemicals taste identical to sugar", "Because laboratory acids and bases can be highly toxic, poisonous, and corrosive to tissues", "Because tasting chemicals ruins the glass beaker", "Because tasting changes an acid into a base immediately"], "correct": 1, "explanation": "Many laboratory chemicals (such as hydrochloric acid or sodium hydroxide) are intensely corrosive and can cause severe chemical burns or fatal poisoning upon ingestion."}], "simulator_type": "household_substance_matrix"}, {"id": 2, "type": "concept_slide", "title": "Litmus \u2014 The Lichen's Natural Indicator", "subtitle": "Discovering Acid-Base Color Shifts with Red and Blue Litmus Papers", "content": "\n          <p>How can we safely test whether a solution is acidic or basic without tasting it? We use special substances called <strong>indicators</strong>\u2014compounds that display distinctly different colors in acidic and basic environments.</p>\n          <p class=\"mt-2\">The most widely used natural indicator is <strong>Litmus</strong>, a natural water-soluble dye extracted from <strong>lichens</strong> (a symbiotic organism composed of an alga and a fungus living together):</p>\n          <ul class=\"list-disc pl-5 mt-1 space-y-1 text-slate-300\">\n            <li><strong>Neutral Litmus Solution:</strong> Has a distinctive mauve (purple) color in pure distilled water.</li>\n            <li><strong>Action in Acids:</strong> When added to an acidic solution, litmus turns <strong>red</strong>.</li>\n            <li><strong>Action in Bases:</strong> When added to a basic solution, litmus turns <strong>blue</strong>.</li>\n          </ul>\n          <p class=\"mt-2\">For convenience in laboratories, litmus dye is infused into absorbent paper strips, available as <strong>Red Litmus Paper</strong> and <strong>Blue Litmus Paper</strong>:</p>\n          <div class=\"grid grid-cols-2 gap-2 my-2 text-xs font-mono\">\n            <div class=\"p-2.5 rounded-xl bg-slate-900 border border-rose-500/30 text-rose-300\">\n              <strong>Acid Test:</strong><br>Blue Litmus $\\longrightarrow$ <strong>RED</strong><br>(Red litmus remains red)\n            </div>\n            <div class=\"p-2.5 rounded-xl bg-slate-900 border border-blue-500/30 text-blue-300\">\n              <strong>Base Test:</strong><br>Red Litmus $\\longrightarrow$ <strong>BLUE</strong><br>(Blue litmus remains blue)\n            </div>\n          </div>\n          <p>Neutral solutions (such as pure water or sugar syrup) do not change the color of either red or blue litmus paper.</p>\n        ", "formula": "$$\\text{Litmus Rule}: \\text{Acid turns Blue Litmus } \\longrightarrow \\mathbf{\\text{RED}}, \\quad \\text{Base turns Red Litmus } \\longrightarrow \\mathbf{\\text{BLUE}}$$ ", "key_takeaways": ["Litmus is a natural indicator dye extracted from lichens.", "Acids turn blue litmus paper red; bases turn red litmus paper blue.", "Neutral solutions produce no color change on either red or blue litmus paper.", "Memory Trick: 'B'ase turns litmus 'B'lue; 'A'cid turns litmus 'R'ed."], "checkpoints": [{"question": "If a drop of soap solution is placed on dry red litmus paper, what color transformation occurs?", "options": ["It turns bright blue", "It turns bright yellow", "It turns black", "It remains unchanged because soap is completely neutral"], "correct": 0, "explanation": "Soap is an alkaline (basic) substance. Bases turn red litmus paper blue."}, {"question": "What happens when blue litmus paper is dipped into pure distilled water?", "options": ["It turns red immediately", "It turns green", "It remains blue because pure water is neutral", "It dissolves into thin air"], "correct": 2, "explanation": "Distilled water is strictly neutral ($\text{pH} = 7$); it causes no color change on either red or blue litmus paper."}], "simulator_type": "litmus_test_bench"}, {"id": 3, "type": "concept_slide", "title": "Red Rose Petal Extract Indicator", "subtitle": "Harnessing Floral Anthocyanin Pigments for Chemical Detection", "content": "\n          <p>Nature's flower petals are packed with water-soluble plant pigments known as <strong>anthocyanins</strong>. These organic pigments act as exquisite, natural acid-base indicators because their molecular structure alters when exposed to hydrogen ions ($\\text{H}^+$) or hydroxide ions ($\\text{OH}^-$).</p>\n          <p class=\"mt-2\"><strong>How to Prepare Red Rose Indicator:</strong></p>\n          <ol class=\"list-decimal pl-5 mt-1 space-y-1 text-slate-300\">\n            <li>Collect fresh red rose petals and place them into a clean glass beaker.</li>\n            <li>Add warm distilled water and allow the petals to steep for 15 to 20 minutes.</li>\n            <li>Filter the liquid: you will obtain a pleasant light pink/red colored floral extract.</li>\n          </ol>\n          <p class=\"mt-2\"><strong>Color Behavior in Different Mediums:</strong></p>\n          <ul class=\"list-disc pl-5 mt-1 space-y-1 text-slate-300\">\n            <li><strong>In Acidic Solutions (e.g., lemon juice, dilute $\\text{HCl}$):</strong> The extract turns a vibrant, deep <strong>red / dark pink</strong>.</li>\n            <li><strong>In Basic Solutions (e.g., baking soda, washing soda, $\\text{NaOH}$):</strong> The extract undergoes a dramatic transformation into <strong>green / yellowish-green</strong>.</li>\n            <li><strong>In Neutral Solutions (e.g., pure water, salt solution):</strong> The extract retains its original light pink coloration without changing.</li>\n          </ul>\n        ", "formula": "$$\\text{Red Rose Indicator}: \\text{Acidic Medium } \\longrightarrow \\mathbf{\\text{Deep Red / Dark Pink}}, \\quad \\text{Basic Medium } \\longrightarrow \\mathbf{\\text{Green}}$$ ", "key_takeaways": ["Flower petals contain anthocyanin pigments that change color across different pH levels.", "Red rose extract turns deep red/dark pink in acidic solutions.", "Red rose extract turns green or yellowish-green in basic (alkaline) solutions.", "Natural flower extracts provide an accessible, non-toxic way to explore chemistry at home."], "checkpoints": [{"question": "When red rose extract is added to a test tube containing washing soda solution, what color does it turn?", "options": ["Green", "Deep red", "Colorless", "Bright purple"], "correct": 0, "explanation": "Washing soda is basic (alkaline). Red rose extract turns green or yellowish-green when added to basic solutions."}, {"question": "What happens when red rose extract is added to vinegar (acetic acid)?", "options": ["It turns green", "It turns dark red/pink", "It turns deep blue", "It produces a black precipitate"], "correct": 1, "explanation": "Vinegar contains acetic acid; in acidic solutions, red rose extract turns an intensified dark red or magenta-pink."}], "simulator_type": "red_rose_indicator_lab"}, {"id": 4, "type": "concept_slide", "title": "Turmeric (Haldi) \u2014 The Kitchen Indicator", "subtitle": "The Curious Case of the Red Curry Stain and Curcumin Chemistry", "content": "\n          <p>Every Indian kitchen stores a powerful chemical indicator: common <strong>turmeric powder (haldi)</strong>. Turmeric contains a bright yellow polyphenolic pigment called <strong>curcumin</strong>.</p>\n          <p class=\"mt-2\"><strong>Making Turmeric Indicator Paper:</strong> Mix a teaspoon of turmeric powder with a little water or alcohol to make a paste. Spread it evenly onto blotting paper or filter paper, let it dry, and cut it into thin yellow strips.</p>\n          <p class=\"mt-2\"><strong>The Color Invariant of Turmeric:</strong></p>\n          <ul class=\"list-disc pl-5 mt-1 space-y-1 text-slate-300\">\n            <li><strong>In Acidic Solutions:</strong> Turmeric remains bright <strong>yellow</strong> (no color change).</li>\n            <li><strong>In Neutral Solutions:</strong> Turmeric remains bright <strong>yellow</strong> (no color change).</li>\n            <li><strong>In Basic Solutions:</strong> Turmeric turns a dramatic, deep <strong>reddish-brown</strong>!</li>\n          </ul>\n          <p class=\"mt-2\"><strong>The Mystery of the Curry Stain:</strong> Have you ever spilled vegetable curry onto a white cotton shirt? When you wash it with laundry soap, the yellow spot immediately turns <strong>red</strong>! Why? Laundry soap is alkaline (basic), which reacts with curcumin to produce a red complex. When you rinse the soap thoroughly with water and apply lemon juice (an acid), the spot turns yellow again!</p>\n        ", "formula": "$$\\text{Curcumin Equilibrium}: \\underbrace{\\text{Curcumin (Yellow)}}_{\\text{Acidic \\& Neutral (pH } < 7.4\\text{)}} \\quad \\xrightarrow{+\\text{Base (OH}^-\\text{)}} \\quad \\underbrace{\\text{Dianion Complex (Reddish-Brown)}}_{\\text{Basic Medium (pH } > 8.5\\text{)}}$$ ", "key_takeaways": ["Turmeric indicator turns deep reddish-brown in basic solutions.", "Turmeric remains yellow in both acidic and neutral solutions (it does NOT turn red in acid!).", "Soap turns curry stains red because soap is basic; rinsing with mild acid restores the yellow color.", "Turmeric paper can be used to write greeting cards with soap solution as 'invisible' red ink."], "checkpoints": [{"question": "A student dips yellow turmeric paper into lime juice (citric acid). What color change will be observed?", "options": ["It turns bright blue", "It turns deep red", "It remains yellow (no color change)", "It turns pitch black"], "correct": 2, "explanation": "Turmeric is unaffected by acids; it remains yellow in both acidic and neutral solutions. It only turns reddish-brown in basic solutions."}, {"question": "Why does a yellow curry stain on a white shirt turn reddish-brown when rubbed with bathing soap?", "options": ["Soap contains red food coloring", "Soap is basic in nature and reacts with curcumin in turmeric to turn it reddish-brown", "The fabric permanently burns from friction", "Water dissolves the yellow pigment completely"], "correct": 1, "explanation": "Soap is alkaline (basic); basic substances react with curcumin in turmeric to produce a characteristic reddish-brown coloration."}], "simulator_type": "turmeric_curry_lab"}, {"id": 5, "type": "concept_slide", "title": "China Rose (Gudhal) & Floral Spectra", "subtitle": "Extracting Nature's Universal Palette from Hibiscus Flowers", "content": "\n          <p>Another classic natural indicator is prepared from the petals of the <strong>China rose</strong> (<em>Hibiscus rosa-sinensis</em>, commonly known in Hindi as <em>Gudhal</em>).</p>\n          <p class=\"mt-2\"><strong>Preparation:</strong> Place warm water in a beaker with several China rose petals. After steeping, a light pink-colored solution forms. This filtered solution serves as a sensitive indicator:</p>\n          <ul class=\"list-disc pl-5 mt-1 space-y-1 text-slate-300\">\n            <li><strong>In Acidic Solutions:</strong> China rose extract turns a bright, intense <strong>dark pink (magenta)</strong>.</li>\n            <li><strong>In Basic Solutions:</strong> China rose extract turns an unmistakable, vibrant <strong>green</strong>.</li>\n            <li><strong>In Neutral Solutions:</strong> The extract remains its original light pink shade without alteration.</li>\n          </ul>\n          <p class=\"mt-2\"><strong>Red Cabbage Indicator:</strong> Similarly, purple-red cabbage leaves boiled in water yield a universal-type floral extract: it turns <strong>red</strong> in strong acid, <strong>purple</strong> at neutral, and <strong>green to yellow</strong> in strong alkalis!</p>\n        ", "formula": "$$\\text{China Rose Indicator}: \\text{Acid } \\longrightarrow \\mathbf{\\text{Dark Pink (Magenta)}}, \\quad \\text{Neutral } \\longrightarrow \\mathbf{\\text{Light Pink}}, \\quad \\text{Base } \\longrightarrow \\mathbf{\\text{Green}}$$ ", "key_takeaways": ["China rose (Hibiscus) extract is light pink in neutral water.", "China rose extract turns dark pink (magenta) in acidic solutions.", "China rose extract turns green in basic solutions.", "Red cabbage juice provides a multi-color spectrum across the entire pH range."], "checkpoints": [{"question": "When China rose indicator is added to shampoo lather (mildly alkaline), what color does the solution become?", "options": ["Green", "Magenta (dark pink)", "Colorless", "Jet black"], "correct": 0, "explanation": "Shampoo solution is generally mildly basic; China rose indicator turns green in basic solutions."}, {"question": "What color does China rose indicator exhibit in pure distilled water?", "options": ["Bright green", "Dark magenta", "Light pink (its original neutral color)", "Fluorescent orange"], "correct": 2, "explanation": "In neutral solutions like distilled water, China rose indicator maintains its original light pink coloration."}], "simulator_type": "china_rose_spectrum_lab"}, {"id": 6, "type": "concept_slide", "title": "Olfactory Indicators: The Chemistry of Scents", "subtitle": "Detecting Acids and Bases Through Odor Changes", "content": "\n          <p>Not all chemical indicators rely on visual color changes. Some substances signal acidity or basicity through a change in their characteristic smell. These are called <strong>olfactory indicators</strong> (from the Latin <em>olfacere</em>, to smell).</p>\n          <p class=\"mt-2\">Common natural olfactory indicators include <strong>chopped onions</strong>, <strong>vanilla extract</strong>, and <strong>clove oil</strong>:</p>\n          <ul class=\"list-disc pl-5 mt-1 space-y-1 text-slate-300\">\n            <li><strong>The Onion Strip Test:</strong> Cloth strips soaked overnight with finely chopped onions absorb pungent organic sulfur compounds (allicin derivatives).\n              <ul class=\"list-disc pl-5 mt-1\">\n                <li>When treated with an <strong>acid</strong> (like dilute $\\text{HCl}$), the characteristic onion smell <strong>persists strongly</strong>.</li>\n                <li>When treated with a <strong>base</strong> (like $\\text{NaOH}$ solution), the chemical reaction destroys the odor-producing molecules, and the onion smell <strong>completely vanishes</strong>!</li>\n              </ul>\n            </li>\n            <li><strong>Vanilla & Clove Oil:</strong> In basic medium, the sweet fragrance of vanilla or spicy aroma of clove oil is neutralized and cannot be detected. In acidic medium, their scents remain fully intact.</li>\n          </ul>\n          <p class=\"mt-2 text-cyan-300 text-xs\">\u2b50 Inclusive Science: Olfactory indicators enable visually impaired students to conduct rigorous chemical acid-base experiments using their sense of smell!</p>\n        ", "formula": "$$\\text{Olfactory Rule}: \\text{In Acid } \\longrightarrow \\mathbf{\\text{Smell Persists}}, \\quad \\text{In Base } \\longrightarrow \\mathbf{\\text{Smell is Destroyed / Vanishes}}$$ ", "key_takeaways": ["Olfactory indicators change their odor depending on whether they are in an acidic or basic medium.", "Onion cloth strips, vanilla extract, and clove oil lose their scent in basic solutions.", "In acidic solutions, olfactory indicators retain their distinctive smell.", "Olfactory testing makes chemistry accessible to visually impaired researchers."], "checkpoints": [{"question": "What happens to the characteristic pungent smell of an onion cloth strip when it is treated with sodium hydroxide (a strong base)?", "options": ["The smell becomes ten times stronger", "The characteristic onion smell is destroyed and disappears", "The cloth strip starts smelling like fresh roses", "The cloth strip explodes into flames"], "correct": 1, "explanation": "Bases chemically alter and neutralize the sulfur-bearing organic compounds responsible for onion odor, causing the smell to vanish."}, {"question": "If you add drops of dilute hydrochloric acid to vanilla essence, what will you observe regarding its aroma?", "options": ["Its sweet vanilla smell is completely destroyed", "Its characteristic vanilla smell persists unchanged", "It begins smelling like rotten eggs", "It loses all liquid volume instantly"], "correct": 1, "explanation": "In an acidic medium, olfactory indicators like vanilla retain their characteristic pleasant aroma."}], "simulator_type": "olfactory_odor_lab"}, {"id": 7, "type": "concept_slide", "title": "Synthetic Indicators: Phenolphthalein", "subtitle": "Precision Laboratory Dyes for Quantitative Chemical Analysis", "content": "\n          <p>While natural indicators from lichens, roses, and turmeric are wonderful for exploration, precision scientific titrations often rely on pure <strong>synthetic indicators</strong> manufactured in chemical laboratories.</p>\n          <p class=\"mt-2\">The most important laboratory indicator for Grade 7 Science is <strong>Phenolphthalein</strong> ($\\text{C}_{20}\\text{H}_{14}\\text{O}_4$):</p>\n          <ul class=\"list-disc pl-5 mt-1 space-y-1 text-slate-300\">\n            <li><strong>In Acidic Solutions:</strong> Phenolphthalein remains completely <strong>colorless</strong>.</li>\n            <li><strong>In Neutral Solutions:</strong> Phenolphthalein remains completely <strong>colorless</strong>.</li>\n            <li><strong>In Basic Solutions:</strong> Phenolphthalein instantly turns a spectacular, vivid <strong>magenta-pink</strong>!</li>\n          </ul>\n          <p class=\"mt-2\"><strong>Methyl Orange:</strong> Another synthetic dye that is bright <strong>red</strong> in acidic solutions ($\\text{pH} < 3.1$) and <strong>yellow</strong> in neutral and basic solutions ($\\text{pH} > 4.4$).</p>\n          <p class=\"mt-2\">Because phenolphthalein gives an unmistakable on/off color switch (colorless $\\leftrightarrow$ deep pink), it serves as the ideal indicator to pinpoint the exact moment of complete neutralisation!</p>\n        ", "formula": "$$\\text{Phenolphthalein}: \\underbrace{\\text{Colorless}}_{\\text{Acidic / Neutral (pH } < 8.2\\text{)}} \\quad \\underset{-\\text{H}^+}{\\overset{+\\text{OH}^-}{\\rightleftharpoons}} \\quad \\underbrace{\\text{Vivid Magenta Pink}}_{\\text{Basic Medium (pH } > 10.0\\text{)}}$$ ", "key_takeaways": ["Phenolphthalein is completely colorless in acidic and neutral solutions.", "Phenolphthalein turns vivid magenta-pink in basic (alkaline) solutions.", "Methyl orange is red in acid and yellow in basic/neutral medium.", "Synthetic indicators provide sharp, reproducible end-points for quantitative neutralisation experiments."], "checkpoints": [{"question": "A few drops of phenolphthalein are added to a beaker containing dilute sodium hydroxide solution. What color appears?", "options": ["Vivid pink / magenta", "Completely colorless", "Bright yellow", "Dark green"], "correct": 0, "explanation": "Sodium hydroxide is a strong base. Phenolphthalein turns an unmistakable, vivid magenta-pink in basic solutions."}, {"question": "What happens when excess hydrochloric acid is slowly poured into the pink phenolphthalein-base mixture until it is acidic?", "options": ["The solution turns dark black", "The pink color completely vanishes and the solution turns colorless", "The solution solidifies into an ice cube", "The solution begins glowing in the dark"], "correct": 1, "explanation": "When acid neutralizes the base and makes the solution acidic, phenolphthalein switches back to its colorless form."}], "simulator_type": "phenolphthalein_chamber_lab"}, {"id": 8, "type": "concept_slide", "title": "The pH Scale: Measuring Acidity & Basicity", "subtitle": "From Danish Breweries to the Universal 0 to 14 Scale", "content": "\n          <p>Indicators like litmus tell us <em>whether</em> a substance is an acid or a base, but they cannot tell us <em>how strong</em> or <em>how weak</em> it is! To measure the exact degree of acidity or alkalinity, Danish chemist <strong>S.P.L. S\u00f8rensen</strong> invented the <strong>pH scale</strong> in 1909.</p>\n          <p class=\"mt-2\">The pH scale extends from <strong>0 to 14</strong> at room temperature ($25^\\circ\\text{C}$):</p>\n          <ul class=\"list-disc pl-5 mt-1 space-y-1 text-slate-300\">\n            <li><strong>$\\text{pH} < 7$ (Acidic):</strong> The lower the number, the stronger the acid. (Stomach acid $\\text{pH} \\approx 1.5$; lemon juice $\\text{pH} \\approx 2.2$; coffee $\\text{pH} \\approx 5.0$).</li>\n            <li><strong>$\\text{pH} = 7$ (Neutral):</strong> Equal concentration of $\\text{H}^+$ and $\\text{OH}^-$ ions. Pure distilled water has $\\text{pH} = 7.0$ at $25^\\circ\\text{C}$.</li>\n            <li><strong>$\\text{pH} > 7$ (Basic / Alkaline):</strong> The higher the number, the stronger the base. (Human blood $\\text{pH} \\approx 7.4$; baking soda $\\text{pH} \\approx 8.4$; soap water $\\text{pH} \\approx 10.0$; drain cleaner $\\text{pH} \\approx 13.5$).</li>\n          </ul>\n          <p class=\"mt-2\"><strong>Universal Indicator:</strong> A carefully calibrated blend of several dyes that exhibits a continuous rainbow spectrum across the entire pH range: red for strong acids, green for neutral, and violet for strong bases!</p>\n        ", "formula": "$$\\text{The pH Spectrum}: \\underbrace{0 \\quad 1 \\quad 2 \\quad 3 \\quad 4 \\quad 5 \\quad 6}_{\\text{Acidic (Red } \\rightarrow \\text{ Yellow)}} \\quad \\underbrace{\\mathbf{7}}_{\\text{Neutral (Green)}} \\quad \\underbrace{8 \\quad 9 \\quad 10 \\quad 11 \\quad 12 \\quad 13 \\quad 14}_{\\text{Basic (Blue } \\rightarrow \\text{ Violet)}}$$ ", "key_takeaways": ["The pH scale ranges from 0 (most acidic) to 14 (most basic).", "A pH value of exactly 7 represents neutral matter like pure distilled water.", "Universal indicator paper shows a continuous rainbow spectrum matching exact pH values.", "Each unit drop on the pH scale represents a tenfold increase in hydrogen ion concentration."], "checkpoints": [{"question": "Which of the following pH values indicates a strongly acidic solution?", "options": ["pH = 1.5", "pH = 7.0", "pH = 8.5", "pH = 13.5"], "correct": 0, "explanation": "Values significantly lower than 7 indicate acidity; a pH of 1.5 corresponds to a strong acid like human gastric juice."}, {"question": "What color does Universal Indicator paper display in a neutral solution of pH 7.0?", "options": ["Bright red", "Emerald green", "Deep violet", "Pure black"], "correct": 1, "explanation": "Universal indicator is calibrated to turn emerald green in neutral solutions at pH 7.0."}], "simulator_type": "universal_ph_scale_strip"}, {"id": 9, "type": "concept_slide", "title": "What Happens When Acids and Bases Mix?", "subtitle": "The Neutralisation Reaction: Acid + Base \u2794 Salt + Water + Heat", "content": "\n          <p>What happens when an acidic substance and a basic substance are mixed together in balanced proportions? Do their opposite properties wage war, or do they cancel each other out?</p>\n          <p class=\"mt-2\">They neutralize each other! The reaction between an acid and a base is called a <strong>neutralisation reaction</strong>. In this chemical process, the acidic nature of the acid and the basic nature of the base are completely destroyed:</p>\n          <div class=\"p-3 my-2 rounded-xl bg-slate-900 border border-emerald-500/40 text-center text-xs sm:text-sm font-mono text-emerald-300\">\n            $$\\text{Acid} + \\text{Base} \\longrightarrow \\text{Salt} + \\text{Water} + \\text{Heat}$$\n          </div>\n          <p class=\"mt-2\">Consider the classic laboratory reaction between <strong>Hydrochloric acid ($\\text{HCl}$)</strong> and <strong>Sodium hydroxide ($\\text{NaOH}$)</strong>:</p>\n          <div class=\"p-3 my-2 rounded-xl bg-slate-950 border border-cyan-500/30 text-center text-xs font-mono text-cyan-300\">\n            $$\\text{HCl} + \\text{NaOH} \\longrightarrow \\text{NaCl (common table salt)} + \\text{H}_2\\text{O (water)} + \\text{Heat}$$\n          </div>\n          <p class=\"mt-2\"><strong>Heat is Always Released (Exothermic):</strong> If you touch the conical flask immediately after mixing an acid and a base, it feels distinctly <strong>warm</strong>! Neutralisation always releases thermal energy.</p>\n        ", "formula": "$$\\text{Neutralisation Invariant}: \\text{H}^+\\text{(aq)} + \\text{OH}^-\\text{(aq)} \\longrightarrow \\text{H}_2\\text{O(l)} + 57.3\\text{ kJ/mol (Heat)}$$", "key_takeaways": ["Neutralisation is the reaction between an acid and a base forming a salt and water.", "The products of neutralisation are neither acidic nor basic (neutral in equal strength).", "Neutralisation is strictly exothermic: heat is evolved, raising the mixture's temperature.", "The chemical formula: Acid + Base \u2794 Salt + Water + Heat."], "checkpoints": [{"question": "What two chemical products are always formed when an acid reacts with a base in a neutralisation reaction?", "options": ["Carbon dioxide and methane gas", "Salt and water", "Pure oxygen and hydrogen gas", "Gold and silver crystals"], "correct": 1, "explanation": "In any neutralisation reaction, the acid and base react to form a salt and water: $\\text{Acid} + \\text{Base} \\rightarrow \\text{Salt} + \\text{Water} + \\text{Heat}$."}, {"question": "When you touch the bottom of a test tube immediately following a neutralisation reaction, what will you feel?", "options": ["The test tube feels noticeably warm because heat is evolved", "The test tube freezes into solid ice", "The test tube becomes magnetically charged", "No temperature change whatsoever"], "correct": 0, "explanation": "Neutralisation reactions are exothermic; the formation of water from hydrogen and hydroxide ions releases thermal energy ($57.3\\text{ kJ/mol}$), warming the container."}], "simulator_type": "neutralisation_reaction_chamber"}, {"id": 10, "type": "concept_slide", "title": "Titration Mechanics & Exothermic Tracking", "subtitle": "Pinpointing the Exact Equivalence Point with Phenolphthalein", "content": "\n          <p>How do chemists ensure that an acid and a base have reacted in exact, stoichiometric equivalence? They perform a precise technique called a <strong>titration</strong> using a graduated glass burette and a conical flask.</p>\n          <p class=\"mt-2\"><strong>Step-by-Step Titration Experiment:</strong></p>\n          <ol class=\"list-decimal pl-5 mt-1 space-y-1 text-slate-300\">\n            <li>Measure $10\\text{ mL}$ of dilute hydrochloric acid ($\\text{HCl}$) into a conical flask.</li>\n            <li>Add 2 to 3 drops of phenolphthalein indicator. The solution remains completely <strong>colorless</strong>.</li>\n            <li>Fill a burette with dilute sodium hydroxide ($\\text{NaOH}$) solution.</li>\n            <li>Slowly add $\\text{NaOH}$ drop by drop, swirling the flask continuously. A thermometer records rising temperature.</li>\n            <li>As long as acid is in excess, the mixture stays colorless. At the exact drop where the acid is fully neutralized, the very next fraction of a drop turns the entire solution a faint, permanent <strong>pink</strong>!</li>\n          </ol>\n          <p class=\"mt-2\">This sharp color change marks the <strong>end-point</strong>: the acid has been 100% neutralized into neutral saltwater ($\\text{NaCl} + \\text{H}_2\\text{O}$).</p>\n        ", "formula": "$$\\text{Equivalence Point}: \\text{Moles of H}^+ = \\text{Moles of OH}^- \\quad (\\text{Phenolphthalein transitions Colorless } \\longrightarrow \\text{ Faint Pink})$$", "key_takeaways": ["Titration allows precise volumetric addition of base to acid to find the neutral point.", "Phenolphthalein serves as an on/off indicator: colorless in acid, faint pink at neutral end-point.", "Swirling ensures rapid, uniform mixing and complete chemical neutralisation.", "Continuous temperature monitoring proves the exothermic release of chemical bond energy."], "checkpoints": [{"question": "During a titration of hydrochloric acid with sodium hydroxide using phenolphthalein, what indicates that the end-point has been reached?", "options": ["The liquid suddenly turns bright green", "A single drop of base causes the colorless solution to turn a permanent faint pink", "Dense white smoke shoots out of the flask", "The flask becomes completely frozen"], "correct": 1, "explanation": "At the equivalence point, all acid is consumed; the very next trace of hydroxide turns phenolphthalein to its characteristic pink form."}, {"question": "If you add several more drops of hydrochloric acid to the newly pink solution, what will occur?", "options": ["The solution stays pink forever", "The solution turns colorless again because the mixture becomes acidic", "The liquid turns bright purple", "The flask shatters from pressure"], "correct": 1, "explanation": "Adding excess acid shifts the solution back to an acidic state, returning phenolphthalein to its colorless form."}], "simulator_type": "titration_burette_lab"}, {"id": 11, "type": "concept_slide", "title": "Neutralisation in Daily Life: Ant Bites & Stings", "subtitle": "Soothing Formic Acid Injections with Mild Alkaline Bases", "content": "\n          <p>Neutralisation is not confined to laboratory test tubes\u2014it is a vital biological defense that we use every day! Consider the sharp, burning sting of a red ant bite.</p>\n          <p class=\"mt-2\"><strong>The Chemistry of an Ant Bite:</strong></p>\n          <ul class=\"list-disc pl-5 mt-1 space-y-1 text-slate-300\">\n            <li>When an ant bites, it pierces human skin and injects an acidic venom containing <strong>formic acid (methanoic acid, $\\text{HCOOH}$)</strong>.</li>\n            <li>Formic acid irritates sensory pain nerves, triggering immediate swelling, redness, and a painful burning sensation.</li>\n          </ul>\n          <p class=\"mt-2\"><strong>The Neutralisation Remedy:</strong></p>\n          <ul class=\"list-disc pl-5 mt-1 space-y-1 text-slate-300\">\n            <li>To soothe the burning pain, we rub the stung skin with a mild, safe basic substance:\n              <ul class=\"list-disc pl-5 mt-1\">\n                <li><strong>Moist Baking Soda:</strong> Sodium hydrogen carbonate ($\\text{NaHCO}_3$), a mild household base.</li>\n                <li><strong>Calamine Lotion:</strong> Contains zinc carbonate ($\\text{ZnCO}_3$), which chemically neutralizes the acidic venom.</li>\n              </ul>\n            </li>\n            <li>The base reacts with formic acid, neutralizing it into harmless zinc or sodium formate salt and water, providing rapid relief!</li>\n          </ul>\n          <p class=\"mt-2 text-amber-300 text-xs\">\ud83d\udc1d Contrast with Wasp Stings: A wasp sting is <strong>alkaline (basic)</strong>! Rubbing baking soda on a wasp sting makes it worse. Instead, wasp stings are neutralized with a mild acid like <strong>vinegar</strong>!</p>\n        ", "formula": "$$\\text{Ant Bite Remedy}: \\underbrace{\\text{HCOOH (Formic Acid Venom)}}_{\\text{Acidic Stinger}} + \\underbrace{\\text{NaHCO}_3 \\text{ (Baking Soda)}}_{\\text{Mild Base}} \\longrightarrow \\underbrace{\\text{HCOONa (Sodium Formate Salt)} + \\text{H}_2\\text{O} + \\text{CO}_2}_{\\text{Harmless Neutral Products}}$$", "key_takeaways": ["Ant venom contains formic acid (methanoic acid), causing burning and inflammation.", "Applying moist baking soda ($\text{NaHCO}_3$) or calamine lotion ($\text{ZnCO}_3$) neutralizes the acid.", "Wasp stings are alkaline and are soothed with mild acids like vinegar.", "Knowing whether a sting is acidic or basic determines the correct neutralisation cure!"], "checkpoints": [{"question": "What chemical acid is injected into human skin during an ant bite?", "options": ["Formic acid (methanoic acid)", "Concentrated sulfuric acid", "Citric acid", "Nitric acid"], "correct": 0, "explanation": "Ants secrete formic acid (from Latin 'formica', ant) into the sting wound, causing painful local inflammation."}, {"question": "Which of the following household substances should be applied to soothe an ant bite?", "options": ["Lemon juice", "Moist baking soda paste or calamine lotion", "Pure vinegar", "Battery acid"], "correct": 1, "explanation": "Baking soda and calamine are mild bases that chemically neutralize the acidic formic acid venom without harming skin."}], "simulator_type": "ant_bite_neutraliser_lab"}, {"id": 12, "type": "concept_slide", "title": "Neutralisation in Daily Life: Soil Management", "subtitle": "Balancing Agricultural Soil pH for Optimum Crop Yield", "content": "\n          <p>Agriculture depends fundamentally on soil chemistry. Most food crops (wheat, rice, pulses, and vegetables) thrive best in nearly neutral soil with a pH between <strong>6.0 and 7.5</strong>. If soil becomes excessively acidic or excessively basic, plant roots cannot absorb vital nutrients!</p>\n          <p class=\"mt-2\"><strong>Case 1: When Soil is Too Acidic ($\\text{pH} < 5.5$)</strong></p>\n          <ul class=\"list-disc pl-5 mt-1 space-y-1 text-slate-300\">\n            <li><em>Cause:</em> Heavy overuse of synthetic chemical nitrogen fertilizers (like urea and ammonium sulfate) or continuous acid rain.</li>\n            <li><em>Remedy:</em> Farmers treat acidic soil with basic compounds:\n              <ul class=\"list-disc pl-5 mt-1\">\n                <li><strong>Quicklime:</strong> Calcium oxide ($\\text{CaO}$).</li>\n                <li><strong>Slaked lime:</strong> Calcium hydroxide ($\\text{Ca(OH)}_2$) or powdered chalk/limestone ($\\text{CaCO}_3$).</li>\n              </ul>\n            </li>\n            <li>These bases react with soil acids, raising the pH back to the ideal fertile neutral zone.</li>\n          </ul>\n          <p class=\"mt-2\"><strong>Case 2: When Soil is Too Basic ($\\text{pH} > 8.5$)</strong></p>\n          <ul class=\"list-disc pl-5 mt-1 space-y-1 text-slate-300\">\n            <li><em>Remedy:</em> Farmers add <strong>organic matter (manure and compost)</strong>. As microbes decompose organic waste, they naturally release organic acids that neutralize alkaline soil compounds!</li>\n          </ul>\n        ", "formula": "$$\\text{Acidic Soil Liming}: \\text{Soil Acidity (2H}^+\\text{)} + \\text{Ca(OH)}_2 \\text{ (Slaked Lime)} \\longrightarrow \\text{Ca}^{2+} + 2\\text{H}_2\\text{O} \\quad (\\text{pH restored to 6.8})$$", "key_takeaways": ["Plants cannot absorb nutrients efficiently if soil is excessively acidic or excessively basic.", "Excess chemical fertilizers cause soil acidification.", "Acidic soil is treated with quicklime ($\text{CaO}$) or slaked lime ($\text{Ca(OH)}_2$).", "Basic soil is treated with decomposing organic matter/manure which releases natural acids."], "checkpoints": [{"question": "What should a farmer add to an agricultural field that has become excessively acidic due to over-fertilization?", "options": ["Quicklime (calcium oxide) or slaked lime (calcium hydroxide)", "Battery acid", "Lemon juice", "Vinegar"], "correct": 0, "explanation": "Quicklime and slaked lime are basic compounds that neutralize excess soil acidity, restoring healthy pH for plant roots."}, {"question": "How does adding compost or farmyard manure help cure excessively basic (alkaline) soil?", "options": ["Manure adds more lime to the soil", "Decomposing organic matter releases natural acids that neutralize soil bases", "Manure freezes the soil solid", "Manure removes all water from the soil"], "correct": 1, "explanation": "Microbial decomposition of organic compost releases organic acids (humic and fulvic acids) that naturally neutralize soil alkalinity."}], "simulator_type": "soil_ph_management_lab"}, {"id": 13, "type": "concept_slide", "title": "Industrial Effluent & Environmental Protection", "subtitle": "Treating Factory Acid Wastes to Safeguard Aquatic Ecosystems", "content": "\n          <p>Modern industrial facilities\u2014including textile dyeing mills, battery manufacturers, electroplating units, and chemical synthesis plants\u2014generate millions of liters of liquid waste containing strong acids like sulfuric acid ($\\text{H}_2\\text{SO}_4$) and hydrochloric acid ($\\text{HCl}$).</p>\n          <p class=\"mt-2\"><strong>The Environmental Hazard:</strong></p>\n          <ul class=\"list-disc pl-5 mt-1 space-y-1 text-slate-300\">\n            <li>If untreated acidic factory waste is directly discharged into rivers, streams, and lakes, water pH plunges below 4.0.</li>\n            <li>Acidic water damages the gills of fish, destroys microscopic phytoplankton (the base of aquatic food chains), and leaches toxic heavy metals (like lead and mercury) from riverbed sediments.</li>\n          </ul>\n          <p class=\"mt-2\"><strong>The Neutralisation Protocol:</strong></p>\n          <ul class=\"list-disc pl-5 mt-1 space-y-1 text-slate-300\">\n            <li>Environmental protection laws mandate that industrial plants establish dedicated <strong>Effluent Treatment Plants (ETPs)</strong>.</li>\n            <li>Acidic wastewater is routed into large treatment holding tanks where controlled quantities of cheap basic substances\u2014such as <strong>slaked lime ($\\text{Ca(OH)}_2$)</strong> or limestone powder\u2014are thoroughly churned in.</li>\n            <li>The base neutralizes the corrosive acids into harmless, insoluble calcium salts and neutral water before environmental discharge!</li>\n          </ul>\n        ", "formula": "$$\\text{Effluent Neutralisation}: \\text{H}_2\\text{SO}_4\\text{(aq)} + \\text{Ca(OH)}_2\\text{(s)} \\longrightarrow \\text{CaSO}_4\\text{(s)} \\downarrow + 2\\text{H}_2\\text{O(l)} \\quad (\\text{Safe Effluent pH } \\approx 7.0)$$", "key_takeaways": ["Industrial wastewater often contains concentrated, corrosive acids.", "Dumping acidic factory waste directly into water bodies kills fish and destroys ecosystems.", "Factories must neutralize acidic waste by adding basic lime ($\text{Ca(OH)}_2$) before discharge.", "Neutralisation in ETPs protects biodiversity and keeps drinking water sources safe."], "checkpoints": [{"question": "Why must acidic industrial factory waste be treated with basic substances before discharging into rivers?", "options": ["To turn the river water into drinkable milk", "To prevent acidic water from poisoning fish and destroying the aquatic ecosystem", "To make the river flow faster", "To generate electricity inside the river"], "correct": 1, "explanation": "Untreated acidic effluent suffocates aquatic life and destabilizes aquatic ecosystems; neutralizing with base prevents environmental disaster."}, {"question": "Which inexpensive basic substance is universally used in industrial Effluent Treatment Plants (ETPs) to neutralize acid waste?", "options": ["Slaked lime (calcium hydroxide)", "Pure molten gold", "Concentrated sulfuric acid", "Distilled water"], "correct": 0, "explanation": "Slaked lime is an abundant, cost-effective base that effectively neutralizes strong industrial acids into neutral salts."}], "simulator_type": "factory_effluent_plant_lab"}, {"id": 14, "type": "concept_slide", "title": "Indigestion Antacids & Dental Protection", "subtitle": "Biochemical Neutralisation Inside the Human Body", "content": "\n          <p>Neutralisation is essential to human health, working continuously to balance digestive processes in our stomachs and protect enamel on our teeth.</p>\n          <p class=\"mt-2\"><strong>1. Soothing Stomach Acidity & Indigestion:</strong></p>\n          <ul class=\"list-disc pl-5 mt-1 space-y-1 text-slate-300\">\n            <li>Our stomach's gastric glands naturally produce dilute <strong>hydrochloric acid ($\\text{HCl}$, pH $\\approx 1.5$ to $2.0$)</strong> to activate digestive enzymes (pepsin) and destroy harmful bacteria.</li>\n            <li>Stress, irregular eating, or excess spicy food can cause <strong>hyperacidity (indigestion)</strong>, where excess acid causes painful burning in the stomach and esophagus (heartburn).</li>\n            <li>We consume <strong>antacids</strong>\u2014mild, non-corrosive basic medicines such as <strong>Milk of Magnesia (magnesium hydroxide, $\\text{Mg(OH)}_2$)</strong> or aluminium hydroxide. The antacid neutralizes excess acid:\n              $$\\text{Mg(OH)}_2 + 2\\text{HCl} \\longrightarrow \\text{MgCl}_2 + 2\\text{H}_2\\text{O}$$\n            </li>\n          </ul>\n          <p class=\"mt-2\"><strong>2. Tooth Decay & Toothpaste:</strong> Bacteria in our mouth feed on lingering food sugars and secrete acids. If mouth pH drops below $5.5$, tooth enamel (calcium hydroxyapatite) begins to dissolve! Modern toothpaste is formulated to be <strong>mildly alkaline</strong> to neutralize residual mouth acids and prevent cavities.</p>\n        ", "formula": "$$\\text{Antacid Relief}: \\text{Mg(OH)}_2\\text{ (Milk of Magnesia)} + 2\\text{HCl (Stomach Acid)} \\longrightarrow \\text{MgCl}_2\\text{ (Salt)} + 2\\text{H}_2\\text{O} \\quad (\\text{Pain Relieved!})$$", "key_takeaways": ["The stomach secretes dilute hydrochloric acid ($\text{HCl}$) for healthy digestion.", "Excess stomach acid produces painful indigestion, treated with antacids.", "Antacids contain mild bases like Milk of Magnesia ($\text{Mg(OH)}_2$).", "Toothpaste is mildly basic to neutralize mouth acids that erode tooth enamel."], "checkpoints": [{"question": "What active chemical base is present in the common antacid 'Milk of Magnesia'?", "options": ["Magnesium hydroxide [$\\text{Mg(OH)}_2$]", "Concentrated hydrochloric acid [$\\text{HCl}$]", "Sodium chloride [$\\text{NaCl}$]", "Pure copper sulfate [$\\text{CuSO}_4$]"], "correct": 0, "explanation": "Milk of Magnesia is a suspension of magnesium hydroxide, a mild insoluble base that neutralizes excess gastric hydrochloric acid without burning tissues."}, {"question": "Why is commercial toothpaste formulated to be mildly basic (alkaline)?", "options": ["To color the teeth blue", "To neutralize acids produced by mouth bacteria that cause enamel erosion and tooth decay", "To make teeth softer for chewing", "To help bacteria grow faster"], "correct": 1, "explanation": "Alkaline toothpaste neutralizes microbial acids produced from fermenting sugars, preserving dental enamel."}], "simulator_type": "antacid_dental_health_lab"}, {"id": 15, "type": "concept_slide", "title": "Acharya P.C. Ray & The Heritage of Chemistry", "subtitle": "Pioneering Indian Synthetic Chemistry & Indigenous Industry", "content": "\n          <p>India holds a rich, thousands-of-years-old heritage in chemistry, known in Sanskrit as <strong>Rasashastra</strong> (the science of juices, minerals, and chemical reactions). Ancient Indian scholars classified alkalis as <strong>K\u1e63\u0101ra (\u0915\u094d\u0937\u093e\u0930)</strong> and acids as <strong>Amla (\u0905\u092e\u094d\u0932)</strong>.</p>\n          <p class=\"mt-2\">The revered father of modern Indian chemistry is <strong>Acharya Prafulla Chandra Ray (1861\u20131944)</strong>:</p>\n          <ul class=\"list-disc pl-5 mt-1 space-y-1 text-slate-300\">\n            <li><strong>Synthesis of Mercurous Nitrite:</strong> In 1896, working in his modest laboratory at Presidency College Kolkata, Ray made a breakthrough discovery by synthesizing <strong>mercurous nitrite ($\\text{Hg}_2(\\text{NO}_2)_2$)</strong>, a compound previously believed to be too unstable to exist!</li>\n            <li><strong>Historian of Science:</strong> He authored the monumental work <em>\"A History of Hindu Chemistry\"</em>, documenting the sophisticated metallurgical, distillation, and alkali-purification techniques of ancient Indian scholars like Nagarjuna.</li>\n            <li><strong>Founder of Indigenous Industry:</strong> P.C. Ray founded <strong>Bengal Chemical & Pharmaceutical Works</strong> in 1901\u2014India's first modern chemical and pharmaceutical company\u2014demonstrating that science must foster economic self-reliance.</li>\n          </ul>\n        ", "formula": "$$\\text{Mercurous Nitrite Discovery (1896)}: 2\\text{Hg} + 4\\text{HNO}_3\\text{ (dilute)} \\longrightarrow \\text{Hg}_2(\\text{NO}_2)_2 + 2\\text{H}_2\\text{O} + 2\\text{NO} \\uparrow$$", "key_takeaways": ["Acharya Prafulla Chandra Ray is celebrated as the Father of Modern Indian Chemistry.", "In 1896, Ray synthesized stable mercurous nitrite ($\text{Hg}_2(\text{NO}_2)_2$), gaining global acclaim.", "He founded Bengal Chemicals (1901), pioneering indigenous Indian manufacturing.", "His historical research uncovered ancient Indian traditions of Rasashastra (alkalis and acids)."], "checkpoints": [{"question": "Which historic chemical compound was synthesized by Acharya Prafulla Chandra Ray in 1896, winning international acclaim?", "options": ["Mercurous nitrite [$\\text{Hg}_2(\\text{NO}_2)_2$]", "Synthetic plastic", "Pure liquid uranium", "Stainless steel"], "correct": 0, "explanation": "P.C. Ray's synthesis of stable mercurous nitrite from mercury and dilute nitric acid in 1896 established modern Indian experimental chemistry."}, {"question": "What historic pharmaceutical manufacturing enterprise was founded by Acharya P.C. Ray in 1901 to promote Indian self-reliance?", "options": ["Bengal Chemical & Pharmaceutical Works", "The East India Tea Company", "The Indian Railway Board", "ISRO Rocket Laboratory"], "correct": 0, "explanation": "Ray founded Bengal Chemical & Pharmaceutical Works in Kolkata, pioneering India's indigenous chemical and pharmaceutical industry."}], "simulator_type": "pc_ray_chemistry_heritage"}, {"id": 16, "type": "concept_slide", "title": "Master Synthesis: The Acid-Base-Salt Map", "subtitle": "Consolidating All Indicators, Reactions, and Daily Applications", "content": "\n          <p>Let us consolidate everything you have mastered across Chapter 2 into one comprehensive diagnostic matrix:</p>\n          <div class=\"overflow-x-auto my-3 text-[11px]\">\n            <table class=\"w-full text-left border-collapse border border-slate-700 bg-slate-950\">\n              <thead>\n                <tr class=\"bg-slate-900 text-amber-400 border-b border-slate-700\">\n                  <th class=\"p-2 border-r border-slate-700\">Indicator</th>\n                  <th class=\"p-2 border-r border-slate-700 text-rose-300\">Acidic Medium</th>\n                  <th class=\"p-2 border-r border-slate-700 text-slate-300\">Neutral Medium</th>\n                  <th class=\"p-2 text-cyan-300\">Basic Medium</th>\n                </tr>\n              </thead>\n              <tbody class=\"divide-y divide-slate-800 text-slate-300\">\n                <tr>\n                  <td class=\"p-2 font-bold border-r border-slate-800 text-amber-300\">Blue Litmus Paper</td>\n                  <td class=\"p-2 border-r border-slate-800 text-rose-400 font-bold\">Turns RED</td>\n                  <td class=\"p-2 border-r border-slate-800\">Remains Blue</td>\n                  <td class=\"p-2 text-cyan-400\">Remains Blue</td>\n                </tr>\n                <tr>\n                  <td class=\"p-2 font-bold border-r border-slate-800 text-amber-300\">Red Litmus Paper</td>\n                  <td class=\"p-2 border-r border-slate-800 text-rose-400\">Remains Red</td>\n                  <td class=\"p-2 border-r border-slate-800\">Remains Red</td>\n                  <td class=\"p-2 text-cyan-400 font-bold\">Turns BLUE</td>\n                </tr>\n                <tr>\n                  <td class=\"p-2 font-bold border-r border-slate-800 text-amber-300\">Turmeric (Haldi)</td>\n                  <td class=\"p-2 border-r border-slate-800\">Remains Yellow</td>\n                  <td class=\"p-2 border-r border-slate-800\">Remains Yellow</td>\n                  <td class=\"p-2 text-rose-400 font-bold\">Turns REDDISH-BROWN</td>\n                </tr>\n                <tr>\n                  <td class=\"p-2 font-bold border-r border-slate-800 text-amber-300\">Red Rose Extract</td>\n                  <td class=\"p-2 border-r border-slate-800 text-rose-400 font-bold\">Turns Deep Red</td>\n                  <td class=\"p-2 border-r border-slate-800\">Light Pink</td>\n                  <td class=\"p-2 text-emerald-400 font-bold\">Turns GREEN</td>\n                </tr>\n                <tr>\n                  <td class=\"p-2 font-bold border-r border-slate-800 text-amber-300\">China Rose (Gudhal)</td>\n                  <td class=\"p-2 border-r border-slate-800 text-pink-400 font-bold\">Turns Magenta</td>\n                  <td class=\"p-2 border-r border-slate-800\">Light Pink</td>\n                  <td class=\"p-2 text-emerald-400 font-bold\">Turns GREEN</td>\n                </tr>\n                <tr>\n                  <td class=\"p-2 font-bold border-r border-slate-800 text-amber-300\">Phenolphthalein</td>\n                  <td class=\"p-2 border-r border-slate-800\">Colorless</td>\n                  <td class=\"p-2 border-r border-slate-800\">Colorless</td>\n                  <td class=\"p-2 text-pink-400 font-bold\">Turns VIVID PINK</td>\n                </tr>\n                <tr>\n                  <td class=\"p-2 font-bold border-r border-slate-800 text-amber-300\">Olfactory (Onion/Vanilla)</td>\n                  <td class=\"p-2 border-r border-slate-800 text-emerald-400\">Odor Persists</td>\n                  <td class=\"p-2 border-r border-slate-800\">Odor Persists</td>\n                  <td class=\"p-2 text-rose-400 font-bold\">Odor DESTROYED</td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n        ", "formula": "$$\\text{Universal Formula}: \\text{Acid (H}^+\\text{)} + \\text{Base (OH}^-\\text{)} \\longrightarrow \\text{Salt} + \\text{H}_2\\text{O} + \\text{Heat}$$", "key_takeaways": ["Acids turn blue litmus red, rose extract dark red, and keep turmeric yellow.", "Bases turn red litmus blue, turmeric reddish-brown, rose extract green, and phenolphthalein pink.", "Neutralisation always yields salt, water, and heat.", "Real-life applications: antacids for heartburn, lime for acidic soil, and baking soda for ant bites."], "checkpoints": [{"question": "Which of the following substances will produce a green color with China rose indicator?", "options": ["Baking soda solution (basic)", "Lemon juice (acidic)", "Distilled water (neutral)", "Vinegar (acidic)"], "correct": 0, "explanation": "China rose indicator turns green in basic solutions like baking soda."}, {"question": "What is the common term for a reaction where an acid and base react completely to form salt and water?", "options": ["Neutralisation reaction", "Combustion reaction", "Fermentation", "Photosynthesis"], "correct": 0, "explanation": "The chemical process where acids and bases eliminate each other's properties to form salt and water is called neutralisation."}], "simulator_type": "master_substance_wheel"}, {"id": 17, "type": "quiz_slide", "title": "Mastery Challenge I: Natural Indicators", "subtitle": "Test Your Knowledge on Litmus, Red Rose, Turmeric, and China Rose", "questions": [{"question": "1. From which organism is the natural acid-base indicator litmus extracted?", "options": ["Lichens (symbiosis of algae and fungi)", "Rose petals", "Mushrooms", "Bark of the neem tree"], "correct": 0, "solution": "Litmus is a natural water-soluble dye extracted from lichens, which are composite symbiotic organisms formed by algae and fungi."}, {"question": "2. What color does blue litmus paper turn when dipped into fresh orange juice?", "options": ["Red", "Green", "Remains blue", "Yellow"], "correct": 0, "solution": "Orange juice contains citric acid and ascorbic acid. Acidic solutions turn blue litmus paper red."}, {"question": "3. What happens to yellow turmeric paper when placed into washing soda solution?", "options": ["It turns deep reddish-brown", "It turns bright blue", "It remains yellow", "It turns completely colorless"], "correct": 0, "solution": "Washing soda is alkaline (basic). Curcumin in turmeric reacts with hydroxide ions to turn deep reddish-brown."}, {"question": "4. Red rose petal extract turns which color when added to a basic solution?", "options": ["Green / yellowish-green", "Dark red", "Colorless", "Bright pink"], "correct": 0, "solution": "Red rose petal extract turns green or yellowish-green in a basic medium, while turning deep red in acidic solutions."}, {"question": "5. What color does China rose indicator exhibit in acidic solutions like vinegar?", "options": ["Dark pink (magenta)", "Green", "Yellow", "Colorless"], "correct": 0, "solution": "China rose (Gudhal) extract turns an intense dark pink (magenta) in acidic solutions."}, {"question": "6. A solution has no effect on either red litmus paper or blue litmus paper. What is the nature of this solution?", "options": ["Neutral", "Strongly acidic", "Strongly basic", "Highly toxic"], "correct": 0, "solution": "Neutral solutions (like pure distilled water or sodium chloride brine) cause no color change on either red or blue litmus paper."}, {"question": "7. Why does scrubbing a turmeric curry stain on a shirt with soap turn it red?", "options": ["Laundry soap is basic, causing turmeric's curcumin to turn reddish-brown", "Soap contains red chemical dye", "The cloth fabric burns from heat", "The yellow dye evaporates instantly"], "correct": 0, "solution": "Laundry soap is a basic substance ($\text{pH} > 9$), which triggers a color reaction with curcumin, turning the yellow stain reddish-brown."}, {"question": "8. If you add lemon juice to the red curry stain mentioned above, what will happen?", "options": ["The stain turns yellow again as acid neutralizes the soap base", "The cloth dissolves completely", "The stain turns black", "The stain starts glowing"], "correct": 0, "solution": "Lemon juice contains citric acid, which neutralizes the alkaline soap residue, restoring curcumin to its native yellow form."}, {"question": "9. What is the color of neutral litmus solution in pure distilled water?", "options": ["Mauve (purple)", "Bright yellow", "Emerald green", "Colorless"], "correct": 0, "solution": "Neutral litmus solution has a distinctive mauve (purple) coloration in distilled water."}, {"question": "10. Which of the following pairs contains natural indicators exclusively?", "options": ["Turmeric and China rose extract", "Phenolphthalein and methyl orange", "Litmus and phenolphthalein", "Hydrochloric acid and sodium hydroxide"], "correct": 0, "solution": "Turmeric and China rose are both plant-derived natural indicators, unlike synthetic phenolphthalein or methyl orange."}]}, {"id": 18, "type": "quiz_slide", "title": "Mastery Challenge II: Synthetic & Olfactory Indicators", "subtitle": "Test Your Understanding of Phenolphthalein, Odors, and the pH Scale", "questions": [{"question": "11. What color is phenolphthalein indicator in an acidic solution?", "options": ["Colorless", "Pink", "Blue", "Green"], "correct": 0, "solution": "Phenolphthalein remains completely colorless in acidic and neutral solutions; it only turns pink in basic solutions."}, {"question": "12. In which medium does phenolphthalein turn vivid magenta-pink?", "options": ["Basic medium", "Acidic medium", "Pure distilled water", "Dry air"], "correct": 0, "solution": "Phenolphthalein turns a vivid magenta-pink in basic (alkaline) solutions above approximately pH 8.2."}, {"question": "13. What is an 'olfactory indicator'?", "options": ["An indicator whose odor changes depending on whether it is in an acidic or basic medium", "An indicator that glows in the dark", "An indicator that changes into a solid crystal", "An indicator that only works in freezing temperatures"], "correct": 0, "solution": "Olfactory indicators (from Latin 'olfacere', to smell) are substances whose distinctive smell changes or vanishes in acidic or basic mediums."}, {"question": "14. What happens to the smell of vanilla extract when added to sodium hydroxide solution?", "options": ["The vanilla aroma is destroyed and cannot be detected", "The vanilla smell becomes much stronger", "It begins smelling like rotten onions", "No change in smell occurs"], "correct": 0, "solution": "Bases react with the aromatic aldehyde vanillin, neutralizing and eliminating its characteristic sweet smell."}, {"question": "15. Who invented the pH scale in 1909 to quantify acidity and alkalinity?", "options": ["S.P.L. S\u00f8rensen", "Sir Isaac Newton", "Alexander Fleming", "Galileo Galilei"], "correct": 0, "solution": "Danish chemist S.P.L. S\u00f8rensen introduced the pH scale at the Carlsberg Laboratory in 1909."}, {"question": "16. A solution has a pH of 7.0 at 25\u00b0C. What is its chemical classification?", "options": ["Neutral", "Strongly acidic", "Strongly basic", "Super-saturated"], "correct": 0, "solution": "A pH of exactly 7.0 represents a neutral solution where hydrogen ion and hydroxide ion concentrations are balanced."}, {"question": "17. Which of the following pH values indicates the strongest acid?", "options": ["pH = 1.0", "pH = 5.0", "pH = 7.0", "pH = 13.0"], "correct": 0, "solution": "On the pH scale, lower numbers signify higher hydrogen ion concentration; pH 1.0 is the strongest acid among the options."}, {"question": "18. What is 'Universal Indicator'?", "options": ["A calibrated mixture of several indicators that exhibits distinct rainbow colors across the entire pH range", "A single chemical that turns red in everything", "Pure liquid mercury used to measure temperature", "A dye that only works in outer space"], "correct": 0, "solution": "Universal indicator is a mixture of organic dyes (including thymol blue, methyl red, bromothymol blue, and phenolphthalein) showing continuous color gradients from red to purple."}, {"question": "19. Which indicator would be ideal for a visually impaired student conducting an acid-base experiment?", "options": ["Onion cloth strip or clove oil (olfactory indicator)", "Phenolphthalein", "Blue litmus paper", "Turmeric paper"], "correct": 0, "solution": "Olfactory indicators rely on sense of smell rather than visual color perception, allowing visually impaired students to detect acid-base reactions."}, {"question": "20. What color does methyl orange indicator turn in an acidic solution?", "options": ["Red", "Yellow", "Green", "Colorless"], "correct": 0, "solution": "Methyl orange is red in acidic solutions ($\text{pH} < 3.1$) and turns yellow in neutral and basic solutions."}]}, {"id": 19, "type": "quiz_slide", "title": "Mastery Challenge III: Neutralisation Reactions", "subtitle": "Test Your Mastery on Equations, Salts, Exothermic Heat, and Titration", "questions": [{"question": "21. What is the general word equation for any neutralisation reaction?", "options": ["$\\text{Acid} + \\text{Base} \\rightarrow \\text{Salt} + \\text{Water} + \\text{Heat}$", "$\\text{Acid} + \\text{Metal} \\rightarrow \\text{Hydrogen} + \\text{Heat}$", "$\\text{Salt} + \\text{Water} \\rightarrow \\text{Acid} + \\text{Base}$", "$\\text{Base} + \\text{Oxygen} \\rightarrow \\text{Carbon Dioxide}$"], "correct": 0, "solution": "Neutralisation is the reaction of an acid and a base producing a salt and water, accompanied by the evolution of heat."}, {"question": "22. Which salt is formed when hydrochloric acid ($\\text{HCl}$) reacts with sodium hydroxide ($\\text{NaOH}$)?", "options": ["Sodium chloride [$\\text{NaCl}$]", "Calcium carbonate [$\\text{CaCO}_3$]", "Magnesium sulfate [$\\text{MgSO}_4$]", "Sodium nitrate [$\\text{NaNO}_3$]"], "correct": 0, "solution": "$\\text{HCl} + \\text{NaOH} \\rightarrow \\text{NaCl} + \\text{H}_2\\text{O}$. The salt formed is sodium chloride (common table salt)."}, {"question": "23. Why is neutralisation classified as an 'exothermic' reaction?", "options": ["Because heat energy is released, raising the temperature of the reaction mixture", "Because it absorbs heat, causing water to freeze", "Because it emits bright ultraviolet light", "Because it produces sound waves"], "correct": 0, "solution": "Exothermic reactions evolve heat into the surroundings; combining $\text{H}^+$ and $\text{OH}^-$ ions releases $57.3\text{ kJ/mol}$ of enthalpy."}, {"question": "24. In an acid-base titration, what piece of laboratory glassware holds the base solution and dispenses it drop by drop?", "options": ["A graduated Burette with a stopcock", "A Petri dish", "A microscope slide", "A mortar and pestle"], "correct": 0, "solution": "A burette is a long, graduated glass tube with a stopcock tap at the bottom used to deliver precise volumes in titrations."}, {"question": "25. What is the fundamental ionic equation underlying all aqueous acid-base neutralisation reactions?", "options": ["$\\text{H}^+\\text{(aq)} + \\text{OH}^-\\text{(aq)} \\rightarrow \\text{H}_2\\text{O(l)}$", "$\\text{Na}^+ + \\text{Cl}^- \\rightarrow \\text{NaCl}$", "$\\text{C} + \\text{O}_2 \\rightarrow \\text{CO}_2$", "$\\text{Fe} + \\text{S} \\rightarrow \\text{FeS}$"], "correct": 0, "solution": "The essence of neutralisation in water is the combination of hydrogen ions (from acid) and hydroxide ions (from base) to form neutral water molecules."}, {"question": "26. When sulfuric acid ($\\text{H}_2\\text{SO}_4$) reacts with potassium hydroxide ($\\text{KOH}$), what salt is formed?", "options": ["Potassium sulfate [$\\text{K}_2\\text{SO}_4$]", "Potassium chloride [$\\text{KCl}$]", "Sodium sulfate [$\\text{Na}_2\\text{SO}_4$]", "Calcium sulfate [$\\text{CaSO}_4$]"], "correct": 0, "solution": "$\\text{H}_2\\text{SO}_4 + 2\\text{KOH} \\rightarrow \\text{K}_2\\text{SO}_4 + 2\\text{H}_2\\text{O}$. The resulting salt is potassium sulfate."}, {"question": "27. What happens to the pH of a hydrochloric acid solution as sodium hydroxide solution is gradually added to it?", "options": ["The pH increases from strongly acidic towards 7.0 and beyond", "The pH drops to negative values", "The pH remains permanently at 1.0", "The pH turns into zero"], "correct": 0, "solution": "Adding base consumes hydrogen ions ($\text{H}^+$), causing the pH to rise toward the neutral point ($\text{pH} = 7$) and into the alkaline range."}, {"question": "28. Can a salt formed by neutralisation be acidic, basic, or neutral?", "options": ["Yes, depending on whether strong/weak acids react with strong/weak bases", "No, all salts without exception are always acidic", "No, all salts without exception are always basic", "Salts do not have any pH"], "correct": 0, "solution": "A strong acid + strong base yields a neutral salt ($\text{NaCl}$); a strong acid + weak base yields an acidic salt; a weak acid + strong base yields a basic salt."}, {"question": "29. If equal volumes of $1\\text{ M } \\text{HCl}$ and $1\\text{ M } \\text{NaOH}$ are mixed, what will be the effect on red litmus paper?", "options": ["No color change, because the resulting sodium chloride solution is neutral", "It will turn bright blue", "It will turn bright yellow", "It will turn dark black"], "correct": 0, "solution": "Equal molar amounts of strong acid and strong base fully neutralize to form neutral salt water ($\text{pH} = 7$), which leaves red litmus unchanged."}, {"question": "30. Why must the conical flask be swirled continuously during a titration?", "options": ["To ensure thorough mixing and immediate chemical neutralisation of the reactants", "To cool down the glass so it doesn't melt", "To generate static electricity", "To create bubbles of air"], "correct": 0, "solution": "Swirling ensures that the incoming drops of base are uniformly distributed throughout the acid solution, preventing localized concentration gradients."}]}, {"id": 20, "type": "quiz_slide", "title": "Mastery Challenge IV: Real-Life Applications & Pioneers", "subtitle": "Test Your Knowledge on Ant Bites, Soil, Industrial Effluents & P.C. Ray", "questions": [{"question": "31. An ant bite causes stinging pain due to the injection of which chemical?", "options": ["Formic acid (methanoic acid)", "Acetic acid", "Sodium hydroxide", "Nitric acid"], "correct": 0, "solution": "Ants inject formic acid ($\text{HCOOH}$) under the skin, triggering nerve irritation, local swelling, and burning pain."}, {"question": "32. What common household substance can be applied as a paste to relieve the pain of an ant bite?", "options": ["Baking soda (sodium hydrogen carbonate) or calamine lotion", "Lemon juice", "Pure vinegar", "Dilute hydrochloric acid"], "correct": 0, "solution": "Baking soda and calamine contain mild bases that neutralize the injected formic acid into harmless formate salt and water."}, {"question": "33. What chemical compound is present in calamine lotion that helps soothe acidic stings?", "options": ["Zinc carbonate [$\\text{ZnCO}_3$]", "Sulfuric acid [$\\text{H}_2\\text{SO}_4$]", "Sodium chloride [$\\text{NaCl}$]", "Copper sulfate [$\\text{CuSO}_4$]"], "correct": 0, "solution": "Calamine lotion consists primarily of zinc oxide and zinc carbonate ($\text{ZnCO}_3$), a mild insoluble base that neutralizes acid on skin."}, {"question": "34. How should excessively acidic agricultural soil be treated to restore fertility?", "options": ["By adding quicklime (calcium oxide) or slaked lime (calcium hydroxide)", "By pouring vinegar over the field", "By adding more acidic fertilizers", "By flooding the field with sea water"], "correct": 0, "solution": "Quicklime ($\text{CaO}$) and slaked lime ($\text{Ca(OH)}_2$) are alkaline compounds that neutralize excessive soil acidity."}, {"question": "35. If garden soil is too basic (alkaline), what should be added to correct its pH?", "options": ["Decomposing organic matter (compost/manure)", "More slaked lime", "Washing soda powder", "Pure chalk"], "correct": 0, "solution": "Decomposing organic manure releases organic acids that naturally neutralize soil alkalinity, bringing the pH down to an optimal range."}, {"question": "36. Why must acidic industrial effluents be neutralized before discharge into rivers?", "options": ["To prevent acidic water from destroying fish gills, aquatic flora, and river ecology", "To turn the river water into carbonated soda", "To increase the salt concentration for ocean ships", "To prevent rain clouds from forming"], "correct": 0, "solution": "Untreated acidic factory wastes lower water pH, killing fish, disrupting aquatic food chains, and leaching heavy metals into drinking sources."}, {"question": "37. What active ingredient in antacid tablets like 'Milk of Magnesia' relieves indigestion?", "options": ["Magnesium hydroxide [$\\text{Mg(OH)}_2$]", "Citric acid", "Acetic acid", "Potassium cyanide"], "correct": 0, "solution": "Magnesium hydroxide is a safe, mild base that neutralizes excess hydrochloric acid in the stomach to form magnesium chloride and water."}, {"question": "38. Why is commercial toothpaste formulated to be mildly alkaline?", "options": ["To neutralize microbial acids produced in the mouth that erode tooth enamel", "To bleach the teeth yellow", "To feed bacteria between teeth", "To dissolve the tongue's taste buds"], "correct": 0, "solution": "Bacteria ferment oral sugars into acids that dissolve enamel ($\text{pH} < 5.5$). Alkaline toothpaste neutralizes these acids, preventing tooth decay."}, {"question": "39. Who is reverently known as the 'Father of Modern Indian Chemistry'?", "options": ["Acharya Prafulla Chandra Ray", "Sir C.V. Raman", "Dr. Homi J. Bhabha", "Aryabhata"], "correct": 0, "solution": "Acharya Prafulla Chandra Ray (1861\u20131944) established modern synthetic chemical research in India and founded Bengal Chemicals."}, {"question": "40. In 1896, Acharya P.C. Ray achieved international fame by synthesizing which stable chemical compound?", "options": ["Mercurous nitrite [$\\text{Hg}_2(\\text{NO}_2)_2$]", "Aspirin", "Polythene", "Penicillin"], "correct": 0, "solution": "Acharya P.C. Ray discovered and synthesized stable mercurous nitrite from mercury and dilute nitric acid in 1896."}]}];
+
+    // Injected simulator templates
+    const SIMULATORS_HTML = {"household_substance_matrix": "\n      <div class=\"p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl space-y-3\">\n        <div class=\"flex items-center justify-between pb-2 border-b border-slate-800\">\n          <div>\n            <span class=\"text-[10px] font-extrabold uppercase tracking-wider text-amber-400\">Lab Simulator 1</span>\n            <h3 class=\"text-sm font-bold text-slate-100\">Household Substances: Acid, Base or Neutral?</h3>\n          </div>\n          <span class=\"px-2 py-0.5 rounded text-[11px] font-mono bg-rose-500/20 text-rose-300 border border-rose-500/30 font-semibold\" id=\"substanceClassBadge\">Acidic (Citric Acid)</span>\n        </div>\n\n        <div class=\"w-full bg-slate-950 rounded-xl p-2 border border-slate-800 flex items-center justify-center\">\n          <svg id=\"substanceSvg\" viewBox=\"0 0 500 240\" class=\"w-full h-auto max-h-[220px]\"></svg>\n        </div>\n\n        <div class=\"grid grid-cols-3 gap-1.5 text-xs\">\n          <button data-item=\"lemon\" class=\"substanceBtn px-2 py-1.5 rounded-lg bg-amber-600 text-white font-bold transition\">1. Lemon Juice</button>\n          <button data-item=\"vinegar\" class=\"substanceBtn px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition\">2. Vinegar</button>\n          <button data-item=\"water\" class=\"substanceBtn px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition\">3. Pure Water</button>\n          <button data-item=\"baking\" class=\"substanceBtn px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition\">4. Baking Soda</button>\n          <button data-item=\"soap\" class=\"substanceBtn px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition\">5. Soap Water</button>\n          <button data-item=\"lime\" class=\"substanceBtn px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition\">6. Lime Water</button>\n        </div>\n\n        <div class=\"p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300\" id=\"substanceDesc\">\n          <strong>Lemon Juice:</strong> Naturally sour taste due to citric acid ($\\text{C}_6\\text{H}_8\\text{O}_7$). Turns blue litmus red. $\\text{pH} \\approx 2.2$.\n        </div>\n      </div>\n    ", "litmus_test_bench": "\n      <div class=\"p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl space-y-3\">\n        <div class=\"flex items-center justify-between pb-2 border-b border-slate-800\">\n          <div>\n            <span class=\"text-[10px] font-extrabold uppercase tracking-wider text-blue-400\">Lab Simulator 2</span>\n            <h3 class=\"text-sm font-bold text-slate-100\">Interactive Litmus Paper Test Bench</h3>\n          </div>\n          <span class=\"px-2 py-0.5 rounded text-[11px] font-mono bg-blue-500/20 text-blue-300 border border-blue-500/30 font-semibold\" id=\"litmusResultBadge\">Blue Litmus \u2794 RED</span>\n        </div>\n\n        <div class=\"w-full bg-slate-950 rounded-xl p-2 border border-slate-800 flex items-center justify-center\">\n          <svg id=\"litmusSvg\" viewBox=\"0 0 500 240\" class=\"w-full h-auto max-h-[220px]\"></svg>\n        </div>\n\n        <div class=\"grid grid-cols-3 gap-2 text-xs\">\n          <button data-sol=\"acid\" class=\"litmusSolBtn px-2.5 py-1.5 rounded-lg bg-rose-600 text-white font-bold transition\">1. Acid (Lemon / HCl)</button>\n          <button data-sol=\"neutral\" class=\"litmusSolBtn px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition\">2. Distilled Water</button>\n          <button data-sol=\"base\" class=\"litmusSolBtn px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition\">3. Base (Soap / NaOH)</button>\n        </div>\n\n        <div class=\"p-2 rounded-xl bg-slate-950 border border-slate-800 flex justify-between items-center text-[11px] font-mono\">\n          <span class=\"text-rose-400 font-bold\" id=\"redLitmusText\">Red Litmus: Stays RED</span>\n          <span class=\"text-cyan-400 font-bold\" id=\"blueLitmusText\">Blue Litmus: Turns RED \u2714</span>\n        </div>\n      </div>\n    ", "red_rose_indicator_lab": "\n      <div class=\"p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl space-y-3\">\n        <div class=\"flex items-center justify-between pb-2 border-b border-slate-800\">\n          <div>\n            <span class=\"text-[10px] font-extrabold uppercase tracking-wider text-rose-400\">Lab Simulator 3</span>\n            <h3 class=\"text-sm font-bold text-slate-100\">Red Rose Petal Extract Lab</h3>\n          </div>\n          <span class=\"px-2 py-0.5 rounded text-[11px] font-mono bg-rose-500/20 text-rose-300 border border-rose-500/30 font-semibold\" id=\"roseColorBadge\">Acid: Turns Deep Red</span>\n        </div>\n\n        <div class=\"w-full bg-slate-950 rounded-xl p-2 border border-slate-800 flex items-center justify-center\">\n          <svg id=\"roseSvg\" viewBox=\"0 0 500 240\" class=\"w-full h-auto max-h-[220px]\"></svg>\n        </div>\n\n        <div class=\"grid grid-cols-3 gap-2 text-xs\">\n          <button data-test=\"acid\" class=\"roseBtn px-2.5 py-1.5 rounded-lg bg-rose-600 text-white font-bold transition\">1. Acidic Solution</button>\n          <button data-test=\"neutral\" class=\"roseBtn px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition\">2. Neutral Water</button>\n          <button data-test=\"base\" class=\"roseBtn px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition\">3. Basic Solution</button>\n        </div>\n\n        <div class=\"p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300\" id=\"roseDesc\">\n          Anthocyanin pigments in red rose petals respond to pH: turns <strong>vivid deep red</strong> in acidic solutions and <strong>emerald green</strong> in alkaline solutions!\n        </div>\n      </div>\n    ", "turmeric_curry_lab": "\n      <div class=\"p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl space-y-3\">\n        <div class=\"flex items-center justify-between pb-2 border-b border-slate-800\">\n          <div>\n            <span class=\"text-[10px] font-extrabold uppercase tracking-wider text-amber-400\">Lab Simulator 4</span>\n            <h3 class=\"text-sm font-bold text-slate-100\">Turmeric (Haldi) & The Red Curry Stain</h3>\n          </div>\n          <span class=\"px-2 py-0.5 rounded text-[11px] font-mono bg-amber-500/20 text-amber-300 border border-amber-500/30 font-semibold\" id=\"turmericStatus\">Natural Yellow State</span>\n        </div>\n\n        <div class=\"w-full bg-slate-950 rounded-xl p-2 border border-slate-800 flex items-center justify-center\">\n          <svg id=\"turmericSvg\" viewBox=\"0 0 500 240\" class=\"w-full h-auto max-h-[220px]\"></svg>\n        </div>\n\n        <div class=\"grid grid-cols-3 gap-2 text-xs\">\n          <button id=\"applyNeutralBtn\" class=\"px-2.5 py-1.5 rounded-lg bg-amber-600 text-white font-bold transition\">1. Fresh Curry (Yellow)</button>\n          <button id=\"applySoapBtn\" class=\"px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition\">2. Rub Soap (Alkaline)</button>\n          <button id=\"applyLemonBtn\" class=\"px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition\">3. Rinse + Lemon (Acid)</button>\n        </div>\n\n        <div class=\"p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300\" id=\"turmericExplanation\">\n          Curcumin in turmeric stays <strong>yellow</strong> in acidic and neutral conditions. When alkaline laundry soap is rubbed on the stain, it turns <strong>reddish-brown</strong>!\n        </div>\n      </div>\n    ", "china_rose_spectrum_lab": "\n      <div class=\"p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl space-y-3\">\n        <div class=\"flex items-center justify-between pb-2 border-b border-slate-800\">\n          <div>\n            <span class=\"text-[10px] font-extrabold uppercase tracking-wider text-pink-400\">Lab Simulator 5</span>\n            <h3 class=\"text-sm font-bold text-slate-100\">China Rose (Hibiscus) & Cabbage Spectrum</h3>\n          </div>\n          <span class=\"px-2 py-0.5 rounded text-[11px] font-mono bg-pink-500/20 text-pink-300 border border-pink-500/30 font-semibold\" id=\"chinaRoseBadge\">China Rose: Magenta in Acid</span>\n        </div>\n\n        <div class=\"w-full bg-slate-950 rounded-xl p-2 border border-slate-800 flex items-center justify-center\">\n          <svg id=\"chinaRoseSvg\" viewBox=\"0 0 500 240\" class=\"w-full h-auto max-h-[220px]\"></svg>\n        </div>\n\n        <div class=\"grid grid-cols-3 gap-2 text-xs\">\n          <button data-med=\"acid\" class=\"chinaMedBtn px-2.5 py-1.5 rounded-lg bg-pink-600 text-white font-bold transition\">1. Acidic (pH 2)</button>\n          <button data-med=\"neutral\" class=\"chinaMedBtn px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition\">2. Neutral (pH 7)</button>\n          <button data-med=\"base\" class=\"chinaMedBtn px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition\">3. Basic (pH 11)</button>\n        </div>\n\n        <div class=\"p-2 rounded-xl bg-slate-950 border border-slate-800 flex justify-between text-xs text-slate-300 font-mono\">\n          <span>China Rose: <strong class=\"text-pink-400\" id=\"crColorText\">Dark Pink (Magenta)</strong></span>\n          <span>Red Cabbage: <strong class=\"text-rose-400\" id=\"rcColorText\">Bright Red</strong></span>\n        </div>\n      </div>\n    ", "olfactory_odor_lab": "\n      <div class=\"p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl space-y-3\">\n        <div class=\"flex items-center justify-between pb-2 border-b border-slate-800\">\n          <div>\n            <span class=\"text-[10px] font-extrabold uppercase tracking-wider text-emerald-400\">Lab Simulator 6</span>\n            <h3 class=\"text-sm font-bold text-slate-100\">Olfactory Indicator (Odor Science)</h3>\n          </div>\n          <span class=\"px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold\" id=\"odorStatusBadge\">Odor: Strong & Intact \u2714</span>\n        </div>\n\n        <div class=\"w-full bg-slate-950 rounded-xl p-2 border border-slate-800 flex items-center justify-center\">\n          <svg id=\"olfactorySvg\" viewBox=\"0 0 500 240\" class=\"w-full h-auto max-h-[220px]\"></svg>\n        </div>\n\n        <div class=\"grid grid-cols-2 gap-3 text-xs\">\n          <button id=\"odorAcidBtn\" class=\"px-3 py-2 rounded-xl bg-emerald-600 text-white font-bold transition\">\n            1. Treat with Acid (Dilute HCl)\n          </button>\n          <button id=\"odorBaseBtn\" class=\"px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition\">\n            2. Treat with Base (NaOH Solution)\n          </button>\n        </div>\n\n        <div class=\"p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300\" id=\"odorDesc\">\n          <strong>Acidic Medium:</strong> Onion/vanilla organic aroma molecules remain intact; the characteristic scent is strongly perceived. In basic medium, the smell is completely destroyed!\n        </div>\n      </div>\n    ", "phenolphthalein_chamber_lab": "\n      <div class=\"p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl space-y-3\">\n        <div class=\"flex items-center justify-between pb-2 border-b border-slate-800\">\n          <div>\n            <span class=\"text-[10px] font-extrabold uppercase tracking-wider text-pink-400\">Lab Simulator 7</span>\n            <h3 class=\"text-sm font-bold text-slate-100\">Synthetic Phenolphthalein Indicator</h3>\n          </div>\n          <span class=\"px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-400 border border-slate-700 font-semibold\" id=\"phptStateBadge\">Acidic: COLORLESS</span>\n        </div>\n\n        <div class=\"w-full bg-slate-950 rounded-xl p-2 border border-slate-800 flex items-center justify-center\">\n          <svg id=\"phptSvg\" viewBox=\"0 0 500 240\" class=\"w-full h-auto max-h-[220px]\"></svg>\n        </div>\n\n        <div class=\"flex items-center justify-between pt-1\">\n          <button id=\"phptAddBaseBtn\" class=\"px-3.5 py-1.5 rounded-xl bg-pink-600 hover:bg-pink-500 text-white font-bold text-xs transition shadow-md shadow-pink-600/30\">\n            + Add Base Drops (NaOH)\n          </button>\n          <button id=\"phptAddAcidBtn\" class=\"px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs transition\">\n            + Add Acid Drops (HCl)\n          </button>\n          <button id=\"phptResetBtn\" class=\"px-2.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-400 text-xs transition\">\n            Reset\n          </button>\n        </div>\n      </div>\n    ", "universal_ph_scale_strip": "\n      <div class=\"p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl space-y-3\">\n        <div class=\"flex items-center justify-between pb-2 border-b border-slate-800\">\n          <div>\n            <span class=\"text-[10px] font-extrabold uppercase tracking-wider text-cyan-400\">Lab Simulator 8</span>\n            <h3 class=\"text-sm font-bold text-slate-100\">Universal pH Spectrum & Meter</h3>\n          </div>\n          <span class=\"px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold\" id=\"phValueBadge\">pH 7.0: Pure Water (Neutral)</span>\n        </div>\n\n        <div class=\"w-full bg-slate-950 rounded-xl p-2 border border-slate-800 flex items-center justify-center\">\n          <svg id=\"phStripSvg\" viewBox=\"0 0 500 230\" class=\"w-full h-auto max-h-[210px]\"></svg>\n        </div>\n\n        <div class=\"space-y-1\">\n          <div class=\"flex justify-between text-xs text-slate-400\">\n            <span class=\"text-rose-400 font-bold\">Acidic (pH 0)</span>\n            <span class=\"text-emerald-400 font-bold\">Neutral (pH 7)</span>\n            <span class=\"text-purple-400 font-bold\">Basic (pH 14)</span>\n          </div>\n          <input type=\"range\" id=\"phSlider\" min=\"0\" max=\"14\" value=\"7\" step=\"0.5\" class=\"w-full accent-cyan-500 cursor-pointer\">\n        </div>\n\n        <div class=\"p-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300 flex justify-between items-center font-mono\">\n          <span>Target Sample: <strong class=\"text-cyan-400\" id=\"phSampleName\">Distilled Water</strong></span>\n          <span>Color: <strong class=\"text-emerald-400\" id=\"phColorName\">Emerald Green</strong></span>\n        </div>\n      </div>\n    ", "neutralisation_reaction_chamber": "\n      <div class=\"p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl space-y-3\">\n        <div class=\"flex items-center justify-between pb-2 border-b border-slate-800\">\n          <div>\n            <span class=\"text-[10px] font-extrabold uppercase tracking-wider text-emerald-400\">Lab Simulator 9</span>\n            <h3 class=\"text-sm font-bold text-slate-100\">Neutralisation Reactor & Heat Monitor</h3>\n          </div>\n          <span class=\"px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold\" id=\"reactionStateBadge\">Ready: Acid + Base</span>\n        </div>\n\n        <div class=\"w-full bg-slate-950 rounded-xl p-2 border border-slate-800 flex items-center justify-center\">\n          <svg id=\"neutReactSvg\" viewBox=\"0 0 500 240\" class=\"w-full h-auto max-h-[220px]\"></svg>\n        </div>\n\n        <div class=\"flex items-center justify-between pt-1\">\n          <button id=\"triggerReactionBtn\" class=\"px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition shadow-md shadow-emerald-600/30\">\n            \u26a1 Pour & Neutralize (HCl + NaOH)\n          </button>\n          <div class=\"text-xs text-amber-300 font-mono\" id=\"tempReadout\">Thermometer: 24.0\u00b0C (Ambient)</div>\n        </div>\n      </div>\n    ", "titration_burette_lab": "\n      <div class=\"p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl space-y-3\">\n        <div class=\"flex items-center justify-between pb-2 border-b border-slate-800\">\n          <div>\n            <span class=\"text-[10px] font-extrabold uppercase tracking-wider text-pink-400\">Lab Simulator 10</span>\n            <h3 class=\"text-sm font-bold text-slate-100\">Volumetric Titration & End-Point</h3>\n          </div>\n          <span class=\"px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300 border border-slate-700 font-semibold\" id=\"titrationBadge\">Flask: Acidic (Colorless)</span>\n        </div>\n\n        <div class=\"w-full bg-slate-950 rounded-xl p-2 border border-slate-800 flex items-center justify-center\">\n          <svg id=\"titrationSvg\" viewBox=\"0 0 500 240\" class=\"w-full h-auto max-h-[220px]\"></svg>\n        </div>\n\n        <div class=\"flex items-center justify-between pt-1\">\n          <button id=\"dispenseDropBtn\" class=\"px-3.5 py-1.5 rounded-xl bg-pink-600 hover:bg-pink-500 text-white font-bold text-xs transition shadow-md shadow-pink-600/30\">\n            \ud83d\udca7 Dispense Base Drop\n          </button>\n          <span class=\"text-xs font-mono text-cyan-300\" id=\"titrationDropsText\">Base Added: 0.0 mL (0 drops)</span>\n          <button id=\"resetTitrationBtn\" class=\"px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 text-xs transition\">\n            Reset\n          </button>\n        </div>\n      </div>\n    ", "ant_bite_neutraliser_lab": "\n      <div class=\"p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl space-y-3\">\n        <div class=\"flex items-center justify-between pb-2 border-b border-slate-800\">\n          <div>\n            <span class=\"text-[10px] font-extrabold uppercase tracking-wider text-rose-400\">Lab Simulator 11</span>\n            <h3 class=\"text-sm font-bold text-slate-100\">Ant Bite Venom & Calamine Neutraliser</h3>\n          </div>\n          <span class=\"px-2 py-0.5 rounded text-[11px] font-mono bg-rose-500/20 text-rose-300 border border-rose-500/30 font-semibold\" id=\"antBiteStatus\">Skin: Acidic Formic Injection \u26a0\ufe0f</span>\n        </div>\n\n        <div class=\"w-full bg-slate-950 rounded-xl p-2 border border-slate-800 flex items-center justify-center\">\n          <svg id=\"antBiteSvg\" viewBox=\"0 0 500 240\" class=\"w-full h-auto max-h-[220px]\"></svg>\n        </div>\n\n        <div class=\"grid grid-cols-2 gap-3 text-xs\">\n          <button id=\"applyBakingSodaBtn\" class=\"px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition shadow-md shadow-emerald-600/30\">\n            Apply Moist Baking Soda (NaHCO3)\n          </button>\n          <button id=\"applyCalamineBtn\" class=\"px-3 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold transition shadow-md shadow-cyan-600/30\">\n            Apply Calamine Lotion (ZnCO3)\n          </button>\n        </div>\n      </div>\n    ", "soil_ph_management_lab": "\n      <div class=\"p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl space-y-3\">\n        <div class=\"flex items-center justify-between pb-2 border-b border-slate-800\">\n          <div>\n            <span class=\"text-[10px] font-extrabold uppercase tracking-wider text-emerald-400\">Lab Simulator 12</span>\n            <h3 class=\"text-sm font-bold text-slate-100\">Agricultural Soil pH Regulator</h3>\n          </div>\n          <span class=\"px-2 py-0.5 rounded text-[11px] font-mono bg-rose-500/20 text-rose-300 border border-rose-500/30 font-semibold\" id=\"soilStatusBadge\">Soil: Excessively Acidic (pH 4.8)</span>\n        </div>\n\n        <div class=\"w-full bg-slate-950 rounded-xl p-2 border border-slate-800 flex items-center justify-center\">\n          <svg id=\"soilSvg\" viewBox=\"0 0 500 240\" class=\"w-full h-auto max-h-[220px]\"></svg>\n        </div>\n\n        <div class=\"grid grid-cols-2 gap-3 text-xs\">\n          <button id=\"addLimeBtn\" class=\"px-3 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold transition\">\n            Add Slaked Lime (Ca(OH)2) \u2794 Neutralize\n          </button>\n          <button id=\"addManureBtn\" class=\"px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition\">\n            Add Organic Manure (For Basic Soil)\n          </button>\n        </div>\n      </div>\n    ", "factory_effluent_plant_lab": "\n      <div class=\"p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl space-y-3\">\n        <div class=\"flex items-center justify-between pb-2 border-b border-slate-800\">\n          <div>\n            <span class=\"text-[10px] font-extrabold uppercase tracking-wider text-cyan-400\">Lab Simulator 13</span>\n            <h3 class=\"text-sm font-bold text-slate-100\">Factory Effluent Neutralisation Plant</h3>\n          </div>\n          <span class=\"px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold\" id=\"riverSafetyBadge\">River Safe (pH 7.1) \u2714</span>\n        </div>\n\n        <div class=\"w-full bg-slate-950 rounded-xl p-2 border border-slate-800 flex items-center justify-center\">\n          <svg id=\"effluentSvg\" viewBox=\"0 0 500 240\" class=\"w-full h-auto max-h-[220px]\"></svg>\n        </div>\n\n        <div class=\"space-y-1\">\n          <div class=\"flex justify-between text-xs text-slate-400\">\n            <span>Lime Treatment Dosing Rate:</span>\n            <span id=\"limeDoseText\" class=\"text-cyan-400 font-mono font-bold\">Optimal Neutralization (100%)</span>\n          </div>\n          <input type=\"range\" id=\"limeValveSlider\" min=\"0\" max=\"100\" value=\"100\" step=\"10\" class=\"w-full accent-cyan-500 cursor-pointer\">\n        </div>\n      </div>\n    ", "antacid_dental_health_lab": "\n      <div class=\"p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl space-y-3\">\n        <div class=\"flex items-center justify-between pb-2 border-b border-slate-800\">\n          <div>\n            <span class=\"text-[10px] font-extrabold uppercase tracking-wider text-blue-400\">Lab Simulator 14</span>\n            <h3 class=\"text-sm font-bold text-slate-100\">Stomach Antacid & Dental Protection</h3>\n          </div>\n          <span class=\"px-2 py-0.5 rounded text-[11px] font-mono bg-blue-500/20 text-blue-300 border border-blue-500/30 font-semibold\" id=\"bioModeBadge\">Stomach: Hyperacidity Relief</span>\n        </div>\n\n        <div class=\"w-full bg-slate-950 rounded-xl p-2 border border-slate-800 flex items-center justify-center\">\n          <svg id=\"bioHealthSvg\" viewBox=\"0 0 500 240\" class=\"w-full h-auto max-h-[220px]\"></svg>\n        </div>\n\n        <div class=\"grid grid-cols-2 gap-3 text-xs\">\n          <button id=\"toggleStomachBtn\" class=\"px-3 py-2 rounded-xl bg-blue-600 text-white font-bold transition\">\n            1. Stomach: Take Antacid (Mg(OH)2)\n          </button>\n          <button id=\"toggleDentalBtn\" class=\"px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition\">\n            2. Teeth: Brush with Alkaline Toothpaste\n          </button>\n        </div>\n      </div>\n    ", "pc_ray_chemistry_heritage": "\n      <div class=\"p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl space-y-3\">\n        <div class=\"flex items-center justify-between pb-2 border-b border-slate-800\">\n          <div>\n            <span class=\"text-[10px] font-extrabold uppercase tracking-wider text-amber-400\">Lab Simulator 15</span>\n            <h3 class=\"text-sm font-bold text-slate-100\">Acharya P.C. Ray & Indian Chemistry</h3>\n          </div>\n          <span class=\"px-2 py-0.5 rounded text-[11px] font-mono bg-amber-500/20 text-amber-300 border border-amber-500/30 font-semibold\" id=\"pcRayBadge\">Mercurous Nitrite (1896)</span>\n        </div>\n\n        <div class=\"w-full bg-slate-950 rounded-xl p-2 border border-slate-800 flex items-center justify-center\">\n          <svg id=\"pcRaySvg\" viewBox=\"0 0 500 240\" class=\"w-full h-auto max-h-[220px]\"></svg>\n        </div>\n\n        <div class=\"grid grid-cols-3 gap-2 text-xs\">\n          <button data-view=\"nitrite\" class=\"rayBtn px-2 py-1.5 rounded-lg bg-amber-600 text-white font-bold transition\">1. Nitrite Discovery</button>\n          <button data-view=\"bengal\" class=\"rayBtn px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition\">2. Bengal Chemicals</button>\n          <button data-view=\"rasashastra\" class=\"rayBtn px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition\">3. Hindu Chemistry</button>\n        </div>\n      </div>\n    ", "master_substance_wheel": "\n      <div class=\"p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl space-y-3\">\n        <div class=\"flex items-center justify-between pb-2 border-b border-slate-800\">\n          <div>\n            <span class=\"text-[10px] font-extrabold uppercase tracking-wider text-emerald-400\">Lab Simulator 16</span>\n            <h3 class=\"text-sm font-bold text-slate-100\">Master Acid-Base Equation Synthesizer</h3>\n          </div>\n          <span class=\"px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold\" id=\"synthSaltBadge\">Salt: Sodium Chloride (NaCl)</span>\n        </div>\n\n        <div class=\"w-full bg-slate-950 rounded-xl p-2 border border-slate-800 flex items-center justify-center\">\n          <svg id=\"synthSvg\" viewBox=\"0 0 500 230\" class=\"w-full h-auto max-h-[210px]\"></svg>\n        </div>\n\n        <div class=\"grid grid-cols-2 gap-3 text-xs\">\n          <div>\n            <label class=\"block text-slate-400 text-[10px] font-bold uppercase mb-1\">Select Acid (H+ donor):</label>\n            <select id=\"synthAcidSelect\" class=\"w-full p-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs text-rose-300 font-mono\">\n              <option value=\"hcl\">Hydrochloric Acid (HCl)</option>\n              <option value=\"h2so4\">Sulfuric Acid (H2SO4)</option>\n              <option value=\"hno3\">Nitric Acid (HNO3)</option>\n              <option value=\"ch3cooh\">Acetic Acid (CH3COOH)</option>\n            </select>\n          </div>\n          <div>\n            <label class=\"block text-slate-400 text-[10px] font-bold uppercase mb-1\">Select Base (OH- donor):</label>\n            <select id=\"synthBaseSelect\" class=\"w-full p-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs text-cyan-300 font-mono\">\n              <option value=\"naoh\">Sodium Hydroxide (NaOH)</option>\n              <option value=\"koh\">Potassium Hydroxide (KOH)</option>\n              <option value=\"caoh2\">Calcium Hydroxide (Ca(OH)2)</option>\n              <option value=\"mgoh2\">Magnesium Hydroxide (Mg(OH)2)</option>\n            </select>\n          </div>\n        </div>\n      </div>\n    "};
+
+    // App state
+    let currentSlide = 1;
+    let soundEnabled = true;
+
+    // Web Audio Synthesizer
+    const audioCtx = (window.AudioContext || window.webkitAudioContext) ? new (window.AudioContext || window.webkitAudioContext)() : null;
+    function playSfx(type) {
+      if (!soundEnabled || !audioCtx) return;
+      try {
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        const t = audioCtx.currentTime;
+
+        if (type === 'click') {
+          osc.frequency.setValueAtTime(480, t);
+          osc.frequency.exponentialRampToValueAtTime(800, t + 0.05);
+          gain.gain.setValueAtTime(0.08, t);
+          gain.gain.exponentialRampToValueAtTime(0.001, t + 0.05);
+          osc.start(t);
+          osc.stop(t + 0.05);
+        } else if (type === 'correct') {
+          osc.frequency.setValueAtTime(523.25, t); // C5
+          osc.frequency.setValueAtTime(659.25, t + 0.08); // E5
+          osc.frequency.setValueAtTime(783.99, t + 0.16); // G5
+          gain.gain.setValueAtTime(0.12, t);
+          gain.gain.exponentialRampToValueAtTime(0.001, t + 0.35);
+          osc.start(t);
+          osc.stop(t + 0.35);
+        } else if (type === 'incorrect') {
+          osc.frequency.setValueAtTime(280, t);
+          osc.frequency.linearRampToValueAtTime(180, t + 0.18);
+          gain.gain.setValueAtTime(0.12, t);
+          gain.gain.exponentialRampToValueAtTime(0.001, t + 0.2);
+          osc.start(t);
+          osc.stop(t + 0.2);
+        }
+      } catch (err) { }
+    }
+
+    // Robust KaTeX Math Renderer with retry loop & MutationObserver
+    function renderAllMath(targetEl) {
+      const el = targetEl || document.body;
+      if (window.renderMathInElement) {
+        window.renderMathInElement(el, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\[', right: '\\]', display: true},
+            {left: '\\(', right: '\\)', display: false}
+          ],
+          throwOnError: false
+        });
+      } else {
+        setTimeout(() => renderAllMath(targetEl), 100);
+      }
+    }
+
+    // Render active slide
+    function renderSlide(slideNum) {
+      const slide = SLIDES_DATA.find(s => s.id === slideNum);
+      if (!slide) return;
+      currentSlide = slideNum;
+
+      // Update Top Bar indicators
+      document.getElementById('currentSlideDisplay').textContent = currentSlide;
+      document.getElementById('totalSlidesDisplay').textContent = SLIDES_DATA.length;
+
+      // Terminal Rule on Slide 20
+      const nextBtn = document.getElementById('nextBtn');
+      const prevBtn = document.getElementById('prevBtn');
+      const lastSlideNotice = document.getElementById('lastSlideNotice');
+
+      if (currentSlide === 20) {
+        nextBtn.style.display = 'none';
+        lastSlideNotice.classList.remove('hidden');
+      } else {
+        nextBtn.style.display = 'flex';
+        lastSlideNotice.classList.add('hidden');
+      }
+
+      if (currentSlide === 1) {
+        prevBtn.disabled = true;
+        prevBtn.classList.add('opacity-40', 'cursor-not-allowed');
+      } else {
+        prevBtn.disabled = false;
+        prevBtn.classList.remove('opacity-40', 'cursor-not-allowed');
+      }
+
+      const container = document.getElementById('slideContainer');
+      container.innerHTML = '';
+
+      if (slide.type === 'quiz_slide') {
+        renderQuizSlide(slide, container);
+      } else {
+        renderTheorySlide(slide, container);
+      }
+
+      // Update mentor voice
+      const mentorText = document.getElementById('mentorVoiceText');
+      if (mentorText) {
+        const insights = [
+          "Nature is our greatest chemistry laboratory: from lemon juice to soap, acids and bases are everywhere around us!",
+          "Never taste or touch unknown chemicals in the laboratory! Always let indicators reveal the truth safely.",
+          "Litmus is nature's own paper from lichens: acids turn blue litmus red, while bases turn red litmus blue.",
+          "In neutral water or saline, blue stays blue and red stays red—indicators distinguish neutrality with absolute precision.",
+          "Red rose extract contains anthocyanin pigments—turning fiery red in acids and deep emerald green in bases.",
+          "Turmeric paper is a brilliant natural indicator: turning deep reddish-brown in bases like soap, but staying golden in acids.",
+          "Olfactory indicators like onion and vanilla lose their characteristic scent in basic solutions, giving a sensory detection method.",
+          "Acharya Prafulla Chandra Ray synthesized mercurous nitrite in 1896 and established India's first modern pharmaceutical industry.",
+          "Neutralisation is a molecular dance: acid and base react to form salt and water, releasing warmth in an exothermic reaction.",
+          "Titration with phenolphthalein shows the exact stoichiometric equivalence point: just one drop flips clear acid to vibrant pink!",
+          "An ant's stinging bite injects formic acid: soothing baking soda or calamine lotion neutralises the acid instantly.",
+          "A wasp sting is alkaline: soothe it with mild acid like vinegar, the exact opposite of an acidic ant bite!",
+          "Farmers balance soil chemistry: slaked lime cures acidic soil, while organic compost and manure heal basic soil.",
+          "Industrial wastewater carries lethal acids: treatment plants neutralise effluents with lime slurry to protect aquatic life.",
+          "Excess gastric hydrochloric acid causes heartburn: antacids like Milk of Magnesia provide gentle, life-saving neutralisation.",
+          "Your daily toothpaste is mildly alkaline: it neutralises bacterial acids in dental plaque to shield your tooth enamel!"
+        ];
+        mentorText.textContent = `"${insights[(slideNum - 1) % insights.length]}"`;
+      }
+
+      // Re-trigger math render
+      renderAllMath(container);
+
+      // Scroll to top of viewport
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Determine section string
+    function getSectionForSlide(id) {
+      if (id <= 2) return "Section 2.1: Nature - Our Science Laboratory & Sensory Classification";
+      if (id <= 8) return "Section 2.1.1 - 2.1.3: Natural Indicators (Litmus, Rose, Turmeric & Olfactory)";
+      if (id <= 10) return "Section 2.2: Neutralisation Reactions & Titration Dynamics";
+      if (id <= 16) return "Section 2.3: Neutralisation in Daily Life & Indian Chemistry Heritage";
+      return "Section 2.4: Mastery Assessment Challenge";
+    }
+
+    // Theory slide template renderer
+    function renderTheorySlide(slide, container) {
+      const simHtml = SIMULATORS_HTML[slide.simulator_type] || '<div class="p-4 text-slate-400">Simulator Loading...</div>';
+
+      const html = `
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 flex-1">
+          <!-- Left Column: Content & Theory (7 Cols) -->
+          <div class="lg:col-span-7 flex flex-col space-y-4">
+            
+            <!-- Title & Subtitle Card -->
+            <div class="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-xl">
+              <div class="flex items-center space-x-2 mb-1">
+                <span class="px-2 py-0.5 rounded text-[10px] font-extrabold uppercase tracking-wider bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                  Concept Slide ${slide.id}
+                </span>
+                <span class="text-xs text-slate-400 font-mono">${getSectionForSlide(slide.id)}</span>
+              </div>
+              <h2 class="text-lg sm:text-xl font-extrabold text-slate-100">${slide.title}</h2>
+              <div class="text-xs font-semibold text-amber-400 mt-0.5">${slide.subtitle}</div>
+
+              <!-- Content Body -->
+              <div class="mt-3 text-xs sm:text-sm text-slate-300 leading-relaxed space-y-2">
+                ${slide.content}
+              </div>
+
+              <!-- Mathematical / Scientific Law Highlight -->
+              ${slide.formula ? `
+                <div class="mt-3 p-3 rounded-xl bg-slate-950/80 border border-purple-500/30 text-amber-300 font-mono text-center text-xs sm:text-sm">
+                  ${slide.formula}
+                </div>
+              ` : ''}
+            </div>
+
+            <!-- Key Takeaways Card -->
+            <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-lg">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1.5">
+                <span>⭐</span> Core Principles & Key Takeaways
+              </h4>
+              <ul class="space-y-1.5 text-xs text-slate-300">
+                ${slide.key_takeaways.map(t => `
+                  <li class="flex items-start space-x-2">
+                    <span class="text-amber-400 font-bold">✓</span>
+                    <span>${t}</span>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+
+            <!-- In-Slide Checkpoints (2 Checkpoints) -->
+            <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-lg space-y-3">
+              <div class="flex items-center justify-between">
+                <h4 class="text-xs font-bold uppercase tracking-wider text-purple-400 flex items-center gap-1.5">
+                  <span>🎯</span> Checkpoint Inquiries (Immediate Feedback)
+                </h4>
+                <span class="text-[11px] text-slate-400">2 Inquiries</span>
+              </div>
+
+              ${slide.checkpoints.map((cp, idx) => `
+                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-2" id="checkpoint_${slide.id}_${idx}">
+                  <div class="text-xs font-semibold text-slate-200">
+                    <span class="text-purple-400 font-bold font-mono">Q${idx + 1}:</span> ${cp.question}
+                  </div>
+                  <div class="grid grid-cols-1 gap-1.5 pt-1">
+                    ${cp.options.map((opt, optIdx) => `
+                      <button onclick="handleCheckpointAnswer(${slide.id}, ${idx}, ${optIdx}, ${cp.correct})"
+                              class="cp-opt-${slide.id}-${idx} w-full text-left px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700/60 text-xs text-slate-300 transition flex items-center justify-between cursor-pointer">
+                        <span>${opt}</span>
+                        <span class="cp-indicator text-xs font-bold"></span>
+                      </button>
+                    `).join('')}
+                  </div>
+                  <div id="cp_feedback_${slide.id}_${idx}" class="hidden p-2 rounded-lg text-xs leading-tight"></div>
+                </div>
+              `).join('')}
+            </div>
+
+          </div>
+
+          <!-- Right Column: Interactive Bespoke Simulator (5 Cols) -->
+          <div class="lg:col-span-5 flex flex-col">
+            <div class="sticky top-16" id="simWrapper">
+              ${simHtml}
+            </div>
+          </div>
+        </div>
+      `;
+
+      container.innerHTML = html;
+
+      // Initialize simulator JS engine
+      const simWrapper = container.querySelector('#simWrapper');
+      initSimulatorForSlide(slide.id, simWrapper);
+    }
+
+    // Checkpoint Answer Handler
+    function handleCheckpointAnswer(slideId, cpIdx, selectedIdx, correctIdx) {
+      const slide = SLIDES_DATA.find(s => s.id === slideId);
+      if (!slide || !slide.checkpoints[cpIdx]) return;
+      const cp = slide.checkpoints[cpIdx];
+
+      const parent = document.getElementById(`checkpoint_${slideId}_${cpIdx}`);
+      const buttons = parent.querySelectorAll(`.cp-opt-${slideId}-${cpIdx}`);
+      const feedback = document.getElementById(`cp_feedback_${slideId}_${cpIdx}`);
+
+      buttons.forEach((btn, idx) => {
+        btn.disabled = true;
+        btn.classList.remove('hover:bg-slate-800');
+        if (idx === correctIdx) {
+          btn.classList.add('bg-emerald-950', 'border-emerald-500', 'text-emerald-200');
+          btn.querySelector('.cp-indicator').textContent = '✓ Correct';
+          btn.querySelector('.cp-indicator').classList.add('text-emerald-400');
+        } else if (idx === selectedIdx) {
+          btn.classList.add('bg-rose-950', 'border-rose-500', 'text-rose-200');
+          btn.querySelector('.cp-indicator').textContent = '✕ Incorrect';
+          btn.querySelector('.cp-indicator').classList.add('text-rose-400');
+        }
+      });
+
+      feedback.classList.remove('hidden');
+      if (selectedIdx === correctIdx) {
+        playSfx('correct');
+        feedback.className = "p-2 rounded-lg text-xs bg-emerald-950/60 border border-emerald-500/40 text-emerald-300";
+        feedback.innerHTML = `<strong>Spot On!</strong> ${cp.explanation}`;
+      } else {
+        playSfx('incorrect');
+        feedback.className = "p-2 rounded-lg text-xs bg-rose-950/60 border border-rose-500/40 text-rose-300";
+        feedback.innerHTML = `<strong>Insight:</strong> ${cp.explanation}`;
+      }
+
+      renderAllMath(feedback);
+    }
+
+    // Quiz Slide Renderer (Slides 17 to 20)
+    function renderQuizSlide(slide, container) {
+      const html = `
+        <div class="p-5 sm:p-6 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-2xl flex-1 flex flex-col space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="px-2 py-0.5 rounded text-[10px] font-extrabold uppercase tracking-wider bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                  Mastery Assessment
+                </span>
+                <span class="text-xs text-slate-400 font-mono">10 Challenge Inquiries</span>
+              </div>
+              <h2 class="text-lg sm:text-xl font-extrabold text-slate-100 mt-1">${slide.title}</h2>
+              <div class="text-xs font-semibold text-purple-400">${slide.subtitle}</div>
+            </div>
+            <div class="text-right">
+              <div class="text-xs text-slate-400">Quiz Slide</div>
+              <div class="text-base font-extrabold text-amber-400 font-mono">${slide.id - 16} of 4</div>
+            </div>
+          </div>
+
+          <!-- Questions Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1">
+            ${slide.questions.map((q, idx) => `
+              <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 flex flex-col justify-between space-y-3" id="quiz_card_${slide.id}_${idx}">
+                <div>
+                  <div class="flex items-center justify-between text-xs font-bold text-amber-400 mb-1.5">
+                    <span>Question ${idx + 1}</span>
+                    <button onclick="openSolutionModal(${slide.id}, ${idx})" class="text-[11px] text-purple-400 hover:text-purple-300 underline cursor-pointer">
+                      View Solution 🔍
+                    </button>
+                  </div>
+                  <div class="text-xs sm:text-sm font-semibold text-slate-200 leading-snug">
+                    ${q.question}
+                  </div>
+                </div>
+
+                <div class="space-y-1.5">
+                  ${q.options.map((opt, optIdx) => `
+                    <button onclick="handleQuizAnswer(${slide.id}, ${idx}, ${optIdx}, ${q.correct})"
+                            class="quiz-btn-${slide.id}-${idx} w-full text-left px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs text-slate-300 transition flex items-center justify-between cursor-pointer">
+                      <span>${opt}</span>
+                      <span class="quiz-ans-icon font-bold text-xs"></span>
+                    </button>
+                  `).join('')}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+
+      container.innerHTML = html;
+    }
+
+    // Quiz Answer Handler
+    function handleQuizAnswer(slideId, qIdx, selectedIdx, correctIdx) {
+      const slide = SLIDES_DATA.find(s => s.id === slideId);
+      if (!slide || !slide.questions[qIdx]) return;
+      const q = slide.questions[qIdx];
+
+      const parent = document.getElementById(`quiz_card_${slideId}_${qIdx}`);
+      const buttons = parent.querySelectorAll(`.quiz-btn-${slideId}-${qIdx}`);
+
+      buttons.forEach((btn, idx) => {
+        btn.disabled = true;
+        btn.classList.remove('hover:bg-slate-800');
+        if (idx === correctIdx) {
+          btn.classList.add('bg-emerald-950', 'border-emerald-500', 'text-emerald-200');
+          btn.querySelector('.quiz-ans-icon').textContent = '✓';
+          btn.querySelector('.quiz-ans-icon').classList.add('text-emerald-400');
+        } else if (idx === selectedIdx) {
+          btn.classList.add('bg-rose-950', 'border-rose-500', 'text-rose-200');
+          btn.querySelector('.quiz-ans-icon').textContent = '✕';
+          btn.querySelector('.quiz-ans-icon').classList.add('text-rose-400');
+        }
+      });
+
+      if (selectedIdx === correctIdx) {
+        playSfx('correct');
+      } else {
+        playSfx('incorrect');
+      }
+    }
+
+    // Modal popup solution viewer
+    function openSolutionModal(slideId, qIdx) {
+      const modal = document.getElementById('solutionModal');
+      const title = document.getElementById('solutionModalTitle');
+      const body = document.getElementById('solutionModalBody');
+
+      let q;
+      if (slideId >= 17 && slideId <= 20) {
+        const slide = SLIDES_DATA.find(s => s.id === slideId);
+        if (slide && slide.questions) q = slide.questions[qIdx];
+      }
+
+      if (q) {
+        title.innerHTML = `Solution • Question: ${q.question}`;
+        body.innerHTML = `
+          <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs sm:text-sm text-slate-300">
+            <strong>Correct Answer:</strong> <span class="text-emerald-400 font-bold">${q.options[q.correct]}</span>
+          </div>
+          <div class="p-3.5 rounded-xl bg-purple-950/20 border border-purple-500/30 text-xs sm:text-sm text-slate-200 leading-relaxed">
+            <h5 class="font-bold text-amber-400 mb-1">Step-by-Step Scientific Derivation:</h5>
+            ${q.solution}
+          </div>
+        `;
+      } else {
+        title.innerHTML = `Chapter 2: Acids, Bases, and Salts Master Solutions`;
+        body.innerHTML = `
+          <p class="text-xs text-slate-300">All 40 challenge questions are derived from scientific principles of acid-base chemistry, natural indicators (litmus, red rose, turmeric, olfactory indicators), stoichiometric neutralisation (Acid + Base -> Salt + Water + Heat), and everyday neutralisation phenomena (ant stings, agricultural soil management, industrial effluent treatment, antacids, and dental hygiene).</p>
+        `;
+      }
+
+      modal.style.display = 'flex';
+      renderAllMath(body);
+    }
+
+    function closeSolutionModal() {
+      document.getElementById('solutionModal').style.display = 'none';
+    }
+
+    document.getElementById('closeSolutionModalBtn').addEventListener('click', closeSolutionModal);
+    document.getElementById('solutionOkBtn').addEventListener('click', closeSolutionModal);
+
+    // Slide navigation functions
+    function goToSlide(num) {
+      if (num < 1 || num > SLIDES_DATA.length) return;
+      playSfx('click');
+      renderSlide(num);
+    }
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      if (currentSlide > 1) goToSlide(currentSlide - 1);
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      if (currentSlide < SLIDES_DATA.length) goToSlide(currentSlide + 1);
+    });
+
+    // Keyboard Arrow Keys Navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+        if (currentSlide < SLIDES_DATA.length) goToSlide(currentSlide + 1);
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        if (currentSlide > 1) goToSlide(currentSlide - 1);
+      } else if (e.key === 'Escape') {
+        closeSolutionModal();
+        document.getElementById('tocModal').classList.add('hidden');
+      }
+    });
+
+    // Table of Contents Drawer
+    const tocModal = document.getElementById('tocModal');
+    document.getElementById('tocBtn').addEventListener('click', () => {
+      const list = document.getElementById('tocList');
+      list.innerHTML = SLIDES_DATA.map(s => `
+        <button onclick="goToSlide(${s.id}); document.getElementById('tocModal').classList.add('hidden');"
+                class="text-left p-2.5 rounded-xl ${s.id === currentSlide ? 'bg-purple-600 text-white font-bold' : 'bg-slate-950 hover:bg-slate-800 text-slate-300'} border border-slate-800 transition flex items-center justify-between">
+          <span class="line-clamp-1">${s.id}. ${s.title}</span>
+          <span class="text-[10px] opacity-75 font-mono ml-2">${s.type === 'quiz_slide' ? 'Quiz' : 'Lab'}</span>
+        </button>
+      `).join('');
+      tocModal.classList.remove('hidden');
+    });
+
+    document.getElementById('closeTocBtn').addEventListener('click', () => {
+      tocModal.classList.add('hidden');
+    });
+
+    // Speech synthesis narration
+    document.getElementById('mentorSpeakBtn').addEventListener('click', () => {
+      if (!window.speechSynthesis) return;
+      window.speechSynthesis.cancel();
+      const slide = SLIDES_DATA.find(s => s.id === currentSlide);
+      if (!slide) return;
+      const textToSpeak = `Slide ${slide.id}: ${slide.title}. ${slide.subtitle}. ` + (slide.key_takeaways ? slide.key_takeaways.join('. ') : 'Practice these questions.');
+      const utter = new SpeechSynthesisUtterance(textToSpeak);
+      utter.rate = 0.95;
+      utter.pitch = 1.0;
+      window.speechSynthesis.speak(utter);
+    });
+
+    // Sound toggle
+    document.getElementById('soundToggleBtn').addEventListener('click', (e) => {
+      soundEnabled = !soundEnabled;
+      e.target.textContent = soundEnabled ? '🔔' : '🔕';
+    });
+
+    // Injected Simulator Engine JS
+    
+// Master Simulator Dispatcher for Chapter 2: Exploring Substances: Acidic, Basic, and Neutral
+function initSimulatorForSlide(slideId, container) {
+  if (!container) return;
+  switch (slideId) {
+    case 1: initSubstanceMatrixSim(container); break;
+    case 2: initLitmusBenchSim(container); break;
+    case 3: initRedRoseLabSim(container); break;
+    case 4: initTurmericCurrySim(container); break;
+    case 5: initChinaRoseSpectrumSim(container); break;
+    case 6: initOlfactoryOdorSim(container); break;
+    case 7: initPhenolphthaleinSim(container); break;
+    case 8: initUniversalPhStripSim(container); break;
+    case 9: initNeutralisationChamberSim(container); break;
+    case 10: initTitrationBuretteSim(container); break;
+    case 11: initAntBiteNeutraliserSim(container); break;
+    case 12: initSoilPhManagementSim(container); break;
+    case 13: initFactoryEffluentSim(container); break;
+    case 14: initBioHealthSim(container); break;
+    case 15: initPcRayHeritageSim(container); break;
+    case 16: initMasterSubstanceWheelSim(container); break;
+  }
+}
+
+// -------------------------------------------------------------
+// 1. Household Substance Matrix Simulator
+// -------------------------------------------------------------
+function initSubstanceMatrixSim(container) {
+  const svg = container.querySelector('#substanceSvg');
+  const badge = container.querySelector('#substanceClassBadge');
+  const desc = container.querySelector('#substanceDesc');
+  const btns = container.querySelectorAll('.substanceBtn');
+  if (!svg) return;
+
+  const items = {
+    lemon: {
+      name: "Lemon Juice",
+      category: "Acidic (Citric Acid)",
+      badgeClass: "bg-rose-500/20 text-rose-300 border-rose-500/30",
+      color: "#fef08a",
+      liquidColor: "#facc15",
+      pH: 2.2,
+      taste: "Very Sour",
+      touch: "Watery",
+      litmus: "Blue Litmus ➔ RED",
+      desc: "<strong>Lemon Juice:</strong> Contains citric acid (C6H8O7) and ascorbic acid (Vitamin C). Intensely sour taste. Turns blue litmus red. pH ≈ 2.2."
+    },
+    vinegar: {
+      name: "Vinegar (Sirka)",
+      category: "Acidic (Acetic Acid)",
+      badgeClass: "bg-rose-500/20 text-rose-300 border-rose-500/30",
+      color: "#e2e8f0",
+      liquidColor: "#cbd5e1",
+      pH: 2.8,
+      taste: "Pungent Sour",
+      touch: "Watery",
+      litmus: "Blue Litmus ➔ RED",
+      desc: "<strong>Vinegar:</strong> A 4% to 8% aqueous solution of acetic acid (CH3COOH). Produced by bacterial fermentation. Turns blue litmus red. pH ≈ 2.8."
+    },
+    water: {
+      name: "Pure Distilled Water",
+      category: "Neutral (Pure H2O)",
+      badgeClass: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
+      color: "#38bdf8",
+      liquidColor: "#0284c7",
+      pH: 7.0,
+      taste: "Tasteless",
+      touch: "Watery",
+      litmus: "No Color Change",
+      desc: "<strong>Distilled Water:</strong> Strictly neutral with equal H+ and OH- ion concentrations. Does not change the color of red or blue litmus paper. pH = 7.0."
+    },
+    baking: {
+      name: "Baking Soda Solution",
+      category: "Basic (NaHCO3)",
+      badgeClass: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30",
+      color: "#f8fafc",
+      liquidColor: "#93c5fd",
+      pH: 8.4,
+      taste: "Bitter",
+      touch: "Slippery / Soapy",
+      litmus: "Red Litmus ➔ BLUE",
+      desc: "<strong>Baking Soda:</strong> Sodium hydrogen carbonate (NaHCO3). Mildly basic salt that releases OH- ions in water. Turns red litmus blue. pH ≈ 8.4."
+    },
+    soap: {
+      name: "Bathing Soap Lather",
+      category: "Basic (Alkaline)",
+      badgeClass: "bg-blue-500/20 text-blue-300 border-blue-500/30",
+      color: "#bae6fd",
+      liquidColor: "#60a5fa",
+      pH: 9.8,
+      taste: "Bitter",
+      touch: "Very Slippery / Soapy",
+      litmus: "Red Litmus ➔ BLUE",
+      desc: "<strong>Soap Water:</strong> Sodium or potassium salts of long-chain fatty acids. Strongly basic, slippery to touch. Turns red litmus blue and turmeric reddish-brown. pH ≈ 9.8."
+    },
+    lime: {
+      name: "Lime Water (Chuna)",
+      category: "Basic (Ca(OH)2)",
+      badgeClass: "bg-blue-500/20 text-blue-300 border-blue-500/30",
+      color: "#f1f5f9",
+      liquidColor: "#93c5fd",
+      pH: 12.4,
+      taste: "Astringent Bitter",
+      touch: "Soapy",
+      litmus: "Red Litmus ➔ BLUE",
+      desc: "<strong>Lime Water:</strong> Calcium hydroxide solution (Ca(OH)2). Strong alkali that turns red litmus blue and turns milky with carbon dioxide gas. pH ≈ 12.4."
+    }
+  };
+
+  function render(key) {
+    const item = items[key];
+    if (badge) {
+      badge.textContent = item.category;
+      badge.className = `px-2 py-0.5 rounded text-[11px] font-mono border font-semibold ${item.badgeClass}`;
+    }
+    if (desc) desc.innerHTML = item.desc;
+
+    svg.innerHTML = `
+      <!-- Beaker Outline -->
+      <rect x="190" y="60" width="120" height="130" rx="8" fill="#0f172a" stroke="#475569" stroke-width="2.5" />
+      
+      <!-- Liquid in Beaker -->
+      <rect x="192" y="100" width="116" height="88" rx="4" fill="${item.liquidColor}" fill-opacity="0.5" />
+      <ellipse cx="250" cy="100" rx="58" ry="8" fill="${item.liquidColor}" fill-opacity="0.8" />
+
+      <!-- Sample Name -->
+      <text x="250" y="45" fill="#f8fafc" font-size="14" font-weight="extrabold" text-anchor="middle">${item.name}</text>
+
+      <!-- Property Cards on Left and Right -->
+      <!-- Left Card: Sensory Properties -->
+      <rect x="30" y="70" width="130" height="110" rx="10" fill="#1e293b" stroke="#334155" />
+      <text x="40" y="92" fill="#94a3b8" font-size="10" font-weight="bold">SENSORY TRAITS</text>
+      <text x="40" y="115" fill="#fde047" font-size="11">Taste: <strong>${item.taste}</strong></text>
+      <text x="40" y="135" fill="#38bdf8" font-size="11">Touch: <strong>${item.touch}</strong></text>
+      <text x="40" y="160" fill="#a7f3d0" font-size="11">Litmus: <strong>${item.litmus}</strong></text>
+
+      <!-- Right Card: Chemical Metrics -->
+      <rect x="340" y="70" width="130" height="110" rx="10" fill="#1e293b" stroke="#334155" />
+      <text x="350" y="92" fill="#94a3b8" font-size="10" font-weight="bold">CHEMICAL DATA</text>
+      <text x="350" y="118" fill="#38bdf8" font-size="13" font-weight="extrabold">pH ≈ ${item.pH}</text>
+      <text x="350" y="142" fill="${item.pH < 7 ? '#f43f5e' : item.pH === 7 ? '#10b981' : '#0284c7'}" font-size="11" font-weight="bold">
+        ${item.pH < 7 ? 'ACIDIC MEDIUM' : item.pH === 7 ? 'NEUTRAL MEDIUM' : 'BASIC (ALKALINE)'}
+      </text>
+      <text x="350" y="165" fill="#cbd5e1" font-size="10">Class 7 Standard</text>
+    `;
+  }
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.className = "substanceBtn px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition");
+      btn.className = "substanceBtn px-2 py-1.5 rounded-lg bg-amber-600 text-white font-bold transition";
+      render(btn.dataset.item);
+    });
+  });
+
+  render('lemon');
+}
+
+// -------------------------------------------------------------
+// 2. Litmus Paper Test Bench Simulator
+// -------------------------------------------------------------
+function initLitmusBenchSim(container) {
+  const svg = container.querySelector('#litmusSvg');
+  const badge = container.querySelector('#litmusResultBadge');
+  const redText = container.querySelector('#redLitmusText');
+  const blueText = container.querySelector('#blueLitmusText');
+  const btns = container.querySelectorAll('.litmusSolBtn');
+  if (!svg) return;
+
+  function setSolution(type) {
+    if (type === 'acid') {
+      badge.textContent = "Acid: Blue Litmus ➔ RED";
+      badge.className = "px-2 py-0.5 rounded text-[11px] font-mono bg-rose-500/20 text-rose-300 border border-rose-500/30 font-semibold";
+      if (redText) redText.textContent = "Red Litmus: Stays RED";
+      if (blueText) blueText.textContent = "Blue Litmus: Turns RED ✔";
+
+      svg.innerHTML = `
+        <!-- Solution Beaker (Acid) -->
+        <rect x="170" y="70" width="160" height="130" rx="8" fill="#0284c7" fill-opacity="0.1" stroke="#475569" stroke-width="2" />
+        <rect x="172" y="115" width="156" height="83" rx="4" fill="#f43f5e" fill-opacity="0.3" />
+        <text x="250" y="195" fill="#fca5a5" font-size="11" font-weight="bold" text-anchor="middle">Acidic Sample (Lemon Juice / HCl)</text>
+
+        <!-- Red Litmus Strip (Left) -->
+        <g transform="translate(195, 45)">
+          <rect x="0" y="0" width="28" height="110" rx="3" fill="#ef4444" stroke="#b91c1c" stroke-width="1.5" />
+          <text x="14" y="25" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" transform="rotate(-90 14 25)">RED</text>
+          <!-- Submerged tip: stays red -->
+          <rect x="0" y="70" width="28" height="40" rx="2" fill="#dc2626" />
+          <text x="14" y="90" fill="#ffffff" font-size="8" text-anchor="middle">RED</text>
+        </g>
+
+        <!-- Blue Litmus Strip (Right) -->
+        <g transform="translate(275, 45)">
+          <rect x="0" y="0" width="28" height="110" rx="3" fill="#3b82f6" stroke="#1d4ed8" stroke-width="1.5" />
+          <text x="14" y="25" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" transform="rotate(-90 14 25)">BLUE</text>
+          <!-- Submerged tip: turns red! -->
+          <rect x="0" y="70" width="28" height="40" rx="2" fill="#dc2626" />
+          <text x="14" y="90" fill="#ffffff" font-size="8" font-weight="bold" text-anchor="middle">➔ RED</text>
+        </g>
+
+        <text x="250" y="30" fill="#f43f5e" font-size="13" font-weight="extrabold" text-anchor="middle">Acidic Medium: Blue Litmus Turns RED</text>
+      `;
+    } else if (type === 'base') {
+      badge.textContent = "Base: Red Litmus ➔ BLUE";
+      badge.className = "px-2 py-0.5 rounded text-[11px] font-mono bg-blue-500/20 text-blue-300 border border-blue-500/30 font-semibold";
+      if (redText) redText.textContent = "Red Litmus: Turns BLUE ✔";
+      if (blueText) blueText.textContent = "Blue Litmus: Stays BLUE";
+
+      svg.innerHTML = `
+        <!-- Solution Beaker (Base) -->
+        <rect x="170" y="70" width="160" height="130" rx="8" fill="#0284c7" fill-opacity="0.1" stroke="#475569" stroke-width="2" />
+        <rect x="172" y="115" width="156" height="83" rx="4" fill="#3b82f6" fill-opacity="0.3" />
+        <text x="250" y="195" fill="#93c5fd" font-size="11" font-weight="bold" text-anchor="middle">Basic Sample (Soap Solution / NaOH)</text>
+
+        <!-- Red Litmus Strip (Left) -->
+        <g transform="translate(195, 45)">
+          <rect x="0" y="0" width="28" height="110" rx="3" fill="#ef4444" stroke="#b91c1c" stroke-width="1.5" />
+          <text x="14" y="25" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" transform="rotate(-90 14 25)">RED</text>
+          <!-- Submerged tip: turns blue! -->
+          <rect x="0" y="70" width="28" height="40" rx="2" fill="#2563eb" />
+          <text x="14" y="90" fill="#ffffff" font-size="8" font-weight="bold" text-anchor="middle">➔ BLUE</text>
+        </g>
+
+        <!-- Blue Litmus Strip (Right) -->
+        <g transform="translate(275, 45)">
+          <rect x="0" y="0" width="28" height="110" rx="3" fill="#3b82f6" stroke="#1d4ed8" stroke-width="1.5" />
+          <text x="14" y="25" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" transform="rotate(-90 14 25)">BLUE</text>
+          <!-- Submerged tip: stays blue -->
+          <rect x="0" y="70" width="28" height="40" rx="2" fill="#2563eb" />
+          <text x="14" y="90" fill="#ffffff" font-size="8" text-anchor="middle">BLUE</text>
+        </g>
+
+        <text x="250" y="30" fill="#38bdf8" font-size="13" font-weight="extrabold" text-anchor="middle">Basic Medium: Red Litmus Turns BLUE</text>
+      `;
+    } else {
+      badge.textContent = "Neutral: No Litmus Color Change";
+      badge.className = "px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold";
+      if (redText) redText.textContent = "Red Litmus: Stays RED";
+      if (blueText) blueText.textContent = "Blue Litmus: Stays BLUE";
+
+      svg.innerHTML = `
+        <rect x="170" y="70" width="160" height="130" rx="8" fill="#0284c7" fill-opacity="0.1" stroke="#475569" stroke-width="2" />
+        <rect x="172" y="115" width="156" height="83" rx="4" fill="#0284c7" fill-opacity="0.3" />
+        <text x="250" y="195" fill="#67e8f9" font-size="11" font-weight="bold" text-anchor="middle">Neutral Sample (Pure Distilled Water)</text>
+
+        <!-- Red Litmus -->
+        <g transform="translate(195, 45)">
+          <rect x="0" y="0" width="28" height="110" rx="3" fill="#ef4444" stroke="#b91c1c" stroke-width="1.5" />
+          <text x="14" y="25" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" transform="rotate(-90 14 25)">RED</text>
+          <rect x="0" y="70" width="28" height="40" rx="2" fill="#ef4444" />
+          <text x="14" y="90" fill="#ffffff" font-size="8" text-anchor="middle">RED</text>
+        </g>
+
+        <!-- Blue Litmus -->
+        <g transform="translate(275, 45)">
+          <rect x="0" y="0" width="28" height="110" rx="3" fill="#3b82f6" stroke="#1d4ed8" stroke-width="1.5" />
+          <text x="14" y="25" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" transform="rotate(-90 14 25)">BLUE</text>
+          <rect x="0" y="70" width="28" height="40" rx="2" fill="#3b82f6" />
+          <text x="14" y="90" fill="#ffffff" font-size="8" text-anchor="middle">BLUE</text>
+        </g>
+
+        <text x="250" y="30" fill="#34d399" font-size="13" font-weight="extrabold" text-anchor="middle">Neutral Medium: Zero Color Change</text>
+      `;
+    }
+  }
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.className = "litmusSolBtn px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition");
+      btn.className = "litmusSolBtn px-2.5 py-1.5 rounded-lg bg-blue-600 text-white font-bold transition";
+      setSolution(btn.dataset.sol);
+    });
+  });
+
+  setSolution('acid');
+}
+
+// -------------------------------------------------------------
+// 3. Red Rose Indicator Lab Simulator
+// -------------------------------------------------------------
+function initRedRoseLabSim(container) {
+  const svg = container.querySelector('#roseSvg');
+  const badge = container.querySelector('#roseColorBadge');
+  const desc = container.querySelector('#roseDesc');
+  const btns = container.querySelectorAll('.roseBtn');
+  if (!svg) return;
+
+  function render(mode) {
+    if (mode === 'acid') {
+      badge.textContent = "Acidic Solution: Deep Crimson Red";
+      badge.className = "px-2 py-0.5 rounded text-[11px] font-mono bg-rose-500/20 text-rose-300 border border-rose-500/30 font-semibold";
+      desc.innerHTML = "<strong>In Acidic Solution (Lemon Juice / Dilute HCl):</strong> Rose anthocyanins protonate, shifting the absorbed light spectrum to emit a vibrant, deep crimson red.";
+      svg.innerHTML = `
+        <!-- Test Tube Outline -->
+        <rect x="220" y="40" width="60" height="160" rx="10" fill="#0f172a" stroke="#cbd5e1" stroke-width="2" />
+        <!-- Solution -->
+        <path d="M 222 100 L 222 190 Q 250 205 278 190 L 278 100 Z" fill="#e11d48" fill-opacity="0.8" />
+        <text x="250" y="150" fill="#ffffff" font-size="11" font-weight="extrabold" text-anchor="middle">Deep Red</text>
+
+        <!-- Rose Flower Graphic at Left -->
+        <circle cx="100" cy="120" r="28" fill="#be123c" stroke="#fb7185" stroke-width="2" />
+        <circle cx="100" cy="120" r="14" fill="#881337" />
+        <text x="100" y="170" fill="#fda4af" font-size="11" font-weight="bold" text-anchor="middle">Red Rose Extract</text>
+
+        <!-- Pipette dropping into tube -->
+        <polygon points="245,15 255,15 252,50 248,50" fill="#94a3b8" />
+        <circle cx="250" cy="65" r="4" fill="#e11d48" />
+
+        <text x="380" y="100" fill="#fb7185" font-size="13" font-weight="extrabold">Acid Test</text>
+        <text x="380" y="125" fill="#f8fafc" font-size="11">Anthocyanin</text>
+        <text x="380" y="145" fill="#94a3b8" font-size="10">Flavylium cation</text>
+      `;
+    } else if (mode === 'base') {
+      badge.textContent = "Basic Solution: Emerald Green";
+      badge.className = "px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold";
+      desc.innerHTML = "<strong>In Basic Solution (Baking Soda / Soap / NaOH):</strong> Hydroxide ions deprotonate the pigment, turning the extract into a striking emerald green / yellowish-green.";
+      svg.innerHTML = `
+        <rect x="220" y="40" width="60" height="160" rx="10" fill="#0f172a" stroke="#cbd5e1" stroke-width="2" />
+        <path d="M 222 100 L 222 190 Q 250 205 278 190 L 278 100 Z" fill="#059669" fill-opacity="0.8" />
+        <text x="250" y="150" fill="#ffffff" font-size="11" font-weight="extrabold" text-anchor="middle">Green</text>
+
+        <circle cx="100" cy="120" r="28" fill="#be123c" stroke="#fb7185" stroke-width="2" />
+        <circle cx="100" cy="120" r="14" fill="#881337" />
+        <text x="100" y="170" fill="#fda4af" font-size="11" font-weight="bold" text-anchor="middle">Red Rose Extract</text>
+
+        <polygon points="245,15 255,15 252,50 248,50" fill="#94a3b8" />
+        <circle cx="250" cy="65" r="4" fill="#059669" />
+
+        <text x="380" y="100" fill="#34d399" font-size="13" font-weight="extrabold">Base Test</text>
+        <text x="380" y="125" fill="#f8fafc" font-size="11">Anthocyanin</text>
+        <text x="380" y="145" fill="#94a3b8" font-size="10">Chalcone form</text>
+      `;
+    } else {
+      badge.textContent = "Neutral Solution: Light Pink (No Change)";
+      badge.className = "px-2 py-0.5 rounded text-[11px] font-mono bg-pink-500/20 text-pink-300 border border-pink-500/30 font-semibold";
+      desc.innerHTML = "<strong>In Neutral Solution (Distilled Water):</strong> The pigment retains its unperturbed natural light pink hue.";
+      svg.innerHTML = `
+        <rect x="220" y="40" width="60" height="160" rx="10" fill="#0f172a" stroke="#cbd5e1" stroke-width="2" />
+        <path d="M 222 100 L 222 190 Q 250 205 278 190 L 278 100 Z" fill="#f472b6" fill-opacity="0.5" />
+        <text x="250" y="150" fill="#ffffff" font-size="11" font-weight="extrabold" text-anchor="middle">Light Pink</text>
+
+        <circle cx="100" cy="120" r="28" fill="#be123c" stroke="#fb7185" stroke-width="2" />
+        <circle cx="100" cy="120" r="14" fill="#881337" />
+        <text x="100" y="170" fill="#fda4af" font-size="11" font-weight="bold" text-anchor="middle">Red Rose Extract</text>
+
+        <polygon points="245,15 255,15 252,50 248,50" fill="#94a3b8" />
+        <circle cx="250" cy="65" r="4" fill="#f472b6" />
+
+        <text x="380" y="100" fill="#f472b6" font-size="13" font-weight="extrabold">Neutral Test</text>
+        <text x="380" y="125" fill="#f8fafc" font-size="11">Distilled Water</text>
+        <text x="380" y="145" fill="#94a3b8" font-size="10">No color change</text>
+      `;
+    }
+  }
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.className = "roseBtn px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition");
+      btn.className = "roseBtn px-2.5 py-1.5 rounded-lg bg-rose-600 text-white font-bold transition";
+      render(btn.dataset.test);
+    });
+  });
+
+  render('acid');
+}
+
+// -------------------------------------------------------------
+// 4. Turmeric Paper & Curry Stain Simulator
+// -------------------------------------------------------------
+function initTurmericCurrySim(container) {
+  const svg = container.querySelector('#turmericSvg');
+  const status = container.querySelector('#turmericStatus');
+  const exp = container.querySelector('#turmericExplanation');
+  const b1 = container.querySelector('#applyNeutralBtn');
+  const b2 = container.querySelector('#applySoapBtn');
+  const b3 = container.querySelector('#applyLemonBtn');
+  if (!svg || !b1 || !b2 || !b3) return;
+
+  function render(state) {
+    let stainColor = "#eab308"; // yellow
+    let statusText = "Natural Yellow State";
+    let statusClass = "bg-amber-500/20 text-amber-300 border-amber-500/30";
+    let expText = "Fresh curry contains natural turmeric (curcumin). In neutral or acidic environments, it maintains a bright yellow hue.";
+
+    if (state === 'soap') {
+      stainColor = "#b91c1c"; // deep red
+      statusText = "Soap Applied ➔ REDDISH BROWN!";
+      statusClass = "bg-rose-500/20 text-rose-300 border-rose-500/30 font-bold";
+      expText = "<strong>Chemical Reaction:</strong> Laundry soap is alkaline (contains basic sodium hydroxide / carbonate). Hydroxide ions deprotonate curcumin, creating a deep <strong>reddish-brown</strong> complex!";
+    } else if (state === 'lemon') {
+      stainColor = "#eab308"; // restored yellow
+      statusText = "Lemon Rinse ➔ Restored to YELLOW!";
+      statusClass = "bg-emerald-500/20 text-emerald-300 border-emerald-500/30 font-bold";
+      expText = "<strong>Neutralisation:</strong> Lemon juice contains citric acid. The acid neutralizes the basic soap residue, returning curcumin to its yellow form!";
+    }
+
+    if (status) {
+      status.textContent = statusText;
+      status.className = `px-2 py-0.5 rounded text-[11px] font-mono border font-semibold ${statusClass}`;
+    }
+    if (exp) exp.innerHTML = expText;
+
+    svg.innerHTML = `
+      <!-- White Cotton Shirt Group -->
+      <g transform="translate(140, 30)">
+        <polygon points="40,20 80,0 140,0 180,20 220,50 190,80 170,70 170,170 50,170 50,70 30,80 0,50" fill="#f8fafc" stroke="#94a3b8" stroke-width="2" />
+        <!-- Collar -->
+        <polygon points="80,0 110,40 140,0" fill="#e2e8f0" stroke="#cbd5e1" />
+        
+        <!-- Curry / Turmeric Stain Spot -->
+        <ellipse cx="110" cy="105" rx="35" ry="25" fill="${stainColor}" stroke="${state === 'soap' ? '#991b1b' : '#ca8a04'}" stroke-width="2" />
+        <circle cx="125" cy="95" r="8" fill="${stainColor}" />
+        <circle cx="95" cy="115" r="10" fill="${stainColor}" />
+
+        <text x="110" y="110" fill="#ffffff" font-size="11" font-weight="extrabold" text-anchor="middle">
+          ${state === 'soap' ? 'RED STAIN' : 'YELLOW'}
+        </text>
+      </g>
+
+      <!-- Reagent Callout -->
+      <g transform="translate(380, 80)">
+        <rect x="0" y="0" width="100" height="90" rx="8" fill="#1e293b" stroke="#334155" />
+        <text x="50" y="25" fill="#fde047" font-size="11" font-weight="bold" text-anchor="middle">Curcumin</text>
+        <text x="50" y="50" fill="#94a3b8" font-size="9" text-anchor="middle">In Base ➔ Red</text>
+        <text x="50" y="70" fill="#94a3b8" font-size="9" text-anchor="middle">In Acid ➔ Yellow</text>
+      </g>
+    `;
+  }
+
+  b1.addEventListener('click', () => {
+    [b1, b2, b3].forEach(b => b.className = "px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition");
+    b1.className = "px-2.5 py-1.5 rounded-lg bg-amber-600 text-white font-bold transition";
+    render('curry');
+  });
+
+  b2.addEventListener('click', () => {
+    [b1, b2, b3].forEach(b => b.className = "px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition");
+    b2.className = "px-2.5 py-1.5 rounded-lg bg-rose-600 text-white font-bold transition";
+    render('soap');
+  });
+
+  b3.addEventListener('click', () => {
+    [b1, b2, b3].forEach(b => b.className = "px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition");
+    b3.className = "px-2.5 py-1.5 rounded-lg bg-emerald-600 text-white font-bold transition";
+    render('lemon');
+  });
+
+  render('curry');
+}
+
+// -------------------------------------------------------------
+// 5. China Rose & Floral Spectra Simulator
+// -------------------------------------------------------------
+function initChinaRoseSpectrumSim(container) {
+  const svg = container.querySelector('#chinaRoseSvg');
+  const badge = container.querySelector('#chinaRoseBadge');
+  const crText = container.querySelector('#crColorText');
+  const rcText = container.querySelector('#rcColorText');
+  const btns = container.querySelectorAll('.chinaMedBtn');
+  if (!svg) return;
+
+  function render(med) {
+    let crColor = "#db2777"; // magenta
+    let rcColor = "#e11d48"; // red
+    let badgeText = "Acidic: China Rose turns Magenta";
+
+    if (med === 'acid') {
+      crColor = "#db2777"; // magenta
+      rcColor = "#e11d48"; // red
+      badgeText = "Acid (pH 2): China Rose = Magenta";
+      if (crText) crText.textContent = "Dark Pink (Magenta)";
+      if (rcText) rcText.textContent = "Bright Red";
+    } else if (med === 'base') {
+      crColor = "#059669"; // green
+      rcColor = "#65a30d"; // greenish yellow
+      badgeText = "Base (pH 11): China Rose = Green";
+      if (crText) crText.textContent = "Emerald Green";
+      if (rcText) rcText.textContent = "Greenish Yellow";
+    } else {
+      crColor = "#f472b6"; // light pink
+      rcColor = "#7c3aed"; // purple
+      badgeText = "Neutral (pH 7): Unchanged Original Color";
+      if (crText) crText.textContent = "Light Pink";
+      if (rcText) rcText.textContent = "Deep Purple";
+    }
+
+    if (badge) badge.textContent = badgeText;
+
+    svg.innerHTML = `
+      <!-- China Rose Test Tube (Left) -->
+      <g transform="translate(130, 40)">
+        <rect x="0" y="0" width="55" height="150" rx="10" fill="#0f172a" stroke="#cbd5e1" stroke-width="2" />
+        <path d="M 2 50 L 2 140 Q 27.5 152 53 140 L 53 50 Z" fill="${crColor}" fill-opacity="0.8" />
+        <text x="27.5" y="180" fill="#f472b6" font-size="11" font-weight="bold" text-anchor="middle">China Rose</text>
+        <text x="27.5" y="100" fill="#ffffff" font-size="10" font-weight="extrabold" text-anchor="middle">
+          ${med === 'acid' ? 'Magenta' : med === 'base' ? 'Green' : 'Pink'}
+        </text>
+      </g>
+
+      <!-- Red Cabbage Test Tube (Right) -->
+      <g transform="translate(315, 40)">
+        <rect x="0" y="0" width="55" height="150" rx="10" fill="#0f172a" stroke="#cbd5e1" stroke-width="2" />
+        <path d="M 2 50 L 2 140 Q 27.5 152 53 140 L 53 50 Z" fill="${rcColor}" fill-opacity="0.8" />
+        <text x="27.5" y="180" fill="#c084fc" font-size="11" font-weight="bold" text-anchor="middle">Red Cabbage</text>
+        <text x="27.5" y="100" fill="#ffffff" font-size="10" font-weight="extrabold" text-anchor="middle">
+          ${med === 'acid' ? 'Red' : med === 'base' ? 'Green-Yel' : 'Purple'}
+        </text>
+      </g>
+
+      <text x="250" y="25" fill="#f8fafc" font-size="12" font-weight="bold" text-anchor="middle">
+        Medium: ${med.toUpperCase()} (Side-by-Side Floral Spectrum)
+      </text>
+    `;
+  }
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.className = "chinaMedBtn px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition");
+      btn.className = "chinaMedBtn px-2.5 py-1.5 rounded-lg bg-pink-600 text-white font-bold transition";
+      render(btn.dataset.med);
+    });
+  });
+
+  render('acid');
+}
+
+// -------------------------------------------------------------
+// 6. Olfactory Odor Meter Simulator
+// -------------------------------------------------------------
+function initOlfactoryOdorSim(container) {
+  const svg = container.querySelector('#olfactorySvg');
+  const badge = container.querySelector('#odorStatusBadge');
+  const desc = container.querySelector('#odorDesc');
+  const bAcid = container.querySelector('#odorAcidBtn');
+  const bBase = container.querySelector('#odorBaseBtn');
+  if (!svg || !bAcid || !bBase) return;
+
+  function render(isAcid) {
+    if (badge) {
+      badge.textContent = isAcid ? "Acid: Odor Remains Intact ✔" : "Base: Odor Destroyed & Vanishes!";
+      badge.className = isAcid ?
+        "px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold" :
+        "px-2 py-0.5 rounded text-[11px] font-mono bg-rose-500/20 text-rose-300 border border-rose-500/30 font-semibold";
+    }
+
+    if (desc) {
+      desc.innerHTML = isAcid ?
+        "<strong>Treated with Acid (Dilute HCl):</strong> The organic sulfur compounds from onion / vanilla are chemically preserved in acidic medium. The aroma is distinct and sharp." :
+        "<strong>Treated with Base (NaOH Solution):</strong> Alkaline hydroxide ions react with and deconstruct the volatile aroma molecules. The characteristic scent is <strong>completely eliminated</strong>!";
+    }
+
+    svg.innerHTML = `
+      <!-- Cloth Strip Infused with Onion Extract -->
+      <g transform="translate(180, 50)">
+        <rect x="0" y="0" width="50" height="140" rx="4" fill="#fde68a" stroke="#d97706" stroke-width="2" />
+        <text x="25" y="75" fill="#78350f" font-size="10" font-weight="bold" text-anchor="middle" transform="rotate(-90 25 75)">ONION CLOTH</text>
+      </g>
+
+      <!-- Dropper adding reagent -->
+      <g transform="translate(195, 10)">
+        <polygon points="5,0 15,0 12,25 8,25" fill="#94a3b8" />
+        <circle cx="10" cy="35" r="3.5" fill="${isAcid ? '#ef4444' : '#3b82f6'}" />
+      </g>
+
+      <!-- Animated Scent Waves (Only visible in Acid) -->
+      ${isAcid ? `
+        <g stroke="#22c55e" stroke-width="2" fill="none" opacity="0.8">
+          <path d="M 245 70 Q 270 50 300 70 T 360 70" />
+          <path d="M 245 100 Q 275 80 310 100 T 375 100" />
+          <path d="M 245 130 Q 270 110 300 130 T 360 130" />
+        </g>
+        <!-- Nose Icon detecting smell -->
+        <text x="400" y="110" font-size="28">👃</text>
+        <text x="400" y="140" fill="#34d399" font-size="11" font-weight="bold">Smell Detected!</text>
+      ` : `
+        <!-- Cross Mark indicating zero smell -->
+        <text x="350" y="110" font-size="28">🚫👃</text>
+        <text x="350" y="140" fill="#f87171" font-size="11" font-weight="bold">Zero Scent (Destroyed)</text>
+      `}
+
+      <text x="250" y="220" fill="${isAcid ? '#34d399' : '#f87171'}" font-size="12" font-weight="extrabold" text-anchor="middle">
+        ${isAcid ? 'Acidic Medium: Odor PERSISTS' : 'Basic Medium: Odor VANISHES'}
+      </text>
+    `;
+  }
+
+  bAcid.addEventListener('click', () => {
+    bAcid.className = "px-3 py-2 rounded-xl bg-emerald-600 text-white font-bold transition";
+    bBase.className = "px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition";
+    render(true);
+  });
+
+  bBase.addEventListener('click', () => {
+    bBase.className = "px-3 py-2 rounded-xl bg-rose-600 text-white font-bold transition";
+    bAcid.className = "px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition";
+    render(false);
+  });
+
+  render(true);
+}
+
+// -------------------------------------------------------------
+// 7. Synthetic Phenolphthalein Chamber Simulator
+// -------------------------------------------------------------
+function initPhenolphthaleinSim(container) {
+  const svg = container.querySelector('#phptSvg');
+  const badge = container.querySelector('#phptStateBadge');
+  const bAddBase = container.querySelector('#phptAddBaseBtn');
+  const bAddAcid = container.querySelector('#phptAddAcidBtn');
+  const bReset = container.querySelector('#phptResetBtn');
+  if (!svg || !bAddBase || !bAddAcid) return;
+
+  let baseDrops = 0; // if > 0, turns pink!
+
+  function render() {
+    const isPink = baseDrops > 0;
+    if (badge) {
+      badge.textContent = isPink ? "Basic: VIVID MAGENTA-PINK" : "Acidic/Neutral: COLORLESS";
+      badge.className = isPink ?
+        "px-2 py-0.5 rounded text-[11px] font-mono bg-pink-500/20 text-pink-300 border border-pink-500/30 font-semibold" :
+        "px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-400 border border-slate-700 font-semibold";
+    }
+
+    svg.innerHTML = `
+      <!-- Beaker Outline -->
+      <rect x="180" y="60" width="140" height="140" rx="8" fill="#0f172a" stroke="#475569" stroke-width="2.5" />
+      
+      <!-- Liquid Body -->
+      <rect x="182" y="105" width="136" height="93" rx="4" fill="${isPink ? '#ec4899' : '#0284c7'}" fill-opacity="${isPink ? '0.7' : '0.1'}" />
+      <ellipse cx="250" cy="105" rx="68" ry="8" fill="${isPink ? '#f472b6' : '#0284c7'}" fill-opacity="${isPink ? '0.9' : '0.2'}" />
+
+      <!-- Chemical Status Label -->
+      <text x="250" y="160" fill="${isPink ? '#ffffff' : '#94a3b8'}" font-size="12" font-weight="extrabold" text-anchor="middle">
+        ${isPink ? 'Vivid Pink (Alkaline)' : 'Colorless (Acid / Neutral)'}
+      </text>
+
+      <!-- Dropper on top -->
+      <polygon points="245,15 255,15 252,50 248,50" fill="#94a3b8" />
+      <circle cx="250" cy="70" r="4" fill="${isPink ? '#ec4899' : '#38bdf8'}" />
+
+      <!-- Telemetry Box on Right -->
+      <rect x="350" y="70" width="125" height="110" rx="8" fill="#1e293b" stroke="#334155" />
+      <text x="360" y="95" fill="#f472b6" font-size="11" font-weight="bold">PHENOLPHTHALEIN</text>
+      <text x="360" y="120" fill="#cbd5e1" font-size="10">Base Added: ${baseDrops} drops</text>
+      <text x="360" y="140" fill="${isPink ? '#f472b6' : '#38bdf8'}" font-size="11" font-weight="bold">
+        ${isPink ? 'pH > 8.2 (Pink)' : 'pH < 8.2 (Clear)'}
+      </text>
+    `;
+  }
+
+  bAddBase.addEventListener('click', () => { baseDrops++; render(); });
+  bAddAcid.addEventListener('click', () => { if (baseDrops > 0) baseDrops--; render(); });
+  if (bReset) bReset.addEventListener('click', () => { baseDrops = 0; render(); });
+
+  render();
+}
+
+// -------------------------------------------------------------
+// 8. Universal pH Scale Strip Simulator
+// -------------------------------------------------------------
+function initUniversalPhStripSim(container) {
+  const svg = container.querySelector('#phStripSvg');
+  const slider = container.querySelector('#phSlider');
+  const badge = container.querySelector('#phValueBadge');
+  const sampleName = container.querySelector('#phSampleName');
+  const colorName = container.querySelector('#phColorName');
+  if (!svg || !slider) return;
+
+  const phData = {
+    0: { name: "Battery Acid (H2SO4)", color: "#ef4444", text: "Deep Red" },
+    1: { name: "Stomach Gastric Acid (HCl)", color: "#f87171", text: "Red" },
+    2: { name: "Lemon Juice", color: "#fb923c", text: "Red-Orange" },
+    3: { name: "Vinegar (Acetic Acid)", color: "#f97316", text: "Orange" },
+    4: { name: "Tomato Juice", color: "#fbbf24", text: "Orange-Yellow" },
+    5: { name: "Black Coffee", color: "#facc15", text: "Yellow" },
+    6: { name: "Fresh Cow Milk", color: "#a3e635", text: "Green-Yellow" },
+    7: { name: "Pure Distilled Water", color: "#10b981", text: "Emerald Green" },
+    8: { name: "Human Blood / Sea Water", color: "#06b6d4", text: "Blue-Green" },
+    9: { name: "Baking Soda Solution", color: "#0ea5e9", text: "Cyan-Blue" },
+    10: { name: "Bathing Soap Lather", color: "#3b82f6", text: "Blue" },
+    11: { name: "Milk of Magnesia (Mg(OH)2)", color: "#6366f1", text: "Indigo" },
+    12: { name: "Lime Water (Ca(OH)2)", color: "#8b5cf6", text: "Purple" },
+    13: { name: "Household Bleach", color: "#a855f7", text: "Violet" },
+    14: { name: "Drain Cleaner (NaOH)", color: "#7e22ce", text: "Deep Purple" }
+  };
+
+  function render() {
+    const ph = parseFloat(slider.value);
+    const rounded = Math.round(ph);
+    const data = phData[rounded] || phData[7];
+
+    if (badge) {
+      badge.textContent = `pH ${ph.toFixed(1)}: ${data.name}`;
+      badge.className = ph < 6.5 ?
+        "px-2 py-0.5 rounded text-[11px] font-mono bg-rose-500/20 text-rose-300 border border-rose-500/30 font-semibold" :
+        ph > 7.5 ?
+        "px-2 py-0.5 rounded text-[11px] font-mono bg-blue-500/20 text-blue-300 border border-blue-500/30 font-semibold" :
+        "px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold";
+    }
+
+    if (sampleName) sampleName.textContent = data.name;
+    if (colorName) {
+      colorName.textContent = data.text;
+      colorName.style.color = data.color;
+    }
+
+    // Spectrum bar coordinates
+    const barX = 30, barY = 60, barW = 440, barH = 30;
+    const markerX = barX + (ph / 14) * barW;
+
+    svg.innerHTML = `
+      <defs>
+        <linearGradient id="phRainbow" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#ef4444" />
+          <stop offset="25%" stop-color="#f97316" />
+          <stop offset="40%" stop-color="#facc15" />
+          <stop offset="50%" stop-color="#10b981" />
+          <stop offset="70%" stop-color="#0ea5e9" />
+          <stop offset="85%" stop-color="#6366f1" />
+          <stop offset="100%" stop-color="#7e22ce" />
+        </linearGradient>
+      </defs>
+
+      <!-- Spectrum Bar -->
+      <rect x="${barX}" y="${barY}" width="${barW}" height="${barH}" rx="6" fill="url(#phRainbow)" />
+
+      <!-- Scale Ticks (0, 7, 14) -->
+      <text x="${barX + 5}" y="${barY + 20}" fill="#ffffff" font-size="11" font-weight="extrabold">0</text>
+      <text x="${barX + barW / 2}" y="${barY + 20}" fill="#ffffff" font-size="11" font-weight="extrabold" text-anchor="middle">7</text>
+      <text x="${barX + barW - 15}" y="${barY + 20}" fill="#ffffff" font-size="11" font-weight="extrabold">14</text>
+
+      <!-- Active Position Pointer -->
+      <polygon points="${markerX - 8},${barY - 14} ${markerX + 8},${barY - 14} ${markerX},${barY - 2}" fill="#ffffff" />
+      <line x1="${markerX}" y1="${barY}" x2="${markerX}" y2="${barY + barH}" stroke="#ffffff" stroke-width="3" />
+
+      <!-- Sample Indicator Flask -->
+      <circle cx="250" cy="155" r="30" fill="${data.color}" stroke="#ffffff" stroke-width="2.5" />
+      <text x="250" y="160" fill="#ffffff" font-size="14" font-weight="extrabold" text-anchor="middle">pH ${ph.toFixed(1)}</text>
+      <text x="250" y="205" fill="#f8fafc" font-size="12" font-weight="bold" text-anchor="middle">${data.name}</text>
+    `;
+  }
+
+  slider.addEventListener('input', render);
+  render();
+}
+
+// -------------------------------------------------------------
+// 9. Neutralisation Reaction Chamber Simulator
+// -------------------------------------------------------------
+function initNeutralisationChamberSim(container) {
+  const svg = container.querySelector('#neutReactSvg');
+  const badge = container.querySelector('#reactionStateBadge');
+  const tempEl = container.querySelector('#tempReadout');
+  const btn = container.querySelector('#triggerReactionBtn');
+  if (!svg || !btn) return;
+
+  let reacted = false;
+
+  function render() {
+    if (badge) {
+      badge.textContent = reacted ? "Neutralised: Salt + Water + Heat Released!" : "Ready: Unmixed Acid & Base";
+      badge.className = reacted ?
+        "px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold" :
+        "px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300 border border-slate-700 font-semibold";
+    }
+
+    if (tempEl) {
+      tempEl.textContent = reacted ? "Thermometer: 38.5°C (+14.5°C Rise Exothermic!)" : "Thermometer: 24.0°C (Ambient)";
+    }
+
+    svg.innerHTML = `
+      <!-- Center Reaction Beaker -->
+      <rect x="180" y="70" width="140" height="130" rx="8" fill="#0f172a" stroke="#475569" stroke-width="2.5" />
+      <rect x="182" y="115" width="136" height="83" rx="4" fill="${reacted ? '#10b981' : '#334155'}" fill-opacity="${reacted ? '0.4' : '0.2'}" />
+
+      ${reacted ? `
+        <!-- Steam heat waves -->
+        <path d="M 220 100 Q 225 80 220 60" stroke="#f59e0b" stroke-width="2" fill="none" opacity="0.8" />
+        <path d="M 250 95 Q 255 75 250 55" stroke="#f59e0b" stroke-width="2" fill="none" opacity="0.8" />
+        <path d="M 280 100 Q 285 80 280 60" stroke="#f59e0b" stroke-width="2" fill="none" opacity="0.8" />
+        <!-- Salt crystals forming -->
+        <rect x="235" y="170" width="8" height="8" fill="#ffffff" />
+        <rect x="255" y="175" width="8" height="8" fill="#ffffff" />
+        <text x="250" y="150" fill="#a7f3d0" font-size="12" font-weight="extrabold" text-anchor="middle">NaCl + H2O (Warm)</text>
+      ` : `
+        <text x="250" y="150" fill="#94a3b8" font-size="11" text-anchor="middle">Click Below to Mix</text>
+      `}
+
+      <!-- Left Flask: HCl Acid -->
+      <g transform="translate(60, 80)">
+        <polygon points="20,0 40,0 55,60 5,60" fill="#f43f5e" fill-opacity="0.4" stroke="#f43f5e" stroke-width="2" />
+        <text x="30" y="80" fill="#fca5a5" font-size="11" font-weight="bold" text-anchor="middle">HCl (Acid)</text>
+      </g>
+
+      <!-- Right Flask: NaOH Base -->
+      <g transform="translate(380, 80)">
+        <polygon points="20,0 40,0 55,60 5,60" fill="#0284c7" fill-opacity="0.4" stroke="#0284c7" stroke-width="2" />
+        <text x="30" y="80" fill="#7dd3fc" font-size="11" font-weight="bold" text-anchor="middle">NaOH (Base)</text>
+      </g>
+
+      <!-- Reaction Formula -->
+      <text x="250" y="35" fill="#facc15" font-size="12" font-weight="bold" text-anchor="middle">
+        HCl + NaOH ➔ NaCl (Salt) + H2O + Heat
+      </text>
+    `;
+  }
+
+  btn.addEventListener('click', () => {
+    reacted = !reacted;
+    render();
+  });
+
+  render();
+}
+
+// -------------------------------------------------------------
+// 10. Titration Burette Simulator
+// -------------------------------------------------------------
+function initTitrationBuretteSim(container) {
+  const svg = container.querySelector('#titrationSvg');
+  const badge = container.querySelector('#titrationBadge');
+  const dropsText = container.querySelector('#titrationDropsText');
+  const bDrop = container.querySelector('#dispenseDropBtn');
+  const bReset = container.querySelector('#resetTitrationBtn');
+  if (!svg || !bDrop) return;
+
+  let drops = 0; // at 10 drops, turns permanent pink!
+
+  function render() {
+    const isPink = drops >= 10;
+    if (badge) {
+      badge.textContent = isPink ? "End-Point Reached: PERMANENT FAINT PINK ✔" : "Flask Solution: Acidic (Colorless)";
+      badge.className = isPink ?
+        "px-2 py-0.5 rounded text-[11px] font-mono bg-pink-500/20 text-pink-300 border border-pink-500/30 font-semibold" :
+        "px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300 border border-slate-700 font-semibold";
+    }
+
+    if (dropsText) {
+      dropsText.textContent = `Base Added: ${(drops * 1.0).toFixed(1)} mL (${drops} drops)`;
+    }
+
+    svg.innerHTML = `
+      <!-- Burette Stand -->
+      <line x1="210" y1="20" x2="210" y2="210" stroke="#475569" stroke-width="4" />
+      <line x1="160" y1="210" x2="260" y2="210" stroke="#475569" stroke-width="6" />
+
+      <!-- Glass Burette Tube -->
+      <rect x="235" y="20" width="20" height="110" rx="2" fill="#0284c7" fill-opacity="0.2" stroke="#94a3b8" stroke-width="1.5" />
+      <!-- Stopcock valve -->
+      <rect x="230" y="130" width="30" height="8" rx="2" fill="#f59e0b" />
+      <polygon points="245,138 245,148" stroke="#94a3b8" stroke-width="2" />
+
+      <!-- Falling Droplet -->
+      ${drops > 0 ? `<circle cx="245" cy="155" r="3" fill="#38bdf8" />` : ''}
+
+      <!-- Conical Flask Below -->
+      <polygon points="230,165 260,165 295,210 195,210" fill="${isPink ? '#ec4899' : '#0284c7'}" fill-opacity="${isPink ? '0.7' : '0.1'}" stroke="#cbd5e1" stroke-width="2" />
+      <text x="245" y="195" fill="${isPink ? '#ffffff' : '#94a3b8'}" font-size="10" font-weight="bold" text-anchor="middle">
+        ${isPink ? 'Pink End-point!' : 'Colorless'}
+      </text>
+
+      <!-- Legend Card -->
+      <g transform="translate(330, 60)">
+        <rect x="0" y="0" width="140" height="100" rx="8" fill="#1e293b" stroke="#334155" />
+        <text x="15" y="25" fill="#f472b6" font-size="11" font-weight="bold">TITRATION STATUS</text>
+        <text x="15" y="48" fill="#94a3b8" font-size="10">Target: 10.0 mL</text>
+        <text x="15" y="68" fill="#cbd5e1" font-size="10">Current: ${(drops * 1.0).toFixed(1)} mL</text>
+        <text x="15" y="88" fill="${isPink ? '#34d399' : '#fb7185'}" font-size="10" font-weight="bold">
+          ${isPink ? 'Exact Equivalence ✔' : 'Acid in Excess...'}
+        </text>
+      </g>
+    `;
+  }
+
+  bDrop.addEventListener('click', () => {
+    if (drops < 12) drops++;
+    render();
+  });
+
+  if (bReset) {
+    bReset.addEventListener('click', () => {
+      drops = 0;
+      render();
+    });
+  }
+
+  render();
+}
+
+// -------------------------------------------------------------
+// 11. Ant Bite Neutraliser Simulator
+// -------------------------------------------------------------
+function initAntBiteNeutraliserSim(container) {
+  const svg = container.querySelector('#antBiteSvg');
+  const status = container.querySelector('#antBiteStatus');
+  const bBaking = container.querySelector('#applyBakingSodaBtn');
+  const bCalamine = container.querySelector('#applyCalamineBtn');
+  if (!svg || !bBaking || !bCalamine) return;
+
+  function render(remedy) {
+    const isNeutralized = remedy !== 'none';
+    if (status) {
+      status.textContent = isNeutralized ? `Neutralised with ${remedy}! Pain Relieved ✔` : "Skin: Acidic Formic Injection ⚠️";
+      status.className = isNeutralized ?
+        "px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold" :
+        "px-2 py-0.5 rounded text-[11px] font-mono bg-rose-500/20 text-rose-300 border border-rose-500/30 font-semibold";
+    }
+
+    svg.innerHTML = `
+      <!-- Skin Cross-Section -->
+      <rect x="40" y="120" width="420" height="90" rx="8" fill="#fda4af" stroke="#f43f5e" stroke-width="2" />
+      <text x="60" y="140" fill="#9f1239" font-size="10" font-weight="bold">Epidermis (Skin Layer)</text>
+
+      ${isNeutralized ? `
+        <!-- White soothing paste applied on top -->
+        <path d="M 200 120 Q 250 105 300 120 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" />
+        <text x="250" y="112" fill="#0284c7" font-size="10" font-weight="bold" text-anchor="middle">${remedy}</text>
+        
+        <!-- Neutralised Salt & Water droplet inside skin -->
+        <circle cx="250" cy="160" r="14" fill="#34d399" opacity="0.6" />
+        <text x="250" y="164" fill="#ffffff" font-size="10" font-weight="bold" text-anchor="middle">Neutral Salt</text>
+
+        <text x="250" y="55" fill="#34d399" font-size="13" font-weight="extrabold" text-anchor="middle">
+          Pain & Inflammation Relieved! (Acid + Base ➔ Salt + H2O)
+        </text>
+      ` : `
+        <!-- Ant Stinger injecting Formic Acid (Red) -->
+        <polygon points="250,90 245,125 255,125" fill="#1e293b" />
+        <circle cx="250" cy="155" r="24" fill="#ef4444" opacity="0.8" />
+        <text x="250" y="159" fill="#ffffff" font-size="10" font-weight="extrabold" text-anchor="middle">Formic Acid</text>
+        
+        <text x="250" y="55" fill="#f43f5e" font-size="13" font-weight="extrabold" text-anchor="middle">
+          Stinging Burning Sensation! (HCOOH Injected)
+        </text>
+      `}
+    `;
+  }
+
+  bBaking.addEventListener('click', () => render('Baking Soda (NaHCO3)'));
+  bCalamine.addEventListener('click', () => render('Calamine (ZnCO3)'));
+
+  render('none');
+}
+
+// -------------------------------------------------------------
+// 12. Soil pH Management Simulator
+// -------------------------------------------------------------
+function initSoilPhManagementSim(container) {
+  const svg = container.querySelector('#soilSvg');
+  const badge = container.querySelector('#soilStatusBadge');
+  const bLime = container.querySelector('#addLimeBtn');
+  const bManure = container.querySelector('#addManureBtn');
+  if (!svg || !bLime || !bManure) return;
+
+  function render(state) {
+    let ph = 4.8;
+    let cropColor = "#ca8a04"; // yellowed/wilted
+    let badgeText = "Soil: Excessively Acidic (pH 4.8)";
+
+    if (state === 'limed') {
+      ph = 6.8;
+      cropColor = "#22c55e"; // lush green
+      badgeText = "Slaked Lime Added ➔ Optimal Fertile pH (6.8) ✔";
+    } else if (state === 'manure') {
+      ph = 7.0;
+      cropColor = "#22c55e";
+      badgeText = "Organic Manure Added ➔ Balanced Neutral Soil (7.0) ✔";
+    }
+
+    if (badge) {
+      badge.textContent = badgeText;
+      badge.className = ph >= 6.5 && ph <= 7.5 ?
+        "px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold" :
+        "px-2 py-0.5 rounded text-[11px] font-mono bg-rose-500/20 text-rose-300 border border-rose-500/30 font-semibold";
+    }
+
+    svg.innerHTML = `
+      <!-- Soil Ground Base -->
+      <rect x="40" y="130" width="420" height="80" rx="4" fill="#78350f" stroke="#451a03" stroke-width="2" />
+      <text x="60" y="195" fill="#d97706" font-size="10" font-weight="bold">Agricultural Soil Layer</text>
+
+      <!-- Crops / Plants -->
+      ${[120, 200, 280, 360].map(x => `
+        <line x1="${x}" y1="130" x2="${x}" y2="75" stroke="${cropColor}" stroke-width="4" />
+        <ellipse cx="${x - 10}" cy="90" rx="12" ry="6" fill="${cropColor}" transform="rotate(-30 ${x - 10} 90)" />
+        <ellipse cx="${x + 10}" cy="85" rx="12" ry="6" fill="${cropColor}" transform="rotate(30 ${x + 10} 85)" />
+      `).join('')}
+
+      <!-- Soil pH Meter Probe -->
+      <g transform="translate(60, 40)">
+        <rect x="0" y="0" width="60" height="50" rx="6" fill="#1e293b" stroke="#64748b" />
+        <text x="30" y="22" fill="#94a3b8" font-size="9" text-anchor="middle">SOIL pH</text>
+        <text x="30" y="42" fill="${ph >= 6.5 ? '#34d399' : '#f87171'}" font-size="14" font-weight="extrabold" text-anchor="middle">${ph.toFixed(1)}</text>
+        <line x1="30" y1="50" x2="30" y2="140" stroke="#94a3b8" stroke-width="2.5" />
+      </g>
+    `;
+  }
+
+  bLime.addEventListener('click', () => render('limed'));
+  bManure.addEventListener('click', () => render('manure'));
+
+  render('acid');
+}
+
+// -------------------------------------------------------------
+// 13. Factory Effluent Plant Simulator
+// -------------------------------------------------------------
+function initFactoryEffluentSim(container) {
+  const svg = container.querySelector('#effluentSvg');
+  const slider = container.querySelector('#limeValveSlider');
+  const badge = container.querySelector('#riverSafetyBadge');
+  const doseText = container.querySelector('#limeDoseText');
+  if (!svg || !slider) return;
+
+  function render() {
+    const valve = parseInt(slider.value, 10); // 0 to 100%
+    const ph = (2.5 + (valve / 100) * 4.6).toFixed(1);
+    const isSafe = ph >= 6.5;
+
+    if (doseText) doseText.textContent = `Lime Dosing: ${valve}% (Treated pH: ${ph})`;
+
+    if (badge) {
+      badge.textContent = isSafe ? `River Ecosystem Safe (pH ${ph}) ✔` : `CRITICAL HAZARD: Acid Polluting River (pH ${ph}) ⚠️`;
+      badge.className = isSafe ?
+        "px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold" :
+        "px-2 py-0.5 rounded text-[11px] font-mono bg-rose-500/20 text-rose-300 border border-rose-500/30 font-semibold";
+    }
+
+    svg.innerHTML = `
+      <!-- Factory Outline at Left -->
+      <polygon points="30,120 70,80 70,120 110,80 110,160 30,160" fill="#334155" stroke="#64748b" />
+      <text x="70" y="150" fill="#ffffff" font-size="9" text-anchor="middle">Chemical Plant</text>
+
+      <!-- Acid Pipe Flowing Out -->
+      <rect x="110" y="130" width="70" height="15" fill="#f43f5e" />
+
+      <!-- Neutralisation Reaction Tank in Middle -->
+      <rect x="180" y="90" width="120" height="90" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="2" />
+      <rect x="182" y="125" width="116" height="53" rx="4" fill="${isSafe ? '#10b981' : '#f43f5e'}" fill-opacity="0.4" />
+      <text x="240" y="112" fill="#38bdf8" font-size="10" font-weight="bold" text-anchor="middle">ETP Tank (pH ${ph})</text>
+
+      <!-- Lime Hopper adding base -->
+      <polygon points="225,50 255,50 245,85 235,85" fill="#ffffff" stroke="#94a3b8" />
+      <text x="240" y="42" fill="#ffffff" font-size="9" text-anchor="middle">Slaked Lime (${valve}%)</text>
+
+      <!-- Outflow into River at Right -->
+      <rect x="300" y="130" width="50" height="15" fill="${isSafe ? '#0284c7' : '#f43f5e'}" />
+
+      <!-- River with Fish -->
+      <rect x="350" y="100" width="120" height="80" rx="6" fill="#0284c7" fill-opacity="0.3" stroke="#38bdf8" />
+      ${isSafe ? `
+        <text x="410" y="135" font-size="18">🐟</text>
+        <text x="390" y="155" font-size="14">🐠</text>
+        <text x="410" y="172" fill="#34d399" font-size="9" font-weight="bold" text-anchor="middle">Thriving Aquatic Life</text>
+      ` : `
+        <text x="410" y="135" font-size="16">💀</text>
+        <text x="410" y="165" fill="#f87171" font-size="9" font-weight="bold" text-anchor="middle">Acidic Danger!</text>
+      `}
+    `;
+  }
+
+  slider.addEventListener('input', render);
+  render();
+}
+
+// -------------------------------------------------------------
+// 14. Antacid & Dental Health Simulator
+// -------------------------------------------------------------
+function initBioHealthSim(container) {
+  const svg = container.querySelector('#bioHealthSvg');
+  const badge = container.querySelector('#bioModeBadge');
+  const bStomach = container.querySelector('#toggleStomachBtn');
+  const bDental = container.querySelector('#toggleDentalBtn');
+  if (!svg || !bStomach || !bDental) return;
+
+  function render(mode) {
+    if (mode === 'stomach') {
+      badge.textContent = "Stomach: Antacid Neutralises Excess HCl";
+      badge.className = "px-2 py-0.5 rounded text-[11px] font-mono bg-blue-500/20 text-blue-300 border border-blue-500/30 font-semibold";
+
+      svg.innerHTML = `
+        <!-- Stomach Outline -->
+        <path d="M 170 80 Q 140 130 190 180 Q 250 200 300 160 Q 320 110 270 80 Z" fill="#f43f5e" fill-opacity="0.2" stroke="#f43f5e" stroke-width="2.5" />
+        <text x="240" y="115" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Stomach Cavity</text>
+        
+        <!-- Gastric HCl + Milk of Magnesia -->
+        <rect x="200" y="130" width="80" height="35" rx="6" fill="#38bdf8" fill-opacity="0.6" />
+        <text x="240" y="152" fill="#ffffff" font-size="10" font-weight="extrabold" text-anchor="middle">Mg(OH)2 + HCl</text>
+
+        <!-- Explanation Callout -->
+        <text x="250" y="45" fill="#38bdf8" font-size="13" font-weight="extrabold" text-anchor="middle">
+          Mg(OH)2 + 2HCl ➔ MgCl2 + 2H2O (Heartburn Relieved!)
+        </text>
+      `;
+    } else {
+      badge.textContent = "Dental: Alkaline Toothpaste Neutralises Mouth Acid";
+      badge.className = "px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold";
+
+      svg.innerHTML = `
+        <!-- Healthy White Tooth with Enamel Shield -->
+        <path d="M 220 70 C 200 70 190 110 200 160 C 210 190 230 170 240 140 C 250 170 270 190 280 160 C 290 110 280 70 260 70 Z" fill="#f8fafc" stroke="#38bdf8" stroke-width="3" />
+        
+        <!-- Toothpaste Lather (Mild Alkali) -->
+        <circle cx="230" cy="95" r="12" fill="#06b6d4" fill-opacity="0.5" />
+        <circle cx="250" cy="90" r="10" fill="#06b6d4" fill-opacity="0.5" />
+        
+        <text x="240" y="125" fill="#0284c7" font-size="10" font-weight="bold" text-anchor="middle">Enamel Shield</text>
+
+        <text x="250" y="45" fill="#34d399" font-size="13" font-weight="extrabold" text-anchor="middle">
+          Alkaline Toothpaste Neutralises Bacterial Acid (Prevents Cavities)
+        </text>
+      `;
+    }
+  }
+
+  bStomach.addEventListener('click', () => {
+    bStomach.className = "px-3 py-2 rounded-xl bg-blue-600 text-white font-bold transition";
+    bDental.className = "px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition";
+    render('stomach');
+  });
+
+  bDental.addEventListener('click', () => {
+    bDental.className = "px-3 py-2 rounded-xl bg-emerald-600 text-white font-bold transition";
+    bStomach.className = "px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition";
+    render('dental');
+  });
+
+  render('stomach');
+}
+
+// -------------------------------------------------------------
+// 15. Acharya P.C. Ray Historical Lab Simulator
+// -------------------------------------------------------------
+function initPcRayHeritageSim(container) {
+  const svg = container.querySelector('#pcRaySvg');
+  const badge = container.querySelector('#pcRayBadge');
+  const btns = container.querySelectorAll('.rayBtn');
+  if (!svg) return;
+
+  function render(view) {
+    if (view === 'nitrite') {
+      if (badge) badge.textContent = "Mercurous Nitrite Discovery (1896)";
+      svg.innerHTML = `
+        <rect x="30" y="30" width="440" height="180" rx="12" fill="#0f172a" stroke="#f59e0b" stroke-width="2" />
+        <circle cx="85" cy="85" r="32" fill="#1e293b" stroke="#f59e0b" stroke-width="2" />
+        <text x="85" y="93" font-size="24" text-anchor="middle">🧪</text>
+        <text x="135" y="65" fill="#f8fafc" font-size="14" font-weight="extrabold">Synthesis of Mercurous Nitrite [Hg2(NO2)2]</text>
+        <text x="135" y="85" fill="#f59e0b" font-size="11" font-weight="bold">Presidency College Laboratory, Kolkata (1896)</text>
+        
+        <foreignObject x="60" y="115" width="380" height="80">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="font-size: 11px; color: #cbd5e1; line-height: 1.45;">
+            By reacting liquid mercury with dilute nitric acid under carefully controlled temperature, P.C. Ray synthesized yellow crystalline mercurous nitrite, a compound previously declared impossible by Western chemists!
+          </div>
+        </foreignObject>
+      `;
+    } else if (view === 'bengal') {
+      if (badge) badge.textContent = "Bengal Chemicals (1901)";
+      svg.innerHTML = `
+        <rect x="30" y="30" width="440" height="180" rx="12" fill="#0f172a" stroke="#38bdf8" stroke-width="2" />
+        <circle cx="85" cy="85" r="32" fill="#1e293b" stroke="#38bdf8" stroke-width="2" />
+        <text x="85" y="93" font-size="24" text-anchor="middle">🏭</text>
+        <text x="135" y="65" fill="#f8fafc" font-size="14" font-weight="extrabold">Bengal Chemical & Pharmaceutical Works</text>
+        <text x="135" y="85" fill="#38bdf8" font-size="11" font-weight="bold">India's First Indigenous Pharmaceutical Enterprise (1901)</text>
+
+        <foreignObject x="60" y="115" width="380" height="80">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="font-size: 11px; color: #cbd5e1; line-height: 1.45;">
+            Founded with modest capital in his rented home, Ray built an industrial giant manufacturing sulfuric acid, pharmaceutical syrups, and surgical dressings to free India from dependence on foreign imports.
+          </div>
+        </foreignObject>
+      `;
+    } else {
+      if (badge) badge.textContent = "History of Hindu Chemistry";
+      svg.innerHTML = `
+        <rect x="30" y="30" width="440" height="180" rx="12" fill="#0f172a" stroke="#10b981" stroke-width="2" />
+        <circle cx="85" cy="85" r="32" fill="#1e293b" stroke="#10b981" stroke-width="2" />
+        <text x="85" y="93" font-size="24" text-anchor="middle">📜</text>
+        <text x="135" y="65" fill="#f8fafc" font-size="14" font-weight="extrabold">Rasashastra: A History of Hindu Chemistry</text>
+        <text x="135" y="85" fill="#10b981" font-size="11" font-weight="bold">Masterwork of Ancient Indian Alchemical Heritage</text>
+
+        <foreignObject x="60" y="115" width="380" height="80">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="font-size: 11px; color: #cbd5e1; line-height: 1.45;">
+            Ray translated ancient Sanskrit manuscripts to demonstrate that Indian metallurgists had mastered caustic alkalis (Kṣāra), mineral acids (Amla), zinc smelting, and distillation centuries before the West.
+          </div>
+        </foreignObject>
+      `;
+    }
+  }
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.className = "rayBtn px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition");
+      btn.className = "rayBtn px-2 py-1.5 rounded-lg bg-amber-600 text-white font-bold transition";
+      render(btn.dataset.view);
+    });
+  });
+
+  render('nitrite');
+}
+
+// -------------------------------------------------------------
+// 16. Master Substance Wheel & Equation Generator Simulator
+// -------------------------------------------------------------
+function initMasterSubstanceWheelSim(container) {
+  const svg = container.querySelector('#synthSvg');
+  const badge = container.querySelector('#synthSaltBadge');
+  const selAcid = container.querySelector('#synthAcidSelect');
+  const selBase = container.querySelector('#synthBaseSelect');
+  if (!svg || !selAcid || !selBase) return;
+
+  const pairs = {
+    "hcl-naoh": { salt: "Sodium Chloride (NaCl)", eq: "HCl + NaOH ➔ NaCl + H2O + Heat" },
+    "hcl-koh": { salt: "Potassium Chloride (KCl)", eq: "HCl + KOH ➔ KCl + H2O + Heat" },
+    "hcl-caoh2": { salt: "Calcium Chloride (CaCl2)", eq: "2HCl + Ca(OH)2 ➔ CaCl2 + 2H2O + Heat" },
+    "hcl-mgoh2": { salt: "Magnesium Chloride (MgCl2)", eq: "2HCl + Mg(OH)2 ➔ MgCl2 + 2H2O + Heat" },
+    "h2so4-naoh": { salt: "Sodium Sulfate (Na2SO4)", eq: "H2SO4 + 2NaOH ➔ Na2SO4 + 2H2O + Heat" },
+    "h2so4-koh": { salt: "Potassium Sulfate (K2SO4)", eq: "H2SO4 + 2KOH ➔ K2SO4 + 2H2O + Heat" },
+    "h2so4-caoh2": { salt: "Calcium Sulfate (CaSO4)", eq: "H2SO4 + Ca(OH)2 ➔ CaSO4 + 2H2O + Heat" },
+    "h2so4-mgoh2": { salt: "Magnesium Sulfate (MgSO4)", eq: "H2SO4 + Mg(OH)2 ➔ MgSO4 + 2H2O + Heat" },
+    "hno3-naoh": { salt: "Sodium Nitrate (NaNO3)", eq: "HNO3 + NaOH ➔ NaNO3 + H2O + Heat" },
+    "hno3-koh": { salt: "Potassium Nitrate (KNO3)", eq: "HNO3 + KOH ➔ KNO3 + H2O + Heat" },
+    "hno3-caoh2": { salt: "Calcium Nitrate (Ca(NO3)2)", eq: "2HNO3 + Ca(OH)2 ➔ Ca(NO3)2 + 2H2O + Heat" },
+    "hno3-mgoh2": { salt: "Magnesium Nitrate (Mg(NO3)2)", eq: "2HNO3 + Mg(OH)2 ➔ Mg(NO3)2 + 2H2O + Heat" },
+    "ch3cooh-naoh": { salt: "Sodium Acetate (CH3COONa)", eq: "CH3COOH + NaOH ➔ CH3COONa + H2O + Heat" },
+    "ch3cooh-koh": { salt: "Potassium Acetate (CH3COOK)", eq: "CH3COOH + KOH ➔ CH3COOK + H2O + Heat" },
+    "ch3cooh-caoh2": { salt: "Calcium Acetate ((CH3COO)2Ca)", eq: "2CH3COOH + Ca(OH)2 ➔ (CH3COO)2Ca + 2H2O + Heat" },
+    "ch3cooh-mgoh2": { salt: "Magnesium Acetate ((CH3COO)2Mg)", eq: "2CH3COOH + Mg(OH)2 ➔ (CH3COO)2Mg + 2H2O + Heat" }
+  };
+
+  function render() {
+    const key = `${selAcid.value}-${selBase.value}`;
+    const data = pairs[key] || pairs["hcl-naoh"];
+
+    if (badge) badge.textContent = `Salt: ${data.salt}`;
+
+    svg.innerHTML = `
+      <!-- Equation Box -->
+      <rect x="30" y="25" width="440" height="60" rx="10" fill="#0f172a" stroke="#10b981" stroke-width="2" />
+      <text x="250" y="55" fill="#a7f3d0" font-size="14" font-weight="extrabold" text-anchor="middle">
+        ${data.eq}
+      </text>
+      <text x="250" y="73" fill="#fde68a" font-size="10" text-anchor="middle">Exothermic Enthalpy: ΔH = -57.3 kJ/mol</text>
+
+      <!-- Three Metric Cards -->
+      <!-- Acid Card -->
+      <g transform="translate(40, 100)">
+        <rect x="0" y="0" width="120" height="95" rx="8" fill="#1e293b" stroke="#f43f5e" />
+        <text x="60" y="25" fill="#fca5a5" font-size="11" font-weight="bold" text-anchor="middle">ACID REACTANT</text>
+        <text x="60" y="50" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">${selAcid.value.toUpperCase()}</text>
+        <text x="60" y="75" fill="#94a3b8" font-size="9" text-anchor="middle">Blue Litmus ➔ Red</text>
+      </g>
+
+      <!-- Plus Sign -->
+      <text x="180" y="155" fill="#94a3b8" font-size="20" font-weight="bold" text-anchor="middle">+</text>
+
+      <!-- Base Card -->
+      <g transform="translate(200, 100)">
+        <rect x="0" y="0" width="120" height="95" rx="8" fill="#1e293b" stroke="#38bdf8" />
+        <text x="60" y="25" fill="#7dd3fc" font-size="11" font-weight="bold" text-anchor="middle">BASE REACTANT</text>
+        <text x="60" y="50" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">${selBase.value.toUpperCase()}</text>
+        <text x="60" y="75" fill="#94a3b8" font-size="9" text-anchor="middle">Red Litmus ➔ Blue</text>
+      </g>
+
+      <!-- Equals Arrow -->
+      <text x="340" y="155" fill="#94a3b8" font-size="20" font-weight="bold" text-anchor="middle">➔</text>
+
+      <!-- Salt Product Card -->
+      <g transform="translate(360, 100)">
+        <rect x="0" y="0" width="110" height="95" rx="8" fill="#064e3b" stroke="#10b981" />
+        <text x="55" y="25" fill="#6ee7b7" font-size="11" font-weight="bold" text-anchor="middle">SALT PRODUCT</text>
+        <text x="55" y="55" fill="#ffffff" font-size="10" font-weight="extrabold" text-anchor="middle">${data.salt.split(' ')[0]}</text>
+        <text x="55" y="75" fill="#a7f3d0" font-size="9" text-anchor="middle">+ Water + Heat</text>
+      </g>
+    `;
+  }
+
+  selAcid.addEventListener('change', render);
+  selBase.addEventListener('change', render);
+  render();
+}
+
+
+    // Bootstrap
+    window.addEventListener('DOMContentLoaded', () => {
+      renderSlide(1);
+    });
+  </script>
+</body>
+</html>

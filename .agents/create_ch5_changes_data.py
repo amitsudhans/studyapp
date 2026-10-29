@@ -1,0 +1,1154 @@
+# -*- coding: utf-8 -*-
+"""
+Generator script for Class 7 Science Chapter 5: Changes Around Us: Physical and Chemical Data
+Outputs .agents/class7_science_changes_data.py
+Strictly ZERO raw LaTeX formatting - all formulas and math in clean Unicode!
+"""
+
+import json
+
+SLIDES_DATA = [
+    # Slide 1: Physical Changes: Altering Appearance Without New Matter
+    {
+        "id": 1,
+        "type": "theory_slide",
+        "title": "Physical Changes: Altering Appearance Without New Matter",
+        "subtitle": "5.1 Shape, Size, State Transformations & Molecular Conservation",
+        "content": "A substance frequently alters its visual form, dimensions, or physical state while retaining its core chemical identity. When a student folds paper into an airplane, crushes a brittle stick of blackboard chalk into fine powder, or stretches a rubber band, the material's geometry is transformed, yet the underlying molecules remain unchanged. Physical changes are defined as alterations affecting only physical properties (shape, size, color, volume, and state of aggregation) without the formation of any new chemical substance.",
+        "formula": "Physical Change: Reactant (A) ➔ Product (A) [Same Chemical Composition, Altered Geometry]",
+        "key_takeaways": [
+            "Physical properties encompass shape, size, color, texture, density, and physical state.",
+            "No new chemical substance is ever synthesised during a pure physical transformation.",
+            "Crushing chalk into powder leaves chalk molecules (calcium carbonate) completely intact.",
+            "Inflating an elastic balloon alters its surface area and volume without altering latex molecules."
+        ],
+        "checkpoints": [
+            {
+                "question": "Which of the following occurrences represents a pure physical change?",
+                "options": [
+                    "Dissolving white table sugar in water to make syrup",
+                    "Burning a sheet of dry paper into black ash",
+                    "Rusting of an iron garden trowel",
+                    "Baking raw dough into a loaf of bread"
+                ],
+                "correct": 0,
+                "explanation": "Dissolving sugar in water is a physical change: sugar molecules separate and disperse among water molecules without forming new chemical bonds. Evaporating the water recovers pure sugar."
+            },
+            {
+                "question": "What is the defining scientific characteristic of any physical change?",
+                "options": [
+                    "A new chemical substance with unique properties is created",
+                    "No new chemical substance is formed; only physical traits change",
+                    "It must always emit visible light and loud popping sounds",
+                    "It can never be reversed under any circumstance"
+                ],
+                "correct": 1,
+                "explanation": "A physical change alters only observable physical properties such as dimensions, shape, or state; the molecular identity of the substance is fully preserved."
+            }
+        ],
+        "simulator_type": "physical_changes_explorer_sim"
+    },
+
+    # Slide 2: Phase Changes of Matter: Reversible Interconversions
+    {
+        "id": 2,
+        "type": "theory_slide",
+        "title": "Phase Changes of Matter: Reversible Interconversions",
+        "subtitle": "5.1 Solid, Liquid, Gas Transitions & Latent Thermal Energy",
+        "content": "When solid ice absorbs thermal energy, it melts into liquid water; upon further heating to 100°C, it vaporizes into invisible steam. When this steam contacts a cold metal lid, it condenses back into liquid droplets, and freezing returns it to solid ice. Throughout this cycle of phase transitions, every single molecule remains H₂O (two hydrogen atoms bonded to one oxygen atom). Phase transitions are quintessential physical changes governed by intermolecular kinetic energy rather than chemical bonding.",
+        "formula": "Phase Cycle: Ice (H₂O solid) ⇌ Water (H₂O liquid) ⇌ Steam (H₂O gas)",
+        "key_takeaways": [
+            "Melting, freezing, vaporization, condensation, and sublimation are all physical changes.",
+            "Temperature changes alter molecular kinetic motion without breaking intramolecular covalent bonds.",
+            "Solid ice, liquid water, and gaseous steam possess identical chemical identities.",
+            "Condensation on a cold surface visually demonstrates the reversible recovery of liquid from vapor."
+        ],
+        "checkpoints": [
+            {
+                "question": "Why is the boiling of water into steam classified as a physical change?",
+                "options": [
+                    "Steam molecules are chemically identical to liquid water molecules (H₂O)",
+                    "Water changes permanently into hydrogen and oxygen gases",
+                    "Steam can never be converted back into liquid water",
+                    "Boiling always consumes the container holding the liquid"
+                ],
+                "correct": 0,
+                "explanation": "Steam consists of H₂O molecules separated by large distances. Cooling the steam condenses it back into liquid water without any chemical alteration."
+            },
+            {
+                "question": "When cold water droplets form on the outer surface of a glass of ice-cold juice, what process occurred?",
+                "options": [
+                    "Chemical synthesis of juice through the glass walls",
+                    "Physical condensation of ambient water vapor from the humid air",
+                    "Combustion of atmospheric gases around the cold glass",
+                    "A biological reaction caused by glass bacteria"
+                ],
+                "correct": 1,
+                "explanation": "Warm atmospheric water vapor loses thermal energy upon touching the cold outer glass surface and condenses into liquid water droplets—a purely physical change."
+            }
+        ],
+        "simulator_type": "state_transformations_sim"
+    },
+
+    # Slide 3: Chemical Changes: Genesis of Novel Chemical Substances
+    {
+        "id": 3,
+        "type": "theory_slide",
+        "title": "Chemical Changes: Genesis of Novel Chemical Substances",
+        "subtitle": "5.2 Chemical Reactions, Bond Rearrangement & Effervescence",
+        "content": "In sharp contrast to physical changes, a chemical change occurs when one or more substances react to produce entirely new substances with distinct chemical compositions and physical properties. Mixing clear vinegar (acetic acid) with white baking soda (sodium hydrogencarbonate) produces brisk effervescence and bubbling as carbon dioxide gas is briskly liberated. The original substances have been consumed, yielding sodium acetate, liquid water, and carbon dioxide.",
+        "formula": "Reaction: CH₃COOH (Vinegar) + NaHCO₃ (Baking Soda) ➔ CH₃COONa + H₂O + CO₂↑",
+        "key_takeaways": [
+            "A chemical change involves breaking old chemical bonds and forming new molecular bonds.",
+            "The resulting products exhibit chemical and physical properties entirely different from reactants.",
+            "Common signatures of chemical change include gas evolution, color shift, heat change, or precipitation.",
+            "Effervescence during the vinegar-baking soda reaction confirms the rapid generation of carbon dioxide gas."
+        ],
+        "checkpoints": [
+            {
+                "question": "What gas causes the vigorous bubbling when vinegar is poured onto baking soda?",
+                "options": [
+                    "Carbon dioxide (CO₂)",
+                    "Pure oxygen (O₂)",
+                    "Nitrogen gas (N₂)",
+                    "Helium gas (He)"
+                ],
+                "correct": 0,
+                "explanation": "Acetic acid reacts with sodium hydrogencarbonate to liberate carbon dioxide gas (CO₂), which creates visible bubbling and can inflate a balloon over the reaction flask."
+            },
+            {
+                "question": "Why is the reaction between vinegar and baking soda classified as a chemical change?",
+                "options": [
+                    "Because new substances (sodium acetate, water, and CO₂) are produced",
+                    "Because the vinegar only changed its color without reacting",
+                    "Because no gas was liberated during the process",
+                    "Because baking soda can be filtered out unchanged immediately"
+                ],
+                "correct": 0,
+                "explanation": "The reaction produces novel chemical species (sodium acetate, water, and carbon dioxide gas) that cannot be separated back into vinegar and baking soda by simple physical means."
+            }
+        ],
+        "simulator_type": "vinegar_baking_soda_sim"
+    },
+
+    # Slide 4: Testing Chemical Evolution: Lime Water & Carbon Dioxide
+    {
+        "id": 4,
+        "type": "theory_slide",
+        "title": "Testing Chemical Evolution: Lime Water & Carbon Dioxide",
+        "subtitle": "5.2 Insoluble Precipitate Formation & Confirmatory Gas Diagnostics",
+        "content": "The presence of carbon dioxide gas is confirmed using clear lime water (calcium hydroxide solution). When carbon dioxide gas is bubbled through freshly prepared clear lime water, a chemical reaction occurs: insoluble calcium carbonate precipitate is formed, suspending tiny white solid particles that turn the solution milky. If carbon dioxide continues to bubble through for an extended duration, the milkiness clears because insoluble calcium carbonate converts into soluble calcium hydrogencarbonate.",
+        "formula": "Primary: Ca(OH)₂ (Lime Water) + CO₂ ➔ CaCO₃↓ (Milky Precipitate) + H₂O",
+        "key_takeaways": [
+            "Clear lime water is an aqueous solution of calcium hydroxide [Ca(OH)₂].",
+            "Reaction with carbon dioxide yields solid calcium carbonate [CaCO₃], creating a milky white appearance.",
+            "Turning lime water milky is the definitive diagnostic laboratory test for carbon dioxide gas.",
+            "Exhaling through a straw into lime water proves that human cellular respiration emits carbon dioxide."
+        ],
+        "checkpoints": [
+            {
+                "question": "What specific substance causes freshly prepared lime water to turn milky when CO₂ is passed through it?",
+                "options": [
+                    "Insoluble calcium carbonate (CaCO₃) precipitate",
+                    "Soluble sodium chloride salt crystals",
+                    "Dissolved oxygen bubbles",
+                    "Unreacted vinegar droplets"
+                ],
+                "correct": 0,
+                "explanation": "Carbon dioxide reacts with calcium hydroxide to produce insoluble calcium carbonate (CaCO₃), which appears as microscopic white particles suspended in the liquid, turning it milky."
+            },
+            {
+                "question": "When a student exhales through a straw into clear lime water, what observation confirms biological CO₂ emission?",
+                "options": [
+                    "The clear solution turns cloudy and milky white",
+                    "The solution turns bright neon green",
+                    "The liquid instantly solidifies into an ice cube",
+                    "The solution catches fire spontaneously"
+                ],
+                "correct": 0,
+                "explanation": "Exhaled human breath contains roughly 4% to 5% carbon dioxide from cellular respiration, which reacts with calcium hydroxide in lime water to precipitate milky calcium carbonate."
+            }
+        ],
+        "simulator_type": "lime_water_test_sim"
+    },
+
+    # Slide 5: Rusting of Iron: A Slow Destructive Chemical Oxidation
+    {
+        "id": 5,
+        "type": "theory_slide",
+        "title": "Rusting of Iron: A Slow Destructive Chemical Oxidation",
+        "subtitle": "5.3.1 Electrochemical Corrosion & Hydrated Iron(III) Oxide",
+        "content": "Iron objects exposed to ambient moist air slowly develop a flaky, reddish-brown powdery crust called rust. Rust is chemically distinct from elemental iron: it is hydrated iron(III) oxide. Rusting is an irreversible chemical oxidation reaction requiring the simultaneous presence of both atmospheric oxygen and liquid moisture. Because rust is porous and non-adherent, it continuously flakes off, exposing fresh layers of iron to further destruction and weakening bridges, ships, and building frameworks.",
+        "formula": "Corrosion: 4Fe (Iron) + 3O₂ (Oxygen) + 2xH₂O (Moisture) ➔ 2Fe₂O₃·xH₂O (Rust)",
+        "key_takeaways": [
+            "Rust is hydrated iron(III) oxide [Fe₂O₃·xH₂O], an entirely new chemical substance.",
+            "Rusting demands the simultaneous presence of both oxygen and moisture.",
+            "Rust is porous, crumbly, and non-protective; it causes structural mass degradation over time.",
+            "Unlike shiny, magnetic iron metal, rust is reddish-brown, brittle, and non-conductive."
+        ],
+        "checkpoints": [
+            {
+                "question": "Which dual environmental factors are strictly necessary for iron to undergo rusting?",
+                "options": [
+                    "Both oxygen gas and moisture (water) simultaneously",
+                    "Dry nitrogen gas and zero moisture",
+                    "High temperature in a pure vacuum",
+                    "Carbon dioxide gas in completely dry air"
+                ],
+                "correct": 0,
+                "explanation": "Rusting cannot occur in boiled, oxygen-free water alone, nor in bone-dry air alone. Both oxygen (from air) and moisture (water) must be present together."
+            },
+            {
+                "question": "Why is the rusting of an iron nail classified as a chemical change rather than a physical change?",
+                "options": [
+                    "A new chemical substance (hydrated iron oxide) with distinct properties is formed",
+                    "The iron nail simply changes its physical length without reacting",
+                    "Rust can be melted back into shiny iron using a household hairdryer",
+                    "The iron nail only changes color due to optical reflection"
+                ],
+                "correct": 0,
+                "explanation": "Rusting converts elemental iron atoms into a new chemical compound (hydrated iron oxide) with vastly different chemical bonding, color, mechanical strength, and magnetic behavior."
+            }
+        ],
+        "simulator_type": "rusting_chemical_sim"
+    },
+
+    # Slide 6: Combustion: Rapid Exothermic Chemical Oxidation
+    {
+        "id": 6,
+        "type": "theory_slide",
+        "title": "Combustion: Rapid Exothermic Chemical Oxidation",
+        "subtitle": "5.3.2 Burning Reactions, Ignition Thresholds & New Oxides",
+        "content": "Combustion is a rapid chemical reaction in which a combustible fuel reacts with atmospheric oxygen, accompanied by the substantial evolution of heat and radiant light. When a clean ribbon of magnesium metal is ignited in a Bunsen burner flame, it burns vigorously with a dazzling, blinding white light to yield a powdery white ash of magnesium oxide. Similarly, burning charcoal produces carbon dioxide gas and white ash. These transformations create entirely new chemical products and cannot be reversed by physical cooling.",
+        "formula": "Combustion: 2Mg (Magnesium) + O₂ ➔ 2MgO (Magnesium Oxide Ash) + Heat + Light",
+        "key_takeaways": [
+            "Combustion is an irreversible, exothermic chemical reaction with oxygen.",
+            "Magnesium ribbon burns with an intense white flare, producing basic magnesium oxide [MgO].",
+            "Combustion produces novel gaseous or solid chemical compounds (oxides) plus thermal energy.",
+            "Unlike physical heating, combustion irreversibly consumes the original molecular reactants."
+        ],
+        "checkpoints": [
+            {
+                "question": "What product is formed when a strip of magnesium ribbon burns in atmospheric air?",
+                "options": [
+                    "White powdery magnesium oxide (MgO)",
+                    "Liquid metallic mercury",
+                    "Solid elemental carbon soot",
+                    "Liquid hydrochloric acid"
+                ],
+                "correct": 0,
+                "explanation": "Magnesium atoms bond with atmospheric oxygen gas during rapid combustion to form magnesium oxide (2Mg + O₂ → 2MgO), leaving behind a characteristic white ash."
+            },
+            {
+                "question": "Why is the burning of dry wood classified as a chemical change?",
+                "options": [
+                    "Wood cellulose reacts with oxygen to form new substances (ash, CO₂, water vapor)",
+                    "The wood only changes shape without changing its molecular composition",
+                    "The smoke can be collected and immediately reshaped into wooden logs",
+                    "The wood absorbs heat without undergoing any molecular rearrangement"
+                ],
+                "correct": 0,
+                "explanation": "Combustion of wood breaks complex cellulose and lignin molecules, combining their carbon and hydrogen atoms with oxygen to form new chemical substances: carbon dioxide, water vapor, and mineral ash."
+            }
+        ],
+        "simulator_type": "combustion_reactions_sim"
+    },
+
+    # Slide 7: The Fire Triangle: Controlling & Extinguishing Combustion
+    {
+        "id": 7,
+        "type": "theory_slide",
+        "title": "The Fire Triangle: Controlling & Extinguishing Combustion",
+        "subtitle": "5.3.2 Fuel, Oxygen & Ignition Temperature Requirements",
+        "content": "Every combustion reaction relies upon the simultaneous coexistence of three vital elements known as the Fire Triangle: (1) Combustible Fuel, (2) Sustained Oxygen Supply, and (3) Heat sufficient to raise the fuel above its specific Ignition Temperature. Extinguishing any fire requires removing at least one of these three vertices: spraying water cools the fuel below its ignition temperature, covering a flame with a heavy blanket or pouring carbon dioxide gas smothers the oxygen supply, and isolating unburnt material cuts off the fuel source.",
+        "formula": "Fire Triangle Equilibrium: Fuel + Oxygen (O₂) + Ignition Heat ➔ Sustained Flame",
+        "key_takeaways": [
+            "Combustion requires three concurrent factors: Fuel, Oxygen, and Ignition Temperature.",
+            "Ignition temperature is the lowest temperature at which a substance catches fire.",
+            "Water extinguishes fires primarily by absorbing latent heat and cooling fuel below ignition temp.",
+            "Covering a burning flame with an inverted glass tumbler cuts off oxygen, extinguishing the flame."
+        ],
+        "checkpoints": [
+            {
+                "question": "What happens when an inverted glass tumbler is placed over a burning wax candle?",
+                "options": [
+                    "The flame flickers and goes out as trapped oxygen is depleted",
+                    "The flame grows ten times brighter and larger",
+                    "The glass instantly turns into pure metallic silver",
+                    "The candle burns indefinitely without needing fresh air"
+                ],
+                "correct": 0,
+                "explanation": "The flame consumes the limited oxygen trapped inside the inverted tumbler. Once oxygen drops below the threshold needed for combustion, the fire triangle collapses and the flame dies."
+            },
+            {
+                "question": "How does spraying water extinguish a standard wood fire?",
+                "options": [
+                    "It cools the burning embers below their ignition temperature",
+                    "It generates high-pressure oxygen gas to blow the flame away",
+                    "It converts the wood into non-combustible metallic iron",
+                    "It permanently eliminates atmospheric air from the planet"
+                ],
+                "correct": 0,
+                "explanation": "Water has an exceptionally high heat capacity. It rapidly absorbs thermal energy, lowering the temperature of the fuel below its critical ignition point while steam partially smothers air access."
+            }
+        ],
+        "simulator_type": "fire_triangle_sim"
+    },
+
+    # Slide 8: Dual Changes: Physical & Chemical in a Burning Candle
+    {
+        "id": 8,
+        "type": "theory_slide",
+        "title": "Dual Changes: Physical & Chemical in a Burning Candle",
+        "subtitle": "5.4 Concurrent Melting, Vaporization & Hydrocarbon Combustion",
+        "content": "A burning candle offers an exceptional natural example where physical and chemical changes occur simultaneously in the same system. As the candle burns: (1) Physical Changes: Solid wax near the wick absorbs radiant heat, melts into liquid wax, travels up the cotton wick via capillary action, and vaporizes into gaseous wax vapor. If cooled, melted wax solidifies back into solid wax. (2) Chemical Change: Gaseous wax vapor reacts chemically with atmospheric oxygen in the flame, combusting into carbon dioxide, water vapor, soot, heat, and radiant light.",
+        "formula": "Candle Dynamics: Solid Wax ➔ Liquid Wax ➔ Vapor (Physical) | Vapor + O₂ ➔ CO₂ + H₂O (Chemical)",
+        "key_takeaways": [
+            "A burning candle undergoes both physical and chemical changes at the same time.",
+            "Melting of solid wax and vaporization of liquid wax are reversible physical changes.",
+            "Combustion of wax vapor in the flame is an irreversible chemical change yielding CO₂ and H₂O.",
+            "Wax collected after extinguishing the candle is chemically unaltered unburnt wax."
+        ],
+        "checkpoints": [
+            {
+                "question": "In a burning candle, which specific process represents a physical change?",
+                "options": [
+                    "Melting of solid wax into liquid wax and its subsequent solidification",
+                    "Burning of gaseous wax vapor producing carbon dioxide and water",
+                    "Emission of radiant yellow-orange light from the flame zone",
+                    "Production of black carbon soot particles in the smoke plume"
+                ],
+                "correct": 0,
+                "explanation": "Melting of solid wax is a physical change: the wax changes state from solid to liquid without altering its hydrocarbon molecular identity, and resolidifies upon cooling."
+            },
+            {
+                "question": "Which aspect of a burning candle represents an irreversible chemical change?",
+                "options": [
+                    "Combustion of wax vapor with oxygen yielding CO₂, water vapor, and heat",
+                    "Wax softening when warmed near the outer base",
+                    "Flowing of liquid wax droplets down the candle flank",
+                    "Trimming the unburnt length of cotton wick with scissors"
+                ],
+                "correct": 0,
+                "explanation": "Combustion of wax vapor breaks covalent carbon-hydrogen bonds, producing carbon dioxide and water vapor that disperse into the air. This chemical transformation cannot be reversed."
+            }
+        ],
+        "simulator_type": "candle_dual_changes_sim"
+    },
+
+    # Slide 9: Permanence & Reversibility: Classifying Changes
+    {
+        "id": 9,
+        "type": "theory_slide",
+        "title": "Permanence & Reversibility: Classifying Changes",
+        "subtitle": "5.5 Reversible Transformations vs Irreversible Finalities",
+        "content": "Changes are fundamentally classified based on whether the original material can be restored by reversing experimental conditions: (1) Reversible Changes: The original state can be recovered without leaving permanent chemical changes (e.g., stretching a spring, melting ice, dissolving salt in water, inflating an intact balloon). (2) Irreversible Changes: The original substance cannot be reconstructed by simple physical reversal (e.g., cooking an omelette, baking a cake, popping a stretched balloon, popping popcorn, or curdling milk).",
+        "formula": "Reversibility: A ⇌ B (Reversible System) vs A ➔ C (Irreversible Final State)",
+        "key_takeaways": [
+            "Reversible changes allow complete restoration of the original substance by reversing conditions.",
+            "Most physical changes (state changes, stretching, dissolving) are reversible.",
+            "Most chemical changes (combustion, digestion, curdling, cooking) are irreversible.",
+            "Some physical changes (chopping timber, breaking glass, grinding wheat) are physically irreversible."
+        ],
+        "checkpoints": [
+            {
+                "question": "Which of the following represents an irreversible physical change?",
+                "options": [
+                    "Breaking a ceramic coffee mug into shattered fragments",
+                    "Melting solid butter in a warm frying pan",
+                    "Freezing liquid orange juice into an ice pop",
+                    "Stretching a rubber elastic band gently"
+                ],
+                "correct": 0,
+                "explanation": "Shattering a ceramic mug is a physical change (the chemical composition of ceramic clay is unaltered), but it is physically irreversible because the original intact mug cannot spontaneously reunite."
+            },
+            {
+                "question": "Why is making popcorn from dried corn kernels classified as an irreversible change?",
+                "options": [
+                    "Popped corn starch cannot be re-condensed back into raw hard kernels",
+                    "The corn vanishes completely into outer space",
+                    "Popcorn can be cooled down to turn back into raw kernels",
+                    "It represents a reversible phase transition between liquids and solids"
+                ],
+                "correct": 0,
+                "explanation": "Trapped moisture superheats, vaporizes, and bursts the starch matrix inside the kernel inside-out. The structural proteins and starches are permanently altered and cannot revert."
+            }
+        ],
+        "simulator_type": "reversibility_classifier_sim"
+    },
+
+    # Slide 10: Desirable vs Undesirable Changes: Human & Ecological Value
+    {
+        "id": 10,
+        "type": "theory_slide",
+        "title": "Desirable vs Undesirable Changes: Human & Ecological Value",
+        "subtitle": "5.6 Beneficial Transformations vs Spoilage, Corrosion & Pollution",
+        "content": "Changes around us are evaluated by their impact on human utility, health, and environmental balance: (1) Desirable Changes: Beneficial transformations actively cultivated by society, such as milk fermenting into probiotic curd, fruit ripening into sweet nutrition, cooking digestible meals, or composting organic garden waste. (2) Undesirable Changes: Destructive transformations that cause decay or economic loss, such as food spoilage by fungal mold, rusting of railway bridges, volcanic ash emissions, and fossil fuel pollution producing harmful smog.",
+        "formula": "Societal Impact: Beneficial Biochemical Reactions vs Destructive Degradation & Corrosion",
+        "key_takeaways": [
+            "Desirable changes provide agricultural, culinary, biological, or technological benefits.",
+            "Fermentation of milk into curd via Lactobacillus bacteria is a valuable chemical change.",
+            "Undesirable changes cause resource destruction, disease, economic damage, or ecological harm.",
+            "A change can be desirable in one context (fire in a kitchen stove) and disastrous in another (wildfire)."
+        ],
+        "checkpoints": [
+            {
+                "question": "Which of the following is classified as an undesirable chemical change?",
+                "options": [
+                    "Spoilage and rotting of fresh milk left in summer heat",
+                    "Ripening of raw green mangoes into sweet yellow fruit",
+                    "Baking nutritious bread from flour and yeast",
+                    "Curdling of warm milk with lemon juice to produce paneer"
+                ],
+                "correct": 0,
+                "explanation": "Milk rotting due to bacterial decomposition generates foul toxins, unpalatable sour acids, and harmful microbes, rendering it unsafe for human consumption—an undesirable chemical change."
+            },
+            {
+                "question": "Why is the rusting of iron bridges classified as an undesirable change?",
+                "options": [
+                    "It weakens load-bearing structural integrity, causing huge economic damage and safety risks",
+                    "It makes the bridge significantly stronger and more flexible",
+                    "It turns the entire bridge into pure gold bullion",
+                    "It prevents the bridge from ever expanding in summer heat"
+                ],
+                "correct": 0,
+                "explanation": "Rusting eats away structural steel and iron, causing flake loss, thinning of girders, structural collapse hazards, and millions of dollars in maintenance expenses."
+            }
+        ],
+        "simulator_type": "desirable_undesirable_sim"
+    },
+
+    # Slide 11: Physical Weathering of Rocks: Disintegration Over Millennia
+    {
+        "id": 11,
+        "type": "theory_slide",
+        "title": "Physical Weathering of Rocks: Disintegration Over Millennia",
+        "subtitle": "5.7.1 Mechanical Breakdown, Frost Wedging & Thermal Exfoliation",
+        "content": "Weathering is the slow, continuous breakdown of massive bedrock into smaller boulders, gravel, sand, and mineral soil particles. Physical (mechanical) weathering breaks rocks into fragments without changing their chemical minerals: (1) Thermal Stress: Rocks expand under scorching daytime desert heat and contract rapidly in chilly nights, inducing surface fracturing (exfoliation). (2) Frost Wedging: Liquid rainwater seeps into hairline cracks and freezes into ice during winter, expanding by approximately 9% in volume and exerting immense hydraulic splitting pressures that shatter huge crags.",
+        "formula": "Frost Wedging Force: Water Infiltration ➔ Freezing Expansion (+9% Vol) ➔ Rock Fracture",
+        "key_takeaways": [
+            "Weathering is the foundational geological process responsible for creating soil from rock.",
+            "Physical weathering disintegrates rocks mechanically without changing their chemical makeup.",
+            "Frost wedging exploits water's unique expansion upon freezing (+9%) to crack boulders.",
+            "Tree roots growing into rock crevices exert expanding mechanical pressure that splits boulders."
+        ],
+        "checkpoints": [
+            {
+                "question": "Why does water freezing inside rock crevices cause the rock to split apart?",
+                "options": [
+                    "Water expands by approximately 9% when freezing, exerting immense outward pressure",
+                    "Ice shrinks to zero volume, sucking rock walls inward",
+                    "Freezing water turns into hydrochloric acid that dissolves the rock",
+                    "Ice attracts lightning bolts that blast the boulder open"
+                ],
+                "correct": 0,
+                "explanation": "Water possesses anomalous expansion: when it freezes into crystalline ice, its volume increases by roughly 9%, generating hundreds of megapascals of outward wedge pressure inside rock crevices."
+            },
+            {
+                "question": "Is the mechanical breakdown of granite into sand grains a physical or chemical change?",
+                "options": [
+                    "Physical change, because mineral composition (quartz, feldspar) remains identical",
+                    "Chemical change, because the rock permanently vanishes into gas",
+                    "Biological change, because rocks are living multicellular organisms",
+                    "Combustion change, because sand is pure flammable carbon ash"
+                ],
+                "correct": 0,
+                "explanation": "Breaking granite into smaller sand grains changes only fragment size and surface area; the chemical mineral crystals (quartz, feldspar, mica) remain chemically unaltered."
+            }
+        ],
+        "simulator_type": "physical_weathering_sim"
+    },
+
+    # Slide 12: Chemical Weathering of Rocks: Mineral Alteration & Soil Genesis
+    {
+        "id": 12,
+        "type": "theory_slide",
+        "title": "Chemical Weathering of Rocks: Mineral Alteration & Soil Genesis",
+        "subtitle": "5.7.1 Oxidation, Carbonation & Speleothem Cave Geochemistry",
+        "content": "Chemical weathering decomposes and alters the internal mineral structure of rocks through chemical reactions with rainwater, atmospheric oxygen, and biological acids: (1) Oxidation: Ferrous minerals inside basalt and sandstone react with dissolved oxygen to form reddish-yellow iron oxides, causing rocks to crumble easily into red soil. (2) Carbonation: Rainwater absorbs atmospheric carbon dioxide to form weak carbonic acid (H₂CO₃), which dissolves massive limestone (calcium carbonate) bedrock, carving vast subterranean caves with dramatic stalactites and stalagmites.",
+        "formula": "Carbonation: H₂O + CO₂ ➔ H₂CO₃ (Carbonic Acid) | CaCO₃ + H₂CO₃ ➔ Ca(HCO₃)₂ (Soluble)",
+        "key_takeaways": [
+            "Chemical weathering changes the actual chemical composition of rock minerals.",
+            "Oxidation of iron-bearing minerals gives red soils and desert sandstones their rusty hue.",
+            "Atmospheric carbon dioxide dissolves in rainwater to create mildly acidic carbonic acid [H₂CO₃].",
+            "Carbonic acid dissolves insoluble limestone into soluble calcium hydrogencarbonate, carving limestone caves."
+        ],
+        "checkpoints": [
+            {
+                "question": "What chemical process is primarily responsible for the reddish-yellow color of many soils and weathered rocks?",
+                "options": [
+                    "Oxidation of iron minerals into iron oxide compounds",
+                    "Dissolution of pure metallic copper by river water",
+                    "Deposition of unburnt carbon soot from forest fires",
+                    "Absorption of nitrogen gas directly from the sky"
+                ],
+                "correct": 0,
+                "explanation": "Iron atoms present inside minerals undergo oxidation upon exposure to atmospheric oxygen and moisture, forming reddish hydrated iron(III) oxide (rust-like minerals) that stain soil and rock faces."
+            },
+            {
+                "question": "How does naturally falling rainwater dissolve massive limestone caverns over thousands of years?",
+                "options": [
+                    "Dissolved CO₂ in rain forms weak carbonic acid that chemically reacts with calcium carbonate",
+                    "Rainwater carries concentrated battery acid from cloud factories",
+                    "Rain drops strike rocks with ultrasonic nuclear vibrations",
+                    "Rainwater boils at 500°C when it touches limestone rocks"
+                ],
+                "correct": 0,
+                "explanation": "Natural rain absorbs atmospheric CO₂ to form carbonic acid (H₂O + CO₂ → H₂CO₃). This weak acid chemically converts insoluble CaCO₃ into soluble calcium hydrogencarbonate [Ca(HCO₃)₂]."
+            }
+        ],
+        "simulator_type": "chemical_weathering_sim"
+    },
+
+    # Slide 13: Soil Genesis & Erosion Dynamics: Transporting Earth
+    {
+        "id": 13,
+        "type": "theory_slide",
+        "title": "Soil Genesis & Erosion Dynamics: Transporting Earth",
+        "subtitle": "5.7.2 Weathering Horizons, Kinetic Transport & Vegetative Protection",
+        "content": "While weathering disintegrates rock in place, erosion is the physical detachment and transportation of rock pebbles, sand, and fertile topsoil by dynamic natural agents: flowing river currents, ocean surf, glacial ice, and high-velocity wind storms. Over millennia, continuous weathering and microbial decomposition produce fertile soil horizons (O, A, B, C layers). Unchecked deforestation accelerates soil erosion, stripping nutritious topsoil, whereas dense plant root networks anchor soil particles against erosion.",
+        "formula": "Landscape Evolution: Weathering (Disintegration in Place) + Erosion (Kinetic Transport)",
+        "key_takeaways": [
+            "Weathering breaks rocks in place; erosion detaches and moves particles to new locations.",
+            "Major erosional agents include rushing river waters, ocean wave action, glaciers, and wind.",
+            "Erosion carves prominent geological landforms such as river canyons, gorges, and delta plains.",
+            "Plant root networks act as natural anchors, preserving fertile topsoil from being swept away."
+        ],
+        "checkpoints": [
+            {
+                "question": "What is the crucial scientific difference between weathering and erosion?",
+                "options": [
+                    "Weathering breaks rock in place, whereas erosion transports the fragments away",
+                    "Weathering only happens on Mars, while erosion happens on the Moon",
+                    "Weathering is always a chemical change, while erosion is always nuclear",
+                    "There is no difference; they are exact identical synonyms"
+                ],
+                "correct": 0,
+                "explanation": "Weathering is the in-situ physical or chemical disintegration of rock where it sits. Erosion involves the active kinetic detachment and transportation of weathered sediments by wind, water, or ice."
+            },
+            {
+                "question": "How do tree roots and grass cover prevent disastrous soil erosion during heavy rains?",
+                "options": [
+                    "Roots physically interlock soil particles and absorb excess water runoff",
+                    "Roots release chemical cement that converts soil into bulletproof steel",
+                    "Leaves heat the soil to boiling temperatures so water cannot touch it",
+                    "Trees repel clouds using static electrical repulsion"
+                ],
+                "correct": 0,
+                "explanation": "Fibrous root systems bind loose soil grains into an interconnected mechanical web, while plant foliage shields the topsoil from the direct impact force of falling raindrops."
+            }
+        ],
+        "simulator_type": "soil_erosion_sim"
+    },
+
+    # Slide 14: Energy Dynamics: Exothermic vs Endothermic Changes
+    {
+        "id": 14,
+        "type": "theory_slide",
+        "title": "Energy Dynamics: Exothermic vs Endothermic Changes",
+        "subtitle": "Enthalpy Transfer: Heat Evolution (Exo) vs Heat Absorption (Endo)",
+        "content": "Every physical and chemical transformation involves an exchange of energy with the surroundings: (1) Exothermic Changes: Thermal energy is released into the environment, raising ambient temperature (e.g., burning charcoal, combustion of LPG gas, rusting iron, or adding water to quicklime: CaO + H₂O → Ca(OH)₂ with boiling heat). (2) Endothermic Changes: Thermal energy is absorbed from the environment, producing a chilling effect (e.g., melting ice cubes, dissolving ammonium chloride or glucose on the human tongue, or photosynthesis).",
+        "formula": "Thermochemistry: Exothermic (Heat Released, ΔT > 0) vs Endothermic (Heat Absorbed, ΔT < 0)",
+        "key_takeaways": [
+            "Exothermic processes liberate thermal energy, causing the temperature of surroundings to rise.",
+            "Adding water to quicklime (calcium oxide) produces intense boiling heat (slaking of lime).",
+            "Endothermic processes absorb thermal energy, making the surrounding vessel feel cold.",
+            "Dissolving glucose or urea in water draws heat from the liquid, dropping solution temperature."
+        ],
+        "checkpoints": [
+            {
+                "question": "When water is added to quicklime (calcium oxide) in a beaker, the vessel becomes boiling hot. What type of change is this?",
+                "options": [
+                    "Exothermic chemical change",
+                    "Endothermic physical change",
+                    "Reversible freezing process",
+                    "Purely mechanical expansion"
+                ],
+                "correct": 0,
+                "explanation": "Quicklime reacts vigorously with water to form slaked lime [CaO + H₂O → Ca(OH)₂], liberating substantial thermal energy that can boil the water—a classic exothermic chemical reaction."
+            },
+            {
+                "question": "Why does putting glucose powder onto your tongue produce an instantaneous pleasant cooling sensation?",
+                "options": [
+                    "Dissolution of glucose is endothermic, absorbing heat directly from your tongue",
+                    "Glucose undergoes rapid freezing combustion on human skin",
+                    "Glucose molecules convert into miniature ice crystals instantly",
+                    "The white color of glucose reflects light and chills the saliva"
+                ],
+                "correct": 0,
+                "explanation": "Dissolving glucose crystal lattices in water is an endothermic physical process: it absorbs thermal energy from the moist surface of your tongue, lowering its temperature."
+            }
+        ],
+        "simulator_type": "energy_dynamics_sim"
+    },
+
+    # Slide 15: The Law of Conservation of Mass: Lavoisier's Closed Vessel
+    {
+        "id": 15,
+        "type": "theory_slide",
+        "title": "The Law of Conservation of Mass: Lavoisier's Closed Vessel",
+        "subtitle": "Matter Cannot Be Created or Destroyed in Chemical Reactions",
+        "content": "In 1789, Antoine Lavoisier formulated the Law of Conservation of Mass: in any closed chemical or physical system, matter is neither created nor destroyed; atoms are merely rearranged into new configurations. If vinegar and baking soda react inside an airtight, hermetically sealed flask on an electronic weighing balance, the balance shows zero mass fluctuation before, during, and after effervescence. Every atom present in the reactants is accounted for in the products.",
+        "formula": "Conservation Principle: Total Mass of Reactants = Total Mass of Products (Closed System)",
+        "key_takeaways": [
+            "Mass is conserved in all physical and chemical processes in a closed system.",
+            "Chemical reactions simply rearrange preexisting atomic bonds into new combinations.",
+            "Apparent mass loss (like burning wood into light ash) is caused by uncaptured gases (CO₂, H₂O) escaping.",
+            "Sealing reaction vessels on a sensitive balance definitively proves mass equality."
+        ],
+        "checkpoints": [
+            {
+                "question": "If 100 grams of vinegar and baking soda react in a sealed, airtight glass container, what is the total mass after bubbling stops?",
+                "options": [
+                    "Exactly 100 grams",
+                    "50 grams, because half the matter turned into energy",
+                    "150 grams, because bubbles create additional mass",
+                    "0 grams, because the container becomes weightless"
+                ],
+                "correct": 0,
+                "explanation": "According to the Law of Conservation of Mass, matter cannot be created or destroyed. Because the container is sealed, no gaseous carbon dioxide escaped, keeping total mass identical at 100 g."
+            },
+            {
+                "question": "Why does a log of firewood appear to lose almost all its mass when burnt into a tiny pile of ash in an open fireplace?",
+                "options": [
+                    "Most of the carbon and hydrogen reacted with oxygen and escaped into the air as invisible CO₂ and steam",
+                    "The mass was destroyed into pure void space by the flame",
+                    "Wood atoms shrink to zero weight when heated",
+                    "Gravity stops pulling on burnt wood particles"
+                ],
+                "correct": 0,
+                "explanation": "In an open fireplace, gaseous combustion products (carbon dioxide and water vapor) escape into the atmosphere. If all smoke and chimney gases were captured and weighed, total mass would equal wood plus consumed oxygen."
+            }
+        ],
+        "simulator_type": "conservation_of_mass_sim"
+    },
+
+    # Slide 16: Ancient Indian Heritage: Acharya Kanada's Vaisheshika Philosophy
+    {
+        "id": 16,
+        "type": "theory_slide",
+        "title": "Ancient Indian Heritage: Acharya Kanada's Vaisheshika Philosophy",
+        "subtitle": "Pilupaka (Chemical Transformation) vs Pitharapaka (Physical Variation)",
+        "content": "Around 600 BCE, the ancient Indian sage-philosopher Acharya Kanada founded the Vaisheshika school of philosophy and authored the foundational Vaisheshika Sutras. Centuries before modern chemistry, Kanada proposed that all matter is composed of indivisible, indestructible particles called Parmanu (atoms). He formulated two profound principles of change: (1) Pilupaka: Chemical change induced by heat (tejas), where heat breaks atomic aggregates apart, altering elemental qualities to create new substances (e.g., raw green earthen pots baking into hard red terracotta). (2) Pitharapaka: Physical change, where outer structural arrangement alters while internal atomic identity remains intact.",
+        "formula": "Kanada's Axiom: Pilupaka (Chemical Bond Cleavage by Tejas) vs Pitharapaka (Structural Geometry)",
+        "key_takeaways": [
+            "Acharya Kanada (~600 BCE) postulated the Parmanu (atomic theory) in the Vaisheshika Sutras.",
+            "Pilupaka describes chemical transformations where heat energy (tejas) reconstructs atomic aggregates.",
+            "Pitharapaka represents physical modifications where macroscopic form changes without molecular metamorphosis.",
+            "Baking an earthen clay pot in a kiln turns soft gray clay into permanent red terracotta via Pilupaka."
+        ],
+        "checkpoints": [
+            {
+                "question": "In ancient Indian Vaisheshika philosophy, which term defined a chemical change caused by heat breaking atomic clusters?",
+                "options": [
+                    "Pilupaka",
+                    "Pitharapaka",
+                    "Anu-Gati",
+                    "Rupa-Bheda"
+                ],
+                "correct": 0,
+                "explanation": "Acharya Kanada defined Pilupaka as chemical transformation induced by heat (tejas), in which preexisting atomic bonds are severed and reconstructed to form an entirely new substance with novel color, taste, and hardness."
+            },
+            {
+                "question": "Which ancient Indian concept postulated that matter is composed of tiny, indestructible fundamental particles?",
+                "options": [
+                    "Parmanu, introduced by Acharya Kanada in ~600 BCE",
+                    "Panchabhuta element mixing without atoms",
+                    "Absolute void theory with zero matter",
+                    "Planetary crystal sphere theory"
+                ],
+                "correct": 0,
+                "explanation": "Acharya Kanada proposed the Parmanu concept, explaining that splitting any object repeatedly reaches a terminal indivisible fundamental unit—predating Dalton's modern atomic theory by over two millennia."
+            }
+        ],
+        "simulator_type": "kanada_heritage_sim"
+    },
+
+    # Slide 17: Mastery Assessment: Physical vs Chemical Changes
+    {
+        "id": 17,
+        "type": "quiz_slide",
+        "title": "Mastery Assessment: Physical vs Chemical Changes",
+        "subtitle": "Test 1: Distinguishing Fundamental Properties & Signatures of Change",
+        "questions": [
+            {
+                "question": "Which of the following processes represents a chemical change?",
+                "options": [
+                    "Curdling of warm milk by adding lemon juice",
+                    "Tearing a paper sheet into four squares",
+                    "Melting chocolate on a sunny afternoon",
+                    "Stretching a helical steel spring"
+                ],
+                "correct": 0,
+                "solution": "Curdling milk involves an irreversible chemical change where citric acid denatures milk proteins (casein), forming insoluble curd. The others are physical changes of shape, size, or state."
+            },
+            {
+                "question": "When a solid dissolves in a liquid to form a solution without chemical reaction, this is classified as:",
+                "options": [
+                    "A physical change",
+                    "A chemical change",
+                    "A nuclear transmutation",
+                    "Combustion"
+                ],
+                "correct": 0,
+                "solution": "Dissolution of solids like salt or sugar in water is a physical change because solute molecules disperse among solvent molecules without altering chemical bonds, and evaporation recovers the solute."
+            },
+            {
+                "question": "Which observation provides the strongest proof that a chemical change has taken place?",
+                "options": [
+                    "A new substance with completely different chemical properties is formed",
+                    "The object changed its geometric position on a desk",
+                    "The temperature temporarily changed by 0.1°C without reaction",
+                    "The volume expanded purely due to thermal elasticity"
+                ],
+                "correct": 0,
+                "solution": "The defining hallmark of any chemical change is the synthesis of one or more novel chemical substances featuring different chemical bonds and properties."
+            },
+            {
+                "question": "Which of the following is an example of an irreversible physical change?",
+                "options": [
+                    "Grinding wheat grains into fine flour",
+                    "Boiling water in an electric kettle",
+                    "Melting wax inside a warm oven",
+                    "Dissolving sodium chloride in pure water"
+                ],
+                "correct": 0,
+                "solution": "Grinding wheat into flour is a physical change because the chemical starch and protein composition is unaltered, but it cannot be physically reassembled back into intact grains."
+            },
+            {
+                "question": "What happens to the molecules of water when liquid water freezes into solid ice?",
+                "options": [
+                    "They arrange into an open crystalline lattice while remaining chemically H₂O",
+                    "They split into separate hydrogen and oxygen gas molecules",
+                    "They permanently double their proton count",
+                    "They turn into toxic sodium hypochlorite"
+                ],
+                "correct": 0,
+                "solution": "Freezing is a physical phase transition: water molecules slow down and form an open hexagonal crystal lattice through hydrogen bonding, retaining their molecular H₂O identity."
+            },
+            {
+                "question": "Burning a wooden matchstick is a chemical change because:",
+                "options": [
+                    "Cellulose and sulfur react with atmospheric oxygen to form ash, CO₂, and water vapor",
+                    "The matchstick only decreases in length without reacting",
+                    "The wood absorbs oxygen without emitting any heat or light",
+                    "The burnt matchstick can be turned back into fresh wood by freezing it"
+                ],
+                "correct": 0,
+                "solution": "Combustion breaks chemical bonds in wood and sulfur, forming new oxide products along with heat and radiant energy. The process is chemically irreversible."
+            },
+            {
+                "question": "Which of the following statements about physical changes is completely TRUE?",
+                "options": [
+                    "No new chemical substance is ever formed in a physical change",
+                    "Physical changes always release blinding light flares",
+                    "Physical changes permanently destroy atomic mass",
+                    "Physical changes can never be reversed under any circumstance"
+                ],
+                "correct": 0,
+                "solution": "By fundamental scientific definition, physical changes alter only physical parameters (shape, size, phase) while the chemical formula and molecular identity remain strictly invariant."
+            },
+            {
+                "question": "When iron filings are mixed with yellow sulfur powder at room temperature, it is a:",
+                "options": [
+                    "Physical mixture that can be separated using a handheld bar magnet",
+                    "Chemical reaction that releases explosive gases",
+                    "Nuclear fusion of iron into gold",
+                    "Phase change into liquid sulfur"
+                ],
+                "correct": 0,
+                "solution": "Simply mixing iron filings with sulfur at room temperature is a physical mixture. A magnet easily attracts and separates the magnetic iron particles from the non-magnetic yellow sulfur."
+            },
+            {
+                "question": "When the mixture of iron filings and sulfur powder is heated strongly with a Bunsen burner, it becomes a:",
+                "options": [
+                    "Chemical change forming black iron(II) sulfide (FeS)",
+                    "Physical change where iron evaporates completely",
+                    "Reversible state change where sulfur turns into ice",
+                    "Biological fermentation reaction"
+                ],
+                "correct": 0,
+                "solution": "Strong heating triggers an exothermic chemical reaction: Fe + S → FeS (iron(II) sulfide). The black product is non-magnetic and cannot be separated with a magnet."
+            },
+            {
+                "question": "Inflating a rubber balloon with room air is a physical change because:",
+                "options": [
+                    "The latex polymer is only stretched and no new substance is created",
+                    "Latex reacts chemically with room nitrogen to form a solid rock",
+                    "The balloon changes into pure water vapor",
+                    "The gas inside the balloon converts into liquid gold"
+                ],
+                "correct": 0,
+                "solution": "Inflating a balloon merely stretches polymer chains under pressure, expanding its volume. Releasing the nozzle returns the balloon to its original shape with zero chemical change."
+            }
+        ]
+    },
+
+    # Slide 18: Mastery Assessment: Chemical Reactions, Rusting & Combustion
+    {
+        "id": 18,
+        "type": "quiz_slide",
+        "title": "Mastery Assessment: Chemical Reactions, Rusting & Combustion",
+        "subtitle": "Test 2: Gas Evolution, Oxidation Mechanics & Fire Triangle Dynamics",
+        "questions": [
+            {
+                "question": "What visible sign indicates a chemical reaction when vinegar is added to baking soda?",
+                "options": [
+                    "Brisk effervescence and evolution of carbon dioxide gas bubbles",
+                    "The mixture instantly freezes into solid dry ice",
+                    "A neon green laser beam is emitted from the liquid",
+                    "The beaker gains 50 kilograms of new mass"
+                ],
+                "correct": 0,
+                "solution": "Vigorous bubbling and effervescence result from the rapid chemical liberation of carbon dioxide gas (CH₃COOH + NaHCO₃ → CH₃COONa + H₂O + CO₂↑)."
+            },
+            {
+                "question": "What is the chemical name and formula of lime water?",
+                "options": [
+                    "Calcium hydroxide solution, Ca(OH)₂",
+                    "Calcium carbonate solid, CaCO₃",
+                    "Sodium chloride solution, NaCl",
+                    "Dilute citric acid from lemons"
+                ],
+                "correct": 0,
+                "solution": "Lime water is a dilute aqueous solution of slaked lime, calcium hydroxide [Ca(OH)₂], which reacts specifically with carbon dioxide."
+            },
+            {
+                "question": "What chemical compound causes clear lime water to turn milky when CO₂ passes through it?",
+                "options": [
+                    "Calcium carbonate (CaCO₃)",
+                    "Calcium sulfate (CaSO₄)",
+                    "Sodium hydrogencarbonate (NaHCO₃)",
+                    "Iron(III) oxide (Fe₂O₃)"
+                ],
+                "correct": 0,
+                "solution": "Carbon dioxide reacts with calcium hydroxide: Ca(OH)₂ + CO₂ → CaCO₃↓ + H₂O. Insoluble calcium carbonate forms fine white precipitates that turn the solution milky."
+            },
+            {
+                "question": "What happens if carbon dioxide is passed through milky lime water for a prolonged duration?",
+                "options": [
+                    "The milkiness disappears because soluble calcium hydrogencarbonate is formed",
+                    "The liquid explodes into an open flame",
+                    "The liquid permanently solidifies into pure diamond",
+                    "The milkiness turns jet black due to carbon soot"
+                ],
+                "correct": 0,
+                "solution": "Excess CO₂ converts insoluble CaCO₃ into soluble calcium hydrogencarbonate: CaCO₃ + H₂O + CO₂ → Ca(HCO₃)₂, causing the cloudy milkiness to dissolve and clear."
+            },
+            {
+                "question": "What are the two essential environmental prerequisites for iron rusting?",
+                "options": [
+                    "Oxygen gas and water (moisture)",
+                    "Pure nitrogen gas and zero moisture",
+                    "Carbon dioxide gas and extreme dry heat",
+                    "Hydrogen gas in a complete vacuum"
+                ],
+                "correct": 0,
+                "solution": "Rusting is an electrochemical oxidation that strictly requires both oxygen (from atmospheric air) and liquid moisture (water) simultaneously."
+            },
+            {
+                "question": "What is the chemical composition of rust formed on iron objects?",
+                "options": [
+                    "Hydrated iron(III) oxide (Fe₂O₃·xH₂O)",
+                    "Pure elemental iron crystals (Fe)",
+                    "Iron carbonate (FeCO₃)",
+                    "Ferrous sulfate heptahydrate (FeSO₄·7H₂O)"
+                ],
+                "correct": 0,
+                "solution": "Rust is hydrated iron(III) oxide, formulated as Fe₂O₃·xH₂O, where x represents variable crystallization water molecules in the porous crust."
+            },
+            {
+                "question": "Which of the following methods effectively prevents iron from rusting?",
+                "options": [
+                    "Galvanising with a protective layer of metallic zinc",
+                    "Soaking the iron in warm salt water every morning",
+                    "Scratching off any protective paint layers with a wire brush",
+                    "Exposing the bare iron to humid monsoon rain"
+                ],
+                "correct": 0,
+                "solution": "Galvanisation deposits a thin barrier coating of zinc on iron. Zinc acts as a physical barrier and a sacrificial anode, preventing iron from oxidising."
+            },
+            {
+                "question": "What three components constitute the Fire Triangle required for sustained combustion?",
+                "options": [
+                    "Combustible Fuel, Oxygen supply, and Heat (Ignition Temperature)",
+                    "Nitrogen gas, Water vapor, and Carbon soot",
+                    "Carbon dioxide, Low temperature, and Sand",
+                    "Electricity, Magnetic field, and Gravity"
+                ],
+                "correct": 0,
+                "solution": "Combustion requires all three vertices of the Fire Triangle: a combustible fuel, an oxidizer (oxygen), and sufficient heat energy to reach the ignition temperature."
+            },
+            {
+                "question": "Why does covering an oil fire with a woollen fire blanket extinguish it?",
+                "options": [
+                    "It cuts off the atmospheric oxygen supply",
+                    "It lowers the oil temperature to absolute zero",
+                    "It transforms the oil into non-combustible water",
+                    "It increases fuel volume until the flame drowns"
+                ],
+                "correct": 0,
+                "solution": "The fire blanket smothers the flame by physically blocking atmospheric oxygen from contacting the hot fuel, collapsing the oxygen vertex of the fire triangle."
+            },
+            {
+                "question": "When magnesium ribbon burns with a dazzling white flame, the product formed is:",
+                "options": [
+                    "Magnesium oxide (MgO), which forms a basic solution in water",
+                    "Magnesium hydride, which forms an acidic gas",
+                    "Magnesium chloride, which turns blue litmus red",
+                    "Pure metallic calcium ash"
+                ],
+                "correct": 0,
+                "solution": "Burning magnesium produces magnesium oxide (2Mg + O₂ → 2MgO). Dissolving MgO in water yields magnesium hydroxide [Mg(OH)₂], a basic solution that turns red litmus blue."
+            }
+        ]
+    },
+
+    # Slide 19: Mastery Assessment: Reversibility, Energy & Natural Changes
+    {
+        "id": 19,
+        "type": "quiz_slide",
+        "title": "Mastery Assessment: Reversibility, Energy & Natural Changes",
+        "subtitle": "Test 3: Thermochemistry, Mass Conservation & Geological Processes",
+        "questions": [
+            {
+                "question": "In a burning wax candle, which of the following is a physical change?",
+                "options": [
+                    "Melting of solid wax near the wick into liquid wax",
+                    "Burning of gaseous wax vapor in the flame",
+                    "Formation of carbon dioxide gas and water vapor",
+                    "Emission of soot particles in the dark smoke"
+                ],
+                "correct": 0,
+                "solution": "Melting of solid wax is a physical change: the wax changes from solid to liquid without altering its chemical composition, and solidifies back into wax upon cooling."
+            },
+            {
+                "question": "Which of the following pairs of changes are both classified as reversible?",
+                "options": [
+                    "Melting of butter and freezing of liquid water",
+                    "Cooking an egg and baking bread",
+                    "Rusting of iron and burning of coal",
+                    "Digestion of food and bursting of a balloon"
+                ],
+                "correct": 0,
+                "solution": "Melting butter can be reversed by cooling it, and freezing water can be reversed by warming it. Both are reversible physical state transformations."
+            },
+            {
+                "question": "Which change is classified as endothermic?",
+                "options": [
+                    "Dissolution of glucose in water, producing a cooling effect",
+                    "Burning of LPG in a kitchen stove burner",
+                    "Slaking of quicklime with water, releasing boiling heat",
+                    "Combustion of magnesium ribbon in air"
+                ],
+                "correct": 0,
+                "solution": "Dissolving glucose absorbs thermal energy from the solvent water, lowering the overall temperature of the solution—a characteristic endothermic physical process."
+            },
+            {
+                "question": "What is observed when water is slowly added to lumps of quicklime (calcium oxide)?",
+                "options": [
+                    "A vigorous exothermic chemical reaction that boils the water and forms slaked lime",
+                    "An instantaneous drop in temperature below freezing point",
+                    "A non-reactive physical dissolution with zero temperature change",
+                    "The immediate emission of green chlorine gas"
+                ],
+                "correct": 0,
+                "solution": "Quicklime reacts exothermically with water: CaO + H₂O → Ca(OH)₂ + substantial heat. The reaction releases intense thermal energy, often hissing and boiling the water."
+            },
+            {
+                "question": "The Law of Conservation of Mass states that during any chemical reaction in a closed container:",
+                "options": [
+                    "Total mass of products strictly equals total mass of reactants",
+                    "Total mass always increases by exactly 10%",
+                    "Total mass decreases because atoms are converted into pure heat",
+                    "Mass fluctuates randomly depending on the room lighting"
+                ],
+                "correct": 0,
+                "solution": "Formulated by Antoine Lavoisier, the Law of Conservation of Mass states that atoms cannot be created or destroyed in chemical reactions; the total mass remains perfectly constant."
+            },
+            {
+                "question": "Why does a piece of iron wool gain mass after it is completely rusted in open moist air?",
+                "options": [
+                    "It chemically incorporated oxygen and water molecules from the air into its crystal structure",
+                    "Rust generates brand new iron atoms out of empty space",
+                    "Gravity pulls twice as strongly on rusty iron than shiny iron",
+                    "The iron wool absorbed cosmic rays from the sun"
+                ],
+                "correct": 0,
+                "solution": "Rust is hydrated iron oxide (Fe₂O₃·xH₂O). The added mass comes from atmospheric oxygen and moisture atoms that chemically bonded to the original iron atoms."
+            },
+            {
+                "question": "What is the primary driving mechanism behind frost wedging in physical weathering?",
+                "options": [
+                    "Water expands by approximately 9% upon freezing, exerting immense cracking force",
+                    "Ice shrinks to zero volume and creates an internal vacuum",
+                    "Ice reacts chemically to dissolve granite into liquid water",
+                    "Ice warms the rock above 1000°C, causing thermal explosion"
+                ],
+                "correct": 0,
+                "solution": "When water freezes in rock crevices, its volume expands by ~9%. Confined ice exerts massive hydraulic pressure against rock walls, widening fissures until the rock fractures."
+            },
+            {
+                "question": "Which of the following processes represents chemical weathering rather than physical weathering?",
+                "options": [
+                    "Carbonic acid in rainwater reacting with limestone to form subterranean caves",
+                    "Tree roots growing into rock joints and wedging them apart",
+                    "Desert winds sandblasting surface rock into smooth boulders",
+                    "Daily temperature swings causing rock layers to peel off"
+                ],
+                "correct": 0,
+                "solution": "Dissolution of limestone by carbonic acid (H₂CO₃ + CaCO₃ → Ca(HCO₃)₂) alters the chemical composition of rock minerals, representing chemical weathering."
+            },
+            {
+                "question": "How does vegetative plant cover protect agricultural landscapes from accelerated soil erosion?",
+                "options": [
+                    "Plant roots mechanically anchor topsoil while leaves cushion raindrop impact",
+                    "Plants turn soil into solid rock that wind cannot move",
+                    "Plants absorb all atmospheric oxygen so water cannot flow",
+                    "Plants freeze rainfall into solid ice before it touches the ground"
+                ],
+                "correct": 0,
+                "solution": "Plant roots bind fine soil particles into a coherent network that resists wind and water runoff, while vegetative canopies dissipate kinetic energy from falling raindrops."
+            },
+            {
+                "question": "Which of the following is classified as an undesirable natural or human-induced change?",
+                "options": [
+                    "Atmospheric pollution from vehicle exhaust forming toxic acidic smog",
+                    "Ripening of juicy apples on an orchard tree",
+                    "Curdling of milk with starter curd to produce healthy yogurt",
+                    "Composting fallen autumn leaves into nutritious organic humus"
+                ],
+                "correct": 0,
+                "solution": "Vehicle exhaust emissions introduce toxic oxides of nitrogen and sulfur, causing lung damage, environmental degradation, and acid rain—an undesirable chemical change."
+            }
+        ]
+    },
+
+    # Slide 20: Mastery Assessment: Synthesis, Philosophy & Historical Heritage
+    {
+        "id": 20,
+        "type": "quiz_slide",
+        "title": "Mastery Assessment: Synthesis, Philosophy & Historical Heritage",
+        "subtitle": "Test 4: Comprehensive Mastery, Ancient Insights & Modern Synthesis",
+        "questions": [
+            {
+                "question": "Who was the ancient Indian sage-philosopher who founded the Vaisheshika school and proposed the atomic concept of Parmanu?",
+                "options": [
+                    "Acharya Kanada (~600 BCE)",
+                    "Aryabhata (~476 CE)",
+                    "Varahamihira (~505 CE)",
+                    "Charaka (~300 BCE)"
+                ],
+                "correct": 0,
+                "solution": "Acharya Kanada authored the Vaisheshika Sutras around 600 BCE, proposing that all matter is built from eternal, indivisible atoms called Parmanu."
+            },
+            {
+                "question": "In Kanada's philosophy, what does the term 'Pilupaka' signify?",
+                "options": [
+                    "Chemical transformation caused by heat breaking atomic clusters to create new substances",
+                    "Physical movement of objects without internal change",
+                    "The reflection of optical light rays off mirror surfaces",
+                    "The gravitational attraction of the Earth on falling apples"
+                ],
+                "correct": 0,
+                "solution": "In Vaisheshika philosophy, Pilupaka refers to chemical change induced by heat (tejas), where heat penetrates atomic aggregates, breaking existing qualities and producing new ones (e.g., baking raw clay pots into terracotta)."
+            },
+            {
+                "question": "How did Acharya Kanada distinguish 'Pitharapaka' from 'Pilupaka'?",
+                "options": [
+                    "Pitharapaka is physical change of form, whereas Pilupaka is chemical alteration of substance",
+                    "Pitharapaka refers to nuclear reactions, while Pilupaka is water evaporation",
+                    "Pitharapaka occurs only in outer space, while Pilupaka occurs underwater",
+                    "Both terms represent exactly identical physical movements"
+                ],
+                "correct": 0,
+                "solution": "Pitharapaka describes a change in macroscopic shape, size, or container structure while atomic properties remain unchanged (physical change), unlike Pilupaka which alters internal atomic qualities (chemical change)."
+            },
+            {
+                "question": "Which of the following everyday transformations is classified as BOTH a chemical and an irreversible change?",
+                "options": [
+                    "Baking raw cake batter into a spongy cake in an oven",
+                    "Melting coconut oil on a warm summer morning",
+                    "Dissolving rock salt in a bowl of warm water",
+                    "Freezing lemon water into ice cubes"
+                ],
+                "correct": 0,
+                "solution": "Baking cake batter involves complex heat-induced chemical reactions (protein denaturation, Maillard browning, starch gelatinization, gas expansion) that create new substances and cannot be reversed."
+            },
+            {
+                "question": "Why is the digestion of food in the human stomach classified as a chemical change?",
+                "options": [
+                    "Digestive enzymes and stomach acid break complex biomolecules into simpler absorbable nutrients",
+                    "Food is merely compressed into smaller pieces without any molecular change",
+                    "Digested food can be instantly turned back into whole apples and bread by cooling",
+                    "Food digestion only alters the color of the stomach wall"
+                ],
+                "correct": 0,
+                "solution": "Digestion utilizes hydrochloric acid and digestive enzymes to break chemical bonds in proteins, fats, and starches, forming new, simpler chemical substances (amino acids, glucose, fatty acids)."
+            },
+            {
+                "question": "What happens to a sealed packet of potato chips when you drive up to a high-altitude mountain peak?",
+                "options": [
+                    "It puffs up physically because ambient atmospheric pressure drops while internal pressure remains constant",
+                    "It catches fire due to spontaneous combustion of potato starch",
+                    "It chemically transforms into pure nitrogen gas",
+                    "It shrinks to zero volume because mountain air is cold"
+                ],
+                "correct": 0,
+                "solution": "Puffing up of a sealed bag at high altitude is a physical change governed by Boyle's Law: lower external atmospheric pressure allows trapped air inside to expand the flexible foil packet."
+            },
+            {
+                "question": "Which of the following is an example of an exothermic physical change?",
+                "options": [
+                    "Condensation of steam into liquid water droplets",
+                    "Melting of solid ice into liquid water",
+                    "Boiling of liquid water into gaseous steam",
+                    "Sublimation of solid camphor into vapor"
+                ],
+                "correct": 0,
+                "solution": "Condensation releases latent heat of vaporization into the surrounding environment as fast gaseous molecules lose kinetic energy to form liquid bonds—an exothermic physical change."
+            },
+            {
+                "question": "Which of the following represents an endothermic chemical change?",
+                "options": [
+                    "Photosynthesis in green plant leaves using absorbed sunlight energy",
+                    "Burning of dry wood logs in a campfire",
+                    "Explosion of festival fireworks in the night sky",
+                    "Reaction of quicklime with water releasing boiling heat"
+                ],
+                "correct": 0,
+                "solution": "Photosynthesis is an endothermic chemical reaction: plant chlorophyll absorbs radiant solar energy to convert carbon dioxide and water into glucose and oxygen (6CO₂ + 6H₂O + Solar Energy → C₆H₁₂O₆ + 6O₂)."
+            },
+            {
+                "question": "Why is chopping vegetables considered an irreversible physical change?",
+                "options": [
+                    "Cell structure is severed and cannot be rejoined, but chemical composition is unchanged",
+                    "Chopping causes vegetables to combust into toxic smoke and ash",
+                    "Chopped vegetables turn into pure metallic lead",
+                    "Vegetables can be glued back together to resume biological plant growth"
+                ],
+                "correct": 0,
+                "solution": "Chopping alters only physical shape and size without synthesizing new chemical compounds (hence a physical change), but the severed plant cells cannot spontaneously re-bond into intact vegetables (hence irreversible)."
+            },
+            {
+                "question": "What is the key takeaway when evaluating changes around us in science?",
+                "options": [
+                    "Changes are fundamental processes categorized by molecular identity, reversibility, energy flow, and human impact",
+                    "All changes in the universe are completely identical and cannot be studied",
+                    "Physical changes destroy atoms while chemical changes create new elements",
+                    "Only changes that happen in less than one microsecond are considered real science"
+                ],
+                "correct": 0,
+                "solution": "Science methodically classifies changes by whether new substances are formed (physical vs chemical), whether original states can be restored (reversible vs irreversible), energy direction (exo vs endo), and societal desirability."
+            }
+        ]
+    }
+]
+
+with open(".agents/class7_science_changes_data.py", "w", encoding="utf-8") as f:
+    f.write("# -*- coding: utf-8 -*-\n")
+    f.write('"""Class 7 Science Chapter 5: Changes Around Us: Physical and Chemical Data"""\n\n')
+    f.write("SLIDES_DATA = " + repr(SLIDES_DATA) + "\n")
+
+print("Generated .agents/class7_science_changes_data.py successfully.")
+

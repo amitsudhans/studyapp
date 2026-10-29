@@ -1,0 +1,483 @@
+# -*- coding: utf-8 -*-
+"""
+Interactive SVG/HTML simulator templates for Class 7 Chapter 7: Finding the Unknown
+"""
+
+SIMULATORS_HTML = {
+    "mystery_sack_scale_sim": """
+<div class="p-4 bg-slate-900/90 rounded-2xl border border-slate-700/60 shadow-xl text-slate-100">
+  <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-700/60">
+    <div class="flex items-center space-x-2">
+      <span class="w-3 h-3 rounded-full bg-amber-400 animate-pulse"></span>
+      <h4 class="font-bold text-amber-300 text-sm sm:text-base">Simulator 1: Mystery Sack & Balance Scale</h4>
+    </div>
+    <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">Equilibrium: x + 3 = 8</span>
+  </div>
+  <p class="text-xs text-slate-300 mb-3">On the left pan: 1 mystery sack <span class="font-bold text-amber-300">x</span> and a <span class="text-sky-300 font-bold">3 kg</span> weight. On the right pan: <span class="text-emerald-300 font-bold">8 kg</span>. Removing 3 kg from both sides isolates <span class="text-amber-400 font-bold">x = 5 kg</span>!</p>
+  
+  <div class="relative w-full h-64 sm:h-72 bg-slate-950 rounded-xl border border-slate-800 overflow-hidden flex items-center justify-center">
+    <svg id="sackScaleSvg" viewBox="0 0 500 300" class="w-full h-full select-none"></svg>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+    <div class="bg-slate-950/70 p-2.5 rounded-xl border border-slate-800 flex items-center justify-between">
+      <span class="text-xs text-slate-300">Test Sack Weight x:</span>
+      <input type="range" id="sackWeightSlider" min="1" max="10" value="5" class="w-32 accent-amber-500 cursor-pointer">
+      <span id="sackWeightVal" class="text-amber-400 font-bold font-mono text-xs">5 kg</span>
+    </div>
+    <div class="bg-slate-950/70 p-2.5 rounded-xl border border-slate-800 flex items-center justify-between text-xs">
+      <span class="text-slate-300">Scale Equilibrium:</span>
+      <span id="sackScaleStatus" class="text-emerald-400 font-bold font-mono">BALANCED (8 kg = 8 kg)</span>
+    </div>
+  </div>
+</div>
+""",
+
+    "balance_operations_sim": """
+<div class="p-4 bg-slate-900/90 rounded-2xl border border-slate-700/60 shadow-xl text-slate-100">
+  <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-700/60">
+    <div class="flex items-center space-x-2">
+      <span class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></span>
+      <h4 class="font-bold text-cyan-300 text-sm sm:text-base">Simulator 2: Balance Invariant & Equal Operations</h4>
+    </div>
+    <span id="balanceOpsBadge" class="px-2 py-0.5 rounded text-[11px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">LHS = RHS</span>
+  </div>
+  <p class="text-xs text-slate-300 mb-3">Perform identical operations on <strong>BOTH sides</strong> to maintain balance, or perform one-sided changes to witness the scale tilt!</p>
+  
+  <div class="relative w-full h-64 sm:h-72 bg-slate-950 rounded-xl border border-slate-800 overflow-hidden flex items-center justify-center">
+    <svg id="balanceOpsSvg" viewBox="0 0 500 300" class="w-full h-full select-none"></svg>
+  </div>
+
+  <div class="flex flex-wrap items-center justify-between gap-2 mt-3">
+    <div class="flex items-center space-x-1.5">
+      <button class="balOpBtn px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 transition" data-op="addBoth">+2 Both</button>
+      <button class="balOpBtn px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 transition" data-op="subBoth">-2 Both</button>
+      <button class="balOpBtn px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 transition" data-op="mulBoth">×2 Both</button>
+      <button class="balOpBtn px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-rose-900/40 text-xs font-semibold text-rose-300 transition" data-op="addLeft">+3 Left Only</button>
+      <button id="balResetBtn" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-400 transition">↺ Reset</button>
+    </div>
+    <div class="text-xs font-mono text-cyan-300" id="balanceEquationText">
+      LHS: 10 kg | RHS: 10 kg
+    </div>
+  </div>
+</div>
+""",
+
+    "matchstick_pattern_sim": """
+<div class="p-4 bg-slate-900/90 rounded-2xl border border-slate-700/60 shadow-xl text-slate-100">
+  <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-700/60">
+    <div class="flex items-center space-x-2">
+      <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
+      <h4 class="font-bold text-emerald-300 text-sm sm:text-base">Simulator 3: Matchstick Linear Sequencer: S = 2n + 1</h4>
+    </div>
+    <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Linear Modeling</span>
+  </div>
+  <p class="text-xs text-slate-300 mb-3">Adjust triangle count <span class="font-bold text-amber-300">n</span>. 1st triangle needs 3 sticks; each subsequent connected triangle adds 2 sticks. Total matchsticks = <span class="font-bold text-emerald-400">2n + 1</span>!</p>
+  
+  <div class="relative w-full h-64 sm:h-72 bg-slate-950 rounded-xl border border-slate-800 overflow-hidden flex items-center justify-center">
+    <svg id="matchstickSvg" viewBox="0 0 500 300" class="w-full h-full select-none"></svg>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+    <div class="bg-slate-950/70 p-2.5 rounded-xl border border-slate-800">
+      <label class="block text-xs font-semibold text-slate-300 mb-1 flex justify-between">
+        <span>Triangles (n):</span>
+        <span id="matchstickNVal" class="text-emerald-400 font-bold font-mono">n = 4</span>
+      </label>
+      <input type="range" id="matchstickSlider" min="1" max="8" value="4" class="w-full accent-emerald-500 cursor-pointer">
+    </div>
+    <div class="bg-slate-950/70 p-2.5 rounded-xl border border-slate-800 flex items-center justify-between text-xs">
+      <div>
+        <div class="text-slate-400">Total Matchsticks (S):</div>
+        <div id="matchstickTotalVal" class="text-amber-300 font-bold font-mono text-sm">S = 2(4) + 1 = 9 sticks</div>
+      </div>
+      <div class="text-right text-[11px] text-slate-400">
+        Formula: 2n + 1
+      </div>
+    </div>
+  </div>
+</div>
+""",
+
+    "equation_anatomy_sim": """
+<div class="p-4 bg-slate-900/90 rounded-2xl border border-slate-700/60 shadow-xl text-slate-100">
+  <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-700/60">
+    <div class="flex items-center space-x-2">
+      <span class="w-3 h-3 rounded-full bg-violet-400 animate-pulse"></span>
+      <h4 class="font-bold text-violet-300 text-sm sm:text-base">Simulator 4: Equation vs Expression & LHS / RHS Seesaw</h4>
+    </div>
+    <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/30">LHS = RHS</span>
+  </div>
+  <p class="text-xs text-slate-300 mb-3">Testing values of <span class="font-bold text-violet-300">x</span> in the equation <span class="font-mono text-amber-300 font-bold">3x + 4 = 19</span>. Only when LHS evaluates to exactly 19 does the seesaw balance!</p>
+  
+  <div class="relative w-full h-64 sm:h-72 bg-slate-950 rounded-xl border border-slate-800 overflow-hidden flex items-center justify-center">
+    <svg id="anatomySvg" viewBox="0 0 500 300" class="w-full h-full select-none"></svg>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+    <div class="bg-slate-950/70 p-2.5 rounded-xl border border-slate-800 flex items-center justify-between">
+      <span class="text-xs text-slate-300">Test x:</span>
+      <input type="range" id="anatomyXSlider" min="1" max="9" value="3" class="w-36 accent-violet-500 cursor-pointer">
+      <span id="anatomyXVal" class="text-violet-400 font-bold font-mono text-xs">x = 3</span>
+    </div>
+    <div class="bg-slate-950/70 p-2.5 rounded-xl border border-slate-800 flex items-center justify-between text-xs">
+      <span class="text-slate-300">Evaluation:</span>
+      <span id="anatomyEvaluation" class="text-rose-400 font-bold font-mono">LHS: 3(3)+4 = 13 ≠ 19 (RHS)</span>
+    </div>
+  </div>
+</div>
+""",
+
+    "trial_error_tester_sim": """
+<div class="p-4 bg-slate-900/90 rounded-2xl border border-slate-700/60 shadow-xl text-slate-100">
+  <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-700/60">
+    <div class="flex items-center space-x-2">
+      <span class="w-3 h-3 rounded-full bg-rose-400 animate-pulse"></span>
+      <h4 class="font-bold text-rose-300 text-sm sm:text-base">Simulator 5: Trial-and-Error Value Tester with Needle Meter</h4>
+    </div>
+    <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30">Target: 4x - 3 = 13</span>
+  </div>
+  <p class="text-xs text-slate-300 mb-3">Slide <span class="font-bold text-rose-300">x</span> through candidate integer values. The dial needle points left (too small), right (too large), or snaps dead center at the exact root!</p>
+  
+  <div class="relative w-full h-64 sm:h-72 bg-slate-950 rounded-xl border border-slate-800 overflow-hidden flex items-center justify-center">
+    <svg id="trialMeterSvg" viewBox="0 0 500 300" class="w-full h-full select-none"></svg>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+    <div class="bg-slate-950/70 p-2.5 rounded-xl border border-slate-800">
+      <label class="block text-xs font-semibold text-slate-300 mb-1 flex justify-between">
+        <span>Trial Candidate (x):</span>
+        <span id="trialXVal" class="text-rose-400 font-bold font-mono">x = 2</span>
+      </label>
+      <input type="range" id="trialXSlider" min="1" max="7" value="2" class="w-full accent-rose-500 cursor-pointer">
+    </div>
+    <div class="bg-slate-950/70 p-2.5 rounded-xl border border-slate-800 flex items-center justify-between text-xs">
+      <div>
+        <div class="text-slate-400">Current LHS:</div>
+        <div id="trialLhsText" class="text-rose-300 font-bold font-mono text-sm">4(2) - 3 = 5 (Too Small)</div>
+      </div>
+      <div id="trialVerdictBadge" class="px-2.5 py-1 rounded bg-rose-950/60 border border-rose-500/30 text-rose-300 font-bold text-xs">
+        Gap: -8
+      </div>
+    </div>
+  </div>
+</div>
+""",
+
+    "add_subtract_machine_sim": """
+<div class="p-4 bg-slate-900/90 rounded-2xl border border-slate-700/60 shadow-xl text-slate-100">
+  <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-700/60">
+    <div class="flex items-center space-x-2">
+      <span class="w-3 h-3 rounded-full bg-teal-400 animate-pulse"></span>
+      <h4 class="font-bold text-teal-300 text-sm sm:text-base">Simulator 6: Inverse Operations: Add & Subtract Machine</h4>
+    </div>
+    <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30">Undo Shift: +c ⇄ -c</span>
+  </div>
+  <p class="text-xs text-slate-300 mb-3">To undo <span class="font-bold text-amber-300">+7</span> in <span class="font-mono text-teal-300">x + 7 = 19</span>, subtract 7 from both sides. Watch $+7 - 7 = 0$ vanish!</p>
+  
+  <div class="relative w-full h-64 sm:h-72 bg-slate-950 rounded-xl border border-slate-800 overflow-hidden flex items-center justify-center">
+    <svg id="addSubtractSvg" viewBox="0 0 500 300" class="w-full h-full select-none"></svg>
+  </div>
+
+  <div class="flex flex-wrap items-center justify-between gap-2 mt-3">
+    <div class="flex items-center space-x-2">
+      <button id="addsubStepBtn" class="px-3 py-1.5 rounded-lg bg-teal-600 hover:bg-teal-500 text-xs font-semibold text-white transition">Apply Inverse Operation ▶</button>
+      <button id="addsubResetBtn" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-400 transition">↺ Reset</button>
+    </div>
+    <div class="text-xs font-mono text-teal-300" id="addsubStatusText">
+      State: x + 7 = 19
+    </div>
+  </div>
+</div>
+""",
+
+    "multiply_divide_isolator_sim": r"""
+<div class="p-4 bg-slate-900/90 rounded-2xl border border-slate-700/60 shadow-xl text-slate-100">
+  <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-700/60">
+    <div class="flex items-center space-x-2">
+      <span class="w-3 h-3 rounded-full bg-blue-400 animate-pulse"></span>
+      <h4 class="font-bold text-blue-300 text-sm sm:text-base">Simulator 7: Inverse Operations: Multiply & Divide Variable Isolator</h4>
+    </div>
+    <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">Coefficient Neutralizer</span>
+  </div>
+  <p class="text-xs text-slate-300 mb-3">To isolate <span class="font-bold text-amber-300">x</span> in <span class="font-mono text-blue-300">5x = 35</span>, divide both sides by 5. $\frac{5}{5} = 1$, leaving $1 \cdot x = 7$!</p>
+  
+  <div class="relative w-full h-64 sm:h-72 bg-slate-950 rounded-xl border border-slate-800 overflow-hidden flex items-center justify-center">
+    <svg id="mulDivSvg" viewBox="0 0 500 300" class="w-full h-full select-none"></svg>
+  </div>
+
+  <div class="flex flex-wrap items-center justify-between gap-2 mt-3">
+    <div class="flex items-center space-x-2">
+      <button id="muldivStepBtn" class="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-xs font-semibold text-white transition">Divide Both Sides by 5 ▶</button>
+      <button id="muldivResetBtn" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-400 transition">↺ Reset</button>
+    </div>
+    <div class="text-xs font-mono text-blue-300" id="muldivStatusText">
+      State: 5x = 35
+    </div>
+  </div>
+</div>
+""",
+
+    "two_step_unwrapper_sim": """
+<div class="p-4 bg-slate-900/90 rounded-2xl border border-slate-700/60 shadow-xl text-slate-100">
+  <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-700/60">
+    <div class="flex items-center space-x-2">
+      <span class="w-3 h-3 rounded-full bg-amber-400 animate-pulse"></span>
+      <h4 class="font-bold text-amber-300 text-sm sm:text-base">Simulator 8: Two-Step Equation Unwrapping (Reverse BODMAS)</h4>
+    </div>
+    <span id="twoStepBadge" class="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">Step 0 of 2</span>
+  </div>
+  <p class="text-xs text-slate-300 mb-3" id="twoStepDesc">Solve 3x + 5 = 26: First remove the constant addition (+5), then eliminate the coefficient multiplier (×3).</p>
+  
+  <div class="relative w-full h-64 sm:h-72 bg-slate-950 rounded-xl border border-slate-800 overflow-hidden flex items-center justify-center">
+    <svg id="twoStepSvg" viewBox="0 0 500 300" class="w-full h-full select-none"></svg>
+  </div>
+
+  <div class="flex flex-wrap items-center justify-between gap-2 mt-3">
+    <div class="flex items-center space-x-2">
+      <button id="twoStepNextBtn" class="px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-xs font-semibold text-white transition">Unwrap Next Layer ▶</button>
+      <button id="twoStepResetBtn" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-400 transition">↺ Reset</button>
+    </div>
+    <div class="text-xs font-mono text-amber-300" id="twoStepResult">
+      Current: 3x + 5 = 26
+    </div>
+  </div>
+</div>
+""",
+
+    "transposition_bridge_sim": """
+<div class="p-4 bg-slate-900/90 rounded-2xl border border-slate-700/60 shadow-xl text-slate-100">
+  <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-700/60">
+    <div class="flex items-center space-x-2">
+      <span class="w-3 h-3 rounded-full bg-purple-400 animate-pulse"></span>
+      <h4 class="font-bold text-purple-300 text-sm sm:text-base">Simulator 9: The Transposition Bridge (Sign-Flipping Engine)</h4>
+    </div>
+    <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30">Crossing the '=' Bridge</span>
+  </div>
+  <p class="text-xs text-slate-300 mb-3">Click 'Transpose Term' to watch $+7$ cross the equal sign bridge and flip its sign into $-7$ on the opposite bank!</p>
+  
+  <div class="relative w-full h-64 sm:h-72 bg-slate-950 rounded-xl border border-slate-800 overflow-hidden flex items-center justify-center">
+    <svg id="bridgeSvg" viewBox="0 0 500 300" class="w-full h-full select-none"></svg>
+  </div>
+
+  <div class="flex flex-wrap items-center justify-between gap-2 mt-3">
+    <div class="flex items-center space-x-2">
+      <button id="bridgeTransposeBtn" class="px-3.5 py-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-xs font-semibold text-white transition">Cross Bridge (Transpose) 🌉</button>
+      <button id="bridgeResetBtn" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-400 transition">↺ Reset</button>
+    </div>
+    <div class="text-xs font-mono text-purple-300" id="bridgeEquationText">
+      x + 7 = 20 ⟹ x = 20 - 7 = 13
+    </div>
+  </div>
+</div>
+""",
+
+    "dual_pan_variables_sim": """
+<div class="p-4 bg-slate-900/90 rounded-2xl border border-slate-700/60 shadow-xl text-slate-100">
+  <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-700/60">
+    <div class="flex items-center space-x-2">
+      <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
+      <h4 class="font-bold text-emerald-300 text-sm sm:text-base">Simulator 10: Dual-Pan Dual-Variable Balance (5x + 3 = 2x + 18)</h4>
+    </div>
+    <span id="dualPanBadge" class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Step 0 of 3</span>
+  </div>
+  <p class="text-xs text-slate-300 mb-3">Mystery sacks on both pans! Step 1: Remove 2x from both pans. Step 2: Remove 3 kg from both pans. Step 3: Divide by 3.</p>
+  
+  <div class="relative w-full h-64 sm:h-72 bg-slate-950 rounded-xl border border-slate-800 overflow-hidden flex items-center justify-center">
+    <svg id="dualPanSvg" viewBox="0 0 500 300" class="w-full h-full select-none"></svg>
+  </div>
+
+  <div class="flex flex-wrap items-center justify-between gap-2 mt-3">
+    <div class="flex items-center space-x-2">
+      <button id="dualPanStepBtn" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-xs font-semibold text-white transition">Execute Next Reduction ▶</button>
+      <button id="dualPanResetBtn" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-400 transition">↺ Reset</button>
+    </div>
+    <div class="text-xs font-mono text-emerald-300" id="dualPanStatus">
+      Initial: 5x + 3 = 2x + 18
+    </div>
+  </div>
+</div>
+""",
+
+    "geometry_word_problem_sim": """
+<div class="p-4 bg-slate-900/90 rounded-2xl border border-slate-700/60 shadow-xl text-slate-100">
+  <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-700/60">
+    <div class="flex items-center space-x-2">
+      <span class="w-3 h-3 rounded-full bg-indigo-400 animate-pulse"></span>
+      <h4 class="font-bold text-indigo-300 text-sm sm:text-base">Simulator 11: Real-World Geometry Translator: Garden Perimeter</h4>
+    </div>
+    <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">P = 2(w + w + 4) = 40</span>
+  </div>
+  <p class="text-xs text-slate-300 mb-3">A garden's length is 4 m more than its width ($l = w + 4$). Adjust width <span class="font-bold text-amber-300">w</span> until the perimeter matches the target of <span class="font-bold text-emerald-400">40 meters</span>!</p>
+  
+  <div class="relative w-full h-64 sm:h-72 bg-slate-950 rounded-xl border border-slate-800 overflow-hidden flex items-center justify-center">
+    <svg id="geomWordSvg" viewBox="0 0 500 300" class="w-full h-full select-none"></svg>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+    <div class="bg-slate-950/70 p-2.5 rounded-xl border border-slate-800">
+      <label class="block text-xs font-semibold text-slate-300 mb-1 flex justify-between">
+        <span>Width (w):</span>
+        <span id="geomWidthVal" class="text-indigo-400 font-bold font-mono">w = 8 m</span>
+      </label>
+      <input type="range" id="geomWidthSlider" min="4" max="14" value="8" class="w-full accent-indigo-500 cursor-pointer">
+    </div>
+    <div class="bg-slate-950/70 p-2.5 rounded-xl border border-slate-800 flex items-center justify-between text-xs">
+      <div>
+        <div class="text-slate-400">Dimensions & Perimeter:</div>
+        <div id="geomPerimText" class="text-emerald-400 font-bold font-mono text-xs">l = 12 m, w = 8 m ⟹ P = 40 m (MATCH!)</div>
+      </div>
+    </div>
+  </div>
+</div>
+""",
+
+    "budget_magic_trick_sim": """
+<div class="p-4 bg-slate-900/90 rounded-2xl border border-slate-700/60 shadow-xl text-slate-100">
+  <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-700/60">
+    <div class="flex items-center space-x-2">
+      <span class="w-3 h-3 rounded-full bg-amber-400 animate-pulse"></span>
+      <h4 class="font-bold text-amber-300 text-sm sm:text-base">Simulator 12: Mind-Reading Number Trick & Consumer Budgeting</h4>
+    </div>
+    <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">Variable Cancellation</span>
+  </div>
+  <p class="text-xs text-slate-300 mb-3">Choose any secret number <span class="font-bold text-amber-300">x</span>. Step through the trick to reveal why the final answer is ALWAYS the invariant constant 5!</p>
+  
+  <div class="relative w-full h-64 sm:h-72 bg-slate-950 rounded-xl border border-slate-800 overflow-hidden flex items-center justify-center">
+    <svg id="magicTrickSvg" viewBox="0 0 500 300" class="w-full h-full select-none"></svg>
+  </div>
+
+  <div class="flex flex-wrap items-center justify-between gap-2 mt-3">
+    <div class="flex items-center space-x-2">
+      <label class="text-xs text-slate-300">Secret x:</label>
+      <input type="number" id="magicXInput" min="1" max="100" value="7" class="w-16 px-2 py-1 bg-slate-950 border border-slate-700 rounded text-xs font-mono text-amber-400">
+      <button id="magicNextStepBtn" class="px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-xs font-semibold text-white transition">Next Trick Step ▶</button>
+      <button id="magicResetBtn" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-400 transition">↺ Reset</button>
+    </div>
+    <div class="text-xs font-mono text-emerald-400 font-bold" id="magicFormulaReadout">
+      Step 0: Think of x = 7
+    </div>
+  </div>
+</div>
+""",
+
+    "transposition_trap_sim": """
+<div class="p-4 bg-slate-900/90 rounded-2xl border border-slate-700/60 shadow-xl text-slate-100">
+  <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-700/60">
+    <div class="flex items-center space-x-2">
+      <span class="w-3 h-3 rounded-full bg-rose-400 animate-pulse"></span>
+      <h4 class="font-bold text-rose-300 text-sm sm:text-base">Simulator 13: Diagnostic Clinic: Spot & Fix the Transposition Trap</h4>
+    </div>
+    <span id="trapStatusBadge" class="px-2 py-0.5 rounded text-[11px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30">BUG DETECTED ❌</span>
+  </div>
+  <p class="text-xs text-slate-300 mb-3">Examine this student's work: <span class="font-mono text-rose-300 font-bold">4x - 9 = 15 ⟹ 4x = 15 - 9</span>. Click 'Mend Mistake' to apply the correct sign inversion!</p>
+  
+  <div class="relative w-full h-64 sm:h-72 bg-slate-950 rounded-xl border border-slate-800 overflow-hidden flex items-center justify-center">
+    <svg id="trapClinicSvg" viewBox="0 0 500 300" class="w-full h-full select-none"></svg>
+  </div>
+
+  <div class="flex flex-wrap items-center justify-between gap-2 mt-3">
+    <button id="mendMistakeBtn" class="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-xs font-semibold text-white transition">Mend the Mistake (Apply +9) ✔</button>
+    <div class="text-xs font-mono" id="trapDiagnosisText">
+      <span class="text-rose-400 font-bold">Error:</span> -9 was transposed as -9 instead of +9!
+    </div>
+  </div>
+</div>
+""",
+
+    "distributive_division_trap_sim": """
+<div class="p-4 bg-slate-900/90 rounded-2xl border border-slate-700/60 shadow-xl text-slate-100">
+  <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-700/60">
+    <div class="flex items-center space-x-2">
+      <span class="w-3 h-3 rounded-full bg-purple-400 animate-pulse"></span>
+      <h4 class="font-bold text-purple-300 text-sm sm:text-base">Simulator 14: Distributive & Whole-Side Division Diagnostic</h4>
+    </div>
+    <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30">Whole Side Division</span>
+  </div>
+  <p class="text-xs text-slate-300 mb-3">Compare Partial Division (Bug) vs Whole-Side Division (Correct) for <span class="font-mono text-purple-300">2x + 6 = 14</span>:</p>
+  
+  <div class="relative w-full h-64 sm:h-72 bg-slate-950 rounded-xl border border-slate-800 overflow-hidden flex items-center justify-center">
+    <svg id="distribSvg" viewBox="0 0 500 300" class="w-full h-full select-none"></svg>
+  </div>
+
+  <div class="flex flex-wrap items-center justify-between gap-2 mt-3">
+    <div class="flex items-center space-x-2">
+      <button class="distribChoiceBtn px-3 py-1.5 rounded-lg bg-rose-600 text-xs font-semibold text-white transition" data-mode="partial">Show Buggy Partial Division ❌</button>
+      <button class="distribChoiceBtn px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-300 transition" data-mode="whole">Show Correct Whole Division ✔</button>
+    </div>
+    <div class="text-xs font-mono text-amber-300" id="distribResultText">
+      Bug: x + 6 = 7 (6 was not divided!) ⟹ x = 1 (WRONG)
+    </div>
+  </div>
+</div>
+""",
+
+    "bijaganita_timeline_sim": """
+<div class="p-4 bg-slate-900/90 rounded-2xl border border-slate-700/60 shadow-xl text-slate-100">
+  <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-700/60">
+    <div class="flex items-center space-x-2">
+      <span class="w-3 h-3 rounded-full bg-amber-400 animate-pulse"></span>
+      <h4 class="font-bold text-amber-300 text-sm sm:text-base">Simulator 15: Timeline of Bījagaṇita: Ancient Indian Algebra Heritage</h4>
+    </div>
+    <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">1500 Years of Algebra</span>
+  </div>
+  <p class="text-xs text-slate-300 mb-3">Click on the ancient masters to explore their algebraic innovations, color notations, and global transmission:</p>
+  
+  <div class="relative w-full h-64 sm:h-72 bg-slate-950 rounded-xl border border-slate-800 overflow-hidden flex items-center justify-center">
+    <svg id="timelineSvg" viewBox="0 0 500 300" class="w-full h-full select-none"></svg>
+  </div>
+
+  <div class="flex flex-wrap items-center justify-between gap-2 mt-3">
+    <div class="flex items-center space-x-1.5">
+      <button class="timelineBtn px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 transition" data-epoch="aryabhata">Āryabhaṭa (499 CE)</button>
+      <button class="timelineBtn px-2.5 py-1.5 rounded-lg bg-amber-600 text-xs font-semibold text-white transition" data-epoch="brahmagupta">Brahmagupta (628 CE)</button>
+      <button class="timelineBtn px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 transition" data-epoch="alkhwarizmi">Al-Khwarizmi (825 CE)</button>
+      <button class="timelineBtn px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 transition" data-epoch="bhaskara">Bhāskara II (1150 CE)</button>
+    </div>
+  </div>
+</div>
+""",
+
+    "brahmagupta_solver_sim": """
+<div class="p-4 bg-slate-900/90 rounded-2xl border border-slate-700/60 shadow-xl text-slate-100">
+  <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-700/60">
+    <div class="flex items-center space-x-2">
+      <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
+      <h4 class="font-bold text-emerald-300 text-sm sm:text-base">Simulator 16: Brahmagupta's General Linear Equation Solver (628 CE)</h4>
+    </div>
+    <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Ax + B = Cx + D</span>
+  </div>
+  <p class="text-xs text-slate-300 mb-3">Brahmagupta's Law: $x = \frac{D - B}{A - C}$. Enter coefficients to compute the exact solution in one ancient step!</p>
+  
+  <div class="relative w-full h-64 sm:h-72 bg-slate-950 rounded-xl border border-slate-800 overflow-hidden flex items-center justify-center">
+    <svg id="brahmaSolverSvg" viewBox="0 0 500 300" class="w-full h-full select-none"></svg>
+  </div>
+
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-3 text-xs">
+    <div class="bg-slate-950/70 p-2 rounded-lg border border-slate-800 flex items-center justify-between">
+      <span class="text-slate-400 font-bold">A:</span>
+      <input type="number" id="brahmaA" value="7" class="w-12 px-1 py-0.5 bg-slate-900 border border-slate-700 rounded text-center text-amber-300 font-mono">
+    </div>
+    <div class="bg-slate-950/70 p-2 rounded-lg border border-slate-800 flex items-center justify-between">
+      <span class="text-slate-400 font-bold">B:</span>
+      <input type="number" id="brahmaB" value="5" class="w-12 px-1 py-0.5 bg-slate-900 border border-slate-700 rounded text-center text-amber-300 font-mono">
+    </div>
+    <div class="bg-slate-950/70 p-2 rounded-lg border border-slate-800 flex items-center justify-between">
+      <span class="text-slate-400 font-bold">C:</span>
+      <input type="number" id="brahmaC" value="2" class="w-12 px-1 py-0.5 bg-slate-900 border border-slate-700 rounded text-center text-amber-300 font-mono">
+    </div>
+    <div class="bg-slate-950/70 p-2 rounded-lg border border-slate-800 flex items-center justify-between">
+      <span class="text-slate-400 font-bold">D:</span>
+      <input type="number" id="brahmaD" value="25" class="w-12 px-1 py-0.5 bg-slate-900 border border-slate-700 rounded text-center text-amber-300 font-mono">
+    </div>
+  </div>
+</div>
+"""
+}
+
+if __name__ == "__main__":
+    with open(".agents/class7_math_finding_the_unknown_sims.py", "w", encoding="utf-8") as f:
+        f.write("# -*- coding: utf-8 -*-\n")
+        f.write('"""Class 7 Mathematics Chapter 7: Finding the Unknown Simulators"""\n\n')
+        f.write("SIMULATORS_HTML = " + repr(SIMULATORS_HTML) + "\n")
+    print(f"Generated .agents/class7_math_finding_the_unknown_sims.py with {len(SIMULATORS_HTML)} simulators.")

@@ -1115,6 +1115,76 @@
                     titleText = "NCERT Class 7 Mathematics — Chapter 11: Finding Common Ground (HCF & LCM) Master Lab";
                     badgeText = "Class 7 • NCERT Mathematics";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
+                } else if (type === 'class7-math-another-peek-beyond-the-point' || type === 'chapter12-math-class7' || type === 'another-peek-beyond-the-point' || type === 'class7-another-peek-beyond-the-point' || type === 'another-peek-beyond-the-point-class7' || type === 'class7-math-decimal-operations' || type === 'decimal-operations-class7' || type === 'class7-decimal-operations') {
+                    fileUrl = "{{ asset('animations/class7-math-another-peek-beyond-the-point.html') }}";
+                    titleText = "NCERT Class 7 Mathematics — Chapter 12: Another Peek Beyond the Point (Decimals) Master Lab";
+                    badgeText = "Class 7 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class7-math-connecting-the-dots' || type === 'chapter13-math-class7' || type === 'chapter5-connecting-the-dots' || type === 'connecting-the-dots' || type === 'connecting-the-dots-class7' || type === 'class7-connecting-the-dots' || type === 'class7-math-data-handling' || type === 'data-handling-class7' || type === 'class7-data-handling') {
+                    fileUrl = "{{ asset('animations/class7-math-connecting-the-dots.html') }}";
+                    titleText = "NCERT Class 7 Mathematics — Chapter 13: Connecting the Dots... (Data Handling) Master Lab";
+                    badgeText = "Class 7 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
+                } else if (type === 'class7-math-constructions-and-tilings' || type === 'chapter14-math-class7' || type === 'chapter6-constructions-and-tilings' || type === 'constructions-and-tilings' || type === 'constructions-and-tilings-class7' || type === 'class7-constructions-and-tilings' || type === 'class7-math-constructions' || type === 'constructions-class7' || type === 'tilings-class7') {
+                    fileUrl = "{{ asset('animations/class7-math-constructions-and-tilings.html') }}";
+                    titleText = "NCERT Class 7 Mathematics — Chapter 6: Constructions and Tilings Master Lab";
+                    badgeText = "Class 7 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class7-math-finding-the-unknown' || type === 'chapter15-math-class7' || type === 'chapter7-finding-the-unknown' || type === 'finding-the-unknown' || type === 'finding-the-unknown-class7' || type === 'class7-finding-the-unknown' || type === 'class7-math-equations' || type === 'simple-equations-class7' || type === 'class7-simple-equations') {
+                    fileUrl = "{{ asset('animations/class7-math-finding-the-unknown.html') }}";
+                    titleText = "NCERT Class 7 Mathematics — Chapter 7: Finding the Unknown Master Lab";
+                    badgeText = "Class 7 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class7-science-ever-evolving-world' || type === 'chapter1-science-class7' || type === 'class7-science-chapter1' || type === 'the-ever-evolving-world-of-science' || type === 'ever-evolving-world-of-science' || type === 'class7-ever-evolving-world-of-science' || type === 'class7-science-intro' || type === 'exploring-the-world-of-science' || type === 'class7-exploring-the-world-of-science' || type === 'class7-science-exploring-world' || type === 'exploring-world-of-science') {
+                    fileUrl = "{{ asset('animations/class7-science-ever-evolving-world.html') }}";
+                    titleText = "NCERT Class 7 Science — Chapter 1: Exploring the World of Science Master Lab";
+                    badgeText = "Class 7 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
+                } else if (type === 'class7-science-exploring-substances' || type === 'chapter2-science-class7' || type === 'class7-science-chapter2' || type === 'exploring-substances-acidic-basic-and-neutral' || type === 'exploring-substances' || type === 'class7-exploring-substances' || type === 'class7-science-substances' || type === 'acids-bases-and-salts-class7' || type === 'class7-acids-bases-and-salts') {
+                    fileUrl = "{{ asset('animations/class7-science-exploring-substances.html') }}";
+                    titleText = "NCERT Class 7 Science — Chapter 2: Acids, Bases, and Salts Master Lab";
+                    badgeText = "Class 7 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30 shrink-0";
+                } else if (type === 'class7-science-circuits' || type === 'chapter3-science-class7' || type === 'class7-science-chapter3' || type === 'electricity-circuits-and-their-components' || type === 'electricity-circuits' || type === 'class7-electricity-circuits' || type === 'electricity-and-circuits-class7' || type === 'class7-electricity-and-circuits' || type === 'electricity-circuits-class7' || type === 'class7-science-electricity-circuits') {
+                    fileUrl = "{{ asset('animations/class7-science-circuits.html') }}";
+                    titleText = "NCERT Class 7 Science — Chapter 3: Electricity: Circuits and their Components Master Lab";
+                    badgeText = "Class 7 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class7-science-metals-and-nonmetals' || type === 'chapter4-science-class7' || type === 'class7-science-chapter4' || type === 'the-world-of-metals-and-non-metals' || type === 'world-of-metals-and-non-metals' || type === 'metals-and-non-metals-class7' || type === 'class7-metals-and-non-metals' || type === 'class7-metals-and-nonmetals' || type === 'metals-and-nonmetals-class7' || type === 'class7-metals-nonmetals' || type === 'class7-science-metals-nonmetals') {
+                    fileUrl = "{{ asset('animations/class7-science-metals-and-nonmetals.html') }}";
+                    titleText = "NCERT Class 7 Science — Chapter 4: Metals and Non-metals Master Lab";
+                    badgeText = "Class 7 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class7-science-physical-chemical-changes' || type === 'chapter5-science-class7' || type === 'class7-science-chapter5' || type === 'changes-around-us-physical-and-chemical' || type === 'changes-around-us' || type === 'class7-changes-around-us' || type === 'class7-physical-and-chemical-changes' || type === 'physical-and-chemical-changes-class7' || type === 'class7-science-changes-around-us' || type === 'changes-around-us-class7' || type === 'physical-and-chemical-changes') {
+                    fileUrl = "{{ asset('animations/class7-science-physical-chemical-changes.html') }}";
+                    titleText = "NCERT Class 7 Science — Chapter 5: Physical and Chemical Changes Master Lab";
+                    badgeText = "Class 7 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class7-science-adolescence-growth' || type === 'chapter6-science-class7' || type === 'class7-science-chapter6' || type === 'adolescence' || type === 'adolescence-a-stage-of-growth-and-change' || type === 'class7-adolescence-growth' || type === 'class7-adolescence-stage-of-growth' || type === 'adolescence-growth-and-change-class7' || type === 'class7-science-adolescence' || type === 'adolescence-class7' || type === 'adolescence-a-stage-of-growth') {
+                    fileUrl = "{{ asset('animations/class7-science-adolescence-growth.html') }}";
+                    titleText = "NCERT Class 7 Science — Chapter 6: Adolescence Master Lab";
+                    badgeText = "Class 7 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30 shrink-0";
+                } else if (type === 'class7-science-heat-nature' || type === 'chapter7-science-class7' || type === 'class7-science-chapter7' || type === 'heat-and-its-effects-in-nature' || type === 'heat-and-its-effects-in-nature-class7' || type === 'class7-heat-and-its-effects-in-nature' || type === 'heat-transfer-in-nature' || type === 'heat-transfer-in-nature-class7' || type === 'class7-heat-transfer-in-nature' || type === 'class7-science-heat-transfer' || type === 'class7-heat-transfer' || type === 'heat-transfer-class7' || type === 'heat-transfer') {
+                    fileUrl = "{{ asset('animations/class7-science-heat-nature.html') }}";
+                    titleText = "NCERT Class 7 Science — Chapter 7: Heat and Its Effects in Nature Master Lab";
+                    badgeText = "Class 7 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class7-science-time-motion' || type === 'chapter8-science-class7' || type === 'class7-science-chapter8' || type === 'measurement-of-time-and-motion' || type === 'measurement-of-time-and-motion-class7' || type === 'class7-measurement-of-time-and-motion' || type === 'class7-time-and-motion' || type === 'time-and-motion-class7' || type === 'time-and-motion' || type === 'measurement-of-time' || type === 'class7-time-motion') {
+                    fileUrl = "{{ asset('animations/class7-science-time-motion.html') }}";
+                    titleText = "NCERT Class 7 Science — Chapter 8: Time and Motion Master Lab";
+                    badgeText = "Class 7 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class7-science-life-processes-animals' || type === 'chapter9-science-class7' || type === 'class7-science-chapter9' || type === 'class7-life-processes-in-animals' || type === 'class7-life-processes-animals' || type === 'class7-science-life-processes' || type === 'life-processes-in-animals-class7' || type === 'life-processes-animals-class7' || type === 'life-processes-in-animals' || type === 'life-processes-animals' || type === 'nutrition-and-respiration-in-animals-class7' || type === 'animal-life' || type === 'animal-life-class7' || type === 'class7-animal-life' || type === 'class7-science-animal-life') {
+                    fileUrl = "{{ asset('animations/class7-science-life-processes-animals.html') }}";
+                    titleText = "NCERT Class 7 Science — Chapter 9: Animal Life Master Lab";
+                    badgeText = "Class 7 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class7-science-life-processes-plants' || type === 'chapter10-science-class7' || type === 'class7-science-chapter10' || type === 'class7-life-processes-in-plants' || type === 'class7-life-processes-plants' || type === 'life-processes-in-plants-class7' || type === 'life-processes-plants-class7' || type === 'life-processes-in-plants' || type === 'life-processes-plants' || type === 'nutrition-and-transport-in-plants-class7' || type === 'plant-life' || type === 'plant-life-class7' || type === 'class7-plant-life' || type === 'class7-science-plant-life') {
+                    fileUrl = "{{ asset('animations/class7-science-life-processes-plants.html') }}";
+                    titleText = "NCERT Class 7 Science — Chapter 10: Plant Life Master Lab";
+                    badgeText = "Class 7 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
                 }
 
                 if (iframe.src !== fileUrl) {
