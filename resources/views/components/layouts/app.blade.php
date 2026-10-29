@@ -1185,6 +1185,11 @@
                     titleText = "NCERT Class 7 Science — Chapter 10: Plant Life Master Lab";
                     badgeText = "Class 7 • NCERT Science";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class7-science-light-shadows-reflections' || type === 'chapter11-science-class7' || type === 'class7-science-chapter11' || type === 'class7-light-shadows-and-reflections' || type === 'class7-light-shadows-reflections' || type === 'class7-science-light' || type === 'light-shadows-and-reflections-class7' || type === 'light-shadows-reflections-class7' || type === 'light-shadows-and-reflections' || type === 'light-shadows-reflections' || type === 'light-shadows' || type === 'light' || type === 'light-class7' || type === 'class7-light') {
+                    fileUrl = "{{ asset('animations/class7-science-light-shadows-reflections.html') }}";
+                    titleText = "NCERT Class 7 Science — Chapter 11: Light Master Lab";
+                    badgeText = "Class 7 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
                 }
 
                 if (iframe.src !== fileUrl) {

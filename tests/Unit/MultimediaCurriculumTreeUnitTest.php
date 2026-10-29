@@ -2192,6 +2192,41 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertFileExists(public_path('animations/class7-science-plant-life.html'));
     }
 
+    public function test_ncert_class_7_has_light_shadows_and_reflections_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=science&class=class7', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'science',
+            'class' => 'class7',
+        ]);
+
+        $view = $controller->index($request);
+        $data = $view->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('science', $data['selectedSubject']);
+        $this->assertEquals('class7', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Light', $data['activeChapters'][10]['name']);
+        $this->assertTrue($data['activeChapters'][10]['has_multimedia']);
+        $this->assertEquals('class7-science-light-shadows-reflections', $data['activeChapters'][10]['media_key']);
+        $this->assertFileExists(public_path('animations/class7-science-light-shadows-reflections.html'));
+        $this->assertFileExists(public_path('animations/chapter11-science-class7.html'));
+        $this->assertFileExists(public_path('animations/class7-science-chapter11.html'));
+        $this->assertFileExists(public_path('animations/class7-light-shadows-and-reflections.html'));
+        $this->assertFileExists(public_path('animations/class7-light-shadows-reflections.html'));
+        $this->assertFileExists(public_path('animations/class7-science-light.html'));
+        $this->assertFileExists(public_path('animations/light-shadows-and-reflections-class7.html'));
+        $this->assertFileExists(public_path('animations/light-shadows-reflections-class7.html'));
+        $this->assertFileExists(public_path('animations/light-shadows-and-reflections.html'));
+        $this->assertFileExists(public_path('animations/light-shadows-reflections.html'));
+        $this->assertFileExists(public_path('animations/light-shadows.html'));
+        $this->assertFileExists(public_path('animations/class7-light.html'));
+        $this->assertFileExists(public_path('animations/light-class7.html'));
+        $this->assertFileExists(public_path('animations/light.html'));
+    }
+
     public function test_cbse_syllabus_has_no_contents(): void
     {
         $controller = new MultimediaController;
@@ -2579,7 +2614,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
     public function test_all_multimedia_files_have_last_slide_message_and_no_next_option(): void
     {
         $files = glob(public_path('animations/*.html'));
-        $this->assertCount(551, $files);
+        $this->assertCount(565, $files);
 
         foreach ($files as $file) {
             $content = file_get_contents($file);

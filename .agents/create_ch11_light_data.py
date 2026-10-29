@@ -1,0 +1,1679 @@
+# -*- coding: utf-8 -*-
+"""
+Generates the comprehensive data module for Chapter 11: Light: Shadows and Reflections
+NCERT Class 7 Science.
+Strictly zero raw LaTeX code or commands. Clean Unicode everywhere.
+"""
+import json
+import re
+
+slides = [
+    # Slide 1
+    {
+        "id": 1,
+        "slide_num": 1,
+        "title": "Sources of Light: Luminous vs Non-Luminous",
+        "subtitle": "Chapter 11.1: How Objects Emit and Reflect Visible Radiation",
+        "badge": "Core Foundation",
+        "summary": "Light is a form of electromagnetic radiation that stimulates the sensation of vision in our eyes. Objects in our universe are classified as luminous (those that emit their own light, like the Sun, stars, and fireflies) or non-luminous (those that merely reflect light from external sources, like the Moon, books, and mirrors).",
+        "theory": """
+<div class="space-y-4 text-slate-200">
+    <p class="leading-relaxed">
+        Imagine walking into a pitch-black windowless room at midnight. Can you see the chairs, the paintings on the wall, or even your own hands? No! Objects become visible to human eyes only when <strong class="text-amber-400">light</strong> emitted by them, or reflected from their surfaces, enters our pupils and triggers neural impulses in our retinas.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="p-3.5 rounded-xl bg-amber-950/40 border border-amber-500/30">
+            <div class="flex items-center gap-2 mb-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span>
+                <h4 class="font-bold text-amber-300 text-sm">1. Luminous Objects (Self-Emitting)</h4>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed mb-2">
+                Objects that manufacture and radiate their own visible light energy.
+            </p>
+            <ul class="text-xs text-slate-300 space-y-1 list-disc list-inside">
+                <li><strong class="text-slate-100">Natural Luminous:</strong> The Sun (fusion reactor), stars, atmospheric lightning, and bioluminescent organisms (fireflies / <em>jugnu</em>, glowing deep-sea jellyfish).</li>
+                <li><strong class="text-slate-100">Artificial Luminous:</strong> Glowing tungsten incandescent bulbs, LED lamps, burning candle flames, and fluorescent tubes.</li>
+            </ul>
+        </div>
+        <div class="p-3.5 rounded-xl bg-cyan-950/40 border border-cyan-500/30">
+            <div class="flex items-center gap-2 mb-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
+                <h4 class="font-bold text-cyan-300 text-sm">2. Non-Luminous Objects (Reflectors)</h4>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed mb-2">
+                Objects that possess no internal light source and cannot emit light independently.
+            </p>
+            <ul class="text-xs text-slate-300 space-y-1 list-disc list-inside">
+                <li><strong class="text-slate-100">Celestial Reflectors:</strong> The Moon, planets (Venus, Mars), asteroids, and cosmic dust clouds.</li>
+                <li><strong class="text-slate-100">Terrestrial Objects:</strong> Books, trees, human bodies, wooden tables, and mirrors. They become visible solely because they bounce incident ambient photons into our eyes.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="p-3 rounded-lg bg-slate-900/60 border border-slate-700/60 text-xs text-slate-300">
+        <strong class="text-amber-300">Speed of Light:</strong> In vacuum or outer space, light travels at the cosmic speed limit of approximately <strong class="text-emerald-400 font-mono">3 × 10⁸ m/s</strong> (300,000 kilometres every second). Sunlight takes roughly 8 minutes and 20 seconds to traverse the 150 million kilometres to reach Earth!
+    </div>
+</div>
+""",
+        "takeaways": [
+            "Luminous objects emit their own light (Sun, stars, electric bulbs, bioluminescent fireflies).",
+            "Non-luminous objects (Moon, planets, tables, mirrors) do not produce light; they are seen by reflecting incident light.",
+            "Light travels through space and air at approximately 300,000 km/s (3 × 10⁸ m/s)."
+        ],
+        "checkpoints": [
+            {
+                "id": "cp1_1",
+                "question": "Why is the Moon classified as a non-luminous celestial object?",
+                "options": [
+                    "It emits green cold light from its core",
+                    "It has no light of its own and is visible only because it reflects incident sunlight",
+                    "It is made entirely of dark black coal that absorbs all light",
+                    "It produces nuclear fusion reactions only on full moon nights"
+                ],
+                "correct": 1,
+                "explanation": "The Moon does not generate light by internal physical or chemical processes. It acts as a passive celestial reflector, bouncing sunlight back towards Earth."
+            },
+            {
+                "id": "cp1_2",
+                "question": "Which of the following organisms is a natural living source of light (bioluminescent)?",
+                "options": [
+                    "Earthworm",
+                    "Firefly (Jugnu)",
+                    "Housefly",
+                    "Desert scorpion"
+                ],
+                "correct": 1,
+                "explanation": "Fireflies (Jugnu) produce cold, heat-free light via a specialized biochemical luciferin-luciferase enzymatic reaction in their lower abdomen, making them natural luminous organisms."
+            }
+        ]
+    },
+
+    # Slide 2
+    {
+        "id": 2,
+        "slide_num": 2,
+        "title": "11.1 The Moon Paradox: Reflected Moonlight",
+        "subtitle": "How Non-Luminous Celestial Bodies Illuminate the Night Sky",
+        "badge": "Astronomical Insight",
+        "summary": "Although the full Moon shines brightly in the night sky, it produces zero photons of its own. Just as an ancient Indian astronomer Aryabhata explained in 499 CE, the Moon is a dusty spherical rock reflecting sunlight, producing the cyclic lunar phases.",
+        "theory": """
+<div class="space-y-4 text-slate-200">
+    <p class="leading-relaxed">
+        For thousands of years, ancient mythologies believed the Moon was a luminous celestial deity radiating cold, silvery nocturnal light. It was the great 5th-century Indian mathematician-astronomer <strong class="text-amber-400">Aryabhata</strong> who declared in the <em>Aryabhatiya</em> that the Moon and planets are naturally dark, spherical bodies that shine only because the Sun illuminates half their surface.
+    </p>
+    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+        <h4 class="font-bold text-cyan-300 text-sm mb-2">The Geometry of Moonlight</h4>
+        <div class="space-y-2 text-xs text-slate-300 leading-relaxed">
+            <p>1. <strong class="text-slate-100">Albedo (Reflectance):</strong> The Moon is actually quite dark! Its dusty surface of basalt and regolith reflects only about <strong class="text-amber-300 font-mono">12%</strong> of the incident sunlight that strikes it (an albedo similar to worn asphalt). It only appears dazzlingly bright because it is contrasted against the pitch-black vacuum of space.</p>
+            <p>2. <strong class="text-slate-100">Day and Night Halves:</strong> At all times, exactly 50% of the Moon's spherical surface is bathed in direct sunlight, while the opposite 50% is in pitch darkness.</p>
+            <p>3. <strong class="text-slate-100">Lunar Phases:</strong> As the Moon completes its 29.5-day orbit around Earth, the fraction of its sunlit hemisphere visible from Earth's vantage point continuously shifts: from New Moon (sunlit side facing away from Earth) to Crescent, First Quarter, Gibbous, and Full Moon (entire sunlit side facing Earth).</p>
+        </div>
+    </div>
+    <div class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-xs text-slate-300">
+        <strong class="text-emerald-300">Take-Home Optical Principle:</strong> An object does not need to be luminous to be visible; it only needs to scatter incoming light into a spectator's eyes.
+    </div>
+</div>
+""",
+        "takeaways": [
+            "The Moon is a non-luminous, rocky sphere that reflects only ~12% of incident solar photons.",
+            "Aryabhata correctly identified in 499 CE that the Moon shines by reflecting sunlight.",
+            "Changing lunar phases result from our changing viewing angle of the Moon's sunlit hemisphere as it orbits Earth."
+        ],
+        "checkpoints": [
+            {
+                "id": "cp2_1",
+                "question": "Who was the ancient Indian astronomer who first explained that the Moon shines by reflecting sunlight?",
+                "options": [
+                    "Varahamihira",
+                    "Aryabhata",
+                    "Brahmagupta",
+                    "Bhaskara II"
+                ],
+                "correct": 1,
+                "explanation": "In 499 CE, Aryabhata stated in his treatise Aryabhatiya that the Moon and planets are non-luminous and are made visible by sunlight striking their surfaces."
+            },
+            {
+                "id": "cp2_2",
+                "question": "Why do we observe different phases of the Moon throughout the month?",
+                "options": [
+                    "The Moon physically shrinks and expands in size",
+                    "Earth's clouds physically cover the Moon each night",
+                    "As the Moon orbits Earth, we see varying fractions of its sunlit half",
+                    "The Moon's internal fuel runs out and recharges every 29 days"
+                ],
+                "correct": 2,
+                "explanation": "Exactly half the Moon is always illuminated by the Sun. As the Moon orbits Earth, our viewing angle changes, allowing us to see differing proportions of its illuminated half."
+            }
+        ]
+    },
+
+    # Slide 3
+    {
+        "id": 3,
+        "slide_num": 3,
+        "title": "11.2 Rectilinear Propagation: Does Light Travel in a Straight Line?",
+        "subtitle": "Experimental Verification: The Three Cardboard Pinholes Rig",
+        "badge": "Fundamental Law",
+        "summary": "In a homogeneous, uniform optical medium such as clean air or vacuum, light travels exclusively in straight paths. This fundamental property is termed the rectilinear propagation of light, explaining the formation of sharp shadows and the operation of optical devices.",
+        "theory": """
+<div class="space-y-4 text-slate-200">
+    <p class="leading-relaxed">
+        Does light curl around obstacles like water flowing around a river boulder, or does it travel along rigid, ruler-straight trajectories? In daily life, light exhibits <strong class="text-emerald-400">rectilinear propagation</strong> (from Latin <em>rectus</em> = straight, <em>linea</em> = line)—meaning light travels strictly in straight lines in any homogeneous, uniform medium.
+    </p>
+    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+        <h4 class="font-bold text-amber-300 text-sm mb-2">The Classic Three-Cardboard Experiment</h4>
+        <div class="space-y-2 text-xs text-slate-300">
+            <p>1. <strong class="text-slate-100">Setup:</strong> Three identical cardboard squares (A, B, and C) are mounted vertically on a flat wooden bench. A tiny pinhole is punched at exactly the same height in each cardboard.</p>
+            <p>2. <strong class="text-slate-100">Collinear Alignment:</strong> A taught thread is passed through all three holes to ensure they are strictly in a straight line. An illuminated candle is positioned directly behind hole A, and an observer peers through hole C.</p>
+            <p>3. <strong class="text-slate-100">Observation 1 (Aligned):</strong> When all three holes are collinear, the observer sees the bright candle flame clearly through hole C.</p>
+            <p>4. <strong class="text-slate-100">Observation 2 (Displaced):</strong> If middle cardboard B is displaced slightly to the side by just a few millimetres, the candle flame <strong class="text-rose-400">vanishes completely</strong> from view!</p>
+        </div>
+    </div>
+    <div class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-xs text-slate-300">
+        <strong class="text-emerald-300">Deduction:</strong> The light cannot bend around the shifted edge of cardboard B to reach the observer's eye. Light rays travel strictly along straight-line trajectories.
+    </div>
+</div>
+""",
+        "takeaways": [
+            "Rectilinear propagation is the property of light traveling strictly in straight lines in a uniform medium.",
+            "A ray of light represents the straight-line direction along which light energy propagates.",
+            "Shifting any intermediate cardboard pinhole out of collinear alignment immediately blocks the light beam."
+        ],
+        "checkpoints": [
+            {
+                "id": "cp3_1",
+                "question": "What is meant by the scientific term 'rectilinear propagation of light'?",
+                "options": [
+                    "Light bends in circular spirals through air",
+                    "Light travels exclusively in straight lines in a homogeneous medium",
+                    "Light changes color every 2 seconds",
+                    "Light travels only when pushed by strong wind"
+                ],
+                "correct": 1,
+                "explanation": "Rectilinear propagation means that light rays travel in perfectly straight paths through any uniform transparent medium."
+            },
+            {
+                "id": "cp3_2",
+                "question": "In the three-cardboard experiment, why does the candle flame disappear when the middle cardboard is displaced slightly?",
+                "options": [
+                    "The candle flame automatically extinguishes",
+                    "The light rays from the flame travel in straight lines and are blocked by the opaque cardboard B",
+                    "The air inside the room freezes into ice",
+                    "The pinholes become magnetized and push the light backward"
+                ],
+                "correct": 1,
+                "explanation": "Because light cannot curve around the displaced obstacle, its straight-line trajectory is interrupted and absorbed by the opaque cardboard."
+            }
+        ]
+    },
+
+    # Slide 4
+    {
+        "id": 4,
+        "slide_num": 4,
+        "title": "11.2 The Bent Pipe Experiment: Optical Verification",
+        "subtitle": "Viewing a Candle Flame Through Straight vs Bent Tubes",
+        "badge": "Practical Experiment",
+        "summary": "Attempting to view a candle flame through a flexible rubber tube provides direct, intuitive proof of straight-line light travel. When the tube is straight, the flame is clearly visible; the instant the tube is bent into an angle, the flame vanishes.",
+        "theory": """
+<div class="space-y-4 text-slate-200">
+    <p class="leading-relaxed">
+        Sound waves can easily wrap around corners—you can hear a friend shouting from around a corridor wall even when they are completely hidden from sight. But can you see them around that same corner without a mirror? No! This stark difference illustrates that visible light does not easily bend around macroscopic obstacles.
+    </p>
+    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+        <h4 class="font-bold text-cyan-300 text-sm mb-2">The Straight vs Bent Tube Investigation</h4>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-300">
+            <div class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/30">
+                <span class="font-bold text-emerald-400 block mb-1">Trial A: Straight Rigid Pipe</span>
+                When looking through a straight cylindrical tube or rolled paper pipe aimed at a glowing candle, light rays emitted by the flame travel down the unobstructed hollow interior directly into the eye. The flame is crisp and bright.
+            </div>
+            <div class="p-3 rounded-lg bg-rose-950/40 border border-rose-500/30">
+                <span class="font-bold text-rose-400 block mb-1">Trial B: Bent Flexible Pipe</span>
+                When the flexible rubber tube is bent into an angle (e.g. 45° or 90°), light rays entering the front opening strike the inner opaque wall of the tube and are absorbed or scattered. The observer sees only pitch blackness.
+            </div>
+        </div>
+    </div>
+    <div class="p-3 rounded-lg bg-slate-900/60 border border-slate-700/60 text-xs text-slate-300">
+        <strong class="text-amber-300">Everyday Manifestations of Straight Light:</strong>
+        <ul class="mt-1 space-y-1 list-disc list-inside">
+            <li>Searchlight and lighthouse beams piercing through dark night fog in razor-sharp cones.</li>
+            <li>Laser pointers projecting a tiny, razor-straight luminous dot across large auditoriums.</li>
+            <li>Dust motes illuminated along razor-sharp shafts of sunlight streaming through a roof ventilator into a dark room.</li>
+        </ul>
+    </div>
+</div>
+""",
+        "takeaways": [
+            "A candle flame is visible through a hollow tube only when the tube is perfectly straight.",
+            "Bending the tube blocks the light because light rays cannot navigate corners.",
+            "Shafts of sunlight streaming through dusty rooms provide visual proof of straight ray paths."
+        ],
+        "checkpoints": [
+            {
+                "id": "cp4_1",
+                "question": "Why is a candle flame visible through a straight rubber pipe but invisible through a bent rubber pipe?",
+                "options": [
+                    "Bending the pipe changes the temperature of the air inside",
+                    "Light travels only in straight lines and cannot bend around the curve of the pipe",
+                    "The candle flame gets scared and blows out when the pipe bends",
+                    "The rubber absorbs all oxygen gas inside the tube"
+                ],
+                "correct": 1,
+                "explanation": "Light rays travel in straight lines. When the tube is bent, the rays hit the inner opaque rubber wall and are blocked from reaching the observer's eye."
+            },
+            {
+                "id": "cp4_2",
+                "question": "Which of the following everyday phenomena directly demonstrates that light travels in straight lines?",
+                "options": [
+                    "A bell ringing from behind a closed door",
+                    "Water boiling in a kettle",
+                    "A narrow laser beam casting a sharp pinpoint dot across a room",
+                    "Sugar dissolving in warm milk"
+                ],
+                "correct": 2,
+                "explanation": "A laser beam travels along a razor-sharp, perfectly straight line without bending, illustrating rectilinear propagation."
+            }
+        ]
+    },
+
+    # Slide 5
+    {
+        "id": 5,
+        "slide_num": 5,
+        "title": "11.3 Material Classification: Transparent, Translucent & Opaque",
+        "subtitle": "How Light Photons Interact with Different Media",
+        "badge": "Material Science",
+        "summary": "Every physical substance interacts differently with incident light. Based on optical transmission, materials are grouped into three distinct categories: transparent (permits almost complete light transmission), translucent (allows partial, scattered transmission), and opaque (blocks light completely).",
+        "theory": """
+<div class="space-y-4 text-slate-200">
+    <p class="leading-relaxed">
+        When a beam of light strikes an object, three distinct physical phenomena can occur: the light may be <strong class="text-emerald-400">transmitted</strong> through the substance, <strong class="text-cyan-400">reflected</strong> from its surface, or <strong class="text-rose-400">absorbed</strong> and converted into heat. Based on their transmission behavior, materials are categorized into three universal classes:
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div class="p-3.5 rounded-xl bg-emerald-950/40 border border-emerald-500/30">
+            <span class="font-bold text-emerald-300 text-sm block mb-1">1. Transparent</span>
+            <p class="text-xs text-slate-300 mb-2">Allows light to pass through <strong class="text-emerald-300">almost completely</strong> without scattering.</p>
+            <ul class="text-xs text-slate-400 space-y-1">
+                <li>• Objects behind can be seen <strong class="text-slate-200">clearly and crisply</strong>.</li>
+                <li>• <strong class="text-slate-200">Examples:</strong> Clear window glass, clean water, air, clear cellophane sheet.</li>
+                <li>• Casts <strong class="text-slate-200">virtually zero shadow</strong>.</li>
+            </ul>
+        </div>
+        <div class="p-3.5 rounded-xl bg-cyan-950/40 border border-cyan-500/30">
+            <span class="font-bold text-cyan-300 text-sm block mb-1">2. Translucent</span>
+            <p class="text-xs text-slate-300 mb-2">Allows light to pass through <strong class="text-cyan-300">partially</strong> while scattering rays in random directions.</p>
+            <ul class="text-xs text-slate-400 space-y-1">
+                <li>• Objects behind appear <strong class="text-slate-200">blurred, hazy, or indistinct</strong>.</li>
+                <li>• <strong class="text-slate-200">Examples:</strong> Butter paper, frosted bathroom glass, tracing paper, thin muslin cloth.</li>
+                <li>• Casts a <strong class="text-slate-200">faint, light-gray shadow</strong>.</li>
+            </ul>
+        </div>
+        <div class="p-3.5 rounded-xl bg-rose-950/40 border border-rose-500/30">
+            <span class="font-bold text-rose-300 text-sm block mb-1">3. Opaque</span>
+            <p class="text-xs text-slate-300 mb-2">Does <strong class="text-rose-300">not allow light</strong> to pass through at all; absorbs or reflects 100% of rays.</p>
+            <ul class="text-xs text-slate-400 space-y-1">
+                <li>• Objects behind <strong class="text-slate-200">cannot be seen at all</strong>.</li>
+                <li>• <strong class="text-slate-200">Examples:</strong> Wood, cardboard, metal plate, brick wall, stone, thick book.</li>
+                <li>• Casts a <strong class="text-slate-200">dense, dark shadow</strong>.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="p-3 rounded-lg bg-slate-900/60 border border-slate-700/60 text-xs text-slate-300">
+        <strong class="text-amber-300">Simple Oiled Paper Activity:</strong> Take a sheet of ordinary white writing paper (opaque/semi-translucent). Smear a drop of cooking oil or butter on a spot. The oiled patch immediately turns <strong class="text-cyan-300 font-semibold">translucent</strong> because the oil fills microscopic air voids between cellulose paper fibers, allowing light to diffuse through!
+    </div>
+</div>
+""",
+        "takeaways": [
+            "Transparent materials transmit light completely, allowing clear vision with virtually no shadow.",
+            "Translucent materials scatter light partially, rendering objects behind blurred with faint shadows.",
+            "Opaque materials block all light transmission, creating deep, dark shadows."
+        ],
+        "checkpoints": [
+            {
+                "id": "cp5_1",
+                "question": "Which of the following materials allows light to pass through partially, making objects behind it look hazy and blurred?",
+                "options": [
+                    "Clear window glass (Transparent)",
+                    "Butter paper / Frosted glass (Translucent)",
+                    "Solid iron plate (Opaque)",
+                    "Brick wall (Opaque)"
+                ],
+                "correct": 1,
+                "explanation": "Butter paper and frosted glass are translucent; they transmit only a portion of the incident light and scatter the rays, resulting in a hazy, blurred image."
+            },
+            {
+                "id": "cp5_2",
+                "question": "What happens to a sheet of white paper when a drop of edible oil is rubbed onto it?",
+                "options": [
+                    "It becomes completely transparent like optical glass",
+                    "The oiled patch becomes translucent, allowing partial light to pass through",
+                    "It bursts spontaneously into flames",
+                    "It turns into pure metal iron"
+                ],
+                "correct": 1,
+                "explanation": "Oil fills the microscopic gaps between paper fibers, reducing light scattering and making the oiled region translucent."
+            }
+        ]
+    },
+
+    # Slide 6
+    {
+        "id": 6,
+        "slide_num": 6,
+        "title": "11.4 Shadow Formation: The Blocking of Light",
+        "subtitle": "The Three Essential Requisites for Casting Shadows",
+        "badge": "Core Principle",
+        "summary": "A shadow is a dark region formed on a surface behind an opaque or translucent object when it blocks the straight-line path of light. Exactly three conditions are mandatory to observe a shadow: an active light source, an obstructing object, and a screen or background surface.",
+        "theory": """
+<div class="space-y-4 text-slate-200">
+    <p class="leading-relaxed">
+        Why does a shadow follow you as you walk under bright sunlight on a summer afternoon? Because light travels along straight lines, it cannot bend around your body to fill the space directly behind you. This resulting unilluminated space is a <strong class="text-amber-400">shadow</strong>.
+    </p>
+    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+        <h4 class="font-bold text-cyan-300 text-sm mb-2">The Three Mandatory Requisites to Form a Shadow</h4>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-slate-300">
+            <div class="p-3 rounded-lg bg-amber-950/40 border border-amber-500/30">
+                <strong class="text-amber-300 block mb-1">1. A Source of Light</strong>
+                Without photons traveling through space (from the Sun, a torch, or a lamp), no contrast between light and dark regions can exist. In total darkness, there are zero shadows.
+            </div>
+            <div class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/30">
+                <strong class="text-emerald-300 block mb-1">2. An Obstructing Object</strong>
+                An opaque (or translucent) body that halts the rectilinear propagation of light rays, casting an optical void behind it. Perfectly transparent glass casts virtually no shadow.
+            </div>
+            <div class="p-3 rounded-lg bg-cyan-950/40 border border-cyan-500/30">
+                <strong class="text-cyan-300 block mb-1">3. A Screen / Surface</strong>
+                A physical background (the ground, a wall, cardboard screen) upon which the shadow falls. <strong class="text-slate-100">Without a screen, no shadow can ever be observed!</strong>
+            </div>
+        </div>
+    </div>
+    <div class="p-3 rounded-lg bg-slate-900/60 border border-slate-700/60 text-xs text-slate-300">
+        <strong class="text-rose-400">Thought Experiment (The Flying Bird Paradox):</strong> Why do we not see the shadow of a high-flying airplane or an eagle soaring thousands of feet in the sky, even though they are opaque and in full sunlight? Because the ground is too far away! The small shadow cone (umbra) tapers off and disappears in mid-air before reaching the ground screen.
+    </div>
+</div>
+""",
+        "takeaways": [
+            "A shadow is formed when an opaque or translucent object obstructs the path of light rays.",
+            "Three elements are mandatory: (1) a light source, (2) an obstructing obstacle, and (3) a screen or background.",
+            "Shadows reveal only the outline/silhouette of an object—they never reveal color, internal details, or texture."
+        ],
+        "checkpoints": [
+            {
+                "id": "cp6_1",
+                "question": "Which of the following is NOT an essential requirement to observe a shadow?",
+                "options": [
+                    "A source of light",
+                    "An opaque or translucent object",
+                    "A physical screen or surface (wall, floor)",
+                    "A loud musical sound"
+                ],
+                "correct": 3,
+                "explanation": "Sound plays no role in optics. Shadows require only a light source, an obstructing object, and a screen or surface to receive the shadow."
+            },
+            {
+                "id": "cp6_2",
+                "question": "If you hold an opaque wooden ball in mid-air in an empty open field at night with only a torch shining on it into the sky, will you see its shadow?",
+                "options": [
+                    "Yes, a shadow will float in the empty night sky",
+                    "No, because there is no screen or surface behind the ball for the shadow to form upon",
+                    "Yes, the shadow will turn bright yellow",
+                    "The ball will become invisible"
+                ],
+                "correct": 1,
+                "explanation": "A shadow is an absence of light falling upon a surface. Without a screen or background, light passes into empty space and no shadow can be seen."
+            }
+        ]
+    },
+
+    # Slide 7
+    {
+        "id": 7,
+        "slide_num": 7,
+        "title": "11.4 Shadow Anatomy: Umbra vs Penumbra",
+        "subtitle": "Point Light Sources vs Extended Light Sources",
+        "badge": "Shadow Structure",
+        "summary": "When light emanates from an extended source (such as a large frosted bulb or the Sun), the resulting shadow is not uniform. It consists of two distinct concentric regions: a dark central core called the umbra (where all light is blocked) and a lighter surrounding border called the penumbra.",
+        "theory": """
+<div class="space-y-4 text-slate-200">
+    <p class="leading-relaxed">
+        Have you ever noticed that shadows cast by a tiny smartphone LED flashlight are razor-sharp, while shadows cast by a large ceiling tube light have fuzzy, blurry borders? The structure of a shadow depends fundamentally on the physical size of the light source.
+    </p>
+    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+        <h4 class="font-bold text-amber-300 text-sm mb-2">The Two Regions of an Extended Shadow</h4>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-300">
+            <div class="p-3 rounded-lg bg-slate-950/80 border border-slate-700">
+                <span class="font-bold text-slate-100 text-sm block mb-1">1. The Umbra (Total Shadow)</span>
+                <p class="mb-1 leading-relaxed">From the Latin word <em>umbra</em> (meaning shade), this is the central zone of complete darkness behind the opaque obstacle.</p>
+                <ul class="space-y-1 list-disc list-inside text-slate-400">
+                    <li><strong class="text-slate-200">Zero Photons:</strong> Receives absolutely no light from any part of the extended source.</li>
+                    <li>Uniformly pitch-black and sharply defined.</li>
+                </ul>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-900/80 border border-slate-700">
+                <span class="font-bold text-slate-300 text-sm block mb-1">2. The Penumbra (Partial Shadow)</span>
+                <p class="mb-1 leading-relaxed">From the Latin <em>paene</em> (almost) + <em>umbra</em> (shadow), this is the surrounding outer zone of partial illumination.</p>
+                <ul class="space-y-1 list-disc list-inside text-slate-400">
+                    <li><strong class="text-slate-200">Partial Photons:</strong> Receives light from some portions of the extended source while other portions are blocked.</li>
+                    <li>Appears as a soft, hazy gray gradient ringing the umbra.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-xs text-slate-300">
+        <strong class="text-emerald-300">Point Source Rule:</strong> If the light source is a pure point (infinitely small pinhead of light), <strong class="text-slate-100">only an umbra is formed</strong> with razor-sharp edges and zero penumbra!
+    </div>
+</div>
+""",
+        "takeaways": [
+            "A point light source creates a razor-sharp shadow consisting entirely of an umbra.",
+            "An extended light source creates a shadow with a dark central umbra surrounded by a lighter penumbra.",
+            "In the umbra, all light is blocked; in the penumbra, light from part of the source reaches the screen."
+        ],
+        "checkpoints": [
+            {
+                "id": "cp7_1",
+                "question": "What is the completely dark central region of a shadow called that receives zero light from any part of the source?",
+                "options": [
+                    "Penumbra",
+                    "Umbra",
+                    "Focus",
+                    "Aperture"
+                ],
+                "correct": 1,
+                "explanation": "The umbra is the region of total shadow where all rays from the light source are completely obstructed by the opaque object."
+            },
+            {
+                "id": "cp7_2",
+                "question": "What type of shadow is cast on a screen when a tiny pinpoint light source is used?",
+                "options": [
+                    "A fuzzy shadow with only a penumbra and no umbra",
+                    "A sharp shadow with only an umbra and zero penumbra",
+                    "A bright rainbow ring",
+                    "No shadow at all"
+                ],
+                "correct": 1,
+                "explanation": "A point light source casts a clean, sharp-edged shadow consisting strictly of an umbra, because there are no peripheral source points to create a penumbra."
+            }
+        ]
+    },
+
+    # Slide 8
+    {
+        "id": 8,
+        "slide_num": 8,
+        "title": "11.4 Shadow Geometry: Distance, Angle & Silhouettes",
+        "subtitle": "How Changing Positions Alters Shadow Size & Geometric Shape",
+        "badge": "Geometric Optics",
+        "summary": "Shadow dimensions and shapes are dynamically variable. Moving an object closer to the light source expands the divergent shadow cone, enlarging the shadow on the screen. Furthermore, a single 3D object can project radically different 2D shadow silhouettes depending on its orientation.",
+        "theory": """
+<div class="space-y-4 text-slate-200">
+    <p class="leading-relaxed">
+        Does a shadow always replicate the exact shape of an object? Not necessarily! Because a shadow is a 2-dimensional projection of a 3-dimensional solid, shadows can mislead or deceive our perception.
+    </p>
+    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+        <h4 class="font-bold text-cyan-300 text-sm mb-2">The Geometric Laws of Shadow Sizing</h4>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-300">
+            <div class="p-3 rounded-lg bg-slate-950/80 border border-slate-700">
+                <span class="font-bold text-amber-300 block mb-1">1. Distance to Light Source</span>
+                <ul class="space-y-1 list-disc list-inside">
+                    <li>Moving the opaque object <strong class="text-slate-100">closer to the light source</strong> intercepts a broader angle of rays, casting a <strong class="text-amber-400">larger shadow</strong> on the screen.</li>
+                    <li>Moving the object <strong class="text-slate-100">farther from the light</strong> casts a <strong class="text-emerald-400">smaller shadow</strong>.</li>
+                </ul>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-950/80 border border-slate-700">
+                <span class="font-bold text-cyan-300 block mb-1">2. Distance to Screen</span>
+                <ul class="space-y-1 list-disc list-inside">
+                    <li>Moving the screen <strong class="text-slate-100">farther away</strong> allows divergent rays to spread wider, producing a <strong class="text-amber-400">larger, softer shadow</strong>.</li>
+                    <li>Moving the screen <strong class="text-slate-100">closer to the object</strong> yields a <strong class="text-emerald-400">smaller, sharper shadow</strong>.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-xs text-slate-300">
+        <strong class="text-emerald-300">The Cylinder Paradox:</strong> Hold a circular coin or a solid cylinder in front of a flashlight:
+        <ul class="mt-1 space-y-1 list-disc list-inside">
+            <li>When its flat circular face faces the light, it casts a <strong class="text-slate-100">perfect circular shadow</strong>.</li>
+            <li>When rotated 90° so its rectangular curved side faces the light, it casts a <strong class="text-slate-100">rectangular shadow</strong>!</li>
+        </ul>
+        A shadow reveals only the 2D cross-sectional silhouette perpendicular to incoming rays, not the complete 3D object.
+    </div>
+</div>
+""",
+        "takeaways": [
+            "Moving an object closer to the light source enlarges its shadow on the screen.",
+            "Moving the screen farther from the object increases the shadow size.",
+            "A 3D object (like a cylinder) can cast different shadow shapes (circle vs rectangle) depending on its orientation."
+        ],
+        "checkpoints": [
+            {
+                "id": "cp8_1",
+                "question": "What happens to the size of a shadow on a wall when you move an opaque ball closer to the torchlight?",
+                "options": [
+                    "The shadow becomes smaller",
+                    "The shadow becomes larger",
+                    "The shadow disappears completely",
+                    "The shadow turns into bright sunlight"
+                ],
+                "correct": 1,
+                "explanation": "Bringing the object closer to the source intercepts light rays earlier in their divergent cone, projecting an enlarged shadow on the screen behind."
+            },
+            {
+                "id": "cp8_2",
+                "question": "Can a solid cylindrical can cast both a circular shadow and a rectangular shadow?",
+                "options": [
+                    "No, shadows never change shape",
+                    "Yes, circular when illuminated from its flat base, and rectangular when illuminated from its curved side",
+                    "Only if the can is melted into liquid",
+                    "Only at midnight under a full moon"
+                ],
+                "correct": 1,
+                "explanation": "Because a cylinder has circular ends and a rectangular profile from the side, rotating it relative to the light beam produces circular or rectangular silhouettes."
+            }
+        ]
+    },
+
+    # Slide 9
+    {
+        "id": 9,
+        "slide_num": 9,
+        "title": "11.4 Cosmic Shadows: Solar and Lunar Eclipses",
+        "subtitle": "When Celestial Spheres Cast Colossal Cosmic Umbras",
+        "badge": "Cosmic Optics",
+        "summary": "Eclipses are spectacular natural demonstrations of rectilinear propagation and shadow formation on an astronomical scale. A solar eclipse occurs when the Moon passes between the Sun and Earth, casting its shadow on Earth; a lunar eclipse occurs when Earth blocks sunlight from reaching the Moon.",
+        "theory": """
+<div class="space-y-4 text-slate-200">
+    <p class="leading-relaxed">
+        In antiquity, eclipses were feared as supernatural portents—dragons swallowing the Sun or demons poisoning the Moon. Science reveals that eclipses are simply <strong class="text-amber-400">colossal shadows cast across outer space</strong> according to the laws of rectilinear optics!
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="p-3.5 rounded-xl bg-amber-950/40 border border-amber-500/30">
+            <span class="font-bold text-amber-300 text-sm block mb-1">1. Solar Eclipse (Sun - Moon - Earth)</span>
+            <p class="text-xs text-slate-300 mb-2">Occurs exclusively during a <strong class="text-amber-200">New Moon</strong> when the Moon passes directly between the Sun and Earth.</p>
+            <ul class="text-xs text-slate-400 space-y-1">
+                <li>• <strong class="text-slate-200">Light Source:</strong> The Sun (extended source).</li>
+                <li>• <strong class="text-slate-200">Opaque Object:</strong> The Moon.</li>
+                <li>• <strong class="text-slate-200">Screen:</strong> Earth's surface!</li>
+                <li>• Observers in the Moon's narrow central <strong class="text-slate-200">umbra</strong> (~150 km wide) witness a breathtaking <strong class="text-amber-300">Total Solar Eclipse</strong> (day turns to night). Those in the penumbra see a Partial Solar Eclipse.</li>
+            </ul>
+        </div>
+        <div class="p-3.5 rounded-xl bg-cyan-950/40 border border-cyan-500/30">
+            <span class="font-bold text-cyan-300 text-sm block mb-1">2. Lunar Eclipse (Sun - Earth - Moon)</span>
+            <p class="text-xs text-slate-300 mb-2">Occurs exclusively during a <strong class="text-cyan-200">Full Moon</strong> when Earth passes directly between the Sun and the Moon.</p>
+            <ul class="text-xs text-slate-400 space-y-1">
+                <li>• <strong class="text-slate-200">Light Source:</strong> The Sun.</li>
+                <li>• <strong class="text-slate-200">Opaque Object:</strong> Planet Earth.</li>
+                <li>• <strong class="text-slate-200">Screen:</strong> The Moon's surface!</li>
+                <li>• Earth casts a massive shadow cone into space. When the Moon plunges into Earth's umbra, it glows eerie copper-red ('Blood Moon') due to sunlight refracted through Earth's atmosphere.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="p-3 rounded-lg bg-slate-900/60 border border-slate-700/60 text-xs text-slate-300">
+        <strong class="text-amber-300">Aryabhata's Triumph:</strong> In 499 CE, Aryabhata calculated eclipse timings to astonishing accuracy using geometry, explaining that eclipses are not mythological demons, but simple shadows cast by Earth and Moon!
+    </div>
+</div>
+""",
+        "takeaways": [
+            "Eclipses are celestial shadows resulting from the rectilinear propagation of sunlight.",
+            "In a solar eclipse, the Moon passes between the Sun and Earth, casting its shadow on Earth (New Moon).",
+            "In a lunar eclipse, Earth passes between the Sun and the Moon, casting Earth's shadow on the Moon (Full Moon)."
+        ],
+        "checkpoints": [
+            {
+                "id": "cp9_1",
+                "question": "What is the correct alignment of celestial bodies during a Solar Eclipse?",
+                "options": [
+                    "Sun — Earth — Moon",
+                    "Sun — Moon — Earth",
+                    "Earth — Sun — Moon",
+                    "Moon — Earth — Sun"
+                ],
+                "correct": 1,
+                "explanation": "During a solar eclipse, the Moon moves directly between the Sun and Earth, casting its shadow onto the surface of Earth."
+            },
+            {
+                "id": "cp9_2",
+                "question": "During which lunar phase can a Lunar Eclipse exclusively occur?",
+                "options": [
+                    "New Moon",
+                    "First Quarter Moon",
+                    "Full Moon",
+                    "Crescent Moon"
+                ],
+                "correct": 2,
+                "explanation": "A lunar eclipse can occur only at Full Moon, when Earth is positioned directly between the Sun and the Moon."
+            }
+        ]
+    },
+
+    # Slide 10
+    {
+        "id": 10,
+        "slide_num": 10,
+        "title": "11.5 Reflection of Light: The Bouncing of Photons",
+        "subtitle": "Specular Reflection, Normal Line & The Law: ∠i = ∠r",
+        "badge": "Core Law of Optics",
+        "summary": "When light rays strike a polished, shiny surface (such as a flat plane mirror or still water), they bounce back into the same medium. This change in the direction of light is called reflection, governed by the universal law that the angle of incidence equals the angle of reflection (∠i = ∠r).",
+        "theory": """
+<div class="space-y-4 text-slate-200">
+    <p class="leading-relaxed">
+        Throw a rubber tennis ball straight against a smooth concrete wall; it bounces straight back. Throw it at an angle of 30°; it rebounds away at that exact same angle of 30°. Light behaves with identical mathematical precision! The bouncing back of light from a polished surface is termed <strong class="text-emerald-400">reflection</strong>.
+    </p>
+    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+        <h4 class="font-bold text-amber-300 text-sm mb-2">The Anatomical Vocabulary of Reflection</h4>
+        <div class="space-y-2 text-xs text-slate-300">
+            <p>• <strong class="text-slate-100">Incident Ray:</strong> The ray of light that approaches and strikes the reflecting mirror surface.</p>
+            <p>• <strong class="text-slate-100">Point of Incidence (O):</strong> The exact point on the mirror where the incident ray strikes.</p>
+            <p>• <strong class="text-slate-100">Normal (N):</strong> An imaginary reference line drawn perpendicular (at a right angle of 90°) to the mirror surface at the point of incidence.</p>
+            <p>• <strong class="text-slate-100">Reflected Ray:</strong> The ray of light that bounces off the mirror away from the point of incidence.</p>
+            <p>• <strong class="text-slate-100">Angle of Incidence (∠i):</strong> The angle between the incident ray and the normal.</p>
+            <p>• <strong class="text-slate-100">Angle of Reflection (∠r):</strong> The angle between the reflected ray and the normal.</p>
+        </div>
+    </div>
+    <div class="p-4 rounded-xl bg-emerald-950/50 border border-emerald-500/40 text-center">
+        <span class="text-xs uppercase font-bold text-emerald-400 block mb-1">The First Law of Reflection</span>
+        <div class="text-lg sm:text-xl font-mono font-black text-amber-300">
+            Angle of Incidence = Angle of Reflection (∠i = ∠r)
+        </div>
+        <p class="text-xs text-slate-300 mt-1">If light strikes a mirror at an angle of 45° to the normal, it reflects away at exactly 45°.</p>
+    </div>
+</div>
+""",
+        "takeaways": [
+            "Reflection is the bouncing back of light rays from a boundary surface back into the originating medium.",
+            "The normal is an imaginary line drawn perpendicular (90°) to the reflecting surface at the point of incidence.",
+            "Law of Reflection: The angle of incidence is always strictly equal to the angle of reflection (∠i = ∠r)."
+        ],
+        "checkpoints": [
+            {
+                "id": "cp10_1",
+                "question": "If a beam of light strikes a flat plane mirror with an angle of incidence of 35° relative to the normal, what is its angle of reflection?",
+                "options": [
+                    "0°",
+                    "35°",
+                    "55°",
+                    "70°"
+                ],
+                "correct": 1,
+                "explanation": "According to the Law of Reflection, the angle of reflection always equals the angle of incidence: ∠r = ∠i = 35°."
+            },
+            {
+                "id": "cp10_2",
+                "question": "If a light ray strikes a mirror perpendicular to the surface (along the normal line, angle of incidence = 0°), how does it reflect?",
+                "options": [
+                    "It bends at 90° across the mirror glass",
+                    "It bounces straight back along its original path (∠r = 0°)",
+                    "It passes straight through the mirror",
+                    "It turns into green smoke"
+                ],
+                "correct": 1,
+                "explanation": "When light strikes along the normal, ∠i = 0°. By the law of reflection, ∠r = 0°, so the ray retraces its exact path backwards."
+            }
+        ]
+    },
+
+    # Slide 11
+    {
+        "id": 11,
+        "slide_num": 11,
+        "title": "11.6 Images Formed in a Plane Mirror",
+        "subtitle": "Virtual, Erect, Same Size & Equal Distance Characteristics",
+        "badge": "Mirror Optics",
+        "summary": "When you look at yourself in a bathroom plane mirror, you see an image that appears to be standing behind the glass. Plane mirror images have four defining characteristics: they are virtual (cannot be caught on a screen), erect (upright), identical in size to the object, and located as far behind the mirror as the object is in front.",
+        "theory": """
+<div class="space-y-4 text-slate-200">
+    <p class="leading-relaxed">
+        A <strong class="text-cyan-400">plane mirror</strong> is a flat reflecting surface constructed by coating the back of a smooth sheet of glass with a microscopic reflective layer of silver or aluminum, protected by orange-red lead paint.
+    </p>
+    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+        <h4 class="font-bold text-amber-300 text-sm mb-2">The Four Immutable Hallmarks of Plane Mirror Images</h4>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-300">
+            <div class="p-3 rounded-lg bg-slate-950/80 border border-slate-700">
+                <span class="font-bold text-emerald-300 block mb-1">1. Virtual Image (Not Real)</span>
+                Light rays do not actually pass behind the mirror; they only appear to diverge from a point behind the glass. Therefore, a plane mirror image <strong class="text-rose-400">cannot be captured on a physical screen</strong> placed behind the mirror.
+            </div>
+            <div class="p-3 rounded-lg bg-slate-950/80 border border-slate-700">
+                <span class="font-bold text-cyan-300 block mb-1">2. Erect (Upright)</span>
+                The image maintains the same vertical orientation as the object—the top of your head is at the top of the image, and your feet are at the bottom. It is never inverted upside-down.
+            </div>
+            <div class="p-3 rounded-lg bg-slate-950/80 border border-slate-700">
+                <span class="font-bold text-amber-300 block mb-1">3. Identical Size (Magnification = 1)</span>
+                The height of the image is strictly equal to the height of the object: <span class="font-mono text-emerald-300 font-bold">h_i = h_o</span>. A plane mirror neither magnifies nor shrinks your appearance.
+            </div>
+            <div class="p-3 rounded-lg bg-slate-950/80 border border-slate-700">
+                <span class="font-bold text-purple-300 block mb-1">4. Equal Distance (d_i = d_o)</span>
+                The image appears to be located <strong class="text-slate-100">as far behind the mirror as the object is in front of it</strong>. If you stand 1.5 metres in front of a mirror, your reflection is located 1.5 metres behind the glass (total separation = 3 metres!).
+            </div>
+        </div>
+    </div>
+</div>
+""",
+        "takeaways": [
+            "A plane mirror forms an image that is virtual (cannot be caught on a screen) and erect (upright).",
+            "The image size is strictly identical to the object size (magnification = 1).",
+            "The image distance behind the mirror equals the object distance in front of the mirror (d_i = d_o)."
+        ],
+        "checkpoints": [
+            {
+                "id": "cp11_1",
+                "question": "If you stand exactly 2 metres in front of a flat plane mirror, what is the distance between you and your reflected image?",
+                "options": [
+                    "2 metres",
+                    "4 metres",
+                    "1 metre",
+                    "Zero metres"
+                ],
+                "correct": 1,
+                "explanation": "The image is formed 2 metres behind the mirror. The total distance between the person (2 m in front) and the image (2 m behind) is 2 m + 2 m = 4 metres."
+            },
+            {
+                "id": "cp11_2",
+                "question": "Why is an image formed by a plane mirror called a 'virtual' image?",
+                "options": [
+                    "Because it exists inside a computer video game",
+                    "Because it cannot be focused or projected onto a physical screen",
+                    "Because it is always upside-down",
+                    "Because it is painted with invisible ink"
+                ],
+                "correct": 1,
+                "explanation": "A virtual image is formed where light rays only appear to diverge from behind the mirror; no real rays intersect there, so it cannot be cast onto a screen."
+            }
+        ]
+    },
+
+    # Slide 12
+    {
+        "id": 12,
+        "slide_num": 12,
+        "title": "11.6 Lateral Inversion: The Mirror Reversal Effect",
+        "subtitle": "Why Left Appears Right, and Why AMBULANCE is Spelled Backwards",
+        "badge": "Optical Illusion",
+        "summary": "When you view your reflection in a plane mirror and raise your right hand, your reflection raises its left hand! This intriguing left-right transposition is termed lateral inversion. It is the practical reason why the word 'AMBULANCE' is painted in inverted lettering on emergency response vehicles.",
+        "theory": """
+<div class="space-y-4 text-slate-200">
+    <p class="leading-relaxed">
+        Stand in front of a mirror and touch your right ear with your right hand. Which hand does your image appear to use? Your mirror reflection appears to touch its <strong class="text-amber-400">left ear with its left hand</strong>!
+    </p>
+    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+        <h4 class="font-bold text-cyan-300 text-sm mb-2">The Mechanics of Lateral Inversion</h4>
+        <div class="space-y-2 text-xs text-slate-300 leading-relaxed">
+            <p>• <strong class="text-slate-100">Definition:</strong> The phenomenon where the left side of an object appears as the right side in its mirror image, and the right side of the object appears on the left, is known as <strong class="text-emerald-400">lateral inversion</strong> (from Latin <em>latus</em> = side).</p>
+            <p>• <strong class="text-slate-100">Why does it occur?</strong> A plane mirror reverses the front-to-back axis (depth), not the up-down axis. Because light rays reflect straight back along the line of sight, the right side of your face projects directly opposite to the right side of the mirror space, which corresponds to the left hand of an observer facing you.</p>
+        </div>
+    </div>
+    <div class="p-4 rounded-xl bg-rose-950/40 border border-rose-500/30">
+        <div class="flex items-center gap-2 mb-1.5">
+            <span class="text-base">🚑</span>
+            <h4 class="font-bold text-rose-300 text-sm">Real-World Application: The AMBULANCE Inscription</h4>
+        </div>
+        <p class="text-xs text-slate-300 leading-relaxed mb-2">
+            Have you ever wondered why emergency ambulances have their front name painted strangely backwards:
+        </p>
+        <div class="text-center font-mono font-black text-lg sm:text-2xl text-rose-400 tracking-widest bg-slate-950/80 p-2.5 rounded-lg border border-slate-800">
+            ƎƆИA⅃UБMA
+        </div>
+        <p class="text-xs text-slate-300 leading-relaxed mt-2">
+            When a driver in a vehicle ahead glances into their rear-view plane mirror, the mirror's lateral inversion flips the backwards letters left-to-right, allowing the driver to instantly read <strong class="text-slate-100 font-bold">"AMBULANCE"</strong> correctly and immediately yield right-of-way!
+        </p>
+    </div>
+</div>
+""",
+        "takeaways": [
+            "Lateral inversion is the apparent left-to-right reversal of an object in a plane mirror.",
+            "Plane mirrors reverse depth (front-to-back), causing the reflection to swap bilateral symmetry.",
+            "Emergency ambulances print inverted front lettering so leading drivers can read it correctly in rear-view mirrors."
+        ],
+        "checkpoints": [
+            {
+                "id": "cp12_1",
+                "question": "What is the phenomenon called where your right hand appears as the left hand of your reflection in a plane mirror?",
+                "options": [
+                    "Vertical dispersion",
+                    "Lateral inversion",
+                    "Total internal reflection",
+                    "Atmospheric refraction"
+                ],
+                "correct": 1,
+                "explanation": "Lateral inversion is the optical effect in plane mirrors where the right side of an object corresponds to the left side of its virtual image."
+            },
+            {
+                "id": "cp12_2",
+                "question": "Why is the word 'AMBULANCE' painted in laterally inverted (backwards) letters on the front of emergency hospital vehicles?",
+                "options": [
+                    "To save paint during manufacturing",
+                    "So drivers looking in their rear-view mirrors see it laterally inverted back into normally readable text",
+                    "It is written in an ancient Latin secret code",
+                    "To prevent camera speed traps from photographing the vehicle"
+                ],
+                "correct": 1,
+                "explanation": "A vehicle rear-view mirror laterally inverts the backwards text, allowing drivers ahead to read 'AMBULANCE' correctly and quickly give way."
+            }
+        ]
+    },
+
+    # Slide 13
+    {
+        "id": 13,
+        "slide_num": 13,
+        "title": "11.7 Pinhole Camera: Inverted Real Projections",
+        "subtitle": "Camera Obscura: Image Inversion via Rectilinear Ray Crossover",
+        "badge": "Classical Optics",
+        "summary": "A pinhole camera is a lens-free optical device consisting of a light-tight box with a tiny pinhole on one side and a translucent screen on the other. Because light travels strictly in straight lines, rays from the top and bottom of an object cross at the pinhole, projecting an upside-down (inverted), real image.",
+        "theory": """
+<div class="space-y-4 text-slate-200">
+    <p class="leading-relaxed">
+        Can an optical camera form crisp, colorful pictures without using any glass lens whatsoever? Yes! The ancient <strong class="text-amber-400">pinhole camera</strong> (historically called the <em>camera obscura</em> or dark chamber) demonstrates the rectilinear propagation of light with stunning elegance.
+    </p>
+    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+        <h4 class="font-bold text-cyan-300 text-sm mb-2">Construction & Ray Crossover Mechanics</h4>
+        <div class="space-y-2 text-xs text-slate-300 leading-relaxed">
+            <p>1. <strong class="text-slate-100">Apparatus:</strong> Two sliding cardboard boxes nested inside each other. The outer box has a tiny pinhole (0.5 mm) pierced in its front center. The inner box has its back end replaced with a translucent <strong class="text-cyan-300">tracing paper / ground glass screen</strong>.</p>
+            <p>2. <strong class="text-slate-100">Ray Geometry:</strong> Consider a tall tree illuminated by the Sun:
+                <br>• Light rays from the <strong class="text-emerald-400">top of the tree</strong> travel along a straight path down through the pinhole, striking the <strong class="text-emerald-400">bottom of the translucent screen</strong>.
+                <br>• Light rays from the <strong class="text-rose-400">base of the tree</strong> travel straight up through the pinhole, striking the <strong class="text-rose-400">top of the screen</strong>.
+            </p>
+            <p>3. <strong class="text-slate-100">The Inversion Result:</strong> Because the straight rays cross at the tiny aperture, the image formed on the screen is strictly <strong class="text-amber-300 font-bold">upside-down (inverted)</strong>!</p>
+        </div>
+    </div>
+    <div class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-xs text-slate-300">
+        <strong class="text-emerald-300">Pinhole Image Characteristics:</strong>
+        <ul class="mt-1 space-y-1 list-disc list-inside">
+            <li><strong class="text-slate-100">Real Image:</strong> It is physically formed on a translucent screen.</li>
+            <li><strong class="text-slate-100">Inverted:</strong> Upside-down due to straight ray crossover.</li>
+            <li><strong class="text-slate-100">Diminished:</strong> Smaller than the distant object.</li>
+            <li><strong class="text-slate-100">True to Color:</strong> Shows the natural colors of the illuminated object.</li>
+        </ul>
+    </div>
+</div>
+""",
+        "takeaways": [
+            "A pinhole camera operates without any glass lenses, relying entirely on straight-line light travel.",
+            "Rays cross at the pinhole aperture, forming an inverted (upside-down) and real image on the screen.",
+            "Enlarging the pinhole makes the image brighter but blurry, because multiple overlapping images form."
+        ],
+        "checkpoints": [
+            {
+                "id": "cp13_1",
+                "question": "Why is the image formed by a pinhole camera always inverted (upside-down)?",
+                "options": [
+                    "The cardboard box flips over inside",
+                    "Rays from the top and bottom of the object cross each other while traveling straight through the pinhole",
+                    "Gravity pulls the light rays down to the floor",
+                    "The tracing paper contains a secret chemical mirror"
+                ],
+                "correct": 1,
+                "explanation": "Because light travels in straight lines, rays from the top of the object continue downward through the pinhole to the bottom of the screen, and vice versa, creating an inverted image."
+            },
+            {
+                "id": "cp13_2",
+                "question": "What happens to the image on a pinhole camera screen if you pierce a very large hole (e.g. 2 cm wide) instead of a tiny pinhole?",
+                "options": [
+                    "The image becomes infinitely sharp and microscopic",
+                    "The image becomes very bright but completely blurry and indistinct",
+                    "The image turns upside-down twice and becomes erect",
+                    "The box explodes into flames"
+                ],
+                "correct": 1,
+                "explanation": "A large aperture acts as thousands of adjacent pinholes, producing thousands of overlapping images that blur together into an indistinct, bright patch."
+            }
+        ]
+    },
+
+    # Slide 14
+    {
+        "id": 14,
+        "slide_num": 14,
+        "title": "11.7 Natural Pinhole Cameras: Dappled Canopy Sunlight",
+        "subtitle": "How Forest Leaf Gaps Project Solar Discs and Eclipse Crescents",
+        "badge": "Nature's Optics",
+        "summary": "Nature builds pinhole cameras all around us! When walking beneath a dense leafy banyan or mango tree on a sunny day, the round circular patches of sunlight dancing on the ground are not mere random gaps—they are circular pinhole images of the spherical Sun itself.",
+        "theory": """
+<div class="space-y-4 text-slate-200">
+    <p class="leading-relaxed">
+        Have you ever walked beneath a tall, dense leafy tree and noticed hundreds of overlapping <strong class="text-amber-400">circular patches of bright light</strong> dappling the shaded ground? You might assume that the irregular spaces between leaves are shaped like circles. In fact, the spaces between overlapping leaves are jagged, triangular, and irregular!
+    </p>
+    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+        <h4 class="font-bold text-cyan-300 text-sm mb-2">The Tree Canopy Pinhole Mechanism</h4>
+        <div class="space-y-2 text-xs text-slate-300 leading-relaxed">
+            <p>1. <strong class="text-slate-100">The Pinhole Apertures:</strong> The tiny irregular gaps between dense clusters of overlapping leaves act as thousands of natural pinholes.</p>
+            <p>2. <strong class="text-slate-100">The Object:</strong> The blazing celestial disc of the spherical Sun, situated 150 million kilometres away in space.</p>
+            <p>3. <strong class="text-slate-100">The Screen:</strong> The flat ground beneath the tree.</p>
+            <p>4. <strong class="text-slate-100">The Result:</strong> Regardless of whether a leaf gap is triangular, hexagonal, or jagged, it acts as a pinhole projector, casting a <strong class="text-emerald-300 font-bold">perfectly round circular image of the spherical Sun</strong> upon the ground!</p>
+        </div>
+    </div>
+    <div class="p-4 rounded-xl bg-amber-950/40 border border-amber-500/30">
+        <div class="flex items-center gap-2 mb-1.5">
+            <span class="text-base">🌘</span>
+            <h4 class="font-bold text-amber-300 text-sm">The Eclipse Transformation Proof</h4>
+        </div>
+        <p class="text-xs text-slate-300 leading-relaxed">
+            The definitive proof that these patches are solar pinhole images occurs during a <strong class="text-amber-400">partial solar eclipse</strong>. As the dark silhouette of the Moon covers a portion of the Sun, every single circular spot under the tree canopy transforms simultaneously into a <strong class="text-cyan-300 font-bold">sharp luminous crescent</strong>!
+        </p>
+    </div>
+</div>
+""",
+        "takeaways": [
+            "Irregular gaps between overlapping tree leaves act as natural pinholes.",
+            "Circular patches of sunlight on the ground beneath trees are real pinhole images of the Sun.",
+            "During a partial solar eclipse, the ground patches under trees transform into crescent-shaped images."
+        ],
+        "checkpoints": [
+            {
+                "id": "cp14_1",
+                "question": "Why are the patches of light under a dense leafy tree circular even when the gaps between leaves are irregular and triangular?",
+                "options": [
+                    "Tree leaves secrete a circular oil onto the ground",
+                    "The gaps act as natural pinholes, projecting circular images of the spherical Sun",
+                    "Earth's magnetic field bends all light into circles",
+                    "The ground naturally curves into round holes"
+                ],
+                "correct": 1,
+                "explanation": "The tiny leaf gaps act as pinhole cameras. The shape of a pinhole image is determined by the shape of the light source (the round Sun), not the shape of the hole."
+            },
+            {
+                "id": "cp14_2",
+                "question": "What happens to the circular patches of light under a tree during a partial solar eclipse?",
+                "options": [
+                    "They turn into bright squares",
+                    "They transform into crescent-shaped light patches matching the eclipsed Sun",
+                    "They disappear and turn into ice",
+                    "They begin spinning at 100 rpm"
+                ],
+                "correct": 1,
+                "explanation": "Because the patches are real images of the Sun, when the Sun becomes a crescent during an eclipse, all the pinhole images under the tree become crescents."
+            }
+        ]
+    },
+
+    # Slide 15
+    {
+        "id": 15,
+        "slide_num": 15,
+        "title": "11.8.1 Useful Optical Inventions: The Dual-Mirror Periscope",
+        "subtitle": "Bypassing Obstacles via Successive 90° Plane Mirror Reflections",
+        "badge": "Practical Engineering",
+        "summary": "A periscope is a Z-shaped tubular optical instrument that enables an observer to see over obstacles, around corners, or from submerged submarines. By mounting two parallel plane mirrors inclined at 45° to the light path, light undergoes two successive 90° reflections to reach the eye.",
+        "theory": """
+<div class="space-y-4 text-slate-200">
+    <p class="leading-relaxed">
+        How can a submarine crew submerged 20 metres underwater see enemy battleships sailing across the ocean surface without surfacing? How can soldiers in trench warfare observe enemy terrain without exposing their heads to gunfire? They employ a <strong class="text-cyan-400">periscope</strong> (from Greek <em>peri</em> = around, <em>skopein</em> = to look).
+    </p>
+    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+        <h4 class="font-bold text-amber-300 text-sm mb-2">Anatomy & Ray Geometry of a Simple Periscope</h4>
+        <div class="space-y-2 text-xs text-slate-300 leading-relaxed">
+            <p>1. <strong class="text-slate-100">The Z-Shaped Chassis:</strong> A long rectangular or cylindrical tube with two opposite right-angle bends forming a classic 'Z' shape.</p>
+            <p>2. <strong class="text-slate-100">Mirror Alignment:</strong> Two plane mirrors (M₁ at the top and M₂ at the bottom) are mounted exactly parallel to each other, both inclined at an angle of <strong class="text-emerald-400 font-mono font-bold">45°</strong> to the horizontal tube walls.</p>
+            <p>3. <strong class="text-slate-100">The First Reflection (Top):</strong> Horizontal light rays from a high object strike top mirror M₁ at an angle of incidence of 45°. By the law of reflection (∠i = ∠r = 45°), the rays turn <strong class="text-cyan-300">90° downwards</strong> through the vertical tube.</p>
+            <p>4. <strong class="text-slate-100">The Second Reflection (Bottom):</strong> The descending rays strike bottom mirror M₂ at 45° and turn <strong class="text-cyan-300">90° horizontally</strong> into the observer's eye!</p>
+            <p>5. <strong class="text-slate-100">Final Image:</strong> Virtual, erect, same size, and restoring normal lateral orientation (two lateral inversions cancel each other out: left flipped to right, then flipped back to left!).</p>
+        </div>
+    </div>
+</div>
+""",
+        "takeaways": [
+            "A periscope uses two plane mirrors mounted parallel at 45° angles inside a Z-shaped tube.",
+            "Light undergoes two successive 90° reflections, displacing the line of sight over walls or water surfaces.",
+            "Two successive reflections cancel out lateral inversion, yielding an erect, normal image."
+        ],
+        "checkpoints": [
+            {
+                "id": "cp15_1",
+                "question": "At what exact angle are the two plane mirrors inclined relative to the tube walls inside a standard periscope?",
+                "options": [
+                    "30°",
+                    "45°",
+                    "60°",
+                    "90°"
+                ],
+                "correct": 1,
+                "explanation": "Mirrors inside a periscope are fixed at 45° so that incoming horizontal light is turned 90° down the tube, and then turned 90° horizontally into the viewer's eye."
+            },
+            {
+                "id": "cp15_2",
+                "question": "Which vehicle famously uses periscopes to view surface shipping vessels while submerged deep underwater?",
+                "options": [
+                    "Helicopter",
+                    "Submarine",
+                    "Bulldozer",
+                    "Hovercraft"
+                ],
+                "correct": 1,
+                "explanation": "Submarines use periscopes to observe surface shipping and terrain while remaining safely submerged beneath the ocean surface."
+            }
+        ]
+    },
+
+    # Slide 16
+    {
+        "id": 16,
+        "slide_num": 16,
+        "title": "11.8.2 Optical Symmetry: The 60° Kaleidoscope & Heritage",
+        "subtitle": "Multiple Reflections, Hexagonal Mandalas & Ancient Indian Optics",
+        "badge": "Symmetry & History",
+        "summary": "A kaleidoscope uses three rectangular plane mirror strips inclined at 60° to form a hollow triangular prism. Loose colored beads placed between the mirrors undergo infinite recursive reflections, generating mesmerizing 6-fold radial symmetrical patterns. We also celebrate ancient optical heritage from Maharishi Kanada to Ibn al-Haytham.",
+        "theory": """
+<div class="space-y-4 text-slate-200">
+    <p class="leading-relaxed">
+        Invented in 1816 by Scottish physicist Sir David Brewster, the <strong class="text-emerald-400">kaleidoscope</strong> (from Greek <em>kalos</em> = beautiful, <em>eidos</em> = form, <em>skopein</em> = to see) turns simple fragments of colored glass into magnificent symmetric mandalas through multiple reflections.
+    </p>
+    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700/60">
+        <h4 class="font-bold text-cyan-300 text-sm mb-2">Physics of the 60° Multiple Reflection Prism</h4>
+        <div class="space-y-2 text-xs text-slate-300 leading-relaxed">
+            <p>• <strong class="text-slate-100">Construction:</strong> Three long rectangular strips of plane mirror of equal dimensions are joined along their edges to form an equilateral triangular prism with internal reflecting surfaces inclined at <strong class="text-amber-400 font-mono font-bold">60°</strong> to one another.</p>
+            <p>• <strong class="text-slate-100">Image Multiplication Formula:</strong> The number of images ($N$) formed by two mirrors inclined at angle θ (theta) is given by <span class="font-mono text-emerald-300 font-bold">N = (360° / θ) − 1</span>. At 60°, each pair produces (360 / 60) - 1 = 5 symmetrical images!</p>
+            <p>• <strong class="text-slate-100">6-Fold Radial Symmetry:</strong> Combined across all three mirrors, the reflections tile the visual field in infinite, repeating hexagonal symmetry. Shaking the tube repositions the loose glass beads, guaranteeing that <strong class="text-slate-100">no two patterns are ever identical</strong>!</p>
+        </div>
+    </div>
+    <div class="p-4 rounded-xl bg-amber-950/40 border border-amber-500/30">
+        <h4 class="font-bold text-amber-300 text-sm mb-2">Our Scientific Optical Heritage: Kanada & Ibn al-Haytham</h4>
+        <div class="space-y-1.5 text-xs text-slate-300">
+            <p>• <strong class="text-slate-100">Maharishi Kanada (6th Century BCE):</strong> In the Vaisheshika Sutras, Kanada proposed that light and heat are forms of <em class="text-amber-300">Tejas</em>—composed of microscopic, fast-moving corpuscular atoms traveling along straight paths.</p>
+            <p>• <strong class="text-slate-100">Ibn al-Haytham / Alhazen (965–1040 CE):</strong> Celebrated as the Father of Modern Optics, he proved empirically that vision occurs because light reflects off objects into the eye (overturning Greek emission myths) and mathematically systematized the pinhole camera and reflection laws.</p>
+        </div>
+    </div>
+</div>
+""",
+        "takeaways": [
+            "A kaleidoscope uses three plane mirror strips inclined at 60° in an equilateral triangular prism.",
+            "Multiple reflections generate infinite 6-fold radial symmetrical mandalas from loose colored glass.",
+            "Maharishi Kanada identified light as fast-moving Tejas particles; Ibn al-Haytham founded modern experimental optics."
+        ],
+        "checkpoints": [
+            {
+                "id": "cp16_1",
+                "question": "At what mutual angle are the three plane mirror strips inclined inside a standard triangular kaleidoscope?",
+                "options": [
+                    "45°",
+                    "60°",
+                    "90°",
+                    "180°"
+                ],
+                "correct": 1,
+                "explanation": "The three rectangular mirror strips form an equilateral triangle, meaning each pair meets at an internal angle of exactly 60° to generate hexagonal symmetry."
+            },
+            {
+                "id": "cp16_2",
+                "question": "Which historic natural philosopher wrote the 'Book of Optics' (Kitab al-Manazir), proving that vision occurs because light reflects into the eye?",
+                "options": [
+                    "Ibn al-Haytham (Alhazen)",
+                    "Alexander the Great",
+                    "Galileo Galilei",
+                    "Thomas Edison"
+                ],
+                "correct": 0,
+                "explanation": "Ibn al-Haytham (Alhazen, 965–1040 CE) revolutionized optics by proving through experiment that rays bounce from objects into our eyes, founding the modern science of vision."
+            }
+        ]
+    },
+
+    # Slide 17: Mastery Quiz 1
+    {
+        "id": 17,
+        "slide_num": 17,
+        "title": "Mastery Challenge 1: Light Sources, Rectilinear Rays & Materials",
+        "subtitle": "10 Conceptual & Experimental Questions with Step-by-Step Pop-up Solutions",
+        "badge": "Quiz Challenge 1",
+        "summary": "Put your understanding of luminous versus non-luminous objects, rectilinear propagation through straight vs bent tubes, cardboard pinholes, and material transparency to the test.",
+        "theory": "<div class='text-slate-300 text-sm'>Test your grasp of light sources, straight-line travel, and material interactions. Complete all 10 questions to achieve mastery!</div>",
+        "takeaways": [],
+        "checkpoints": [],
+        "quiz_questions": [
+            {
+                "id": "q17_1",
+                "question": "Which of the following objects is genuinely luminous (emits its own visible light)?",
+                "options": [
+                    "The Moon",
+                    "Planet Mars",
+                    "A burning candle flame",
+                    "A polished silver mirror"
+                ],
+                "correct": 2,
+                "solution": "A candle flame undergoes chemical combustion of wax vapor, emitting light photons independently. The Moon, Mars, and mirrors only reflect light from other sources."
+            },
+            {
+                "id": "q17_2",
+                "question": "What is the speed of light in a vacuum or air?",
+                "options": [
+                    "330 m/s",
+                    "3 × 10⁸ m/s (300,000 km/s)",
+                    "1,500 km/h",
+                    "100 m/s"
+                ],
+                "correct": 1,
+                "solution": "The speed of light in vacuum is approximately c = 3 × 10⁸ m/s (300,000 kilometres per second), the fastest speed in the universe."
+            },
+            {
+                "id": "q17_3",
+                "question": "Why can an observer see a candle flame through a straight pipe but not through a pipe bent at 90°?",
+                "options": [
+                    "The bent pipe freezes the light rays into solid ice",
+                    "Light travels in straight lines (rectilinear propagation) and cannot curve around corners",
+                    "The candle flame automatically turns off when the pipe is bent",
+                    "The observer's eyes stop working when looking through rubber"
+                ],
+                "correct": 1,
+                "solution": "Light rays travel strictly along straight paths in a homogeneous medium. When the pipe is bent, the straight-line rays strike the opaque tube wall and are blocked."
+            },
+            {
+                "id": "q17_4",
+                "question": "Which category of materials permits light to pass through almost completely, allowing objects behind to be viewed with crystal clarity?",
+                "options": [
+                    "Transparent",
+                    "Translucent",
+                    "Opaque",
+                    "Bioluminescent"
+                ],
+                "correct": 0,
+                "solution": "Transparent materials (such as clean air, optical glass, and pure water) transmit light rays without significant absorption or scattering."
+            },
+            {
+                "id": "q17_5",
+                "question": "Which of the following is an example of a translucent material?",
+                "options": [
+                    "Clear window glass",
+                    "Frosted bathroom window / Butter paper",
+                    "Solid steel sheet",
+                    "Brick wall"
+                ],
+                "correct": 1,
+                "solution": "Frosted glass and butter paper scatter light rays diffusely as they pass through, rendering objects behind blurred and indistinct (translucent)."
+            },
+            {
+                "id": "q17_6",
+                "question": "What happens when light strikes an opaque object like a wooden block?",
+                "options": [
+                    "100% of the light passes through without disturbance",
+                    "Light is completely blocked (absorbed or reflected), casting a dark shadow behind it",
+                    "The block turns into optical glass",
+                    "The light turns into water"
+                ],
+                "correct": 1,
+                "solution": "Opaque materials cannot transmit visible light. They absorb and reflect all incident photons, casting a dense shadow in the unilluminated space behind."
+            },
+            {
+                "id": "q17_7",
+                "question": "In the three-cardboard pinhole experiment, what happens if the middle cardboard B is shifted slightly sideways?",
+                "options": [
+                    "The candle flame appears doubled",
+                    "The light spot on the screen disappears because the collinear straight-line path is broken",
+                    "The candle flame changes from yellow to bright green",
+                    "The cardboard begins floating in mid-air"
+                ],
+                "correct": 1,
+                "solution": "Shifting cardboard B breaks the collinearity of the three pinholes. Because light travels in straight lines, rays strike the opaque cardboard B and are obstructed."
+            },
+            {
+                "id": "q17_8",
+                "question": "How did ancient astronomer Aryabhata explain the luminosity of the Moon in 499 CE?",
+                "options": [
+                    "The Moon produces light by burning underground oil fields",
+                    "The Moon is a dark spherical body made visible by reflecting sunlight striking its surface",
+                    "The Moon is a giant electric lightbulb powered by space winds",
+                    "The Moon absorbs starlight during the day and emits it at night"
+                ],
+                "correct": 1,
+                "solution": "Aryabhata correctly declared that the Moon and planets are naturally non-luminous spheres illuminated on one half by the Sun and made visible by reflection."
+            },
+            {
+                "id": "q17_9",
+                "question": "Why does rubbing a few drops of cooking oil onto ordinary white paper make it translucent?",
+                "options": [
+                    "Oil dissolves the paper into liquid water",
+                    "Oil fills microscopic air voids between cellulose fibers, matching refractive index and allowing partial light transmission",
+                    "Oil produces electricity that generates photons",
+                    "The paper turns into pure gold"
+                ],
+                "correct": 1,
+                "solution": "Cooking oil fills the porous air gaps between cellulose fibers in paper, reducing internal surface scattering and allowing light to pass through diffusely."
+            },
+            {
+                "id": "q17_10",
+                "question": "Which of the following organisms produces living bioluminescent light through an internal biochemical reaction?",
+                "options": [
+                    "Garden snail",
+                    "Firefly (Jugnu)",
+                    "House spider",
+                    "Desert chameleon"
+                ],
+                "correct": 1,
+                "solution": "Fireflies synthesize light inside specialized photocyte cells using luciferin, ATP, and oxygen catalyzed by luciferase, creating efficient cold light."
+            }
+        ]
+    },
+
+    # Slide 18: Mastery Quiz 2
+    {
+        "id": 18,
+        "slide_num": 18,
+        "title": "Mastery Challenge 2: Shadow Formation, Umbra-Penumbra & Eclipses",
+        "subtitle": "10 Inquiries on Shadow Optics, Geometric Scaling & Cosmic Shadows",
+        "badge": "Quiz Challenge 2",
+        "summary": "Evaluate your understanding of the 3 requirements for shadow formation, point vs extended source shadow anatomy, distance scaling laws, and solar/lunar eclipse alignments.",
+        "theory": "<div class='text-slate-300 text-sm'>Test your grasp of shadows, umbra and penumbra zones, and celestial eclipses. Solve all 10 questions to continue!</div>",
+        "takeaways": [],
+        "checkpoints": [],
+        "quiz_questions": [
+            {
+                "id": "q18_1",
+                "question": "What three components are strictly mandatory to observe a shadow?",
+                "options": [
+                    "Light source, opaque object, and a physical screen or surface",
+                    "Light source, glass prism, and loud music",
+                    "Water, mirror, and telescope",
+                    "Magnet, iron nail, and paper"
+                ],
+                "correct": 0,
+                "solution": "To observe a shadow, there must be a light source to emit photons, an obstacle to block them, and a screen/surface upon which the dark unilluminated silhouette falls."
+            },
+            {
+                "id": "q18_2",
+                "question": "What is the completely dark central region of a shadow formed by an extended light source called?",
+                "options": [
+                    "Penumbra",
+                    "Umbra",
+                    "Antumbra",
+                    "Corona"
+                ],
+                "correct": 1,
+                "solution": "The umbra is the central zone of total darkness where all rays from the extended light source are blocked by the opaque object."
+            },
+            {
+                "id": "q18_3",
+                "question": "Why does a bird flying very high in the sky not cast a visible shadow on the ground on a sunny day?",
+                "options": [
+                    "Birds become transparent when they fly high",
+                    "The bird's umbra shadow cone tapers off and ends in mid-air before reaching the distant ground",
+                    "Sunlight travels around birds because feathers attract gravity",
+                    "Birds fly faster than the speed of light"
+                ],
+                "correct": 1,
+                "solution": "Because the Sun is an extended source, the shadow cone (umbra) tapers down with distance. For high-flying birds, the umbra ends in mid-air, leaving no dark spot on the ground."
+            },
+            {
+                "id": "q18_4",
+                "question": "What happens to the size of a shadow on a wall when you move the opaque object closer to the torchlight?",
+                "options": [
+                    "The shadow shrinks and disappears",
+                    "The shadow enlarges on the wall",
+                    "The shadow turns into bright white light",
+                    "The shadow turns upside down"
+                ],
+                "correct": 1,
+                "solution": "Moving the object closer to the source intercepts light rays earlier in their divergent cone, spreading the obstructed shadow over a larger area on the wall."
+            },
+            {
+                "id": "q18_5",
+                "question": "What is the celestial alignment during a Total Solar Eclipse?",
+                "options": [
+                    "Sun — Earth — Moon",
+                    "Sun — Moon — Earth",
+                    "Moon — Sun — Earth",
+                    "Earth — Sun — Moon"
+                ],
+                "correct": 1,
+                "solution": "In a solar eclipse, the Moon moves between the Sun and Earth, casting its small umbra shadow onto Earth's surface during a New Moon."
+            },
+            {
+                "id": "q18_6",
+                "question": "During which celestial alignment and lunar phase does a Lunar Eclipse take place?",
+                "options": [
+                    "Sun — Earth — Moon during a Full Moon",
+                    "Sun — Moon — Earth during a New Moon",
+                    "Earth — Sun — Moon during a Crescent Moon",
+                    "Moon — Earth — Sun during First Quarter"
+                ],
+                "correct": 0,
+                "solution": "A lunar eclipse occurs during a Full Moon when Earth passes directly between the Sun and Moon, casting Earth's shadow across the lunar surface."
+            },
+            {
+                "id": "q18_7",
+                "question": "Does a shadow convey the true color of the clothing a person is wearing?",
+                "options": [
+                    "Yes, red clothes cast red shadows and green clothes cast green shadows",
+                    "No, shadows are dark silhouettes showing only the outline of blocked light",
+                    "Only under neon streetlights",
+                    "Yes, but only in photographs"
+                ],
+                "correct": 1,
+                "solution": "A shadow is merely an absence of light falling on a surface. It carries no information about the color, surface texture, or internal features of the object."
+            },
+            {
+                "id": "q18_8",
+                "question": "What kind of shadow is cast when a tiny pinpoint light source illuminates an opaque sphere?",
+                "options": [
+                    "A shadow with a fuzzy penumbra and no umbra",
+                    "A razor-sharp shadow consisting entirely of an umbra with zero penumbra",
+                    "A circular rainbow pattern",
+                    "No shadow is cast by point sources"
+                ],
+                "correct": 1,
+                "solution": "A point source emits rays from a single coordinate, producing clean, sharp geometric shadow boundaries with an umbra and zero penumbra."
+            },
+            {
+                "id": "q18_9",
+                "question": "How can a single solid cylindrical can cast both a circular shadow and a rectangular shadow?",
+                "options": [
+                    "By changing the temperature of the room",
+                    "By orienting its flat circular face toward the light, or rotating it 90° so its rectangular profile faces the light",
+                    "By painting one side white and the other black",
+                    "By soaking the can in vinegar"
+                ],
+                "correct": 1,
+                "solution": "A shadow is a 2D cross-sectional silhouette. A cylinder presents a circle when viewed along its axis and a rectangle when viewed from the side."
+            },
+            {
+                "id": "q18_10",
+                "question": "Why does the Moon appear eerie reddish-copper ('Blood Moon') during the totality of a lunar eclipse rather than pitch black?",
+                "options": [
+                    "The Moon's volcanic rocks begin glowing red hot",
+                    "Sunlight passing through Earth's atmosphere is refracted and scattered, filtering out blue and bending red rays into Earth's shadow",
+                    "Mars reflects red dust onto the Moon",
+                    "The Sun turns red during eclipses"
+                ],
+                "correct": 1,
+                "solution": "Earth's ring of atmosphere scatters short blue wavelengths (Rayleigh scattering) and refracts long red wavelengths into the umbra cone, illuminating the Moon in copper-red."
+            }
+        ]
+    },
+
+    # Slide 19: Mastery Quiz 3
+    {
+        "id": 19,
+        "slide_num": 19,
+        "title": "Mastery Challenge 3: Reflection Laws, Plane Mirrors & Lateral Inversion",
+        "subtitle": "10 Precision Problems on Angles of Reflection & Virtual Image Properties",
+        "badge": "Quiz Challenge 3",
+        "summary": "Demonstrate your mastery of the Law of Reflection (∠i = ∠r), normal line geometry, virtual vs real images, object-image distance relationships, and lateral inversion applications.",
+        "theory": "<div class='text-slate-300 text-sm'>Test your grasp of reflection laws, plane mirror image formation, and lateral inversion. Complete all 10 questions to continue!</div>",
+        "takeaways": [],
+        "checkpoints": [],
+        "quiz_questions": [
+            {
+                "id": "q19_1",
+                "question": "According to the Law of Reflection, what is the exact relationship between the angle of incidence (∠i) and the angle of reflection (∠r)?",
+                "options": [
+                    "∠i + ∠r = 90°",
+                    "∠i = ∠r",
+                    "∠i = 2 × ∠r",
+                    "∠r = ∠i / 2"
+                ],
+                "correct": 1,
+                "solution": "The fundamental law of reflection states that the angle of incidence is always strictly equal to the angle of reflection: ∠i = ∠r."
+            },
+            {
+                "id": "q19_2",
+                "question": "If an incident ray makes an angle of 30° with the surface of a plane mirror, what is its angle of reflection?",
+                "options": [
+                    "30°",
+                    "60°",
+                    "90°",
+                    "15°"
+                ],
+                "correct": 1,
+                "solution": "The normal is perpendicular (90°) to the surface. Angle of incidence ∠i = 90° − 30° = 60°. Therefore, angle of reflection ∠r = ∠i = 60°."
+            },
+            {
+                "id": "q19_3",
+                "question": "Which of the following is NOT a property of an image formed by a flat plane mirror?",
+                "options": [
+                    "It is virtual and cannot be captured on a screen",
+                    "It is inverted upside-down with your head at the bottom",
+                    "It is the exact same size as the object",
+                    "It is formed as far behind the mirror as the object is in front"
+                ],
+                "correct": 1,
+                "solution": "Plane mirror images are always erect (upright). They are never inverted upside-down."
+            },
+            {
+                "id": "q19_4",
+                "question": "A girl stands 3 metres in front of a vertical plane mirror. What is the total distance between the girl and her virtual image?",
+                "options": [
+                    "3 metres",
+                    "6 metres",
+                    "1.5 metres",
+                    "9 metres"
+                ],
+                "correct": 1,
+                "solution": "The image is formed 3 m behind the mirror. Distance between object and image = d_o + d_i = 3 m + 3 m = 6 metres."
+            },
+            {
+                "id": "q19_5",
+                "question": "If you walk toward a plane mirror at a speed of 1 m/s, at what relative speed does your reflected image appear to approach you?",
+                "options": [
+                    "1 m/s",
+                    "2 m/s",
+                    "0.5 m/s",
+                    "Zero m/s"
+                ],
+                "correct": 1,
+                "solution": "As you move closer by 1 m each second, your image also moves closer to the mirror by 1 m each second. The separation shrinks by 2 metres every second (relative speed = 2 m/s)."
+            },
+            {
+                "id": "q19_6",
+                "question": "What is the optical term for the left-to-right reversal observed in a plane mirror image?",
+                "options": [
+                    "Lateral inversion",
+                    "Total refraction",
+                    "Vertical dispersion",
+                    "Diffraction"
+                ],
+                "correct": 0,
+                "solution": "Lateral inversion is the apparent sideways reversal where an object's right side corresponds to the image's left side."
+            },
+            {
+                "id": "q19_7",
+                "question": "Why is the word 'AMBULANCE' painted in laterally inverted letters (ƎƆИA⅃UБMA) on the front of hospital emergency vans?",
+                "options": [
+                    "Because medical signs must be written in Greek",
+                    "So that drivers ahead see it reflected normally in their rear-view plane mirrors and give way",
+                    "To confuse unauthorized drivers",
+                    "It was a printing mistake by the factory"
+                ],
+                "correct": 1,
+                "solution": "When viewed in a driver's rear-view mirror, lateral inversion reverses the inverted lettering back into standard readable 'AMBULANCE'."
+            },
+            {
+                "id": "q19_8",
+                "question": "What type of reflection occurs when parallel rays of light strike an uneven, rough surface like cardboard or unpolished wood?",
+                "options": [
+                    "Regular specular reflection",
+                    "Diffuse or irregular reflection",
+                    "Total internal reflection",
+                    "Zero reflection"
+                ],
+                "correct": 1,
+                "solution": "On a rough microscopic surface, normals point in random directions, scattering parallel incident rays in all directions (diffuse reflection)."
+            },
+            {
+                "id": "q19_9",
+                "question": "If an incident ray strikes a plane mirror exactly along the normal line (perpendicular to the mirror), what are ∠i and ∠r?",
+                "options": [
+                    "∠i = 90° and ∠r = 90°",
+                    "∠i = 0° and ∠r = 0°",
+                    "∠i = 45° and ∠r = 45°",
+                    "∠i = 180° and ∠r = 0°"
+                ],
+                "correct": 1,
+                "explanation": "The angle of incidence is measured from the normal. When striking along the normal line, ∠i = 0°, so by the law of reflection, ∠r = 0° (ray bounces straight back)."
+            },
+            {
+                "id": "q19_10",
+                "question": "Which of the following English capital alphabet letters shows NO visible change when viewed in a plane mirror due to bilateral symmetry?",
+                "options": [
+                    "Letter B",
+                    "Letter P",
+                    "Letter A",
+                    "Letter F"
+                ],
+                "correct": 2,
+                "solution": "Letter 'A' possesses vertical bilateral symmetry. Its left and right halves are identical, so lateral inversion produces no perceptible change."
+            }
+        ]
+    },
+
+    # Slide 20: Mastery Quiz 4
+    {
+        "id": 20,
+        "slide_num": 20,
+        "title": "Mastery Challenge 4: Pinhole Cameras, Periscopes, Kaleidoscopes & Optical Heritage",
+        "subtitle": "10 Integrative Questions on Optical Devices & Historical Milestones",
+        "badge": "Final Mastery",
+        "summary": "Achieve ultimate mastery covering pinhole ray geometry, canopy dappled light, periscope dual-mirror 45° inclinations, kaleidoscope 60° multiple reflections, and optical heritage from Kanada to Alhazen.",
+        "theory": "<div class='text-slate-300 text-sm'>Demonstrate your comprehensive mastery across optical instruments, practical inventions, and Indian/Islamic optical heritage. Complete all 10 questions to finish Chapter 11!</div>",
+        "takeaways": [],
+        "checkpoints": [],
+        "quiz_questions": [
+            {
+                "id": "q20_1",
+                "question": "What are the primary characteristics of the image formed on the translucent screen of a pinhole camera?",
+                "options": [
+                    "Virtual, erect, and magnified",
+                    "Real, inverted (upside-down), and diminished",
+                    "Virtual, sideways, and colorless",
+                    "Pinhole cameras cannot form images"
+                ],
+                "correct": 1,
+                "solution": "A pinhole camera forms a real image (captured on a screen), inverted (rays cross at the pinhole aperture), and smaller than the distant object (diminished)."
+            },
+            {
+                "id": "q20_2",
+                "question": "Why are the circular patches of light on the ground under a dense tree during a partial solar eclipse shaped like crescents?",
+                "options": [
+                    "The wind blows the light into curved waves",
+                    "The leaf gaps act as natural pinholes that project real images of the eclipsed crescent Sun",
+                    "Tree roots absorb round light and spit out curved light",
+                    "Earth's rotation curves the light rays"
+                ],
+                "correct": 1,
+                "solution": "The gaps between leaves act as natural pinhole cameras projecting inverted real images of the source. When the Sun becomes crescent-shaped, the images become crescents."
+            },
+            {
+                "id": "q20_3",
+                "question": "How many plane mirrors are used in a simple periscope, and at what angle are they inclined to the tube walls?",
+                "options": [
+                    "Two plane mirrors, inclined at 45°",
+                    "Three plane mirrors, inclined at 60°",
+                    "One curved mirror, inclined at 90°",
+                    "Four lenses, inclined at 30°"
+                ],
+                "correct": 0,
+                "solution": "A periscope utilizes two plane mirrors placed parallel to each other at 45° angles inside a Z-shaped tube to deflect light by two 90° turns."
+            },
+            {
+                "id": "q20_4",
+                "question": "How many plane mirror strips are joined together in an equilateral triangular kaleidoscope, and at what mutual angle?",
+                "options": [
+                    "Two mirrors at 90°",
+                    "Three mirrors at 60°",
+                    "Four mirrors at 45°",
+                    "Six mirrors at 30°"
+                ],
+                "correct": 1,
+                "solution": "A kaleidoscope consists of three rectangular plane mirror strips forming an equilateral triangle prism, with each pair meeting at an internal angle of 60°."
+            },
+            {
+                "id": "q20_5",
+                "question": "What type of visual patterns does a kaleidoscope produce when rotated?",
+                "options": [
+                    "Completely chaotic, blurry gray fog",
+                    "Symmetrical, repeating hexagonal / radial mandalas through multiple reflections",
+                    "Upside-down photographs of the room",
+                    "Solid black shadows"
+                ],
+                "correct": 1,
+                "solution": "Multiple reflections between the three 60° inclined mirrors duplicate the colorful glass beads into highly symmetrical, 6-fold radial kaleidoscopic mandalas."
+            },
+            {
+                "id": "q20_6",
+                "question": "What happens to the image formed by a pinhole camera if you slide the screen further away from the pinhole inside the box?",
+                "options": [
+                    "The image becomes smaller",
+                    "The image becomes larger but slightly less bright",
+                    "The image turns right-side up",
+                    "The image disappears completely"
+                ],
+                "correct": 1,
+                "solution": "Increasing the distance from the pinhole to the screen allows the straight diverging rays to spread wider, enlarging the projected image while slightly reducing its brightness."
+            },
+            {
+                "id": "q20_7",
+                "question": "What ancient Indian philosopher in the 6th century BCE proposed in the Vaisheshika Sutras that light consists of fast-moving corpuscular particles of 'Tejas'?",
+                "options": [
+                    "Maharishi Kanada",
+                    "Chanakya",
+                    "Kalidasa",
+                    "Panini"
+                ],
+                "correct": 0,
+                "solution": "Maharishi Kanada proposed in the Vaisheshika atomic philosophy that light and heat are manifestations of Tejas (fire element), consisting of rapid corpuscular rays."
+            },
+            {
+                "id": "q20_8",
+                "question": "Who is celebrated as the 'Father of Modern Optics' for authoring the Kitab al-Manazir and proving that vision occurs by light reflecting into the eye?",
+                "options": [
+                    "Ibn al-Haytham (Alhazen)",
+                    "Euclid",
+                    "Aristotle",
+                    "Ptolemy"
+                ],
+                "correct": 0,
+                "solution": "Ibn al-Haytham (Alhazen) revolutionized physics by providing rigorous experimental and mathematical proofs that light travels into the eye from external objects."
+            },
+            {
+                "id": "q20_9",
+                "question": "Why does a periscope NOT produce a laterally inverted final image for the observer?",
+                "options": [
+                    "Mirrors in periscopes are made of special non-reversing plastic",
+                    "The two successive reflections cancel each other out (the second mirror re-inverts the first inversion)",
+                    "Periscopes use computer microchips to flip the image",
+                    "Light loses its lateral inversion when traveling through air"
+                ],
+                "correct": 1,
+                "solution": "Each plane mirror introduces a lateral inversion. The first mirror flips left-right, and the second parallel mirror flips it back, restoring normal orientation."
+            },
+            {
+                "id": "q20_10",
+                "question": "What happens if you look into a plane mirror in a pitch-black dark room with zero light sources?",
+                "options": [
+                    "You see your reflection clearly because mirrors generate light",
+                    "You see absolutely nothing, because mirrors require incident light to reflect into your eyes",
+                    "The mirror glows with green bioluminescence",
+                    "The mirror turns into a transparent glass window"
+                ],
+                "correct": 1,
+                "solution": "A mirror is a non-luminous reflector. Without an external light source to illuminate you, zero photons strike the mirror, resulting in total darkness."
+            }
+        ]
+    }
+]
+
+def main():
+    print("Generating class7_science_light_data.py...")
+    latex_pattern = re.compile(r'\\[a-zA-Z]+')
+    
+    with open(".agents/class7_science_light_data.py", "w", encoding="utf-8") as f:
+        f.write("# -*- coding: utf-8 -*-\n")
+        f.write('"""Auto-generated data file for Class 7 Science Chapter 11: Light: Shadows and Reflections."""\n\n')
+        f.write("CHAPTER_META = {\n")
+        f.write('    "title": "NCERT Class 7 Science • Chapter 11 • Light: Shadows and Reflections Master Lab",\n')
+        f.write('    "chapter_num": 11,\n')
+        f.write('    "chapter_title": "Light: Shadows and Reflections",\n')
+        f.write('    "mentor": "Ibn al-Haytham & Acharya Aryabhata",\n')
+        f.write('    "mentor_desc": "Pioneers of Optics, Pinhole Cameras & Eclipse Shadow Geometry",\n')
+        f.write('    "total_slides": 20,\n')
+        f.write('    "checkpoints_count": 32,\n')
+        f.write('    "quiz_questions_count": 40,\n')
+        f.write("}\n\n")
+        f.write("SLIDES = " + repr(slides) + "\n")
+
+    print(f"Successfully generated class7_science_light_data.py with {len(slides)} slides.")
+    
+    with open(".agents/class7_science_light_data.py", "r", encoding="utf-8") as f:
+        content = f.read()
+    
+    matches = latex_pattern.findall(content)
+    bad_latex = [m for m in matches if m not in ['\\n', '\\t', '\\r', '\\f', '\\b']]
+    if bad_latex:
+        print(f"WARNING: Found potential raw LaTeX commands: {bad_latex[:10]}")
+    else:
+        print("PASS: Zero raw LaTeX commands detected in data file!")
+
+if __name__ == "__main__":
+    main()
