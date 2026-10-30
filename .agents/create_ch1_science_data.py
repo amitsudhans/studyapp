@@ -1,1382 +1,1154 @@
-# -*- coding: utf-8 -*-
-r"""
-Generator script for Class 7 Science Chapter 1: The Ever-Evolving World of Science
-Data dictionary: 20 slides (16 theory + 4 quiz slides, 40 questions with complete step-by-step solutions)
-r"""
-
+import re
 import json
 
-SLIDES_DATA = [
-    # -------------------------------------------------------------
-    # 1. Introduction: The Scientific Inquiry Cycle
-    # -------------------------------------------------------------
+CHAPTER_META = {
+    "chapter_num": 1,
+    "title": "The Wonderful World of Science",
+    "subtitle": "Curiosity, the Infinite Jigsaw & The Scientific Method",
+    "mentors": "Dr. C.V. Raman & Curious Tara",
+    "mentors_title": "Nobel Laureate Physicist & The Inquiring Young Explorer",
+    "class": "Class 6",
+    "subject": "Science",
+    "curriculum": "NCERT Curiosity (NEP 2020)"
+}
+
+SLIDES = [
     {
         "id": 1,
-        "type": "concept_slide",
-        "title": "Exploring the World of Science",
-        "subtitle": "Science is an Ongoing Journey of Wonder, Observation, and Discovery",
-        "content": r"""
-          <p>Science is not simply a static library of facts or a list of answers to memorize. At its heart, <strong>science is an active, ever-evolving way of thinking, observing, and discovering</strong> truth about our natural world.</p>
-          <p class="mt-2">Every monumental scientific breakthrough—from the discovery of microscopic bacteria to landing rovers on Mars—started with a human being pausing to wonder: <em>Why is this so? What happens if I change this? How does this work?</em></p>
-          <p class="mt-2">The scientific method is a cyclical, self-correcting process:</p>
-          <ul class="list-disc pl-5 mt-1 space-y-1 text-slate-300">
-            <li><strong>Careful Observation:</strong> Using our senses and scientific instruments to notice phenomena without preconceived bias.</li>
-            <li><strong>Framing Questions:</strong> Formulating precise, testable questions based on patterns or anomalies.</li>
-            <li><strong>Developing Hypotheses:</strong> Proposing logical, evidence-based explanations that can be experimentally tested.</li>
-            <li><strong>Experimentation & Testing:</strong> Conducting controlled investigations, recording data, and repeating trials.</li>
-            <li><strong>Refining & Expanding:</strong> When new evidence contradicts an old model, science evolves. Truth is continually refined!</li>
-          </ul>
-        r""",
-        "formula": r"$$\text{Inquiry Cycle}: \text{Observation} \longrightarrow \text{Question} \longrightarrow \text{Hypothesis} \longrightarrow \text{Experiment} \longrightarrow \text{Refined Understanding}$$",
-        "key_takeaways": [
-            "Science is a dynamic, self-correcting quest rather than a fixed set of dogmas.",
-            "Careful, unbiased observation is the foundation of all scientific discovery.",
-            "A scientific hypothesis must be testable through reproducible experiments.",
-            "When new experimental evidence arises, scientific theories are updated and improved."
-        ],
+        "badge": "Intro • Nature of Science",
+        "title": "Spark of Curiosity",
+        "subtitle": "Science as Thinking, Observing, and Unravelling Secrets",
+        "theory": """
+            <p>What is science? Science is not just a thick book of memorized facts. It is an exciting <strong>way of thinking, observing, and doing things</strong> to understand the wondrous natural world around us.</p>
+            <p class="mt-2">At the very heart of science lies a single magical spark: <strong>Curiosity</strong>! When you look up and wonder why the sky is blue, why birds can fly without engines, or why leaves change color, you have already taken your first step as a scientist.</p>
+            <p class="mt-2">Scientists never stop asking questions. They observe tiny clues, perform tests, and gradually unravel the deep secrets of the universe.</p>
+        """,
+        "summary": "Dr. C.V. Raman smiles: Curiosity is the lifeblood of discovery! When I gazed at the deep blue Mediterranean Sea in 1921, I asked 'Why is it blue?' That simple question led to the discovery of the Raman Effect!",
         "checkpoints": [
             {
-                "question": "Which of the following best captures the true nature of science?",
-                "options": [
-                    "A static list of rules that never changes over time",
-                    "A dynamic, evidence-based process of inquiry that evolves with new discoveries",
-                    "A collection of unquestionable beliefs handed down through authority",
-                    "An activity restricted only to professional researchers in laboratory coats"
-                ],
+                "id": "1-1",
+                "question": "What is the primary foundation and driving force of scientific discovery?",
+                "options": ["Rote memorization", "Curiosity and questioning", "Repeating old stories", "Guessing blindly"],
                 "correct": 1,
-                "explanation": "Science is inherently dynamic and self-correcting; it evolves continually as new instruments and reproducible evidence challenge and refine existing theories."
+                "explanation": "Curiosity — the desire to wonder, observe, and ask 'Why?' — is the core foundation of all scientific inquiry."
             },
             {
-                "question": "What is the primary requirement for an idea to be considered a 'scientific hypothesis'?",
+                "id": "1-2",
+                "question": "Which of the following best defines science?",
                 "options": [
-                    "It must be impossible to prove wrong",
-                    "It must be testable through observations or controlled experiments",
-                    "It must agree with popular opinions of the majority",
-                    "It must be expressed only in complex mathematical symbols"
+                    "A static list of fixed rules that never change",
+                    "A way of observing, thinking, and doing to understand nature",
+                    "Only laboratory experiments with chemicals",
+                    "A subject studied only by adults in universities"
                 ],
                 "correct": 1,
-                "explanation": "A hypothesis must be falsifiable and testable; there must be a way to collect empirical data or perform experiments to support or refute it."
+                "explanation": "Science is a dynamic process of observing, questioning, and experimenting to understand the natural world."
             }
-        ],
-        "simulator_type": "inquiry_cycle"
+        ]
     },
-
-    # -------------------------------------------------------------
-    # 2. Observation & Flight: Paper Planes to Butterflies
-    # -------------------------------------------------------------
     {
         "id": 2,
-        "type": "concept_slide",
-        "title": "Observation: The Spark of Wonder",
-        "subtitle": "From the Flight of a Paper Plane to the Flutter of a Butterfly",
-        "content": r"""
-          <p>Everyday occurrences that we take for granted are rich laboratories of physical and biological laws. Consider the simple act of folding a sheet of paper into a paper dart and launching it across a room.</p>
-          <p class="mt-2">Why does the paper glide instead of tumbling like an unfolded sheet? Four fundamental forces govern any flight:</p>
-          <ul class="list-disc pl-5 mt-1 space-y-1 text-slate-300">
-            <li><strong>Thrust:</strong> The forward propulsive force supplied by your arm's muscles during the launch.</li>
-            <li><strong>Lift:</strong> The upward aerodynamic force created as air moves faster over the curved or angled upper wing surface than underneath (Bernoulli's principle & Newton's third law).</li>
-            <li><strong>Drag:</strong> Air resistance opposing the forward motion of the aircraft.</li>
-            <li><strong>Gravity (Weight):</strong> The downward gravitational pull toward Earth ($W = m \cdot g$).</li>
-          </ul>
-          <p class="mt-2">Biomimicry—studying nature's master engineers like birds, seeds (sycamore maple helicoptors), and butterflies—inspired aviation pioneers to design modern wings, winglets, and streamlined hulls.</p>
-        r""",
-        "formula": r"$$\text{Equilibrium of Steady Flight}: \text{Thrust} = \text{Drag} \quad \text{and} \quad \text{Lift} = \text{Weight} (m \cdot g)$$",
-        "key_takeaways": [
-            "Flight is governed by the balance of four forces: Thrust, Lift, Drag, and Gravity.",
-            "Changing the wing angle (angle of attack) alters the amount of lift and aerodynamic drag generated.",
-            "Observing nature's designs (birds, insects, seeds) leads to technological innovations (Biomimicry).",
-            "Science transforms simple play into deep inquiry about fluid mechanics and pressure differences."
-        ],
+        "badge": "1.1 • Ubiquitous Science",
+        "title": "Science Everywhere",
+        "subtitle": "From Grains of Sand and Kitchen Pots to Distant Galaxies",
+        "theory": """
+            <p>You don't need a high-tech laboratory with white coats to find science. Science is active in every corner of daily life!</p>
+            <ul class="list-disc pl-5 mt-2 space-y-1 text-slate-300">
+                <li><strong>In the Kitchen:</strong> Dough rising with yeast, milk curdling into paneer, and pressure cookers boiling lentils are chemical and physical transformations.</li>
+                <li><strong>In Nature:</strong> A tiny grain of sand, an ant lifting ten times its body weight, and morning dew drops clinging to petals.</li>
+                <li><strong>In the Oceans:</strong> Strange luminous creatures thriving in crushing dark deep-sea trenches.</li>
+                <li><strong>In the Cosmos:</strong> The blazing heat of our Sun and billions of swirling stars across galaxies.</li>
+            </ul>
+        """,
+        "summary": "Curious Tara exclaims: When my grandmother boils water or makes idli batter rise, that's science happening right on our kitchen stove!",
         "checkpoints": [
             {
-                "question": "When a paper plane glides horizontally at a constant speed, which relationship must be true?",
+                "id": "2-1",
+                "question": "Where does scientific inquiry take place?",
                 "options": [
-                    "Lift equals Weight, and Thrust equals Drag",
-                    "Lift is zero while Weight is maximum",
-                    "Thrust must be infinitely greater than Drag",
-                    "Gravity ceases to act on moving objects"
+                    "Only in specialized underground research labs",
+                    "Everywhere — in kitchens, gardens, oceans, and outer space",
+                    "Only in school science textbooks",
+                    "Only on factory assembly lines"
                 ],
-                "correct": 0,
-                "explanation": "In unaccelerated, level flight, opposing forces balance: upward Lift equals downward Weight, and forward Thrust equals opposing Drag."
+                "correct": 1,
+                "explanation": "Science encompasses the entire universe, from everyday kitchen cooking to deep ocean trenches and distant galaxies."
             },
             {
-                "question": "What is the study called when engineers design aircraft wings inspired by the shapes of falcon wings?",
+                "id": "2-2",
+                "question": "Why is cooking in the kitchen considered a scientific activity?",
                 "options": [
-                    "Biomimicry",
-                    "Geocentrism",
-                    "Spontaneous generation",
-                    "Astrology"
+                    "Because cooks wear white aprons",
+                    "Because it involves heat transfer, state changes, and chemical reactions",
+                    "Because food is expensive",
+                    "It is not related to science"
                 ],
-                "correct": 0,
-                "explanation": "Biomimicry is the practice of learning from and mimicking strategies found in nature to solve human design and engineering challenges."
+                "correct": 1,
+                "explanation": "Cooking involves temperature measurement, state changes (boiling, melting), and chemical transformations of ingredients."
             }
-        ],
-        "simulator_type": "flight_aerodynamics"
+        ]
     },
-
-    # -------------------------------------------------------------
-    # 3. Scale of the Universe: Micro to Macro
-    # -------------------------------------------------------------
     {
         "id": 3,
-        "type": "concept_slide",
-        "title": "Scale of the Cosmos: From Nanometers to Light Years",
-        "subtitle": "Science Explores Matter Across More Than Forty Orders of Magnitude",
-        "content": r"""
-          <p>Science grants us extraordinary lenses. It enables human minds to probe dimensions so tiny that visible light cannot resolve them, and horizons so vast that light takes billions of years to traverse them.</p>
-          <p class="mt-2">Consider the extraordinary hierarchy of scale across our universe:</p>
-          <ul class="list-disc pl-5 mt-1 space-y-1 text-slate-300">
-            <li><strong>Nanoscale ($10^{-9}\text{ m}$):</strong> The diameter of a DNA double helix is $\approx 2\text{ nm}$; individual atoms are about $0.1\text{ nm}$ ($1\text{ \AA}$).</li>
-            <li><strong>Microscale ($10^{-6}\text{ m}$):</strong> Living cells (red blood cells $\approx 7\text{ }\mu\text{m}$, plant cells $\approx 50\text{ }\mu\text{m}$), bacteria, and chloroplasts.</li>
-            <li><strong>Human Scale ($10^0\text{ m}$):</strong> Everyday objects, animals, trees, and buildings ($1\text{ m}$ to $100\text{ m}$).</li>
-            <li><strong>Planetary Scale ($10^7\text{ m}$):</strong> Earth's equatorial diameter is $\approx 12,742\text{ km}$ ($1.27 \times 10^7\text{ m}$); the Sun's diameter is $1.39 \times 10^9\text{ m}$.</li>
-            <li><strong>Cosmic Scale ($10^{21}\text{ m}$ and beyond):</strong> Our Milky Way Galaxy spans $100,000\text{ light-years}$ ($\approx 9.5 \times 10^{20}\text{ m}$).</li>
-          </ul>
-          <p class="mt-2">The same universal physical laws—conservation of energy, gravitation, electromagnetism—operate consistently across all these scales!</p>
-        r""",
-        "formula": r"$$\text{Powers of Ten}: 1\text{ nm} = 10^{-9}\text{ m} \quad \longleftrightarrow \quad 1\text{ Light-Year} \approx 9.46 \times 10^{15}\text{ m}$$",
-        "key_takeaways": [
-            "Science investigates phenomena across more than 40 orders of magnitude.",
-            "Microscopes unlock the cellular nanoworld; telescopes reveal cosmic structures.",
-            "Physical laws are unified: gravity rules both falling apples and orbiting galaxies.",
-            "Understanding scale prevents misconceptions about size, time, and molecular structures."
-        ],
+        "badge": "1.1 • Evolving Knowledge",
+        "title": "The Infinite Jigsaw",
+        "subtitle": "How New Evidence Re-arranges the Pieces of Understanding",
+        "theory": """
+            <p>Imagine science as a giant, infinite jigsaw puzzle. Every time scientists make a discovery, they place another piece into the puzzle.</p>
+            <p class="mt-2">Unlike a cardboard toy puzzle, however, our picture of the universe is continually expanding! Sometimes, a newly discovered piece reveals that older pieces were placed in the wrong spot.</p>
+            <p class="mt-2">When <strong>new evidence</strong> appears, scientists do not cling stubbornly to old mistakes; they move the pieces and update their understanding. Science is self-correcting and never truly finished!</p>
+        """,
+        "summary": "Dr. C.V. Raman nods: Science is never a closed book. If a careful experiment produces new reliable evidence, the old theory must bend to welcome the truth!",
         "checkpoints": [
             {
-                "question": "Which of the following is approximately on the micrometer ($10^{-6}\\text{ m}$) scale?",
+                "id": "3-1",
+                "question": "What happens in science when new, verified experimental evidence contradicts an old theory?",
                 "options": [
-                    "A human red blood cell or typical plant cell",
-                    "A hydrogen atom",
-                    "The diameter of Earth",
-                    "A grain of beach sand ($1\\text{ mm}$)"
-                ],
-                "correct": 0,
-                "explanation": "Human cells and plant cells typically measure between 5 to 100 micrometers ($10^{-6}\\text{ m}$), requiring optical microscopes to view."
-            },
-            {
-                "question": "If an atom is roughly $10^{-10}\\text{ m}$ across and a galaxy is roughly $10^{21}\\text{ m}$ across, how many orders of magnitude separate them?",
-                "options": [
-                    "About 11 orders of magnitude",
-                    "About 31 orders of magnitude ($10^{31}$)",
-                    "About 5 orders of magnitude",
-                    "Zero orders of magnitude"
+                    "The new evidence is hidden and ignored",
+                    "The scientific understanding is updated and revised",
+                    "Science stops completely",
+                    "People vote on which idea they like best"
                 ],
                 "correct": 1,
-                "explanation": "The difference between $10^{21}$ and $10^{-10}$ is $21 - (-10) = 31$ powers of ten, demonstrating the immense breadth of scientific inquiry."
+                "explanation": "Science is self-correcting; when new, verified evidence arises, theories are revised to fit the new discoveries."
+            },
+            {
+                "id": "3-2",
+                "question": "Why is scientific knowledge compared to an unending jigsaw puzzle?",
+                "options": [
+                    "Because it is made of wooden blocks",
+                    "Because each discovery adds a piece, and the puzzle expands as we learn more",
+                    "Because jigsaw puzzles are hard to finish",
+                    "Because scientists only play games"
+                ],
+                "correct": 1,
+                "explanation": "Every discovery adds a piece to our growing picture of nature, and new discoveries continually expand our understanding."
             }
-        ],
-        "simulator_type": "cosmic_scale_slider"
+        ]
     },
-
-    # -------------------------------------------------------------
-    # 4. Thinking Like a Scientist: Fact, Opinion & Hypothesis
-    # -------------------------------------------------------------
     {
         "id": 4,
-        "type": "concept_slide",
-        "title": "Thinking Like a Scientist",
-        "subtitle": "Distinguishing Observable Facts, Subjective Opinions, and Testable Hypotheses",
-        "content": r"""
-          <p>Scientific literacy requires training our minds to discern between three distinctly different types of statements:</p>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 my-3 text-xs">
-            <div class="p-3 rounded-xl bg-slate-950 border border-emerald-500/30">
-              <span class="text-emerald-400 font-bold block mb-1">1. Scientific Fact</span>
-              An objective, verifiable observation established through reproducible empirical evidence. E.g., <em>Pure water freezes at 0°C at standard atmospheric pressure.</em>
-            </div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-amber-500/30">
-              <span class="text-amber-400 font-bold block mb-1">2. Subjective Opinion</span>
-              A personal preference, belief, or value judgment that cannot be empirically measured or disproven. E.g., <em>Strawberries taste far better than bananas.</em>
-            </div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-cyan-500/30">
-              <span class="text-cyan-400 font-bold block mb-1">3. Testable Hypothesis</span>
-              A proposed cause-and-effect relationship that makes specific predictions testable by controlled experiments. E.g., <em>Bean seeds germinate faster in moist soil than in dry soil.</em>
-            </div>
-          </div>
-          <p>A true scientist never confuses personal feelings with measurable facts, and always welcomes honest experimental evidence even when it disproves a favorite theory.</p>
-        r""",
-        "formula": r"$$\text{Hypothesis Template}: \text{If } [\text{Variable } X \text{ is altered}], \text{ then } [\text{Outcome } Y \text{ will change}] \text{ because } [\text{Mechanism } Z].$$",
-        "key_takeaways": [
-            "Facts are independently verifiable observations; opinions are personal preferences.",
-            "A scientific hypothesis must establish a testable, measurable relationship between variables.",
-            "Scientists maintain intellectual honesty: data always overrules personal bias.",
-            "Peer review and reproducible replication are the gold standards of scientific validity."
-        ],
+        "badge": "1.2 • Living Diversity",
+        "title": "Earth's Living Quilt",
+        "subtitle": "The Only Known Haven for Life Across Varied Habitats",
+        "theory": """
+            <p>Among all the planets orbiting our Sun and the thousands discovered beyond our solar system, <strong>Earth is the only known planet that harbors life</strong>.</p>
+            <p class="mt-2">Life on Earth is astonishingly diverse. Organisms have adapted to survive in almost every extreme environment:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-1 text-slate-300">
+                <li>Thick cacti storing water in boiling desert sands.</li>
+                <li>Snow leopards and yaks insulated by thick fur on icy Himalayan peaks.</li>
+                <li>Mangrove trees with breathing roots in coastal saltwater mudflats.</li>
+                <li>Colorful coral reefs teeming with thousands of marine fish species.</li>
+            </ul>
+        """,
+        "summary": "Curious Tara marvels: From tiny moss clinging to cold mountain rocks to giant blue whales in warm oceans, Earth is a vibrant tapestry of living wonders!",
         "checkpoints": [
             {
-                "question": "Which of the following statements represents a testable scientific hypothesis?",
-                "options": [
-                    "Sunflowers are the prettiest flowers in the garden",
-                    "Sunflowers grow taller when exposed to 8 hours of direct sunlight compared to 2 hours",
-                    "Sunflowers possess a happy and sunny personality",
-                    "Everyone ought to plant sunflowers in springtime"
-                ],
+                "id": "4-1",
+                "question": "What unique feature distinguishes Earth from all other known planets in our solar system?",
+                "options": ["It is the largest planet", "It is the only known planet that supports life", "It has the most moons", "It is the closest to the Sun"],
                 "correct": 1,
-                "explanation": "Option B defines a measurable independent variable (hours of sunlight) and a dependent variable (plant height) that can be experimentally tested."
+                "explanation": "Earth is currently the only known planet in the universe that supports life, liquid water, and a breathable atmosphere."
             },
             {
-                "question": "If an experiment produces results that directly contradict your initial hypothesis, what should you do?",
+                "id": "4-2",
+                "question": "How do cacti manage to survive in arid, dry desert environments?",
                 "options": [
-                    "Falsify or alter the data so it matches what you expected",
-                    "Discard the experiment and pretend it never happened",
-                    "Accept the data, analyze why the prediction failed, and revise the hypothesis",
-                    "Argue that nature made a mistake during the experiment"
+                    "They migrate to rivers during summer",
+                    "They store water in fleshy stems and reduce water loss through spine-like leaves",
+                    "They freeze into ice",
+                    "They only grow at night"
                 ],
-                "correct": 2,
-                "explanation": "Scientific integrity demands accepting valid data, revising hypotheses, and learning from unexpected results. Disproven hypotheses often lead to major discoveries!"
+                "correct": 1,
+                "explanation": "Cacti have adapted fleshy stems to store water and needle-like spines that minimize water loss through transpiration."
             }
-        ],
-        "simulator_type": "scientific_mindset_sorter"
+        ]
     },
-
-    # -------------------------------------------------------------
-    # 5. Activity 1.1: Question the Answer (Part 1 — The Milk Paradox)
-    # -------------------------------------------------------------
     {
         "id": 5,
-        "type": "concept_slide",
-        "title": "Activity 1.1: Question the Answer (Part 1)",
-        "subtitle": "Turning the Traditional Classroom Model Upside Down",
-        "content": r"""
-          <p>In standard school tests, a question is presented and students search for the one predetermined answer. But in real scientific research, <strong>nature presents an answer (a puzzling phenomenon)</strong>, and scientists must formulate the insightful questions that explain it!</p>
-          <p class="mt-2"><strong>The Answer Provided:</strong> <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold font-mono">"Just add some milk!"</span></p>
-          <p class="mt-2">What curious, imaginative scientific inquiries could lead to this exact response?</p>
-          <ul class="list-disc pl-5 mt-1 space-y-1 text-slate-300">
-            <li><strong>The Biology & Neuro-chemistry Question:</strong> <em>Why does cold milk extinguish the burning sensation of fiery chili peppers when cold water fails?</em> (Chili heat is caused by oil-soluble <strong>capsaicin</strong>; water rolls off it, but the lipophilic protein <strong>casein</strong> in milk binds to capsaicin and washes it away from pain receptors!).</li>
-            <li><strong>The Fermentation Biology Question:</strong> <em>How can we cultivate billions of beneficial probiotic bacteria to turn liquid into thick curd?</em> (Add warm milk to a starter containing live <em>Lactobacillus</em> bacteria).</li>
-            <li><strong>The Colloid Physics Question:</strong> <em>How can you make a beam of light visible through water via the Tyndall scattering effect?</em> (Add a few drops of milk to disperse microscopic fat globules).</li>
-          </ul>
-        r""",
-        "formula": r"$$\text{Capsaicin Neutralization}: \text{Capsaicin (non-polar lipophile)} + \text{Casein (milk phosphoprotein)} \longrightarrow \text{Receptor Detachment}$$",
-        "key_takeaways": [
-            "'Question the Answer' trains creative divergent thinking—the hallmark of true innovators.",
-            "Water cannot dissolve oily capsaicin; milk's casein protein cleanses capsaicin receptors.",
-            "Milk is a complex biological emulsion containing water, lipids, proteins (casein), and sugars (lactose).",
-            "One simple household phrase connects biochemistry, microbiology, and optical scattering!"
-        ],
+        "badge": "1.2 • Life Cycles",
+        "title": "Miracles of Growth",
+        "subtitle": "From Tiny Seeds to Giant Banyan Trees & Caterpillars to Butterflies",
+        "theory": """
+            <p>One of the most breathtaking themes in science is the transformation of living beings during growth.</p>
+            <p class="mt-2">A tiny mustard or banyan seed, smaller than a rice grain, contains the complete biological blueprint to draw moisture and soil minerals, sprouting roots downward and shooting branches upward into a massive tree providing shade for centuries.</p>
+            <p class="mt-2">Similarly, an egg hatches into a crawling leaf-munching caterpillar. Inside a protective chrysalis (pupa), its body undergoes <strong>metamorphosis</strong>, reorganizing into a delicate, winged butterfly!</p>
+        """,
+        "summary": "Dr. C.V. Raman observes: Growth is organized energy at work. When you watch a seed germinate, you are witnessing the chemistry of life transforming soil, water, and sunlight into wood and leaves.",
         "checkpoints": [
             {
-                "question": "Why does drinking milk relieve the burning sensation of spicy chili much better than drinking water?",
-                "options": [
-                    "Milk contains casein protein which binds to non-polar capsaicin molecules",
-                    "Milk creates a solid wall of ice inside the stomach",
-                    "Milk chemically transforms capsaicin into pure sugar",
-                    "Water increases the spicy chemical's heat by burning with oxygen"
-                ],
-                "correct": 0,
-                "explanation": "Capsaicin is a non-polar, fat-soluble molecule. Water is polar and cannot dissolve it, whereas casein in milk binds directly to capsaicin, washing it off sensory nerve receptors."
+                "id": "5-1",
+                "question": "What is the biological process called when a crawling caterpillar transforms into a winged butterfly?",
+                "options": ["Photosynthesis", "Metamorphosis", "Evaporation", "Crystallization"],
+                "correct": 1,
+                "explanation": "Metamorphosis is the biological process of transformation from an immature larval form (caterpillar) to an adult form (butterfly)."
             },
             {
-                "question": "Adding a drop of milk to a glass of water makes a laser beam visible across the glass. What is this phenomenon called?",
-                "options": [
-                    "The Greenhouse Effect",
-                    "The Tyndall Effect",
-                    "Photosynthesis",
-                    "Electrolysis"
-                ],
+                "id": "5-2",
+                "question": "What does a germinating seed require to sprout roots and shoots?",
+                "options": ["Only dark soil", "Water, warmth, and air", "Sugar syrup", "Direct fire"],
                 "correct": 1,
-                "explanation": "The Tyndall effect is the scattering of light by colloidal particles (fat droplets and protein micelles suspended in milk)."
+                "explanation": "A seed requires moisture (water), warmth (optimal temperature), and oxygen (air) to germinate and begin growing."
             }
-        ],
-        "simulator_type": "question_the_answer_milk"
+        ]
     },
-
-    # -------------------------------------------------------------
-    # 6. Activity 1.1: Question the Answer (Part 2 — The Cosmic Number 42 & Optics)
-    # -------------------------------------------------------------
     {
         "id": 6,
-        "type": "concept_slide",
-        "title": "Activity 1.1: Question the Answer (Part 2)",
-        "subtitle": "The Magic Number '42' — The Secret Geometry of Rainbows",
-        "content": r"""
-          <p>Science fiction writer Douglas Adams famously joked that <strong>42</strong> is the "Ultimate Answer to Life, the Universe, and Everything." But in physics and meteorology, 42 is a genuine, foundational constant!</p>
-          <p class="mt-2"><strong>The Answer Provided:</strong> <span class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-bold font-mono">"Forty-Two (42°)"</span></p>
-          <p class="mt-2"><strong>The Scientific Question:</strong> <em>At what exact angle does sunlight refracting through spherical airborne raindrops reflect back to an observer's eye to create the brilliant circular arc of a primary rainbow?</em></p>
-          <ul class="list-disc pl-5 mt-1 space-y-1 text-slate-300">
-            <li><strong>Refraction at Entry:</strong> White sunlight strikes a spherical raindrop and bends (refracts), separating into constituent wavelengths.</li>
-            <li><strong>Total Internal Reflection:</strong> The light strikes the rear inner wall of the droplet and bounces forward.</li>
-            <li><strong>Refraction at Exit & Caustic Cone:</strong> As the ray exits the droplet, the maximum concentration of emerging red light forms an angle of exactly <strong>42.0°</strong> relative to the incoming solar rays (violet emerges at <strong>40.4°</strong>).</li>
-          </ul>
-          <p class="mt-2">Because this 42° angle is symmetric around the line from the Sun through your head (the anti-solar point), every rainbow forms a perfect circular cone in the sky!</p>
-        r""",
-        "formula": r"$$\text{Primary Rainbow Angle}: \theta_{\text{max}} = 4 \arcsin\left(\frac{1}{n}\sqrt{\frac{4 - n^2}{3}}\right) - 2 \arcsin\left(\sqrt{\frac{4 - n^2}{3}}\right) \approx 42.0^\circ \quad (\text{for red light}, n \approx 1.331)$$",
-        "key_takeaways": [
-            "A rainbow is not a physical object in a fixed location; it is an optical phenomenon unique to the observer.",
-            "The primary rainbow's red outer boundary is produced at a precise geometric exit angle of 42°.",
-            "Violet bends more strongly than red, emerging at 40.4° on the inner curve of the bow.",
-            "Asking 'What is the question for 42?' unlocks the physics of refraction, reflection, and dispersion."
-        ],
+        "badge": "1.2 • Nutrition",
+        "title": "Cuisines & Nutrients",
+        "subtitle": "Diverse Indian Dishes and the Science of What We Eat",
+        "theory": """
+            <p>India is blessed with an incredible variety of regional foods: steamed idlis in Tamil Nadu, makki di roti and sarson ka saag in Punjab, fish curry and rice in West Bengal, and dal baati churma in Rajasthan.</p>
+            <p class="mt-2">Beyond rich flavors, food provides essential <strong>nutrients</strong> that our bodies need to grow, repair tissues, and stay healthy:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-1 text-slate-300">
+                <li><strong>Carbohydrates & Fats:</strong> Energy givers (rice, wheat, ghee, oil).</li>
+                <li><strong>Proteins:</strong> Body builders (lentils/dal, beans, eggs, milk).</li>
+                <li><strong>Vitamins & Minerals:</strong> Protectors against illness (leafy greens, citrus fruits, carrots).</li>
+            </ul>
+        """,
+        "summary": "Curious Tara notes: Our bodies are like living machines! Food is the fuel that powers our muscles and the construction material that repairs our bones.",
         "checkpoints": [
             {
-                "question": "What optical processes happen inside a raindrop to generate a primary rainbow at 42°?",
-                "options": [
-                    "Only absorption and emission of heat radiation",
-                    "Two refractions (entry and exit) and one internal reflection",
-                    "Magnetic repulsion of photons by water molecules",
-                    "Continuous nuclear fusion inside water droplets"
-                ],
-                "correct": 1,
-                "explanation": "Light refracts entering the droplet, reflects off the back wall, and refracts again upon exit, emerging at a caustic angle of approximately 42° for red light."
+                "id": "6-1",
+                "question": "Which food group is primarily responsible for building muscles and repairing worn-out tissues?",
+                "options": ["Fats", "Carbohydrates", "Proteins (like lentils, milk, and eggs)", "Water only"],
+                "correct": 2,
+                "explanation": "Proteins are the essential building blocks of the body required for growth, muscle building, and cellular repair."
             },
             {
-                "question": "Why can two people standing 10 meters apart never see the exact same rainbow?",
+                "id": "6-2",
+                "question": "Why are green leafy vegetables and fresh fruits essential in our daily diet?",
                 "options": [
-                    "Raindrops only exist directly in front of one person at a time",
-                    "Each observer sees light refracted at 42° from a completely distinct set of raindrops",
-                    "Rainbows are hallucinations caused by humidity",
-                    "Light only travels toward one pair of eyes at any instant"
+                    "They provide vital vitamins and minerals to protect us from diseases",
+                    "They contain only fats",
+                    "They replace water completely",
+                    "They stop food digestion"
                 ],
-                "correct": 1,
-                "explanation": "The 42° cone centers on each observer's individual anti-solar point; different observers receive light reflected from different raindrops in the atmosphere."
+                "correct": 0,
+                "explanation": "Fresh fruits and leafy greens supply protective vitamins and minerals that boost immunity and maintain organ health."
             }
-        ],
-        "simulator_type": "raindrop_optics_42"
+        ]
     },
-
-    # -------------------------------------------------------------
-    # 7. Preview: Materials & Changes in Matter
-    # -------------------------------------------------------------
     {
         "id": 7,
-        "type": "concept_slide",
-        "title": "Preview: Materials & Changes in Matter",
-        "subtitle": "Distinguishing Physical Rearrangements from Chemical Transformations",
-        "content": r"""
-          <p>Everything in the universe is made of matter. In Class 7 Science, you will investigate how materials interact, combine, dissolve, and transform through two broad classes of change:</p>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 my-3 text-xs">
-            <div class="p-3.5 rounded-xl bg-slate-950 border border-blue-500/30">
-              <span class="text-blue-400 font-bold block mb-1">Physical Changes</span>
-              <p>Alterations in physical properties (state, shape, size, or appearance) <strong>without forming any new substance</strong>. Molecular chemical composition remains identical!</p>
-              <ul class="list-disc pl-4 mt-1.5 space-y-1 text-slate-300">
-                <li>Melting ice into liquid water: $\text{H}_2\text{O}(s) \rightarrow \text{H}_2\text{O}(l)$</li>
-                <li>Tearing paper, crushing a chalk piece, dissolving salt in water.</li>
-                <li>Generally easily reversible by physical means.</li>
-              </ul>
-            </div>
-            <div class="p-3.5 rounded-xl bg-slate-950 border border-rose-500/30">
-              <span class="text-rose-400 font-bold block mb-1">Chemical Changes</span>
-              <p>Reactions where chemical bonds break and rearrange to <strong>synthesize one or more entirely new substances</strong> with distinct chemical properties.</p>
-              <ul class="list-disc pl-4 mt-1.5 space-y-1 text-slate-300">
-                <li>Rusting of iron in oxygen and moisture ($4\text{Fe} + 3\text{O}_2 + 2x\text{H}_2\text{O} \rightarrow 2\text{Fe}_2\text{O}_3 \cdot x\text{H}_2\text{O}$).</li>
-                <li>Baking soda reacting with vinegar releasing effervescent $\text{CO}_2$ gas.</li>
-                <li>Burning wood, digestion of food, cooking an egg.</li>
-              </ul>
-            </div>
-          </div>
-          <p>Key indicators of chemical change include: release or absorption of heat, evolution of gas bubbles, distinct color changes, or formation of an insoluble precipitate.</p>
-        r""",
-        "formula": r"$$\text{Vinegar-Baking Soda Reaction}: \text{CH}_3\text{COOH} + \text{NaHCO}_3 \longrightarrow \text{CH}_3\text{COONa} + \text{H}_2\text{O} + \text{CO}_2 \uparrow$$",
-        "key_takeaways": [
-            "Physical changes do not alter chemical identity; no new molecules are created.",
-            "Chemical changes break and forge atomic bonds, producing brand-new substances.",
-            "Gas release, color shifts, and temperature swings are classic clues of chemical reactions.",
-            "Mass is always conserved in chemical reactions: atoms are rearranged, never created or destroyed."
-        ],
+        "badge": "1.2 • Water Cycle",
+        "title": "The Journey of Water",
+        "subtitle": "From Oceans and Clouds to Falling Monsoons",
+        "theory": """
+            <p>Water is the lifeblood of our planet. Without fresh water, neither plants, animals, nor human civilizations could survive.</p>
+            <p class="mt-2">Where does rain come from? Water moves in a perpetual cosmic loop called the <strong>Water Cycle</strong>:</p>
+            <ol class="list-decimal pl-5 mt-1 space-y-1 text-slate-300">
+                <li><strong>Evaporation:</strong> Solar heat warms lakes, rivers, and oceans, turning liquid water into invisible water vapor that rises into the sky.</li>
+                <li><strong>Condensation:</strong> Cool air high above causes water vapor to cluster into tiny liquid droplets, forming clouds.</li>
+                <li><strong>Precipitation:</strong> When droplets grow heavy and merge, they fall back to Earth as life-giving rain or snow!</li>
+            </ol>
+        """,
+        "summary": "Dr. C.V. Raman observes: The water you drink today may have once rained upon ancient dinosaurs millions of years ago! Nature constantly recycles every drop through the atmosphere.",
         "checkpoints": [
             {
-                "question": "Which of the following is a chemical change?",
-                "options": [
-                    "Melting wax inside a candle holder",
-                    "Rusting of an iron nail exposed to damp air",
-                    "Cutting an apple into four slices",
-                    "Boiling water to produce steam"
-                ],
+                "id": "7-1",
+                "question": "What process turns liquid water from rivers and oceans into rising water vapor?",
+                "options": ["Condensation", "Evaporation", "Freezing", "Filtration"],
                 "correct": 1,
-                "explanation": "Rusting creates a completely new substance (hydrated iron oxide) with different chemical bonds and properties, making it an irreversible chemical change."
+                "explanation": "Evaporation is the phase change where solar heat transforms liquid water into gaseous water vapor."
             },
             {
-                "question": "When vinegar is mixed with baking soda, bubbling gas is produced that extinguishes a burning splint. What is this gas?",
+                "id": "7-2",
+                "question": "What happens during condensation in the upper atmosphere?",
                 "options": [
-                    "Carbon dioxide ($\\text{CO}_2$)",
-                    "Pure oxygen ($\\text{O}_2$)",
-                    "Hydrogen gas ($\\text{H}_2$)",
-                    "Chlorine gas ($\\text{Cl}_2$)"
+                    "Water vapor cools and condenses into tiny liquid droplets to form clouds",
+                    "Liquid water turns into steam",
+                    "Clouds fall directly to the ground",
+                    "Water disappears forever"
                 ],
                 "correct": 0,
-                "explanation": "The reaction produces sodium acetate, water, and carbon dioxide gas ($\\text{CO}_2$), which is denser than air and does not support combustion."
+                "explanation": "Condensation occurs when rising warm vapor meets colder air aloft, gathering into microscopic droplets that compose clouds."
             }
-        ],
-        "simulator_type": "physical_chemical_reactor"
+        ]
     },
-
-    # -------------------------------------------------------------
-    # 8. Preview: Electricity, Circuits & Electromagnetism
-    # -------------------------------------------------------------
     {
         "id": 8,
-        "type": "concept_slide",
-        "title": "Preview: The Marvel of Electricity & Circuits",
-        "subtitle": "Flow of Charge, Circuit Components, and Heating & Magnetic Effects",
-        "content": r"""
-          <p>Electricity is the flow of electric charges (electrons) through conducting pathways. An <strong>electric circuit</strong> is a closed, unbroken loop through which electric current can travel from the positive terminal of a power source to the negative terminal.</p>
-          <p class="mt-2">In Class 7 Science, you will master circuit diagrams using standardized symbols:</p>
-          <ul class="list-disc pl-5 mt-1 space-y-1 text-slate-300">
-            <li><strong>Electric Cell:</strong> Longer thin line represents positive ($+$), shorter thick line represents negative ($-$).</li>
-            <li><strong>Switch:</strong> When closed (ON), circuit continuity is established; when open (OFF), the gap halts current instantly.</li>
-            <li><strong>Heating Effect:</strong> Passing current through high-resistance wires (like nichrome) generates intense heat ($H = I^2 R t$), utilized in electric irons, toasters, and safety fuses.</li>
-            <li><strong>Magnetic Effect (Hans Christian Oersted, 1820):</strong> Current flowing through a conductor induces a surrounding magnetic field. Wrapping wire around an iron nail produces a powerful <strong>electromagnet</strong>!</li>
-          </ul>
-        r""",
-        "formula": r"$$\text{Joule's Heating Law}: H = I^2 \cdot R \cdot t \quad \text{and} \quad \text{Magnetic Field of a Solenoid}: B = \mu_0 \cdot n \cdot I$$",
-        "key_takeaways": [
-            "A complete, unbroken closed loop is essential for electric current to flow.",
-            "Electric components are universally represented using standard schematic symbols.",
-            "Electric current produces heat in resistors (heating effect) and deflects compass needles (magnetic effect).",
-            "Electromagnets can be turned on and off with a switch, powering electric bells, cranes, and motors."
-        ],
+        "badge": "1.2 • States of Matter",
+        "title": "Three States of Matter",
+        "subtitle": "Ice, Liquid Water, and Steam Governed by Temperature",
+        "theory": """
+            <p>Water is unique because we commonly experience it in all three physical states of matter simply by changing temperature:</p>
+            <div class="grid grid-cols-3 gap-2 my-2 text-center text-xs">
+                <div class="p-2 rounded-xl bg-blue-950/50 border border-blue-500/30">
+                    <span class="font-bold text-blue-300 block">🧊 Solid</span>
+                    Ice (< 0 °C)<br>Fixed shape & volume
+                </div>
+                <div class="p-2 rounded-xl bg-cyan-950/50 border border-cyan-500/30">
+                    <span class="font-bold text-cyan-300 block">💧 Liquid</span>
+                    Water (0 °C – 100 °C)<br>Takes shape of container
+                </div>
+                <div class="p-2 rounded-xl bg-slate-900 border border-slate-700">
+                    <span class="font-bold text-slate-300 block">💨 Gas</span>
+                    Steam (> 100 °C)<br>Expands to fill any space
+                </div>
+            </div>
+            <p class="text-xs text-slate-300">Heating gives water molecules kinetic energy, loosening bonds from rigid solid ice to free-flowing liquid, and finally liberating them as energetic gas molecules.</p>
+        """,
+        "summary": "Curious Tara observes: Put an ice cube in the sun, and it melts into water. Boil that water, and it disappears as steam. It is the same substance in three disguise cloaks!",
         "checkpoints": [
             {
-                "question": "What happens to a magnetic compass needle placed near a straight wire when an electric current is switched on?",
+                "id": "8-1",
+                "question": "What happens to the molecules of solid ice when heat energy is added?",
                 "options": [
-                    "The needle stays perfectly motionless",
-                    "The needle deflects, proving that electric current generates a magnetic field",
-                    "The needle immediately melts from heat",
-                    "The compass needle starts spinning in circles forever"
+                    "They freeze tighter",
+                    "They gain energy, vibrate faster, and break out of rigid positions to flow as liquid",
+                    "They turn into stone",
+                    "They vanish permanently"
                 ],
                 "correct": 1,
-                "explanation": "As discovered by Hans Christian Oersted in 1820, an electric current creates a magnetic field around the conductor, deflecting nearby magnetic needles."
+                "explanation": "Heat energy increases molecular vibration, overcoming intermolecular attractions and melting rigid ice into liquid water."
             },
             {
-                "question": "Why is a thin fuse wire installed in household electrical circuits?",
-                "options": [
-                    "To generate extra light in case of a blackout",
-                    "To melt and break the circuit safely when current exceeds safe limits",
-                    "To cool down the copper wires inside the walls",
-                    "To store extra electric charge like a battery"
-                ],
-                "correct": 1,
-                "explanation": "A fuse is a safety device with a low melting point that melts and breaks the circuit when excessive current flows, preventing electrical fires and appliance damage."
+                "id": "8-2",
+                "question": "At what sea-level temperature does pure liquid water boil into gaseous steam?",
+                "options": ["0 °C", "50 °C", "100 °C", "200 °C"],
+                "correct": 2,
+                "explanation": "The standard boiling point of pure water at atmospheric sea-level pressure is 100 °C."
             }
-        ],
-        "simulator_type": "dc_circuit_electromagnet"
+        ]
     },
-
-    # -------------------------------------------------------------
-    # 9. Preview: The Dance of Light, Shadows & Eclipses
-    # -------------------------------------------------------------
     {
         "id": 9,
-        "type": "concept_slide",
-        "title": "Preview: Light, Shadows, and Cosmic Eclipses",
-        "subtitle": "Rectilinear Propagation, Reflection, and Planetary Shadows",
-        "content": r"""
-          <p>Light is electromagnetic radiation that enables vision. In uniform transparent media, light travels along strictly straight lines—a fundamental principle known as the <strong>rectilinear propagation of light</strong>.</p>
-          <p class="mt-2">When an opaque obstacle blocks straight light rays, a dark region called a <strong>shadow</strong> forms behind it:</p>
-          <ul class="list-disc pl-5 mt-1 space-y-1 text-slate-300">
-            <li><strong>Umbra:</strong> The innermost, completely dark zone of the shadow where all direct light from the source is obstructed.</li>
-            <li><strong>Penumbra:</strong> The surrounding partial shadow where only a portion of the light source is obscured.</li>
-          </ul>
-          <p class="mt-2">On a cosmic scale, these shadow zones produce celestial spectacles:</p>
-          <ul class="list-disc pl-5 mt-1 space-y-1 text-slate-300">
-            <li><strong>Solar Eclipse:</strong> The Moon moves directly between the Sun and Earth, casting its small shadow onto Earth's surface during the New Moon phase.</li>
-            <li><strong>Lunar Eclipse:</strong> Earth passes directly between the Sun and Moon, casting Earth's massive shadow over the Full Moon.</li>
-          </ul>
-        r""",
-        "formula": r"$$\text{Law of Reflection}: \angle i = \angle r \quad \text{and} \quad \text{Speed of Light in Vacuum}: c \approx 3 \times 10^8\text{ m/s}$$",
-        "key_takeaways": [
-            "Light travels in straight lines (rectilinear propagation), which accounts for sharp shadow formation.",
-            "Shadows cast by extended light sources consist of a central Umbra and peripheral Penumbra.",
-            "A Solar Eclipse occurs when the Moon's shadow strikes Earth (Sun-Moon-Earth alignment).",
-            "A Lunar Eclipse occurs when the Moon enters Earth's shadow (Sun-Earth-Moon alignment)."
-        ],
+        "badge": "1.2 • Thermal Senses",
+        "title": "Hot or Cold?",
+        "subtitle": "Why Our Sense of Touch Deceives and Thermometers Tell the Truth",
+        "theory": """
+            <p>Can you rely on your hands to measure temperature? Let's try an experiment:</p>
+            <p class="mt-2 text-xs text-slate-300">Place one hand in warm water and the other in ice-cold water for a minute. Then place both hands together into lukewarm water. The warm hand feels cold, while the cold hand feels warm!</p>
+            <p class="mt-2">Our skin only detects the <strong>relative transfer of heat</strong>, not true absolute temperature. To be objective scientists, we require precision instruments: <strong>Thermometers</strong> with standardized scales (Celsius °C or Fahrenheit °F) that never get fooled by perception.</p>
+        """,
+        "summary": "Dr. C.V. Raman emphasizes: Personal perception is subjective. Science requires objective, reproducible instruments so that every researcher across the globe measures the exact same value.",
         "checkpoints": [
             {
-                "question": "What celestial alignment produces a Solar Eclipse?",
+                "id": "9-1",
+                "question": "Why can our sense of touch give misleading impressions about temperature?",
                 "options": [
-                    "Sun — Earth — Moon",
-                    "Sun — Moon — Earth",
-                    "Earth — Sun — Moon",
-                    "Moon — Sun — Earth"
+                    "Because our hands cannot touch water",
+                    "Because skin only senses the relative rate of heat gain or loss, not absolute temperature",
+                    "Because all water is identical",
+                    "Skin is always 100% accurate"
                 ],
                 "correct": 1,
-                "explanation": "During a Solar Eclipse, the Moon is positioned directly between the Sun and the Earth, casting its shadow onto the surface of the Earth."
+                "explanation": "Human skin senses relative thermal transfer compared to recent sensation, making touch subjective and easily fooled."
             },
             {
-                "question": "If you are standing inside the Umbra of the Moon's shadow during a Solar Eclipse, what will you witness?",
-                "options": [
-                    "A Total Solar Eclipse, where the Sun's bright disk is completely blocked",
-                    "A Lunar Eclipse with a bright red Moon",
-                    "No change in daylight whatsoever",
-                    "The Sun appearing twice as large in the sky"
-                ],
-                "correct": 0,
-                "explanation": "The Umbra is the region of total shadow. Observers inside the Umbra experience a Total Solar Eclipse, seeing only the Sun's outer corona."
+                "id": "9-2",
+                "question": "Which scientific tool provides an objective, reliable measurement of temperature?",
+                "options": ["A ruler", "A thermometer", "A balance scale", "A compass"],
+                "correct": 1,
+                "explanation": "A thermometer measures thermal energy quantitatively on calibrated numerical scales like Celsius."
             }
-        ],
-        "simulator_type": "eclipse_shadow_caster"
+        ]
     },
-
-    # -------------------------------------------------------------
-    # 10. Preview: Time, Motion & Galilean Isochronism
-    # -------------------------------------------------------------
     {
         "id": 10,
-        "type": "concept_slide",
-        "title": "Preview: Measuring Time and Motion",
-        "subtitle": "From Ancient Sundials to Galileo's Pendulum and Modern Speed",
-        "content": r"""
-          <p>How did our ancestors measure time before digital wristwatches? They observed rhythmic, periodic events in nature: the rising and setting of the Sun (solar days), changing lunar phases (months), and the cycle of seasons (years).</p>
-          <p class="mt-2">Ancient timekeepers harnessed steady flows: sundials tracked moving solar shadows, clepsydras (water clocks) measured dripping water, and sand hourglasses tracked gravitational drainage.</p>
-          <p class="mt-2">In 1583, a nineteen-year-old <strong>Galileo Galilei</strong> observed a swinging chandelier in Pisa Cathedral. Using his own pulse as a timer, Galileo discovered the principle of <strong>isochronism</strong>:</p>
-          <ul class="list-disc pl-5 mt-1 space-y-1 text-slate-300">
-            <li>A simple pendulum of a given length takes the exact same amount of time to complete one full oscillation (back and forth), regardless of how wide the swing (amplitude) is!</li>
-            <li>Dutch scientist Christiaan Huygens used this discovery in 1656 to invent the world's first accurate pendulum clock.</li>
-          </ul>
-          <p class="mt-2">You will also quantify motion through the fundamental relationship: $\text{Speed} = \frac{\text{Distance}}{\text{Time}}$.</p>
-        r""",
-        "formula": r"$$\text{Pendulum Period}: T = 2\pi \sqrt{\frac{L}{g}} \quad \text{and} \quad \text{Average Speed}: v = \frac{\text{Total Distance}}{\text{Total Time}}$$",
-        "key_takeaways": [
-            "Time measurement relies on periodic, repeating natural or mechanical phenomena.",
-            "Galileo discovered isochronism: a pendulum's period depends on length, not amplitude.",
-            "Increasing string length $L$ increases the time period $T$; mass of the bob does not change $T$.",
-            "Speed measures the rate of distance covered per unit time; SI unit is meters per second (m/s)."
-        ],
+        "badge": "1.2 • Materials",
+        "title": "Sorting Materials",
+        "subtitle": "Classifying Matter by Properties: Metals, Plastics, and Magnets",
+        "theory": """
+            <p>Look around your classroom or room: clothes are made of cotton or polyester fabric, drinking tumblers are glass or steel, chairs are wooden or plastic, and electrical wires are copper.</p>
+            <p class="mt-2">Scientists classify materials based on measurable physical properties:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-1 text-slate-300 text-xs sm:text-sm">
+                <li><strong>Luster & Conductivity:</strong> Metals (iron, copper, gold) are shiny and conduct heat/electricity well.</li>
+                <li><strong>Hardness & Flexibility:</strong> Wood is rigid; rubber is elastic and flexible.</li>
+                <li><strong>Magnetic Attraction:</strong> Iron and nickel are pulled strongly by magnets; plastic, glass, and wood are non-magnetic.</li>
+            </ul>
+        """,
+        "summary": "Curious Tara smiles: Knowing material properties helps us choose wisely! We make cooking pans out of heat-conducting steel, but pan handles out of heat-insulating bakelite plastic so we don't burn our hands!",
         "checkpoints": [
             {
-                "question": "If you double the mass of a pendulum bob while keeping string length strictly constant, what happens to its time period?",
+                "id": "10-1",
+                "question": "Why are cooking pan handles typically made of wood or heat-resistant plastic rather than metal?",
                 "options": [
-                    "The time period doubles",
-                    "The time period is cut in half",
-                    "The time period remains virtually unchanged",
-                    "The pendulum immediately stops swinging"
-                ],
-                "correct": 2,
-                "explanation": "The formula $T = 2\\pi \\sqrt{L/g}$ shows that the time period depends only on the length $L$ and gravitational acceleration $g$, independent of bob mass."
-            },
-            {
-                "question": "A school bus travels a distance of 120 kilometers in exactly 3 hours. What is its average speed?",
-                "options": [
-                    "360 km/h",
-                    "40 km/h",
-                    "25 km/h",
-                    "60 km/h"
+                    "Because metals are too soft",
+                    "Because wood and plastics are poor conductors of heat (insulators), keeping hands safe",
+                    "Because plastics are magnetic",
+                    "Because metals melt instantly on a stove"
                 ],
                 "correct": 1,
-                "explanation": "Average speed = Total Distance / Total Time = $120\\text{ km} / 3\\text{ h} = 40\\text{ km/h}$."
+                "explanation": "Wood and plastic are thermal insulators that prevent heat from conducting into your hands."
+            },
+            {
+                "id": "10-2",
+                "question": "Which of the following objects will be attracted to a magnet?",
+                "options": ["A plastic ruler", "A steel safety pin", "A wooden pencil", "A cotton handkerchief"],
+                "correct": 1,
+                "explanation": "Steel safety pins contain iron, which is ferromagnetic and strongly attracted by magnets."
             }
-        ],
-        "simulator_type": "galileo_pendulum_lab"
+        ]
     },
-
-    # -------------------------------------------------------------
-    # 11. Preview: Life Processes & Photosynthesis
-    # -------------------------------------------------------------
     {
         "id": 11,
-        "type": "concept_slide",
-        "title": "Preview: Life Processes in the Biosphere",
-        "subtitle": "Photosynthesis, Cellular Respiration, and Vital Transport Systems",
-        "content": r"""
-          <p>All living organisms must perform vital life processes to sustain life, grow, and reproduce. At the base of nearly all food webs on Earth sits the miraculous biochemical engine of <strong>photosynthesis</strong>.</p>
-          <p class="mt-2">Green plants are <strong>autotrophs</strong>: using chlorophyll pigments inside leaf chloroplasts, they capture radiant sunlight energy to convert carbon dioxide from the air and water from the soil into chemical energy (glucose), releasing oxygen gas as a byproduct:</p>
-          <div class="p-3 my-2 rounded-xl bg-slate-900 border border-emerald-500/40 text-center text-xs font-mono text-emerald-300">
-            $$6\text{CO}_2 + 6\text{H}_2\text{O} \xrightarrow[\text{chlorophyll}]{\text{sunlight}} \text{C}_6\text{H}_{12}\text{O}_6 \text{ (glucose)} + 6\text{O}_2 \uparrow$$
-          </div>
-          <p class="mt-2">Conversely, all living cells (both plants and animals) perform <strong>cellular respiration</strong>—burning glucose in the presence of oxygen to release usable chemical energy (ATP):</p>
-          <ul class="list-disc pl-5 mt-1 space-y-1 text-slate-300">
-            <li><strong>Xylem tissue:</strong> Transports water and dissolved soil minerals upward from roots to leaves via capillary suction.</li>
-            <li><strong>Phloem tissue:</strong> Translocates synthesized food sugars from leaves to all growing regions of the plant.</li>
-          </ul>
-        r""",
-        "formula": r"$$\text{Cellular Respiration}: \text{C}_6\text{H}_{12}\text{O}_6 + 6\text{O}_2 \longrightarrow 6\text{CO}_2 + 6\text{H}_2\text{O} + \text{Energy (ATP)}$$",
-        "key_takeaways": [
-            "Photosynthesis converts solar energy into chemical energy stored in glucose molecules.",
-            "Chlorophyll absorbs blue and red wavelengths of light while reflecting green light.",
-            "Oxygen released during photosynthesis comes directly from split water molecules (photolysis).",
-            "Xylem moves water and minerals upward; phloem distributes synthesized food multidirectionally."
-        ],
+        "badge": "1.2 • Astronomy",
+        "title": "Celestial Wonders",
+        "subtitle": "Gazing Beyond Earth: The Sun, Moon, and Cosmic Stars",
+        "theory": """
+            <p>When the sun sets, our window into the grand cosmos opens. Science reaches far beyond our planet into the boundless ocean of space.</p>
+            <p class="mt-2">Our <strong>Sun</strong> is a roaring thermonuclear star around which Earth and 7 other sibling planets revolve. The <strong>Moon</strong>, Earth's natural companion, circles us every 27.3 days, reflecting sunlight in changing phases.</p>
+            <p class="mt-2">And every twinkling star in the night sky is another sun, many with their own planetary systems, located light-years across the Milky Way galaxy!</p>
+        """,
+        "summary": "Dr. C.V. Raman muses: Astronomy teaches us profound humility and limitless curiosity. We are explorers on a pale blue dot looking out into a universe of trillions of luminous stars.",
         "checkpoints": [
             {
-                "question": "What gas do green plants absorb from the air through microscopic stomata during photosynthesis?",
-                "options": [
-                    "Carbon dioxide ($\\text{CO}_2$)",
-                    "Pure nitrogen ($\\text{N}_2$)",
-                    "Argon ($\\text{Ar}$)",
-                    "Helium ($\\text{He}$)"
-                ],
-                "correct": 0,
-                "explanation": "Plants take in carbon dioxide ($\\text{CO}_2$) from the atmosphere through leaf stomata and release oxygen gas ($\\text{O}_2$) as a vital byproduct."
+                "id": "11-1",
+                "question": "What is the Sun at the center of our solar system?",
+                "options": ["A giant solid rock", "A star — a massive glowing ball of hot gas", "A giant planet", "A cosmic moon"],
+                "correct": 1,
+                "explanation": "The Sun is a medium-sized star generating colossal heat and light through nuclear fusion at its core."
             },
             {
-                "question": "Which plant vascular tissue acts like an internal plumbing system to transport water from roots to leaves?",
+                "id": "11-2",
+                "question": "Why does the Moon shine in the night sky?",
                 "options": [
-                    "Xylem",
-                    "Phloem",
-                    "Epidermis",
-                    "Pith"
+                    "It produces its own light like a torch",
+                    "It reflects light from the Sun towards Earth",
+                    "It is covered in glowing neon moss",
+                    "It absorbs light from city streetlights"
                 ],
-                "correct": 0,
-                "explanation": "Xylem vessels form continuous capillary pipelines carrying water and dissolved mineral nutrients upward from roots to the stems and leaves."
+                "correct": 1,
+                "explanation": "The Moon does not emit its own light; it shines because its rocky surface reflects sunlight back to our eyes."
             }
-        ],
-        "simulator_type": "photosynthesis_rate_lab"
+        ]
     },
-
-    # -------------------------------------------------------------
-    # 12. Preview: Earth's Tilt, Rotation & The Rhythm of Seasons
-    # -------------------------------------------------------------
     {
         "id": 12,
-        "type": "concept_slide",
-        "title": "Preview: Earth's Movements & The Seasons",
-        "subtitle": "The 23.5° Axial Tilt, Orbital Revolution, and Changing Solar Insolation",
-        "content": r"""
-          <p>Why do we experience hot summers and chilly winters? A common misconception is that Earth is significantly closer to the Sun in summer than in winter. In reality, Earth is actually closest to the Sun (perihelion $\approx 147\text{ million km}$) in early <strong>January</strong> during the Northern Hemisphere winter!</p>
-          <p class="mt-2">The true cause of seasons is Earth's <strong>axial tilt of approximately 23.5°</strong> relative to its orbital plane:</p>
-          <ul class="list-disc pl-5 mt-1 space-y-1 text-slate-300">
-            <li><strong>June Solstice (Summer in North):</strong> The Northern Hemisphere tilts directly toward the Sun. Sunlight strikes at a steep, nearly vertical angle, concentrating intense energy per square meter, while days are longer than nights.</li>
-            <li><strong>December Solstice (Winter in North):</strong> The Northern Hemisphere tilts away from the Sun. Solar rays arrive at a shallow, oblique angle, spreading energy across a larger area, resulting in shorter daylight hours and cooler temperatures.</li>
-            <li><strong>Equinoxes (March & September):</strong> Neither hemisphere tilts toward the Sun; day and night are of equal duration (12 hours) across the entire globe.</li>
-          </ul>
-        r""",
-        "formula": r"$$\text{Solar Energy Density}: I = I_0 \cdot \cos(\theta) \quad (\theta = \text{Zenith Angle of Incidence})$$",
-        "key_takeaways": [
-            "Seasons are caused by Earth's 23.5° axial tilt and orbital revolution, NOT distance from the Sun.",
-            "Vertical sunlight delivers concentrated heating; slanted sunlight spreads heat over a wider surface.",
-            "When the Northern Hemisphere enjoys summer, the Southern Hemisphere experiences winter.",
-            "On equinoxes, the Sun shines directly over the Equator, giving equal day and night worldwide."
-        ],
+        "badge": "1.3 • Inquiry",
+        "title": "The Scientific Method",
+        "subtitle": "Structured Troubleshooting: The Story of the Broken Pen",
+        "theory": """
+            <p>How do scientists find truth? They don't guess blindly or believe rumors. They employ a systematic detective process called the <strong>Scientific Method</strong>.</p>
+            <p class="mt-2">Consider a simple everyday mystery: You are writing notes and suddenly your ballpoint pen stops writing!</p>
+            <ul class="list-disc pl-5 mt-2 space-y-1 text-slate-300 text-xs sm:text-sm">
+                <li><strong>Observation:</strong> No ink appears on the paper.</li>
+                <li><strong>Question:</strong> Why did the pen stop writing?</li>
+                <li><strong>Hypothesis 1:</strong> Maybe the ink refill is completely empty.</li>
+                <li><strong>Test 1:</strong> Unscrew the barrel. You see the transparent tube is half-full of blue ink! (Hypothesis 1 rejected).</li>
+                <li><strong>Hypothesis 2:</strong> Maybe dry ink is clogging the ball at the tip.</li>
+                <li><strong>Test 2:</strong> Scribble firmly on a rough scrap sheet or warm the tip gently. The ball rolls and fresh ink flows! (Hypothesis 2 verified).</li>
+            </ul>
+        """,
+        "summary": "Curious Tara laughs: I used the scientific method this morning without even realizing it when I fixed my pen!",
         "checkpoints": [
             {
-                "question": "What is the primary astronomical cause of changing seasons on Earth?",
-                "options": [
-                    "Earth moving closer to and farther away from the Sun",
-                    "Earth's 23.5° axial tilt maintaining a fixed direction as it orbits the Sun",
-                    "Periodic fluctuations in the Sun's total nuclear power output",
-                    "The Moon casting long shadows across the continents"
-                ],
+                "id": "12-1",
+                "question": "In the pen troubleshooting example, what did unscrewing the barrel to check ink level represent?",
+                "options": ["Formulating a guess", "Testing a hypothesis through observation", "Giving up on science", "Writing a poem"],
                 "correct": 1,
-                "explanation": "Earth's constant 23.5° axial tilt causes each hemisphere to alternate between tilting toward the Sun (summer, vertical rays) and away from the Sun (winter, oblique rays)."
+                "explanation": "Inspecting the transparent refill was a test designed to check the hypothesis that the pen was empty."
             },
             {
-                "question": "During an Equinox (around March 21 and September 23), what is true regarding day and night length everywhere on Earth?",
+                "id": "12-2",
+                "question": "What is the primary advantage of the scientific method over blind guessing?",
                 "options": [
-                    "Days are 24 hours long at the poles",
-                    "Day and night are approximately equal in duration (12 hours each)",
-                    "Nights are twice as long as daylight hours",
-                    "There is total darkness across all continents"
+                    "It is much faster than thinking",
+                    "It provides a structured, evidence-based pathway to uncover verified causes",
+                    "It never requires experiments",
+                    "It makes all pens write forever"
                 ],
                 "correct": 1,
-                "explanation": "'Equinox' translates from Latin to 'equal night'; on these dates, the Sun sits directly over the Equator, producing roughly 12 hours of day and 12 hours of night globally."
+                "explanation": "The scientific method tests hypotheses against repeatable evidence, eliminating false assumptions systematically."
             }
-        ],
-        "simulator_type": "earth_seasons_orbit"
+        ]
     },
-
-    # -------------------------------------------------------------
-    # 13. Science for a Sustainable Planet
-    # -------------------------------------------------------------
     {
         "id": 13,
-        "type": "concept_slide",
-        "title": "Science for a Sustainable Planet",
-        "subtitle": "Balancing Human Energy Needs with Ecological Conservation",
-        "content": r"""
-          <p>Science is not just about discovering how nature operates—it is about applying our knowledge responsibly to preserve our planetary home for future generations. This is the science of <strong>sustainability</strong>.</p>
-          <p class="mt-2">Human civilization relies heavily on burning fossil fuels (coal, oil, natural gas), which releases billions of tons of carbon dioxide ($\text{CO}_2$) and other greenhouse gases into the atmosphere, causing global warming and extreme climate events.</p>
-          <p class="mt-2">Science provides powerful sustainable solutions:</p>
-          <ul class="list-disc pl-5 mt-1 space-y-1 text-slate-300">
-            <li><strong>Renewable Energy Systems:</strong> Harnessing limitless solar photovoltaics, wind turbines, hydroelectric power, and clean green hydrogen.</li>
-            <li><strong>Circular Economy:</strong> Adopting the 5 Rs—<strong>Refuse, Reduce, Reuse, Repurpose, Recycle</strong>—to eliminate plastic waste and conserve finite minerals.</li>
-            <li><strong>Rainwater Harvesting & Soil Conservation:</strong> Recharging underground aquifers, practicing organic farming, and preventing soil erosion through afforestation.</li>
-          </ul>
-        r""",
-        "formula": r"$$\text{The Carbon Equation}: \Delta \text{CO}_2 = \text{Emissions (Fossil Fuels, Deforestation)} - \text{Sequestration (Forests, Oceans)}$$",
-        "key_takeaways": [
-            "Sustainability means meeting present needs without compromising the ability of future generations to meet theirs.",
-            "Transitioning from fossil fuels to renewable energy (solar, wind) curtails atmospheric greenhouse gases.",
-            "Forests and oceans act as essential carbon sinks that stabilize the global climate.",
-            "Responsible scientific innovation balances technological advancement with environmental ethics."
-        ],
+        "badge": "1.3 • Core Steps",
+        "title": "Observe & Question",
+        "subtitle": "Stage 1 & 2: Noticing the Unexpected and Formulating 'Why?'",
+        "theory": """
+            <p>Every great breakthrough in human history began with two foundational steps:</p>
+            <div class="space-y-3 my-2 text-xs sm:text-sm">
+                <div class="p-3 rounded-xl bg-cyan-950/40 border border-cyan-500/30">
+                    <strong class="text-cyan-300 block mb-1">Step 1: Careful Observation</strong>
+                    Using your senses (sight, hearing, touch, smell) and tools to notice an intriguing pattern, anomaly, or unexplained event in nature.
+                </div>
+                <div class="p-3 rounded-xl bg-amber-950/40 border border-amber-500/30">
+                    <strong class="text-amber-300 block mb-1">Step 2: Formulating Sharp Questions</strong>
+                    Converting that observation into an actionable question: <em>'Why does this happen?' 'What causes that change?' 'Under what conditions does it fail?'</em>
+                </div>
+            </div>
+            <p class="text-xs text-slate-300">When Alexander Fleming observed that green mold killed bacteria in a forgotten petri dish, his sharp question birthed penicillin and saved millions of lives!</p>
+        """,
+        "summary": "Dr. C.V. Raman notes: Millions had seen apples fall before Newton, but Newton asked 'Why does the apple fall towards Earth rather than sideways or upward?' Great questions spark revolutions.",
         "checkpoints": [
             {
-                "question": "Which of the following is considered an inexhaustible, clean renewable energy source?",
-                "options": [
-                    "Anthracite coal",
-                    "Solar photovoltaic energy",
-                    "Crude petroleum oil",
-                    "Natural gas"
-                ],
+                "id": "13-1",
+                "question": "What is the very first step in the scientific method?",
+                "options": ["Drawing conclusions", "Careful observation of a phenomenon", "Publishing a textbook", "Selling an invention"],
                 "correct": 1,
-                "explanation": "Solar energy is naturally replenished by nuclear fusion in the Sun every single day, producing no direct greenhouse emissions during operation."
+                "explanation": "Careful observation — noticing an interesting, unexplained occurrence in nature — is the starting point of inquiry."
             },
             {
-                "question": "What is the primary environmental danger of accumulating single-use plastics in oceans and landfills?",
+                "id": "13-2",
+                "question": "Why is asking specific, testable questions crucial in scientific research?",
                 "options": [
-                    "They decompose into beneficial plant fertilizer within 24 hours",
-                    "They are non-biodegradable and persist for centuries, harming marine ecosystems",
-                    "They increase the rotational speed of planet Earth",
-                    "They absorb all sunlight, plunging oceans into total darkness"
+                    "Because questions help identify what needs to be investigated and tested",
+                    "Because scientists like arguments",
+                    "Questions are not needed if you guess",
+                    "Because all questions have already been answered"
                 ],
-                "correct": 1,
-                "explanation": "Conventional plastics are synthetic polymers that do not readily biodegrade; they fragment into harmful microplastics that disrupt marine food webs."
+                "correct": 0,
+                "explanation": "A sharp, specific question defines the scope of the investigation and guides the hypothesis."
             }
-        ],
-        "simulator_type": "sustainability_energy_dashboard"
+        ]
     },
-
-    # -------------------------------------------------------------
-    # 14. Precision & Measurement in Science
-    # -------------------------------------------------------------
     {
         "id": 14,
-        "type": "concept_slide",
-        "title": "The Art of Precise Measurement",
-        "subtitle": "SI Units, Meniscus Readings, and Eliminating Parallax Errors",
-        "content": r"""
-          <p>Lord Kelvin famously declared: <em>"When you can measure what you are speaking about, and express it in numbers, you know something about it."</em> Without accurate measurement, science cannot test hypotheses or reproduce results.</p>
-          <p class="mt-2">To communicate unequivocally across nations, scientists established the <strong>International System of Units (SI Units)</strong>:</p>
-          <ul class="list-disc pl-5 mt-1 space-y-1 text-slate-300">
-            <li>Length: Meter ($\text{m}$), Mass: Kilogram ($\text{kg}$), Time: Second ($\text{s}$), Temperature: Kelvin ($\text{K}$).</li>
-          </ul>
-          <p class="mt-2">Laboratory investigations require vigilance against common measurement errors:</p>
-          <ul class="list-disc pl-5 mt-1 space-y-1 text-slate-300">
-            <li><strong>Parallax Error:</strong> The apparent shift in the position of an indicator when viewed from an angle. To avoid it, your eye must align strictly perpendicular to the scale!</li>
-            <li><strong>Meniscus Rule:</strong> In liquids like water that wet glass, surface tension creates a concave curve. <strong>Always read the volume at the very bottom of the concave meniscus at eye level.</strong> (For mercury, read the top of the convex meniscus).</li>
-          </ul>
-        r""",
-        "formula": r"$$\text{Density Formula}: \rho = \frac{\text{Mass } (m)}{\text{Volume } (V)} \quad \text{SI Unit}: \text{kg/m}^3 \text{ or } \text{g/cm}^3$$",
-        "key_takeaways": [
-            "SI units provide a universal, reproducible language for scientific quantification.",
-            "Parallax error is prevented by positioning the eye directly in line with the scale mark.",
-            "For aqueous solutions in graduated cylinders, always read the bottom of the concave meniscus.",
-            "Repetition of measurements and calculating averages minimizes experimental uncertainty."
-        ],
+        "badge": "1.3 • Core Steps",
+        "title": "Hypothesize & Test",
+        "subtitle": "Stage 3 & 4: Crafting Testable Explanations and Fair Experiments",
+        "theory": """
+            <p>Once you have a clear question, the inquiry advances to prediction and experimentation:</p>
+            <div class="space-y-3 my-2 text-xs sm:text-sm">
+                <div class="p-3 rounded-xl bg-purple-950/40 border border-purple-500/30">
+                    <strong class="text-purple-300 block mb-1">Step 3: Propose a Hypothesis</strong>
+                    A hypothesis is not a wild guess; it is an <strong>educated, testable explanation</strong> based on prior knowledge (e.g., <em>'If plants receive sunlight, then they will grow taller than plants in darkness.'</em>).
+                </div>
+                <div class="p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/30">
+                    <strong class="text-emerald-300 block mb-1">Step 4: Conduct a Fair Experiment</strong>
+                    Design a test where only <strong>one factor (variable)</strong> is changed while keeping all other conditions identical (fair comparison).
+                </div>
+            </div>
+        """,
+        "summary": "Curious Tara explains: If I want to test if sunlight helps plants grow, I keep soil, water, pot size, and seed type identical for both pots, changing ONLY sunlight exposure!",
         "checkpoints": [
             {
-                "question": "When measuring the volume of water in a graduated glass cylinder, where should your line of sight be placed?",
+                "id": "14-1",
+                "question": "What is a scientific hypothesis?",
                 "options": [
-                    "Looking down from above the cylinder",
-                    "Looking up from below the cylinder level",
-                    "Horizontally level with the exact bottom of the curved meniscus",
-                    "At any random angle because water level looks identical everywhere"
+                    "An indisputable truth that cannot be questioned",
+                    "An educated, testable proposed explanation for an observation",
+                    "A random guess with no reasoning",
+                    "The final conclusion of a project"
                 ],
-                "correct": 2,
-                "explanation": "To avoid parallax error, the observer's eye must be level with the liquid surface, reading the bottom of the concave meniscus."
+                "correct": 1,
+                "explanation": "A hypothesis is an educated proposition that can be verified or falsified through controlled experiments."
             },
             {
-                "question": "What is the standard International (SI) unit for measuring mass?",
+                "id": "14-2",
+                "question": "What is a 'fair test' (controlled experiment)?",
                 "options": [
-                    "Pound (lb)",
-                    "Gram (g)",
-                    "Kilogram (kg)",
-                    "Ounce (oz)"
+                    "An experiment where everything is changed all at once",
+                    "An experiment where only one variable is altered at a time, keeping all other factors constant",
+                    "An experiment where everyone wins a prize",
+                    "An experiment conducted without any measurements"
                 ],
-                "correct": 2,
-                "explanation": "The kilogram (kg) is the fundamental SI base unit for mass."
+                "correct": 1,
+                "explanation": "A fair test controls all extraneous variables so that any observed effect can be attributed solely to the single variable being tested."
             }
-        ],
-        "simulator_type": "meniscus_parallax_bench"
+        ]
     },
-
-    # -------------------------------------------------------------
-    # 15. Pioneers of Indian Science
-    # -------------------------------------------------------------
     {
         "id": 15,
-        "type": "concept_slide",
-        "title": "Giants of Modern Indian Science",
-        "subtitle": "Courage, Innovation, and Trailblazing Breakthroughs",
-        "content": r"""
-          <p>India possesses an extraordinary scientific legacy that transformed global physics, chemistry, biology, and aerospace engineering. Inspiring role models paved the path for our generation:</p>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 my-3 text-xs">
-            <div class="p-3 rounded-xl bg-slate-950 border border-amber-500/30">
-              <span class="text-amber-400 font-bold block mb-1">Acharya J.C. Bose (1858–1937)</span>
-              Father of radio science and plant physiology. Invented the coherer for millimeter microwave wireless signals and the <em>Crescograph</em>, proving that plants respond to external electrical, chemical, and thermal stimuli.
-            </div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-cyan-500/30">
-              <span class="text-cyan-400 font-bold block mb-1">Sir C.V. Raman (1888–1970)</span>
-              Nobel Prize in Physics (1930). Discovered that when light traverses a transparent medium, a fraction of scattered light emerges with shifted frequencies—the <strong>Raman Effect</strong>, celebrated on National Science Day (Feb 28).
-            </div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-emerald-500/30">
-              <span class="text-emerald-400 font-bold block mb-1">Dr. Homi J. Bhabha & Dr. Vikram Sarabhai</span>
-              Architects of modern Indian capability. Bhabha founded India's nuclear energy program (TIFR, BARC); Sarabhai founded ISRO, launching India's space odyssey from the fishing hamlet of Thumba.
-            </div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-indigo-500/30">
-              <span class="text-indigo-400 font-bold block mb-1">Dr. A.P.J. Abdul Kalam (1931–2015)</span>
-              The "Missile Man" and 11th President of India. Led the development of India's satellite launch vehicle (SLV-3) and indigenous missile systems; championed scientific inquiry among millions of schoolchildren.
-            </div>
-          </div>
-        r""",
-        "formula": r"$$\text{Raman Scattering}: h\nu_{\text{scattered}} = h\nu_{\text{incident}} \pm \Delta E_{\text{vibrational}} \quad (\text{Nobel Prize, 1930})$$",
-        "key_takeaways": [
-            "J.C. Bose pioneered microwave optics and demonstrated plant responsiveness using the crescograph.",
-            "C.V. Raman discovered the Raman Effect (molecular light scattering), winning the 1930 Nobel Prize.",
-            "Vikram Sarabhai established ISRO to harness space technology directly for societal benefit.",
-            "Dr. Kalam inspired youth to dream, question boldly, and serve humanity through science."
-        ],
+        "badge": "1.3 • Core Steps",
+        "title": "Analyze & Conclude",
+        "subtitle": "Stage 5: Inspecting Evidence, Drawing Conclusions, and Iterating",
+        "theory": """
+            <p>After running experiments and recording data, the crucial moment of judgment arrives:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-1 text-slate-300 text-xs sm:text-sm">
+                <li><strong>Analyze the Data:</strong> Organize numbers, measurements, and logs into charts and graphs. Look for clear trends.</li>
+                <li><strong>Draw Conclusions:</strong> Does the data support your hypothesis or disprove it?</li>
+                <li><strong>If Supported:</strong> Share your findings with the community for peer review and replication.</li>
+                <li><strong>If Disproved:</strong> Don't despair! A failed hypothesis is a huge discovery — it proves what doesn't work, pointing towards a better hypothesis!</li>
+            </ul>
+        """,
+        "summary": "Dr. C.V. Raman smiles: Thomas Edison tried thousands of materials before perfecting the lightbulb filament. He said: 'I have not failed 1,000 times; I have successfully found 1,000 ways that do not work!'",
         "checkpoints": [
             {
-                "question": "Why is National Science Day celebrated across India every year on February 28?",
+                "id": "15-1",
+                "question": "What should a scientist do if the experimental data contradicts their original hypothesis?",
                 "options": [
-                    "To mark the birthday of Sir Isaac Newton",
-                    "To commemorate the discovery of the Raman Effect by Sir C.V. Raman in 1928",
-                    "To celebrate the first landing of humans on Mars",
-                    "To mark the invention of the electric battery"
+                    "Falsify the data to match the hypothesis",
+                    "Accept the findings honestly, learn from them, and formulate an improved hypothesis",
+                    "Throw away the laboratory notebook",
+                    "Stop doing science"
                 ],
                 "correct": 1,
-                "explanation": "On February 28, 1928, Sir C.V. Raman confirmed the discovery of the Raman Effect, for which he was awarded the Nobel Prize in Physics in 1930."
+                "explanation": "Disproving a hypothesis provides valuable evidence that rules out false paths and leads to refined theories."
             },
             {
-                "question": "What highly sensitive instrument was designed by Acharya Jagadish Chandra Bose to record minute plant growth and responses?",
+                "id": "15-2",
+                "question": "Why do scientists record measurements and share their results openly with others?",
                 "options": [
-                    "The Barometer",
-                    "The Crescograph",
-                    "The Seismograph",
-                    "The Hydrometer"
+                    "To boast on social media",
+                    "So other researchers can verify, replicate, and build upon the discoveries",
+                    "Because textbooks demand it",
+                    "It has no practical benefit"
                 ],
                 "correct": 1,
-                "explanation": "J.C. Bose invented the crescograph, capable of magnifying plant movements and tissue responses up to 10,000 times."
+                "explanation": "Open peer review and independent replication verify scientific findings, ensuring reliability and collective progress."
             }
-        ],
-        "simulator_type": "indian_pioneers_timeline"
+        ]
     },
-
-    # -------------------------------------------------------------
-    # 16. Summary: Your Compass as a Young Scientist
-    # -------------------------------------------------------------
     {
         "id": 16,
-        "type": "concept_slide",
-        "title": "Your Journey as a Young Scientist",
-        "subtitle": "Synthesizing the Pillars of Grade 7 Scientific Inquiry",
-        "content": r"""
-          <p>As you embark on this exciting year in Grade 7 Science, remember that you are not just studying science—<strong>you are a scientist in action!</strong></p>
-          <p class="mt-2">Equip your mental toolbox with the core habits of scientific minds:</p>
-          <ul class="list-disc pl-5 mt-1 space-y-1 text-slate-300">
-            <li><strong>Relentless Curiosity:</strong> Never stop asking <em>"Why?"</em>, <em>"How?"</em>, and <em>"What if?"</em>.</li>
-            <li><strong>Empirical Rigor:</strong> Demand evidence. Don't believe a claim merely because someone authoritative asserts it; verify it through controlled observation.</li>
-            <li><strong>Embracing Mistakes:</strong> An experiment that doesn't go as planned is not a failure—it is a lesson showing how nature truly works.</li>
-            <li><strong>Interconnected Thinking:</strong> Biology, chemistry, physics, and earth science are not isolated compartments; they are interconnected branches of one great tree of knowledge.</li>
-            <li><strong>Compassionate Purpose:</strong> Use your scientific knowledge to protect ecosystems, eliminate suffering, and create a sustainable, equitable world.</li>
-          </ul>
-        r""",
-        "formula": r"$$\text{The Scientific Formula}: \text{Curiosity} + \text{Evidence} + \text{Critical Thinking} + \text{Responsibility} = \text{Progress}$$",
-        "key_takeaways": [
-            "Scientific habits of mind include relentless curiosity, skepticism, and respect for empirical evidence.",
-            "All branches of science (Life, Chemical, Physical, Earth & Space) are intimately interconnected.",
-            "Failures in experiments are stepping stones toward deeper comprehension.",
-            "Science is a noble pursuit intended to uplift humanity and safeguard planet Earth."
-        ],
+        "badge": "1.3 • Everyday Inquiry",
+        "title": "Everyday Scientists",
+        "subtitle": "Cooks, Mechanics, Electricians & The Journey of a 'Whys' Person",
+        "theory": """
+            <p>You don't need a diploma to be a scientist. Anyone who observes carefully, diagnoses problems logically, and tests solutions is practicing genuine science:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-1 text-slate-300 text-xs sm:text-sm">
+                <li><strong>The Cook:</strong> Dal sputters out of the cooker vent. The cook reasons: <em>'Did I add too much water or turn the flame too high?'</em> They adjust the flame and test again.</li>
+                <li><strong>The Bicycle Mechanic:</strong> A tyre goes flat. The mechanic immerses the pumped tube into a water basin. Bubbles pinpoint the puncture!</li>
+                <li><strong>The Electrician:</strong> A ceiling fan won't turn. They systematically check the wall switch, fuse, and capacitor.</li>
+            </ul>
+            <p class="mt-2 text-xs text-amber-300 font-semibold">Science is a team journey. When you keep asking 'Why?', you become a truly wise person — a lifelong 'whys' person!</p>
+        """,
+        "summary": "Curious Tara beams: Whenever you investigate a mystery in your neighborhood with your friends, you are walking shoulder-to-shoulder with the greatest scientists in history!",
         "checkpoints": [
             {
-                "question": "When an experiment produces unexpected results, what is the mindset of a true scientist?",
+                "id": "16-1",
+                "question": "How does a bicycle repairer use the scientific method to locate a puncture in an inner tube?",
                 "options": [
-                    "Disappointment and abandoning science forever",
-                    "Excitement and curiosity to understand why nature produced that specific outcome",
-                    "Blaming laboratory equipment without checking the data",
-                    "Forcing the numbers to match the textbook answer"
+                    "By guessing blindly where the hole might be",
+                    "By immersing the inflated tube in water and observing where escaping air creates bubbles",
+                    "By replacing the whole bicycle",
+                    "By painting the tyre blue"
                 ],
                 "correct": 1,
-                "explanation": "Isaac Asimov famously said: 'The most exciting phrase to hear in science is not 'Eureka!' but 'That's funny...' Unexpected results spark genuine scientific breakthroughs."
+                "explanation": "Submerging the tube in water is an ingenious test: escaping air forms visible bubbles, pinpointing the puncture."
             },
             {
-                "question": "How are the different branches of science (Physics, Chemistry, Biology) related in real-world phenomena?",
+                "id": "16-2",
+                "question": "What does it mean to become a lifelong 'whys' person?",
                 "options": [
-                    "They are completely separate and never interact with one another",
-                    "They are deeply interconnected; biological processes rely on chemical reactions governed by physical laws",
-                    "Only Physics is real; Chemistry and Biology are fictional",
-                    "They contradict and disprove each other every day"
+                    "Someone who complains all day",
+                    "A curious individual who continually questions, observes, and seeks evidence to gain wisdom",
+                    "Someone who only memorizes facts for tests",
+                    "A person who avoids learning new things"
                 ],
                 "correct": 1,
-                "explanation": "Nature is unified: for example, photosynthesis in biology is a chemical reaction governed by the physics of quantum photon absorption and fluid flow."
+                "explanation": "A 'whys' person never loses curiosity, constantly questioning the world to deepen understanding and wisdom."
             }
-        ],
-        "simulator_type": "young_scientist_constellation"
+        ]
     },
-
-    # -------------------------------------------------------------
-    # 17. Mastery Quiz 1: Nature of Science & Inquiry (Questions 1 - 10)
-    # -------------------------------------------------------------
+    # Quiz Slides 17 to 20
     {
         "id": 17,
-        "type": "quiz_slide",
-        "title": "Mastery Challenge I: Nature of Science & Inquiry",
-        "subtitle": "Test Your Grasp on Scientific Methods, Aerodynamics & 'Question the Answer'",
-        "questions": [
-            {
-                "question": "1. What is the fundamental difference between a scientific theory and a wild guess?",
-                "options": [
-                    "A theory is backed by extensive, repeatable experimental evidence and predictive power",
-                    "A theory is invented by politicians without needing testing",
-                    "A theory can never be questioned or modified under any circumstances",
-                    "A theory is shorter in word count than a guess"
-                ],
-                "correct": 0,
-                "solution": "In science, a 'theory' is a well-substantiated explanation of natural phenomena based on a vast body of facts, laws, inferences, and repeatedly tested hypotheses, whereas a guess has no empirical backing."
-            },
-            {
-                "question": "2. In a paper plane glide, which force opposes the forward motion (thrust)?",
-                "options": [
-                    "Aerodynamic Drag",
-                    "Upward Lift",
-                    "Centrifugal Force",
-                    "Magnetism"
-                ],
-                "correct": 0,
-                "solution": "Drag is the aerodynamic resistive force exerted by air molecules opposing the forward motion of an aircraft through the fluid."
-            },
-            {
-                "question": "3. In Activity 1.1 'Question the Answer', the answer is 'Just add some milk!'. Which question best explains why milk cools chili burn?",
-                "options": [
-                    "Why does milk turn solid when left in sunlight?",
-                    "How does casein in milk wash fat-soluble capsaicin from sensory pain receptors?",
-                    "Why do cows produce white liquid instead of green liquid?",
-                    "How does cold water convert spice molecules into table salt?"
-                ],
-                "correct": 1,
-                "solution": "Chili peppers contain capsaicin, an oily, non-polar chemical. Water is polar and cannot dissolve it; milk contains casein phosphoproteins that bind to capsaicin, dislodging it from tongue pain receptors."
-            },
-            {
-                "question": "4. At what precise exit angle does the primary rainbow concentrate its brightest red light relative to incoming solar rays?",
-                "options": [
-                    "180°",
-                    "90°",
-                    "42°",
-                    "0°"
-                ],
-                "correct": 2,
-                "solution": "Geometrical optics shows that spherical raindrops create a maximum caustic concentration of emerging red light at approximately 42.0° (violet emerges at 40.4°)."
-            },
-            {
-                "question": "5. Which of the following is an example of an objective, verifiable scientific fact?",
-                "options": [
-                    "Vanilla ice cream is superior to chocolate ice cream",
-                    "Pure liquid water boils at 100°C at 1 atmosphere pressure",
-                    "Physics is more entertaining than Chemistry",
-                    "Rainy days are dreary and depressing"
-                ],
-                "correct": 1,
-                "solution": "The boiling point of water at 1 atm is an objectively measurable, reproducible physical fact independent of personal taste or emotion."
-            },
-            {
-                "question": "6. What is the biological term for designing technologies inspired by nature's living systems?",
-                "options": [
-                    "Biomimicry",
-                    "Taxonomy",
-                    "Paleontology",
-                    "Spontaneous creation"
-                ],
-                "correct": 0,
-                "solution": "Biomimicry (from bios, life, and mimesis, to imitate) is the design and production of materials, structures, and systems modeled on biological entities."
-            },
-            {
-                "question": "7. If you drop a crumpled ball of paper and a flat sheet of paper of identical mass from the same height, the crumpled ball hits the floor first. Why?",
-                "options": [
-                    "The crumpled paper has greater gravitational mass",
-                    "The flat sheet experiences substantially more upward air resistance (drag)",
-                    "Gravity acts only on spherical objects",
-                    "Air actively pushes the crumpled paper downward with great force"
-                ],
-                "correct": 1,
-                "solution": "Both papers have identical mass and gravitational attraction ($m \\cdot g$), but the flat paper has a much larger surface area, generating greater air resistance (drag) that retards its fall."
-            },
-            {
-                "question": "8. What is the purpose of a 'control group' in a scientific experiment?",
-                "options": [
-                    "To guarantee that the experiment finishes in half the time",
-                    "To serve as a baseline for comparison where the test variable is not altered",
-                    "To ensure that every test subject receives all treatments simultaneously",
-                    "To prevent visitors from entering the laboratory"
-                ],
-                "correct": 1,
-                "solution": "A control group is kept under baseline conditions without the experimental manipulation, allowing researchers to isolate the exact effect of the independent variable."
-            },
-            {
-                "question": "9. Why does white sunlight split into vibrant colors upon entering a glass prism or raindrop?",
-                "options": [
-                    "Different wavelengths (colors) of light travel at different speeds in glass/water and bend by different amounts (dispersion)",
-                    "The glass prism contains hidden colored dyes that stain the light",
-                    "Light particles collide and crack open inside the medium",
-                    "The Sun only emits colorful light during the afternoon"
-                ],
-                "correct": 0,
-                "solution": "Optical dispersion occurs because the refractive index of water or glass varies with wavelength: shorter wavelengths (violet/blue) bend more sharply than longer wavelengths (red)."
-            },
-            {
-                "question": "10. In the scientific inquiry cycle, what usually follows after an experiment contradicts a hypothesis?",
-                "options": [
-                    "Giving up and abandoning science completely",
-                    "Analyzing the unexpected data, refining or replacing the hypothesis, and designing a new test",
-                    "Erasing the experimental records to avoid embarrassment",
-                    "Declaring that the universe is broken"
-                ],
-                "correct": 1,
-                "solution": "When experimental data refutes a hypothesis, scientists analyze the findings, revise the conceptual model, and formulate a new testable hypothesis."
-            }
-        ]
+        "badge": "Quiz 1 • Foundations",
+        "title": "Mastery Challenge I",
+        "subtitle": "Questions 1 – 10: Nature of Science, Curiosity & Everyday Wonders",
+        "is_quiz": True,
+        "quiz_range": [1, 10]
     },
-
-    # -------------------------------------------------------------
-    # 18. Mastery Quiz 2: Materials, Electricity & Measurements (Questions 11 - 20)
-    # -------------------------------------------------------------
     {
         "id": 18,
-        "type": "quiz_slide",
-        "title": "Mastery Challenge II: Materials, Electricity & Lab Tools",
-        "subtitle": "Test Your Understanding of Physical/Chemical Changes, Circuits & Precision",
-        "questions": [
-            {
-                "question": "11. Which of the following observations is a definitive sign that a chemical reaction has taken place?",
-                "options": [
-                    "A solid block of butter melts into a yellow liquid",
-                    "Water evaporates into invisible water vapor",
-                    "Effervescent gas bubbles evolve when two clear liquids mix, and a new precipitate forms",
-                    "A piece of copper wire is bent into a circle"
-                ],
-                "correct": 2,
-                "solution": "The evolution of a new gas, precipitate formation, or unexpected temperature shift indicates that atomic bonds have been broken and new substances formed."
-            },
-            {
-                "question": "12. What chemical equation represents the reaction between baking soda and vinegar?",
-                "options": [
-                    "$\\text{CH}_3\\text{COOH} + \\text{NaHCO}_3 \\rightarrow \\text{CH}_3\\text{COONa} + \\text{H}_2\\text{O} + \\text{CO}_2$",
-                    "$\\text{NaCl} + \\text{H}_2\\text{O} \\rightarrow \\text{HCl} + \\text{NaOH}$",
-                    "$2\\text{H}_2 + \\text{O}_2 \\rightarrow 2\\text{H}_2\\text{O}$",
-                    "$\\text{C} + \\text{O}_2 \\rightarrow \\text{CO}_2$"
-                ],
-                "correct": 0,
-                "solution": "Acetic acid (vinegar) reacts with sodium hydrogen carbonate (baking soda) to produce sodium acetate, liquid water, and bubbling carbon dioxide gas."
-            },
-            {
-                "question": "13. In an electric circuit diagram, how is an electric cell conventionally drawn?",
-                "options": [
-                    "A circle with a cross inside",
-                    "One long thin line (positive) parallel to a shorter thicker line (negative)",
-                    "A squiggly zigzag line",
-                    "Two identical black squares"
-                ],
-                "correct": 1,
-                "solution": "Standard electrical schematics represent a cell using a long thin line for the positive terminal and a shorter, thicker line for the negative terminal."
-            },
-            {
-                "question": "14. What occurs when an electric current flows through an insulated wire coiled around a soft iron nail?",
-                "options": [
-                    "The iron nail immediately turns into radioactive uranium",
-                    "The iron nail becomes an electromagnet and attracts iron paperclips",
-                    "The electric current turns into liquid water inside the wire",
-                    "The nail loses all its mass"
-                ],
-                "correct": 1,
-                "solution": "The current generates a magnetic field inside the coil, magnetizing the soft iron core into a temporary electromagnet."
-            },
-            {
-                "question": "15. Why does an electrical safety fuse wire prevent fires in household wiring?",
-                "options": [
-                    "It has a low melting point and melts to break the circuit when current becomes dangerously high",
-                    "It sprays water automatically when a wire gets hot",
-                    "It speeds up the electric current to finish the work faster",
-                    "It converts extra current into sound music"
-                ],
-                "correct": 0,
-                "solution": "Joule heating ($H = I^2 R t$) causes the fuse element to heat up rapidly under overload; its low melting point alloy melts, creating an open circuit before wires catch fire."
-            },
-            {
-                "question": "16. What is the fundamental SI base unit for measuring temperature?",
-                "options": [
-                    "Degree Fahrenheit (°F)",
-                    "Degree Celsius (°C)",
-                    "Kelvin (K)",
-                    "Joule (J)"
-                ],
-                "correct": 2,
-                "solution": "The Kelvin (K) is the SI base unit of thermodynamic temperature ($0\\text{ K} = -273.15^\circ\\text{C}$)."
-            },
-            {
-                "question": "17. What causes 'parallax error' when reading a graduated measuring cylinder?",
-                "options": [
-                    "Looking at the scale from an angled line of sight rather than perpendicularly at eye level",
-                    "Using a cylinder made of transparent plastic instead of steel",
-                    "Measuring water that is slightly cold",
-                    "Holding your breath while taking a reading"
-                ],
-                "correct": 0,
-                "solution": "Parallax error arises when the scale mark and the indicator (liquid meniscus) are observed from an oblique angle, causing an apparent misalignment."
-            },
-            {
-                "question": "18. How should the volume of an aqueous solution in a graduated glass cylinder be read?",
-                "options": [
-                    "At the very top of the curved edges",
-                    "At the exact bottom of the concave meniscus at eye level",
-                    "At the midpoint between the top and bottom of the cylinder",
-                    "By pouring the water out onto a flat table first"
-                ],
-                "correct": 1,
-                "solution": "Water forms a concave meniscus in glass due to adhesive forces; standard laboratory protocol requires reading the exact bottom of the curve at eye level."
-            },
-            {
-                "question": "19. Which of the following is a reversible physical change?",
-                "options": [
-                    "Burning a wooden matchstick into ash",
-                    "Dissolving granulated sugar in warm water",
-                    "Frying a scrambled egg in butter",
-                    "Baking flour and yeast into bread"
-                ],
-                "correct": 1,
-                "solution": "Dissolving sugar in water is a physical change; the water can be evaporated away to recover the unchanged crystalline sugar."
-            },
-            {
-                "question": "20. What is the formula for calculating the physical density of an unknown mineral sample?",
-                "options": [
-                    "$\\text{Density} = \\text{Mass} \\times \\text{Volume}$",
-                    "$\\text{Density} = \\frac{\\text{Mass}}{\\text{Volume}}$",
-                    "$\\text{Density} = \\frac{\\text{Volume}}{\\text{Mass}}$",
-                    "$\\text{Density} = \\text{Mass} + \\text{Volume}$"
-                ],
-                "correct": 1,
-                "solution": "Density is mass per unit volume: $\\rho = \\frac{m}{V}$, typically expressed in $\\text{kg/m}^3$ or $\\text{g/cm}^3$."
-            }
-        ]
+        "badge": "Quiz 2 • Earth & Living World",
+        "title": "Mastery Challenge II",
+        "subtitle": "Questions 11 – 20: Living Diversity, Growth, Cuisines & Nutrients",
+        "is_quiz": True,
+        "quiz_range": [11, 20]
     },
-
-    # -------------------------------------------------------------
-    # 19. Mastery Quiz 3: Light, Shadows, Motion & Life Processes (Questions 21 - 30)
-    # -------------------------------------------------------------
     {
         "id": 19,
-        "type": "quiz_slide",
-        "title": "Mastery Challenge III: Light, Motion & Biosphere",
-        "subtitle": "Test Your Knowledge on Eclipses, Pendulum Physics & Photosynthesis",
-        "questions": [
-            {
-                "question": "21. Why does an opaque object cast a sharp shadow when placed in front of a point light source?",
-                "options": [
-                    "Light travels in straight lines (rectilinear propagation) and cannot bend around the obstacle",
-                    "The object absorbs all gravity around it",
-                    "Light turns into dark matter behind the obstacle",
-                    "Light rays bounce back into the lamp and disappear"
-                ],
-                "correct": 0,
-                "solution": "Rectilinear propagation dictates that light rays travel along straight lines; when obstructed by an opaque body, the unilluminated space behind forms a crisp shadow."
-            },
-            {
-                "question": "22. What is the completely dark central portion of a shadow called?",
-                "options": [
-                    "The Penumbra",
-                    "The Umbra",
-                    "The Corona",
-                    "The Antumbra"
-                ],
-                "correct": 1,
-                "solution": "The Umbra is the darkest innermost region of a shadow where all direct rays from the light source are completely blocked."
-            },
-            {
-                "question": "23. During which lunar phase can a Solar Eclipse take place?",
-                "options": [
-                    "Full Moon",
-                    "New Moon",
-                    "First Quarter Moon",
-                    "Third Quarter Moon"
-                ],
-                "correct": 1,
-                "solution": "A Solar Eclipse can only happen during the New Moon phase when the Moon is situated between the Earth and the Sun."
-            },
-            {
-                "question": "24. What did Galileo discover about the swinging of a simple pendulum (isochronism)?",
-                "options": [
-                    "The period of oscillation depends heavily on the color of the bob",
-                    "For small swings, the period depends only on string length and gravity, not on amplitude or bob mass",
-                    "Heavier bobs swing ten times faster than lighter bobs",
-                    "Pendulums only swing during stormy weather"
-                ],
-                "correct": 1,
-                "solution": "Galilean isochronism proves that the oscillation period $T = 2\\pi \\sqrt{L/g}$ is independent of the bob's mass or the swing's amplitude for small angles."
-            },
-            {
-                "question": "25. If a sprinter runs 200 meters in exactly 25 seconds, what is her average speed?",
-                "options": [
-                    "8 m/s",
-                    "50 m/s",
-                    "5 m/s",
-                    "12.5 m/s"
-                ],
-                "correct": 0,
-                "solution": "Average speed = $\\frac{\\text{Distance}}{\\text{Time}} = \\frac{200\\text{ m}}{25\\text{ s}} = 8\\text{ m/s}$."
-            },
-            {
-                "question": "26. What are the primary raw materials required by green leaves to conduct photosynthesis?",
-                "options": [
-                    "Carbon dioxide, water, and sunlight energy",
-                    "Oxygen gas, table salt, and soil clay",
-                    "Glucose sugar and pure nitrogen gas",
-                    "Hydrogen peroxide and carbon monoxide"
-                ],
-                "correct": 0,
-                "solution": "Photosynthesis requires carbon dioxide ($\text{CO}_2$) absorbed through stomata, water ($\text{H}_2\text{O}$) absorbed by roots, and sunlight absorbed by chlorophyll."
-            },
-            {
-                "question": "27. What is the green pigment in plant leaves that absorbs radiant photons of sunlight?",
-                "options": [
-                    "Hemoglobin",
-                    "Chlorophyll",
-                    "Melanin",
-                    "Carotene"
-                ],
-                "correct": 1,
-                "solution": "Chlorophyll inside leaf chloroplasts absorbs blue and red wavelengths of light to drive the light-dependent reactions of photosynthesis."
-            },
-            {
-                "question": "28. What vital gas is released into the atmosphere as a byproduct of photosynthetic water splitting?",
-                "options": [
-                    "Methane ($\\text{CH}_4$)",
-                    "Oxygen ($\\text{O}_2$)",
-                    "Carbon dioxide ($\\text{CO}_2$)",
-                    "Nitrous oxide ($\\text{N}_2\\text{O}$)"
-                ],
-                "correct": 1,
-                "solution": "During photolysis in the light reactions, water molecules ($\\text{H}_2\\text{O}$) are split into protons, electrons, and free molecular oxygen ($\\text{O}_2$)."
-            },
-            {
-                "question": "29. Which vascular tissue in plants translocates manufactured sugars from green leaves to other plant organs?",
-                "options": [
-                    "Xylem",
-                    "Phloem",
-                    "Cuticle",
-                    "Root hairs"
-                ],
-                "correct": 1,
-                "solution": "Phloem tissue is responsible for bidirectional translocation of soluble organic photoassimilates (sucrose) throughout the plant."
-            },
-            {
-                "question": "30. Why is the sky blue during a clear sunny day?",
-                "options": [
-                    "Oceans reflect their blue color upward into the atmosphere",
-                    "Nitrogen and oxygen gas molecules scatter shorter blue wavelengths of sunlight far more than longer red wavelengths (Rayleigh Scattering)",
-                    "Clouds release blue dye into the upper stratosphere",
-                    "Outer space is filled with bright blue gas"
-                ],
-                "correct": 1,
-                "solution": "Rayleigh scattering efficiency is proportional to $1/\\lambda^4$; shorter blue wavelengths are scattered in all directions by atmospheric molecules far more effectively than longer red wavelengths."
-            }
-        ]
+        "badge": "Quiz 3 • Matter & Cycles",
+        "title": "Mastery Challenge III",
+        "subtitle": "Questions 21 – 30: Water Cycle, States of Matter, Heat & Materials",
+        "is_quiz": True,
+        "quiz_range": [21, 30]
     },
-
-    # -------------------------------------------------------------
-    # 20. Mastery Quiz 4: Earth, Sustainability & Pioneers (Questions 31 - 40)
-    # -------------------------------------------------------------
     {
         "id": 20,
-        "type": "quiz_slide",
-        "title": "Mastery Challenge IV: Earth, Sustainability & Pioneers",
-        "subtitle": "Test Your Mastery on Earth's Axial Tilt, Renewable Ecology & Indian Pioneers",
-        "questions": [
-            {
-                "question": "31. What is the exact angle of Earth's rotational axial tilt relative to the perpendicular to its orbital plane?",
-                "options": [
-                    "0° (Completely upright)",
-                    "Approximately 23.5°",
-                    "45.0°",
-                    "90.0° (Lying on its side)"
-                ],
-                "correct": 1,
-                "solution": "Earth's rotational axis is tilted at approximately 23.44° (commonly rounded to 23.5°) relative to the perpendicular of its ecliptic orbital plane."
-            },
-            {
-                "question": "32. Why is summer warmer than winter in the Northern Hemisphere?",
-                "options": [
-                    "Earth is hundreds of millions of kilometers closer to the Sun in July",
-                    "The Northern Hemisphere tilts toward the Sun, receiving more direct (vertical) solar rays and longer daylight hours",
-                    "The Sun burns twice as much nuclear fuel during July",
-                    "The Moon reflects fiery heat down onto the continents"
-                ],
-                "correct": 1,
-                "solution": "The axial tilt causes sunlight to strike the summer hemisphere at a steeper, near-vertical angle, delivering concentrated heat per unit area over longer daylight durations."
-            },
-            {
-                "question": "33. What occurs globally on an Equinox (March 21 and September 23)?",
-                "options": [
-                    "The Sun disappears from the sky for 48 hours",
-                    "Day and night are roughly 12 hours each across all latitudes on Earth",
-                    "Both poles experience continuous noontime daylight simultaneously",
-                    "Earth stops rotating on its axis"
-                ],
-                "correct": 1,
-                "solution": "On an equinox, the Sun's subsolar point crosses the Equator, meaning both hemispheres receive equal solar illumination, producing roughly 12 hours of day and night everywhere."
-            },
-            {
-                "question": "34. Which of the following energy sources emits zero greenhouse gases during power generation?",
-                "options": [
-                    "Coal thermal power plant",
-                    "Solar photovoltaic panels",
-                    "Diesel generator",
-                    "Kerosene furnace"
-                ],
-                "correct": 1,
-                "solution": "Solar photovoltaic cells convert photons directly into electricity via the photoelectric effect with zero combustion and zero operational carbon emissions."
-            },
-            {
-                "question": "35. What is the primary objective of Rainwater Harvesting?",
-                "options": [
-                    "To cause localized flooding on paved roads",
-                    "To capture and recharge underground aquifers and store water for dry seasons",
-                    "To prevent clouds from forming in the atmosphere",
-                    "To turn fresh rainwater into salty seawater"
-                ],
-                "correct": 1,
-                "solution": "Rainwater harvesting collects runoff from rooftops and open catchments to recharge groundwater aquifers and store clean water for sustainable municipal or agricultural use."
-            },
-            {
-                "question": "36. For what groundbreaking discovery in molecular light scattering was Sir C.V. Raman awarded the 1930 Nobel Prize?",
-                "options": [
-                    "The Discovery of the Neutron",
-                    "The Raman Effect (Inelastic scattering of photons by matter)",
-                    "The Theory of General Relativity",
-                    "The Discovery of Penicillin"
-                ],
-                "correct": 1,
-                "solution": "Sir C.V. Raman discovered that photons scattered by transparent molecules can gain or lose vibrational energy, causing a measurable frequency shift (the Raman Effect)."
-            },
-            {
-                "question": "37. What did Acharya Jagadish Chandra Bose prove about plants using his invention, the crescograph?",
-                "options": [
-                    "Plants are made of pure plastic and never grow",
-                    "Plants possess sensitive nervous and electrical responses to stimuli like heat, touch, and chemicals",
-                    "Plants can fly through the air if given enough water",
-                    "Plants only grow during solar eclipses"
-                ],
-                "correct": 1,
-                "solution": "J.C. Bose used his crescograph to measure microscopic growth rates and prove that plant tissues exhibit electrical and physiological responses to external stimuli analogous to animal nerves."
-            },
-            {
-                "question": "38. Who is revered as the visionary father of the Indian Space Program and founder of ISRO?",
-                "options": [
-                    "Dr. Vikram Sarabhai",
-                    "Dr. Homi J. Bhabha",
-                    "Sir C.V. Raman",
-                    "Srinivasa Ramanujan"
-                ],
-                "correct": 0,
-                "solution": "Dr. Vikram Sarabhai recognized the immense social and economic potential of space technology for developing nations and established INCOSPAR / ISRO."
-            },
-            {
-                "question": "39. Dr. A.P.J. Abdul Kalam played a pivotal leadership role in which historic Indian aerospace milestone?",
-                "options": [
-                    "Development of India's first satellite launch vehicle (SLV-3) and indigenous defense systems",
-                    "Invention of the steam engine in England",
-                    "The discovery of the North Pole",
-                    "Building the first telegraph cable across the Atlantic"
-                ],
-                "correct": 0,
-                "solution": "Dr. Kalam was Project Director for India's first indigenous Satellite Launch Vehicle (SLV-3), which successfully deployed the Rohini satellite into orbit in 1980, and spearheaded indigenous missile development."
-            },
-            {
-                "question": "40. Which of the 5 Rs of sustainability refers to choosing NOT to purchase or accept unnecessary single-use items?",
-                "options": [
-                    "Refuse",
-                    "Recycle",
-                    "Repurpose",
-                    "Rot"
-                ],
-                "correct": 0,
-                "solution": "'Refuse' is the first and most effective step in waste reduction: actively declining unnecessary single-use items (like plastic straws or disposable bags) before they ever enter the waste stream."
-            }
-        ]
+        "badge": "Quiz 4 • The Scientific Method",
+        "title": "Mastery Challenge IV",
+        "subtitle": "Questions 31 – 40: Steps of Inquiry, Controlled Tests & Everyday Scientists",
+        "is_quiz": True,
+        "quiz_range": [31, 40]
     }
 ]
 
-with open(".agents/class7_science_ever_evolving_world_data.py", "w", encoding="utf-8") as f:
-    f.write("# -*- coding: utf-8 -*-\n")
-    f.write('r"""Class 7 Science Chapter 1: The Ever-Evolving World of Science Datar"""\n\n')
-    f.write("SLIDES_DATA = " + json.dumps(SLIDES_DATA, indent=2, ensure_ascii=False) + "\n")
+QUIZ_QUESTIONS = [
+    # Q1 - Q10 (Slide 17)
+    {
+        "id": 1,
+        "question": "What is the primary driving emotion that sparks scientific exploration?",
+        "options": ["Fear", "Curiosity", "Anger", "Boredom"],
+        "correct": 1,
+        "solution": "Curiosity — the innate desire to wonder and ask 'Why?' and 'How?' — is the core spark of all scientific discovery."
+    },
+    {
+        "id": 2,
+        "question": "Why is science compared to an unending jigsaw puzzle?",
+        "options": [
+            "Because scientists only play table games",
+            "Because each discovery adds a new piece, and new evidence can re-arrange existing pieces",
+            "Because jigsaw puzzles are made of cardboard",
+            "Because science was completed 100 years ago"
+        ],
+        "correct": 1,
+        "solution": "Science is an evolving, self-correcting body of knowledge where new discoveries add pieces and improve our overall understanding."
+    },
+    {
+        "id": 3,
+        "question": "Which of the following is an example of science taking place in the kitchen?",
+        "options": [
+            "Boiling water turning to steam",
+            "Milk curdling when lemon juice is added",
+            "Dough rising with yeast",
+            "All of the above"
+        ],
+        "correct": 3,
+        "solution": "All listed events represent physical phase changes (boiling) and chemical transformations (curdling, fermentation) in the kitchen."
+    },
+    {
+        "id": 4,
+        "question": "What should a scientist do when verified new evidence contradicts an established theory?",
+        "options": [
+            "Destroy the new evidence",
+            "Update the theory to accommodate the new evidence",
+            "Ban experiments",
+            "Ignore the findings"
+        ],
+        "correct": 1,
+        "solution": "Science is self-correcting. Theories must adapt or be replaced when valid new experimental evidence contradicts them."
+    },
+    {
+        "id": 5,
+        "question": "Who among the following acts as a scientist in daily life?",
+        "options": [
+            "A cook figuring out why food burned",
+            "A mechanic diagnosing a flat tyre in a water tub",
+            "An electrician testing a faulty light switch",
+            "All of the above"
+        ],
+        "correct": 3,
+        "solution": "Anyone who systematically observes, diagnoses, and tests solutions is practicing the scientific method."
+    },
+    {
+        "id": 6,
+        "question": "Which of the following statements about science is FALSE?",
+        "options": [
+            "Science is only done by famous professors in university laboratories",
+            "Science is an ongoing journey of exploration",
+            "Science requires testing ideas with evidence",
+            "Science involves teamwork and collaboration"
+        ],
+        "correct": 0,
+        "solution": "Science is accessible to everyone — students, cooks, farmers, mechanics, and researchers alike."
+    },
+    {
+        "id": 7,
+        "question": "What led Dr. C.V. Raman to discover the Raman Effect in 1921?",
+        "options": [
+            "Wondering why the Mediterranean Sea looked intensely blue during a voyage",
+            "Reading a novel",
+            "Accidentally dropping a magnifying glass",
+            "Dreaming about stars"
+        ],
+        "correct": 0,
+        "solution": "Observing the vivid blue color of the sea during a ship voyage sparked Raman's curiosity about light scattering, winning him the Nobel Prize."
+    },
+    {
+        "id": 8,
+        "question": "How do scientific discoveries benefit human society?",
+        "options": [
+            "By discovering medicines, clean energy, and technologies to improve life",
+            "By making school exams harder",
+            "By locking up knowledge in secret vaults",
+            "They have no practical impact"
+        ],
+        "correct": 0,
+        "solution": "Science drives medical advancements, clean water systems, agriculture, and technological breakthroughs that support human well-being."
+    },
+    {
+        "id": 9,
+        "question": "What is the best attitude for a young science student to adopt?",
+        "options": [
+            "Accepting everything without questioning",
+            "Remaining curious, observant, and asking 'Why?'",
+            "Memorizing facts without understanding",
+            "Avoiding experiments"
+        ],
+        "correct": 1,
+        "solution": "A healthy scientific attitude combines open curiosity, keen observation, and asking critical questions based on evidence."
+    },
+    {
+        "id": 10,
+        "question": "Why is teamwork and collaboration important in modern science?",
+        "options": [
+            "Complex questions often require diverse skills, shared data, and mutual peer review",
+            "Because scientists get lonely",
+            "It saves paper",
+            "So one person does all the work"
+        ],
+        "correct": 0,
+        "solution": "Modern science tackles vast global challenges (like climate and medicine) that require collective expertise and shared verification."
+    },
 
-print(f"Generated .agents/class7_science_ever_evolving_world_data.py with {len(SLIDES_DATA)} slides.")
+    # Q11 - Q20 (Slide 18)
+    {
+        "id": 11,
+        "question": "What makes planet Earth unique compared to other known celestial bodies?",
+        "options": [
+            "It is made entirely of gold",
+            "It is the only planet confirmed to support living organisms",
+            "It has three rings of ice",
+            "It is the coldest planet in the universe"
+        ],
+        "correct": 1,
+        "solution": "Earth uniquely possesses liquid surface water, a protective atmosphere, and conditions that harbor life."
+    },
+    {
+        "id": 12,
+        "question": "How does a desert cactus conserve water in arid climates?",
+        "options": [
+            "It has needle-like spines instead of broad leaves to minimize water loss",
+            "It grows under water",
+            "It drinks salt water from oceans",
+            "It sleeps for 50 years"
+        ],
+        "correct": 0,
+        "solution": "Cactus leaves are modified into sharp spines, dramatically reducing transpiration surface area and conserving water in its thick stem."
+    },
+    {
+        "id": 13,
+        "question": "What major biological transformation occurs inside a butterfly's chrysalis?",
+        "options": ["Photosynthesis", "Metamorphosis", "Rusting", "Evaporation"],
+        "correct": 1,
+        "solution": "Metamorphosis transforms the larval caterpillar tissues into the adult anatomy of a winged butterfly."
+    },
+    {
+        "id": 14,
+        "question": "What three basic conditions are essential for a dormant seed to germinate?",
+        "options": [
+            "Water, warmth, and air (oxygen)",
+            "Fertilizer, direct fire, and sugar",
+            "Darkness, ice, and salt",
+            "Wind, stone, and oil"
+        ],
+        "correct": 0,
+        "solution": "Water hydrates the seed enzymes, warmth provides the optimal metabolic temperature, and oxygen fuels cellular respiration."
+    },
+    {
+        "id": 15,
+        "question": "Which essential nutrient group is primarily known as 'energy-giving' food?",
+        "options": ["Carbohydrates and Fats", "Proteins only", "Water", "Vitamins only"],
+        "correct": 0,
+        "solution": "Carbohydrates (rice, wheat) and fats (oils, ghee) provide the primary caloric energy for daily activities."
+    },
+    {
+        "id": 16,
+        "question": "Why does a growing child require adequate protein in their diet?",
+        "options": [
+            "Proteins build new cells, muscles, and repair bodily tissues",
+            "Proteins make bones turn into glass",
+            "Proteins replace breathing",
+            "Proteins stop the heart"
+        ],
+        "correct": 0,
+        "solution": "Proteins provide the essential amino acid building blocks required for cellular division, muscle synthesis, and growth."
+    },
+    {
+        "id": 17,
+        "question": "Which food items are rich sources of dietary proteins?",
+        "options": ["Pulses (dal), beans, eggs, and milk", "Pure sugar and candy", "Cooking oil and butter", "Plain carbonated water"],
+        "correct": 0,
+        "solution": "Lentils (dal), paneer, soybeans, eggs, and dairy products are rich in dietary protein."
+    },
+    {
+        "id": 18,
+        "question": "How do vitamins and minerals protect our health?",
+        "options": [
+            "They boost our immune system and help fight off illnesses",
+            "They provide heavy body weight",
+            "They make our skin glow in the dark",
+            "They replace the need for drinking water"
+        ],
+        "correct": 0,
+        "solution": "Vitamins (like Vitamin C and A) and minerals (iron, calcium) maintain enzyme function and immune defense."
+    },
+    {
+        "id": 19,
+        "question": "Why is eating a balanced, diverse diet of regional Indian dishes healthy?",
+        "options": [
+            "It ensures our body receives all required nutrients in optimal proportions",
+            "It only contains sugar",
+            "It avoids all vegetables",
+            "It is required by law"
+        ],
+        "correct": 0,
+        "solution": "A balanced diet containing cereals, lentils, vegetables, and dairy fulfills the body's complete spectrum of nutritional needs."
+    },
+    {
+        "id": 20,
+        "question": "What is the primary role of roots in a growing plant?",
+        "options": [
+            "To anchor the plant securely and absorb water and dissolved minerals from soil",
+            "To catch flying insects",
+            "To produce flowers",
+            "To reflect sunlight"
+        ],
+        "correct": 0,
+        "solution": "Roots anchor the plant firmly in the soil and absorb moisture and essential mineral nutrients for upward transport."
+    },
+
+    # Q21 - Q30 (Slide 19)
+    {
+        "id": 21,
+        "question": "What natural engine drives the global water cycle?",
+        "options": ["Solar energy (heat from the Sun)", "Underground ocean pumps", "Human water taps", "Volcanic smoke"],
+        "correct": 0,
+        "solution": "Solar thermal radiation heats surface water across oceans and continents, powering evaporation and cloud formation."
+    },
+    {
+        "id": 22,
+        "question": "What happens when rising water vapor encounters colder air high in the sky?",
+        "options": [
+            "It condenses into microscopic liquid water droplets to form clouds",
+            "It catches fire",
+            "It turns into stone",
+            "It escapes into outer space"
+        ],
+        "correct": 0,
+        "solution": "Condensation transforms cooling gaseous water vapor into tiny liquid water droplets suspended as clouds."
+    },
+    {
+        "id": 23,
+        "question": "What are the three common physical states of water?",
+        "options": [
+            "Solid (ice), liquid (water), and gas (steam/vapor)",
+            "Hot, warm, and cool",
+            "Sweet, salty, and sour",
+            "Hard, soft, and rough"
+        ],
+        "correct": 0,
+        "solution": "Water exists in solid (ice), liquid (liquid water), and gaseous (steam/vapor) states depending on temperature."
+    },
+    {
+        "id": 24,
+        "question": "At what temperature does liquid water freeze into solid ice at standard pressure?",
+        "options": ["0 °C", "50 °C", "100 °C", "−100 °C"],
+        "correct": 0,
+        "solution": "The standard freezing point of pure liquid water is 0 °C."
+    },
+    {
+        "id": 25,
+        "question": "Why is water vapor invisible, while clouds and steam clouds are visible?",
+        "options": [
+            "Water vapor is a true gas of individual molecules; clouds consist of clustered liquid droplets that scatter light",
+            "Water vapor is black",
+            "Clouds are made of cotton",
+            "Steam is a solid rock"
+        ],
+        "correct": 0,
+        "solution": "Individual gaseous water vapor molecules are microscopic and transparent, whereas condensed liquid droplets in clouds scatter visible light."
+    },
+    {
+        "id": 26,
+        "question": "Why is human touch an unreliable tool for measuring absolute temperature?",
+        "options": [
+            "Because skin only perceives relative heat flow compared to recent exposure",
+            "Because human skin cannot touch liquids",
+            "Because everyone has different colored skin",
+            "Because hands are always at 0 °C"
+        ],
+        "correct": 0,
+        "solution": "Sensory thermal receptors signal whether heat is entering or leaving the skin relative to recent temperature, making touch subjective."
+    },
+    {
+        "id": 27,
+        "question": "What property makes metals ideal for fabricating cooking pots and electric cables?",
+        "options": [
+            "They are excellent conductors of thermal heat and electricity",
+            "They are lightweight like feathers",
+            "They are transparent",
+            "They melt in warm water"
+        ],
+        "correct": 0,
+        "solution": "Metals possess free conduction electrons that rapidly transfer thermal energy and electric charge."
+    },
+    {
+        "id": 28,
+        "question": "Which of the following materials is NON-MAGNETIC?",
+        "options": ["Plastic bottle cap", "Iron nail", "Steel paperclip", "Nickel coin"],
+        "correct": 0,
+        "solution": "Plastic is a non-magnetic organic polymer that experiences no magnetic attraction."
+    },
+    {
+        "id": 29,
+        "question": "Why are copper electric wires wrapped with outer plastic coatings?",
+        "options": [
+            "Plastic is an electrical insulator that prevents accidental electric shocks",
+            "Plastic makes the wire heavier",
+            "Plastic speeds up electricity",
+            "To make the wire magnetic"
+        ],
+        "correct": 0,
+        "solution": "Plastic does not conduct electricity (an insulator), protecting users from electrical contact and preventing short circuits."
+    },
+    {
+        "id": 30,
+        "question": "What is our Sun?",
+        "options": [
+            "A medium-sized star at the gravitational center of our solar system",
+            "A giant burning coal mountain",
+            "Earth's natural moon",
+            "A cosmic planet"
+        ],
+        "correct": 0,
+        "solution": "The Sun is a glowing star composed primarily of hydrogen and helium undergoing nuclear fusion."
+    },
+
+    # Q31 - Q40 (Slide 20)
+    {
+        "id": 31,
+        "question": "What is the correct sequential order of the steps in the Scientific Method?",
+        "options": [
+            "Observe → Question → Hypothesize → Experiment → Analyze",
+            "Experiment → Guess → Observe → Conclusion",
+            "Analyze → Memorize → Write → Question",
+            "Guess → Conclude → Observe → Forget"
+        ],
+        "correct": 0,
+        "solution": "Scientific inquiry systematically moves from Observation to Questioning, formulating a Hypothesis, Experimenting, and Analyzing data."
+    },
+    {
+        "id": 32,
+        "question": "In a controlled experiment, why must scientists change only ONE variable at a time?",
+        "options": [
+            "To be confident that the observed outcome is caused solely by that single changed factor",
+            "Because scientists are lazy",
+            "So that all experiments fail",
+            "To save lab equipment"
+        ],
+        "correct": 0,
+        "solution": "Isolating a single independent variable ensures that any observed change in the dependent variable is caused by that factor alone."
+    },
+    {
+        "id": 33,
+        "question": "A student tests if salt water freezes faster than plain water. What is the variable being tested?",
+        "options": [
+            "The presence of dissolved salt in the water",
+            "The shape of the freezer",
+            "The color of the kitchen walls",
+            "The time of day"
+        ],
+        "correct": 0,
+        "solution": "The presence or absence of salt is the independent variable being tested for its effect on freezing rate."
+    },
+    {
+        "id": 34,
+        "question": "When a ballpoint pen stops writing, what is an example of an initial observation?",
+        "options": [
+            "Noticing that ink fails to appear on the paper when writing",
+            "Assuming the manufacturer is bad",
+            "Throwing the pen out the window",
+            "Buying five new pens"
+        ],
+        "correct": 0,
+        "solution": "Observing that no ink mark is transferred to the sheet is the factual, raw observation."
+    },
+    {
+        "id": 35,
+        "question": "What constitutes an experimental test for the hypothesis: 'The pen refill is completely out of ink'?",
+        "options": [
+            "Unscrewing the pen barrel to directly inspect the ink column inside the refill",
+            "Sniffing the outside of the pen",
+            "Wishing the pen would write",
+            "Weighing the notebook"
+        ],
+        "correct": 0,
+        "solution": "Direct visual inspection of the ink reservoir provides verifiable evidence to support or refute the hypothesis."
+    },
+    {
+        "id": 36,
+        "question": "Why is an experiment that disproves a hypothesis still considered a scientific success?",
+        "options": [
+            "It eliminates an incorrect possibility and points the investigation toward new, better ideas",
+            "It proves the scientist should retire",
+            "It saves time by ending science",
+            "It proves that nature is dishonest"
+        ],
+        "correct": 0,
+        "solution": "Falsifying a hypothesis provides conclusive negative data, narrowing down the truth and preventing wasted efforts."
+    },
+    {
+        "id": 37,
+        "question": "How does an electrician use the scientific method when an entire room's lights go dark?",
+        "options": [
+            "They check the central circuit breaker first, then inspect individual switches and bulbs systematically",
+            "They immediately smash the light fixtures",
+            "They blame the sunset",
+            "They wait for morning"
+        ],
+        "correct": 0,
+        "solution": "The electrician performs logical step-by-step diagnostic tests from the power source down to the individual fixtures."
+    },
+    {
+        "id": 38,
+        "question": "What does a pressure cooker whistle indicate to a cook in the kitchen?",
+        "options": [
+            "Steam pressure inside has reached the threshold to lift the weight valve",
+            "The food is poisoned",
+            "The stove has run out of gas",
+            "It is time to eat"
+        ],
+        "correct": 0,
+        "solution": "The whistle releases excess steam pressure when internal boiling creates sufficient force to lift the safety weight."
+    },
+    {
+        "id": 39,
+        "question": "What characterizes a truly scientifically literate person (a 'whys' person)?",
+        "options": [
+            "Someone who asks evidence-based questions, tests claims, and remains curious throughout life",
+            "Someone who believes everything they read on the internet",
+            "Someone who argues without evidence",
+            "Someone who memorizes entire dictionaries"
+        ],
+        "correct": 0,
+        "solution": "A 'whys' person relies on evidence, critical thinking, open curiosity, and continuous learning."
+    },
+    {
+        "id": 40,
+        "question": "What is the ultimate goal of the ongoing journey of science?",
+        "options": [
+            "To understand the natural universe, solve human problems, and foster wonder and harmony",
+            "To memorize all existing facts and stop asking questions",
+            "To replace nature with machines",
+            "To win trophies"
+        ],
+        "correct": 0,
+        "solution": "Science seeks to unravel natural truths, alleviate suffering, protect biodiversity, and elevate human understanding."
+    }
+]
+
+# Verify zero raw LaTeX and zero surrogates
+raw_latex_pattern = re.compile(r'\\[a-zA-Z]+')
+
+def verify_text(text, ctx):
+    matches = raw_latex_pattern.findall(text)
+    if matches:
+        raise ValueError(f"Found raw LaTeX in {ctx}: {set(matches)}")
+    surrogates = [c for c in text if 0xD800 <= ord(c) <= 0xDFFF]
+    if surrogates:
+        raise ValueError(f"Found surrogates in {ctx}")
+
+verify_text(CHAPTER_META['title'], "CHAPTER_META title")
+for s in SLIDES:
+    verify_text(s['title'], f"Slide {s['id']} title")
+    if 'theory' in s:
+        verify_text(s['theory'], f"Slide {s['id']} theory")
+    if 'summary' in s:
+        verify_text(s['summary'], f"Slide {s['id']} summary")
+    for cp in s.get('checkpoints', []):
+        verify_text(cp['question'], f"Slide {s['id']} cp question")
+        verify_text(cp['explanation'], f"Slide {s['id']} cp explanation")
+
+for q in QUIZ_QUESTIONS:
+    verify_text(q['question'], f"Quiz Q{q['id']} question")
+    verify_text(q['solution'], f"Quiz Q{q['id']} solution")
+
+print("VERIFIED PASS: Zero raw LaTeX and zero surrogates in all 20 Slides and 40 Quiz Questions!")
+
+with open(".agents/class6_science_ch1_data.py", "w", encoding="utf-8") as f:
+    f.write('"""\nNCERT Class 6 Science Chapter 1: The Wonderful World of Science Data Module\n"""\n\n')
+    f.write('CHAPTER_META = ' + repr(CHAPTER_META) + '\n\n')
+    f.write('SLIDES = ' + repr(SLIDES) + '\n\n')
+    f.write('QUIZ_QUESTIONS = ' + repr(QUIZ_QUESTIONS) + '\n')
+
+print("Successfully wrote .agents/class6_science_ch1_data.py")

@@ -1,1435 +1,1208 @@
-# -*- coding: utf-8 -*-
-"""
-Generator script for Class 7 Science Chapter 1: The Ever-Evolving World of Science
-JavaScript engine: 16 bespoke interactive SVG simulators
-"""
+import re
 
-JS_CODE = r'''
-// Master Simulator Dispatcher for Chapter 1: The Ever-Evolving World of Science
-function initSimulatorForSlide(slideId, container) {
-  if (!container) return;
-  switch (slideId) {
-    case 1: initInquiryCycleSim(container); break;
-    case 2: initPlaneFlightSim(container); break;
-    case 3: initCosmicScaleSim(container); break;
-    case 4: initMindsetSorterSim(container); break;
-    case 5: initQuestionMilkSim(container); break;
-    case 6: initRaindropOpticsSim(container); break;
-    case 7: initReactorSim(container); break;
-    case 8: initCircuitElectromagnetSim(container); break;
-    case 9: initEclipseShadowSim(container); break;
-    case 10: initGalileoPendulumSim(container); break;
-    case 11: initPhotosynthesisSim(container); break;
-    case 12: initEarthSeasonsSim(container); break;
-    case 13: initSustainabilityDashboardSim(container); break;
-    case 14: initMeniscusParallaxSim(container); break;
-    case 15: initIndianPioneersSim(container); break;
-    case 16: initYoungScientistConstellationSim(container); break;
-  }
+js_code = r'''
+// Science Chapter 1 Interactive JavaScript
+let currentSlide = 1;
+const totalSlides = 20;
+
+// Speech Synthesis
+let isSpeaking = false;
+function speakMentor(text) {
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    if (isSpeaking) {
+        isSpeaking = false;
+        return;
+    }
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 0.95;
+    utterance.pitch = 1.0;
+    utterance.onend = () => { isSpeaking = false; };
+    utterance.onerror = () => { isSpeaking = false; };
+    isSpeaking = true;
+    window.speechSynthesis.speak(utterance);
+}
+
+// Navigation
+function updateSlideDisplay() {
+    for (let i = 1; i <= totalSlides; i++) {
+        const slide = document.getElementById(`slide-${i}`);
+        if (slide) {
+            slide.style.display = (i === currentSlide) ? 'block' : 'none';
+        }
+    }
+    const indicator = document.getElementById('slideIndicator');
+    if (indicator) {
+        indicator.textContent = `Slide ${currentSlide} of ${totalSlides}`;
+    }
+    const progressBar = document.getElementById('progressBar');
+    if (progressBar) {
+        progressBar.style.width = `${(currentSlide / totalSlides) * 100}%`;
+    }
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const lastSlideNotice = document.getElementById('lastSlideNotice');
+
+    if (prevBtn) {
+        prevBtn.disabled = (currentSlide === 1);
+    }
+    if (nextBtn) {
+        if (currentSlide === totalSlides) {
+            nextBtn.style.display = 'none';
+        } else {
+            nextBtn.style.display = 'inline-flex';
+        }
+    }
+    if (lastSlideNotice) {
+        lastSlideNotice.style.display = (currentSlide === totalSlides) ? 'block' : 'none';
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function nextSlide() {
+    if (currentSlide < totalSlides) {
+        currentSlide++;
+        updateSlideDisplay();
+    }
+}
+
+function prevSlide() {
+    if (currentSlide > 1) {
+        currentSlide--;
+        updateSlideDisplay();
+    }
+}
+
+function goToSlide(n) {
+    if (n >= 1 && n <= totalSlides) {
+        currentSlide = n;
+        updateSlideDisplay();
+    }
+}
+
+// Checkpoint Verification
+function checkCheckpoint(cpId, selectedOption, correctOption, explanation) {
+    const feedbackEl = document.getElementById(`cp-feedback-${cpId}`);
+    const badgeEl = document.getElementById(`cp-badge-${cpId}`);
+    if (!feedbackEl) return;
+
+    if (selectedOption === correctOption) {
+        feedbackEl.className = 'mt-3 p-3 rounded-lg text-sm bg-emerald-950/40 border border-emerald-500/50 text-emerald-300';
+        feedbackEl.innerHTML = `<strong>Correct!</strong> ` + explanation;
+        if (badgeEl) {
+            badgeEl.className = 'px-2 py-0.5 rounded text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30';
+            badgeEl.textContent = 'Solved';
+        }
+    } else {
+        feedbackEl.className = 'mt-3 p-3 rounded-lg text-sm bg-rose-950/40 border border-rose-500/50 text-rose-300';
+        feedbackEl.innerHTML = `<strong>Try again:</strong> Think about the scientific observation or test involved!`;
+    }
+    feedbackEl.style.display = 'block';
+}
+
+// Solution Modal
+function openSolutionModal(title, question, correctAnswer, explanation) {
+    const modal = document.getElementById('solutionModal');
+    const titleEl = document.getElementById('modalTitle');
+    const questionEl = document.getElementById('modalQuestion');
+    const answerEl = document.getElementById('modalAnswer');
+    const explanationEl = document.getElementById('modalExplanation');
+
+    if (modal && titleEl && questionEl && answerEl && explanationEl) {
+        titleEl.textContent = title;
+        questionEl.innerHTML = `<strong>Question:</strong> ${question}`;
+        answerEl.innerHTML = `<strong>Correct Answer:</strong> ${correctAnswer}`;
+        explanationEl.innerHTML = `<strong>Detailed Step-by-Step Solution:</strong><br>${explanation}`;
+        modal.style.display = 'flex';
+    }
+}
+
+function closeSolutionModal() {
+    const modal = document.getElementById('solutionModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// Quiz Option Selection
+function selectQuizOption(qId, selectedOpt, correctOpt, title, questionText, explanation) {
+    const btnContainer = document.getElementById(`q-options-${qId}`);
+    const feedbackBox = document.getElementById(`q-feedback-${qId}`);
+    const solutionBtn = document.getElementById(`q-sol-btn-${qId}`);
+
+    if (btnContainer) {
+        const buttons = btnContainer.querySelectorAll('button');
+        buttons.forEach((btn, idx) => {
+            btn.disabled = true;
+            if (idx === correctOpt) {
+                btn.className = 'w-full text-left p-3 rounded-xl border text-sm font-medium transition bg-emerald-500/20 border-emerald-400 text-emerald-200';
+            } else if (idx === selectedOpt) {
+                btn.className = 'w-full text-left p-3 rounded-xl border text-sm font-medium transition bg-rose-500/20 border-rose-400 text-rose-200';
+            } else {
+                btn.className = 'w-full text-left p-3 rounded-xl border text-sm font-medium transition bg-slate-800/40 border-slate-700/60 text-slate-400 opacity-60';
+            }
+        });
+    }
+
+    if (feedbackBox) {
+        feedbackBox.style.display = 'block';
+        if (selectedOpt === correctOpt) {
+            feedbackBox.className = 'mt-3 p-3 rounded-xl text-sm bg-emerald-950/40 border border-emerald-500/40 text-emerald-300';
+            feedbackBox.innerHTML = `<strong>Great job!</strong> ${explanation}`;
+        } else {
+            feedbackBox.className = 'mt-3 p-3 rounded-xl text-sm bg-rose-950/40 border border-rose-500/40 text-rose-300';
+            feedbackBox.innerHTML = `<strong>Incorrect.</strong> Click "View Step-by-Step Solution" below for full breakdown.`;
+        }
+    }
+
+    if (solutionBtn) {
+        solutionBtn.style.display = 'inline-flex';
+    }
 }
 
 // -------------------------------------------------------------
-// 1. The Scientific Inquiry Cycle Simulator
+// Simulator 1: Spark of Curiosity
 // -------------------------------------------------------------
-function initInquiryCycleSim(container) {
-  const svg = container.querySelector('#cycleSvg');
-  const badge = container.querySelector('#cycleStepBadge');
-  const titleEl = container.querySelector('#cycleStepTitle');
-  const descEl = container.querySelector('#cycleStepDesc');
-  const btns = container.querySelectorAll('.cycleBtn');
-  if (!svg) return;
+function setSim1Target(key) {
+    ['sea', 'leaf', 'sky'].forEach(k => {
+        const btn = document.getElementById(`sim1-btn-${k}`);
+        if (btn) {
+            btn.className = (k === key) ?
+                'px-3 py-2 rounded-xl text-xs font-semibold bg-cyan-500 text-slate-950 transition' :
+                'px-3 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition';
+        }
+    });
 
-  const steps = [
-    {
-      num: 1,
-      title: "1. Careful Observation",
-      badge: "Step 1: Observation",
-      desc: "Observing natural phenomena using our senses and tools without bias. E.g., Alexander Fleming observing clear bacterial death zones around green penicillium mold in a culture dish.",
-      color: "#f59e0b"
-    },
-    {
-      num: 2,
-      title: "2. Posing Precise Questions",
-      badge: "Step 2: Questioning",
-      desc: "Transforming curiosity into a focused, investigable question: 'What chemical substance is the mold producing that kills surrounding Staphylococcus bacteria?'",
-      color: "#38bdf8"
-    },
-    {
-      num: 3,
-      title: "3. Formulating a Hypothesis",
-      badge: "Step 3: Hypothesis",
-      desc: "Proposing a testable, causal explanation: 'If bacteria are exposed to filtered liquid from penicillium mold broth, then their cell walls will lyse and burst.'",
-      color: "#ec4899"
-    },
-    {
-      num: 4,
-      title: "4. Controlled Experimentation",
-      badge: "Step 4: Experiment",
-      desc: "Designing fair tests with controlled variables: comparing bacterial growth in dishes with mold extract (experimental group) vs plain broth (control group).",
-      color: "#10b981"
-    },
-    {
-      num: 5,
-      title: "5. Data Analysis & Evidence",
-      badge: "Step 5: Analysis",
-      desc: "Gathering objective measurements, calculating survival rates, and determining whether empirical evidence supports or refutes the hypothesis.",
-      color: "#a855f7"
-    },
-    {
-      num: 6,
-      title: "6. Conclusion & Refinement",
-      badge: "Step 6: Refinement",
-      desc: "Drawing valid conclusions, publishing peer-reviewed results (Penicillin discovery), and opening new inquiries: 'Can this antibiotic cure human infections safely?'",
-      color: "#06b6d4"
+    const svg = document.getElementById('sim1-svg');
+    const badge = document.getElementById('sim1-badge');
+    const desc = document.getElementById('sim1-desc');
+
+    if (key === 'sea') {
+        badge.textContent = "The Blue Sea (Raman Effect)";
+        desc.innerHTML = "In 1921, Dr. C.V. Raman asked: <em>'Why is the Mediterranean Sea so intensely blue?'</em> By investigating how water molecules scatter light, he discovered the Raman Effect and won the Nobel Prize!";
+        svg.innerHTML = `
+            <rect x="30" y="80" width="390" height="80" fill="#0284c7" fill-opacity="0.5" rx="6"/>
+            <!-- Sunlight ray -->
+            <line x1="60" y1="20" x2="180" y2="100" stroke="#f59e0b" stroke-width="3"/>
+            <text x="60" y="15" fill="#f59e0b" font-size="11" font-weight="bold">White Sunlight</text>
+            <!-- Water molecule -->
+            <circle cx="180" cy="100" r="14" fill="#38bdf8"/>
+            <text x="180" y="104" fill="#0f172a" font-size="10" text-anchor="middle" font-weight="bold">H₂O</text>
+            <!-- Scattered Blue Light -->
+            <line x1="180" y1="100" x2="320" y2="40" stroke="#60a5fa" stroke-width="3" stroke-dasharray="4,2"/>
+            <line x1="180" y1="100" x2="340" y2="90" stroke="#60a5fa" stroke-width="3" stroke-dasharray="4,2"/>
+            <line x1="180" y1="100" x2="310" y2="140" stroke="#60a5fa" stroke-width="3" stroke-dasharray="4,2"/>
+            <text x="350" y="85" fill="#93c5fd" font-size="11" font-weight="bold">Scattered Blue Photons</text>
+        `;
+    } else if (key === 'leaf') {
+        badge.textContent = "Green Leaf (Photosynthesis)";
+        desc.innerHTML = "Why are leaves green? Inside plant cells, microscopic green chloroplasts contain chlorophyll, absorbing red and blue light to convert water and carbon dioxide into sugar and life-giving oxygen!";
+        svg.innerHTML = `
+            <path d="M70,120 Q180,20 370,60 Q260,170 70,120 Z" fill="#15803d" stroke="#22c55e" stroke-width="2"/>
+            <line x1="70" y1="120" x2="370" y2="60" stroke="#4ade80" stroke-width="2"/>
+            <!-- Chloroplast bubbles -->
+            <circle cx="200" cy="80" r="10" fill="#22c55e"/>
+            <circle cx="250" cy="100" r="8" fill="#22c55e"/>
+            <circle cx="160" cy="105" r="9" fill="#22c55e"/>
+            <text x="220" y="55" fill="#86efac" font-size="11" font-weight="bold">Chloroplasts at Work</text>
+            <text x="250" y="145" fill="#f8fafc" font-size="10">Light + CO₂ + H₂O → Food + Oxygen (O₂)</text>
+        `;
+    } else {
+        badge.textContent = "Night Sky (Nuclear Furnaces)";
+        desc.innerHTML = "Why do stars twinkle? Stars are colossal nuclear engines millions of kilometers away, fusing hydrogen into helium and radiating light across the cosmos through our shimmering atmosphere.";
+        svg.innerHTML = `
+            <rect x="30" y="20" width="390" height="140" fill="#090d16" rx="8"/>
+            <!-- Stars -->
+            <circle cx="100" cy="50" r="3" fill="#f8fafc"/>
+            <circle cx="220" cy="40" r="4" fill="#fde047"/>
+            <circle cx="340" cy="70" r="3" fill="#67e8f9"/>
+            <circle cx="160" cy="110" r="2.5" fill="#f8fafc"/>
+            <circle cx="280" cy="120" r="3.5" fill="#f472b6"/>
+            <!-- Large Telescope -->
+            <line x1="70" y1="140" x2="160" y2="80" stroke="#94a3b8" stroke-width="6"/>
+            <line x1="70" y1="140" x2="50" y2="155" stroke="#64748b" stroke-width="3"/>
+            <line x1="70" y1="140" x2="90" y2="155" stroke="#64748b" stroke-width="3"/>
+            <text x="230" y="85" fill="#cbd5e1" font-size="11" font-weight="bold">Trillions of Cosmic Stars Twinkling</text>
+        `;
     }
-  ];
+}
 
-  let currentStep = 1;
+// -------------------------------------------------------------
+// Simulator 2: Science Everywhere
+// -------------------------------------------------------------
+function setSim2Domain(dom) {
+    ['kitchen', 'forest', 'ocean', 'space'].forEach(d => {
+        const btn = document.getElementById(`sim2-btn-${d}`);
+        if (btn) {
+            btn.className = (d === dom) ?
+                'py-2 rounded-xl text-xs font-semibold bg-cyan-500 text-slate-950 transition' :
+                'py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition';
+        }
+    });
 
-  function render() {
-    const s = steps[currentStep - 1];
-    if (badge) badge.textContent = s.badge;
-    if (titleEl) {
-      titleEl.textContent = s.title;
-      titleEl.style.color = s.color;
+    const svg = document.getElementById('sim2-svg');
+    const badge = document.getElementById('sim2-badge');
+    const desc = document.getElementById('sim2-desc');
+
+    if (dom === 'kitchen') {
+        badge.textContent = "Kitchen Science (Thermodynamics & Chemistry)";
+        desc.innerHTML = "Pressure cookers raise water boiling points above 100 °C to cook lentils faster; yeast ferments idli batter releasing CO₂ gas bubbles that make it fluffy!";
+        svg.innerHTML = `
+            <!-- Pressure Cooker -->
+            <rect x="160" y="70" width="120" height="90" rx="8" fill="#475569" stroke="#94a3b8" stroke-width="2"/>
+            <line x1="220" y1="70" x2="220" y2="45" stroke="#cbd5e1" stroke-width="4"/>
+            <rect x="210" y="38" width="20" height="10" fill="#f59e0b"/>
+            <!-- Steam Whistle -->
+            <path d="M220,38 Q210,15 200,20 M220,38 Q235,15 245,20" stroke="#e2e8f0" stroke-width="2" fill="none" stroke-dasharray="3,2"/>
+            <text x="260" y="30" fill="#f59e0b" font-size="10" font-weight="bold">Steam Whistle!</text>
+            <!-- Stove Flame -->
+            <path d="M170,165 Q180,180 190,165 Q200,180 210,165 Q220,180 230,165 Q240,180 250,165 Q260,180 270,165" stroke="#f97316" stroke-width="4" fill="none"/>
+        `;
+    } else if (dom === 'forest') {
+        badge.textContent = "Forest Ecology (Nutrient Cycles)";
+        desc.innerHTML = "Fallen leaves decompose into dark fertile humus with help from fungi and earthworms, feeding the root systems of towering teak trees.";
+        svg.innerHTML = `
+            <!-- Tree Trunk and Foliage -->
+            <rect x="210" y="90" width="30" height="80" fill="#78350f"/>
+            <circle cx="225" cy="70" r="50" fill="#15803d" opacity="0.8"/>
+            <circle cx="190" cy="80" r="35" fill="#16a34a" opacity="0.7"/>
+            <circle cx="260" cy="80" r="35" fill="#16a34a" opacity="0.7"/>
+            <!-- Soil and Earthworm -->
+            <line x1="60" y1="170" x2="390" y2="170" stroke="#854d0e" stroke-width="6"/>
+            <path d="M120,175 Q135,165 150,175" stroke="#f472b6" stroke-width="3" fill="none"/>
+            <text x="145" y="160" fill="#fca5a5" font-size="10">Earthworm aerating soil</text>
+        `;
+    } else if (dom === 'ocean') {
+        badge.textContent = "Ocean Depths (Bioluminescence)";
+        desc.innerHTML = "In the dark abyss 3,000 meters deep where sunlight never penetrates, deep-sea anglerfish create their own glowing light through chemical bioluminescence to lure prey!";
+        svg.innerHTML = `
+            <rect x="50" y="20" width="350" height="150" fill="#032b43" rx="8"/>
+            <!-- Deep sea fish -->
+            <path d="M260,100 Q200,60 170,100 Q200,140 260,100 Z" fill="#1e293b" stroke="#0ea5e9" stroke-width="2"/>
+            <polygon points="260,100 290,80 290,120" fill="#0ea5e9"/>
+            <!-- Glowing Angler lure -->
+            <path d="M170,95 Q140,50 160,40" stroke="#94a3b8" stroke-width="2" fill="none"/>
+            <circle cx="160" cy="40" r="7" fill="#38bdf8" filter="drop-shadow(0 0 6px #38bdf8)"/>
+            <text x="210" y="45" fill="#7dd3fc" font-size="10" font-weight="bold">Bioluminescent Lure</text>
+        `;
+    } else {
+        badge.textContent = "Cosmos (Galaxies & Telescopes)";
+        desc.innerHTML = "Space telescopes orbit Earth above atmospheric distortion to capture ultraviolet, infrared, and visible light from galaxies born billions of years ago.";
+        svg.innerHTML = `
+            <rect x="50" y="20" width="350" height="150" fill="#020617" rx="8"/>
+            <!-- Swirling galaxy -->
+            <ellipse cx="225" cy="95" rx="80" ry="35" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="8,4" transform="rotate(-20 225 95)"/>
+            <ellipse cx="225" cy="95" rx="40" ry="15" fill="none" stroke="#ec4899" stroke-width="2" transform="rotate(-20 225 95)"/>
+            <circle cx="225" cy="95" r="8" fill="#fbbf24"/>
+            <text x="225" y="150" fill="#cbd5e1" font-size="10" text-anchor="middle">Spiral Galaxy with Billions of Solar Systems</text>
+        `;
     }
-    if (descEl) descEl.textContent = s.desc;
+}
 
-    const cx = 250, cy = 135, r = 85;
-    let nodesHtml = '';
+// -------------------------------------------------------------
+// Simulator 3: The Infinite Jigsaw
+// -------------------------------------------------------------
+let sim3Count = 3;
 
+function addSim3Piece() {
+    if (sim3Count < 6) {
+        sim3Count++;
+        renderSim3();
+    }
+}
+
+function resetSim3Puzzle() {
+    sim3Count = 3;
+    renderSim3();
+}
+
+function renderSim3() {
+    const board = document.getElementById('sim3-puzzle-board');
+    const badge = document.getElementById('sim3-badge');
+    const status = document.getElementById('sim3-status');
+    const addBtn = document.getElementById('sim3-add-btn');
+
+    badge.textContent = `Pieces: ${sim3Count} of 6`;
+
+    const pieceLabels = [
+        "1. Earth Spherical (Greeks/India)",
+        "2. Heliocentric Orbit (Copernicus)",
+        "3. Gravity (Newton)",
+        "4. Evolution (Darwin)",
+        "5. Relativity & Light (Einstein)",
+        "6. Quantum & DNA (Modern Science)"
+    ];
+
+    let html = '';
     for (let i = 0; i < 6; i++) {
-      const angle = (i * 60 - 90) * Math.PI / 180;
-      const nx = cx + r * Math.cos(angle);
-      const ny = cy + r * Math.sin(angle);
-      const isCur = (i + 1) === currentStep;
-
-      // Draw connector arrow
-      const nextAngle = ((i + 1) * 60 - 90) * Math.PI / 180;
-      const nextX = cx + r * Math.cos(nextAngle);
-      const nextY = cy + r * Math.sin(nextAngle);
-
-      nodesHtml += `
-        <!-- Flow Arc Line -->
-        <line x1="${nx}" y1="${ny}" x2="${nextX}" y2="${nextY}" stroke="#334155" stroke-width="3" stroke-dasharray="3,3" />
-        
-        <!-- Node Circle -->
-        <g style="cursor: pointer;" onclick="document.querySelectorAll('.cycleBtn')[${i}].click()">
-          <circle cx="${nx}" cy="${ny}" r="${isCur ? 22 : 16}" fill="${isCur ? s.color : '#1e293b'}" stroke="${isCur ? '#ffffff' : '#475569'}" stroke-width="${isCur ? 3 : 1.5}" />
-          <text x="${nx}" y="${ny + 4}" fill="${isCur ? '#ffffff' : '#94a3b8'}" font-size="${isCur ? 12 : 10}" font-weight="bold" text-anchor="middle">${i + 1}</text>
-        </g>
-      `;
-    }
-
-    svg.innerHTML = `
-      <!-- Center Emblem -->
-      <circle cx="${cx}" cy="${cy}" r="45" fill="#0f172a" stroke="${s.color}" stroke-width="2.5" />
-      <text x="${cx}" y="${cy - 8}" fill="${s.color}" font-size="11" font-weight="extrabold" text-anchor="middle">SCIENTIFIC</text>
-      <text x="${cx}" y="${cy + 8}" fill="#f8fafc" font-size="12" font-weight="extrabold" text-anchor="middle">METHOD</text>
-      <text x="${cx}" y="${cy + 22}" fill="#94a3b8" font-size="9" text-anchor="middle">Cycle of Discovery</text>
-
-      ${nodesHtml}
-    `;
-  }
-
-  btns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      btns.forEach(b => b.className = "cycleBtn px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-bold transition");
-      btn.className = "cycleBtn px-2 py-1.5 rounded-lg bg-amber-600 text-white text-[11px] font-bold transition";
-      currentStep = parseInt(btn.dataset.step, 10);
-      render();
-    });
-  });
-
-  render();
-}
-
-// -------------------------------------------------------------
-// 2. Paper Plane Aerodynamics Simulator
-// -------------------------------------------------------------
-function initPlaneFlightSim(container) {
-  const svg = container.querySelector('#planeSvg');
-  const aoaSlider = container.querySelector('#aoaSlider');
-  const velSlider = container.querySelector('#velSlider');
-  const aoaVal = container.querySelector('#aoaVal');
-  const velVal = container.querySelector('#velVal');
-  const statusEl = container.querySelector('#flightStatus');
-  const liftEl = container.querySelector('#liftReadout');
-  const weightEl = container.querySelector('#weightReadout');
-  const thrustEl = container.querySelector('#thrustReadout');
-  const dragEl = container.querySelector('#dragReadout');
-  if (!svg || !aoaSlider || !velSlider) return;
-
-  function render() {
-    const alpha = parseFloat(aoaSlider.value); // degrees
-    const v = parseFloat(velSlider.value); // m/s
-    if (aoaVal) aoaVal.textContent = alpha + '°';
-    if (velVal) velVal.textContent = v + ' m/s';
-
-    const weight = 0.50; // constant gravity
-    const thrust = (v * 0.07).toFixed(2);
-
-    let lift = 0;
-    let drag = 0;
-    let statusText = "Level Glide ✔";
-    let statusClass = "text-cyan-300 bg-cyan-500/20 border-cyan-500/30";
-
-    if (alpha > 18) {
-      // Aerodynamic stall
-      lift = Math.max(0.1, (0.015 * v * v * Math.sin((35 - alpha) * Math.PI / 180))).toFixed(2);
-      drag = (0.012 * v * v * (1 + Math.sin(alpha * Math.PI / 180) * 1.8)).toFixed(2);
-      statusText = "AERODYNAMIC STALL! (Lift Drops) ⚠️";
-      statusClass = "text-rose-400 bg-rose-500/20 border-rose-500/30";
-    } else {
-      lift = (0.014 * v * v * Math.sin((alpha + 8) * Math.PI / 180)).toFixed(2);
-      drag = (0.006 * v * v * (1 + Math.sin(alpha * Math.PI / 180))).toFixed(2);
-
-      const diff = lift - weight;
-      if (Math.abs(diff) < 0.08) {
-        statusText = "Level Stable Glide ✔";
-        statusClass = "text-emerald-400 bg-emerald-500/20 border-emerald-500/30";
-      } else if (diff > 0.08) {
-        statusText = "Climbing Flight ↗";
-        statusClass = "text-amber-400 bg-amber-500/20 border-amber-500/30";
-      } else {
-        statusText = "Descending Glide ↘";
-        statusClass = "text-cyan-400 bg-cyan-500/20 border-cyan-500/30";
-      }
-    }
-
-    if (statusEl) {
-      statusEl.textContent = statusText;
-      statusEl.className = `px-2 py-0.5 rounded text-[11px] font-mono border font-semibold ${statusClass}`;
-    }
-
-    if (liftEl) liftEl.textContent = `Lift: ${lift} N`;
-    if (weightEl) weightEl.textContent = `Weight: ${weight} N`;
-    if (thrustEl) thrustEl.textContent = `Thrust: ${thrust} N`;
-    if (dragEl) dragEl.textContent = `Drag: ${drag} N`;
-
-    const cx = 250, cy = 135;
-    const rad = (-alpha * Math.PI) / 180;
-
-    // Vector arrow lengths
-    const liftLen = Math.min(65, lift * 90);
-    const weightLen = 45;
-    const thrustLen = Math.min(65, thrust * 110);
-    const dragLen = Math.min(65, drag * 100);
-
-    svg.innerHTML = `
-      <!-- Sky Background Grid -->
-      <defs>
-        <pattern id="skyGrid" width="25" height="25" patternUnits="userSpaceOnUse">
-          <path d="M 25 0 L 0 0 0 25" fill="none" stroke="#1e293b" stroke-width="0.8" />
-        </pattern>
-        <marker id="arrowLift" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-          <polygon points="0 0, 6 3, 0 6" fill="#10b981" />
-        </marker>
-        <marker id="arrowWeight" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-          <polygon points="0 0, 6 3, 0 6" fill="#f59e0b" />
-        </marker>
-        <marker id="arrowThrust" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-          <polygon points="0 0, 6 3, 0 6" fill="#38bdf8" />
-        </marker>
-        <marker id="arrowDrag" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-          <polygon points="0 0, 6 3, 0 6" fill="#f43f5e" />
-        </marker>
-      </defs>
-      
-      <rect width="500" height="260" fill="url(#skyGrid)" />
-
-      <!-- Relative Airflow Streamlines -->
-      <path d="M 30 ${cy - 40} Q 180 ${cy - 40} 240 ${cy - 50} T 470 ${cy - 45}" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,4" fill="none" opacity="0.6" />
-      <path d="M 30 ${cy} Q 180 ${cy} 240 ${cy + 10} T 470 ${cy + 20}" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,4" fill="none" opacity="0.6" />
-      <path d="M 30 ${cy + 40} Q 180 ${cy + 40} 240 ${cy + 55} T 470 ${cy + 65}" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,4" fill="none" opacity="0.6" />
-
-      <!-- Paper Plane Group (Rotated by Angle of Attack) -->
-      <g transform="translate(${cx}, ${cy}) rotate(${-alpha})">
-        <!-- Folded Paper Plane Geometry -->
-        <polygon points="70,0 -50,-24 -30,0" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" />
-        <polygon points="70,0 -50,24 -30,0" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1.5" />
-        <polygon points="70,0 -30,0 -60,0" stroke="#64748b" stroke-width="2" />
-        <!-- Cockpit Center Dot -->
-        <circle cx="0" cy="0" r="4" fill="#38bdf8" />
-      </g>
-
-      <!-- Center of Mass Force Vectors -->
-      <!-- Upward Lift -->
-      <line x1="${cx}" y1="${cy}" x2="${cx}" y2="${cy - liftLen}" stroke="#10b981" stroke-width="3" marker-end="url(#arrowLift)" />
-      <text x="${cx + 8}" y="${cy - liftLen + 10}" fill="#10b981" font-size="11" font-weight="bold">Lift (${lift}N)</text>
-
-      <!-- Downward Weight -->
-      <line x1="${cx}" y1="${cy}" x2="${cx}" y2="${cy + weightLen}" stroke="#f59e0b" stroke-width="3" marker-end="url(#arrowWeight)" />
-      <text x="${cx + 8}" y="${cy + weightLen - 5}" fill="#f59e0b" font-size="11" font-weight="bold">Gravity (${weight}N)</text>
-
-      <!-- Forward Thrust -->
-      <line x1="${cx}" y1="${cy}" x2="${cx + thrustLen}" y2="${cy}" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrowThrust)" />
-      <text x="${cx + thrustLen - 30}" y="${cy - 8}" fill="#38bdf8" font-size="11" font-weight="bold">Thrust</text>
-
-      <!-- Backward Drag -->
-      <line x1="${cx}" y1="${cy}" x2="${cx - dragLen}" y2="${cy}" stroke="#f43f5e" stroke-width="3" marker-end="url(#arrowDrag)" />
-      <text x="${cx - dragLen - 32}" y="${cy - 8}" fill="#f43f5e" font-size="11" font-weight="bold">Drag</text>
-    `;
-  }
-
-  aoaSlider.addEventListener('input', render);
-  velSlider.addEventListener('input', render);
-  render();
-}
-
-// -------------------------------------------------------------
-// 3. Cosmic Zoom Scale Simulator (Powers of 10)
-// -------------------------------------------------------------
-function initCosmicScaleSim(container) {
-  const svg = container.querySelector('#scaleSvg');
-  const slider = container.querySelector('#scaleSlider');
-  const orderEl = container.querySelector('#scaleOrder');
-  const dimEl = container.querySelector('#scaleDimension');
-  const descEl = container.querySelector('#scaleDescription');
-  if (!svg || !slider) return;
-
-  const scales = [
-    {
-      order: "10^-10 m (Subatomic)",
-      name: "Hydrogen Atom & Nucleus",
-      desc: "An electron cloud surrounds a single proton. Atoms are the building blocks of all chemical elements.",
-      color: "#ec4899",
-      draw: (svg) => {
-        svg.innerHTML = `
-          <circle cx="250" cy="130" r="6" fill="#f43f5e" />
-          <circle cx="250" cy="130" r="60" fill="none" stroke="#38bdf8" stroke-dasharray="3,3" stroke-width="1.5" />
-          <circle cx="190" cy="130" r="4" fill="#38bdf8" />
-          <text x="250" y="50" fill="#f43f5e" font-size="12" font-weight="bold" text-anchor="middle">Proton (+e)</text>
-          <text x="250" y="215" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">Orbiting Electron (-e) • Diameter: 0.1 nm (1 Å)</text>
-        `;
-      }
-    },
-    {
-      order: "10^-9 m (Nanoscale)",
-      name: "DNA Double Helix",
-      desc: "The genetic instruction manual of living organisms. The double helix width measures exactly 2 nanometers.",
-      color: "#a855f7",
-      draw: (svg) => {
-        let helix = '<path d="';
-        for (let x = 70; x <= 430; x += 10) {
-          const y1 = 130 + 40 * Math.sin(x * 0.05);
-          helix += `${x === 70 ? 'M' : 'L'} ${x} ${y1} `;
+        if (i < sim3Count) {
+            html += `
+                <div class="rounded-lg p-2 bg-gradient-to-br from-indigo-900 to-cyan-900 border border-cyan-400 text-cyan-200 text-[10px] font-bold flex items-center justify-center text-center shadow">
+                    ${pieceLabels[i]}
+                </div>
+            `;
+        } else {
+            html += `
+                <div class="rounded-lg p-2 bg-slate-950/40 border border-dashed border-slate-700 text-slate-600 text-[10px] flex items-center justify-center text-center">
+                    ? Unmapped Frontier
+                </div>
+            `;
         }
-        helix += '" fill="none" stroke="#a855f7" stroke-width="3" />';
-        let helix2 = '<path d="';
-        for (let x = 70; x <= 430; x += 10) {
-          const y2 = 130 - 40 * Math.sin(x * 0.05);
-          helix2 += `${x === 70 ? 'M' : 'L'} ${x} ${y2} `;
+    }
+    board.innerHTML = html;
+
+    if (sim3Count === 6) {
+        addBtn.disabled = true;
+        addBtn.className = 'w-1/2 py-2 rounded-xl text-xs font-bold bg-slate-800 text-slate-500 cursor-not-allowed';
+        status.innerHTML = `<span class="text-emerald-400 font-semibold">Discovery Frontier Expanded!</span> Notice how each piece connected with and refined the previous ones. The puzzle continues infinitely!`;
+    } else {
+        addBtn.disabled = false;
+        addBtn.className = 'w-1/2 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-cyan-500 to-indigo-600 text-white transition';
+        status.textContent = `Click "Discover New Evidence" to place the next piece into our understanding of the universe.`;
+    }
+}
+
+// -------------------------------------------------------------
+// Simulator 4: Earth's Living Quilt
+// -------------------------------------------------------------
+function setSim4Habitat(hab) {
+    ['desert', 'mountain', 'mangrove', 'reef'].forEach(h => {
+        const btn = document.getElementById(`sim4-btn-${h}`);
+        if (btn) {
+            btn.className = (h === hab) ?
+                'py-2 rounded-xl text-xs font-semibold bg-cyan-500 text-slate-950 transition' :
+                'py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition';
         }
-        helix2 += '" fill="none" stroke="#38bdf8" stroke-width="3" />';
-        svg.innerHTML = `
-          ${helix}
-          ${helix2}
-          <text x="250" y="45" fill="#c084fc" font-size="12" font-weight="bold" text-anchor="middle">DNA Macromolecule (Width ≈ 2 nm)</text>
-          <text x="250" y="225" fill="#94a3b8" font-size="11" text-anchor="middle">Nucleotide base pairs (Adenine, Thymine, Guanine, Cytosine)</text>
-        `;
-      }
-    },
-    {
-      order: "10^-6 m (Microscale)",
-      name: "Plant Cell & Chloroplasts (~50 µm)",
-      desc: "Microscopic biological factory: cell wall, central vacuole, and green chloroplasts synthesizing sugars via sunlight.",
-      color: "#10b981",
-      draw: (svg) => {
-        svg.innerHTML = `
-          <!-- Cell Wall -->
-          <polygon points="120,60 380,60 410,200 90,200" fill="#064e3b" stroke="#10b981" stroke-width="3" />
-          <!-- Vacuole -->
-          <ellipse cx="250" cy="130" rx="90" ry="45" fill="#0284c7" fill-opacity="0.3" stroke="#38bdf8" />
-          <!-- Chloroplasts -->
-          <circle cx="160" cy="100" r="14" fill="#22c55e" />
-          <circle cx="340" cy="110" r="14" fill="#22c55e" />
-          <circle cx="180" cy="165" r="14" fill="#22c55e" />
-          <circle cx="320" cy="165" r="14" fill="#22c55e" />
-          <text x="250" y="45" fill="#34d399" font-size="13" font-weight="bold" text-anchor="middle">Plant Cell Structure (50 µm)</text>
-          <text x="250" y="235" fill="#94a3b8" font-size="11" text-anchor="middle">Cellulose wall with photosynthetic chloroplast organelles</text>
-        `;
-      }
-    },
-    {
-      order: "10^-3 m (Millimeter)",
-      name: "Water Droplet & Tiny Ant (~2 mm)",
-      desc: "Surface tension holds a rain droplet into a spherical dome; tiny insects walk across using hydrophobic leg hairs.",
-      color: "#38bdf8",
-      draw: (svg) => {
-        svg.innerHTML = `
-          <!-- Leaf Surface -->
-          <path d="M 60 170 Q 250 185 440 170" stroke="#15803d" stroke-width="6" fill="none" />
-          <!-- Water Droplet -->
-          <ellipse cx="250" cy="160" rx="45" ry="32" fill="#0284c7" fill-opacity="0.5" stroke="#38bdf8" stroke-width="2" />
-          <circle cx="235" cy="150" r="6" fill="#ffffff" opacity="0.6" />
-          <text x="250" y="55" fill="#38bdf8" font-size="13" font-weight="bold" text-anchor="middle">Spherical Water Droplet (2 mm)</text>
-          <text x="250" y="225" fill="#94a3b8" font-size="11" text-anchor="middle">Cohesion and surface tension minimize exposed surface area</text>
-        `;
-      }
-    },
-    {
-      order: "10^0 m (Human Scale)",
-      name: "Human & School Desk (1 to 2 m)",
-      desc: "The familiar macroscopic realm of everyday experience, paper planes, bicycles, and laboratory glassware.",
-      color: "#f59e0b",
-      draw: (svg) => {
-        svg.innerHTML = `
-          <!-- Student figure -->
-          <circle cx="210" cy="95" r="16" fill="#fde68a" />
-          <line x1="210" y1="111" x2="210" y2="170" stroke="#38bdf8" stroke-width="4" />
-          <!-- Arm holding paper plane -->
-          <line x1="210" y1="125" x2="250" y2="105" stroke="#fde68a" stroke-width="3" />
-          <polygon points="265,100 245,95 250,105" fill="#ffffff" />
-          <!-- Desk -->
-          <rect x="270" y="140" width="120" height="10" fill="#78350f" />
-          <line x1="285" y1="150" x2="285" y2="200" stroke="#451a03" stroke-width="4" />
-          <line x1="375" y1="150" x2="375" y2="200" stroke="#451a03" stroke-width="4" />
-          <text x="250" y="50" fill="#fde68a" font-size="13" font-weight="bold" text-anchor="middle">Human Laboratory Scale (1.5 m)</text>
-          <text x="250" y="235" fill="#94a3b8" font-size="11" text-anchor="middle">The domain of direct human sensory observation</text>
-        `;
-      }
-    },
-    {
-      order: "10^7 m (Planetary Scale)",
-      name: "Planet Earth (Diameter: 12,742 km)",
-      desc: "Our celestial oasis: a protective nitrogen-oxygen atmosphere, vast liquid water oceans, and a dynamic biosphere.",
-      color: "#0284c7",
-      draw: (svg) => {
-        svg.innerHTML = `
-          <!-- Earth Globe -->
-          <circle cx="250" cy="130" r="70" fill="#0284c7" stroke="#38bdf8" stroke-width="2" />
-          <!-- Continents -->
-          <path d="M 220 100 Q 240 85 260 100 Q 270 120 250 140 Q 230 130 220 100 Z" fill="#15803d" />
-          <path d="M 270 110 Q 295 125 285 145 Q 265 150 270 110 Z" fill="#15803d" />
-          <!-- Atmospheric Halo -->
-          <circle cx="250" cy="130" r="75" fill="none" stroke="#67e8f9" stroke-width="1.5" opacity="0.6" />
-          <text x="250" y="45" fill="#38bdf8" font-size="13" font-weight="bold" text-anchor="middle">Planet Earth (1.27 × 10^7 m)</text>
-          <text x="250" y="235" fill="#94a3b8" font-size="11" text-anchor="middle">Home to all known life in the universe</text>
-        `;
-      }
-    },
-    {
-      order: "10^21 m (Galactic Scale)",
-      name: "The Milky Way Galaxy (~100,000 Light-Years)",
-      desc: "A barred spiral galaxy containing over 200 billion stars, orbiting around a supermassive central black hole.",
-      color: "#818cf8",
-      draw: (svg) => {
-        svg.innerHTML = `
-          <!-- Galaxy Spiral -->
-          <ellipse cx="250" cy="130" rx="140" ry="45" fill="#1e1b4b" opacity="0.4" />
-          <ellipse cx="250" cy="130" rx="90" ry="25" fill="#312e81" opacity="0.6" />
-          <circle cx="250" cy="130" r="16" fill="#fef08a" />
-          <!-- Solar system pointer -->
-          <circle cx="310" cy="125" r="3" fill="#f43f5e" />
-          <line x1="310" y1="125" x2="350" y2="85" stroke="#f43f5e" stroke-width="1.5" />
-          <text x="355" y="85" fill="#f43f5e" font-size="10" font-weight="bold">Our Sun</text>
-          <text x="250" y="40" fill="#a5b4fc" font-size="13" font-weight="bold" text-anchor="middle">Milky Way Galaxy (10^21 m)</text>
-          <text x="250" y="235" fill="#94a3b8" font-size="11" text-anchor="middle">Diameter: ~100,000 light-years (9.5 × 10^20 m)</text>
-        `;
-      }
-    }
-  ];
-
-  function render() {
-    const idx = parseInt(slider.value, 10);
-    const item = scales[idx];
-    if (orderEl) orderEl.textContent = item.order;
-    if (dimEl) dimEl.textContent = item.name;
-    if (descEl) descEl.textContent = item.desc;
-    item.draw(svg);
-  }
-
-  slider.addEventListener('input', render);
-  render();
-}
-
-// -------------------------------------------------------------
-// 4. Scientific Mindset Sorter Simulator
-// -------------------------------------------------------------
-function initMindsetSorterSim(container) {
-  const statementEl = container.querySelector('#mindsetStatement');
-  const feedbackEl = container.querySelector('#mindsetFeedback');
-  const nextBtn = container.querySelector('#nextStatementBtn');
-  const choiceBtns = container.querySelectorAll('.mindsetChoiceBtn');
-  if (!statementEl || !feedbackEl) return;
-
-  const dataset = [
-    {
-      text: '"Water freezes into ice at 0°C under standard atmospheric pressure."',
-      correct: "fact",
-      feedback: "Correct! This is a verifiable Scientific Fact confirmed by reproducible thermometric measurements worldwide."
-    },
-    {
-      text: '"Chocolate ice cream is the absolute most delicious dessert on Earth."',
-      correct: "opinion",
-      feedback: "Spot On! Taste preference is a Subjective Opinion based on personal neural sensation, not an empirical universal measurement."
-    },
-    {
-      text: '"Green bean seeds will germinate faster under blue light than under red light."',
-      correct: "hypothesis",
-      feedback: "Precisely! This is a Testable Hypothesis proposing a causal link between light wavelength and germination speed."
-    },
-    {
-      text: '"Planet Earth completes one full orbit around the Sun in approximately 365.25 days."',
-      correct: "fact",
-      feedback: "Correct! This is an astronomical Scientific Fact established by observational orbital mechanics."
-    },
-    {
-      text: '"Spiders are terrifying creatures that should be removed from all houses."',
-      correct: "opinion",
-      feedback: "Correct! Fear and aesthetic dislike are Subjective Opinions. Ecologically, spiders are beneficial insect predators."
-    },
-    {
-      text: '"Adding dissolved sodium chloride to water will elevate its boiling point above 100°C."',
-      correct: "hypothesis",
-      feedback: "Spot on! This is a Testable Hypothesis (collivative properties) that can be verified with a beaker, salt, and thermometer."
-    }
-  ];
-
-  let currentIdx = 0;
-
-  function loadStatement() {
-    const d = dataset[currentIdx];
-    statementEl.textContent = d.text;
-    feedbackEl.textContent = "Click a button above to evaluate whether this statement is a Fact, Opinion, or Hypothesis.";
-    feedbackEl.className = "p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300 leading-snug";
-  }
-
-  choiceBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const chosen = btn.dataset.type;
-      const d = dataset[currentIdx];
-      if (chosen === d.correct) {
-        feedbackEl.className = "p-2.5 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-xs text-emerald-300 leading-snug";
-        feedbackEl.innerHTML = `<strong>Spot On! ✔</strong> ${d.feedback}`;
-      } else {
-        feedbackEl.className = "p-2.5 rounded-xl bg-rose-950/60 border border-rose-500/40 text-xs text-rose-300 leading-snug";
-        feedbackEl.innerHTML = `<strong>Incorrect.</strong> This statement is actually a <strong>${d.correct.toUpperCase()}</strong>: ${d.feedback}`;
-      }
     });
-  });
 
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      currentIdx = (currentIdx + 1) % dataset.length;
-      loadStatement();
-    });
-  }
+    const svg = document.getElementById('sim4-svg');
+    const title = document.getElementById('sim4-habitat-title');
+    const desc = document.getElementById('sim4-desc');
 
-  loadStatement();
-}
-
-// -------------------------------------------------------------
-// 5. Question the Answer (Milk Edition)
-// -------------------------------------------------------------
-function initQuestionMilkSim(container) {
-  const svg = container.querySelector('#milkSvg');
-  const expEl = container.querySelector('#milkExplanation');
-  const btns = container.querySelectorAll('.milkModeBtn');
-  if (!svg) return;
-
-  function renderMode(mode) {
-    if (mode === 'capsaicin') {
-      svg.innerHTML = `
-        <!-- Tongue Nerve Receptor -->
-        <rect x="50" y="160" width="400" height="40" rx="10" fill="#be123c" />
-        <text x="250" y="185" fill="#fecdd3" font-size="12" font-weight="bold" text-anchor="middle">Sensory Nerve Membrane (Pain Receptor TRPV1)</text>
-
-        <!-- Capsaicin molecules -->
-        <circle cx="150" cy="140" r="12" fill="#ef4444" stroke="#fca5a5" stroke-width="2" />
-        <text x="150" y="144" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle">Spice</text>
-
-        <!-- Casein Micelle Engulfing Capsaicin -->
-        <circle cx="280" cy="110" r="28" fill="#f8fafc" stroke="#38bdf8" stroke-width="2.5" />
-        <circle cx="280" cy="110" r="10" fill="#ef4444" />
-        <text x="280" y="90" fill="#0284c7" font-size="10" font-weight="extrabold" text-anchor="middle">Casein Micelle</text>
-        <text x="280" y="150" fill="#38bdf8" font-size="10" text-anchor="middle">(Traps Capsaicin)</text>
-
-        <!-- Wash away arrow -->
-        <path d="M 320 110 L 420 110" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrowLift)" />
-        <text x="370" y="100" fill="#38bdf8" font-size="11" font-weight="bold">Washed Away!</text>
-      `;
-      expEl.innerHTML = `<strong>Question:</strong> <em>Why does milk instantly soothe chili spice while water does nothing?</em><br>Chili heat comes from oily capsaicin. Water cannot dissolve non-polar oil, but casein protein in milk acts like a detergent, engulfing capsaicin and pulling it away from pain receptors!`;
-    } else if (mode === 'tyndall') {
-      svg.innerHTML = `
-        <!-- Laser pointer -->
-        <rect x="40" y="110" width="50" height="20" rx="4" fill="#475569" />
-        <polygon points="90,120 100,115 100,125" fill="#ef4444" />
-        
-        <!-- Glass of water with milk drops -->
-        <rect x="150" y="60" width="160" height="130" rx="8" fill="#0284c7" fill-opacity="0.2" stroke="#38bdf8" stroke-width="2" />
-        
-        <!-- Tyndall Scattering Cone -->
-        <polygon points="150,120 310,105 310,135" fill="#f43f5e" fill-opacity="0.5" />
-        <line x1="90" y1="120" x2="440" y2="120" stroke="#ef4444" stroke-width="2" stroke-dasharray="2,2" />
-
-        <!-- Suspended fat droplets -->
-        <circle cx="180" cy="100" r="3" fill="#ffffff" />
-        <circle cx="230" cy="140" r="3" fill="#ffffff" />
-        <circle cx="270" cy="115" r="3" fill="#ffffff" />
-
-        <text x="230" y="50" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">Colloid: Tyndall Beam Visible</text>
-        <text x="230" y="215" fill="#fca5a5" font-size="11" text-anchor="middle">Sub-micron fat globules scatter red laser photons!</text>
-      `;
-      expEl.innerHTML = `<strong>Question:</strong> <em>How can you make an invisible light beam clearly visible through water?</em><br>Adding a drop of milk creates a colloid emulsion. Suspended microscopic fat droplets scatter light (Tyndall Effect), revealing the beam's geometric path!`;
+    if (hab === 'desert') {
+        title.textContent = "Thar Desert (Hot & Arid)";
+        desc.innerHTML = "<strong>Adaptations:</strong> Cacti store gallons of water in succulent stems; camels have broad padded feet to walk on burning dunes and long eyelashes to block sandstorms.";
+        svg.innerHTML = `
+            <rect x="40" y="110" width="370" height="70" fill="#d97706" fill-opacity="0.3"/>
+            <!-- Sun -->
+            <circle cx="370" cy="50" r="25" fill="#f59e0b"/>
+            <!-- Cactus -->
+            <rect x="180" y="70" width="18" height="70" rx="6" fill="#15803d"/>
+            <path d="M165,95 L180,95 M165,95 L165,80" stroke="#15803d" stroke-width="8" stroke-linecap="round" fill="none"/>
+            <path d="M198,105 L213,105 M213,105 L213,90" stroke="#15803d" stroke-width="8" stroke-linecap="round" fill="none"/>
+            <text x="190" y="160" fill="#fef3c7" font-size="11" text-anchor="middle" font-weight="bold">Water-Storing Cactus</text>
+        `;
+    } else if (hab === 'mountain') {
+        title.textContent = "Himalayan Peaks (Cold & Snowy)";
+        desc.innerHTML = "<strong>Adaptations:</strong> Snow leopards have thick insulating spotted coats and broad paws acting like snowshoes; pine trees have conical shapes allowing heavy snow to slide off effortlessly.";
+        svg.innerHTML = `
+            <!-- Snowy Mountain peaks -->
+            <polygon points="80,160 170,50 260,160" fill="#475569"/>
+            <polygon points="140,85 170,50 200,85" fill="#f8fafc"/>
+            <polygon points="200,160 290,65 380,160" fill="#334155"/>
+            <polygon points="260,100 290,65 320,100" fill="#f8fafc"/>
+            <!-- Pine tree -->
+            <polygon points="110,160 125,120 140,160" fill="#166534"/>
+            <polygon points="115,135 125,105 135,135" fill="#166534"/>
+            <text x="230" y="175" fill="#cbd5e1" font-size="11" text-anchor="middle" font-weight="bold">Conical Snow-Shedding Pines</text>
+        `;
+    } else if (hab === 'mangrove') {
+        title.textContent = "Sundarbans Mangroves (Tidal Saline Wetlands)";
+        desc.innerHTML = "<strong>Adaptations:</strong> Pneumatophores (breathing roots) grow upwards out of oxygen-poor tidal mud into the air to breathe during low tides!";
+        svg.innerHTML = `
+            <!-- Mud and water -->
+            <rect x="40" y="120" width="370" height="50" fill="#451a03" opacity="0.6"/>
+            <line x1="40" y1="120" x2="410" y2="120" stroke="#0284c7" stroke-width="3"/>
+            <!-- Mangrove Trunk -->
+            <rect x="215" y="40" width="20" height="80" fill="#78350f"/>
+            <circle cx="225" cy="40" r="35" fill="#15803d"/>
+            <!-- Breathing roots sticking up -->
+            <line x1="160" y1="140" x2="160" y2="105" stroke="#78350f" stroke-width="4"/>
+            <line x1="180" y1="140" x2="180" y2="100" stroke="#78350f" stroke-width="4"/>
+            <line x1="270" y1="140" x2="270" y2="105" stroke="#78350f" stroke-width="4"/>
+            <line x1="290" y1="140" x2="290" y2="95" stroke="#78350f" stroke-width="4"/>
+            <text x="225" y="160" fill="#fde68a" font-size="10" text-anchor="middle">Breathing Roots (Pneumatophores)</text>
+        `;
     } else {
-      svg.innerHTML = `
-        <!-- Beaker with warm milk -->
-        <rect x="160" y="70" width="180" height="120" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-width="2.5" />
-        <!-- Curdled protein mesh -->
-        <path d="M 180 120 Q 200 140 230 120 T 280 130 T 320 110" stroke="#f59e0b" stroke-width="3" fill="none" />
-        <path d="M 180 150 Q 210 130 250 160 T 310 140" stroke="#f59e0b" stroke-width="3" fill="none" />
-        <!-- Bacteria -->
-        <ellipse cx="210" cy="100" rx="8" ry="4" fill="#10b981" />
-        <ellipse cx="270" cy="105" rx="8" ry="4" fill="#10b981" />
-        <text x="250" y="50" fill="#fde68a" font-size="12" font-weight="bold" text-anchor="middle">Lactobacillus Fermentation</text>
-        <text x="250" y="215" fill="#34d399" font-size="11" text-anchor="middle">Lactose converted to lactic acid; pH drops, coagulating milk into curd</text>
-      `;
-      expEl.innerHTML = `<strong>Question:</strong> <em>How do we cultivate millions of friendly bacteria to make probiotic breakfast food?</em><br>Adding a spoonful of starter curd to warm milk inoculates it with <em>Lactobacillus</em>. The bacteria ferment lactose into lactic acid, causing casein proteins to coagulate into solid curd!`;
+        title.textContent = "Andaman Coral Reefs (Marine Biodiversity)";
+        desc.innerHTML = "<strong>Adaptations:</strong> Clownfish produce a special mucus skin coat that protects them from deadly sea anemone stings, living in safe mutual symbiosis.";
+        svg.innerHTML = `
+            <rect x="40" y="20" width="370" height="150" fill="#0369a1" fill-opacity="0.3" rx="8"/>
+            <!-- Corals -->
+            <path d="M100,160 Q110,120 120,160 M120,160 Q130,110 140,160 M140,160 Q150,130 160,160" stroke="#f43f5e" stroke-width="6" fill="none"/>
+            <path d="M280,160 Q290,115 300,160 M300,160 Q315,100 330,160" stroke="#a855f7" stroke-width="8" fill="none"/>
+            <!-- Clownfish -->
+            <ellipse cx="220" cy="90" rx="20" ry="12" fill="#ea580c"/>
+            <polygon points="240,90 255,80 255,100" fill="#ea580c"/>
+            <rect x="215" y="78" width="4" height="24" fill="#ffffff"/>
+            <text x="225" y="125" fill="#fed7aa" font-size="11" text-anchor="middle" font-weight="bold">Clownfish in Anemone Shelter</text>
+        `;
     }
-  }
-
-  btns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      btns.forEach(b => b.className = "milkModeBtn px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold transition");
-      btn.className = "milkModeBtn px-2.5 py-1.5 rounded-lg bg-amber-600 text-white text-xs font-bold transition";
-      renderMode(btn.dataset.mode);
-    });
-  });
-
-  renderMode('capsaicin');
 }
 
 // -------------------------------------------------------------
-// 6. Raindrop Optics & 42° Rainbow Angle Simulator
+// Simulator 5: Miracles of Growth
 // -------------------------------------------------------------
-function initRaindropOpticsSim(container) {
-  const svg = container.querySelector('#raindropSvg');
-  const slider = container.querySelector('#impactSlider');
-  const impactVal = container.querySelector('#impactVal');
-  const angleReadout = container.querySelector('#rainbowAngleReadout');
-  if (!svg || !slider) return;
+let sim5Mode = 'plant';
 
-  function render() {
-    const hRel = parseFloat(slider.value); // 0.1 to 0.95
-    if (impactVal) {
-      impactVal.textContent = hRel.toFixed(2) + (Math.abs(hRel - 0.86) < 0.03 ? " (Caustic Focus!)" : "");
-    }
-
-    const cx = 250, cy = 125, R = 75;
-    const h = hRel * R;
-
-    // Entry point on sphere
-    const i = Math.asin(hRel); // radians
-    const n = 1.333; // refractive index of water
-    const r = Math.asin(Math.sin(i) / n); // refracted angle
-
-    // Total deflection angle for 1 internal reflection: theta = 4r - 2i
-    const thetaRad = 4 * r - 2 * i;
-    const exitAngleDeg = (thetaRad * 180 / Math.PI).toFixed(1);
-
-    if (angleReadout) {
-      angleReadout.textContent = `Exit Angle: ${exitAngleDeg}°`;
-      angleReadout.className = Math.abs(parseFloat(exitAngleDeg) - 42.0) < 1.0 ?
-        "px-2 py-0.5 rounded text-[11px] font-mono bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-bold" :
-        "px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-400 font-semibold";
-    }
-
-    // Coordinates on circle
-    const x1 = cx - Math.sqrt(R * R - h * h);
-    const y1 = cy - h;
-
-    // Rear reflection point: angle from horizontal is (i - 2r)
-    const phi = Math.PI - 2 * r + i;
-    const x2 = cx + R * Math.cos(phi - Math.PI);
-    const y2 = cy + R * Math.sin(phi - Math.PI);
-
-    // Exit point: angle phi2
-    const phi2 = phi - 2 * r;
-    const x3 = cx + R * Math.cos(phi2 - Math.PI);
-    const y3 = cy + R * Math.sin(phi2 - Math.PI);
-
-    // Exit ray direction
-    const exitDir = Math.PI - thetaRad;
-    const x4 = x3 - 120 * Math.cos(exitDir);
-    const y4 = y3 + 120 * Math.sin(exitDir);
-
-    svg.innerHTML = `
-      <!-- Raindrop Water Sphere -->
-      <circle cx="${cx}" cy="${cy}" r="${R}" fill="#0284c7" fill-opacity="0.3" stroke="#38bdf8" stroke-width="2.5" />
-      
-      <!-- Incident White Solar Ray -->
-      <line x1="30" y1="${y1}" x2="${x1}" y2="${y1}" stroke="#ffffff" stroke-width="2.5" />
-      <text x="60" y="${y1 - 8}" fill="#f8fafc" font-size="11" font-weight="bold">Incoming Sunlight</text>
-
-      <!-- Inside Droplet Ray 1: Refraction -->
-      <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#f43f5e" stroke-width="2.5" />
-
-      <!-- Inside Droplet Ray 2: Internal Reflection -->
-      <line x1="${x2}" y1="${y2}" x2="${x3}" y2="${y3}" stroke="#f43f5e" stroke-width="2.5" />
-
-      <!-- Emerging Refracted Ray (Red light caustic) -->
-      <line x1="${x3}" y1="${y3}" x2="${x4}" y2="${y4}" stroke="#ef4444" stroke-width="3" />
-      
-      <!-- Violet Ray Offset (Dispersion) -->
-      <line x1="${x3}" y1="${y3}" x2="${x4 - 10}" y2="${y4 - 8}" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="2,2" />
-
-      <!-- Angle Measurement Arc -->
-      <text x="${x4 - 15}" y="${y4 + 15}" fill="#ef4444" font-size="13" font-weight="extrabold">Red: ${exitAngleDeg}°</text>
-      <text x="${x4 - 15}" y="${y4 + 30}" fill="#a78bfa" font-size="10">Violet: ~40.4°</text>
-
-      <text x="250" y="30" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">Spherical Raindrop Cross-Section (n = 1.33)</text>
-    `;
-  }
-
-  slider.addEventListener('input', render);
-  render();
+function setSim5Mode(mode) {
+    sim5Mode = mode;
+    document.getElementById('sim5-btn-plant').className = (mode === 'plant') ?
+        'py-2 rounded-xl text-xs font-bold bg-cyan-500 text-slate-950 transition' :
+        'py-2 rounded-xl text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition';
+    document.getElementById('sim5-btn-butterfly').className = (mode === 'butterfly') ?
+        'py-2 rounded-xl text-xs font-bold bg-cyan-500 text-slate-950 transition' :
+        'py-2 rounded-xl text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition';
+    updateSim5();
 }
 
-// -------------------------------------------------------------
-// 7. Physical vs Chemical Reactor Simulator
-// -------------------------------------------------------------
-function initReactorSim(container) {
-  const svg = container.querySelector('#reactorSvg');
-  const badge = container.querySelector('#reactionBadge');
-  const desc = container.querySelector('#reactionDesc');
-  const btns = container.querySelectorAll('.reactBtn');
-  if (!svg) return;
+function updateSim5() {
+    const stage = parseInt(document.getElementById('sim5-slider').value, 10);
+    document.getElementById('sim5-slider-val').textContent = `Step ${stage}`;
+    document.getElementById('sim5-stage-badge').textContent = `Stage ${stage} of 4`;
 
-  function setReaction(type) {
-    if (type === 'ice') {
-      badge.textContent = "Physical Change (Reversible)";
-      badge.className = "px-2 py-0.5 rounded text-[11px] font-mono bg-blue-500/20 text-blue-300 border border-blue-500/30 font-semibold";
-      desc.innerHTML = "<strong>Melting Ice:</strong> Solid ice turns into liquid water. The molecules remain strictly $\\text{H}_2\\text{O}$; only intermolecular spacing changes. Easily reversible by freezing!";
-      svg.innerHTML = `
-        <!-- Melting Ice Beaker -->
-        <rect x="180" y="70" width="140" height="120" rx="8" fill="#0284c7" fill-opacity="0.2" stroke="#38bdf8" stroke-width="2" />
-        <rect x="180" y="140" width="140" height="50" rx="4" fill="#0284c7" fill-opacity="0.5" />
-        <!-- Ice cubes -->
-        <rect x="200" y="120" width="30" height="30" rx="4" fill="#e0f2fe" stroke="#38bdf8" />
-        <rect x="250" y="125" width="28" height="28" rx="4" fill="#e0f2fe" stroke="#38bdf8" />
-        <text x="250" y="45" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">H2O(s) ➔ H2O(l) (State Change Only)</text>
-        <text x="250" y="215" fill="#94a3b8" font-size="11" text-anchor="middle">Zero new molecules formed; reversible upon cooling</text>
-      `;
-    } else if (type === 'sugar') {
-      badge.textContent = "Physical Change (Solution)";
-      badge.className = "px-2 py-0.5 rounded text-[11px] font-mono bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-semibold";
-      desc.innerHTML = "<strong>Dissolving Sugar:</strong> Sucrose crystals disperse between water molecules. No chemical bonds break; evaporating water recovers 100% of the solid sugar crystals.";
-      svg.innerHTML = `
-        <rect x="180" y="70" width="140" height="120" rx="8" fill="#0284c7" fill-opacity="0.2" stroke="#38bdf8" stroke-width="2" />
-        <rect x="180" y="110" width="140" height="80" rx="4" fill="#0284c7" fill-opacity="0.4" />
-        <!-- Dispersed sugar dots -->
-        <circle cx="210" cy="130" r="3" fill="#ffffff" />
-        <circle cx="240" cy="160" r="3" fill="#ffffff" />
-        <circle cx="270" cy="135" r="3" fill="#ffffff" />
-        <circle cx="290" cy="170" r="3" fill="#ffffff" />
-        <text x="250" y="45" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">Solvation: Sugar Crystals Dispersing</text>
-        <text x="250" y="215" fill="#94a3b8" font-size="11" text-anchor="middle">Reversible via boiling/evaporation</text>
-      `;
-    } else if (type === 'vinegar') {
-      badge.textContent = "Chemical Change (Irreversible)";
-      badge.className = "px-2 py-0.5 rounded text-[11px] font-mono bg-rose-500/20 text-rose-300 border border-rose-500/30 font-semibold";
-      desc.innerHTML = "<strong>Vinegar + Baking Soda:</strong> Vigorous effervescence! Produces bubbling carbon dioxide gas ($\\text{CO}_2$), water, and sodium acetate. New chemical bonds formed.";
-      svg.innerHTML = `
-        <rect x="180" y="70" width="140" height="120" rx="8" fill="#be123c" fill-opacity="0.2" stroke="#f43f5e" stroke-width="2" />
-        <rect x="180" y="120" width="140" height="70" rx="4" fill="#be123c" fill-opacity="0.4" />
-        <!-- Rising CO2 bubbles -->
-        <circle cx="210" cy="140" r="5" fill="#ffffff" opacity="0.8" />
-        <circle cx="240" cy="100" r="7" fill="#ffffff" opacity="0.9" />
-        <circle cx="270" cy="120" r="6" fill="#ffffff" opacity="0.8" />
-        <circle cx="250" cy="80" r="8" fill="#ffffff" opacity="0.9" />
-        <text x="250" y="45" fill="#f43f5e" font-size="12" font-weight="bold" text-anchor="middle">Effervescence: CO2 Gas Escaping!</text>
-        <text x="250" y="215" fill="#fca5a5" font-size="11" text-anchor="middle">CH3COOH + NaHCO3 ➔ CH3COONa + H2O + CO2 ↑</text>
-      `;
+    const svg = document.getElementById('sim5-svg');
+    const desc = document.getElementById('sim5-desc');
+
+    if (sim5Mode === 'plant') {
+        const plantStages = [
+            "<strong>Stage 1 (Dormant Seed):</strong> The seed rests in warm moist soil, absorbing water through its seed coat.",
+            "<strong>Stage 2 (Radicle Emergence):</strong> The seed coat cracks; the first primary root (radicle) grows downward anchoring in soil.",
+            "<strong>Stage 3 (Shoot & Cotyledons):</strong> The green shoot pushes upward toward sunlight, spreading its initial seed leaves.",
+            "<strong>Stage 4 (Mature Flowering Plant):</strong> True leaves, strong stem, and radiant flowers appear ready to produce seeds for the next generation!"
+        ];
+        desc.innerHTML = plantStages[stage - 1];
+
+        // Render Plant SVG Stages
+        let plantSvg = '';
+        if (stage === 1) {
+            plantSvg = `
+                <line x1="50" y1="120" x2="400" y2="120" stroke="#854d0e" stroke-width="4"/>
+                <ellipse cx="225" cy="135" rx="10" ry="7" fill="#78350f"/>
+                <text x="225" y="160" fill="#d97706" font-size="11" text-anchor="middle">Moist Seed in Soil</text>
+            `;
+        } else if (stage === 2) {
+            plantSvg = `
+                <line x1="50" y1="120" x2="400" y2="120" stroke="#854d0e" stroke-width="4"/>
+                <ellipse cx="225" cy="135" rx="10" ry="7" fill="#78350f"/>
+                <path d="M225,142 Q220,165 230,175" stroke="#fef08a" stroke-width="3" fill="none"/>
+                <text x="225" y="110" fill="#a3e635" font-size="10" text-anchor="middle">Radicle (Root) Sprouting Downward</text>
+            `;
+        } else if (stage === 3) {
+            plantSvg = `
+                <line x1="50" y1="120" x2="400" y2="120" stroke="#854d0e" stroke-width="4"/>
+                <path d="M225,120 Q225,95 225,80" stroke="#22c55e" stroke-width="4" fill="none"/>
+                <ellipse cx="215" cy="75" rx="10" ry="5" fill="#22c55e" transform="rotate(-30 215 75)"/>
+                <ellipse cx="235" cy="75" rx="10" ry="5" fill="#22c55e" transform="rotate(30 235 75)"/>
+                <!-- Roots below -->
+                <path d="M225,120 Q220,150 210,170 M225,120 Q230,150 240,170" stroke="#fef08a" stroke-width="2" fill="none"/>
+                <text x="225" y="60" fill="#4ade80" font-size="11" text-anchor="middle" font-weight="bold">First Green Shoot</text>
+            `;
+        } else {
+            plantSvg = `
+                <line x1="50" y1="120" x2="400" y2="120" stroke="#854d0e" stroke-width="4"/>
+                <line x1="225" y1="120" x2="225" y2="45" stroke="#15803d" stroke-width="5"/>
+                <ellipse cx="205" cy="80" rx="16" ry="8" fill="#16a34a" transform="rotate(-25 205 80)"/>
+                <ellipse cx="245" cy="65" rx="16" ry="8" fill="#16a34a" transform="rotate(25 245 65)"/>
+                <!-- Flower -->
+                <circle cx="225" cy="40" r="14" fill="#fbbf24"/>
+                <circle cx="215" cy="30" r="9" fill="#f43f5e"/>
+                <circle cx="235" cy="30" r="9" fill="#f43f5e"/>
+                <circle cx="215" cy="50" r="9" fill="#f43f5e"/>
+                <circle cx="235" cy="50" r="9" fill="#f43f5e"/>
+                <text x="225" y="20" fill="#fde047" font-size="11" text-anchor="middle" font-weight="bold">Flowering Plant with Seeds!</text>
+            `;
+        }
+        svg.innerHTML = plantSvg;
     } else {
-      badge.textContent = "Chemical Change (Oxidation)";
-      badge.className = "px-2 py-0.5 rounded text-[11px] font-mono bg-amber-500/20 text-amber-300 border border-amber-500/30 font-semibold";
-      desc.innerHTML = "<strong>Iron Rusting:</strong> Iron combines with atmospheric oxygen and water to form hydrated iron(III) oxide (rust). Irreversible change destroying metal strength.";
-      svg.innerHTML = `
-        <!-- Iron Nail with Rust Coating -->
-        <polygon points="120,120 380,120 400,125 380,130 120,130" fill="#78350f" stroke="#b45309" stroke-width="2" />
-        <rect x="110" y="112" width="15" height="26" rx="2" fill="#94a3b8" />
-        <!-- Rust patches -->
-        <circle cx="200" cy="123" r="6" fill="#ea580c" />
-        <circle cx="260" cy="127" r="7" fill="#c2410c" />
-        <circle cx="320" cy="124" r="5" fill="#ea580c" />
-        <text x="250" y="55" fill="#f59e0b" font-size="12" font-weight="bold" text-anchor="middle">Iron Oxidation: Rusting (Fe2O3 · xH2O)</text>
-        <text x="250" y="195" fill="#fdba74" font-size="11" text-anchor="middle">4Fe + 3O2 + 2xH2O ➔ 2Fe2O3 · xH2O</text>
-      `;
+        const bflyStages = [
+            "<strong>Stage 1 (Egg):</strong> A tiny oval pearl-like egg laid carefully on the underside of a fresh green leaf.",
+            "<strong>Stage 2 (Caterpillar):</strong> The ravenous larva eats its eggshell and munches leaves continuously to store energy.",
+            "<strong>Stage 3 (Chrysalis / Pupa):</strong> Inside a hardened silky cocoon, cellular metamorphosis re-engineers the body plan.",
+            "<strong>Stage 4 (Adult Butterfly):</strong> A splendid butterfly emerges, expands colorful wings with hemolymph, and takes flight!"
+        ];
+        desc.innerHTML = bflyStages[stage - 1];
+
+        let bflySvg = '';
+        if (stage === 1) {
+            bflySvg = `
+                <path d="M120,130 Q225,50 330,130" stroke="#16a34a" stroke-width="12" fill="none"/>
+                <ellipse cx="225" cy="85" rx="8" ry="6" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5"/>
+                <text x="225" y="65" fill="#fef08a" font-size="11" text-anchor="middle" font-weight="bold">Butterfly Egg on Leaf</text>
+            `;
+        } else if (stage === 2) {
+            bflySvg = `
+                <line x1="80" y1="120" x2="370" y2="120" stroke="#15803d" stroke-width="8"/>
+                <!-- Caterpillar body segments -->
+                <circle cx="180" cy="110" r="10" fill="#84cc16"/>
+                <circle cx="195" cy="110" r="10" fill="#65a30d"/>
+                <circle cx="210" cy="110" r="10" fill="#84cc16"/>
+                <circle cx="225" cy="110" r="10" fill="#65a30d"/>
+                <circle cx="240" cy="110" r="10" fill="#84cc16"/>
+                <circle cx="255" cy="110" r="10" fill="#65a30d"/>
+                <circle cx="270" cy="106" r="11" fill="#4d7c0f"/>
+                <text x="225" y="80" fill="#bef264" font-size="11" text-anchor="middle" font-weight="bold">Leaf-Eating Caterpillar (Larva)</text>
+            `;
+        } else if (stage === 3) {
+            bflySvg = `
+                <!-- Twig -->
+                <line x1="120" y1="40" x2="330" y2="40" stroke="#78350f" stroke-width="6"/>
+                <!-- Chrysalis hanging -->
+                <line x1="225" y1="40" x2="225" y2="60" stroke="#a1a1aa" stroke-width="2"/>
+                <path d="M225,60 C205,80 210,130 225,145 C240,130 245,80 225,60 Z" fill="#15803d" stroke="#4ade80" stroke-width="2"/>
+                <text x="225" y="165" fill="#86efac" font-size="11" text-anchor="middle" font-weight="bold">Metamorphosis Inside Chrysalis (Pupa)</text>
+            `;
+        } else {
+            bflySvg = `
+                <!-- Butterfly wings -->
+                <g transform="translate(225, 95)">
+                    <path d="M0,-10 Q-50,-70 -80,-30 Q-90,20 0,0 Z" fill="#ea580c" stroke="#fed7aa" stroke-width="2"/>
+                    <path d="M0,-10 Q50,-70 80,-30 Q90,20 0,0 Z" fill="#ea580c" stroke="#fed7aa" stroke-width="2"/>
+                    <path d="M0,0 Q-60,30 -40,65 Q-10,50 0,0 Z" fill="#f97316"/>
+                    <path d="M0,0 Q60,30 40,65 Q10,50 0,0 Z" fill="#f97316"/>
+                    <!-- Body -->
+                    <ellipse cx="0" cy="0" rx="4" ry="25" fill="#1e293b"/>
+                    <line x1="-2" y1="-25" x2="-12" y2="-40" stroke="#f8fafc" stroke-width="1.5"/>
+                    <line x1="2" y1="-25" x2="12" y2="-40" stroke="#f8fafc" stroke-width="1.5"/>
+                </g>
+                <text x="225" y="25" fill="#fdba74" font-size="12" text-anchor="middle" font-weight="bold">Winged Adult Butterfly Emerges!</text>
+            `;
+        }
+        svg.innerHTML = bflySvg;
     }
-  }
-
-  btns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      btns.forEach(b => b.className = "reactBtn px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition");
-      btn.className = "reactBtn px-2 py-1.5 rounded-lg bg-rose-600 text-white font-bold transition";
-      setReaction(btn.dataset.reaction);
-    });
-  });
-
-  setReaction('vinegar');
 }
 
 // -------------------------------------------------------------
-// 8. DC Circuit & Electromagnet Simulator
+// Simulator 6: Cuisines & Nutrients
 // -------------------------------------------------------------
-function initCircuitElectromagnetSim(container) {
-  const svg = container.querySelector('#circuitSvg');
-  const statusEl = container.querySelector('#circuitStatus');
-  const btn = container.querySelector('#toggleSwitchBtn');
-  const compassEl = container.querySelector('#compassReading');
-  if (!svg || !btn) return;
+let sim6Selected = { carbs: false, protein: false, vitamins: false };
 
-  let isClosed = true;
+function toggleSim6Food(cat) {
+    sim6Selected[cat] = !sim6Selected[cat];
+    const btn = document.getElementById(`sim6-btn-${cat}`);
+    if (btn) {
+        btn.className = sim6Selected[cat] ?
+            'py-2 rounded-xl text-xs font-semibold bg-emerald-500 text-slate-950 transition' :
+            'py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition';
+    }
+    renderSim6();
+}
 
-  function render() {
-    if (statusEl) {
-      statusEl.textContent = isClosed ? "Circuit: CLOSED (ON)" : "Circuit: OPEN (OFF)";
-      statusEl.className = isClosed ?
-        "px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold" :
-        "px-2 py-0.5 rounded text-[11px] font-mono bg-rose-500/20 text-rose-300 border border-rose-500/30 font-semibold";
+function renderSim6() {
+    const plate = document.getElementById('sim6-plate');
+    const badge = document.getElementById('sim6-health-badge');
+    const status = document.getElementById('sim6-status');
+
+    let itemsHtml = '';
+    let count = 0;
+
+    if (sim6Selected.carbs) {
+        count++;
+        itemsHtml += `<div class="absolute top-6 left-12 w-14 h-14 rounded-full bg-amber-500 text-slate-950 font-bold flex flex-col items-center justify-center text-[10px] shadow border border-amber-300"><span>🌾</span><span>Carbs</span></div>`;
+    }
+    if (sim6Selected.protein) {
+        count++;
+        itemsHtml += `<div class="absolute top-6 right-12 w-14 h-14 rounded-full bg-orange-500 text-white font-bold flex flex-col items-center justify-center text-[10px] shadow border border-orange-300"><span>🥣</span><span>Protein</span></div>`;
+    }
+    if (sim6Selected.vitamins) {
+        count++;
+        itemsHtml += `<div class="absolute bottom-6 w-16 h-16 rounded-full bg-emerald-500 text-slate-950 font-bold flex flex-col items-center justify-center text-[10px] shadow border border-emerald-300"><span>🥬</span><span>Vitamins</span></div>`;
     }
 
-    if (compassEl) {
-      compassEl.textContent = isClosed ? "Compass Deflection: 45° E (Field Active)" : "Compass: 0° N (Earth Field Only)";
+    if (count === 0) {
+        itemsHtml = `<span class="text-slate-500 text-xs italic text-center">Empty Thali Plate.<br>Select items below to balance!</span>`;
     }
 
-    const wireColor = isClosed ? "#eab308" : "#475569";
-    const bulbGlow = isClosed ? "#fde047" : "#334155";
-    const needleAngle = isClosed ? 45 : 0;
+    plate.innerHTML = itemsHtml;
 
+    if (count === 3) {
+        badge.textContent = "100% Balanced Thali!";
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
+        status.innerHTML = `<span class="text-emerald-400 font-semibold">Perfect Nutritional Balance!</span> Energy from Carbs + Muscle Repair from Proteins + Immunity from Vitamins & Minerals.`;
+    } else {
+        badge.textContent = `${count} of 3 Nutrients Added`;
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30";
+        status.textContent = `A healthy body needs all 3 pillars: Energy givers (Carbs), Body builders (Protein), and Protectors (Vitamins).`;
+    }
+}
+
+// -------------------------------------------------------------
+// Simulator 7: The Journey of Water
+// -------------------------------------------------------------
+function triggerSim7Phase(phase) {
+    ['evap', 'cond', 'rain'].forEach(p => {
+        const btn = document.getElementById(`sim7-btn-${p}`);
+        if (btn) {
+            btn.className = (p === phase) ?
+                'py-2 rounded-xl text-xs font-semibold bg-cyan-500 text-slate-950 transition' :
+                'py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition';
+        }
+    });
+
+    const svg = document.getElementById('sim7-svg');
+    const badge = document.getElementById('sim7-badge');
+    const desc = document.getElementById('sim7-desc');
+
+    if (phase === 'evap') {
+        badge.textContent = "Phase 1: Solar Evaporation";
+        desc.innerHTML = "Sunlight heats the ocean. Kinetic energy frees water molecules from liquid bounds, ascending into the atmosphere as invisible water vapor.";
+        svg.innerHTML = `
+            <!-- Ocean -->
+            <rect x="30" y="130" width="390" height="45" fill="#0284c7" fill-opacity="0.5" rx="4"/>
+            <!-- Sun -->
+            <circle cx="80" cy="45" r="22" fill="#f59e0b"/>
+            <!-- Rising vapor arrows -->
+            <path d="M160,120 Q150,90 160,70" stroke="#38bdf8" stroke-width="2.5" fill="none" stroke-dasharray="4,2"/>
+            <path d="M220,120 Q210,90 220,70" stroke="#38bdf8" stroke-width="2.5" fill="none" stroke-dasharray="4,2"/>
+            <path d="M280,120 Q270,90 280,70" stroke="#38bdf8" stroke-width="2.5" fill="none" stroke-dasharray="4,2"/>
+            <text x="220" y="55" fill="#38bdf8" font-size="11" font-weight="bold" text-anchor="middle">Rising Water Vapor</text>
+            <text x="220" y="155" fill="#e0f2fe" font-size="11" text-anchor="middle">Warmed Ocean Water</text>
+        `;
+    } else if (phase === 'cond') {
+        badge.textContent = "Phase 2: Cloud Condensation";
+        desc.innerHTML = "As water vapor reaches cooler altitudes, it condenses around microscopic dust particles into trillions of suspended water droplets: <strong>Clouds</strong>!";
+        svg.innerHTML = `
+            <rect x="30" y="130" width="390" height="45" fill="#0284c7" fill-opacity="0.5" rx="4"/>
+            <!-- Cloud cluster -->
+            <g transform="translate(200, 50)">
+                <circle cx="0" cy="0" r="28" fill="#e2e8f0"/>
+                <circle cx="-25" cy="8" r="22" fill="#e2e8f0"/>
+                <circle cx="25" cy="8" r="22" fill="#e2e8f0"/>
+                <circle cx="-12" cy="16" r="20" fill="#e2e8f0"/>
+                <circle cx="15" cy="16" r="20" fill="#e2e8f0"/>
+            </g>
+            <text x="200" y="110" fill="#94a3b8" font-size="11" font-weight="bold" text-anchor="middle">Cold Upper Atmosphere Condensation</text>
+        `;
+    } else {
+        badge.textContent = "Phase 3: Rain Precipitation";
+        desc.innerHTML = "Droplets merge, become too heavy for rising updrafts to support, and plunge downward as life-giving precipitation (monsoon rain).";
+        svg.innerHTML = `
+            <rect x="30" y="130" width="390" height="45" fill="#0284c7" fill-opacity="0.5" rx="4"/>
+            <!-- Dark rain cloud -->
+            <g transform="translate(200, 45)">
+                <circle cx="0" cy="0" r="28" fill="#64748b"/>
+                <circle cx="-25" cy="8" r="22" fill="#64748b"/>
+                <circle cx="25" cy="8" r="22" fill="#64748b"/>
+            </g>
+            <!-- Falling raindrops -->
+            <line x1="160" y1="85" x2="150" y2="120" stroke="#38bdf8" stroke-width="2.5" stroke-dasharray="6,4"/>
+            <line x1="190" y1="85" x2="180" y2="120" stroke="#38bdf8" stroke-width="2.5" stroke-dasharray="6,4"/>
+            <line x1="220" y1="85" x2="210" y2="120" stroke="#38bdf8" stroke-width="2.5" stroke-dasharray="6,4"/>
+            <line x1="250" y1="85" x2="240" y2="120" stroke="#38bdf8" stroke-width="2.5" stroke-dasharray="6,4"/>
+            <text x="200" y="155" fill="#e0f2fe" font-size="11" text-anchor="middle" font-weight="bold">Precipitation Returns Water to Earth!</text>
+        `;
+    }
+}
+
+// -------------------------------------------------------------
+// Simulator 8: Three States of Matter
+// -------------------------------------------------------------
+function updateSim8() {
+    const temp = parseInt(document.getElementById('sim8-temp').value, 10);
+    document.getElementById('sim8-temp-val').textContent = `${temp} °C`;
+    const badge = document.getElementById('sim8-state-badge');
+    const desc = document.getElementById('sim8-desc');
+    const svg = document.getElementById('sim8-svg');
+
+    if (temp <= 0) {
+        badge.textContent = `Solid Ice (${temp} °C)`;
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30";
+        desc.innerHTML = "<strong>Solid Phase:</strong> Below 0 °C, low thermal kinetic energy locks H₂O molecules into a rigid hexagonal crystalline grid.";
+        svg.innerHTML = `
+            <rect x="145" y="30" width="160" height="110" rx="8" fill="#1e3a8a" fill-opacity="0.4" stroke="#60a5fa" stroke-width="2"/>
+            <!-- Rigid grid dots -->
+            <g fill="#93c5fd">
+                <circle cx="175" cy="55" r="7"/><circle cx="210" cy="55" r="7"/><circle cx="245" cy="55" r="7"/><circle cx="280" cy="55" r="7"/>
+                <circle cx="175" cy="85" r="7"/><circle cx="210" cy="85" r="7"/><circle cx="245" cy="85" r="7"/><circle cx="280" cy="85" r="7"/>
+                <circle cx="175" cy="115" r="7"/><circle cx="210" cy="115" r="7"/><circle cx="245" cy="115" r="7"/><circle cx="280" cy="115" r="7"/>
+            </g>
+            <text x="225" y="160" fill="#bfdbfe" font-size="11" text-anchor="middle" font-weight="bold">Rigid Ice Lattice (Fixed Volume & Shape)</text>
+        `;
+    } else if (temp < 100) {
+        badge.textContent = `Liquid Water (${temp} °C)`;
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30";
+        desc.innerHTML = "<strong>Liquid Phase:</strong> Between 0 °C and 100 °C, molecules slide past each other freely, flowing into whatever container holds them.";
+        svg.innerHTML = `
+            <path d="M140,40 L140,130 Q225,145 310,130 L310,40" stroke="#94a3b8" stroke-width="2" fill="none"/>
+            <rect x="142" y="70" width="166" height="60" fill="#0284c7" fill-opacity="0.3"/>
+            <!-- Free flowing molecules -->
+            <g fill="#38bdf8">
+                <circle cx="170" cy="85" r="6"/><circle cx="205" cy="95" r="6"/><circle cx="240" cy="80" r="6"/><circle cx="275" cy="90" r="6"/>
+                <circle cx="185" cy="115" r="6"/><circle cx="225" cy="110" r="6"/><circle cx="265" cy="118" r="6"/>
+            </g>
+            <text x="225" y="160" fill="#7dd3fc" font-size="11" text-anchor="middle" font-weight="bold">Fluid State (Fixed Volume, Takes Container Shape)</text>
+        `;
+    } else {
+        badge.textContent = `Gaseous Steam (${temp} °C)`;
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30";
+        desc.innerHTML = "<strong>Gas Phase:</strong> At 100 °C and above, rapid kinetic motion completely overcomes intermolecular forces. Steam expands vigorously to fill any space!";
+        svg.innerHTML = `
+            <rect x="120" y="25" width="210" height="120" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <!-- Fast bouncing gas molecules with velocity ticks -->
+            <g fill="#fde047" stroke="#f59e0b" stroke-width="1.5">
+                <circle cx="150" cy="50" r="5"/><line x1="150" y1="50" x2="165" y2="40"/>
+                <circle cx="230" cy="40" r="5"/><line x1="230" y1="40" x2="245" y2="55"/>
+                <circle cx="290" cy="65" r="5"/><line x1="290" y1="65" x2="275" y2="55"/>
+                <circle cx="170" cy="100" r="5"/><line x1="170" y1="100" x2="160" y2="115"/>
+                <circle cx="260" cy="110" r="5"/><line x1="260" y1="110" x2="280" y2="100"/>
+            </g>
+            <text x="225" y="165" fill="#fde047" font-size="11" text-anchor="middle" font-weight="bold">High-Energy Vapor (No Fixed Shape or Volume)</text>
+        `;
+    }
+}
+
+// -------------------------------------------------------------
+// Simulator 9: Hot or Cold?
+// -------------------------------------------------------------
+function setSim9Step(step) {
+    document.getElementById('sim9-btn-step1').className = (step === 1) ?
+        'py-2.5 rounded-xl text-xs font-bold bg-cyan-500 text-slate-950 transition' :
+        'py-2.5 rounded-xl text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition';
+    document.getElementById('sim9-btn-step2').className = (step === 2) ?
+        'py-2.5 rounded-xl text-xs font-bold bg-cyan-500 text-slate-950 transition' :
+        'py-2.5 rounded-xl text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition';
+
+    const svg = document.getElementById('sim9-svg');
+    const badge = document.getElementById('sim9-badge');
+    const exp = document.getElementById('sim9-explanation');
+
+    if (step === 1) {
+        badge.textContent = "Step 1: Extreme Conditioning";
+        exp.innerHTML = "Left hand is immersed in ice-cold water (5 °C); right hand is immersed in hot water (45 °C) for one minute. Thermal receptors adapt to these contrasting baselines.";
+        svg.innerHTML = `
+            <!-- Left Bowl (Ice Cold) -->
+            <rect x="70" y="60" width="120" height="80" rx="10" fill="#0284c7" fill-opacity="0.3" stroke="#38bdf8" stroke-width="2"/>
+            <text x="130" y="95" fill="#38bdf8" font-size="11" font-weight="bold" text-anchor="middle">Ice-Cold (5 °C)</text>
+            <text x="130" y="115" fill="#94a3b8" font-size="10" text-anchor="middle">Left Hand Here</text>
+            
+            <!-- Right Bowl (Hot) -->
+            <rect x="260" y="60" width="120" height="80" rx="10" fill="#e11d48" fill-opacity="0.3" stroke="#f43f5e" stroke-width="2"/>
+            <text x="320" y="95" fill="#f43f5e" font-size="11" font-weight="bold" text-anchor="middle">Warm / Hot (45 °C)</text>
+            <text x="320" y="115" fill="#94a3b8" font-size="10" text-anchor="middle">Right Hand Here</text>
+        `;
+    } else {
+        badge.textContent = "Step 2: Sensory Contradiction";
+        exp.innerHTML = "<strong>The Great Illusion!</strong> Both hands are placed into the SAME bowl of lukewarm water (25 °C). The cold left hand feels warm, while the warm right hand feels cold! Touch is subjective; only calibrated thermometers tell absolute truth!";
+        svg.innerHTML = `
+            <!-- Center Lukewarm Bowl -->
+            <rect x="145" y="40" width="160" height="100" rx="12" fill="#10b981" fill-opacity="0.25" stroke="#34d399" stroke-width="2"/>
+            <text x="225" y="80" fill="#34d399" font-size="12" font-weight="bold" text-anchor="middle">Lukewarm Water (25 °C)</text>
+            <text x="175" y="110" fill="#38bdf8" font-size="10" font-weight="bold">Left feels: WARM!</text>
+            <text x="275" y="110" fill="#f43f5e" font-size="10" font-weight="bold">Right feels: COLD!</text>
+            <text x="225" y="160" fill="#f59e0b" font-size="11" font-weight="bold" text-anchor="middle">Contradictory Sensation in the Exact Same Water!</text>
+        `;
+    }
+}
+
+// -------------------------------------------------------------
+// Simulator 10: Sorting Materials
+// -------------------------------------------------------------
+const sim10Data = {
+    iron: { title: "Iron Nail (Ferrous Metal)", magnetic: true, conductor: true, desc: "Strongly attracted to magnets; conducts electric circuit lighting the bulb." },
+    copper: { title: "Copper Coin (Non-ferrous Metal)", magnetic: false, conductor: true, desc: "Not attracted to magnets, but an excellent electrical conductor lighting the bulb brightly." },
+    plastic: { title: "Plastic Ruler (Polymer)", magnetic: false, conductor: false, desc: "Completely non-magnetic and an electrical insulator (bulb stays dark)." },
+    wood: { title: "Wooden Stick (Organic)", magnetic: false, conductor: false, desc: "Non-magnetic and an electrical insulator (bulb stays dark)." }
+};
+
+function testSim10Material(mat) {
+    ['iron', 'copper', 'plastic', 'wood'].forEach(m => {
+        const btn = document.getElementById(`sim10-btn-${m}`);
+        if (btn) {
+            btn.className = (m === mat) ?
+                'py-2 rounded-xl text-xs font-semibold bg-cyan-500 text-slate-950 transition' :
+                'py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition';
+        }
+    });
+
+    const data = sim10Data[mat];
+    document.getElementById('sim10-mat-title').textContent = data.title;
+    document.getElementById('sim10-status').innerHTML = data.desc;
+
+    const svg = document.getElementById('sim10-svg');
     svg.innerHTML = `
-      <!-- Circuit Wires -->
-      <path d="M 100 70 L 400 70 L 400 180 L 100 180 Z" fill="none" stroke="${wireColor}" stroke-width="4" stroke-linejoin="round" />
-
-      <!-- DC Battery Cell -->
-      <rect x="80" y="110" width="40" height="30" rx="4" fill="#1e293b" stroke="#64748b" />
-      <line x1="85" y1="125" x2="115" y2="125" stroke="#38bdf8" stroke-width="3" />
-      <text x="75" y="105" fill="#f8fafc" font-size="10" font-weight="bold">+ 1.5V -</text>
-
-      <!-- Light Bulb -->
-      <circle cx="250" cy="70" r="16" fill="${bulbGlow}" stroke="#cbd5e1" stroke-width="2" />
-      <path d="M 245 74 Q 250 63 255 74" stroke="#e2e8f0" stroke-width="1.5" fill="none" />
-      <text x="250" y="45" fill="${isClosed ? '#fef08a' : '#94a3b8'}" font-size="11" font-weight="bold" text-anchor="middle">
-        ${isClosed ? 'Bulb GLOWING 💡' : 'Bulb OFF'}
-      </text>
-
-      <!-- Knife Switch -->
-      <g transform="translate(180, 180)">
-        <circle cx="0" cy="0" r="4" fill="#94a3b8" />
-        <circle cx="35" cy="0" r="4" fill="#94a3b8" />
-        <line x1="0" y1="0" x2="${isClosed ? 35 : 25}" y2="${isClosed ? 0 : -20}" stroke="#f59e0b" stroke-width="3.5" />
-        <text x="17" y="20" fill="#94a3b8" font-size="10" text-anchor="middle">${isClosed ? 'Switch ON' : 'Switch OFF'}</text>
-      </g>
-
-      <!-- Iron Nail with Solenoid Coil -->
-      <g transform="translate(360, 125)">
-        <rect x="-6" y="-30" width="12" height="60" rx="3" fill="#64748b" stroke="#94a3b8" />
-        <!-- Coiled turns -->
-        <line x1="-12" y1="-20" x2="12" y2="-15" stroke="${wireColor}" stroke-width="2.5" />
-        <line x1="-12" y1="-5" x2="12" y2="0" stroke="${wireColor}" stroke-width="2.5" />
-        <line x1="-12" y1="10" x2="12" y2="15" stroke="${wireColor}" stroke-width="2.5" />
-        <text x="22" y="5" fill="#38bdf8" font-size="10" font-weight="bold">Electromagnet</text>
-      </g>
-
-      <!-- Magnetic Compass Needle -->
-      <g transform="translate(440, 125)">
-        <circle cx="0" cy="0" r="22" fill="#0f172a" stroke="#cbd5e1" stroke-width="1.5" />
-        <text x="0" y="-12" fill="#94a3b8" font-size="8" text-anchor="middle">N</text>
-        <g transform="rotate(${needleAngle})">
-          <polygon points="0,-18 -4,0 4,0" fill="#ef4444" />
-          <polygon points="0,18 -4,0 4,0" fill="#38bdf8" />
-          <circle cx="0" cy="0" r="2.5" fill="#ffffff" />
+        <!-- Magnet Test on Left -->
+        <g transform="translate(100, 90)">
+            <rect x="-40" y="-15" width="40" height="30" fill="#dc2626" rx="3"/>
+            <text x="-20" y="4" fill="#ffffff" font-size="10" font-weight="bold" text-anchor="middle">N</text>
+            <rect x="0" y="-15" width="40" height="30" fill="#2563eb" rx="3"/>
+            <text x="20" y="4" fill="#ffffff" font-size="10" font-weight="bold" text-anchor="middle">S</text>
+            <text x="0" y="35" fill="${data.magnetic ? '#34d399' : '#f87171'}" font-size="11" font-weight="bold" text-anchor="middle">
+                ${data.magnetic ? 'Attracted to Magnet (Yes)' : 'Non-Magnetic (No)'}
+            </text>
         </g>
-      </g>
-    `;
-  }
-
-  btn.addEventListener('click', () => {
-    isClosed = !isClosed;
-    render();
-  });
-
-  render();
-}
-
-// -------------------------------------------------------------
-// 9. Light, Shadows & Eclipse Simulator
-// -------------------------------------------------------------
-function initEclipseShadowSim(container) {
-  const svg = container.querySelector('#eclipseSvg');
-  const slider = container.querySelector('#moonSlider');
-  const titleEl = container.querySelector('#eclipseTitle');
-  const textEl = container.querySelector('#moonPosText');
-  if (!svg || !slider) return;
-
-  function render() {
-    const moonDy = parseFloat(slider.value); // -80 to +80
-    const sunX = 70, sunY = 120, sunR = 40;
-    const earthX = 420, earthY = 120, earthR = 30;
-    const moonX = 240, moonY = 120 + moonDy, moonR = 12;
-
-    let eclipseType = "No Eclipse";
-    let badgeClass = "text-slate-400 bg-slate-800 border-slate-700";
-
-    if (Math.abs(moonDy) < 8) {
-      eclipseType = "TOTAL SOLAR ECLIPSE! 🌑";
-      badgeClass = "text-amber-300 bg-amber-500/20 border-amber-500/30";
-      if (textEl) textEl.textContent = "Direct Centerline: Moon Umbra strikes Earth";
-    } else if (Math.abs(moonDy) < 28) {
-      eclipseType = "Partial Solar Eclipse 🌗";
-      badgeClass = "text-indigo-300 bg-indigo-500/20 border-indigo-500/30";
-      if (textEl) textEl.textContent = "Partial Obscuration: Penumbra cone sweeps Earth";
-    } else {
-      eclipseType = "No Eclipse (Shadow Misses)";
-      if (textEl) textEl.textContent = "Moon shadow cone passes harmlessly above/below Earth";
-    }
-
-    if (titleEl) {
-      titleEl.textContent = eclipseType;
-      titleEl.className = `px-2 py-0.5 rounded text-[11px] font-mono border font-semibold ${badgeClass}`;
-    }
-
-    // Shadow ray projection
-    // Umbra cone apex from Sun tangents
-    const umbraApexX = moonX + 160;
-    const umbraApexY = moonY;
-
-    svg.innerHTML = `
-      <!-- Space Background -->
-      <rect width="500" height="240" fill="#020617" />
-
-      <!-- Penumbra Cone (Light Gray) -->
-      <polygon points="${sunX},${sunY - sunR} ${moonX},${moonY + moonR} 480,${moonY + 80} 480,${moonY - 80} ${moonX},${moonY - moonR} ${sunX},${sunY + sunR}" fill="#334155" fill-opacity="0.3" />
-
-      <!-- Umbra Cone (Dark Black) -->
-      <polygon points="${moonX},${moonY - moonR} ${moonX},${moonY + moonR} ${umbraApexX},${umbraApexY}" fill="#0f172a" stroke="#000000" stroke-width="1" />
-
-      <!-- Tangent Ray Lines -->
-      <line x1="${sunX}" y1="${sunY - sunR}" x2="${moonX}" y2="${moonY - moonR}" stroke="#eab308" stroke-width="1" stroke-dasharray="2,2" opacity="0.6" />
-      <line x1="${sunX}" y1="${sunY + sunR}" x2="${moonX}" y2="${moonY + moonR}" stroke="#eab308" stroke-width="1" stroke-dasharray="2,2" opacity="0.6" />
-
-      <!-- The Sun -->
-      <circle cx="${sunX}" cy="${sunY}" r="${sunR}" fill="#facc15" stroke="#f59e0b" stroke-width="3" />
-      <circle cx="${sunX}" cy="${sunY}" r="${sunR + 8}" fill="none" stroke="#fef08a" stroke-width="2" opacity="0.4" />
-      <text x="${sunX}" y="${sunY + 4}" fill="#78350f" font-size="12" font-weight="extrabold" text-anchor="middle">SUN</text>
-
-      <!-- The Moon -->
-      <circle cx="${moonX}" cy="${moonY}" r="${moonR}" fill="#94a3b8" stroke="#cbd5e1" stroke-width="1.5" />
-      <text x="${moonX}" y="${moonY - 16}" fill="#cbd5e1" font-size="10" font-weight="bold" text-anchor="middle">Moon</text>
-
-      <!-- Planet Earth -->
-      <circle cx="${earthX}" cy="${earthY}" r="${earthR}" fill="#0284c7" stroke="#38bdf8" stroke-width="2" />
-      <path d="M 405 110 Q 420 100 435 115 Q 430 135 415 130 Z" fill="#15803d" />
-      <text x="${earthX}" y="${earthY + 45}" fill="#38bdf8" font-size="11" font-weight="bold" text-anchor="middle">Earth</text>
-    `;
-  }
-
-  slider.addEventListener('input', render);
-  render();
-}
-
-// -------------------------------------------------------------
-// 10. Galileo Simple Pendulum Simulator
-// -------------------------------------------------------------
-function initGalileoPendulumSim(container) {
-  const svg = container.querySelector('#pendulumSvg');
-  const lenSlider = container.querySelector('#lenSlider');
-  const gravSelect = container.querySelector('#gravSelect');
-  const lenVal = container.querySelector('#lenVal');
-  const periodEl = container.querySelector('#pendulumPeriod');
-  if (!svg || !lenSlider || !gravSelect) return;
-
-  let animFrameId = null;
-  let startTime = Date.now();
-
-  function loop() {
-    const L = parseFloat(lenSlider.value); // meters (0.2 to 2.0)
-    const g = parseFloat(gravSelect.value); // m/s^2
-
-    if (lenVal) lenVal.textContent = L.toFixed(1) + ' m';
-
-    // Time period T = 2 * pi * sqrt(L / g)
-    const T = 2 * Math.PI * Math.sqrt(L / g);
-    if (periodEl) periodEl.textContent = `T = ${T.toFixed(2)} s`;
-
-    const omega = 2 * Math.PI / T;
-    const elapsedSec = (Date.now() - startTime) / 1000;
-    const maxTheta = 0.35; // radians (~20 deg)
-    const currentTheta = maxTheta * Math.cos(omega * elapsedSec);
-
-    const pivotX = 250, pivotY = 30;
-    const visualLen = 40 + L * 75; // pixels
-
-    const bobX = pivotX + visualLen * Math.sin(currentTheta);
-    const bobY = pivotY + visualLen * Math.cos(currentTheta);
-
-    svg.innerHTML = `
-      <!-- Ceiling Stand -->
-      <line x1="180" y1="${pivotY}" x2="320" y2="${pivotY}" stroke="#64748b" stroke-width="4" />
-      <circle cx="${pivotX}" cy="${pivotY}" r="5" fill="#f59e0b" />
-
-      <!-- Swing Arc Guideline -->
-      <path d="M ${pivotX - visualLen * Math.sin(maxTheta)} ${pivotY + visualLen * Math.cos(maxTheta)} Q ${pivotX} ${pivotY + visualLen + 5} ${pivotX + visualLen * Math.sin(maxTheta)} ${pivotY + visualLen * Math.cos(maxTheta)}" stroke="#334155" stroke-width="1.5" stroke-dasharray="3,3" fill="none" />
-
-      <!-- Pendulum String -->
-      <line x1="${pivotX}" y1="${pivotY}" x2="${bobX}" y2="${bobY}" stroke="#94a3b8" stroke-width="2" />
-
-      <!-- Brass Bob -->
-      <circle cx="${bobX}" cy="${bobY}" r="14" fill="#f59e0b" stroke="#d97706" stroke-width="2" />
-      <circle cx="${bobX - 4}" cy="${bobY - 4}" r="3" fill="#fef08a" />
-
-      <!-- Telemetry Readout -->
-      <text x="30" y="50" fill="#38bdf8" font-size="11" font-weight="bold">Length L: ${L.toFixed(1)} m</text>
-      <text x="30" y="70" fill="#a7f3d0" font-size="11" font-weight="bold">Gravity g: ${g} m/s²</text>
-      <text x="30" y="90" fill="#fde68a" font-size="13" font-weight="extrabold">Period T: ${T.toFixed(2)} s</text>
-    `;
-
-    animFrameId = requestAnimationFrame(loop);
-  }
-
-  lenSlider.addEventListener('input', () => { startTime = Date.now(); });
-  gravSelect.addEventListener('change', () => { startTime = Date.now(); });
-
-  loop();
-}
-
-// -------------------------------------------------------------
-// 11. Photosynthesis Rate Simulator
-// -------------------------------------------------------------
-function initPhotosynthesisSim(container) {
-  const svg = container.querySelector('#photoSvg');
-  const lightSlider = container.querySelector('#lightSlider');
-  const co2Slider = container.querySelector('#co2Slider');
-  const lightVal = container.querySelector('#lightVal');
-  const co2Val = container.querySelector('#co2Val');
-  const rateBadge = container.querySelector('#bubbleRateBadge');
-  if (!svg || !lightSlider || !co2Slider) return;
-
-  function render() {
-    const light = parseInt(lightSlider.value, 10);
-    const co2 = parseInt(co2Slider.value, 10); // 1, 2, 3
-    if (lightVal) lightVal.textContent = light + '%';
-    if (co2Val) co2Val.textContent = co2 === 1 ? 'Low' : co2 === 2 ? 'Moderate' : 'High';
-
-    const rate = Math.round((light / 100) * co2 * 24);
-    if (rateBadge) rateBadge.textContent = `Rate: ${rate} O2 bubbles/min`;
-
-    // Lamp brightness
-    const lampOpacity = Math.max(0.2, light / 100);
-
-    svg.innerHTML = `
-      <!-- Beaker filled with water -->
-      <rect x="180" y="60" width="160" height="150" rx="10" fill="#0284c7" fill-opacity="0.25" stroke="#38bdf8" stroke-width="2.5" />
-      
-      <!-- Inverted Funnel -->
-      <polygon points="200,190 320,190 265,110 255,110" fill="#cbd5e1" fill-opacity="0.2" stroke="#94a3b8" stroke-width="1.5" />
-      <!-- Inverted Test Tube on top -->
-      <rect x="252" y="50" width="16" height="60" rx="4" fill="#e2e8f0" fill-opacity="0.3" stroke="#94a3b8" stroke-width="1.5" />
-      
-      <!-- Oxygen Gas Pocket collected at top -->
-      <rect x="253" y="51" width="14" height="${Math.min(30, rate * 0.4)}" fill="#ffffff" fill-opacity="0.8" />
-
-      <!-- Green Hydrilla Plant -->
-      <path d="M 260 200 Q 240 170 245 140" stroke="#15803d" stroke-width="4" fill="none" />
-      <path d="M 260 200 Q 280 165 275 145" stroke="#15803d" stroke-width="4" fill="none" />
-      <!-- Leaves -->
-      <ellipse cx="240" cy="160" rx="8" ry="4" fill="#22c55e" />
-      <ellipse cx="255" cy="145" rx="8" ry="4" fill="#22c55e" />
-      <ellipse cx="270" cy="170" rx="8" ry="4" fill="#22c55e" />
-
-      <!-- Rising Oxygen Bubbles -->
-      ${rate > 5 ? `<circle cx="260" cy="130" r="3" fill="#ffffff" opacity="0.9" />` : ''}
-      ${rate > 15 ? `<circle cx="258" cy="100" r="4" fill="#ffffff" opacity="0.9" />` : ''}
-      ${rate > 30 ? `<circle cx="261" cy="75" r="3.5" fill="#ffffff" opacity="0.9" />` : ''}
-
-      <!-- Light Source (Lamp) at Left -->
-      <g transform="translate(60, 100)">
-        <polygon points="0,-20 30,-30 30,30 0,20" fill="#475569" stroke="#64748b" />
-        <!-- Radiant Light Cone -->
-        <polygon points="30,-25 180,60 180,180 30,25" fill="#facc15" fill-opacity="${lampOpacity * 0.4}" />
-        <circle cx="15" cy="0" r="12" fill="#fef08a" opacity="${lampOpacity}" />
-        <text x="15" y="45" fill="#facc15" font-size="10" font-weight="bold" text-anchor="middle">Sunlight (${light}%)</text>
-      </g>
-    `;
-  }
-
-  lightSlider.addEventListener('input', render);
-  co2Slider.addEventListener('input', render);
-  render();
-}
-
-// -------------------------------------------------------------
-// 12. Earth Seasons & 23.5° Tilt Simulator
-// -------------------------------------------------------------
-function initEarthSeasonsSim(container) {
-  const svg = container.querySelector('#seasonsSvg');
-  const slider = container.querySelector('#orbitSlider');
-  const badge = container.querySelector('#seasonBadge');
-  const degText = container.querySelector('#orbitDegText');
-  const detail = container.querySelector('#seasonDetail');
-  if (!svg || !slider) return;
-
-  function render() {
-    const deg = parseInt(slider.value, 10); // 0 to 360
-    const rad = (deg * Math.PI) / 180;
-
-    let seasonName = "June Solstice";
-    let detailText = "Northern Hemisphere tilted toward the Sun (Summer). Direct sunlight concentrates intense heat; long days!";
-
-    if (deg >= 45 && deg < 135) {
-      seasonName = "June Solstice (North Summer / South Winter)";
-      detailText = "Sun rays strike Tropic of Cancer directly at 90°. Northern Hemisphere enjoys maximum warmth and longest daylight!";
-    } else if (deg >= 135 && deg < 225) {
-      seasonName = "September Equinox (Autumn in North)";
-      detailText = "Sun directly over the Equator. Equal 12-hour day and 12-hour night across all continents.";
-    } else if (deg >= 225 && deg < 315) {
-      seasonName = "December Solstice (North Winter / South Summer)";
-      detailText = "Northern Hemisphere tilts away from Sun. Solar rays hit at an oblique angle, spreading heat over wider area; short days.";
-    } else {
-      seasonName = "March Equinox (Spring in North)";
-      detailText = "Subsolar point crosses Equator northward. Day and night are of equal duration globally.";
-    }
-
-    if (badge) badge.textContent = seasonName;
-    if (degText) degText.textContent = `Orbital Angle: ${deg}°`;
-    if (detail) detail.innerHTML = `<strong>${seasonName}:</strong> ${detailText}`;
-
-    // Sun at center
-    const sunX = 250, sunY = 120;
-    const a = 160, b = 60; // ellipse axes
-
-    const earthX = sunX + a * Math.cos(rad);
-    const earthY = sunY + b * Math.sin(rad);
-
-    // Fixed 23.5 deg axis (tilted toward top-right: angle -23.5 deg)
-    const tiltRad = (-23.5 * Math.PI) / 180;
-    const axisLen = 28;
-
-    svg.innerHTML = `
-      <!-- Orbit Ellipse -->
-      <ellipse cx="${sunX}" cy="${sunY}" rx="${a}" ry="${b}" fill="none" stroke="#334155" stroke-width="1.5" stroke-dasharray="4,4" />
-
-      <!-- Center Sun -->
-      <circle cx="${sunX}" cy="${sunY}" r="26" fill="#facc15" stroke="#f59e0b" stroke-width="2.5" />
-      <text x="${sunX}" y="${sunY + 4}" fill="#78350f" font-size="10" font-weight="extrabold" text-anchor="middle">SUN</text>
-
-      <!-- Solar rays toward Earth -->
-      <line x1="${sunX}" y1="${sunY}" x2="${earthX}" y2="${earthY}" stroke="#fef08a" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.6" />
-
-      <!-- Earth Group -->
-      <g transform="translate(${earthX}, ${earthY})">
-        <!-- Rotational Axis (23.5 deg tilt) -->
-        <line x1="${-axisLen * Math.sin(tiltRad)}" y1="${axisLen * Math.cos(tiltRad)}" x2="${axisLen * Math.sin(tiltRad)}" y2="${-axisLen * Math.cos(tiltRad)}" stroke="#f43f5e" stroke-width="2" />
-        <!-- Earth body -->
-        <circle cx="0" cy="0" r="16" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5" />
-        <ellipse cx="2" cy="0" rx="6" ry="12" fill="#15803d" />
-        <!-- Equator line -->
-        <line x1="-15" y1="0" x2="15" y2="0" stroke="#fde047" stroke-width="1" stroke-dasharray="2,2" transform="rotate(-23.5)" />
-      </g>
-    `;
-  }
-
-  slider.addEventListener('input', render);
-  render();
-}
-
-// -------------------------------------------------------------
-// 13. Sustainability Energy Dashboard
-// -------------------------------------------------------------
-function initSustainabilityDashboardSim(container) {
-  const svg = container.querySelector('#sustainSvg');
-  const slider = container.querySelector('#renewSlider');
-  const shareVal = container.querySelector('#renewShareVal');
-  const emissionsVal = container.querySelector('#emissionsVal');
-  const warmingVal = container.querySelector('#warmingVal');
-  const statusEl = container.querySelector('#climateStatus');
-  if (!svg || !slider) return;
-
-  function render() {
-    const renew = parseInt(slider.value, 10); // 10 to 100%
-    const fossil = 100 - renew;
-
-    if (shareVal) shareVal.textContent = `${renew}% Clean`;
-
-    // Calculate emissions: 36 Gt baseline
-    const emissions = (36 * (fossil / 100) + 2.0).toFixed(1);
-    if (emissionsVal) emissionsVal.textContent = `${emissions} Gt/yr`;
-
-    // Calculate warming: +1.2 to +3.6 C
-    const warming = (1.2 + (fossil / 100) * 2.4).toFixed(1);
-    if (warmingVal) warmingVal.textContent = `+${warming}°C`;
-
-    if (statusEl) {
-      if (renew >= 75) {
-        statusEl.textContent = "Climate Target < 1.5°C Achieved! ✔";
-        statusEl.className = "px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold";
-      } else if (renew >= 45) {
-        statusEl.textContent = "Moderate Warming (+2.0°C Target)";
-        statusEl.className = "px-2 py-0.5 rounded text-[11px] font-mono bg-amber-500/20 text-amber-300 border border-amber-500/30 font-semibold";
-      } else {
-        statusEl.textContent = "Dangerous Climate Warming > 2.5°C! ⚠️";
-        statusEl.className = "px-2 py-0.5 rounded text-[11px] font-mono bg-rose-500/20 text-rose-300 border border-rose-500/30 font-semibold";
-      }
-    }
-
-    svg.innerHTML = `
-      <!-- Energy Mix Bar Chart -->
-      <text x="30" y="35" fill="#f8fafc" font-size="12" font-weight="bold">Global Energy Generation Grid</text>
-
-      <!-- Background Bar -->
-      <rect x="30" y="55" width="440" height="35" rx="8" fill="#1e293b" />
-      
-      <!-- Renewable Portion (Green) -->
-      <rect x="30" y="55" width="${440 * (renew / 100)}" height="35" rx="8" fill="#10b981" />
-      
-      <!-- Labels on Bar -->
-      <text x="${30 + 440 * (renew / 200)}" y="77" fill="#ffffff" font-size="11" font-weight="extrabold" text-anchor="middle">
-        ${renew >= 20 ? `Clean (${renew}%)` : ''}
-      </text>
-
-      <!-- Wind Turbine & Solar Icon Graphic -->
-      <circle cx="100" cy="140" r="14" fill="#0284c7" />
-      <text x="100" y="145" fill="#ffffff" font-size="14" text-anchor="middle">☀️</text>
-      <text x="100" y="175" fill="#38bdf8" font-size="11" font-weight="bold" text-anchor="middle">Solar PV</text>
-
-      <circle cx="250" cy="140" r="14" fill="#059669" />
-      <text x="250" y="145" fill="#ffffff" font-size="14" text-anchor="middle">💨</text>
-      <text x="250" y="175" fill="#34d399" font-size="11" font-weight="bold" text-anchor="middle">Wind Turbines</text>
-
-      <circle cx="400" cy="140" r="14" fill="#dc2626" />
-      <text x="400" y="145" fill="#ffffff" font-size="14" text-anchor="middle">🏭</text>
-      <text x="400" y="175" fill="#f87171" font-size="11" font-weight="bold" text-anchor="middle">Fossil Fuels (${fossil}%)</text>
-    `;
-  }
-
-  slider.addEventListener('input', render);
-  render();
-}
-
-// -------------------------------------------------------------
-// 14. Precision Measurement & Parallax Simulator
-// -------------------------------------------------------------
-function initMeniscusParallaxSim(container) {
-  const svg = container.querySelector('#meniscusSvg');
-  const slider = container.querySelector('#eyeSlider');
-  const statusEl = container.querySelector('#parallaxStatus');
-  const eyeText = container.querySelector('#eyePosText');
-  const apparentVol = container.querySelector('#apparentVol');
-  if (!svg || !slider) return;
-
-  function render() {
-    const angle = parseInt(slider.value, 10); // -30 to +30 deg
-    const trueVol = 50.0;
-    const apparent = (trueVol + angle * 0.12).toFixed(1);
-
-    if (apparentVol) apparentVol.textContent = `${apparent} mL`;
-
-    if (eyeText) {
-      if (angle === 0) eyeText.textContent = "Perpendicular to Meniscus (0° - True Reading)";
-      else if (angle > 0) eyeText.textContent = `Looking Down from Above (+${angle}° High View)`;
-      else eyeText.textContent = `Looking Up from Below (${angle}° Low View)`;
-    }
-
-    if (statusEl) {
-      if (angle === 0) {
-        statusEl.textContent = "True Eye Level (Zero Parallax Error) ✔";
-        statusEl.className = "px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold";
-      } else {
-        statusEl.textContent = `Parallax Error! (${angle > 0 ? 'Over-estimate' : 'Under-estimate'}) ⚠️`;
-        statusEl.className = "px-2 py-0.5 rounded text-[11px] font-mono bg-amber-500/20 text-amber-300 border border-amber-500/30 font-semibold";
-      }
-    }
-
-    const cylX = 220, cylY = 40, cylW = 60, cylH = 160;
-    const waterY = 120; // 50 mL level
-    const eyeX = 380, eyeY = waterY - angle * 2.5;
-
-    svg.innerHTML = `
-      <!-- Graduated Cylinder Glass Body -->
-      <rect x="${cylX}" y="${cylY}" width="${cylW}" height="${cylH}" rx="6" fill="#0284c7" fill-opacity="0.15" stroke="#38bdf8" stroke-width="2" />
-      
-      <!-- Liquid Water Body -->
-      <path d="M ${cylX} ${waterY} Q ${cylX + cylW/2} ${waterY + 12} ${cylX + cylW} ${waterY} L ${cylX + cylW} ${cylY + cylH} L ${cylX} ${cylY + cylH} Z" fill="#0284c7" fill-opacity="0.5" />
-
-      <!-- Concave Meniscus Curve -->
-      <path d="M ${cylX} ${waterY} Q ${cylX + cylW/2} ${waterY + 12} ${cylX + cylW} ${waterY}" stroke="#38bdf8" stroke-width="2.5" fill="none" />
-
-      <!-- Graduated Markings (mL) -->
-      ${[40, 45, 50, 55, 60].map(v => {
-        const my = cylY + cylH - (v - 35) * 6;
-        return `
-          <line x1="${cylX}" y1="${my}" x2="${cylX + 12}" y2="${my}" stroke="#94a3b8" stroke-width="1.5" />
-          <text x="${cylX - 6}" y="${my + 4}" fill="#94a3b8" font-size="9" text-anchor="end">${v}</text>
-        `;
-      }).join('')}
-
-      <!-- Observer Line of Sight Ray -->
-      <line x1="${eyeX}" y1="${eyeY}" x2="${cylX + cylW/2}" y2="${waterY + 12}" stroke="#f43f5e" stroke-width="2" stroke-dasharray="3,3" />
-
-      <!-- Eye Icon -->
-      <g transform="translate(${eyeX}, ${eyeY})">
-        <path d="M -15 0 Q 0 -10 15 0 Q 0 10 -15 0 Z" fill="#ffffff" stroke="#0284c7" stroke-width="1.5" />
-        <circle cx="0" cy="0" r="5" fill="#0284c7" />
-        <text x="22" y="4" fill="#f8fafc" font-size="10" font-weight="bold">Eye</text>
-      </g>
-
-      <!-- True Bottom Indicator Arrow -->
-      <line x1="${cylX + cylW + 8}" y1="${waterY + 12}" x2="${cylX + cylW + 25}" y2="${waterY + 12}" stroke="#10b981" stroke-width="2" />
-      <text x="${cylX + cylW + 30}" y="${waterY + 15}" fill="#10b981" font-size="10" font-weight="bold">True 50 mL</text>
-    `;
-  }
-
-  slider.addEventListener('input', render);
-  render();
-}
-
-// -------------------------------------------------------------
-// 15. Indian Scientists Timeline Simulator
-// -------------------------------------------------------------
-function initIndianPioneersSim(container) {
-  const svg = container.querySelector('#pioneerSvg');
-  const badge = container.querySelector('#pioneerBadge');
-  const btns = container.querySelectorAll('.pioneerBtn');
-  if (!svg) return;
-
-  const pioneers = {
-    jcbose: {
-      name: "Acharya Jagadish Chandra Bose",
-      period: "1858–1937 • Kolkata",
-      title: "Pioneer of Radio Waves & Plant Neurobiology",
-      detail: "Invented millimeter microwave wireless communication and the Crescograph. Demonstrated that plants exhibit electrical and nervous responses to mechanical and chemical stimuli.",
-      color: "#f59e0b",
-      badge: "J.C. Bose (Crescograph)"
-    },
-    cvraman: {
-      name: "Sir Chandrasekhara Venkata Raman",
-      period: "1888–1970 • Nobel Prize 1930",
-      title: "Discoverer of the Raman Effect (Molecular Light Scattering)",
-      detail: "Proved that when photons pass through a transparent medium, they scatter inelastically, shifting frequency. Celebrated across India every February 28 as National Science Day.",
-      color: "#38bdf8",
-      badge: "C.V. Raman (Nobel 1930)"
-    },
-    sarabhai: {
-      name: "Dr. Vikram Ambalal Sarabhai",
-      period: "1919–1971 • Ahmedabad",
-      title: "Architect of the Indian Space Program (ISRO)",
-      detail: "Established India's space program to apply high technology directly to national development (weather forecasting, remote sensing, tele-education, satellite communications).",
-      color: "#10b981",
-      badge: "Vikram Sarabhai (ISRO)"
-    },
-    kalam: {
-      name: "Dr. A.P.J. Abdul Kalam",
-      period: "1931–2015 • Rameswaram",
-      title: "People's President & Visionary Aerospace Scientist",
-      detail: "Project Director of India's first satellite launch vehicle (SLV-3) and developer of indigenous defense capability. Championed ignited young minds to dream and build an equitable nation.",
-      color: "#ec4899",
-      badge: "A.P.J. Kalam (Visionary)"
-    }
-  };
-
-  function render(p) {
-    if (badge) badge.textContent = p.badge;
-
-    svg.innerHTML = `
-      <!-- Card Container -->
-      <rect x="30" y="30" width="440" height="180" rx="14" fill="#0f172a" stroke="${p.color}" stroke-width="2" />
-      
-      <!-- Pioneer Emblem -->
-      <circle cx="85" cy="85" r="35" fill="#1e293b" stroke="${p.color}" stroke-width="2" />
-      <text x="85" y="93" fill="${p.color}" font-size="28" text-anchor="middle">🔬</text>
-
-      <!-- Name & Dates -->
-      <text x="140" y="65" fill="#f8fafc" font-size="15" font-weight="extrabold">${p.name}</text>
-      <text x="140" y="85" fill="${p.color}" font-size="11" font-weight="bold">${p.period}</text>
-      <text x="140" y="105" fill="#94a3b8" font-size="11" font-style="italic">${p.title}</text>
-
-      <!-- Contribution Paragraph -->
-      <foreignObject x="60" y="125" width="380" height="75">
-        <div xmlns="http://www.w3.org/1999/xhtml" style="font-size: 11px; color: #cbd5e1; line-height: 1.45;">
-          ${p.detail}
-        </div>
-      </foreignObject>
-    `;
-  }
-
-  btns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      btns.forEach(b => b.className = "pioneerBtn px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition");
-      btn.className = "pioneerBtn px-2 py-1.5 rounded-lg bg-amber-600 text-white font-bold transition";
-      render(pioneers[btn.dataset.pioneer]);
-    });
-  });
-
-  render(pioneers.cvraman);
-}
-
-// -------------------------------------------------------------
-// 16. Young Scientist Constellation Map
-// -------------------------------------------------------------
-function initYoungScientistConstellationSim(container) {
-  const svg = container.querySelector('#constellationSvg');
-  const badge = container.querySelector('#constellationBadge');
-  const detail = container.querySelector('#constellationDetail');
-  if (!svg) return;
-
-  const nodes = [
-    { id: 1, name: "Inquiry & Methods", x: 250, y: 55, color: "#f59e0b", desc: "The core engine: Questioning, careful hypothesis testing, controlled variables, and peer review." },
-    { id: 2, name: "Living World (Biology)", x: 120, y: 125, color: "#10b981", desc: "Photosynthesis, cellular respiration, human organ systems, ecosystems, and microbiology." },
-    { id: 3, name: "Matter & Energy (Physics)", x: 380, y: 125, color: "#38bdf8", desc: "Forces of flight, DC electricity, heating and magnetic effects, simple pendulums, and light optics." },
-    { id: 4, name: "Earth & Cosmos (Space)", x: 160, y: 200, color: "#a855f7", desc: "Earth's 23.5° axial tilt, planetary orbits, lunar phases, eclipses, and geological resources." },
-    { id: 5, name: "Sustainability & Ethics", x: 340, y: 200, color: "#06b6d4", desc: "Renewable energy, rainwater harvesting, conservation, and responsible technology for the planet." }
-  ];
-
-  let activeNode = 2;
-
-  function render() {
-    const cur = nodes.find(n => n.id === activeNode);
-    if (badge) badge.textContent = cur.name;
-    if (detail) detail.innerHTML = `<strong>${cur.name}:</strong> ${cur.desc}`;
-
-    let linesHtml = '';
-    // Draw interconnecting constellation lines
-    for (let i = 0; i < nodes.length; i++) {
-      for (let j = i + 1; j < nodes.length; j++) {
-        linesHtml += `
-          <line x1="${nodes[i].x}" y1="${nodes[i].y}" x2="${nodes[j].x}" y2="${nodes[j].y}" stroke="#334155" stroke-width="1.5" stroke-dasharray="3,3" />
-        `;
-      }
-    }
-
-    let nodesHtml = '';
-    nodes.forEach(n => {
-      const isCur = n.id === activeNode;
-      nodesHtml += `
-        <g style="cursor: pointer;" onclick="window.selectConstellationNode(${n.id})">
-          <circle cx="${n.x}" cy="${n.y}" r="${isCur ? 22 : 15}" fill="${isCur ? n.color : '#1e293b'}" stroke="${isCur ? '#ffffff' : n.color}" stroke-width="${isCur ? 3 : 1.5}" />
-          <text x="${n.x}" y="${n.y + 4}" fill="${isCur ? '#ffffff' : '#f8fafc'}" font-size="10" font-weight="bold" text-anchor="middle">${n.id}</text>
-          <text x="${n.x}" y="${n.y + (n.y > 150 ? 24 : -18)}" fill="${isCur ? '#fde047' : '#94a3b8'}" font-size="9" font-weight="bold" text-anchor="middle">${n.name}</text>
+        
+        <!-- Electric Circuit on Right -->
+        <g transform="translate(320, 90)">
+            <circle cx="0" cy="-25" r="16" fill="${data.conductor ? '#fef08a' : '#334155'}" stroke="${data.conductor ? '#f59e0b' : '#64748b'}" stroke-width="2"/>
+            <text x="0" y="-20" font-size="14" text-anchor="middle">${data.conductor ? '💡' : '⚫'}</text>
+            <text x="0" y="35" fill="${data.conductor ? '#34d399' : '#f87171'}" font-size="11" font-weight="bold" text-anchor="middle">
+                ${data.conductor ? 'Electrical Conductor (Bulb ON)' : 'Insulator (Bulb OFF)'}
+            </text>
         </g>
-      `;
-    });
+    `;
+}
+
+// -------------------------------------------------------------
+// Simulator 11: Celestial Wonders
+// -------------------------------------------------------------
+let sim11OrbitAngle = 0;
+let sim11Interval = null;
+
+function renderSim11() {
+    const svg = document.getElementById('sim11-svg');
+    const rad = (sim11OrbitAngle * Math.PI) / 180;
+    const earthX = 225 + 130 * Math.cos(rad);
+    const earthY = 95 + 50 * Math.sin(rad);
+
+    // Moon orbiting Earth
+    const moonRad = rad * 4;
+    const moonX = earthX + 26 * Math.cos(moonRad);
+    const moonY = earthY + 14 * Math.sin(moonRad);
 
     svg.innerHTML = `
-      ${linesHtml}
-      ${nodesHtml}
+        <!-- Cosmic Stars background -->
+        <rect x="30" y="20" width="390" height="150" fill="#030712" rx="8"/>
+        <circle cx="60" cy="40" r="1.5" fill="#f8fafc"/>
+        <circle cx="180" cy="30" r="1.5" fill="#f8fafc"/>
+        <circle cx="360" cy="45" r="1.5" fill="#f8fafc"/>
+        <circle cx="390" cy="130" r="1.5" fill="#f8fafc"/>
+        <circle cx="80" cy="150" r="1.5" fill="#f8fafc"/>
+        
+        <!-- Earth Orbit Ellipse -->
+        <ellipse cx="225" cy="95" rx="130" ry="50" fill="none" stroke="#334155" stroke-dasharray="4,4"/>
+        
+        <!-- Central Sun -->
+        <circle cx="225" cy="95" r="24" fill="#f59e0b" filter="drop-shadow(0 0 10px #f59e0b)"/>
+        <text x="225" y="99" fill="#0f172a" font-size="10" font-weight="bold" text-anchor="middle">Sun ☀️</text>
+        
+        <!-- Earth -->
+        <circle cx="${earthX}" cy="${earthY}" r="9" fill="#0284c7"/>
+        <text x="${earthX}" y="${earthY - 14}" fill="#38bdf8" font-size="9" font-weight="bold" text-anchor="middle">Earth</text>
+        
+        <!-- Moon -->
+        <circle cx="${moonX}" cy="${moonY}" r="3.5" fill="#f8fafc"/>
     `;
-  }
-
-  window.selectConstellationNode = function(id) {
-    activeNode = id;
-    render();
-  };
-
-  render();
 }
+
+function toggleSim11Orbit() {
+    const btn = document.getElementById('sim11-orbit-btn');
+    if (sim11Interval) {
+        clearInterval(sim11Interval);
+        sim11Interval = null;
+        if (btn) btn.textContent = "Resume Cosmic Orbit";
+    } else {
+        sim11Interval = setInterval(() => {
+            sim11OrbitAngle = (sim11OrbitAngle + 2) % 360;
+            renderSim11();
+        }, 40);
+        if (btn) btn.textContent = "Pause Cosmic Orbit";
+    }
+}
+
+// -------------------------------------------------------------
+// Simulator 12: The Scientific Method
+// -------------------------------------------------------------
+function setSim12Action(act) {
+    ['ink', 'scribble', 'restore'].forEach(a => {
+        const btn = document.getElementById(`sim12-btn-${a}`);
+        if (btn) {
+            btn.className = (a === act || (a === 'ink' && act === 'check_ink')) ?
+                'py-2 rounded-xl text-xs font-semibold bg-cyan-500 text-slate-950 transition' :
+                'py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition';
+        }
+    });
+
+    const svg = document.getElementById('sim12-svg');
+    const badge = document.getElementById('sim12-step-badge');
+    const desc = document.getElementById('sim12-desc');
+
+    if (act === 'check_ink') {
+        badge.textContent = "Test 1: Unscrew Pen Barrel";
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30";
+        desc.innerHTML = "<strong>Hypothesis 1 ('Out of ink') Refuted!</strong> The transparent tube shows plenty of blue ink inside. The problem must be dried ink clogging the tiny ball at the point.";
+        svg.innerHTML = `
+            <!-- Refill tube with blue ink column -->
+            <rect x="80" y="75" width="280" height="15" rx="3" fill="#334155" stroke="#94a3b8"/>
+            <rect x="80" y="75" width="180" height="15" rx="3" fill="#2563eb"/>
+            <polygon points="70,82.5 80,75 80,90" fill="#94a3b8"/>
+            <circle cx="68" cy="82.5" r="3" fill="#cbd5e1"/>
+            <text x="220" y="115" fill="#60a5fa" font-size="11" text-anchor="middle" font-weight="bold">Refill is 60% Full of Blue Ink!</text>
+        `;
+    } else if (act === 'scribble') {
+        badge.textContent = "Test 2: Loosening Clog";
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30";
+        desc.innerHTML = "<strong>Hypothesis 2 Tested:</strong> Scribbling firmly on rough paper or gently warming the metal tip loosens the dry ink clot around the rolling ball bearing.";
+        svg.innerHTML = `
+            <!-- Rough paper with friction strokes -->
+            <rect x="120" y="30" width="210" height="120" fill="#f8fafc" rx="6"/>
+            <!-- Scribble lines -->
+            <path d="M150,60 Q170,90 190,60 Q210,100 230,70 Q250,90 270,75" stroke="#94a3b8" stroke-width="2" fill="none"/>
+            <text x="225" y="130" fill="#0f172a" font-size="11" font-weight="bold" text-anchor="middle">Friction Rolling the Ballpoint</text>
+        `;
+    } else {
+        badge.textContent = "Verdict: Fresh Ink Flows!";
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
+        desc.innerHTML = "<strong>Problem Solved Scientifically!</strong> Smooth blue ink writes effortlessly across the page. Evidence-based troubleshooting beats random guessing!";
+        svg.innerHTML = `
+            <rect x="120" y="30" width="210" height="120" fill="#f8fafc" rx="6"/>
+            <path d="M140,75 C170,60 190,100 230,70 S280,90 300,75" stroke="#2563eb" stroke-width="3" fill="none"/>
+            <text x="225" y="125" fill="#1e40af" font-size="13" font-weight="bold" text-anchor="middle">Science in Action! ✨</text>
+        `;
+    }
+}
+
+// -------------------------------------------------------------
+// Simulator 13: Observe & Question
+// -------------------------------------------------------------
+function setSim13Case(c) {
+    ['rainbow', 'rust', 'firefly'].forEach(k => {
+        const btn = document.getElementById(`sim13-btn-${k}`);
+        if (btn) {
+            btn.className = (k === c) ?
+                'py-2 rounded-xl text-xs font-semibold bg-cyan-500 text-slate-950 transition' :
+                'py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition';
+        }
+    });
+
+    const svg = document.getElementById('sim13-svg');
+    const badge = document.getElementById('sim13-badge');
+    const qBox = document.getElementById('sim13-question-box');
+
+    if (c === 'rainbow') {
+        badge.textContent = "Observation: Rainbow in Sky";
+        qBox.innerHTML = "<strong>Question:</strong> <em>'Why does sunlight split into 7 distinct colors only when rain falls in front of the sun?'</em><br>→ Leads to refraction & dispersion theory of optics!";
+        svg.innerHTML = `
+            <!-- Rainbow Arcs -->
+            <path d="M70,140 Q225,20 380,140" stroke="#ef4444" stroke-width="5" fill="none"/>
+            <path d="M75,140 Q225,30 375,140" stroke="#f97316" stroke-width="5" fill="none"/>
+            <path d="M80,140 Q225,40 370,140" stroke="#eab308" stroke-width="5" fill="none"/>
+            <path d="M85,140 Q225,50 365,140" stroke="#22c55e" stroke-width="5" fill="none"/>
+            <path d="M90,140 Q225,60 360,140" stroke="#06b6d4" stroke-width="5" fill="none"/>
+            <path d="M95,140 Q225,70 355,140" stroke="#3b82f6" stroke-width="5" fill="none"/>
+            <path d="M100,140 Q225,80 350,140" stroke="#a855f7" stroke-width="5" fill="none"/>
+        `;
+    } else if (c === 'rust') {
+        badge.textContent = "Observation: Rust on Iron Gate";
+        qBox.innerHTML = "<strong>Question:</strong> <em>'Why does shiny grey iron turn to flaky brown powder outdoors, but stays shiny inside dry paint?'</em><br>→ Leads to chemical oxidation theory (Iron + Oxygen + Water)!";
+        svg.innerHTML = `
+            <!-- Half clean iron, half rusted -->
+            <rect x="100" y="40" width="120" height="100" fill="#64748b" stroke="#94a3b8" stroke-width="2"/>
+            <text x="160" y="95" fill="#f8fafc" font-size="11" font-weight="bold" text-anchor="middle">Dry Shiny Iron</text>
+            
+            <rect x="230" y="40" width="120" height="100" fill="#9a3412" stroke="#ea580c" stroke-width="2"/>
+            <text x="290" y="95" fill="#ffedd5" font-size="11" font-weight="bold" text-anchor="middle">Rusted Powder</text>
+        `;
+    } else {
+        badge.textContent = "Observation: Firefly Light";
+        qBox.innerHTML = "<strong>Question:</strong> <em>'How can an insect glow brightly in the dark without producing burning heat like a campfire?'</em><br>→ Leads to cold biochemical luminescence discoveries!";
+        svg.innerHTML = `
+            <rect x="50" y="20" width="350" height="140" fill="#020617" rx="8"/>
+            <!-- Firefly body -->
+            <ellipse cx="225" cy="85" rx="20" ry="12" fill="#334155"/>
+            <!-- Glowing abdomen -->
+            <circle cx="205" cy="85" r="14" fill="#a3e635" filter="drop-shadow(0 0 8px #a3e635)"/>
+            <text x="225" y="130" fill="#d9f99d" font-size="11" font-weight="bold" text-anchor="middle">Cold Chemical Luminescence</text>
+        `;
+    }
+}
+
+// -------------------------------------------------------------
+// Simulator 14: Hypothesize & Test
+// -------------------------------------------------------------
+let sim14Advanced = false;
+
+function runSim14Days() {
+    sim14Advanced = !sim14Advanced;
+    const btn = document.getElementById('sim14-run-btn');
+    const svg = document.getElementById('sim14-svg');
+    const res = document.getElementById('sim14-result');
+
+    if (sim14Advanced) {
+        btn.textContent = "Reset to Day 1";
+        res.innerHTML = "<strong>After 7 Days:</strong> Pot A (Sunlight) grew to 20 cm with rich green leaves. Pot B (Dark) only grew 5 cm and turned pale yellow. <em>Fair test proves: Sunlight is essential for vigorous plant growth!</em>";
+        svg.innerHTML = `
+            <!-- Pot A (Sunlight) -> Tall green -->
+            <rect x="90" y="120" width="60" height="40" fill="#b45309" rx="3"/>
+            <line x1="120" y1="120" x2="120" y2="40" stroke="#16a34a" stroke-width="4"/>
+            <circle cx="105" cy="65" r="12" fill="#22c55e"/>
+            <circle cx="135" cy="55" r="12" fill="#22c55e"/>
+            <circle cx="120" cy="35" r="10" fill="#22c55e"/>
+            <text x="120" y="175" fill="#86efac" font-size="10" font-weight="bold" text-anchor="middle">Pot A: 20 cm Tall</text>
+            
+            <!-- Pot B (Dark) -> Stunted yellow -->
+            <rect x="290" y="120" width="60" height="40" fill="#b45309" rx="3"/>
+            <line x1="320" y1="120" x2="320" y2="95" stroke="#ca8a04" stroke-width="3"/>
+            <circle cx="310" cy="100" r="6" fill="#fef08a"/>
+            <circle cx="330" cy="98" r="6" fill="#fef08a"/>
+            <text x="320" y="175" fill="#fde047" font-size="10" font-weight="bold" text-anchor="middle">Pot B: 5 cm Stunted</text>
+        `;
+    } else {
+        btn.textContent = "Advance Time (7 Days)";
+        res.textContent = "Both seeds start at equal height (2 cm). Click Advance to observe the single variable effect of sunlight over 7 days.";
+        svg.innerHTML = `
+            <!-- Pot A (Day 1) -->
+            <rect x="90" y="120" width="60" height="40" fill="#b45309" rx="3"/>
+            <line x1="120" y1="120" x2="120" y2="105" stroke="#16a34a" stroke-width="3"/>
+            <text x="120" y="175" fill="#94a3b8" font-size="10" text-anchor="middle">Pot A: Day 1 (2 cm)</text>
+            
+            <!-- Pot B (Day 1) -->
+            <rect x="290" y="120" width="60" height="40" fill="#b45309" rx="3"/>
+            <line x1="320" y1="120" x2="320" y2="105" stroke="#16a34a" stroke-width="3"/>
+            <text x="320" y="175" fill="#94a3b8" font-size="10" text-anchor="middle">Pot B: Day 1 (2 cm)</text>
+        `;
+    }
+}
+
+// -------------------------------------------------------------
+// Simulator 15: Analyze & Conclude
+// -------------------------------------------------------------
+function setSim15Scenario(scen) {
+    document.getElementById('sim15-btn-sup').className = (scen === 'support') ?
+        'py-2 rounded-xl text-xs font-semibold bg-cyan-500 text-slate-950 transition' :
+        'py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition';
+    document.getElementById('sim15-btn-ref').className = (scen === 'refute') ?
+        'py-2 rounded-xl text-xs font-semibold bg-cyan-500 text-slate-950 transition' :
+        'py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition';
+
+    const svg = document.getElementById('sim15-svg');
+    const badge = document.getElementById('sim15-verdict-badge');
+    const desc = document.getElementById('sim15-desc');
+
+    if (scen === 'support') {
+        badge.textContent = "Hypothesis Supported (Verified)";
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
+        desc.innerHTML = "The measured experimental results match the predicted trend! The hypothesis is supported and can now be published for peer review and replication.";
+        svg.innerHTML = `
+            <line x1="60" y1="140" x2="380" y2="140" stroke="#64748b" stroke-width="2"/>
+            <line x1="60" y1="140" x2="60" y2="20" stroke="#64748b" stroke-width="2"/>
+            <!-- Bar 1 (Expected) -->
+            <rect x="120" y="45" width="60" height="95" fill="#0284c7" rx="3"/>
+            <text x="150" y="40" fill="#38bdf8" font-size="10" font-weight="bold" text-anchor="middle">Predicted (20cm)</text>
+            <!-- Bar 2 (Actual Measured) -->
+            <rect x="240" y="48" width="60" height="92" fill="#10b981" rx="3"/>
+            <text x="270" y="40" fill="#34d399" font-size="10" font-weight="bold" text-anchor="middle">Measured (19.6cm)</text>
+            <text x="220" y="165" fill="#a7f3d0" font-size="11" font-weight="bold" text-anchor="middle">Match Confirmed! Hypothesis Supported</text>
+        `;
+    } else {
+        badge.textContent = "Hypothesis Refuted (Self-Correction)";
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30";
+        desc.innerHTML = "The data directly contradicts the hypothesis! This is not a failure — it proves what does NOT happen, pointing researchers toward a new, improved hypothesis.";
+        svg.innerHTML = `
+            <line x1="60" y1="140" x2="380" y2="140" stroke="#64748b" stroke-width="2"/>
+            <line x1="60" y1="140" x2="60" y2="20" stroke="#64748b" stroke-width="2"/>
+            <!-- Bar 1 (Expected) -->
+            <rect x="120" y="45" width="60" height="95" fill="#0284c7" rx="3"/>
+            <text x="150" y="40" fill="#38bdf8" font-size="10" font-weight="bold" text-anchor="middle">Predicted (20cm)</text>
+            <!-- Bar 2 (Actual Measured -> Tiny) -->
+            <rect x="240" y="115" width="60" height="25" fill="#f43f5e" rx="3"/>
+            <text x="270" y="105" fill="#fb7185" font-size="10" font-weight="bold" text-anchor="middle">Measured (4cm)</text>
+            <text x="220" y="165" fill="#fca5a5" font-size="11" font-weight="bold" text-anchor="middle">Hypothesis Refuted! Formulate New Guess</text>
+        `;
+    }
+}
+
+// -------------------------------------------------------------
+// Simulator 16: Everyday Scientists
+// -------------------------------------------------------------
+function setSim16Role(role) {
+    ['mech', 'cook', 'elec'].forEach(r => {
+        const btn = document.getElementById(`sim16-btn-${r}`);
+        if (btn) {
+            btn.className = (r === role || (r === 'mech' && role === 'mechanic') || (r === 'elec' && role === 'electrician')) ?
+                'py-2 rounded-xl text-xs font-semibold bg-cyan-500 text-slate-950 transition' :
+                'py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition';
+        }
+    });
+
+    const svg = document.getElementById('sim16-svg');
+    const title = document.getElementById('sim16-role-title');
+    const desc = document.getElementById('sim16-desc');
+
+    if (role === 'mechanic') {
+        title.textContent = "Bicycle Mechanic (Finding Punctures)";
+        desc.innerHTML = "The mechanic immerses an inflated black rubber tube into a basin of water. When air bubbles stream upward from a single point, physics reveals the exact invisible puncture hole!";
+        svg.innerHTML = `
+            <!-- Water basin -->
+            <ellipse cx="225" cy="140" rx="140" ry="35" fill="#0284c7" fill-opacity="0.4" stroke="#38bdf8" stroke-width="2"/>
+            <!-- Submerged Tyre tube -->
+            <path d="M140,135 Q225,160 310,135" stroke="#1e293b" stroke-width="14" fill="none" stroke-linecap="round"/>
+            <!-- Escaping air bubbles -->
+            <circle cx="210" cy="125" r="4" fill="#e0f2fe"/>
+            <circle cx="205" cy="100" r="5" fill="#e0f2fe"/>
+            <circle cx="212" cy="75" r="6" fill="#e0f2fe"/>
+            <text x="210" y="55" fill="#38bdf8" font-size="11" font-weight="bold" text-anchor="middle">Air Bubbles Pinpoint Puncture!</text>
+        `;
+    } else if (role === 'cook') {
+        title.textContent = "Master Cook (Pressure Regulation)";
+        desc.innerHTML = "When liquid sputters out of the weight valve, the cook diagnoses: <em>'The heat is causing violent boiling that overwhelms headspace!'</em> They reduce the burner flame to steady cooking.";
+        svg.innerHTML = `
+            <rect x="170" y="60" width="110" height="80" rx="8" fill="#475569" stroke="#94a3b8" stroke-width="2"/>
+            <rect x="215" y="45" width="20" height="15" fill="#f59e0b"/>
+            <!-- Flame controlled -->
+            <path d="M190,150 Q200,160 210,150 Q220,160 230,150 Q240,160 250,150" stroke="#f97316" stroke-width="4" fill="none"/>
+            <text x="225" y="30" fill="#f59e0b" font-size="11" font-weight="bold" text-anchor="middle">Flame Turned to Simmer</text>
+            <text x="225" y="175" fill="#cbd5e1" font-size="10" text-anchor="middle">Optimal Thermodynamic Balance</text>
+        `;
+    } else {
+        title.textContent = "Electrician (Circuit Diagnosis)";
+        desc.innerHTML = "When a room goes dark, the electrician doesn't smash the bulb. They use a multimeter tester to verify whether voltage reaches the socket, systematically diagnosing the broken path.";
+        svg.innerHTML = `
+            <!-- Circuit battery and wires -->
+            <rect x="80" y="70" width="60" height="35" rx="4" fill="#334155" stroke="#64748b"/>
+            <text x="110" y="92" fill="#38bdf8" font-size="11" font-weight="bold" text-anchor="middle">Battery</text>
+            <!-- Wire to switch -->
+            <line x1="140" y1="87" x2="210" y2="87" stroke="#22c55e" stroke-width="3"/>
+            <!-- Switch -->
+            <circle cx="210" cy="87" r="4" fill="#f59e0b"/>
+            <line x1="210" y1="87" x2="245" y2="70" stroke="#f59e0b" stroke-width="3"/>
+            <circle cx="250" cy="87" r="4" fill="#f59e0b"/>
+            <!-- Wire to bulb -->
+            <line x1="250" y1="87" x2="320" y2="87" stroke="#22c55e" stroke-width="3"/>
+            <circle cx="335" cy="87" r="14" fill="#475569" stroke="#94a3b8"/>
+            <text x="225" y="145" fill="#fde047" font-size="11" font-weight="bold" text-anchor="middle">Open Switch Detected: Complete the Path!</text>
+        `;
+    }
+}
+
+// Global Initialization
+window.addEventListener('DOMContentLoaded', () => {
+    updateSlideDisplay();
+    setSim1Target('sea');
+    setSim2Domain('kitchen');
+    renderSim3();
+    setSim4Habitat('desert');
+    updateSim5();
+    renderSim6();
+    triggerSim7Phase('evap');
+    updateSim8();
+    setSim9Step(1);
+    testSim10Material('iron');
+    renderSim11();
+    setSim12Action('check_ink');
+    setSim13Case('rainbow');
+    runSim14Days();
+    setSim15Scenario('support');
+    setSim16Role('mechanic');
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'PageDown') nextSlide();
+        if (e.key === 'ArrowLeft' || e.key === 'PageUp') prevSlide();
+        if (e.key === 'Escape') closeSolutionModal();
+    });
+});
 '''
 
-with open(".agents/class7_science_ever_evolving_world_js.py", "w", encoding="utf-8") as f:
-    f.write("# -*- coding: utf-8 -*-\n")
-    f.write('"""Class 7 Science Chapter 1: The Ever-Evolving World of Science JS Engine"""\n\n')
-    f.write("SIMULATORS_JS = " + repr(JS_CODE) + "\n")
+# Verify zero raw LaTeX
+raw_latex_pattern = re.compile(r'\\[a-zA-Z]+')
+matches = raw_latex_pattern.findall(js_code)
+if matches:
+    print("WARNING: Found potential raw LaTeX in JS code:", set(matches))
+else:
+    print("VERIFIED PASS: Zero raw LaTeX in JS code!")
 
-print("Generated .agents/class7_science_ever_evolving_world_js.py successfully.")
+with open(".agents/class6_science_ch1_js.py", "w", encoding="utf-8") as f:
+    f.write('"""\nJavaScript Code for Class 6 Science Chapter 1 Interactive Lab\n"""\n\n')
+    f.write('JS_CODE = ' + repr(js_code) + '\n')
 
+print("Successfully wrote .agents/class6_science_ch1_js.py")
