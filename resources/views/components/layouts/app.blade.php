@@ -1255,6 +1255,66 @@
                     titleText = "NCERT Class 5 Mathematics — Chapter 14: Maps and Locations Master Lab";
                     badgeText = "Class 5 • NCERT Mathematics";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class4-maths-shapes-around-us' || type === 'chapter1-maths-class4' || type === 'class4-maths-chapter1' || type === 'class4-shapes-around-us' || type === 'shapes-around-us-class4' || type === 'class4-maths-shapes-around-us-lab' || type === 'class4-math-shapes-around-us' || type === 'class4-shapes-lab') {
+                    fileUrl = "{{ asset('animations/class4-maths-shapes-around-us.html') }}";
+                    titleText = "NCERT Class 4 Mathematics — Chapter 1: Shapes Around Us Master Lab";
+                    badgeText = "Class 4 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class4-maths-hide-and-seek' || type === 'chapter2-maths-class4' || type === 'class4-maths-chapter2' || type === 'class4-hide-and-seek' || type === 'hide-and-seek-class4' || type === 'class4-maths-hide-and-seek-lab' || type === 'class4-math-hide-and-seek' || type === 'class4-hide-seek-lab') {
+                    fileUrl = "{{ asset('animations/class4-maths-hide-and-seek.html') }}";
+                    titleText = "NCERT Class 4 Mathematics — Chapter 2: Hide and Seek Master Lab";
+                    badgeText = "Class 4 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class4-maths-patterns-around-us' || type === 'chapter3-maths-class4' || type === 'class4-maths-chapter3' || type === 'class4-patterns-around-us' || type === 'patterns-around-us-class4' || type === 'class4-maths-patterns-around-us-lab' || type === 'class4-math-patterns-around-us' || type === 'class4-patterns-lab') {
+                    fileUrl = "{{ asset('animations/class4-maths-patterns-around-us.html') }}";
+                    titleText = "NCERT Class 4 Mathematics — Chapter 3: Patterns Around Us Master Lab";
+                    badgeText = "Class 4 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class4-maths-thousands-around-us' || type === 'chapter4-maths-class4' || type === 'class4-maths-chapter4' || type === 'class4-thousands-around-us' || type === 'thousands-around-us-class4' || type === 'class4-maths-thousands-around-us-lab' || type === 'class4-math-thousands-around-us' || type === 'class4-thousands-lab') {
+                    fileUrl = "{{ asset('animations/class4-maths-thousands-around-us.html') }}";
+                    titleText = "NCERT Class 4 Mathematics — Chapter 4: Thousands Around Us Master Lab";
+                    badgeText = "Class 4 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class4-maths-sharing-and-measuring' || type === 'chapter5-maths-class4' || type === 'class4-maths-chapter5' || type === 'class4-sharing-and-measuring' || type === 'sharing-and-measuring-class4' || type === 'class4-maths-sharing-and-measuring-lab' || type === 'class4-math-sharing-and-measuring' || type === 'class4-sharing-measuring-lab') {
+                    fileUrl = "{{ asset('animations/class4-maths-sharing-and-measuring.html') }}";
+                    titleText = "NCERT Class 4 Mathematics — Chapter 5: Sharing and Measuring Master Lab";
+                    badgeText = "Class 4 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class4-maths-measuring-length' || type === 'chapter6-maths-class4' || type === 'class4-maths-chapter6' || type === 'class4-measuring-length' || type === 'measuring-length-class4' || type === 'class4-maths-measuring-length-lab' || type === 'class4-math-measuring-length' || type === 'class4-measuring-length-lab') {
+                    fileUrl = "{{ asset('animations/class4-maths-measuring-length.html') }}";
+                    titleText = "NCERT Class 4 Mathematics — Chapter 6: Measuring Length Master Lab";
+                    badgeText = "Class 4 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class4-maths-the-cleanest-village' || type === 'chapter7-maths-class4' || type === 'class4-maths-chapter7' || type === 'class4-the-cleanest-village' || type === 'the-cleanest-village-class4' || type === 'class4-maths-the-cleanest-village-lab' || type === 'class4-math-the-cleanest-village' || type === 'class4-cleanest-village-lab') {
+                    fileUrl = "{{ asset('animations/class4-maths-the-cleanest-village.html') }}";
+                    titleText = "NCERT Class 4 Mathematics — Chapter 7: The Cleanest Village Master Lab";
+                    badgeText = "Class 4 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class4-maths-weigh-it-pour-it' || type === 'chapter8-maths-class4' || type === 'class4-maths-chapter8' || type === 'class4-weigh-it-pour-it' || type === 'weigh-it-pour-it-class4' || type === 'class4-maths-weigh-it-pour-it-lab' || type === 'class4-math-weigh-it-pour-it' || type === 'class4-weigh-pour-lab') {
+                    fileUrl = "{{ asset('animations/class4-maths-weigh-it-pour-it.html') }}";
+                    titleText = "NCERT Class 4 Mathematics — Chapter 8: Weigh It, Pour It Master Lab";
+                    badgeText = "Class 4 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class4-maths-equal-groups' || type === 'chapter9-maths-class4' || type === 'class4-maths-chapter9' || type === 'class4-equal-groups' || type === 'equal-groups-class4' || type === 'class4-maths-equal-groups-lab' || type === 'class4-math-equal-groups' || type === 'class4-equal-groups-lab') {
+                    fileUrl = "{{ asset('animations/class4-maths-equal-groups.html') }}";
+                    titleText = "NCERT Class 4 Mathematics — Chapter 9: Equal Groups Master Lab";
+                    badgeText = "Class 4 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class4-maths-elephants-tigers-leopards' || type === 'chapter10-maths-class4' || type === 'class4-maths-chapter10' || type === 'class4-elephants-tigers-leopards' || type === 'elephants-tigers-leopards-class4' || type === 'class4-maths-elephants-tigers-leopards-lab' || type === 'class4-math-elephants-tigers-leopards' || type === 'class4-wildlife-census-lab') {
+                    fileUrl = "{{ asset('animations/class4-maths-elephants-tigers-leopards.html') }}";
+                    titleText = "NCERT Class 4 Mathematics — Chapter 10: Elephants, Tigers, and Leopards Master Lab";
+                    badgeText = "Class 4 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class4-maths-fun-with-symmetry' || type === 'chapter11-maths-class4' || type === 'class4-maths-chapter11' || type === 'class4-fun-with-symmetry' || type === 'fun-with-symmetry-class4' || type === 'class4-maths-fun-with-symmetry-lab' || type === 'class4-math-fun-with-symmetry' || type === 'class4-symmetry-lab') {
+                    fileUrl = "{{ asset('animations/class4-maths-fun-with-symmetry.html') }}";
+                    titleText = "NCERT Class 4 Mathematics — Chapter 11: Fun with Symmetry Master Lab";
+                    badgeText = "Class 4 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-pink-500/20 text-pink-300 border border-pink-500/30 shrink-0";
+                } else if (type === 'class5-maths-data-through-pictures' || type === 'chapter15-maths-class5' || type === 'class5-maths-chapter15' || type === 'class5-data-through-pictures' || type === 'data-through-pictures-class5' || type === 'class5-maths-data-through-pictures-lab' || type === 'class5-math-data-through-pictures' || type === 'class5-data-lab') {
+                    fileUrl = "{{ asset('animations/class5-maths-data-through-pictures.html') }}";
+                    titleText = "NCERT Class 5 Mathematics — Chapter 15: Data Through Pictures Master Lab";
+                    badgeText = "Class 5 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
                 } else if (type === 'class5-science-water-essence-of-life' || type === 'chapter1-science-class5' || type === 'class5-science-chapter1' || type === 'class5-water-essence-of-life' || type === 'water-essence-of-life-class5' || type === 'class5-science-water-lab' || type === 'class5-science-water-cycle' || type === 'class5-water-cycle') {
                     fileUrl = "{{ asset('animations/class5-science-water-essence-of-life.html') }}";
                     titleText = "NCERT Class 5 Science — Chapter 1: Water - The Essence of Life Master Lab";

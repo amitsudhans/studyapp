@@ -1,65 +1,49 @@
+# -*- coding: utf-8 -*-
 with open('tests/Unit/MultimediaCurriculumTreeUnitTest.php', 'r', encoding='utf-8') as f:
     content = f.read()
 
-# 1. Add unit test for Chapter 7
-target_test = """        $this->assertFileExists(public_path('animations/playing-with-numbers-class7.html'));
-    }
+sub = 'public function test_ncert_class_5_has_we_the_travellers_1_multimedia'
+idx = content.find(sub)
+assert idx != -1, "Sub not found in test file"
 
-    public function test_cbse_syllabus_has_no_contents(): void"""
-
-new_test = """        $this->assertFileExists(public_path('animations/playing-with-numbers-class7.html'));
-    }
-
-    public function test_ncert_class_7_has_tale_of_three_intersecting_lines_multimedia(): void
+new_test = '''public function test_ncert_class_4_has_the_cleanest_village_multimedia(): void
     {
         $controller = new MultimediaController;
-        $request = Request::create('/multimedia?syllabus=ncert&subject=mathematics&class=class7', 'GET', [
+        $request = Request::create('/multimedia?syllabus=ncert&subject=mathematics&class=class4', 'GET', [
             'syllabus' => 'ncert',
             'subject' => 'mathematics',
-            'class' => 'class7',
+            'class' => 'class4',
         ]);
 
-        $view = $controller->index($request);
-        $data = $view->getData();
+        $response = $controller->index($request);
+        $data = $response->getData();
 
         $this->assertEquals('ncert', $data['selectedSyllabus']);
         $this->assertEquals('mathematics', $data['selectedSubject']);
-        $this->assertEquals('class7', $data['selectedClass']);
+        $this->assertEquals('class4', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('A Tale of Three Intersecting Lines', $data['activeChapters'][6]['name']);
+        $this->assertEquals('The Cleanest Village', $data['activeChapters'][6]['name']);
         $this->assertTrue($data['activeChapters'][6]['has_multimedia']);
-        $this->assertEquals('class7-math-tale-of-three-intersecting-lines', $data['activeChapters'][6]['media_key']);
-        $this->assertFileExists(public_path('animations/class7-math-tale-of-three-intersecting-lines.html'));
-        $this->assertFileExists(public_path('animations/chapter7-math-class7.html'));
-        $this->assertFileExists(public_path('animations/tale-of-three-intersecting-lines.html'));
-        $this->assertFileExists(public_path('animations/class7-tale-of-three-intersecting-lines.html'));
-        $this->assertFileExists(public_path('animations/tale-of-three-lines-class7.html'));
-        $this->assertFileExists(public_path('animations/class7-math-triangles.html'));
-        $this->assertFileExists(public_path('animations/triangles-class7.html'));
-        $this->assertFileExists(public_path('animations/class7-triangles.html'));
+        $this->assertEquals('class4-maths-the-cleanest-village', $data['activeChapters'][6]['media_key']);
+        $this->assertFileExists(public_path('animations/class4-maths-the-cleanest-village.html'));
+        $this->assertFileExists(public_path('animations/chapter7-maths-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-maths-chapter7.html'));
+        $this->assertFileExists(public_path('animations/class4-the-cleanest-village.html'));
+        $this->assertFileExists(public_path('animations/the-cleanest-village-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-maths-the-cleanest-village-lab.html'));
+        $this->assertFileExists(public_path('animations/class4-math-the-cleanest-village.html'));
+        $this->assertFileExists(public_path('animations/class4-cleanest-village-lab.html'));
     }
 
-    public function test_cbse_syllabus_has_no_contents(): void"""
+    '''
 
-if target_test in content:
-    content = content.replace(target_test, new_test, 1)
-    print("Added test_ncert_class_7_has_tale_of_three_intersecting_lines_multimedia successfully!")
-else:
-    print("ERROR: target_test not found!")
-    exit(1)
+content = content[:idx] + new_test + content[idx:]
 
-# 2. Update assertCount(359, $files) to assertCount(367, $files)
-target_count = "$this->assertCount(359, $files);"
-new_count = "$this->assertCount(367, $files);"
-
-if target_count in content:
-    content = content.replace(target_count, new_count, 1)
-    print("Updated assertCount to 367 successfully!")
-else:
-    print("ERROR: target_count not found!")
-    exit(1)
+target2 = '        $this->assertCount(1066, $files);'
+assert target2 in content, "Target2 not found in test file"
+content = content.replace(target2, '        $this->assertCount(1074, $files);', 1)
 
 with open('tests/Unit/MultimediaCurriculumTreeUnitTest.php', 'w', encoding='utf-8') as f:
     f.write(content)
 
-print("Updated tests/Unit/MultimediaCurriculumTreeUnitTest.php successfully!")
+print('Successfully inserted Chapter 7 test and updated total count to 1074!')
