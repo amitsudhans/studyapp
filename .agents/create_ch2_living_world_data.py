@@ -1,0 +1,1143 @@
+"""
+Script to generate updated .agents/class6_science_ch2_data.py
+Removes all lecturer persona names and provides expanded, comprehensive classroom lectures
+for all 16 concept slides.
+"""
+
+import re
+import json
+
+CHAPTER_META = {
+    "chapter_num": 2,
+    "title": "Diversity in the Living World",
+    "subtitle": "The Nature Walk, Plant Architecture, Habitats & Indian Conservation",
+    "course_type": "Interactive Visual Simulation & Comprehensive Spoken Lectures",
+    "class": "Class 6",
+    "subject": "Science",
+    "curriculum": "NCERT Curiosity (NEP 2020)"
+}
+
+SLIDES = [
+    {
+        "id": 1,
+        "badge": "Intro • Nature Walk",
+        "title": "The Nature Walk",
+        "subtitle": "Stepping into Nature with Curious Eyes and Quiet Steps",
+        "theory": """
+            <p>Imagine stepping out of the classroom on a bright, crisp morning for an immersive nature walk guided by your science teacher and local community elders who know every call in the forest.</p>
+            <p class="mt-2">As you walk quietly along the trail, the living world awakens in vivid detail: the melodious whistles of red-vented bulbuls, the playful chatter of jungle babblers among dry leaves, the vibrant flutter of peacock butterflies, and the gentle rustle of monkey troops high in the canopy.</p>
+            <p class="mt-2">Scientific observation in nature begins with gentle respect and mindful awareness:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-1 text-slate-300 text-xs sm:text-sm">
+                <li><strong>Listen First:</strong> Close your eyes and distinguish subtle calls, bird chirps, cricket hums, and rustling grasses.</li>
+                <li><strong>Look Closely:</strong> Use magnifying lenses to examine rough tree bark, lichens, and leaf vein patterns without tearing leaves.</li>
+                <li><strong>Zero Disturbance:</strong> Watch animals from a respectful distance without shouting, throwing stones, or disturbing active nests.</li>
+            </ul>
+        """,
+        "lecture": "Welcome to our study of the living world! When we embark on a nature walk, we are not mere tourists; we are scientific investigators exploring a vibrant living library. The most essential tool of a naturalist is not a net or a cage, but quiet patience and respectful observation. Notice how local elders can identify a bird simply by listening to a two-note whistle or spotting the shape of a feather. When we observe plants and animals in their undisturbed habitats, we begin to discover the hidden connections that sustain life on Earth.",
+        "checkpoints": [
+            {
+                "id": "1-1",
+                "question": "What is the most respectful and scientific way to observe living organisms during a nature walk?",
+                "options": [
+                    "Catching animals and plucking all flowers",
+                    "Observing quietly, recording notes, and leaving habitats undisturbed",
+                    "Shouting to scare birds out of hiding",
+                    "Carrying wild animals home as pets"
+                ],
+                "correct": 1,
+                "explanation": "Naturalists observe quietly with care, recording traits without destroying habitats or distressing living creatures."
+            },
+            {
+                "id": "1-2",
+                "question": "Why is listening quietly an essential first step during a wildlife field observation?",
+                "options": [
+                    "Because animals only make sound when captured",
+                    "Because subtle bird calls and rustling leaves reveal presence without frightening species away",
+                    "Because binoculars only work when silent",
+                    "Because teachers do not like questions"
+                ],
+                "correct": 1,
+                "explanation": "Quiet listening allows field observers to detect shy or canopy-dwelling organisms without altering their natural behaviors."
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "badge": "2.1 • Biodiversity",
+        "title": "Web of Biodiversity",
+        "subtitle": "The Splendid Variety of Life and Ecological Interdependence",
+        "theory": """
+            <p>Look around at the immense variety of life inhabiting our surroundings: towering banyan trees, soft carpet-like grasses, crawling earthworms, leaping tree frogs, and soaring raptors. This rich variety of plants, animals, fungi, and microorganisms found in a particular geographical region is called its <strong>Biodiversity</strong>.</p>
+            <p class="mt-2">In nature, no organism survives as an isolated island. All living things are woven together in a seamless web of <strong>mutual interdependence</strong>:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-1 text-slate-300 text-xs sm:text-sm">
+                <li><strong>Shelter & Habitat:</strong> Tall trees provide shade, leafy nesting hollows, and protection from predators for squirrels, birds, and insects.</li>
+                <li><strong>Food & Pollination:</strong> Flowering plants offer energy-rich nectar and pollen to foraging bees and butterflies, which in turn fertilize blossoms to produce fruits and seeds.</li>
+                <li><strong>Seed Dispersal:</strong> Frugivorous birds and monkeys consume succulent fruits and disperse seeds far across landscapes in their droppings.</li>
+                <li><strong>Atmospheric & Soil Recycling:</strong> Plants absorb carbon dioxide and release vital oxygen during photosynthesis, while soil organisms recycle fallen leaves into fertile humus.</li>
+            </ul>
+        """,
+        "lecture": "Let us explore what biodiversity truly means. Biodiversity is the living quilt of our planet. Every single species, from the mightiest banyan tree down to a microscopic soil bacterium, performs an irreplaceable role in maintaining ecological balance. When a bird eats a fig fruit, it helps the fig tree plant its seeds miles away. When bees buzz from flower to flower, they make agricultural harvests possible. If any single strand of this interdependent web is damaged through deforestation or pollution, the entire ecosystem feels the shock.",
+        "checkpoints": [
+            {
+                "id": "2-1",
+                "question": "What is the term for the variety of all plant and animal species inhabiting a region?",
+                "options": ["Atmosphere", "Biodiversity", "Biomass", "Monoculture"],
+                "correct": 1,
+                "explanation": "Biodiversity refers to the rich variety of all living organisms — plants, animals, fungi, and microorganisms — in a given area."
+            },
+            {
+                "id": "2-2",
+                "question": "How do fruit-eating birds and monkeys assist flowering trees in the forest?",
+                "options": [
+                    "By cutting down tree branches",
+                    "By dispersing seeds to new locations away from the parent tree",
+                    "By stopping water from reaching tree roots",
+                    "By painting the tree bark"
+                ],
+                "correct": 1,
+                "explanation": "Animals consume nutritious fruits and pass undamaged seeds in distant locations, helping the tree colonize new fertile grounds."
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "badge": "2.2 • Classification",
+        "title": "Why Group Organisms?",
+        "subtitle": "Sorting Vast Natural Variety by Similarities and Differences",
+        "theory": """
+            <p>Our planet is home to millions of distinct living species. If every organism were studied individually without a systematic framework, understanding life would be overwhelming. To make this vast diversity manageable and meaningful, scientists sort organisms into groups based on their <strong>observable similarities and differences</strong>.</p>
+            <p class="mt-2">Classification is the process of arranging organisms into distinct categories according to specific, well-defined criteria:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-1 text-slate-300 text-xs sm:text-sm">
+                <li><strong>Stem Structure:</strong> Distinguishing plants with hard woody trunks from those with soft green flexible stems.</li>
+                <li><strong>Locomotion:</strong> Grouping active mobile animals with jointed limbs or wings versus stationary, rooted photosynthetic plants.</li>
+                <li><strong>Habitat:</strong> Categorizing creatures living on land (terrestrial) versus those dwelling in water bodies (aquatic).</li>
+                <li><strong>Feeding Habits:</strong> Differentiating primary plant-eaters (herbivores), flesh-eaters (carnivores), and decomposers.</li>
+            </ul>
+        """,
+        "lecture": "Consider what happens when you visit a large library containing hundreds of thousands of books. If all the books were dumped into an unsorted heap on the floor, finding a single science textbook would be nearly impossible! But because librarians classify books by subject, author, and title, you can locate what you need in seconds. Biological classification works the exact same way. By grouping plants and animals based on shared anatomical and functional traits, we can predict key characteristics of a newly discovered species immediately.",
+        "checkpoints": [
+            {
+                "id": "3-1",
+                "question": "Why do biologists and naturalists group plants and animals into categories?",
+                "options": [
+                    "To change their biological colors",
+                    "To make studying and understanding vast numbers of species orderly and systematic",
+                    "To stop plants from growing further",
+                    "To prevent animals from migrating"
+                ],
+                "correct": 1,
+                "explanation": "Classification organizes immense biodiversity into structured groups based on shared anatomical and physiological traits."
+            },
+            {
+                "id": "3-2",
+                "question": "Which of the following is a scientific criterion used to group living organisms?",
+                "options": [
+                    "How expensive an organism is in a pet shop",
+                    "Morphological traits such as stem structure, leaf venation, or locomotion mode",
+                    "The personal nickname given to a pet",
+                    "The day of the week on which an animal was born"
+                ],
+                "correct": 1,
+                "explanation": "Scientific classification relies on verifiable anatomical, morphological, and ecological features of organisms."
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "badge": "2.2.1 • Plant Types",
+        "title": "Trees, Shrubs & Herbs",
+        "subtitle": "Plant Architecture by Size, Woodiness, and Stem Structure",
+        "theory": """
+            <p>When you walk through a garden, park, or forest, one of the most obvious ways to classify plants is by their overall height, stem woodiness, and branching architecture. Based on these features, plants are classified into three primary categories:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-2 text-slate-300 text-xs sm:text-sm">
+                <li><strong>Trees:</strong> Tall, towering plants (usually well over 3 meters tall) featuring a single, hard, thick, brown woody stem known as the <em>trunk</em>. Major branches emerge high above the ground on the upper part of the trunk (e.g., Mango, Peepal, Banyan, Neem, Sal).</li>
+                <li><strong>Shrubs:</strong> Medium-sized woody plants (typically 1 to 3 meters tall) with hard but relatively thin woody stems. Instead of a single trunk, multiple branches emerge directly from the base of the plant near the soil surface, forming a dense bush (e.g., Rose, Hibiscus, Lemon, Henna, Jasmine).</li>
+                <li><strong>Herbs:</strong> Small, compact plants (usually less than 1 meter tall) with tender, soft, green, non-woody stems. They are flexible and can bend easily without breaking (e.g., Tomato, Coriander, Wheat, Mustard, Mint, Grass).</li>
+            </ul>
+        """,
+        "lecture": "Notice the living plants all around your school and neighborhood. Take a close look at a mango tree: it stands majestic with a single, colossal wooden trunk, and its canopy begins several feet off the ground. Now look at a rose bush: you will see several thin, rigid woody stems rising right from the ground, creating a bushy cluster. Finally, touch the delicate stem of a mint or coriander plant: it is succulent, vibrant green, and soft to the touch. These structural differences reflect how each plant allocates its energy to thrive.",
+        "checkpoints": [
+            {
+                "id": "4-1",
+                "question": "Which characteristic best distinguishes a shrub from a tree?",
+                "options": [
+                    "Shrubs have soft purple flowers",
+                    "Shrubs branch near the base of the stem with no tall trunk, while trees have a single tall woody trunk with high branches",
+                    "Shrubs never produce green leaves",
+                    "Shrubs live underwater exclusively"
+                ],
+                "correct": 1,
+                "explanation": "Shrubs possess multiple thin woody stems branching close to the ground, whereas trees have a dominant central trunk."
+            },
+            {
+                "id": "4-2",
+                "question": "Which of the following plants is classified as a herb?",
+                "options": ["Banyan tree", "Rose bush", "Tomato plant", "Mango tree"],
+                "correct": 2,
+                "explanation": "Tomato plants are herbs because they possess tender, short, green, non-woody stems."
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "badge": "2.2.1 • Weak Stems",
+        "title": "Climbers & Creepers",
+        "subtitle": "Unique Mechanical Adaptations for Non-Woody Flexible Stems",
+        "theory": """
+            <p>Not all plants possess rigid, self-supporting stems like trees and shrubs. Some plants have extremely long, slender, and flexible stems that cannot stand upright on their own. Nature solves this structural challenge through two distinct evolutionary strategies:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-2 text-slate-300 text-xs sm:text-sm">
+                <li><strong>Climbers:</strong> Plants with weak stems that produce specialized contact-sensitive structures called <em>tendrils</em> (thin, spring-like coiling threads) or aerial clasping roots. These tendrils wrap tightly around external supports such as fences, bamboo stakes, or neighboring tree trunks to climb upward toward sunlight (e.g., Pea plant, Money plant, Grapevine, Bitter gourd).</li>
+                <li><strong>Creepers:</strong> Plants with weak, flexible stems that trail and spread horizontally across the ground surface. Many creepers produce large, heavy fruits that would pull down and snap a vertical climbing vine, so resting their fruits securely on the ground is an ingenious mechanical adaptation (e.g., Watermelon, Pumpkin, Muskmelon, Strawberry).</li>
+            </ul>
+        """,
+        "lecture": "Have you ever wondered why watermelons do not grow high up on towering trees? Imagine a heavy ten-kilogram watermelon dangling from a high branch—it would snap the stem and crash to the ground! Creepers solve this gravity challenge by sprawling horizontally across the earth, resting their hefty fruits safely on the soil. Climbers, on the other hand, produce delicate spiraling tendrils that behave like tiny spring coils, sensing the nearest bamboo stick and winding around it tightly to hoist their leaves into bright sunlight.",
+        "checkpoints": [
+            {
+                "id": "5-1",
+                "question": "How do climbers successfully ascend vertical structures without a thick woody trunk?",
+                "options": [
+                    "They dig underground tunnels",
+                    "They use specialized thread-like tendrils or clasping roots that coil around external supports",
+                    "They produce metal hooks",
+                    "They shed their leaves completely"
+                ],
+                "correct": 1,
+                "explanation": "Climbers utilize coiling tendrils that wrap around poles or branches, providing mechanical support to ascend toward light."
+            },
+            {
+                "id": "5-2",
+                "question": "Why do creepers like pumpkin and watermelon spread across the ground instead of climbing trees?",
+                "options": [
+                    "Because they do not need sunlight",
+                    "Because their heavy fruits would break weak climbing stems if suspended in the air",
+                    "Because they dislike wooden trellises",
+                    "Because they are secretly fungi"
+                ],
+                "correct": 1,
+                "explanation": "Sprawling across the ground safely supports heavy 5–10 kg fruits directly on the soil surface without mechanical collapse."
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "badge": "2.2.1 • Leaf Patterns",
+        "title": "Leaf Vein Patterns",
+        "subtitle": "Reticulate Networks versus Parallel Vein Architectures",
+        "theory": """
+            <p>Look closely at the flat green surface of any leaf (the <em>lamina</em> or leaf blade). You will see intricate lines running through it. These lines are called <strong>veins</strong>, and the pattern they form is called <strong>venation</strong>. Veins are not merely decorative; they are vascular pipelines transporting water, minerals, and manufactured food.</p>
+            <p class="mt-2">Across flowering plants, leaf venation exhibits two fundamental patterns:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-2 text-slate-300 text-xs sm:text-sm">
+                <li><strong>Reticulate Venation:</strong> A prominent, thick central vein called the <em>midrib</em> runs down the center of the leaf. From this midrib, secondary veins branch outward, and smaller veinlets branch repeatedly to form an interconnected, web-like mesh or network across the entire blade (e.g., Hibiscus, Peepal, Mango, Rose, Mustard, Coriander).</li>
+                <li><strong>Parallel Venation:</strong> Veins run straight and side-by-side along the length of the leaf from the base all the way to the tip, without forming an interconnected criss-cross net (e.g., Grass, Maize, Wheat, Banana, Bamboo, Sugarcane).</li>
+            </ul>
+        """,
+        "lecture": "Here is an exciting activity you can try at home! Place a fresh peepal or hibiscus leaf under a sheet of white paper and gently rub across it with the side of a wax crayon. A breathtaking skeleton of veins will appear on your paper! Notice how the veins branch out from the central midrib like tributaries of a river, forming a delicate net. This is reticulate venation. Now try the same rubbing with a blade of grass or a banana leaf: you will see straight, parallel stripes running like railway tracks. This simple leaf pattern holds the key to an astonishing biological secret!",
+        "checkpoints": [
+            {
+                "id": "6-1",
+                "question": "What type of venation is present in leaves of peepal, mango, and hibiscus?",
+                "options": ["Parallel venation", "Reticulate venation", "Circular venation", "Spiral venation"],
+                "correct": 1,
+                "explanation": "Peepal, mango, and hibiscus feature reticulate venation, where veins branch into an intricate net-like mesh."
+            },
+            {
+                "id": "6-2",
+                "question": "Which plant leaf displays veins running side-by-side in parallel lines from base to tip?",
+                "options": ["Rose", "Maize / Grass", "Peepal", "Mustard"],
+                "correct": 1,
+                "explanation": "Maize, wheat, and grasses exhibit parallel venation, where veins run straight and alongside one another."
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "badge": "2.2.1 • Root Systems",
+        "title": "Taproots vs Fibrous",
+        "subtitle": "Sub-Soil Architecture: Deep Primary Anchors versus Clustered Tufts",
+        "theory": """
+            <p>Beneath the soil surface, plant roots perform two vital functions: firmly anchoring the plant in the ground and absorbing water and dissolved mineral nutrients from the soil. Just like leaves, underground root systems exhibit two primary architectural designs:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-2 text-slate-300 text-xs sm:text-sm">
+                <li><strong>Taproot System:</strong> Features a single, thick, dominant central root called the <em>primary root</em> (or taproot) that penetrates deep vertically into the soil. Smaller, thinner roots called <em>lateral roots</em> branch off sideways from this main root (e.g., Mustard, Gram, Pea, Carrot, Radish, Neem, Mango).</li>
+                <li><strong>Fibrous Root System:</strong> Lacks a dominant central primary root. Instead, a large cluster of thin, thread-like roots of nearly equal size and thickness emerges directly from the base of the stem, spreading outward in all directions like a bushy tuft (e.g., Wheat, Grass, Maize, Rice, Onion, Barley).</li>
+            </ul>
+        """,
+        "lecture": "Have you ever pulled weeds out of garden soil after a gentle rain shower? If you carefully pull out a wild mustard plant, you will see one thick, conical main root diving deep into the earth with smaller rootlets branching out sideways—that is a classic taproot! In fact, when you eat a carrot or radish, you are eating a nutrient-storing taproot. But when you pull out a clump of grass or wheat, there is no main root at all; instead, you find a dense beard of fine, thread-like fibers. These fibrous roots bind surface topsoil like a tight net, preventing erosion during heavy rains.",
+        "checkpoints": [
+            {
+                "id": "7-1",
+                "question": "What are the structural features of a taproot system?",
+                "options": [
+                    "A single dominant primary root that grows deep with smaller lateral branches",
+                    "A cluster of hundred equal-sized thread roots from the stem base",
+                    "Roots that grow high into the air without touching soil",
+                    "Roots made entirely of green leaves"
+                ],
+                "correct": 0,
+                "explanation": "A taproot system features one dominant central primary root penetrating deeply, accompanied by smaller lateral rootlets."
+            },
+            {
+                "id": "7-2",
+                "question": "Which of these plants possesses a fibrous root system?",
+                "options": ["Gram / Chickpea", "Wheat / Grass", "Carrot", "Mustard"],
+                "correct": 1,
+                "explanation": "Wheat, grass, and maize possess fibrous roots, consisting of a bushy tuft of equal-sized roots originating from the stem base."
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "badge": "2.2.1 • Golden Law",
+        "title": "The Golden Plant Rule",
+        "subtitle": "The Invariable Botanical Trilogy Connecting Leaves, Roots, and Seeds",
+        "theory": """
+            <p>Nature displays breathtaking mathematical harmony! You do not need to pull a plant out of the soil and destroy it just to find out what kind of roots it has. There is an <strong>invariable, universal correlation</strong> connecting leaf venation, root architecture, and seed structure across the plant kingdom:</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
+                <div class="p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-xs">
+                    <span class="font-bold text-emerald-300 block mb-1">🌿 Dicotyledonous Trilogy:</span>
+                    <span class="text-slate-200">Reticulate Leaf Venation ↔ Taproot System ↔ Two Seed Cotyledons</span>
+                    <span class="block mt-1 text-slate-400">Examples: Mustard, Gram, Pea, Mango, Rose, Hibiscus, Neem</span>
+                </div>
+                <div class="p-3 rounded-xl bg-cyan-950/40 border border-cyan-500/40 text-xs">
+                    <span class="font-bold text-cyan-300 block mb-1">🌾 Monocotyledonous Trilogy:</span>
+                    <span class="text-slate-200">Parallel Leaf Venation ↔ Fibrous Root System ↔ Single Seed Cotyledon</span>
+                    <span class="block mt-1 text-slate-400">Examples: Grass, Maize, Wheat, Rice, Sugarcane, Bamboo</span>
+                </div>
+            </div>
+            <p class="mt-3 text-slate-300 text-xs sm:text-sm">
+                By simply inspecting the leaf blade of any wild tree or flowering plant, you can reliably deduce its sub-soil root system and its seed anatomy without harming the plant!
+            </p>
+        """,
+        "lecture": "This is one of the most magnificent discoveries in all of botanical science! Imagine walking through a forest or agricultural field. You look at a leaf in your hand. If you see a reticulate web of veins, you can announce with absolute scientific certainty that deep underground lies a taproot, and inside its seeds lie two cotyledons! Conversely, if you see straight parallel veins like grass or maize, you know immediately that its roots form a fibrous tuft and its seed has only one cotyledon. Nature writes the blueprint of the root right on the face of the leaf!",
+        "checkpoints": [
+            {
+                "id": "8-1",
+                "question": "If a wild plant has leaves with reticulate venation, what kind of root system will it definitely have?",
+                "options": ["Fibrous root system", "Taproot system", "No roots at all", "Aerial breathing roots only"],
+                "correct": 1,
+                "explanation": "Plants with reticulate leaf venation invariably possess a taproot system (the Golden Botanical Law)."
+            },
+            {
+                "id": "8-2",
+                "question": "A student finds an unknown grass with parallel leaf venation. What can be concluded about its seed?",
+                "options": [
+                    "It has three cotyledons",
+                    "It is a monocotyledon with only one cotyledon",
+                    "It is a dicotyledon with two cotyledons",
+                    "It has no embryo"
+                ],
+                "correct": 1,
+                "explanation": "Parallel leaf venation is universally correlated with fibrous roots and single-cotyledon (monocot) seeds."
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "badge": "2.2.1 • Seed Anatomy",
+        "title": "Seeds & Cotyledons",
+        "subtitle": "Dicotyledonous Halves versus Monocotyledonous Single Shields",
+        "theory": """
+            <p>Every flowering plant begins its life journey packaged inside a seed. When a seed absorbs moisture from damp soil, it germinates into a new seedling. Inside the seed coat lies the plant embryo (consisting of the baby shoot called the <em>plumule</em> and the baby root called the <em>radicle</em>), accompanied by special food-storing structures called <strong>cotyledons</strong> (or seed leaves).</p>
+            <p class="mt-2">Based on the number of cotyledons in their seeds, flowering plants are divided into two fundamental classes:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-2 text-slate-300 text-xs sm:text-sm">
+                <li><strong>Dicotyledons (Dicots):</strong> Seeds that possess <strong>two distinct cotyledons</strong>. When you soak a chickpea, kidney bean, or pea overnight and gently remove the paper-thin seed coat, the seed naturally splits into two swollen, identical halves packed with starch and protein (e.g., Gram, Pea, Bean, Mustard, Almond, Mango).</li>
+                <li><strong>Monocotyledons (Monocots):</strong> Seeds that possess only <strong>one single cotyledon</strong> (often called the <em>scutellum</em> in cereals) closely attached to a starchy food store called the <em>endosperm</em>. A maize kernel or wheat grain cannot be split into two symmetrical halves (e.g., Maize, Wheat, Rice, Barley).</li>
+            </ul>
+        """,
+        "lecture": "Let us perform a fascinating kitchen science experiment! Take a handful of dry chickpeas or rajma beans and soak them in a bowl of water overnight. By morning, the seeds will have absorbed water and swollen plump. Gently peel off the outer brown skin, called the seed coat. With minimal pressure, the chickpea smoothly splits open into two fleshy halves! These two halves are cotyledons, which act as a packed lunchbox providing stored energy for the baby shoot and root. Now try doing that with a grain of corn or wheat: you cannot split it into halves, because monocots have only a single cotyledon!",
+        "checkpoints": [
+            {
+                "id": "9-1",
+                "question": "What happens when you gently peel the outer coat of a soaked chickpea or pea seed?",
+                "options": [
+                    "It explodes into powder",
+                    "It naturally splits into two distinct cotyledon halves",
+                    "It turns into a flower immediately",
+                    "It dissolves into liquid"
+                ],
+                "correct": 1,
+                "explanation": "Chickpea and pea seeds are dicotyledons containing two plump, starch-storing cotyledons that separate cleanly."
+            },
+            {
+                "id": "9-2",
+                "question": "Why can a maize grain or rice kernel not be split into two equal seed halves?",
+                "options": [
+                    "Because it is glued together by sap",
+                    "Because it is a monocotyledon possessing only a single cotyledon",
+                    "Because it has no embryo inside",
+                    "Because it is an animal product"
+                ],
+                "correct": 1,
+                "explanation": "Monocotyledons possess only one cotyledon connected to an endosperm and do not have two separable halves."
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "badge": "2.2.2 • Animal Diversity",
+        "title": "Animal Locomotion",
+        "subtitle": "Locomotion Modes and Specialized Anatomical Organs",
+        "theory": """
+            <p>Unlike stationary plants that synthesize their own food via photosynthesis, animals are heterotrophs that must move through their environment to forage for food, find mates, build shelters, and escape predators. The act of moving from place to place is called <strong>locomotion</strong>.</p>
+            <p class="mt-2">Animals inhabit air, land, and water, utilizing specialized anatomical organs adapted for distinct modes of movement:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-1.5 text-slate-300 text-xs sm:text-sm">
+                <li><strong>Running & Walking:</strong> Quadrupedal mammals (Cheetah, Deer, Tiger) use four muscular jointed limbs with flexible tendons to push off the ground during high-speed chases.</li>
+                <li><strong>Flying:</strong> Birds (Pigeon, Sparrow, Eagle) possess forelimbs modified into feathered aerodynamic wings, powered by massive pectoral muscles and lightweight hollow bones.</li>
+                <li><strong>Swimming:</strong> Fish possess a flexible streamlined body and fins. The caudal tail fin flexes side-to-side to generate forward driving thrust, while paired fins steer and maintain balance.</li>
+                <li><strong>Slithering & Crawling:</strong> Legless snakes utilize broad, overlapping belly scales (scutes) that grip microscopic ground textures while powerful muscular body waves push forward.</li>
+                <li><strong>Hopping:</strong> Frogs and grasshoppers possess elongated, Z-folded muscular hind limbs that compress and spring open, launching explosive aerial leaps.</li>
+            </ul>
+        """,
+        "lecture": "Look at the sheer mechanical diversity of the animal kingdom! Think of a cheetah accelerating across the savannah: its muscular legs and flexible spine act like high-performance pistons. Now look up at an eagle soaring effortlessly on thermal updrafts: its forelimbs have evolved into feathered airfoils, and its bones are hollow to eliminate unnecessary weight. Down in the river, a fish uses its tail fin as an underwater propeller. And look at a frog on a lily pad: its long folded legs act like coiled steel springs ready to leap away at the slightest danger. Form always matches function!",
+        "checkpoints": [
+            {
+                "id": "10-1",
+                "question": "Which organ provides the primary forward thrust in a swimming fish?",
+                "options": ["The mouth", "The caudal tail fin", "The eyes", "The dorsal fin alone"],
+                "correct": 1,
+                "explanation": "The caudal (tail) fin flexes laterally to propel water backward, driving the fish forward through Newton's third law."
+            },
+            {
+                "id": "10-2",
+                "question": "How do snakes move rapidly across rough ground without any legs?",
+                "options": [
+                    "By blowing air out of their nostrils",
+                    "By using muscular body undulations and gripping ground textures with overlapping belly scales",
+                    "By rolling into a rigid wheel",
+                    "By walking on hidden internal paws"
+                ],
+                "correct": 1,
+                "explanation": "Snakes propel themselves via lateral muscular undulations and friction from ventral belly scales against ground roughness."
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "badge": "2.3 • Habitats",
+        "title": "Habitats of the Earth",
+        "subtitle": "Ecosystem Living Quarters: Terrestrial, Aquatic, and Amphibious Realms",
+        "theory": """
+            <p>Every living organism requires a specific natural home that provides essential resources: food, water, air, appropriate temperature, shelter, and safe breeding grounds. The natural surroundings where an organism ordinarily lives and thrives is called its <strong>Habitat</strong>.</p>
+            <p class="mt-2">The Earth features diverse habitats shaped by climate, altitude, and moisture:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-2 text-slate-300 text-xs sm:text-sm">
+                <li><strong>Terrestrial Habitats:</strong> Land-based ecosystems including tropical evergreen rainforests, deciduous woodlands, open grasslands, arid sand deserts, and rocky mountain peaks.</li>
+                <li><strong>Aquatic Habitats:</strong> Water-based ecosystems divided into freshwater habitats (rivers, streams, ponds, and lakes) and vast marine saltwater habitats (oceans, seas, and coral reefs).</li>
+                <li><strong>Amphibious Environments:</strong> Wetland and pond-edge transition zones inhabited by amphibians (such as frogs and toads) that dwell on land but return to water to lay gelatinous eggs, respiring through lungs on land and via moist vascular skin underwater.</li>
+            </ul>
+        """,
+        "lecture": "Think of a habitat as an organism's biological postal address! A polar bear cannot survive in the Thar Desert, and a desert cactus would rapidly rot in a waterlogged wetland. Why? Because every species has evolved specialized traits suited to the specific physical conditions of its habitat. From the sunlit surface of a freshwater pond down to the ocean abyss, every corner of our planet provides a unique living stage where organisms have adapted to thrive in harmony with their surroundings.",
+        "checkpoints": [
+            {
+                "id": "11-1",
+                "question": "What is the scientific term for the natural surroundings where an organism lives, feeds, and reproduces?",
+                "options": ["Climate", "Habitat", "Weather", "Microscope"],
+                "correct": 1,
+                "explanation": "A habitat is the natural dwelling place providing an organism with its life-sustaining resources: food, water, air, and shelter."
+            },
+            {
+                "id": "11-2",
+                "question": "Why are frogs described as amphibious creatures?",
+                "options": [
+                    "Because they only eat insects",
+                    "Because they can live both on land and in water, requiring water bodies for egg-laying and moist-skin respiration",
+                    "Because they fly during migration",
+                    "Because they do not have bones"
+                ],
+                "correct": 1,
+                "explanation": "Amphibians inhabit both terrestrial and freshwater aquatic environments, utilizing dual respiratory and reproductive adaptations."
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "badge": "2.3.1 • Desert",
+        "title": "Desert Adaptations",
+        "subtitle": "Mastering Aridity: Hot Thar Sand Dunes versus Cold Ladakh Deserts",
+        "theory": """
+            <p>Deserts are defined by extreme aridity: very little annual rainfall, scorching daytime heat under intense sun, rapid temperature drops at night, and persistent water scarcity. Organisms inhabiting deserts display remarkable morphological and physiological <strong>adaptations</strong> to survive:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-2 text-slate-300 text-xs sm:text-sm">
+                <li><strong>Desert Plants (Cactus):</strong> Leaves are modified into sharp, slender <em>spines</em> to minimize transpiration water loss. Photosynthesis is carried out entirely by the thick, fleshy, wax-coated green stem which stores gallons of water. Deep, extensive roots spread wide beneath the sand to catch rare raindrops.</li>
+                <li><strong>Hot Desert Camel (Thar Desert):</strong> Known as the 'Ship of the Desert', it possesses a single fatty hump storing metabolic energy, exceptionally long legs keeping its torso elevated above scorching ground heat, broad padded hooves that do not sink in loose sand, double rows of long eyelashes to block sandstorms, and concentrated urine that conserves every drop of internal moisture.</li>
+                <li><strong>Cold Desert Camel (Ladakh Bactrian Camel):</strong> Found in high-altitude Nubra Valley in Ladakh, this unique camel features <strong>two fat-storing humps</strong> and a dense, shaggy woolly coat that insulates against freezing sub-zero Himalayan blizzard winds.</li>
+            </ul>
+        """,
+        "lecture": "Let us contrast two completely different deserts! When we picture a desert, we usually think of the golden, scorching sand dunes of the Thar Desert in Rajasthan. Here, the single-humped camel stands tall on long legs, keeping its vital organs high above the baking sand like a desert skyscraper. Its broad, spongy feet spread out with every step, preventing it from sinking into loose sand. But India also has a cold desert in the high altitudes of Ladakh! In the freezing Nubra Valley, temperatures plunge far below zero. Here, the Bactrian camel thrives with two humps and a thick, woolly fleece that shields it from freezing Himalayan winds.",
+        "checkpoints": [
+            {
+                "id": "12-1",
+                "question": "How does a cactus minimize water loss through transpiration in the desert?",
+                "options": [
+                    "By growing giant broad leaves",
+                    "By modifying its leaves into sharp non-transpiring spines and photosynthesizing via its fleshy stem",
+                    "By living completely underground",
+                    "By producing water from stones"
+                ],
+                "correct": 1,
+                "explanation": "Spines have virtually no surface stomata for transpiration, while the fleshy stem stores water and conducts photosynthesis."
+            },
+            {
+                "id": "12-2",
+                "question": "What unique adaptation distinguishes the cold desert Bactrian camel of Ladakh from the hot Thar desert camel?",
+                "options": [
+                    "It has webbed swimming feet",
+                    "It possesses two humps and a dense, shaggy woolly coat against freezing blizzard winds",
+                    "It has no teeth",
+                    "It can breathe underwater"
+                ],
+                "correct": 1,
+                "explanation": "The Ladakh Bactrian camel features two fat-storing humps and a thick shaggy wool coat suited to sub-zero alpine cold."
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "badge": "2.3.2 • Mountains",
+        "title": "Mountain Adaptations",
+        "subtitle": "Alpine Survival: Snow-Shedding Conifers and Padded Snowshoe Paws",
+        "theory": """
+            <p>High mountain and alpine regions present formidable environmental challenges: freezing sub-zero temperatures, howling winds, thin atmospheric air with low oxygen, and heavy winter snowfall. Plants and animals here have evolved specialized physical traits to conquer these harsh extremes:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-2 text-slate-300 text-xs sm:text-sm">
+                <li><strong>Mountain Conifers (Deodar, Pine, Fir):</strong> Trees display a distinct <strong>conical, sloping crown shape</strong> with downward-slanted branches. When heavy snow blankets the forest, snow slides right off the sloping branches instead of accumulating and snapping limbs. Furthermore, their leaves are reduced to slender needles with a thick waxy cuticle, minimizing transpiration and preventing frost damage.</li>
+                <li><strong>The Snow Leopard:</strong> The apex predator of the high Himalayas possesses a thick, dense fur coat with patterned rosettes for camouflage among rocky crags. Its wide, fur-covered paws act as natural <strong>snowshoes</strong>, distributing body weight so it can walk over deep powdery snow without sinking. Its exceptionally long, bushy tail provides counter-balance during acrobatic cliff pursuits and is wrapped around its face for warmth during sleep.</li>
+                <li><strong>Mountain Yaks & Goats:</strong> Thick woolly fleeces protect against freezing winds, while sharp, hard hooves provide secure traction on steep, icy rock faces.</li>
+            </ul>
+        """,
+        "lecture": "Imagine standing on a Himalayan mountainside in the middle of a winter blizzard! If a tree had wide, horizontal leafy branches like a mango tree, hundreds of kilograms of heavy wet snow would pile up on top of it, snapping the tree trunk in half. But look at a Deodar or Pine tree: its silhouette is a graceful cone! Its flexible branches slope gently downward, so as soon as snow falls, it slides harmlessly to the ground. And look at the elusive snow leopard: its massive paws are nature's snowshoes, spreading its weight across deep snow, while its magnificent bushy tail doubles as a warm scarf wrapped around its nose during freezing nights.",
+        "checkpoints": [
+            {
+                "id": "13-1",
+                "question": "Why do mountain conifers like deodar and pine have sloping conical branches?",
+                "options": [
+                    "To catch as many birds as possible",
+                    "To allow heavy accumulated snow and rain to slide off easily without snapping branches",
+                    "To stop sunlight from reaching the ground",
+                    "To collect snow for drinking"
+                ],
+                "correct": 1,
+                "explanation": "The sloping conical architecture prevents structural collapse by allowing heavy snow to slide off effortlessly."
+            },
+            {
+                "id": "13-2",
+                "question": "How do wide, fur-padded paws help the Himalayan snow leopard hunt on snowy slopes?",
+                "options": [
+                    "They act as natural snowshoes, distributing body weight to prevent sinking into deep powdery snow",
+                    "They help the leopard fly across valleys",
+                    "They allow the leopard to dig underwater",
+                    "They change color to green in summer"
+                ],
+                "correct": 0,
+                "explanation": "Wide paws increase surface area, reducing ground pressure so the leopard can walk over snow without sinking."
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "badge": "2.3.3 • Ocean Life",
+        "title": "Ocean Life & Fins",
+        "subtitle": "Marine Hydrodynamics: Streamlined Bodies and Dissolved Oxygen Extraction",
+        "theory": """
+            <p>Water is roughly 800 times denser than air and creates considerable viscous resistance (drag) against movement. Marine and freshwater aquatic organisms have evolved refined morphological and physiological adaptations to navigate and thrive in this fluid medium:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-2 text-slate-300 text-xs sm:text-sm">
+                <li><strong>Streamlined Body Shape:</strong> A fish's body is tapered at both the head and tail, with the thickest portion located in the middle (spindle shape). This streamlined contour allows water currents to glide smoothly around the body with minimal turbulence, drastically reducing hydrodynamic drag.</li>
+                <li><strong>Specialized Fins:</strong> Movement in three-dimensional water requires precise control:
+                    <ul class="list-disc pl-5 mt-1 space-y-1 text-slate-300">
+                        <li><em>Caudal (Tail) Fin:</em> Provides powerful forward driving thrust through side-to-side muscular sweeps.</li>
+                        <li><em>Dorsal & Anal Fins:</em> Act like stabilizing keels, preventing the fish from rolling sideways.</li>
+                        <li><em>Pectoral & Pelvic Fins:</em> Enable steering, ascending, descending, and braking.</li>
+                    </ul>
+                </li>
+                <li><strong>Gills for Respiration:</strong> Fish cannot breathe atmospheric air directly. Instead, water enters through the mouth and flows across feather-like <em>gills</em> packed with microscopic blood capillaries, where dissolved oxygen diffuses directly into the bloodstream while carbon dioxide is expelled.</li>
+                <li><strong>Slippery Scales:</strong> Overlapping dermal scales covered with an oily mucus layer waterproof the body, protect against parasites, and smoothen fluid flow.</li>
+            </ul>
+        """,
+        "lecture": "Have you ever tried running through water at the beach or swimming pool? You immediately feel the heavy, dragging resistance of the water pushing against your chest. Engineers designed modern racing boats, torpedoes, and submarines by copying the spindle shape of fish! Notice how a fish's head tapers smoothly to a point, gently widens, and then tapers again toward the tail. As it swims, water molecules part effortlessly around it. Meanwhile, inside its gills, an astonishing exchange takes place: delicate capillary beds absorb the microscopic amounts of oxygen gas dissolved in water, keeping the fish alive in its underwater world.",
+        "checkpoints": [
+            {
+                "id": "14-1",
+                "question": "How does a streamlined spindle body shape assist fish swimming in water?",
+                "options": [
+                    "It makes the fish invisible to predators",
+                    "It drastically reduces water resistance and drag, allowing effortless forward gliding",
+                    "It allows the fish to walk on land",
+                    "It stores extra food for winter"
+                ],
+                "correct": 1,
+                "explanation": "A tapered streamlined shape allows water currents to slide past smoothly without creating turbulent resistance."
+            },
+            {
+                "id": "14-2",
+                "question": "What is the primary function of fish gills?",
+                "options": [
+                    "To digest hard sea plants",
+                    "To extract dissolved oxygen from water and expel carbon dioxide",
+                    "To steer during sharp turns",
+                    "To hear high-pitched sounds"
+                ],
+                "correct": 1,
+                "explanation": "Gills are specialized respiratory organs packed with blood vessels that absorb dissolved oxygen from water."
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "badge": "2.4 • Conservation",
+        "title": "Protecting Our Wild",
+        "subtitle": "National Sanctuaries, Species Recovery, and Ancient Sacred Groves",
+        "theory": """
+            <p>India is one of the world's recognized <strong>mega-biodiversity hotspots</strong>, sheltering over 7 to 8% of all recorded global species. However, habitat destruction, deforestation, pollution, and climate change threaten fragile ecosystems. India has pioneered world-renowned wildlife conservation milestones:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-2 text-slate-300 text-xs sm:text-sm">
+                <li><strong>Project Tiger (Launched 1973):</strong> One of the world's most successful conservation initiatives. By protecting the apex Royal Bengal Tiger as an <em>umbrella species</em>, India safeguarded entire forest ecosystems, watersheds, and thousands of co-existing plant and animal species across over 50 Tiger Reserves (e.g., Corbett, Ranthambore, Sundarbans).</li>
+                <li><strong>Cheetah Reintroduction (Kuno National Park, 2022):</strong> Historic global transcontinental rewilding project, translocating African cheetahs to restore the lost apex predator guild of India's open savannah grasslands.</li>
+                <li><strong>Great Indian Bustard (Godawan):</strong> Targeted conservation sanctuaries in the arid grasslands of Rajasthan and Gujarat protecting this critically endangered, heavy-flying bird.</li>
+                <li><strong>Sacred Groves (Devrais, Orans, Kavu):</strong> Ancient community-protected forest patches where traditional cultural beliefs forbid tree felling or hunting. These sacred sanctuaries have preserved pristine virgin gene pools and rare medicinal plants undisturbed for centuries.</li>
+            </ul>
+        """,
+        "lecture": "Conservation in India is not just a modern law; it is an ancient cultural legacy woven into the fabric of our communities. Consider our sacred groves: whether called Devrais in Maharashtra, Orans in Rajasthan, or Kavu in Kerala, local villagers have protected these virgin forest patches for centuries with profound spiritual reverence. Not a single branch is chopped, and no wild animal is harmed. Within these undisturbed sacred groves, rare medicinal herbs and endangered birds continue to thrive. When we launched Project Tiger in 1973, we recognized that protecting one majestic apex predator preserves an entire watershed forest for generations to come.",
+        "checkpoints": [
+            {
+                "id": "15-1",
+                "question": "Why is protecting an apex predator like the tiger called an 'umbrella conservation strategy'?",
+                "options": [
+                    "Because tigers like to stay under umbrellas during rain",
+                    "Because conserving large tiger habitats automatically preserves entire forest ecosystems, prey species, and watersheds",
+                    "Because tigers build shelters for small insects",
+                    "Because it only protects one species without helping others"
+                ],
+                "correct": 1,
+                "explanation": "As an umbrella species, protecting the tiger's vast range safeguards the entire ecological trophic web and forest watershed."
+            },
+            {
+                "id": "15-2",
+                "question": "What traditional conservation role do 'Sacred Groves' (Devrais, Orans, or Kavu) perform in India?",
+                "options": [
+                    "They are commercial timber logging centers",
+                    "They are community-protected ancient forest pockets where hunting and felling are strictly forbidden, safeguarding virgin biodiversity",
+                    "They are modern amusement parks",
+                    "They are cattle ranches"
+                ],
+                "correct": 1,
+                "explanation": "Sacred groves represent community-stewarded ecological refuges that preserve pristine endemic flora and rare fauna."
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "badge": "2.4 • Heritage",
+        "title": "Heroes of Biodiversity",
+        "subtitle": "Pioneering Indian Naturalists Who Championed Ecological Preservation",
+        "theory": """
+            <p>India's natural heritage has been deeply enriched by pioneering scientists who devoted their lives to cataloging biodiversity and fighting for environmental preservation:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-2 text-slate-300 text-xs sm:text-sm">
+                <li><strong>Dr. E.K. Janaki Ammal (1897–1984):</strong> Renowned botanist and cytogeneticist, the first Indian woman to earn a doctorate in botany. She developed indigenous high-yielding sugarcane hybrids that made India self-sufficient in sugar, mapped chromosome numbers across thousands of plant species, led the reorganization of the Botanical Survey of India (BSI), and served as the intellectual champion of the historic <em>Save Silent Valley</em> movement, successfully halting a hydroelectric dam project to preserve Kerala's pristine tropical evergreen rainforest.</li>
+                <li><strong>Dr. Salim Ali (1896–1987):</strong> Celebrated as the 'Birdman of India', he revolutionized ornithology across the subcontinent. Carrying binoculars and field notebooks, he conducted pioneering nationwide bird surveys across diverse terrains, authored the monumental 10-volume <em>Handbook of the Birds of India and Pakistan</em>, and was instrumental in establishing Bharatpur's Keoladeo Ghana Bird Sanctuary and Ranganathittu Bird Sanctuary.</li>
+            </ul>
+        """,
+        "lecture": "Let us celebrate two heroic visionaries of Indian science! In the early twentieth century, Dr. E.K. Janaki Ammal overcame immense societal barriers to become a world-renowned cytogeneticist. When a massive hydroelectric dam threatened to submerge the pristine tropical rainforest of Silent Valley in Kerala, she conducted rigorous botanical surveys documenting rare endemic orchids and trees, providing the scientific proof that saved that ancient valley forever! Alongside her stands Dr. Salim Ali, who walked across dusty trails and dense jungles with binoculars in hand, documenting every chirp and migratory path. Their devotion teaches us that true science is born from a deep love for nature and the courage to protect it.",
+        "checkpoints": [
+            {
+                "id": "16-1",
+                "question": "What historic environmental victory was achieved by the 'Save Silent Valley' movement in Kerala?",
+                "options": [
+                    "It built the world's largest coal plant",
+                    "It halted a proposed hydroelectric dam that would have submerged pristine tropical evergreen rainforest, preserving it as a National Park",
+                    "It cleared the forest for paper production",
+                    "It replaced all wild trees with eucalyptus"
+                ],
+                "correct": 1,
+                "explanation": "The citizen-led Save Silent Valley movement successfully protected irreplaceable tropical rainforest from being flooded by a dam reservoir."
+            },
+            {
+                "id": "16-2",
+                "question": "Why is Dr. Salim Ali affectionately revered as the 'Birdman of India'?",
+                "options": [
+                    "Because he discovered how to fly like a bird",
+                    "Because he conducted pioneering systematic bird surveys across India and popularized bird conservation",
+                    "Because he owned thousands of caged pet birds",
+                    "Because he wore bird feathers on his hat"
+                ],
+                "correct": 1,
+                "explanation": "Dr. Salim Ali pioneered modern Indian ornithology through systematic surveys, field guides, and establishing premier bird sanctuaries."
+            }
+        ]
+    }
+]
+
+# Quiz Questions for Slides 17 to 20
+QUIZ_QUESTIONS = [
+    # Quiz 1: Slide 17 (Q1 to Q10)
+    {
+        "id": 1,
+        "question": "What is the primary scientific reason naturalists avoid disturbing wild animals during a nature walk?",
+        "options": [
+            "Animals become angry and destroy binoculars",
+            "Non-intrusive observation preserves natural behaviors, prevents habitat damage, and protects nesting young",
+            "Wild animals always run into cages if spoken to",
+            "Walking quietly makes the walk end faster"
+        ],
+        "correct": 1,
+        "solution": "Ethical field science requires minimal disruption so animals continue their natural foraging, mating, and nesting routines safely."
+    },
+    {
+        "id": 2,
+        "question": "Which term best describes the total variety of plants, animals, fungi, and micro-organisms in a forest?",
+        "options": ["Monoculture", "Biodiversity", "Biomass index", "Fossil record"],
+        "correct": 1,
+        "solution": "Biodiversity encompasses the entirety of species richness, genetic variability, and ecological niches in an ecosystem."
+    },
+    {
+        "id": 3,
+        "question": "How do honeybees and flowering fruit trees demonstrate ecological interdependence?",
+        "options": [
+            "Bees eat the wood of the tree to kill it",
+            "Trees provide sweet nectar and pollen for food, while bees transfer pollen to fertilize blossoms and produce fruit",
+            "Bees build mud dams around tree roots",
+            "Trees drop leaves to crush foraging bees"
+        ],
+        "correct": 1,
+        "solution": "This mutualistic relationship pairs nutritional nectar rewards for pollinators with cross-pollination services for the plant."
+    },
+    {
+        "id": 4,
+        "question": "Which criterion is MOST appropriate for grouping plants into herbs, shrubs, and trees?",
+        "options": [
+            "The price of flowers in the market",
+            "Plant height, stem texture (green vs woody), and branching height relative to the ground",
+            "The day of the week the plant was sown",
+            "The color of the flower pot"
+        ],
+        "correct": 1,
+        "solution": "Plant classification relies on physical morphology: woodiness, stem diameter, total height, and branching position."
+    },
+    {
+        "id": 5,
+        "question": "A student observes a plant with a hard, thick, brown woody trunk whose branches begin high up. It is a:",
+        "options": ["Herb", "Shrub", "Tree", "Creeper"],
+        "correct": 2,
+        "solution": "Trees possess a distinct, thick woody trunk with branches emerging well above ground level."
+    },
+    {
+        "id": 6,
+        "question": "Why is a rose bush classified as a shrub rather than a tree?",
+        "options": [
+            "It has green tender non-woody stems like mint",
+            "It has thin, hard woody stems branching directly near the base of the soil without a single tall trunk",
+            "It cannot grow flowers",
+            "It grows underwater"
+        ],
+        "correct": 1,
+        "solution": "Shrubs have multiple thin woody stems radiating from the base, forming a dense bush without a dominant central trunk."
+    },
+    {
+        "id": 7,
+        "question": "Which of the following plants possesses a tender, soft, green stem and is classified as a herb?",
+        "options": ["Mango", "Banyan", "Coriander", "Rose"],
+        "correct": 2,
+        "solution": "Coriander has a delicate, succulent green stem characteristic of herbs."
+    },
+    {
+        "id": 8,
+        "question": "What specialized anatomical adaptation enables pea and money plants to climb upward?",
+        "options": [
+            "Broad heavy wooden trunks",
+            "Spiraling, contact-sensitive thread-like tendrils or aerial clasping roots",
+            "Deep carrot-like taproots",
+            "Water storage bulbs"
+        ],
+        "correct": 1,
+        "solution": "Climbers produce coiling tendrils that mechanically grasp adjacent supports to elevate leaves toward sunlight."
+    },
+    {
+        "id": 9,
+        "question": "Why do pumpkins and watermelons trail along the ground as creepers instead of climbing vertical trellises?",
+        "options": [
+            "Their massive, heavy 5 to 10 kg fruits would snap slender climbing vines under gravity",
+            "They prefer dark wet soil without sun",
+            "Their roots refuse to absorb water when upright",
+            "They lack green chlorophyll"
+        ],
+        "correct": 0,
+        "solution": "Ground sprawl provides a stable physical substrate that safely supports massive heavy fruits without mechanical stem failure."
+    },
+    {
+        "id": 10,
+        "question": "What pattern of leaf venation is observed in mango and peepal leaves?",
+        "options": ["Parallel venation", "Reticulate venation", "Concentric venation", "Radial venation"],
+        "correct": 1,
+        "solution": "Mango and peepal leaves exhibit reticulate venation, forming an intricate, interconnected web-like network."
+    },
+
+    # Quiz 2: Slide 18 (Q11 to Q20)
+    {
+        "id": 11,
+        "question": "If you observe parallel stripes of veins running side-by-side from base to tip, the plant is likely:",
+        "options": ["A rose bush", "A grass, maize, or wheat plant", "A peepal tree", "A mustard plant"],
+        "correct": 1,
+        "solution": "Monocots such as grasses, maize, sugarcane, and wheat exhibit parallel leaf venation."
+    },
+    {
+        "id": 12,
+        "question": "What is the defining structural feature of a taproot system?",
+        "options": [
+            "A cluster of hundred equal hair-like roots from the stem base",
+            "A single, dominant, deep primary root with smaller lateral branches",
+            "Roots that only grow inside fruits",
+            "Green roots photosynthesizing on branches"
+        ],
+        "correct": 1,
+        "solution": "A taproot features a prominent central primary root penetrating deeply, flanked by smaller lateral branches."
+    },
+    {
+        "id": 13,
+        "question": "Which of these everyday vegetables is an edible, nutrient-storing taproot?",
+        "options": ["Tomato", "Carrot", "Potato", "Cucumber"],
+        "correct": 1,
+        "solution": "Carrots and radishes are enlarged, nutrient-storing primary taproots."
+    },
+    {
+        "id": 14,
+        "question": "What type of root system is found in grass, wheat, and onion plants?",
+        "options": ["Taproot system", "Fibrous root system", "Prop root system only", "Pneumatophore system"],
+        "correct": 1,
+        "solution": "Grass, wheat, and onions possess fibrous roots—a dense cluster of thread-like roots originating from the stem base."
+    },
+    {
+        "id": 15,
+        "question": "According to the Golden Plant Rule, a plant with reticulate leaf venation will ALWAYS possess:",
+        "options": ["Fibrous roots and 1 cotyledon", "A taproot system and 2 cotyledons (dicot)", "No roots and 3 cotyledons", "Woody aerial thorns only"],
+        "correct": 1,
+        "solution": "Reticulate leaf venation is invariably correlated with taproots and dicotyledonous seeds (2 cotyledons)."
+    },
+    {
+        "id": 16,
+        "question": "How can a botanist deduce the root type of a rare plant without uprooting and killing it?",
+        "options": [
+            "By smelling the flowers",
+            "By examining its leaf venation: reticulate means taproot, parallel means fibrous",
+            "By measuring its height with a tape",
+            "By counting its petals only"
+        ],
+        "correct": 1,
+        "solution": "Leaf venation reliably reveals the underground root architecture without destructive uprooting."
+    },
+    {
+        "id": 17,
+        "question": "When a soaked bean or chickpea seed coat is peeled away, into how many cotyledons does it split?",
+        "options": ["One single shield", "Two swollen cotyledons", "Four separate halves", "Eight tiny beads"],
+        "correct": 1,
+        "solution": "Chickpeas and beans are dicotyledons containing two distinct, starch-rich cotyledons."
+    },
+    {
+        "id": 18,
+        "question": "What primary biological function do cotyledons perform inside a dormant or germinating seed?",
+        "options": [
+            "They store nutrients to nourish the growing embryo until true leaves photosynthesize",
+            "They attract insects for pollination",
+            "They absorb rain from clouds directly",
+            "They produce flowers immediately"
+        ],
+        "correct": 0,
+        "solution": "Cotyledons store starch, proteins, and fats that nourish the developing plumule (shoot) and radicle (root)."
+    },
+    {
+        "id": 19,
+        "question": "Why can a maize kernel or wheat grain NOT be split into two equal halves like a chickpea?",
+        "options": [
+            "Because it is made of stone",
+            "Because it is a monocotyledon possessing only a single cotyledon (scutellum)",
+            "Because it has no seed coat",
+            "Because it has five embryos"
+        ],
+        "correct": 1,
+        "solution": "Monocots possess only a single cotyledon attached to the endosperm, lacking two separable halves."
+    },
+    {
+        "id": 20,
+        "question": "Which mode of locomotion is matched with its specialized propelling organ?",
+        "options": [
+            "Fish swimming: Caudal tail fin and stabilizing balance fins",
+            "Birds flying: Ventral belly scales",
+            "Snakes slithering: Feathered hollow wings",
+            "Frogs hopping: Single dorsal fin"
+        ],
+        "correct": 0,
+        "solution": "Fish utilize their flexible muscular spine and caudal tail fin to generate driving forward propulsion in water."
+    },
+
+    # Quiz 3: Slide 19 (Q21 to Q30)
+    {
+        "id": 21,
+        "question": "How do snakes push themselves forward along the ground without limbs?",
+        "options": [
+            "By rolling like a hoop",
+            "By undulating body muscles against ground irregularities while belly scutes grip the surface",
+            "By floating on air currents",
+            "By using hidden internal claws"
+        ],
+        "correct": 1,
+        "solution": "Lateral muscular undulations combined with frictional grip from overlapping ventral scales provide effective propulsion."
+    },
+    {
+        "id": 22,
+        "question": "What skeletal and muscular feature enables a frog to execute explosive forward jumps?",
+        "options": [
+            "Extremely short front paws",
+            "Elongated, Z-folded muscular hind limbs acting as spring coils",
+            "A rigid, unbending spine",
+            "Heavy lead-like bones"
+        ],
+        "correct": 1,
+        "solution": "The elongated, heavily muscled hind legs act like compressed springs that release energy during a leap."
+    },
+    {
+        "id": 23,
+        "question": "Which adaptation prevents excessive transpiration water loss in desert cacti?",
+        "options": [
+            "Leaves modified into sharp, non-transpiring spines and photosynthetic succulent stems",
+            "Broad, paper-thin leaves with large pores",
+            "Growing exclusively submerged in rivers",
+            "Dropping stems every morning"
+        ],
+        "correct": 0,
+        "solution": "Spines eliminate surface leaf transpiration, while the thick, waxy green stem stores water and conducts photosynthesis."
+    },
+    {
+        "id": 24,
+        "question": "How do the long legs of a Thar desert camel aid its thermal survival?",
+        "options": [
+            "They allow it to swim in deep oceans",
+            "They elevate its torso and vital organs well above the radiant, baking heat of the desert sand",
+            "They help it climb sand dune trees",
+            "They make it invisible to lions"
+        ],
+        "correct": 1,
+        "solution": "Long legs elevate the camel's body into cooler air layers, away from blazing sand surface temperatures."
+    },
+    {
+        "id": 25,
+        "question": "Where in India are two-humped Bactrian camels with thick woolly coats found in a cold desert habitat?",
+        "options": ["Thar Desert, Rajasthan", "Nubra Valley, Ladakh", "Sundarbans, West Bengal", "Western Ghats, Kerala"],
+        "correct": 1,
+        "solution": "Bactrian camels inhabit the cold, high-altitude desert of Nubra Valley in Ladakh."
+    },
+    {
+        "id": 26,
+        "question": "Why do Himalayan conifers like Deodar and Pine possess sloping, conical crowns?",
+        "options": [
+            "To prevent monkeys from sitting on branches",
+            "To allow heavy winter snow to slide off smoothly without breaking branches",
+            "To catch autumn rain like buckets",
+            "To absorb moonbeams"
+        ],
+        "correct": 1,
+        "solution": "Sloping conical architecture prevents structural collapse under heavy winter snow accumulation."
+    },
+    {
+        "id": 27,
+        "question": "What specialized feature prevents a snow leopard from sinking into deep, powdery Himalayan snow?",
+        "options": [
+            "Tiny pointed hooves",
+            "Broad, heavily furred paws that act like natural snowshoes to distribute weight",
+            "Feathered wings",
+            "A hard turtle-like shell"
+        ],
+        "correct": 1,
+        "solution": "Wide fur-padded paws increase surface area, reducing ground pressure to walk effortlessly across snow."
+    },
+    {
+        "id": 28,
+        "question": "What does a streamlined spindle body shape achieve for an aquatic fish?",
+        "options": [
+            "It minimizes fluid friction and viscous drag, allowing smooth forward gliding",
+            "It prevents the fish from getting wet",
+            "It helps the fish walk on riverbanks",
+            "It turns salt water into fresh water"
+        ],
+        "correct": 0,
+        "solution": "A streamlined tapered profile drastically reduces turbulent drag as water glides past."
+    },
+    {
+        "id": 29,
+        "question": "How do fish absorb oxygen gas needed for respiration from their surrounding environment?",
+        "options": [
+            "They breathe atmospheric air with lungs every minute",
+            "Water washes over capillary-rich gills, allowing dissolved oxygen to diffuse into blood",
+            "They drink salt water to split hydrogen",
+            "They absorb oxygen through their teeth"
+        ],
+        "correct": 1,
+        "solution": "Feathery gill filaments packed with microscopic capillaries absorb dissolved oxygen directly from water."
+    },
+    {
+        "id": 30,
+        "question": "How do adult frogs respire when they transition between terrestrial ground and water?",
+        "options": [
+            "Using lungs on land and moist vascular skin for gas exchange in water",
+            "Gills only throughout life",
+            "Blowholes like whales",
+            "They hold their breath for months"
+        ],
+        "correct": 0,
+        "solution": "Adult frogs exhibit dual respiration: pulmonary respiration with lungs on land, and cutaneous respiration via moist skin underwater."
+    },
+
+    # Quiz 4: Slide 20 (Q31 to Q40)
+    {
+        "id": 31,
+        "question": "Why is habitat destruction considered the single greatest threat to global biodiversity?",
+        "options": [
+            "It makes the forest look untidy",
+            "It deprives wildlife of food, fresh water, breeding grounds, and protective canopy shelter",
+            "It makes wild animals forget how to sing",
+            "It cools down the desert sand too fast"
+        ],
+        "correct": 1,
+        "solution": "Deforestation and habitat fragmentation eliminate the essential resources wildlife require to survive and reproduce."
+    },
+    {
+        "id": 32,
+        "question": "What is the core ecological philosophy behind India's Project Tiger (1973)?",
+        "options": [
+            "To keep tigers in zoos for entertainment",
+            "To protect the tiger as an apex umbrella species, thereby safeguarding entire forest ecosystems and watersheds",
+            "To train tigers as guard animals",
+            "To count trees only"
+        ],
+        "correct": 1,
+        "solution": "Conserving the apex predator maintains the natural trophic balance and preserves millions of hectares of watershed forests."
+    },
+    {
+        "id": 33,
+        "question": "Which historic wildlife re-wilding project took place in Kuno National Park in September 2022?",
+        "options": [
+            "Reintroduction of wild cheetahs to restore open grassland predator guilds",
+            "Release of polar bears into tropical rivers",
+            "Breeding of penguins in the desert",
+            "Import of kangaroos for farming"
+        ],
+        "correct": 0,
+        "solution": "African cheetahs were introduced to Kuno National Park to revive India's extinct grassland apex predator niche."
+    },
+    {
+        "id": 34,
+        "question": "What traditional community conservation role do 'Sacred Groves' (Devrais, Orans, Kavu) serve in India?",
+        "options": [
+            "They are logging grounds for commercial timber",
+            "They are community-protected ancient forest pockets where religious reverence forbids hunting and felling, preserving virgin biodiversity",
+            "They are modern concrete dams",
+            "They are commercial wheat fields"
+        ],
+        "correct": 1,
+        "solution": "Sacred groves represent community-stewarded ecological refuges that have preserved pristine endemic flora and fauna for centuries."
+    },
+    {
+        "id": 35,
+        "question": "What major botanical and environmental contributions are credited to Dr. E.K. Janaki Ammal?",
+        "options": [
+            "She discovered electricity in rocks",
+            "She bred sweet indigenous sugarcane hybrids, mapped plant chromosomes, and provided scientific evidence to save Silent Valley rainforest",
+            "She built the first steam locomotive in India",
+            "She was an astronaut"
+        ],
+        "correct": 1,
+        "solution": "Dr. Janaki Ammal was a pioneering botanist whose cytogenetic work and rainforest advocacy protected the Silent Valley ecosystem."
+    },
+    {
+        "id": 36,
+        "question": "Why is Dr. Salim Ali celebrated as the 'Birdman of India'?",
+        "options": [
+            "He built wooden wings to glide off mountains",
+            "He conducted pioneering nationwide bird surveys, authored seminal bird reference books, and established premier bird sanctuaries",
+            "He kept millions of birds in cages",
+            "He was a painter who only painted feathers"
+        ],
+        "correct": 1,
+        "solution": "Dr. Salim Ali transformed modern Indian ornithology through rigorous field surveys, public education, and sanctuary establishment."
+    },
+    {
+        "id": 37,
+        "question": "What did the grassroots 'Save Silent Valley' movement in Kerala accomplish in the 1970s and 1980s?",
+        "options": [
+            "It halted a proposed hydroelectric dam that would have submerged pristine tropical evergreen rainforest",
+            "It built a massive coal power station",
+            "It paved roads across the entire valley",
+            "It cleared old trees to plant rubber"
+        ],
+        "correct": 0,
+        "solution": "Public protests and scientific evidence successfully stopped the dam project, preserving Silent Valley as an undisturbed National Park."
+    },
+    {
+        "id": 38,
+        "question": "Which critically endangered, heavy-flying bird of Rajasthan's arid grasslands is protected by specialized sanctuaries?",
+        "options": ["Great Indian Bustard (Godawan)", "Common Blue Pigeon", "House Sparrow", "Green Parrot"],
+        "correct": 0,
+        "solution": "The Great Indian Bustard is a critically endangered grassland bird protected in dedicated sanctuaries like the Desert National Park."
+    },
+    {
+        "id": 39,
+        "question": "Which of the following actions can students take to support biodiversity in their own neighborhood?",
+        "options": [
+            "Planting native flowering plants, setting up clean water bowls for birds, and avoiding plastic litter",
+            "Spraying chemical poisons on every garden bush",
+            "Throwing plastic packets into ponds and streams",
+            "Destroying bird nests on house roofs"
+        ],
+        "correct": 0,
+        "solution": "Nurturing native plants, providing clean drinking water, and keeping habitats free of plastic supports urban wildlife."
+    },
+    {
+        "id": 40,
+        "question": "What is the ultimate message of studying 'Diversity in the Living World'?",
+        "options": [
+            "Humans are separate from nature and should exploit all species",
+            "All living organisms are interconnected in an interdependent web of life that humans must cherish, respect, and conserve",
+            "Only domestic pet animals have value",
+            "Plants and animals never change or adapt"
+        ],
+        "correct": 1,
+        "solution": "Understanding biodiversity inspires deep reverence for the interconnected web of life and motivates compassionate environmental stewardship."
+    }
+]
+
+# Helper function to generate clean spoken text for slides 1 to 16
+def strip_html(html_str):
+    # Remove tags and normalize spaces
+    text = re.sub(r'<[^>]+>', ' ', html_str)
+    text = re.sub(r'\s+', ' ', text)
+    return text.strip()
+
+for s in SLIDES:
+    if s["id"] <= 16:
+        theory_clean = strip_html(s["theory"])
+        lecture_clean = strip_html(s["lecture"])
+        # Format the full spoken lecture text (Title + Subtitle + Theory + Detailed Lecture)
+        # Strictly zero exercises!
+        spoken = f"Slide {s['id']}. {s['title']}. {s['subtitle']}. Core Concepts: {theory_clean} Classroom Lecture: {lecture_clean}"
+        s["spoken_text"] = spoken
+
+# Verify zero raw LaTeX
+raw_latex_pattern = re.compile(r'\\[a-zA-Z]+')
+
+for s in SLIDES:
+    for k in ["title", "subtitle", "theory", "lecture", "spoken_text"]:
+        if k in s:
+            matches = raw_latex_pattern.findall(s[k])
+            if matches:
+                raise ValueError(f"Found raw LaTeX in Slide {s['id']} field {k}: {set(matches)}")
+    for cp in s.get("checkpoints", []):
+        for k in ["question", "explanation"]:
+            matches = raw_latex_pattern.findall(cp[k])
+            if matches:
+                raise ValueError(f"Found raw LaTeX in Slide {s['id']} checkpoint {cp['id']} field {k}: {set(matches)}")
+
+for q in QUIZ_QUESTIONS:
+    for k in ["question", "solution"]:
+        matches = raw_latex_pattern.findall(q[k])
+        if matches:
+            raise ValueError(f"Found raw LaTeX in Quiz Q{q['id']} field {k}: {set(matches)}")
+
+with open(".agents/class6_science_ch2_data.py", "w", encoding="utf-8") as f:
+    f.write('"""\nNCERT Class 6 Science Chapter 2: Diversity in the Living World Data Module\n"""\n\n')
+    f.write(f'CHAPTER_META = {repr(CHAPTER_META)}\n\n')
+    f.write(f'SLIDES = {repr(SLIDES)}\n\n')
+    f.write(f'QUIZ_QUESTIONS = {repr(QUIZ_QUESTIONS)}\n')
+
+print("Successfully generated updated .agents/class6_science_ch2_data.py with rich lectures and zero lecturer names.")

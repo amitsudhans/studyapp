@@ -1,0 +1,976 @@
+# -*- coding: utf-8 -*-
+"""All 16 Simulators for Chapter 14: Maps and Locations"""
+
+simulators = {
+    1: '''
+    <div class="flex flex-col h-full justify-between gap-3 text-xs">
+        <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-700">
+            <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-cyan-400">🕊️ Siberian Crane Migration Route</span>
+                <span id="sim1_badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Total: 5,200 km</span>
+            </div>
+            <p class="text-[11px] text-slate-300 mb-2">Animate the migratory flight from Arctic Siberia southward to Bharatpur, Rajasthan:</p>
+            <div class="flex gap-2 mb-2">
+                <button onclick="sim1AnimateFlight()" id="sim1_fly_btn" class="flex-1 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-bold transition">Start Southward Flight ➔</button>
+                <button onclick="sim1Reset()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">Reset</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-700 items-center">
+            <div class="flex justify-center items-center bg-slate-950/80 p-2 rounded-xl border border-slate-800">
+                <svg id="sim1_svg" viewBox="0 0 200 160" class="w-48 h-36">
+                    <!-- Compass Rose -->
+                    <circle cx="170" cy="30" r="14" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+                    <line x1="170" y1="18" x2="170" y2="42" stroke="#38bdf8" stroke-width="1.5"/>
+                    <line x1="158" y1="30" x2="182" y2="30" stroke="#94a3b8" stroke-width="1"/>
+                    <text x="170" y="16" text-anchor="middle" font-size="7" fill="#38bdf8" font-weight="bold">N</text>
+                    <!-- Flight Path Line -->
+                    <path d="M 50 25 Q 120 70 100 135" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="4,2"/>
+                    <!-- Siberia Landmark -->
+                    <circle cx="50" cy="25" r="5" fill="#38bdf8"/>
+                    <text x="50" y="18" text-anchor="middle" font-size="8" fill="#38bdf8" font-weight="bold">Siberia (North)</text>
+                    <!-- Bharatpur Landmark -->
+                    <circle cx="100" cy="135" r="5" fill="#f59e0b"/>
+                    <text x="100" y="150" text-anchor="middle" font-size="8" fill="#f59e0b" font-weight="bold">Bharatpur (South)</text>
+                    <!-- Crane Marker -->
+                    <g id="sim1_crane" transform="translate(50, 25)">
+                        <circle cx="0" cy="0" r="4" fill="#ffffff" stroke="#0284c7" stroke-width="1.5"/>
+                        <polygon points="-6,-2 0,4 6,-2" fill="#38bdf8" opacity="0.8"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="space-y-2 font-mono text-[11px]">
+                <div class="p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <span class="text-cyan-300 font-bold block mb-1">Directional Vector:</span>
+                    <div id="sim1_dir_txt" class="text-amber-300 font-bold">Heading: Southwards (S)</div>
+                    <div class="text-[10px] text-slate-400 mt-0.5">Navigating via celestial landmarks and Earth's magnetic field.</div>
+                </div>
+                <div class="p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300 flex justify-between items-center">
+                    <span>Distance Flown:</span>
+                    <span id="sim1_dist" class="text-emerald-400 font-bold text-sm">0 km / 5,200 km</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    ''',
+    2: '''
+    <div class="flex flex-col h-full justify-between gap-3 text-xs">
+        <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-700">
+            <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-amber-400">🧭 Cardinal Compass & Sun Explorer</span>
+                <span id="sim2_badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">Facing East</span>
+            </div>
+            <p class="text-[11px] text-slate-300 mb-2">Face the rising sun or select a direction to establish left, right, and opposite bearings:</p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 mb-2">
+                <button onclick="sim2Face('east')" id="sim2_btn_east" class="px-2 py-1 rounded bg-amber-600 text-white font-bold">Face East (Sun)</button>
+                <button onclick="sim2Face('north')" id="sim2_btn_north" class="px-2 py-1 rounded bg-slate-800 text-slate-200">Face North</button>
+                <button onclick="sim2Face('west')" id="sim2_btn_west" class="px-2 py-1 rounded bg-slate-800 text-slate-200">Face West</button>
+                <button onclick="sim2Face('south')" id="sim2_btn_south" class="px-2 py-1 rounded bg-slate-800 text-slate-200">Face South</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-700 items-center">
+            <div class="flex justify-center items-center bg-slate-950/80 p-2 rounded-xl border border-slate-800">
+                <svg id="sim2_svg" viewBox="0 0 180 140" class="w-44 h-32">
+                    <!-- Compass Axes -->
+                    <line x1="90" y1="20" x2="90" y2="120" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="30" y1="70" x2="150" y2="70" stroke="#475569" stroke-width="1.5"/>
+                    <text x="90" y="15" text-anchor="middle" font-size="9" fill="#38bdf8" font-weight="bold">North (N)</text>
+                    <text x="90" y="132" text-anchor="middle" font-size="9" fill="#10b981" font-weight="bold">South (S)</text>
+                    <text x="165" y="73" text-anchor="middle" font-size="9" fill="#f59e0b" font-weight="bold">East (E)</text>
+                    <text x="15" y="73" text-anchor="middle" font-size="9" fill="#f43f5e" font-weight="bold">West (W)</text>
+                    <!-- Rising Sun -->
+                    <circle cx="140" cy="40" r="10" fill="#f59e0b" opacity="0.8"/>
+                    <text x="140" y="58" text-anchor="middle" font-size="6" fill="#facc15 font-bold">Rising Sun</text>
+                    <!-- Pointer Arrow -->
+                    <g id="sim2_pointer" transform="rotate(90, 90, 70)">
+                        <polygon points="90,40 95,75 85,75" fill="#f59e0b"/>
+                        <circle cx="90" cy="70" r="4" fill="#ffffff"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="space-y-1.5 font-mono text-[11px]">
+                <div class="p-1.5 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <span class="text-amber-400 font-bold">Front:</span> <span id="sim2_front" class="text-white">East (Facing Sun)</span>
+                </div>
+                <div class="p-1.5 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <span class="text-cyan-400 font-bold">Left Hand:</span> <span id="sim2_left" class="text-white">North</span>
+                </div>
+                <div class="p-1.5 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <span class="text-emerald-400 font-bold">Right Hand:</span> <span id="sim2_right" class="text-white">South</span>
+                </div>
+                <div class="p-1.5 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <span class="text-rose-400 font-bold">Behind Back:</span> <span id="sim2_back" class="text-white">West (Setting Sun)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    ''',
+    3: '''
+    <div class="flex flex-col h-full justify-between gap-3 text-xs">
+        <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-700">
+            <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-purple-400">🐣 Four Chicks Flight Trajectory</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30">Perpendicular 90° Axes</span>
+            </div>
+            <p class="text-[11px] text-slate-300 mb-2">Animate the four chicks flying out from their nest along the four cardinal directions:</p>
+            <div class="flex gap-2 mb-2">
+                <button onclick="sim3FlyChicks()" id="sim3_btn_fly" class="flex-1 py-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-bold transition">Fly All 4 Chicks Out ➔</button>
+                <button onclick="sim3Reset()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">Reset</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-700 items-center">
+            <div class="flex justify-center items-center bg-slate-950/80 p-2 rounded-xl border border-slate-800">
+                <svg id="sim3_svg" viewBox="0 0 160 140" class="w-40 h-32">
+                    <!-- Axes -->
+                    <line x1="80" y1="15" x2="80" y2="125" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="20" y1="70" x2="140" y2="70" stroke="#475569" stroke-width="1.5"/>
+                    <!-- Central Nest -->
+                    <circle cx="80" cy="70" r="10" fill="#78350f" stroke="#d97706" stroke-width="1.5"/>
+                    <text x="80" y="73" text-anchor="middle" font-size="7" fill="#fef3c7" font-weight="bold">Nest</text>
+                    <!-- Chick 1 (N) -->
+                    <circle id="sim3_c1" cx="80" cy="70" r="5" fill="#38bdf8"/>
+                    <!-- Chick 2 (S) -->
+                    <circle id="sim3_c2" cx="80" cy="70" r="5" fill="#10b981"/>
+                    <!-- Chick 3 (E) -->
+                    <circle id="sim3_c3" cx="80" cy="70" r="5" fill="#f59e0b"/>
+                    <!-- Chick 4 (W) -->
+                    <circle id="sim3_c4" cx="80" cy="70" r="5" fill="#f43f5e"/>
+                    <!-- Labels -->
+                    <text x="80" y="10" text-anchor="middle" font-size="7" fill="#38bdf8" font-weight="bold">North (Chick 1)</text>
+                    <text x="80" y="135" text-anchor="middle" font-size="7" fill="#10b981" font-weight="bold">South (Chick 2)</text>
+                    <text x="145" y="73" font-size="7" fill="#f59e0b" font-weight="bold">East (3)</text>
+                    <text x="15" y="73" text-anchor="end" font-size="7" fill="#f43f5e" font-weight="bold">West (4)</text>
+                </svg>
+            </div>
+            <div class="space-y-2 font-mono text-[11px]">
+                <div class="p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <span class="text-purple-300 font-bold block mb-1">Perpendicular Geometry:</span>
+                    <div class="text-slate-300 text-[10px]">North ↔ South: Vertical Axis (180°)</div>
+                    <div class="text-slate-300 text-[10px]">East ↔ West: Horizontal Axis (180°)</div>
+                    <div class="text-amber-300 font-bold mt-1">Cross Angle: 90° Right Angle</div>
+                </div>
+                <div class="p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <span class="text-cyan-300 font-bold">Opposite Pairs:</span>
+                    <span class="text-slate-400 block text-[10px]">North is opposite South; East is opposite West.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    ''',
+    4: '''
+    <div class="flex flex-col h-full justify-between gap-3 text-xs">
+        <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-700">
+            <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-emerald-400">⛺ Campsite Map & Legend Studio</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Bird Watching Camp</span>
+            </div>
+            <p class="text-[11px] text-slate-300 mb-2">Click to apply directional color clues to the tents around the road and lake:</p>
+            <div class="flex flex-wrap gap-1.5 mb-2">
+                <button onclick="sim4ColorTents()" id="sim4_btn_color" class="px-2.5 py-1 rounded bg-emerald-600 text-white font-bold">Apply Color Clues ➔</button>
+                <button onclick="sim4AddEastTent()" id="sim4_btn_east" class="px-2.5 py-1 rounded bg-slate-800 text-slate-200">Draw Tent East of Lake</button>
+                <button onclick="sim4Reset()" class="px-2.5 py-1 rounded bg-slate-800 text-slate-200">Reset</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-700 items-center">
+            <div class="flex justify-center items-center bg-slate-950/80 p-2 rounded-xl border border-slate-800">
+                <svg id="sim4_svg" viewBox="0 0 180 140" class="w-44 h-32">
+                    <!-- Central Road -->
+                    <line x1="70" y1="10" x2="70" y2="130" stroke="#64748b" stroke-width="6"/>
+                    <line x1="70" y1="10" x2="70" y2="130" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="3,3"/>
+                    <text x="65" y="15" text-anchor="end" font-size="6" fill="#94a3b8">Road</text>
+                    <!-- Lake in East -->
+                    <ellipse cx="125" cy="70" rx="22" ry="16" fill="#0284c7" opacity="0.6" stroke="#38bdf8" stroke-width="1.5"/>
+                    <text x="125" y="72" text-anchor="middle" font-size="7" fill="#ffffff" font-weight="bold">Lake</text>
+                    <!-- Tent West of Road (Blue) -->
+                    <polygon id="sim4_t_west" points="30,55 42,75 18,75" fill="#475569" stroke="#94a3b8" stroke-width="1"/>
+                    <text x="30" y="83" text-anchor="middle" font-size="6" fill="#94a3b8" id="sim4_lbl_west">West Tent</text>
+                    <!-- Tent Closest to Lake (Green) -->
+                    <polygon id="sim4_t_lake" points="100,55 108,70 92,70" fill="#475569" stroke="#94a3b8" stroke-width="1"/>
+                    <!-- Tent North of Green (Purple) -->
+                    <polygon id="sim4_t_north" points="100,20 108,35 92,35" fill="#475569" stroke="#94a3b8" stroke-width="1"/>
+                    <!-- Tent South of Lake (Yellow) -->
+                    <polygon id="sim4_t_south" points="125,100 133,115 117,115" fill="#475569" stroke="#94a3b8" stroke-width="1"/>
+                    <!-- Dynamic East Tent -->
+                    <polygon id="sim4_t_east" points="160,60 168,75 152,75" fill="#475569" opacity="0"/>
+                </svg>
+            </div>
+            <div class="space-y-1.5 font-mono text-[10px]">
+                <div class="p-1.5 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <span class="text-blue-400 font-bold">1. West of Road:</span> Blue Tent
+                </div>
+                <div class="p-1.5 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <span class="text-emerald-400 font-bold">2. Near Lake:</span> Green Tent
+                </div>
+                <div class="p-1.5 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <span class="text-purple-400 font-bold">3. North of Green:</span> Purple Tent
+                </div>
+                <div class="p-1.5 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <span class="text-yellow-400 font-bold">4. South of Lake:</span> Yellow Tent
+                </div>
+            </div>
+        </div>
+    </div>
+    ''',
+    5: '''
+    <div class="flex flex-col h-full justify-between gap-3 text-xs">
+        <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-700">
+            <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-blue-400">🛏️ Room Layout & Relative Directions</span>
+                <span id="sim5_badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">Observer at Center</span>
+            </div>
+            <p class="text-[11px] text-slate-300 mb-2">Click furniture to see its cardinal and relative directions from the student at the center:</p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 mb-2">
+                <button onclick="sim5Inspect('window')" id="sim5_btn_window" class="px-2 py-1 rounded bg-cyan-600 text-white font-bold">Window (N)</button>
+                <button onclick="sim5Inspect('bed')" id="sim5_btn_bed" class="px-2 py-1 rounded bg-slate-800 text-slate-200">Bed (E)</button>
+                <button onclick="sim5Inspect('door')" id="sim5_btn_door" class="px-2 py-1 rounded bg-slate-800 text-slate-200">Door (S)</button>
+                <button onclick="sim5Inspect('cupboard')" id="sim5_btn_cupboard" class="px-2 py-1 rounded bg-slate-800 text-slate-200">Cupboard (W)</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-700 items-center">
+            <div class="flex justify-center items-center bg-slate-950/80 p-2 rounded-xl border border-slate-800">
+                <svg id="sim5_svg" viewBox="0 0 160 140" class="w-40 h-32">
+                    <!-- Room Walls -->
+                    <rect x="20" y="15" width="120" height="110" fill="#0f172a" stroke="#475569" stroke-width="2"/>
+                    <!-- Window on North Wall -->
+                    <rect id="sim5_rect_window" x="60" y="13" width="40" height="4" fill="#38bdf8"/>
+                    <text x="80" y="25" text-anchor="middle" font-size="7" fill="#38bdf8" font-weight="bold">Window (N)</text>
+                    <!-- Door on South Wall -->
+                    <rect id="sim5_rect_door" x="65" y="123" width="30" height="4" fill="#f43f5e"/>
+                    <text x="80" y="120" text-anchor="middle" font-size="7" fill="#f43f5e" font-weight="bold">Door (S)</text>
+                    <!-- Bed on East Wall -->
+                    <rect id="sim5_rect_bed" x="115" y="45" width="23" height="50" rx="3" fill="#10b981" stroke="#34d399" stroke-width="1"/>
+                    <text x="126" y="73" text-anchor="middle" font-size="6" fill="#ffffff" font-weight="bold">Bed</text>
+                    <!-- Cupboard on West Wall -->
+                    <rect id="sim5_rect_cupboard" x="22" y="45" width="18" height="50" rx="2" fill="#f59e0b" stroke="#fbbf24" stroke-width="1"/>
+                    <text x="31" y="73" text-anchor="middle" font-size="5" fill="#ffffff" font-weight="bold">Wardrobe</text>
+                    <!-- Center Figure -->
+                    <circle cx="80" cy="70" r="6" fill="#a855f7" stroke="#ffffff" stroke-width="1.5"/>
+                    <!-- Sight arrow facing North -->
+                    <polygon points="80,58 83,63 77,63" fill="#a855f7"/>
+                </svg>
+            </div>
+            <div class="space-y-2 font-mono text-[11px]">
+                <div class="p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <span class="text-blue-300 font-bold block mb-1" id="sim5_item_title">Window on Northern Wall</span>
+                    <div id="sim5_cardinal" class="text-emerald-400 font-bold">Cardinal Direction: North</div>
+                    <div id="sim5_relative" class="text-slate-300 text-[10px] mt-1">Relative to Observer: Directly in Front</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    ''',
+    6: '''
+    <div class="flex flex-col h-full justify-between gap-3 text-xs">
+        <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-700">
+            <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-teal-400">🔄 Dynamic Observer Heading Simulator</span>
+                <span id="sim6_heading_txt" class="px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30">Facing: North (0°)</span>
+            </div>
+            <p class="text-[11px] text-slate-300 mb-2">Rotate the observer to see how relative left/right directions change while cardinal axes stay fixed:</p>
+            <div class="flex gap-2 mb-2">
+                <button onclick="sim6Turn(-90)" class="flex-1 py-1.5 rounded-lg bg-teal-600 hover:bg-teal-500 text-white font-bold transition">↶ Turn 90° Left</button>
+                <button onclick="sim6Turn(90)" class="flex-1 py-1.5 rounded-lg bg-teal-600 hover:bg-teal-500 text-white font-bold transition">↷ Turn 90° Right</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-700 items-center">
+            <div class="flex justify-center items-center bg-slate-950/80 p-2 rounded-xl border border-slate-800">
+                <svg id="sim6_svg" viewBox="0 0 160 140" class="w-40 h-32">
+                    <line x1="80" y1="15" x2="80" y2="125" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="20" y1="70" x2="140" y2="70" stroke="#475569" stroke-width="1.5"/>
+                    <text x="80" y="12" text-anchor="middle" font-size="8" fill="#38bdf8" font-weight="bold">N</text>
+                    <text x="80" y="135" text-anchor="middle" font-size="8" fill="#10b981" font-weight="bold">S</text>
+                    <text x="148" y="73" font-size="8" fill="#f59e0b" font-weight="bold">E</text>
+                    <text x="12" y="73" text-anchor="end" font-size="8" fill="#f43f5e" font-weight="bold">W</text>
+                    <!-- Observer Body and Gaze Arrow -->
+                    <g id="sim6_avatar" transform="rotate(0, 80, 70)">
+                        <circle cx="80" cy="70" r="10" fill="#0f766e" stroke="#2dd4bf" stroke-width="2"/>
+                        <polygon points="80,50 85,62 75,62" fill="#facc15"/>
+                        <!-- Left arm indicator (pink) -->
+                        <line x1="70" y1="70" x2="62" y2="70" stroke="#f43f5e" stroke-width="2.5"/>
+                        <!-- Right arm indicator (cyan) -->
+                        <line x1="90" y1="70" x2="98" y2="70" stroke="#38bdf8" stroke-width="2.5"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="space-y-1.5 font-mono text-[10px]">
+                <div class="p-1.5 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <span class="text-amber-300 font-bold">Front Heading:</span> <span id="sim6_facing">North</span>
+                </div>
+                <div class="p-1.5 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <span class="text-cyan-300 font-bold">Right Hand Points:</span> <span id="sim6_right">East</span>
+                </div>
+                <div class="p-1.5 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <span class="text-rose-300 font-bold">Left Hand Points:</span> <span id="sim6_left">West</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    ''',
+    7: '''
+    <div class="flex flex-col h-full justify-between gap-3 text-xs">
+        <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-700">
+            <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-amber-400">🚌 School Bus Field Trip Route</span>
+                <span id="sim7_status" class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">At Depot</span>
+            </div>
+            <p class="text-[11px] text-slate-300 mb-2">Advance the school bus along the street grid to pick up students at each designated stop:</p>
+            <div class="flex gap-2 mb-2">
+                <button onclick="sim7Step()" id="sim7_btn_step" class="flex-1 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-bold transition">Drive to Next Stop ➔</button>
+                <button onclick="sim7Reset()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">Reset</button>
+            </div>
+        </div>
+
+        <div class="bg-slate-950/80 p-2.5 rounded-xl border border-slate-800">
+            <svg id="sim7_svg" viewBox="0 0 320 110" class="w-full h-28">
+                <!-- Grid Roads -->
+                <line x1="20" y1="85" x2="300" y2="85" stroke="#334155" stroke-width="6"/>
+                <line x1="20" y1="25" x2="300" y2="25" stroke="#334155" stroke-width="6"/>
+                <line x1="90" y1="15" x2="90" y2="95" stroke="#334155" stroke-width="6"/>
+                <line x1="190" y1="15" x2="190" y2="95" stroke="#334155" stroke-width="6"/>
+                <line x1="270" y1="15" x2="270" y2="95" stroke="#334155" stroke-width="6"/>
+                <!-- Road Names -->
+                <text x="30" y="80" font-size="6" fill="#64748b">Park Ave</text>
+                <text x="95" y="55" font-size="6" fill="#64748b">Rose St</text>
+                <text x="120" y="20" font-size="6" fill="#64748b">Market Rd</text>
+                <!-- Stops -->
+                <circle cx="20" cy="85" r="4" fill="#64748b"/>
+                <text x="20" y="97" text-anchor="middle" font-size="6" fill="#94a3b8">Depot</text>
+                <circle cx="90" cy="25" r="4" fill="#38bdf8"/>
+                <text x="90" y="15" text-anchor="middle" font-size="6" fill="#38bdf8" font-weight="bold">Stop 1</text>
+                <circle cx="190" cy="25" r="4" fill="#10b981"/>
+                <text x="190" y="15" text-anchor="middle" font-size="6" fill="#10b981" font-weight="bold">Stop 2</text>
+                <circle cx="190" cy="85" r="4" fill="#f59e0b"/>
+                <text x="190" y="97" text-anchor="middle" font-size="6" fill="#f59e0b" font-weight="bold">Stop 3</text>
+                <circle cx="290" cy="85" r="4" fill="#f43f5e"/>
+                <text x="290" y="97" text-anchor="middle" font-size="6" fill="#f43f5e" font-weight="bold">Zoo Highway</text>
+                <!-- Bus Avatar -->
+                <g id="sim7_bus" transform="translate(20, 85)">
+                    <rect x="-8" y="-5" width="16" height="10" rx="2" fill="#eab308" stroke="#ffffff" stroke-width="1"/>
+                </g>
+            </svg>
+            <div id="sim7_log" class="text-center font-mono text-[10px] text-amber-300 mt-1">Bus ready at Depot. Click Next to depart!</div>
+        </div>
+    </div>
+    ''',
+    8: '''
+    <div class="flex flex-col h-full justify-between gap-3 text-xs">
+        <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-700">
+            <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-indigo-400">📏 Manhattan Grid Distance Optimizer</span>
+                <span id="sim8_badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">Minimal: 7 Blocks</span>
+            </div>
+            <p class="text-[11px] text-slate-300 mb-2">Select alternative routes between corner A (Home) and corner B (School):</p>
+            <div class="flex flex-wrap gap-1.5 mb-2">
+                <button onclick="sim8SelectRoute('r1')" id="sim8_btn_r1" class="px-2.5 py-1 rounded bg-indigo-600 text-white font-bold">Route 1 (L-Shape)</button>
+                <button onclick="sim8SelectRoute('r2')" id="sim8_btn_r2" class="px-2.5 py-1 rounded bg-slate-800 text-slate-200">Route 2 (Inverted L)</button>
+                <button onclick="sim8SelectRoute('r3')" id="sim8_btn_r3" class="px-2.5 py-1 rounded bg-slate-800 text-slate-200">Route 3 (Zig-Zag)</button>
+                <button onclick="sim8SelectRoute('r4')" id="sim8_btn_r4" class="px-2.5 py-1 rounded bg-slate-800 text-slate-200">Route 4 (Detour)</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-700 items-center">
+            <div class="flex justify-center items-center bg-slate-950/80 p-2 rounded-xl border border-slate-800">
+                <svg id="sim8_svg" viewBox="0 0 160 140" class="w-40 h-32">
+                    <!-- 3x4 Grid Blocks -->
+                    <g stroke="#334155" stroke-width="1">
+                        <line x1="20" y1="20" x2="140" y2="20"/>
+                        <line x1="20" y1="50" x2="140" y2="50"/>
+                        <line x1="20" y1="80" x2="140" y2="80"/>
+                        <line x1="20" y1="110" x2="140" y2="110"/>
+                        <line x1="20" y1="20" x2="20" y2="110"/>
+                        <line x1="60" y1="20" x2="60" y2="110"/>
+                        <line x1="100" y1="20" x2="100" y2="110"/>
+                        <line x1="140" y1="20" x2="140" y2="110"/>
+                    </g>
+                    <!-- Home & School Markers -->
+                    <circle cx="20" cy="110" r="4" fill="#10b981"/>
+                    <text x="20" y="122" text-anchor="middle" font-size="6" fill="#10b981" font-weight="bold">Home (A)</text>
+                    <circle cx="140" cy="20" r="4" fill="#f59e0b"/>
+                    <text x="140" y="14" text-anchor="middle" font-size="6" fill="#f59e0b" font-weight="bold">School (B)</text>
+                    <!-- Dynamic Path Overlay -->
+                    <path id="sim8_path" d="M 20 110 L 140 110 L 140 20" fill="none" stroke="#6366f1" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="space-y-2 font-mono text-[11px]">
+                <div class="p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <span class="text-indigo-300 font-bold block mb-1" id="sim8_route_title">Route 1: 3 East + 4 North</span>
+                    <div id="sim8_dist_calc" class="text-emerald-400 font-bold">Total Distance = 7 Blocks</div>
+                    <div id="sim8_efficiency" class="text-[10px] text-slate-400 mt-1">Minimal Manhattan grid distance.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    ''',
+    9: '''
+    <div class="flex flex-col h-full justify-between gap-3 text-xs">
+        <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-700">
+            <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-amber-400">🚇 Delhi Metro Schematic Transit Map</span>
+                <span id="sim9_badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">Network Overview</span>
+            </div>
+            <p class="text-[11px] text-slate-300 mb-2">Explore color-coded transit lines and interchange transfer hubs across the capital:</p>
+            <div class="flex flex-wrap gap-1.5 mb-2">
+                <button onclick="sim9FilterLine('all')" id="sim9_btn_all" class="px-2.5 py-1 rounded bg-amber-600 text-white font-bold transition">All Lines</button>
+                <button onclick="sim9FilterLine('yellow')" id="sim9_btn_yellow" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-yellow-300 transition">Yellow (N-S)</button>
+                <button onclick="sim9FilterLine('blue')" id="sim9_btn_blue" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-blue-300 transition">Blue (E-W)</button>
+                <button onclick="sim9FilterLine('red')" id="sim9_btn_red" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-rose-300 transition">Red Line</button>
+                <button onclick="sim9FilterLine('hubs')" id="sim9_btn_hubs" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-purple-300 transition">Interchanges 🔄</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-700 items-center">
+            <div class="flex justify-center items-center bg-slate-950/80 p-2 rounded-xl border border-slate-800">
+                <svg id="sim9_svg" viewBox="0 0 200 160" class="w-48 h-36">
+                    <!-- Grid background -->
+                    <defs>
+                        <pattern id="sim9_grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                            <line x1="0" y1="0" x2="20" y2="0" stroke="#334155" stroke-width="0.5" stroke-opacity="0.3"/>
+                            <line x1="0" y1="0" x2="0" y2="20" stroke="#334155" stroke-width="0.5" stroke-opacity="0.3"/>
+                        </pattern>
+                    </defs>
+                    <rect width="200" height="160" fill="url(#sim9_grid)"/>
+
+                    <!-- Compass -->
+                    <g transform="translate(180, 20)">
+                        <circle cx="0" cy="0" r="10" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+                        <line x1="0" y1="-8" x2="0" y2="8" stroke="#38bdf8" stroke-width="1.5"/>
+                        <line x1="-8" y1="0" x2="8" y2="0" stroke="#64748b" stroke-width="1"/>
+                        <text x="0" y="-9" text-anchor="middle" font-size="6" fill="#38bdf8" font-weight="bold">N</text>
+                    </g>
+
+                    <!-- Red Line (East-West North) -->
+                    <path id="sim9_line_red" d="M 20 40 L 80 40 L 160 30 L 185 30" fill="none" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
+                    <!-- Yellow Line (North-South) -->
+                    <path id="sim9_line_yellow" d="M 80 20 L 80 40 L 95 80 L 95 145" fill="none" stroke="#eab308" stroke-width="3" stroke-linecap="round"/>
+                    <!-- Blue Line (East-West Center) -->
+                    <path id="sim9_line_blue" d="M 20 95 L 60 95 L 95 80 L 140 80 L 185 95" fill="none" stroke="#3b82f6" stroke-width="3" stroke-linecap="round"/>
+                    <!-- Violet Line -->
+                    <path id="sim9_line_violet" d="M 80 40 L 115 65 L 140 80 L 140 145" fill="none" stroke="#8b5cf6" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="3,1"/>
+
+                    <!-- Interchange Hub: Kashmere Gate (Red + Yellow) -->
+                    <g id="sim9_hub_kg">
+                        <circle cx="80" cy="40" r="5" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+                        <text x="80" y="34" text-anchor="middle" font-size="6.5" fill="#f8fafc" font-weight="bold">Kashmere Gate</text>
+                    </g>
+
+                    <!-- Interchange Hub: Rajiv Chowk (Yellow + Blue) -->
+                    <g id="sim9_hub_rc">
+                        <circle cx="95" cy="80" r="6" fill="#ffffff" stroke="#e11d48" stroke-width="2"/>
+                        <circle cx="95" cy="80" r="3" fill="#e11d48"/>
+                        <text x="95" y="72" text-anchor="middle" font-size="7" fill="#facc15" font-weight="bold">Rajiv Chowk</text>
+                    </g>
+
+                    <!-- Interchange Hub: Mandi House (Blue + Violet) -->
+                    <g id="sim9_hub_mh">
+                        <circle cx="140" cy="80" r="5" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+                        <text x="140" y="73" text-anchor="middle" font-size="6" fill="#f8fafc" font-weight="bold">Mandi House</text>
+                    </g>
+
+                    <!-- Station: Qutb Minar (South Yellow) -->
+                    <circle cx="95" cy="135" r="3.5" fill="#eab308" stroke="#ffffff" stroke-width="1"/>
+                    <text x="102" y="138" font-size="6" fill="#fef08a">Qutb Minar</text>
+
+                    <!-- Station: Supreme Court (Blue Line) -->
+                    <circle cx="160" cy="86" r="3.5" fill="#3b82f6" stroke="#ffffff" stroke-width="1"/>
+                    <text x="160" y="98" text-anchor="middle" font-size="6" fill="#93c5fd">Supreme Court</text>
+                </svg>
+            </div>
+            <div class="space-y-2 font-mono text-[11px]">
+                <div class="p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <span id="sim9_info_title" class="text-amber-400 font-bold block mb-1">Delhi Metro Network Map</span>
+                    <div id="sim9_info_desc" class="text-slate-300 text-[10.5px]">Schematic maps use straight 90° and 45° angle lines rather than realistic curved geography for instant readability.</div>
+                </div>
+                <div class="p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <div class="flex justify-between items-center text-[10px]">
+                        <span class="text-slate-400">Selected Line / Hub:</span>
+                        <span id="sim9_status" class="text-emerald-400 font-bold">All 4 Lines Visible</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    ''',
+    10: '''
+    <div class="flex flex-col h-full justify-between gap-3 text-xs">
+        <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-700">
+            <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-sky-400">⚡ Metro Route Optimizer: Qutb Minar ➔ Supreme Court</span>
+                <span id="sim10_badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/20 text-sky-300 border border-sky-500/30">Select Route</span>
+            </div>
+            <p class="text-[11px] text-slate-300 mb-2">Compare Route A (direct via Rajiv Chowk) versus Route B (multiple transfers):</p>
+            <div class="flex gap-2 mb-2">
+                <button onclick="sim10SelectRoute('A')" id="sim10_btn_a" class="flex-1 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-bold transition">Route A (Rajiv Chowk)</button>
+                <button onclick="sim10SelectRoute('B')" id="sim10_btn_b" class="flex-1 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">Route B (Double Transfer)</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-700 items-center">
+            <div class="flex justify-center items-center bg-slate-950/80 p-2 rounded-xl border border-slate-800">
+                <svg id="sim10_svg" viewBox="0 0 200 160" class="w-48 h-36">
+                    <!-- Metro Route Path Background -->
+                    <path d="M 60 140 L 60 40 L 160 40" fill="none" stroke="#334155" stroke-width="4" stroke-linecap="round"/>
+                    
+                    <!-- Route A Highlight -->
+                    <path id="sim10_path_a" d="M 60 140 L 60 40 L 160 40" fill="none" stroke="#eab308" stroke-width="3" stroke-linecap="round" opacity="0.2"/>
+                    <path id="sim10_path_a2" d="M 60 40 L 160 40" fill="none" stroke="#3b82f6" stroke-width="3" stroke-linecap="round" opacity="0.2"/>
+                    
+                    <!-- Route B Path Alternate (via Hauz Khas + Mandi House) -->
+                    <path id="sim10_path_b" d="M 60 140 L 60 100 L 120 100 L 140 50 L 160 40" fill="none" stroke="#ec4899" stroke-width="3" stroke-linecap="round" opacity="0.2"/>
+
+                    <!-- Start: Qutb Minar -->
+                    <circle cx="60" cy="140" r="5" fill="#eab308" stroke="#ffffff" stroke-width="1.5"/>
+                    <text x="60" y="153" text-anchor="middle" font-size="7" fill="#fef08a" font-weight="bold">Qutb Minar</text>
+
+                    <!-- Rajiv Chowk Transfer -->
+                    <circle cx="60" cy="40" r="6" fill="#ffffff" stroke="#e11d48" stroke-width="2"/>
+                    <text x="60" y="30" text-anchor="middle" font-size="7" fill="#f8fafc" font-weight="bold">Rajiv Chowk (Transfer)</text>
+
+                    <!-- Destination: Supreme Court -->
+                    <circle cx="160" cy="40" r="5" fill="#3b82f6" stroke="#ffffff" stroke-width="1.5"/>
+                    <text x="160" y="30" text-anchor="middle" font-size="7" fill="#93c5fd" font-weight="bold">Supreme Court</text>
+
+                    <!-- Moving Train Marker -->
+                    <circle id="sim10_train" cx="60" cy="140" r="4.5" fill="#22c55e" stroke="#ffffff" stroke-width="1"/>
+                </svg>
+            </div>
+            <div class="space-y-2 font-mono text-[11px]">
+                <div class="p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <span id="sim10_route_title" class="text-sky-300 font-bold block mb-1">Route A: Optimal 1-Interchange</span>
+                    <div id="sim10_breakdown" class="text-[10px] text-slate-300 space-y-1">
+                        <div>• Yellow Line: Qutb Minar ➔ Rajiv Chowk (14 stops)</div>
+                        <div>• Interchange 1: Switch at Rajiv Chowk to Blue Line</div>
+                        <div>• Blue Line: Rajiv Chowk ➔ Supreme Court (2 stops)</div>
+                    </div>
+                </div>
+                <div class="p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300 flex justify-between items-center text-[10.5px]">
+                    <span class="text-slate-400">Stops & Transfers:</span>
+                    <span id="sim10_metrics" class="text-emerald-400 font-bold">16 Stops | 1 Transfer</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    ''',
+    11: '''
+    <div class="flex flex-col h-full justify-between gap-3 text-xs">
+        <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-700">
+            <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-emerald-400">🏫 School Map Symbols & Standard Legend</span>
+                <span id="sim11_badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Click Legend Item</span>
+            </div>
+            <p class="text-[11px] text-slate-300 mb-2">Click any symbol in the legend palette to highlight and inspect its map location:</p>
+            <div class="flex flex-wrap gap-1 mb-2">
+                <button onclick="sim11Highlight('building')" id="sim11_btn_building" class="px-2 py-1 rounded bg-indigo-600 text-white font-bold">🏢 School</button>
+                <button onclick="sim11Highlight('gate')" id="sim11_btn_gate" class="px-2 py-1 rounded bg-slate-800 text-amber-300">🚪 Main Gate</button>
+                <button onclick="sim11Highlight('tank')" id="sim11_btn_tank" class="px-2 py-1 rounded bg-slate-800 text-cyan-300">💧 Water Tank</button>
+                <button onclick="sim11Highlight('garden')" id="sim11_btn_garden" class="px-2 py-1 rounded bg-slate-800 text-emerald-300">🌳 Garden</button>
+                <button onclick="sim11Highlight('bench')" id="sim11_btn_bench" class="px-2 py-1 rounded bg-slate-800 text-purple-300">🪑 Benches</button>
+                <button onclick="sim11Highlight('all')" id="sim11_btn_all" class="px-2 py-1 rounded bg-slate-800 text-slate-200">Show All</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-700 items-center">
+            <div class="flex justify-center items-center bg-slate-950/80 p-2 rounded-xl border border-slate-800">
+                <svg id="sim11_svg" viewBox="0 0 200 160" class="w-48 h-36">
+                    <!-- Boundary Wall -->
+                    <rect x="15" y="15" width="170" height="130" fill="#0f172a" stroke="#64748b" stroke-width="2" stroke-dasharray="3,2"/>
+                    <text x="100" y="12" text-anchor="middle" font-size="6" fill="#94a3b8">Outer Boundary Wall</text>
+
+                    <!-- School Main Building -->
+                    <rect id="sim11_sym_building" x="30" y="30" width="75" height="45" rx="3" fill="#6366f1" stroke="#818cf8" stroke-width="1.5"/>
+                    <text x="67" y="55" text-anchor="middle" font-size="7" fill="#ffffff" font-weight="bold">Main Building</text>
+
+                    <!-- Main Gate (South) -->
+                    <g id="sim11_sym_gate" transform="translate(100, 145)">
+                        <rect x="-15" y="-5" width="30" height="10" fill="#f59e0b" stroke="#ffffff" stroke-width="1"/>
+                        <text x="0" y="2" text-anchor="middle" font-size="6" fill="#0f172a" font-weight="bold">GATE</text>
+                    </g>
+
+                    <!-- Water Tank (North-East) -->
+                    <g id="sim11_sym_tank" transform="translate(150, 45)">
+                        <circle cx="0" cy="0" r="12" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+                        <text x="0" y="2" text-anchor="middle" font-size="6" fill="#ffffff" font-weight="bold">TANK</text>
+                    </g>
+
+                    <!-- School Garden (South-West) -->
+                    <g id="sim11_sym_garden" transform="translate(45, 110)">
+                        <rect x="-20" y="-18" width="40" height="36" rx="4" fill="#15803d" stroke="#22c55e" stroke-width="1.5"/>
+                        <text x="0" y="-3" text-anchor="middle" font-size="6.5" fill="#ffffff" font-weight="bold">Garden</text>
+                        <circle cx="-8" cy="8" r="4" fill="#22c55e"/>
+                        <circle cx="8" cy="8" r="4" fill="#22c55e"/>
+                    </g>
+
+                    <!-- Park Benches -->
+                    <g id="sim11_sym_bench" transform="translate(150, 110)">
+                        <rect x="-15" y="-6" width="30" height="6" fill="#a855f7" stroke="#c084fc" stroke-width="1"/>
+                        <rect x="-15" y="4" width="30" height="6" fill="#a855f7" stroke="#c084fc" stroke-width="1"/>
+                        <text x="0" y="1" text-anchor="middle" font-size="5" fill="#ffffff">Benches</text>
+                    </g>
+
+                    <!-- Walkway Path -->
+                    <path d="M 100 140 L 100 95 L 67 75" fill="none" stroke="#facc15" stroke-width="2" stroke-dasharray="2,2"/>
+                    <path d="M 100 95 L 140 95 L 150 60" fill="none" stroke="#facc15" stroke-width="2" stroke-dasharray="2,2"/>
+                </svg>
+            </div>
+            <div class="space-y-2 font-mono text-[11px]">
+                <div class="p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <span id="sim11_legend_name" class="text-emerald-400 font-bold block mb-1">Standardized Map Legend</span>
+                    <div id="sim11_legend_desc" class="text-[10px] text-slate-300">A map key / legend gives fixed, universally understood symbols so any visitor can read the layout immediately.</div>
+                </div>
+                <div class="p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300 text-[10px]">
+                    <span class="text-slate-400">Selected Feature:</span>
+                    <span id="sim11_feat_stat" class="text-amber-300 font-bold ml-1">Main School Building (Purple)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    ''',
+    12: '''
+    <div class="flex flex-col h-full justify-between gap-3 text-xs">
+        <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-700">
+            <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-amber-400">🧭 Island Treasure Hunt Navigation</span>
+                <span id="sim12_badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">Step 0 of 3</span>
+            </div>
+            <p class="text-[11px] text-slate-300 mb-2">Follow the parchment bearings and pace counts to discover the buried treasure:</p>
+            <div class="flex gap-2 mb-2">
+                <button onclick="sim12NextStep()" id="sim12_step_btn" class="flex-1 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-bold transition">Walk Step 1 (East 30 Paces) ➔</button>
+                <button onclick="sim12Reset()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">Reset</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-700 items-center">
+            <div class="flex justify-center items-center bg-slate-950/80 p-2 rounded-xl border border-slate-800">
+                <svg id="sim12_svg" viewBox="0 0 200 160" class="w-48 h-36">
+                    <!-- Compass Rose -->
+                    <g transform="translate(175, 25)">
+                        <circle cx="0" cy="0" r="12" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+                        <line x1="0" y1="-10" x2="0" y2="10" stroke="#ef4444" stroke-width="1.5"/>
+                        <line x1="-10" y1="0" x2="10" y2="0" stroke="#64748b" stroke-width="1"/>
+                        <text x="0" y="-11" text-anchor="middle" font-size="6" fill="#ef4444" font-weight="bold">N</text>
+                    </g>
+
+                    <!-- Trail Lines -->
+                    <line id="sim12_line1" x1="40" y1="130" x2="130" y2="130" stroke="#eab308" stroke-width="2.5" stroke-dasharray="3,2" opacity="0.2"/>
+                    <line id="sim12_line2" x1="130" y1="130" x2="130" y2="50" stroke="#38bdf8" stroke-width="2.5" stroke-dasharray="3,2" opacity="0.2"/>
+                    <line id="sim12_line3" x1="130" y1="50" x2="70" y2="50" stroke="#22c55e" stroke-width="2.5" stroke-dasharray="3,2" opacity="0.2"/>
+
+                    <!-- Start: Banyan Tree -->
+                    <circle cx="40" cy="130" r="5" fill="#15803d" stroke="#ffffff" stroke-width="1.5"/>
+                    <text x="40" y="145" text-anchor="middle" font-size="6.5" fill="#86efac" font-weight="bold">Banyan Tree</text>
+
+                    <!-- Landmark 1: Stone Well -->
+                    <circle cx="130" cy="130" r="4.5" fill="#64748b" stroke="#ffffff" stroke-width="1"/>
+                    <text x="130" y="145" text-anchor="middle" font-size="6" fill="#cbd5e1">Old Well</text>
+
+                    <!-- Landmark 2: Sun Dial -->
+                    <circle cx="130" cy="50" r="4.5" fill="#f59e0b" stroke="#ffffff" stroke-width="1"/>
+                    <text x="130" y="42" text-anchor="middle" font-size="6" fill="#fde68a">Sun Dial</text>
+
+                    <!-- Landmark 3: Buried Chest -->
+                    <g id="sim12_chest" transform="translate(70, 50)" opacity="0.3">
+                        <rect x="-7" y="-5" width="14" height="10" rx="1.5" fill="#d97706" stroke="#fbbf24" stroke-width="1.5"/>
+                        <circle cx="0" cy="0" r="1.5" fill="#fef08a"/>
+                        <text x="0" y="14" text-anchor="middle" font-size="6" fill="#fbbf24" font-weight="bold">Treasure!</text>
+                    </g>
+
+                    <!-- Explorer Marker -->
+                    <circle id="sim12_marker" cx="40" cy="130" r="4" fill="#f43f5e" stroke="#ffffff" stroke-width="1.5"/>
+                </svg>
+            </div>
+            <div class="space-y-2 font-mono text-[11px]">
+                <div class="p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <span id="sim12_clue_title" class="text-amber-400 font-bold block mb-1">Clue 1: Departure</span>
+                    <div id="sim12_clue_desc" class="text-[10px] text-slate-300">Face the rising Sun and walk 30 paces East from the Great Banyan Tree to reach the Old Stone Well.</div>
+                </div>
+                <div class="p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300 flex justify-between items-center text-[10.5px]">
+                    <span class="text-slate-400">Total Paces Walked:</span>
+                    <span id="sim12_paces" class="text-emerald-400 font-bold">0 Paces</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    ''',
+    13: '''
+    <div class="flex flex-col h-full justify-between gap-3 text-xs">
+        <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-700">
+            <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-orange-400">🐜 Anthill Grid Crawling Lab (1 cm Grid)</span>
+                <span id="sim13_badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-orange-500/20 text-orange-300 border border-orange-500/30">Target: Laddoo</span>
+            </div>
+            <p class="text-[11px] text-slate-300 mb-2">Send the worker ant crawling along the 1 cm grid lines to gather food items:</p>
+            <div class="flex flex-wrap gap-1.5 mb-2">
+                <button onclick="sim13SelectFood('laddoo')" id="sim13_btn_laddoo" class="px-2.5 py-1 rounded bg-orange-600 text-white font-bold transition">Laddoo (2, 3)</button>
+                <button onclick="sim13SelectFood('bread')" id="sim13_btn_bread" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-amber-300 transition">Bread (5, 4)</button>
+                <button onclick="sim13SelectFood('sugar')" id="sim13_btn_sugar" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 transition">Sugar (6, 5)</button>
+                <button onclick="sim13SelectFood('apple')" id="sim13_btn_apple" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-rose-300 transition">Apple (1, 5)</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-700 items-center">
+            <div class="flex justify-center items-center bg-slate-950/80 p-2 rounded-xl border border-slate-800">
+                <svg id="sim13_svg" viewBox="0 0 180 160" class="w-48 h-40">
+                    <!-- 1 cm Grid (each unit = 20px) Origin at (20, 140) -->
+                    <defs>
+                        <pattern id="sim13_cmgrid" width="20" height="20" patternUnits="userSpaceOnUse">
+                            <rect width="20" height="20" fill="none" stroke="#334155" stroke-width="0.8"/>
+                        </pattern>
+                    </defs>
+                    <rect x="20" y="20" width="140" height="120" fill="url(#sim13_cmgrid)"/>
+                    
+                    <!-- Axes -->
+                    <line x1="20" y1="140" x2="165" y2="140" stroke="#94a3b8" stroke-width="1.5"/>
+                    <line x1="20" y1="140" x2="20" y2="15" stroke="#94a3b8" stroke-width="1.5"/>
+                    <text x="165" y="148" font-size="7" fill="#94a3b8">East (cm)</text>
+                    <text x="20" y="12" font-size="7" fill="#94a3b8">North (cm)</text>
+
+                    <!-- Axis tick labels -->
+                    <text x="20" y="150" font-size="6" fill="#64748b" text-anchor="middle">0</text>
+                    <text x="40" y="150" font-size="6" fill="#64748b" text-anchor="middle">1</text>
+                    <text x="60" y="150" font-size="6" fill="#64748b" text-anchor="middle">2</text>
+                    <text x="80" y="150" font-size="6" fill="#64748b" text-anchor="middle">3</text>
+                    <text x="100" y="150" font-size="6" fill="#64748b" text-anchor="middle">4</text>
+                    <text x="120" y="150" font-size="6" fill="#64748b" text-anchor="middle">5</text>
+                    <text x="140" y="150" font-size="6" fill="#64748b" text-anchor="middle">6</text>
+
+                    <text x="12" y="123" font-size="6" fill="#64748b" text-anchor="middle">1</text>
+                    <text x="12" y="103" font-size="6" fill="#64748b" text-anchor="middle">2</text>
+                    <text x="12" y="83" font-size="6" fill="#64748b" text-anchor="middle">3</text>
+                    <text x="12" y="63" font-size="6" fill="#64748b" text-anchor="middle">4</text>
+                    <text x="12" y="43" font-size="6" fill="#64748b" text-anchor="middle">5</text>
+                    <text x="12" y="23" font-size="6" fill="#64748b" text-anchor="middle">6</text>
+
+                    <!-- Anthill Origin (0,0) -> SVG (20, 140) -->
+                    <circle cx="20" cy="140" r="5" fill="#b45309" stroke="#ffffff" stroke-width="1"/>
+                    <text x="32" y="136" font-size="6.5" fill="#fcd34d" font-weight="bold">Anthill (0,0)</text>
+
+                    <!-- Food Items -->
+                    <!-- Laddoo at (2, 3) -> (60, 80) -->
+                    <circle cx="60" cy="80" r="4" fill="#f59e0b"/>
+                    <!-- Bread at (5, 4) -> (120, 60) -->
+                    <rect x="116" y="56" width="8" height="8" rx="1.5" fill="#d97706"/>
+                    <!-- Sugar at (6, 5) -> (140, 40) -->
+                    <rect x="136" y="36" width="8" height="8" fill="#e2e8f0"/>
+                    <!-- Apple at (1, 5) -> (40, 40) -->
+                    <circle cx="40" cy="40" r="4" fill="#ef4444"/>
+
+                    <!-- Crawling Path Active -->
+                    <path id="sim13_path" d="M 20 140 L 60 140 L 60 80" fill="none" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
+
+                    <!-- Ant Marker -->
+                    <circle id="sim13_ant" cx="60" cy="80" r="3.5" fill="#f97316" stroke="#ffffff" stroke-width="1"/>
+                </svg>
+            </div>
+            <div class="space-y-2 font-mono text-[11px]">
+                <div class="p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <span id="sim13_target_title" class="text-orange-400 font-bold block mb-1">Target: Sweet Laddoo</span>
+                    <div id="sim13_calc_steps" class="text-[10px] text-slate-300 space-y-1">
+                        <div>• Horizontal East: 2 grid units = 2 cm</div>
+                        <div>• Vertical North: 3 grid units = 3 cm</div>
+                        <div>• Coordinates: (2, 3)</div>
+                    </div>
+                </div>
+                <div class="p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300 flex justify-between items-center text-[10.5px]">
+                    <span class="text-slate-400">Total Crawl Distance:</span>
+                    <span id="sim13_total_dist" class="text-emerald-400 font-bold">2 + 3 = 5 cm</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    ''',
+    14: '''
+    <div class="flex flex-col h-full justify-between gap-3 text-xs">
+        <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-700">
+            <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-teal-400">🔍 Shortest Grid Path & Backtracking Avoidance</span>
+                <span id="sim14_badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30">Target: Bread (5, 4)</span>
+            </div>
+            <p class="text-[11px] text-slate-300 mb-2">Compare minimal monotonic paths versus wasteful backtracking routes on grid lines:</p>
+            <div class="flex flex-wrap gap-1.5 mb-2">
+                <button onclick="sim14ShowRoute('EN')" id="sim14_btn_en" class="px-2.5 py-1 rounded bg-teal-600 text-white font-bold transition">East ➔ North (9 cm)</button>
+                <button onclick="sim14ShowRoute('NE')" id="sim14_btn_ne" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-sky-300 transition">North ➔ East (9 cm)</button>
+                <button onclick="sim14ShowRoute('stair')" id="sim14_btn_stair" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-indigo-300 transition">Staircase (9 cm)</button>
+                <button onclick="sim14ShowRoute('back')" id="sim14_btn_back" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-rose-300 transition">Backtracking ⚠️ (13 cm)</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-700 items-center">
+            <div class="flex justify-center items-center bg-slate-950/80 p-2 rounded-xl border border-slate-800">
+                <svg id="sim14_svg" viewBox="0 0 180 160" class="w-48 h-40">
+                    <!-- Grid background -->
+                    <defs>
+                        <pattern id="sim14_cmgrid" width="20" height="20" patternUnits="userSpaceOnUse">
+                            <rect width="20" height="20" fill="none" stroke="#334155" stroke-width="0.8"/>
+                        </pattern>
+                    </defs>
+                    <rect x="20" y="20" width="140" height="120" fill="url(#sim14_cmgrid)"/>
+                    <line x1="20" y1="140" x2="165" y2="140" stroke="#94a3b8" stroke-width="1.5"/>
+                    <line x1="20" y1="140" x2="20" y2="15" stroke="#94a3b8" stroke-width="1.5"/>
+
+                    <!-- Start & Destination Markers -->
+                    <circle cx="20" cy="140" r="4.5" fill="#f59e0b" stroke="#ffffff" stroke-width="1"/>
+                    <text x="25" y="152" font-size="6.5" fill="#fcd34d" font-weight="bold">Start (0,0)</text>
+
+                    <!-- Bread Destination at (5, 4) -> SVG (120, 60) -->
+                    <rect x="115" y="55" width="10" height="10" rx="2" fill="#d97706" stroke="#ffffff" stroke-width="1"/>
+                    <text x="120" y="50" text-anchor="middle" font-size="6.5" fill="#fed7aa" font-weight="bold">Bread (5,4)</text>
+
+                    <!-- Route Paths -->
+                    <path id="sim14_route_en" d="M 20 140 L 120 140 L 120 60" fill="none" stroke="#14b8a6" stroke-width="3" stroke-linecap="round"/>
+                    <path id="sim14_route_ne" d="M 20 140 L 20 60 L 120 60" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" opacity="0.2"/>
+                    <path id="sim14_route_stair" d="M 20 140 L 60 140 L 60 100 L 100 100 L 100 60 L 120 60" fill="none" stroke="#818cf8" stroke-width="3" stroke-linecap="round" opacity="0.2"/>
+                    <path id="sim14_route_back" d="M 20 140 L 80 140 L 80 80 L 40 80 L 40 60 L 120 60" fill="none" stroke="#f43f5e" stroke-width="3" stroke-linecap="round" opacity="0.2"/>
+                </svg>
+            </div>
+            <div class="space-y-2 font-mono text-[11px]">
+                <div class="p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <span id="sim14_route_name" class="text-teal-400 font-bold block mb-1">Route 1: 5 East + 4 North</span>
+                    <div id="sim14_formula" class="text-[10px] text-slate-300">Total distance = 5 cm (East) + 4 cm (North) = 9 cm. Minimal shortest path.</div>
+                </div>
+                <div class="p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300 flex justify-between items-center text-[10.5px]">
+                    <span class="text-slate-400">Shortest Possible Distance:</span>
+                    <span id="sim14_len_badge" class="text-emerald-400 font-bold">9 cm (Optimal)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    ''',
+    15: '''
+    <div class="flex flex-col h-full justify-between gap-3 text-xs">
+        <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-700">
+            <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-violet-400">📊 2D Coordinate Grid System Studio (12 × 12)</span>
+                <span id="sim15_badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/30">Active: (4, 7)</span>
+            </div>
+            <p class="text-[11px] text-slate-300 mb-2">Adjust sliders to observe the universal standard rule: <b>Horizontal (X) FIRST, Vertical (Y) SECOND</b>:</p>
+            <div class="grid grid-cols-2 gap-3 mb-2">
+                <div>
+                    <label class="text-[10px] text-indigo-300 flex justify-between">
+                        <span>Horizontal X (Columns / East):</span>
+                        <span id="sim15_x_val" class="font-bold text-white">4</span>
+                    </label>
+                    <input type="range" id="sim15_slider_x" min="0" max="12" value="4" oninput="sim15Update()" class="w-full accent-indigo-500 cursor-pointer">
+                </div>
+                <div>
+                    <label class="text-[10px] text-emerald-300 flex justify-between">
+                        <span>Vertical Y (Rows / North):</span>
+                        <span id="sim15_y_val" class="font-bold text-white">7</span>
+                    </label>
+                    <input type="range" id="sim15_slider_y" min="0" max="12" value="7" oninput="sim15Update()" class="w-full accent-emerald-500 cursor-pointer">
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-700 items-center">
+            <div class="flex justify-center items-center bg-slate-950/80 p-2 rounded-xl border border-slate-800">
+                <svg id="sim15_svg" viewBox="0 0 160 160" class="w-44 h-40">
+                    <!-- 12x12 Grid: 10px per unit, origin at (20, 140) -->
+                    <defs>
+                        <pattern id="sim15_grid12" width="10" height="10" patternUnits="userSpaceOnUse">
+                            <rect width="10" height="10" fill="none" stroke="#334155" stroke-width="0.5"/>
+                        </pattern>
+                    </defs>
+                    <rect x="20" y="20" width="120" height="120" fill="url(#sim15_grid12)"/>
+                    <!-- Axes -->
+                    <line x1="20" y1="140" x2="150" y2="140" stroke="#818cf8" stroke-width="1.5"/>
+                    <line x1="20" y1="140" x2="20" y2="10" stroke="#34d399" stroke-width="1.5"/>
+                    <text x="148" y="148" font-size="6" fill="#818cf8" font-weight="bold">X</text>
+                    <text x="15" y="12" font-size="6" fill="#34d399" font-weight="bold">Y</text>
+
+                    <!-- Dynamic Coordinate Projections -->
+                    <!-- Vertical projection up from X axis -->
+                    <line id="sim15_proj_x" x1="60" y1="140" x2="60" y2="70" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="2,2"/>
+                    <!-- Horizontal projection right from Y axis -->
+                    <line id="sim15_proj_y" x1="20" y1="70" x2="60" y2="70" stroke="#34d399" stroke-width="1.5" stroke-dasharray="2,2"/>
+
+                    <!-- Coordinate Point -->
+                    <circle id="sim15_pt" cx="60" cy="70" r="4.5" fill="#f59e0b" stroke="#ffffff" stroke-width="1.5"/>
+                </svg>
+            </div>
+            <div class="space-y-2 font-mono text-[11px]">
+                <div class="p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <span class="text-violet-300 font-bold block mb-1">Ordered Pair: (X, Y)</span>
+                    <div id="sim15_pair_display" class="text-amber-300 font-bold text-base mb-1">(4, 7)</div>
+                    <div id="sim15_pair_desc" class="text-[10px] text-slate-300">Walk 4 units right along the horizontal X-axis, then 7 units up along the vertical Y-axis.</div>
+                </div>
+                <div class="p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300 text-[10px]">
+                    <span class="text-slate-400">Coordinate Rule:</span>
+                    <span class="text-emerald-400 font-bold ml-1">Always (Horizontal, Vertical)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    ''',
+    16: '''
+    <div class="flex flex-col h-full justify-between gap-3 text-xs">
+        <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-700">
+            <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-emerald-400">🦁 Zoo Animal Coordinate Plotting Master</span>
+                <span id="sim16_badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Click Animal</span>
+            </div>
+            <p class="text-[11px] text-slate-300 mb-2">Select an animal to plot its exact (X, Y) coordinate coordinates on the 12 × 12 zoo grid:</p>
+            <div class="flex flex-wrap gap-1 mb-2">
+                <button onclick="sim16Plot('panda')" id="sim16_btn_panda" class="px-2 py-1 rounded bg-emerald-600 text-white font-bold">🐼 Panda (1,1)</button>
+                <button onclick="sim16Plot('tortoise')" id="sim16_btn_tortoise" class="px-2 py-1 rounded bg-slate-800 text-emerald-300">🐢 Tortoise (4,1)</button>
+                <button onclick="sim16Plot('deer')" id="sim16_btn_deer" class="px-2 py-1 rounded bg-slate-800 text-amber-300">🦌 Deer (8,3)</button>
+                <button onclick="sim16Plot('croc')" id="sim16_btn_croc" class="px-2 py-1 rounded bg-slate-800 text-cyan-300">🐊 Crocodile (7,6)</button>
+                <button onclick="sim16Plot('lion')" id="sim16_btn_lion" class="px-2 py-1 rounded bg-slate-800 text-rose-300">🦁 Lion (3,10)</button>
+                <button onclick="sim16Plot('elephant')" id="sim16_btn_elephant" class="px-2 py-1 rounded bg-slate-800 text-indigo-300">🐘 Elephant (11,11)</button>
+                <button onclick="sim16Plot('all')" id="sim16_btn_all" class="px-2 py-1 rounded bg-slate-800 text-slate-200">Show All</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-700 items-center">
+            <div class="flex justify-center items-center bg-slate-950/80 p-2 rounded-xl border border-slate-800">
+                <svg id="sim16_svg" viewBox="0 0 160 160" class="w-44 h-40">
+                    <!-- 12x12 Grid: 10px per unit, origin at (20, 140) -->
+                    <defs>
+                        <pattern id="sim16_grid12" width="10" height="10" patternUnits="userSpaceOnUse">
+                            <rect width="10" height="10" fill="none" stroke="#334155" stroke-width="0.5"/>
+                        </pattern>
+                    </defs>
+                    <rect x="20" y="20" width="120" height="120" fill="url(#sim16_grid12)"/>
+                    <line x1="20" y1="140" x2="150" y2="140" stroke="#94a3b8" stroke-width="1.5"/>
+                    <line x1="20" y1="140" x2="20" y2="10" stroke="#94a3b8" stroke-width="1.5"/>
+                    <text x="145" y="148" font-size="6" fill="#94a3b8">East (X)</text>
+                    <text x="12" y="12" font-size="6" fill="#94a3b8">North (Y)</text>
+
+                    <!-- Guide Lines -->
+                    <line id="sim16_line_x" x1="30" y1="140" x2="30" y2="130" stroke="#fbbf24" stroke-width="1" stroke-dasharray="2,2"/>
+                    <line id="sim16_line_y" x1="20" y1="130" x2="30" y2="130" stroke="#fbbf24" stroke-width="1" stroke-dasharray="2,2"/>
+
+                    <!-- Animal Enclosures: 
+                        Panda (1, 1) -> (30, 130)
+                        Tortoise (4, 1) -> (60, 130)
+                        Deer (8, 3) -> (100, 110)
+                        Crocodile (7, 6) -> (90, 80)
+                        Lion (3, 10) -> (50, 40)
+                        Elephant (11, 11) -> (130, 30)
+                    -->
+                    <circle id="sim16_encl_panda" cx="30" cy="130" r="4.5" fill="#f8fafc" stroke="#0f172a" stroke-width="1.5"/>
+                    <circle id="sim16_encl_tortoise" cx="60" cy="130" r="4.5" fill="#10b981" stroke="#ffffff" stroke-width="1"/>
+                    <circle id="sim16_encl_deer" cx="100" cy="110" r="4.5" fill="#f59e0b" stroke="#ffffff" stroke-width="1"/>
+                    <circle id="sim16_encl_croc" cx="90" cy="80" r="4.5" fill="#06b6d4" stroke="#ffffff" stroke-width="1"/>
+                    <circle id="sim16_encl_lion" cx="50" cy="40" r="4.5" fill="#f43f5e" stroke="#ffffff" stroke-width="1"/>
+                    <circle id="sim16_encl_elephant" cx="130" cy="30" r="4.5" fill="#6366f1" stroke="#ffffff" stroke-width="1"/>
+                </svg>
+            </div>
+            <div class="space-y-2 font-mono text-[11px]">
+                <div class="p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300">
+                    <span id="sim16_animal_name" class="text-emerald-400 font-bold block mb-1">🐼 Panda Enclosure</span>
+                    <div id="sim16_coord_display" class="text-amber-300 font-bold text-sm mb-1">Coordinates: (1, 1)</div>
+                    <div id="sim16_plot_desc" class="text-[10px] text-slate-300">Located 1 unit East along the horizontal column and 1 unit North along the vertical row from the entrance.</div>
+                </div>
+                <div class="p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300 text-[10px]">
+                    <span class="text-slate-400">Position Status:</span>
+                    <span id="sim16_status_text" class="text-emerald-400 font-bold ml-1">Panda Plotted at (1, 1)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    ''',
+}

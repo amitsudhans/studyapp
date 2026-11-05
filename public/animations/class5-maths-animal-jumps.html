@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCERT Class 5 Mathematics — Chapter 13: Animal Jumps Master Lab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+        code, pre, .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-emerald-500/30 selection:text-emerald-200">
+
+    <!-- Top Navigation / Header -->
+    <header class="bg-slate-900/90 backdrop-blur-md border-b border-slate-800 sticky top-0 z-40 px-4 py-2.5">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <a href="/multimedia" class="text-xs px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center gap-1.5 transition-colors">
+                    <span>←</span> Curriculum
+                </a>
+                <div class="h-4 w-px bg-slate-700"></div>
+                <div>
+                    <h1 class="text-sm font-bold text-white tracking-wide flex items-center gap-1.5">
+                        <span class="text-emerald-400">🐾</span>
+                        <span>Animal Jumps</span>
+                    </h1>
+                    <div class="text-[11px] text-slate-400">Class 5 Mathematics • Joyful Mathematics (NEP 2020)</div>
+                </div>
+            </div>
+
+            <!-- Voice Priority & Controls -->
+            <div class="flex items-center flex-wrap gap-2.5">
+                <div class="flex items-center gap-1.5 bg-slate-950/80 px-2 py-1 rounded-lg border border-slate-800">
+                    <label for="voiceSelect" class="text-[11px] text-emerald-400 font-semibold whitespace-nowrap">Voice:</label>
+                    <select id="voiceSelect" onchange="onVoiceChange()" class="bg-transparent text-[11px] text-slate-200 focus:outline-none max-w-[170px] sm:max-w-[210px] truncate cursor-pointer">
+                        <option value="">Searching Voices...</option>
+                    </select>
+                </div>
+
+                <button id="audioPlayBtn" onclick="toggleAudio()" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center gap-1.5 transition shadow-sm">
+                    🔊 Speak
+                </button>
+            </div>
+        </div>
+        <!-- Progress Bar -->
+        <div class="w-full bg-slate-800 h-1 mt-2.5 rounded-full overflow-hidden">
+            <div id="progressBar" class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full transition-all duration-300" style="width: 5%;"></div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-5 flex flex-col justify-between">
+        
+        <!-- Slide Header -->
+        <div class="mb-4 flex flex-wrap items-baseline justify-between gap-2 border-b border-slate-800/80 pb-3">
+            <div>
+                <span id="slideNum" class="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest block mb-0.5">Slide 1 of 20</span>
+                <h2 id="slideTitle" class="text-xl sm:text-2xl font-black text-white tracking-tight">1. Multiplier Magic Box</h2>
+                <p id="slideTagline" class="text-xs sm:text-sm text-slate-400 mt-0.5">Discovery Puzzle • Uncovering the Secret Multiplier Inside the Mathematical Machine</p>
+            </div>
+            <div class="flex items-center gap-2">
+                <button id="prevBtn" onclick="prevSlide()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 disabled:opacity-30 disabled:cursor-not-allowed text-xs font-semibold text-slate-300 border border-slate-700 transition">
+                    ← Previous
+                </button>
+                <button id="nextBtn" onclick="nextSlide()" class="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-xs font-bold text-white transition shadow-sm">
+                    Next →
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide Dynamic Viewport -->
+        <div id="slideContent" class="flex-1 min-h-[460px]">
+            <!-- Rendered by JavaScript -->
+        </div>
+
+        <!-- Last Slide Notice Container (Terminal Invariant) -->
+        <div id="lastSlideNotice" class="hidden mt-6 p-4 rounded-xl bg-gradient-to-r from-emerald-950/80 via-slate-900 to-emerald-950/80 border border-emerald-500/40 text-center">
+            <p class="text-sm font-bold text-emerald-300">You have reached the last slide of this chapter.</p>
+            <p class="text-xs text-slate-400 mt-1">Review your mastery quiz scores or click Curriculum to explore more mathematics modules.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900/60 border-t border-slate-800/80 py-2.5 px-4 text-center text-xs text-slate-500">
+        NCERT Class 5 Mathematics • Chapter 13: Animal Jumps • NEP 2020 Joyful Learning Edition
+    </footer>
+
+    <!-- Solution Modal -->
+    <div id="solutionModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-lg w-full p-5 shadow-2xl relative">
+            <div class="flex justify-between items-center mb-3 border-b border-slate-800 pb-2">
+                <h3 id="solutionTitle" class="text-sm font-bold text-emerald-300 flex items-center gap-1.5">
+                    <span>💡</span> Step-by-Step Derivation
+                </h3>
+                <button onclick="closeSolutionModal()" class="text-slate-400 hover:text-white text-base leading-none p-1">✕</button>
+            </div>
+            <div id="solutionContent" class="text-xs text-slate-300 space-y-3">
+                <!-- Injected via JavaScript -->
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800 flex justify-end">
+                <button onclick="closeSolutionModal()" class="px-4 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 transition">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Data & Script Payload -->
+    <script>
+        const slidesData = [{"id": 1, "title": "Multiplier Magic Box", "tagline": "Discovery Puzzle • Uncovering the Secret Multiplier Inside the Mathematical Machine", "lecture": "Step right inside our curious mathematical workshop and observe an astonishing device known as the multiplier magic box! When numerical tokens enter through the top funnel, the machine applies a hidden rule and outputs completely new numbers. Let us investigate what happens: when the number seven enters the machine, twenty-eight rolls out smoothly at the bottom. When the number nine enters, thirty-six emerges. When twelve enters, forty-eight pops out. And when eighteen enters, the machine produces seventy-two! What secret mathematical transformation is taking place inside this marvelous brass chamber? By comparing each input number with its corresponding output, we notice an unmistakable pattern: twenty-eight divided by seven is four; thirty-six divided by nine is four; forty-eight divided by twelve is four; and seventy-two divided by eighteen is also four! Every single input number is being multiplied by the constant hidden factor of four. The magic box demonstrates the core relationship of multiplication: an input number combined with a multiplier generates an exact product called a multiple. Whenever we scale an initial quantity by a whole number, we produce multiples. By testing different inputs, students uncover hidden factors and experience the thrill of reverse engineering mathematical operations with clear geometric and logical thinking.", "content_html": "\n<div class=\"space-y-4\">\n    <div class=\"bg-gradient-to-r from-purple-900/40 via-indigo-900/30 to-purple-900/40 border border-purple-500/30 rounded-xl p-4\">\n        <h4 class=\"text-purple-300 font-bold text-sm tracking-wider uppercase mb-1\">The Magic Box Multiplier Rule</h4>\n        <p class=\"text-slate-200 text-sm leading-relaxed\">\n            Inside the magic machine, every input token is multiplied by a secret constant number:\n            <span class=\"text-amber-300 font-bold\">Input × Hidden Factor = Output Multiple</span>.\n        </p>\n    </div>\n    <div class=\"grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs font-mono\">\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700\">\n            <span class=\"text-slate-400 block\">7 enters ➔</span>\n            <span class=\"text-emerald-400 font-bold text-sm\">28 exits</span>\n            <span class=\"text-[10px] text-amber-300 block mt-0.5\">(7 × 4 = 28)</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700\">\n            <span class=\"text-slate-400 block\">9 enters ➔</span>\n            <span class=\"text-emerald-400 font-bold text-sm\">36 exits</span>\n            <span class=\"text-[10px] text-amber-300 block mt-0.5\">(9 × 4 = 36)</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700\">\n            <span class=\"text-slate-400 block\">12 enters ➔</span>\n            <span class=\"text-emerald-400 font-bold text-sm\">48 exits</span>\n            <span class=\"text-[10px] text-amber-300 block mt-0.5\">(12 × 4 = 48)</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700\">\n            <span class=\"text-slate-400 block\">18 enters ➔</span>\n            <span class=\"text-emerald-400 font-bold text-sm\">72 exits</span>\n            <span class=\"text-[10px] text-amber-300 block mt-0.5\">(18 × 4 = 72)</span>\n        </div>\n    </div>\n</div>\n", "checkpoints": [{"question": "What is the secret hidden multiplier inside the magic box when input 7 yields 28?", "options": ["3", "4", "5", "6"], "answer": 1, "explanation": "28 ÷ 7 = 4, 36 ÷ 9 = 4, 48 ÷ 12 = 4. The secret multiplier is 4.", "hint": "Divide the output 28 by the input 7."}, {"question": "If the number 15 enters this same magic box, what output number will roll out?", "options": ["45", "50", "60", "75"], "answer": 2, "explanation": "Multiply the input 15 by the secret factor 4: 15 × 4 = 60.", "hint": "Calculate 15 × 4."}]}, {"id": 2, "title": "Factors And Multiples", "tagline": "Fundamental Definitions • Connecting Multiplication Facts to Factor Arrays", "lecture": "Now let us establish the exact mathematical definitions of factors and multiples, which form the bedrock of arithmetic. When two whole numbers are multiplied together, their resulting product is called a multiple of each individual number. Conversely, the numbers that multiply together to give that product are called its factors! For example, taking the multiplication fact three times five equals fifteen, fifteen is a multiple of both three and five. In turn, both three and five are factors of fifteen. To visualize this concept geometrically, imagine arranging unit square tiles into solid rectangular carpets. If you have twelve square tiles, how many different complete rectangles can you build without leaving any leftover gaps? You can arrange them as one single row of twelve tiles, written as one by twelve. You can arrange them as two rows of six, written as two by six. Or you can build three rows of four tiles, written as three by four! Each dimension represents an exact divisor. Listing all unique dimensions gives one, two, three, four, six, and twelve. These six numbers are all the factors of twelve! A factor divides a number completely with zero remainder, while multiples represent repeated skip jumps along the number line.", "content_html": "\n<div class=\"space-y-4\">\n    <div class=\"bg-gradient-to-r from-blue-900/40 via-cyan-900/30 to-blue-900/40 border border-blue-500/30 rounded-xl p-4\">\n        <h4 class=\"text-cyan-300 font-bold text-sm tracking-wider uppercase mb-1\">Dual Relationship: Factors & Multiples</h4>\n        <p class=\"text-slate-200 text-sm leading-relaxed\">\n            In the multiplication sentence <span class=\"text-amber-300 font-bold\">3 × 5 = 15</span>:\n            <span class=\"text-emerald-400 font-semibold\">3 and 5 are factors</span>, while\n            <span class=\"text-cyan-400 font-semibold\">15 is a multiple</span> of both 3 and 5.\n        </p>\n    </div>\n    <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-center text-xs font-mono\">\n        <div class=\"bg-slate-800/80 p-3 rounded-lg border border-slate-700\">\n            <span class=\"text-amber-300 font-bold block mb-1\">1 × 12 = 12</span>\n            <span class=\"text-slate-400 block text-[11px]\">1 row of 12 tiles</span>\n            <span class=\"text-emerald-400 text-[10px] mt-1 block\">Factors: 1, 12</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-3 rounded-lg border border-slate-700\">\n            <span class=\"text-amber-300 font-bold block mb-1\">2 × 6 = 12</span>\n            <span class=\"text-slate-400 block text-[11px]\">2 rows of 6 tiles</span>\n            <span class=\"text-emerald-400 text-[10px] mt-1 block\">Factors: 2, 6</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-3 rounded-lg border border-slate-700\">\n            <span class=\"text-amber-300 font-bold block mb-1\">3 × 4 = 12</span>\n            <span class=\"text-slate-400 block text-[11px]\">3 rows of 4 tiles</span>\n            <span class=\"text-emerald-400 text-[10px] mt-1 block\">Factors: 3, 4</span>\n        </div>\n    </div>\n</div>\n", "checkpoints": [{"question": "Which of the following complete sets lists all the factors of 12?", "options": ["1, 2, 3, 4, 6, 12", "2, 3, 4, 6", "1, 2, 4, 12", "3, 4, 6, 12"], "answer": 0, "explanation": "12 can be formed by 1×12, 2×6, and 3×4. All factors are 1, 2, 3, 4, 6, and 12.", "hint": "Check all dimensions of rectangles that enclose 12 square tiles."}, {"question": "In the multiplication equation 4 × 7 = 28, what is the number 28 called?", "options": ["A factor of 4", "A factor of 7", "A multiple of both 4 and 7", "A prime number"], "answer": 2, "explanation": "The product 28 is a multiple of both its factors, 4 and 7.", "hint": "The product formed by multiplying two numbers is their multiple."}]}, {"id": 3, "title": "Array Configurations", "tagline": "Geometric Arrays • Building Rectangles to Systematically Discover All Factors", "lecture": "Building geometric arrays is a marvelous hands-on method to discover all factor pairs of any given number without missing any. Whenever we arrange square counters into unbroken rectangular grids with equal rows and equal columns, the length and breadth directly reveal a valid factor pair! Consider investigating the number ten: we can arrange ten square tiles as one long row of ten tiles, or as two rows of five tiles. Thus, the complete factors of ten are one, two, five, and ten. Now consider the number sixteen: we can form one by sixteen, two by eight, and four by four! Notice that four times four is a perfect square array. Because four is paired with itself, the factors of sixteen are one, two, four, eight, and sixteen. What about twenty-five? Twenty-five forms one by twenty-five, and five by five, giving factors one, five, and twenty-five. Numbers with an odd count of factors are always perfect square numbers! Conversely, what happens when we try to form rectangles with thirteen tiles? No matter how hard you attempt to make two equal rows, three rows, or four rows, there is always an uneven leftover tile! Thirteen can only form a single straight line of one by thirteen, giving only two factors.", "content_html": "\n<div class=\"space-y-4\">\n    <div class=\"bg-gradient-to-r from-emerald-900/40 via-teal-900/30 to-emerald-900/40 border border-emerald-500/30 rounded-xl p-4\">\n        <h4 class=\"text-emerald-300 font-bold text-sm tracking-wider uppercase mb-1\">Rectangular Array Rule</h4>\n        <p class=\"text-slate-200 text-sm leading-relaxed\">\n            Every distinct rectangle formed by <span class=\"text-amber-300 font-bold\">N tiles</span> reveals a factor pair\n            <span class=\"text-cyan-300 font-semibold\">(Rows × Columns = N)</span>. Square arrays occur when factors are equal.\n        </p>\n    </div>\n    <div class=\"grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs font-mono\">\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700\">\n            <span class=\"text-amber-300 font-bold block\">10 Tiles</span>\n            <span class=\"text-slate-300 text-[11px] block\">1×10, 2×5</span>\n            <span class=\"text-emerald-400 text-[10px]\">4 factors</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700\">\n            <span class=\"text-amber-300 font-bold block\">16 Tiles</span>\n            <span class=\"text-slate-300 text-[11px] block\">1×16, 2×8, 4×4</span>\n            <span class=\"text-emerald-400 text-[10px]\">5 factors (Square!)</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700\">\n            <span class=\"text-amber-300 font-bold block\">25 Tiles</span>\n            <span class=\"text-slate-300 text-[11px] block\">1×25, 5×5</span>\n            <span class=\"text-emerald-400 text-[10px]\">3 factors (Square!)</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700\">\n            <span class=\"text-amber-300 font-bold block\">13 Tiles</span>\n            <span class=\"text-slate-300 text-[11px] block\">1×13 only</span>\n            <span class=\"text-purple-400 text-[10px]\">2 factors (Prime!)</span>\n        </div>\n    </div>\n</div>\n", "checkpoints": [{"question": "How many distinct rectangles can be formed using 16 square tiles?", "options": ["1 rectangle", "2 rectangles", "3 rectangles", "4 rectangles"], "answer": 2, "explanation": "16 can form 1×16, 2×8, and 4×4. That makes 3 distinct rectangles (including the square).", "hint": "Count the factor pairs: (1,16), (2,8), and (4,4)."}, {"question": "Which of the following numbers forms a square array because of an identical factor pair?", "options": ["14", "20", "25", "32"], "answer": 2, "explanation": "25 forms a 5×5 square array because 5 × 5 = 25.", "hint": "Find the number that can be expressed as a number multiplied by itself."}]}, {"id": 4, "title": "Prime Numbers", "tagline": "Special Numbers • Numbers with Exactly Two Unique Factors: 1 and Themselves", "lecture": "When we experimented with building tile rectangles, we noticed something extraordinary about numbers like thirteen: they could never be broken into multiple equal rows! Numbers that have exactly two distinct factors—namely one and the number itself—are called prime numbers. If you take nineteen square tiles, you can only arrange them as one single row of nineteen, or nineteen rows of one. You cannot make two rows, three rows, or any other rectangular shape without tiles sticking out awkwardly. Therefore, nineteen is a prime number! Similarly, thirty-seven is a prime number because its only factors are one and thirty-seven. On the other hand, numbers that have more than two factors are called composite numbers. For instance, twenty-four has eight factors: one, two, three, four, six, eight, twelve, and twenty-four, making it composite. But what about the number one? This is a classic mathematical question: the number one has only one single factor, which is one itself! Because a prime number must have exactly two distinct factors, the number one is neither prime nor composite. The smallest prime number in mathematics is two, and it is the only even prime number because every subsequent even number is divisible by two.", "content_html": "\n<div class=\"space-y-4\">\n    <div class=\"bg-gradient-to-r from-amber-900/40 via-orange-900/30 to-amber-900/40 border border-amber-500/30 rounded-xl p-4\">\n        <h4 class=\"text-amber-300 font-bold text-sm tracking-wider uppercase mb-1\">Prime vs Composite Definition</h4>\n        <p class=\"text-slate-200 text-sm leading-relaxed\">\n            <span class=\"text-emerald-400 font-bold\">Prime Number:</span> Exactly 2 factors (1 and itself). Example: 2, 3, 5, 7, 11, 13, 37.<br>\n            <span class=\"text-cyan-400 font-bold\">Composite Number:</span> More than 2 factors. Example: 4, 6, 8, 9, 12, 24.<br>\n            <span class=\"text-rose-300 font-semibold\">Special Case:</span> 1 is neither prime nor composite (only 1 factor).\n        </p>\n    </div>\n    <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono\">\n        <div class=\"bg-slate-800/80 p-3 rounded-lg border border-slate-700\">\n            <span class=\"text-emerald-400 font-bold block mb-1\">Number 13 (Prime)</span>\n            <span class=\"text-slate-300 block\">Factors: {1, 13}</span>\n            <span class=\"text-slate-400 text-[11px] block mt-1\">Cannot form rectangles other than 1 × 13.</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-3 rounded-lg border border-slate-700\">\n            <span class=\"text-cyan-400 font-bold block mb-1\">Number 14 (Composite)</span>\n            <span class=\"text-slate-300 block\">Factors: {1, 2, 7, 14}</span>\n            <span class=\"text-slate-400 text-[11px] block mt-1\">Forms rectangles: 1 × 14 and 2 × 7.</span>\n        </div>\n    </div>\n</div>\n", "checkpoints": [{"question": "Why is the number 37 classified as a prime number?", "options": ["It is an odd number", "It has exactly two factors: 1 and 37", "It can be divided by 3", "It can form multiple rectangles"], "answer": 1, "explanation": "A prime number has exactly two factors: 1 and the number itself. 37 only has factors 1 and 37.", "hint": "Think about the definition of a prime number regarding its total factors."}, {"question": "Which of the following statements about the number 2 is correct?", "options": ["2 is a composite number", "2 is the only even prime number", "2 is neither prime nor composite", "2 has three factors"], "answer": 1, "explanation": "2 has exactly two factors (1 and 2), making it prime, and it is the only even prime number.", "hint": "Check how many factors the number 2 has."}]}, {"id": 5, "title": "Number Line Jumps", "tagline": "Animal Jumps • Tracking Rabbit and Frog Step Sequences on a Common Number Line", "lecture": "Imagine standing on a lush green meadow where two lively animal friends—a rabbit and a frog—are ready to leap along a straight numbered pathway marked from zero onwards. Both animals begin their energetic journey together at position zero. The swift rabbit takes powerful leaps of four units at a time, while the nimble frog hops along in steps of three units at a time! Where will their footprints land? Let us trace the rabbit first: leaping in fours, the rabbit lands on four, eight, twelve, sixteen, twenty, twenty-four, twenty-eight, and thirty-two. These numbers are the multiples of four! Now let us follow the frog: hopping in threes, the frog touches three, six, nine, twelve, fifteen, eighteen, twenty-one, twenty-four, and twenty-seven. These numbers are the multiples of three! As we observe the numbered tiles, we discover something marvelous: both the rabbit and the frog land on the exact same tile at twelve, and again at twenty-four! A number that appears in the skip-counting sequences of two different numbers is called a common multiple. Twelve is the very first shared stepping stone where both animals meet, making it their least common multiple, while subsequent meetings occur at twenty-four, thirty-six, and forty-eight.", "content_html": "\n<div class=\"space-y-4\">\n    <div class=\"bg-gradient-to-r from-emerald-900/40 via-teal-900/30 to-emerald-900/40 border border-emerald-500/30 rounded-xl p-4\">\n        <h4 class=\"text-emerald-300 font-bold text-sm tracking-wider uppercase mb-1\">Common Multiples on the Number Line</h4>\n        <p class=\"text-slate-200 text-sm leading-relaxed\">\n            When animals take regular jumps from 0, the tiles where <span class=\"text-amber-300 font-bold\">both footprints overlap</span>\n            are called <span class=\"text-cyan-300 font-semibold\">Common Multiples</span>.\n        </p>\n    </div>\n    <div class=\"space-y-2 font-mono text-xs\">\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700 flex justify-between items-center\">\n            <span class=\"text-amber-400 font-bold\">🐰 Rabbit Jumps (Steps of 4):</span>\n            <span class=\"text-slate-200\">0, 4, 8, <strong class=\"text-emerald-400 bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-500/40\">12</strong>, 16, 20, <strong class=\"text-emerald-400 bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-500/40\">24</strong>, 28...</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700 flex justify-between items-center\">\n            <span class=\"text-cyan-400 font-bold\">🐸 Frog Jumps (Steps of 3):</span>\n            <span class=\"text-slate-200\">0, 3, 6, 9, <strong class=\"text-emerald-400 bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-500/40\">12</strong>, 15, 18, 21, <strong class=\"text-emerald-400 bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-500/40\">24</strong>...</span>\n        </div>\n        <div class=\"bg-slate-900/90 p-2.5 rounded-lg border border-emerald-500/30 text-center text-emerald-300\">\n            ★ Shared Footprint Tiles (Common Multiples): <strong>12, 24, 36, 48...</strong>\n        </div>\n    </div>\n</div>\n", "checkpoints": [{"question": "What is the very first number greater than 0 where both the rabbit (step 4) and frog (step 3) land?", "options": ["7", "12", "16", "24"], "answer": 1, "explanation": "Multiples of 4 are 4, 8, 12... Multiples of 3 are 3, 6, 9, 12... The first common number is 12.", "hint": "Find the smallest number that appears in both 3-times and 4-times multiplication tables."}, {"question": "If both animals continue leaping past 24, what will be their next common landing tile?", "options": ["28", "30", "36", "40"], "answer": 2, "explanation": "Common multiples of 3 and 4 increase by multiples of 12: 12, 24, 36, 48. The next is 36.", "hint": "Add 12 to the previous common multiple 24."}]}, {"id": 6, "title": "Common Multiples", "tagline": "Spider & Grasshopper • Investigating Shared Multiples with Step Multipliers", "lecture": "Let us observe another fascinating pair of garden jumpers: a tiny spider and an agile grasshopper embarking on the number trail. Starting side by side at tile zero, the spider scuttles forward in jumps of three units, while the grasshopper leaps ahead in large strides of six units! Let us record where their paths cross. The spider touches three, six, nine, twelve, fifteen, eighteen, twenty-one, and twenty-four. The grasshopper touches six, twelve, eighteen, twenty-four, and thirty. What do you observe? Because six is already a multiple of three, every single tile touched by the grasshopper is also touched by the spider! Their shared common multiples are six, twelve, eighteen, twenty-four, and so forth. Notice that whenever one jump size divides the other jump size completely, the larger jump size itself becomes the smallest common multiple! Now consider finding common multiples for other pairs, such as six and eight. Multiples of six are six, twelve, eighteen, twenty-four, thirty, thirty-six, and forty-two. Multiples of eight are eight, sixteen, twenty-four, thirty-two, and forty. The smallest number they share is twenty-four! Their next common multiple is forty-eight. Identifying common multiples allows mathematicians to synchronize gears, schedule rotating bus routes, and solve dynamic rhythm cycles.", "content_html": "\n<div class=\"space-y-4\">\n    <div class=\"bg-gradient-to-r from-cyan-900/40 via-blue-900/30 to-cyan-900/40 border border-cyan-500/30 rounded-xl p-4\">\n        <h4 class=\"text-cyan-300 font-bold text-sm tracking-wider uppercase mb-1\">Factor-Multiple Pair Principle</h4>\n        <p class=\"text-slate-200 text-sm leading-relaxed\">\n            When one number divides another (like 3 dividing 6), the <span class=\"text-amber-300 font-bold\">least common multiple</span>\n            is simply the <span class=\"text-emerald-400 font-semibold\">larger number itself (6)</span>!\n        </p>\n    </div>\n    <div class=\"space-y-2 font-mono text-xs\">\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700 flex justify-between items-center\">\n            <span class=\"text-purple-400 font-bold\">🕷️ Spider (Steps of 3):</span>\n            <span class=\"text-slate-200\">3, <strong class=\"text-emerald-400\">6</strong>, 9, <strong class=\"text-emerald-400\">12</strong>, 15, <strong class=\"text-emerald-400\">18</strong>, 21, <strong class=\"text-emerald-400\">24</strong>...</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700 flex justify-between items-center\">\n            <span class=\"text-emerald-400 font-bold\">🦗 Grasshopper (Steps of 6):</span>\n            <span class=\"text-slate-200\"><strong class=\"text-emerald-400\">6</strong>, <strong class=\"text-emerald-400\">12</strong>, <strong class=\"text-emerald-400\">18</strong>, <strong class=\"text-emerald-400\">24</strong>, 30...</span>\n        </div>\n        <div class=\"bg-slate-900/90 p-2.5 rounded-lg border border-cyan-500/30 text-center text-cyan-300\">\n            ★ Common Multiples of 3 and 6: <strong>6, 12, 18, 24, 30...</strong>\n        </div>\n    </div>\n</div>\n", "checkpoints": [{"question": "What is the smallest common multiple of the spider (step 3) and grasshopper (step 6)?", "options": ["3", "6", "9", "18"], "answer": 1, "explanation": "Since 6 is a multiple of 3 (3 × 2 = 6), 6 is the smallest number touched by both.", "hint": "Check the very first multiple of 6 and whether 3 divides it."}, {"question": "What is the smallest common multiple of 6 and 8?", "options": ["14", "18", "24", "48"], "answer": 2, "explanation": "Multiples of 6: 6, 12, 18, 24... Multiples of 8: 8, 16, 24... The smallest shared multiple is 24.", "hint": "Look for the first common number in the 6 and 8 multiplication tables."}]}, {"id": 7, "title": "Multiples Practice Set", "tagline": "Skill Mastery • Systematically Computing Common Multiples for Diverse Number Pairs", "lecture": "Now that we understand how common multiples emerge from overlapping skip-counting tracks, let us sharpen our mental math fluency with a structured practice set! Consider finding common multiples for the pair four and six. Listing multiples of four gives four, eight, twelve, sixteen, twenty, twenty-four, twenty-eight, thirty-two, and thirty-six. Listing multiples of six yields six, twelve, eighteen, twenty-four, thirty, and thirty-six. Looking closely at both lists, we immediately circle twelve, twenty-four, and thirty-six as common multiples. Notice that every common multiple is an exact multiple of the smallest one, twelve! Next, let us test eight and twelve: multiples of eight are eight, sixteen, twenty-four, thirty-two, forty, and forty-eight. Multiples of twelve are twelve, twenty-four, thirty-six, and forty-eight. Their common multiples are twenty-four and forty-eight! What about nine and twelve? Multiples of nine are nine, eighteen, twenty-seven, thirty-six, forty-five, and fifty-four. Multiples of twelve include twelve, twenty-four, thirty-six, and forty-eight. Their first common meeting point is thirty-six! Notice the universal systematic rule: once you identify the least common multiple of any pair of numbers, all subsequent common multiples are simply repeated multiples of that very first shared number. This elegant property saves immense calculation effort in all branches of arithmetic and mathematics.", "content_html": "\n<div class=\"space-y-4\">\n    <div class=\"bg-gradient-to-r from-indigo-900/40 via-purple-900/30 to-indigo-900/40 border border-indigo-500/30 rounded-xl p-4\">\n        <h4 class=\"text-indigo-300 font-bold text-sm tracking-wider uppercase mb-1\">Common Multiples Table</h4>\n        <p class=\"text-slate-200 text-sm leading-relaxed\">\n            Finding common multiples by listing and spotting the lowest shared value:\n        </p>\n    </div>\n    <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs font-mono\">\n        <div class=\"bg-slate-800/80 p-3 rounded-lg border border-slate-700\">\n            <span class=\"text-amber-300 font-bold block mb-1\">Pair: 4 & 6</span>\n            <span class=\"text-slate-400 text-[11px] block\">LCM = 12</span>\n            <span class=\"text-emerald-400 text-[11px] block mt-1\">Multiples: 12, 24, 36...</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-3 rounded-lg border border-slate-700\">\n            <span class=\"text-amber-300 font-bold block mb-1\">Pair: 8 & 12</span>\n            <span class=\"text-slate-400 text-[11px] block\">LCM = 24</span>\n            <span class=\"text-emerald-400 text-[11px] block mt-1\">Multiples: 24, 48, 72...</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-3 rounded-lg border border-slate-700\">\n            <span class=\"text-amber-300 font-bold block mb-1\">Pair: 9 & 12</span>\n            <span class=\"text-slate-400 text-[11px] block\">LCM = 36</span>\n            <span class=\"text-emerald-400 text-[11px] block mt-1\">Multiples: 36, 72, 108...</span>\n        </div>\n    </div>\n</div>\n", "checkpoints": [{"question": "What is the least common multiple (LCM) of 8 and 12?", "options": ["16", "24", "32", "48"], "answer": 1, "explanation": "Multiples of 8: 8, 16, 24... Multiples of 12: 12, 24... The least common multiple is 24.", "hint": "Check the smallest multiple of 12 that is divisible by 8."}, {"question": "If the least common multiple of two numbers is 15, what will their third common multiple be?", "options": ["30", "45", "60", "75"], "answer": 1, "explanation": "Common multiples are multiples of the LCM: 1st is 15, 2nd is 30, 3rd is 45.", "hint": "Multiply the LCM 15 by 3."}]}, {"id": 8, "title": "Cobbled Road Race", "tagline": "Story Trail Puzzle • Analyzing Step Trajectories to a Target Food Tile at 64", "lecture": "Along a winding cobbled forest road numbered from tile zero all the way to tile sixty-four, two animal racers are competing to reach a basket of crunchy vegetables placed at tile sixty-four! Racer A, a nimble rabbit, leaps forward in steady steps of four tiles. Racer B, a graceful deer, leaps forward in swift bounds of six tiles. Let us investigate who will reach the basket and who gets there first! To find out if an animal can land exactly on tile sixty-four, we must check if sixty-four is a multiple of that animal's jump size. For Racer A: dividing sixty-four by four gives exactly sixteen with zero remainder! Yes, Racer A lands directly on tile sixty-four after exactly sixteen jumps. For Racer B: dividing sixty-four by six gives ten with a remainder of four! Racer B lands on tile sixty (ten jumps) and then leaps ahead to tile sixty-six (eleven jumps), completely overshooting tile sixty-four! The deer never touches tile sixty-four at all! This delightful story highlights divisibility in action: a target tile is reached only if it is an exact multiple of the leap distance. Racer A wins the treat with sixteen precise leaps.", "content_html": "\n<div class=\"space-y-4\">\n    <div class=\"bg-gradient-to-r from-amber-900/40 via-red-900/30 to-amber-900/40 border border-amber-500/30 rounded-xl p-4\">\n        <h4 class=\"text-amber-300 font-bold text-sm tracking-wider uppercase mb-1\">Target Tile Divisibility Test</h4>\n        <p class=\"text-slate-200 text-sm leading-relaxed\">\n            An animal reaches target tile <span class=\"text-amber-300 font-bold\">64</span> only if\n            <span class=\"text-emerald-400 font-semibold\">64 is an exact multiple of its jump size</span>.\n        </p>\n    </div>\n    <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono\">\n        <div class=\"bg-slate-800/80 p-3 rounded-lg border border-slate-700\">\n            <span class=\"text-emerald-400 font-bold block mb-1\">🐰 Racer A (Step 4)</span>\n            <span class=\"text-slate-300 block\">64 ÷ 4 = 16 (Remainder 0)</span>\n            <span class=\"text-emerald-300 text-[11px] block mt-1\">✓ Lands exactly on tile 64 in 16 leaps!</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-3 rounded-lg border border-slate-700\">\n            <span class=\"text-rose-400 font-bold block mb-1\">🦌 Racer B (Step 6)</span>\n            <span class=\"text-slate-300 block\">64 ÷ 6 = 10 (Remainder 4)</span>\n            <span class=\"text-rose-300 text-[11px] block mt-1\">✗ Lands on 60, then 66 (Overshoots!)</span>\n        </div>\n    </div>\n</div>\n", "checkpoints": [{"question": "Can Racer B (jumping in steps of 6) land exactly on tile 64?", "options": ["Yes, in 10 jumps", "Yes, in 11 jumps", "No, because 64 is not a multiple of 6", "Yes, in 16 jumps"], "answer": 2, "explanation": "64 ÷ 6 = 10 with remainder 4. 64 is not divisible by 6, so Racer B overshoots it.", "hint": "Check if 6 divides 64 without leaving a remainder."}, {"question": "How many total leaps does Racer A (step 4) require to reach tile 64 from 0?", "options": ["12 leaps", "14 leaps", "16 leaps", "18 leaps"], "answer": 2, "explanation": "64 ÷ 4 = 16. Racer A reaches tile 64 in exactly 16 leaps.", "hint": "Divide 64 by 4."}]}, {"id": 9, "title": "Jungle Number Trail", "tagline": "Exploration Trail • Stepping Through Multiples of 2, 3, 5, and 10 in the Dense Forest", "lecture": "Deep within a dense tropical forest, an inquisitive young wildlife explorer follows an ancient stepping-stone trail numbered from zero to fifty-nine to visit various friendly animal habitats. Depending on the exact size of the steps taken, the explorer lands on distinct subsets of numbered stones along the lush forest path! When taking steady two-step jumps, the explorer touches stones four, twelve, fourteen, and fifty. Because two divides every single one of these numbers with zero remainder, the number two is a true common factor of all four locations! Next, when the explorer switches to taking brisk three-step jumps, the path touches stones nine, twenty-one, thirty-nine, and fifty-seven. Here, three divides each position completely, proving that three is a common factor of this new set of locations! What happens when the explorer takes five-step jumps? Every stone touched—such as fifteen, twenty-five, thirty-five, and fifty—ends in either five or zero! And when leaping in ten-step bounds, every single stone ends in zero: ten, twenty, thirty, forty, and fifty. This lively jungle expedition reveals that stepping intervals correspond directly to mathematical division factors. Stepping stones shared by both two-step and five-step paths—like ten, twenty, thirty, and fifty—demonstrate numbers divisible by both factors simultaneously.", "content_html": "\n<div class=\"space-y-4\">\n    <div class=\"bg-gradient-to-r from-emerald-900/40 via-teal-900/30 to-emerald-900/40 border border-emerald-500/30 rounded-xl p-4\">\n        <h4 class=\"text-emerald-300 font-bold text-sm tracking-wider uppercase mb-1\">Jungle Trail Divisibility Stones</h4>\n        <p class=\"text-slate-200 text-sm leading-relaxed\">\n            Taking jumps of size <span class=\"text-amber-300 font-bold\">K</span> touches all stones that have\n            <span class=\"text-cyan-300 font-semibold\">K as a factor</span>.\n        </p>\n    </div>\n    <div class=\"grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs font-mono\">\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700\">\n            <span class=\"text-amber-400 font-bold block\">2-Step Jumps</span>\n            <span class=\"text-slate-300 text-[11px] block mt-1\">4, 12, 14, 50</span>\n            <span class=\"text-emerald-400 text-[10px] block\">Common Factor: 2</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700\">\n            <span class=\"text-cyan-400 font-bold block\">3-Step Jumps</span>\n            <span class=\"text-slate-300 text-[11px] block mt-1\">9, 21, 39, 57</span>\n            <span class=\"text-emerald-400 text-[10px] block\">Common Factor: 3</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700\">\n            <span class=\"text-purple-400 font-bold block\">5-Step Jumps</span>\n            <span class=\"text-slate-300 text-[11px] block mt-1\">15, 25, 35, 50</span>\n            <span class=\"text-emerald-400 text-[10px] block\">Ends in 5 or 0</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700\">\n            <span class=\"text-pink-400 font-bold block\">10-Step Jumps</span>\n            <span class=\"text-slate-300 text-[11px] block mt-1\">10, 20, 30, 50</span>\n            <span class=\"text-emerald-400 text-[10px] block\">Ends in 0 (2 & 5!)</span>\n        </div>\n    </div>\n</div>\n", "checkpoints": [{"question": "Which of the following numbers is touched by BOTH 2-step jumps and 5-step jumps?", "options": ["14", "25", "30", "39"], "answer": 2, "explanation": "30 is divisible by both 2 (30 ÷ 2 = 15) and 5 (30 ÷ 5 = 6).", "hint": "Look for an even number that ends in 0."}, {"question": "Why is 3 a common factor of the numbers 9, 21, 39, and 57?", "options": ["They are all prime numbers", "3 divides each of them without leaving a remainder", "They all end in the digit 7", "They are all multiples of 9"], "answer": 1, "explanation": "A common factor divides every number in the set completely with zero remainder.", "hint": "Recall the definition of a factor."}]}, {"id": 10, "title": "Common Factors", "tagline": "Formal Definition • Identifying Shared Divisors That Completely Divide Multiple Numbers", "lecture": "Having explored factors through geometric arrays and numbered trails, we now formalize one of the most critical concepts in arithmetic: the common factor! By definition, a common factor is a whole number that divides two or more given numbers completely without leaving any remainder whatsoever. To find the common factors of two numbers, we simply list all the factors of each number individually and look for numbers that appear in both lists! For example, let us consider the pair eight and twelve. First, what are all the factors of eight? One, two, four, and eight divide eight completely. Next, what are all the factors of twelve? One, two, three, four, six, and twelve divide twelve completely. Now compare the two sets: which numbers belong to both? The numbers one, two, and four appear in both factor lists! Therefore, one, two, and four are the common factors of eight and twelve. Among these shared factors, the number four is the largest, which mathematicians designate as the highest common factor or HCF. Notice that the number one is a universal factor: because one divides every whole number without remainder, one is always a common factor of any two numbers in existence!", "content_html": "\n<div class=\"space-y-4\">\n    <div class=\"bg-gradient-to-r from-blue-900/40 via-indigo-900/30 to-blue-900/40 border border-blue-500/30 rounded-xl p-4\">\n        <h4 class=\"text-blue-300 font-bold text-sm tracking-wider uppercase mb-1\">Common Factor Definition</h4>\n        <p class=\"text-slate-200 text-sm leading-relaxed\">\n            A <span class=\"text-amber-300 font-bold\">Common Factor</span> of two numbers is any integer that divides\n            <span class=\"text-cyan-300 font-semibold\">both numbers completely (Remainder = 0)</span>.\n        </p>\n    </div>\n    <div class=\"space-y-2 font-mono text-xs\">\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700 flex justify-between items-center\">\n            <span class=\"text-amber-400 font-bold\">Factors of 8:</span>\n            <span class=\"text-slate-200\">{<strong class=\"text-emerald-400\">1</strong>, <strong class=\"text-emerald-400\">2</strong>, <strong class=\"text-emerald-400\">4</strong>, 8}</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700 flex justify-between items-center\">\n            <span class=\"text-cyan-400 font-bold\">Factors of 12:</span>\n            <span class=\"text-slate-200\">{<strong class=\"text-emerald-400\">1</strong>, <strong class=\"text-emerald-400\">2</strong>, 3, <strong class=\"text-emerald-400\">4</strong>, 6, 12}</span>\n        </div>\n        <div class=\"bg-slate-900/90 p-2.5 rounded-lg border border-emerald-500/30 text-center text-emerald-300\">\n            ★ Common Factors: <strong>{1, 2, 4}</strong> • Highest Common Factor (HCF): <strong>4</strong>\n        </div>\n    </div>\n</div>\n", "checkpoints": [{"question": "What are all the common factors of 8 and 12?", "options": ["1, 2", "1, 2, 4", "2, 4, 8", "1, 2, 3, 4"], "answer": 1, "explanation": "Factors of 8 are {1, 2, 4, 8}. Factors of 12 are {1, 2, 3, 4, 6, 12}. Common factors are 1, 2, and 4.", "hint": "Check which numbers divide both 8 and 12 without a remainder."}, {"question": "What number is always a common factor of ANY two whole numbers?", "options": ["0", "1", "2", "10"], "answer": 1, "explanation": "1 divides every non-zero whole number completely, so 1 is always a common factor.", "hint": "Think about the universal divisor that divides everything."}]}, {"id": 11, "title": "Common Factors Pairs", "tagline": "Specific Pair Analysis • Comparing 24 & 36 and Consecutive Number Relationships", "lecture": "Let us apply our common factor method to larger composite numbers and discover an intriguing mathematical theorem regarding consecutive numbers! Consider finding all common factors of twenty-four and thirty-six. Let us list all factors of twenty-four: one, two, three, four, six, eight, twelve, and twenty-four. Now let us list all factors of thirty-six: one, two, three, four, six, nine, twelve, eighteen, and thirty-six. Comparing both lists carefully, we find an impressive collection of shared divisors: one, two, three, four, six, and twelve! Both twenty-four and thirty-six share six distinct common factors, with twelve serving as their highest common factor. Now, let us examine an entirely different pair: twelve and thirteen! Notice that twelve and thirteen are consecutive numbers—they sit right next to each other on the continuous number line. Factors of twelve are one, two, three, four, six, and twelve. Factors of thirteen are simply one and thirteen. What is their only common factor? Exactly the number one! This illustrates a universal mathematical truth: any two consecutive whole numbers share only one as a common factor. Because no whole number greater than one can divide two numbers that differ by only one, consecutive numbers are always co-prime.", "content_html": "\n<div class=\"space-y-4\">\n    <div class=\"bg-gradient-to-r from-purple-900/40 via-indigo-900/30 to-purple-900/40 border border-purple-500/30 rounded-xl p-4\">\n        <h4 class=\"text-purple-300 font-bold text-sm tracking-wider uppercase mb-1\">Consecutive Numbers Co-Prime Property</h4>\n        <p class=\"text-slate-200 text-sm leading-relaxed\">\n            Any two <span class=\"text-amber-300 font-bold\">consecutive whole numbers (N and N+1)</span> have\n            <span class=\"text-emerald-400 font-semibold\">only 1 as their common factor</span>!\n        </p>\n    </div>\n    <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono\">\n        <div class=\"bg-slate-800/80 p-3 rounded-lg border border-slate-700\">\n            <span class=\"text-cyan-400 font-bold block mb-1\">Pair: 24 & 36</span>\n            <span class=\"text-slate-300 block text-[11px]\">Factors of 24: {1,2,3,4,6,8,12,24}</span>\n            <span class=\"text-slate-300 block text-[11px]\">Factors of 36: {1,2,3,4,6,9,12,18,36}</span>\n            <span class=\"text-emerald-400 font-bold block mt-1\">Common: {1, 2, 3, 4, 6, 12}</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-3 rounded-lg border border-slate-700\">\n            <span class=\"text-amber-400 font-bold block mb-1\">Pair: 12 & 13 (Consecutive)</span>\n            <span class=\"text-slate-300 block text-[11px]\">Factors of 12: {1, 2, 3, 4, 6, 12}</span>\n            <span class=\"text-slate-300 block text-[11px]\">Factors of 13: {1, 13}</span>\n            <span class=\"text-emerald-400 font-bold block mt-1\">Common: {1} only!</span>\n        </div>\n    </div>\n</div>\n", "checkpoints": [{"question": "What is the highest common factor (HCF) of 24 and 36?", "options": ["4", "6", "12", "18"], "answer": 2, "explanation": "Common factors of 24 and 36 are 1, 2, 3, 4, 6, 12. The highest is 12.", "hint": "Find the largest number that divides both 24 and 36 evenly."}, {"question": "What is the common factor of any two consecutive numbers, such as 25 and 26?", "options": ["Only 1", "1 and 2", "1 and 5", "There are no common factors"], "answer": 0, "explanation": "Consecutive numbers differ by 1, so no number greater than 1 can divide both. Their only common factor is 1.", "hint": "Consecutive numbers are always co-prime."}]}, {"id": 12, "title": "Common Factors Practice", "tagline": "Systematic Drills • Computing Shared Divisors Across Diverse Mathematical Pairs", "lecture": "Let us sharpen our analytical skills by working through a comprehensive common factor practice set covering a variety of diverse number pairs! First, consider twelve and sixteen: factors of twelve are one, two, three, four, six, and twelve. Factors of sixteen are one, two, four, eight, and sixteen. Their common factors are one, two, and four, with four standing proudly as their highest common factor. Next, consider the pair two and nine: factors of two are one and two; factors of nine are one, three, and nine. What do they share in common? Only the number one! Even though nine is a composite square number and two is a prime number, their only shared divisor is one. Now consider nine and twenty-one: factors of nine are one, three, and nine; factors of twenty-one are one, three, seven, and twenty-one. Their common factors are one and three, making three their highest common factor! Notice how systematic listing makes finding common factors completely foolproof. Always start by writing all factors in ascending order from one up to the number itself. Next, circle the matching entries. By comparing multiple pairs, students discover that some numbers share several factors, while others share only one, building deep intuition for fractions and number theory.", "content_html": "\n<div class=\"space-y-4\">\n    <div class=\"bg-gradient-to-r from-teal-900/40 via-emerald-900/30 to-teal-900/40 border border-teal-500/30 rounded-xl p-4\">\n        <h4 class=\"text-teal-300 font-bold text-sm tracking-wider uppercase mb-1\">Common Factor Drill Summary</h4>\n        <p class=\"text-slate-200 text-sm leading-relaxed\">\n            Systematically comparing factor pairs across prime, odd, and composite combinations:\n        </p>\n    </div>\n    <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs font-mono\">\n        <div class=\"bg-slate-800/80 p-3 rounded-lg border border-slate-700\">\n            <span class=\"text-amber-300 font-bold block mb-1\">Pair: 12 & 16</span>\n            <span class=\"text-slate-400 text-[11px] block\">12: {1,2,3,4,6,12}</span>\n            <span class=\"text-slate-400 text-[11px] block\">16: {1,2,4,8,16}</span>\n            <span class=\"text-emerald-400 text-[11px] block mt-1\">Common: {1, 2, 4}</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-3 rounded-lg border border-slate-700\">\n            <span class=\"text-amber-300 font-bold block mb-1\">Pair: 2 & 9</span>\n            <span class=\"text-slate-400 text-[11px] block\">2: {1, 2}</span>\n            <span class=\"text-slate-400 text-[11px] block\">9: {1, 3, 9}</span>\n            <span class=\"text-emerald-400 text-[11px] block mt-1\">Common: {1}</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-3 rounded-lg border border-slate-700\">\n            <span class=\"text-amber-300 font-bold block mb-1\">Pair: 9 & 21</span>\n            <span class=\"text-slate-400 text-[11px] block\">9: {1, 3, 9}</span>\n            <span class=\"text-slate-400 text-[11px] block\">21: {1, 3, 7, 21}</span>\n            <span class=\"text-emerald-400 text-[11px] block mt-1\">Common: {1, 3}</span>\n        </div>\n    </div>\n</div>\n", "checkpoints": [{"question": "What are the common factors of 9 and 21?", "options": ["1 only", "1 and 3", "3 and 7", "1, 3, and 9"], "answer": 1, "explanation": "Factors of 9 are {1, 3, 9}. Factors of 21 are {1, 3, 7, 21}. The common factors are 1 and 3.", "hint": "Check which numbers divide both 9 and 21."}, {"question": "What are the common factors of 2 and 9?", "options": ["1 only", "1 and 2", "1 and 3", "1, 2, 3, 9"], "answer": 0, "explanation": "Factors of 2 are {1, 2}. Factors of 9 are {1, 3, 9}. Their only shared factor is 1.", "hint": "2 is prime and does not divide 9."}]}, {"id": 13, "title": "Divisibility Logic Rules", "tagline": "Logical Reasoning • True or False Mathematical Properties of Factors and Multiples", "lecture": "Mathematics is rightly celebrated for its ironclad logical rules! Let us examine five important statements about numbers and test whether each statement is true or false using rigorous mathematical reasoning and clear counterexamples. Statement one: 'Factors of even numbers must always be even.' Is this true? No, this is completely false! For example, the number ten is an even number, but its factors include one and five, which are completely odd! Statement two: 'Multiples of odd numbers cannot be even.' Is this true? No, this is also false! Three times two equals six, which is even; multiples of odd numbers alternate regularly between odd and even products! Statement three: 'Factors of odd numbers cannot be even.' Is this true? Yes, this is absolutely true! If an odd number had an even factor, multiplying that even factor by any integer would produce an even number, which is mathematically impossible! Statement four: 'The only common factor of any two consecutive numbers is one.' Yes, this is true, as consecutive numbers differ by only one. Finally, statement five: 'Zero cannot be a factor of any whole number.' Yes, this is true because division by zero is mathematically undefined. Testing statements with counterexamples builds strong logical reasoning.", "content_html": "\n<div class=\"space-y-4\">\n    <div class=\"bg-gradient-to-r from-amber-900/40 via-red-900/30 to-amber-900/40 border border-amber-500/30 rounded-xl p-4\">\n        <h4 class=\"text-amber-300 font-bold text-sm tracking-wider uppercase mb-1\">True / False Property Matrix</h4>\n        <p class=\"text-slate-200 text-sm leading-relaxed\">\n            Rigorous mathematical verification through definitions and counterexamples:\n        </p>\n    </div>\n    <div class=\"space-y-2 text-xs font-mono\">\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700 flex justify-between items-center\">\n            <span class=\"text-slate-300\">1. Factors of even numbers must be even:</span>\n            <span class=\"text-rose-400 font-bold bg-rose-950/80 px-2 py-0.5 rounded border border-rose-500/30\">FALSE (10 has 1, 5)</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700 flex justify-between items-center\">\n            <span class=\"text-slate-300\">2. Multiples of odd numbers cannot be even:</span>\n            <span class=\"text-rose-400 font-bold bg-rose-950/80 px-2 py-0.5 rounded border border-rose-500/30\">FALSE (3 × 2 = 6)</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700 flex justify-between items-center\">\n            <span class=\"text-slate-300\">3. Factors of odd numbers cannot be even:</span>\n            <span class=\"text-emerald-400 font-bold bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30\">TRUE</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700 flex justify-between items-center\">\n            <span class=\"text-slate-300\">4. Consecutive numbers share only factor 1:</span>\n            <span class=\"text-emerald-400 font-bold bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30\">TRUE</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700 flex justify-between items-center\">\n            <span class=\"text-slate-300\">5. 0 cannot be a factor of any number:</span>\n            <span class=\"text-emerald-400 font-bold bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30\">TRUE (Undefined)</span>\n        </div>\n    </div>\n</div>\n", "checkpoints": [{"question": "Can an odd number ever have an even factor?", "options": ["Yes, always", "Yes, if the number is large", "No, never", "Only if multiplied by zero"], "answer": 2, "explanation": "If a number has an even factor, it must be divisible by 2 and therefore even. Odd numbers can never have even factors.", "hint": "Any multiple of an even number is always even."}, {"question": "Why is '0 cannot be a factor of any number' a true statement?", "options": ["0 is an odd number", "Division by 0 is undefined in mathematics", "0 is greater than 1", "0 is a prime number"], "answer": 1, "explanation": "A factor must divide a number completely, but division by zero is undefined.", "hint": "Think about what happens when you attempt to divide by zero."}]}, {"id": 14, "title": "Animal Story Problems", "tagline": "Jungle Dilemmas • Applying Multiples to Synchronize Hunting Days and Avoid Dens", "lecture": "Let us venture back into the jungle to solve intriguing story challenges using multiples and factors! In a dense valley, a swift tiger hunts every three days, while a stealthy black panther hunts every five days. If both predators begin their hunting routines on day zero, on what future days will both predators hunt simultaneously? To find their shared hunting days, we find the common multiples of three and five. Multiples of three are three, six, nine, twelve, fifteen, eighteen... Multiples of five are five, ten, fifteen, twenty... Their very first shared hunting expedition occurs on day fifteen! All future shared hunting days occur every fifteen days: day thirty, day forty-five, and so on. Now consider a navigation puzzle: a woodland traveler wishes to visit Bear den at stone thirty, while avoiding Tiger lair at stone twenty-five! Which jump size should the traveler choose from tile zero: jumps of five or jumps of six? If the traveler leaps in fives, she lands on five, ten, fifteen, twenty, and twenty-five—landing straight inside Tiger lair! But if she leaps in sixes, she lands on six, twelve, eighteen, twenty-four, and thirty, reaching Bear safely while bypassing twenty-five completely!", "content_html": "\n<div class=\"space-y-4\">\n    <div class=\"bg-gradient-to-r from-cyan-900/40 via-blue-900/30 to-cyan-900/40 border border-cyan-500/30 rounded-xl p-4\">\n        <h4 class=\"text-cyan-300 font-bold text-sm tracking-wider uppercase mb-1\">Jungle Story Math Scenarios</h4>\n        <p class=\"text-slate-200 text-sm leading-relaxed\">\n            Synchronizing periodic cycles with LCM and avoiding dangerous tiles with strategic factor selection.\n        </p>\n    </div>\n    <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono\">\n        <div class=\"bg-slate-800/80 p-3 rounded-lg border border-slate-700\">\n            <span class=\"text-amber-400 font-bold block mb-1\">🐾 Shared Hunting Days</span>\n            <span class=\"text-slate-300 block text-[11px]\">Tiger: every 3 days</span>\n            <span class=\"text-slate-300 block text-[11px]\">Panther: every 5 days</span>\n            <span class=\"text-emerald-400 font-bold block mt-1\">LCM(3, 5) = 15 Days (15, 30, 45...)</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-3 rounded-lg border border-slate-700\">\n            <span class=\"text-cyan-400 font-bold block mb-1\">🐻 Visit Bear (30), Avoid Tiger (25)</span>\n            <span class=\"text-slate-300 block text-[11px]\">Step 5: hits 25 (Danger!)</span>\n            <span class=\"text-slate-300 block text-[11px]\">Step 6: {6, 12, 18, 24, 30} (Safe!)</span>\n            <span class=\"text-emerald-400 font-bold block mt-1\">Correct Jump Size = 6</span>\n        </div>\n    </div>\n</div>\n", "checkpoints": [{"question": "On what day will the tiger (every 3 days) and panther (every 5 days) first hunt together?", "options": ["Day 8", "Day 10", "Day 15", "Day 30"], "answer": 2, "explanation": "The least common multiple of 3 and 5 is 15. They will first hunt together on Day 15.", "hint": "Find the smallest number divisible by both 3 and 5."}, {"question": "Which jump size reaches tile 30 while avoiding tile 25?", "options": ["Step size 2", "Step size 5", "Step size 6", "Step size 10"], "answer": 2, "explanation": "Step 6 reaches 6, 12, 18, 24, 30 without touching 25. Step 5 and 10 touch 25 or miss 30.", "hint": "Find a factor of 30 that is NOT a factor of 25."}]}, {"id": 15, "title": "Divisibility Venn Diagram", "tagline": "Venn Classification • Sorting 16 Numbers by Divisibility with 2, 5, and 10", "lecture": "To synthesize our comprehensive understanding of multiples and divisibility, let us examine an elegant classification puzzle using a Venn diagram with overlapping circular regions! We have a large pool of fifteen distinct numbers to categorize: ninety, twenty-two, thirty-eight, thirty, seventy-five, forty-five, sixty-six, seventy-eight, sixty-two, forty, eighty-four, fifty-six, twenty-five, ninety-five, and fifty-five. We sort them systematically based on whether they are divisible by two, by five, or by both two and five simultaneously! What happens when a number is divisible by two only? These are even numbers that do not end in zero, such as twenty-two, thirty-eight, sixty-six, seventy-eight, sixty-two, eighty-four, and fifty-six. What happens when a number is divisible by five only? These are odd numbers that end in five, such as seventy-five, forty-five, twenty-five, ninety-five, and fifty-five! Now, what belongs in the overlapping center region where both circles intersect? Numbers that are divisible by both two and five must end in zero! Because two times five equals ten, any number in this shared region is automatically divisible by ten as well: ninety, thirty, and forty. A number cannot be divisible by ten without being divisible by both two and five! Visual sorting diagrams provide instant clarity for recognizing multiple factor rules at a single glance.", "content_html": "\n<div class=\"space-y-4\">\n    <div class=\"bg-gradient-to-r from-purple-900/40 via-indigo-900/30 to-purple-900/40 border border-purple-500/30 rounded-xl p-4\">\n        <h4 class=\"text-purple-300 font-bold text-sm tracking-wider uppercase mb-1\">Divisibility Venn Diagram Regions</h4>\n        <p class=\"text-slate-200 text-sm leading-relaxed\">\n            <span class=\"text-cyan-400 font-bold\">Circle 2 (Even):</span> Ends in 0, 2, 4, 6, 8.<br>\n            <span class=\"text-amber-400 font-bold\">Circle 5 (Fives):</span> Ends in 0 or 5.<br>\n            <span class=\"text-emerald-400 font-bold\">Overlap (2 & 5 = 10):</span> Ends in 0!\n        </p>\n    </div>\n    <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-mono\">\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700\">\n            <span class=\"text-cyan-400 font-bold block mb-1\">Divisible by 2 Only:</span>\n            <span class=\"text-slate-300 text-[11px]\">22, 38, 62, 66, 78, 84, 56</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700\">\n            <span class=\"text-amber-400 font-bold block mb-1\">Divisible by 5 Only:</span>\n            <span class=\"text-slate-300 text-[11px]\">25, 45, 55, 75, 95</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-emerald-500/40 bg-emerald-950/40\">\n            <span class=\"text-emerald-400 font-bold block mb-1\">Divisible by 2, 5 & 10:</span>\n            <span class=\"text-slate-200 text-[11px] font-bold\">30, 40, 90</span>\n        </div>\n    </div>\n</div>\n", "checkpoints": [{"question": "Which of the following numbers belongs in the central overlap (divisible by 2, 5, and 10)?", "options": ["45", "78", "90", "95"], "answer": 2, "explanation": "90 ends in 0, which means it is divisible by 2 (90÷2=45), by 5 (90÷5=18), and by 10 (90÷10=9).", "hint": "Look for a number ending in 0."}, {"question": "Why can NO number be divisible by 10 without being divisible by 2 and 5?", "options": ["Because 10 is an odd number", "Because 2 and 5 are factors of 10", "Because 10 has no factors", "Because 10 is a prime number"], "answer": 1, "explanation": "Since 10 = 2 × 5, any multiple of 10 must also be a multiple of both 2 and 5.", "hint": "Think about the factors of 10."}]}, {"id": 16, "title": "Factors Multiples Summary", "tagline": "Grand Synthesis • Unifying Factor Arrays, Prime Foundations, and Common Multiples", "lecture": "As we conclude our inspiring mathematical expedition through animal jumps, let us reflect upon the great unified principles of factors and multiples that we have mastered together! Every whole number can be expressed as a product of factors, geometrically represented by solid rectangular tile arrays. Numbers that form only a single straight-line rectangle are prime numbers, possessing exactly two factors: one and the number itself. Numbers that form multiple rectangular configurations are composite numbers, while the number one is uniquely neither prime nor composite. When animals leap along the continuous number line, their footsteps map out skip-counting sequences of multiples. Where their footprints coincide, we uncover common multiples! The very first shared stepping stone represents the least common multiple, synchronizing repeating cycles in sports, clocks, and nature. Conversely, when comparing the divisor sets of multiple numbers, we find common factors, with the largest being the highest common factor. Consecutive whole numbers always share only one as a common factor, making them fundamentally co-prime. By connecting physical animal jumps, geometric rectangle arrays, and divisibility logic, students possess an exceptionally versatile mathematical toolkit to uncover numerical harmony and solve complex arithmetic problems with boundless speed, joyful enthusiasm, and absolute accuracy.", "content_html": "\n<div class=\"space-y-4\">\n    <div class=\"bg-gradient-to-r from-emerald-900/40 via-teal-900/30 to-emerald-900/40 border border-emerald-500/30 rounded-xl p-4\">\n        <h4 class=\"text-emerald-300 font-bold text-sm tracking-wider uppercase mb-1\">Core Mathematical Synthesis</h4>\n        <p class=\"text-slate-200 text-sm leading-relaxed\">\n            <span class=\"text-amber-300 font-bold\">Factors:</span> Exact divisors (geometric rectangle dimensions).<br>\n            <span class=\"text-cyan-300 font-bold\">Multiples:</span> Products formed by scaling (number line jump landings).<br>\n            <span class=\"text-purple-300 font-bold\">Primes:</span> Exactly 2 factors (1 & itself). Smallest prime is 2.\n        </p>\n    </div>\n    <div class=\"grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs font-mono\">\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700\">\n            <span class=\"text-amber-300 font-bold block\">LCM</span>\n            <span class=\"text-slate-300 text-[11px] block mt-1\">Smallest shared multiple</span>\n            <span class=\"text-emerald-400 text-[10px]\">LCM(4, 6) = 12</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700\">\n            <span class=\"text-cyan-300 font-bold block\">HCF</span>\n            <span class=\"text-slate-300 text-[11px] block mt-1\">Largest shared factor</span>\n            <span class=\"text-emerald-400 text-[10px]\">HCF(24, 36) = 12</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700\">\n            <span class=\"text-purple-300 font-bold block\">Consecutive</span>\n            <span class=\"text-slate-300 text-[11px] block mt-1\">N & N+1</span>\n            <span class=\"text-emerald-400 text-[10px]\">HCF = 1 always</span>\n        </div>\n        <div class=\"bg-slate-800/80 p-2.5 rounded-lg border border-slate-700\">\n            <span class=\"text-pink-300 font-bold block\">Overlap (10)</span>\n            <span class=\"text-slate-300 text-[11px] block mt-1\">2 × 5 = 10</span>\n            <span class=\"text-emerald-400 text-[10px]\">Ends in 0</span>\n        </div>\n    </div>\n</div>\n", "checkpoints": [{"question": "What is the key geometric difference between a prime number and a composite number in tile arrays?", "options": ["Prime numbers form circular arrays", "Prime numbers form only one straight-line rectangle (1 × N)", "Composite numbers cannot form rectangles", "Prime numbers form square arrays"], "answer": 1, "explanation": "Because a prime number has only factors 1 and itself, it can only form a single 1 × N rectangular strip.", "hint": "Think about the factor pairs of a prime number."}, {"question": "If two numbers are consecutive (like 19 and 20), what is their highest common factor (HCF)?", "options": ["1", "2", "19", "380"], "answer": 0, "explanation": "Any two consecutive whole numbers share only 1 as a common factor, so their HCF is 1.", "hint": "Consecutive numbers differ by only 1."}]}, {"id": 17, "title": "Challenge 1", "tagline": "Mastery Challenge 1 • Multiplier Magic Box, Factors, Array Models & Prime Numbers", "questions": [{"question": "If input 7 produces 28 and input 9 produces 36 in the magic box, what will input 14 produce?", "options": ["42", "56", "64", "70"], "answer": 1, "explanation": "The secret multiplier is 4 (28 ÷ 7 = 4). Therefore, 14 × 4 = 56.", "hint": "Multiply the input 14 by the secret multiplier 4.", "solution_html": "<div class='space-y-2'><p>1. Secret Multiplier = 28 ÷ 7 = 4.</p><p>2. Output = 14 × 4 = <strong>56</strong>.</p></div>"}, {"question": "Which of the following multiplication equations shows that 15 is a multiple of both 3 and 5?", "options": ["3 + 5 = 8", "15 − 5 = 10", "3 × 5 = 15", "15 ÷ 3 = 5"], "answer": 2, "explanation": "3 × 5 = 15 directly demonstrates that 15 is the product (multiple) of factors 3 and 5.", "hint": "Look for the multiplication sentence linking 3, 5, and 15.", "solution_html": "<div class='space-y-2'><p>1. Product of factors: 3 × 5 = 15.</p><p>2. Therefore, 15 is a multiple of 3 and 5.</p></div>"}, {"question": "How many different rectangular arrays can be constructed using 12 square tiles?", "options": ["2 arrays", "3 arrays", "4 arrays", "6 arrays"], "answer": 1, "explanation": "12 tiles can form 1×12, 2×6, and 3×4. That makes 3 distinct rectangular arrays.", "hint": "Find how many unique factor pairs 12 has.", "solution_html": "<div class='space-y-2'><p>1. Rectangles: 1 × 12, 2 × 6, 3 × 4.</p><p>2. Total distinct rectangles = <strong>3</strong>.</p></div>"}, {"question": "What is the complete set of factors for the number 10?", "options": ["{1, 10}", "{2, 5}", "{1, 2, 5, 10}", "{1, 2, 4, 5, 10}"], "answer": 2, "explanation": "10 can be factored as 1 × 10 and 2 × 5. Its complete set of factors is {1, 2, 5, 10}.", "hint": "List all whole numbers that divide 10 with zero remainder.", "solution_html": "<div class='space-y-2'><p>1. 10 ÷ 1 = 10, 10 ÷ 2 = 5.</p><p>2. Factors are <strong>1, 2, 5, 10</strong>.</p></div>"}, {"question": "Which of the following numbers is a prime number?", "options": ["9", "13", "15", "21"], "answer": 1, "explanation": "13 has exactly two factors: 1 and 13. Numbers 9, 15, and 21 have more than two factors.", "hint": "A prime number cannot be divided evenly by any number other than 1 and itself.", "solution_html": "<div class='space-y-2'><p>1. 13 has only factors 1 and 13.</p><p>2. <strong>13 is prime</strong>.</p></div>"}, {"question": "Why is the number 14 classified as a composite number?", "options": ["It is an even number", "It has more than two factors: 1, 2, 7, and 14", "It can be divided by 3", "It has only two factors"], "answer": 1, "explanation": "Any whole number with more than two factors is composite. 14 has 4 factors: 1, 2, 7, 14.", "hint": "Check how many factors 14 has.", "solution_html": "<div class='space-y-2'><p>1. Factors of 14: 1, 2, 7, 14.</p><p>2. Having 4 factors makes it <strong>composite</strong>.</p></div>"}, {"question": "Why is the number 1 neither prime nor composite?", "options": ["Because 1 is an odd number", "Because it has only one factor (1 itself)", "Because 1 is the smallest number", "Because it cannot be multiplied"], "answer": 1, "explanation": "Primes need exactly 2 factors and composites need more than 2. 1 has only 1 factor.", "hint": "A prime must have exactly two distinct factors.", "solution_html": "<div class='space-y-2'><p>1. Factors of 1 = {1} (only 1 factor).</p><p>2. Therefore, 1 is <strong>neither prime nor composite</strong>.</p></div>"}, {"question": "What is the smallest prime number?", "options": ["0", "1", "2", "3"], "answer": 2, "explanation": "2 is the smallest prime number, and it is the only even prime number.", "hint": "Recall that 1 is not prime.", "solution_html": "<div class='space-y-2'><p>1. 0 and 1 are not prime.</p><p>2. 2 has factors {1, 2}, so <strong>2 is the smallest prime</strong>.</p></div>"}, {"question": "If a magic box multiplies every input by 5, what output rolls out when 16 enters?", "options": ["65", "75", "80", "85"], "answer": 2, "explanation": "16 × 5 = 80.", "hint": "Multiply 16 by 5.", "solution_html": "<div class='space-y-2'><p>1. Output = 16 × 5.</p><p>2. 16 × 5 = <strong>80</strong>.</p></div>"}, {"question": "Why do square numbers like 16 and 25 have an ODD number of factors?", "options": ["Because they are odd numbers", "Because their middle factor pair consists of the same number multiplied by itself", "Because they are prime numbers", "Because they cannot form rectangles"], "answer": 1, "explanation": "In 16, the factor pair 4×4 uses the same number twice, so 4 is listed only once, giving 5 factors.", "hint": "Think about 4 × 4 = 16.", "solution_html": "<div class='space-y-2'><p>1. Factors of 16: 1, 2, 4, 8, 16 (5 factors).</p><p>2. The repeated factor 4 creates an <strong>odd count</strong>.</p></div>"}]}, {"id": 18, "title": "Challenge 2", "tagline": "Mastery Challenge 2 • Animal Number Line Jumps, Common Multiples & Trail Puzzles", "questions": [{"question": "A rabbit leaps in steps of 4 and a frog hops in steps of 3 from 0. What is their first shared landing tile?", "options": ["6", "7", "12", "24"], "answer": 2, "explanation": "The least common multiple of 4 and 3 is 12 (4×3 = 12).", "hint": "Find the smallest number divisible by both 3 and 4.", "solution_html": "<div class='space-y-2'><p>1. Multiples of 4: 4, 8, 12, 16...</p><p>2. Multiples of 3: 3, 6, 9, 12...</p><p>3. First common tile = <strong>12</strong>.</p></div>"}, {"question": "What is the second common tile where both the rabbit (step 4) and frog (step 3) will land?", "options": ["18", "20", "24", "36"], "answer": 2, "explanation": "Common multiples of 3 and 4 are multiples of 12: 12, 24, 36... The second is 24.", "hint": "Double the least common multiple 12.", "solution_html": "<div class='space-y-2'><p>1. 1st common = 12.</p><p>2. 2nd common = 12 × 2 = <strong>24</strong>.</p></div>"}, {"question": "A spider leaps in steps of 3 and a grasshopper leaps in steps of 6. What is their least common multiple?", "options": ["3", "6", "9", "18"], "answer": 1, "explanation": "Since 6 is a multiple of 3 (3 × 2 = 6), 6 is their least common multiple.", "hint": "When one number divides another, the larger is their LCM.", "solution_html": "<div class='space-y-2'><p>1. 6 is divisible by 3.</p><p>2. LCM(3, 6) = <strong>6</strong>.</p></div>"}, {"question": "What is the least common multiple (LCM) of 6 and 8?", "options": ["14", "18", "24", "48"], "answer": 2, "explanation": "Multiples of 6: 6, 12, 18, 24... Multiples of 8: 8, 16, 24... LCM = 24.", "hint": "Check the smallest multiple of 8 that is divisible by 6.", "solution_html": "<div class='space-y-2'><p>1. 8 × 1 = 8 (no), 8 × 2 = 16 (no), 8 × 3 = 24 (24 ÷ 6 = 4).</p><p>2. LCM = <strong>24</strong>.</p></div>"}, {"question": "What is the least common multiple of 4 and 6?", "options": ["10", "12", "18", "24"], "answer": 1, "explanation": "Multiples of 4: 4, 8, 12... Multiples of 6: 6, 12... LCM = 12.", "hint": "Find the smallest number that 4 and 6 divide into evenly.", "solution_html": "<div class='space-y-2'><p>1. Multiples of 4: 4, 8, 12.</p><p>2. Multiples of 6: 6, 12.</p><p>3. LCM = <strong>12</strong>.</p></div>"}, {"question": "What is the least common multiple of 8 and 12?", "options": ["16", "24", "32", "96"], "answer": 1, "explanation": "Multiples of 8: 8, 16, 24... Multiples of 12: 12, 24... LCM = 24.", "hint": "Check 12 × 2 = 24.", "solution_html": "<div class='space-y-2'><p>1. 12 × 2 = 24.</p><p>2. 24 ÷ 8 = 3. LCM = <strong>24</strong>.</p></div>"}, {"question": "What is the least common multiple of 9 and 12?", "options": ["18", "27", "36", "72"], "answer": 2, "explanation": "Multiples of 9: 9, 18, 27, 36... Multiples of 12: 12, 24, 36... LCM = 36.", "hint": "Look for a shared multiple in the 30s.", "solution_html": "<div class='space-y-2'><p>1. 12 × 3 = 36.</p><p>2. 36 ÷ 9 = 4. LCM = <strong>36</strong>.</p></div>"}, {"question": "If the LCM of two numbers is 20, which of the following is NOT a common multiple?", "options": ["40", "60", "70", "100"], "answer": 2, "explanation": "All common multiples must be multiples of the LCM 20. 70 is not a multiple of 20.", "hint": "Check which option is not divisible by 20.", "solution_html": "<div class='space-y-2'><p>1. Multiples of 20: 20, 40, 60, 80, 100...</p><p>2. <strong>70</strong> is not a multiple of 20.</p></div>"}, {"question": "In the cobbled road race, how many leaps does a rabbit taking 4-step jumps need to reach tile 64?", "options": ["12 leaps", "14 leaps", "16 leaps", "18 leaps"], "answer": 2, "explanation": "64 ÷ 4 = 16 leaps.", "hint": "Divide 64 by 4.", "solution_html": "<div class='space-y-2'><p>1. Jumps = 64 ÷ 4.</p><p>2. 64 ÷ 4 = <strong>16 leaps</strong>.</p></div>"}, {"question": "Why does a deer taking 6-step jumps miss tile 64 in the cobbled road race?", "options": ["Because the deer jumps too fast", "Because 64 is not divisible by 6 (64 ÷ 6 = 10 remainder 4)", "Because 64 is an odd number", "Because 6 is a prime number"], "answer": 1, "explanation": "6 × 10 = 60 and 6 × 11 = 66. The deer lands on 60 and then 66, completely missing 64.", "hint": "Check the remainder when 64 is divided by 6.", "solution_html": "<div class='space-y-2'><p>1. 6 × 10 = 60, 6 × 11 = 66.</p><p>2. 64 is not a multiple of 6 (remainder 4).</p></div>"}]}, {"id": 19, "title": "Challenge 3", "tagline": "Mastery Challenge 3 • Common Factors, Divisibility Trails & Highest Common Factor", "questions": [{"question": "In the jungle trail, 2-step jumps touch stones 4, 12, 14, and 50. What is 2 called for this set of numbers?", "options": ["A multiple", "A common factor", "A prime multiple", "A composite factor"], "answer": 1, "explanation": "Because 2 divides each number completely without remainder, 2 is their common factor.", "hint": "A divisor shared by several numbers is their common factor.", "solution_html": "<div class='space-y-2'><p>1. 2 divides 4, 12, 14, and 50 evenly.</p><p>2. Therefore, 2 is a <strong>common factor</strong>.</p></div>"}, {"question": "Which of the following numbers is a common factor of 9, 21, 39, and 57?", "options": ["2", "3", "5", "9"], "answer": 1, "explanation": "3 divides 9 (3), 21 (7), 39 (13), and 57 (19). 3 is their common factor.", "hint": "Find the number that divides all four numbers.", "solution_html": "<div class='space-y-2'><p>1. 9÷3=3, 21÷3=7, 39÷3=13, 57÷3=19.</p><p>2. Common factor = <strong>3</strong>.</p></div>"}, {"question": "What is the mathematical definition of a common factor?", "options": ["A number that multiplies to give zero", "A number that divides two or more numbers completely without leaving a remainder", "The sum of two numbers", "A number with only one factor"], "answer": 1, "explanation": "A common factor divides each number in the set with zero remainder.", "hint": "Think about exact division without remainders.", "solution_html": "<div class='space-y-2'><p>1. A common factor divides two or more numbers with remainder = 0.</p></div>"}, {"question": "What are all the common factors of 8 and 12?", "options": ["{1, 2}", "{1, 2, 4}", "{2, 4, 8}", "{1, 2, 3, 4, 6, 8, 12}"], "answer": 1, "explanation": "Factors of 8 are {1, 2, 4, 8}. Factors of 12 are {1, 2, 3, 4, 6, 12}. Common factors are {1, 2, 4}.", "hint": "List factors of both and circle the matches.", "solution_html": "<div class='space-y-2'><p>1. Factors of 8: 1, 2, 4, 8.</p><p>2. Factors of 12: 1, 2, 3, 4, 6, 12.</p><p>3. Common = <strong>{1, 2, 4}</strong>.</p></div>"}, {"question": "What is the highest common factor (HCF) of 8 and 12?", "options": ["2", "4", "8", "12"], "answer": 1, "explanation": "The common factors of 8 and 12 are 1, 2, and 4. The greatest is 4.", "hint": "Identify the largest number in {1, 2, 4}.", "solution_html": "<div class='space-y-2'><p>1. Common factors: 1, 2, 4.</p><p>2. Highest Common Factor = <strong>4</strong>.</p></div>"}, {"question": "How many common factors do 24 and 36 share?", "options": ["3 factors", "4 factors", "5 factors", "6 factors"], "answer": 3, "explanation": "Common factors of 24 and 36 are 1, 2, 3, 4, 6, and 12 (6 factors total).", "hint": "Count {1, 2, 3, 4, 6, 12}.", "solution_html": "<div class='space-y-2'><p>1. Shared factors: 1, 2, 3, 4, 6, 12.</p><p>2. Total count = <strong>6 factors</strong>.</p></div>"}, {"question": "What is the common factor of any two consecutive numbers, such as 12 and 13?", "options": ["Only 1", "1 and 2", "1 and 3", "There are none"], "answer": 0, "explanation": "Consecutive numbers differ by 1, so no number greater than 1 can divide both. Their only common factor is 1.", "hint": "Consecutive numbers are always co-prime.", "solution_html": "<div class='space-y-2'><p>1. Consecutive numbers have difference = 1.</p><p>2. Only <strong>1</strong> can divide both.</p></div>"}, {"question": "What are all the common factors of 12 and 16?", "options": ["{1, 2}", "{1, 2, 4}", "{1, 4}", "{2, 4}"], "answer": 1, "explanation": "Factors of 12: {1,2,3,4,6,12}. Factors of 16: {1,2,4,8,16}. Common: {1, 2, 4}.", "hint": "Check numbers dividing both 12 and 16.", "solution_html": "<div class='space-y-2'><p>1. 12: 1, 2, 3, 4, 6, 12.</p><p>2. 16: 1, 2, 4, 8, 16.</p><p>3. Common: <strong>{1, 2, 4}</strong>.</p></div>"}, {"question": "What is the only common factor of 2 and 9?", "options": ["0", "1", "2", "3"], "answer": 1, "explanation": "Factors of 2: {1, 2}. Factors of 9: {1, 3, 9}. Their only shared factor is 1.", "hint": "2 is prime and does not divide 9.", "solution_html": "<div class='space-y-2'><p>1. Factors of 2: 1, 2.</p><p>2. Factors of 9: 1, 3, 9.</p><p>3. Common factor = <strong>1</strong>.</p></div>"}, {"question": "What is the highest common factor (HCF) of 9 and 21?", "options": ["1", "3", "7", "9"], "answer": 1, "explanation": "Factors of 9: {1, 3, 9}. Factors of 21: {1, 3, 7, 21}. Common factors: {1, 3}. HCF = 3.", "hint": "Find the largest number that divides both 9 and 21.", "solution_html": "<div class='space-y-2'><p>1. Common factors of 9 and 21: 1, 3.</p><p>2. HCF = <strong>3</strong>.</p></div>"}]}, {"id": 20, "title": "Challenge 4", "tagline": "Mastery Challenge 4 • Divisibility Logic, Animal Story Scenarios & Venn Diagram Sorting", "questions": [{"question": "Which statement about factors and multiples is TRUE?", "options": ["Factors of even numbers must always be even", "Multiples of odd numbers cannot be even", "Factors of odd numbers cannot be even", "0 can be a factor of any number"], "answer": 2, "explanation": "If an odd number had an even factor, it would be divisible by 2 and thus even, which is impossible.", "hint": "Any multiple of an even number is always even.", "solution_html": "<div class='space-y-2'><p>1. Even factor × any integer = Even product.</p><p>2. An odd number can NEVER have an even factor.</p><p>3. <strong>Factors of odd numbers cannot be even</strong> is TRUE.</p></div>"}, {"question": "Why is the statement 'Factors of even numbers must be even' FALSE?", "options": ["Because 1 is a factor of every even number and 1 is odd", "Because all even numbers are prime", "Because even numbers have no factors", "Because 0 divides all numbers"], "answer": 0, "explanation": "1 is an odd factor of all even numbers. Also, 10 has factor 5, which is odd.", "hint": "Think about the factor 1 or 5 for the number 10.", "solution_html": "<div class='space-y-2'><p>1. 10 is even, but its factors include 1 and 5 (odd).</p><p>2. The statement is <strong>FALSE</strong>.</p></div>"}, {"question": "Why can 0 NEVER be a factor of any whole number?", "options": ["Because 0 is an even number", "Because division by 0 is undefined in mathematics", "Because 0 is too small", "Because 0 is not on the number line"], "answer": 1, "explanation": "A factor divides a number with zero remainder, but division by zero is mathematically undefined.", "hint": "Recall the rule about division by zero.", "solution_html": "<div class='space-y-2'><p>1. Division by 0 is undefined.</p><p>2. <strong>0 cannot be a factor</strong> of any number.</p></div>"}, {"question": "A tiger hunts every 3 days and a panther hunts every 5 days. After how many days will both hunt together?", "options": ["8 days", "10 days", "15 days", "30 days"], "answer": 2, "explanation": "The least common multiple of 3 and 5 is 15 days.", "hint": "Calculate the LCM of 3 and 5.", "solution_html": "<div class='space-y-2'><p>1. LCM(3, 5) = 3 × 5 = 15.</p><p>2. They hunt together every <strong>15 days</strong>.</p></div>"}, {"question": "Which jump size allows a traveler to visit Bear at stone 30 while avoiding Tiger at stone 25?", "options": ["Step size 2", "Step size 5", "Step size 6", "Step size 10"], "answer": 2, "explanation": "Step 6 touches 6, 12, 18, 24, 30. It lands on 30 and misses 25. Step 5 lands on 25.", "hint": "Find a factor of 30 that does not divide 25.", "solution_html": "<div class='space-y-2'><p>1. Steps of 6: 6, 12, 18, 24, 30.</p><p>2. Lands on 30 and avoids 25.</p></div>"}, {"question": "Which single jump size allows an explorer to visit BOTH Snake at stone 21 and Wolf at stone 35?", "options": ["Step size 3", "Step size 5", "Step size 7", "Step size 11"], "answer": 2, "explanation": "7 is a common factor of 21 (7 × 3 = 21) and 35 (7 × 5 = 35).", "hint": "Find a common factor of 21 and 35.", "solution_html": "<div class='space-y-2'><p>1. 21 ÷ 7 = 3 (touches 21).</p><p>2. 35 ÷ 7 = 5 (touches 35).</p><p>3. Common step size = <strong>7</strong>.</p></div>"}, {"question": "In the divisibility Venn diagram, which region does the number 38 belong to?", "options": ["Divisible by 2 only", "Divisible by 5 only", "Divisible by 2, 5, and 10", "None of the circles"], "answer": 0, "explanation": "38 is even (38 ÷ 2 = 19) but does not end in 0 or 5, so it is divisible by 2 only.", "hint": "Check the last digit of 38.", "solution_html": "<div class='space-y-2'><p>1. 38 ends in 8 ➔ Divisible by 2.</p><p>2. Does not end in 0 or 5 ➔ Not divisible by 5 or 10.</p><p>3. Belongs to <strong>Divisible by 2 only</strong>.</p></div>"}, {"question": "In the divisibility Venn diagram, which region does the number 75 belong to?", "options": ["Divisible by 2 only", "Divisible by 5 only", "Divisible by 2, 5, and 10", "Divisible by 10 only"], "answer": 1, "explanation": "75 is odd (not divisible by 2) and ends in 5, so it is divisible by 5 only.", "hint": "75 ends in 5 and is not even.", "solution_html": "<div class='space-y-2'><p>1. 75 ends in 5 ➔ Divisible by 5.</p><p>2. 75 is odd ➔ Not divisible by 2.</p><p>3. Belongs to <strong>Divisible by 5 only</strong>.</p></div>"}, {"question": "Which of the following numbers belongs in the central overlap region (divisible by 2, 5, and 10 simultaneously)?", "options": ["45", "62", "90", "95"], "answer": 2, "explanation": "90 ends in 0: 90 ÷ 2 = 45, 90 ÷ 5 = 18, and 90 ÷ 10 = 9.", "hint": "A number divisible by both 2 and 5 must end in 0.", "solution_html": "<div class='space-y-2'><p>1. 90 ends in 0.</p><p>2. Divisible by 2, 5, and 10.</p><p>3. Belongs in the <strong>central overlap</strong>.</p></div>"}, {"question": "Why is it mathematically impossible for a number to be divisible by 10 without also being divisible by 2 and 5?", "options": ["Because 10 is an even number", "Because 2 and 5 are factors of 10 (10 = 2 × 5)", "Because 10 has no multiples", "Because 10 is smaller than 2 and 5"], "answer": 1, "explanation": "Since 10 = 2 × 5, any number that has 10 as a factor must automatically have 2 and 5 as factors as well.", "hint": "Think about the prime factorization of 10.", "solution_html": "<div class='space-y-2'><p>1. 10 = 2 × 5.</p><p>2. Every multiple of 10 contains factors 2 and 5.</p><p>3. Therefore, it is <strong>always divisible by 2 and 5</strong>.</p></div>"}]}];
+        const simulatorsHtml = {"1": "\n    <div class=\"flex flex-col h-full justify-between gap-3 text-xs\">\n        <div class=\"bg-slate-900/90 p-3 rounded-xl border border-slate-700\">\n            <div class=\"flex items-center justify-between mb-2\">\n                <span class=\"font-bold text-purple-400\">⚙️ Multiplier Magic Box</span>\n                <span id=\"sim1_status\" class=\"px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30\">Multiplier: ×4</span>\n            </div>\n            <p class=\"text-[11px] text-slate-300 mb-2\">Select an input number to drop into the brass machine and see the product emerge:</p>\n            <div class=\"flex flex-wrap gap-1.5 mb-2\">\n                <button onclick=\"sim1SetInput(7)\" id=\"sim1_btn_7\" class=\"px-2.5 py-1 rounded bg-purple-600 text-white font-bold\">7</button>\n                <button onclick=\"sim1SetInput(9)\" id=\"sim1_btn_9\" class=\"px-2.5 py-1 rounded bg-slate-800 text-slate-200\">9</button>\n                <button onclick=\"sim1SetInput(12)\" id=\"sim1_btn_12\" class=\"px-2.5 py-1 rounded bg-slate-800 text-slate-200\">12</button>\n                <button onclick=\"sim1SetInput(15)\" id=\"sim1_btn_15\" class=\"px-2.5 py-1 rounded bg-slate-800 text-slate-200\">15</button>\n                <button onclick=\"sim1SetInput(18)\" id=\"sim1_btn_18\" class=\"px-2.5 py-1 rounded bg-slate-800 text-slate-200\">18</button>\n            </div>\n            <button onclick=\"sim1DropToken()\" id=\"sim1_drop_btn\" class=\"w-full py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition\">Drop Token Into Machine ➔</button>\n        </div>\n\n        <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-700 items-center\">\n            <div class=\"flex justify-center items-center bg-slate-950/80 p-2 rounded-xl border border-slate-800\">\n                <svg id=\"sim1_svg\" viewBox=\"0 0 200 160\" class=\"w-48 h-36\">\n                    <!-- Funnel Top -->\n                    <polygon points=\"70,10 130,10 115,40 85,40\" fill=\"#475569\" stroke=\"#94a3b8\" stroke-width=\"1.5\"/>\n                    <!-- Machine Body -->\n                    <rect x=\"50\" y=\"40\" width=\"100\" height=\"75\" rx=\"8\" fill=\"#1e1b4b\" stroke=\"#818cf8\" stroke-width=\"2\"/>\n                    <!-- Gears -->\n                    <circle cx=\"80\" cy=\"75\" r=\"14\" fill=\"#312e81\" stroke=\"#a78bfa\" stroke-width=\"2\" stroke-dasharray=\"4,2\"/>\n                    <circle cx=\"120\" cy=\"75\" r=\"14\" fill=\"#312e81\" stroke=\"#a78bfa\" stroke-width=\"2\" stroke-dasharray=\"4,2\"/>\n                    <text x=\"100\" y=\"80\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\" fill=\"#facc15\">× 4</text>\n                    <!-- Output Chute -->\n                    <polygon points=\"85,115 115,115 125,145 75,145\" fill=\"#475569\" stroke=\"#94a3b8\" stroke-width=\"1.5\"/>\n                    <!-- Animated Token -->\n                    <circle id=\"sim1_token\" cx=\"100\" cy=\"25\" r=\"11\" fill=\"#10b981\" stroke=\"#ffffff\" stroke-width=\"1.5\"/>\n                    <text id=\"sim1_token_txt\" x=\"100\" y=\"29\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"bold\" fill=\"#ffffff\">7</text>\n                </svg>\n            </div>\n            <div class=\"space-y-2 font-mono text-[11px]\">\n                <div class=\"p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300\">\n                    <span class=\"text-purple-300 font-bold block mb-1\">Mathematical Transformation:</span>\n                    <div id=\"sim1_calc\" class=\"text-amber-300 font-bold text-sm\">7 × 4 = 28</div>\n                    <div id=\"sim1_rel\" class=\"text-[10px] text-slate-400 mt-1\">28 is a multiple of 7 and 4.</div>\n                </div>\n                <div class=\"p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300 flex justify-between items-center\">\n                    <span>Machine Output:</span>\n                    <span id=\"sim1_out_val\" class=\"text-emerald-400 font-bold text-base\">28</span>\n                </div>\n            </div>\n        </div>\n    </div>\n    ", "2": "\n    <div class=\"flex flex-col h-full justify-between gap-3 text-xs\">\n        <div class=\"bg-slate-900/90 p-3 rounded-xl border border-slate-700\">\n            <div class=\"flex items-center justify-between mb-2\">\n                <span class=\"font-bold text-cyan-400\">📐 Factor Rectangle Studio</span>\n                <span class=\"px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30\">Total Tiles: 12</span>\n            </div>\n            <p class=\"text-[11px] text-slate-300 mb-2\">Click a factor pair to reconfigure the 12 square tiles into different complete rectangles:</p>\n            <div class=\"flex flex-wrap gap-1.5 mb-2\">\n                <button onclick=\"sim2SetArray(1, 12)\" id=\"sim2_btn_1_12\" class=\"px-2.5 py-1 rounded bg-cyan-600 text-white font-bold\">1 × 12</button>\n                <button onclick=\"sim2SetArray(2, 6)\" id=\"sim2_btn_2_6\" class=\"px-2.5 py-1 rounded bg-slate-800 text-slate-200\">2 × 6</button>\n                <button onclick=\"sim2SetArray(3, 4)\" id=\"sim2_btn_3_4\" class=\"px-2.5 py-1 rounded bg-slate-800 text-slate-200\">3 × 4</button>\n            </div>\n        </div>\n\n        <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-700 items-center\">\n            <div class=\"flex justify-center items-center bg-slate-950/80 p-2 rounded-xl border border-slate-800 h-36 overflow-auto\">\n                <svg id=\"sim2_svg\" viewBox=\"0 0 200 120\" class=\"w-48 h-28\">\n                    <!-- Dynamic Grid Tiles -->\n                    <g id=\"sim2_grid\"></g>\n                </svg>\n            </div>\n            <div class=\"space-y-2 font-mono text-[11px]\">\n                <div class=\"p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300\">\n                    <span class=\"text-cyan-300 font-bold block mb-1\">Dimensions & Divisors:</span>\n                    <div id=\"sim2_desc\" class=\"text-amber-300 font-bold\">1 Row of 12 Tiles (1 × 12 = 12)</div>\n                    <div class=\"text-[10px] text-slate-400 mt-1\">Both 1 and 12 divide 12 with remainder 0.</div>\n                </div>\n                <div class=\"p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300\">\n                    <span class=\"text-emerald-400 font-bold\">All Factors of 12:</span>\n                    <div class=\"text-slate-200 text-xs font-bold mt-0.5\">{1, 2, 3, 4, 6, 12}</div>\n                </div>\n            </div>\n        </div>\n    </div>\n    ", "3": "\n    <div class=\"flex flex-col h-full justify-between gap-3 text-xs\">\n        <div class=\"bg-slate-900/90 p-3 rounded-xl border border-slate-700\">\n            <div class=\"flex items-center justify-between mb-2\">\n                <span class=\"font-bold text-emerald-400\">🧱 Array Configurations Lab</span>\n                <span id=\"sim3_badge\" class=\"px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30\">Square Array!</span>\n            </div>\n            <p class=\"text-[11px] text-slate-300 mb-2\">Test different numbers of tiles to see if they form multiple rectangles, squares, or only primes:</p>\n            <div class=\"flex flex-wrap gap-1.5 mb-2\">\n                <button onclick=\"sim3SetNumber(10)\" id=\"sim3_btn_10\" class=\"px-2 py-1 rounded bg-slate-800 text-slate-200\">10</button>\n                <button onclick=\"sim3SetNumber(16)\" id=\"sim3_btn_16\" class=\"px-2 py-1 rounded bg-emerald-600 text-white font-bold\">16 (Square)</button>\n                <button onclick=\"sim3SetNumber(25)\" id=\"sim3_btn_25\" class=\"px-2 py-1 rounded bg-slate-800 text-slate-200\">25 (Square)</button>\n                <button onclick=\"sim3SetNumber(13)\" id=\"sim3_btn_13\" class=\"px-2 py-1 rounded bg-slate-800 text-slate-200\">13 (Prime)</button>\n            </div>\n        </div>\n\n        <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-700 items-center\">\n            <div class=\"flex justify-center items-center bg-slate-950/80 p-2 rounded-xl border border-slate-800 h-36\">\n                <svg id=\"sim3_svg\" viewBox=\"0 0 160 120\" class=\"w-40 h-28\">\n                    <g id=\"sim3_tiles\"></g>\n                </svg>\n            </div>\n            <div class=\"space-y-2 font-mono text-[11px]\">\n                <div class=\"p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300\">\n                    <span class=\"text-amber-300 font-bold block mb-1\" id=\"sim3_title\">16 Tiles: 4 × 4 Square</span>\n                    <div id=\"sim3_pairs\" class=\"text-slate-300 text-[10px]\">Pairs: 1×16, 2×8, 4×4</div>\n                    <div id=\"sim3_nature\" class=\"text-emerald-400 font-bold mt-1\">Factors: {1, 2, 4, 8, 16} (5 Factors)</div>\n                </div>\n                <div class=\"p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300\">\n                    <span class=\"text-cyan-300 font-bold\">Geometric Insight:</span>\n                    <span id=\"sim3_insight\" class=\"text-slate-400 block text-[10px]\">Identical factor (4×4) yields a perfect square!</span>\n                </div>\n            </div>\n        </div>\n    </div>\n    ", "4": "\n    <div class=\"flex flex-col h-full justify-between gap-3 text-xs\">\n        <div class=\"bg-slate-900/90 p-3 rounded-xl border border-slate-700\">\n            <div class=\"flex items-center justify-between mb-2\">\n                <span class=\"font-bold text-amber-400\">🔍 Prime & Composite Sieve</span>\n                <span id=\"sim4_badge\" class=\"px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30\">PRIME NUMBER</span>\n            </div>\n            <p class=\"text-[11px] text-slate-300 mb-2\">Select a number to test all whole divisors and determine prime or composite status:</p>\n            <div class=\"flex flex-wrap gap-1.5 mb-2\">\n                <button onclick=\"sim4TestNumber(2)\" id=\"sim4_btn_2\" class=\"px-2 py-1 rounded bg-slate-800 text-slate-200\">2</button>\n                <button onclick=\"sim4TestNumber(9)\" id=\"sim4_btn_9\" class=\"px-2 py-1 rounded bg-slate-800 text-slate-200\">9</button>\n                <button onclick=\"sim4TestNumber(13)\" id=\"sim4_btn_13\" class=\"px-2 py-1 rounded bg-emerald-600 text-white font-bold\">13</button>\n                <button onclick=\"sim4TestNumber(14)\" id=\"sim4_btn_14\" class=\"px-2 py-1 rounded bg-slate-800 text-slate-200\">14</button>\n                <button onclick=\"sim4TestNumber(24)\" id=\"sim4_btn_24\" class=\"px-2 py-1 rounded bg-slate-800 text-slate-200\">24</button>\n                <button onclick=\"sim4TestNumber(37)\" id=\"sim4_btn_37\" class=\"px-2 py-1 rounded bg-slate-800 text-slate-200\">37</button>\n                <button onclick=\"sim4TestNumber(1)\" id=\"sim4_btn_1\" class=\"px-2 py-1 rounded bg-slate-800 text-slate-200\">1</button>\n            </div>\n        </div>\n\n        <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-700 items-center\">\n            <div class=\"p-3 bg-slate-950/80 rounded-xl border border-slate-800 font-mono text-center\">\n                <div class=\"text-3xl font-extrabold text-amber-300 mb-1\" id=\"sim4_num\">13</div>\n                <div class=\"text-[10px] text-slate-400\">Total Factors Count: <span id=\"sim4_count\" class=\"text-emerald-400 font-bold\">2</span></div>\n                <div class=\"mt-2 text-xs text-slate-300 font-bold\" id=\"sim4_factor_list\">Factors: {1, 13}</div>\n            </div>\n            <div class=\"space-y-2 font-mono text-[11px]\">\n                <div class=\"p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300\">\n                    <span class=\"text-amber-400 font-bold block mb-1\">Mathematical Classification:</span>\n                    <div id=\"sim4_desc\" class=\"text-emerald-300 font-bold\">Prime Number (Exactly 2 Factors)</div>\n                    <div id=\"sim4_sub\" class=\"text-[10px] text-slate-400 mt-1\">Divisible only by 1 and 13.</div>\n                </div>\n                <div class=\"p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300\">\n                    <span class=\"text-cyan-300 font-bold\">Geometric Array:</span>\n                    <span id=\"sim4_geom\" class=\"text-slate-400 block text-[10px]\">Forms only a 1 × 13 line strip.</span>\n                </div>\n            </div>\n        </div>\n    </div>\n    ", "5": "\n    <div class=\"flex flex-col h-full justify-between gap-3 text-xs\">\n        <div class=\"bg-slate-900/90 p-3 rounded-xl border border-slate-700\">\n            <div class=\"flex items-center justify-between mb-2\">\n                <span class=\"font-bold text-amber-400\">🐰 Rabbit & 🐸 Frog Jumps</span>\n                <span id=\"sim5_status\" class=\"px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30\">Shared Landing: 12</span>\n            </div>\n            <p class=\"text-[11px] text-slate-300 mb-2\">Animate animal leaps along the number line to find where both footprints overlap:</p>\n            <div class=\"flex gap-2 mb-2\">\n                <button onclick=\"sim5NextStep()\" id=\"sim5_step_btn\" class=\"flex-1 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-bold transition\">Leap Next Step ➔</button>\n                <button onclick=\"sim5Reset()\" class=\"px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition\">Reset</button>\n            </div>\n        </div>\n\n        <div class=\"bg-slate-950/80 p-2.5 rounded-xl border border-slate-800\">\n            <svg id=\"sim5_svg\" viewBox=\"0 0 320 110\" class=\"w-full h-28\">\n                <!-- Number line axis -->\n                <line x1=\"10\" y1=\"80\" x2=\"310\" y2=\"80\" stroke=\"#64748b\" stroke-width=\"2\"/>\n                <!-- Ticks and labels (0 to 24) -->\n                <g id=\"sim5_ticks\"></g>\n                <!-- Rabbit arcs (orange) -->\n                <g id=\"sim5_rabbit_arcs\"></g>\n                <!-- Frog arcs (green) -->\n                <g id=\"sim5_frog_arcs\"></g>\n                <!-- Positions -->\n                <circle id=\"sim5_rabbit_pos\" cx=\"10\" cy=\"80\" r=\"5\" fill=\"#f59e0b\" stroke=\"#ffffff\" stroke-width=\"1.5\"/>\n                <circle id=\"sim5_frog_pos\" cx=\"10\" cy=\"80\" r=\"5\" fill=\"#10b981\" stroke=\"#ffffff\" stroke-width=\"1.5\"/>\n            </svg>\n            <div class=\"flex justify-between text-[11px] font-mono mt-1 pt-1 border-t border-slate-800 text-slate-300\">\n                <span class=\"text-amber-400\">🐰 Rabbit (Step 4): Pos <strong id=\"sim5_r_pos\">0</strong></span>\n                <span class=\"text-emerald-400\">🐸 Frog (Step 3): Pos <strong id=\"sim5_f_pos\">0</strong></span>\n                <span class=\"text-cyan-300\">Overlap: <strong id=\"sim5_overlap\">0</strong></span>\n            </div>\n        </div>\n    </div>\n    ", "6": "\n    <div class=\"flex flex-col h-full justify-between gap-3 text-xs\">\n        <div class=\"bg-slate-900/90 p-3 rounded-xl border border-slate-700\">\n            <div class=\"flex items-center justify-between mb-2\">\n                <span class=\"font-bold text-cyan-400\">🕷️ Spider & 🦗 Grasshopper Jumps</span>\n                <span class=\"px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30\">LCM = 6</span>\n            </div>\n            <p class=\"text-[11px] text-slate-300 mb-2\">Compare Spider (3-step) and Grasshopper (6-step) to see why one jump size divides another:</p>\n            <div class=\"flex gap-2 mb-2\">\n                <button onclick=\"sim6Step()\" class=\"flex-1 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-bold transition\">Advance Jumps ➔</button>\n                <button onclick=\"sim6Reset()\" class=\"px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition\">Reset</button>\n            </div>\n        </div>\n\n        <div class=\"bg-slate-950/80 p-2.5 rounded-xl border border-slate-800\">\n            <svg id=\"sim6_svg\" viewBox=\"0 0 320 110\" class=\"w-full h-28\">\n                <line x1=\"10\" y1=\"80\" x2=\"310\" y2=\"80\" stroke=\"#64748b\" stroke-width=\"2\"/>\n                <g id=\"sim6_ticks\"></g>\n                <g id=\"sim6_spider_arcs\"></g>\n                <g id=\"sim6_grass_arcs\"></g>\n                <circle id=\"sim6_spider_pos\" cx=\"10\" cy=\"80\" r=\"5\" fill=\"#a855f7\" stroke=\"#ffffff\" stroke-width=\"1.5\"/>\n                <circle id=\"sim6_grass_pos\" cx=\"10\" cy=\"80\" r=\"5\" fill=\"#06b6d4\" stroke=\"#ffffff\" stroke-width=\"1.5\"/>\n            </svg>\n            <div class=\"flex justify-between text-[11px] font-mono mt-1 pt-1 border-t border-slate-800 text-slate-300\">\n                <span class=\"text-purple-400\">🕷️ Spider (3): Pos <strong id=\"sim6_s_pos\">0</strong></span>\n                <span class=\"text-cyan-400\">🦗 Grasshopper (6): Pos <strong id=\"sim6_g_pos\">0</strong></span>\n                <span class=\"text-emerald-400\">Shared: <strong id=\"sim6_shared\">6, 12, 18, 24</strong></span>\n            </div>\n        </div>\n    </div>\n    ", "7": "\n    <div class=\"flex flex-col h-full justify-between gap-3 text-xs\">\n        <div class=\"bg-slate-900/90 p-3 rounded-xl border border-slate-700\">\n            <div class=\"flex items-center justify-between mb-2\">\n                <span class=\"font-bold text-indigo-400\">📊 Multiples Practice Explorer</span>\n                <span id=\"sim7_badge\" class=\"px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30\">LCM: 12</span>\n            </div>\n            <p class=\"text-[11px] text-slate-300 mb-2\">Select a number pair to compute their multiples lists and locate common meeting points:</p>\n            <div class=\"flex flex-wrap gap-1.5 mb-2\">\n                <button onclick=\"sim7SelectPair(4, 6)\" id=\"sim7_btn_4_6\" class=\"px-2.5 py-1 rounded bg-indigo-600 text-white font-bold\">4 & 6</button>\n                <button onclick=\"sim7SelectPair(8, 12)\" id=\"sim7_btn_8_12\" class=\"px-2.5 py-1 rounded bg-slate-800 text-slate-200\">8 & 12</button>\n                <button onclick=\"sim7SelectPair(6, 8)\" id=\"sim7_btn_6_8\" class=\"px-2.5 py-1 rounded bg-slate-800 text-slate-200\">6 & 8</button>\n                <button onclick=\"sim7SelectPair(9, 12)\" id=\"sim7_btn_9_12\" class=\"px-2.5 py-1 rounded bg-slate-800 text-slate-200\">9 & 12</button>\n            </div>\n        </div>\n\n        <div class=\"space-y-2 font-mono text-xs bg-slate-900/60 p-3 rounded-xl border border-slate-700\">\n            <div class=\"bg-slate-800/80 p-2 rounded-lg border border-slate-700\">\n                <span id=\"sim7_m1_label\" class=\"text-amber-400 font-bold block mb-1\">Multiples of 4:</span>\n                <div id=\"sim7_m1_list\" class=\"text-slate-300 text-[11px]\">4, 8, 12, 16, 20, 24, 28, 32, 36...</div>\n            </div>\n            <div class=\"bg-slate-800/80 p-2 rounded-lg border border-slate-700\">\n                <span id=\"sim7_m2_label\" class=\"text-cyan-400 font-bold block mb-1\">Multiples of 6:</span>\n                <div id=\"sim7_m2_list\" class=\"text-slate-300 text-[11px]\">6, 12, 18, 24, 30, 36, 42...</div>\n            </div>\n            <div class=\"bg-emerald-950/60 p-2 rounded-lg border border-emerald-500/40 text-emerald-300 flex justify-between items-center\">\n                <span>Least Common Multiple (LCM):</span>\n                <span id=\"sim7_lcm\" class=\"font-bold text-base text-amber-300\">12</span>\n            </div>\n        </div>\n    </div>\n    ", "8": "\n    <div class=\"flex flex-col h-full justify-between gap-3 text-xs\">\n        <div class=\"bg-slate-900/90 p-3 rounded-xl border border-slate-700\">\n            <div class=\"flex items-center justify-between mb-2\">\n                <span class=\"font-bold text-amber-400\">🏁 Cobbled Road Race to Tile 64</span>\n                <span id=\"sim8_winner\" class=\"px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30\">Target: Tile 64</span>\n            </div>\n            <p class=\"text-[11px] text-slate-300 mb-2\">Watch Racer A (step 4) and Racer B (step 6) sprint to tile 64. Who lands exactly on 64?</p>\n            <div class=\"flex gap-2 mb-2\">\n                <button onclick=\"sim8RunRace()\" id=\"sim8_btn_race\" class=\"flex-1 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition\">Start Race to 64! ➔</button>\n                <button onclick=\"sim8Reset()\" class=\"px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition\">Reset</button>\n            </div>\n        </div>\n\n        <div class=\"bg-slate-950/80 p-2.5 rounded-xl border border-slate-800\">\n            <svg id=\"sim8_svg\" viewBox=\"0 0 320 110\" class=\"w-full h-28\">\n                <!-- Track 1: Racer A (4) -->\n                <line x1=\"20\" y1=\"40\" x2=\"300\" y2=\"40\" stroke=\"#475569\" stroke-width=\"2\"/>\n                <text x=\"15\" y=\"25\" font-size=\"8\" fill=\"#f59e0b\" font-weight=\"bold\">🐰 Racer A (Step 4)</text>\n                <circle id=\"sim8_r1\" cx=\"20\" cy=\"40\" r=\"5\" fill=\"#f59e0b\"/>\n                <!-- Target flag at 64 -->\n                <line x1=\"280\" y1=\"15\" x2=\"280\" y2=\"95\" stroke=\"#ef4444\" stroke-width=\"2\" stroke-dasharray=\"3,2\"/>\n                <text x=\"280\" y=\"12\" text-anchor=\"middle\" font-size=\"8\" fill=\"#ef4444\" font-weight=\"bold\">🏁 64</text>\n                <!-- Track 2: Racer B (6) -->\n                <line x1=\"20\" y1=\"80\" x2=\"300\" y2=\"80\" stroke=\"#475569\" stroke-width=\"2\"/>\n                <text x=\"15\" y=\"65\" font-size=\"8\" fill=\"#38bdf8\" font-weight=\"bold\">🦌 Racer B (Step 6)</text>\n                <circle id=\"sim8_r2\" cx=\"20\" cy=\"80\" r=\"5\" fill=\"#38bdf8\"/>\n            </svg>\n            <div class=\"grid grid-cols-2 gap-2 text-[11px] font-mono mt-1 pt-1 border-t border-slate-800\">\n                <div class=\"text-amber-400\">Racer A: <span id=\"sim8_t1_txt\">Tile 0 (0 leaps)</span></div>\n                <div class=\"text-cyan-400\">Racer B: <span id=\"sim8_t2_txt\">Tile 0 (0 leaps)</span></div>\n            </div>\n            <div id=\"sim8_result\" class=\"text-center text-xs font-bold text-emerald-400 mt-1\">Click Start to see who reaches tile 64!</div>\n        </div>\n    </div>\n    ", "9": "\n    <div class=\"flex flex-col h-full justify-between gap-3 text-xs\">\n        <div class=\"bg-slate-900/90 p-3 rounded-xl border border-slate-700\">\n            <div class=\"flex items-center justify-between mb-2\">\n                <span class=\"font-bold text-emerald-400\">🌿 Jungle Number Trail</span>\n                <span id=\"sim9_badge\" class=\"px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30\">Step Size: 2</span>\n            </div>\n            <p class=\"text-[11px] text-slate-300 mb-2\">Select a jump size to illuminate all stepping stones touched along the jungle trail:</p>\n            <div class=\"flex flex-wrap gap-1.5 mb-2\">\n                <button onclick=\"sim9SetStep(2)\" id=\"sim9_btn_2\" class=\"px-2.5 py-1 rounded bg-emerald-600 text-white font-bold\">2-Steps</button>\n                <button onclick=\"sim9SetStep(3)\" id=\"sim9_btn_3\" class=\"px-2.5 py-1 rounded bg-slate-800 text-slate-200\">3-Steps</button>\n                <button onclick=\"sim9SetStep(5)\" id=\"sim9_btn_5\" class=\"px-2.5 py-1 rounded bg-slate-800 text-slate-200\">5-Steps</button>\n                <button onclick=\"sim9SetStep(10)\" id=\"sim9_btn_10\" class=\"px-2.5 py-1 rounded bg-slate-800 text-slate-200\">10-Steps</button>\n            </div>\n        </div>\n\n        <div class=\"space-y-2 font-mono text-xs bg-slate-900/60 p-3 rounded-xl border border-slate-700\">\n            <div class=\"flex justify-between items-center bg-slate-800/80 p-2 rounded-lg border border-slate-700\">\n                <span class=\"text-amber-400 font-bold\">Stones Touched (0–50):</span>\n                <span id=\"sim9_count\" class=\"text-emerald-400 font-bold\">26 Stones</span>\n            </div>\n            <div id=\"sim9_stones_grid\" class=\"flex flex-wrap gap-1 max-h-24 overflow-y-auto p-1.5 bg-slate-950/80 rounded-lg border border-slate-800 text-[10px]\">\n                <!-- Dynamically populated numbered stones -->\n            </div>\n            <div class=\"text-[10px] text-slate-400 text-center\" id=\"sim9_summary\">\n                2 divides all of these numbers completely with zero remainder.\n            </div>\n        </div>\n    </div>\n    ", "10": "\n    <div class=\"flex flex-col h-full justify-between gap-3 text-xs\">\n        <div class=\"bg-slate-900/90 p-3 rounded-xl border border-slate-700\">\n            <div class=\"flex items-center justify-between mb-2\">\n                <span class=\"font-bold text-cyan-400\">⭕ Common Factors Finder</span>\n                <span class=\"px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30\">Pair: 8 & 12</span>\n            </div>\n            <p class=\"text-[11px] text-slate-300 mb-2\">Compare the factor sets of 8 and 12 to identify shared divisors and the Highest Common Factor:</p>\n            <div class=\"flex gap-2 mb-2\">\n                <button onclick=\"sim10Highlight('all')\" id=\"sim10_btn_all\" class=\"px-2.5 py-1 rounded bg-cyan-600 text-white font-bold\">Show All Factors</button>\n                <button onclick=\"sim10Highlight('common')\" id=\"sim10_btn_common\" class=\"px-2.5 py-1 rounded bg-slate-800 text-slate-200\">Highlight Common</button>\n                <button onclick=\"sim10Highlight('hcf')\" id=\"sim10_btn_hcf\" class=\"px-2.5 py-1 rounded bg-slate-800 text-slate-200\">Highlight HCF</button>\n            </div>\n        </div>\n\n        <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-700 items-center\">\n            <div class=\"flex justify-center items-center bg-slate-950/80 p-2 rounded-xl border border-slate-800\">\n                <svg id=\"sim10_svg\" viewBox=\"0 0 200 130\" class=\"w-48 h-32\">\n                    <!-- Circle A (8) -->\n                    <circle cx=\"75\" cy=\"65\" r=\"45\" fill=\"#3b82f6\" fill-opacity=\"0.25\" stroke=\"#60a5fa\" stroke-width=\"2\"/>\n                    <text x=\"50\" y=\"30\" font-size=\"9\" fill=\"#93c5fd\" font-weight=\"bold\">8</text>\n                    <text x=\"50\" y=\"65\" font-size=\"10\" fill=\"#93c5fd\">8</text>\n                    <!-- Overlap (Common) -->\n                    <text x=\"100\" y=\"52\" text-anchor=\"middle\" font-size=\"10\" fill=\"#34d399\" font-weight=\"bold\" id=\"sim10_cf1\">1</text>\n                    <text x=\"100\" y=\"68\" text-anchor=\"middle\" font-size=\"10\" fill=\"#34d399\" font-weight=\"bold\" id=\"sim10_cf2\">2</text>\n                    <text x=\"100\" y=\"84\" text-anchor=\"middle\" font-size=\"10\" fill=\"#facc15\" font-weight=\"bold\" id=\"sim10_cf4\">4</text>\n                    <!-- Circle B (12) -->\n                    <circle cx=\"125\" cy=\"65\" r=\"45\" fill=\"#10b981\" fill-opacity=\"0.25\" stroke=\"#34d399\" stroke-width=\"2\"/>\n                    <text x=\"150\" y=\"30\" font-size=\"9\" fill=\"#6ee7b7\" font-weight=\"bold\">12</text>\n                    <text x=\"150\" y=\"55\" font-size=\"10\" fill=\"#6ee7b7\">3</text>\n                    <text x=\"150\" y=\"72\" font-size=\"10\" fill=\"#6ee7b7\">6</text>\n                    <text x=\"150\" y=\"89\" font-size=\"10\" fill=\"#6ee7b7\">12</text>\n                </svg>\n            </div>\n            <div class=\"space-y-2 font-mono text-[11px]\">\n                <div class=\"p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300\">\n                    <span class=\"text-cyan-300 font-bold block mb-1\">Common Divisors:</span>\n                    <div id=\"sim10_res_common\" class=\"text-emerald-400 font-bold text-sm\">Common: {1, 2, 4}</div>\n                </div>\n                <div class=\"p-2 rounded bg-slate-800/80 border border-slate-700 text-slate-300 flex justify-between items-center\">\n                    <span>Highest Common Factor (HCF):</span>\n                    <span id=\"sim10_res_hcf\" class=\"text-amber-300 font-bold text-base\">4</span>\n                </div>\n            </div>\n        </div>\n    </div>\n    ", "11": "\n    <div class=\"flex flex-col h-full justify-between gap-3 text-xs\">\n        <div class=\"bg-slate-900/90 p-3 rounded-xl border border-slate-700\">\n            <div class=\"flex items-center justify-between mb-2\">\n                <span class=\"font-bold text-purple-400\">⚖️ Consecutive & Composite Pairs</span>\n                <span id=\"sim11_badge\" class=\"px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30\">Pair: 24 & 36</span>\n            </div>\n            <p class=\"text-[11px] text-slate-300 mb-2\">Compare a composite pair with a consecutive pair to prove the co-prime theorem:</p>\n            <div class=\"flex gap-2 mb-2\">\n                <button onclick=\"sim11SetMode('composite')\" id=\"sim11_btn_comp\" class=\"flex-1 py-1.5 rounded-lg bg-purple-600 text-white font-bold\">Pair 24 & 36</button>\n                <button onclick=\"sim11SetMode('consecutive')\" id=\"sim11_btn_cons\" class=\"flex-1 py-1.5 rounded-lg bg-slate-800 text-slate-200 font-bold\">Consecutive 12 & 13</button>\n            </div>\n        </div>\n\n        <div class=\"space-y-2 font-mono text-xs bg-slate-900/60 p-3 rounded-xl border border-slate-700\">\n            <div class=\"bg-slate-800/80 p-2 rounded-lg border border-slate-700\">\n                <span id=\"sim11_title1\" class=\"text-cyan-400 font-bold block mb-1\">Factors of 24:</span>\n                <div id=\"sim11_f1\" class=\"text-slate-300 text-[11px]\">{1, 2, 3, 4, 6, 8, 12, 24}</div>\n            </div>\n            <div class=\"bg-slate-800/80 p-2 rounded-lg border border-slate-700\">\n                <span id=\"sim11_title2\" class=\"text-amber-400 font-bold block mb-1\">Factors of 36:</span>\n                <div id=\"sim11_f2\" class=\"text-slate-300 text-[11px]\">{1, 2, 3, 4, 6, 9, 12, 18, 36}</div>\n            </div>\n            <div class=\"bg-emerald-950/60 p-2 rounded-lg border border-emerald-500/40 text-emerald-300 flex justify-between items-center\">\n                <span id=\"sim11_common_label\">Shared Factors (6 factors):</span>\n                <span id=\"sim11_result\" class=\"font-bold text-amber-300\">{1, 2, 3, 4, 6, 12} (HCF: 12)</span>\n            </div>\n        </div>\n    </div>\n    ", "12": "\n    <div class=\"flex flex-col h-full justify-between gap-3 text-xs\">\n        <div class=\"bg-slate-900/90 p-3 rounded-xl border border-slate-700\">\n            <div class=\"flex items-center justify-between mb-2\">\n                <span class=\"font-bold text-teal-400\">🎯 Common Factor Matrix</span>\n                <span id=\"sim12_badge\" class=\"px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30\">12 & 16</span>\n            </div>\n            <p class=\"text-[11px] text-slate-300 mb-2\">Practice finding common factors for diverse number combinations:</p>\n            <div class=\"flex flex-wrap gap-1.5 mb-2\">\n                <button onclick=\"sim12SetPair(12, 16)\" id=\"sim12_btn_12_16\" class=\"px-2.5 py-1 rounded bg-teal-600 text-white font-bold\">12 & 16</button>\n                <button onclick=\"sim12SetPair(2, 9)\" id=\"sim12_btn_2_9\" class=\"px-2.5 py-1 rounded bg-slate-800 text-slate-200\">2 & 9</button>\n                <button onclick=\"sim12SetPair(9, 21)\" id=\"sim12_btn_9_21\" class=\"px-2.5 py-1 rounded bg-slate-800 text-slate-200\">9 & 21</button>\n            </div>\n        </div>\n\n        <div class=\"space-y-2 font-mono text-xs bg-slate-900/60 p-3 rounded-xl border border-slate-700\">\n            <div class=\"grid grid-cols-2 gap-2 text-center\">\n                <div class=\"p-2 rounded bg-slate-800/80 border border-slate-700\">\n                    <span id=\"sim12_n1_lbl\" class=\"text-amber-400 font-bold block mb-1\">Number 12</span>\n                    <span id=\"sim12_n1_f\" class=\"text-slate-300 text-[10px]\">{1, 2, 3, 4, 6, 12}</span>\n                </div>\n                <div class=\"p-2 rounded bg-slate-800/80 border border-slate-700\">\n                    <span id=\"sim12_n2_lbl\" class=\"text-cyan-400 font-bold block mb-1\">Number 16</span>\n                    <span id=\"sim12_n2_f\" class=\"text-slate-300 text-[10px]\">{1, 2, 4, 8, 16}</span>\n                </div>\n            </div>\n            <div class=\"p-2 rounded bg-slate-800/80 border border-slate-700 flex justify-between items-center text-slate-300\">\n                <span>Common Factors:</span>\n                <span id=\"sim12_cf\" class=\"text-emerald-400 font-bold\">{1, 2, 4}</span>\n            </div>\n            <div class=\"p-2 rounded bg-emerald-950/60 border border-emerald-500/40 flex justify-between items-center text-emerald-300\">\n                <span>Highest Common Factor (HCF):</span>\n                <span id=\"sim12_hcf\" class=\"text-amber-300 font-bold text-base\">4</span>\n            </div>\n        </div>\n    </div>\n    ", "13": "\n    <div class=\"flex flex-col h-full justify-between gap-3 text-xs\">\n        <div class=\"bg-slate-900/90 p-3 rounded-xl border border-slate-700\">\n            <div class=\"flex items-center justify-between mb-2\">\n                <span class=\"font-bold text-amber-400\">⚖️ Divisibility Truth Tester</span>\n                <span class=\"px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30\">True or False</span>\n            </div>\n            <p class=\"text-[11px] text-slate-300 mb-2\">Select a mathematical statement to inspect its counterexample or proof:</p>\n            <div class=\"grid grid-cols-2 gap-1.5 mb-2\">\n                <button onclick=\"sim13Test(1)\" id=\"sim13_btn_1\" class=\"px-2 py-1 rounded bg-amber-600 text-white font-bold text-left truncate\">1. Factors of Even</button>\n                <button onclick=\"sim13Test(2)\" id=\"sim13_btn_2\" class=\"px-2 py-1 rounded bg-slate-800 text-slate-200 font-bold text-left truncate\">2. Multiples of Odd</button>\n                <button onclick=\"sim13Test(3)\" id=\"sim13_btn_3\" class=\"px-2 py-1 rounded bg-slate-800 text-slate-200 font-bold text-left truncate\">3. Factors of Odd</button>\n                <button onclick=\"sim13Test(4)\" id=\"sim13_btn_4\" class=\"px-2 py-1 rounded bg-slate-800 text-slate-200 font-bold text-left truncate\">4. Consecutive HCF</button>\n            </div>\n        </div>\n\n        <div class=\"bg-slate-900/60 p-3 rounded-xl border border-slate-700 space-y-2 font-mono text-xs\">\n            <div class=\"flex justify-between items-center\">\n                <span id=\"sim13_statement\" class=\"text-slate-200 font-semibold text-[11px]\">\"Factors of even numbers must be even.\"</span>\n                <span id=\"sim13_verdict\" class=\"px-2 py-0.5 rounded font-bold text-rose-400 bg-rose-950/80 border border-rose-500/30\">FALSE</span>\n            </div>\n            <div class=\"p-2.5 rounded bg-slate-800/80 border border-slate-700 text-slate-300 text-[11px] leading-relaxed\" id=\"sim13_proof\">\n                Counterexample: The number 10 is even, but its factors include 1 and 5, which are odd!\n            </div>\n        </div>\n    </div>\n    ", "14": "\n    <div class=\"flex flex-col h-full justify-between gap-3 text-xs\">\n        <div class=\"bg-slate-900/90 p-3 rounded-xl border border-slate-700\">\n            <div class=\"flex items-center justify-between mb-2\">\n                <span class=\"font-bold text-cyan-400\">🐅 Jungle Story Navigator</span>\n                <span id=\"sim14_badge\" class=\"px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30\">Hunting Cycle</span>\n            </div>\n            <p class=\"text-[11px] text-slate-300 mb-2\">Solve story challenges: synchronize hunting days or pick safe paths:</p>\n            <div class=\"flex gap-2 mb-2\">\n                <button onclick=\"sim14SetChallenge('hunt')\" id=\"sim14_btn_hunt\" class=\"flex-1 py-1.5 rounded-lg bg-cyan-600 text-white font-bold\">1. Shared Hunting (LCM)</button>\n                <button onclick=\"sim14SetChallenge('path')\" id=\"sim14_btn_path\" class=\"flex-1 py-1.5 rounded-lg bg-slate-800 text-slate-200 font-bold\">2. Safe Den Path</button>\n            </div>\n        </div>\n\n        <div class=\"bg-slate-900/60 p-3 rounded-xl border border-slate-700 space-y-2 font-mono text-xs\">\n            <div id=\"sim14_hunt_view\">\n                <div class=\"flex justify-between text-slate-300 mb-1\">\n                    <span>Tiger: every 3 days</span>\n                    <span>Panther: every 5 days</span>\n                </div>\n                <div class=\"p-2 rounded bg-slate-800/80 border border-slate-700 text-emerald-400 font-bold text-center\">\n                    ★ First Shared Hunting Day: Day 15 (LCM of 3 & 5)\n                </div>\n            </div>\n            <div id=\"sim14_path_view\" class=\"hidden space-y-1.5\">\n                <div class=\"text-[11px] text-slate-300\">Goal: Reach Bear at stone 30 while avoiding Tiger at stone 25.</div>\n                <div class=\"grid grid-cols-2 gap-2 text-center text-[10px]\">\n                    <div class=\"p-1.5 rounded bg-rose-950/60 border border-rose-500/40 text-rose-300\">\n                        Step 5: hits 25 (Danger!)\n                    </div>\n                    <div class=\"p-1.5 rounded bg-emerald-950/60 border border-emerald-500/40 text-emerald-300\">\n                        Step 6: hits 30 (Safe!)\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    ", "15": "\n    <div class=\"flex flex-col h-full justify-between gap-3 text-xs\">\n        <div class=\"bg-slate-900/90 p-3 rounded-xl border border-slate-700\">\n            <div class=\"flex items-center justify-between mb-2\">\n                <span class=\"font-bold text-purple-400\">⭕ Divisibility Venn Sorter</span>\n                <span class=\"px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30\">15 Numbers</span>\n            </div>\n            <p class=\"text-[11px] text-slate-300 mb-2\">Filter numbers into Circle 2, Circle 5, or the central overlap (divisible by 10):</p>\n            <div class=\"flex gap-1.5 mb-2\">\n                <button onclick=\"sim15Filter('all')\" id=\"sim15_btn_all\" class=\"px-2.5 py-1 rounded bg-purple-600 text-white font-bold\">All 15</button>\n                <button onclick=\"sim15Filter('2only')\" id=\"sim15_btn_2only\" class=\"px-2.5 py-1 rounded bg-slate-800 text-slate-200\">2 Only</button>\n                <button onclick=\"sim15Filter('5only')\" id=\"sim15_btn_5only\" class=\"px-2.5 py-1 rounded bg-slate-800 text-slate-200\">5 Only</button>\n                <button onclick=\"sim15Filter('both')\" id=\"sim15_btn_both\" class=\"px-2.5 py-1 rounded bg-slate-800 text-slate-200\">Overlap (10)</button>\n            </div>\n        </div>\n\n        <div class=\"bg-slate-950/80 p-2.5 rounded-xl border border-slate-800 font-mono text-xs\">\n            <div class=\"grid grid-cols-3 gap-2 text-center text-[10px]\">\n                <div class=\"bg-blue-950/60 border border-blue-500/40 p-2 rounded-lg\">\n                    <span class=\"text-blue-300 font-bold block mb-1\">Divisible by 2 Only</span>\n                    <span id=\"sim15_list_2\" class=\"text-slate-300\">22, 38, 62, 66, 78, 84, 56</span>\n                </div>\n                <div class=\"bg-emerald-950/60 border border-emerald-500/40 p-2 rounded-lg\">\n                    <span class=\"text-emerald-300 font-bold block mb-1\">Both 2 & 5 (Div by 10!)</span>\n                    <span id=\"sim15_list_both\" class=\"text-amber-300 font-bold\">30, 40, 90</span>\n                </div>\n                <div class=\"bg-amber-950/60 border border-amber-500/40 p-2 rounded-lg\">\n                    <span class=\"text-amber-300 font-bold block mb-1\">Divisible by 5 Only</span>\n                    <span id=\"sim15_list_5\" class=\"text-slate-300\">25, 45, 55, 75, 95</span>\n                </div>\n            </div>\n            <div class=\"text-[10px] text-slate-400 text-center mt-2\">\n                Overlap rule: Any number ending in 0 has both 2 and 5 as prime factors (2 × 5 = 10).\n            </div>\n        </div>\n    </div>\n    ", "16": "\n    <div class=\"flex flex-col h-full justify-between gap-3 text-xs\">\n        <div class=\"bg-slate-900/90 p-3 rounded-xl border border-slate-700\">\n            <div class=\"flex items-center justify-between mb-2\">\n                <span class=\"font-bold text-emerald-400\">🌟 Grand Master Synthesis Lab</span>\n                <span class=\"px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30\">Universal Calculator</span>\n            </div>\n            <p class=\"text-[11px] text-slate-300 mb-2\">Input two whole numbers to compute factors, prime nature, LCM, and HCF simultaneously:</p>\n            <div class=\"grid grid-cols-2 gap-2 mb-2\">\n                <div>\n                    <span class=\"text-[10px] text-slate-400\">Number A:</span>\n                    <input type=\"number\" id=\"sim16_a\" value=\"12\" min=\"1\" max=\"50\" oninput=\"sim16Compute()\" class=\"w-full bg-slate-800 border border-slate-700 rounded px-2 py-1 text-amber-300 font-mono font-bold\">\n                </div>\n                <div>\n                    <span class=\"text-[10px] text-slate-400\">Number B:</span>\n                    <input type=\"number\" id=\"sim16_b\" value=\"18\" min=\"1\" max=\"50\" oninput=\"sim16Compute()\" class=\"w-full bg-slate-800 border border-slate-700 rounded px-2 py-1 text-cyan-300 font-mono font-bold\">\n                </div>\n            </div>\n        </div>\n\n        <div class=\"grid grid-cols-2 gap-2 font-mono text-xs bg-slate-900/60 p-2.5 rounded-xl border border-slate-700\">\n            <div class=\"bg-slate-800/80 p-2 rounded-lg border border-slate-700\">\n                <span class=\"text-amber-400 font-bold block mb-0.5\">Highest Common Factor</span>\n                <span id=\"sim16_hcf\" class=\"text-emerald-400 font-bold text-sm\">HCF = 6</span>\n            </div>\n            <div class=\"bg-slate-800/80 p-2 rounded-lg border border-slate-700\">\n                <span class=\"text-cyan-400 font-bold block mb-0.5\">Least Common Multiple</span>\n                <span id=\"sim16_lcm\" class=\"text-amber-300 font-bold text-sm\">LCM = 36</span>\n            </div>\n            <div class=\"col-span-2 bg-slate-800/80 p-2 rounded-lg border border-slate-700 text-[10px] text-slate-300 flex justify-between\">\n                <span>Factors of A: <strong id=\"sim16_fa\" class=\"text-amber-300\">1, 2, 3, 4, 6, 12</strong></span>\n                <span>Factors of B: <strong id=\"sim16_fb\" class=\"text-cyan-300\">1, 2, 3, 6, 9, 18</strong></span>\n            </div>\n        </div>\n    </div>\n    "};
+
+        function onVoiceChange() {
+            const voiceSelect = document.getElementById('voiceSelect');
+            if (!voiceSelect || !synth) return;
+            const voices = synth.getVoices();
+            const selected = voices.find(v => v.name === voiceSelect.value);
+            if (selected) {
+                userPreferredVoice = selected;
+                if (synth.speaking) {
+                    speakCurrentSlide();
+                }
+            }
+        }
+
+        
+// State Variables
+let currentSlide = 0;
+let synth = window.speechSynthesis;
+let currentUtterance = null;
+let keepAliveTimer = null;
+let userPreferredVoice = null;
+let quizScores = { 17: {}, 18: {}, 19: {}, 20: {} };
+
+// Simulators State
+let sim1CurrentInput = 7;
+let sim2CurrentRows = 1;
+let sim2CurrentCols = 12;
+let sim3CurrentNum = 16;
+let sim4CurrentNum = 13;
+let sim5RabbitPos = 0;
+let sim5FrogPos = 0;
+let sim6SpiderPos = 0;
+let sim6GrassPos = 0;
+let sim7Pair = [4, 6];
+let sim8Timer = null;
+let sim9Step = 2;
+let sim11Mode = 'composite';
+let sim12Pair = [12, 16];
+let sim13CurrentTest = 1;
+let sim14Challenge = 'hunt';
+let sim15CurrentFilter = 'all';
+
+// Audio Context for Sound Effects
+let audioCtx = null;
+function getAudioContext() {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
+    return audioCtx;
+}
+
+function playSound(type) {
+    try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        if (type === 'correct') {
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(523.25, now);
+            osc.frequency.exponentialRampToValueAtTime(659.25, now + 0.1);
+            osc.frequency.exponentialRampToValueAtTime(783.99, now + 0.2);
+            gain.gain.setValueAtTime(0.15, now);
+            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+            osc.start(now);
+            osc.stop(now + 0.35);
+        } else if (type === 'incorrect') {
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(220, now);
+            osc.frequency.exponentialRampToValueAtTime(164.81, now + 0.18);
+            gain.gain.setValueAtTime(0.15, now);
+            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
+            osc.start(now);
+            osc.stop(now + 0.25);
+        } else if (type === 'click') {
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(440, now);
+            gain.gain.setValueAtTime(0.05, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+            osc.start(now);
+            osc.stop(now + 0.05);
+        } else if (type === 'jump') {
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(300, now);
+            osc.frequency.exponentialRampToValueAtTime(600, now + 0.08);
+            gain.gain.setValueAtTime(0.1, now);
+            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.12);
+            osc.start(now);
+            osc.stop(now + 0.12);
+        }
+    } catch (e) {
+        // Audio might be restricted until user interaction
+    }
+}
+
+// Indian Male Teacher Voice Priority & Calibration
+function isIndianMaleVoice(v) {
+    const name = (v.name || '').toLowerCase();
+    const lang = (v.lang || '').toLowerCase();
+    const female = ['female', 'zira', 'susan', 'hazel', 'geeta', 'kalpana', 'priya', 'neerja', 'heera', 'swara', 'veena', 'woman', 'girl', 'lady', 'aria', 'jenny', 'samantha'];
+    if (female.some(f => name.includes(f))) return false;
+    if (lang.includes('en-in') || lang.includes('hi-in') || name.includes('india') || name.includes('indian')) {
+        if (name.includes('prabhat') || name.includes('rishi') || name.includes('ravi') || name.includes('pradeep') || name.includes('madhav') || name.includes('karan') || name.includes('mohan') || name.includes('male')) {
+            return true;
+        }
+        if (lang.includes('en-in')) return true;
+    }
+    return false;
+}
+
+function isMaleVoice(v) {
+    const name = (v.name || '').toLowerCase();
+    const female = ['female', 'zira', 'susan', 'hazel', 'geeta', 'kalpana', 'priya', 'neerja', 'heera', 'swara', 'veena', 'woman', 'girl', 'lady', 'aria', 'jenny', 'samantha'];
+    if (female.some(f => name.includes(f))) return false;
+    return (name.includes('male') || name.includes('david') || name.includes('mark') || name.includes('george') || name.includes('alex') || name.includes('guy') || name.includes('uk english male'));
+}
+
+function populateVoiceList() {
+    if (!synth) return;
+    const voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    if (!voiceSelect) return;
+
+    voiceSelect.innerHTML = '';
+
+    let indianMale = null;
+    let anyMale = null;
+
+    voices.forEach((v) => {
+        const opt = document.createElement('option');
+        opt.value = v.name;
+        opt.textContent = `${v.name} (${v.lang})`;
+
+        if (isIndianMaleVoice(v)) {
+            opt.textContent = `🇮🇳 [Indian Male Teacher] ${v.name}`;
+            if (!indianMale) indianMale = v;
+        } else if (isMaleVoice(v)) {
+            opt.textContent = `👨 [Male Teacher] ${v.name}`;
+            if (!anyMale) anyMale = v;
+        }
+
+        voiceSelect.appendChild(opt);
+    });
+
+    if (userPreferredVoice) {
+        voiceSelect.value = userPreferredVoice.name;
+    } else if (indianMale) {
+        voiceSelect.value = indianMale.name;
+        userPreferredVoice = indianMale;
+    } else if (anyMale) {
+        voiceSelect.value = anyMale.name;
+        userPreferredVoice = anyMale;
+    }
+}
+
+if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+}
+
+function speakCurrentSlide() {
+    if (!synth) return;
+    synth.cancel();
+    if (keepAliveTimer) clearInterval(keepAliveTimer);
+
+    if (currentSlide >= 16) {
+        return; // Mastery quizzes have no spoken lecture
+    }
+
+    const slide = slidesData[currentSlide];
+    if (!slide || !slide.lecture) return;
+
+    currentUtterance = new SpeechSynthesisUtterance(slide.lecture);
+
+    const voiceSelect = document.getElementById('voiceSelect');
+    if (voiceSelect && voiceSelect.value) {
+        const voices = synth.getVoices();
+        const selected = voices.find(v => v.name === voiceSelect.value);
+        if (selected) currentUtterance.voice = selected;
+    } else if (userPreferredVoice) {
+        currentUtterance.voice = userPreferredVoice;
+    }
+
+    currentUtterance.rate = 0.94;
+    currentUtterance.pitch = 0.85;
+
+    const playBtn = document.getElementById('audioPlayBtn');
+    if (playBtn) playBtn.innerHTML = '⏸️ Pause';
+
+    currentUtterance.onend = () => {
+        if (playBtn) playBtn.innerHTML = '🔊 Speak';
+        if (keepAliveTimer) clearInterval(keepAliveTimer);
+    };
+
+    currentUtterance.onerror = () => {
+        if (playBtn) playBtn.innerHTML = '🔊 Speak';
+        if (keepAliveTimer) clearInterval(keepAliveTimer);
+    };
+
+    synth.speak(currentUtterance);
+
+    // Keep-alive watchdog timer
+    keepAliveTimer = setInterval(() => {
+        if (!synth.speaking) {
+            clearInterval(keepAliveTimer);
+        } else {
+            synth.pause();
+            synth.resume();
+        }
+    }, 10000);
+}
+
+function toggleAudio() {
+    if (!synth) return;
+    if (synth.speaking && !synth.paused) {
+        synth.pause();
+        const playBtn = document.getElementById('audioPlayBtn');
+        if (playBtn) playBtn.innerHTML = '▶️ Resume';
+    } else if (synth.paused) {
+        synth.resume();
+        const playBtn = document.getElementById('audioPlayBtn');
+        if (playBtn) playBtn.innerHTML = '⏸️ Pause';
+    } else {
+        speakCurrentSlide();
+    }
+}
+
+// Navigation
+function goToSlide(idx) {
+    if (idx < 0 || idx >= slidesData.length) return;
+    currentSlide = idx;
+
+    if (synth) synth.cancel();
+    const playBtn = document.getElementById('audioPlayBtn');
+    if (playBtn) playBtn.innerHTML = '🔊 Speak';
+
+    renderSlide();
+}
+
+function nextSlide() {
+    if (currentSlide < slidesData.length - 1) {
+        goToSlide(currentSlide + 1);
+    }
+}
+
+function prevSlide() {
+    if (currentSlide > 0) {
+        goToSlide(currentSlide - 1);
+    }
+}
+
+function renderSlide() {
+    const slide = slidesData[currentSlide];
+    const container = document.getElementById('slideContent');
+    const titleEl = document.getElementById('slideTitle');
+    const taglineEl = document.getElementById('slideTagline');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const lastNotice = document.getElementById('lastSlideNotice');
+    const progressEl = document.getElementById('progressBar');
+    const numEl = document.getElementById('slideNum');
+
+    if (titleEl) titleEl.textContent = `${slide.id}. ${slide.title}`;
+    if (taglineEl) taglineEl.textContent = slide.tagline;
+    if (numEl) numEl.textContent = `Slide ${slide.id} of ${slidesData.length}`;
+    if (progressEl) progressEl.style.width = `${((currentSlide + 1) / slidesData.length) * 100}%`;
+
+    if (prevBtn) prevBtn.disabled = currentSlide === 0;
+
+    // Terminal slide invariant
+    if (currentSlide === slidesData.length - 1) {
+        if (nextBtn) nextBtn.style.display = 'none';
+        if (lastNotice) lastNotice.style.display = 'block';
+    } else {
+        if (nextBtn) nextBtn.style.display = 'inline-flex';
+        if (lastNotice) lastNotice.style.display = 'none';
+    }
+
+    // Render Slide Content
+    if (currentSlide < 16) {
+        let simHtml = simulatorsHtml[slide.id] || '';
+        let checkpointsHtml = '';
+        if (slide.checkpoints && slide.checkpoints.length > 0) {
+            checkpointsHtml = `
+            <div class="mt-4 pt-4 border-t border-slate-700/60">
+                <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                    <span>⚡ Formative Checkpoints</span>
+                </h4>
+                <div class="grid grid-cols-1 gap-3">
+                    ${slide.checkpoints.map((cp, cIdx) => `
+                        <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-700/80 text-xs">
+                            <p class="font-semibold text-slate-200 mb-2">${cIdx + 1}. ${cp.question}</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 mb-2">
+                                ${cp.options.map((opt, oIdx) => `
+                                    <button onclick="checkAnswer(${currentSlide}, ${cIdx}, ${oIdx})" id="cp_${currentSlide}_${cIdx}_${oIdx}" class="text-left px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
+                                        ${opt}
+                                    </button>
+                                `).join('')}
+                            </div>
+                            <div id="cp_feedback_${currentSlide}_${cIdx}" class="hidden p-2 rounded text-[11px] font-mono"></div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>`;
+        }
+
+        container.innerHTML = `
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 h-full">
+            <div class="lg:col-span-6 flex flex-col justify-between overflow-y-auto pr-1">
+                <div>
+                    ${slide.content_html}
+                </div>
+                ${checkpointsHtml}
+            </div>
+            <div class="lg:col-span-6 bg-slate-950/70 p-4 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-inner">
+                ${simHtml}
+            </div>
+        </div>`;
+
+        // Initialize Simulator
+        initSimulator(slide.id);
+    } else {
+        // Quiz Slide (Slides 17 to 20)
+        let questionsHtml = `
+        <div class="space-y-4 max-w-4xl mx-auto">
+            <div class="p-3 bg-gradient-to-r from-amber-900/40 via-purple-900/30 to-amber-900/40 border border-amber-500/30 rounded-xl text-center">
+                <h3 class="font-bold text-amber-300 text-sm uppercase tracking-wider">${slide.title}: ${slide.tagline}</h3>
+                <p class="text-xs text-slate-300 mt-1">Answer all 10 questions to achieve mastery badge for this chapter.</p>
+            </div>
+            <div class="space-y-3">
+                ${slide.questions.map((q, qIdx) => `
+                    <div class="p-3.5 bg-slate-900/90 rounded-xl border border-slate-700 text-xs">
+                        <div class="flex justify-between items-start gap-2 mb-2">
+                            <span class="font-bold text-slate-200">Q${qIdx + 1}. ${q.question}</span>
+                            <button onclick="openSolutionModal(${slide.id}, ${qIdx})" class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 hover:bg-indigo-500/30 transition shrink-0">💡 Solution</button>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-2">
+                            ${q.options.map((opt, oIdx) => `
+                                <button onclick="selectQuizAnswer(${slide.id}, ${qIdx}, ${oIdx})" id="quiz_${slide.id}_${qIdx}_${oIdx}" class="text-left px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
+                                    ${opt}
+                                </button>
+                            `).join('')}
+                        </div>
+                        <div id="quiz_feedback_${slide.id}_${qIdx}" class="hidden p-2 rounded text-[11px] font-mono"></div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>`;
+
+        container.innerHTML = questionsHtml;
+    }
+}
+
+// Checkpoint Answer Checker
+function checkAnswer(slideIdx, cpIdx, selectedIdx) {
+    const slide = slidesData[slideIdx];
+    const cp = slide.checkpoints[cpIdx];
+    const fbEl = document.getElementById(`cp_feedback_${slideIdx}_${cpIdx}`);
+    if (!fbEl) return;
+
+    cp.options.forEach((_, oIdx) => {
+        const btn = document.getElementById(`cp_${slideIdx}_${cpIdx}_${oIdx}`);
+        if (btn) {
+            btn.classList.remove('bg-emerald-600', 'bg-rose-600', 'text-white', 'border-emerald-500', 'border-rose-500');
+            if (oIdx === cp.answer) {
+                btn.classList.add('bg-emerald-600/60', 'text-white', 'border-emerald-500');
+            }
+        }
+    });
+
+    const chosenBtn = document.getElementById(`cp_${slideIdx}_${cpIdx}_${selectedIdx}`);
+
+    fbEl.classList.remove('hidden', 'bg-emerald-950/80', 'text-emerald-300', 'border-emerald-500/40', 'bg-rose-950/80', 'text-rose-300', 'border-rose-500/40');
+
+    if (selectedIdx === cp.answer) {
+        playSound('correct');
+        if (chosenBtn) chosenBtn.classList.add('bg-emerald-600', 'text-white');
+        fbEl.classList.add('bg-emerald-950/80', 'text-emerald-300', 'border', 'border-emerald-500/40');
+        fbEl.innerHTML = `<strong>✓ Correct!</strong> ${cp.explanation}`;
+    } else {
+        playSound('incorrect');
+        if (chosenBtn) chosenBtn.classList.add('bg-rose-600', 'text-white');
+        fbEl.classList.add('bg-rose-950/80', 'text-rose-300', 'border', 'border-rose-500/40');
+        fbEl.innerHTML = `<strong>✗ Incorrect.</strong> ${cp.hint} <span class="block mt-1 text-[10px] text-slate-400">${cp.explanation}</span>`;
+    }
+}
+
+// Quiz Answer Selection
+function selectQuizAnswer(slideId, qIdx, selectedIdx) {
+    const slide = slidesData.find(s => s.id === slideId);
+    if (!slide || !slide.questions) return;
+    const q = slide.questions[qIdx];
+    const fbEl = document.getElementById(`quiz_feedback_${slideId}_${qIdx}`);
+    if (!fbEl) return;
+
+    q.options.forEach((_, oIdx) => {
+        const btn = document.getElementById(`quiz_${slideId}_${qIdx}_${oIdx}`);
+        if (btn) {
+            btn.classList.remove('bg-emerald-600', 'bg-rose-600', 'text-white');
+            if (oIdx === q.answer) {
+                btn.classList.add('bg-emerald-600/60', 'text-white');
+            }
+        }
+    });
+
+    const chosenBtn = document.getElementById(`quiz_${slideId}_${qIdx}_${selectedIdx}`);
+
+    fbEl.classList.remove('hidden', 'bg-emerald-950/80', 'text-emerald-300', 'border-emerald-500/40', 'bg-rose-950/80', 'text-rose-300', 'border-rose-500/40');
+
+    if (selectedIdx === q.answer) {
+        playSound('correct');
+        if (chosenBtn) chosenBtn.classList.add('bg-emerald-600', 'text-white');
+        fbEl.classList.add('bg-emerald-950/80', 'text-emerald-300', 'border', 'border-emerald-500/40');
+        fbEl.innerHTML = `<strong>✓ Correct!</strong> ${q.explanation}`;
+        quizScores[slideId][qIdx] = true;
+    } else {
+        playSound('incorrect');
+        if (chosenBtn) chosenBtn.classList.add('bg-rose-600', 'text-white');
+        fbEl.classList.add('bg-rose-950/80', 'text-rose-300', 'border', 'border-rose-500/40');
+        fbEl.innerHTML = `<strong>✗ Incorrect.</strong> ${q.hint}`;
+        quizScores[slideId][qIdx] = false;
+    }
+}
+
+// Modal for Quiz Solutions
+function openSolutionModal(slideId, qIdx) {
+    const slide = slidesData.find(s => s.id === slideId);
+    if (!slide || !slide.questions) return;
+    const q = slide.questions[qIdx];
+
+    const modal = document.getElementById('solutionModal');
+    const title = document.getElementById('solutionTitle');
+    const content = document.getElementById('solutionContent');
+
+    if (title) title.textContent = `Solution: Question ${qIdx + 1} (${slide.title})`;
+    if (content) {
+        content.innerHTML = `
+        <div class="space-y-3 font-mono text-xs">
+            <div class="p-2.5 rounded bg-slate-900 border border-slate-700 text-slate-200">
+                <span class="text-amber-400 font-bold block mb-1">Question:</span>
+                ${q.question}
+            </div>
+            <div class="p-2.5 rounded bg-emerald-950/60 border border-emerald-500/40 text-emerald-300">
+                <span class="text-amber-300 font-bold block mb-1">Correct Answer:</span>
+                ${q.options[q.answer]}
+            </div>
+            <div class="p-2.5 rounded bg-slate-900 border border-slate-700 text-slate-300 leading-relaxed">
+                <span class="text-cyan-300 font-bold block mb-1">Step-by-Step Mathematical Derivation:</span>
+                ${q.solution_html || q.explanation}
+            </div>
+        </div>`;
+    }
+
+    if (modal) modal.classList.remove('hidden');
+    playSound('click');
+}
+
+function closeSolutionModal() {
+    const modal = document.getElementById('solutionModal');
+    if (modal) modal.classList.add('hidden');
+}
+
+// Initialize Simulators
+function initSimulator(simId) {
+    switch(simId) {
+        case 1: sim1Init(); break;
+        case 2: sim2Init(); break;
+        case 3: sim3Init(); break;
+        case 4: sim4Init(); break;
+        case 5: sim5Init(); break;
+        case 6: sim6Init(); break;
+        case 7: sim7Init(); break;
+        case 8: sim8Init(); break;
+        case 9: sim9Init(); break;
+        case 10: sim10Init(); break;
+        case 11: sim11Init(); break;
+        case 12: sim12Init(); break;
+        case 13: sim13Init(); break;
+        case 14: sim14Init(); break;
+        case 15: sim15Init(); break;
+        case 16: sim16Init(); break;
+    }
+}
+
+// SIM 1: Multiplier Magic Box
+function sim1Init() {
+    sim1SetInput(7);
+}
+
+function sim1SetInput(n) {
+    sim1CurrentInput = n;
+    [7, 9, 12, 15, 18].forEach(x => {
+        const b = document.getElementById(`sim1_btn_${x}`);
+        if (b) {
+            b.className = (x === n) ? 'px-2.5 py-1 rounded bg-purple-600 text-white font-bold' : 'px-2.5 py-1 rounded bg-slate-800 text-slate-200';
+        }
+    });
+
+    const token = document.getElementById('sim1_token');
+    const tokenTxt = document.getElementById('sim1_token_txt');
+    const calcEl = document.getElementById('sim1_calc');
+    const outEl = document.getElementById('sim1_out_val');
+    const relEl = document.getElementById('sim1_rel');
+
+    if (token) token.setAttribute('cy', '25');
+    if (tokenTxt) {
+        tokenTxt.setAttribute('y', '29');
+        tokenTxt.textContent = n;
+    }
+
+    const res = n * 4;
+    if (calcEl) calcEl.textContent = `${n} × 4 = ${res}`;
+    if (outEl) outEl.textContent = res;
+    if (relEl) relEl.textContent = `${res} is a multiple of ${n} and 4.`;
+    playSound('click');
+}
+
+function sim1DropToken() {
+    const token = document.getElementById('sim1_token');
+    const tokenTxt = document.getElementById('sim1_token_txt');
+    const btn = document.getElementById('sim1_drop_btn');
+    if (!token || !btn) return;
+
+    btn.disabled = true;
+    playSound('jump');
+
+    let pos = 25;
+    const interval = setInterval(() => {
+        pos += 6;
+        token.setAttribute('cy', pos);
+        if (tokenTxt) tokenTxt.setAttribute('y', pos + 4);
+
+        if (pos >= 135) {
+            clearInterval(interval);
+            tokenTxt.textContent = sim1CurrentInput * 4;
+            token.setAttribute('fill', '#f59e0b');
+            playSound('correct');
+            setTimeout(() => {
+                token.setAttribute('cy', '25');
+                token.setAttribute('fill', '#10b981');
+                tokenTxt.setAttribute('y', '29');
+                tokenTxt.textContent = sim1CurrentInput;
+                btn.disabled = false;
+            }, 1200);
+        }
+    }, 40);
+}
+
+// SIM 2: Factor Rectangle Studio
+function sim2Init() {
+    sim2SetArray(1, 12);
+}
+
+function sim2SetArray(r, c) {
+    sim2CurrentRows = r;
+    sim2CurrentCols = c;
+
+    ['1_12', '2_6', '3_4'].forEach(id => {
+        const b = document.getElementById(`sim2_btn_${id}`);
+        if (b) {
+            b.className = (id === `${r}_${c}`) ? 'px-2.5 py-1 rounded bg-cyan-600 text-white font-bold' : 'px-2.5 py-1 rounded bg-slate-800 text-slate-200';
+        }
+    });
+
+    const grid = document.getElementById('sim2_grid');
+    const desc = document.getElementById('sim2_desc');
+    if (!grid) return;
+
+    grid.innerHTML = '';
+    const tileSize = 14;
+    const pad = 2;
+    const startX = 100 - (c * (tileSize + pad)) / 2;
+    const startY = 60 - (r * (tileSize + pad)) / 2;
+
+    for (let row = 0; row < r; row++) {
+        for (let col = 0; col < c; col++) {
+            const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            rect.setAttribute('x', startX + col * (tileSize + pad));
+            rect.setAttribute('y', startY + row * (tileSize + pad));
+            rect.setAttribute('width', tileSize);
+            rect.setAttribute('height', tileSize);
+            rect.setAttribute('rx', '2');
+            rect.setAttribute('fill', '#06b6d4');
+            rect.setAttribute('stroke', '#38bdf8');
+            rect.setAttribute('stroke-width', '1');
+            grid.appendChild(rect);
+        }
+    }
+
+    if (desc) desc.textContent = `${r} Row(s) of ${c} Tiles (${r} × ${c} = 12)`;
+    playSound('click');
+}
+
+// SIM 3: Array Configurations Lab
+function sim3Init() {
+    sim3SetNumber(16);
+}
+
+function sim3SetNumber(n) {
+    sim3CurrentNum = n;
+    [10, 16, 25, 13].forEach(x => {
+        const b = document.getElementById(`sim3_btn_${x}`);
+        if (b) {
+            b.className = (x === n) ? 'px-2 py-1 rounded bg-emerald-600 text-white font-bold' : 'px-2 py-1 rounded bg-slate-800 text-slate-200';
+        }
+    });
+
+    const badge = document.getElementById('sim3_badge');
+    const title = document.getElementById('sim3_title');
+    const pairs = document.getElementById('sim3_pairs');
+    const nature = document.getElementById('sim3_nature');
+    const insight = document.getElementById('sim3_insight');
+    const g = document.getElementById('sim3_tiles');
+    if (!g) return;
+
+    g.innerHTML = '';
+
+    let rows = 1, cols = n;
+    if (n === 16) { rows = 4; cols = 4; }
+    else if (n === 25) { rows = 5; cols = 5; }
+    else if (n === 10) { rows = 2; cols = 5; }
+    else if (n === 13) { rows = 1; cols = 13; }
+
+    const tileSize = (n === 13) ? 10 : 16;
+    const startX = 80 - (cols * tileSize) / 2;
+    const startY = 60 - (rows * tileSize) / 2;
+
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+            const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            rect.setAttribute('x', startX + c * tileSize);
+            rect.setAttribute('y', startY + r * tileSize);
+            rect.setAttribute('width', tileSize - 2);
+            rect.setAttribute('height', tileSize - 2);
+            rect.setAttribute('rx', '2');
+            rect.setAttribute('fill', n === 13 ? '#a855f7' : (rows === cols ? '#10b981' : '#f59e0b'));
+            g.appendChild(rect);
+        }
+    }
+
+    if (n === 16) {
+        if (badge) badge.textContent = 'Square Array!';
+        if (title) title.textContent = '16 Tiles: 4 × 4 Square';
+        if (pairs) pairs.textContent = 'Pairs: 1×16, 2×8, 4×4';
+        if (nature) nature.textContent = 'Factors: {1, 2, 4, 8, 16} (5 Factors)';
+        if (insight) insight.textContent = 'Identical factor (4×4) yields a perfect square!';
+    } else if (n === 25) {
+        if (badge) badge.textContent = 'Square Array!';
+        if (title) title.textContent = '25 Tiles: 5 × 5 Square';
+        if (pairs) pairs.textContent = 'Pairs: 1×25, 5×5';
+        if (nature) nature.textContent = 'Factors: {1, 5, 25} (3 Factors)';
+        if (insight) insight.textContent = 'Odd number of factors confirms perfect square!';
+    } else if (n === 10) {
+        if (badge) badge.textContent = 'Composite';
+        if (title) title.textContent = '10 Tiles: 2 × 5 Array';
+        if (pairs) pairs.textContent = 'Pairs: 1×10, 2×5';
+        if (nature) nature.textContent = 'Factors: {1, 2, 5, 10} (4 Factors)';
+        if (insight) insight.textContent = 'Even number of factors (paired rect dimensions).';
+    } else if (n === 13) {
+        if (badge) badge.textContent = 'Prime Number!';
+        if (title) title.textContent = '13 Tiles: 1 × 13 Line Only';
+        if (pairs) pairs.textContent = 'Pair: 1×13 only';
+        if (nature) nature.textContent = 'Factors: {1, 13} (2 Factors)';
+        if (insight) insight.textContent = 'Cannot form multiple rows without leftover tiles.';
+    }
+    playSound('click');
+}
+
+// SIM 4: Prime & Composite Sieve
+function sim4Init() {
+    sim4TestNumber(13);
+}
+
+function sim4TestNumber(n) {
+    sim4CurrentNum = n;
+    [2, 9, 13, 14, 24, 37, 1].forEach(x => {
+        const b = document.getElementById(`sim4_btn_${x}`);
+        if (b) {
+            b.className = (x === n) ? 'px-2 py-1 rounded bg-emerald-600 text-white font-bold' : 'px-2 py-1 rounded bg-slate-800 text-slate-200';
+        }
+    });
+
+    const badge = document.getElementById('sim4_badge');
+    const numEl = document.getElementById('sim4_num');
+    const countEl = document.getElementById('sim4_count');
+    const listEl = document.getElementById('sim4_factor_list');
+    const desc = document.getElementById('sim4_desc');
+    const sub = document.getElementById('sim4_sub');
+    const geom = document.getElementById('sim4_geom');
+
+    if (numEl) numEl.textContent = n;
+
+    let factors = [];
+    for (let i = 1; i <= n; i++) {
+        if (n % i === 0) factors.push(i);
+    }
+
+    if (countEl) countEl.textContent = factors.length;
+    if (listEl) listEl.textContent = `Factors: {${factors.join(', ')}}`;
+
+    if (n === 1) {
+        if (badge) {
+            badge.textContent = 'NEITHER PRIME NOR COMPOSITE';
+            badge.className = 'px-2 py-0.5 rounded text-[10px] font-bold bg-slate-500/20 text-slate-300 border border-slate-500/30';
+        }
+        if (desc) desc.textContent = 'Unique Special Number (Only 1 Factor)';
+        if (sub) sub.textContent = 'Prime numbers require exactly 2 distinct factors.';
+        if (geom) geom.textContent = 'Single unit square point.';
+    } else if (factors.length === 2) {
+        if (badge) {
+            badge.textContent = 'PRIME NUMBER';
+            badge.className = 'px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+        }
+        if (desc) desc.textContent = `Prime Number (Exactly 2 Factors)`;
+        if (sub) sub.textContent = `Divisible only by 1 and ${n}.`;
+        if (geom) geom.textContent = `Forms only a 1 × ${n} single straight line.`;
+    } else {
+        if (badge) {
+            badge.textContent = 'COMPOSITE NUMBER';
+            badge.className = 'px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30';
+        }
+        if (desc) desc.textContent = `Composite Number (${factors.length} Factors)`;
+        if (sub) sub.textContent = `Can be divided by numbers other than 1 and ${n}.`;
+        if (geom) geom.textContent = `Forms multiple complete rectangular arrays.`;
+    }
+    playSound('click');
+}
+
+// SIM 5: Rabbit & Frog Jumps
+function sim5Init() {
+    sim5Reset();
+}
+
+function sim5Reset() {
+    sim5RabbitPos = 0;
+    sim5FrogPos = 0;
+    const rPos = document.getElementById('sim5_r_pos');
+    const fPos = document.getElementById('sim5_f_pos');
+    const overlap = document.getElementById('sim5_overlap');
+    const rCircle = document.getElementById('sim5_rabbit_pos');
+    const fCircle = document.getElementById('sim5_frog_pos');
+    const rArcs = document.getElementById('sim5_rabbit_arcs');
+    const fArcs = document.getElementById('sim5_frog_arcs');
+    const ticks = document.getElementById('sim5_ticks');
+
+    if (rPos) rPos.textContent = '0';
+    if (fPos) fPos.textContent = '0';
+    if (overlap) overlap.textContent = '0';
+    if (rCircle) rCircle.setAttribute('cx', '10');
+    if (fCircle) fCircle.setAttribute('cx', '10');
+    if (rArcs) rArcs.innerHTML = '';
+    if (fArcs) fArcs.innerHTML = '';
+
+    if (ticks) {
+        ticks.innerHTML = '';
+        for (let i = 0; i <= 24; i++) {
+            const x = 10 + i * 12.5;
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', x);
+            line.setAttribute('y1', 77);
+            line.setAttribute('x2', x);
+            line.setAttribute('y2', 83);
+            line.setAttribute('stroke', (i % 6 === 0) ? '#38bdf8' : '#475569');
+            ticks.appendChild(line);
+
+            if (i % 3 === 0) {
+                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                text.setAttribute('x', x);
+                text.setAttribute('y', 95);
+                text.setAttribute('text-anchor', 'middle');
+                text.setAttribute('font-size', '7');
+                text.setAttribute('fill', (i % 12 === 0 && i > 0) ? '#facc15' : '#94a3b8');
+                text.setAttribute('font-weight', (i % 12 === 0) ? 'bold' : 'normal');
+                text.textContent = i;
+                ticks.appendChild(text);
+            }
+        }
+    }
+}
+
+function sim5NextStep() {
+    if (sim5RabbitPos >= 24 && sim5FrogPos >= 24) {
+        sim5Reset();
+        return;
+    }
+
+    const prevR = sim5RabbitPos;
+    const prevF = sim5FrogPos;
+    sim5RabbitPos = Math.min(24, sim5RabbitPos + 4);
+    sim5FrogPos = Math.min(24, sim5FrogPos + 3);
+
+    const rCircle = document.getElementById('sim5_rabbit_pos');
+    const fCircle = document.getElementById('sim5_frog_pos');
+    const rArcs = document.getElementById('sim5_rabbit_arcs');
+    const fArcs = document.getElementById('sim5_frog_arcs');
+    const rPos = document.getElementById('sim5_r_pos');
+    const fPos = document.getElementById('sim5_f_pos');
+    const overlap = document.getElementById('sim5_overlap');
+
+    const xR1 = 10 + prevR * 12.5;
+    const xR2 = 10 + sim5RabbitPos * 12.5;
+    const xF1 = 10 + prevF * 12.5;
+    const xF2 = 10 + sim5FrogPos * 12.5;
+
+    if (rCircle) rCircle.setAttribute('cx', xR2);
+    if (fCircle) fCircle.setAttribute('cx', xF2);
+
+    if (rArcs && sim5RabbitPos > prevR) {
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        const midX = (xR1 + xR2) / 2;
+        path.setAttribute('d', `M ${xR1} 80 Q ${midX} 35 ${xR2} 80`);
+        path.setAttribute('fill', 'none');
+        path.setAttribute('stroke', '#f59e0b');
+        path.setAttribute('stroke-width', '2');
+        rArcs.appendChild(path);
+    }
+
+    if (fArcs && sim5FrogPos > prevF) {
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        const midX = (xF1 + xF2) / 2;
+        path.setAttribute('d', `M ${xF1} 80 Q ${midX} 50 ${xF2} 80`);
+        path.setAttribute('fill', 'none');
+        path.setAttribute('stroke', '#10b981');
+        path.setAttribute('stroke-width', '1.5');
+        path.setAttribute('stroke-dasharray', '3,2');
+        fArcs.appendChild(path);
+    }
+
+    if (rPos) rPos.textContent = sim5RabbitPos;
+    if (fPos) fPos.textContent = sim5FrogPos;
+
+    let shared = [];
+    for (let i = 1; i <= Math.min(sim5RabbitPos, sim5FrogPos); i++) {
+        if (i % 12 === 0) shared.push(i);
+    }
+    if (overlap) overlap.textContent = shared.length > 0 ? shared.join(', ') : 'None yet';
+
+    playSound('jump');
+}
+
+// SIM 6: Spider & Grasshopper
+function sim6Init() {
+    sim6Reset();
+}
+
+function sim6Reset() {
+    sim6SpiderPos = 0;
+    sim6GrassPos = 0;
+    const sPos = document.getElementById('sim6_s_pos');
+    const gPos = document.getElementById('sim6_g_pos');
+    const sCircle = document.getElementById('sim6_spider_pos');
+    const gCircle = document.getElementById('sim6_grass_pos');
+    const sArcs = document.getElementById('sim6_spider_arcs');
+    const gArcs = document.getElementById('sim6_grass_arcs');
+    const ticks = document.getElementById('sim6_ticks');
+
+    if (sPos) sPos.textContent = '0';
+    if (gPos) gPos.textContent = '0';
+    if (sCircle) sCircle.setAttribute('cx', '10');
+    if (gCircle) gCircle.setAttribute('cx', '10');
+    if (sArcs) sArcs.innerHTML = '';
+    if (gArcs) gArcs.innerHTML = '';
+
+    if (ticks) {
+        ticks.innerHTML = '';
+        for (let i = 0; i <= 24; i++) {
+            const x = 10 + i * 12.5;
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', x);
+            line.setAttribute('y1', 77);
+            line.setAttribute('x2', x);
+            line.setAttribute('y2', 83);
+            line.setAttribute('stroke', (i % 6 === 0) ? '#06b6d4' : '#475569');
+            ticks.appendChild(line);
+
+            if (i % 6 === 0) {
+                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                text.setAttribute('x', x);
+                text.setAttribute('y', 95);
+                text.setAttribute('text-anchor', 'middle');
+                text.setAttribute('font-size', '8');
+                text.setAttribute('fill', '#38bdf8');
+                text.setAttribute('font-weight', 'bold');
+                text.textContent = i;
+                ticks.appendChild(text);
+            }
+        }
+    }
+}
+
+function sim6Step() {
+    if (sim6SpiderPos >= 24 && sim6GrassPos >= 24) {
+        sim6Reset();
+        return;
+    }
+
+    const prevS = sim6SpiderPos;
+    const prevG = sim6GrassPos;
+    sim6SpiderPos = Math.min(24, sim6SpiderPos + 3);
+    sim6GrassPos = Math.min(24, sim6GrassPos + 6);
+
+    const sCircle = document.getElementById('sim6_spider_pos');
+    const gCircle = document.getElementById('sim6_grass_pos');
+    const sArcs = document.getElementById('sim6_spider_arcs');
+    const gArcs = document.getElementById('sim6_grass_arcs');
+    const sPos = document.getElementById('sim6_s_pos');
+    const gPos = document.getElementById('sim6_g_pos');
+
+    const xS1 = 10 + prevS * 12.5;
+    const xS2 = 10 + sim6SpiderPos * 12.5;
+    const xG1 = 10 + prevG * 12.5;
+    const xG2 = 10 + sim6GrassPos * 12.5;
+
+    if (sCircle) sCircle.setAttribute('cx', xS2);
+    if (gCircle) gCircle.setAttribute('cx', xG2);
+
+    if (sArcs && sim6SpiderPos > prevS) {
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        const midX = (xS1 + xS2) / 2;
+        path.setAttribute('d', `M ${xS1} 80 Q ${midX} 55 ${xS2} 80`);
+        path.setAttribute('fill', 'none');
+        path.setAttribute('stroke', '#a855f7');
+        path.setAttribute('stroke-width', '1.5');
+        sArcs.appendChild(path);
+    }
+
+    if (gArcs && sim6GrassPos > prevG) {
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        const midX = (xG1 + xG2) / 2;
+        path.setAttribute('d', `M ${xG1} 80 Q ${midX} 35 ${xG2} 80`);
+        path.setAttribute('fill', 'none');
+        path.setAttribute('stroke', '#06b6d4');
+        path.setAttribute('stroke-width', '2.5');
+        gArcs.appendChild(path);
+    }
+
+    if (sPos) sPos.textContent = sim6SpiderPos;
+    if (gPos) gPos.textContent = sim6GrassPos;
+    playSound('jump');
+}
+
+// SIM 7: Multiples Practice
+function sim7Init() {
+    sim7SelectPair(4, 6);
+}
+
+function sim7SelectPair(a, b) {
+    sim7Pair = [a, b];
+    ['4_6', '8_12', '6_8', '9_12'].forEach(id => {
+        const btn = document.getElementById(`sim7_btn_${id}`);
+        if (btn) {
+            btn.className = (id === `${a}_${b}`) ? 'px-2.5 py-1 rounded bg-indigo-600 text-white font-bold' : 'px-2.5 py-1 rounded bg-slate-800 text-slate-200';
+        }
+    });
+
+    const l1 = document.getElementById('sim7_m1_label');
+    const l2 = document.getElementById('sim7_m2_label');
+    const list1 = document.getElementById('sim7_m1_list');
+    const list2 = document.getElementById('sim7_m2_list');
+    const lcmEl = document.getElementById('sim7_lcm');
+    const badge = document.getElementById('sim7_badge');
+
+    let m1 = [], m2 = [];
+    for (let i = 1; i <= 8; i++) m1.push(a * i);
+    for (let i = 1; i <= 8; i++) m2.push(b * i);
+
+    let lcm = 1;
+    for (let i = 1; i <= a * b; i++) {
+        if (i % a === 0 && i % b === 0) {
+            lcm = i;
+            break;
+        }
+    }
+
+    if (l1) l1.textContent = `Multiples of ${a}:`;
+    if (l2) l2.textContent = `Multiples of ${b}:`;
+    if (list1) list1.textContent = m1.join(', ') + '...';
+    if (list2) list2.textContent = m2.join(', ') + '...';
+    if (lcmEl) lcmEl.textContent = lcm;
+    if (badge) badge.textContent = `LCM: ${lcm}`;
+    playSound('click');
+}
+
+// SIM 8: Cobbled Road Race
+function sim8Init() {
+    sim8Reset();
+}
+
+function sim8Reset() {
+    if (sim8Timer) clearInterval(sim8Timer);
+    const r1 = document.getElementById('sim8_r1');
+    const r2 = document.getElementById('sim8_r2');
+    const t1 = document.getElementById('sim8_t1_txt');
+    const t2 = document.getElementById('sim8_t2_txt');
+    const res = document.getElementById('sim8_result');
+    const btn = document.getElementById('sim8_btn_race');
+
+    if (r1) r1.setAttribute('cx', '20');
+    if (r2) r2.setAttribute('cx', '20');
+    if (t1) t1.textContent = 'Tile 0 (0 leaps)';
+    if (t2) t2.textContent = 'Tile 0 (0 leaps)';
+    if (res) res.textContent = 'Click Start to see who reaches tile 64!';
+    if (btn) btn.disabled = false;
+}
+
+function sim8RunRace() {
+    const btn = document.getElementById('sim8_btn_race');
+    if (btn) btn.disabled = true;
+
+    const r1 = document.getElementById('sim8_r1');
+    const r2 = document.getElementById('sim8_r2');
+    const t1 = document.getElementById('sim8_t1_txt');
+    const t2 = document.getElementById('sim8_t2_txt');
+    const res = document.getElementById('sim8_result');
+
+    let stepA = 0;
+    let stepB = 0;
+
+    sim8Timer = setInterval(() => {
+        if (stepA < 16) stepA++;
+        if (stepB < 11) stepB++;
+
+        const posA = stepA * 4;
+        const posB = stepB * 6;
+
+        // Map tile 0-66 to cx 20-288
+        const cxA = 20 + (posA / 64) * 260;
+        const cxB = 20 + (posB / 64) * 260;
+
+        if (r1) r1.setAttribute('cx', Math.min(280, cxA));
+        if (r2) r2.setAttribute('cx', Math.min(288, cxB));
+
+        if (t1) t1.textContent = `Tile ${posA} (${stepA} leaps)`;
+        if (t2) t2.textContent = `Tile ${posB} (${stepB} leaps)`;
+
+        playSound('jump');
+
+        if (stepA === 16 && stepB === 11) {
+            clearInterval(sim8Timer);
+            if (res) {
+                res.innerHTML = `<strong>🏆 Racer A Wins!</strong> Landed exactly on tile 64 in 16 leaps.<br><span class="text-rose-400 font-normal">Racer B hit 60, then 66 (Overshot 64)!</span>`;
+            }
+            playSound('correct');
+            if (btn) btn.disabled = false;
+        }
+    }, 200);
+}
+
+// SIM 9: Jungle Trail
+function sim9Init() {
+    sim9SetStep(2);
+}
+
+function sim9SetStep(step) {
+    sim9Step = step;
+    [2, 3, 5, 10].forEach(s => {
+        const b = document.getElementById(`sim9_btn_${s}`);
+        if (b) {
+            b.className = (s === step) ? 'px-2.5 py-1 rounded bg-emerald-600 text-white font-bold' : 'px-2.5 py-1 rounded bg-slate-800 text-slate-200';
+        }
+    });
+
+    const badge = document.getElementById('sim9_badge');
+    const countEl = document.getElementById('sim9_count');
+    const grid = document.getElementById('sim9_stones_grid');
+    const summary = document.getElementById('sim9_summary');
+
+    if (badge) badge.textContent = `Step Size: ${step}`;
+
+    let stones = [];
+    for (let i = 0; i <= 50; i += step) {
+        stones.push(i);
+    }
+
+    if (countEl) countEl.textContent = `${stones.length} Stones`;
+    if (grid) {
+        grid.innerHTML = stones.map(st => `
+            <span class="px-1.5 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-bold">
+                ${st}
+            </span>
+        `).join('');
+    }
+
+    if (summary) {
+        summary.textContent = `${step} divides all of these numbers completely with zero remainder.`;
+    }
+    playSound('click');
+}
+
+// SIM 10: Common Factors Finder
+function sim10Init() {
+    sim10Highlight('all');
+}
+
+function sim10Highlight(mode) {
+    ['all', 'common', 'hcf'].forEach(m => {
+        const b = document.getElementById(`sim10_btn_${m}`);
+        if (b) {
+            b.className = (m === mode) ? 'px-2.5 py-1 rounded bg-cyan-600 text-white font-bold' : 'px-2.5 py-1 rounded bg-slate-800 text-slate-200';
+        }
+    });
+
+    const cf1 = document.getElementById('sim10_cf1');
+    const cf2 = document.getElementById('sim10_cf2');
+    const cf4 = document.getElementById('sim10_cf4');
+    const resHcf = document.getElementById('sim10_res_hcf');
+
+    if (mode === 'hcf') {
+        if (cf1) cf1.setAttribute('fill', '#475569');
+        if (cf2) cf2.setAttribute('fill', '#475569');
+        if (cf4) cf4.setAttribute('fill', '#facc15');
+        if (cf4) cf4.setAttribute('font-size', '14');
+        playSound('correct');
+    } else if (mode === 'common') {
+        if (cf1) cf1.setAttribute('fill', '#34d399');
+        if (cf2) cf2.setAttribute('fill', '#34d399');
+        if (cf4) cf4.setAttribute('fill', '#34d399');
+        if (cf4) cf4.setAttribute('font-size', '10');
+        playSound('click');
+    } else {
+        if (cf1) cf1.setAttribute('fill', '#34d399');
+        if (cf2) cf2.setAttribute('fill', '#34d399');
+        if (cf4) cf4.setAttribute('fill', '#facc15');
+        if (cf4) cf4.setAttribute('font-size', '10');
+        playSound('click');
+    }
+}
+
+// SIM 11: Consecutive & Composite Pairs
+function sim11Init() {
+    sim11SetMode('composite');
+}
+
+function sim11SetMode(m) {
+    sim11Mode = m;
+    const bComp = document.getElementById('sim11_btn_comp');
+    const bCons = document.getElementById('sim11_btn_cons');
+    const badge = document.getElementById('sim11_badge');
+    const t1 = document.getElementById('sim11_title1');
+    const t2 = document.getElementById('sim11_title2');
+    const f1 = document.getElementById('sim11_f1');
+    const f2 = document.getElementById('sim11_f2');
+    const lbl = document.getElementById('sim11_common_label');
+    const res = document.getElementById('sim11_result');
+
+    if (m === 'composite') {
+        if (bComp) bComp.className = 'flex-1 py-1.5 rounded-lg bg-purple-600 text-white font-bold';
+        if (bCons) bCons.className = 'flex-1 py-1.5 rounded-lg bg-slate-800 text-slate-200 font-bold';
+        if (badge) badge.textContent = 'Pair: 24 & 36';
+        if (t1) t1.textContent = 'Factors of 24:';
+        if (f1) f1.textContent = '{1, 2, 3, 4, 6, 8, 12, 24}';
+        if (t2) t2.textContent = 'Factors of 36:';
+        if (f2) f2.textContent = '{1, 2, 3, 4, 6, 9, 12, 18, 36}';
+        if (lbl) lbl.textContent = 'Shared Factors (6 factors):';
+        if (res) res.textContent = '{1, 2, 3, 4, 6, 12} (HCF: 12)';
+    } else {
+        if (bComp) bComp.className = 'flex-1 py-1.5 rounded-lg bg-slate-800 text-slate-200 font-bold';
+        if (bCons) bCons.className = 'flex-1 py-1.5 rounded-lg bg-purple-600 text-white font-bold';
+        if (badge) badge.textContent = 'Consecutive: 12 & 13';
+        if (t1) t1.textContent = 'Factors of 12:';
+        if (f1) f1.textContent = '{1, 2, 3, 4, 6, 12}';
+        if (t2) t2.textContent = 'Factors of 13:';
+        if (f2) f2.textContent = '{1, 13}';
+        if (lbl) lbl.textContent = 'Consecutive Rule:';
+        if (res) res.textContent = '{1} Only! (Co-prime)';
+    }
+    playSound('click');
+}
+
+// SIM 12: Common Factor Practice Matrix
+function sim12Init() {
+    sim12SetPair(12, 16);
+}
+
+function sim12SetPair(a, b) {
+    sim12Pair = [a, b];
+    ['12_16', '2_9', '9_21'].forEach(id => {
+        const btn = document.getElementById(`sim12_btn_${id}`);
+        if (btn) {
+            btn.className = (id === `${a}_${b}`) ? 'px-2.5 py-1 rounded bg-teal-600 text-white font-bold' : 'px-2.5 py-1 rounded bg-slate-800 text-slate-200';
+        }
+    });
+
+    const lbl1 = document.getElementById('sim12_n1_lbl');
+    const lbl2 = document.getElementById('sim12_n2_lbl');
+    const f1 = document.getElementById('sim12_n1_f');
+    const f2 = document.getElementById('sim12_n2_f');
+    const cf = document.getElementById('sim12_cf');
+    const hcf = document.getElementById('sim12_hcf');
+
+    let fa = [], fb = [];
+    for (let i = 1; i <= a; i++) if (a % i === 0) fa.push(i);
+    for (let i = 1; i <= b; i++) if (b % i === 0) fb.push(i);
+
+    let common = fa.filter(x => fb.includes(x));
+    let maxFactor = Math.max(...common);
+
+    if (lbl1) lbl1.textContent = `Number ${a}`;
+    if (lbl2) lbl2.textContent = `Number ${b}`;
+    if (f1) f1.textContent = `{${fa.join(', ')}}`;
+    if (f2) f2.textContent = `{${fb.join(', ')}}`;
+    if (cf) cf.textContent = `{${common.join(', ')}}`;
+    if (hcf) hcf.textContent = maxFactor;
+    playSound('click');
+}
+
+// SIM 13: Divisibility Truth Tester
+function sim13Init() {
+    sim13Test(1);
+}
+
+function sim13Test(idx) {
+    sim13CurrentTest = idx;
+    [1, 2, 3, 4].forEach(i => {
+        const b = document.getElementById(`sim13_btn_${i}`);
+        if (b) {
+            b.className = (i === idx) ? 'px-2 py-1 rounded bg-amber-600 text-white font-bold text-left truncate' : 'px-2 py-1 rounded bg-slate-800 text-slate-200 font-bold text-left truncate';
+        }
+    });
+
+    const stmt = document.getElementById('sim13_statement');
+    const verd = document.getElementById('sim13_verdict');
+    const proof = document.getElementById('sim13_proof');
+
+    if (idx === 1) {
+        if (stmt) stmt.textContent = '"Factors of even numbers must be even."';
+        if (verd) {
+            verd.textContent = 'FALSE';
+            verd.className = 'px-2 py-0.5 rounded font-bold text-rose-400 bg-rose-950/80 border border-rose-500/30';
+        }
+        if (proof) proof.textContent = 'Counterexample: 10 is even, but its factors include 1 and 5 (odd)!';
+    } else if (idx === 2) {
+        if (stmt) stmt.textContent = '"Multiples of odd numbers cannot be even."';
+        if (verd) {
+            verd.textContent = 'FALSE';
+            verd.className = 'px-2 py-0.5 rounded font-bold text-rose-400 bg-rose-950/80 border border-rose-500/30';
+        }
+        if (proof) proof.textContent = 'Counterexample: 3 × 2 = 6, which is even. Odd × Even = Even!';
+    } else if (idx === 3) {
+        if (stmt) stmt.textContent = '"Factors of odd numbers cannot be even."';
+        if (verd) {
+            verd.textContent = 'TRUE';
+            verd.className = 'px-2 py-0.5 rounded font-bold text-emerald-400 bg-emerald-950/80 border border-emerald-500/30';
+        }
+        if (proof) proof.textContent = 'Proof: If an odd number had an even factor, it would be divisible by 2, making it even!';
+    } else if (idx === 4) {
+        if (stmt) stmt.textContent = '"Any two consecutive numbers share only factor 1."';
+        if (verd) {
+            verd.textContent = 'TRUE';
+            verd.className = 'px-2 py-0.5 rounded font-bold text-emerald-400 bg-emerald-950/80 border border-emerald-500/30';
+        }
+        if (proof) proof.textContent = 'Proof: Consecutive numbers differ by 1. No number > 1 can divide both.';
+    }
+    playSound('click');
+}
+
+// SIM 14: Jungle Story Navigator
+function sim14Init() {
+    sim14SetChallenge('hunt');
+}
+
+function sim14SetChallenge(ch) {
+    sim14Challenge = ch;
+    const bHunt = document.getElementById('sim14_btn_hunt');
+    const bPath = document.getElementById('sim14_btn_path');
+    const vHunt = document.getElementById('sim14_hunt_view');
+    const vPath = document.getElementById('sim14_path_view');
+    const badge = document.getElementById('sim14_badge');
+
+    if (ch === 'hunt') {
+        if (bHunt) bHunt.className = 'flex-1 py-1.5 rounded-lg bg-cyan-600 text-white font-bold';
+        if (bPath) bPath.className = 'flex-1 py-1.5 rounded-lg bg-slate-800 text-slate-200 font-bold';
+        if (vHunt) vHunt.classList.remove('hidden');
+        if (vPath) vPath.classList.add('hidden');
+        if (badge) badge.textContent = 'Hunting Cycle';
+    } else {
+        if (bHunt) bHunt.className = 'flex-1 py-1.5 rounded-lg bg-slate-800 text-slate-200 font-bold';
+        if (bPath) bPath.className = 'flex-1 py-1.5 rounded-lg bg-cyan-600 text-white font-bold';
+        if (vHunt) vHunt.classList.add('hidden');
+        if (vPath) vPath.classList.remove('hidden');
+        if (badge) badge.textContent = 'Safe Den Path';
+    }
+    playSound('click');
+}
+
+// SIM 15: Divisibility Venn Sorter
+function sim15Init() {
+    sim15Filter('all');
+}
+
+function sim15Filter(f) {
+    sim15CurrentFilter = f;
+    ['all', '2only', '5only', 'both'].forEach(k => {
+        const b = document.getElementById(`sim15_btn_${k}`);
+        if (b) {
+            b.className = (k === f) ? 'px-2.5 py-1 rounded bg-purple-600 text-white font-bold' : 'px-2.5 py-1 rounded bg-slate-800 text-slate-200';
+        }
+    });
+
+    const l2 = document.getElementById('sim15_list_2');
+    const l5 = document.getElementById('sim15_list_5');
+    const lb = document.getElementById('sim15_list_both');
+
+    if (l2 && l5 && lb) {
+        l2.style.opacity = (f === 'all' || f === '2only') ? '1' : '0.2';
+        l5.style.opacity = (f === 'all' || f === '5only') ? '1' : '0.2';
+        lb.style.opacity = (f === 'all' || f === 'both') ? '1' : '0.2';
+    }
+    playSound('click');
+}
+
+// SIM 16: Grand Master Synthesis
+function sim16Init() {
+    sim16Compute();
+}
+
+function sim16Compute() {
+    const aInput = document.getElementById('sim16_a');
+    const bInput = document.getElementById('sim16_b');
+    const hcfEl = document.getElementById('sim16_hcf');
+    const lcmEl = document.getElementById('sim16_lcm');
+    const faEl = document.getElementById('sim16_fa');
+    const fbEl = document.getElementById('sim16_fb');
+
+    let a = parseInt(aInput ? aInput.value : 12) || 12;
+    let b = parseInt(bInput ? bInput.value : 18) || 18;
+
+    a = Math.max(1, Math.min(50, a));
+    b = Math.max(1, Math.min(50, b));
+
+    let fa = [], fb = [];
+    for (let i = 1; i <= a; i++) if (a % i === 0) fa.push(i);
+    for (let i = 1; i <= b; i++) if (b % i === 0) fb.push(i);
+
+    let hcf = 1;
+    for (let i = 1; i <= Math.min(a, b); i++) {
+        if (a % i === 0 && b % i === 0) hcf = i;
+    }
+
+    let lcm = (a * b) / hcf;
+
+    if (hcfEl) hcfEl.textContent = `HCF = ${hcf}`;
+    if (lcmEl) lcmEl.textContent = `LCM = ${lcm}`;
+    if (faEl) faEl.textContent = fa.join(', ');
+    if (fbEl) fbEl.textContent = fb.join(', ');
+}
+
+// Global initialization
+window.addEventListener('DOMContentLoaded', () => {
+    populateVoiceList();
+    renderSlide();
+});
+
+    </script>
+</body>
+</html>

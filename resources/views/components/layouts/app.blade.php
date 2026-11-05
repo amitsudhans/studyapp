@@ -1185,11 +1185,186 @@
                     titleText = "NCERT Class 7 Mathematics — Chapter 7: Finding the Unknown Master Lab";
                     badgeText = "Class 7 • NCERT Mathematics";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class5-maths-we-the-travellers-1' || type === 'chapter1-maths-class5' || type === 'class5-maths-chapter1' || type === 'class5-we-the-travellers-1' || type === 'we-the-travellers-1-class5' || type === 'class5-maths-travellers' || type === 'class5-maths-travellers-lab' || type === 'class5-travellers') {
+                    fileUrl = "{{ asset('animations/class5-maths-we-the-travellers-1.html') }}";
+                    titleText = "NCERT Class 5 Mathematics — Chapter 1: We the Travellers - I Master Lab";
+                    badgeText = "Class 5 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class5-maths-fractions' || type === 'chapter2-maths-class5' || type === 'class5-maths-chapter2' || type === 'class5-fractions' || type === 'fractions-class5' || type === 'class5-maths-fractions-lab' || type === 'class5-math-fractions' || type === 'class5-fractions-lab') {
+                    fileUrl = "{{ asset('animations/class5-maths-fractions.html') }}";
+                    titleText = "NCERT Class 5 Mathematics — Chapter 2: Fractions Master Lab";
+                    badgeText = "Class 5 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class5-maths-angles-as-turns' || type === 'chapter3-maths-class5' || type === 'class5-maths-chapter3' || type === 'class5-angles-as-turns' || type === 'angles-as-turns-class5' || type === 'class5-maths-angles-lab' || type === 'class5-math-angles' || type === 'class5-angles-lab') {
+                    fileUrl = "{{ asset('animations/class5-maths-angles-as-turns.html') }}";
+                    titleText = "NCERT Class 5 Mathematics — Chapter 3: Angles as Turns Master Lab";
+                    badgeText = "Class 5 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class5-maths-we-the-travellers-2' || type === 'chapter4-maths-class5' || type === 'class5-maths-chapter4' || type === 'class5-we-the-travellers-2' || type === 'we-the-travellers-2-class5' || type === 'class5-maths-travellers-2-lab' || type === 'class5-math-travellers-2' || type === 'class5-travellers-2-lab') {
+                    fileUrl = "{{ asset('animations/class5-maths-we-the-travellers-2.html') }}";
+                    titleText = "NCERT Class 5 Mathematics — Chapter 4: We the Travellers - II Master Lab";
+                    badgeText = "Class 5 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class5-maths-far-and-near' || type === 'chapter5-maths-class5' || type === 'class5-maths-chapter5' || type === 'class5-far-and-near' || type === 'far-and-near-class5' || type === 'class5-maths-far-and-near-lab' || type === 'class5-math-far-and-near' || type === 'class5-far-and-near-lab') {
+                    fileUrl = "{{ asset('animations/class5-maths-far-and-near.html') }}";
+                    titleText = "NCERT Class 5 Mathematics — Chapter 5: Far and Near Master Lab";
+                    badgeText = "Class 5 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class5-maths-the-dairy-farm' || type === 'chapter6-maths-class5' || type === 'class5-maths-chapter6' || type === 'class5-the-dairy-farm' || type === 'the-dairy-farm-class5' || type === 'class5-maths-dairy-farm-lab' || type === 'class5-math-dairy-farm' || type === 'class5-dairy-farm-lab') {
+                    fileUrl = "{{ asset('animations/class5-maths-the-dairy-farm.html') }}";
+                    titleText = "NCERT Class 5 Mathematics — Chapter 6: The Dairy Farm Master Lab";
+                    badgeText = "Class 5 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class5-maths-shapes-and-patterns' || type === 'chapter7-maths-class5' || type === 'class5-maths-chapter7' || type === 'class5-shapes-and-patterns' || type === 'shapes-and-patterns-class5' || type === 'class5-maths-shapes-lab' || type === 'class5-math-shapes-and-patterns' || type === 'class5-shapes-lab') {
+                    fileUrl = "{{ asset('animations/class5-maths-shapes-and-patterns.html') }}";
+                    titleText = "NCERT Class 5 Mathematics — Chapter 7: Shapes and Patterns Master Lab";
+                    badgeText = "Class 5 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
+                } else if (type === 'class5-maths-weight-and-capacity' || type === 'chapter8-maths-class5' || type === 'class5-maths-chapter8' || type === 'class5-weight-and-capacity' || type === 'weight-and-capacity-class5' || type === 'class5-maths-weight-capacity-lab' || type === 'class5-math-weight-and-capacity' || type === 'class5-weight-capacity-lab') {
+                    fileUrl = "{{ asset('animations/class5-maths-weight-and-capacity.html') }}";
+                    titleText = "NCERT Class 5 Mathematics — Chapter 8: Weight and Capacity Master Lab";
+                    badgeText = "Class 5 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class5-maths-coconut-farm' || type === 'chapter9-maths-class5' || type === 'class5-maths-chapter9' || type === 'class5-coconut-farm' || type === 'coconut-farm-class5' || type === 'class5-maths-coconut-farm-lab' || type === 'class5-math-coconut-farm' || type === 'class5-coconut-lab') {
+                    fileUrl = "{{ asset('animations/class5-maths-coconut-farm.html') }}";
+                    titleText = "NCERT Class 5 Mathematics — Chapter 9: Coconut Farm Master Lab";
+                    badgeText = "Class 5 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class5-maths-symmetrical-designs' || type === 'chapter10-maths-class5' || type === 'class5-maths-chapter10' || type === 'class5-symmetrical-designs' || type === 'symmetrical-designs-class5' || type === 'class5-maths-symmetrical-designs-lab' || type === 'class5-math-symmetrical-designs' || type === 'class5-symmetry-lab') {
+                    fileUrl = "{{ asset('animations/class5-maths-symmetrical-designs.html') }}";
+                    titleText = "NCERT Class 5 Mathematics — Chapter 10: Symmetrical Designs Master Lab";
+                    badgeText = "Class 5 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class5-maths-grandmothers-quilt' || type === 'chapter11-maths-class5' || type === 'class5-maths-chapter11' || type === 'class5-grandmothers-quilt' || type === 'grandmothers-quilt-class5' || type === 'class5-maths-grandmothers-quilt-lab' || type === 'class5-math-grandmothers-quilt' || type === 'class5-quilt-lab') {
+                    fileUrl = "{{ asset('animations/class5-maths-grandmothers-quilt.html') }}";
+                    titleText = "NCERT Class 5 Mathematics — Chapter 11: Grandmother's Quilt Master Lab";
+                    badgeText = "Class 5 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class5-maths-racing-seconds' || type === 'chapter12-maths-class5' || type === 'class5-maths-chapter12' || type === 'class5-racing-seconds' || type === 'racing-seconds-class5' || type === 'class5-maths-racing-seconds-lab' || type === 'class5-math-racing-seconds' || type === 'class5-seconds-lab') {
+                    fileUrl = "{{ asset('animations/class5-maths-racing-seconds.html') }}";
+                    titleText = "NCERT Class 5 Mathematics — Chapter 12: Racing Seconds Master Lab";
+                    badgeText = "Class 5 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class5-maths-animal-jumps' || type === 'chapter13-maths-class5' || type === 'class5-maths-chapter13' || type === 'class5-animal-jumps' || type === 'animal-jumps-class5' || type === 'class5-maths-animal-jumps-lab' || type === 'class5-math-animal-jumps' || type === 'class5-jumps-lab') {
+                    fileUrl = "{{ asset('animations/class5-maths-animal-jumps.html') }}";
+                    titleText = "NCERT Class 5 Mathematics — Chapter 13: Animal Jumps Master Lab";
+                    badgeText = "Class 5 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class5-maths-maps-and-locations' || type === 'chapter14-maths-class5' || type === 'class5-maths-chapter14' || type === 'class5-maps-and-locations' || type === 'maps-and-locations-class5' || type === 'class5-maths-maps-and-locations-lab' || type === 'class5-math-maps-and-locations' || type === 'class5-maps-lab') {
+                    fileUrl = "{{ asset('animations/class5-maths-maps-and-locations.html') }}";
+                    titleText = "NCERT Class 5 Mathematics — Chapter 14: Maps and Locations Master Lab";
+                    badgeText = "Class 5 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class5-science-water-essence-of-life' || type === 'chapter1-science-class5' || type === 'class5-science-chapter1' || type === 'class5-water-essence-of-life' || type === 'water-essence-of-life-class5' || type === 'class5-science-water-lab' || type === 'class5-science-water-cycle' || type === 'class5-water-cycle') {
+                    fileUrl = "{{ asset('animations/class5-science-water-essence-of-life.html') }}";
+                    titleText = "NCERT Class 5 Science — Chapter 1: Water - The Essence of Life Master Lab";
+                    badgeText = "Class 5 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
+                } else if (type === 'class5-science-journey-of-a-river' || type === 'chapter2-science-class5' || type === 'class5-science-chapter2' || type === 'class5-journey-of-a-river' || type === 'journey-of-a-river-class5' || type === 'class5-science-river-lab' || type === 'class5-science-godavari-river' || type === 'class5-godavari-river') {
+                    fileUrl = "{{ asset('animations/class5-science-journey-of-a-river.html') }}";
+                    titleText = "NCERT Class 5 Science — Chapter 2: Journey of a River Master Lab";
+                    badgeText = "Class 5 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
+                } else if (type === 'class5-science-mystery-of-food' || type === 'chapter3-science-class5' || type === 'class5-science-chapter3' || type === 'class5-mystery-of-food' || type === 'mystery-of-food-class5' || type === 'class5-science-food-lab' || type === 'class5-science-food-spoilage' || type === 'class5-food-spoilage') {
+                    fileUrl = "{{ asset('animations/class5-science-mystery-of-food.html') }}";
+                    titleText = "NCERT Class 5 Science — Chapter 3: The Mystery of Food Master Lab";
+                    badgeText = "Class 5 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class5-science-our-school-happy-place' || type === 'chapter4-science-class5' || type === 'class5-science-chapter4' || type === 'class5-our-school-happy-place' || type === 'our-school-happy-place-class5' || type === 'class5-science-school-lab' || type === 'class5-science-green-school' || type === 'class5-green-school') {
+                    fileUrl = "{{ asset('animations/class5-science-our-school-happy-place.html') }}";
+                    titleText = "NCERT Class 5 Science — Chapter 4: Our School - A Happy Place Master Lab";
+                    badgeText = "Class 5 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'class5-science-our-vibrant-country' || type === 'chapter5-science-class5' || type === 'class5-science-chapter5' || type === 'class5-our-vibrant-country' || type === 'our-vibrant-country-class5' || type === 'class5-science-vibrant-country' || type === 'class5-science-india-lab' || type === 'class5-vibrant-country') {
+                    fileUrl = "{{ asset('animations/class5-science-our-vibrant-country.html') }}";
+                    titleText = "NCERT Class 5 Science — Chapter 5: Our Vibrant Country Master Lab";
+                    badgeText = "Class 5 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-orange-500/20 text-orange-300 border border-orange-500/30 shrink-0";
+                } else if (type === 'class5-science-some-unique-places' || type === 'chapter6-science-class5' || type === 'class5-science-chapter6' || type === 'class5-some-unique-places' || type === 'some-unique-places-class5' || type === 'class5-science-unique-places' || type === 'class5-science-places-lab' || type === 'class5-unique-places') {
+                    fileUrl = "{{ asset('animations/class5-science-some-unique-places.html') }}";
+                    titleText = "NCERT Class 5 Science — Chapter 6: Some Unique Places Master Lab";
+                    badgeText = "Class 5 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
+                } else if (type === 'class5-science-energy-how-things-work' || type === 'chapter7-science-class5' || type === 'class5-science-chapter7' || type === 'class5-energy-how-things-work' || type === 'energy-how-things-work-class5' || type === 'class5-science-energy' || type === 'class5-science-energy-lab' || type === 'class5-energy') {
+                    fileUrl = "{{ asset('animations/class5-science-energy-how-things-work.html') }}";
+                    titleText = "NCERT Class 5 Science — Chapter 7: Energy - How Things Work Master Lab";
+                    badgeText = "Class 5 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class5-science-clothes-how-things-are-made' || type === 'chapter8-science-class5' || type === 'class5-science-chapter8' || type === 'class5-clothes-how-things-are-made' || type === 'clothes-how-things-are-made-class5' || type === 'class5-science-clothes' || type === 'class5-science-clothes-lab' || type === 'class5-clothes') {
+                    fileUrl = "{{ asset('animations/class5-science-clothes-how-things-are-made.html') }}";
+                    titleText = "NCERT Class 5 Science — Chapter 8: Clothes - How Things are Made Master Lab";
+                    badgeText = "Class 5 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class5-science-rhythms-of-nature' || type === 'chapter9-science-class5' || type === 'class5-science-chapter9' || type === 'class5-rhythms-of-nature' || type === 'rhythms-of-nature-class5' || type === 'class5-science-rhythms' || type === 'class5-science-seasons-lab' || type === 'class5-seasons') {
+                    fileUrl = "{{ asset('animations/class5-science-rhythms-of-nature.html') }}";
+                    titleText = "NCERT Class 5 Science — Chapter 9: Rhythms of Nature Master Lab";
+                    badgeText = "Class 5 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'class5-science-earth-our-shared-home' || type === 'chapter10-science-class5' || type === 'class5-science-chapter10' || type === 'class5-earth-our-shared-home' || type === 'earth-our-shared-home-class5' || type === 'class5-science-shared-home' || type === 'class5-science-earth-lab' || type === 'class5-shared-home') {
+                    fileUrl = "{{ asset('animations/class5-science-earth-our-shared-home.html') }}";
+                    titleText = "NCERT Class 5 Science — Chapter 10: Earth - Our Shared Home Master Lab";
+                    badgeText = "Class 5 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/20 text-sky-300 border border-sky-500/30 shrink-0";
                 } else if (type === 'class6-science-wonderful-world' || type === 'chapter1-science-class6' || type === 'class6-science-chapter1' || type === 'class6-science-wonderful-world-of-science' || type === 'wonderful-world-of-science-class6' || type === 'class6-science-world-of-science' || type === 'class6-science-intro' || type === 'science-class6-chapter1' || type === 'class6-science-nature-of-science' || type === 'scientific-method-class6' || type === 'class6-science-lab') {
                     fileUrl = "{{ asset('animations/class6-science-wonderful-world.html') }}";
                     titleText = "NCERT Class 6 Science — Chapter 1: The Wonderful World of Science Master Lab";
                     badgeText = "Class 6 • NCERT Science";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
+                } else if (type === 'class6-science-diversity-living-world' || type === 'chapter2-science-class6' || type === 'class6-science-chapter2' || type === 'class6-diversity-in-the-living-world' || type === 'diversity-in-the-living-world-class6' || type === 'diversity-living-world-class6' || type === 'class6-science-diversity' || type === 'class6-living-world' || type === 'living-world-class6' || type === 'class6-science-living-diversity' || type === 'class6-science-diversity-lab') {
+                    fileUrl = "{{ asset('animations/class6-science-diversity-living-world.html') }}";
+                    titleText = "NCERT Class 6 Science — Chapter 2: Diversity in the Living World Master Lab";
+                    badgeText = "Class 6 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'class6-science-mindful-eating' || type === 'chapter3-science-class6' || type === 'class6-science-chapter3' || type === 'class6-mindful-eating' || type === 'mindful-eating-class6' || type === 'mindful-eating-healthy-body-class6' || type === 'class6-science-mindful-eating-lab' || type === 'class6-science-food-nutrition' || type === 'class6-science-components-of-food' || type === 'class6-components-of-food' || type === 'components-of-food-class6') {
+                    fileUrl = "{{ asset('animations/class6-science-mindful-eating.html') }}";
+                    titleText = "NCERT Class 6 Science — Chapter 3: Mindful Eating: A Path to a Healthy Body Master Lab";
+                    badgeText = "Class 6 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class6-science-exploring-magnets' || type === 'chapter4-science-class6' || type === 'class6-science-chapter4' || type === 'class6-exploring-magnets' || type === 'exploring-magnets-class6' || type === 'class6-science-magnets' || type === 'magnets-class6' || type === 'class6-magnets' || type === 'class6-science-magnetism' || type === 'class6-science-exploring-magnets-lab' || type === 'class6-science-fun-with-magnets') {
+                    fileUrl = "{{ asset('animations/class6-science-exploring-magnets.html') }}";
+                    titleText = "NCERT Class 6 Science — Chapter 4: Exploring Magnets Master Lab";
+                    badgeText = "Class 6 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
+                } else if (type === 'class6-science-length-and-motion' || type === 'chapter5-science-class6' || type === 'class6-science-chapter5' || type === 'class6-measurement-of-length-and-motion' || type === 'measurement-of-length-and-motion-class6' || type === 'class6-science-measurement' || type === 'measurement-class6' || type === 'class6-measurement' || type === 'class6-science-motion' || type === 'class6-science-length-and-motion-lab' || type === 'class6-science-motion-and-measurement') {
+                    fileUrl = "{{ asset('animations/class6-science-length-and-motion.html') }}";
+                    titleText = "NCERT Class 6 Science — Chapter 5: Measurement of Length and Motion Master Lab";
+                    badgeText = "Class 6 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
+                } else if (type === 'class6-science-materials-around-us' || type === 'chapter6-science-class6' || type === 'class6-science-chapter6' || type === 'class6-materials-around-us' || type === 'materials-around-us-class6' || type === 'class6-science-materials' || type === 'materials-class6' || type === 'class6-materials' || type === 'class6-science-materials-around-us-lab' || type === 'class6-science-sorting-materials' || type === 'sorting-materials-into-groups-class6') {
+                    fileUrl = "{{ asset('animations/class6-science-materials-around-us.html') }}";
+                    titleText = "NCERT Class 6 Science — Chapter 6: Materials Around Us Master Lab";
+                    badgeText = "Class 6 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
+                } else if (type === 'class6-science-temperature-measurement' || type === 'chapter7-science-class6' || type === 'class6-science-chapter7' || type === 'class6-temperature-and-its-measurement' || type === 'temperature-and-its-measurement-class6' || type === 'class6-science-temperature-and-measurement' || type === 'temperature-and-measurement-class6' || type === 'class6-temperature-and-measurement' || type === 'class6-science-temperature' || type === 'temperature-class6' || type === 'temperature-measurement-class6' || type === 'class6-temperature' || type === 'class6-science-temperature-measurement-lab' || type === 'class6-science-temperature-and-measurement-lab' || type === 'class6-science-temperature-lab' || type === 'class6-science-heat-and-temperature' || type === 'heat-and-temperature-class6') {
+                    fileUrl = "{{ asset('animations/class6-science-temperature-measurement.html') }}";
+                    titleText = "NCERT Class 6 Science — Chapter 7: Temperature and its Measurement Master Lab";
+                    badgeText = "Class 6 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class6-science-states-of-water' || type === 'chapter8-science-class6' || type === 'class6-science-chapter8' || type === 'class6-science-journey-through-states-of-water' || type === 'class6-science-states-of-water-lab' || type === 'class6-science-water-cycle' || type === 'class6-science-water-states' || type === 'class6-science-water-states-lab' || type === 'class6-states-of-water' || type === 'class6-water-states' || type === 'states-of-water-class6' || type === 'water-states-class6') {
+                    fileUrl = "{{ asset('animations/class6-science-states-of-water.html') }}";
+                    titleText = "NCERT Class 6 Science — Chapter 8: A Journey through States of Water Master Lab";
+                    badgeText = "Class 6 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/20 text-sky-300 border border-sky-500/30 shrink-0";
+                } else if (type === 'class6-science-methods-of-separation' || type === 'chapter9-science-class6' || type === 'class6-science-chapter9' || type === 'class6-methods-of-separation' || type === 'methods-of-separation-class6' || type === 'class6-separation-methods' || type === 'separation-methods-class6' || type === 'class6-science-separation-methods' || type === 'class6-science-separation' || type === 'class6-science-separation-techniques' || type === 'class6-science-methods-of-separation-lab') {
+                    fileUrl = "{{ asset('animations/class6-science-methods-of-separation.html') }}";
+                    titleText = "NCERT Class 6 Science — Chapter 9: Methods of Separation in Everyday Life Master Lab";
+                    badgeText = "Class 6 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
+                } else if (type === 'class6-science-living-creatures' || type === 'chapter10-science-class6' || type === 'class6-science-chapter10' || type === 'class6-living-creatures' || type === 'living-creatures-class6' || type === 'class6-living-creatures-characteristics' || type === 'class6-science-living-creatures-characteristics' || type === 'class6-science-living-creatures-lab') {
+                    fileUrl = "{{ asset('animations/class6-science-living-creatures.html') }}";
+                    titleText = "NCERT Class 6 Science — Chapter 10: Living Creatures: Exploring their Characteristics Master Lab";
+                    badgeText = "Class 6 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'class6-science-natures-treasures' || type === 'chapter11-science-class6' || type === 'class6-science-chapter11' || type === 'class6-natures-treasures' || type === 'natures-treasures-class6' || type === 'class6-science-natures-treasures-lab' || type === 'class6-science-natural-resources' || type === 'class6-natural-resources') {
+                    fileUrl = "{{ asset('animations/class6-science-natures-treasures.html') }}";
+                    titleText = "NCERT Class 6 Science — Chapter 11: Nature's Treasures Master Lab";
+                    badgeText = "Class 6 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class6-science-beyond-earth' || type === 'chapter12-science-class6' || type === 'class6-science-chapter12' || type === 'class6-beyond-earth' || type === 'beyond-earth-class6' || type === 'class6-science-beyond-earth-lab' || type === 'class6-science-solar-system' || type === 'class6-solar-system') {
+                    fileUrl = "{{ asset('animations/class6-science-beyond-earth.html') }}";
+                    titleText = "NCERT Class 6 Science — Chapter 12: Beyond Earth Master Lab";
+                    badgeText = "Class 6 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
                 } else if (type === 'class7-science-ever-evolving-world' || type === 'chapter1-science-class7' || type === 'class7-science-chapter1' || type === 'the-ever-evolving-world-of-science' || type === 'ever-evolving-world-of-science' || type === 'class7-ever-evolving-world-of-science' || type === 'class7-science-intro' || type === 'exploring-the-world-of-science' || type === 'class7-exploring-the-world-of-science' || type === 'class7-science-exploring-world' || type === 'exploring-world-of-science') {
                     fileUrl = "{{ asset('animations/class7-science-ever-evolving-world.html') }}";
                     titleText = "NCERT Class 7 Science — Chapter 1: Exploring the World of Science Master Lab";
