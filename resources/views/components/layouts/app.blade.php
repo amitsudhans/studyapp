@@ -586,73 +586,73 @@
 
             if (modal && iframe) {
                 let fileUrl = "{{ asset('animations/real-numbers.html') }}";
-                let titleText = "NCERT Chapter 1 — Real Numbers (Fundamental Theorem, Irrationals & Track Simulation)";
+                let titleText = "NCERT Class 10 Maths — Chapter 1: Real Numbers Master Lab";
                 let badgeText = "NCERT Reprint 2026-27 • Class 10";
                 let badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
 
                 if (type === 'probability') {
                     fileUrl = "{{ asset('animations/probability.html') }}";
-                    titleText = "NCERT Chapter 14 — Probability Lab (Theoretical Approach, Dice, Cards & Geometry)";
+                    titleText = "NCERT Chapter 14 — Probability Lab (20 Slides, 16 Simulators & 40 Quizzes)";
                     badgeText = "NCERT Reprint 2026-27 • Class 10";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30 shrink-0";
                 } else if (type === 'statistics') {
                     fileUrl = "{{ asset('animations/statistics.html') }}";
-                    titleText = "NCERT Chapter 13 — Statistics Lab (Mean, Median, Mode & Cumulative Frequency)";
+                    titleText = "NCERT Chapter 13 — Statistics Lab (20 Slides, 16 Simulators & 40 Quizzes)";
                     badgeText = "NCERT Reprint 2026-27 • Class 10";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
                 } else if (type === 'surface-areas-and-volumes') {
                     fileUrl = "{{ asset('animations/surface-areas-and-volumes.html') }}";
-                    titleText = "NCERT Chapter 12 — Surface Areas and Volumes Lab (Composite Solids & Volumes)";
+                    titleText = "NCERT Chapter 12 — Surface Areas and Volumes Lab (20 Slides, 16 Simulators & 40 Quizzes)";
                     badgeText = "NCERT Reprint 2026-27 • Class 10";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
                 } else if (type === 'areas-related-to-circles') {
                     fileUrl = "{{ asset('animations/areas-related-to-circles.html') }}";
-                    titleText = "NCERT Chapter 11 — Areas Related to Circles Lab (Sectors & Segments)";
+                    titleText = "NCERT Chapter 11 — Areas Related to Circles Lab (20 Slides, 16 Simulators & 40 Quizzes)";
                     badgeText = "NCERT Reprint 2026-27 • Class 10";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
                 } else if (type === 'circles') {
                     fileUrl = "{{ asset('animations/circles.html') }}";
-                    titleText = "NCERT Chapter 10 — Circles Lab (Tangents, Theorem 10.1 & 10.2)";
-                    badgeText = "NCERT Reprint 2026-27 • Class 10";
+                    titleText = "NCERT Chapter 10 — Circles Lab (20 Slides • Voice Lecture, Simulators & 40 Quizzes)";
+                    badgeText = "NCERT Class 10 • Chapter 10";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 shrink-0";
                 } else if (type === 'applications-of-trigonometry') {
                     fileUrl = "{{ asset('animations/applications-of-trigonometry.html') }}";
-                    titleText = "NCERT Chapter 9 — Some Applications of Trigonometry Lab (Heights & Distances)";
-                    badgeText = "NCERT Reprint 2026-27 • Class 10";
+                    titleText = "NCERT Chapter 9 — Some Applications of Trigonometry Lab (20 Slides • Voice Lecture, Simulators & 40 Quizzes)";
+                    badgeText = "NCERT Class 10 • Chapter 9";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
                 } else if (type === 'trigonometry') {
                     fileUrl = "{{ asset('animations/trigonometry.html') }}";
-                    titleText = "NCERT Chapter 8 — Introduction to Trigonometry Lab (Ratios, Table & Identities)";
-                    badgeText = "NCERT Reprint 2026-27 • Class 10";
+                    titleText = "NCERT Chapter 8 — Introduction to Trigonometry Lab (20 Slides • Voice Lecture, Simulators & 40 Quizzes)";
+                    badgeText = "NCERT Class 10 • Chapter 8";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30 shrink-0";
                 } else if (type === 'coordinate-geometry') {
                     fileUrl = "{{ asset('animations/coordinate-geometry.html') }}";
-                    titleText = "NCERT Chapter 7 — Coordinate Geometry Lab (Distance & Section Formulas)";
-                    badgeText = "NCERT Reprint 2026-27 • Class 10";
+                    titleText = "NCERT Chapter 7 — Coordinate Geometry Lab (20 Slides • Voice Lecture, Simulators & 40 Quizzes)";
+                    badgeText = "NCERT Class 10 • Chapter 7";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
                 } else if (type === 'triangles') {
                     fileUrl = "{{ asset('animations/triangles.html') }}";
-                    titleText = "NCERT Chapter 6 — Triangles Lab (Similarity, BPT & Shadow Modeling)";
-                    badgeText = "NCERT Reprint 2026-27 • Class 10";
+                    titleText = "NCERT Chapter 6 — Triangles Lab (20 Slides • Voice Lecture, Simulators & 40 Quizzes)";
+                    badgeText = "NCERT Class 10 • Chapter 6";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/20 text-sky-300 border border-sky-500/30 shrink-0";
                 } else if (type === 'arithmetic-progressions') {
                     fileUrl = "{{ asset('animations/arithmetic-progressions.html') }}";
-                    titleText = "NCERT Chapter 5 — Arithmetic Progressions Lab (nth Term, Sum & Applications)";
-                    badgeText = "NCERT Reprint 2026-27 • Class 10";
+                    titleText = "NCERT Chapter 5 — Arithmetic Progressions Lab (20 Slides • Voice Lecture, Simulators & 40 Quizzes)";
+                    badgeText = "NCERT Class 10 • Chapter 5";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
                 } else if (type === 'quadratic-equations') {
                     fileUrl = "{{ asset('animations/quadratic-equations.html') }}";
-                    titleText = "NCERT Chapter 4 — Quadratic Equations Lab (Formula, Roots & Discriminant)";
+                    titleText = "NCERT Class 10 Maths — Chapter 4: Quadratic Equations Master Lab";
                     badgeText = "NCERT Reprint 2026-27 • Class 10";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30 shrink-0";
                 } else if (type === 'linear-equations') {
                     fileUrl = "{{ asset('animations/linear-equations.html') }}";
-                    titleText = "NCERT Chapter 3 — Pair of Linear Equations in Two Variables Lab";
+                    titleText = "NCERT Class 10 Maths — Chapter 3: Pair of Linear Equations Master Lab";
                     badgeText = "NCERT Reprint 2026-27 • Class 10";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
                 } else if (type === 'polynomials') {
                     fileUrl = "{{ asset('animations/polynomials.html') }}";
-                    titleText = "NCERT Chapter 2 — Polynomials (Degrees, Parabolas, Zeroes & Coefficients)";
+                    titleText = "NCERT Class 10 Maths — Chapter 2: Polynomials Master Lab";
                     badgeText = "NCERT Reprint 2026-27 • Class 10";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
                 } else if (type === 'relations-and-functions') {
@@ -1440,6 +1440,26 @@
                     titleText = "NCERT Class 3 Science — Chapter 8: Food We Eat Master Lab";
                     badgeText = "Class 3 • NCERT Science";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class3-science-staying-healthy-and-happy' || type === 'chapter9-science-class3' || type === 'class3-science-chapter9' || type === 'class3-staying-healthy-and-happy' || type === 'staying-healthy-and-happy-class3' || type === 'class3-science-staying-healthy-and-happy-lab' || type === 'class3-sci-staying-healthy-and-happy' || type === 'class3-staying-healthy-and-happy-lab') {
+                    fileUrl = "{{ asset('animations/class3-science-staying-healthy-and-happy.html') }}";
+                    titleText = "NCERT Class 3 Science — Chapter 9: Staying Healthy and Happy Master Lab";
+                    badgeText = "Class 3 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'class3-science-this-world-of-things' || type === 'chapter10-science-class3' || type === 'class3-science-chapter10' || type === 'class3-this-world-of-things' || type === 'this-world-of-things-class3' || type === 'class3-science-this-world-of-things-lab' || type === 'class3-sci-this-world-of-things' || type === 'class3-this-world-of-things-lab') {
+                    fileUrl = "{{ asset('animations/class3-science-this-world-of-things.html') }}";
+                    titleText = "NCERT Class 3 Science — Chapter 10: This World of Things Master Lab";
+                    badgeText = "Class 3 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
+                } else if (type === 'class3-science-making-things' || type === 'chapter11-science-class3' || type === 'class3-science-chapter11' || type === 'class3-making-things' || type === 'making-things-class3' || type === 'class3-science-making-things-lab' || type === 'class3-sci-making-things' || type === 'class3-making-things-lab') {
+                    fileUrl = "{{ asset('animations/class3-science-making-things.html') }}";
+                    titleText = "NCERT Class 3 Science — Chapter 11: Making Things Master Lab";
+                    badgeText = "Class 3 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class3-science-taking-charge-of-waste' || type === 'chapter12-science-class3' || type === 'class3-science-chapter12' || type === 'class3-taking-charge-of-waste' || type === 'taking-charge-of-waste-class3' || type === 'class3-science-taking-charge-of-waste-lab' || type === 'class3-sci-taking-charge-of-waste' || type === 'class3-taking-charge-of-waste-lab') {
+                    fileUrl = "{{ asset('animations/class3-science-taking-charge-of-waste.html') }}";
+                    titleText = "NCERT Class 3 Science — Chapter 12: Taking Charge of Waste Master Lab";
+                    badgeText = "Class 3 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
                 } else if (type === 'class4-science-living-together' || type === 'chapter1-science-class4' || type === 'class4-science-chapter1' || type === 'class4-living-together' || type === 'living-together-class4' || type === 'class4-science-living-together-lab' || type === 'class4-sc-living-together' || type === 'class4-living-together-lab') {
                     fileUrl = "{{ asset('animations/class4-science-living-together.html') }}";
                     titleText = "NCERT Class 4 Science — Chapter 1: Living Together Master Lab";
