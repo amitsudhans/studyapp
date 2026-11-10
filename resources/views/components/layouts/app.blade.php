@@ -1255,6 +1255,76 @@
                     titleText = "NCERT Class 5 Mathematics — Chapter 14: Maps and Locations Master Lab";
                     badgeText = "Class 5 • NCERT Mathematics";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class3-maths-whats-in-a-name' || type === 'chapter1-maths-class3' || type === 'class3-maths-chapter1' || type === 'class3-whats-in-a-name' || type === 'whats-in-a-name-class3' || type === 'class3-maths-whats-in-a-name-lab' || type === 'class3-math-whats-in-a-name' || type === 'class3-whats-in-a-name-lab') {
+                    fileUrl = "{{ asset('animations/class3-maths-whats-in-a-name.html') }}";
+                    titleText = "NCERT Class 3 Mathematics — Chapter 1: What's in a Name? Master Lab";
+                    badgeText = "Class 3 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class3-maths-toy-joy' || type === 'chapter2-maths-class3' || type === 'class3-maths-chapter2' || type === 'class3-toy-joy' || type === 'toy-joy-class3' || type === 'class3-maths-toy-joy-lab' || type === 'class3-math-toy-joy' || type === 'class3-toy-joy-lab') {
+                    fileUrl = "{{ asset('animations/class3-maths-toy-joy.html') }}";
+                    titleText = "NCERT Class 3 Mathematics — Chapter 2: Toy Joy Master Lab";
+                    badgeText = "Class 3 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class3-maths-double-century' || type === 'chapter3-maths-class3' || type === 'class3-maths-chapter3' || type === 'class3-double-century' || type === 'double-century-class3' || type === 'class3-maths-double-century-lab' || type === 'class3-math-double-century' || type === 'class3-double-century-lab') {
+                    fileUrl = "{{ asset('animations/class3-maths-double-century.html') }}";
+                    titleText = "NCERT Class 3 Mathematics — Chapter 3: Double Century Master Lab";
+                    badgeText = "Class 3 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class3-maths-vacation-with-my-nani-maa' || type === 'chapter4-maths-class3' || type === 'class3-maths-chapter4' || type === 'class3-vacation-with-my-nani-maa' || type === 'vacation-with-my-nani-maa-class3' || type === 'class3-maths-vacation-with-my-nani-maa-lab' || type === 'class3-math-vacation-with-my-nani-maa' || type === 'class3-vacation-with-my-nani-maa-lab') {
+                    fileUrl = "{{ asset('animations/class3-maths-vacation-with-my-nani-maa.html') }}";
+                    titleText = "NCERT Class 3 Mathematics — Chapter 4: Vacation with My Nani Maa Master Lab";
+                    badgeText = "Class 3 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class3-maths-fun-with-shapes' || type === 'chapter5-maths-class3' || type === 'class3-maths-chapter5' || type === 'class3-fun-with-shapes' || type === 'fun-with-shapes-class3' || type === 'class3-maths-fun-with-shapes-lab' || type === 'class3-math-fun-with-shapes' || type === 'class3-fun-with-shapes-lab') {
+                    fileUrl = "{{ asset('animations/class3-maths-fun-with-shapes.html') }}";
+                    titleText = "NCERT Class 3 Mathematics — Chapter 5: Fun with Shapes Master Lab";
+                    badgeText = "Class 3 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class3-maths-house-of-hundreds-1' || type === 'chapter6-maths-class3' || type === 'class3-maths-chapter6' || type === 'class3-house-of-hundreds-1' || type === 'house-of-hundreds-1-class3' || type === 'class3-maths-house-of-hundreds-1-lab' || type === 'class3-math-house-of-hundreds-1' || type === 'class3-house-of-hundreds-1-lab') {
+                    fileUrl = "{{ asset('animations/class3-maths-house-of-hundreds-1.html') }}";
+                    titleText = "NCERT Class 3 Mathematics — Chapter 6: House of Hundreds - 1 Master Lab";
+                    badgeText = "Class 3 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class3-maths-raksha-bandhan' || type === 'chapter7-maths-class3' || type === 'class3-maths-chapter7' || type === 'class3-raksha-bandhan' || type === 'raksha-bandhan-class3' || type === 'class3-maths-raksha-bandhan-lab' || type === 'class3-math-raksha-bandhan' || type === 'class3-raksha-bandhan-lab') {
+                    fileUrl = "{{ asset('animations/class3-maths-raksha-bandhan.html') }}";
+                    titleText = "NCERT Class 3 Mathematics — Chapter 7: Raksha Bandhan Master Lab";
+                    badgeText = "Class 3 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class3-maths-fair-share' || type === 'chapter8-maths-class3' || type === 'class3-maths-chapter8' || type === 'class3-fair-share' || type === 'fair-share-class3' || type === 'class3-maths-fair-share-lab' || type === 'class3-math-fair-share' || type === 'class3-fair-share-lab') {
+                    fileUrl = "{{ asset('animations/class3-maths-fair-share.html') }}";
+                    titleText = "NCERT Class 3 Mathematics — Chapter 8: Fair Share Master Lab";
+                    badgeText = "Class 3 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class3-maths-house-of-hundreds-2' || type === 'chapter9-maths-class3' || type === 'class3-maths-chapter9' || type === 'class3-house-of-hundreds-2' || type === 'house-of-hundreds-2-class3' || type === 'class3-maths-house-of-hundreds-2-lab' || type === 'class3-math-house-of-hundreds-2' || type === 'class3-house-of-hundreds-2-lab') {
+                    fileUrl = "{{ asset('animations/class3-maths-house-of-hundreds-2.html') }}";
+                    titleText = "NCERT Class 3 Mathematics — Chapter 9: House of Hundreds - II Master Lab";
+                    badgeText = "Class 3 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class3-maths-fun-at-class-party' || type === 'chapter10-maths-class3' || type === 'class3-maths-chapter10' || type === 'class3-fun-at-class-party' || type === 'fun-at-class-party-class3' || type === 'class3-maths-fun-at-class-party-lab' || type === 'class3-math-fun-at-class-party' || type === 'class3-fun-at-class-party-lab') {
+                    fileUrl = "{{ asset('animations/class3-maths-fun-at-class-party.html') }}";
+                    titleText = "NCERT Class 3 Mathematics — Chapter 10: Fun at Class Party! Master Lab";
+                    badgeText = "Class 3 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class3-maths-filling-and-lifting' || type === 'chapter11-maths-class3' || type === 'class3-maths-chapter11' || type === 'class3-filling-and-lifting' || type === 'filling-and-lifting-class3' || type === 'class3-maths-filling-and-lifting-lab' || type === 'class3-math-filling-and-lifting' || type === 'class3-filling-and-lifting-lab') {
+                    fileUrl = "{{ asset('animations/class3-maths-filling-and-lifting.html') }}";
+                    titleText = "NCERT Class 3 Mathematics — Chapter 11: Filling and Lifting Master Lab";
+                    badgeText = "Class 3 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class3-maths-give-and-take' || type === 'chapter12-maths-class3' || type === 'class3-maths-chapter12' || type === 'class3-give-and-take' || type === 'give-and-take-class3' || type === 'class3-maths-give-and-take-lab' || type === 'class3-math-give-and-take' || type === 'class3-give-and-take-lab') {
+                    fileUrl = "{{ asset('animations/class3-maths-give-and-take.html') }}";
+                    titleText = "NCERT Class 3 Mathematics — Chapter 12: Give and Take Master Lab";
+                    badgeText = "Class 3 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class3-maths-time-goes-on' || type === 'chapter13-maths-class3' || type === 'class3-maths-chapter13' || type === 'class3-time-goes-on' || type === 'time-goes-on-class3' || type === 'class3-maths-time-goes-on-lab' || type === 'class3-math-time-goes-on' || type === 'class3-time-goes-on-lab') {
+                    fileUrl = "{{ asset('animations/class3-maths-time-goes-on.html') }}";
+                    titleText = "NCERT Class 3 Mathematics — Chapter 13: Time Goes On Master Lab";
+                    badgeText = "Class 3 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class3-maths-the-surajkund-fair' || type === 'chapter14-maths-class3' || type === 'class3-maths-chapter14' || type === 'class3-the-surajkund-fair' || type === 'the-surajkund-fair-class3' || type === 'class3-maths-the-surajkund-fair-lab' || type === 'class3-math-the-surajkund-fair' || type === 'class3-the-surajkund-fair-lab') {
+                    fileUrl = "{{ asset('animations/class3-maths-the-surajkund-fair.html') }}";
+                    titleText = "NCERT Class 3 Mathematics — Chapter 14: The Surajkund Fair Master Lab";
+                    badgeText = "Class 3 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
                 } else if (type === 'class4-maths-shapes-around-us' || type === 'chapter1-maths-class4' || type === 'class4-maths-chapter1' || type === 'class4-shapes-around-us' || type === 'shapes-around-us-class4' || type === 'class4-maths-shapes-around-us-lab' || type === 'class4-math-shapes-around-us' || type === 'class4-shapes-lab') {
                     fileUrl = "{{ asset('animations/class4-maths-shapes-around-us.html') }}";
                     titleText = "NCERT Class 4 Mathematics — Chapter 1: Shapes Around Us Master Lab";
@@ -1310,11 +1380,116 @@
                     titleText = "NCERT Class 4 Mathematics — Chapter 11: Fun with Symmetry Master Lab";
                     badgeText = "Class 4 • NCERT Mathematics";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-pink-500/20 text-pink-300 border border-pink-500/30 shrink-0";
+                } else if (type === 'class4-maths-ticking-clocks-turning-calendar' || type === 'chapter12-maths-class4' || type === 'class4-maths-chapter12' || type === 'class4-ticking-clocks-turning-calendar' || type === 'ticking-clocks-turning-calendar-class4' || type === 'class4-maths-ticking-clocks-turning-calendar-lab' || type === 'class4-math-ticking-clocks-turning-calendar' || type === 'class4-clocks-calendar-lab') {
+                    fileUrl = "{{ asset('animations/class4-maths-ticking-clocks-turning-calendar.html') }}";
+                    titleText = "NCERT Class 4 Mathematics — Chapter 12: Ticking Clocks and Turning Calendar Master Lab";
+                    badgeText = "Class 4 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
+                } else if (type === 'class4-maths-the-transport-museum' || type === 'chapter13-maths-class4' || type === 'class4-maths-chapter13' || type === 'class4-the-transport-museum' || type === 'the-transport-museum-class4' || type === 'class4-maths-the-transport-museum-lab' || type === 'class4-math-the-transport-museum' || type === 'class4-transport-museum-lab') {
+                    fileUrl = "{{ asset('animations/class4-maths-the-transport-museum.html') }}";
+                    titleText = "NCERT Class 4 Mathematics — Chapter 13: The Transport Museum Master Lab";
+                    badgeText = "Class 4 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
+                } else if (type === 'class4-maths-data-handling' || type === 'chapter14-maths-class4' || type === 'class4-maths-chapter14' || type === 'class4-data-handling' || type === 'data-handling-class4' || type === 'class4-maths-data-handling-lab' || type === 'class4-math-data-handling' || type === 'class4-data-handling-lab') {
+                    fileUrl = "{{ asset('animations/class4-maths-data-handling.html') }}";
+                    titleText = "NCERT Class 4 Mathematics — Chapter 14: Data Handling Master Lab";
+                    badgeText = "Class 4 • NCERT Mathematics";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
                 } else if (type === 'class5-maths-data-through-pictures' || type === 'chapter15-maths-class5' || type === 'class5-maths-chapter15' || type === 'class5-data-through-pictures' || type === 'data-through-pictures-class5' || type === 'class5-maths-data-through-pictures-lab' || type === 'class5-math-data-through-pictures' || type === 'class5-data-lab') {
                     fileUrl = "{{ asset('animations/class5-maths-data-through-pictures.html') }}";
                     titleText = "NCERT Class 5 Mathematics — Chapter 15: Data Through Pictures Master Lab";
                     badgeText = "Class 5 • NCERT Mathematics";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class3-science-family-and-friends' || type === 'chapter1-science-class3' || type === 'class3-science-chapter1' || type === 'class3-family-and-friends' || type === 'family-and-friends-class3' || type === 'class3-science-family-and-friends-lab' || type === 'class3-sci-family-and-friends' || type === 'class3-family-and-friends-lab') {
+                    fileUrl = "{{ asset('animations/class3-science-family-and-friends.html') }}";
+                    titleText = "NCERT Class 3 Science — Chapter 1: Family and Friends Master Lab";
+                    badgeText = "Class 3 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
+                } else if (type === 'class3-science-going-to-the-mela' || type === 'chapter2-science-class3' || type === 'class3-science-chapter2' || type === 'class3-going-to-the-mela' || type === 'going-to-the-mela-class3' || type === 'class3-science-going-to-the-mela-lab' || type === 'class3-sci-going-to-the-mela' || type === 'class3-going-to-the-mela-lab') {
+                    fileUrl = "{{ asset('animations/class3-science-going-to-the-mela.html') }}";
+                    titleText = "NCERT Class 3 Science — Chapter 2: Going to the Mela Master Lab";
+                    badgeText = "Class 3 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
+                } else if (type === 'class3-science-celebrating-festivals' || type === 'chapter3-science-class3' || type === 'class3-science-chapter3' || type === 'class3-celebrating-festivals' || type === 'celebrating-festivals-class3' || type === 'class3-science-celebrating-festivals-lab' || type === 'class3-sci-celebrating-festivals' || type === 'class3-celebrating-festivals-lab') {
+                    fileUrl = "{{ asset('animations/class3-science-celebrating-festivals.html') }}";
+                    titleText = "NCERT Class 3 Science — Chapter 3: Celebrating Festivals Master Lab";
+                    badgeText = "Class 3 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
+                } else if (type === 'class3-science-getting-to-know-plants' || type === 'chapter4-science-class3' || type === 'class3-science-chapter4' || type === 'class3-getting-to-know-plants' || type === 'getting-to-know-plants-class3' || type === 'class3-science-getting-to-know-plants-lab' || type === 'class3-sci-getting-to-know-plants' || type === 'class3-getting-to-know-plants-lab') {
+                    fileUrl = "{{ asset('animations/class3-science-getting-to-know-plants.html') }}";
+                    titleText = "NCERT Class 3 Science — Chapter 4: Getting to Know Plants Master Lab";
+                    badgeText = "Class 3 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'class3-science-plants-and-animals-live-together' || type === 'chapter5-science-class3' || type === 'class3-science-chapter5' || type === 'class3-plants-and-animals-live-together' || type === 'plants-and-animals-live-together-class3' || type === 'class3-science-plants-and-animals-live-together-lab' || type === 'class3-sci-plants-and-animals-live-together' || type === 'class3-plants-and-animals-live-together-lab') {
+                    fileUrl = "{{ asset('animations/class3-science-plants-and-animals-live-together.html') }}";
+                    titleText = "NCERT Class 3 Science — Chapter 5: Plants and Animals Live Together Master Lab";
+                    badgeText = "Class 3 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'class3-science-living-in-harmony' || type === 'chapter6-science-class3' || type === 'class3-science-chapter6' || type === 'class3-living-in-harmony' || type === 'living-in-harmony-class3' || type === 'class3-science-living-in-harmony-lab' || type === 'class3-sci-living-in-harmony' || type === 'class3-living-in-harmony-lab') {
+                    fileUrl = "{{ asset('animations/class3-science-living-in-harmony.html') }}";
+                    titleText = "NCERT Class 3 Science — Chapter 6: Living in Harmony Master Lab";
+                    badgeText = "Class 3 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'class3-science-water-a-precious-gift' || type === 'chapter7-science-class3' || type === 'class3-science-chapter7' || type === 'class3-water-a-precious-gift' || type === 'water-a-precious-gift-class3' || type === 'class3-science-water-a-precious-gift-lab' || type === 'class3-sci-water-a-precious-gift' || type === 'class3-water-a-precious-gift-lab') {
+                    fileUrl = "{{ asset('animations/class3-science-water-a-precious-gift.html') }}";
+                    titleText = "NCERT Class 3 Science — Chapter 7: Water - A Precious Gift Master Lab";
+                    badgeText = "Class 3 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
+                } else if (type === 'class3-science-food-we-eat' || type === 'chapter8-science-class3' || type === 'class3-science-chapter8' || type === 'class3-food-we-eat' || type === 'food-we-eat-class3' || type === 'class3-science-food-we-eat-lab' || type === 'class3-sci-food-we-eat' || type === 'class3-food-we-eat-lab') {
+                    fileUrl = "{{ asset('animations/class3-science-food-we-eat.html') }}";
+                    titleText = "NCERT Class 3 Science — Chapter 8: Food We Eat Master Lab";
+                    badgeText = "Class 3 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'class4-science-living-together' || type === 'chapter1-science-class4' || type === 'class4-science-chapter1' || type === 'class4-living-together' || type === 'living-together-class4' || type === 'class4-science-living-together-lab' || type === 'class4-sc-living-together' || type === 'class4-living-together-lab') {
+                    fileUrl = "{{ asset('animations/class4-science-living-together.html') }}";
+                    titleText = "NCERT Class 4 Science — Chapter 1: Living Together Master Lab";
+                    badgeText = "Class 4 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'class4-science-exploring-our-neighbourhood' || type === 'chapter2-science-class4' || type === 'class4-science-chapter2' || type === 'class4-exploring-our-neighbourhood' || type === 'exploring-our-neighbourhood-class4' || type === 'class4-science-exploring-our-neighbourhood-lab' || type === 'class4-sc-exploring-our-neighbourhood' || type === 'class4-exploring-neighbourhood-lab') {
+                    fileUrl = "{{ asset('animations/class4-science-exploring-our-neighbourhood.html') }}";
+                    titleText = "NCERT Class 4 Science — Chapter 2: Exploring Our Neighbourhood Master Lab";
+                    badgeText = "Class 4 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'class4-science-nature-trail' || type === 'chapter3-science-class4' || type === 'class4-science-chapter3' || type === 'class4-nature-trail' || type === 'nature-trail-class4' || type === 'class4-science-nature-trail-lab' || type === 'class4-sc-nature-trail' || type === 'class4-nature-trail-lab') {
+                    fileUrl = "{{ asset('animations/class4-science-nature-trail.html') }}";
+                    titleText = "NCERT Class 4 Science — Chapter 3: Nature Trail Master Lab";
+                    badgeText = "Class 4 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'class4-science-growing-up-with-nature' || type === 'chapter4-science-class4' || type === 'class4-science-chapter4' || type === 'class4-growing-up-with-nature' || type === 'growing-up-with-nature-class4' || type === 'class4-science-growing-up-with-nature-lab' || type === 'class4-sc-growing-up-with-nature' || type === 'class4-growing-nature-lab') {
+                    fileUrl = "{{ asset('animations/class4-science-growing-up-with-nature.html') }}";
+                    titleText = "NCERT Class 4 Science — Chapter 4: Growing up with Nature Master Lab";
+                    badgeText = "Class 4 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'class4-science-food-for-health' || type === 'chapter5-science-class4' || type === 'class4-science-chapter5' || type === 'class4-food-for-health' || type === 'food-for-health-class4' || type === 'class4-science-food-for-health-lab' || type === 'class4-sc-food-for-health' || type === 'class4-food-health-lab') {
+                    fileUrl = "{{ asset('animations/class4-science-food-for-health.html') }}";
+                    titleText = "NCERT Class 4 Science — Chapter 5: Food for Health Master Lab";
+                    badgeText = "Class 4 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'class4-science-happy-and-healthy-living' || type === 'chapter6-science-class4' || type === 'class4-science-chapter6' || type === 'class4-happy-and-healthy-living' || type === 'happy-and-healthy-living-class4' || type === 'class4-science-happy-and-healthy-living-lab' || type === 'class4-sc-happy-and-healthy-living' || type === 'class4-happy-healthy-living-lab') {
+                    fileUrl = "{{ asset('animations/class4-science-happy-and-healthy-living.html') }}";
+                    titleText = "NCERT Class 4 Science — Chapter 6: Happy and Healthy Living Master Lab";
+                    badgeText = "Class 4 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
+                } else if (type === 'class4-science-how-things-work' || type === 'chapter7-science-class4' || type === 'class4-science-chapter7' || type === 'class4-how-things-work' || type === 'how-things-work-class4' || type === 'class4-science-how-things-work-lab' || type === 'class4-sc-how-things-work' || type === 'class4-how-things-work-lab') {
+                    fileUrl = "{{ asset('animations/class4-science-how-things-work.html') }}";
+                    titleText = "NCERT Class 4 Science — Chapter 7: How Things Work Master Lab";
+                    badgeText = "Class 4 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
+                } else if (type === 'class4-science-how-things-are-made' || type === 'chapter8-science-class4' || type === 'class4-science-chapter8' || type === 'class4-how-things-are-made' || type === 'how-things-are-made-class4' || type === 'class4-science-how-things-are-made-lab' || type === 'class4-sc-how-things-are-made' || type === 'class4-how-things-made-lab') {
+                    fileUrl = "{{ asset('animations/class4-science-how-things-are-made.html') }}";
+                    titleText = "NCERT Class 4 Science — Chapter 8: How Things are Made Master Lab";
+                    badgeText = "Class 4 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'class4-science-different-lands-different-lives' || type === 'chapter9-science-class4' || type === 'class4-science-chapter9' || type === 'class4-different-lands-different-lives' || type === 'different-lands-different-lives-class4' || type === 'class4-science-different-lands-different-lives-lab' || type === 'class4-sc-different-lands-different-lives' || type === 'class4-different-lands-lives-lab') {
+                    fileUrl = "{{ asset('animations/class4-science-different-lands-different-lives.html') }}";
+                    titleText = "NCERT Class 4 Science — Chapter 9: Different Lands, Different Lives Master Lab";
+                    badgeText = "Class 4 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
+                } else if (type === 'class4-science-our-sky' || type === 'chapter10-science-class4' || type === 'class4-science-chapter10' || type === 'class4-our-sky' || type === 'our-sky-class4' || type === 'class4-science-our-sky-lab' || type === 'class4-sc-our-sky' || type === 'class4-our-sky-lab') {
+                    fileUrl = "{{ asset('animations/class4-science-our-sky.html') }}";
+                    titleText = "NCERT Class 4 Science — Chapter 10: Our Sky Master Lab";
+                    badgeText = "Class 4 • NCERT Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
                 } else if (type === 'class5-science-water-essence-of-life' || type === 'chapter1-science-class5' || type === 'class5-science-chapter1' || type === 'class5-water-essence-of-life' || type === 'water-essence-of-life-class5' || type === 'class5-science-water-lab' || type === 'class5-science-water-cycle' || type === 'class5-water-cycle') {
                     fileUrl = "{{ asset('animations/class5-science-water-essence-of-life.html') }}";
                     titleText = "NCERT Class 5 Science — Chapter 1: Water - The Essence of Life Master Lab";

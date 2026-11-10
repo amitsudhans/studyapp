@@ -1753,6 +1753,412 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertFileExists(public_path('animations/class6-integers-lab.html'));
     }
 
+    public function test_ncert_class_3_has_whats_in_a_name_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=mathematics&class=class3', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'mathematics',
+            'class' => 'class3',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('mathematics', $data['selectedSubject']);
+        $this->assertEquals('class3', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals("What's in a Name?", $data['activeChapters'][0]['name']);
+        $this->assertTrue($data['activeChapters'][0]['has_multimedia']);
+        $this->assertEquals('class3-maths-whats-in-a-name', $data['activeChapters'][0]['media_key']);
+        $this->assertFileExists(public_path('animations/class3-maths-whats-in-a-name.html'));
+        $this->assertFileExists(public_path('animations/chapter1-maths-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-chapter1.html'));
+        $this->assertFileExists(public_path('animations/class3-whats-in-a-name.html'));
+        $this->assertFileExists(public_path('animations/whats-in-a-name-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-whats-in-a-name-lab.html'));
+        $this->assertFileExists(public_path('animations/class3-math-whats-in-a-name.html'));
+        $this->assertFileExists(public_path('animations/class3-whats-in-a-name-lab.html'));
+    }
+
+    public function test_ncert_class_3_has_toy_joy_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=mathematics&class=class3', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'mathematics',
+            'class' => 'class3',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('mathematics', $data['selectedSubject']);
+        $this->assertEquals('class3', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Toy Joy', $data['activeChapters'][1]['name']);
+        $this->assertTrue($data['activeChapters'][1]['has_multimedia']);
+        $this->assertEquals('class3-maths-toy-joy', $data['activeChapters'][1]['media_key']);
+        $this->assertFileExists(public_path('animations/class3-maths-toy-joy.html'));
+        $this->assertFileExists(public_path('animations/chapter2-maths-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-chapter2.html'));
+        $this->assertFileExists(public_path('animations/class3-toy-joy.html'));
+        $this->assertFileExists(public_path('animations/toy-joy-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-toy-joy-lab.html'));
+        $this->assertFileExists(public_path('animations/class3-math-toy-joy.html'));
+        $this->assertFileExists(public_path('animations/class3-toy-joy-lab.html'));
+    }
+
+    public function test_ncert_class_3_has_double_century_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=mathematics&class=class3', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'mathematics',
+            'class' => 'class3',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('mathematics', $data['selectedSubject']);
+        $this->assertEquals('class3', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Double Century', $data['activeChapters'][2]['name']);
+        $this->assertTrue($data['activeChapters'][2]['has_multimedia']);
+        $this->assertEquals('class3-maths-double-century', $data['activeChapters'][2]['media_key']);
+        $this->assertFileExists(public_path('animations/class3-maths-double-century.html'));
+        $this->assertFileExists(public_path('animations/chapter3-maths-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-chapter3.html'));
+        $this->assertFileExists(public_path('animations/class3-double-century.html'));
+        $this->assertFileExists(public_path('animations/double-century-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-double-century-lab.html'));
+        $this->assertFileExists(public_path('animations/class3-math-double-century.html'));
+        $this->assertFileExists(public_path('animations/class3-double-century-lab.html'));
+    }
+
+    public function test_ncert_class_3_has_vacation_with_my_nani_maa_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=mathematics&class=class3', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'mathematics',
+            'class' => 'class3',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('mathematics', $data['selectedSubject']);
+        $this->assertEquals('class3', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Vacation with My Nani Maa', $data['activeChapters'][3]['name']);
+        $this->assertTrue($data['activeChapters'][3]['has_multimedia']);
+        $this->assertEquals('class3-maths-vacation-with-my-nani-maa', $data['activeChapters'][3]['media_key']);
+        $this->assertFileExists(public_path('animations/class3-maths-vacation-with-my-nani-maa.html'));
+        $this->assertFileExists(public_path('animations/chapter4-maths-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-chapter4.html'));
+        $this->assertFileExists(public_path('animations/class3-vacation-with-my-nani-maa.html'));
+        $this->assertFileExists(public_path('animations/vacation-with-my-nani-maa-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-vacation-with-my-nani-maa-lab.html'));
+        $this->assertFileExists(public_path('animations/class3-math-vacation-with-my-nani-maa.html'));
+        $this->assertFileExists(public_path('animations/class3-vacation-with-my-nani-maa-lab.html'));
+    }
+
+    public function test_ncert_class_3_has_fun_with_shapes_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=mathematics&class=class3', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'mathematics',
+            'class' => 'class3',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('mathematics', $data['selectedSubject']);
+        $this->assertEquals('class3', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Fun with Shapes', $data['activeChapters'][4]['name']);
+        $this->assertTrue($data['activeChapters'][4]['has_multimedia']);
+        $this->assertEquals('class3-maths-fun-with-shapes', $data['activeChapters'][4]['media_key']);
+        $this->assertFileExists(public_path('animations/class3-maths-fun-with-shapes.html'));
+        $this->assertFileExists(public_path('animations/chapter5-maths-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-chapter5.html'));
+        $this->assertFileExists(public_path('animations/class3-fun-with-shapes.html'));
+        $this->assertFileExists(public_path('animations/fun-with-shapes-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-fun-with-shapes-lab.html'));
+        $this->assertFileExists(public_path('animations/class3-math-fun-with-shapes.html'));
+        $this->assertFileExists(public_path('animations/class3-fun-with-shapes-lab.html'));
+    }
+
+    public function test_ncert_class_3_has_house_of_hundreds_1_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=mathematics&class=class3', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'mathematics',
+            'class' => 'class3',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('mathematics', $data['selectedSubject']);
+        $this->assertEquals('class3', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('House of Hundreds - 1', $data['activeChapters'][5]['name']);
+        $this->assertTrue($data['activeChapters'][5]['has_multimedia']);
+        $this->assertEquals('class3-maths-house-of-hundreds-1', $data['activeChapters'][5]['media_key']);
+        $this->assertFileExists(public_path('animations/class3-maths-house-of-hundreds-1.html'));
+        $this->assertFileExists(public_path('animations/chapter6-maths-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-chapter6.html'));
+        $this->assertFileExists(public_path('animations/class3-house-of-hundreds-1.html'));
+        $this->assertFileExists(public_path('animations/house-of-hundreds-1-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-house-of-hundreds-1-lab.html'));
+        $this->assertFileExists(public_path('animations/class3-math-house-of-hundreds-1.html'));
+        $this->assertFileExists(public_path('animations/class3-house-of-hundreds-1-lab.html'));
+    }
+
+    public function test_ncert_class_3_has_raksha_bandhan_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=mathematics&class=class3', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'mathematics',
+            'class' => 'class3',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('mathematics', $data['selectedSubject']);
+        $this->assertEquals('class3', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Raksha Bandhan', $data['activeChapters'][6]['name']);
+        $this->assertTrue($data['activeChapters'][6]['has_multimedia']);
+        $this->assertEquals('class3-maths-raksha-bandhan', $data['activeChapters'][6]['media_key']);
+        $this->assertFileExists(public_path('animations/class3-maths-raksha-bandhan.html'));
+        $this->assertFileExists(public_path('animations/chapter7-maths-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-chapter7.html'));
+        $this->assertFileExists(public_path('animations/class3-raksha-bandhan.html'));
+        $this->assertFileExists(public_path('animations/raksha-bandhan-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-raksha-bandhan-lab.html'));
+        $this->assertFileExists(public_path('animations/class3-math-raksha-bandhan.html'));
+        $this->assertFileExists(public_path('animations/class3-raksha-bandhan-lab.html'));
+    }
+
+    public function test_ncert_class_3_has_fair_share_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=mathematics&class=class3', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'mathematics',
+            'class' => 'class3',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('mathematics', $data['selectedSubject']);
+        $this->assertEquals('class3', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Fair Share', $data['activeChapters'][7]['name']);
+        $this->assertTrue($data['activeChapters'][7]['has_multimedia']);
+        $this->assertEquals('class3-maths-fair-share', $data['activeChapters'][7]['media_key']);
+        $this->assertFileExists(public_path('animations/class3-maths-fair-share.html'));
+        $this->assertFileExists(public_path('animations/chapter8-maths-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-chapter8.html'));
+        $this->assertFileExists(public_path('animations/class3-fair-share.html'));
+        $this->assertFileExists(public_path('animations/fair-share-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-fair-share-lab.html'));
+        $this->assertFileExists(public_path('animations/class3-math-fair-share.html'));
+        $this->assertFileExists(public_path('animations/class3-fair-share-lab.html'));
+    }
+
+    public function test_ncert_class_3_has_house_of_hundreds_2_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=mathematics&class=class3', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'mathematics',
+            'class' => 'class3',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('mathematics', $data['selectedSubject']);
+        $this->assertEquals('class3', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('House of Hundreds - II', $data['activeChapters'][8]['name']);
+        $this->assertTrue($data['activeChapters'][8]['has_multimedia']);
+        $this->assertEquals('class3-maths-house-of-hundreds-2', $data['activeChapters'][8]['media_key']);
+        $this->assertFileExists(public_path('animations/class3-maths-house-of-hundreds-2.html'));
+        $this->assertFileExists(public_path('animations/chapter9-maths-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-chapter9.html'));
+        $this->assertFileExists(public_path('animations/class3-house-of-hundreds-2.html'));
+        $this->assertFileExists(public_path('animations/house-of-hundreds-2-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-house-of-hundreds-2-lab.html'));
+        $this->assertFileExists(public_path('animations/class3-math-house-of-hundreds-2.html'));
+        $this->assertFileExists(public_path('animations/class3-house-of-hundreds-2-lab.html'));
+    }
+
+    public function test_ncert_class_3_has_fun_at_class_party_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=mathematics&class=class3', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'mathematics',
+            'class' => 'class3',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('mathematics', $data['selectedSubject']);
+        $this->assertEquals('class3', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Fun at Class Party!', $data['activeChapters'][9]['name']);
+        $this->assertTrue($data['activeChapters'][9]['has_multimedia']);
+        $this->assertEquals('class3-maths-fun-at-class-party', $data['activeChapters'][9]['media_key']);
+        $this->assertFileExists(public_path('animations/class3-maths-fun-at-class-party.html'));
+        $this->assertFileExists(public_path('animations/chapter10-maths-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-chapter10.html'));
+        $this->assertFileExists(public_path('animations/class3-fun-at-class-party.html'));
+        $this->assertFileExists(public_path('animations/fun-at-class-party-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-fun-at-class-party-lab.html'));
+        $this->assertFileExists(public_path('animations/class3-math-fun-at-class-party.html'));
+        $this->assertFileExists(public_path('animations/class3-fun-at-class-party-lab.html'));
+    }
+
+    public function test_ncert_class_3_has_filling_and_lifting_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=mathematics&class=class3', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'mathematics',
+            'class' => 'class3',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('mathematics', $data['selectedSubject']);
+        $this->assertEquals('class3', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Filling and Lifting', $data['activeChapters'][10]['name']);
+        $this->assertTrue($data['activeChapters'][10]['has_multimedia']);
+        $this->assertEquals('class3-maths-filling-and-lifting', $data['activeChapters'][10]['media_key']);
+        $this->assertFileExists(public_path('animations/class3-maths-filling-and-lifting.html'));
+        $this->assertFileExists(public_path('animations/chapter11-maths-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-chapter11.html'));
+        $this->assertFileExists(public_path('animations/class3-filling-and-lifting.html'));
+        $this->assertFileExists(public_path('animations/filling-and-lifting-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-filling-and-lifting-lab.html'));
+        $this->assertFileExists(public_path('animations/class3-math-filling-and-lifting.html'));
+        $this->assertFileExists(public_path('animations/class3-filling-and-lifting-lab.html'));
+    }
+
+    public function test_ncert_class_3_has_give_and_take_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=mathematics&class=class3', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'mathematics',
+            'class' => 'class3',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('mathematics', $data['selectedSubject']);
+        $this->assertEquals('class3', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Give and Take', $data['activeChapters'][11]['name']);
+        $this->assertTrue($data['activeChapters'][11]['has_multimedia']);
+        $this->assertEquals('class3-maths-give-and-take', $data['activeChapters'][11]['media_key']);
+        $this->assertFileExists(public_path('animations/class3-maths-give-and-take.html'));
+        $this->assertFileExists(public_path('animations/chapter12-maths-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-chapter12.html'));
+        $this->assertFileExists(public_path('animations/class3-give-and-take.html'));
+        $this->assertFileExists(public_path('animations/give-and-take-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-give-and-take-lab.html'));
+        $this->assertFileExists(public_path('animations/class3-math-give-and-take.html'));
+        $this->assertFileExists(public_path('animations/class3-give-and-take-lab.html'));
+    }
+
+    public function test_ncert_class_3_has_time_goes_on_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=mathematics&class=class3', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'mathematics',
+            'class' => 'class3',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('mathematics', $data['selectedSubject']);
+        $this->assertEquals('class3', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Time Goes On', $data['activeChapters'][12]['name']);
+        $this->assertTrue($data['activeChapters'][12]['has_multimedia']);
+        $this->assertEquals('class3-maths-time-goes-on', $data['activeChapters'][12]['media_key']);
+        $this->assertFileExists(public_path('animations/class3-maths-time-goes-on.html'));
+        $this->assertFileExists(public_path('animations/chapter13-maths-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-chapter13.html'));
+        $this->assertFileExists(public_path('animations/class3-time-goes-on.html'));
+        $this->assertFileExists(public_path('animations/time-goes-on-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-time-goes-on-lab.html'));
+        $this->assertFileExists(public_path('animations/class3-math-time-goes-on.html'));
+        $this->assertFileExists(public_path('animations/class3-time-goes-on-lab.html'));
+    }
+
+    public function test_ncert_class_3_has_the_surajkund_fair_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=mathematics&class=class3', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'mathematics',
+            'class' => 'class3',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('mathematics', $data['selectedSubject']);
+        $this->assertEquals('class3', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('The Surajkund Fair', $data['activeChapters'][13]['name']);
+        $this->assertTrue($data['activeChapters'][13]['has_multimedia']);
+        $this->assertEquals('class3-maths-the-surajkund-fair', $data['activeChapters'][13]['media_key']);
+        $this->assertFileExists(public_path('animations/class3-maths-the-surajkund-fair.html'));
+        $this->assertFileExists(public_path('animations/chapter14-maths-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-chapter14.html'));
+        $this->assertFileExists(public_path('animations/class3-the-surajkund-fair.html'));
+        $this->assertFileExists(public_path('animations/the-surajkund-fair-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-maths-the-surajkund-fair-lab.html'));
+        $this->assertFileExists(public_path('animations/class3-math-the-surajkund-fair.html'));
+        $this->assertFileExists(public_path('animations/class3-the-surajkund-fair-lab.html'));
+    }
+
     public function test_ncert_class_4_has_shapes_around_us_multimedia(): void
     {
         $controller = new MultimediaController;
@@ -2070,6 +2476,93 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertFileExists(public_path('animations/class4-maths-fun-with-symmetry-lab.html'));
         $this->assertFileExists(public_path('animations/class4-math-fun-with-symmetry.html'));
         $this->assertFileExists(public_path('animations/class4-symmetry-lab.html'));
+    }
+
+    public function test_ncert_class_4_has_ticking_clocks_turning_calendar_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=mathematics&class=class4', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'mathematics',
+            'class' => 'class4',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('mathematics', $data['selectedSubject']);
+        $this->assertEquals('class4', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Ticking Clocks and Turning Calendar', $data['activeChapters'][11]['name']);
+        $this->assertTrue($data['activeChapters'][11]['has_multimedia']);
+        $this->assertEquals('class4-maths-ticking-clocks-turning-calendar', $data['activeChapters'][11]['media_key']);
+        $this->assertFileExists(public_path('animations/class4-maths-ticking-clocks-turning-calendar.html'));
+        $this->assertFileExists(public_path('animations/chapter12-maths-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-maths-chapter12.html'));
+        $this->assertFileExists(public_path('animations/class4-ticking-clocks-turning-calendar.html'));
+        $this->assertFileExists(public_path('animations/ticking-clocks-turning-calendar-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-maths-ticking-clocks-turning-calendar-lab.html'));
+        $this->assertFileExists(public_path('animations/class4-math-ticking-clocks-turning-calendar.html'));
+        $this->assertFileExists(public_path('animations/class4-clocks-calendar-lab.html'));
+    }
+
+    public function test_ncert_class_4_has_the_transport_museum_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=mathematics&class=class4', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'mathematics',
+            'class' => 'class4',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('mathematics', $data['selectedSubject']);
+        $this->assertEquals('class4', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('The Transport Museum', $data['activeChapters'][12]['name']);
+        $this->assertTrue($data['activeChapters'][12]['has_multimedia']);
+        $this->assertEquals('class4-maths-the-transport-museum', $data['activeChapters'][12]['media_key']);
+        $this->assertFileExists(public_path('animations/class4-maths-the-transport-museum.html'));
+        $this->assertFileExists(public_path('animations/chapter13-maths-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-maths-chapter13.html'));
+        $this->assertFileExists(public_path('animations/class4-the-transport-museum.html'));
+        $this->assertFileExists(public_path('animations/the-transport-museum-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-maths-the-transport-museum-lab.html'));
+        $this->assertFileExists(public_path('animations/class4-math-the-transport-museum.html'));
+        $this->assertFileExists(public_path('animations/class4-transport-museum-lab.html'));
+    }
+
+    public function test_ncert_class_4_has_data_handling_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=mathematics&class=class4', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'mathematics',
+            'class' => 'class4',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('mathematics', $data['selectedSubject']);
+        $this->assertEquals('class4', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Data Handling', $data['activeChapters'][13]['name']);
+        $this->assertTrue($data['activeChapters'][13]['has_multimedia']);
+        $this->assertEquals('class4-maths-data-handling', $data['activeChapters'][13]['media_key']);
+        $this->assertFileExists(public_path('animations/class4-maths-data-handling.html'));
+        $this->assertFileExists(public_path('animations/chapter14-maths-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-maths-chapter14.html'));
+        $this->assertFileExists(public_path('animations/class4-data-handling.html'));
+        $this->assertFileExists(public_path('animations/data-handling-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-maths-data-handling-lab.html'));
+        $this->assertFileExists(public_path('animations/class4-math-data-handling.html'));
+        $this->assertFileExists(public_path('animations/class4-data-handling-lab.html'));
     }
 
     public function test_ncert_class_5_has_we_the_travellers_1_multimedia(): void
@@ -2505,6 +2998,528 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertFileExists(public_path('animations/class5-maths-data-through-pictures-lab.html'));
         $this->assertFileExists(public_path('animations/class5-math-data-through-pictures.html'));
         $this->assertFileExists(public_path('animations/class5-data-lab.html'));
+    }
+
+    public function test_ncert_class_3_has_family_and_friends_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=science&class=class3', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'science',
+            'class' => 'class3',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('science', $data['selectedSubject']);
+        $this->assertEquals('class3', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Family and Friends', $data['activeChapters'][0]['name']);
+        $this->assertTrue($data['activeChapters'][0]['has_multimedia']);
+        $this->assertEquals('class3-science-family-and-friends', $data['activeChapters'][0]['media_key']);
+        $this->assertFileExists(public_path('animations/class3-science-family-and-friends.html'));
+        $this->assertFileExists(public_path('animations/chapter1-science-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-science-chapter1.html'));
+        $this->assertFileExists(public_path('animations/class3-family-and-friends.html'));
+        $this->assertFileExists(public_path('animations/family-and-friends-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-science-family-and-friends-lab.html'));
+        $this->assertFileExists(public_path('animations/class3-sci-family-and-friends.html'));
+        $this->assertFileExists(public_path('animations/class3-family-and-friends-lab.html'));
+    }
+
+    public function test_ncert_class_3_has_going_to_the_mela_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=science&class=class3', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'science',
+            'class' => 'class3',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('science', $data['selectedSubject']);
+        $this->assertEquals('class3', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Going to the Mela', $data['activeChapters'][1]['name']);
+        $this->assertTrue($data['activeChapters'][1]['has_multimedia']);
+        $this->assertEquals('class3-science-going-to-the-mela', $data['activeChapters'][1]['media_key']);
+        $this->assertFileExists(public_path('animations/class3-science-going-to-the-mela.html'));
+        $this->assertFileExists(public_path('animations/chapter2-science-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-science-chapter2.html'));
+        $this->assertFileExists(public_path('animations/class3-going-to-the-mela.html'));
+        $this->assertFileExists(public_path('animations/going-to-the-mela-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-science-going-to-the-mela-lab.html'));
+        $this->assertFileExists(public_path('animations/class3-sci-going-to-the-mela.html'));
+        $this->assertFileExists(public_path('animations/class3-going-to-the-mela-lab.html'));
+    }
+
+    public function test_ncert_class_3_has_celebrating_festivals_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=science&class=class3', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'science',
+            'class' => 'class3',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('science', $data['selectedSubject']);
+        $this->assertEquals('class3', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Celebrating Festivals', $data['activeChapters'][2]['name']);
+        $this->assertTrue($data['activeChapters'][2]['has_multimedia']);
+        $this->assertEquals('class3-science-celebrating-festivals', $data['activeChapters'][2]['media_key']);
+        $this->assertFileExists(public_path('animations/class3-science-celebrating-festivals.html'));
+        $this->assertFileExists(public_path('animations/chapter3-science-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-science-chapter3.html'));
+        $this->assertFileExists(public_path('animations/class3-celebrating-festivals.html'));
+        $this->assertFileExists(public_path('animations/celebrating-festivals-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-science-celebrating-festivals-lab.html'));
+        $this->assertFileExists(public_path('animations/class3-sci-celebrating-festivals.html'));
+        $this->assertFileExists(public_path('animations/class3-celebrating-festivals-lab.html'));
+    }
+
+    public function test_ncert_class_3_has_getting_to_know_plants_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=science&class=class3', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'science',
+            'class' => 'class3',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('science', $data['selectedSubject']);
+        $this->assertEquals('class3', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Getting to Know Plants', $data['activeChapters'][3]['name']);
+        $this->assertTrue($data['activeChapters'][3]['has_multimedia']);
+        $this->assertEquals('class3-science-getting-to-know-plants', $data['activeChapters'][3]['media_key']);
+        $this->assertFileExists(public_path('animations/class3-science-getting-to-know-plants.html'));
+        $this->assertFileExists(public_path('animations/chapter4-science-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-science-chapter4.html'));
+        $this->assertFileExists(public_path('animations/class3-getting-to-know-plants.html'));
+        $this->assertFileExists(public_path('animations/getting-to-know-plants-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-science-getting-to-know-plants-lab.html'));
+        $this->assertFileExists(public_path('animations/class3-sci-getting-to-know-plants.html'));
+        $this->assertFileExists(public_path('animations/class3-getting-to-know-plants-lab.html'));
+    }
+
+    public function test_ncert_class_3_has_plants_and_animals_live_together_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=science&class=class3', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'science',
+            'class' => 'class3',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('science', $data['selectedSubject']);
+        $this->assertEquals('class3', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Plants and Animals Live Together', $data['activeChapters'][4]['name']);
+        $this->assertTrue($data['activeChapters'][4]['has_multimedia']);
+        $this->assertEquals('class3-science-plants-and-animals-live-together', $data['activeChapters'][4]['media_key']);
+        $this->assertFileExists(public_path('animations/class3-science-plants-and-animals-live-together.html'));
+        $this->assertFileExists(public_path('animations/chapter5-science-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-science-chapter5.html'));
+        $this->assertFileExists(public_path('animations/class3-plants-and-animals-live-together.html'));
+        $this->assertFileExists(public_path('animations/plants-and-animals-live-together-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-science-plants-and-animals-live-together-lab.html'));
+        $this->assertFileExists(public_path('animations/class3-sci-plants-and-animals-live-together.html'));
+        $this->assertFileExists(public_path('animations/class3-plants-and-animals-live-together-lab.html'));
+    }
+
+    public function test_ncert_class_3_has_living_in_harmony_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=science&class=class3', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'science',
+            'class' => 'class3',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('science', $data['selectedSubject']);
+        $this->assertEquals('class3', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Living in Harmony', $data['activeChapters'][5]['name']);
+        $this->assertTrue($data['activeChapters'][5]['has_multimedia']);
+        $this->assertEquals('class3-science-living-in-harmony', $data['activeChapters'][5]['media_key']);
+        $this->assertFileExists(public_path('animations/class3-science-living-in-harmony.html'));
+        $this->assertFileExists(public_path('animations/chapter6-science-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-science-chapter6.html'));
+        $this->assertFileExists(public_path('animations/class3-living-in-harmony.html'));
+        $this->assertFileExists(public_path('animations/living-in-harmony-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-science-living-in-harmony-lab.html'));
+        $this->assertFileExists(public_path('animations/class3-sci-living-in-harmony.html'));
+        $this->assertFileExists(public_path('animations/class3-living-in-harmony-lab.html'));
+    }
+
+    public function test_ncert_class_3_has_water_a_precious_gift_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=science&class=class3', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'science',
+            'class' => 'class3',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('science', $data['selectedSubject']);
+        $this->assertEquals('class3', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Water - A Precious Gift', $data['activeChapters'][6]['name']);
+        $this->assertTrue($data['activeChapters'][6]['has_multimedia']);
+        $this->assertEquals('class3-science-water-a-precious-gift', $data['activeChapters'][6]['media_key']);
+        $this->assertFileExists(public_path('animations/class3-science-water-a-precious-gift.html'));
+        $this->assertFileExists(public_path('animations/chapter7-science-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-science-chapter7.html'));
+        $this->assertFileExists(public_path('animations/class3-water-a-precious-gift.html'));
+        $this->assertFileExists(public_path('animations/water-a-precious-gift-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-science-water-a-precious-gift-lab.html'));
+        $this->assertFileExists(public_path('animations/class3-sci-water-a-precious-gift.html'));
+        $this->assertFileExists(public_path('animations/class3-water-a-precious-gift-lab.html'));
+    }
+
+    public function test_ncert_class_3_has_food_we_eat_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=science&class=class3', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'science',
+            'class' => 'class3',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('science', $data['selectedSubject']);
+        $this->assertEquals('class3', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Food We Eat', $data['activeChapters'][7]['name']);
+        $this->assertTrue($data['activeChapters'][7]['has_multimedia']);
+        $this->assertEquals('class3-science-food-we-eat', $data['activeChapters'][7]['media_key']);
+        $this->assertFileExists(public_path('animations/class3-science-food-we-eat.html'));
+        $this->assertFileExists(public_path('animations/chapter8-science-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-science-chapter8.html'));
+        $this->assertFileExists(public_path('animations/class3-food-we-eat.html'));
+        $this->assertFileExists(public_path('animations/food-we-eat-class3.html'));
+        $this->assertFileExists(public_path('animations/class3-science-food-we-eat-lab.html'));
+        $this->assertFileExists(public_path('animations/class3-sci-food-we-eat.html'));
+        $this->assertFileExists(public_path('animations/class3-food-we-eat-lab.html'));
+    }
+
+    public function test_ncert_class_4_has_living_together_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=science&class=class4', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'science',
+            'class' => 'class4',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('science', $data['selectedSubject']);
+        $this->assertEquals('class4', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Living Together', $data['activeChapters'][0]['name']);
+        $this->assertTrue($data['activeChapters'][0]['has_multimedia']);
+        $this->assertEquals('class4-science-living-together', $data['activeChapters'][0]['media_key']);
+        $this->assertFileExists(public_path('animations/class4-science-living-together.html'));
+        $this->assertFileExists(public_path('animations/chapter1-science-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-science-chapter1.html'));
+        $this->assertFileExists(public_path('animations/class4-living-together.html'));
+        $this->assertFileExists(public_path('animations/living-together-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-science-living-together-lab.html'));
+        $this->assertFileExists(public_path('animations/class4-sc-living-together.html'));
+        $this->assertFileExists(public_path('animations/class4-living-together-lab.html'));
+    }
+
+    public function test_ncert_class_4_has_exploring_our_neighbourhood_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=science&class=class4', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'science',
+            'class' => 'class4',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('science', $data['selectedSubject']);
+        $this->assertEquals('class4', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Exploring Our Neighbourhood', $data['activeChapters'][1]['name']);
+        $this->assertTrue($data['activeChapters'][1]['has_multimedia']);
+        $this->assertEquals('class4-science-exploring-our-neighbourhood', $data['activeChapters'][1]['media_key']);
+        $this->assertFileExists(public_path('animations/class4-science-exploring-our-neighbourhood.html'));
+        $this->assertFileExists(public_path('animations/chapter2-science-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-science-chapter2.html'));
+        $this->assertFileExists(public_path('animations/class4-exploring-our-neighbourhood.html'));
+        $this->assertFileExists(public_path('animations/exploring-our-neighbourhood-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-science-exploring-our-neighbourhood-lab.html'));
+        $this->assertFileExists(public_path('animations/class4-sc-exploring-our-neighbourhood.html'));
+        $this->assertFileExists(public_path('animations/class4-exploring-neighbourhood-lab.html'));
+    }
+
+    public function test_ncert_class_4_has_nature_trail_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=science&class=class4', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'science',
+            'class' => 'class4',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('science', $data['selectedSubject']);
+        $this->assertEquals('class4', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Nature Trail', $data['activeChapters'][2]['name']);
+        $this->assertTrue($data['activeChapters'][2]['has_multimedia']);
+        $this->assertEquals('class4-science-nature-trail', $data['activeChapters'][2]['media_key']);
+        $this->assertFileExists(public_path('animations/class4-science-nature-trail.html'));
+        $this->assertFileExists(public_path('animations/chapter3-science-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-science-chapter3.html'));
+        $this->assertFileExists(public_path('animations/class4-nature-trail.html'));
+        $this->assertFileExists(public_path('animations/nature-trail-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-science-nature-trail-lab.html'));
+        $this->assertFileExists(public_path('animations/class4-sc-nature-trail.html'));
+        $this->assertFileExists(public_path('animations/class4-nature-trail-lab.html'));
+    }
+
+    public function test_ncert_class_4_has_growing_up_with_nature_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=science&class=class4', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'science',
+            'class' => 'class4',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('science', $data['selectedSubject']);
+        $this->assertEquals('class4', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Growing up with Nature', $data['activeChapters'][3]['name']);
+        $this->assertTrue($data['activeChapters'][3]['has_multimedia']);
+        $this->assertEquals('class4-science-growing-up-with-nature', $data['activeChapters'][3]['media_key']);
+        $this->assertFileExists(public_path('animations/class4-science-growing-up-with-nature.html'));
+        $this->assertFileExists(public_path('animations/chapter4-science-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-science-chapter4.html'));
+        $this->assertFileExists(public_path('animations/class4-growing-up-with-nature.html'));
+        $this->assertFileExists(public_path('animations/growing-up-with-nature-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-science-growing-up-with-nature-lab.html'));
+        $this->assertFileExists(public_path('animations/class4-sc-growing-up-with-nature.html'));
+        $this->assertFileExists(public_path('animations/class4-growing-nature-lab.html'));
+    }
+
+    public function test_ncert_class_4_has_food_for_health_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=science&class=class4', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'science',
+            'class' => 'class4',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('science', $data['selectedSubject']);
+        $this->assertEquals('class4', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Food for Health', $data['activeChapters'][4]['name']);
+        $this->assertTrue($data['activeChapters'][4]['has_multimedia']);
+        $this->assertEquals('class4-science-food-for-health', $data['activeChapters'][4]['media_key']);
+        $this->assertFileExists(public_path('animations/class4-science-food-for-health.html'));
+        $this->assertFileExists(public_path('animations/chapter5-science-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-science-chapter5.html'));
+        $this->assertFileExists(public_path('animations/class4-food-for-health.html'));
+        $this->assertFileExists(public_path('animations/food-for-health-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-science-food-for-health-lab.html'));
+        $this->assertFileExists(public_path('animations/class4-sc-food-for-health.html'));
+        $this->assertFileExists(public_path('animations/class4-food-health-lab.html'));
+    }
+
+    public function test_ncert_class_4_has_happy_and_healthy_living_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=science&class=class4', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'science',
+            'class' => 'class4',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('science', $data['selectedSubject']);
+        $this->assertEquals('class4', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Happy and Healthy Living', $data['activeChapters'][5]['name']);
+        $this->assertTrue($data['activeChapters'][5]['has_multimedia']);
+        $this->assertEquals('class4-science-happy-and-healthy-living', $data['activeChapters'][5]['media_key']);
+        $this->assertFileExists(public_path('animations/class4-science-happy-and-healthy-living.html'));
+        $this->assertFileExists(public_path('animations/chapter6-science-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-science-chapter6.html'));
+        $this->assertFileExists(public_path('animations/class4-happy-and-healthy-living.html'));
+        $this->assertFileExists(public_path('animations/happy-and-healthy-living-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-science-happy-and-healthy-living-lab.html'));
+        $this->assertFileExists(public_path('animations/class4-sc-happy-and-healthy-living.html'));
+        $this->assertFileExists(public_path('animations/class4-happy-healthy-living-lab.html'));
+    }
+
+    public function test_ncert_class_4_has_how_things_work_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=science&class=class4', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'science',
+            'class' => 'class4',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('science', $data['selectedSubject']);
+        $this->assertEquals('class4', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('How Things Work', $data['activeChapters'][6]['name']);
+        $this->assertTrue($data['activeChapters'][6]['has_multimedia']);
+        $this->assertEquals('class4-science-how-things-work', $data['activeChapters'][6]['media_key']);
+        $this->assertFileExists(public_path('animations/class4-science-how-things-work.html'));
+        $this->assertFileExists(public_path('animations/chapter7-science-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-science-chapter7.html'));
+        $this->assertFileExists(public_path('animations/class4-how-things-work.html'));
+        $this->assertFileExists(public_path('animations/how-things-work-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-science-how-things-work-lab.html'));
+        $this->assertFileExists(public_path('animations/class4-sc-how-things-work.html'));
+        $this->assertFileExists(public_path('animations/class4-how-things-work-lab.html'));
+    }
+
+    public function test_ncert_class_4_has_how_things_are_made_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=science&class=class4', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'science',
+            'class' => 'class4',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('science', $data['selectedSubject']);
+        $this->assertEquals('class4', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('How Things are Made', $data['activeChapters'][7]['name']);
+        $this->assertTrue($data['activeChapters'][7]['has_multimedia']);
+        $this->assertEquals('class4-science-how-things-are-made', $data['activeChapters'][7]['media_key']);
+        $this->assertFileExists(public_path('animations/class4-science-how-things-are-made.html'));
+        $this->assertFileExists(public_path('animations/chapter8-science-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-science-chapter8.html'));
+        $this->assertFileExists(public_path('animations/class4-how-things-are-made.html'));
+        $this->assertFileExists(public_path('animations/how-things-are-made-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-science-how-things-are-made-lab.html'));
+        $this->assertFileExists(public_path('animations/class4-sc-how-things-are-made.html'));
+        $this->assertFileExists(public_path('animations/class4-how-things-made-lab.html'));
+    }
+
+    public function test_ncert_class_4_has_different_lands_different_lives_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=science&class=class4', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'science',
+            'class' => 'class4',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('science', $data['selectedSubject']);
+        $this->assertEquals('class4', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Different Lands, Different Lives', $data['activeChapters'][8]['name']);
+        $this->assertTrue($data['activeChapters'][8]['has_multimedia']);
+        $this->assertEquals('class4-science-different-lands-different-lives', $data['activeChapters'][8]['media_key']);
+        $this->assertFileExists(public_path('animations/class4-science-different-lands-different-lives.html'));
+        $this->assertFileExists(public_path('animations/chapter9-science-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-science-chapter9.html'));
+        $this->assertFileExists(public_path('animations/class4-different-lands-different-lives.html'));
+        $this->assertFileExists(public_path('animations/different-lands-different-lives-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-science-different-lands-different-lives-lab.html'));
+        $this->assertFileExists(public_path('animations/class4-sc-different-lands-different-lives.html'));
+        $this->assertFileExists(public_path('animations/class4-different-lands-lives-lab.html'));
+    }
+
+    public function test_ncert_class_4_has_our_sky_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=science&class=class4', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'science',
+            'class' => 'class4',
+        ]);
+
+        $response = $controller->index($request);
+        $data = $response->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('science', $data['selectedSubject']);
+        $this->assertEquals('class4', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Our Sky', $data['activeChapters'][9]['name']);
+        $this->assertTrue($data['activeChapters'][9]['has_multimedia']);
+        $this->assertEquals('class4-science-our-sky', $data['activeChapters'][9]['media_key']);
+        $this->assertFileExists(public_path('animations/class4-science-our-sky.html'));
+        $this->assertFileExists(public_path('animations/chapter10-science-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-science-chapter10.html'));
+        $this->assertFileExists(public_path('animations/class4-our-sky.html'));
+        $this->assertFileExists(public_path('animations/our-sky-class4.html'));
+        $this->assertFileExists(public_path('animations/class4-science-our-sky-lab.html'));
+        $this->assertFileExists(public_path('animations/class4-sc-our-sky.html'));
+        $this->assertFileExists(public_path('animations/class4-our-sky-lab.html'));
     }
 
     public function test_ncert_class_5_has_water_essence_of_life_multimedia(): void
@@ -4388,7 +5403,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
     public function test_all_multimedia_files_have_last_slide_message_and_no_next_option(): void
     {
         $files = glob(public_path('animations/*.html'));
-        $this->assertCount(1106, $files);
+        $this->assertCount(1386, $files);
 
         foreach ($files as $file) {
             $content = file_get_contents($file);
