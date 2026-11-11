@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-#[Fillable(['name', 'email', 'password', 'status'])]
+#[Fillable(['name', 'email', 'password', 'status', 'curriculum_restricted'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -125,6 +125,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the curriculum permissions assigned to the user.
+     *
+     * @return HasMany<UserCurriculum, $this>
+     */
+    public function curricula(): HasMany
+    {
+        return $this->hasMany(UserCurriculum::class);
+    }
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
@@ -135,6 +145,7 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'status' => 'integer',
+            'curriculum_restricted' => 'boolean',
         ];
     }
 }

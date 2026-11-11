@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Standard;
+use App\Support\CurriculumCatalog;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -22,73 +22,15 @@ class MultimediaController extends Controller
         $searchQuery = trim($request->query('q', ''));
         $filterMode = $request->query('filter', 'all'); // 'all', 'multimedia', 'empty'
 
-        // Define the standard textbook curriculum tree
-        $syllabuses = [
-            'ncert' => [
-                'id' => 'ncert',
-                'name' => 'NCERT',
-                'badge' => 'National Council of Educational Research and Training',
-                'description' => 'National Curriculum Framework Textbook Animations',
-            ],
-            'cbse' => [
-                'id' => 'cbse',
-                'name' => 'CBSE',
-                'badge' => 'Central Board of Secondary Education',
-                'description' => 'CBSE Board Curriculum',
-            ],
-            'scert-kerala' => [
-                'id' => 'scert-kerala',
-                'name' => 'SCERT Kerala',
-                'badge' => 'State Council of Educational Research and Training (Kerala)',
-                'description' => 'Kerala State Syllabus Curriculum Framework',
-            ],
-        ];
+        // Define the canonical textbook curriculum tree catalog
+        $syllabuses = CurriculumCatalog::syllabuses();
 
         if (! array_key_exists($selectedSyllabus, $syllabuses)) {
             $selectedSyllabus = 'ncert';
         }
 
-        $subjects = [
-            'mathematics' => [
-                'id' => 'mathematics',
-                'name' => 'Mathematics',
-                'icon' => '📐',
-                'color' => 'emerald',
-            ],
-            'science' => [
-                'id' => 'science',
-                'name' => 'Science',
-                'icon' => '🔬',
-                'color' => 'cyan',
-            ],
-            'english' => [
-                'id' => 'english',
-                'name' => 'English',
-                'icon' => '📖',
-                'color' => 'indigo',
-            ],
-            'hindi' => [
-                'id' => 'hindi',
-                'name' => 'Hindi',
-                'icon' => '📚',
-                'color' => 'amber',
-            ],
-        ];
-
-        $classes = [
-            'class1' => ['id' => 'class1', 'name' => 'Class 1', 'level' => 'Primary'],
-            'class2' => ['id' => 'class2', 'name' => 'Class 2', 'level' => 'Primary'],
-            'class3' => ['id' => 'class3', 'name' => 'Class 3', 'level' => 'Primary'],
-            'class4' => ['id' => 'class4', 'name' => 'Class 4', 'level' => 'Primary'],
-            'class5' => ['id' => 'class5', 'name' => 'Class 5', 'level' => 'Primary'],
-            'class6' => ['id' => 'class6', 'name' => 'Class 6', 'level' => 'Middle'],
-            'class7' => ['id' => 'class7', 'name' => 'Class 7', 'level' => 'Middle'],
-            'class8' => ['id' => 'class8', 'name' => 'Class 8', 'level' => 'Middle'],
-            'class9' => ['id' => 'class9', 'name' => 'Class 9', 'level' => 'Secondary'],
-            'class10' => ['id' => 'class10', 'name' => 'Class 10', 'level' => 'Secondary'],
-            'class11' => ['id' => 'class11', 'name' => 'Class 11', 'level' => 'Higher Secondary'],
-            'class12' => ['id' => 'class12', 'name' => 'Class 12', 'level' => 'Higher Secondary'],
-        ];
+        $subjects = CurriculumCatalog::subjects();
+        $classes = CurriculumCatalog::classes();
 
         // Specific curriculum chapters definition
         $curriculumChapters = [
@@ -6291,17 +6233,49 @@ class MultimediaController extends Controller
             ],
         ];
 
+        $authUser = $request->user();
+        if ($authUser) {
+            $authUser->loadMissing('curricula');
+        }
+
+        $resolved = CurriculumCatalog::resolveForUser(
+            $authUser,
+            $syllabuses,
+            $subjects,
+            $classes,
+            $selectedSyllabus,
+            $selectedSubject,
+            $selectedClass
+        );
+
+        $syllabuses = $resolved['syllabuses'];
+        $subjects = $resolved['subjects'];
+        $classes = $resolved['classes'];
+        $selectedSyllabus = $resolved['selectedSyllabus'];
+        $selectedSubject = $resolved['selectedSubject'];
+        $selectedClass = $resolved['selectedClass'];
+        $hasCurriculumAccess = $resolved['hasCurriculumAccess'];
+        $enabledMap = $resolved['enabledMap'];
+
         // Active key
-        $activeKey = "{$selectedSyllabus}-{$selectedSubject}-{$selectedClass}";
-        $activeChapters = $curriculumChapters[$activeKey] ?? [];
+        $activeKey = $hasCurriculumAccess ? "{$selectedSyllabus}-{$selectedSubject}-{$selectedClass}" : '';
+        $activeChapters = $hasCurriculumAccess ? ($curriculumChapters[$activeKey] ?? []) : [];
 
         // Check if active set has any multimedia
         $hasAnyMultimedia = collect($activeChapters)->contains('has_multimedia', true);
 
-        // Calculate global statistics across curriculum
+        // Calculate global statistics across enabled curriculum
         $totalChaptersCount = 0;
         $totalMediaCount = 0;
         foreach ($curriculumChapters as $k => $chList) {
+            if ($enabledMap !== null) {
+                if (! preg_match('/^(ncert|cbse|scert-kerala)-(mathematics|science|social-science|english|hindi)-(class\d+)$/', $k, $matches)) {
+                    continue;
+                }
+                if (empty($enabledMap[$matches[1]][$matches[2]][$matches[3]])) {
+                    continue;
+                }
+            }
             foreach ($chList as $ch) {
                 $totalChaptersCount++;
                 if (! empty($ch['has_multimedia'])) {
@@ -6309,6 +6283,12 @@ class MultimediaController extends Controller
                 }
             }
         }
+
+        $quickJumpLabs = array_values(array_filter([
+            ['syllabus' => 'ncert', 'subject' => 'mathematics', 'class' => 'class12', 'icon' => '⚡', 'label' => 'Class 12 • Relations & Functions (Ch 1)', 'style' => 'bg-indigo-950/60 hover:bg-indigo-900/60 border-indigo-500/40 text-indigo-300'],
+            ['syllabus' => 'ncert', 'subject' => 'mathematics', 'class' => 'class10', 'icon' => '🌳', 'label' => 'Class 10 • Real Numbers (Ch 1)', 'style' => 'bg-emerald-950/60 hover:bg-emerald-900/60 border-emerald-500/40 text-emerald-300'],
+            ['syllabus' => 'ncert', 'subject' => 'mathematics', 'class' => 'class9', 'icon' => '📐', 'label' => 'Class 9 • Number System (Ch 1)', 'style' => 'bg-cyan-950/60 hover:bg-cyan-900/60 border-cyan-500/40 text-cyan-300'],
+        ], fn (array $item): bool => $enabledMap === null || ! empty($enabledMap[$item['syllabus']][$item['subject']][$item['class']])));
 
         return view('multimedia.index', [
             'syllabuses' => $syllabuses,
@@ -6321,6 +6301,8 @@ class MultimediaController extends Controller
             'activeKey' => $activeKey,
             'activeChapters' => $activeChapters,
             'hasAnyMultimedia' => $hasAnyMultimedia,
+            'hasCurriculumAccess' => $hasCurriculumAccess,
+            'quickJumpLabs' => $quickJumpLabs,
             'totalChaptersCount' => $totalChaptersCount,
             'totalMediaCount' => $totalMediaCount,
             'searchQuery' => $searchQuery,

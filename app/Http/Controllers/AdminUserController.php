@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateUserCurriculumRequest;
 use App\Models\Student;
 use App\Models\User;
+use App\Models\UserCurriculum;
 use App\Models\UserProfile;
+use App\Support\CurriculumCatalog;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -211,6 +214,41 @@ class AdminUserController extends Controller
         });
 
         return redirect()->route('dashboard')->with('status', 'User updated successfully!');
+    }
+
+    /**
+     * Update enabled/disabled curriculum selections for any user (teacher, student, or admin).
+     */
+    public function updateCurriculum(UpdateUserCurriculumRequest $request, User $user): RedirectResponse
+    {
+        $validated = $request->validated();
+        $restricted = $validated['mode'] === 'restricted';
+        $tuples = $restricted ? CurriculumCatalog::parseSelectionTokens($validated['items'] ?? []) : [];
+
+        DB::transaction(function () use ($user, $restricted, $tuples): void {
+            $user->update([
+                'curriculum_restricted' => $restricted,
+            ]);
+
+            $user->curricula()->delete();
+
+            if ($restricted && ! empty($tuples)) {
+                $now = now();
+                $rows = array_map(fn (array $item): array => [
+                    'user_id' => $user->id,
+                    'syllabus' => $item['syllabus'],
+                    'subject' => $item['subject'],
+                    'class_key' => $item['class_key'],
+                    'is_enabled' => true,
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ], $tuples);
+
+                UserCurriculum::insert($rows);
+            }
+        });
+
+        return redirect()->route('dashboard')->with('status', 'User curriculum updated successfully!');
     }
 
     /**

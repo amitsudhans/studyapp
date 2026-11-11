@@ -163,6 +163,7 @@
                                 <th class="py-3.5 px-6">Address</th>
                                 <th class="py-3.5 px-6">School / Designation</th>
                                 <th class="py-3.5 px-6">Assigned Standards</th>
+                                <th class="py-3.5 px-6">Curriculum Access</th>
                                 <th class="py-3.5 px-6">Type</th>
                                 <th class="py-3.5 px-6">Status</th>
                                 <th class="py-3.5 px-6 text-right">Actions</th>
@@ -199,6 +200,20 @@
                                             </div>
                                         @else
                                             <span class="text-xs text-slate-500">None assigned</span>
+                                        @endif
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        @php
+                                            $enabledTokens = $u->curriculum_restricted
+                                                ? $u->curricula->where('is_enabled', true)->map(fn ($c) => "{$c->syllabus}|{$c->subject}|{$c->class_key}")->values()->toArray()
+                                                : [];
+                                        @endphp
+                                        @if(! $u->curriculum_restricted)
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">All Enabled</span>
+                                        @elseif(count($enabledTokens) > 0)
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">{{ count($enabledTokens) }} Enabled</span>
+                                        @else
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-rose-500/10 text-rose-300 border border-rose-500/20">Disabled (0)</span>
                                         @endif
                                     </td>
                                     <td class="py-4 px-6">
@@ -240,6 +255,16 @@
                                         ]) }})" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-indigo-300 text-xs font-medium border border-slate-700 transition-colors inline-flex items-center space-x-1 cursor-pointer">
                                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
                                             <span>Edit</span>
+                                        </button>
+                                        <button type="button" onclick="openEditCurriculumModal({{ json_encode([
+                                            'id' => $u->id,
+                                            'name' => $u->name,
+                                            'type' => $u->profile?->type ?? 1,
+                                            'restricted' => (bool) $u->curriculum_restricted,
+                                            'items' => $enabledTokens,
+                                        ]) }})" class="px-3 py-1.5 rounded-lg bg-emerald-950/70 hover:bg-emerald-900/70 text-emerald-300 text-xs font-medium border border-emerald-700/50 transition-colors inline-flex items-center space-x-1 cursor-pointer">
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                                            <span>Edit Curriculum</span>
                                         </button>
                                         @if($u->id !== $user->id)
                                             <form method="POST" action="{{ route('admin.users.destroy', $u) }}" class="inline" onsubmit="return confirm('Are you sure you want to delete this user?')">
@@ -658,6 +683,103 @@
                 </div>
             </div>
 
+            <!-- Dedicated Edit User Curriculum Modal (Separate from Edit User) -->
+            <div id="editCurriculumModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-start sm:items-center justify-center p-4 overflow-y-auto">
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl my-auto">
+                    <div class="shrink-0 px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/60">
+                        <div>
+                            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                <span>📚</span>
+                                <span>Edit Curriculum Access</span>
+                                <span id="curriculum_modal_user_role" class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30"></span>
+                            </h3>
+                            <p class="text-xs text-slate-400 mt-0.5">Enable or disable curriculum per Syllabus, Subject, and Class (1 to 12) for <strong id="curriculum_modal_user_name" class="text-slate-200"></strong>.</p>
+                        </div>
+                        <button type="button" onclick="document.getElementById('editCurriculumModal').classList.add('hidden')" class="text-slate-400 hover:text-white transition-colors cursor-pointer">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        </button>
+                    </div>
+
+                    <form id="editCurriculumForm" method="POST" action="" class="flex flex-col flex-1 min-h-0">
+                        @csrf
+                        @method('PUT')
+
+                        <div id="editCurriculumScrollBody" class="flex-1 min-h-0 overflow-y-auto p-6 space-y-5">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-xl bg-slate-950 border border-slate-800">
+                                <div class="flex flex-wrap items-center gap-4 text-xs">
+                                    <label class="inline-flex items-center gap-2 cursor-pointer text-slate-200 font-semibold">
+                                        <input type="radio" name="mode" id="curriculum_mode_restricted" value="restricted" class="text-emerald-500 focus:ring-emerald-500">
+                                        <span>Restricted (Show Enabled Selections Only)</span>
+                                    </label>
+                                    <label class="inline-flex items-center gap-2 cursor-pointer text-slate-300">
+                                        <input type="radio" name="mode" id="curriculum_mode_unrestricted" value="unrestricted" class="text-indigo-500 focus:ring-indigo-500">
+                                        <span>Unrestricted (All Enabled)</span>
+                                    </label>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs shrink-0">
+                                    <button type="button" onclick="setAllCurriculumCheckboxes(true)" class="px-2.5 py-1 rounded-lg bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 font-semibold cursor-pointer">Enable All</button>
+                                    <button type="button" onclick="setAllCurriculumCheckboxes(false)" class="px-2.5 py-1 rounded-lg bg-rose-600/20 hover:bg-rose-600/30 text-rose-300 border border-rose-500/30 font-semibold cursor-pointer">Disable All</button>
+                                </div>
+                            </div>
+
+                            <div class="space-y-4">
+                                @foreach($curriculumSyllabuses ?? [] as $sylId => $sylData)
+                                    <div class="rounded-xl bg-slate-950/70 border border-slate-800 p-4 space-y-3">
+                                        <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-800/80">
+                                            <div class="flex items-center gap-2">
+                                                <span class="text-lg">{{ $sylId === 'ncert' ? '📘' : ($sylId === 'cbse' ? '🏛️' : '🌴') }}</span>
+                                                <h4 class="text-sm font-bold text-white">{{ $sylData['name'] }}</h4>
+                                                <span class="text-[11px] text-slate-400">{{ $sylData['badge'] }}</span>
+                                            </div>
+                                            <div class="flex items-center gap-1.5 text-[11px]">
+                                                <button type="button" onclick="toggleCurriculumGroup('{{ $sylId }}', null, true)" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-slate-700 cursor-pointer">Enable {{ $sylData['name'] }}</button>
+                                                <button type="button" onclick="toggleCurriculumGroup('{{ $sylId }}', null, false)" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-rose-300 border border-slate-700 cursor-pointer">Disable {{ $sylData['name'] }}</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="space-y-2.5">
+                                            @foreach($curriculumSubjects ?? [] as $subId => $subData)
+                                                <div class="rounded-lg bg-slate-900/70 border border-slate-800/80 p-3 space-y-2">
+                                                    <div class="flex flex-wrap items-center justify-between gap-2">
+                                                        <span class="text-xs font-bold text-slate-200 flex items-center gap-1.5">
+                                                            <span>{{ $subData['icon'] }}</span>
+                                                            <span>{{ $subData['name'] }}</span>
+                                                        </span>
+                                                        <div class="flex items-center gap-1.5 text-[11px]">
+                                                            <button type="button" onclick="toggleCurriculumGroup('{{ $sylId }}', '{{ $subId }}', true)" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 cursor-pointer">All Class 1–12</button>
+                                                            <button type="button" onclick="toggleCurriculumGroup('{{ $sylId }}', '{{ $subId }}', false)" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-400 cursor-pointer">Clear</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="grid grid-cols-3 sm:grid-cols-6 gap-1.5">
+                                                        @foreach($curriculumClasses ?? [] as $clsKey => $clsData)
+                                                            <label class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-950 border border-slate-800 hover:border-slate-700 cursor-pointer text-[11px] text-slate-300">
+                                                                <input type="checkbox"
+                                                                       name="items[]"
+                                                                       value="{{ $sylId }}|{{ $subId }}|{{ $clsKey }}"
+                                                                       data-syllabus="{{ $sylId }}"
+                                                                       data-subject="{{ $subId }}"
+                                                                       onchange="document.getElementById('curriculum_mode_restricted').checked = true"
+                                                                       class="curriculum-item-cb rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500">
+                                                                <span>{{ $clsData['name'] }}</span>
+                                                            </label>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <div class="shrink-0 px-6 py-4 flex justify-end space-x-3 border-t border-slate-800 bg-slate-950/60">
+                            <button type="button" onclick="document.getElementById('editCurriculumModal').classList.add('hidden')" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-medium transition-colors cursor-pointer">Cancel</button>
+                            <button type="submit" class="px-5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold shadow-lg shadow-emerald-600/30 transition-all cursor-pointer">Save Curriculum Access</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
             <script>
                 function toggleCreateUserTypeFields(typeVal) {
                     const teacherWrapper = document.getElementById('create_teacher_standards_wrapper');
@@ -733,6 +855,46 @@
                     });
 
                     document.getElementById('editUserModal').classList.remove('hidden');
+                }
+
+                function openEditCurriculumModal(data) {
+                    const actionUrl = '/admin/users/' + data.id + '/curriculum';
+                    document.getElementById('editCurriculumForm').action = actionUrl;
+                    document.getElementById('curriculum_modal_user_name').textContent = data.name || '';
+                    const roleNames = { 1: 'Teacher', 2: 'Student', 3: 'Administrator' };
+                    document.getElementById('curriculum_modal_user_role').textContent = roleNames[parseInt(data.type || 1)] || 'User';
+
+                    const isRestricted = Boolean(data.restricted);
+                    document.getElementById('curriculum_mode_restricted').checked = isRestricted;
+                    document.getElementById('curriculum_mode_unrestricted').checked = !isRestricted;
+
+                    const selectedSet = new Set(data.items || []);
+                    document.querySelectorAll('.curriculum-item-cb').forEach(cb => {
+                        cb.checked = isRestricted ? selectedSet.has(cb.value) : true;
+                    });
+
+                    document.getElementById('editCurriculumModal').classList.remove('hidden');
+                    const modalEl = document.getElementById('editCurriculumModal');
+                    const scrollBody = document.getElementById('editCurriculumScrollBody');
+                    if (modalEl) modalEl.scrollTop = 0;
+                    if (scrollBody) scrollBody.scrollTop = 0;
+                }
+
+                function setAllCurriculumCheckboxes(checked) {
+                    document.querySelectorAll('.curriculum-item-cb').forEach(cb => {
+                        cb.checked = checked;
+                    });
+                    document.getElementById('curriculum_mode_restricted').checked = !checked;
+                    document.getElementById('curriculum_mode_unrestricted').checked = checked;
+                }
+
+                function toggleCurriculumGroup(syllabus, subject, checked) {
+                    document.querySelectorAll('.curriculum-item-cb').forEach(cb => {
+                        if (cb.dataset.syllabus !== syllabus) return;
+                        if (subject && cb.dataset.subject !== subject) return;
+                        cb.checked = checked;
+                    });
+                    document.getElementById('curriculum_mode_restricted').checked = true;
                 }
 
                 function openEditStandardModal(data) {

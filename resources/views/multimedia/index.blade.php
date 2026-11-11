@@ -28,8 +28,8 @@
                     <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
                         Explore interactive multimedia animations arranged strictly by textbook hierarchy: 
                         <strong class="text-emerald-300">Syllabus</strong> (NCERT, CBSE, SCERT Kerala) &rarr; 
-                        <strong class="text-cyan-300">Subject</strong> (English, Mathematics, Science) &rarr; 
-                        <strong class="text-indigo-300">Class</strong> (1 to 10) &rarr; 
+                        <strong class="text-cyan-300">Subject</strong> (Mathematics, Science, Social Science, English, Hindi) &rarr; 
+                        <strong class="text-indigo-300">Class</strong> (1 to 12) &rarr; 
                         <strong class="text-amber-300">Chapters</strong>.
                     </p>
                 </div>
@@ -51,6 +51,15 @@
             </div>
         </div>
 
+        @if(! ($hasCurriculumAccess ?? true))
+            <div class="p-8 sm:p-12 rounded-2xl bg-slate-900/80 border border-amber-500/30 text-center space-y-3 shadow-xl">
+                <div class="w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-3xl mx-auto">🔒</div>
+                <h2 class="text-xl font-bold text-white">No Curriculum Enabled for Your Account</h2>
+                <p class="text-xs sm:text-sm text-slate-400 max-w-md mx-auto">
+                    Only enabled syllabuses, subjects, and classes are visible here. Ask an administrator to enable curriculum selections for your account.
+                </p>
+            </div>
+        @else
         <!-- Interactive Textbook Selector Filter Bar -->
         <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-xl space-y-4">
             
@@ -92,9 +101,9 @@
                         <span class="w-5 h-5 rounded-full bg-slate-800 text-cyan-400 font-bold flex items-center justify-center text-[10px]">2</span>
                         <span>Select Subject:</span>
                     </span>
-                    <span class="text-[11px] text-slate-500">English • Mathematics • Science</span>
+                    <span class="text-[11px] text-slate-500">Mathematics • Science • Social Science • English • Hindi</span>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
                     @foreach($subjects as $subId => $subData)
                         @php $isSubActive = ($selectedSubject === $subId); @endphp
                         <a href="{{ route('multimedia.index', ['syllabus' => $selectedSyllabus, 'subject' => $subId, 'class' => $selectedClass]) }}"
@@ -306,31 +315,26 @@
                         </p>
                     </div>
 
-                    <!-- Quick suggestions to view available labs -->
-                    <div class="pt-4 border-t border-slate-800/80 max-w-lg mx-auto space-y-2">
-                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block">Available Animated Labs in Syllabus:</span>
-                        <div class="flex items-center justify-center gap-2 flex-wrap">
-                            <a href="{{ route('multimedia.index', ['syllabus' => 'ncert', 'subject' => 'mathematics', 'class' => 'class12']) }}"
-                               class="px-3 py-1.5 rounded-lg bg-indigo-950/60 hover:bg-indigo-900/60 border border-indigo-500/40 text-indigo-300 text-xs font-bold transition-all flex items-center space-x-1.5">
-                                <span>⚡</span>
-                                <span>Class 12 • Relations &amp; Functions (Ch 1)</span>
-                            </a>
-                            <a href="{{ route('multimedia.index', ['syllabus' => 'ncert', 'subject' => 'mathematics', 'class' => 'class10']) }}"
-                               class="px-3 py-1.5 rounded-lg bg-emerald-950/60 hover:bg-emerald-900/60 border border-emerald-500/40 text-emerald-300 text-xs font-bold transition-all flex items-center space-x-1.5">
-                                <span>🌳</span>
-                                <span>Class 10 • Real Numbers (Ch 1)</span>
-                            </a>
-                            <a href="{{ route('multimedia.index', ['syllabus' => 'ncert', 'subject' => 'mathematics', 'class' => 'class9']) }}"
-                               class="px-3 py-1.5 rounded-lg bg-cyan-950/60 hover:bg-cyan-900/60 border border-cyan-500/40 text-cyan-300 text-xs font-bold transition-all flex items-center space-x-1.5">
-                                <span>📐</span>
-                                <span>Class 9 • Number System (Ch 1)</span>
-                            </a>
+                    @if(!empty($quickJumpLabs))
+                        <!-- Quick suggestions to view available labs -->
+                        <div class="pt-4 border-t border-slate-800/80 max-w-lg mx-auto space-y-2">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block">Available Animated Labs in Syllabus:</span>
+                            <div class="flex items-center justify-center gap-2 flex-wrap">
+                                @foreach($quickJumpLabs as $qLab)
+                                    <a href="{{ route('multimedia.index', ['syllabus' => $qLab['syllabus'], 'subject' => $qLab['subject'], 'class' => $qLab['class']]) }}"
+                                       class="px-3 py-1.5 rounded-lg border text-xs font-bold transition-all flex items-center space-x-1.5 {{ $qLab['style'] }}">
+                                        <span>{{ $qLab['icon'] }}</span>
+                                        <span>{{ $qLab['label'] }}</span>
+                                    </a>
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
             @endif
 
         </div>
+        @endif
 
     </div>
 </x-layouts.app>

@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
     // Admin User Management Routes
     Route::post('/admin/users', [AdminUserController::class, 'store'])->name('admin.users.store');
     Route::put('/admin/users/{user}', [AdminUserController::class, 'update'])->name('admin.users.update');
+    Route::put('/admin/users/{user}/curriculum', [AdminUserController::class, 'updateCurriculum'])->name('admin.users.curriculum.update');
     Route::delete('/admin/users/{user}', [AdminUserController::class, 'destroy'])->name('admin.users.destroy');
     Route::post('/admin/change-password', [AuthController::class, 'changePassword'])->name('admin.change-password');
 

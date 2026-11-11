@@ -10,6 +10,7 @@ use App\Models\Subject;
 use App\Models\Syllabus;
 use App\Models\Topic;
 use App\Models\User;
+use App\Support\CurriculumCatalog;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
@@ -47,7 +48,7 @@ class DashboardController extends Controller
         $studentTotalMarks = 0;
 
         if ($isAdmin) {
-            $adminQuery = User::with(['profile', 'standards', 'student.standard']);
+            $adminQuery = User::with(['profile', 'standards', 'student.standard', 'curricula']);
 
             if ($request->filled('role')) {
                 $role = (int) $request->input('role');
@@ -488,6 +489,9 @@ class DashboardController extends Controller
             'teacherStudentPerformanceMap' => $teacherStudentPerformanceMap,
             'allStudents' => $allStudents,
             'allStandardsForSelect' => $allStandardsForSelect,
+            'curriculumSyllabuses' => CurriculumCatalog::syllabuses(),
+            'curriculumSubjects' => CurriculumCatalog::subjects(),
+            'curriculumClasses' => CurriculumCatalog::classes(),
         ]);
 
     }
