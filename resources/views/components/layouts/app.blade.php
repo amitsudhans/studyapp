@@ -927,72 +927,72 @@
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
                 } else if (type === 'class8-math-square-and-cube' || type === 'chapter1-math-class8' || type === 'a-square-and-a-cube' || type === 'square-and-a-cube') {
                     fileUrl = "{{ asset('animations/class8-math-square-and-cube.html') }}";
-                    titleText = "NCERT Class 8 Mathematics — Chapter 1: Exploring Squares and Cubes Master Lab";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 1: A Square and A Cube Lab (20 Slides + 40 Quizzes)";
                     badgeText = "Class 8 • NCERT Mathematics";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
-                } else if (type === 'class8-math-linear-polynomials' || type === 'chapter2-math-class8' || type === 'introduction-to-linear-polynomials' || type === 'linear-polynomials-class8') {
+                } else if (type === 'class8-math-linear-polynomials' || type === 'chapter2-math-class8' || type === 'introduction-to-linear-polynomials' || type === 'linear-polynomials-class8' || type === 'power-play' || type === 'power-play-class8') {
                     fileUrl = "{{ asset('animations/class8-math-linear-polynomials.html') }}";
-                    titleText = "NCERT Class 8 Mathematics — Chapter 2: Fundamentals of Linear Polynomials Master Lab";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 2: Power Play Interactive Master Lab";
                     badgeText = "Class 8 • NCERT Mathematics";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
                 } else if (type === 'class8-math-story-of-numbers' || type === 'chapter3-math-class8' || type === 'a-story-of-numbers' || type === 'story-of-numbers-class8') {
                     fileUrl = "{{ asset('animations/class8-math-story-of-numbers.html') }}";
-                    titleText = "NCERT Class 8 Mathematics — Chapter 3: The Evolution of Number Systems Master Lab";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 3: A Story of Numbers Interactive Master Lab";
                     badgeText = "Class 8 • NCERT Mathematics";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
                 } else if (type === 'class8-math-quadrilaterals' || type === 'chapter4-math-class8' || type === 'quadrilaterals-class8' || type === 'class8-quadrilaterals') {
                     fileUrl = "{{ asset('animations/class8-math-quadrilaterals.html') }}";
-                    titleText = "NCERT Class 8 Mathematics — Chapter 4: Properties and Types of Quadrilaterals Master Lab";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 4: Quadrilaterals Interactive Master Lab";
                     badgeText = "Class 8 • NCERT Mathematics";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
                 } else if (type === 'class8-math-number-play' || type === 'chapter5-math-class8' || type === 'number-play-class8' || type === 'class8-number-play') {
                     fileUrl = "{{ asset('animations/class8-math-number-play.html') }}";
-                    titleText = "NCERT Class 8 Mathematics — Chapter 5: Investigating Numbers & Divisibility Master Lab";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 5: Number Play Interactive Master Lab";
                     badgeText = "Class 8 • NCERT Mathematics";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
                 } else if (type === 'class8-math-distributive-property' || type === 'chapter6-math-class8' || type === 'distributive-property-class8' || type === 'class8-distributive-property') {
                     fileUrl = "{{ asset('animations/class8-math-distributive-property.html') }}";
-                    titleText = "NCERT Class 8 Mathematics — Chapter 6: The Distributive Property & Algebraic Multiplication Master Lab";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 6: We Distribute, Yet Things Multiply Interactive Lab";
                     badgeText = "Class 8 • NCERT Mathematics";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
                 } else if (type === 'class8-math-proportional-reasoning' || type === 'chapter7-math-class8' || type === 'proportional-reasoning-class8' || type === 'class8-proportional-reasoning') {
                     fileUrl = "{{ asset('animations/class8-math-proportional-reasoning.html') }}";
-                    titleText = "NCERT Class 8 Mathematics — Chapter 7: Comparing Quantities (Proportional Reasoning) Master Lab";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 7: Proportional Reasoning-1 Interactive Lab";
                     badgeText = "Class 8 • NCERT Mathematics";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
                 } else if (type === 'class8-math-percentages-applications' || type === 'chapter8-math-class8' || type === 'percentages-applications-class8' || type === 'class8-percentages-applications' || type === 'class8-math-percentages' || type === 'percentages-and-applications') {
                     fileUrl = "{{ asset('animations/class8-math-percentages-applications.html') }}";
-                    titleText = "NCERT Class 8 Mathematics — Chapter 8: Comparing Quantities (Percentages & Applications) Master Lab";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 8: Fractions in Disguise Interactive Lab";
                     badgeText = "Class 8 • NCERT Mathematics";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
                 } else if (type === 'class8-math-baudhayana-pythagoras' || type === 'chapter9-math-class8' || type === 'baudhayana-pythagoras-class8' || type === 'class8-baudhayana-pythagoras' || type === 'class8-math-pythagoras' || type === 'baudhayana-pythagoras-theorem' || type === 'the-baudhayana-pythagoras-theorem') {
                     fileUrl = "{{ asset('animations/class8-math-baudhayana-pythagoras.html') }}";
-                    titleText = "NCERT Class 8 Mathematics — Chapter 9: The Baudhāyana-Pythagoras Theorem Master Lab";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 9: The Baudhāyana-Pythagoras Theorem Interactive Lab";
                     badgeText = "Class 8 • NCERT Mathematics";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
                 } else if (type === 'class8-math-proportional-reasoning-2' || type === 'chapter10-math-class8' || type === 'proportional-reasoning-2-class8' || type === 'class8-proportional-reasoning-2' || type === 'class8-math-inverse-proportions' || type === 'inverse-proportions-class8' || type === 'class8-inverse-proportions' || type === 'proportional-reasoning-2') {
                     fileUrl = "{{ asset('animations/class8-math-proportional-reasoning-2.html') }}";
-                    titleText = "NCERT Class 8 Mathematics — Chapter 10: Advanced Proportional Reasoning & Inverse Variation Master Lab";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 10: Proportional Reasoning-2 Interactive Lab";
                     badgeText = "Class 8 • NCERT Mathematics";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
                 } else if (type === 'class8-math-geometric-themes-solids' || type === 'chapter11-math-class8' || type === 'geometric-themes-solids-class8' || type === 'class8-geometric-themes-solids' || type === 'class8-math-visualising-solids' || type === 'visualising-solids-class8' || type === 'class8-visualising-solids' || type === 'geometric-themes-class8' || type === 'visualising-solids' || type === 'exploring-geometric-themes') {
                     fileUrl = "{{ asset('animations/class8-math-geometric-themes-solids.html') }}";
-                    titleText = "NCERT Class 8 Mathematics — Chapter 11: Exploring Geometric Themes (Fractals & Visualising Solids) Master Lab";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 11: Exploring Some Geometric Themes Interactive Lab";
                     badgeText = "Class 8 • NCERT Mathematics";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
                 } else if (type === 'class8-math-data-handling-dots-lines' || type === 'chapter12-math-class8' || type === 'data-handling-dots-lines-class8' || type === 'class8-data-handling-dots-lines' || type === 'class8-math-data-handling' || type === 'data-handling-class8' || type === 'class8-data-handling' || type === 'tales-by-dots-and-lines' || type === 'data-handling') {
                     fileUrl = "{{ asset('animations/class8-math-data-handling-dots-lines.html') }}";
-                    titleText = "NCERT Class 8 Mathematics — Chapter 12: Data Handling (Tales by Dots and Lines) Master Lab";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 12: Tales by Dots and Lines Interactive Lab";
                     badgeText = "Class 8 • NCERT Mathematics";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
                 } else if (type === 'class8-math-algebra-play' || type === 'chapter13-math-class8' || type === 'algebra-play-class8' || type === 'class8-algebra-play' || type === 'class8-math-algebra' || type === 'algebra-play') {
                     fileUrl = "{{ asset('animations/class8-math-algebra-play.html') }}";
-                    titleText = "NCERT Class 8 Mathematics — Chapter 13: Algebra Play Master Lab";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 13: Algebra Play Interactive Lab";
                     badgeText = "Class 8 • NCERT Mathematics";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
                 } else if (type === 'class8-math-area-polygons' || type === 'chapter14-math-class8' || type === 'area-polygons-class8' || type === 'class8-area-polygons' || type === 'class8-math-area' || type === 'area-class8' || type === 'area-polygons' || type === 'area') {
                     fileUrl = "{{ asset('animations/class8-math-area-polygons.html') }}";
-                    titleText = "NCERT Class 8 Mathematics — Chapter 14: Area (Polygons & Mensuration) Master Lab";
+                    titleText = "NCERT Class 8 Mathematics — Chapter 14: Area Interactive Lab";
                     badgeText = "Class 8 • NCERT Mathematics";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
                 } else if (type === 'class8-science-microbes-health' || type === 'chapter1-science-class8' || type === 'microbes-and-health-class8' || type === 'class8-microbes-and-health' || type === 'class8-science-microbes' || type === 'microbes-and-health' || type === 'microbes') {
