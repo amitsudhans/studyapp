@@ -1,0 +1,754 @@
+[
+  {
+    "id": 17,
+    "title": "Variation Mendel Review",
+    "subtitle": "Comprehensive Review \u2022 Accumulation of Variations, Natural Selection & Mendelian Experiments",
+    "speech": "",
+    "objectives": [
+      "Test understanding of variation accumulation in asexual versus sexual reproduction.",
+      "Assess knowledge of environmental selection of advantageous variations.",
+      "Evaluate comprehension of Mendel's choice of Pisum sativum and contrasting traits."
+    ],
+    "key_takeaways": [
+      "Asexual reproduction produces minimal variations; sexual reproduction produces high diversity.",
+      "Variations offer differential survival advantages depending on environmental factors.",
+      "Mendel chose garden peas due to distinct contrasting traits, short life cycles, and self-pollinating flowers."
+    ],
+    "questions": [
+      {
+        "question": "A population of bacteria in a pond experiences a sudden, significant increase in water temperature due to industrial thermal discharge. Which outcome is most consistent with evolutionary principles?",
+        "options": [
+          "All bacteria will instantly develop heat resistance through conscious adaptation",
+          "A few bacterial variants possessing pre-existing heat tolerance mutations will survive and multiply",
+          "The bacteria will immediately switch to sexual reproduction to survive",
+          "The entire bacterial population will perish with zero survivors"
+        ],
+        "answer": 1,
+        "hint": "Recall the NCERT example of heat-resistant bacteria in a heat wave.",
+        "explanation": "Variations pre-exist within a population; environmental factors (like elevated temperature) select advantageous variants that survive and reproduce.",
+        "steps": [
+          "Identify the biological phenomenon: natural selection acting on pre-existing genetic variations.",
+          "Recognize that mutations creating heat tolerance exist before the environmental change occurs.",
+          "Conclude that heat-resistant variants survive the thermal shock, reproduce, and establish a heat-tolerant population."
+        ]
+      },
+      {
+        "question": "Which of the following reproductive processes generates the greatest diversity and new combinations of genetic traits among offspring?",
+        "options": [
+          "Binary fission in Amoeba",
+          "Budding in Hydra",
+          "Sexual reproduction involving male and female gamete fusion",
+          "Spore formation in Rhizopus"
+        ],
+        "answer": 2,
+        "hint": "Compare asexual copying inaccuracies with the mixing of two parental genomes.",
+        "explanation": "Sexual reproduction combines two independent parental genomes and undergoes meiotic crossing over, generating maximal diversity compared to asexual division.",
+        "steps": [
+          "Compare asexual reproduction (single parent, DNA copying inaccuracies only) with sexual reproduction.",
+          "Identify that sexual reproduction involves two genetically distinct parents and gametic fusion.",
+          "Conclude that sexual reproduction yields exponentially greater diversity."
+        ]
+      },
+      {
+        "question": "In a human classroom survey (Activity 8.1), observing earlobes reveals that the lowest part of the ear is closely attached to the side of the head in some students, while hanging freely in others. What does this observation illustrate?",
+        "options": [
+          "An acquired trait caused by wearing heavy earrings",
+          "A common inherited variation found within human populations",
+          "A harmful genetic disorder resulting from chromosomal deletion",
+          "An infectious disease spread by contact"
+        ],
+        "answer": 1,
+        "hint": "Consider visible inherited traits that show clear variation among healthy individuals.",
+        "explanation": "Free versus attached earlobes is a classic example of an inherited human trait with two common contrasting phenotypic variations.",
+        "steps": [
+          "Identify the trait: earlobe attachment to the side of the head.",
+          "Recall that free earlobes and attached earlobes are genetically inherited variants.",
+          "Conclude that this demonstrates natural inherited variation in humans."
+        ]
+      },
+      {
+        "question": "Which specific plant did Gregor Johann Mendel select for his landmark hybridization experiments on heredity?",
+        "options": [
+          "Garden pea (Pisum sativum)",
+          "Sweet pea (Lathyrus odoratus)",
+          "Mustard (Brassica nigra)",
+          "Wheat (Triticum aestivum)"
+        ],
+        "answer": 0,
+        "hint": "Identify the scientific name of the common garden pea plant.",
+        "explanation": "Gregor Mendel conducted his hybridization breeding experiments using the garden pea, scientifically known as Pisum sativum.",
+        "steps": [
+          "Recall Mendel's experimental organism.",
+          "Identify that Mendel used the edible garden pea, Pisum sativum.",
+          "Distinguish Pisum sativum from the ornamental sweet pea (Lathyrus odoratus)."
+        ]
+      },
+      {
+        "question": "Which of the following pairs represents a contrasting pair of characters studied by Mendel in garden peas?",
+        "options": [
+          "Red flower color versus yellow flower color",
+          "Round seed shape versus wrinkled seed shape",
+          "Hairy leaves versus smooth leaves",
+          "Sweet taste versus sour taste"
+        ],
+        "answer": 1,
+        "hint": "Think of the seven well-defined morphological traits Mendel tracked in Pisum sativum.",
+        "explanation": "Round versus wrinkled seed shape was one of the seven classic pairs of contrasting characters investigated by Mendel.",
+        "steps": [
+          "Review Mendel's seven contrasting character pairs: plant height, seed shape, seed color, pod shape, pod color, flower position, and flower color.",
+          "Match the choices against these seven pairs.",
+          "Confirm that round versus wrinkled seed shape is the authentic Mendelian character pair."
+        ]
+      },
+      {
+        "question": "Why was the garden pea particularly well-suited for Mendel's hybridization and inheritance experiments?",
+        "options": [
+          "Pea plants take over five years to produce a single generation of seeds",
+          "Pea flowers naturally self-pollinate but can be easily cross-pollinated artificially",
+          "Pea plants have invisible, microscopic traits that cannot be seen with the naked eye",
+          "Each pea pod contains only one single seed"
+        ],
+        "answer": 1,
+        "hint": "Consider flower morphology and pollination control in garden peas.",
+        "explanation": "Garden peas have bisexual flowers that naturally self-pollinate, but can easily be emasculated and cross-pollinated by hand, allowing rigorous breeding control.",
+        "steps": [
+          "Identify the experimental advantages of Pisum sativum.",
+          "Recognize that self-pollination ensures pure-breeding lines, while easy artificial cross-pollination enables controlled crosses.",
+          "Conclude that controlled pollination coupled with short lifespans made peas ideal."
+        ]
+      },
+      {
+        "question": "What is the primary cellular source of minor variations that emerge in asexually reproducing organisms such as sugarcane?",
+        "options": [
+          "Recombination of chromosomes from two different parents",
+          "Minor biochemical inaccuracies during the replication of cellular DNA",
+          "Sudden loss of mitochondria during binary fission",
+          "Absorption of foreign nutrients from the soil"
+        ],
+        "answer": 1,
+        "hint": "Think about the biochemical fidelity of DNA copying enzymes.",
+        "explanation": "In asexual reproduction, offspring arise from a single parent; the slight differences observed stem from biochemical inaccuracies during DNA replication.",
+        "steps": [
+          "Recall that asexual reproduction involves a single parent copying its genome.",
+          "No biochemical copying reaction is 100% accurate every time.",
+          "Minor replication inaccuracies introduce small variations in the DNA sequence."
+        ]
+      },
+      {
+        "question": "In a field of sugarcane plants, how do individual plants compare to one another compared to individuals in a human population?",
+        "options": [
+          "Sugarcane plants display vast physical differences in stem shape and leaf color",
+          "Sugarcane plants show very little variation, appearing almost identical to one another",
+          "Every sugarcane plant exhibits completely unique flower colors",
+          "Human individuals show far less variation than sugarcane plants"
+        ],
+        "answer": 1,
+        "hint": "Compare an asexually propagated crop with sexually reproducing humans.",
+        "explanation": "Sugarcane reproduces largely by vegetative propagation (asexual), resulting in vast fields of nearly identical plants with minimal variation.",
+        "steps": [
+          "Identify the mode of reproduction in sugarcane fields: vegetative/asexual.",
+          "Recall that asexual propagation preserves parent characteristics with minimal variation.",
+          "Conclude that sugarcane plants show very subtle differences compared to diverse human populations."
+        ]
+      },
+      {
+        "question": "Why did Mendel use 'pure-breeding' or true-breeding pea varieties as the parental generation (P generation)?",
+        "options": [
+          "To ensure that parents consistently produced offspring with the identical trait upon self-pollination",
+          "Because hybrid plants are completely sterile and cannot produce seeds",
+          "To guarantee that all offspring in every future generation would be dwarf",
+          "To prevent the plants from synthesizing any cellular proteins"
+        ],
+        "answer": 0,
+        "hint": "Consider the genetic definition of a homozygous true-breeding line.",
+        "explanation": "True-breeding plants have homozygous genotypes that consistently breed true for specific traits over successive generations of self-pollination.",
+        "steps": [
+          "Define true-breeding: homozygous individuals that produce offspring identical to themselves when selfed.",
+          "Recognize that starting with true-breeding tall (TT) and dwarf (tt) established clear, unambiguous baselines.",
+          "Conclude that this allowed Mendel to observe the exact effect of hybridization."
+        ]
+      },
+      {
+        "question": "A scientist studies a population of beetles. A rare mutation causes green coloration instead of red. Over generations in leafy green bushes, green beetles become abundant while red beetles decline. What drove this change?",
+        "options": [
+          "Green beetles decided to change their color to match the leaves",
+          "Green coloration offered camouflage from predatory birds, conferring a differential survival advantage",
+          "Red beetles transformed into green beetles by eating green foliage",
+          "Crows preferred eating green beetles over red beetles"
+        ],
+        "answer": 1,
+        "hint": "Identify the environmental factor that exerts selection pressure on beetle color.",
+        "explanation": "Green beetles are camouflaged among green leaves and escape bird predation, giving them a survival advantage to reproduce and pass on the green trait.",
+        "steps": [
+          "Identify the variation: green beetle coloration in a green environment.",
+          "Identify the selective agent: predatory birds hunting visible red beetles.",
+          "Conclude that natural selection favored the camouflaged green variants."
+        ]
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "title": "Inheritance Crosses Review",
+    "subtitle": "Comprehensive Review \u2022 Monohybrid & Dihybrid Crosses, Punnett Squares & Ratios",
+    "speech": "",
+    "objectives": [
+      "Calculate phenotypic and genotypic ratios in monohybrid crosses (3:1 and 1:2:1).",
+      "Apply Punnett square analysis to determine offspring genotypes.",
+      "Analyze dihybrid cross segregation and the 9:3:3:1 phenotypic ratio."
+    ],
+    "key_takeaways": [
+      "F1 monohybrid cross between TT and tt yields 100% Tt tall plants.",
+      "F2 monohybrid selfing yields a 3:1 phenotypic ratio and a 1:2:1 genotypic ratio (TT:Tt:tt).",
+      "F2 dihybrid selfing (RrYy \u00d7 RrYy) yields 9 round yellow : 3 round green : 3 wrinkled yellow : 1 wrinkled green."
+    ],
+    "questions": [
+      {
+        "question": "A pure-breeding tall pea plant (TT) is crossed with a pure-breeding short pea plant (tt). What percentage of the F1 progeny will be short?",
+        "options": [
+          "0%",
+          "25%",
+          "50%",
+          "100%"
+        ],
+        "answer": 0,
+        "hint": "Recall the phenotype of the F1 generation in Mendel's height experiment.",
+        "explanation": "All F1 offspring inherit the genotype Tt. Because T is completely dominant over t, 100% of F1 plants are tall, meaning 0% are short.",
+        "steps": [
+          "Parental genotypes: TT \u00d7 tt.",
+          "Gametes: T from tall parent, t from short parent; F1 genotype is 100% Tt.",
+          "Since T is dominant, all F1 plants are tall; short plants = 0%."
+        ]
+      },
+      {
+        "question": "When F1 tall pea plants (Tt) are allowed to self-pollinate, what proportion of the resulting F2 plants are expected to be heterozygous tall?",
+        "options": [
+          "One-quarter (25%)",
+          "Two-quarters or one-half (50%)",
+          "Three-quarters (75%)",
+          "All (100%)"
+        ],
+        "answer": 1,
+        "hint": "Check the genotypic ratio: 1 TT : 2 Tt : 1 tt.",
+        "explanation": "In the F2 generation, the genotypic breakdown is 1/4 TT, 2/4 (50%) Tt, and 1/4 tt. Thus, 50% of the F2 offspring are heterozygous tall (Tt).",
+        "steps": [
+          "Cross: Tt \u00d7 Tt.",
+          "Punnett square outcomes: TT (1/4), Tt (2/4 = 1/2), tt (1/4).",
+          "The heterozygous tall plants (Tt) constitute 2 out of 4, or 50%."
+        ]
+      },
+      {
+        "question": "A cross between a tall pea plant and a short pea plant resulted in an offspring population where 50% of the plants were tall and 50% were short. What were the genotypes of the parents?",
+        "options": [
+          "TT and tt",
+          "Tt and tt",
+          "Tt and Tt",
+          "TT and Tt"
+        ],
+        "answer": 1,
+        "hint": "This is a classic test cross where a heterozygous dominant is crossed with a homozygous recessive.",
+        "explanation": "Crossing heterozygous tall (Tt) with homozygous short (tt) yields 50% Tt (tall) and 50% tt (short), matching the observed 1:1 ratio.",
+        "steps": [
+          "Observe the 1:1 phenotypic ratio (50% tall : 50% short).",
+          "Short offspring must receive an allele 't' from each parent, so the short parent is tt and the tall parent must carry 't'.",
+          "Therefore, the tall parent is Tt, and the cross is Tt \u00d7 tt."
+        ]
+      },
+      {
+        "question": "In a dihybrid cross between pure-breeding round yellow seeds (RRYY) and wrinkled green seeds (rryy), how many unique types of gametes are produced by an F1 plant (RrYy)?",
+        "options": [
+          "Two types (RY and ry)",
+          "Three types (RY, Ry, ry)",
+          "Four types (RY, Ry, rY, and ry)",
+          "Sixteen types"
+        ],
+        "answer": 2,
+        "hint": "Combine each allele of the first gene with each allele of the second gene.",
+        "explanation": "Due to independent assortment, RrYy produces 4 types of gametes in equal proportions: RY, Ry, rY, and ry (2^2 = 4).",
+        "steps": [
+          "Genotype of F1: RrYy.",
+          "Allele pairs separate: R or r with equal chance; Y or y with equal chance.",
+          "Possible gametic combinations: RY, Ry, rY, and ry (4 distinct types)."
+        ]
+      },
+      {
+        "question": "In the F2 generation of Mendel's dihybrid cross (RrYy \u00d7 RrYy), what fraction of the total progeny exhibits both recessive traits (wrinkled and green)?",
+        "options": [
+          "9/16",
+          "3/16",
+          "1/16",
+          "1/4"
+        ],
+        "answer": 2,
+        "hint": "Recall the classic 9:3:3:1 ratio and identify the double recessive class (rryy).",
+        "explanation": "In a 9:3:3:1 dihybrid ratio, the homozygous double recessive phenotype (wrinkled green, genotype rryy) appears in exactly 1 out of 16 offspring.",
+        "steps": [
+          "Review the 16-cell Punnett square for RrYy \u00d7 RrYy.",
+          "Phenotypic distribution: 9 Round Yellow, 3 Round Green, 3 Wrinkled Yellow, 1 Wrinkled Green.",
+          "Wrinkled green (double recessive) represents 1/16 of the total."
+        ]
+      },
+      {
+        "question": "If 1600 pea plants are harvested from an F2 dihybrid cross (RrYy \u00d7 RrYy), approximately how many plants are expected to produce round green seeds?",
+        "options": [
+          "100 plants",
+          "300 plants",
+          "900 plants",
+          "1200 plants"
+        ],
+        "answer": 1,
+        "hint": "Multiply the total number of plants by the expected fraction 3/16.",
+        "explanation": "The expected proportion of round green seeds is 3/16. Calculating 3/16 of 1600 yields: (3/16) \u00d7 1600 = 3 \u00d7 100 = 300 plants.",
+        "steps": [
+          "Identify the fraction of round green plants in F2: 3/16.",
+          "Multiply total population by this fraction: 1600 \u00d7 (3/16).",
+          "1600 \u00f7 16 = 100; 100 \u00d7 3 = 300 plants."
+        ]
+      },
+      {
+        "question": "Mendel crossed a pea plant with violet flowers (dominant) and a plant with white flowers (recessive). The F1 generation had all violet flowers. What does this confirm about flower color inheritance?",
+        "options": [
+          "Violet flower color is dominant over white flower color",
+          "White flower color has been permanently eliminated from the species",
+          "Flower color is an acquired characteristic influenced by soil acidity",
+          "Both alleles blended to produce a pale lavender color"
+        ],
+        "answer": 0,
+        "hint": "Which trait masks the other in the heterozygous F1 generation?",
+        "explanation": "Because all F1 plants show violet flowers, the violet trait is dominant over the recessive white flower trait.",
+        "steps": [
+          "Parental phenotypes: Violet \u00d7 White.",
+          "F1 progeny: 100% Violet flowers.",
+          "The trait that expresses in F1 when contrasting traits are crossed is dominant; hence violet is dominant."
+        ]
+      },
+      {
+        "question": "What is the difference between an organism's phenotype and its genotype?",
+        "options": [
+          "Phenotype is the genetic makeup; genotype is the observable physical appearance",
+          "Phenotype is the observable physical appearance; genotype is the underlying genetic makeup",
+          "Phenotype only applies to animals; genotype only applies to plants",
+          "Phenotype changes every second; genotype never exists inside cells"
+        ],
+        "answer": 1,
+        "hint": "Think of 'ph' for physical and 'gen' for genes.",
+        "explanation": "Phenotype refers to observable physical characteristics (e.g. tall, dwarf), whereas genotype refers to the specific genetic/allelic makeup (e.g. TT, Tt, tt).",
+        "steps": [
+          "Define Phenotype: the physical manifestation or observable trait.",
+          "Define Genotype: the genetic constitution or specific combination of alleles.",
+          "Distinguish: TT and Tt have different genotypes but identical tall phenotypes."
+        ]
+      },
+      {
+        "question": "A cross between two heterozygous round-seeded pea plants (Rr \u00d7 Rr) produces 400 seeds. How many of these seeds are expected to be wrinkled?",
+        "options": [
+          "400 seeds",
+          "300 seeds",
+          "100 seeds",
+          "0 seeds"
+        ],
+        "answer": 2,
+        "hint": "The recessive wrinkled trait appears in 1/4 (25%) of the monohybrid progeny.",
+        "explanation": "Selfing Rr produces 3/4 round and 1/4 wrinkled seeds. For 400 seeds: (1/4) \u00d7 400 = 100 wrinkled seeds.",
+        "steps": [
+          "Cross: Rr \u00d7 Rr.",
+          "Phenotypic ratio: 3 Round (RR, Rr) : 1 Wrinkled (rr).",
+          "Calculate wrinkled seeds: 1/4 of 400 = 100 seeds."
+        ]
+      },
+      {
+        "question": "Which Mendelian law is demonstrated when traits like seed shape and seed color produce new non-parental combinations (round green and wrinkled yellow) in the F2 generation?",
+        "options": [
+          "Law of Dominance",
+          "Law of Segregation",
+          "Law of Independent Assortment",
+          "Law of Conservation of Mass"
+        ],
+        "answer": 2,
+        "hint": "Think of the law deduced specifically from dihybrid crosses involving two separate traits.",
+        "explanation": "The appearance of new recombinant combinations proves that the alleles for seed shape assort independently from the alleles for seed color.",
+        "steps": [
+          "Observe recombinant phenotypes: round green and wrinkled yellow.",
+          "These recombinants demonstrate that seed shape is inherited independently of seed color.",
+          "This forms the experimental foundation of the Law of Independent Assortment."
+        ]
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "title": "Gene Expression Review",
+    "subtitle": "Comprehensive Review \u2022 DNA, Genes, Protein Synthesis & Chromosomal Segregation",
+    "speech": "",
+    "objectives": [
+      "Evaluate knowledge of DNA as cellular genetic information repository.",
+      "Assess understanding of how genes control traits via enzymes and hormones.",
+      "Review the chromosomal basis of inheritance and meiotic reduction division."
+    ],
+    "key_takeaways": [
+      "A gene is a section of DNA providing instructions for synthesizing a specific protein.",
+      "Genes govern traits by controlling enzyme efficiency, which regulates hormone production.",
+      "Meiosis halves the diploid chromosome count in gametes; fertilization restores diploidy."
+    ],
+    "questions": [
+      {
+        "question": "What is the primary role of cellular DNA in living organisms regarding inheritance and trait expression?",
+        "options": [
+          "It acts as a physical barrier preventing bacteria from entering the nucleus",
+          "It serves as the master information source for synthesizing all cellular proteins",
+          "It dissolves food particles directly during cellular respiration",
+          "It provides immediate mechanical propulsion for cell motility"
+        ],
+        "answer": 1,
+        "hint": "Consider the molecular definition of genetic coding inside the nucleus.",
+        "explanation": "Cellular DNA contains nucleotide sequences that store the complete genetic information needed to synthesize cellular proteins.",
+        "steps": [
+          "Recall the structure and function of cellular DNA in the nucleus.",
+          "Recognize that DNA holds the instructions for synthesizing RNA and proteins.",
+          "Conclude that DNA acts as the information source for protein synthesis."
+        ]
+      },
+      {
+        "question": "How does a gene for plant height biochemically control whether a pea plant grows tall or remains dwarf?",
+        "options": [
+          "The gene codes for an enzyme; an efficient enzyme produces abundant growth hormone resulting in a tall plant",
+          "The gene physically pulls the stem upward like a mechanical spring",
+          "The gene directly absorbs sunlight and expands like an inflating balloon",
+          "The gene dissolves all soil minerals around the roots"
+        ],
+        "answer": 0,
+        "hint": "Link gene -> enzyme -> growth hormone -> cell elongation.",
+        "explanation": "Genes direct enzyme synthesis. An efficient enzyme synthesizes plenty of growth hormone, causing the plant to grow tall; a defective enzyme leads to dwarfism.",
+        "steps": [
+          "Gene sequence determines the structure and efficiency of a specific enzyme.",
+          "The enzyme catalyzes the biosynthesis of plant growth hormone.",
+          "Abundant growth hormone stimulates cell elongation, producing a tall plant."
+        ]
+      },
+      {
+        "question": "If an alteration occurs in the nucleotide sequence of the gene coding for the growth-hormone synthesizing enzyme, what is the most likely physiological consequence?",
+        "options": [
+          "The plant will immediately turn into an animal",
+          "A less efficient enzyme may be produced, reducing growth hormone and resulting in a dwarf plant",
+          "The plant will produce infinite amounts of seeds within one minute",
+          "The cell nucleus will turn entirely into liquid water"
+        ],
+        "answer": 1,
+        "hint": "Consider what happens to enzyme activity when its coding sequence is altered.",
+        "explanation": "An altered gene sequence produces a less efficient enzyme, reducing the amount of plant growth hormone synthesized and causing dwarfism.",
+        "steps": [
+          "Gene alteration/mutation affects the amino acid sequence of the enzyme.",
+          "A less efficient enzyme synthesizes less growth hormone.",
+          "Lower growth hormone restricts stem elongation, producing a dwarf phenotype."
+        ]
+      },
+      {
+        "question": "In human body cells, chromosomes are described as homologous pairs. What does this mean?",
+        "options": [
+          "Chromosomes exist in matched pairs, with one chromosome of each pair inherited from each parent",
+          "All 46 chromosomes are fused into one giant circular ring",
+          "Chromosomes are only present in red blood cells",
+          "Every chromosome contains identical copies of every gene on all other chromosomes"
+        ],
+        "answer": 0,
+        "hint": "Think of maternal and paternal chromosomes carrying genes for the same traits.",
+        "explanation": "Homologous chromosomes are matched pairs containing genes for the same characteristics; one member of each pair is maternal, the other paternal.",
+        "steps": [
+          "Define homologous chromosome pairs in diploid somatic cells.",
+          "One chromosome of each pair is contributed by the female parent, one by the male parent.",
+          "Both chromosomes carry corresponding genes at identical loci."
+        ]
+      },
+      {
+        "question": "Why is the reduction division (meiosis) during gamete formation essential for sexually reproducing species?",
+        "options": [
+          "It ensures that gametes become completely non-living",
+          "It reduces the chromosome number by half so that fertilization restores the original species chromosome count",
+          "It causes the offspring to have four times as many chromosomes as their parents",
+          "It eliminates all DNA from sperm and egg cells"
+        ],
+        "answer": 1,
+        "hint": "What would happen to the chromosome count in generation 2, 3, and 4 without reduction?",
+        "explanation": "Meiosis halves the diploid chromosome count in gametes so that when two gametes fuse at fertilization, the correct diploid number is restored.",
+        "steps": [
+          "Without meiosis, gamete fusion would double the chromosome count every generation (46 -> 92 -> 184...).",
+          "Meiosis halves the chromosome number from diploid (2n) to haploid (n) in germ cells.",
+          "Fertilization (n + n) restores the original species-specific diploid (2n) number in the zygote."
+        ]
+      },
+      {
+        "question": "A DNA segment that codes for a specific functional protein is biologically classified as:",
+        "options": [
+          "A ribosome",
+          "A gene",
+          "A centrosome",
+          "A vacuole"
+        ],
+        "answer": 1,
+        "hint": "Identify the basic physical and functional unit of heredity.",
+        "explanation": "A gene is a discrete segment of cellular DNA that contains the instructions required to synthesize a specific functional protein.",
+        "steps": [
+          "Recall the molecular definition of a gene.",
+          "A gene is a functional unit of DNA.",
+          "It directs the synthesis of a specific polypeptide chain (protein)."
+        ]
+      },
+      {
+        "question": "During meiotic division leading to gamete formation, how do chromosome pairs segregate?",
+        "options": [
+          "All maternal chromosomes always enter one gamete, and all paternal enter another",
+          "Each homologous pair segregates independently, so gametes receive a randomized mix of maternal and paternal chromosomes",
+          "Chromosomes shatter into pieces and reform randomly",
+          "Only the father's chromosomes are distributed to gametes"
+        ],
+        "answer": 1,
+        "hint": "Recall independent assortment of maternal and paternal chromosomes.",
+        "explanation": "Homologous pairs align and segregate independently during meiosis, generating gametes with random combinations of maternal and paternal chromosomes.",
+        "steps": [
+          "Homologous chromosome pairs align independently along the equatorial plate in meiosis I.",
+          "The separation of one pair does not influence the separation of any other pair.",
+          "This independent segregation produces diverse combinations of parental chromosomes in gametes."
+        ]
+      },
+      {
+        "question": "If an organism has 24 chromosomes in its somatic body cells, how many chromosomes will be found in its mature gametes?",
+        "options": [
+          "48 chromosomes",
+          "24 chromosomes",
+          "12 chromosomes",
+          "6 chromosomes"
+        ],
+        "answer": 2,
+        "hint": "Gametes are haploid (n), carrying exactly half the somatic diploid (2n) number.",
+        "explanation": "Somatic cells are diploid (2n = 24). Gametes undergo meiotic reduction division to become haploid (n = 24 / 2 = 12 chromosomes).",
+        "steps": [
+          "Given somatic diploid chromosome number: 2n = 24.",
+          "Gametes contain the haploid chromosome number: n = 2n / 2.",
+          "Calculate: 24 / 2 = 12 chromosomes per gamete."
+        ]
+      },
+      {
+        "question": "What is the cellular location where DNA transcription into messenger RNA occurs in eukaryotic cells?",
+        "options": [
+          "Cell wall",
+          "Cell nucleus",
+          "Mitochondrial matrix",
+          "Endoplasmic reticulum lumen"
+        ],
+        "answer": 1,
+        "hint": "Where is chromosomal DNA housed in a plant or animal cell?",
+        "explanation": "Chromosomal DNA resides in the cell nucleus, where transcription into RNA takes place before the RNA travels to ribosomes in the cytoplasm.",
+        "steps": [
+          "Identify the organelle housing genomic DNA: the cell nucleus.",
+          "Recognize that DNA cannot leave the nucleus.",
+          "Conclude that transcription of DNA into mRNA occurs within the nucleus."
+        ]
+      },
+      {
+        "question": "Which of the following statements best explains why offspring resemble their parents yet are not identical clones of them in sexual reproduction?",
+        "options": [
+          "Offspring receive completely random chemicals from the environment instead of parental genes",
+          "Offspring inherit a unique combination of half their genes from each parent, creating novel genetic combinations",
+          "Parents lose all their genes when having children",
+          "DNA replication errors alter 99% of all genes in every generation"
+        ],
+        "answer": 1,
+        "hint": "Consider the fusion of two haploid parental gametes.",
+        "explanation": "Each parent contributes half the genetic material (23 chromosomes in humans); combining these two haploid sets creates a unique, non-identical diploid individual.",
+        "steps": [
+          "Equal parental contribution: offspring inherit 50% of genes from the mother and 50% from the father.",
+          "Meiotic recombination and gametic fusion create a unique genetic combination in each offspring.",
+          "Thus, offspring resemble both parents while exhibiting individual uniqueness."
+        ]
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "title": "Sex Determination Review",
+    "subtitle": "Comprehensive Review \u2022 Chromosomal Mechanisms, Environmental Cues & 50-50 Probability",
+    "speech": "",
+    "objectives": [
+      "Assess knowledge of human autosomes (22 pairs) and sex chromosomes (XX vs XY).",
+      "Evaluate comprehension of the 50-50 probability of conceiving male or female offspring.",
+      "Test understanding of environmental vs genetic sex determination across animal species."
+    ],
+    "key_takeaways": [
+      "Human body cells have 22 pairs of autosomes and 1 pair of sex chromosomes (XX in females, XY in males).",
+      "Mothers produce only X ova; fathers produce 50% X and 50% Y sperm.",
+      "The father's fertilizing sperm determines child sex, with an exact 50% probability for boy or girl."
+    ],
+    "questions": [
+      {
+        "question": "What is the chromosomal sex constitution of a normal human biological female?",
+        "options": [
+          "44 autosomes + XY",
+          "44 autosomes + XX",
+          "22 autosomes + YY",
+          "46 autosomes + XX"
+        ],
+        "answer": 1,
+        "hint": "Count 22 pairs (44) of autosomes plus 1 pair of matching sex chromosomes.",
+        "explanation": "A normal human female possesses 44 autosomes (22 pairs) plus two identical X sex chromosomes (XX), totaling 46 chromosomes.",
+        "steps": [
+          "Total chromosome count in humans: 46 chromosomes (23 pairs).",
+          "22 pairs are autosomes = 44 autosomes.",
+          "Females have two matching X chromosomes: 44 autosomes + XX."
+        ]
+      },
+      {
+        "question": "In human beings, which parent's gamete genetically determines whether the offspring will be a boy or a girl?",
+        "options": [
+          "The mother, because she produces both X and Y eggs",
+          "The father, because his sperm carries either an X or a Y chromosome",
+          "Both parents equally, because both contribute Y chromosomes",
+          "Neither parent; sex is determined by dietary nutrition during pregnancy"
+        ],
+        "answer": 1,
+        "hint": "Recall which parent produces two different types of sex chromosomes in gametes.",
+        "explanation": "The mother can only contribute an X chromosome. The father produces 50% X-bearing and 50% Y-bearing sperm, so the father's fertilizing sperm determines the baby's sex.",
+        "steps": [
+          "All maternal ova carry an X chromosome.",
+          "Paternal sperm carry either an X chromosome (producing XX, female) or a Y chromosome (producing XY, male).",
+          "Therefore, the father's gamete genetically determines the sex of the child."
+        ]
+      },
+      {
+        "question": "A human couple already has three daughters. What is the statistical probability that their fourth child will also be a girl?",
+        "options": [
+          "100%",
+          "75%",
+          "50%",
+          "12.5%"
+        ],
+        "answer": 2,
+        "hint": "Each conception is an independent event with equal numbers of X and Y sperm.",
+        "explanation": "Each pregnancy is an independent genetic event. The father continuously produces 50% X and 50% Y sperm, so the probability of having a girl is always 50% (1/2).",
+        "steps": [
+          "Recognize that each fertilization event is statistically independent of previous births.",
+          "At every conception, the father produces 50% X sperm and 50% Y sperm.",
+          "The probability of conceiving a female child remains exactly 50% (or 1 in 2)."
+        ]
+      },
+      {
+        "question": "Which of the following statements about sex chromosomes in human males is correct?",
+        "options": [
+          "Males have two identical Y chromosomes (YY)",
+          "Males have a mismatched pair: one normal-sized X chromosome and one shorter Y chromosome",
+          "Males have no sex chromosomes at all",
+          "Males possess three X chromosomes and no Y chromosomes"
+        ],
+        "answer": 1,
+        "hint": "Recall the heterogametic sex chromosome pair in males.",
+        "explanation": "Human males possess one normal-sized X chromosome and one noticeably shorter Y chromosome, forming a mismatched XY pair.",
+        "steps": [
+          "Recall male sex chromosome pair: XY.",
+          "The X chromosome is standard full size; the Y chromosome is significantly smaller.",
+          "This mismatched pair distinguishes male karyotypes from female XX karyotypes."
+        ]
+      },
+      {
+        "question": "In certain reptiles, such as lizards and turtles, how is the sex of the offspring primarily determined?",
+        "options": [
+          "By the temperature at which the fertilized eggs are incubated in the nest",
+          "By the presence of XX or XY sex chromosomes",
+          "By the salinity of ocean water during fertilization",
+          "By the age of the father reptile"
+        ],
+        "answer": 0,
+        "hint": "Think of non-genetic, environmental factors affecting reptilian egg clutches.",
+        "explanation": "In many reptiles, ambient incubation temperature during egg development determines hatchling sex (temperature-dependent sex determination).",
+        "steps": [
+          "Identify the organism: reptiles like turtles, crocodiles, and lizards.",
+          "Recall environmental cues: nest incubation temperature.",
+          "Conclude that sex determination in these reptiles is temperature-dependent."
+        ]
+      },
+      {
+        "question": "What is the biological significance of common garden snails being able to change their sex during their adult life?",
+        "options": [
+          "It proves that snails do not have DNA in their bodies",
+          "It demonstrates that in snails, sex is not genetically determined by fixed chromosomes",
+          "It proves that snails are extinct creatures",
+          "It shows that temperature determines snail shell color"
+        ],
+        "answer": 1,
+        "hint": "If an organism can change sex as an adult, can its sex be permanently fixed by genetics?",
+        "explanation": "The ability of snails to change sex proves that sex determination in this species is flexible and not permanently fixed by genetic chromosomes.",
+        "steps": [
+          "Observe the phenomenon: snails changing sex during their lifespan.",
+          "Deduce that if sex can change dynamically, chromosomes do not rigidly fix it.",
+          "Conclude that sex in snails is not genetically predetermined."
+        ]
+      },
+      {
+        "question": "What proportion of sperm produced by a healthy human male carries an X chromosome?",
+        "options": [
+          "100%",
+          "75%",
+          "50%",
+          "0%"
+        ],
+        "answer": 2,
+        "hint": "The XY chromosome pair segregates equally into gametes during meiosis.",
+        "explanation": "During meiotic spermatogenesis, the XY pair separates equally, producing 50% X-bearing sperm and 50% Y-bearing sperm.",
+        "steps": [
+          "Male karyotype: XY.",
+          "Meiosis segregates the homologous sex chromosomes into separate gametes.",
+          "Half the gametes receive X (50%), and half receive Y (50%)."
+        ]
+      },
+      {
+        "question": "Which of the following karyotypes represents the genetic combination found in a normal mature human unfertilized ovum (egg cell)?",
+        "options": [
+          "22 autosomes + X",
+          "22 autosomes + Y",
+          "44 autosomes + XX",
+          "23 autosomes + XY"
+        ],
+        "answer": 0,
+        "hint": "An unfertilized egg is a haploid gamete containing 22 autosomes and 1 sex chromosome.",
+        "explanation": "Normal human ova are haploid, containing 22 single autosomes and one single X sex chromosome (22 autosomes + X = 23 chromosomes).",
+        "steps": [
+          "Female body cells are 44 autosomes + XX.",
+          "Meiosis halves the number: 44 autosomes become 22 autosomes.",
+          "The XX pair separates: each ovum receives one X chromosome (22 + X)."
+        ]
+      },
+      {
+        "question": "A zygote forms from the fertilization of an ovum with a sperm cell carrying a Y chromosome. What biological sex will this embryo develop into?",
+        "options": [
+          "Male",
+          "Female",
+          "Hermaphrodite",
+          "Asexual"
+        ],
+        "answer": 0,
+        "hint": "Combine the maternal X chromosome with the paternal Y chromosome.",
+        "explanation": "The ovum provides an X chromosome and the sperm provides a Y chromosome, forming an XY zygote that develops into a male child.",
+        "steps": [
+          "Maternal contribution: X chromosome.",
+          "Paternal contribution: Y chromosome.",
+          "Resulting zygote: XY genotype -> develops into a male."
+        ]
+      },
+      {
+        "question": "Why is it biologically incorrect and unjust to blame a mother for giving birth to a female child rather than a male child?",
+        "options": [
+          "Because all mothers only contribute Y chromosomes",
+          "Because all eggs carry X chromosomes, and it is the father's X or Y sperm that determines sex with equal 50% probability",
+          "Because children do not inherit any genetic material from either parent",
+          "Because female children never possess any chromosomes"
+        ],
+        "answer": 1,
+        "hint": "Which gamete actually carries the determining variable (X vs Y)?",
+        "explanation": "Mothers contribute only X chromosomes. The father's sperm contributes either an X or Y chromosome with equal probability, making the father's gamete the genetic determinant.",
+        "steps": [
+          "Mothers produce homogametic ova (all carrying X).",
+          "Fathers produce heterogametic sperm (50% X, 50% Y).",
+          "The fertilizing sperm dictates whether the zygote is XX (girl) or XY (boy); hence mothers have zero control over offspring sex."
+        ]
+      }
+    ]
+  }
+]

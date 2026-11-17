@@ -242,20 +242,51 @@
                                         </div>
 
                                         <!-- Launch Actions -->
-                                        <div class="flex sm:flex-col items-center gap-2 shrink-0 sm:w-56">
-                                            <button type="button" onclick="openStudentAnimationModal('{{ $chapter['media_key'] }}')"
-                                                    class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-bold text-xs sm:text-sm shadow-xl shadow-emerald-600/30 flex items-center justify-center space-x-2 transition-all cursor-pointer active:scale-95">
-                                                <span class="text-base">▶</span>
-                                                <span>Watch Slide Lab</span>
-                                            </button>
+                                        @if(!empty($chapter['secondary_media_key']))
+                                            <div class="flex sm:flex-col items-center gap-2 shrink-0 sm:w-56">
+                                                <button type="button" onclick="openStudentAnimationModal('{{ $chapter['media_key'] }}')"
+                                                        class="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-bold text-xs shadow-lg shadow-emerald-600/30 flex items-center justify-center space-x-2 transition-all cursor-pointer active:scale-95">
+                                                    <span class="text-sm">▶</span>
+                                                    <span>Watch Slide Lab 1</span>
+                                                </button>
 
-                                            <a href="{{ $chapter['media_url'] }}" target="_blank"
-                                               class="w-full py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 text-xs font-semibold flex items-center justify-center space-x-1.5 transition-all"
-                                               title="Open in dedicated tab">
-                                                <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                                                <span>Open Fullscreen Tab</span>
-                                            </a>
-                                        </div>
+                                                <button type="button" onclick="openStudentAnimationModal('{{ $chapter['secondary_media_key'] }}')"
+                                                        class="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-teal-700 to-cyan-700 hover:from-teal-600 hover:to-cyan-600 text-white font-bold text-xs shadow-lg shadow-cyan-900/30 flex items-center justify-center space-x-2 transition-all cursor-pointer active:scale-95">
+                                                    <span class="text-sm">▶</span>
+                                                    <span>Watch Slide Lab 2</span>
+                                                </button>
+
+                                                <div class="w-full grid grid-cols-2 gap-1.5 pt-0.5">
+                                                    <a href="{{ $chapter['media_url'] }}" target="_blank"
+                                                       class="py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-[11px] font-semibold flex items-center justify-center space-x-1 transition-all"
+                                                       title="Open Lab 1 in dedicated tab">
+                                                        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                                                        <span>Lab 1 Tab</span>
+                                                    </a>
+                                                    <a href="{{ $chapter['secondary_media_url'] }}" target="_blank"
+                                                       class="py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-[11px] font-semibold flex items-center justify-center space-x-1 transition-all"
+                                                       title="Open Lab 2 in dedicated tab">
+                                                        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                                                        <span>Lab 2 Tab</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="flex sm:flex-col items-center gap-2 shrink-0 sm:w-56">
+                                                <button type="button" onclick="openStudentAnimationModal('{{ $chapter['media_key'] }}')"
+                                                        class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-bold text-xs sm:text-sm shadow-xl shadow-emerald-600/30 flex items-center justify-center space-x-2 transition-all cursor-pointer active:scale-95">
+                                                    <span class="text-base">▶</span>
+                                                    <span>Watch Slide Lab</span>
+                                                </button>
+
+                                                <a href="{{ $chapter['media_url'] }}" target="_blank"
+                                                   class="w-full py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 text-xs font-semibold flex items-center justify-center space-x-1.5 transition-all"
+                                                   title="Open in dedicated tab">
+                                                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                                                    <span>Open Fullscreen Tab</span>
+                                                </a>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             @else

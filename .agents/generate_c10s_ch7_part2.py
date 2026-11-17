@@ -1,0 +1,387 @@
+# -*- coding: utf-8 -*-
+"""
+Class 10 Science Chapter 7: How do Organisms Reproduce?
+Part 2: Slides 9 to 16 Generator
+Strict constraints:
+- Title: 1 to 3 words
+- Speech: strictly 195 to 215 words for slides 1 to 16
+- 2 checkpoints per slide with 4 options, hint, and explanation
+- Zero fictional names, zero persona titles
+"""
+
+import json
+
+slides_part2 = [
+    {
+        "id": 9,
+        "title": "Flower Anatomy Structure",
+        "subtitle": "Angiosperm Reproductive Organs, Whorls & Sexual Configurations",
+        "speech": (
+            "In angiosperms or flowering plants, the reproductive structures are organized within specialized organs termed "
+            "flowers. A complete angiosperm flower comprises four concentric whorls supported upon an expanded floral receptacle. The outermost "
+            "whorl consists of green leaf-like sepals, collectively forming the calyx, which protects the delicate inner floral bud. "
+            "The second whorl comprises brightly colored petals, collectively termed the corolla, which attract insect pollinators "
+            "through vivid hues and floral scents. Inside the corolla lie the essential reproductive organs. The third whorl is the "
+            "male reproductive organ, the stamen. Each stamen consists of a slender supporting filament bearing a bilobed terminal "
+            "anther. The anther produces thousands of yellowish microscopic pollen grains, which house the male germ-cells. At the center "
+            "of the flower lies the fourth whorl, the carpel or pistil, representing the female reproductive organ. The carpel features "
+            "a swollen basal ovary, an elongated slender style, and a sticky terminal stigma designed to catch pollen grains. Inside "
+            "the ovary reside one or more ovules, each housing an egg cell. Flowers possessing either stamens or carpels alone, such as "
+            "papaya and watermelon, are termed unisexual, whereas flowers containing both stamens and carpels, such as Hibiscus and mustard, "
+            "are classified as bisexual."
+        ),
+        "checkpoints": [
+            {
+                "question": "Which floral structure is responsible for producing pollen grains containing male germ-cells?",
+                "options": [
+                    "The sticky terminal stigma of the carpel",
+                    "The terminal bilobed anther of the stamen",
+                    "The protective green sepals of the calyx",
+                    "The expanded basal receptacle"
+                ],
+                "answer": 1,
+                "hint": "Identify the male floral organ's pollen-producing head.",
+                "explanation": "The stamen is the male reproductive part, and its terminal anther produces powdery yellowish pollen grains containing male gametes."
+            },
+            {
+                "question": "Which of the following plants produces unisexual flowers bearing either stamens or carpels?",
+                "options": [
+                    "Hibiscus",
+                    "Mustard",
+                    "Papaya",
+                    "Petunia"
+                ],
+                "answer": 2,
+                "hint": "Recall the examples of unisexual flowers listed in NCERT Section 7.3.2.",
+                "explanation": "Papaya and watermelon produce unisexual flowers containing either male stamens or female carpels, unlike bisexual flowers like mustard and Hibiscus."
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "title": "Plant Pollination Fertilization",
+        "subtitle": "Pollen Transfer Mechanisms, Chemotropic Tubes & Gamete Fusion",
+        "speech": (
+            "For plant reproduction to succeed, pollen grains produced in the anthers must be transferred onto the receptive stigma "
+            "of a carpel, an essential process termed pollination. If pollen grains land upon the stigma of the very same flower, the "
+            "process is known as self-pollination. Conversely, if pollen is transferred from the anther of one flower to the stigma "
+            "of a different flower on another plant of the same species, it constitutes cross-pollination. Cross-pollination is mediated "
+            "by diverse external pollinating agents, including wind currents, splashing water, foraging bees, butterflies, and birds. "
+            "Once a compatible pollen grain settles upon the sticky, sugary surface of the stigma, it absorbs moisture and germinates. "
+            "The pollen grain generates a slender pollen tube that grows chemotropically downwards through the tissues of the style, "
+            "guided by chemical gradients released by the ovary. The pollen tube traverses the ovary chamber, enters the ovule via a "
+            "tiny opening, and discharges two male germ-cells into the embryo sac. Here, one male germ-cell fuses with the female egg "
+            "cell in the process of fertilization, yielding a single-celled diploid zygote. This newly formed zygote contains genetic "
+            "contributions from both parents, primed to initiate embryonic development inside the protective ovule."
+        ),
+        "checkpoints": [
+            {
+                "question": "What is the process called when pollen is transferred from the anther of one flower to the stigma of another flower?",
+                "options": [
+                    "Self-pollination",
+                    "Cross-pollination",
+                    "Vegetative layering",
+                    "Sporangial rupture"
+                ],
+                "answer": 1,
+                "hint": "Consider transfer between two distinct flowers.",
+                "explanation": "Cross-pollination involves the transfer of pollen grains from an anther of one flower to the stigma of a different flower via wind, water, or animals."
+            },
+            {
+                "question": "How do male germ-cells reach the female egg cell inside the plant ovary?",
+                "options": [
+                    "They swim across external water films on the petals",
+                    "They travel down a pollen tube that grows through the style into the ovule",
+                    "They are transported by phloem sieve tubes using ATP",
+                    "They diffuse directly through the woody outer bark"
+                ],
+                "answer": 1,
+                "hint": "Think about the specialized tube that grows following pollen germination on the stigma.",
+                "explanation": "A pollen grain germinates on the stigma and grows a slender pollen tube through the style to deliver male gametes directly into the ovule."
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "title": "Seed Development Germination",
+        "subtitle": "Ovule Transformation, Fruit Ripening & Seedling Emergence",
+        "speech": (
+            "Following successful fertilization within the angiosperm flower, dramatic morphological and physiological transformations take "
+            "place across floral tissues. The single-celled diploid zygote undergoes repeated mitotic cleavage divisions inside the ovule to "
+            "develop into a multicellular plant embryo. Concurrently, the maternal tissues surrounding the ovule harden considerably, developing "
+            "a tough, impermeable protective outer integument known as the seed coat, thereby converting the fertilized ovule into a dormant, "
+            "resilient seed. Simultaneously, the surrounding floral ovary undergoes rapid cellular growth, accumulation of nutrient sugars and "
+            "organic acids, and ripens into a fleshy or dry protective fruit. Meanwhile, the accessory floral parts, including the petals, sepals, "
+            "stamens, style, and stigma, fulfill their temporary biological functions, wither, and fall away. The mature seed serves as an "
+            "independent biological capsule containing a dormant miniature plant embryo. Inside the seed, the embryo consists of three critical "
+            "structural components: the cotyledons, which store concentrated food reserves such as starch, lipids, and proteins; the embryonic "
+            "radicle, which constitutes the future subterranean root; and the embryonic plumule, which forms the future aerial shoot. When the "
+            "seed encounters favorable environmental conditions with adequate moisture, warmth, and oxygen, seed germination commences vigorously, "
+            "pushing the radicle downward and the plumule upward toward sunlight."
+        ),
+        "checkpoints": [
+            {
+                "question": "Following fertilization, what do the ovule and the ovary transform into respectively?",
+                "options": [
+                    "The ovule becomes the fruit; the ovary becomes the seed",
+                    "The ovule becomes the seed; the ovary ripens into the fruit",
+                    "Both ovule and ovary transform into vegetative leaves",
+                    "The ovule becomes the cotyledon; the ovary forms the pollen tube"
+                ],
+                "answer": 1,
+                "hint": "Remember which part contains the tough coat and which becomes the edible fruit.",
+                "explanation": "After fertilization, the fertilized ovule develops a tough coat to become a seed, while the surrounding ovary swells and ripens into the fruit."
+            },
+            {
+                "question": "During seed germination, which embryonic structure develops into the future shoot system?",
+                "options": [
+                    "Radicle",
+                    "Cotyledon",
+                    "Plumule",
+                    "Integument"
+                ],
+                "answer": 2,
+                "hint": "Recall the two embryonic poles: radicle for root, plumule for shoot.",
+                "explanation": "The plumule develops into the aerial shoot and leaves, while the radicle develops into the subterranean root system."
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "title": "Human Puberty Changes",
+        "subtitle": "Adolescence, Hormonal Triggers & Secondary Sexual Characteristics",
+        "speech": (
+            "During childhood, human growth concentrates primarily on somatic enlargement: bones lengthen, body weight increases, "
+            "and general organ systems expand. However, as individuals enter their early teenage years, a developmental phase known "
+            "as adolescence begins, marked by a slowing of general somatic growth and the onset of reproductive maturation termed "
+            "puberty. Puberty represents the physiological transition period when specialized reproductive tissues mature and gamete "
+            "production commences under pituitary and gonadal endocrine control. Adolescents experience common physical transformations, "
+            "including the emergence of new coarse hair patterns in the armpits and pubic genital region, thinner hair along limbs, "
+            "and heightened sebaceous gland activity resulting in oily skin and acne pimples. Additionally, striking sex-specific "
+            "secondary sexual characteristics appear. In adolescent girls, breast tissue enlarges with darkening of the skin around the "
+            "areolas, hips broaden due to pelvic widening, and the cyclic uterine bleeding pattern known as menstruation begins. In "
+            "adolescent boys, thick facial hair appears on the chin and upper lip, the voice deepens and cracks as the larynx enlarges, "
+            "skeletal musculature develops robustly, and the penis occasionally becomes enlarged and erect during sleep or waking hours. "
+            "These extensive morphological adaptations prepare the human body for copulation, internal fertilization, and maternal childbearing."
+        ),
+        "checkpoints": [
+            {
+                "question": "What common physiological change is observed in both boys and girls during adolescent puberty?",
+                "options": [
+                    "Cracking and deepening of the vocal larynx",
+                    "Development of coarse hair in armpits and the genital area, and active skin oil glands",
+                    "Commencement of monthly menstrual bleeding cycles",
+                    "Enlargement of mammary gland breast tissues"
+                ],
+                "answer": 1,
+                "hint": "Identify the changes that occur across both sexes rather than only in one.",
+                "explanation": "Both boys and girls develop armpit and pubic hair, along with more active sebaceous glands that frequently cause acne pimples during puberty."
+            },
+            {
+                "question": "Which of the following is a male-specific secondary sexual characteristic appearing at puberty?",
+                "options": [
+                    "Widening of pelvic bones for childbearing",
+                    "Growth of facial beard hair and deepening of the voice",
+                    "Initiation of monthly ovarian ovulation",
+                    "Elevation of estrogen and progesterone secretion"
+                ],
+                "answer": 1,
+                "hint": "Think about changes involving facial hair and voice pitch in boys.",
+                "explanation": "In boys, testosterone secretion causes facial hair growth (beard and mustache) and enlargement of the larynx, leading to a deeper voice."
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "title": "Male Reproductive Anatomy",
+        "subtitle": "Testes, Thermoregulation, Seminal Ducts & Sperm Motility",
+        "speech": (
+            "The human male reproductive system is specialized to produce, nourish, and deliver male germ-cells or sperms. The primary "
+            "reproductive organs are the paired oval testes, situated outside the abdominal cavity within a pouch of pigmented skin "
+            "called the scrotum. This extra-abdominal positioning is an essential anatomical adaptation: human spermatogenesis requires "
+            "a local temperature two to two-and-a-half degrees Celsius cooler than core internal body temperature. Within the testes, "
+            "interstitial cells also secrete the male sex hormone testosterone, which orchestrates male puberty changes and regulates "
+            "ongoing sperm production. Sperms exit each testis through a coiled epididymis and ascend through a muscular tube called the "
+            "vas deferens. The vas deferens loops over the urinary bladder and unites with ducts from two critical accessory glands: "
+            "the seminal vesicles and the prostate gland. These glands secrete alkaline fluids rich in fructose, prostaglandins, and "
+            "enzymes that provide metabolic nutrition, motility support, and transport fluid for the sperms, forming semen. Semen travels "
+            "into the urethra, which functions as a common conduit through the penis for both urine and reproductive fluid. Structurally, "
+            "a sperm is a streamlined microscopic cell consisting of a head packed with condensed genetic DNA and a long whip-like "
+            "tail providing energetic motility."
+        ),
+        "checkpoints": [
+            {
+                "question": "Why are the human testes located outside the abdominal cavity inside the scrotum?",
+                "options": [
+                    "To shield the testes completely from mechanical muscular contractions",
+                    "To maintain a cooler temperature (2–2.5°C lower) necessary for effective spermatogenesis",
+                    "To allow sperms to absorb atmospheric oxygen directly through the skin",
+                    "To keep the testes physically isolated from the circulatory bloodstream"
+                ],
+                "answer": 1,
+                "hint": "Consider the optimal temperature required for sperm formation.",
+                "explanation": "Human sperm formation cannot occur at standard core body temperature (37°C); the scrotum keeps the testes 2 to 2.5°C cooler."
+            },
+            {
+                "question": "What is the primary reproductive function of secretions added by the prostate and seminal vesicles?",
+                "options": [
+                    "They produce testosterone and trigger facial beard growth",
+                    "They provide nutrition, fluid medium, and motility support to sperms, forming semen",
+                    "They filter out metabolic urea and uric acid from the urethra",
+                    "They trigger the immediate shedding of the uterine lining"
+                ],
+                "answer": 1,
+                "hint": "Think about what fluid nourishes and transports sperms.",
+                "explanation": "The prostate gland and seminal vesicles contribute fluids containing nutrients and alkaline buffers that facilitate sperm motility and survival in semen."
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "title": "Female Reproductive Anatomy",
+        "subtitle": "Ovaries, Oogenesis, Fallopian Tubes & Uterine Structure",
+        "speech": (
+            "The human female reproductive system is anatomically adapted to produce female gametes, accommodate internal fertilization, "
+            "and nourish the developing embryo throughout pregnancy. The primary female reproductive organs are the paired almond-shaped "
+            "ovaries located in the lower pelvic cavity on either side of the uterus. At birth, a girl's ovaries already contain thousands "
+            "of immature primary oocytes. Upon reaching puberty, under hormonal stimulation from the pituitary gland, these eggs begin to "
+            "mature sequentially, and one mature ovum is released each month by one of the ovaries into the peritoneal cavity in the "
+            "process called ovulation. Hovering adjacent to each ovary is the fringed funnel of the oviduct, commonly called the fallopian "
+            "tube. Ciliated epithelial cells lining the fallopian tube sweep the released egg towards the uterus. Crucially, the upper "
+            "ampulla of the fallopian tube serves as the exact biological site where fertilization by motile sperms occurs. The two "
+            "fallopian tubes lead medially into the uterus, an elastic, inverted pear-shaped muscular organ featuring a thick vascularized "
+            "wall designed to expand dramatically during gestation. The lower narrow neck of the uterus is the cervix, which connects "
+            "the uterine cavity with the vagina, an elastic muscular canal serving as the receptacle for copulation and the birth canal."
+        ),
+        "checkpoints": [
+            {
+                "question": "Where does the fertilization of the human egg by a sperm typically take place?",
+                "options": [
+                    "Within the muscular cervical canal",
+                    "Inside the lumen of the vagina",
+                    "In the upper portion of the fallopian tube (oviduct)",
+                    "Deep inside the ovarian interstitial stroma"
+                ],
+                "answer": 2,
+                "hint": "Identify the ciliated tube that connects the ovary to the uterus.",
+                "explanation": "Fertilization normally takes place in the fallopian tube (oviduct), through which the egg travels toward the uterus."
+            },
+            {
+                "question": "What is the function of the human uterus during reproduction?",
+                "options": [
+                    "It produces testosterone to stimulate ovum maturation",
+                    "It houses, protects, and nourishes the implanted embryo and developing fetus throughout pregnancy",
+                    "It secretes digestive amylase to dissolve the sperm membrane",
+                    "It stores millions of mature ova before puberty begins"
+                ],
+                "answer": 1,
+                "hint": "Think about the pear-shaped organ where fetal growth occurs.",
+                "explanation": "The uterus is a hollow muscular organ that receives the fertilized embryo, provides implantation site, and expands to nurture the growing fetus."
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "title": "Implantation Placenta Gestation",
+        "subtitle": "Blastocyst Attachment, Placental Villi & Nine-Month Fetal Life",
+        "speech": (
+            "During copulation, millions of sperms are ejaculated into the female vagina and travel rapidly upwards through the "
+            "cervix and uterine cavity into the fallopian tubes. When a viable sperm encounters the ovum, fertilization occurs, forming "
+            "a single-celled diploid zygote. As the zygote travels down the fallopian tube toward the uterus, it undergoes rapid mitotic "
+            "cleavage divisions, transforming into a hollow sphere of cells called a blastocyst. Upon reaching the uterus, the blastocyst "
+            "implants deeply into the thickened, highly vascularized uterine lining, a milestone termed implantation. To support the developing "
+            "embryo, a specialized temporary disc-shaped vascular organ called the placenta develops between the embryo and the maternal uterine "
+            "wall. On the embryonic side, the placenta features millions of microscopic finger-like projections called villi, which project "
+            "into large blood spaces filled with maternal blood on the mother's side. This intricate design provides a massive surface area "
+            "for the continuous diffusion of glucose, amino acids, and oxygen from the maternal bloodstream into embryonic circulation, while "
+            "simultaneously facilitating the clearance of embryonic metabolic wastes like carbon dioxide and urea back into mother's blood. Human "
+            "gestation spans approximately nine months, culminating in coordinated rhythmic muscular contractions of the uterine wall that "
+            "expel the baby through the cervix and vagina."
+        ),
+        "checkpoints": [
+            {
+                "question": "What is the primary function of the placenta during embryonic development?",
+                "options": [
+                    "It acts as a barrier preventing all maternal blood flow to the uterus",
+                    "It provides a large surface area for exchanging nutrients, oxygen, and metabolic wastes between mother and embryo",
+                    "It produces sperms to ensure ongoing fertilization throughout gestation",
+                    "It causes the immediate monthly breakdown of the uterine endometrium"
+                ],
+                "answer": 1,
+                "hint": "Think about how the developing baby receives nourishment without directly mixing circulatory systems.",
+                "explanation": "The placenta contains embryonic villi and maternal blood pools that allow efficient transfer of oxygen and nutrients to the embryo and removal of wastes."
+            },
+            {
+                "question": "What mechanical event brings about childbirth at the conclusion of the nine-month gestation period?",
+                "options": [
+                    "Rhythmic contractions of the muscular uterine walls",
+                    "Sudden cessation of all pituitary hormone secretion",
+                    "Total drying up of the amniotic fluid reservoir",
+                    "Re-absorption of the umbilical cord into the placenta"
+                ],
+                "answer": 0,
+                "hint": "Recall how the muscular uterus pushes the baby out during labor.",
+                "explanation": "Childbirth is driven by powerful, rhythmic contractions of the smooth muscular walls of the uterus that dilate the cervix and deliver the infant."
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "title": "Menstruation Contraceptive Methods",
+        "subtitle": "Menstrual Cycle, Barrier Methods, IUDs & Surgical Birth Control",
+        "speech": (
+            "Every month, the female reproductive system prepares for potential pregnancy by releasing an ovum and thickening the uterine "
+            "endometrium with rich blood capillaries. If fertilization does not take place, the unfertilized egg survives for approximately "
+            "twenty-four hours before degenerating. Deprived of hormonal signals that maintain the endometrium, the spongy, blood-gorged "
+            "uterine lining breaks down and sheds. This cellular debris and blood discharge through the vagina as menstruation, a cycle lasting "
+            "two to eight days and recurring approximately every twenty-eight days. Because sexual maturity does not automatically imply emotional "
+            "or economic preparedness for parenthood, understanding contraceptive methods and reproductive health is critical. Contraceptive "
+            "methods are categorized into four major classes: mechanical barrier methods, such as male condoms and female diaphragms, which "
+            "physically prevent sperm from reaching the egg while providing crucial protection against sexually transmitted infections including "
+            "gonorrhoea, syphilis, and HIV; chemical or hormonal methods, including oral contraceptive pills that alter endocrine balances to "
+            "suppress ovulation; intrauterine contraceptive devices, such as the Copper-T or loop, which prevent uterine implantation; and permanent "
+            "surgical sterilization, encompassing vasectomy in males and tubectomy in females. Crucially, society must reject sex-selective female "
+            "foeticide, which prompted strict legal bans on prenatal gender determination to protect human equality and maintain balanced sex ratios."
+        ),
+        "checkpoints": [
+            {
+                "question": "What is the biological cause of menstruation in the human female reproductive cycle?",
+                "options": [
+                    "Implantation of a developing blastocyst into the uterine wall",
+                    "Breakdown and shedding of the unfertilized thickened uterine endometrium and blood vessels",
+                    "Overproduction of male testosterone by the adrenal cortex",
+                    "Rupture of the amniotic sac during active childbirth"
+                ],
+                "answer": 1,
+                "hint": "Think about what happens to the prepared uterine lining when no fertilization occurs.",
+                "explanation": "When the egg is not fertilized, progesterone support drops, causing the thickened uterine lining to disintegrate and discharge as menstrual flow."
+            },
+            {
+                "question": "Which contraceptive method provides the dual benefit of preventing pregnancy and blocking transmission of STDs like HIV?",
+                "options": [
+                    "Oral hormonal contraceptive pills",
+                    "Intrauterine Copper-T device",
+                    "Mechanical barrier methods like male condoms",
+                    "Surgical tubectomy"
+                ],
+                "answer": 2,
+                "hint": "Identify the physical barrier that prevents fluid exchange during intercourse.",
+                "explanation": "Mechanical barriers like condoms physically block sperm from entering the female tract and prevent mucosal contact, protecting against STDs such as HIV and syphilis."
+            }
+        ]
+    }
+]
+
+print("=== CHECKING SLIDES 9 TO 16 DATA ===")
+for s in slides_part2:
+    wc = len(s['speech'].split())
+    tw = len(s['title'].split())
+    print(f"Slide {s['id']}: '{s['title']}' | Title words: {tw} | Speech words: {wc}")
+    assert 1 <= tw <= 3, f"Title words out of range: {tw}"
+    assert 195 <= wc <= 215, f"Speech words out of range: {wc}"
+    assert len(s['checkpoints']) == 2, "Must have exactly 2 checkpoints"
+
+with open('.agents/c10s_ch7_part2.json', 'w', encoding='utf-8') as f:
+    json.dump(slides_part2, f, indent=2)
+
+print("Saved .agents/c10s_ch7_part2.json successfully!")

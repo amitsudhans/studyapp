@@ -1,0 +1,440 @@
+# -*- coding: utf-8 -*-
+"""
+Class 10 Science Chapter 10: The Human Eye and the Colourful World
+Part 1: Slides 1 to 8 Generator
+Speech strictly 195-215 words. Titles strictly 1-3 words. Zero persona titles or forbidden names.
+"""
+
+import json
+
+slides_part1 = [
+    {
+        "id": 1,
+        "title": "Eye Optics Overview",
+        "subtitle": "Natural Optical Instruments and Atmospheric Phenomena",
+        "badge": "Section 10.1",
+        "summary": "Light allows us to perceive the world through biological optical instruments. The human eye functions like a camera, focusing incident rays to form real, inverted images on the retina while setting the stage for splendid optical phenomena like rainbows and sparkling atmospheric colors.",
+        "theory": """
+            <div class="space-y-3 text-slate-300 text-xs leading-relaxed">
+                <p><strong class="text-amber-400">Biological Optical Instrument:</strong> The human eye is one of the most valuable and sensitive sense organs, enabling us to perceive the vibrant colours and depth of our surroundings. It acts fundamentally like an optical camera, using a natural converging lens system to focus real, inverted images onto a light-sensitive screen termed the retina.</p>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>🔍</span> Core Optical Components of Vision:
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1">
+                        <li><strong class="text-teal-300">Refractive Front Surface:</strong> The cornea and aqueous humor handle approximately 80% of all incident light refraction.</li>
+                        <li><strong class="text-teal-300">Aperture Control:</strong> The iris regulates pupil diameter to control illumination entering the vitreous chamber.</li>
+                        <li><strong class="text-teal-300">Fine Focusing:</strong> The flexible crystalline lens dynamically modifies its focal length via ciliary muscle tension.</li>
+                        <li><strong class="text-teal-300">Transduction Screen:</strong> The retina contains millions of photoreceptors converting light impulses into neuro-electrical signals.</li>
+                    </ul>
+                </div>
+                <p><strong class="text-amber-400">Atmospheric Splendour:</strong> Beyond biological vision, the study of light propagation through diverse media reveals natural marvels such as the splitting of white sunlight into a rainbow spectrum, the twinkling of distant stars, and the deep azure tint of the clear daytime sky.</p>
+            </div>
+        """,
+        "speech": "Welcome to our comprehensive study of the human eye and the colourful world. Light enables us to see and appreciate the splendid beauty of nature around us. The human eye is an extraordinary biological optical device that operates on the exact principles of refraction, reflection, and lens geometry we explored earlier. Light rays coming from surrounding illuminated objects enter through a curved transparent membrane called the cornea, pass through an adjustable aperture known as the pupil, and are brought to a sharp focus by a flexible crystalline lens onto the delicate light-sensitive retina. The resulting inverted image stimulates specialized photoreceptor cells, which generate electrical signals transmitted directly to the brain through the optic nerve. Beyond biological vision, the same fundamental principles of light interaction explain breathtaking natural phenomena across the atmosphere. We will uncover how sunlight refracts and disperses inside falling raindrops to create brilliant rainbows, why atmospheric turbulence causes distant stars to twinkle while planets remain steady, and why fine air molecules selectively scatter shorter wavelengths to give our sky its iconic blue canopy. By connecting human ocular anatomy with atmospheric optics, we discover a unified physical framework governing vision and natural light spectacles across our magnificent and wondrous universe.",
+        "checkpoints": [
+            {
+                "question": "Which component of the human eye performs the majority of light refraction?",
+                "options": [
+                    "Outer surface of the cornea",
+                    "Crystalline lens alone",
+                    "Pupil aperture",
+                    "Vitreous humor fluid"
+                ],
+                "answer": 0,
+                "hint": "Consider the boundary where light transitions from air into biological tissue with the greatest change in refractive index.",
+                "explanation": "Most of the refraction for light rays entering the eye occurs at the outer surface of the cornea due to the significant refractive index difference between air and corneal tissue."
+            },
+            {
+                "question": "What type of image is naturally formed by the eye lens system on the retina?",
+                "options": [
+                    "Virtual and erect",
+                    "Real and inverted",
+                    "Virtual and magnified",
+                    "Real and erect"
+                ],
+                "answer": 1,
+                "hint": "Recall the image formation characteristics of a biological converging convex lens on a physical screen.",
+                "explanation": "The crystalline convex lens forms a real, inverted, and diminished image on the retina screen, which the brain subsequently interprets right-side up."
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Human Eye Anatomy",
+        "subtitle": "Cornea, Iris Diaphragm, Pupil, and Crystalline Lens",
+        "badge": "Section 10.1",
+        "summary": "The human eyeball is an approximately spherical structure of 2.3 cm diameter. Light enters through the protective transparent cornea, while the muscular iris dynamically adjusts the pupil aperture to modulate retinal illumination.",
+        "theory": """
+            <div class="space-y-3 text-slate-300 text-xs leading-relaxed">
+                <p><strong class="text-amber-400">Eyeball Geometry & Cornea:</strong> The eyeball is roughly spherical with a diameter of approximately <span class="text-amber-300 font-semibold">2.3 cm</span>. Light enters through a thin, transparent membrane forming a spherical bulge on the front surface called the <span class="text-teal-300 font-semibold">cornea</span>.</p>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>⚙️</span> The Pupillary Light Reflex Mechanism:
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1">
+                        <li><strong class="text-teal-300">The Iris:</strong> A dark muscular diaphragm located behind the cornea that governs pupil diameter. It imparts distinctive eye coloration (brown, black, blue, green).</li>
+                        <li><strong class="text-teal-300">The Pupil:</strong> The central variable aperture through which light enters the interior eye chamber. It looks black because no light reflects back out.</li>
+                        <li><strong class="text-teal-300">Bright Sunlight Response:</strong> Radial iris muscles relax while circular muscles contract, constricting the pupil to prevent retinal dazzle.</li>
+                        <li><strong class="text-teal-300">Dim Lighting Response:</strong> Radial iris muscles contract, dilating the pupil widely to maximize photon collection.</li>
+                    </ul>
+                </div>
+                <p><strong class="text-amber-400">Crystalline Lens:</strong> Positioned directly behind the pupil, this transparent, flexible, biconvex structure composed of fibrous, jelly-like material provides the fine focal adjustments necessary for viewing objects at various distances.</p>
+            </div>
+        """,
+        "speech": "Let us examine the anatomical architecture of the human eye. The eyeball is roughly spherical in shape, possessing an average diameter of approximately two point three centimetres. When light arrives from our surroundings, it first enters through a thin, transparent membrane known as the cornea. The cornea forms a prominent protective bulge at the front of the eye and conducts the vast majority of primary refraction of incoming light rays. Directly behind the cornea lies the iris, a dark muscular diaphragm responsible for controlling the size of the pupil and providing distinctive eye color. The pupil serves as a central circular aperture through which light passes into the interior optical chamber. When you step into bright ambient sunlight, circular muscles within the iris contract automatically, constricting the pupil to prevent excessive illumination from dazzling your retina. Conversely, in a dimly lit room, the iris dilates the pupil, expanding its opening to gather as much available light as possible. Positioned immediately behind the pupil is the crystalline lens, composed of fibrous, jelly-like protein layers. This flexible biconvex lens provides the crucial fine-tuning of focal length required to project sharp optical images onto the delicate retina screen at the back of the eye.",
+        "checkpoints": [
+            {
+                "question": "What is the approximate diameter of a normal human eyeball?",
+                "options": [
+                    "2.3 cm",
+                    "3.5 cm",
+                    "1.2 cm",
+                    "4.8 cm"
+                ],
+                "answer": 0,
+                "hint": "Refer to the standard anatomical metric established in NCERT Section 10.1.",
+                "explanation": "The human eyeball is approximately spherical with a standard diameter of about 2.3 centimetres."
+            },
+            {
+                "question": "How does the iris respond when a person transitions from a dark corridor into bright sunlight?",
+                "options": [
+                    "It constricts the pupil to reduce light intake",
+                    "It dilates the pupil to increase light intake",
+                    "It completely closes the cornea",
+                    "It flattens the retina screen"
+                ],
+                "answer": 0,
+                "hint": "Consider the protective reflex that prevents excessive photon influx and glare on the retina.",
+                "explanation": "In intense sunlight, the muscular iris contracts to constrict the pupil opening, limiting the incoming light flux and protecting retinal cells."
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Retina Photoreceptor Function",
+        "subtitle": "Rods, Cones, Signal Transduction, and Optic Nerves",
+        "badge": "Section 10.1",
+        "summary": "The retina serves as a delicate light-sensitive biological transducer. Enormous populations of specialized rod and cone photoreceptors translate optical photons into electrochemical nerve impulses relayed via optic nerves to the brain.",
+        "theory": """
+            <div class="space-y-3 text-slate-300 text-xs leading-relaxed">
+                <p><strong class="text-amber-400">The Retina Screen:</strong> The retina is a delicate inner sensory membrane lining the back of the eyeball. It contains an immense population of light-sensitive photoreceptor cells that become activated upon illumination.</p>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>💡</span> Photoreceptor Specialization:
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1">
+                        <li><strong class="text-teal-300">Rod Cells (~120 million):</strong> Highly sensitive to dim illumination; facilitate scotopic (night) peripheral vision and motion detection without color discrimination.</li>
+                        <li><strong class="text-teal-300">Cone Cells (~6 million):</strong> Concentrated primarily at the central fovea centralis; operate under bright photopic light, mediating sharp visual acuity and trichromatic (red, green, blue) color vision.</li>
+                        <li><strong class="text-teal-300">Signal Transduction:</strong> Photons induce photochemical conformational changes in opsin photopigments, generating graded electrical potentials.</li>
+                        <li><strong class="text-teal-300">Optic Nerve Transmission:</strong> Bipolar and ganglion cells integrate impulses, sending high-speed neural action potentials along the optic nerve bundle to the visual cortex.</li>
+                    </ul>
+                </div>
+                <p><strong class="text-amber-400">Cortical Processing:</strong> The visual cortex of the brain receives inverted electrical image representations, decodes the spatial frequencies and color ratios, and reconstructs an upright, conscious perceptual representation.</p>
+            </div>
+        """,
+        "speech": "Now let us delve into the remarkable sensory screen of the eye, known as the retina. The retina is a delicate neurological membrane coating the posterior inner surface of the eyeball. When focused light rays strike this surface, they illuminate millions of specialized photoreceptor cells. There are two primary categories of photoreceptors: rod cells and cone cells. Rods are exceptionally sensitive to dim light, enabling nocturnal vision and peripheral movement tracking, although they cannot distinguish distinct colours. In contrast, cone cells function optimally under bright photopic daylight and are densely packed within the central fovea. Cones contain specialized photopigments sensitive to red, green, and blue wavelengths, allowing us to experience the full, rich spectrum of visual hues and fine structural detail. When photons trigger these photoreceptor cells, a rapid photochemical reaction occurs, generating microvolt electrical action potentials and impulses. These electrical signals are gathered and relayed through retinal ganglion cells into the thick cable of the optic nerve. The optic nerve conducts these coded signals directly to the visual cortex at the rear of the brain. There, complex neural networks decode the signals, reorienting the inverted optical image so that we consciously perceive upright, seamlessly integrated visual reality.",
+        "checkpoints": [
+            {
+                "question": "Which photoreceptor cells on the retina are responsible for daytime visual acuity and color perception?",
+                "options": [
+                    "Cone cells",
+                    "Rod cells",
+                    "Ciliary epithelial cells",
+                    "Corneal stromal cells"
+                ],
+                "answer": 0,
+                "hint": "Identify the cells concentrated at the fovea that respond to red, green, and blue wavelengths under bright light.",
+                "explanation": "Cone cells operate in bright light conditions and possess distinct photopigments responsible for daylight visual resolution and color perception."
+            },
+            {
+                "question": "Through which anatomical conduit are retinal electrical signals transmitted to the brain?",
+                "options": [
+                    "Optic nerve",
+                    "Ciliary body",
+                    "Aqueous canal",
+                    "Suspensory ligaments"
+                ],
+                "answer": 0,
+                "hint": "Recall the thick cranial sensory nerve exiting the posterior pole of the eyeball.",
+                "explanation": "The optic nerve bundle collects all action potentials generated by retinal ganglion cells and transmits them to the visual processing centers of the brain."
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Accommodation Power Dynamics",
+        "subtitle": "Ciliary Muscles, Near Point, Far Point, and Cataract",
+        "badge": "Section 10.1.1",
+        "summary": "Accommodation is the ability of the crystalline eye lens to dynamically adjust its focal length via ciliary muscle contraction. The normal adult near point is 25 cm, while the far point is at infinity.",
+        "theory": """
+            <div class="space-y-3 text-slate-300 text-xs leading-relaxed">
+                <p><strong class="text-amber-400">Power of Accommodation:</strong> The crystalline lens is composed of flexible, fibrous jelly-like material. Its curvature can be modified by the action of circular <span class="text-teal-300 font-semibold">ciliary muscles</span>, enabling the eye to focus objects located across immense distance ranges.</p>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>📐</span> Focal Adaptation Mechanisms:
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1">
+                        <li><strong class="text-teal-300">Distant Vision (Relaxed Ciliary Muscles):</strong> Ciliary ring expands, suspensory zonules pull taut, stretching the crystalline lens thin. Focal length increases to maximum (~2.27 cm), focusing parallel rays onto the retina.</li>
+                        <li><strong class="text-teal-300">Near Vision (Contracted Ciliary Muscles):</strong> Ciliary muscles contract inward, relaxing zonular tension. The elastic lens bulges thicker with higher curvature. Focal length decreases, focusing divergent rays from nearby objects.</li>
+                        <li><strong class="text-teal-300">Near Point ($d$):</strong> The least distance of distinct vision without eyestrain. For a normal young adult, $d = 25\\text{ cm}$.</li>
+                        <li><strong class="text-teal-300">Far Point:</strong> The farthest distance at which objects can be seen distinctly. For a normal eye, the far point is at <span class="text-amber-300 font-semibold">infinity</span>.</li>
+                    </ul>
+                </div>
+                <p><strong class="text-amber-400">Cataract Pathology:</strong> With advancing age, the crystalline lens protein matrix can become cloudy and milky, causing gradual vision deterioration or complete blindness. This condition is safely restored via surgical replacement with an artificial intraocular lens.</p>
+            </div>
+        """,
+        "speech": "Let us explore how the eye actively focuses objects at varying distances, an extraordinary capability termed the power of accommodation. The crystalline lens is elastic and pliable, supported by a circular ring of ciliary muscles and suspensory ligaments. When observing distant objects such as distant hills or celestial stars, the ciliary muscles remain fully relaxed. This relaxation exerts radial tension on the suspensory ligaments, stretching the lens into a thin profile with large radii of curvature. Consequently, the focal length increases, allowing parallel rays from distant points to converge precisely on the retina without muscular strain. Conversely, when reading a book or examining nearby objects, the ciliary muscles contract actively inward. This relieves tension on the suspensory ligaments, allowing the elastic lens to bulge into a thicker, more convex shape. The increased curvature shortens the focal length, sharply focusing diverging light rays onto the retina. The minimum distance at which an object can be viewed clearly without strain is called the near point or least distance of distinct vision, which is twenty-five centimetres for a healthy young adult. Meanwhile, the far point extends to infinity. In older age, lens proteins may denature into a cloudy cataract, which requires surgical removal.",
+        "checkpoints": [
+            {
+                "question": "What is the least distance of distinct vision (near point) for a normal young adult?",
+                "options": [
+                    "25 cm",
+                    "2.5 cm",
+                    "50 cm",
+                    "Infinity"
+                ],
+                "answer": 0,
+                "hint": "Identify the standard baseline reading distance specified in NCERT Section 10.1.1.",
+                "explanation": "For a normal young adult eye, the near point (least distance of distinct vision) is approximately 25 cm. Viewing closer causes muscular eyestrain."
+            },
+            {
+                "question": "What happens to the crystalline lens when the ciliary muscles contract during close-range reading?",
+                "options": [
+                    "It becomes thicker and its focal length decreases",
+                    "It becomes thinner and its focal length increases",
+                    "It becomes completely rigid and flat",
+                    "It shifts physically closer to the cornea"
+                ],
+                "answer": 0,
+                "hint": "Recall that ciliary contraction releases suspensory zonule tension, allowing the lens to bulge.",
+                "explanation": "Ciliary muscle contraction releases ligament tension, causing the elastic lens to become thicker and more convex, which decreases its focal length to focus divergent rays."
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Myopia Correction Optics",
+        "subtitle": "Near-Sightedness Causes, Ray Tracing, and Concave Lens Remedy",
+        "badge": "Section 10.2(a)",
+        "summary": "Myopia or near-sightedness prevents clear distant vision because rays converge in front of the retina. This defect is caused by excessive lens curvature or eyeball elongation, and is corrected using a concave lens.",
+        "theory": """
+            <div class="space-y-3 text-slate-300 text-xs leading-relaxed">
+                <p><strong class="text-amber-400">Myopic Vision Defect:</strong> A myopic individual can see nearby objects distinctly but cannot focus clearly on distant objects. The <span class="text-teal-300 font-semibold">far point ($F_M$)</span> recedes from infinity to a finite distance in front of the eye.</p>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>🔍</span> Etiology & Ray Optics of Myopia:
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1">
+                        <li><strong class="text-teal-300">Anatomical Causes:</strong> (1) Excessive curvature (over-convergence) of the corneal and crystalline lens system; (2) Elongation of the eyeball along the anteroposterior axis.</li>
+                        <li><strong class="text-teal-300">Ray Convergence Point:</strong> Incident parallel rays from infinity converge to a focal point located <span class="text-rose-400 font-semibold">in front of the retina</span>, creating a blurry circle of confusion on the sensory screen.</li>
+                        <li><strong class="text-teal-300">Optical Remedy:</strong> A diverging <span class="text-teal-300 font-semibold">concave lens</span> of appropriate focal length is positioned before the eye.</li>
+                        <li><strong class="text-teal-300">Focal Length Calculation:</strong> To view distant objects at $u = -\\infty$, the concave lens must form a virtual image at the eye's myopic far point $d$:
+                            $$\\frac{1}{f} = \\frac{1}{v} - \\frac{1}{u} = \\frac{1}{-d} - \\frac{1}{-\\infty} \\implies f = -d$$
+                        </li>
+                    </ul>
+                </div>
+                <p><strong class="text-amber-400">Negative Optical Power:</strong> Because $f$ is negative, the corrective spectacle lens has negative optical power ($P = 1/f < 0\\text{ D}$), providing exact pre-divergence so rays focus sharply on the retina.</p>
+            </div>
+        """,
+        "speech": "We now examine the most widespread refractive defect of vision, known as myopia or near-sightedness. A person affected by myopia can view nearby objects with complete clarity, but distant objects appear blurred and indistinct. In a myopic eye, the far point is no longer situated at infinity, but has shifted inward to a finite distance of a few metres or centimetres. This optical error stems from two primary anatomical reasons: excessive curvature of the cornea and crystalline lens system causing over-convergence, or physical elongation of the eyeball along its optical axis. As a consequence, parallel light rays originating from distant objects converge prematurely, forming a focused image in front of the retina rather than directly upon it. By the time the rays reach the retinal screen, they have diverged again, producing a blurred visual perception. To rectify myopia, an optometrist prescribes a diverging concave lens of suitable focal length. When placed in front of the eye, this concave lens introduces a controlled degree of divergence to incoming parallel rays, making them appear as if they emanate from the eye's actual myopic far point. The combined optical system then focuses the image precisely on the retina, restoring crystal-clear distance vision.",
+        "checkpoints": [
+            {
+                "question": "Where does the image of a distant object form in an uncorrected myopic eye?",
+                "options": [
+                    "In front of the retina",
+                    "Directly on the blind spot",
+                    "Behind the retina",
+                    "Inside the crystalline lens"
+                ],
+                "answer": 0,
+                "hint": "Recall that myopia involves excessive convergence or an elongated eyeball.",
+                "explanation": "In myopia, parallel rays from distant objects converge prematurely to form an image in front of the retina, resulting in blurred distance vision."
+            },
+            {
+                "question": "What type of corrective spectacle lens is required to restore normal distant vision in myopia?",
+                "options": [
+                    "Concave lens of suitable power",
+                    "Convex lens of high power",
+                    "Cylindrical lens with horizontal axis",
+                    "Plano-parallel glass plate"
+                ],
+                "answer": 0,
+                "hint": "A diverging optical element is needed to counteract the eye's excessive converging power.",
+                "explanation": "A concave lens diverges incoming parallel rays so that they appear to diverge from the myopic far point, allowing the eye lens to focus them sharply on the retina."
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "title": "Hypermetropia Vision Correction",
+        "subtitle": "Far-Sightedness Causes, Receded Near Point, and Convex Lens Remedy",
+        "badge": "Section 10.2(b)",
+        "summary": "Hypermetropia or far-sightedness allows clear distant vision while close objects appear blurred because rays focus behind the retina. It is corrected by using an additional converging convex lens.",
+        "theory": """
+            <div class="space-y-3 text-slate-300 text-xs leading-relaxed">
+                <p><strong class="text-amber-400">Hypermetropic Defect:</strong> A person with hypermetropia (far-sightedness) can see distant objects clearly but struggles to see nearby objects distinctly. The <span class="text-teal-300 font-semibold">near point ($N'$)</span> recedes farther away than the normal reading distance of $25\\text{ cm}$.</p>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>🔍</span> Etiology & Ray Optics of Hypermetropia:
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1">
+                        <li><strong class="text-teal-300">Anatomical Causes:</strong> (1) Focal length of the eye lens is too long (insufficient converging power); (2) Eyeball has become too short along the anteroposterior axis.</li>
+                        <li><strong class="text-teal-300">Ray Convergence Point:</strong> Diverging rays from an object held at normal reading distance ($u = -25\\text{ cm}$) converge to a focal point located <span class="text-rose-400 font-semibold">behind the retina</span>.</li>
+                        <li><strong class="text-teal-300">Optical Remedy:</strong> A converging <span class="text-teal-300 font-semibold">convex lens</span> of suitable power is placed before the eye.</li>
+                        <li><strong class="text-teal-300">Focal Length Calculation:</strong> The corrective lens forms a virtual, erect image of the close object at the individual's receded near point $d'$:
+                            $$\\frac{1}{f} = \\frac{1}{v} - \\frac{1}{u} = \\frac{1}{-d'} - \\frac{1}{-25} = \\frac{1}{25} - \\frac{1}{d'}$$
+                        </li>
+                    </ul>
+                </div>
+                <p><strong class="text-amber-400">Positive Optical Power:</strong> Because $d' > 25\\text{ cm}$, the calculated focal length $f$ is positive, requiring prescription spectacles with positive dioptric power ($P = 1/f > 0\\text{ D}$).</p>
+            </div>
+        """,
+        "speech": "Next, let us analyze hypermetropia, commonly designated as far-sightedness. An individual with hypermetropia can clearly observe objects situated far away, but encounters significant blurring and eye fatigue when attempting to read or inspect objects at close quarters. In a hypermetropic eye, the near point has receded significantly beyond the normal standard distance of twenty-five centimetres, sometimes shifting outward to fifty centimetres or more. This visual impairment arises from two primary anatomical deficiencies: either the focal length of the eye lens is excessively long due to insufficient converging power, or the eyeball itself is too short from front to back. Consequently, light rays diverging from a nearby reading source do not bend sufficiently, projecting their focal convergence point behind the retina. By the time the light reaches the retinal plane, the converging cone remains incomplete, producing an unfocused, hazy image. Hypermetropia is corrected by placing a converging convex lens in front of the eye. This supplementary convex lens supplies the necessary initial convergence, bending the diverging rays so they appear to originate from the eye's receded near point. The crystalline lens then effortlessly completes the convergence directly onto the retina, providing sharp, comfortable close-range visual acuity.",
+        "checkpoints": [
+            {
+                "question": "Where does the focused image of a near object form in an uncorrected hypermetropic eye?",
+                "options": [
+                    "Behind the retina",
+                    "In front of the retina",
+                    "Directly on the cornea",
+                    "Within the vitreous humor"
+                ],
+                "answer": 0,
+                "hint": "Recall that insufficient converging power causes light to converge past the sensory screen.",
+                "explanation": "In hypermetropia, the eye lens has too long a focal length or the eyeball is too short, causing rays from nearby objects to converge behind the retina."
+            },
+            {
+                "question": "Which corrective lens provides the additional converging power required to treat hypermetropia?",
+                "options": [
+                    "Convex lens of suitable focal length",
+                    "Concave lens of negative dioptres",
+                    "Bifocal diverging lens",
+                    "Opaque pinhole aperture"
+                ],
+                "answer": 0,
+                "hint": "A converging optical element is needed to provide the extra bending required for near rays.",
+                "explanation": "A convex lens provides supplementary converging power, pre-focusing divergent light rays so they converge cleanly onto the retina from standard reading distance."
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "title": "Presbyopia Eye Donation",
+        "subtitle": "Age-Related Accommodation Decline, Bi-Focal Lenses, and Corneal Transplants",
+        "badge": "Section 10.2(c) & Sidebar",
+        "summary": "Presbyopia is the progressive age-related loss of accommodation power due to weakening ciliary muscles and declining lens elasticity. It is remedied via bi-focal lenses. Eye donation enables corneal transplantation to restore sight.",
+        "theory": """
+            <div class="space-y-3 text-slate-300 text-xs leading-relaxed">
+                <p><strong class="text-amber-400">Presbyopia (Old-Age Sight):</strong> As individuals age, the power of accommodation of the eye systematically decreases. For most people, the near point gradually recedes, making close work without corrective spectacles difficult.</p>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>👓</span> Bi-Focal Lens Architecture:
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1">
+                        <li><strong class="text-teal-300">Causes:</strong> Gradual weakening of the circular ciliary muscles combined with diminishing flexibility of the crystalline protein matrix.</li>
+                        <li><strong class="text-teal-300">Dual Defect:</strong> Often an individual suffers from both myopia and presbyopia, requiring different optical corrections for distance and reading.</li>
+                        <li><strong class="text-teal-300">Bi-Focal Structure:</strong> The <span class="text-teal-300 font-semibold">upper segment</span> consists of a concave lens for clear distance vision, while the <span class="text-teal-300 font-semibold">lower segment</span> contains a convex lens for reading. Modern progressive lenses provide a smooth, line-free power gradient.</li>
+                    </ul>
+                </div>
+                <div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 space-y-1 text-emerald-200">
+                    <div class="text-emerald-400 font-bold flex items-center gap-1.5">
+                        <span>👁️</span> Eye Donation Facts & Ethics:
+                    </div>
+                    <p>Corneal blindness can be cured by transplanting a healthy donor cornea. A donor can be of any age, gender, blood group, or wear spectacles. Donors must be free from communicable pathogens (AIDS, rabies, hepatitis, tetanus). Eyes must be retrieved within <span class="text-amber-300 font-semibold">4 to 6 hours</span> post-mortem to restore sight for up to four individuals.</p>
+                </div>
+            </div>
+        """,
+        "speech": "With advancing age, almost every human experiences presbyopia, a gradual decrease in the eye's power of accommodation. This natural biological condition arises from two primary aging processes: the gradual weakening of the circular ciliary muscles, and the declining physical elasticity of the crystalline lens protein matrix. As flexibility diminishes, the lens cannot easily thicken to focus on close objects, causing the near point to recede and making reading increasingly difficult. When an individual suffers simultaneously from both myopia and presbyopia, optometrists prescribe bi-focal lenses. A traditional bi-focal lens features a concave upper portion that facilitates distant vision, and a convex lower portion that enables comfortable close reading. Modern progressive lenses offer an even smoother, seamless visual transition across all intermediate distances. In our society, visual health also encompasses the vital altruism of eye donation. Millions of individuals suffer from corneal blindness, a disability entirely curable through keratoplasty or corneal transplantation. Any person, regardless of age, gender, or spectacle prescription, can pledge their eyes. The retrievable corneas must be carefully collected by an authorized eye bank team within four to six hours post-mortem, enabling one deceased donor to illuminate life and restore vision for four visually impaired individuals.",
+        "checkpoints": [
+            {
+                "question": "What is the primary optical function of the lower portion in a traditional bi-focal spectacle lens?",
+                "options": [
+                    "Convex lens facilitating clear near reading vision",
+                    "Concave lens facilitating sharp distant vision",
+                    "Polarized filter reducing reflective road glare",
+                    "Cylindrical lens correcting corneal astigmatism"
+                ],
+                "answer": 0,
+                "hint": "Think about how we naturally angle our gaze downward when reading a book.",
+                "explanation": "In bi-focal spectacles, the lower segment is a convex lens that aids near reading vision, while the upper concave segment enables distant observation."
+            },
+            {
+                "question": "Within what ideal time window after death should eyes be harvested for successful corneal transplantation?",
+                "options": [
+                    "Within 4 to 6 hours",
+                    "Within 24 to 48 hours",
+                    "Within 12 to 18 hours",
+                    "Within 30 minutes only"
+                ],
+                "answer": 0,
+                "hint": "Recall the strict time frame detailed in the NCERT Eye Donation sidebar.",
+                "explanation": "To maintain corneal tissue viability for grafting, donor eyes must be retrieved within 4 to 6 hours post-mortem by a trained medical eye bank team."
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "title": "Prism Refraction Deviation",
+        "subtitle": "Triangular Glass Prism Geometry, Activity 10.1, and Angle of Deviation",
+        "badge": "Section 10.3",
+        "summary": "A triangular glass prism features two triangular bases and three inclined rectangular faces. Unlike parallel glass slabs, light entering and exiting non-parallel faces bends with a net angle of deviation ($D$).",
+        "theory": """
+            <div class="space-y-3 text-slate-300 text-xs leading-relaxed">
+                <p><strong class="text-amber-400">Prism Geometry:</strong> A triangular glass prism has two triangular bases and three rectangular lateral surfaces inclined to each other. The angle between its two lateral faces is called the <span class="text-teal-300 font-semibold">angle of the prism ($A$)</span>.</p>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>📐</span> Activity 10.1 & Ray Tracing through a Prism:
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1">
+                        <li><strong class="text-teal-300">First Interface ($AB$):</strong> Ray $PE$ enters from rare air into denser glass, bending towards the normal ($NN'$). Angle of incidence is $i$; angle of refraction is $r_1$.</li>
+                        <li><strong class="text-teal-300">Second Interface ($AC$):</strong> Refracted ray $EF$ travels through glass and exits into air, bending away from the normal ($MM'$). Angle of emergence is $e$.</li>
+                        <li><strong class="text-teal-300">Angle of Deviation ($D$):</strong> Because the refracting faces are non-parallel, the emergent ray $FS$ is tilted relative to the original incident ray direction. The angle between the incident ray produced forward and emergent ray produced backward is the <span class="text-amber-300 font-semibold">angle of deviation ($D$)</span>.</li>
+                        <li><strong class="text-teal-300">Fundamental Prism Equation:</strong>
+                            $$i + e = A + D$$
+                        </li>
+                    </ul>
+                </div>
+                <p><strong class="text-amber-400">Contrast with Rectangular Slab:</strong> In a rectangular slab with parallel faces, emergent rays emerge parallel to incident rays with only lateral displacement. In a triangular prism, the non-parallel faces introduce an intrinsic angular deviation towards the base.</p>
+            </div>
+        """,
+        "speech": "We now transition from biological vision to the fascinating physics of atmospheric and laboratory optics, beginning with refraction through a triangular glass prism. A triangular prism is an optical medium bounded by two triangular bases and three rectangular lateral faces that are inclined relative to one another. The angle between two adjoining lateral refracting faces is termed the angle of the prism, denoted by capital A. In Activity 10.1, we trace a monochromatic ray of light impinging on the first face of the prism. As light passes from rare air into denser glass, it bends towards the normal at the point of incidence. Inside the glass, the ray travels obliquely towards the second inclined face. Upon exiting from glass back into rarer air, the ray bends away from the normal. Because the two refracting faces of a prism are tilted rather than parallel, the emerging ray does not continue parallel to the incident beam, as occurred in a rectangular glass slab. Instead, it is permanently bent towards the thicker base of the prism. The angle formed between the incident ray extended forward and the emergent ray traced backward is called the angle of deviation, designated by D, satisfying the equation i plus e equals A plus D.",
+        "checkpoints": [
+            {
+                "question": "What is the angle called between the forward-extended incident ray and backward-extended emergent ray in a prism?",
+                "options": [
+                    "Angle of deviation",
+                    "Angle of incidence",
+                    "Angle of emergence",
+                    "Angle of the prism"
+                ],
+                "answer": 0,
+                "hint": "Recall the metric representing the net directional shift undergone by light through inclined prism faces.",
+                "explanation": "The angle between the direction of the incident ray produced forward and the emergent ray produced backward is called the angle of deviation (D)."
+            },
+            {
+                "question": "Which relation correctly connects the angles of a triangular prism?",
+                "options": [
+                    "i + e = A + D",
+                    "i + A = e + D",
+                    "i + D = A + e",
+                    "i × e = A × D"
+                ],
+                "answer": 0,
+                "hint": "Recall the fundamental geometric prism theorem relating boundary angles to prism geometry.",
+                "explanation": "For refraction through a triangular prism, the sum of angle of incidence (i) and angle of emergence (e) equals the sum of angle of prism (A) and angle of deviation (D)."
+            }
+        ]
+    }
+]
+
+with open(".agents/c10s_ch10_part1.json", "w", encoding="utf-8") as f:
+    json.dump(slides_part1, f, indent=2)
+
+print(f"Generated {len(slides_part1)} slides in Part 1.")
+for s in slides_part1:
+    wc = len(s["speech"].split())
+    tc = len(s["title"].split())
+    print(f"Slide {s['id']}: '{s['title']}' ({tc} words) | Speech: {wc} words")
+    assert 195 <= wc <= 215, f"Slide {s['id']} speech out of range: {wc}"
+    assert 1 <= tc <= 3, f"Slide {s['id']} title out of range: {tc}"

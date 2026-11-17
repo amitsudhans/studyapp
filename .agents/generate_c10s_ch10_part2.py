@@ -1,0 +1,448 @@
+# -*- coding: utf-8 -*-
+"""
+Class 10 Science Chapter 10: The Human Eye and the Colourful World
+Part 2: Slides 9 to 16 Generator
+Speech strictly 195-215 words. Titles strictly 1-3 words. Zero persona titles or forbidden names.
+"""
+
+import json
+
+slides_part2 = [
+    {
+        "id": 9,
+        "title": "Dispersion Spectrum Colors",
+        "subtitle": "Activity 10.2, VIBGYOR Band, and Differential Wavelength Bending",
+        "badge": "Section 10.4",
+        "summary": "When white sunlight passes through a glass prism, it splits into seven distinct colors: Violet, Indigo, Blue, Green, Yellow, Orange, and Red (VIBGYOR). This phenomenon is termed dispersion, caused by differential speeds and refractive indices.",
+        "theory": """
+            <div class="space-y-3 text-slate-300 text-xs leading-relaxed">
+                <p><strong class="text-amber-400">Activity 10.2 & Discovery of Dispersion:</strong> When a narrow beam of white sunlight is directed through a triangular glass prism, the emergent beam spreads into a vibrant band of colors on a white screen: <span class="text-purple-400 font-bold">Violet</span>, <span class="text-indigo-400 font-bold">Indigo</span>, <span class="text-blue-400 font-bold">Blue</span>, <span class="text-emerald-400 font-bold">Green</span>, <span class="text-yellow-400 font-bold">Yellow</span>, <span class="text-amber-500 font-bold">Orange</span>, and <span class="text-rose-500 font-bold">Red</span> (acronym <strong class="text-amber-300">VIBGYOR</strong>).</p>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>🌈</span> Physical Mechanism of Dispersion:
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1">
+                        <li><strong class="text-teal-300">Wavelength-Dependent Speed:</strong> In vacuum or air, all colors travel at identical cosmic speed ($c = 3 \\times 10^8\\text{ m/s}$). In glass or water, red light travels fastest while violet light travels slowest.</li>
+                        <li><strong class="text-teal-300">Differential Refractive Index:</strong> Refractive index is higher for shorter wavelengths ($n_v > n_r$), causing violet light to bend through the greatest angle.</li>
+                        <li><strong class="text-teal-300">Angular Deviation Hierarchy:</strong>
+                            $$D_v > D_i > D_b > D_g > D_y > D_o > D_r$$
+                            Red light bends the least, while violet light suffers maximum angular deviation.
+                        </li>
+                    </ul>
+                </div>
+                <p><strong class="text-amber-400">Definition of Spectrum:</strong> The continuous band of colored components obtained when a polychromatic light beam undergoes dispersion is termed an <span class="text-teal-300 font-semibold">optical spectrum</span>.</p>
+            </div>
+        """,
+        "speech": "We now explore one of the most stunning optical breakthroughs in physics: the dispersion of white light. In Activity 10.2, a narrow beam of white sunlight is directed onto one face of a triangular glass prism. Upon emerging from the opposite face and striking a white display screen, the beam fans out into a glorious rainbow-like spectrum consisting of seven distinct hues: Violet, Indigo, Blue, Green, Yellow, Orange, and Red, famously remembered by the acronym VIBGYOR. The phenomenon of splitting white light into its individual component colours is defined as dispersion. The underlying physical reason for dispersion lies in the differing speeds of light wavelengths within transparent optical media. In empty space or air, all colours of light propagate at the exact same cosmic velocity. However, inside a denser medium such as glass or water, the speed of each colour varies inversely with refractive index. Red light has the longest visible wavelength and travels the fastest in glass, meaning it experiences the smallest refractive index and deviates the least. Conversely, violet light possesses the shortest visible wavelength, travels slowest, and suffers the maximum angular deviation. This differential bending fans the composite white beam into its separate prismatic spectral bands.",
+        "checkpoints": [
+            {
+                "question": "Which color of visible light experiences the least angular deviation when passing through a glass prism?",
+                "options": [
+                    "Red",
+                    "Violet",
+                    "Green",
+                    "Yellow"
+                ],
+                "answer": 0,
+                "hint": "Identify the color with the longest wavelength and highest propagation speed in glass.",
+                "explanation": "Red light has the longest wavelength, travels fastest in glass, encounters the lowest refractive index, and deviates the least."
+            },
+            {
+                "question": "What is the primary physical cause of the dispersion of white light in a glass prism?",
+                "options": [
+                    "Different colors travel at different speeds in glass",
+                    "Prism surface selectively absorbs green light",
+                    "Light loses energy and changes wavelength",
+                    "The prism creates new colors via chemical reaction"
+                ],
+                "answer": 0,
+                "hint": "Consider how speed variation in dense media causes differing refractive indices across wavelengths.",
+                "explanation": "Dispersion occurs because different colors travel at different velocities in glass, resulting in different angles of refraction and deviation for each wavelength."
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "title": "Newton Recombination Experiment",
+        "subtitle": "Two Identical Inverted Prisms and White Light Synthesis",
+        "badge": "Section 10.4",
+        "summary": "Isaac Newton proved that the prism does not create colors but merely separates existing sunlight components by placing an identical inverted prism in the dispersed path, successfully recombining the spectrum back into white light.",
+        "theory": """
+            <div class="space-y-3 text-slate-300 text-xs leading-relaxed">
+                <p><strong class="text-amber-400">Historical Hypothesis:</strong> In the seventeenth century, many scholars believed that the glass prism actively colored or stained pure white sunlight. Isaac Newton designed a brilliant experimental test to resolve this fundamental question.</p>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>🧪</span> The Two-Prism Recombination Apparatus (Figure 10.6):
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1">
+                        <li><strong class="text-teal-300">First Prism ($P_1$):</strong> Positioned upright. Incident white sunlight disperses into the divergent VIBGYOR band, with red at the top and violet at the bottom.</li>
+                        <li><strong class="text-teal-300">Second Identical Prism ($P_2$):</strong> Positioned inverted (upside down) with respect to $P_1$ such that its apex points downward and base points upward.</li>
+                        <li><strong class="text-teal-300">Equal & Opposite Deviation:</strong> The angular dispersion produced by the first prism is exactly counterbalanced by the equal and opposite angular convergence produced by the second inverted prism.</li>
+                        <li><strong class="text-teal-300">Recombined Emergence:</strong> The separate color rays converge and exit the second prism as a single, reconstituted beam of <span class="text-amber-300 font-semibold">pure white light</span>.</li>
+                    </ul>
+                </div>
+                <p><strong class="text-amber-400">Profound Conclusion:</strong> White light is not an indivisible elementary substance; it is a heterogeneous mixture composed of all visible spectral wavelengths ranging from violet (~400 nm) to red (~700 nm).</p>
+            </div>
+        """,
+        "speech": "Let us examine Isaac Newton's landmark optical experiment that revolutionized our scientific understanding of light. Prior to Newton, natural philosophers believed that a glass prism dyed or added colour to pure white sunlight. To rigorously test this hypothesis, Newton positioned a first triangular prism upright in a darkened laboratory room, splitting a narrow beam of sunlight into its constituent spectral colours from red to violet. He then placed an identical second glass prism in an inverted position directly along the path of the dispersed rays. The second prism, oriented with its refracting edge facing downward, introduced an equal and opposite angular bending to each colored ray. The dispersed colours converged together within the second prism and emerged from the far side as a single, unified beam of pure white light striking a display screen. This brilliant demonstration confirmed without any doubt that the glass prism does not generate or manufacture any colour whatsoever. Instead, it merely separates the pre-existing component wavelengths naturally present within composite sunlight. Any optical source that produces a spectrum similar to sunlight is universally classified as white light, proving that white sunlight is a composite blend of all seven magnificent visible spectral hues.",
+        "checkpoints": [
+            {
+                "question": "How did Isaac Newton orient the second prism to recombine the dispersed spectrum into white light?",
+                "options": [
+                    "In an inverted position relative to the first prism",
+                    "Parallel and upright adjacent to the first prism",
+                    "Perpendicular at a ninety-degree angle",
+                    "Submerged completely in water"
+                ],
+                "answer": 0,
+                "hint": "Recall the orientation needed to produce an equal and opposite angular deviation.",
+                "explanation": "Newton placed the second identical prism inverted with respect to the first prism, allowing it to reverse the angular dispersion and recombine the rays into white light."
+            },
+            {
+                "question": "What fundamental conclusion was established by Newton's prism recombination experiment?",
+                "options": [
+                    "White sunlight is composed of seven constituent colors",
+                    "Prisms chemically generate colored photons",
+                    "Glass prisms absorb red light completely",
+                    "White light contains only two pure wavelengths"
+                ],
+                "answer": 0,
+                "hint": "Consider what the successful synthesis of white light from the spectrum reveals about sunlight.",
+                "explanation": "The experiment proved that sunlight is not a simple pure entity but a composite mixture of seven spectral colors separated by dispersion."
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "title": "Rainbow Formation Optics",
+        "subtitle": "Raindrop Refraction, Internal Reflection, and Dispersion Geometry",
+        "badge": "Section 10.4",
+        "summary": "A rainbow is a magnificent natural spectrum produced by the dispersion, internal reflection, and refraction of sunlight within millions of suspended spherical raindrops, always appearing in the sky opposite the sun.",
+        "theory": """
+            <div class="space-y-3 text-slate-300 text-xs leading-relaxed">
+                <p><strong class="text-amber-400">Natural Atmospheric Spectrum:</strong> A rainbow is an arch of spectral colors visible in the sky after a rain shower. It is formed by sunlight interacting with tiny water droplets suspended in the atmosphere.</p>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>🌧️</span> 3-Stage Ray Optics Inside a Raindrop (Figure 10.8):
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1">
+                        <li><strong class="text-teal-300">1. Refraction & Dispersion:</strong> Sunlight strikes the upper spherical boundary of a raindrop, refracts into water, and disperses into component wavelengths (red bending least, violet bending most).</li>
+                        <li><strong class="text-teal-300">2. Internal Reflection:</strong> The dispersed rays travel through the drop and strike the back inner surface at angles exceeding the critical angle (~48.6°), undergoing <span class="text-amber-300 font-semibold">internal reflection</span>.</li>
+                        <li><strong class="text-teal-300">3. Refraction upon Emergence:</strong> The reflected rays exit the front lower surface, refracting once more into air towards the observer's eyes.</li>
+                        <li><strong class="text-teal-300">Angular Geometry:</strong> Red light emerges at approximately <span class="text-rose-400 font-semibold">42°</span> relative to the incoming solar rays, while violet emerges at <span class="text-purple-400 font-semibold">40°</span>.</li>
+                    </ul>
+                </div>
+                <p><strong class="text-amber-400">Observational Condition:</strong> A rainbow is always formed in a direction <span class="text-teal-300 font-semibold">opposite to that of the Sun</span>, requiring the Sun to be behind the observer while water droplets hang in front.</p>
+            </div>
+        """,
+        "speech": "We now explore the formation of a rainbow, nature's grandest atmospheric spectrum. A rainbow appears as a vibrant multicolored circular arc in the sky following a rain shower, visible whenever the observer stands with the Sun directly behind them and rain clouds ahead. Each tiny suspended spherical raindrop in the atmosphere acts as a miniature transparent prism. When a parallel beam of white sunlight strikes the upper curved surface of a raindrop, it refracts into the water and immediately disperses into its constituent spectral colours. As these dispersed rays travel across the droplet, they strike the rear inner water-air boundary. Because the incident angles exceed the critical angle for water, the light undergoes total internal reflection, bouncing back across the droplet. Finally, as the rays reach the lower front surface, they refract once more upon exiting back into air, bending further apart as they travel toward the observer's eyes. Red light emerges from drops at an angle of approximately forty-two degrees relative to the incident sunlight, while violet light emerges at approximately forty degrees. Consequently, red appears at the top of the spectacular primary rainbow arch, while violet forms the inner edge, creating a stunning concentric celestial spectacle across the horizon.",
+        "checkpoints": [
+            {
+                "question": "What sequence of optical phenomena occurs inside a spherical raindrop to form a primary rainbow?",
+                "options": [
+                    "Refraction and dispersion, internal reflection, and refraction upon emergence",
+                    "Diffraction, polarization, and total absorption",
+                    "Scattering, interference, and planar reflection",
+                    "Pure reflection without any refraction"
+                ],
+                "answer": 0,
+                "hint": "Recall the three distinct optical stages depicted in NCERT Figure 10.8.",
+                "explanation": "Light first refracts and disperses entering the drop, undergoes internal reflection at the back wall, and refracts again upon emerging into the air."
+            },
+            {
+                "question": "In which relative direction is a rainbow always observed with respect to the Sun?",
+                "options": [
+                    "In the direction opposite to that of the Sun",
+                    "Directly towards the Sun",
+                    "At a ninety-degree right angle to the Sun",
+                    "Only at the solar zenith at midday"
+                ],
+                "answer": 0,
+                "hint": "The observer must have their back to the sunlight source.",
+                "explanation": "A rainbow is always formed in the direction opposite to the Sun so that the observer's back is to the Sun while raindrops in front reflect the light."
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "title": "Atmospheric Refraction Principles",
+        "subtitle": "Continuously Varying Air Density and Optical Ray Curvature",
+        "badge": "Section 10.5",
+        "summary": "Earth's atmosphere consists of gas layers whose density and refractive index vary continuously with altitude and temperature. Light propagating through this medium undergoes continuous atmospheric refraction, bending along curved trajectories.",
+        "theory": """
+            <div class="space-y-3 text-slate-300 text-xs leading-relaxed">
+                <p><strong class="text-amber-400">The Gradient Atmosphere:</strong> Earth's atmospheric envelope is not optically homogeneous. Cooler air near the surface is denser and has a higher refractive index, whereas warmer upper air is rarer with a lower refractive index.</p>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>🌪️</span> Thermodynamics of Atmospheric Refraction:
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1">
+                        <li><strong class="text-teal-300">Continuous Density Gradient:</strong> As altitude decreases toward sea level, gas density increases, meaning refractive index $n$ increases continuously ($n > 1.00029$).</li>
+                        <li><strong class="text-teal-300">Curved Ray Paths:</strong> Light entering Earth's atmosphere from outer space travels from rarer layers into progressively denser layers, continuously bending towards the normal. Light rays follow downward-concave curved paths.</li>
+                        <li><strong class="text-teal-300">Flickering Over Hot Surfaces:</strong> Local heated air over a radiator, bonfire, or asphalt pavement has lower density than cooler surrounding air. Convective turbulence constantly fluctuates the local refractive index, causing objects viewed through it to waver and flicker.</li>
+                    </ul>
+                </div>
+                <p><strong class="text-amber-400">Cosmic Optical Implications:</strong> Atmospheric refraction alters the apparent positions of celestial bodies, elevates stellar altitudes, and creates stunning horizon illusions such as advanced sunrises and delayed sunsets.</p>
+            </div>
+        """,
+        "speech": "We now explore atmospheric refraction, the bending of light as it travels through the non-uniform layers of Earth's atmosphere. In physics, whenever light traverses media of changing density, its propagation path alters. Our atmosphere is not a uniform optical medium. Instead, it features continuous gradients in temperature, pressure, and gas density. Near the surface of the Earth, cool air is denser, possessing a slightly higher refractive index than the warmer, rarer layers found at higher altitudes. When light rays coming from extraterrestrial celestial bodies enter the upper atmosphere, they encounter progressively denser air layers. Consequently, the rays do not travel along straight geometric lines of Euclidean optics, but bend continuously towards the normal, tracing a downward curved path toward the observer on the ground. A familiar local manifestation of this principle occurs when viewing objects across a roaring bonfire or hot pavement. The intense heat warms the air directly above the fire, making it lighter and less dense than the cooler and denser surrounding air. Because hot air constantly rises in turbulent convective currents, its refractive index fluctuates rapidly and unpredictably. Light passing through this dynamic medium wavers erratically, making background objects appear to shimmer, dance, and oscillate before our eyes.",
+        "checkpoints": [
+            {
+                "question": "Why do objects viewed through a stream of hot air rising above a fire appear to shimmer and waver?",
+                "options": [
+                    "Rapidly fluctuating refractive index of turbulent hot air",
+                    "Thermal expansion of the physical object itself",
+                    "Chemical ionization of oxygen molecules in fire",
+                    "Complete absorption of all red wavelengths"
+                ],
+                "answer": 0,
+                "hint": "Consider how turbulent convection alters air density and optical refractive index continuously.",
+                "explanation": "Hot air above a fire fluctuates rapidly in temperature and density, causing continuous changes in refractive index that randomly deflect light rays, producing a shimmering visual effect."
+            },
+            {
+                "question": "How does the refractive index of Earth's atmosphere generally change as one moves from outer space toward sea level?",
+                "options": [
+                    "It increases continuously as air becomes denser",
+                    "It decreases continuously to absolute zero",
+                    "It remains exactly constant at 1.000",
+                    "It fluctuates randomly without any pattern"
+                ],
+                "answer": 0,
+                "hint": "Denser air near the planet surface has more molecules to interact with light.",
+                "explanation": "As light descends through the atmosphere, increasing gas density causes the refractive index to increase progressively from 1.000 in vacuum toward ~1.00029 at sea level."
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "title": "Star Twinkling Mechanism",
+        "subtitle": "Point Sources, Turbulent Deflections, and Why Planets Do Not Twinkle",
+        "badge": "Section 10.5",
+        "summary": "Stars twinkle because they are distant point sources whose light undergoes continuous, erratic atmospheric refraction through turbulent air layers. Planets do not twinkle because their extended disks average out brightness fluctuations to zero.",
+        "theory": """
+            <div class="space-y-3 text-slate-300 text-xs leading-relaxed">
+                <p><strong class="text-amber-400">Atmospheric Scintillation:</strong> The twinkling of stars (scintillation) is a spectacular visual manifestation of atmospheric refraction operating on light arriving from colossal interstellar distances.</p>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>⭐</span> Twinkling Dynamics & Apparent Shift (Figure 10.9):
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1">
+                        <li><strong class="text-teal-300">Point Sources:</strong> Stars are trillions of kilometres away, subtending sub-microscopic angular diameters. They effectively function as <span class="text-amber-300 font-semibold">point-sized sources</span> of light.</li>
+                        <li><strong class="text-teal-300">Apparent Position Shift:</strong> Because starlight continuously bends toward the normal, the apparent position of a star is slightly <span class="text-teal-300 font-semibold">higher</span> than its true astronomical position.</li>
+                        <li><strong class="text-teal-300">Intensity Fluctuations:</strong> Thermal convection and wind gusts constantly shift atmospheric density. This randomly alters the ray path, causing the amount of starlight reaching the pupil to flicker, making the star appear to twinkle.</li>
+                    </ul>
+                </div>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>🪐</span> Why Planets Do Not Twinkle:
+                    </div>
+                    <p class="text-slate-300">Planets are much closer to Earth and subtend measurable optical disks. A planet acts as a collection of an immense number of point-sized light sources. While light from individual points flickers, the random variations from all points cancel each other out, yielding a stable, steady luminous intensity.</p>
+                </div>
+            </div>
+        """,
+        "speech": "One of the most poetic astronomical observations is the twinkling of stars on a clear night. This twinkling phenomenon of astronomical scintillation is caused entirely by atmospheric refraction of starlight. Because stars are situated vast light-years away from Earth, they subtend minuscule angular diameters, acting effectively as distant point-sized sources of light. As starlight descends through the turbulent layers of our atmosphere, it bends continuously towards the normal, making the apparent virtual position of the star appear slightly higher than its true celestial coordinate. Furthermore, because wind currents and thermal variations constantly alter the density and refractive index of atmospheric layers, the ray path of starlight wavers erratically. At one moment, more light rays are focused into your pupil, making the star appear bright, while an instant later, rays are deflected away, causing it to dim and fade momentarily. This rapid fluctuation in perceived brightness creates the illusion of twinkling. In contrast, planets do not twinkle at all. Planets are situated much closer to Earth and subtend appreciable angular disks, acting as extended sources consisting of millions of individual point sources. As light from these individual points fluctuates randomly, the variations cancel each other out, providing steady, continuous, untwinkling illumination.",
+        "checkpoints": [
+            {
+                "question": "Why do planets not twinkle like distant stars?",
+                "options": [
+                    "They act as extended sources whose fluctuations cancel out",
+                    "Their light does not pass through Earth's atmosphere",
+                    "They emit monochromatic green light only",
+                    "Their light travels faster than starlight"
+                ],
+                "answer": 0,
+                "hint": "Consider the difference in proximity and angular size between planets and distant stars.",
+                "explanation": "Planets are close to Earth and act as extended sources containing numerous point sources of light. Individual brightness variations average out to zero, resulting in steady illumination."
+            },
+            {
+                "question": "How does atmospheric refraction affect the apparent position of a star relative to its true position?",
+                "options": [
+                    "The star appears slightly higher than its true position",
+                    "The star appears slightly lower than its true position",
+                    "The star appears shifted strictly to the south",
+                    "The position remains completely unchanged"
+                ],
+                "answer": 0,
+                "hint": "Light bends toward the normal as it enters denser air, curving rays downward.",
+                "explanation": "Because starlight bends continuously towards the normal upon entering denser lower air layers, the backward extrapolation of rays makes the star appear slightly higher in the sky."
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "title": "Sunrise Sunset Shifts",
+        "subtitle": "Advanced Sunrise, Delayed Sunset, and Apparent Solar Flattening",
+        "badge": "Section 10.5",
+        "summary": "Atmospheric refraction bends sunlight over Earth's horizon, allowing us to see the Sun 2 minutes before actual sunrise and 2 minutes after actual sunset, lengthening daylight by 4 minutes while flattening the solar disk.",
+        "theory": """
+            <div class="space-y-3 text-slate-300 text-xs leading-relaxed">
+                <p><strong class="text-amber-400">Horizon Bending of Sunlight:</strong> Atmospheric refraction causes the Sun to become visible to an observer on Earth approximately <span class="text-amber-300 font-bold">2 minutes before</span> actual sunrise, and remains visible for about <span class="text-amber-300 font-bold">2 minutes after</span> actual sunset.</p>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>🌅</span> Geometric Mechanics (Figure 10.10):
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1">
+                        <li><strong class="text-teal-300">Actual Sunrise Definition:</strong> The moment when the actual physical disk of the Sun crosses the geometric horizon plane.</li>
+                        <li><strong class="text-teal-300">Refraction Over Horizon:</strong> When the Sun is slightly below the horizon (by approximately $0.5^\\circ$), sunlight grazing the atmosphere enters denser air and bends downward along a curved path to reach the observer's eye.</li>
+                        <li><strong class="text-teal-300">Apparent Solar Position:</strong> Tracing the emergent rays backward projects a virtual solar image situated <span class="text-teal-300 font-semibold">above the horizon</span>.</li>
+                        <li><strong class="text-teal-300">Daylight Extension:</strong> With 2 minutes added in the morning and 2 minutes in the evening, atmospheric refraction extends our perceived daylight period by approximately <span class="text-amber-300 font-bold">4 minutes</span> every day.</li>
+                    </ul>
+                </div>
+                <p><strong class="text-amber-400">Apparent Oval Flattening:</strong> Rays from the lower rim of the solar disk pass through denser air than rays from the upper rim, suffering greater refraction. This vertical compression makes the Sun appear oval or flattened at dawn and dusk.</p>
+            </div>
+        """,
+        "speech": "An equally fascinating consequence of atmospheric refraction is the apparent time shift observed during sunrise and sunset. In physics, actual sunrise is defined as the precise moment when the physical disk of the Sun crosses the geometric horizon plane. However, when the Sun is still about half a degree below the horizon, sunlight grazing the upper atmosphere enters progressively denser air layers. The rays bend downward along a curved refractive path toward the observer on the ground. Projecting these incoming rays backward produces an apparent virtual image of the Sun resting comfortably above the horizon line. As a result, we witness the sunrise approximately two minutes before the Sun physically ascends past the horizon. By the exact same optical mechanism, as the Sun dips below the geometric horizon at dusk, atmospheric curvature keeps its virtual image visible for roughly two additional minutes. This double optical bonus lengthens the duration of daytime by four full minutes each day. Furthermore, because rays from the bottom rim of the solar disk pass through slightly denser air than rays from the top rim, the lower edge is refracted more, giving the rising and setting Sun its distinctive flattened, oval appearance.",
+        "checkpoints": [
+            {
+                "question": "By how many total minutes is daylight extended daily on Earth due to atmospheric refraction?",
+                "options": [
+                    "About 4 minutes",
+                    "About 2 minutes",
+                    "About 10 minutes",
+                    "About 1 hour"
+                ],
+                "answer": 0,
+                "hint": "Combine the 2 minutes gained at sunrise with the 2 minutes gained at sunset.",
+                "explanation": "The Sun appears 2 minutes early at sunrise and lingers 2 minutes late at sunset, extending total daylight duration by approximately 4 minutes every day."
+            },
+            {
+                "question": "Why does the disk of the Sun appear flattened or oval at sunrise and sunset?",
+                "options": [
+                    "Unequal atmospheric refraction between upper and lower rims",
+                    "Thermal compression of solar gases",
+                    "Doppler shift of escaping photons",
+                    "Gravitational lensing by the Moon"
+                ],
+                "answer": 0,
+                "hint": "Consider the vertical gradient in air density across the diameter of the solar disk near the horizon.",
+                "explanation": "Light from the lower edge of the solar disk traverses denser air than light from the upper edge, undergoing greater refraction and producing vertical compression into an oval shape."
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "title": "Tyndall Effect Scattering",
+        "subtitle": "Colloidal Suspensions, Visible Beam Pathways, and Atmospheric Particles",
+        "badge": "Section 10.6.1",
+        "summary": "Light scattering occurs when photons strike particulate matter and are redirected in all directions. The Tyndall effect describes light scattering by colloidal particles, rendering the beam trajectory visible in smoke, mist, and forest canopies.",
+        "theory": """
+            <div class="space-y-3 text-slate-300 text-xs leading-relaxed">
+                <p><strong class="text-amber-400">Light Scattering Principle:</strong> When a light beam encounters particulate matter, photons are absorbed and immediately re-emitted in various spatial directions. This phenomenon is known as <span class="text-teal-300 font-semibold">optical scattering</span>.</p>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>🔦</span> The Tyndall Effect in Colloids:
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1">
+                        <li><strong class="text-teal-300">True Solutions vs Colloids:</strong> In a true homogeneous solution (e.g., salt in water), particle diameters are sub-nanometre, leaving the path of light completely invisible. In a colloidal suspension, particle dimensions ($1\\text{ to }1000\\text{ nm}$) are comparable to light wavelengths.</li>
+                        <li><strong class="text-teal-300">Visible Beam Trajectory:</strong> As photons strike colloidal particles, light is scattered diffusely, making the beam trajectory distinctly visible as a luminous cone.</li>
+                        <li><strong class="text-teal-300">Everyday Examples:</strong>
+                            <ul class="list-circle list-inside pl-3 space-y-0.5 text-slate-400">
+                                <li>Sunlight entering a dark room through a small hole or window slit, scattered by airborne dust and smoke.</li>
+                                <li>Sunlight piercing through the dense misty canopy of a rainforest, illuminated by scattered water micro-droplets.</li>
+                                <li>Automobile headlight beams slicing through dense winter fog.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <p><strong class="text-amber-400">Particle Size Dependence:</strong> Very fine colloidal particles scatter shorter wavelengths (blue) predominantly, while larger particulate matter scatters all visible wavelengths equally, appearing white.</p>
+            </div>
+        """,
+        "speech": "We now examine the scattering of light and the fascinating and ubiquitous Tyndall effect. Scattering is an optical process where light strikes microscopic particles suspended in a medium and is redirected across various spatial directions. Earth's atmosphere is a heterogeneous colloidal mixture containing minute water droplets, suspended dust specks, smoke particles, and gas molecules. When a beam of light passes through a true molecular solution like salt dissolved in water, the individual particles are too tiny to scatter or interact with light waves, leaving the beam pathway invisible. However, when light encounters a colloidal suspension where particle sizes are comparable to visible wavelengths, the particles scatter light diffusely in all directions, illuminating the full physical trajectory of the beam. This phenomenon is known as the Tyndall effect. You have likely observed this when a narrow ray of sunlight enters a dusty, darkened room through a tiny aperture; airborne dust particles scatter the photons, rendering the illuminated beam clearly visible. Similarly, when sunlight filters through the dense upper canopy of a rainforest, suspended water mist droplets scatter light, creating magnificent visible god rays streaming through the leafy branches. The size of scattering particles fundamentally determines the color balance and wavelength distribution of the scattered light.",
+        "checkpoints": [
+            {
+                "question": "What phenomenon makes the pathway of a light beam visible when passing through a colloidal suspension?",
+                "options": [
+                    "Tyndall effect",
+                    "Doppler effect",
+                    "Photoelectric effect",
+                    "Total internal reflection"
+                ],
+                "answer": 0,
+                "hint": "Identify the optical scattering phenomenon named after the 19th-century physicist John Tyndall.",
+                "explanation": "The Tyndall effect is the scattering of light by colloidal particles, rendering the pathway of the light beam visible."
+            },
+            {
+                "question": "Why is the path of a light beam not visible in a pure true solution of salt in water?",
+                "options": [
+                    "Solute particles are too small to scatter visible light",
+                    "Salt completely absorbs all visible wavelengths",
+                    "Water increases the speed of light to infinity",
+                    "Salt causes destructive interference of all rays"
+                ],
+                "answer": 0,
+                "hint": "Think about the sub-nanometre size of dissolved ionic species relative to light wavelengths.",
+                "explanation": "In a true solution, solute particles are microscopic ions with dimensions under 1 nm, far too small to scatter visible light waves effectively."
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "title": "Sky Color Physics",
+        "subtitle": "Rayleigh Scattering Law, Azure Daytime Sky, and Red Danger Signals",
+        "badge": "Section 10.6.2",
+        "summary": "Rayleigh scattering intensity is inversely proportional to the fourth power of wavelength ($I \\propto 1/\\lambda^4$). Fine atmospheric molecules scatter short blue wavelengths far more than red, giving the daytime sky its azure blue color, while red light is chosen for danger signals.",
+        "theory": """
+            <div class="space-y-3 text-slate-300 text-xs leading-relaxed">
+                <p><strong class="text-amber-400">Rayleigh Scattering Law:</strong> When the diameter of scattering particles ($a$) is much smaller than the wavelength of incident light ($a \\ll \\lambda$), the intensity of scattered light ($I$) follows Rayleigh's famous law:</p>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 text-center font-mono text-amber-300 text-sm">
+                    $$I \\propto \\frac{1}{\\lambda^4}$$
+                </div>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>🌌</span> Why the Clear Sky Appears Blue:
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1">
+                        <li><strong class="text-teal-300">Gas Molecules:</strong> Nitrogen ($N_2$) and oxygen ($O_2$) molecules in the upper atmosphere have sizes of fractions of a nanometre ($a \\approx 0.3\\text{ nm} \\ll \\lambda$).</li>
+                        <li><strong class="text-teal-300">Wavelength Comparison:</strong> Red light has a wavelength approximately <span class="text-rose-400 font-semibold">1.8 times</span> greater than blue light ($\\lambda_r \\approx 700\\text{ nm}$ vs $\\lambda_b \\approx 400\\text{ nm}$).</li>
+                        <li><strong class="text-teal-300">10-Fold Blue Dominance:</strong> Since $(1.8)^4 \\approx 10.5$, blue light is scattered roughly <span class="text-cyan-300 font-bold">10 times more intensely</span> than red light. Scattered blue photons reach our eyes from every celestial angle.</li>
+                        <li><strong class="text-teal-300">Absence of Atmosphere:</strong> At astronaut altitudes or on the Moon, there is no atmosphere to scatter light, so the sky appears <span class="text-slate-400 font-semibold">pitch dark</span>.</li>
+                    </ul>
+                </div>
+                <div class="p-2.5 rounded-lg bg-rose-950/40 border border-rose-500/30 space-y-1 text-rose-200">
+                    <div class="text-rose-400 font-bold flex items-center gap-1.5">
+                        <span>🚨</span> Why Danger Signals Are Red:
+                    </div>
+                    <p>Red light has the longest visible wavelength and suffers the least Rayleigh scattering by atmospheric fog and smoke. It penetrates dense haze over maximum distances without extinction, remaining clearly visible to drivers and pilots.</p>
+                </div>
+            </div>
+        """,
+        "speech": "We conclude our theoretical exploration by uncovering why our daytime sky is blue and why danger signals are universally red. In the upper atmosphere, nitrogen and oxygen gas molecules are far smaller than the wavelength of visible light. Lord Rayleigh demonstrated that when particle dimensions are much smaller than wavelength, the intensity of scattered light is inversely proportional to the fourth power of wavelength. Red light has a wavelength approximately one point eight times longer than blue light. Consequently, raising this ratio to the fourth power reveals that blue light is scattered roughly ten times more strongly than red light. As sunlight filters through the upper atmosphere, fine air molecules scatter the shorter blue wavelengths in all directions across the heavens, filling our eyes with a radiant azure dome. If Earth had no atmosphere, no scattering would occur, and the sky would appear completely dark, just as astronauts observe in deep space. Furthermore, Rayleigh's law explains why danger signal lights on towers, railways, and traffic junctions are colored red. Having the longest visible wavelength, red light is scattered least by fog and smoke, allowing it to penetrate through adverse weather across vast distances without losing optical clarity.",
+        "checkpoints": [
+            {
+                "question": "According to Rayleigh's law, how does scattering intensity depend on the wavelength of incident light?",
+                "options": [
+                    "Inversely proportional to the fourth power of wavelength (1/λ⁴)",
+                    "Directly proportional to the square of wavelength (λ²)",
+                    "Independent of wavelength for all colors",
+                    "Directly proportional to wavelength (λ)"
+                ],
+                "answer": 0,
+                "hint": "Recall the fundamental inverse power law derived by Lord Rayleigh for fine particles.",
+                "explanation": "Rayleigh's law states that for particles much smaller than wavelength, scattering intensity is inversely proportional to the fourth power of wavelength (I ∝ 1/λ⁴)."
+            },
+            {
+                "question": "Why are emergency danger signal lights universally painted red?",
+                "options": [
+                    "Red has the longest wavelength and is scattered least by fog and smoke",
+                    "Red light travels twice as fast as blue light in air",
+                    "Red light is completely absorbed by the human cornea",
+                    "Red light undergoes maximum total internal reflection"
+                ],
+                "answer": 0,
+                "hint": "Consider which wavelength penetrates fog and haze with minimal scattering loss.",
+                "explanation": "Red light has the longest visible wavelength, so according to Rayleigh's law, it is scattered least by fog or smoke, maintaining high visibility over long distances."
+            }
+        ]
+    }
+]
+
+with open(".agents/c10s_ch10_part2.json", "w", encoding="utf-8") as f:
+    json.dump(slides_part2, f, indent=2)
+
+print(f"Generated {len(slides_part2)} slides in Part 2.")
+for s in slides_part2:
+    wc = len(s["speech"].split())
+    tc = len(s["title"].split())
+    print(f"Slide {s['id']}: '{s['title']}' ({tc} words) | Speech: {wc} words")
+    assert 195 <= wc <= 215, f"Slide {s['id']} speech out of range: {wc}"
+    assert 1 <= tc <= 3, f"Slide {s['id']} title out of range: {tc}"

@@ -1,0 +1,338 @@
+[
+  {
+    "id": 9,
+    "title": "Mirror Formula Magnification",
+    "subtitle": "Formula 1/v + 1/u = 1/f, Linear Magnification m = -v/u & Worked Numerical Examples",
+    "speech": "To calculate exact image distances and sizes for spherical mirrors without drawing full geometric ray diagrams, optical physics utilizes the mirror formula and the magnification relation. The mirror formula expresses a precise mathematical relationship among the object distance u, the image distance v, and the focal length f. It states that one over v plus one over u equals one over f. This formula holds universally for all spherical mirrors across all object positions, provided proper Cartesian signs are substituted. Alongside the mirror formula, linear magnification, denoted by small m, quantifies the ratio of image height h prime to object height h. Magnification is also directly related to image and object distances by the equation m equals minus v over u. The numerical value and algebraic sign of magnification convey vital physical information. A negative value of m signifies that the image is real and inverted, forming below the principal axis. Conversely, a positive value of m indicates that the image is virtual and erect. For example, in a vehicle rear-view convex mirror with positive focal length, substituting negative object distance into the formula yields a positive image distance and a positive fractional magnification, confirming an erect, diminished virtual image.",
+    "objectives": [
+      "State and apply the mirror formula: 1/v + 1/u = 1/f.",
+      "Calculate linear magnification using m = h'/h = -v/u.",
+      "Interpret the physical meaning of positive versus negative magnification signs."
+    ],
+    "key_takeaways": [
+      "Mirror formula: 1/v + 1/u = 1/f relating u, v, and f.",
+      "Linear magnification m = h'/h = -v/u.",
+      "Negative m indicates a real, inverted image; positive m indicates a virtual, erect image."
+    ],
+    "checkpoints": [
+      {
+        "question": "What does a calculated linear magnification of m = -1.5 indicate about the nature of an optical image?",
+        "options": [
+          "The image is virtual, erect, and diminished",
+          "The image is real, inverted, and magnified",
+          "The image is virtual, erect, and magnified",
+          "The image is real, erect, and identical in size"
+        ],
+        "answer": 1,
+        "hint": "Negative sign means inverted (real); magnitude greater than 1 means enlarged.",
+        "explanation": "A negative sign for m indicates a real and inverted image, while |m| = 1.5 > 1 indicates that the image is enlarged."
+      },
+      {
+        "question": "In the spherical mirror formula 1/v + 1/u = 1/f, what sign must be assigned to the focal length (f) of a concave mirror?",
+        "options": [
+          "Always positive",
+          "Always negative",
+          "Zero",
+          "Positive only when the object is at infinity"
+        ],
+        "answer": 1,
+        "hint": "Recall the Cartesian sign convention where concave focus lies to the left of the pole.",
+        "explanation": "In accordance with the New Cartesian Sign Convention, the focus of a concave mirror lies to the left of the origin (pole), making f negative."
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Refraction Wave Principles",
+    "subtitle": "Optical Density Interface, Velocity Change & Everyday Refraction Phenomena",
+    "speech": "When a beam of light travels obliquely from one transparent medium into another, it experiences an abrupt change in direction at the boundary interface. This bending of light when transitioning between different optical media is defined as refraction. The fundamental physical cause of refraction is the change in the phase velocity of light as it passes between substances with differing optical densities. Light propagates at its maximum cosmic speed of three hundred thousand kilometers per second in a vacuum, but slows down substantially when entering denser matter like water or glass. Everyday life is rich with fascinating refractive phenomena. For instance, when a pencil is partially immersed obliquely in a glass tumbler of water, light rays traveling from the submerged portion bend away from the normal upon exiting into air, making the pencil appear sharply bent or broken at the water line. Similarly, the tiled floor of a swimming pool or the bottom of a water tank appears significantly raised above its actual physical depth. In laboratory Activity 9.8, a coin resting hidden at the bottom of an opaque bowl suddenly becomes visible when water is poured in, because refracted light rays bend outward toward the observer's eyes.",
+    "objectives": [
+      "Define refraction as the bending of light caused by velocity changes between media.",
+      "Explain common optical illusions: bent pencil in water and raised pool bottoms.",
+      "Describe the disappearing and reappearing coin experiment (Activity 9.8)."
+    ],
+    "key_takeaways": [
+      "Refraction is the change in light direction when passing obliquely across media interfaces.",
+      "Refraction is caused by variations in the speed of light in different optical media.",
+      "Everyday phenomena include apparent depth reduction, bent pencils in water, and enlarged lemons."
+    ],
+    "checkpoints": [
+      {
+        "question": "What is the primary physical cause responsible for the refraction of light when entering a new medium?",
+        "options": [
+          "The gravitational attraction of the glass atoms",
+          "The change in the speed of light as it enters a medium of different optical density",
+          "The complete absorption of light rays by moisture in the air",
+          "The spontaneous emission of radio waves at the interface"
+        ],
+        "answer": 1,
+        "hint": "Consider what happens to light velocity when transitioning between substances.",
+        "explanation": "Refraction occurs fundamentally because light travels at different speeds in different optical media, causing wavefronts to alter direction."
+      },
+      {
+        "question": "Why does a straight wooden pencil appear bent at the surface when partially dipped in a water beaker?",
+        "options": [
+          "Water chemically softens the wood instantly",
+          "Light rays coming from the submerged part bend away from the normal upon exiting into air",
+          "Total internal reflection completely conceals the submerged portion",
+          "The surface tension pushes the pencil physically"
+        ],
+        "answer": 1,
+        "hint": "Think about how light refracts when passing from denser water into rarer air.",
+        "explanation": "Light from the submerged pencil bends away from the normal as it enters air, creating a virtual image displaced upward."
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Glass Slab Displacement",
+    "subtitle": "Rectangular Slab Refraction, Lateral Shift & Snell's Law (sin i / sin r = n21)",
+    "speech": "When a narrow ray of light passes through a parallel-sided rectangular glass slab, it undergoes two consecutive refractions that illustrate fundamental optical laws. At the top air-to-glass interface, the ray travels from an optically rarer medium into an optically denser medium, slowing down and bending toward the normal line. At the bottom glass-to-air interface, the ray exits from an optically denser medium into an optically rarer medium, speeding up and bending away from the normal by an identical angular amount. Because the opposite refracting faces of the rectangular slab are parallel, the emerging ray travels in a direction strictly parallel to the original incident ray. However, the ray is displaced sideways from its original path by a perpendicular distance known as lateral shift or lateral displacement. This experiment verifies the two universal laws of refraction. First, the incident ray, the refracted ray, and the normal at the point of incidence all lie in the same mathematical plane. Second, Snell's law of refraction dictates that for a given pair of media and given color of light, the ratio of the sine of the angle of incidence to the sine of the angle of refraction remains constant, representing the relative refractive index.",
+    "objectives": [
+      "Trace ray paths through a rectangular glass slab (Activity 9.10).",
+      "Explain why the emergent ray is parallel to the incident ray but laterally displaced.",
+      "State Snell's Law of Refraction: sin i / sin r = constant = n21."
+    ],
+    "key_takeaways": [
+      "Light bends toward the normal entering denser glass, and away from normal entering rarer air.",
+      "Emergent ray is parallel to incident ray but displaced laterally.",
+      "Snell's Law: ratio of sin i to sin r is constant for a given media pair."
+    ],
+    "checkpoints": [
+      {
+        "question": "In refraction through a rectangular glass slab, how is the direction of the emergent ray related to the incident ray?",
+        "options": [
+          "It is perpendicular to the incident ray",
+          "It is strictly parallel to the incident ray, but shifted laterally",
+          "It reflects backward at 180 degrees",
+          "It converges into a single focal point"
+        ],
+        "answer": 1,
+        "hint": "Opposite faces of the slab are parallel, so the second refraction cancels the first angular deviation.",
+        "explanation": "Because opposite faces are parallel, the bending at the two boundaries is equal and opposite, leaving the emergent ray parallel to the incident ray with a lateral shift."
+      },
+      {
+        "question": "What mathematical relationship expresses Snell's Law of Refraction for a light ray crossing from medium 1 to medium 2?",
+        "options": [
+          "sin i + sin r = constant",
+          "sin i / sin r = constant (n21)",
+          "tan i \u00d7 tan r = constant",
+          "cos i - cos r = constant"
+        ],
+        "answer": 1,
+        "hint": "Recall the ratio of the trigonometric sine of incidence angle to refraction angle.",
+        "explanation": "Snell's Law states that for a given pair of media, the ratio of the sine of the angle of incidence to the sine of the angle of refraction is constant (sin i / sin r = n21)."
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Refractive Index Density",
+    "subtitle": "Speed of Light in Media, Absolute Index (n = c/v) & The Kerosene Paradox",
+    "speech": "The refractive index is a dimensionless physical quantity that quantifies the extent to which an optical medium slows down propagating light waves. The absolute refractive index of a medium, denoted as n, is defined as the ratio of the speed of light in vacuum c, which is three times ten to the power eight meters per second, to the speed of light in that specific medium v, expressed as n equals c over v. Because light always travels slower in material media than in vacuum, the absolute refractive index is always greater than one. For instance, the refractive index of water is one point three three, crown glass is one point five two, and diamond possesses a remarkably high refractive index of two point four two, which causes extreme light bending and brilliant internal sparkle. Crucially, science distinguishes between optical density and mass density. Optical density refers strictly to a medium's refractive ability to retard light, whereas mass density is mass per unit volume. A classic demonstration is the kerosene paradox: kerosene has a higher refractive index (one point four four) than water (one point three three), making kerosene optically denser, yet kerosene has a lower mass density and floats on water.",
+    "objectives": [
+      "Define absolute refractive index: n = c / v.",
+      "Compare refractive index values across media (air, water, glass, diamond).",
+      "Resolve the kerosene paradox by distinguishing optical density from mass density."
+    ],
+    "key_takeaways": [
+      "Absolute refractive index n = c/v (speed in vacuum / speed in medium).",
+      "Higher refractive index corresponds to higher optical density and slower light speed.",
+      "Optical density differs from mass density: kerosene is optically denser than water but has lower mass density."
+    ],
+    "checkpoints": [
+      {
+        "question": "If the refractive index of glass is 1.50 and the speed of light in vacuum is 3 \u00d7 10^8 m/s, what is the speed of light in glass?",
+        "options": [
+          "4.5 \u00d7 10^8 m/s",
+          "2.0 \u00d7 10^8 m/s",
+          "1.5 \u00d7 10^8 m/s",
+          "3.0 \u00d7 10^8 m/s"
+        ],
+        "answer": 1,
+        "hint": "Rearrange the formula n = c / v to solve for v = c / n.",
+        "explanation": "Using v = c / n, we calculate v = (3.0 \u00d7 10^8 m/s) / 1.50 = 2.0 \u00d7 10^8 m/s."
+      },
+      {
+        "question": "Kerosene floats on water, yet light bends more strongly in kerosene than in water. What does this demonstrate?",
+        "options": [
+          "Kerosene is both optically and mass denser than water",
+          "Optical density is completely distinct from mass density",
+          "Water does not refract light rays",
+          "Kerosene destroys light photons"
+        ],
+        "answer": 1,
+        "hint": "Optical density measures light-slowing ability, while mass density measures grams per milliliter.",
+        "explanation": "Kerosene has higher optical density (n = 1.44 vs 1.33 for water) but lower physical mass density (0.8 g/cm\u00b3), proving that optical density differs from mass density."
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Spherical Lens Geometry",
+    "subtitle": "Double Convex vs Double Concave Lenses, Dual Foci & Principal Parameters",
+    "speech": "A spherical lens is a transparent optical component bounded by two curved surfaces, of which at least one surface is spherical. Lenses are classified into two fundamental families based on their physical profile. A double convex lens bulges outward at both faces and is thicker at the center than at the edges. When parallel rays of light strike a convex lens, refraction bends them inward toward the principal axis, converging them at a focal point; hence, convex lenses are known as converging lenses. Conversely, a double concave lens curves inward at both faces and is thinner at the center than at the perimeter. It refracts parallel rays outward away from the axis, acting as a diverging lens. In lens geometry, the geometric center of the lens is termed the optical center, capital O, through which light rays pass without suffering any angular deviation. Because a lens has two spherical surfaces, it possesses two centers of curvature, C1 and C2, and two principal foci, F1 and F2, positioned symmetrically on opposite sides of the optical center at distance f. Concentrating sunlight with a convex lens onto paper focuses radiant heat at F2, igniting the paper in laboratory Activity 9.11.",
+    "objectives": [
+      "Distinguish converging double convex lenses from diverging double concave lenses.",
+      "Define key parameters: Optical Center (O), Centers of Curvature (C1, C2), and Dual Foci (F1, F2).",
+      "Understand why a ray passing through optical center O suffers no deviation."
+    ],
+    "key_takeaways": [
+      "Convex lens is thicker in the middle and converges light rays.",
+      "Concave lens is thinner in the middle and diverges light rays.",
+      "Lenses have two symmetrical foci (F1, F2); rays through optical center O pass undeviated."
+    ],
+    "checkpoints": [
+      {
+        "question": "What happens to a light ray passing straight through the optical center (O) of a thin spherical lens?",
+        "options": [
+          "It bends sharply at 90 degrees",
+          "It passes through without suffering any deviation",
+          "It reflects backward into the original medium",
+          "It splits into seven rainbow colors"
+        ],
+        "answer": 1,
+        "hint": "The central core of a lens behaves locally like an ultra-thin flat parallel plate.",
+        "explanation": "A ray directed through the optical center (O) of a thin spherical lens emerges along its original direction without deviation."
+      },
+      {
+        "question": "Why is a double convex lens designated as a 'converging lens'?",
+        "options": [
+          "It spreads light rays outward into dark regions",
+          "It bends parallel incident rays inward toward the principal focus",
+          "It absorbs all incoming light wavelengths",
+          "It rotates light rays in a clockwise circle"
+        ],
+        "answer": 1,
+        "hint": "Consider the direction in which parallel rays refract after passing through the lens.",
+        "explanation": "A convex lens refracts incident parallel rays toward the principal axis, bringing them together (converging) at the principal focus."
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "title": "Convex Lens Images",
+    "subtitle": "Convex Lens 6 Scenarios (Table 9.4) & Concave Lens Invariant Virtual Images",
+    "speech": "A convex lens produces a diverse spectrum of images depending on the distance of the object from its optical center, as documented in Table 9.4. When an object is at infinity, incoming parallel rays converge at focus F2, forming a real, inverted, and point-sized image. Placing an object beyond 2F1 forms a real, inverted, and diminished image between F2 and 2F2. When the object is placed precisely at 2F1, refracted rays converge at 2F2 on the opposite side, producing a real, inverted image identical in size to the object. Moving the object closer between F1 and 2F1 shifts the image beyond 2F2, resulting in a real, inverted, and enlarged image, a configuration exploited in film projectors. When the object sits directly at focus F1, rays emerge parallel, forming a highly enlarged real image at infinity. Finally, placing the object between optical center O and focus F1 creates diverging refracted rays whose backward extensions form an erect, magnified, and virtual image on the same side as the object, functioning perfectly as a magnifying reading glass. In stark contrast, a concave lens always produces a virtual, erect, and diminished image located between O and F1, regardless of object distance.",
+    "objectives": [
+      "Analyze the 6 object placement scenarios for a convex lens (Table 9.4).",
+      "Understand the magnifying glass configuration: object between O and F1.",
+      "Recognize that a concave lens always produces virtual, erect, and diminished images."
+    ],
+    "key_takeaways": [
+      "Object at 2F1 -> image at 2F2 (real, inverted, same size).",
+      "Object between O and F1 -> virtual, erect, magnified image on same side (magnifying glass).",
+      "Concave lens always produces virtual, erect, and diminished images."
+    ],
+    "checkpoints": [
+      {
+        "question": "Where should an object be placed in front of a convex lens to act as a simple magnifying reading glass?",
+        "options": [
+          "At infinity",
+          "Beyond 2F1",
+          "Between the optical center (O) and the principal focus (F1)",
+          "Directly at 2F1"
+        ],
+        "answer": 2,
+        "hint": "A magnifying glass must produce an erect, enlarged virtual image.",
+        "explanation": "Placing an object within the focal length (between O and F1) yields an erect, magnified virtual image on the same side as the object."
+      },
+      {
+        "question": "What type of image is always formed by a concave spherical lens for any real object?",
+        "options": [
+          "Real, inverted, and magnified",
+          "Virtual, erect, and diminished",
+          "Real, erect, and of the same size",
+          "Virtual, inverted, and enlarged"
+        ],
+        "answer": 1,
+        "hint": "A concave lens diverges rays, meaning they only appear to intersect behind.",
+        "explanation": "A concave lens diverges refracted rays; their backward extensions always form a virtual, erect, and diminished image between O and F1."
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "title": "Lens Formula Magnification",
+    "subtitle": "Lens Formula 1/v - 1/u = 1/f, Magnification m = +v/u & Solved Numerical Problems",
+    "speech": "To solve quantitative optical problems involving spherical lenses, optical physicists apply the lens formula and the lens magnification equation. The lens formula connects object distance u, image distance v, and focal length f through the relation: one over v minus one over u equals one over f. Notice the crucial algebraic minus sign between one over v and one over u, which distinguishes the lens formula from the mirror formula. In applying this formula, Cartesian sign conventions must be rigorously enforced: distances to the left of the optical center O are negative, while distances to the right are positive. Because a convex lens converges light to a real focus on the right, its focal length f is always positive. Conversely, because a concave lens has a virtual focus to the left, its focal length f is always negative. The linear magnification produced by a lens is given by m equals h prime over h, which directly equals positive v over u. A negative value of m indicates a real, inverted image, while a positive value of m indicates a virtual, erect image. These formulas enable optical engineers to determine exact lens positions in cameras, microscopes, and telescopes.",
+    "objectives": [
+      "Master the lens formula: 1/v - 1/u = 1/f.",
+      "Calculate lens magnification using m = h'/h = +v/u.",
+      "Contrast lens signs (f > 0 for convex, f < 0 for concave) and formulas with mirrors."
+    ],
+    "key_takeaways": [
+      "Lens formula: 1/v - 1/u = 1/f (minus sign between 1/v and 1/u).",
+      "Lens magnification: m = h'/h = +v/u (positive ratio).",
+      "Convex lens focal length f is positive; concave lens focal length f is negative."
+    ],
+    "checkpoints": [
+      {
+        "question": "How does the spherical lens formula differ algebraically from the spherical mirror formula?",
+        "options": [
+          "The lens formula has a minus sign between 1/v and 1/u: (1/v - 1/u = 1/f)",
+          "The lens formula has no focal length term",
+          "The lens formula squares all distance terms",
+          "The mirror formula uses tangents instead of distances"
+        ],
+        "answer": 0,
+        "hint": "Check the sign between 1/v and 1/u in both formulas.",
+        "explanation": "The mirror formula is 1/v + 1/u = 1/f, whereas the lens formula is 1/v - 1/u = 1/f."
+      },
+      {
+        "question": "What is the formula for linear magnification (m) produced by a spherical lens in terms of image distance v and object distance u?",
+        "options": [
+          "m = -v / u",
+          "m = +v / u",
+          "m = -u / v",
+          "m = v \u00d7 u"
+        ],
+        "answer": 1,
+        "hint": "Recall that lens magnification has a positive sign, unlike mirror magnification.",
+        "explanation": "For lenses, linear magnification is given by m = h'/h = +v/u. (For mirrors, it is -v/u)."
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "title": "Lens Power Combinations",
+    "subtitle": "Dioptre Unit (P = 1/f in Meters), Corrective Lenses & Net Power Addition",
+    "speech": "The optical power of a lens is a quantitative measure of its ability to converge or diverge incident light rays. A lens with a short focal length bends light rays through large angles, focusing them close to the optical center and possessing high optical power. Formally, the power of a lens, denoted as capital P, is defined as the reciprocal of its focal length expressed in meters, written as P equals one over f. The International Standard unit of lens power is the dioptre, abbreviated as capital D, where one dioptre equals one meter to the power minus one. Because the focal length of a converging convex lens is positive, its power is always positive. Conversely, because a diverging concave lens has a negative focal length, its power is always negative. When eye specialists prescribe corrective eyeglasses, they state the required lens power; for example, a plus two point zero D lens corrects farsightedness, while a minus one point five D lens corrects nearsightedness. When multiple thin lenses are placed in close contact, the net total power P equals the simple algebraic sum of their individual powers: P equals P1 plus P2 plus P3, maximizing sharpness in complex optical instruments.",
+    "objectives": [
+      "Define lens power as P = 1 / f (with f in meters) and its SI unit dioptre (D).",
+      "Associate positive power with convex lenses and negative power with concave lenses.",
+      "Calculate combined power of lenses in contact using algebraic addition: P = P1 + P2 + ..."
+    ],
+    "key_takeaways": [
+      "Power P = 1/f (in meters); unit is Dioptre (1 D = 1 m\u207b\u00b9).",
+      "Convex lens power is positive (+P); concave lens power is negative (-P).",
+      "Combination of lenses in contact: total power P = P1 + P2 + P3 + ..."
+    ],
+    "checkpoints": [
+      {
+        "question": "What is the optical power of a convex lens having a focal length of +50 centimeters (+0.50 meters)?",
+        "options": [
+          "+0.5 D",
+          "+2.0 D",
+          "-2.0 D",
+          "+5.0 D"
+        ],
+        "answer": 1,
+        "hint": "Convert centimeters to meters (0.50 m) and calculate P = 1 / f.",
+        "explanation": "f = +50 cm = +0.5 m. Power P = 1 / f = 1 / 0.5 = +2.0 Dioptres (+2.0 D)."
+      },
+      {
+        "question": "Two thin lenses of powers +3.5 D and -1.5 D are placed in close contact. What is the net optical power of this combination?",
+        "options": [
+          "+5.0 D",
+          "+2.0 D",
+          "-5.25 D",
+          "+1.0 D"
+        ],
+        "answer": 1,
+        "hint": "Add the powers algebraically: P = P1 + P2.",
+        "explanation": "Total power P = P1 + P2 = (+3.5 D) + (-1.5 D) = +2.0 D."
+      }
+    ]
+  }
+]

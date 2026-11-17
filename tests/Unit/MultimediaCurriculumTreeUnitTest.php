@@ -38,7 +38,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         }
     }
 
-    public function test_ncert_class_9_has_number_system_multimedia(): void
+    public function test_ncert_class_9_has_orienting_coordinates_multimedia(): void
     {
         $controller = new MultimediaController;
         $request = Request::create('/multimedia?syllabus=ncert&subject=mathematics&class=class9', 'GET', [
@@ -53,8 +53,12 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertEquals('ncert', $data['selectedSyllabus']);
         $this->assertEquals('class9', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('Number System', $data['activeChapters'][0]['name']);
+        $this->assertEquals('Orienting Yourself: The Use of Coordinates', $data['activeChapters'][0]['name']);
         $this->assertTrue($data['activeChapters'][0]['has_multimedia']);
+        $this->assertEquals('class9-math-orienting-coordinates', $data['activeChapters'][0]['media_key']);
+        $this->assertFileExists(public_path('animations/class9-math-orienting-coordinates.html'));
+        $this->assertFileExists(public_path('animations/chapter1-math-class9.html'));
+        $this->assertFileExists(public_path('animations/number-system.html'));
     }
 
     public function test_ncert_class_9_has_polynomials_multimedia(): void
@@ -72,7 +76,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertEquals('ncert', $data['selectedSyllabus']);
         $this->assertEquals('class9', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('Polynomials', $data['activeChapters'][1]['name']);
+        $this->assertEquals('Introduction to Linear Polynomials', $data['activeChapters'][1]['name']);
         $this->assertTrue($data['activeChapters'][1]['has_multimedia']);
         $this->assertEquals('class9-polynomials', $data['activeChapters'][1]['media_key']);
         $this->assertFileExists(public_path('animations/class9-polynomials.html'));
@@ -95,7 +99,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertEquals('ncert', $data['selectedSyllabus']);
         $this->assertEquals('class9', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('Sequences and Progressions', $data['activeChapters'][2]['name']);
+        $this->assertEquals('The World of Numbers', $data['activeChapters'][2]['name']);
         $this->assertTrue($data['activeChapters'][2]['has_multimedia']);
         $this->assertEquals('class9-sequences-progressions', $data['activeChapters'][2]['media_key']);
         $this->assertFileExists(public_path('animations/class9-sequences-progressions.html'));
@@ -141,7 +145,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertEquals('ncert', $data['selectedSyllabus']);
         $this->assertEquals('class9', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('Linear Equations in Two Variables', $data['activeChapters'][4]['name']);
+        $this->assertEquals("I'm Up and Down, and Round and Round", $data['activeChapters'][4]['name']);
         $this->assertTrue($data['activeChapters'][4]['has_multimedia']);
         $this->assertEquals('class9-linear-equations', $data['activeChapters'][4]['media_key']);
         $this->assertFileExists(public_path('animations/class9-linear-equations.html'));
@@ -164,7 +168,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertEquals('ncert', $data['selectedSyllabus']);
         $this->assertEquals('class9', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('Coordinate Geometry', $data['activeChapters'][5]['name']);
+        $this->assertEquals('Measuring Space: Perimeter and Area', $data['activeChapters'][5]['name']);
         $this->assertTrue($data['activeChapters'][5]['has_multimedia']);
         $this->assertEquals('class9-coordinate-geometry', $data['activeChapters'][5]['media_key']);
         $this->assertFileExists(public_path('animations/class9-coordinate-geometry.html'));
@@ -187,7 +191,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertEquals('ncert', $data['selectedSyllabus']);
         $this->assertEquals('class9', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('Introduction to Euclid’s Geometry', $data['activeChapters'][6]['name']);
+        $this->assertEquals('The Mathematics of Maybe: Introduction to Probability', $data['activeChapters'][6]['name']);
         $this->assertTrue($data['activeChapters'][6]['has_multimedia']);
         $this->assertEquals('class9-euclids-geometry', $data['activeChapters'][6]['media_key']);
         $this->assertFileExists(public_path('animations/class9-euclids-geometry.html'));
@@ -210,7 +214,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertEquals('ncert', $data['selectedSyllabus']);
         $this->assertEquals('class9', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('Lines and Angles', $data['activeChapters'][7]['name']);
+        $this->assertEquals('Predicting What Comes Next: Exploring Sequences and Progressions', $data['activeChapters'][7]['name']);
         $this->assertTrue($data['activeChapters'][7]['has_multimedia']);
         $this->assertEquals('class9-lines-and-angles', $data['activeChapters'][7]['media_key']);
         $this->assertFileExists(public_path('animations/class9-lines-and-angles.html'));
@@ -233,7 +237,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertEquals('ncert', $data['selectedSyllabus']);
         $this->assertEquals('class9', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('Triangles: Congruence Theorems', $data['activeChapters'][8]['name']);
+        $this->assertEquals('Propositions and their Converses', $data['activeChapters'][8]['name']);
         $this->assertTrue($data['activeChapters'][8]['has_multimedia']);
         $this->assertEquals('class9-triangles-congruence', $data['activeChapters'][8]['media_key']);
         $this->assertFileExists(public_path('animations/class9-triangles-congruence.html'));
@@ -256,7 +260,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertEquals('ncert', $data['selectedSyllabus']);
         $this->assertEquals('class9', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('4-gons (Quadrilaterals)', $data['activeChapters'][9]['name']);
+        $this->assertEquals('How Quantities Combine: Understanding Data', $data['activeChapters'][9]['name']);
         $this->assertTrue($data['activeChapters'][9]['has_multimedia']);
         $this->assertEquals('class9-quadrilaterals', $data['activeChapters'][9]['media_key']);
         $this->assertFileExists(public_path('animations/class9-quadrilaterals.html'));
@@ -279,7 +283,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertEquals('ncert', $data['selectedSyllabus']);
         $this->assertEquals('class9', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('Circles', $data['activeChapters'][10]['name']);
+        $this->assertEquals('The World of Algorithms', $data['activeChapters'][10]['name']);
         $this->assertTrue($data['activeChapters'][10]['has_multimedia']);
         $this->assertEquals('class9-circles', $data['activeChapters'][10]['media_key']);
         $this->assertFileExists(public_path('animations/class9-circles.html'));
@@ -302,7 +306,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertEquals('ncert', $data['selectedSyllabus']);
         $this->assertEquals('class9', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('Mensuration: Area and Perimeter', $data['activeChapters'][11]['name']);
+        $this->assertEquals('Quadrilaterals', $data['activeChapters'][11]['name']);
         $this->assertTrue($data['activeChapters'][11]['has_multimedia']);
         $this->assertEquals('class9-mensuration', $data['activeChapters'][11]['media_key']);
         $this->assertFileExists(public_path('animations/class9-mensuration.html'));
@@ -325,7 +329,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertEquals('ncert', $data['selectedSyllabus']);
         $this->assertEquals('class9', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('Mensuration: Surface Area and Volume', $data['activeChapters'][12]['name']);
+        $this->assertEquals('Two Variables, One Line', $data['activeChapters'][12]['name']);
         $this->assertTrue($data['activeChapters'][12]['has_multimedia']);
         $this->assertEquals('class9-surface-areas-volumes', $data['activeChapters'][12]['media_key']);
         $this->assertFileExists(public_path('animations/class9-surface-areas-volumes.html'));
@@ -348,7 +352,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertEquals('ncert', $data['selectedSyllabus']);
         $this->assertEquals('class9', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('Statistics', $data['activeChapters'][13]['name']);
+        $this->assertEquals('Math of Space: Surface Area and Volume', $data['activeChapters'][13]['name']);
         $this->assertTrue($data['activeChapters'][13]['has_multimedia']);
         $this->assertEquals('class9-statistics', $data['activeChapters'][13]['media_key']);
         $this->assertFileExists(public_path('animations/class9-statistics.html'));
@@ -395,7 +399,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertEquals('science', $data['selectedSubject']);
         $this->assertEquals('class9', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('The Fundamental Unit of Life', $data['activeChapters'][0]['name']);
+        $this->assertEquals('Exploration: Entering the World of Secondary Science', $data['activeChapters'][0]['name']);
         $this->assertTrue($data['activeChapters'][0]['has_multimedia']);
         $this->assertEquals('class9-cell-fundamental-unit', $data['activeChapters'][0]['media_key']);
         $this->assertFileExists(public_path('animations/class9-cell-fundamental-unit.html'));
@@ -420,7 +424,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertEquals('science', $data['selectedSubject']);
         $this->assertEquals('class9', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('Tissues', $data['activeChapters'][1]['name']);
+        $this->assertEquals('Cell: The Building Block of Life', $data['activeChapters'][1]['name']);
         $this->assertTrue($data['activeChapters'][1]['has_multimedia']);
         $this->assertEquals('class9-tissues', $data['activeChapters'][1]['media_key']);
         $this->assertFileExists(public_path('animations/class9-tissues.html'));
@@ -445,7 +449,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertEquals('science', $data['selectedSubject']);
         $this->assertEquals('class9', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('Reproduction', $data['activeChapters'][2]['name']);
+        $this->assertEquals('Tissues in Action', $data['activeChapters'][2]['name']);
         $this->assertTrue($data['activeChapters'][2]['has_multimedia']);
         $this->assertEquals('class9-reproduction', $data['activeChapters'][2]['media_key']);
         $this->assertFileExists(public_path('animations/class9-reproduction.html'));
@@ -470,7 +474,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertEquals('science', $data['selectedSubject']);
         $this->assertEquals('class9', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('Diversity in Living Organisms', $data['activeChapters'][3]['name']);
+        $this->assertEquals('Describing Motion Around Us', $data['activeChapters'][3]['name']);
         $this->assertTrue($data['activeChapters'][3]['has_multimedia']);
         $this->assertEquals('class9-diversity-in-living-organisms', $data['activeChapters'][3]['media_key']);
         $this->assertFileExists(public_path('animations/class9-diversity-in-living-organisms.html'));
@@ -520,7 +524,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertEquals('science', $data['selectedSubject']);
         $this->assertEquals('class9', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('Structure of an Atom', $data['activeChapters'][5]['name']);
+        $this->assertEquals('How Forces Affect Motion', $data['activeChapters'][5]['name']);
         $this->assertTrue($data['activeChapters'][5]['has_multimedia']);
         $this->assertEquals('class9-structure-of-atom', $data['activeChapters'][5]['media_key']);
         $this->assertFileExists(public_path('animations/class9-structure-of-atom.html'));
@@ -545,7 +549,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertEquals('science', $data['selectedSubject']);
         $this->assertEquals('class9', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('Atoms and Molecules', $data['activeChapters'][6]['name']);
+        $this->assertEquals('Work, Energy, and Simple Machines', $data['activeChapters'][6]['name']);
         $this->assertTrue($data['activeChapters'][6]['has_multimedia']);
         $this->assertEquals('class9-atoms-and-molecules', $data['activeChapters'][6]['media_key']);
         $this->assertFileExists(public_path('animations/class9-atoms-and-molecules.html'));
@@ -570,7 +574,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertEquals('science', $data['selectedSubject']);
         $this->assertEquals('class9', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('Earth as a System: Energy, Matter & Life', $data['activeChapters'][7]['name']);
+        $this->assertEquals('Journey Inside the Atom', $data['activeChapters'][7]['name']);
         $this->assertTrue($data['activeChapters'][7]['has_multimedia']);
         $this->assertEquals('class9-earth-as-a-system', $data['activeChapters'][7]['media_key']);
         $this->assertFileExists(public_path('animations/class9-earth-as-a-system.html'));
@@ -595,7 +599,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertEquals('science', $data['selectedSubject']);
         $this->assertEquals('class9', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('Motion', $data['activeChapters'][8]['name']);
+        $this->assertEquals('Atomic Foundations of Matter', $data['activeChapters'][8]['name']);
         $this->assertTrue($data['activeChapters'][8]['has_multimedia']);
         $this->assertEquals('class9-motion', $data['activeChapters'][8]['media_key']);
         $this->assertFileExists(public_path('animations/class9-motion.html'));
@@ -620,7 +624,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertEquals('science', $data['selectedSubject']);
         $this->assertEquals('class9', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('Force and Laws of Motion', $data['activeChapters'][9]['name']);
+        $this->assertEquals('Sound Waves: Characteristics and Applications', $data['activeChapters'][9]['name']);
         $this->assertTrue($data['activeChapters'][9]['has_multimedia']);
         $this->assertEquals('class9-force-and-laws-of-motion', $data['activeChapters'][9]['media_key']);
         $this->assertFileExists(public_path('animations/class9-force-and-laws-of-motion.html'));
@@ -645,7 +649,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertEquals('science', $data['selectedSubject']);
         $this->assertEquals('class9', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('Work, Energy and Simple Machines', $data['activeChapters'][10]['name']);
+        $this->assertEquals('Reproduction: How Life Continues', $data['activeChapters'][10]['name']);
         $this->assertTrue($data['activeChapters'][10]['has_multimedia']);
         $this->assertEquals('class9-work-energy-simple-machines', $data['activeChapters'][10]['media_key']);
         $this->assertFileExists(public_path('animations/class9-work-energy-simple-machines.html'));
@@ -670,13 +674,37 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertEquals('science', $data['selectedSubject']);
         $this->assertEquals('class9', $data['selectedClass']);
         $this->assertTrue($data['hasAnyMultimedia']);
-        $this->assertEquals('Sound', $data['activeChapters'][11]['name']);
+        $this->assertEquals('Patterns in Life: Diversity and Classification', $data['activeChapters'][11]['name']);
         $this->assertTrue($data['activeChapters'][11]['has_multimedia']);
         $this->assertEquals('class9-sound', $data['activeChapters'][11]['media_key']);
         $this->assertFileExists(public_path('animations/class9-sound.html'));
         $this->assertFileExists(public_path('animations/chapter12-science-class9.html'));
         $this->assertFileExists(public_path('animations/sound.html'));
         $this->assertFileExists(public_path('animations/sound-waves-and-acoustics.html'));
+    }
+
+    public function test_ncert_class_9_has_earth_system_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=science&class=class9', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'science',
+            'class' => 'class9',
+        ]);
+
+        $view = $controller->index($request);
+        $data = $view->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('science', $data['selectedSubject']);
+        $this->assertEquals('class9', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Earth as a System: Energy, Matter, and Life', $data['activeChapters'][12]['name']);
+        $this->assertTrue($data['activeChapters'][12]['has_multimedia']);
+        $this->assertEquals('class9-earth-system', $data['activeChapters'][12]['media_key']);
+        $this->assertFileExists(public_path('animations/class9-earth-system.html'));
+        $this->assertFileExists(public_path('animations/chapter13-science-class9.html'));
+        $this->assertFileExists(public_path('animations/earth-system.html'));
     }
 
     public function test_ncert_class_9_has_english_writing_multimedia(): void
@@ -5261,7 +5289,13 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertTrue($data['hasAnyMultimedia']);
         $this->assertEquals('Chemical Reactions and Equations', $data['activeChapters'][0]['name']);
         $this->assertTrue($data['activeChapters'][0]['has_multimedia']);
-        $this->assertStringContainsString('chemical-reactions-and-equations.html', $data['activeChapters'][0]['media_url']);
+        $this->assertEquals('class10-chemical-reactions', $data['activeChapters'][0]['media_key']);
+        $this->assertStringContainsString('class10-chemical-reactions.html', $data['activeChapters'][0]['media_url']);
+        $this->assertEquals('chemical-reactions-and-equations', $data['activeChapters'][0]['secondary_media_key']);
+        $this->assertStringContainsString('chemical-reactions-and-equations.html', $data['activeChapters'][0]['secondary_media_url']);
+        $this->assertFileExists(public_path('animations/class10-chemical-reactions.html'));
+        $this->assertFileExists(public_path('animations/chemical-reactions-and-equations.html'));
+        $this->assertFileExists(public_path('animations/chapter1-science-class10.html'));
     }
 
     public function test_ncert_class_10_science_has_acids_bases_and_salts_multimedia(): void
@@ -5282,7 +5316,13 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertTrue($data['hasAnyMultimedia']);
         $this->assertEquals('Acids, Bases and Salts', $data['activeChapters'][1]['name']);
         $this->assertTrue($data['activeChapters'][1]['has_multimedia']);
-        $this->assertStringContainsString('acids-bases-and-salts.html', $data['activeChapters'][1]['media_url']);
+        $this->assertEquals('class10-acids-bases-salts', $data['activeChapters'][1]['media_key']);
+        $this->assertStringContainsString('class10-acids-bases-salts.html', $data['activeChapters'][1]['media_url']);
+        $this->assertEquals('acids-bases-and-salts', $data['activeChapters'][1]['secondary_media_key']);
+        $this->assertStringContainsString('acids-bases-and-salts.html', $data['activeChapters'][1]['secondary_media_url']);
+        $this->assertFileExists(public_path('animations/class10-acids-bases-salts.html'));
+        $this->assertFileExists(public_path('animations/acids-bases-and-salts.html'));
+        $this->assertFileExists(public_path('animations/chapter2-science-class10.html'));
     }
 
     public function test_ncert_class_10_science_has_metals_and_non_metals_multimedia(): void
@@ -5303,7 +5343,42 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertTrue($data['hasAnyMultimedia']);
         $this->assertEquals('Metals and Non-metals', $data['activeChapters'][2]['name']);
         $this->assertTrue($data['activeChapters'][2]['has_multimedia']);
-        $this->assertStringContainsString('metals-and-non-metals.html', $data['activeChapters'][2]['media_url']);
+        $this->assertEquals('class10-metals-non-metals', $data['activeChapters'][2]['media_key']);
+        $this->assertStringContainsString('class10-metals-non-metals.html', $data['activeChapters'][2]['media_url']);
+        $this->assertEquals('metals-and-non-metals', $data['activeChapters'][2]['secondary_media_key']);
+        $this->assertStringContainsString('metals-and-non-metals.html', $data['activeChapters'][2]['secondary_media_url']);
+        $this->assertFileExists(public_path('animations/class10-metals-non-metals.html'));
+        $this->assertFileExists(public_path('animations/metals-and-non-metals.html'));
+        $this->assertFileExists(public_path('animations/chapter3-science-class10.html'));
+    }
+
+    public function test_ncert_class_10_science_has_carbon_and_its_compounds_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=science&class=class10', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'science',
+            'class' => 'class10',
+        ]);
+
+        $view = $controller->index($request);
+        $data = $view->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('science', $data['selectedSubject']);
+        $this->assertEquals('class10', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Carbon and its Compounds', $data['activeChapters'][3]['name']);
+        $this->assertTrue($data['activeChapters'][3]['has_multimedia']);
+        $this->assertEquals('class10-carbon-compounds', $data['activeChapters'][3]['media_key']);
+        $this->assertStringContainsString('class10-carbon-compounds.html', $data['activeChapters'][3]['media_url']);
+        $this->assertEquals('carbon-and-its-compounds', $data['activeChapters'][3]['secondary_media_key']);
+        $this->assertStringContainsString('carbon-and-its-compounds.html', $data['activeChapters'][3]['secondary_media_url']);
+        $this->assertFileExists(public_path('animations/class10-carbon-compounds.html'));
+        $this->assertFileExists(public_path('animations/carbon-and-its-compounds.html'));
+        $this->assertFileExists(public_path('animations/chapter4-science-class10.html'));
+        $this->assertFileExists(public_path('animations/class10-carbon-compounds-lab1.html'));
+        $this->assertFileExists(public_path('animations/class10-carbon-compounds-lab2.html'));
     }
 
     public function test_ncert_class_10_science_has_life_processes_multimedia(): void
@@ -5324,7 +5399,15 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertTrue($data['hasAnyMultimedia']);
         $this->assertEquals('Life Processes', $data['activeChapters'][4]['name']);
         $this->assertTrue($data['activeChapters'][4]['has_multimedia']);
-        $this->assertStringContainsString('life-processes.html', $data['activeChapters'][4]['media_url']);
+        $this->assertEquals('class10-life-processes', $data['activeChapters'][4]['media_key']);
+        $this->assertStringContainsString('class10-life-processes.html', $data['activeChapters'][4]['media_url']);
+        $this->assertEquals('life-processes', $data['activeChapters'][4]['secondary_media_key']);
+        $this->assertStringContainsString('life-processes.html', $data['activeChapters'][4]['secondary_media_url']);
+        $this->assertFileExists(public_path('animations/class10-life-processes.html'));
+        $this->assertFileExists(public_path('animations/life-processes.html'));
+        $this->assertFileExists(public_path('animations/chapter5-science-class10.html'));
+        $this->assertFileExists(public_path('animations/class10-life-processes-lab1.html'));
+        $this->assertFileExists(public_path('animations/class10-life-processes-lab2.html'));
     }
 
     public function test_ncert_class_10_science_has_control_and_coordination_multimedia(): void
@@ -5345,7 +5428,15 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertTrue($data['hasAnyMultimedia']);
         $this->assertEquals('Control and Coordination', $data['activeChapters'][5]['name']);
         $this->assertTrue($data['activeChapters'][5]['has_multimedia']);
-        $this->assertStringContainsString('control-and-coordination.html', $data['activeChapters'][5]['media_url']);
+        $this->assertEquals('class10-control-coordination', $data['activeChapters'][5]['media_key']);
+        $this->assertStringContainsString('class10-control-coordination.html', $data['activeChapters'][5]['media_url']);
+        $this->assertEquals('control-and-coordination', $data['activeChapters'][5]['secondary_media_key']);
+        $this->assertStringContainsString('control-and-coordination.html', $data['activeChapters'][5]['secondary_media_url']);
+        $this->assertFileExists(public_path('animations/class10-control-coordination.html'));
+        $this->assertFileExists(public_path('animations/control-and-coordination.html'));
+        $this->assertFileExists(public_path('animations/chapter6-science-class10.html'));
+        $this->assertFileExists(public_path('animations/class10-control-coordination-lab1.html'));
+        $this->assertFileExists(public_path('animations/class10-control-coordination-lab2.html'));
     }
 
     public function test_ncert_class_10_science_has_how_do_organisms_reproduce_multimedia(): void
@@ -5366,7 +5457,44 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertTrue($data['hasAnyMultimedia']);
         $this->assertEquals('How do Organisms Reproduce?', $data['activeChapters'][6]['name']);
         $this->assertTrue($data['activeChapters'][6]['has_multimedia']);
-        $this->assertStringContainsString('how-do-organisms-reproduce.html', $data['activeChapters'][6]['media_url']);
+        $this->assertEquals('class10-how-do-organisms-reproduce', $data['activeChapters'][6]['media_key']);
+        $this->assertStringContainsString('class10-how-do-organisms-reproduce.html', $data['activeChapters'][6]['media_url']);
+        $this->assertEquals('how-do-organisms-reproduce', $data['activeChapters'][6]['secondary_media_key']);
+        $this->assertStringContainsString('how-do-organisms-reproduce.html', $data['activeChapters'][6]['secondary_media_url']);
+        $this->assertFileExists(public_path('animations/class10-how-do-organisms-reproduce.html'));
+        $this->assertFileExists(public_path('animations/how-do-organisms-reproduce.html'));
+        $this->assertFileExists(public_path('animations/chapter7-science-class10.html'));
+        $this->assertFileExists(public_path('animations/class10-how-do-organisms-reproduce-lab1.html'));
+        $this->assertFileExists(public_path('animations/class10-how-do-organisms-reproduce-lab2.html'));
+    }
+
+    public function test_ncert_class_10_science_has_heredity_multimedia(): void
+    {
+        $controller = new MultimediaController;
+        $request = Request::create('/multimedia?syllabus=ncert&subject=science&class=class10', 'GET', [
+            'syllabus' => 'ncert',
+            'subject' => 'science',
+            'class' => 'class10',
+        ]);
+
+        $view = $controller->index($request);
+        $data = $view->getData();
+
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertEquals('science', $data['selectedSubject']);
+        $this->assertEquals('class10', $data['selectedClass']);
+        $this->assertTrue($data['hasAnyMultimedia']);
+        $this->assertEquals('Heredity', $data['activeChapters'][7]['name']);
+        $this->assertTrue($data['activeChapters'][7]['has_multimedia']);
+        $this->assertEquals('class10-heredity', $data['activeChapters'][7]['media_key']);
+        $this->assertStringContainsString('class10-heredity.html', $data['activeChapters'][7]['media_url']);
+        $this->assertEquals('heredity', $data['activeChapters'][7]['secondary_media_key']);
+        $this->assertStringContainsString('heredity.html', $data['activeChapters'][7]['secondary_media_url']);
+        $this->assertFileExists(public_path('animations/class10-heredity.html'));
+        $this->assertFileExists(public_path('animations/heredity.html'));
+        $this->assertFileExists(public_path('animations/chapter8-science-class10.html'));
+        $this->assertFileExists(public_path('animations/class10-heredity-lab1.html'));
+        $this->assertFileExists(public_path('animations/class10-heredity-lab2.html'));
     }
 
     public function test_ncert_class_10_science_has_light_reflection_and_refraction_multimedia(): void
@@ -5387,7 +5515,15 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertTrue($data['hasAnyMultimedia']);
         $this->assertEquals('Light - Reflection and Refraction', $data['activeChapters'][8]['name']);
         $this->assertTrue($data['activeChapters'][8]['has_multimedia']);
-        $this->assertStringContainsString('light-reflection-and-refraction.html', $data['activeChapters'][8]['media_url']);
+        $this->assertEquals('class10-light-reflection-refraction', $data['activeChapters'][8]['media_key']);
+        $this->assertStringContainsString('class10-light-reflection-refraction.html', $data['activeChapters'][8]['media_url']);
+        $this->assertEquals('light-reflection-and-refraction', $data['activeChapters'][8]['secondary_media_key']);
+        $this->assertStringContainsString('light-reflection-and-refraction.html', $data['activeChapters'][8]['secondary_media_url']);
+        $this->assertFileExists(public_path('animations/class10-light-reflection-refraction.html'));
+        $this->assertFileExists(public_path('animations/light-reflection-and-refraction.html'));
+        $this->assertFileExists(public_path('animations/chapter9-science-class10.html'));
+        $this->assertFileExists(public_path('animations/class10-light-lab1.html'));
+        $this->assertFileExists(public_path('animations/class10-light-lab2.html'));
     }
 
     public function test_ncert_class_10_science_has_the_human_eye_and_the_colourful_world_multimedia(): void
@@ -5408,7 +5544,15 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertTrue($data['hasAnyMultimedia']);
         $this->assertEquals('The Human Eye and the Colourful World', $data['activeChapters'][9]['name']);
         $this->assertTrue($data['activeChapters'][9]['has_multimedia']);
-        $this->assertStringContainsString('the-human-eye-and-the-colourful-world.html', $data['activeChapters'][9]['media_url']);
+        $this->assertEquals('class10-human-eye-colourful-world', $data['activeChapters'][9]['media_key']);
+        $this->assertStringContainsString('class10-human-eye-colourful-world.html', $data['activeChapters'][9]['media_url']);
+        $this->assertEquals('the-human-eye-and-the-colourful-world', $data['activeChapters'][9]['secondary_media_key']);
+        $this->assertStringContainsString('the-human-eye-and-the-colourful-world.html', $data['activeChapters'][9]['secondary_media_url']);
+        $this->assertFileExists(public_path('animations/class10-human-eye-colourful-world.html'));
+        $this->assertFileExists(public_path('animations/the-human-eye-and-the-colourful-world.html'));
+        $this->assertFileExists(public_path('animations/chapter10-science-class10.html'));
+        $this->assertFileExists(public_path('animations/class10-eye-lab1.html'));
+        $this->assertFileExists(public_path('animations/class10-eye-lab2.html'));
     }
 
     public function test_ncert_class_10_science_has_electricity_multimedia(): void
@@ -5519,7 +5663,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
     public function test_all_multimedia_files_have_last_slide_message_and_no_next_option(): void
     {
         $files = glob(public_path('animations/*.html'));
-        $this->assertCount(1418, $files);
+        $this->assertCount(1465, $files);
 
         foreach ($files as $file) {
             $content = file_get_contents($file);

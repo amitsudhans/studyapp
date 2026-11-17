@@ -1,0 +1,377 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Generate Slides 9 to 16 for NCERT Class 10 Science Chapter 5: Life Processes.
+Strict requirements:
+- Titles: 1-3 words
+- Speech: pure Indian male teacher voice, strictly 195-215 words per slide
+- Zero persona titles (Dr, Sir, Madam, Mr, Mrs, Prof) and zero fictional character names
+- 2 checkpoints per slide with 4 options, hint, and detailed explanation
+"""
+
+import json
+
+slides_part2 = [
+    {
+        "id": 9,
+        "title": "Gastric Intestinal Absorption",
+        "subtitle": "Enzymatic Secretions & Microscopic Villi Surface",
+        "speech": (
+            "We now follow food into the stomach and small intestine. The muscular stomach expands when food enters, churning "
+            "it thoroughly with acidic gastric juice secreted by gastric glands. Hydrochloric acid creates an optimal acidic environment of "
+            "pH two, activating inactive pepsinogen into pepsin to digest proteins while destroying swallowed bacterial pathogens. A "
+            "protective mucus layer coats the stomach lining, preventing corrosive acid damage. Regulated by a muscular pyloric sphincter, food "
+            "enters the small intestine, the longest segment of the alimentary canal. Its length correlates with diet: herbivores possess longer "
+            "intestines to allow bacterial cellulose fermentation, whereas carnivores like tigers have shorter intestines for easily digestible meat. "
+            "The small intestine completes the digestion of carbohydrates, proteins, and fats through dual glandular secretions. The liver delivers "
+            "alkaline bile juice containing bile salts that neutralize acidic gastric chyme and emulsify large insoluble lipid droplets into "
+            "smaller globules, exponentially increasing surface area. The pancreas secretes pancreatic juice containing trypsin for protein breakdown and lipase "
+            "for digesting emulsified fats. Finally, intestinal enzymes convert proteins into amino acids, complex carbohydrates into glucose, and lipids into "
+            "fatty acids and glycerol. Millions of microscopic, vascularized finger-like projections called villi line the intestinal mucosa, maximizing absorption "
+            "surface area before unabsorbed waste enters the large intestine for water recovery and anal sphincter expulsion."
+        ),
+        "checkpoints": [
+            {
+                "question": "What is the primary function of bile juice secreted by the liver into the small intestine?",
+                "options": [
+                    "To emulsify large fat globules and neutralize acidic stomach chyme",
+                    "To convert soluble glucose molecules into insoluble plant starch",
+                    "To secrete concentrated hydrochloric acid for activating saliva",
+                    "To absorb water from undigested waste before anal egestion"
+                ],
+                "answer": 0,
+                "hint": "Bile lacks digestive enzymes but changes physical lipid droplet size and pH.",
+                "explanation": "Bile salts emulsify large lipid droplets into smaller micelles and provide an alkaline medium for pancreatic lipase."
+            },
+            {
+                "question": "Why do herbivorous mammals have longer small intestines compared to carnivores?",
+                "options": [
+                    "To provide sufficient time for the complete enzymatic digestion of tough cellulose",
+                    "To store excess glycogen reserves during periods of food scarcity",
+                    "To eliminate the need for salivary amylase in the buccal cavity",
+                    "To synthesize hydrochloric acid without requiring specialized gastric glands"
+                ],
+                "answer": 0,
+                "hint": "Plant cell walls are composed of difficult-to-digest structural fibers.",
+                "explanation": "Cellulose digestion requires extended processing time and specialized microbial action, necessitating a longer intestinal tract."
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "title": "Glucose Breakdown Pathways",
+        "subtitle": "Glycolysis, Anaerobic Fermentation & Aerobic ATP",
+        "speech": (
+            "Let us investigate respiration and cellular energy release pathways. In Activity 5.4, exhaling breath through freshly prepared clear "
+            "limewater turns it milky almost instantly due to insoluble calcium carbonate precipitation, whereas passing atmospheric air using a syringe "
+            "requires prolonged bubbling, demonstrating that exhaled air contains a substantially higher carbon dioxide concentration. In Activity 5.5, yeast "
+            "fermentation of sugary fruit juice releases carbon dioxide gas, illustrating anaerobic respiration. Cellular respiration begins universally inside the "
+            "cytoplasm with glycolysis, where a six-carbon glucose molecule is cleaved into two three-carbon pyruvate molecules without requiring oxygen. "
+            "Pyruvate's subsequent fate follows three distinct biochemical pathways depending on oxygen availability. In yeast fermentation, pyruvate undergoes anaerobic "
+            "breakdown into two-carbon ethanol, carbon dioxide, and modest energy. In human skeletal muscle cells during sudden strenuous exercise, "
+            "oxygen delivery becomes insufficient; pyruvate is converted into three-carbon lactic acid, whose accumulation triggers acute muscle cramps. In "
+            "the presence of abundant oxygen, aerobic respiration occurs inside mitochondria, completely oxidizing pyruvate into carbon dioxide, water, and "
+            "thirty-eight adenosine triphosphate molecules. ATP functions as the universal cellular energy currency. Hydrolyzing its terminal phosphate bond releases "
+            "approximately thirty point five kilojoules per mole of energy, driving endothermic reactions including muscular contractions, protein synthesis, and nerve impulses."
+        ),
+        "checkpoints": [
+            {
+                "question": "What causes painful muscle cramps in athletes during sudden intense physical exertion?",
+                "options": [
+                    "Anaerobic accumulation of lactic acid due to localized cellular oxygen shortage",
+                    "Excessive accumulation of ethanol and carbon dioxide inside muscle fibers",
+                    "Rapid crystallization of calcium carbonate inside mitochondrial membranes",
+                    "Complete depletion of cytoplasmic enzymes required for glycolysis"
+                ],
+                "answer": 0,
+                "hint": "Inadequate oxygen forces muscle cells to convert pyruvate into a 3-carbon acid.",
+                "explanation": "When muscle cells lack sufficient oxygen during intense exertion, pyruvate converts to lactic acid, causing muscle cramps."
+            },
+            {
+                "question": "Where does the aerobic breakdown of pyruvate into carbon dioxide, water, and ATP occur?",
+                "options": [
+                    "Inside cellular mitochondria in the presence of oxygen",
+                    "Exclusively within the cytoplasmic fluid of anaerobic yeast cells",
+                    "Inside extracellular food vacuoles formed by pseudopodia",
+                    "Within the keratinized upper epidermal layer of skin cells"
+                ],
+                "answer": 0,
+                "hint": "The powerhouse organelle responsible for complete oxidative phosphorylation.",
+                "explanation": "Mitochondria utilize oxygen to completely oxidize pyruvate into CO2, H2O, and substantial ATP energy."
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "title": "Gas Exchange Systems",
+        "subtitle": "Plant Stomatal Cycles & Aquatic Gill Mechanics",
+        "speech": (
+            "We now analyze respiratory gas exchange mechanisms across autotrophic plants and aquatic animals. Plants lack specialized pumping lungs "
+            "or blood circulation, relying instead on diffusion through stomata, lenticels in woody stems, and extensive intercellular air spaces. "
+            "The direction of gaseous diffusion in plant leaves depends directly on environmental conditions and metabolic requirements. During nighttime hours "
+            "when photosynthesis ceases completely due to absence of light, cellular respiration continues uninterruptedly; consequently, carbon dioxide elimination is "
+            "the dominant exchange event. During daylight hours, carbon dioxide generated by internal cellular respiration is immediately reused by photosynthetic "
+            "chloroplasts; therefore, net oxygen release into the atmosphere represents the primary daytime gas exchange phenomenon. In the animal kingdom, "
+            "aquatic organisms face distinct physiological challenges compared to terrestrial animals. Oxygen dissolves poorly in water, meaning aquatic habitats possess "
+            "a far lower oxygen concentration than atmospheric air containing twenty-one percent oxygen. To extract sufficient dissolved oxygen, aquatic "
+            "animals like bony fishes must ventilate their respiratory surfaces at a dramatically higher rate. Fish continuously take water in "
+            "through their mouths and force it across internal vascularized gill filaments, where dissolved oxygen diffuses directly into gill capillaries "
+            "while carbon dioxide diffuses outward. Terrestrial animals utilize atmospheric oxygen directly, evolving protected internal respiratory membranes to prevent dehydration."
+        ),
+        "checkpoints": [
+            {
+                "question": "Why is the breathing rate of aquatic fish significantly faster than that of terrestrial humans?",
+                "options": [
+                    "The concentration of dissolved oxygen in water is very low compared to air",
+                    "Fish possess four-chambered hearts that require double oxygen saturation",
+                    "Water contains high concentrations of toxic carbon monoxide gas",
+                    "Aquatic animals lack red blood corpuscles and haemoglobin pigments"
+                ],
+                "answer": 0,
+                "hint": "Consider the low solubility of oxygen in liquid water versus ambient atmosphere.",
+                "explanation": "Because dissolved oxygen in water is sparse, aquatic organisms must pass large water volumes over gills rapidly to meet metabolic needs."
+            },
+            {
+                "question": "What is the primary net gas released by green plant leaves during bright daylight hours?",
+                "options": [
+                    "Oxygen gas released because photosynthesis surpasses respiratory carbon dioxide production",
+                    "Carbon dioxide gas because photosynthetic enzymes are inhibited by bright light",
+                    "Nitrogen gas released from root nodules through stomatal transpiration pull",
+                    "Methane gas produced by anaerobic bacterial decomposition in leaf mesophyll"
+                ],
+                "answer": 0,
+                "hint": "Daytime photosynthesis consumes all internal CO2 and generates excess O2.",
+                "explanation": "In daylight, photosynthesis produces far more oxygen than respiration consumes, making net oxygen release dominant."
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "title": "Human Respiratory System",
+        "subtitle": "Tracheal Architecture, Alveolar Exchange & Haemoglobin",
+        "speech": (
+            "Let us examine the human respiratory tract from nostrils to microscopic alveoli. Atmospheric air enters through nostrils lined with "
+            "fine hairs and sticky mucus that filter dust particles, trap airborne pathogens, and humidify incoming air. Air traverses the "
+            "pharynx and enters the trachea, which is structurally reinforced by C-shaped rings of cartilage that prevent airway collapse even "
+            "during forceful exhalation when negative internal pressures develop. The trachea bifurcates into left and right primary bronchi, dividing into "
+            "narrowing bronchioles that culminate in grape-like clusters of microscopic balloon-like sacs called alveoli. The human lungs contain millions of "
+            "alveoli, collectively presenting an immense respiratory surface area of approximately eighty square meters, equivalent to a tennis court. Alveolar "
+            "walls are extremely thin, consisting of a single epithelial layer surrounded by an extensive network of microscopic blood capillaries. "
+            "During inhalation, the diaphragm contracts and flattens downward while intercostal muscles lift the ribs outward, expanding thoracic cavity volume "
+            "and drawing air into expanded alveoli. The lungs always retain a residual volume of air, ensuring continuous gas exchange "
+            "between breaths. Because simple diffusion is far too slow across large bodies, red blood cells carry the respiratory pigment "
+            "haemoglobin, which exhibits extraordinarily high chemical affinity for binding oxygen, while more soluble carbon dioxide is transported dissolved in plasma."
+        ),
+        "checkpoints": [
+            {
+                "question": "What is the functional significance of the C-shaped rings of cartilage present in the human trachea?",
+                "options": [
+                    "They prevent the tracheal airway from collapsing during breathing cycles",
+                    "They secrete salivary amylase to digest inhaled airborne starch granules",
+                    "They filter excess nitrogen gas out of inhaled atmospheric air",
+                    "They expand the thoracic cavity volume during forceful abdominal exhalation"
+                ],
+                "answer": 0,
+                "hint": "Structural cartilage provides non-collapsible mechanical support to the windpipe.",
+                "explanation": "Cartilaginous rings keep the trachea open and patent, preventing mechanical collapse when internal air pressure drops."
+            },
+            {
+                "question": "How are oxygen and carbon dioxide primarily transported in human circulating blood?",
+                "options": [
+                    "Oxygen binds to haemoglobin in red blood cells; carbon dioxide dissolves mainly in plasma",
+                    "Both gases dissolve equally in plasma without requiring chemical pigments",
+                    "Oxygen travels dissolved in lymphatic fluid; carbon dioxide binds to platelets",
+                    "Both gases are transported as solid calcium carbonate crystals inside white cells"
+                ],
+                "answer": 0,
+                "hint": "Haemoglobin has high affinity for oxygen; CO2 is more water-soluble.",
+                "explanation": "Haemoglobin in erythrocytes carries oxygen efficiently, whereas carbon dioxide is transported predominantly dissolved in blood plasma."
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "title": "Human Heart Pumping",
+        "subtitle": "Four-Chambered Pump & Unidirectional Flow",
+        "speech": (
+            "We now explore the human heart, the tireless muscular pump driving internal circulation. Roughly the size of a clenched "
+            "fist, the heart is divided into four distinct chambers: two upper receiving atria and two lower pumping ventricles. This "
+            "complete anatomical separation between the right and left sides prevents the mixing of oxygenated and deoxygenated blood, a vital "
+            "evolutionary adaptation that provides high oxygen delivery to support the intense metabolic rates of warm-blooded mammals. Deoxygenated blood from "
+            "body tissues enters the thin-walled right atrium through the superior and inferior vena cava. As the right atrium relaxes, "
+            "it collects venous blood, then contracts to transfer blood through the tricuspid valve into the right ventricle. The right "
+            "ventricle then contracts, pumping deoxygenated blood into the pulmonary artery toward the lungs for oxygenation. Simultaneously, freshly oxygenated blood "
+            "returns from the lungs via pulmonary veins into the left atrium. Upon left atrial contraction, blood passes through the "
+            "bicuspid valve into the thick-walled left ventricle. Because the left ventricle must pump blood throughout the entire systemic body "
+            "network against high vascular resistance, its muscular myocardium is considerably thicker than that of the right ventricle. Specialized atrioventricular "
+            "and semilunar valves ensure strictly unidirectional blood flow, closing tightly to prevent backward regurgitation when muscular chambers contract powerfully."
+        ),
+        "checkpoints": [
+            {
+                "question": "Why does the left ventricle of the human heart possess significantly thicker muscular walls than the right ventricle?",
+                "options": [
+                    "It must generate higher pressure to pump oxygenated blood throughout the entire systemic body",
+                    "It stores deoxygenated venous blood returning from cranial capillaries",
+                    "It filters toxic nitrogenous urea crystals directly into the renal pelvis",
+                    "It contains specialized salivary glands that secrete digestive enzymes into the aorta"
+                ],
+                "answer": 0,
+                "hint": "Consider the distance and vascular resistance blood encounters traveling to organs versus nearby lungs.",
+                "explanation": "The left ventricle pumps blood across the entire systemic body network, requiring greater muscular force and thicker myocardium."
+            },
+            {
+                "question": "What is the crucial role of internal cardiac valves located between atria and ventricles?",
+                "options": [
+                    "To prevent the backward regurgitation of blood when cardiac chambers contract",
+                    "To facilitate the direct diffusion of atmospheric oxygen into the myocardium",
+                    "To emulsify dietary fat droplets circulating within coronary blood vessels",
+                    "To convert venous deoxygenated blood directly into arterial fluid"
+                ],
+                "answer": 0,
+                "hint": "Valves act as one-way mechanical gates inside pressurized hydraulic pumps.",
+                "explanation": "Cardiac valves ensure unidirectional blood flow, opening forward and closing tightly to stop backward leakage during systole."
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "title": "Circulation Blood Vessels",
+        "subtitle": "Double Circulation, Vessels & Lymphatic Fluid",
+        "speech": (
+            "Let us examine double circulation, blood vessel architecture, and lymphatic fluid dynamics. In mammals and birds, blood passes through "
+            "the heart twice during each complete systemic circuit: once through the pulmonary circuit to the lungs for gas exchange, "
+            "and once through the systemic circuit to supply body tissues. In contrast, amphibians and reptiles have three-chambered hearts that "
+            "tolerate moderate mixing of arterial and venous blood, while fishes have two-chambered hearts exhibiting single circulation, where blood flows "
+            "from the ventricle directly to gills and onward to body tissues. Circulating blood pressure is measured with a sphygmomanometer, "
+            "recording normal ventricular systolic pressure at approximately one hundred twenty millimeters of mercury and diastolic resting pressure at eighty millimeters. "
+            "Blood vessels display specialized functional designs. Arteries carry blood away from the heart under high surging pressure, possessing thick, "
+            "elastic muscular walls without valves. Veins return blood under low pressure, featuring thinner walls and internal flap valves to prevent "
+            "gravity-induced backflow. Microscopic capillaries are one-cell thick, enabling rapid diffusion of nutrients, gases, and hormones into surrounding tissues. "
+            "Blood platelets circulate continuously, forming fibrinous clots at vascular wounds to prevent fatal hemorrhage. Additionally, fluid leaking through capillary pores "
+            "forms lymph or tissue fluid, which drains into lymphatic vessels, carries digested intestinal fats, and returns filtered fluid to large veins."
+        ),
+        "checkpoints": [
+            {
+                "question": "How do structural differences between arteries and veins reflect their distinct circulatory functions?",
+                "options": [
+                    "Arteries have thick elastic walls without valves; veins have thinner walls with valves",
+                    "Arteries possess internal flap valves; veins have thick walls to handle high pressure",
+                    "Arteries are composed of single-cell endothelia; veins are rigid cartilaginous tubes",
+                    "Arteries transport lymphatic tissue fluid; veins transport pure atmospheric oxygen"
+                ],
+                "answer": 0,
+                "hint": "High pressure leaving the heart requires elasticity; low pressure returning requires one-way valves.",
+                "explanation": "Arteries withstand high systolic pressure with thick elastic walls; low-pressure veins have thin walls and valves to prevent backflow."
+            },
+            {
+                "question": "What is the primary physiological function of blood platelets in the human circulatory system?",
+                "options": [
+                    "To form blood clots at injury sites and prevent loss of fluid pressure",
+                    "To bind and transport atmospheric oxygen molecules to skeletal muscles",
+                    "To secrete hydrochloric acid to digest bacterial pathogens in the blood",
+                    "To regulate systolic blood pressure inside the pulmonary alveoli"
+                ],
+                "answer": 0,
+                "hint": "Platelets plug mechanical leaks in damaged vascular vessels.",
+                "explanation": "Platelets aggregate at injury sites and initiate coagulation, forming clots that seal bleeding vessels and maintain blood pressure."
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "title": "Plant Vascular Transport",
+        "subtitle": "Xylem Transpiration Pull & Phloem Translocation",
+        "speech": (
+            "We now turn to vascular transport in plants. Because plants do not move and possess abundant dead supportive sclerenchyma "
+            "cells, their overall energy requirements are remarkably low compared to active animals. Long-distance internal transport relies on two independent "
+            "vascular networks: xylem and phloem. Xylem transports water and dissolved inorganic soil minerals upward from roots to leaves through "
+            "interconnected hollow conduits of tracheids and vessel elements. Water ascent is powered by two complementary mechanisms. At night, active "
+            "ion absorption by root epidermal cells creates an osmotic potential gradient, drawing water into root xylem and generating positive "
+            "root pressure that pushes water upward. During daylight hours, stomatal transpiration—the evaporation of water vapor into the atmosphere—creates "
+            "enormous negative tension or suction pull across continuous water columns held together by cohesion and adhesion, pulling water to "
+            "the tops of tall trees while providing vital evaporative cooling. In contrast, phloem translocates soluble organic products of photosynthesis, "
+            "primarily sucrose and amino acids, bidirectionally from leaves to storage roots, fruits, seeds, and actively growing shoot buds. Phloem "
+            "translocation is an active metabolic process taking place in sieve tubes with the assistance of adjacent nucleated companion cells. "
+            "Loading sucrose into phloem utilizes adenosine triphosphate energy, increasing osmotic pressure, drawing water in, and moving sap to low-pressure tissues."
+        ),
+        "checkpoints": [
+            {
+                "question": "What physical force is primarily responsible for the upward movement of water in tall trees during daytime?",
+                "options": [
+                    "Transpiration pull generated by water evaporation from leaf stomata",
+                    "Active muscular pumping by specialized cambium myocardial cells",
+                    "Atmospheric nitrogen pressure forcing water into root hair membranes",
+                    "Gravitational sedimentation of heavy dissolved mineral ions"
+                ],
+                "answer": 0,
+                "hint": "Water loss through leaf pores creates continuous upward suction tension.",
+                "explanation": "Transpiration pull creates negative tension in xylem conduits, pulling continuous columns of water upward during daylight hours."
+            },
+            {
+                "question": "How does phloem translocation differ fundamentally from xylem transport in plants?",
+                "options": [
+                    "Phloem translocates organic nutrients bidirectionally using ATP metabolic energy",
+                    "Phloem only transports water upward through dead non-living tracheid tubes",
+                    "Phloem transport depends exclusively on daytime evaporative cooling forces",
+                    "Phloem operates without requiring companion cells or sieve tube elements"
+                ],
+                "answer": 0,
+                "hint": "Think about energy requirement (ATP) and direction of food transport.",
+                "explanation": "Phloem actively transports sucrose and organic solutes bidirectionally using ATP energy to adjust osmotic pressure."
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "title": "Human Plant Excretion",
+        "subtitle": "Nephron Ultrafiltration & Plant Waste Storage",
+        "speech": (
+            "Finally, let us examine excretion in humans and plants. Excretion is the biological process of removing toxic nitrogenous metabolic "
+            "by-products like urea and uric acid from the body. The human excretory system consists of a pair of kidneys, "
+            "two muscular ureters, a urinary bladder, and a urethra. Each kidney contains over one million microscopic filtration units called "
+            "nephrons. A nephron begins with a cup-shaped Bowman's capsule enclosing a dense capillary cluster termed the glomerulus. Under high "
+            "hydrostatic blood pressure, non-selective ultrafiltration forces water, glucose, amino acids, salts, and urea into the capsule, producing approximately one "
+            "hundred eighty liters of initial filtrate daily. As this filtrate flows through the extensive coiled renal tubule, essential glucose, "
+            "amino acids, salts, and ninety-nine percent of water are selectively reabsorbed back into peritubular capillaries depending on systemic hydration. "
+            "The remaining concentrated one to two liters of urine drains into the renal pelvis, passes down ureters into the "
+            "bladder, and is voluntarily voided via the urethra. When kidneys fail, an artificial kidney hemodialysis machine filters nitrogenous wastes "
+            "across semipermeable tubes without selective reabsorption. Plants employ completely different excretory strategies: releasing excess oxygen via stomata, transpiring "
+            "excess water, storing wastes in cellular vacuoles, shedding senescent leaves, depositing gums and resins in old xylem, or exuding wastes into soil."
+        ),
+        "checkpoints": [
+            {
+                "question": "What is the structural and functional filtration unit of the human kidney?",
+                "options": [
+                    "The nephron consisting of a glomerulus, Bowman's capsule, and coiled tubule",
+                    "The microscopic alveolus surrounded by an extensive capillary network",
+                    "The vascularized intestinal villus containing an internal central lacteal",
+                    "The hepatic lobule containing bile canaliculi and glycogen storage granules"
+                ],
+                "answer": 0,
+                "hint": "Each kidney contains over one million of these microscopic filtering units.",
+                "explanation": "The nephron is the kidney's filtration unit, carrying out ultrafiltration, selective tubular reabsorption, and urine collection."
+            },
+            {
+                "question": "How do autotrophic plants eliminate metabolic wastes without specialized excretory organs?",
+                "options": [
+                    "By storing wastes in cellular vacuoles, shedding leaves, and transpiring water",
+                    "By pumping concentrated urea into peritubular blood vessels via peristalsis",
+                    "By utilizing an internal hemodialysis membrane within the waxy leaf cuticle",
+                    "By converting all nitrogenous by-products into insoluble dental plaque"
+                ],
+                "answer": 0,
+                "hint": "Plants store wastes in dead tissues, shed old leaves, and exude resins.",
+                "explanation": "Plants store wastes in vacuoles, deposit resins in old xylem, shed deciduous leaves, and release gases and water through stomata."
+            }
+        ]
+    }
+]
+
+with open('.agents/c10s_ch5_part2.json', 'w', encoding='utf-8') as f:
+    json.dump(slides_part2, f, indent=2)
+
+print("Slide part 2 (Slides 9-16) successfully written!")
+for s in slides_part2:
+    wc = len(s['speech'].split())
+    print(f"Slide {s['id']}: '{s['title']}' - {wc} words")
+    assert 195 <= wc <= 215, f"Slide {s['id']} speech word count {wc} out of range!"

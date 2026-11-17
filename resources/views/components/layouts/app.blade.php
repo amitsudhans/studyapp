@@ -720,46 +720,106 @@
                     titleText = "NCERT Class 12 Part - 2 — Chapter 13: Probability Lab";
                     badgeText = "NCERT Reprint 2026-27 • Class 12 Part - 2";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30 shrink-0";
-                } else if (type === 'chemical-reactions-and-equations') {
+                } else if (type === 'class10-chemical-reactions' || type === 'class10-chemical-reactions-lab1' || type === 'chapter1-science-class10') {
+                    fileUrl = "{{ asset('animations/class10-chemical-reactions.html') }}";
+                    titleText = "NCERT Class 10 Science — Chapter 1: Chemical Reactions and Equations Lab 1";
+                    badgeText = "NCERT Class 10 Science • Lab 1";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
+                } else if (type === 'chemical-reactions-and-equations' || type === 'class10-chemical-reactions-lab2') {
                     fileUrl = "{{ asset('animations/chemical-reactions-and-equations.html') }}";
-                    titleText = "NCERT Class 10 Science — Chapter 1: Chemical Reactions and Equations Lab";
-                    badgeText = "NCERT Class 10 Science";
+                    titleText = "NCERT Class 10 Science — Chapter 1: Chemical Reactions and Equations Lab 2 (Classic)";
+                    badgeText = "NCERT Class 10 Science • Lab 2";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
+                } else if (type === 'class10-acids-bases-salts' || type === 'class10-acids-bases-salts-lab1' || type === 'chapter2-science-class10') {
+                    fileUrl = "{{ asset('animations/class10-acids-bases-salts.html') }}";
+                    titleText = "NCERT Class 10 Science — Chapter 2: Acids, Bases and Salts Lab 1";
+                    badgeText = "NCERT Class 10 Science • Lab 1";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
-                } else if (type === 'acids-bases-and-salts') {
+                } else if (type === 'acids-bases-and-salts' || type === 'class10-acids-bases-salts-lab2') {
                     fileUrl = "{{ asset('animations/acids-bases-and-salts.html') }}";
-                    titleText = "NCERT Class 10 Science — Chapter 2: Acids, Bases and Salts Lab";
-                    badgeText = "NCERT Class 10 Science";
-                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
-                } else if (type === 'metals-and-non-metals') {
+                    titleText = "NCERT Class 10 Science — Chapter 2: Acids, Bases and Salts Lab 2 (Classic)";
+                    badgeText = "NCERT Class 10 Science • Lab 2";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
+                } else if (type === 'class10-metals-non-metals' || type === 'class10-metals-non-metals-lab1' || type === 'chapter3-science-class10') {
+                    fileUrl = "{{ asset('animations/class10-metals-non-metals.html') }}";
+                    titleText = "NCERT Class 10 Science — Chapter 3: Metals and Non-metals Lab 1";
+                    badgeText = "NCERT Class 10 Science • Lab 1";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'metals-and-non-metals' || type === 'class10-metals-non-metals-lab2') {
                     fileUrl = "{{ asset('animations/metals-and-non-metals.html') }}";
-                    titleText = "NCERT Class 10 Science — Chapter 3: Metals and Non-metals Lab";
-                    badgeText = "NCERT Class 10 Science";
+                    titleText = "NCERT Class 10 Science — Chapter 3: Metals and Non-metals Lab 2 (Classic)";
+                    badgeText = "NCERT Class 10 Science • Lab 2";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
+                } else if (type === 'class10-carbon-compounds' || type === 'class10-carbon-compounds-lab1' || type === 'chapter4-science-class10') {
+                    fileUrl = "{{ asset('animations/class10-carbon-compounds.html') }}";
+                    titleText = "NCERT Class 10 Science — Chapter 4: Carbon and its Compounds Lab 1";
+                    badgeText = "NCERT Class 10 Science • Lab 1";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
-                } else if (type === 'life-processes') {
+                } else if (type === 'carbon-and-its-compounds' || type === 'class10-carbon-compounds-lab2') {
+                    fileUrl = "{{ asset('animations/carbon-and-its-compounds.html') }}";
+                    titleText = "NCERT Class 10 Science — Chapter 4: Carbon and its Compounds Lab 2 (Classic)";
+                    badgeText = "NCERT Class 10 Science • Lab 2";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
+                } else if (type === 'class10-life-processes' || type === 'class10-life-processes-lab1' || type === 'chapter5-science-class10') {
+                    fileUrl = "{{ asset('animations/class10-life-processes.html') }}";
+                    titleText = "NCERT Class 10 Science — Chapter 5: Life Processes Lab 1";
+                    badgeText = "NCERT Class 10 Science • Lab 1";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'life-processes' || type === 'class10-life-processes-lab2') {
                     fileUrl = "{{ asset('animations/life-processes.html') }}";
-                    titleText = "NCERT Class 10 Science — Chapter 5: Life Processes Lab";
-                    badgeText = "NCERT Class 10 Science";
+                    titleText = "NCERT Class 10 Science — Chapter 5: Life Processes Lab 2 (Classic)";
+                    badgeText = "NCERT Class 10 Science • Lab 2";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
+                } else if (type === 'class10-control-coordination' || type === 'class10-control-coordination-lab1' || type === 'chapter6-science-class10') {
+                    fileUrl = "{{ asset('animations/class10-control-coordination.html') }}";
+                    titleText = "NCERT Class 10 Science — Chapter 6: Control and Coordination Lab 1";
+                    badgeText = "NCERT Class 10 Science • Lab 1";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
-                } else if (type === 'control-and-coordination') {
+                } else if (type === 'control-and-coordination' || type === 'class10-control-coordination-lab2') {
                     fileUrl = "{{ asset('animations/control-and-coordination.html') }}";
-                    titleText = "NCERT Class 10 Science — Chapter 6: Control and Coordination Lab";
-                    badgeText = "NCERT Class 10 Science";
+                    titleText = "NCERT Class 10 Science — Chapter 6: Control and Coordination Lab 2 (Classic)";
+                    badgeText = "NCERT Class 10 Science • Lab 2";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
+                } else if (type === 'class10-how-do-organisms-reproduce' || type === 'class10-how-do-organisms-reproduce-lab1' || type === 'chapter7-science-class10') {
+                    fileUrl = "{{ asset('animations/class10-how-do-organisms-reproduce.html') }}";
+                    titleText = "NCERT Class 10 Science — Chapter 7: How do Organisms Reproduce? Lab 1";
+                    badgeText = "NCERT Class 10 Science • Lab 1";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
-                } else if (type === 'how-do-organisms-reproduce') {
+                } else if (type === 'how-do-organisms-reproduce' || type === 'class10-how-do-organisms-reproduce-lab2') {
                     fileUrl = "{{ asset('animations/how-do-organisms-reproduce.html') }}";
-                    titleText = "NCERT Class 10 Science — Chapter 7: How do Organisms Reproduce? Lab";
-                    badgeText = "NCERT Class 10 Science";
-                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30 shrink-0";
-                } else if (type === 'light-reflection-and-refraction' || type === 'chapter09' || type === 'chapter-09' || type === 'chapter9' || type === 'chapter-9') {
-                    fileUrl = "{{ asset('animations/light-reflection-and-refraction.html') }}";
-                    titleText = "NCERT Class 10 Science — Chapter 9: Light - Reflection and Refraction Lab";
-                    badgeText = "NCERT Class 10 Science";
+                    titleText = "NCERT Class 10 Science — Chapter 7: How do Organisms Reproduce? Lab 2 (Classic)";
+                    badgeText = "NCERT Class 10 Science • Lab 2";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
+                } else if (type === 'class10-heredity' || type === 'class10-heredity-lab1' || type === 'chapter8-science-class10') {
+                    fileUrl = "{{ asset('animations/class10-heredity.html') }}";
+                    titleText = "NCERT Class 10 Science — Chapter 8: Heredity Lab 1";
+                    badgeText = "NCERT Class 10 Science • Lab 1";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'heredity' || type === 'class10-heredity-lab2') {
+                    fileUrl = "{{ asset('animations/heredity.html') }}";
+                    titleText = "NCERT Class 10 Science — Chapter 8: Heredity Lab 2";
+                    badgeText = "NCERT Class 10 Science • Lab 2";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
+                } else if (type === 'class10-light-reflection-refraction' || type === 'class10-light-lab1' || type === 'chapter9-science-class10') {
+                    fileUrl = "{{ asset('animations/class10-light-reflection-refraction.html') }}";
+                    titleText = "NCERT Class 10 Science — Chapter 9: Light - Reflection and Refraction Lab 1";
+                    badgeText = "NCERT Class 10 Science • Lab 1";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
-                } else if (type === 'the-human-eye-and-the-colourful-world' || type === 'chapter10' || type === 'chapter-10') {
+                } else if (type === 'light-reflection-and-refraction' || type === 'class10-light-lab2' || type === 'chapter09' || type === 'chapter-09' || type === 'chapter9' || type === 'chapter-9') {
+                    fileUrl = "{{ asset('animations/light-reflection-and-refraction.html') }}";
+                    titleText = "NCERT Class 10 Science — Chapter 9: Light - Reflection and Refraction Lab 2 (Classic)";
+                    badgeText = "NCERT Class 10 Science • Lab 2";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
+                } else if (type === 'class10-human-eye-colourful-world' || type === 'class10-eye-lab1' || type === 'chapter10-science-class10') {
+                    fileUrl = "{{ asset('animations/class10-human-eye-colourful-world.html') }}";
+                    titleText = "NCERT Class 10 Science — Chapter 10: The Human Eye and the Colourful World Lab 1";
+                    badgeText = "NCERT Class 10 Science • Lab 1";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
+                } else if (type === 'the-human-eye-and-the-colourful-world' || type === 'class10-eye-lab2' || type === 'chapter10' || type === 'chapter-10') {
                     fileUrl = "{{ asset('animations/the-human-eye-and-the-colourful-world.html') }}";
-                    titleText = "NCERT Class 10 Science — Chapter 10: The Human Eye and the Colourful World Lab";
-                    badgeText = "NCERT Class 10 Science";
-                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
+                    titleText = "NCERT Class 10 Science — Chapter 10: The Human Eye and the Colourful World Lab 2 (Classic)";
+                    badgeText = "NCERT Class 10 Science • Lab 2";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
                 } else if (type === 'electricity' || type === 'chapter11' || type === 'chapter-11') {
                     fileUrl = "{{ asset('animations/electricity.html') }}";
                     titleText = "NCERT Class 10 Science — Chapter 11: Electricity Lab";
@@ -785,19 +845,19 @@
                     titleText = "NCERT Class 10 Hindi (क्षितिज भाग-2) — पाठ 2: राम-लक्ष्मण-परशुराम संवाद";
                     badgeText = "NCERT Class 10 Hindi";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
-                } else if (type === 'number-system') {
-                    fileUrl = "{{ asset('animations/number-system.html') }}";
-                    titleText = "Class 9 Mathematics — Number System Multimedia Lab";
+                } else if (type === 'class9-math-orienting-coordinates' || type === 'chapter1-math-class9' || type === 'number-system') {
+                    fileUrl = "{{ asset('animations/class9-math-orienting-coordinates.html') }}";
+                    titleText = "NCERT Class 9 Mathematics — Chapter 1: Orienting Yourself: The Use of Coordinates Lab";
                     badgeText = "Class 9 • NCERT / CBSE";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
                 } else if (type === 'class9-polynomials' || type === 'chapter2-maths-class9' || type === 'algebra-linear-polynomials') {
                     fileUrl = "{{ asset('animations/class9-polynomials.html') }}";
-                    titleText = "NCERT Class 9 Mathematics — Chapter 2: Polynomials & Linear Functions Lab";
+                    titleText = "NCERT Class 9 Mathematics — Chapter 2: Introduction to Linear Polynomials Lab";
                     badgeText = "Class 9 • NCERT / CBSE";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
                 } else if (type === 'class9-sequences-progressions' || type === 'chapter3-maths-class9' || type === 'sequences-and-progressions') {
                     fileUrl = "{{ asset('animations/class9-sequences-progressions.html') }}";
-                    titleText = "NCERT Class 9 Mathematics — Chapter 3: Sequences & Progressions Lab";
+                    titleText = "NCERT Class 9 Mathematics — Chapter 3: The World of Numbers Lab";
                     badgeText = "Class 9 • NCERT / CBSE";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
                 } else if (type === 'class9-algebraic-identities' || type === 'chapter4-maths-class9' || type === 'algebraic-identities') {
@@ -807,52 +867,52 @@
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
                 } else if (type === 'class9-linear-equations' || type === 'chapter5-maths-class9' || type === 'linear-equations-in-two-variables') {
                     fileUrl = "{{ asset('animations/class9-linear-equations.html') }}";
-                    titleText = "NCERT Class 9 Mathematics — Chapter 5: Linear Equations in Two Variables Lab";
+                    titleText = "NCERT Class 9 Mathematics — Chapter 5: I'm Up and Down, and Round and Round Lab";
                     badgeText = "Class 9 • NCERT / CBSE";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
                 } else if (type === 'class9-coordinate-geometry' || type === 'chapter6-maths-class9' || type === 'class9-coord-geom') {
                     fileUrl = "{{ asset('animations/class9-coordinate-geometry.html') }}";
-                    titleText = "NCERT Class 9 Mathematics — Chapter 6: Coordinate Geometry Lab";
+                    titleText = "NCERT Class 9 Mathematics — Chapter 6: Measuring Space: Perimeter and Area Lab";
                     badgeText = "Class 9 • NCERT / CBSE";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
                 } else if (type === 'class9-euclids-geometry' || type === 'chapter7-maths-class9' || type === 'euclids-geometry') {
                     fileUrl = "{{ asset('animations/class9-euclids-geometry.html') }}";
-                    titleText = "NCERT Class 9 Mathematics — Chapter 7: Introduction to Euclid's Geometry Lab";
+                    titleText = "NCERT Class 9 Mathematics — Chapter 7: The Mathematics of Maybe: Introduction to Probability Lab";
                     badgeText = "Class 9 • NCERT / CBSE";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
                 } else if (type === 'class9-lines-and-angles' || type === 'chapter8-maths-class9' || type === 'lines-and-angles') {
                     fileUrl = "{{ asset('animations/class9-lines-and-angles.html') }}";
-                    titleText = "NCERT Class 9 Mathematics — Chapter 8: Lines and Angles Lab";
+                    titleText = "NCERT Class 9 Mathematics — Chapter 8: Predicting What Comes Next: Exploring Sequences and Progressions Lab";
                     badgeText = "Class 9 • NCERT / CBSE";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
                 } else if (type === 'class9-triangles-congruence' || type === 'chapter9-maths-class9' || type === 'triangles-congruence') {
                     fileUrl = "{{ asset('animations/class9-triangles-congruence.html') }}";
-                    titleText = "NCERT Class 9 Mathematics — Chapter 9: Triangles: Congruence Theorems Lab";
+                    titleText = "NCERT Class 9 Mathematics — Chapter 9: Propositions and their Converses Lab";
                     badgeText = "Class 9 • NCERT / CBSE";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
                 } else if (type === 'class9-quadrilaterals' || type === 'chapter10-maths-class9' || type === 'quadrilaterals-4gons') {
                     fileUrl = "{{ asset('animations/class9-quadrilaterals.html') }}";
-                    titleText = "NCERT Class 9 Mathematics — Chapter 10: 4-gons (Quadrilaterals) Lab";
+                    titleText = "NCERT Class 9 Mathematics — Chapter 10: How Quantities Combine: Understanding Data Lab";
                     badgeText = "Class 9 • NCERT / CBSE";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
                 } else if (type === 'class9-circles' || type === 'chapter11-maths-class9' || type === 'circles-geometry') {
                     fileUrl = "{{ asset('animations/class9-circles.html') }}";
-                    titleText = "NCERT Class 9 Mathematics — Chapter 11: Circles Lab";
+                    titleText = "NCERT Class 9 Mathematics — Chapter 11: The World of Algorithms Lab";
                     badgeText = "Class 9 • NCERT / CBSE";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
                 } else if (type === 'class9-mensuration' || type === 'chapter12-maths-class9' || type === 'mensuration-area-perimeter') {
                     fileUrl = "{{ asset('animations/class9-mensuration.html') }}";
-                    titleText = "NCERT Class 9 Mathematics — Chapter 12: Mensuration: Area and Perimeter Lab";
+                    titleText = "NCERT Class 9 Mathematics — Chapter 12: Quadrilaterals Lab";
                     badgeText = "Class 9 • NCERT / CBSE";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
                 } else if (type === 'class9-surface-areas-volumes' || type === 'chapter13-maths-class9' || type === 'surface-areas-volumes-3d') {
                     fileUrl = "{{ asset('animations/class9-surface-areas-volumes.html') }}";
-                    titleText = "NCERT Class 9 Mathematics — Chapter 13: Mensuration: Surface Area and Volume Lab";
+                    titleText = "NCERT Class 9 Mathematics — Chapter 13: Two Variables, One Line Lab";
                     badgeText = "Class 9 • NCERT / CBSE";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
                 } else if (type === 'class9-statistics' || type === 'chapter14-maths-class9' || type === 'statistics-data-analysis') {
                     fileUrl = "{{ asset('animations/class9-statistics.html') }}";
-                    titleText = "NCERT Class 9 Mathematics — Chapter 14: Statistics Lab";
+                    titleText = "NCERT Class 9 Mathematics — Chapter 14: Math of Space: Surface Area and Volume Lab";
                     badgeText = "Class 9 • NCERT / CBSE";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
                 } else if (type === 'class9-probability' || type === 'chapter15-maths-class9' || type === 'probability-intro') {
@@ -862,22 +922,22 @@
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
                 } else if (type === 'class9-cell-fundamental-unit' || type === 'chapter1-science-class9' || type === 'the-fundamental-unit-of-life' || type === 'cell-structure-and-function') {
                     fileUrl = "{{ asset('animations/class9-cell-fundamental-unit.html') }}";
-                    titleText = "NCERT Class 9 Science — Chapter 1: The Fundamental Unit of Life (Cell) Lab";
+                    titleText = "NCERT Class 9 Science — Chapter 1: Exploration: Entering the World of Secondary Science Lab";
                     badgeText = "Class 9 • NCERT / CBSE Science";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
                 } else if (type === 'class9-tissues' || type === 'chapter2-science-class9' || type === 'tissues' || type === 'plant-and-animal-tissues') {
                     fileUrl = "{{ asset('animations/class9-tissues.html') }}";
-                    titleText = "NCERT Class 9 Science — Chapter 2: Tissues Master Lab";
+                    titleText = "NCERT Class 9 Science — Chapter 2: Cell: The Building Block of Life Lab";
                     badgeText = "Class 9 • NCERT / CBSE Science";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
                 } else if (type === 'class9-reproduction' || type === 'chapter3-science-class9' || type === 'class9-sexual-asexual-reproduction' || type === 'reproduction-modes-and-health') {
                     fileUrl = "{{ asset('animations/class9-reproduction.html') }}";
-                    titleText = "NCERT Class 9 Science — Chapter 3: Reproduction Master Lab";
+                    titleText = "NCERT Class 9 Science — Chapter 3: Tissues in Action Lab";
                     badgeText = "Class 9 • NCERT / CBSE Science";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30 shrink-0";
                 } else if (type === 'class9-diversity-in-living-organisms' || type === 'chapter4-science-class9' || type === 'diversity-in-living-organisms' || type === 'biological-diversity-and-classification') {
                     fileUrl = "{{ asset('animations/class9-diversity-in-living-organisms.html') }}";
-                    titleText = "NCERT Class 9 Science — Chapter 4: Diversity in Living Organisms Master Lab";
+                    titleText = "NCERT Class 9 Science — Chapter 4: Describing Motion Around Us Lab";
                     badgeText = "Class 9 • NCERT / CBSE Science";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
                 } else if (type === 'class9-exploring-mixtures-and-separation' || type === 'chapter5-science-class9' || type === 'exploring-mixtures-and-their-separation' || type === 'mixtures-and-separation-techniques') {
@@ -887,39 +947,44 @@
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
                 } else if (type === 'class9-structure-of-atom' || type === 'chapter6-science-class9' || type === 'structure-of-an-atom' || type === 'atomic-structure-and-models') {
                     fileUrl = "{{ asset('animations/class9-structure-of-atom.html') }}";
-                    titleText = "NCERT Class 9 Science — Chapter 6: Structure of an Atom Master Lab";
+                    titleText = "NCERT Class 9 Science — Chapter 6: How Forces Affect Motion Lab";
                     badgeText = "Class 9 • NCERT / CBSE Science";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
                 } else if (type === 'class9-atoms-and-molecules' || type === 'chapter7-science-class9' || type === 'atoms-and-molecules' || type === 'chemical-formulae-and-molecular-mass') {
                     fileUrl = "{{ asset('animations/class9-atoms-and-molecules.html') }}";
-                    titleText = "NCERT Class 9 Science — Chapter 7: Atoms and Molecules Master Lab";
+                    titleText = "NCERT Class 9 Science — Chapter 7: Work, Energy, and Simple Machines Lab";
                     badgeText = "Class 9 • NCERT / CBSE Science";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 shrink-0";
                 } else if (type === 'class9-earth-as-a-system' || type === 'chapter8-science-class9' || type === 'earth-as-a-system' || type === 'energy-matter-and-life') {
                     fileUrl = "{{ asset('animations/class9-earth-as-a-system.html') }}";
-                    titleText = "NCERT Class 9 Science — Chapter 8: Earth as a System: Energy, Matter & Life Master Lab";
+                    titleText = "NCERT Class 9 Science — Chapter 8: Journey Inside the Atom Lab";
                     badgeText = "Class 9 • NCERT / CBSE Science";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
                 } else if (type === 'class9-motion' || type === 'chapter9-science-class9' || type === 'motion' || type === 'kinematics-and-motion') {
                     fileUrl = "{{ asset('animations/class9-motion.html') }}";
-                    titleText = "NCERT Class 9 Science — Chapter 9: Motion Master Lab";
+                    titleText = "NCERT Class 9 Science — Chapter 9: Atomic Foundations of Matter Lab";
                     badgeText = "Class 9 • NCERT / CBSE Science";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
                 } else if (type === 'class9-force-and-laws-of-motion' || type === 'chapter10-science-class9' || type === 'force-and-laws-of-motion' || type === 'laws-of-motion') {
                     fileUrl = "{{ asset('animations/class9-force-and-laws-of-motion.html') }}";
-                    titleText = "NCERT Class 9 Science — Chapter 10: Force and Laws of Motion Master Lab";
+                    titleText = "NCERT Class 9 Science — Chapter 10: Sound Waves: Characteristics and Applications Lab";
                     badgeText = "Class 9 • NCERT / CBSE Science";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
                 } else if (type === 'class9-work-energy-simple-machines' || type === 'chapter11-science-class9' || type === 'work-energy-and-simple-machines' || type === 'work-and-energy') {
                     fileUrl = "{{ asset('animations/class9-work-energy-simple-machines.html') }}";
-                    titleText = "NCERT Class 9 Science — Chapter 11: Work, Energy and Simple Machines Master Lab";
+                    titleText = "NCERT Class 9 Science — Chapter 11: Reproduction: How Life Continues Lab";
                     badgeText = "Class 9 • NCERT / CBSE Science";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
                 } else if (type === 'class9-sound' || type === 'chapter12-science-class9' || type === 'sound' || type === 'sound-waves-and-acoustics') {
                     fileUrl = "{{ asset('animations/class9-sound.html') }}";
-                    titleText = "NCERT Class 9 Science — Chapter 12: Sound Master Lab";
+                    titleText = "NCERT Class 9 Science — Chapter 12: Patterns in Life: Diversity and Classification Lab";
                     badgeText = "Class 9 • NCERT / CBSE Science";
-                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/30 shrink-0";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'class9-earth-system' || type === 'chapter13-science-class9' || type === 'earth-system' || type === 'earth-as-a-system-energy-matter-and-life') {
+                    fileUrl = "{{ asset('animations/class9-earth-system.html') }}";
+                    titleText = "NCERT Class 9 Science — Chapter 13: Earth as a System: Energy, Matter, and Life Lab";
+                    badgeText = "Class 9 • NCERT / CBSE Science";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
                 } else if (type === 'class9-english-communication-writing' || type === 'chapter1-english-class9' || type === 'class9-english-writing' || type === 'effective-communication-writing') {
                     fileUrl = "{{ asset('animations/class9-english-communication-writing.html') }}";
                     titleText = "NCERT Class 9 English — Chapter 1: Effective Communication & Writing in Diverse Forms";
