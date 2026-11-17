@@ -820,21 +820,36 @@
                     titleText = "NCERT Class 10 Science — Chapter 10: The Human Eye and the Colourful World Lab 2 (Classic)";
                     badgeText = "NCERT Class 10 Science • Lab 2";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
-                } else if (type === 'electricity' || type === 'chapter11' || type === 'chapter-11') {
-                    fileUrl = "{{ asset('animations/electricity.html') }}";
-                    titleText = "NCERT Class 10 Science — Chapter 11: Electricity Lab";
-                    badgeText = "NCERT Class 10 Science";
+                } else if (type === 'class10-electricity' || type === 'class10-electricity-lab1' || type === 'chapter11-science-class10') {
+                    fileUrl = "{{ asset('animations/class10-electricity.html') }}";
+                    titleText = "NCERT Class 10 Science — Chapter 11: Electricity Lab 1";
+                    badgeText = "NCERT Class 10 Science • Lab 1";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0";
-                } else if (type === 'magnetic-effects-of-electric-current' || type === 'chapter12' || type === 'chapter-12') {
+                } else if (type === 'electricity' || type === 'class10-electricity-lab2' || type === 'chapter11' || type === 'chapter-11') {
+                    fileUrl = "{{ asset('animations/electricity.html') }}";
+                    titleText = "NCERT Class 10 Science — Chapter 11: Electricity Lab 2 (Classic)";
+                    badgeText = "NCERT Class 10 Science • Lab 2";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
+                } else if (type === 'class10-magnetic-effects' || type === 'class10-magnetic-effects-lab1' || type === 'chapter12-science-class10') {
+                    fileUrl = "{{ asset('animations/class10-magnetic-effects.html') }}";
+                    titleText = "NCERT Class 10 Science — Chapter 12: Magnetic Effects of Electric Current Lab 1";
+                    badgeText = "NCERT Class 10 Science • Lab 1";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0";
+                } else if (type === 'magnetic-effects-of-electric-current' || type === 'class10-magnetic-effects-lab2' || type === 'chapter12' || type === 'chapter-12') {
                     fileUrl = "{{ asset('animations/magnetic-effects-of-electric-current.html') }}";
-                    titleText = "NCERT Class 10 Science — Chapter 12: Magnetic Effects of Electric Current Lab";
-                    badgeText = "NCERT Class 10 Science";
-                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0";
-                } else if (type === 'our-environment' || type === 'chapter13' || type === 'chapter-13') {
-                    fileUrl = "{{ asset('animations/our-environment.html') }}";
-                    titleText = "NCERT Class 10 Science — Chapter 13: Our Environment Lab";
-                    badgeText = "NCERT Class 10 Science";
+                    titleText = "NCERT Class 10 Science — Chapter 12: Magnetic Effects of Electric Current Lab 2 (Classic)";
+                    badgeText = "NCERT Class 10 Science • Lab 2";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
+                } else if (type === 'class10-our-environment' || type === 'class10-our-environment-lab1' || type === 'chapter13-science-class10') {
+                    fileUrl = "{{ asset('animations/class10-our-environment.html') }}";
+                    titleText = "NCERT Class 10 Science — Chapter 13: Our Environment Lab 1";
+                    badgeText = "NCERT Class 10 Science • Lab 1";
                     badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0";
+                } else if (type === 'our-environment' || type === 'class10-our-environment-lab2' || type === 'chapter13' || type === 'chapter-13') {
+                    fileUrl = "{{ asset('animations/our-environment.html') }}";
+                    titleText = "NCERT Class 10 Science — Chapter 13: Our Environment Lab 2 (Classic)";
+                    badgeText = "NCERT Class 10 Science • Lab 2";
+                    badgeClass = "hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 shrink-0";
                 } else if (type === 'surdas-ke-pad' || type === 'chapter1-hindi' || type === 'hindi-class10-chapter-1') {
                     fileUrl = "{{ asset('animations/surdas-ke-pad.html') }}";
                     titleText = "NCERT Class 10 Hindi (क्षितिज भाग-2) — पाठ 1: सूरदास के पद";

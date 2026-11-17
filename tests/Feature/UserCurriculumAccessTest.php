@@ -44,7 +44,8 @@ class UserCurriculumAccessTest extends TestCase
         $response->assertSee('editCurriculumModal');
         $response->assertSee('Social Science');
         $response->assertSee('ncert|social-science|class12');
-        $response->assertSee('cbse|social-science|class1');
+        $response->assertSee('scert-kerala|social-science|class1');
+        $response->assertDontSee('cbse|');
         $response->assertSee('openEditCurriculumModal');
     }
 
@@ -75,7 +76,7 @@ class UserCurriculumAccessTest extends TestCase
                 'mode' => 'restricted',
                 'items' => [
                     'ncert|mathematics|class8',
-                    'cbse|social-science|class10',
+                    'scert-kerala|social-science|class10',
                 ],
             ]);
 
@@ -96,7 +97,7 @@ class UserCurriculumAccessTest extends TestCase
 
             $this->assertDatabaseHas('user_curricula', [
                 'user_id' => $targetUser->id,
-                'syllabus' => 'cbse',
+                'syllabus' => 'scert-kerala',
                 'subject' => 'social-science',
                 'class_key' => 'class10',
                 'is_enabled' => 1,

@@ -1,0 +1,762 @@
+[
+  {
+    "id": 17,
+    "title": "Current Potential Review",
+    "subtitle": "Current, Charge, Potential Difference, and Circuit Fundamentals",
+    "badge": "Review Set 1",
+    "speech": "",
+    "theory": "\n            <div class=\"space-y-2 text-slate-300 text-xs leading-relaxed\">\n                <p><strong class=\"text-amber-400\">Section Focus:</strong> Review of electric current ($I = Q/t$), charge quantization ($Q = ne$), potential difference ($V = W/Q$), ammeter series connection, and voltmeter parallel connection.</p>\n            </div>\n        ",
+    "questions": [
+      {
+        "id": "c11_q1",
+        "question": "What is the continuous rate of flow of electric charge through a conductor called?",
+        "options": [
+          "Electric current",
+          "Electric potential",
+          "Electrical resistance",
+          "Electric power"
+        ],
+        "answer": 0,
+        "hint": "Expressed mathematically as I = Q / t.",
+        "explanation": "Electric current is defined as the amount of electric charge flowing across a cross-section of a conductor per unit time.",
+        "steps": [
+          "Step 1: Identify that the rate of flow of charge Q through a conductor in time t is I = Q/t.",
+          "Step 2: In the SI system, 1 Coulomb per second is defined as 1 Ampere.",
+          "Step 3: This physical quantity is called electric current."
+        ]
+      },
+      {
+        "id": "c11_q2",
+        "question": "How many electrons constitute a net charge of one coulomb (1 C)?",
+        "options": [
+          "6.25 \u00d7 10\u00b9\u2078 electrons",
+          "1.6 \u00d7 10\u207b\u00b9\u2079 electrons",
+          "6.02 \u00d7 10\u00b2\u00b3 electrons",
+          "9.1 \u00d7 10\u207b\u00b3\u00b9 electrons"
+        ],
+        "answer": 0,
+        "hint": "Use n = Q / e where e = 1.6 \u00d7 10\u207b\u00b9\u2079 C.",
+        "explanation": "Since Q = n \u00d7 e, n = 1 / (1.6 \u00d7 10\u207b\u00b9\u2079) = 6.25 \u00d7 10\u00b9\u2078 electrons.",
+        "steps": [
+          "Step 1: Charge on a single electron is e = 1.6 \u00d7 10\u207b\u00b9\u2079 C.",
+          "Step 2: The total number of electrons n in charge Q is n = Q / e.",
+          "Step 3: For Q = 1 C, n = 1 / (1.6 \u00d7 10\u207b\u00b9\u2079) = 6.25 \u00d7 10\u00b9\u2078 electrons."
+        ]
+      },
+      {
+        "id": "c11_q3",
+        "question": "A current of 0.75 A is drawn by a filament of an electric bulb for 20 minutes. What total charge flows through the circuit?",
+        "options": [
+          "900 C",
+          "15 C",
+          "45 C",
+          "1800 C"
+        ],
+        "answer": 0,
+        "hint": "Convert 20 minutes to seconds: t = 20 \u00d7 60 = 1200 s, then apply Q = I \u00d7 t.",
+        "explanation": "Q = I \u00d7 t = 0.75 A \u00d7 (20 \u00d7 60 s) = 0.75 A \u00d7 1200 s = 900 C.",
+        "steps": [
+          "Step 1: Convert time duration to SI units: t = 20 minutes = 20 \u00d7 60 = 1200 seconds.",
+          "Step 2: Apply the electric current formula: Q = I \u00d7 t.",
+          "Step 3: Calculate: Q = 0.75 A \u00d7 1200 s = 900 Coulombs."
+        ]
+      },
+      {
+        "id": "c11_q4",
+        "question": "What is the work done in moving a unit positive charge from one point to another in an electric circuit called?",
+        "options": [
+          "Electric potential difference",
+          "Electric conductance",
+          "Electromotive current",
+          "Capacitive reactance"
+        ],
+        "answer": 0,
+        "hint": "Formula: V = W / Q.",
+        "explanation": "Electric potential difference between two points is defined as the work done per unit charge in moving a charge between them.",
+        "steps": [
+          "Step 1: Consider work W performed to move charge Q between two circuit points.",
+          "Step 2: The work done per unit charge is expressed as V = W/Q.",
+          "Step 3: This physical quantity is defined as electric potential difference, measured in volts."
+        ]
+      },
+      {
+        "id": "c11_q5",
+        "question": "How much work is required to move a charge of 3 C across two points having a potential difference of 15 V?",
+        "options": [
+          "45 J",
+          "5 J",
+          "0.2 J",
+          "18 J"
+        ],
+        "answer": 0,
+        "hint": "Apply W = V \u00d7 Q.",
+        "explanation": "Work done W = V \u00d7 Q = 15 V \u00d7 3 C = 45 Joules.",
+        "steps": [
+          "Step 1: Identify given parameters: potential difference V = 15 V and charge Q = 3 C.",
+          "Step 2: From the potential difference formula, work done is W = V \u00d7 Q.",
+          "Step 3: Multiply: W = 15 V \u00d7 3 C = 45 Joules."
+        ]
+      },
+      {
+        "id": "c11_q6",
+        "question": "How are an ammeter and a voltmeter connected in a standard test circuit?",
+        "options": [
+          "Ammeter in series, voltmeter in parallel",
+          "Ammeter in parallel, voltmeter in series",
+          "Both connected in series",
+          "Both connected in parallel"
+        ],
+        "answer": 0,
+        "hint": "An ammeter measures through-current; a voltmeter measures across-voltage.",
+        "explanation": "An ammeter has low resistance and is connected in series; a voltmeter has high resistance and is connected in parallel.",
+        "steps": [
+          "Step 1: Current must pass entirely through the ammeter, requiring a series connection with low resistance.",
+          "Step 2: Potential difference is measured across two nodes, requiring a parallel connection with high resistance.",
+          "Step 3: Therefore, the ammeter is in series and the voltmeter is in parallel."
+        ]
+      },
+      {
+        "id": "c11_q7",
+        "question": "What device is commonly used to maintain a potential difference across an external circuit?",
+        "options": [
+          "Chemical cell or battery",
+          "Ammeter",
+          "Rheostat alone",
+          "Voltmeter"
+        ],
+        "answer": 0,
+        "hint": "Chemical reactions maintain the voltage difference across its terminals.",
+        "explanation": "A chemical cell or battery maintains a constant potential difference between its terminals by chemical action.",
+        "steps": [
+          "Step 1: Charges require an electric pressure difference to flow through conductors.",
+          "Step 2: Chemical reactions inside a cell continuously generate electromotive potential across its terminals.",
+          "Step 3: Thus, an electric cell or battery maintains the potential difference."
+        ]
+      },
+      {
+        "id": "c11_q8",
+        "question": "How much energy is given to each coulomb of charge passing through a 6 V battery?",
+        "options": [
+          "6 J",
+          "1 J",
+          "36 J",
+          "0.16 J"
+        ],
+        "answer": 0,
+        "hint": "Each coulomb means Q = 1 C. Work done W = V \u00d7 Q.",
+        "explanation": "Work done W = V \u00d7 Q = 6 V \u00d7 1 C = 6 Joules of energy per coulomb.",
+        "steps": [
+          "Step 1: Identify that 'each coulomb' corresponds to a charge Q = 1 C.",
+          "Step 2: The battery maintains a potential difference of V = 6 V.",
+          "Step 3: Energy delivered W = V \u00d7 Q = 6 V \u00d7 1 C = 6 Joules."
+        ]
+      },
+      {
+        "id": "c11_q9",
+        "question": "What is the conventional graphical symbol for an open plug key in an electrical schematic?",
+        "options": [
+          "Parentheses with no center dot ()",
+          "Parentheses with center dot (\u00b7)",
+          "A zig-zag line",
+          "A circle with letter A"
+        ],
+        "answer": 0,
+        "hint": "A central dot indicates conducting contact (closed key).",
+        "explanation": "According to NCERT Table 11.1, an open plug key is symbolized by empty parentheses (), while a closed key contains a center dot (\u00b7).",
+        "steps": [
+          "Step 1: Standard circuit notation represents a switch via parentheses.",
+          "Step 2: When open, no conduction occurs and the space inside remains blank ().",
+          "Step 3: When closed, a central dot is inserted (\u00b7) to denote electrical continuity."
+        ]
+      },
+      {
+        "id": "c11_q10",
+        "question": "If 1 microampere (1 \u03bcA) of current flows in a wire, how many amperes does this represent?",
+        "options": [
+          "10\u207b\u2076 A",
+          "10\u207b\u00b3 A",
+          "10\u2076 A",
+          "10\u207b\u2079 A"
+        ],
+        "answer": 0,
+        "hint": "Micro denotes the metric prefix for one-millionth (10\u207b\u2076).",
+        "explanation": "1 microampere = 1 \u03bcA = 10\u207b\u2076 A (one-millionth of an ampere).",
+        "steps": [
+          "Step 1: Recall the standard metric prefixes: milli = 10\u207b\u00b3 and micro = 10\u207b\u2076.",
+          "Step 2: Apply the prefix to amperes: 1 \u03bcA = 1 \u00d7 10\u207b\u2076 A.",
+          "Step 3: Therefore, 1 microampere represents 10\u207b\u2076 amperes."
+        ]
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "title": "Resistor Geometry Review",
+    "subtitle": "Ohm's Law, V-I Graphs, Geometric Factors, and Resistivity",
+    "badge": "Review Set 2",
+    "speech": "",
+    "theory": "\n            <div class=\"space-y-2 text-slate-300 text-xs leading-relaxed\">\n                <p><strong class=\"text-amber-400\">Section Focus:</strong> Review of Ohm's law ($V = IR$), linear $V\\text{--}I$ characteristics, geometric resistance dependencies ($R = \\rho l/A$), wire stretching/cutting, and resistivity comparisons.</p>\n            </div>\n        ",
+    "questions": [
+      {
+        "id": "c11_q11",
+        "question": "What mathematical relationship constitutes Ohm's law at constant temperature?",
+        "options": [
+          "V = IR",
+          "V = I / R",
+          "V = I\u00b2R",
+          "V = R / I"
+        ],
+        "answer": 0,
+        "hint": "Potential difference is directly proportional to current (V \u221d I).",
+        "explanation": "Ohm's law states that V \u221d I at constant temperature, giving the equation V = IR.",
+        "steps": [
+          "Step 1: Ohm's law establishes direct proportionality between potential difference and current: V \u221d I.",
+          "Step 2: Introducing the constant of proportionality R (resistance) gives V = IR.",
+          "Step 3: Therefore, V = IR is the definitive mathematical formulation."
+        ]
+      },
+      {
+        "id": "c11_q12",
+        "question": "A piece of wire of resistance R is cut into 5 equal parts. These parts are then connected in parallel. If the equivalent resistance of this combination is R', what is the ratio R/R'?",
+        "options": [
+          "25",
+          "1/25",
+          "5",
+          "1/5"
+        ],
+        "answer": 0,
+        "hint": "Each piece has resistance r = R/5. Combining 5 equal resistors in parallel gives R' = r/5 = R/25.",
+        "explanation": "Each of the 5 pieces has resistance r = R/5. When connected in parallel, 1/R' = 5 \u00d7 (1/r) = 5 \u00d7 (5/R) = 25/R. Thus R' = R/25, giving R/R' = 25 (NCERT Exercise Q1).",
+        "steps": [
+          "Step 1: Cutting wire of resistance R into 5 equal lengths gives each part a resistance r = R/5 (since R \u221d l).",
+          "Step 2: Connecting 5 such parts in parallel gives 1/R' = 1/r + 1/r + 1/r + 1/r + 1/r = 5/r = 5 / (R/5) = 25/R.",
+          "Step 3: Taking the reciprocal gives R' = R/25. Thus, the ratio R / R' = 25."
+        ]
+      },
+      {
+        "id": "c11_q13",
+        "question": "How does the resistance of a cylindrical conductor change if its length is doubled and its cross-sectional area is halved?",
+        "options": [
+          "It increases by a factor of 4",
+          "It remains unchanged",
+          "It doubles",
+          "It is halved"
+        ],
+        "answer": 0,
+        "hint": "Apply R = \u03c1 l / A with l' = 2l and A' = A/2.",
+        "explanation": "R' = \u03c1 (2l) / (A/2) = 4 \u00d7 (\u03c1 l / A) = 4R. Resistance quadruples.",
+        "steps": [
+          "Step 1: The original resistance is R = \u03c1 l / A.",
+          "Step 2: When length doubles (l' = 2l) and area is halved (A' = A/2), the new resistance is R' = \u03c1 (2l) / (A/2).",
+          "Step 3: Simplifying gives R' = 4 (\u03c1 l / A) = 4R. Thus, resistance increases four-fold."
+        ]
+      },
+      {
+        "id": "c11_q14",
+        "question": "An electric heater draws 4 A current from a 60 V source. What current will it draw if the potential difference is increased to 120 V?",
+        "options": [
+          "8 A",
+          "2 A",
+          "16 A",
+          "4 A"
+        ],
+        "answer": 0,
+        "hint": "First find resistance R = V / I = 60 / 4 = 15 \u03a9, then find I' = 120 / 15.",
+        "explanation": "Resistance R = 60 V / 4 A = 15 \u03a9. At 120 V, new current I' = 120 V / 15 \u03a9 = 8 A (NCERT Example 11.4).",
+        "steps": [
+          "Step 1: Calculate the heater resistance: R = V / I = 60 V / 4 A = 15 \u03a9.",
+          "Step 2: When potential difference increases to 120 V, apply Ohm's law: I' = V' / R.",
+          "Step 3: Compute: I' = 120 V / 15 \u03a9 = 8 A."
+        ]
+      },
+      {
+        "id": "c11_q15",
+        "question": "Which of the following materials has the lowest electrical resistivity at 20\u00b0C?",
+        "options": [
+          "Silver (1.60 \u00d7 10\u207b\u2078 \u03a9\u00b7m)",
+          "Copper (1.62 \u00d7 10\u207b\u2078 \u03a9\u00b7m)",
+          "Nichrome (100 \u00d7 10\u207b\u2076 \u03a9\u00b7m)",
+          "Glass (10\u00b9\u2070 to 10\u00b9\u2074 \u03a9\u00b7m)"
+        ],
+        "answer": 0,
+        "hint": "Refer to Table 11.2 for the best known electrical conductor.",
+        "explanation": "Silver has the lowest resistivity (1.60 \u00d7 10\u207b\u2078 \u03a9\u00b7m) among all known metals at 20\u00b0C, making it the best conductor.",
+        "steps": [
+          "Step 1: Check NCERT Table 11.2 for conductor resistivity values.",
+          "Step 2: Silver has \u03c1 = 1.60 \u00d7 10\u207b\u2078 \u03a9\u00b7m, copper has 1.62 \u00d7 10\u207b\u2078 \u03a9\u00b7m, nichrome has 100 \u00d7 10\u207b\u2076 \u03a9\u00b7m, and glass is an insulator.",
+          "Step 3: Therefore, silver possesses the lowest electrical resistivity."
+        ]
+      },
+      {
+        "id": "c11_q16",
+        "question": "A cylindrical copper wire has radius r and length l with resistance R. If stretched to radius r/2 while keeping volume constant, what is its new resistance?",
+        "options": [
+          "16 R",
+          "4 R",
+          "2 R",
+          "8 R"
+        ],
+        "answer": 0,
+        "hint": "Volume V = A \u00d7 l = constant. Halving radius reduces area to A/4, which increases length to 4l. Then R' = \u03c1 (4l)/(A/4).",
+        "explanation": "When radius is halved, area becomes A' = A/4. Because volume is conserved, length quadruples (l' = 4l). R' = \u03c1 (4l) / (A/4) = 16 R.",
+        "steps": [
+          "Step 1: Volume of wire is V = A \u00d7 l = \u03c0 r\u00b2 l = constant.",
+          "Step 2: When radius becomes r/2, cross-sectional area becomes A' = \u03c0(r/2)\u00b2 = A/4, so length becomes l' = 4l.",
+          "Step 3: New resistance R' = \u03c1 l' / A' = \u03c1 (4l) / (A/4) = 16 (\u03c1 l / A) = 16 R."
+        ]
+      },
+      {
+        "id": "c11_q17",
+        "question": "Why does the cord of an electric heater not glow while the heating element glows red-hot?",
+        "options": [
+          "Cord has very low resistance copper wire, while element has high resistance nichrome",
+          "Cord is insulated with rubber which reflects light",
+          "Current flows through the element but bypasses the cord",
+          "The element contains active chemical combustible gases"
+        ],
+        "answer": 0,
+        "hint": "Joule heating H = I\u00b2Rt depends directly on resistance R.",
+        "explanation": "The copper connecting cord has very low resistance so heat generated is negligible; the nichrome element has high resistance so H = I\u00b2Rt produces high temperature and glowing.",
+        "steps": [
+          "Step 1: The cord and the heating element are connected in series, carrying the identical current I.",
+          "Step 2: From Joule's law (H = I\u00b2Rt), heat produced is directly proportional to resistance R.",
+          "Step 3: The copper cord has very low resistance (stays cool), while the nichrome coil has high resistance (glows red-hot)."
+        ]
+      },
+      {
+        "id": "c11_q18",
+        "question": "A 1 m long wire of radius 0.15 mm has a resistance of 26 \u03a9 at 20\u00b0C. What is its resistivity?",
+        "options": [
+          "1.84 \u00d7 10\u207b\u2076 \u03a9\u00b7m",
+          "1.84 \u00d7 10\u207b\u2078 \u03a9\u00b7m",
+          "2.6 \u00d7 10\u207b\u2075 \u03a9\u00b7m",
+          "5.2 \u00d7 10\u207b\u2076 \u03a9\u00b7m"
+        ],
+        "answer": 0,
+        "hint": "Area A = \u03c0 r\u00b2 = 3.14 \u00d7 (1.5 \u00d7 10\u207b\u2074)\u00b2. Apply \u03c1 = R \u00d7 A / l.",
+        "explanation": "A = \u03c0 \u00d7 (0.15 \u00d7 10\u207b\u00b3)\u00b2 \u2248 7.07 \u00d7 10\u207b\u2078 m\u00b2. \u03c1 = R \u00d7 A / l = 26 \u00d7 7.07 \u00d7 10\u207b\u2078 / 1 \u2248 1.84 \u00d7 10\u207b\u2076 \u03a9\u00b7m (NCERT Example 11.5).",
+        "steps": [
+          "Step 1: Convert radius to metres: r = 0.15 mm = 1.5 \u00d7 10\u207b\u2074 m. Cross-sectional area A = \u03c0 r\u00b2 \u2248 7.069 \u00d7 10\u207b\u2078 m\u00b2.",
+          "Step 2: Use the resistivity formula: \u03c1 = R \u00d7 A / l.",
+          "Step 3: Calculate: \u03c1 = 26 \u03a9 \u00d7 7.069 \u00d7 10\u207b\u2078 m\u00b2 / 1 m = 1.84 \u00d7 10\u207b\u2076 \u03a9\u00b7m (manganin)."
+        ]
+      },
+      {
+        "id": "c11_q19",
+        "question": "How does electrical resistivity vary when a metal is heated to a higher temperature?",
+        "options": [
+          "Resistivity of pure metals increases with temperature",
+          "Resistivity drops to zero at high temperature",
+          "Resistivity is completely independent of temperature",
+          "Resistivity alternates periodically between positive and negative"
+        ],
+        "answer": 0,
+        "hint": "Higher temperature increases lattice ion vibrations, scattering electrons more frequently.",
+        "explanation": "In pure metals, thermal energy increases lattice ion vibrations, increasing electron collisions and causing electrical resistivity to increase with temperature.",
+        "steps": [
+          "Step 1: Heating a metal imparts kinetic energy to the positive metallic crystal ions.",
+          "Step 2: Increased amplitude of ionic vibrations enhances the collision cross-section for drifting electrons.",
+          "Step 3: Consequently, electron mobility decreases and resistivity increases with temperature."
+        ]
+      },
+      {
+        "id": "c11_q20",
+        "question": "What is the equivalent resistance of a conductor through which a current of 2 A flows under a potential difference of 8 V?",
+        "options": [
+          "4 \u03a9",
+          "16 \u03a9",
+          "0.25 \u03a9",
+          "10 \u03a9"
+        ],
+        "answer": 0,
+        "hint": "Use Ohm's law R = V / I.",
+        "explanation": "R = V / I = 8 V / 2 A = 4 \u03a9.",
+        "steps": [
+          "Step 1: Identify given parameters: voltage V = 8 V and current I = 2 A.",
+          "Step 2: Apply Ohm's law: R = V / I.",
+          "Step 3: Calculate: R = 8 V / 2 A = 4 \u03a9."
+        ]
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "title": "Resistor Networks Review",
+    "subtitle": "Series, Parallel, and Complex Equivalent Network Analysis",
+    "badge": "Review Set 3",
+    "speech": "",
+    "theory": "\n            <div class=\"space-y-2 text-slate-300 text-xs leading-relaxed\">\n                <p><strong class=\"text-amber-400\">Section Focus:</strong> Review of series resistor formulas ($R_s = R_1 + R_2 + R_3$), parallel resistor formulas ($1/R_p = 1/R_1 + 1/R_2 + 1/R_3$), branch current division, and complex series-parallel equivalent circuits.</p>\n            </div>\n        ",
+    "questions": [
+      {
+        "id": "c11_q21",
+        "question": "How can three resistors of 2 \u03a9, 3 \u03a9, and 6 \u03a9 be connected to give a total equivalent resistance of 4 \u03a9?",
+        "options": [
+          "3 \u03a9 and 6 \u03a9 in parallel, connected in series with 2 \u03a9",
+          "All three in series",
+          "All three in parallel",
+          "2 \u03a9 and 3 \u03a9 in parallel, in series with 6 \u03a9"
+        ],
+        "answer": 0,
+        "hint": "Parallel combination of 3 \u03a9 and 6 \u03a9 gives (3\u00d76)/(3+6) = 2 \u03a9. Then add 2 \u03a9 in series: 2 + 2 = 4 \u03a9.",
+        "explanation": "Connecting 3 \u03a9 and 6 \u03a9 in parallel gives Rp = (3\u00d76)/(3+6) = 2 \u03a9. Placing this in series with 2 \u03a9 gives R_total = 2 + 2 = 4 \u03a9 (NCERT In-text Q1).",
+        "steps": [
+          "Step 1: Test parallel combination of 3 \u03a9 and 6 \u03a9: 1/Rp = 1/3 + 1/6 = 3/6 = 1/2, so Rp = 2 \u03a9.",
+          "Step 2: Connect the remaining 2 \u03a9 resistor in series with this parallel pair.",
+          "Step 3: Total equivalent resistance R_total = Rp + 2 \u03a9 = 2 + 2 = 4 \u03a9."
+        ]
+      },
+      {
+        "id": "c11_q22",
+        "question": "How can the same three resistors of 2 \u03a9, 3 \u03a9, and 6 \u03a9 be connected to give a total equivalent resistance of 1 \u03a9?",
+        "options": [
+          "All three connected in parallel",
+          "All three connected in series",
+          "2 \u03a9 and 6 \u03a9 in series, in parallel with 3 \u03a9",
+          "3 \u03a9 and 6 \u03a9 in series, in parallel with 2 \u03a9"
+        ],
+        "answer": 0,
+        "hint": "Calculate 1/Rp = 1/2 + 1/3 + 1/6.",
+        "explanation": "1/Rp = 1/2 + 1/3 + 1/6 = 3/6 + 2/6 + 1/6 = 6/6 = 1 \u03a9\u207b\u00b9. Thus Rp = 1 \u03a9 (NCERT In-text Q2).",
+        "steps": [
+          "Step 1: Connect all three resistors in parallel across two common junction nodes.",
+          "Step 2: Apply the parallel formula: 1/Rp = 1/2 + 1/3 + 1/6 = (3 + 2 + 1) / 6 = 6/6 = 1 \u03a9\u207b\u00b9.",
+          "Step 3: Taking the reciprocal gives Rp = 1 \u03a9."
+        ]
+      },
+      {
+        "id": "c11_q23",
+        "question": "What is the highest equivalent resistance that can be obtained by combining four coils of resistances 4 \u03a9, 8 \u03a9, 12 \u03a9, and 24 \u03a9?",
+        "options": [
+          "48 \u03a9",
+          "2 \u03a9",
+          "24 \u03a9",
+          "96 \u03a9"
+        ],
+        "answer": 0,
+        "hint": "Highest resistance is always obtained by connecting all resistors in series.",
+        "explanation": "The highest resistance is obtained in series: Rs = 4 + 8 + 12 + 24 = 48 \u03a9 (NCERT In-text Q3).",
+        "steps": [
+          "Step 1: The maximum possible resistance of any resistor set is achieved in a series configuration.",
+          "Step 2: Sum the individual resistance values: Rs = R1 + R2 + R3 + R4.",
+          "Step 3: Calculate: Rs = 4 + 8 + 12 + 24 = 48 \u03a9."
+        ]
+      },
+      {
+        "id": "c11_q24",
+        "question": "What is the lowest equivalent resistance that can be obtained from the same four coils (4 \u03a9, 8 \u03a9, 12 \u03a9, and 24 \u03a9)?",
+        "options": [
+          "2 \u03a9",
+          "48 \u03a9",
+          "1 \u03a9",
+          "4 \u03a9"
+        ],
+        "answer": 0,
+        "hint": "Lowest resistance is always obtained by connecting all resistors in parallel.",
+        "explanation": "1/Rp = 1/4 + 1/8 + 1/12 + 1/24 = (6 + 3 + 2 + 1) / 24 = 12/24 = 1/2. Thus Rp = 2 \u03a9 (NCERT In-text Q4).",
+        "steps": [
+          "Step 1: The minimum possible resistance is achieved by connecting all resistors in parallel.",
+          "Step 2: 1/Rp = 1/4 + 1/8 + 1/12 + 1/24 = (6 + 3 + 2 + 1) / 24 = 12/24 = 1/2 \u03a9\u207b\u00b9.",
+          "Step 3: Taking the reciprocal gives Rp = 2 \u03a9."
+        ]
+      },
+      {
+        "id": "c11_q25",
+        "question": "In a parallel circuit with resistors R1 = 5 \u03a9, R2 = 10 \u03a9, and R3 = 30 \u03a9 connected to a 12 V battery, what is the total circuit current?",
+        "options": [
+          "4 A",
+          "0.4 A",
+          "2.4 A",
+          "1.2 A"
+        ],
+        "answer": 0,
+        "hint": "Find branch currents: I1 = 12/5 = 2.4 A, I2 = 12/10 = 1.2 A, I3 = 12/30 = 0.4 A. Sum them.",
+        "explanation": "I1 = 2.4 A, I2 = 1.2 A, I3 = 0.4 A. Total current I = 2.4 + 1.2 + 0.4 = 4.0 A (NCERT Example 11.8).",
+        "steps": [
+          "Step 1: Voltage across each branch is V = 12 V.",
+          "Step 2: Branch currents are I1 = 12/5 = 2.4 A, I2 = 12/10 = 1.2 A, and I3 = 12/30 = 0.4 A.",
+          "Step 3: Total current I = I1 + I2 + I3 = 2.4 + 1.2 + 0.4 = 4.0 A."
+        ]
+      },
+      {
+        "id": "c11_q26",
+        "question": "What is the equivalent resistance of the parallel combination of 5 \u03a9, 10 \u03a9, and 30 \u03a9?",
+        "options": [
+          "3 \u03a9",
+          "45 \u03a9",
+          "15 \u03a9",
+          "5 \u03a9"
+        ],
+        "answer": 0,
+        "hint": "1/Rp = 1/5 + 1/10 + 1/30 = (6 + 3 + 1)/30 = 10/30 = 1/3.",
+        "explanation": "1/Rp = 1/5 + 1/10 + 1/30 = 10/30 = 1/3 \u03a9\u207b\u00b9. Rp = 3 \u03a9 (NCERT Example 11.8).",
+        "steps": [
+          "Step 1: Write the reciprocal parallel formula: 1/Rp = 1/5 + 1/10 + 1/30.",
+          "Step 2: Find common denominator 30: 1/Rp = (6 + 3 + 1) / 30 = 10/30 = 1/3 \u03a9\u207b\u00b9.",
+          "Step 3: Invert to find Rp: Rp = 3 \u03a9."
+        ]
+      },
+      {
+        "id": "c11_q27",
+        "question": "Two identical resistors of resistance R each are connected first in series and then in parallel. What is the ratio of series to parallel equivalent resistance (Rs / Rp)?",
+        "options": [
+          "4",
+          "1/4",
+          "2",
+          "1/2"
+        ],
+        "answer": 0,
+        "hint": "Rs = 2R, Rp = R/2. Ratio Rs / Rp = (2R) / (R/2) = 4.",
+        "explanation": "Rs = R + R = 2R. Rp = (R \u00d7 R) / (R + R) = R/2. Ratio Rs / Rp = 2R / (R/2) = 4.",
+        "steps": [
+          "Step 1: Equivalent resistance in series is Rs = R + R = 2R.",
+          "Step 2: Equivalent resistance in parallel is Rp = R / 2.",
+          "Step 3: Compute the ratio: Rs / Rp = (2R) / (R/2) = 4."
+        ]
+      },
+      {
+        "id": "c11_q28",
+        "question": "In a series circuit containing an 8 \u03a9 resistor and a 12 \u03a9 resistor powered by a 10 V battery, what is the voltage drop across the 12 \u03a9 resistor?",
+        "options": [
+          "6 V",
+          "4 V",
+          "10 V",
+          "2.4 V"
+        ],
+        "answer": 0,
+        "hint": "Total Rs = 8 + 12 = 20 \u03a9. Current I = 10 / 20 = 0.5 A. Voltage across 12 \u03a9 is V = 0.5 \u00d7 12 = 6 V.",
+        "explanation": "Rs = 8 + 12 = 20 \u03a9. Current I = 10 V / 20 \u03a9 = 0.5 A. V\u2082 = I \u00d7 R\u2082 = 0.5 A \u00d7 12 \u03a9 = 6 V.",
+        "steps": [
+          "Step 1: Total series resistance is Rs = 8 + 12 = 20 \u03a9.",
+          "Step 2: Circuit current is I = V / Rs = 10 V / 20 \u03a9 = 0.5 A.",
+          "Step 3: Voltage drop across the 12 \u03a9 resistor is V2 = I \u00d7 R2 = 0.5 A \u00d7 12 \u03a9 = 6 V."
+        ]
+      },
+      {
+        "id": "c11_q29",
+        "question": "How many 176 \u03a9 resistors connected in parallel are required to carry a total current of 5 A on a 220 V line?",
+        "options": [
+          "4 resistors",
+          "5 resistors",
+          "2 resistors",
+          "8 resistors"
+        ],
+        "answer": 0,
+        "hint": "Required equivalent resistance Rp = V / I = 220 / 5 = 44 \u03a9. Since Rp = R / n, n = R / Rp = 176 / 44.",
+        "explanation": "Target resistance Rp = 220 V / 5 A = 44 \u03a9. For n identical resistors in parallel, Rp = 176 / n. Thus n = 176 / 44 = 4 resistors (NCERT Exercise Q10).",
+        "steps": [
+          "Step 1: Calculate the required total circuit resistance: Rp = V / I = 220 V / 5 A = 44 \u03a9.",
+          "Step 2: For n parallel resistors of value R, the equivalent resistance is Rp = R / n.",
+          "Step 3: Solve for n: n = R / Rp = 176 \u03a9 / 44 \u03a9 = 4 resistors."
+        ]
+      },
+      {
+        "id": "c11_q30",
+        "question": "Why is an ammeter never connected in parallel across a power source?",
+        "options": [
+          "Its extremely low resistance would cause a dangerous short circuit and burn out the meter",
+          "It has infinite resistance and would prevent all current flow",
+          "It would reverse the chemical polarity of the battery cells",
+          "Voltmeters and ammeters must always be installed in pairs"
+        ],
+        "answer": 0,
+        "hint": "A low-resistance device placed directly across a voltage source draws enormous current.",
+        "explanation": "Because an ammeter has virtually zero internal resistance, connecting it in parallel across a voltage source creates a dead short circuit, resulting in massive current that destroys the instrument.",
+        "steps": [
+          "Step 1: Ammeters are engineered with minimal internal resistance (R \u2248 0) to avoid disturbing series circuits.",
+          "Step 2: Placing an ammeter in parallel connects near-zero resistance directly across the battery terminals.",
+          "Step 3: By Ohm's law (I = V/R), a catastrophic surge of current occurs, blowing the meter or circuit."
+        ]
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "title": "Power Heating Review",
+    "subtitle": "Joule's Law, Bulb Filaments, Fuse Ratings, and Commercial kWh Billing",
+    "badge": "Review Set 4",
+    "speech": "",
+    "theory": "\n            <div class=\"space-y-2 text-slate-300 text-xs leading-relaxed\">\n                <p><strong class=\"text-amber-400\">Section Focus:</strong> Review of Joule's heating law ($H = I^2 Rt$), tungsten filaments, fuse protection, power ratings ($P = VI = I^2 R = V^2/R$), commercial energy units ($1\\text{ kWh} = 3.6 \\times 10^6\\text{ J}$), and electricity cost calculations.</p>\n            </div>\n        ",
+    "questions": [
+      {
+        "id": "c11_q31",
+        "question": "Which of the following is NOT an expression for electrical power in a circuit?",
+        "options": [
+          "IR\u00b2",
+          "I\u00b2R",
+          "VI",
+          "V\u00b2/R"
+        ],
+        "answer": 0,
+        "hint": "Power is VI, I\u00b2R, or V\u00b2/R. Notice the placement of the square.",
+        "explanation": "P = VI = I\u00b2R = V\u00b2/R. The expression IR\u00b2 has no physical meaning in electrical power (NCERT Exercise Q2).",
+        "steps": [
+          "Step 1: Electric power is defined as P = V \u00d7 I.",
+          "Step 2: Substituting V = IR gives P = (IR) \u00d7 I = I\u00b2R.",
+          "Step 3: Substituting I = V/R gives P = V \u00d7 (V/R) = V\u00b2/R. The expression IR\u00b2 is incorrect."
+        ]
+      },
+      {
+        "id": "c11_q32",
+        "question": "An electric bulb is rated 220 V and 100 W. When operated on 110 V, what power will it consume?",
+        "options": [
+          "25 W",
+          "50 W",
+          "75 W",
+          "100 W"
+        ],
+        "answer": 0,
+        "hint": "Resistance R = V\u00b2 / P = 220\u00b2 / 100 = 484 \u03a9. At 110 V, P' = V'\u00b2 / R = 110\u00b2 / 484.",
+        "explanation": "Bulb resistance R = V\u00b2 / P = 220\u00b2 / 100 = 484 \u03a9. When operated at 110 V: P' = V'\u00b2 / R = 110\u00b2 / 484 = 12100 / 484 = 25 W (NCERT Exercise Q3).",
+        "steps": [
+          "Step 1: Filament resistance is R = V\u00b2 / P = (220)\u00b2 / 100 = 484 \u03a9.",
+          "Step 2: When supply voltage is halved to V' = 110 V, power consumed is P' = (V')\u00b2 / R.",
+          "Step 3: Calculate: P' = (110)\u00b2 / 484 = 12,100 / 484 = 25 W (power drops to one-fourth)."
+        ]
+      },
+      {
+        "id": "c11_q33",
+        "question": "Two conducting wires of the same material, equal length, and equal diameter are connected first in series and then in parallel across the same potential difference. What is the ratio of heat produced in series to parallel (Hs / Hp)?",
+        "options": [
+          "1 : 4",
+          "1 : 2",
+          "2 : 1",
+          "4 : 1"
+        ],
+        "answer": 0,
+        "hint": "At constant V, H = (V\u00b2/R) \u00d7 t. Rs = 2R, Rp = R/2. Hs / Hp = (V\u00b2/2R) / (V\u00b2/(R/2)) = (1/2) / 2 = 1/4.",
+        "explanation": "Since voltage V is constant across both setups, H \u221d 1/R. Hs / Hp = Rp / Rs = (R/2) / (2R) = 1/4 = 1:4 (NCERT Exercise Q4).",
+        "steps": [
+          "Step 1: When connected to the same voltage source V, heat produced is H = (V\u00b2 / R_eq) \u00d7 t.",
+          "Step 2: Series equivalent is Rs = 2R; parallel equivalent is Rp = R/2.",
+          "Step 3: Ratio Hs / Hp = (V\u00b2 / Rs) / (V\u00b2 / Rp) = Rp / Rs = (R/2) / (2R) = 1/4 = 1 : 4."
+        ]
+      },
+      {
+        "id": "c11_q34",
+        "question": "An electric refrigerator rated 400 W operates 8 hours/day for 30 days. What is the cost of energy at Rs 3.00 per kWh?",
+        "options": [
+          "Rs 288.00",
+          "Rs 96.00",
+          "Rs 576.00",
+          "Rs 144.00"
+        ],
+        "answer": 0,
+        "hint": "Energy E = 400 W \u00d7 8 h/day \u00d7 30 days = 96,000 Wh = 96 kWh. Cost = 96 \u00d7 3.00.",
+        "explanation": "Total energy = 400 W \u00d7 8 h \u00d7 30 = 96,000 Wh = 96 kWh. Total cost = 96 kWh \u00d7 Rs 3.00 = Rs 288.00 (NCERT Example 11.13).",
+        "steps": [
+          "Step 1: Total operating hours in 30 days = 8 hours/day \u00d7 30 days = 240 hours.",
+          "Step 2: Total electrical energy consumed = 400 W \u00d7 240 h = 96,000 Watt-hours = 96 kWh.",
+          "Step 3: Cost = 96 kWh \u00d7 Rs 3.00/kWh = Rs 288.00."
+        ]
+      },
+      {
+        "id": "c11_q35",
+        "question": "Which uses more energy: a 250 W TV set in 1 hour, or a 1200 W toaster in 10 minutes?",
+        "options": [
+          "The TV set uses more energy (250 Wh vs 200 Wh)",
+          "The toaster uses more energy (1200 Wh vs 250 Wh)",
+          "Both appliances use exactly identical energy",
+          "Neither appliance consumes any electrical energy"
+        ],
+        "answer": 0,
+        "hint": "E(TV) = 250 W \u00d7 1 h = 250 Wh. E(toaster) = 1200 W \u00d7 (10/60) h = 200 Wh.",
+        "explanation": "Energy for TV = 250 W \u00d7 1 h = 250 Wh. Energy for toaster = 1200 W \u00d7 (1/6 h) = 200 Wh. The TV set uses more energy (NCERT Exercise Q16).",
+        "steps": [
+          "Step 1: Calculate energy used by TV: E\u2081 = 250 W \u00d7 1 hour = 250 Watt-hours (Wh).",
+          "Step 2: Calculate energy used by toaster: E\u2082 = 1200 W \u00d7 (10/60) hours = 200 Watt-hours (Wh).",
+          "Step 3: Comparing E\u2081 = 250 Wh and E\u2082 = 200 Wh shows that the TV set consumes more energy."
+        ]
+      },
+      {
+        "id": "c11_q36",
+        "question": "An electric lamp is marked 100 W, 220 V. What is the current drawn by the lamp under rated conditions?",
+        "options": [
+          "0.45 A",
+          "2.2 A",
+          "4.5 A",
+          "0.22 A"
+        ],
+        "answer": 0,
+        "hint": "Use I = P / V = 100 / 220.",
+        "explanation": "I = P / V = 100 W / 220 V = 5/11 A \u2248 0.45 A.",
+        "steps": [
+          "Step 1: Identify rated power P = 100 W and rated voltage V = 220 V.",
+          "Step 2: Apply the power formula: P = V \u00d7 I, which rearranges to I = P / V.",
+          "Step 3: Calculate: I = 100 W / 220 V = 0.454 A \u2248 0.45 A."
+        ]
+      },
+      {
+        "id": "c11_q37",
+        "question": "What is the primary physical reason for filling inactive nitrogen and argon gases into incandescent light bulbs?",
+        "options": [
+          "To prevent oxidation and evaporation of the hot tungsten filament",
+          "To cause chemical fluorescence emitting blue light",
+          "To conduct electrical current directly across the glass bulb",
+          "To absorb all infrared heat radiation"
+        ],
+        "answer": 0,
+        "hint": "Oxygen at high temperatures would burn the glowing metallic filament instantly.",
+        "explanation": "Nitrogen and argon are chemically inert gases that prevent oxidation and thermal evaporation of the tungsten filament, extending its lifespan.",
+        "steps": [
+          "Step 1: The tungsten filament operates at temperatures exceeding 2500\u00b0C.",
+          "Step 2: In the presence of oxygen, tungsten would oxidize and vaporize rapidly, burning out the bulb.",
+          "Step 3: Inert nitrogen and argon do not react with tungsten and retard evaporation, prolonging filament life."
+        ]
+      },
+      {
+        "id": "c11_q38",
+        "question": "An electric iron draws 3.82 A current from a 220 V source. What is its power rating?",
+        "options": [
+          "840 W",
+          "57.6 W",
+          "360 W",
+          "1200 W"
+        ],
+        "answer": 0,
+        "hint": "Apply P = V \u00d7 I = 220 \u00d7 3.82.",
+        "explanation": "P = V \u00d7 I = 220 V \u00d7 3.82 A \u2248 840 W (NCERT Example 11.10).",
+        "steps": [
+          "Step 1: Identify potential difference V = 220 V and current I = 3.82 A.",
+          "Step 2: Use the electric power equation: P = V \u00d7 I.",
+          "Step 3: Calculate: P = 220 V \u00d7 3.82 A = 840.4 W \u2248 840 W."
+        ]
+      },
+      {
+        "id": "c11_q39",
+        "question": "What is the equivalent resistance of an electric iron that produces 100 J of heat per second when connected across a 20 V supply?",
+        "options": [
+          "4 \u03a9",
+          "20 \u03a9",
+          "5 \u03a9",
+          "100 \u03a9"
+        ],
+        "answer": 0,
+        "hint": "Heat per second is power P = 100 W. Use R = V\u00b2 / P = 20\u00b2 / 100.",
+        "explanation": "P = 100 J/s = 100 W. R = V\u00b2 / P = 20\u00b2 / 100 = 400 / 100 = 4 \u03a9 (NCERT Example 11.11).",
+        "steps": [
+          "Step 1: 100 Joules of heat per second corresponds to an electrical power P = 100 W.",
+          "Step 2: From the power formula P = V\u00b2 / R, isolate resistance: R = V\u00b2 / P.",
+          "Step 3: Calculate: R = (20 V)\u00b2 / 100 W = 400 / 100 = 4 \u03a9."
+        ]
+      },
+      {
+        "id": "c11_q40",
+        "question": "If an appliance of 2 kW power operates for 3 hours daily for 10 days, how many commercial units of electricity are consumed?",
+        "options": [
+          "60 units (60 kWh)",
+          "6 units",
+          "180 units",
+          "20 units"
+        ],
+        "answer": 0,
+        "hint": "Energy = Power (kW) \u00d7 Total Hours = 2 kW \u00d7 (3 \u00d7 10) h = 2 \u00d7 30 = 60 kWh.",
+        "explanation": "Total hours = 3 h/day \u00d7 10 days = 30 h. Total energy = 2 kW \u00d7 30 h = 60 kWh = 60 commercial units.",
+        "steps": [
+          "Step 1: 1 commercial unit of electricity = 1 kilowatt-hour (1 kWh).",
+          "Step 2: Total operating time = 3 hours/day \u00d7 10 days = 30 hours.",
+          "Step 3: Energy consumed = 2 kW \u00d7 30 hours = 60 kWh = 60 units."
+        ]
+      }
+    ]
+  }
+]

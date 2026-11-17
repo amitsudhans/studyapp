@@ -18,8 +18,9 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
 
         $this->assertEquals('ncert', $data['selectedSyllabus']);
         $this->assertArrayHasKey('ncert', $data['syllabuses']);
-        $this->assertArrayHasKey('cbse', $data['syllabuses']);
+        $this->assertArrayNotHasKey('cbse', $data['syllabuses']);
         $this->assertArrayHasKey('scert-kerala', $data['syllabuses']);
+        $this->assertCount(2, $data['syllabuses']);
 
         // Check 14 chapters in Class 10
         $this->assertCount(14, $data['activeChapters']);
@@ -5160,7 +5161,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertFileExists(public_path('animations/earth-sun-moon.html'));
     }
 
-    public function test_cbse_syllabus_has_no_contents(): void
+    public function test_cbse_syllabus_is_not_an_option_and_falls_back_to_ncert(): void
     {
         $controller = new MultimediaController;
         $request = Request::create('/multimedia?syllabus=cbse&subject=mathematics&class=class10', 'GET', [
@@ -5172,9 +5173,10 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $view = $controller->index($request);
         $data = $view->getData();
 
-        $this->assertEquals('cbse', $data['selectedSyllabus']);
-        $this->assertEmpty($data['activeChapters']);
-        $this->assertFalse($data['hasAnyMultimedia']);
+        $this->assertEquals('ncert', $data['selectedSyllabus']);
+        $this->assertArrayNotHasKey('cbse', $data['syllabuses']);
+        $this->assertCount(14, $data['activeChapters']);
+        $this->assertTrue($data['hasAnyMultimedia']);
     }
 
     public function test_scert_kerala_syllabus_has_no_contents(): void
@@ -5573,7 +5575,15 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertTrue($data['hasAnyMultimedia']);
         $this->assertEquals('Electricity', $data['activeChapters'][10]['name']);
         $this->assertTrue($data['activeChapters'][10]['has_multimedia']);
-        $this->assertStringContainsString('electricity.html', $data['activeChapters'][10]['media_url']);
+        $this->assertEquals('class10-electricity', $data['activeChapters'][10]['media_key']);
+        $this->assertStringContainsString('class10-electricity.html', $data['activeChapters'][10]['media_url']);
+        $this->assertEquals('electricity', $data['activeChapters'][10]['secondary_media_key']);
+        $this->assertStringContainsString('electricity.html', $data['activeChapters'][10]['secondary_media_url']);
+        $this->assertFileExists(public_path('animations/class10-electricity.html'));
+        $this->assertFileExists(public_path('animations/electricity.html'));
+        $this->assertFileExists(public_path('animations/chapter11-science-class10.html'));
+        $this->assertFileExists(public_path('animations/class10-electricity-lab1.html'));
+        $this->assertFileExists(public_path('animations/class10-electricity-lab2.html'));
     }
 
     public function test_ncert_class_10_science_has_magnetic_effects_of_electric_current_multimedia(): void
@@ -5594,7 +5604,15 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertTrue($data['hasAnyMultimedia']);
         $this->assertEquals('Magnetic Effects of Electric Current', $data['activeChapters'][11]['name']);
         $this->assertTrue($data['activeChapters'][11]['has_multimedia']);
-        $this->assertStringContainsString('magnetic-effects-of-electric-current.html', $data['activeChapters'][11]['media_url']);
+        $this->assertEquals('class10-magnetic-effects', $data['activeChapters'][11]['media_key']);
+        $this->assertStringContainsString('class10-magnetic-effects.html', $data['activeChapters'][11]['media_url']);
+        $this->assertEquals('magnetic-effects-of-electric-current', $data['activeChapters'][11]['secondary_media_key']);
+        $this->assertStringContainsString('magnetic-effects-of-electric-current.html', $data['activeChapters'][11]['secondary_media_url']);
+        $this->assertFileExists(public_path('animations/class10-magnetic-effects.html'));
+        $this->assertFileExists(public_path('animations/magnetic-effects-of-electric-current.html'));
+        $this->assertFileExists(public_path('animations/chapter12-science-class10.html'));
+        $this->assertFileExists(public_path('animations/class10-magnetic-effects-lab1.html'));
+        $this->assertFileExists(public_path('animations/class10-magnetic-effects-lab2.html'));
     }
 
     public function test_ncert_class_10_science_has_our_environment_multimedia(): void
@@ -5615,7 +5633,15 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
         $this->assertTrue($data['hasAnyMultimedia']);
         $this->assertEquals('Our Environment', $data['activeChapters'][12]['name']);
         $this->assertTrue($data['activeChapters'][12]['has_multimedia']);
-        $this->assertStringContainsString('our-environment.html', $data['activeChapters'][12]['media_url']);
+        $this->assertEquals('class10-our-environment', $data['activeChapters'][12]['media_key']);
+        $this->assertStringContainsString('class10-our-environment.html', $data['activeChapters'][12]['media_url']);
+        $this->assertEquals('our-environment', $data['activeChapters'][12]['secondary_media_key']);
+        $this->assertStringContainsString('our-environment.html', $data['activeChapters'][12]['secondary_media_url']);
+        $this->assertFileExists(public_path('animations/class10-our-environment.html'));
+        $this->assertFileExists(public_path('animations/our-environment.html'));
+        $this->assertFileExists(public_path('animations/chapter13-science-class10.html'));
+        $this->assertFileExists(public_path('animations/class10-our-environment-lab1.html'));
+        $this->assertFileExists(public_path('animations/class10-our-environment-lab2.html'));
     }
 
     public function test_ncert_class_10_hindi_has_surdas_ke_pad_multimedia(): void
@@ -5663,7 +5689,7 @@ class MultimediaCurriculumTreeUnitTest extends TestCase
     public function test_all_multimedia_files_have_last_slide_message_and_no_next_option(): void
     {
         $files = glob(public_path('animations/*.html'));
-        $this->assertCount(1465, $files);
+        $this->assertCount(1477, $files);
 
         foreach ($files as $file) {
             $content = file_get_contents($file);

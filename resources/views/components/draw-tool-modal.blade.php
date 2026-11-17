@@ -24,16 +24,24 @@
         <div class="p-3 bg-slate-950/60 border-b border-slate-800 space-y-2.5 shrink-0">
             <!-- Row 1: Categories & Primary Tools -->
             <div class="flex items-center justify-between gap-2 flex-wrap">
-                <!-- Tool Category Tabs -->
-                <div class="flex items-center space-x-1 bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs">
-                    <button type="button" onclick="selectDrawCategory('shapes', this)" class="draw-cat-btn active px-2.5 py-1 rounded-lg bg-indigo-600 text-white font-semibold transition-all">
-                        📐 Shapes
-                    </button>
-                    <button type="button" onclick="selectDrawCategory('presets', this)" class="draw-cat-btn px-2.5 py-1 rounded-lg hover:bg-slate-800 text-slate-300 font-medium transition-all">
-                        ⚡ Quick Presets
-                    </button>
-                    <button type="button" onclick="selectDrawCategory('freehand', this)" class="draw-cat-btn px-2.5 py-1 rounded-lg hover:bg-slate-800 text-slate-300 font-medium transition-all">
-                        ✏️ Freehand & Labels
+                <!-- Tool Category Tabs & Select Tool -->
+                <div class="flex items-center space-x-2 flex-wrap">
+                    <div class="flex items-center space-x-1 bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs">
+                        <button type="button" onclick="selectDrawCategory('shapes', this)" class="draw-cat-btn active px-2.5 py-1 rounded-lg bg-indigo-600 text-white font-semibold transition-all">
+                            📐 Shapes
+                        </button>
+                        <button type="button" onclick="selectDrawCategory('presets', this)" class="draw-cat-btn px-2.5 py-1 rounded-lg hover:bg-slate-800 text-slate-300 font-medium transition-all">
+                            ⚡ Quick Presets
+                        </button>
+                        <button type="button" onclick="selectDrawCategory('freehand', this)" class="draw-cat-btn px-2.5 py-1 rounded-lg hover:bg-slate-800 text-slate-300 font-medium transition-all">
+                            ✏️ Freehand & Labels
+                        </button>
+                    </div>
+
+                    <!-- Primary Select Tool Button -->
+                    <button type="button" id="draw_select_tool_btn" onclick="setDrawTool('select', this)" class="shape-tool-btn px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-indigo-600 text-slate-200 border border-slate-700 text-xs font-bold flex items-center space-x-1.5 cursor-pointer transition-all shadow-sm" title="Select & Move / Delete Area (Shortcut: S)">
+                        <span class="text-sm">↖️</span>
+                        <span>Select Tool</span>
                     </button>
                 </div>
 
@@ -63,6 +71,11 @@
             <!-- Row 2: Sub-tools based on selected category -->
             <!-- 1. Shapes Sub-toolbar -->
             <div id="draw_tools_shapes" class="flex items-center gap-1.5 flex-wrap overflow-x-auto pb-1 text-xs scrollbar-thin">
+                <button type="button" onclick="setDrawTool('select', this)" class="shape-tool-btn px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-indigo-600/50 text-slate-200 border border-slate-700 flex items-center space-x-1 shrink-0" title="Select & Move Objects">
+                    <span class="font-bold">↖️</span>
+                    <span>Select</span>
+                </button>
+                <span class="text-slate-700 mx-0.5">|</span>
                 <span class="text-[10px] uppercase font-bold text-slate-500 mr-1 shrink-0">Triangles:</span>
                 <button type="button" onclick="setDrawTool('right_triangle', this)" class="shape-tool-btn active px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-indigo-600/50 text-slate-200 border border-slate-700 flex items-center space-x-1 shrink-0">
                     <span class="font-bold">⊿</span>
@@ -187,6 +200,11 @@
 
             <!-- 3. Freehand & Labels Sub-toolbar -->
             <div id="draw_tools_freehand" class="hidden flex items-center gap-2 flex-wrap pb-1 text-xs">
+                <button type="button" onclick="setDrawTool('select', this)" class="shape-tool-btn px-3 py-1 rounded-lg bg-slate-800 hover:bg-indigo-600/50 text-slate-200 border border-slate-700 flex items-center space-x-1.5 shrink-0" title="Select, Move, or Delete any drawn shape or area">
+                    <span>↖️</span>
+                    <span>Select Tool</span>
+                </button>
+                <span class="text-slate-700 mx-0.5">|</span>
                 <span class="text-[10px] uppercase font-bold text-slate-500 mr-1 shrink-0">Freehand & Text:</span>
                 <button type="button" onclick="setDrawTool('pen', this)" class="shape-tool-btn px-3 py-1 rounded-lg bg-slate-800 hover:bg-indigo-600/50 text-slate-200 border border-slate-700 flex items-center space-x-1.5 shrink-0">
                     <span>✏️</span>
@@ -308,6 +326,33 @@
 
             <div class="relative bg-white rounded-xl shadow-xl overflow-hidden border border-slate-300 max-w-full">
                 <canvas id="geometryCanvas" width="760" height="460" class="block cursor-crosshair touch-none max-w-full"></canvas>
+                <!-- Non-destructive selection overlay canvas (never stains the main drawing) -->
+                <canvas id="selectionOverlayCanvas" width="760" height="460" class="absolute inset-0 pointer-events-none max-w-full"></canvas>
+
+                <!-- Floating Selection Action Bar -->
+                <div id="draw_selection_action_bar" style="z-index: 100001;" class="hidden absolute top-3 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-xl bg-slate-900/95 border border-indigo-500/80 shadow-2xl backdrop-blur-md flex items-center space-x-2 text-xs text-white">
+                    <span class="text-indigo-400 font-bold flex items-center space-x-1 text-xs">
+                        <span>↖️</span>
+                        <span id="draw_selection_dimensions">Selected Area</span>
+                    </span>
+                    <span class="text-slate-600 text-xs">|</span>
+                    <button type="button" onclick="eraseSelectionOutline()" class="px-2.5 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-amber-300 hover:text-white border border-slate-700 font-medium cursor-pointer flex items-center space-x-1 transition-colors" title="Erase Outline / Deselect (Esc)">
+                        <span>✕</span>
+                        <span>Erase Outline</span>
+                    </button>
+                    <button type="button" onclick="deleteCurrentSelection()" class="px-2 py-0.5 rounded bg-rose-600/30 hover:bg-rose-600 text-rose-300 hover:text-white border border-rose-500/30 font-medium cursor-pointer flex items-center space-x-1 transition-colors" title="Delete Content Inside (Del / Backspace)">
+                        <span>🗑️</span>
+                        <span>Delete Area</span>
+                    </button>
+                    <button type="button" onclick="duplicateCurrentSelection()" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium cursor-pointer flex items-center space-x-1 transition-colors" title="Duplicate (Ctrl+D)">
+                        <span>📋</span>
+                        <span>Duplicate</span>
+                    </button>
+                    <button type="button" onclick="commitAndDeselect()" class="px-2.5 py-0.5 rounded bg-indigo-600 hover:bg-indigo-500 text-white font-semibold cursor-pointer flex items-center space-x-1 shadow-sm transition-colors" title="Done (Esc)">
+                        <span>✓</span>
+                        <span>Done</span>
+                    </button>
+                </div>
 
                 <!-- Floating Inline Text Label Input -->
                 <div id="draw_text_input_box" style="z-index: 100000;" class="hidden absolute p-2 rounded-xl bg-slate-900/95 border border-indigo-500 shadow-2xl backdrop-blur-sm space-y-1.5 w-60">
@@ -331,7 +376,7 @@
 
             <!-- Hint below canvas -->
             <div class="mt-2 flex items-center justify-between w-full max-w-[760px] text-[11px] text-slate-400 px-1">
-                <span>Tip: Click &amp; drag on canvas to draw shapes, or click "⚡ Quick Presets" to place complete diagrams.</span>
+                <span>Tip: Use "↖️ Select Tool" to select, move, or delete any region. Drag on canvas to draw, or use "⚡ Quick Presets".</span>
                 <span class="font-mono text-slate-500">760 × 460 px Canvas</span>
             </div>
         </div>
@@ -390,6 +435,240 @@
         let polylinePoints = [];
         let polylineBaseSnapshot = null;
 
+        // Selection Tool State
+        let overlayCanvas = null;
+        let overlayCtx = null;
+        let selectionBox = null; // { x, y, w, h }
+        let selectionImage = null; // Offscreen canvas with cut content
+        let isSelecting = false;
+        let isMovingSelection = false;
+        let selectionDragStartX = 0;
+        let selectionDragStartY = 0;
+        let selectionOrigX = 0;
+        let selectionOrigY = 0;
+        let selectionBaseSnapshot = null;
+        let selectionCutMade = false;
+
+        function clearSelectionOverlay() {
+            if (overlayCtx && overlayCanvas) {
+                overlayCtx.clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
+            }
+        }
+
+        function eraseCanvasRect(x, y, w, h) {
+            if (!ctx || !canvas) return;
+            ctx.save();
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(x, y, w, h);
+            if (isGridEnabled) {
+                ctx.strokeStyle = '#f1f5f9';
+                ctx.lineWidth = 1;
+                ctx.setLineDash([]);
+                const step = 20;
+                const startGridX = Math.floor(x / step) * step;
+                const endGridX = Math.ceil((x + w) / step) * step;
+                for (let gx = startGridX; gx <= endGridX; gx += step) {
+                    if (gx >= x && gx <= x + w) {
+                        ctx.beginPath();
+                        ctx.moveTo(gx, y);
+                        ctx.lineTo(gx, y + h);
+                        ctx.stroke();
+                    }
+                }
+                const startGridY = Math.floor(y / step) * step;
+                const endGridY = Math.ceil((y + h) / step) * step;
+                for (let gy = startGridY; gy <= endGridY; gy += step) {
+                    if (gy >= y && gy <= y + h) {
+                        ctx.beginPath();
+                        ctx.moveTo(x, gy);
+                        ctx.lineTo(x + w, gy);
+                        ctx.stroke();
+                    }
+                }
+            }
+            ctx.restore();
+        }
+
+        function isPointInSelection(pt, box) {
+            if (!box) return false;
+            return pt.x >= box.x && pt.x <= (box.x + box.w) && pt.y >= box.y && pt.y <= (box.y + box.h);
+        }
+
+        function showSelectionActionBar(box) {
+            const bar = document.getElementById('draw_selection_action_bar');
+            const dim = document.getElementById('draw_selection_dimensions');
+            if (bar && box) {
+                if (dim) dim.textContent = `${Math.round(box.w)} × ${Math.round(box.h)} px`;
+                bar.classList.remove('hidden');
+            }
+        }
+
+        function hideSelectionActionBar() {
+            const bar = document.getElementById('draw_selection_action_bar');
+            if (bar) bar.classList.add('hidden');
+        }
+
+        function captureSelectionImage() {
+            if (!selectionBox || !canvas || !ctx) return;
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = Math.max(1, Math.round(selectionBox.w));
+            tempCanvas.height = Math.max(1, Math.round(selectionBox.h));
+            const tCtx = tempCanvas.getContext('2d');
+            tCtx.drawImage(
+                canvas,
+                selectionBox.x, selectionBox.y, selectionBox.w, selectionBox.h,
+                0, 0, selectionBox.w, selectionBox.h
+            );
+            selectionImage = tempCanvas;
+        }
+
+        function cutSelectionFromCanvas() {
+            if (selectionCutMade || !selectionBox) return;
+            captureSelectionImage();
+            eraseCanvasRect(selectionBox.x, selectionBox.y, selectionBox.w, selectionBox.h);
+            selectionBaseSnapshot = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            selectionCutMade = true;
+        }
+
+        function drawSelectionMarquee(box) {
+            if (!box || !overlayCtx || !overlayCanvas) return;
+            overlayCtx.clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
+            overlayCtx.save();
+
+            // Light tint to highlight selected area
+            overlayCtx.fillStyle = 'rgba(79, 70, 229, 0.08)';
+            overlayCtx.fillRect(box.x, box.y, box.w, box.h);
+
+            // Outer white dashed border
+            overlayCtx.strokeStyle = '#ffffff';
+            overlayCtx.lineWidth = 2.5;
+            overlayCtx.setLineDash([5, 5]);
+            overlayCtx.strokeRect(box.x, box.y, box.w, box.h);
+
+            // Inner contrasting indigo dashed border
+            overlayCtx.strokeStyle = '#4f46e5';
+            overlayCtx.lineWidth = 1.5;
+            overlayCtx.lineDashOffset = 3;
+            overlayCtx.setLineDash([5, 5]);
+            overlayCtx.strokeRect(box.x, box.y, box.w, box.h);
+
+            // Handles
+            const hs = 6;
+            overlayCtx.setLineDash([]);
+            overlayCtx.fillStyle = '#ffffff';
+            overlayCtx.strokeStyle = '#4f46e5';
+            overlayCtx.lineWidth = 1.5;
+
+            const points = [
+                { x: box.x, y: box.y },
+                { x: box.x + box.w / 2, y: box.y },
+                { x: box.x + box.w, y: box.y },
+                { x: box.x + box.w, y: box.y + box.h / 2 },
+                { x: box.x + box.w, y: box.y + box.h },
+                { x: box.x + box.w / 2, y: box.y + box.h },
+                { x: box.x, y: box.y + box.h },
+                { x: box.x, y: box.y + box.h / 2 }
+            ];
+
+            for (const p of points) {
+                overlayCtx.fillRect(p.x - hs / 2, p.y - hs / 2, hs, hs);
+                overlayCtx.strokeRect(p.x - hs / 2, p.y - hs / 2, hs, hs);
+            }
+            overlayCtx.restore();
+        }
+
+        function renderSelectionOverlay() {
+            if (!selectionBox) return;
+            if (selectionCutMade && selectionBaseSnapshot && selectionImage && ctx) {
+                ctx.putImageData(selectionBaseSnapshot, 0, 0);
+                ctx.drawImage(selectionImage, selectionBox.x, selectionBox.y);
+            }
+            drawSelectionMarquee(selectionBox);
+            showSelectionActionBar(selectionBox);
+        }
+
+        window.commitSelection = function(skipUndo = false) {
+            if (!selectionBox) {
+                clearSelectionOverlay();
+                hideSelectionActionBar();
+                return;
+            }
+            hideSelectionActionBar();
+            clearSelectionOverlay();
+
+            if (selectionCutMade && selectionImage && selectionBaseSnapshot && ctx) {
+                ctx.putImageData(selectionBaseSnapshot, 0, 0);
+                ctx.drawImage(selectionImage, selectionBox.x, selectionBox.y);
+                if (!skipUndo) {
+                    pushUndoState();
+                }
+            } else if (selectionBaseSnapshot && ctx) {
+                ctx.putImageData(selectionBaseSnapshot, 0, 0);
+            }
+
+            selectionBox = null;
+            selectionImage = null;
+            selectionBaseSnapshot = null;
+            selectionCutMade = false;
+            isSelecting = false;
+            isMovingSelection = false;
+        };
+
+        window.commitAndDeselect = function() {
+            commitSelection();
+            showDrawToast('Selection committed');
+        };
+
+        window.eraseSelectionOutline = function() {
+            commitSelection();
+            showDrawToast('Outline erased');
+        };
+
+        window.deleteCurrentSelection = function() {
+            if (!selectionBox) return;
+            hideSelectionActionBar();
+            clearSelectionOverlay();
+
+            if (selectionCutMade && selectionBaseSnapshot) {
+                ctx.putImageData(selectionBaseSnapshot, 0, 0);
+            } else {
+                eraseCanvasRect(selectionBox.x, selectionBox.y, selectionBox.w, selectionBox.h);
+            }
+            pushUndoState();
+            selectionBox = null;
+            selectionImage = null;
+            selectionBaseSnapshot = null;
+            selectionCutMade = false;
+            isSelecting = false;
+            isMovingSelection = false;
+            showDrawToast('Selected area deleted');
+        };
+
+        window.duplicateCurrentSelection = function() {
+            if (!selectionBox) return;
+            if (!selectionImage) {
+                captureSelectionImage();
+            }
+            if (selectionCutMade && selectionImage && selectionBaseSnapshot) {
+                ctx.putImageData(selectionBaseSnapshot, 0, 0);
+                ctx.drawImage(selectionImage, selectionBox.x, selectionBox.y);
+            }
+            const dupCanvas = document.createElement('canvas');
+            dupCanvas.width = Math.max(1, Math.round(selectionImage.width));
+            dupCanvas.height = Math.max(1, Math.round(selectionImage.height));
+            const dupCtx = dupCanvas.getContext('2d');
+            dupCtx.drawImage(selectionImage, 0, 0);
+
+            selectionImage = dupCanvas;
+            selectionCutMade = true;
+            selectionBaseSnapshot = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            selectionBox.x = Math.min(canvas.width - selectionBox.w, selectionBox.x + 20);
+            selectionBox.y = Math.min(canvas.height - selectionBox.h, selectionBox.y + 20);
+
+            renderSelectionOverlay();
+            showDrawToast('Selection duplicated! Drag to position.');
+        };
+
         window.handleDrawImageUpload = function(input) {
             if (input && input.files && input.files[0]) {
                 loadImageOntoCanvas(input.files[0]);
@@ -440,6 +719,11 @@
             if (!canvas) return;
             ctx = canvas.getContext('2d', { willReadFrequently: true });
 
+            overlayCanvas = document.getElementById('selectionOverlayCanvas');
+            if (overlayCanvas) {
+                overlayCtx = overlayCanvas.getContext('2d');
+            }
+
             // Setup events
             canvas.addEventListener('mousedown', onPointerDown);
             canvas.addEventListener('mousemove', onPointerMove);
@@ -479,6 +763,9 @@
                 const modal = document.getElementById('drawToolModal');
                 if (!modal || modal.classList.contains('hidden')) return;
 
+                const active = document.activeElement;
+                const isInput = active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.isContentEditable);
+
                 if ((e.ctrlKey || e.metaKey) && e.key === 'z') {
                     e.preventDefault();
                     if (e.shiftKey) {
@@ -490,7 +777,32 @@
                     e.preventDefault();
                     redoDraw();
                 } else if (e.key === 'Escape') {
-                    closeDrawToolModal();
+                    if (selectionBox) {
+                        e.preventDefault();
+                        commitAndDeselect();
+                    } else {
+                        closeDrawToolModal();
+                    }
+                } else if ((e.key === 'Delete' || e.key === 'Backspace') && selectionBox && !isInput) {
+                    e.preventDefault();
+                    deleteCurrentSelection();
+                } else if ((e.ctrlKey || e.metaKey) && (e.key === 'd' || e.key === 'D') && selectionBox && !isInput) {
+                    e.preventDefault();
+                    duplicateCurrentSelection();
+                } else if ((e.key === 's' || e.key === 'S') && !e.ctrlKey && !e.metaKey && !isInput) {
+                    e.preventDefault();
+                    setDrawTool('select', document.getElementById('draw_select_tool_btn'));
+                } else if (selectionBox && !isInput && (e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'ArrowUp' || e.key === 'ArrowDown')) {
+                    e.preventDefault();
+                    if (!selectionCutMade) {
+                        cutSelectionFromCanvas();
+                    }
+                    const step = e.shiftKey ? 10 : 1;
+                    if (e.key === 'ArrowLeft') selectionBox.x -= step;
+                    if (e.key === 'ArrowRight') selectionBox.x += step;
+                    if (e.key === 'ArrowUp') selectionBox.y -= step;
+                    if (e.key === 'ArrowDown') selectionBox.y += step;
+                    renderSelectionOverlay();
                 }
             });
 
@@ -523,6 +835,7 @@
         }
 
         function clearCanvasInternal() {
+            clearSelectionOverlay();
             if (!ctx || !canvas) return;
             ctx.save();
             ctx.fillStyle = '#ffffff';
@@ -545,6 +858,7 @@
         }
 
         window.undoDraw = function() {
+            commitSelection(true);
             if (!ctx || !canvas || undoStack.length <= 1) return;
             const current = undoStack.pop();
             redoStack.push(current);
@@ -553,6 +867,7 @@
         };
 
         window.redoDraw = function() {
+            commitSelection(true);
             if (!ctx || !canvas || redoStack.length === 0) return;
             const next = redoStack.pop();
             undoStack.push(next);
@@ -560,6 +875,7 @@
         };
 
         window.clearDrawCanvas = function() {
+            commitSelection(true);
             if (!confirm('Are you sure you want to clear the drawing canvas?')) return;
             clearCanvasInternal();
             polylinePoints = [];
@@ -597,6 +913,32 @@
             startY = pt.y;
             lastX = pt.x;
             lastY = pt.y;
+
+            if (currentDrawTool === 'select') {
+                if (selectionBox && isPointInSelection(pt, selectionBox)) {
+                    if (!selectionCutMade) {
+                        cutSelectionFromCanvas();
+                    }
+                    isMovingSelection = true;
+                    selectionDragStartX = pt.x;
+                    selectionDragStartY = pt.y;
+                    selectionOrigX = selectionBox.x;
+                    selectionOrigY = selectionBox.y;
+                } else {
+                    if (selectionBox) {
+                        commitSelection();
+                    }
+                    isSelecting = true;
+                    selectionCutMade = false;
+                    selectionImage = null;
+                    selectionBaseSnapshot = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    startX = pt.x;
+                    startY = pt.y;
+                    hideSelectionActionBar();
+                }
+                if (e.cancelable) e.preventDefault();
+                return;
+            }
 
             if (currentDrawTool === 'text') {
                 openInlineTextInput(pt.x, pt.y);
@@ -693,6 +1035,43 @@
         function onPointerMove(e) {
             const pt = getCanvasPoint(e);
 
+            if (currentDrawTool === 'select') {
+                if (isMovingSelection && selectionBox) {
+                    const dx = pt.x - selectionDragStartX;
+                    const dy = pt.y - selectionDragStartY;
+                    selectionBox.x = selectionOrigX + dx;
+                    selectionBox.y = selectionOrigY + dy;
+                    renderSelectionOverlay();
+                    if (e.cancelable) e.preventDefault();
+                    return;
+                }
+                if (isSelecting) {
+                    const minX = Math.min(startX, pt.x);
+                    const minY = Math.min(startY, pt.y);
+                    const w = Math.abs(pt.x - startX);
+                    const h = Math.abs(pt.y - startY);
+                    if (overlayCtx && overlayCanvas) {
+                        overlayCtx.clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
+                        overlayCtx.save();
+                        overlayCtx.fillStyle = 'rgba(79, 70, 229, 0.08)';
+                        overlayCtx.fillRect(minX, minY, w, h);
+                        overlayCtx.strokeStyle = '#4f46e5';
+                        overlayCtx.lineWidth = 1.5;
+                        overlayCtx.setLineDash([4, 4]);
+                        overlayCtx.strokeRect(minX, minY, w, h);
+                        overlayCtx.restore();
+                    }
+                    if (e.cancelable) e.preventDefault();
+                    return;
+                }
+                if (selectionBox && isPointInSelection(pt, selectionBox)) {
+                    canvas.style.cursor = 'move';
+                } else {
+                    canvas.style.cursor = 'crosshair';
+                }
+                return;
+            }
+
             if (currentDrawTool === 'polyline' && polylinePoints.length > 0 && polylineBaseSnapshot) {
                 ctx.putImageData(polylineBaseSnapshot, 0, 0);
                 ctx.save();
@@ -734,6 +1113,39 @@
         }
 
         function onPointerUp(e) {
+            if (currentDrawTool === 'select') {
+                if (isSelecting) {
+                    isSelecting = false;
+                    const pt = (e && e.clientX !== undefined) ? getCanvasPoint(e) : { x: lastX, y: lastY };
+                    const minX = Math.min(startX, pt.x);
+                    const minY = Math.min(startY, pt.y);
+                    const w = Math.abs(pt.x - startX);
+                    const h = Math.abs(pt.y - startY);
+                    if (w >= 6 && h >= 6) {
+                        selectionBox = { x: minX, y: minY, w, h };
+                        selectionCutMade = false;
+                        if (selectionBaseSnapshot) {
+                            ctx.putImageData(selectionBaseSnapshot, 0, 0);
+                        }
+                        renderSelectionOverlay();
+                    } else {
+                        clearSelectionOverlay();
+                        if (selectionBaseSnapshot) {
+                            ctx.putImageData(selectionBaseSnapshot, 0, 0);
+                        }
+                        selectionBox = null;
+                        hideSelectionActionBar();
+                    }
+                    return;
+                }
+                if (isMovingSelection) {
+                    isMovingSelection = false;
+                    renderSelectionOverlay();
+                    return;
+                }
+                return;
+            }
+
             if (currentDrawTool === 'polyline') return;
             if (!isDrawing) return;
             isDrawing = false;
@@ -1292,6 +1704,9 @@
         };
 
         window.setDrawTool = function(tool, btn) {
+            if (currentDrawTool === 'select' && tool !== 'select') {
+                commitSelection();
+            }
             if (currentDrawTool === 'polyline' && tool !== 'polyline') {
                 finishPolyline();
             }
@@ -1304,10 +1719,19 @@
             if (btn) {
                 btn.classList.add('active', 'bg-indigo-600', 'text-white');
                 btn.classList.remove('bg-slate-800', 'text-slate-200');
+            } else if (tool === 'select') {
+                const sBtn = document.getElementById('draw_select_tool_btn');
+                if (sBtn) {
+                    sBtn.classList.add('active', 'bg-indigo-600', 'text-white');
+                    sBtn.classList.remove('bg-slate-800', 'text-slate-200');
+                }
             }
 
             if (canvas) {
-                if (tool === 'pen') {
+                if (tool === 'select') {
+                    canvas.className = 'block cursor-default touch-none max-w-full';
+                    showDrawToast('Select Tool active: Drag on canvas to select an area, then drag inside to move or press Delete to remove');
+                } else if (tool === 'pen') {
                     canvas.className = 'block cursor-crosshair touch-none max-w-full';
                 } else if (tool === 'text') {
                     canvas.className = 'block cursor-text touch-none max-w-full';
@@ -1360,6 +1784,7 @@
         // Presets Library
         window.stampPreset = function(presetKey) {
             if (!ctx || !canvas) return;
+            commitSelection(true);
 
             clearCanvasInternal();
             polylinePoints = [];
@@ -1750,6 +2175,7 @@
         // Auto-Trim Margins for High-Quality Export
         function getTrimmedCanvasDataUrl() {
             if (!canvas || !ctx) return '';
+            commitSelection(true);
             const shouldTrim = document.getElementById('draw_auto_trim')?.checked ?? true;
             if (!shouldTrim) {
                 return canvas.toDataURL('image/png');
@@ -1822,6 +2248,7 @@
         };
 
         window.closeDrawToolModal = function() {
+            commitSelection(true);
             const modal = document.getElementById('drawToolModal');
             if (modal) modal.classList.add('hidden');
             cancelTextPlacement();

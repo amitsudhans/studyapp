@@ -20,12 +20,6 @@ class CurriculumCatalog
                 'badge' => 'National Council of Educational Research and Training',
                 'description' => 'National Curriculum Framework Textbook Animations',
             ],
-            'cbse' => [
-                'id' => 'cbse',
-                'name' => 'CBSE',
-                'badge' => 'Central Board of Secondary Education',
-                'description' => 'CBSE Board Curriculum',
-            ],
             'scert-kerala' => [
                 'id' => 'scert-kerala',
                 'name' => 'SCERT Kerala',

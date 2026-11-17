@@ -1,0 +1,467 @@
+# -*- coding: utf-8 -*-
+"""
+Class 10 Science Chapter 11: Electricity
+Part 2: Slides 9 to 16 Generator
+Speech strictly 195-215 words. Titles strictly 1-3 words. Zero persona titles or forbidden names.
+"""
+
+import json
+
+slides_part2 = [
+    {
+        "id": 9,
+        "title": "Series Resistor Circuits",
+        "subtitle": "Current Invariance, Potential Difference Division, and Rs Derivation",
+        "badge": "Section 11.6.1",
+        "summary": "In a series circuit, resistors are joined end-to-end. The exact same current flows through each resistor, while the total applied potential difference divides across them. The equivalent series resistance is the direct algebraic sum: Rs = R1 + R2 + R3.",
+        "theory": """
+            <div class="space-y-3 text-slate-300 text-xs leading-relaxed">
+                <p><strong class="text-amber-400">Activities 11.4 & 11.5 Findings:</strong> When three resistors $R_1, R_2, R_3$ are connected end-to-end in series across a battery of voltage $V$:</p>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>⛓️</span> Fundamental Laws of Series Combinations:
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1">
+                        <li><strong class="text-teal-300">Uniform Current ($I$):</strong> An ammeter inserted anywhere in the series loop measures the identical current magnitude. Charges have only a single, undivided pathway:
+                            $$I = I_1 = I_2 = I_3$$
+                        </li>
+                        <li><strong class="text-teal-300">Voltage Division ($V$):</strong> A voltmeter across each individual resistor reads $V_1, V_2, V_3$. The total potential difference equals the sum of individual voltage drops:
+                            $$V = V_1 + V_2 + V_3$$
+                        </li>
+                        <li><strong class="text-teal-300">Equivalent Resistance ($R_s$) Derivation:</strong> Applying Ohm's law ($V = I R_s$, $V_1 = I R_1$, $V_2 = I R_2$, $V_3 = I R_3$):
+                            $$I R_s = I R_1 + I R_2 + I R_3 \\implies R_s = R_1 + R_2 + R_3$$
+                        </li>
+                    </ul>
+                </div>
+                <p><strong class="text-amber-400">Key Characteristic:</strong> The equivalent resistance $R_s$ of any series combination is always greater than the largest individual resistance in the combination.</p>
+            </div>
+        """,
+        "speech": "We now investigate the behaviour of electric circuits when multiple resistors are linked together in a series combination. When two or more resistors are joined end-to-end consecutively, they form a single conducting pathway across a common direct current power source. In Activities 11.4 and 11.5, we discover two cardinal rules governing all series connections. First, when an ammeter is repositioned between different resistors in a series loop, it records the exact same value of electric current throughout. Because there are no alternative branch paths, the current I remains strictly uniform through every component in the chain. Second, when measuring potential difference with a voltmeter across individual resistors, we find that the total battery voltage V splits into fractional voltage drops across each resistor, such that V equals V1 plus V2 plus V3. Applying Ohm's law to each component, we replace V with I multiplied by equivalent resistance Rs, and individual voltages with I times each corresponding resistance. Dividing the resulting algebraic expression by the common uniform current I establishes the fundamental the celebrated series resistance formula: Rs equals R1 plus R2 plus R3. The equivalent resistance of a series network is always strictly greater than any individual resistance in the chain.",
+        "checkpoints": [
+            {
+                "question": "What happens to the electric current as it traverses three resistors connected in series?",
+                "options": [
+                    "It remains exactly the same through all three resistors",
+                    "It divides equally into three separate parts",
+                    "It increases after passing through each resistor",
+                    "It drops to zero at the middle resistor"
+                ],
+                "answer": 0,
+                "hint": "In a series circuit, there is only one continuous path for flowing charge.",
+                "explanation": "In a series circuit, current is uniform throughout because charge cannot accumulate or branch off along the single pathway."
+            },
+            {
+                "question": "Three resistors of values 2 Ω, 3 Ω, and 5 Ω are connected in series. What is their equivalent resistance?",
+                "options": [
+                    "10 Ω",
+                    "0.97 Ω",
+                    "1 Ω",
+                    "30 Ω"
+                ],
+                "answer": 0,
+                "hint": "Use the series formula Rs = R1 + R2 + R3.",
+                "explanation": "Rs = 2 Ω + 3 Ω + 5 Ω = 10 Ω."
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "title": "Series Circuit Analysis",
+        "subtitle": "Worked Example 11.7, Component Voltage Drops, and Single-Point Failure",
+        "badge": "Section 11.6.1",
+        "summary": "NCERT Example 11.7 demonstrates calculating total series resistance, current, and individual voltage drops for an electric lamp and conductor connected to a 6 V battery. A major disadvantage of series circuits is that if one component fails, the entire circuit is broken.",
+        "theory": """
+            <div class="space-y-3 text-slate-300 text-xs leading-relaxed">
+                <p><strong class="text-amber-400">Worked Example 11.7 Walkthrough:</strong> An electric lamp of resistance $R_1 = 20\\ \\Omega$ and a conductor of resistance $R_2 = 4\\ \\Omega$ are connected in series to a $6\\text{ V}$ battery (Figure 11.9):</p>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>🔢</span> Mathematical Analysis:
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1">
+                        <li><strong class="text-teal-300">Total Resistance ($R_s$):</strong>
+                            $$R_s = R_1 + R_2 = 20\\ \\Omega + 4\\ \\Omega = 24\\ \\Omega$$
+                        </li>
+                        <li><strong class="text-teal-300">Total Circuit Current ($I$):</strong>
+                            $$I = \\frac{V}{R_s} = \\frac{6\\text{ V}}{24\\ \\Omega} = 0.25\\text{ A}$$
+                        </li>
+                        <li><strong class="text-teal-300">Voltage Across Lamp ($V_1$):</strong>
+                            $$V_1 = I \\times R_1 = 0.25\\text{ A} \\times 20\\ \\Omega = 5\\text{ V}$$
+                        </li>
+                        <li><strong class="text-teal-300">Voltage Across Conductor ($V_2$):</strong>
+                            $$V_2 = I \\times R_2 = 0.25\\text{ A} \\times 4\\ \\Omega = 1\\text{ V}$$
+                        </li>
+                    </ul>
+                </div>
+                <div class="p-2.5 rounded-lg bg-rose-950/40 border border-rose-500/30 space-y-1 text-rose-200">
+                    <div class="text-rose-400 font-bold flex items-center gap-1.5">
+                        <span>⚠️</span> Disadvantages of Series Connections:
+                    </div>
+                    <p>If any single component in a series chain burns out (e.g., one bulb in decorative festive fairy lights), the entire circuit breaks and all lights extinguish simultaneously. Furthermore, appliances requiring different currents cannot function effectively in series.</p>
+                </div>
+            </div>
+        """,
+        "speech": "Let us examine a numerical application of series circuits through worked Example 11.7 from the textbook. Suppose an electric lamp with a resistance of twenty ohms is connected in series with a four-ohm resistor across a six-volt battery. First, we compute the total equivalent resistance of the circuit by summing the individual values, yielding twenty plus four equals twenty-four ohms. Next, using Ohm's law, the circuit current is calculated by dividing the total battery potential of six volts by the twenty-four-ohm equivalent resistance, giving zero point two five amperes. Because current is uniform throughout the series loop, zero point two five amperes passes through both the lamp and the resistor. Applying Ohm's law to each component reveals that the potential difference across the lamp is zero point two five times twenty, which equals five volts, while across the conductor it is zero point two five times four, which equals one volt. Notice that five volts plus one volt equals the six-volt battery supply. Despite its mathematical simplicity, series wiring has severe practical drawbacks in domestic installations. If one component fails or burns out, such as a single bulb in festive fairy lights, the entire circuit is broken and all connected appliances cease operating.",
+        "checkpoints": [
+            {
+                "question": "In a series circuit with a 20 Ω lamp and a 4 Ω resistor powered by a 6 V battery, what is the current?",
+                "options": [
+                    "0.25 A",
+                    "4.0 A",
+                    "1.5 A",
+                    "0.50 A"
+                ],
+                "answer": 0,
+                "hint": "Find total resistance Rs = 20 + 4 = 24 Ω, then use I = V / Rs.",
+                "explanation": "Total resistance Rs = 24 Ω. Current I = V / Rs = 6 V / 24 Ω = 0.25 A (NCERT Example 11.7)."
+            },
+            {
+                "question": "What is a major practical disadvantage of wiring domestic household appliances in series?",
+                "options": [
+                    "If one appliance fails or is turned off, all other appliances stop working",
+                    "The equivalent resistance drops to zero, causing short circuits",
+                    "The battery voltage increases uncontrollably",
+                    "All appliances draw identical high currents of 100 amperes"
+                ],
+                "answer": 0,
+                "hint": "Consider the effect of a break in a single continuous circuit path.",
+                "explanation": "In a series circuit, if any single device fails or is switched off, the entire circuit path is opened and all appliances shut down."
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "title": "Parallel Resistor Circuits",
+        "subtitle": "Voltage Invariance, Current Splitting, and Reciprocal Rp Formula",
+        "badge": "Section 11.6.2",
+        "summary": "In a parallel circuit, resistors are connected across the same two common nodes. The potential difference across each branch is identical, while total current splits among branches. The reciprocal of equivalent resistance is the sum of reciprocals: 1/Rp = 1/R1 + 1/R2 + 1/R3.",
+        "theory": """
+            <div class="space-y-3 text-slate-300 text-xs leading-relaxed">
+                <p><strong class="text-amber-400">Activity 11.6 Circuit Dynamics:</strong> In a parallel combination, three resistors $R_1, R_2, R_3$ are joined across common junction nodes $X$ and $Y$ across a battery of voltage $V$ (Figures 11.7 & 11.10):</p>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>🔀</span> Fundamental Laws of Parallel Combinations:
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1">
+                        <li><strong class="text-teal-300">Uniform Potential Difference ($V$):</strong> A voltmeter connected across common nodes $X$ and $Y$ measures the exact same voltage $V$ across every parallel branch:
+                            $$V = V_1 = V_2 = V_3$$
+                        </li>
+                        <li><strong class="text-teal-300">Current Division ($I$):</strong> Total current $I$ entering junction $X$ splits into separate branch currents $I_1, I_2, I_3$, recombining at junction $Y$:
+                            $$I = I_1 + I_2 + I_3$$
+                        </li>
+                        <li><strong class="text-teal-300">Equivalent Resistance ($R_p$) Derivation:</strong> Applying Ohm's law ($I = V/R_p$, $I_1 = V/R_1$, $I_2 = V/R_2$, $I_3 = V/R_3$):
+                            $$\\frac{V}{R_p} = \\frac{V}{R_1} + \\frac{V}{R_2} + \\frac{V}{R_3} \\implies \\frac{1}{R_p} = \\frac{1}{R_1} + \\frac{1}{R_2} + \\frac{1}{R_3}$$
+                        </li>
+                    </ul>
+                </div>
+                <p><strong class="text-amber-400">Key Characteristic:</strong> The equivalent resistance $R_p$ of a parallel combination is always <span class="text-teal-300 font-semibold">less than the smallest individual resistance</span> in the network.</p>
+            </div>
+        """,
+        "speech": "We now examine the second primary circuit configuration: resistors connected in parallel. In a parallel circuit, two or more resistors are linked in parallel between two common junction points, providing multiple independent parallel conduits for circulating charges. In Activity 11.6, we establish the two defining laws of parallel circuits. First, the applied electric potential difference across every parallel branch is strictly identical and equals the terminal voltage supplied by the battery. A voltmeter placed across any branch reads the exact same voltage V. Second, the total electric current I entering the main circuit junction splits among the branches according to their individual resistances. By the conservation of electrical charge, total current I equals I1 plus I2 plus I3. Applying Ohm's law, each branch current is expressed as the common voltage V divided by that branch's resistance. Factoring out voltage V from both sides leads to the fundamental reciprocal parallel formula: one divided by Rp equals one divided by R1 plus one divided by R2 plus one divided by R3. A remarkable property of parallel circuits is that the equivalent resistance Rp is always smaller than the lowest individual resistor in the combination, greatly reducing the overall opposition to circulating electric current flow.",
+        "checkpoints": [
+            {
+                "question": "What quantity remains constant across all individual branches in a parallel circuit?",
+                "options": [
+                    "Potential difference (voltage)",
+                    "Electric current in amperes",
+                    "Physical temperature of wires",
+                    "Mass of copper atoms"
+                ],
+                "answer": 0,
+                "hint": "All branches connect across the exact same pair of electrical nodes.",
+                "explanation": "Because all branches connect directly across the same two junction nodes, the potential difference (voltage) is identical across every parallel branch."
+            },
+            {
+                "question": "Two resistors of 3 Ω and 6 Ω are connected in parallel. What is their equivalent resistance?",
+                "options": [
+                    "2 Ω",
+                    "9 Ω",
+                    "4.5 Ω",
+                    "18 Ω"
+                ],
+                "answer": 0,
+                "hint": "Use 1/Rp = 1/3 + 1/6 = 2/6 + 1/6 = 3/6 = 1/2.",
+                "explanation": "1/Rp = 1/3 + 1/6 = 3/6 = 1/2 Ω⁻¹, so Rp = 2 Ω. Notice that 2 Ω is less than the smallest resistor (3 Ω)."
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "title": "Parallel Circuit Advantages",
+        "subtitle": "Independent Branch Control, Reduced Total Resistance, and Domestic Wiring",
+        "badge": "Section 11.6.2",
+        "summary": "Parallel circuits offer immense advantages in domestic wiring: independent on/off switches for each device, full supply voltage (220 V) across all appliances, and branch currents tailored to individual power ratings without total circuit shutdown if one fails.",
+        "theory": """
+            <div class="space-y-3 text-slate-300 text-xs leading-relaxed">
+                <p><strong class="text-amber-400">Why Domestic Wiring is Parallel:</strong> In household electrical circuits, appliances are never connected in series; they are universally wired in <span class="text-teal-300 font-semibold">parallel across the mains supply</span> ($220\\text{ V}$ in India).</p>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>🏡</span> Four Key Advantages of Parallel Circuits:
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1">
+                        <li><strong class="text-teal-300">1. Independent Switching:</strong> Each appliance has its own dedicated switch. Turning off a bedroom light does not shut down the refrigerator or ceiling fan.</li>
+                        <li><strong class="text-teal-300">2. Uniform Voltage Rating:</strong> Every appliance receives the full rated line potential difference ($220\\text{ V}$), allowing optimal designed performance.</li>
+                        <li><strong class="text-teal-300">3. Tailored Current Allocation:</strong> Different devices require vastly different currents (e.g., electric heater draws $10\\text{ A}$, while an LED bulb draws $0.05\\text{ A}$). Parallel branches draw current independently according to their resistance ($I = V/R$).</li>
+                        <li><strong class="text-teal-300">4. Fault Isolation:</strong> If one appliance develops a short circuit or burns its filament, other branches remain fully energized and continue operating normally.</li>
+                    </ul>
+                </div>
+            </div>
+        """,
+        "speech": "Understanding the profound operational contrast between series and parallel circuits explains why modern household wiring is universally configured and installed in parallel. Imagine a home where all appliances were wired in series. If you switched off the television in your living room, the refrigerator, ceiling fans, and bedroom lights would shut down simultaneously because the single conduction path would be broken. In stark contrast, a parallel electrical wiring scheme offers four indispensable advantages. First, every individual appliance possesses its own dedicated switch, allowing independent control without disrupting other devices in the building. Second, each parallel branch connects directly across the full, stable mains supply voltage of two hundred and twenty volts, ensuring that every electrical device operates at its optimal designed potential. Third, different household appliances demand vastly different operating currents to function correctly; for example, an electric water heater requires ten amperes, while an energy-efficient light bulb needs only a fraction of an ampere. Parallel branches naturally allocate appropriate current levels inversely proportional to appliance resistance. Fourth, if an individual device suffers an electrical fault or a filament burns out, only that specific branch is deactivated, leaving the rest of the household circuit operating safely and uninterrupted.",
+        "checkpoints": [
+            {
+                "question": "Why is parallel wiring universally used for household domestic electrical installations?",
+                "options": [
+                    "Each appliance can be operated independently at full supply voltage",
+                    "It forces all appliances to share a single common switch",
+                    "It increases total circuit resistance to reduce electric bills",
+                    "It prevents electrons from moving through metallic cables"
+                ],
+                "answer": 0,
+                "hint": "Consider convenience, safety, and operating voltage requirements in a home.",
+                "explanation": "Parallel circuits give each appliance full supply voltage (220 V), allow independent switching, and ensure other devices keep working if one fails."
+            },
+            {
+                "question": "How does connecting additional appliances in parallel affect the total equivalent resistance of a house circuit?",
+                "options": [
+                    "Total equivalent resistance decreases",
+                    "Total equivalent resistance increases",
+                    "Total equivalent resistance remains perfectly constant",
+                    "Total equivalent resistance becomes infinite"
+                ],
+                "answer": 0,
+                "hint": "Adding more parallel branches adds more pathways for current to flow.",
+                "explanation": "In parallel combinations (1/Rp = Σ 1/Ri), adding branches provides more conduction paths, reducing the total equivalent resistance."
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "title": "Joules Heating Law",
+        "subtitle": "Work Dissipation, Thermal Energy Formula, and Square of Current",
+        "badge": "Section 11.7",
+        "summary": "When electric current flows through a purely resistive conductor, electrical energy is converted entirely into heat due to lattice electron collisions. Joule's law of heating states that heat produced is directly proportional to I²Rt.",
+        "theory": """
+            <div class="space-y-3 text-slate-300 text-xs leading-relaxed">
+                <p><strong class="text-amber-400">Origin of Heating Effect:</strong> A battery maintains a potential difference across a conductor. To transport charge $Q$ across voltage $V$, the source performs work $W = V \\times Q$. If this energy is not used for mechanical work (as in a motor), it is dissipated entirely as <span class="text-rose-400 font-semibold">thermal energy (heat)</span>.</p>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>🔥</span> Derivation of Joule's Law:
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1">
+                        <li>Power input supplied by the source is:
+                            $$P = \\frac{W}{t} = \\frac{V \\times Q}{t} = V \\times I$$
+                        </li>
+                        <li>Total heat energy ($H$) dissipated in time $t$ in a purely resistive circuit is:
+                            $$H = P \\times t = V \\times I \\times t$$
+                        </li>
+                        <li>Substituting Ohm's law ($V = IR$) into the energy equation:
+                            $$H = (IR) \\times I \\times t \\implies H = I^2 R t$$
+                        </li>
+                    </ul>
+                </div>
+                <div class="p-2 rounded-lg bg-slate-800/80 border border-slate-700/80 text-center font-mono text-amber-300 text-xs">
+                    $$H \\propto I^2 \\quad | \\quad H \\propto R \\quad | \\quad H \\propto t$$
+                </div>
+                <p><strong class="text-amber-400">Joule's Law of Heating:</strong> Heat produced in a resistor is directly proportional to: (1) the <span class="text-rose-400 font-semibold">square of current</span> ($I^2$); (2) resistance ($R$); and (3) time ($t$).</p>
+            </div>
+        """,
+        "speech": "We now examine the heating effect of electric current and Joule's universal law of heating. When an electric current flows through a conductor, the chemical energy stored within the electrochemical battery does work to drive charges across the circuit. If the circuit is purely resistive, consisting only of resistance elements like nichrome coils without any mechanical motors, the supplied electrical energy cannot be converted into macroscopic kinetic motion. Instead, as drifting electrons collide continuously with the vibrating atoms of the metal crystal lattice, their kinetic energy is transformed entirely into microscopic thermal vibrations, causing the conductor to heat up. British physicist James Prescott Joule established the exact mathematical law governing this thermal dissipation. Starting from the electrical work definition, energy equals power multiplied by time, which equals potential difference V times current I times elapsed time t. Substituting Ohm's law, where V equals I times R, gives the famous formula: H equals I squared multiplied by R multiplied by t. Joule's law states that the thermal heat produced in a resistor is directly proportional to the square of the current, directly proportional to the electrical resistance, and directly proportional to the total time duration for which the current flows.",
+        "checkpoints": [
+            {
+                "question": "If the electric current flowing through a fixed resistor is doubled, by what factor does the heat produced per second increase?",
+                "options": [
+                    "It increases by a factor of 4 (quadruples)",
+                    "It doubles (increases by a factor of 2)",
+                    "It increases by a factor of 8",
+                    "It remains exactly constant"
+                ],
+                "answer": 0,
+                "hint": "Recall that heat is proportional to the square of current (H ∝ I²).",
+                "explanation": "According to Joule's law (H ∝ I²), doubling current results in 2² = 4 times the heat generated per second."
+            },
+            {
+                "question": "An electric iron of resistance 20 Ω carries a current of 5 A for 30 seconds. How much heat is produced?",
+                "options": [
+                    "15,000 J (1.5 × 10⁴ J)",
+                    "3,000 J",
+                    "300 J",
+                    "75,000 J"
+                ],
+                "answer": 0,
+                "hint": "Apply Joule's law formula H = I²Rt: H = 5² × 20 × 30.",
+                "explanation": "H = I²Rt = (5 A)² × 20 Ω × 30 s = 25 × 20 × 30 = 15,000 Joules (15 kJ)."
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "title": "Thermal Appliance Applications",
+        "subtitle": "Electric Heating Elements, Tungsten Filaments, and Inactive Gases",
+        "badge": "Section 11.7.1",
+        "summary": "Practical applications of Joule's heating include electric irons, toasters, and room heaters using high-resistivity non-oxidizing alloys. In incandescent lamps, high-melting-point tungsten (3380°C) glows to emit light, protected by inert nitrogen and argon gases.",
+        "theory": """
+            <div class="space-y-3 text-slate-300 text-xs leading-relaxed">
+                <p><strong class="text-amber-400">Heating Appliances:</strong> Devices such as electric laundry irons, electric toasters, electric ovens, water geysers, and room heaters rely directly on the heating effect of electric current.</p>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>💡</span> The Physics of Incandescent Bulbs:
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1">
+                        <li><strong class="text-teal-300">Tungsten Filament:</strong> The filament must retain as much generated heat as possible to reach white-hot incandescence without melting. <span class="text-amber-300 font-semibold">Tungsten</span> has an exceptionally high melting point of <span class="text-rose-400 font-bold">3380°C</span>.</li>
+                        <li><strong class="text-teal-300">Thermal Isolation:</strong> The filament is thermally isolated using thick supports and a vacuum or gas-filled glass envelope.</li>
+                        <li><strong class="text-teal-300">Inactive Gas Filling:</strong> Bulbs are chemically filled with inactive gases like <span class="text-teal-300 font-semibold">nitrogen ($N_2$) and argon ($Ar$)</span> to prevent filament oxidation and prolong operational lifespan.</li>
+                        <li><strong class="text-teal-300">Power Inefficiency:</strong> Most electrical power consumed by an incandescent filament is radiated as invisible heat; only a small fraction is radiated as visible light.</li>
+                    </ul>
+                </div>
+            </div>
+        """,
+        "speech": "The heating effect of electric current finds indispensable and wide-ranging practical applications across everyday domestic and industrial technology. Common household domestic appliances such as electric laundry irons, toasters, kettles, and room heaters contain specialized heating elements made of alloys like nichrome. When electric current passes through, the high resistance of the heating element generates intense heat, while the low-resistance copper connecting cord remains safely cool to the touch. Another classic application of Joule's heating is the incandescent electric light bulb. In a light bulb, the filament must retain thermal energy to achieve extreme temperatures, glowing white-hot with brilliant luminosity so that it emits visible light. To withstand such intense temperatures without melting, filaments are crafted exclusively from pure metallic tungsten, which possesses an exceptionally high melting point benchmark of three thousand three hundred and eighty degrees Celsius. To prevent the glowing tungsten filament from rapidly oxidizing and vaporizing in air, the glass bulb is evacuated and carefully filled with chemically inert gases, typically an inactive mixture of nitrogen and argon. These inert gases suppress tungsten evaporation and significantly prolong the functional lifespan of the bulb, although most energy is radiated as heat rather than light.",
+        "checkpoints": [
+            {
+                "question": "Why is tungsten metal exclusively used for the filaments of incandescent electric lamps?",
+                "options": [
+                    "It has an extraordinarily high melting point of 3380°C",
+                    "It has the lowest electrical resistance among all metals",
+                    "It is completely transparent to visible light rays",
+                    "It generates electrical power without requiring a battery"
+                ],
+                "answer": 0,
+                "hint": "The filament must reach white-hot temperatures without melting.",
+                "explanation": "Tungsten has an extremely high melting point (3380°C), allowing it to glow white-hot and emit visible light without melting."
+            },
+            {
+                "question": "Which gases are filled inside incandescent electric bulbs to prolong filament lifespan?",
+                "options": [
+                    "Chemically inactive nitrogen and argon",
+                    "Flammable hydrogen and methane",
+                    "Pure reactive oxygen gas",
+                    "Corrosive chlorine gas"
+                ],
+                "answer": 0,
+                "hint": "Inert, non-reactive gases prevent hot tungsten from oxidizing.",
+                "explanation": "Electric bulbs are filled with chemically inactive gases like nitrogen and argon to prevent oxidation of the tungsten filament, greatly extending its life."
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "title": "Electric Fuse Protection",
+        "subtitle": "Series Circuit Shield, Low Melting Alloys, and Fuse Current Ratings",
+        "badge": "Section 11.7.1",
+        "summary": "An electric fuse is a critical safety device connected in series to protect circuits and appliances from overcurrent and short circuits. It consists of a lead-tin alloy wire that safely melts and breaks the circuit when current exceeds its designated rating.",
+        "theory": """
+            <div class="space-y-3 text-slate-300 text-xs leading-relaxed">
+                <p><strong class="text-amber-400">The Fuse Safety Mechanism:</strong> An electric fuse is a sacrificial protective device inserted in <span class="text-teal-300 font-semibold">series with the live wire</span> of a circuit. It protects domestic wiring and expensive appliances from dangerous current surges and accidental short circuits.</p>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>🛡️</span> Operating Principle & Construction:
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1">
+                        <li><strong class="text-teal-300">Alloy Composition:</strong> A piece of wire made of a metal or alloy with an appropriate <span class="text-rose-400 font-semibold">low melting point</span> (e.g., lead-tin alloy, aluminium, copper, or lead).</li>
+                        <li><strong class="text-teal-300">Thermal Meltdown:</strong> If a current larger than the specified rating flows through the circuit, Joule heating ($H = I^2 Rt$) raises the temperature of the fuse wire above its melting point. The wire melts and breaks the circuit path immediately.</li>
+                        <li><strong class="text-teal-300">Standard Ratings:</strong> Fuses for domestic usage are rated at $1\\text{ A}, 2\\text{ A}, 3\\text{ A}, 5\\text{ A}, 10\\text{ A}$, and $16\\text{ A}$.</li>
+                        <li><strong class="text-teal-300">Fuse Calculation Example:</strong> An electric iron consuming $1\\text{ kW}$ ($1000\\text{ W}$) at $220\\text{ V}$ operates with current:
+                            $$I = \\frac{P}{V} = \\frac{1000\\text{ W}}{220\\text{ V}} = 4.54\\text{ A}$$
+                            A <span class="text-amber-300 font-semibold">5 A fuse</span> must be chosen to provide safe, reliable protection.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        """,
+        "speech": "Another crucial protective application of Joule's heating effect is the electric fuse, an essential safety device designed to protect home electrical circuits and costly household appliances against sudden dangerous current overloads. An electric fuse consists of a short segment of thin wire made from a metallic alloy having an appropriately calibrated low melting point, typically a lead-tin alloy. The fuse is always installed strictly in series with the live incoming wire of the electrical circuit, encased safely within a fireproof ceramic cartridge with metal end caps. Under normal operating conditions, the regular current flowing through the circuit generates minimal heat, leaving the fuse wire intact. However, if a sudden electrical fault occurs, such as a short circuit or an unexpected power surge, the current skyrockets to dangerous levels. According to Joule's law, heat generated increases with the square of the current. This rapid thermal surge raises the fuse wire temperature beyond its melting point within milliseconds. The fuse wire melts, severing the physical conduction pathway completely and disconnecting the power supply before the surging current can ignite electrical fires or destroy connected appliances. Standard domestic fuses are rated at values such as one, two, three, five, or ten amperes.",
+        "checkpoints": [
+            {
+                "question": "How is an electric fuse connected in an electrical circuit, and what is its working principle?",
+                "options": [
+                    "Connected in series; melts and breaks the circuit upon overcurrent",
+                    "Connected in parallel; absorbs magnetic fields during lightening",
+                    "Connected to the earth wire; converts alternating current to direct current",
+                    "Connected outside the building; amplifies incoming voltage"
+                ],
+                "answer": 0,
+                "hint": "The fuse acts as a sacrificial gatekeeper in the main conduction path.",
+                "explanation": "An electric fuse is connected in series with the circuit; when current exceeds its rated limit, Joule heating melts the wire, opening the circuit safely."
+            },
+            {
+                "question": "An electric iron consumes 1000 W power when operated on a 220 V line. What fuse rating is appropriate?",
+                "options": [
+                    "5 A fuse",
+                    "1 A fuse",
+                    "2 A fuse",
+                    "25 A fuse"
+                ],
+                "answer": 0,
+                "hint": "Calculate operating current I = P / V = 1000 / 220 ≈ 4.54 A.",
+                "explanation": "Current I = 1000 W / 220 V ≈ 4.54 A. Therefore, the next higher standard rating of 5 A must be chosen (NCERT Section 11.7.1)."
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "title": "Electric Power Rating",
+        "subtitle": "Power Formulas, The Watt, Commercial kWh Units, and Energy Tariffs",
+        "badge": "Section 11.8",
+        "summary": "Electric power is the rate at which electrical energy is consumed in an electric circuit (P = VI = I²R = V²/R). Its SI unit is the Watt. The commercial unit of electrical energy is the kilowatt-hour (1 kWh = 3.6 × 10⁶ J), commonly termed a 'unit'.",
+        "theory": """
+            <div class="space-y-3 text-slate-300 text-xs leading-relaxed">
+                <p><strong class="text-amber-400">Definition of Electric Power ($P$):</strong> Electric power is defined as the rate at which electrical energy is consumed or dissipated in an electrical circuit:</p>
+                <div class="p-2 rounded-lg bg-slate-800/80 border border-slate-700/80 text-center font-mono text-cyan-300 text-xs">
+                    $$P = \\frac{W}{t} = V \\times I = I^2 R = \\frac{V^2}{R}$$
+                </div>
+                <div class="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/80 space-y-1.5">
+                    <div class="text-amber-300 font-bold flex items-center gap-1.5">
+                        <span>⚡</span> Units of Power & Commercial Electrical Energy:
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-300 pl-1">
+                        <li><strong class="text-teal-300">The Watt ($1\\text{ W}$):</strong> Power consumed by a device carrying $1\\text{ A}$ current at $1\\text{ V}$ potential difference ($1\\text{ W} = 1\\text{ V} \\times 1\\text{ A}$). Larger unit: $1\\text{ kW} = 1000\\text{ W}$.</li>
+                        <li><strong class="text-teal-300">Commercial Energy Unit (Kilowatt-Hour):</strong> The joule is too small for commercial billing. The commercial unit of electrical energy is the <span class="text-amber-300 font-semibold">kilowatt-hour (kWh)</span>, commonly called a 'unit':
+                            $$1\\text{ kWh} = 1\\text{ kW} \\times 1\\text{ h} = 1000\\text{ W} \\times 3600\\text{ s} = 3.6 \\times 10^6\\text{ Joules (J)}$$
+                        </li>
+                        <li><strong class="text-teal-300">Billing Example 11.13:</strong> A $400\\text{ W}$ refrigerator running $8\\text{ h/day}$ for $30\\text{ days}$ consumes:
+                            $$E = 400\\text{ W} \\times 8\\text{ h/day} \\times 30\\text{ days} = 96,000\\text{ Wh} = 96\\text{ kWh}$$
+                            At $\\text{Rs } 3.00\\text{ per kWh}$, total cost is $96 \\times 3.00 = \\text{Rs } 288.00$.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        """,
+        "speech": "We conclude our theoretical journey by examining electric power, the rate at which electrical energy is delivered, consumed, or converted into other forms of energy within an electrical circuit. Electric power P is defined as the work done per unit time. By combining fundamental circuit relationships, power is expressed in three equivalent mathematical equations: P equals voltage V times current I, P equals I squared multiplied by resistance R, and P equals voltage squared divided by resistance R. The SI unit of electric power is the watt, symbolized by W, named after James Watt. One watt represents the power consumed by an appliance that carries a current of one ampere when operated under a potential difference of one volt. Because a watt is a relatively small unit, power companies utilize the kilowatt, which equals one thousand watts. When calculating domestic electricity bills, energy is measured in the commercial unit called the kilowatt-hour, popularly referred to as a unit of electricity. One kilowatt-hour represents the total energy consumed by an appliance operating at one thousand watts for one full hour, which equals exactly three point six million joules. We pay utility companies for this electrical energy that drives charges through our appliances.",
+        "checkpoints": [
+            {
+                "question": "Which of the following mathematical expressions correctly represents electrical power?",
+                "options": [
+                    "P = VI = I²R = V²/R",
+                    "P = V/I = IR²",
+                    "P = I/V = VR²",
+                    "P = V²I = I/R"
+                ],
+                "answer": 0,
+                "hint": "Recall the three standard equivalent power formulas derived in Section 11.8.",
+                "explanation": "Electric power is given by P = VI, and using Ohm's law, it can also be expressed as P = I²R or P = V²/R."
+            },
+            {
+                "question": "How many joules of energy are equal to one kilowatt-hour (1 kWh) of electricity?",
+                "options": [
+                    "3.6 × 10⁶ J",
+                    "3.6 × 10³ J",
+                    "1.0 × 10⁵ J",
+                    "6.0 × 10⁴ J"
+                ],
+                "answer": 0,
+                "hint": "Convert 1 kilowatt to 1000 watts and 1 hour to 3600 seconds, then multiply.",
+                "explanation": "1 kWh = 1000 W × 3600 s = 3,600,000 Joules = 3.6 × 10⁶ J."
+            }
+        ]
+    }
+]
+
+with open(".agents/c10s_ch11_part2.json", "w", encoding="utf-8") as f:
+    json.dump(slides_part2, f, indent=2)
+
+print(f"Generated {len(slides_part2)} slides in Part 2.")
+for s in slides_part2:
+    wc = len(s["speech"].split())
+    tc = len(s["title"].split())
+    print(f"Slide {s['id']}: '{s['title']}' ({tc} words) | Speech: {wc} words")
+    assert 195 <= wc <= 215, f"Slide {s['id']} speech out of range: {wc}"
+    assert 1 <= tc <= 3, f"Slide {s['id']} title out of range: {tc}"

@@ -297,7 +297,7 @@ class DashboardController extends Controller
                         return true;
                     }
 
-                    return $ex->created_by === $user->id;
+                    return (int) $ex->created_by === (int) $user->id;
                 });
 
                 $studentExamsReport = [];

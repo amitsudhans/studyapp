@@ -113,7 +113,7 @@ class StandardController extends Controller
             abort(403, 'Only teachers and administrators can edit standards.');
         }
 
-        if (! $user->isAdmin() && $standard->created_by !== $user->id) {
+        if (! $user->isAdmin() && (int) $standard->created_by !== (int) $user->id) {
             abort(403, 'Teachers can only edit standards created by themselves.');
         }
 
@@ -150,7 +150,7 @@ class StandardController extends Controller
             abort(403, 'Only teachers and administrators can assign students to standards.');
         }
 
-        if (! $user->isAdmin() && $standard->created_by !== $user->id) {
+        if (! $user->isAdmin() && (int) $standard->created_by !== (int) $user->id) {
             abort(403, 'Teachers can only assign students to standards created by themselves.');
         }
 
@@ -228,7 +228,7 @@ class StandardController extends Controller
             abort(403, 'Only teachers and administrators can delete standards.');
         }
 
-        if (! $user->isAdmin() && $standard->created_by !== $user->id) {
+        if (! $user->isAdmin() && (int) $standard->created_by !== (int) $user->id) {
             abort(403, 'Teachers can only delete standards created by themselves.');
         }
 

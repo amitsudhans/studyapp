@@ -18,7 +18,7 @@
                             🌳 Curriculum Tree Explorer
                         </span>
                         <span class="text-xs text-slate-600">•</span>
-                        <span class="text-xs font-mono text-cyan-300">NCERT / CBSE / SCERT Kerala Framework</span>
+                        <span class="text-xs font-mono text-cyan-300">NCERT / SCERT Kerala Framework</span>
                     </div>
 
                     <h1 class="text-2xl sm:text-3xl font-black text-white tracking-tight flex items-center space-x-2.5">
@@ -27,7 +27,7 @@
                     </h1>
                     <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
                         Explore interactive multimedia animations arranged strictly by textbook hierarchy: 
-                        <strong class="text-emerald-300">Syllabus</strong> (NCERT, CBSE, SCERT Kerala) &rarr; 
+                        <strong class="text-emerald-300">Syllabus</strong> (NCERT, SCERT Kerala) &rarr; 
                         <strong class="text-cyan-300">Subject</strong> (Mathematics, Science, Social Science, English, Hindi) &rarr; 
                         <strong class="text-indigo-300">Class</strong> (1 to 12) &rarr; 
                         <strong class="text-amber-300">Chapters</strong>.
@@ -72,13 +72,13 @@
                     </span>
                     <span class="text-[11px] text-slate-500">Board / Educational Framework</span>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     @foreach($syllabuses as $sId => $sData)
                         @php $isSylActive = ($selectedSyllabus === $sId); @endphp
                         <a href="{{ route('multimedia.index', ['syllabus' => $sId, 'subject' => $selectedSubject, 'class' => $selectedClass]) }}"
                            class="p-3.5 rounded-xl border transition-all flex items-center justify-between {{ $isSylActive ? 'bg-emerald-950/60 border-emerald-500/60 text-white shadow-lg shadow-emerald-950/50' : 'bg-slate-950/60 border-slate-800 text-slate-300 hover:border-slate-700 hover:text-white' }}">
                             <div class="flex items-center space-x-3">
-                                <span class="text-2xl">{{ $sId === 'ncert' ? '📘' : ($sId === 'cbse' ? '🏛️' : '🌴') }}</span>
+                                <span class="text-2xl">{{ $sId === 'ncert' ? '📘' : '🌴' }}</span>
                                 <div>
                                     <h4 class="text-sm font-bold {{ $isSylActive ? 'text-emerald-300' : 'text-slate-200' }}">{{ $sData['name'] }}</h4>
                                     <p class="text-[11px] text-slate-400">{{ $sData['badge'] }}</p>

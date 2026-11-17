@@ -39,13 +39,6 @@
                             </svg>
                             <span>Standards Directory</span>
                         </button>
-                        @php
-                            $firstAdminStd = ($allStandardsForSelect ?? $standards)->first();
-                        @endphp
-                        <button type="button" onclick="openStandardChaptersModal({{ $firstAdminStd?->id ?? 1 }}, '{{ addslashes($firstAdminStd?->name ?? 'Class Standard') }}')" class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm transition-all shadow-lg shadow-purple-600/30 flex items-center space-x-2 cursor-pointer">
-                            <span class="text-base">📚</span>
-                            <span>Curriculum (Chapters & Topics)</span>
-                        </button>
                         <button onclick="document.getElementById('createStandardModal').classList.remove('hidden')" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm transition-all shadow-lg shadow-emerald-600/30 flex items-center space-x-2 cursor-pointer">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -727,7 +720,7 @@
                                     <div class="rounded-xl bg-slate-950/70 border border-slate-800 p-4 space-y-3">
                                         <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-800/80">
                                             <div class="flex items-center gap-2">
-                                                <span class="text-lg">{{ $sylId === 'ncert' ? '📘' : ($sylId === 'cbse' ? '🏛️' : '🌴') }}</span>
+                                                <span class="text-lg">{{ $sylId === 'ncert' ? '📘' : '🌴' }}</span>
                                                 <h4 class="text-sm font-bold text-white">{{ $sylData['name'] }}</h4>
                                                 <span class="text-[11px] text-slate-400">{{ $sylData['badge'] }}</span>
                                             </div>
@@ -1202,7 +1195,7 @@
                         <div>
                             <div class="flex items-center space-x-2">
                                 <h3 class="text-base font-bold text-white tracking-tight">Curriculum Tree</h3>
-                                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">CBSE &amp; SCERT</span>
+                                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">NCERT &amp; SCERT</span>
                             </div>
                             <p class="text-xs text-slate-300 mt-1">Explore textbook syllabus, subjects, classes, and interactive multimedia lessons in an organized tree.</p>
                         </div>
@@ -4044,7 +4037,6 @@
                             <tr class="bg-slate-950/60 border-b border-slate-800 text-slate-400 uppercase text-[11px] font-semibold tracking-wider">
                                 <th class="py-3.5 px-6">Standard Name</th>
                                 <th class="py-3.5 px-6">Enrolled Students</th>
-                                <th class="py-3.5 px-6">Chapters & Topics</th>
                                 <th class="py-3.5 px-6">Created By</th>
                                 <th class="py-3.5 px-6 text-right">Actions</th>
                             </tr>
@@ -4066,26 +4058,15 @@
                                             {{ $stCount }}/100 Students
                                         </span>
                                     </td>
-                                    <td class="py-4 px-6">
-                                        <button type="button" onclick="openStandardChaptersModal({{ $std->id }}, '{{ addslashes($std->name) }}')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs font-semibold transition-all cursor-pointer shadow-sm group">
-                                            <span>📖</span>
-                                            <span class="group-hover:underline">{{ $std->chapters_count ?? $std->chapters->count() }} Chapters</span>
-                                            <svg class="w-3.5 h-3.5 text-purple-400 opacity-60 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                                        </button>
-                                    </td>
                                     <td class="py-4 px-6 text-xs text-slate-400">
-                                        @if($std->created_by === $user->id)
+                                        @if((int) $std->created_by === (int) $user->id)
                                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">You (Owner)</span>
                                         @else
                                             <span>{{ $std->creator?->name ?? 'System Admin' }}</span>
                                         @endif
                                     </td>
                                     <td class="py-4 px-6 text-right whitespace-nowrap space-x-1.5">
-                                        <button type="button" onclick="openStandardChaptersModal({{ $std->id }}, '{{ addslashes($std->name) }}')" class="px-2.5 py-1.5 rounded-lg bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 border border-purple-500/30 text-xs font-medium transition-all inline-flex items-center space-x-1 cursor-pointer" title="Manage Chapters & Topics">
-                                            <span>📚</span>
-                                            <span>Chapters</span>
-                                        </button>
-                                        @if ($isAdmin || $std->created_by === $user->id)
+                                        @if ($isAdmin || (int) $std->created_by === (int) $user->id)
                                             <button onclick="openAssignStudentsModal({{ json_encode([
                                                 'id' => $std->id,
                                                 'name' => $std->name,
@@ -4095,7 +4076,7 @@
                                                 <span>Assign Students</span>
                                             </button>
                                         @endif
-                                        @if ($isAdmin || $std->created_by === $user->id)
+                                        @if ($isAdmin || (int) $std->created_by === (int) $user->id)
                                             <button onclick="openEditStandardModal({{ json_encode([
                                                 'id' => $std->id,
                                                 'name' => $std->name,
@@ -5098,7 +5079,7 @@
                             <select id="single_student_select_standard" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm">
                                 <option value="">-- Choose Class Standard --</option>
                                 @foreach($allStandardsForSelect ?? $standards as $std)
-                                    @if($isAdmin || $std->created_by === $user->id)
+                                    @if($isAdmin || (int) $std->created_by === (int) $user->id)
                                         <option value="{{ $std->id }}">{{ $std->name }}</option>
                                     @endif
                                 @endforeach
@@ -5704,8 +5685,6 @@
         </div>
 
         <x-exam-leaderboard-modal />
-
-        <x-standard-chapters-modal :subjects="$subjects" :standards="$allStandardsForSelect ?? $standards" />
 
     </div>
 </x-layouts.app>

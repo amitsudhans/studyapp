@@ -12,14 +12,16 @@ use Tests\TestCase;
 
 class CurriculumCatalogUnitTest extends TestCase
 {
-    public function test_catalog_contains_ncert_cbse_maths_science_social_science_class1_to_12(): void
+    public function test_catalog_contains_ncert_scert_maths_science_social_science_class1_to_12(): void
     {
         $syllabuses = CurriculumCatalog::syllabuses();
         $subjects = CurriculumCatalog::subjects();
         $classes = CurriculumCatalog::classes();
 
         $this->assertArrayHasKey('ncert', $syllabuses);
-        $this->assertArrayHasKey('cbse', $syllabuses);
+        $this->assertArrayHasKey('scert-kerala', $syllabuses);
+        $this->assertArrayNotHasKey('cbse', $syllabuses);
+        $this->assertCount(2, $syllabuses);
         $this->assertArrayHasKey('mathematics', $subjects);
         $this->assertArrayHasKey('science', $subjects);
         $this->assertArrayHasKey('social-science', $subjects);
@@ -33,16 +35,17 @@ class CurriculumCatalogUnitTest extends TestCase
         $parsed = CurriculumCatalog::parseSelectionTokens([
             'ncert|mathematics|class8',
             'ncert|mathematics|class8',
-            'cbse|social-science|class10',
+            'scert-kerala|social-science|class10',
             'invalid|mathematics|class8',
             'ncert|unknown|class8',
             'ncert|science|class99',
+            'cbse|science|class10',
         ]);
 
         $this->assertCount(2, $parsed);
         $this->assertSame([
             ['syllabus' => 'ncert', 'subject' => 'mathematics', 'class_key' => 'class8'],
-            ['syllabus' => 'cbse', 'subject' => 'social-science', 'class_key' => 'class10'],
+            ['syllabus' => 'scert-kerala', 'subject' => 'social-science', 'class_key' => 'class10'],
         ], $parsed);
     }
 

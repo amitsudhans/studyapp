@@ -47,14 +47,6 @@
                         <span>My Students</span>
                     </a>
 
-                    @php
-                        $firstStdIndex = $standards->first();
-                    @endphp
-                    <button type="button" onclick="openStandardChaptersModal({{ $firstStdIndex?->id ?? 1 }}, '{{ addslashes($firstStdIndex?->name ?? 'Class Standard') }}')" class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm transition-all shadow-lg shadow-purple-600/30 flex items-center space-x-2 cursor-pointer">
-                        <span class="text-base">📚</span>
-                        <span>Manage Chapters & Topics</span>
-                    </button>
-
                     <button onclick="document.getElementById('createStandardModal').classList.remove('hidden')" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm transition-all shadow-lg shadow-emerald-600/30 flex items-center space-x-2 cursor-pointer">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -166,7 +158,6 @@
                             <th class="py-3.5 px-6">Standard / Class Name</th>
                             <th class="py-3.5 px-6">Syllabus</th>
                             <th class="py-3.5 px-6">Enrolled Students</th>
-                            <th class="py-3.5 px-6">Chapters & Topics</th>
                             <th class="py-3.5 px-6">Created By</th>
                             <th class="py-3.5 px-6 text-right">Actions</th>
                         </tr>
@@ -198,26 +189,15 @@
                                         {{ $stCount }}/100 Students
                                     </span>
                                 </td>
-                                <td class="py-4 px-6">
-                                    <button type="button" onclick="openStandardChaptersModal({{ $std->id }}, '{{ addslashes($std->name) }}')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs font-semibold transition-all cursor-pointer shadow-sm group">
-                                        <span>📖</span>
-                                        <span class="group-hover:underline">{{ $std->chapters_count ?? $std->chapters->count() }} Chapters</span>
-                                        <svg class="w-3.5 h-3.5 text-purple-400 opacity-60 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                                    </button>
-                                </td>
                                 <td class="py-4 px-6 text-xs text-slate-400">
-                                    @if($std->created_by === Auth::id())
+                                    @if((int) $std->created_by === (int) Auth::id())
                                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">You (Owner)</span>
                                     @else
                                         <span>{{ $std->creator?->name ?? 'System Admin' }}</span>
                                     @endif
                                 </td>
                                 <td class="py-4 px-6 text-right whitespace-nowrap space-x-1.5">
-                                    <button type="button" onclick="openStandardChaptersModal({{ $std->id }}, '{{ addslashes($std->name) }}')" class="px-2.5 py-1.5 rounded-lg bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 border border-purple-500/30 text-xs font-medium transition-all inline-flex items-center space-x-1 cursor-pointer" title="Manage Chapters & Topics">
-                                        <span>📚</span>
-                                        <span>Chapters</span>
-                                    </button>
-                                    @if (Auth::user()->isAdmin() || $std->created_by === Auth::id())
+                                    @if (Auth::user()->isAdmin() || (int) $std->created_by === (int) Auth::id())
                                         <button onclick="openAssignStudentsModal({{ json_encode([
                                             'id' => $std->id,
                                             'name' => $std->name,
@@ -354,6 +334,7 @@
 
             <form id="assignStudentsForm" method="POST" action="" class="flex flex-col flex-1 overflow-hidden">
                 @csrf
+                <input type="hidden" name="_assign_mode" value="bulk">
                 <div class="p-4 border-b border-slate-800 bg-slate-950/50 flex items-center justify-between gap-3">
                     <div class="relative flex-1">
                         <input type="text" id="assign_student_search" onkeyup="filterAssignStudentList()" placeholder="Quick filter student name or email..." class="w-full pl-8 pr-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500">
@@ -437,7 +418,6 @@
                     el.style.display = 'none';
                 }
             });
+        }
     </script>
-
-    <x-standard-chapters-modal :subjects="$subjects" :standards="$standards" />
 </x-layouts.app>
