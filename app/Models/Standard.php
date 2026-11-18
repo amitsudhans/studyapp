@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -25,6 +26,26 @@ class Standard extends Model
             'created_by' => 'integer',
             'syllabus_id' => 'integer',
         ];
+    }
+
+    /**
+     * Scope a query to only include standards accessible to the given user.
+     *
+     * @param  Builder<Standard>  $query
+     * @return Builder<Standard>
+     */
+    public function scopeAccessibleTo(Builder $query, User $user): Builder
+    {
+        if ($user->isAdmin()) {
+            return $query;
+        }
+
+        return $query->where(function (Builder $q) use ($user) {
+            $q->where('created_by', $user->id)
+                ->orWhereHas('teachers', function (Builder $tq) use ($user) {
+                    $tq->where('users.id', $user->id);
+                });
+        });
     }
 
     /**

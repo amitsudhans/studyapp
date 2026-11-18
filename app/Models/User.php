@@ -6,6 +6,7 @@ namespace App\Models;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -38,6 +39,16 @@ class User extends Authenticatable
     public function standards(): BelongsToMany
     {
         return $this->belongsToMany(Standard::class, 'teacher_standards');
+    }
+
+    /**
+     * Get all standards accessible to this user (for teachers and admins).
+     *
+     * @return Collection<int, Standard>
+     */
+    public function accessibleStandards()
+    {
+        return Standard::accessibleTo($this)->orderBy('name')->get();
     }
 
     /**

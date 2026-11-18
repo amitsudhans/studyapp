@@ -28,10 +28,7 @@ class StandardController extends Controller
         $query = Standard::with(['creator', 'syllabus', 'students', 'teachers', 'chapters.topics', 'chapters.subject'])->withCount(['students', 'chapters']);
 
         if ($user->isTeacher() && ! $user->isAdmin()) {
-            $query->where(function ($q) use ($user) {
-                $q->where('created_by', $user->id)
-                    ->orWhereHas('teachers', fn ($tq) => $tq->where('users.id', $user->id));
-            });
+            $query->accessibleTo($user);
         }
 
         if ($request->filled('search')) {
@@ -57,7 +54,7 @@ class StandardController extends Controller
 
         $totalStandardsCount = $standards->total();
         $myStandardsCount = $user->isTeacher() && ! $user->isAdmin()
-            ? $user->standards()->count()
+            ? Standard::accessibleTo($user)->count()
             : $totalStandardsCount;
         $subjects = Subject::orderBy('name')->get();
 

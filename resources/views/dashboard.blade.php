@@ -3691,9 +3691,12 @@
                     </div>
 
                     <div class="flex items-center space-x-2">
-                        @if($user->standards->isNotEmpty())
+                        @php
+                            $classesList = $teacherStandards ?? $allStandardsForSelect ?? $user->standards;
+                        @endphp
+                        @if($classesList->isNotEmpty())
                             <div class="flex flex-wrap gap-1 max-w-xs">
-                                @foreach($user->standards as $std)
+                                @foreach($classesList as $std)
                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-300 border border-sky-500/20">
                                         {{ $std->name }}
                                     </span>
@@ -3723,7 +3726,7 @@
                             <div class="w-44 sm:w-52 shrink-0">
                                 <select name="standard_id" class="w-full px-2.5 py-1.5 rounded-lg sm:rounded-xl bg-slate-900 border border-slate-700 text-slate-100 text-xs focus:outline-none focus:ring-2 focus:ring-sky-500">
                                     <option value="">All Classes</option>
-                                    @foreach($user->standards as $std)
+                                    @foreach($classesList as $std)
                                         <option value="{{ $std->id }}" {{ request('standard_id') == $std->id ? 'selected' : '' }}>
                                             {{ $std->name }}
                                         </option>

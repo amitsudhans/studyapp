@@ -160,8 +160,7 @@ class DashboardController extends Controller
                 ->paginate(10, ['*'], $pageName)
                 ->appends($request->query());
         } else {
-            $teacherStandardIds = Standard::where('created_by', $user->id)
-                ->orWhereHas('teachers', fn ($tq) => $tq->where('users.id', $user->id))
+            $teacherStandardIds = Standard::accessibleTo($user)
                 ->pluck('id')
                 ->toArray();
 
@@ -384,12 +383,7 @@ class DashboardController extends Controller
                 ->with(['creator.profile', 'syllabus', 'chapters.topics', 'chapters.subject']);
 
             if (! $isAdmin) {
-                $standardsQuery->where(function ($q) use ($user) {
-                    $q->where('created_by', $user->id)
-                        ->orWhereHas('teachers', function ($tq) use ($user) {
-                            $tq->where('users.id', $user->id);
-                        });
-                });
+                $standardsQuery->accessibleTo($user);
             }
 
             if ($request->filled('standards_search')) {
@@ -403,16 +397,7 @@ class DashboardController extends Controller
             $standards = $standardsQuery->orderBy('id')->paginate(10, ['*'], 'standards_page')->appends($request->query());
         }
 
-        if (! $isAdmin) {
-            $allStandardsForSelect = Standard::where(function ($q) use ($user) {
-                $q->where('created_by', $user->id)
-                    ->orWhereHas('teachers', function ($tq) use ($user) {
-                        $tq->where('users.id', $user->id);
-                    });
-            })->orderBy('name')->get();
-        } else {
-            $allStandardsForSelect = Standard::orderBy('name')->get();
-        }
+        $allStandardsForSelect = Standard::accessibleTo($user)->orderBy('name')->get();
 
         $syllabi = Syllabus::orderBy('name')->get();
         $syllabusesData = Syllabus::with(['standards', 'subjects.chapters.topics'])->orderBy('name')->get();
@@ -483,6 +468,7 @@ class DashboardController extends Controller
             'adminCount' => $adminCount,
             'teacherStudents' => $teacherStudents,
             'teacherStudentsCount' => $teacherStudentsCount,
+            'teacherStandards' => $allStandardsForSelect,
             'teacherExams' => $teacherExams,
             'teacherExamList' => $teacherExamList,
             'teacherExamSubmissions' => $teacherExamSubmissions,

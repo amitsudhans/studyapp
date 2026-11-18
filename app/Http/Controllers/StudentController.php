@@ -23,13 +23,8 @@ class StudentController extends Controller
             abort(403, 'Unauthorized access to student directory.');
         }
 
-        if ($user->isAdmin()) {
-            $teacherStandards = Standard::orderBy('name')->get();
-            $teacherStandardIds = $teacherStandards->pluck('id')->toArray();
-        } else {
-            $teacherStandards = $user->standards;
-            $teacherStandardIds = $teacherStandards->pluck('id')->toArray();
-        }
+        $teacherStandards = Standard::accessibleTo($user)->orderBy('name')->get();
+        $teacherStandardIds = $teacherStandards->pluck('id')->toArray();
 
         if (! empty($teacherStandardIds)) {
             $studentBaseQuery = fn () => User::where(function ($q) {

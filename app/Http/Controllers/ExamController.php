@@ -98,14 +98,7 @@ class ExamController extends Controller
             ->latest()
             ->get();
 
-        if ($user && $user->isTeacher() && ! $user->isAdmin()) {
-            $standards = Standard::where(function ($q) use ($user) {
-                $q->where('created_by', $user->id)
-                    ->orWhereHas('teachers', fn ($tq) => $tq->where('users.id', $user->id));
-            })->orderBy('name')->get();
-        } else {
-            $standards = Standard::orderBy('name')->get();
-        }
+        $standards = $user ? Standard::accessibleTo($user)->orderBy('name')->get() : Standard::orderBy('name')->get();
 
         $allStandardsForSelect = $standards;
         $syllabi = Syllabus::orderBy('name')->get();
@@ -168,14 +161,7 @@ class ExamController extends Controller
 
         $availableQuestions = $availableQuestionsQuery->latest()->get();
 
-        if ($user && $user->isTeacher() && ! $user->isAdmin()) {
-            $standards = Standard::where(function ($q) use ($user) {
-                $q->where('created_by', $user->id)
-                    ->orWhereHas('teachers', fn ($tq) => $tq->where('users.id', $user->id));
-            })->orderBy('name')->get();
-        } else {
-            $standards = Standard::orderBy('name')->get();
-        }
+        $standards = $user ? Standard::accessibleTo($user)->orderBy('name')->get() : Standard::orderBy('name')->get();
 
         $syllabuses = Syllabus::orderBy('name')->get();
         $syllabusesData = Syllabus::with(['standards', 'subjects.chapters.topics'])->orderBy('name')->get();
@@ -249,10 +235,7 @@ class ExamController extends Controller
             if ($user->isTeacher() && ! $user->isAdmin()) {
                 $uniqueStdIds = array_unique($requestedStdIds);
                 $allowedCount = Standard::whereIn('id', $uniqueStdIds)
-                    ->where(function ($q) use ($user) {
-                        $q->where('created_by', $user->id)
-                            ->orWhereHas('teachers', fn ($tq) => $tq->where('users.id', $user->id));
-                    })
+                    ->accessibleTo($user)
                     ->count();
 
                 if ($allowedCount !== count($uniqueStdIds)) {
@@ -374,10 +357,7 @@ class ExamController extends Controller
             if ($user->isTeacher() && ! $user->isAdmin()) {
                 $uniqueStdIds = array_unique($requestedStdIds);
                 $allowedCount = Standard::whereIn('id', $uniqueStdIds)
-                    ->where(function ($q) use ($user) {
-                        $q->where('created_by', $user->id)
-                            ->orWhereHas('teachers', fn ($tq) => $tq->where('users.id', $user->id));
-                    })
+                    ->accessibleTo($user)
                     ->count();
 
                 if ($allowedCount !== count($uniqueStdIds)) {
@@ -427,10 +407,7 @@ class ExamController extends Controller
                 $selectedStds = array_unique($requestedStdIds);
 
                 if ($user->isTeacher() && ! $user->isAdmin()) {
-                    $myStdIds = Standard::where(function ($q) use ($user) {
-                        $q->where('created_by', $user->id)
-                            ->orWhereHas('teachers', fn ($tq) => $tq->where('users.id', $user->id));
-                    })->pluck('id')->toArray();
+                    $myStdIds = Standard::accessibleTo($user)->pluck('id')->toArray();
                     $otherAssigned = $exam->standards()
                         ->whereNotIn('standards.id', $myStdIds)
                         ->get()
@@ -507,15 +484,15 @@ class ExamController extends Controller
         if ($user->isTeacher() && ! $user->isAdmin()) {
             if (! empty($requestedStdIds)) {
                 $allowedCount = Standard::whereIn('id', $requestedStdIds)
-                    ->where('created_by', $user->id)
+                    ->accessibleTo($user)
                     ->count();
 
                 if ($allowedCount !== count($requestedStdIds)) {
-                    return back()->withErrors(['standard_ids' => 'Teachers can only assign exams to standards created by them.']);
+                    return back()->withErrors(['standard_ids' => 'Teachers can only assign exams to standards assigned to them.']);
                 }
             }
 
-            $myStdIds = Standard::where('created_by', $user->id)->pluck('id')->toArray();
+            $myStdIds = Standard::accessibleTo($user)->pluck('id')->toArray();
             $otherAssigned = $exam->standards()
                 ->whereNotIn('standards.id', $myStdIds)
                 ->get()
