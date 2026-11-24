@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\School;
 use App\Models\Standard;
 use App\Models\Syllabus;
 use App\Models\User;
@@ -258,5 +259,124 @@ class AdminUserTypeTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('UniqueTeacherName');
         $response->assertDontSee('UniqueStudentName');
+    }
+
+    public function test_admin_can_create_and_edit_user_with_school_selection(): void
+    {
+        $admin = User::firstOrCreate(['email' => 'admin@example.com'], [
+            'name' => 'Admin User',
+            'password' => bcrypt('password'),
+        ]);
+        UserProfile::updateOrCreate(
+            ['user_id' => $admin->id],
+            ['name' => $admin->name, 'type' => 3]
+        );
+
+        $school = School::firstOrCreate(
+            ['name' => 'Kendriya Vidyalaya'],
+            ['address' => 'Main Rd', 'country' => 'India']
+        );
+
+        $syllabus = Syllabus::firstOrCreate(['name' => 'General Syllabus']);
+        $standard = Standard::firstOrCreate(['name' => '7th Standard', 'syllabus_id' => $syllabus->id]);
+
+        // Create student with school selected
+        $response = $this->actingAs($admin)->post('/admin/users', [
+            'name' => 'School Test Student',
+            'email' => 'schoolstudent@example.com',
+            'password' => 'password123',
+            'mobile' => '9876543210',
+            'address' => 'Student House',
+            'type' => 2, // Student
+            'school' => $school->name,
+            'school_id' => $school->id,
+            'standard_id' => $standard->id,
+            'status' => 1,
+        ]);
+        $response->assertRedirect('/dashboard');
+
+        $user = User::where('email', 'schoolstudent@example.com')->first();
+        $this->assertNotNull($user);
+        $this->assertEquals($school->name, $user->profile->school);
+        $this->assertEquals($school->id, $user->profile->school_id);
+
+        // Edit user with updated school
+        $newSchool = School::firstOrCreate(
+            ['name' => 'Model High School'],
+            ['address' => 'Second Ave', 'country' => 'India']
+        );
+
+        $editResponse = $this->actingAs($admin)->put("/admin/users/{$user->id}", [
+            'name' => 'School Test Student Updated',
+            'email' => 'schoolstudent@example.com',
+            'mobile' => '9876543210',
+            'address' => 'Student House',
+            'school' => $newSchool->name,
+            'school_id' => $newSchool->id,
+            'standard_id' => $standard->id,
+            'status' => 1,
+        ]);
+        $editResponse->assertRedirect('/dashboard');
+
+        $user->refresh();
+        $this->assertEquals($newSchool->name, $user->profile->school);
+        $this->assertEquals($newSchool->id, $user->profile->school_id);
+    }
+
+    public function test_admin_can_search_and_filter_users_by_school(): void
+    {
+        $admin = User::firstOrCreate(['email' => 'admin@example.com'], [
+            'name' => 'Admin User',
+            'password' => bcrypt('password'),
+        ]);
+        UserProfile::updateOrCreate(
+            ['user_id' => $admin->id],
+            ['name' => $admin->name, 'type' => 3]
+        );
+
+        $schoolA = School::firstOrCreate(
+            ['name' => 'Alpha Public School'],
+            ['address' => 'Alpha St', 'country' => 'India']
+        );
+        $schoolB = School::firstOrCreate(
+            ['name' => 'Beta Model Academy'],
+            ['address' => 'Beta Ave', 'country' => 'India']
+        );
+
+        $userA = User::factory()->create(['name' => 'User From Alpha', 'email' => 'alphauser@example.com']);
+        UserProfile::create([
+            'user_id' => $userA->id,
+            'name' => 'User From Alpha',
+            'type' => 2,
+            'school' => $schoolA->name,
+            'school_id' => $schoolA->id,
+        ]);
+
+        $userB = User::factory()->create(['name' => 'User From Beta', 'email' => 'betauser@example.com']);
+        UserProfile::create([
+            'user_id' => $userB->id,
+            'name' => 'User From Beta',
+            'type' => 2,
+            'school' => $schoolB->name,
+            'school_id' => $schoolB->id,
+        ]);
+
+        // Filter by school_id for school A
+        $responseA = $this->actingAs($admin)->get('/dashboard?school_id='.$schoolA->id);
+        $responseA->assertStatus(200);
+        $responseA->assertSee('User From Alpha');
+        $responseA->assertDontSee('User From Beta');
+
+        // Filter by school_id for school B
+        $responseB = $this->actingAs($admin)->get('/dashboard?school_id='.$schoolB->id);
+        $responseB->assertStatus(200);
+        $responseB->assertSee('User From Beta');
+        $responseB->assertDontSee('User From Alpha');
+
+        // Search by school name in admin_search
+        $responseSearch = $this->actingAs($admin)->get('/dashboard?admin_search=Alpha+Public');
+        $responseSearch->assertStatus(200);
+        $responseSearch->assertSee('User From Alpha');
+        $responseSearch->assertDontSee('User From Beta');
     }
 }

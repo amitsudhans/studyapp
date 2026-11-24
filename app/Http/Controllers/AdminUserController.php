@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUserCurriculumRequest;
+use App\Models\School;
+use App\Models\Standard;
 use App\Models\Student;
 use App\Models\User;
 use App\Models\UserCurriculum;
@@ -50,6 +52,7 @@ class AdminUserController extends Controller
             'address' => ['required', 'string', 'max:1000'],
             'type' => ['nullable', 'integer', 'in:1,2,3'],
             'school' => ['nullable', 'string', 'max:255'],
+            'school_id' => ['nullable', 'exists:schools,id'],
             'designation' => ['nullable', 'string', 'max:255'],
             'remark' => ['nullable', 'string', 'max:1000'],
             'status' => ['nullable', 'integer', 'in:0,1'],
@@ -83,13 +86,31 @@ class AdminUserController extends Controller
 
             $type = isset($validated['type']) ? (int) $validated['type'] : 1;
 
+            $schoolName = $validated['school'] ?? null;
+            $schoolId = ! empty($validated['school_id']) ? (int) $validated['school_id'] : null;
+
+            if ($schoolId && empty($schoolName)) {
+                $schoolName = School::find($schoolId)?->name;
+            } elseif (! empty($schoolName) && empty($schoolId)) {
+                if (is_numeric($schoolName)) {
+                    $foundSchool = School::find($schoolName);
+                    if ($foundSchool) {
+                        $schoolId = $foundSchool->id;
+                        $schoolName = $foundSchool->name;
+                    }
+                } else {
+                    $schoolId = School::where('name', $schoolName)->value('id');
+                }
+            }
+
             UserProfile::create([
                 'user_id' => $user->id,
                 'name' => $validated['name'],
                 'mobile' => $validated['mobile'],
                 'address' => $validated['address'],
                 'type' => $type,
-                'school' => $validated['school'] ?? null,
+                'school' => $schoolName,
+                'school_id' => $schoolId,
                 'designation' => $validated['designation'] ?? ($type === 3 ? 'Administrator' : null),
                 'remark' => $validated['remark'] ?? null,
             ]);
@@ -105,6 +126,10 @@ class AdminUserController extends Controller
                             'standard_id' => $stds[0],
                         ]
                     );
+                } else {
+                    $adminStdIds = Standard::adminCreated()->pluck('id')->toArray();
+                    $user->studentStandards()->detach($adminStdIds);
+                    Student::where('id', $user->id)->update(['standard_id' => null]);
                 }
             } elseif ($type === 1) { // Teacher: type = 1
                 if (! empty($validated['standards'])) {
@@ -133,6 +158,7 @@ class AdminUserController extends Controller
             'mobile' => ['required', 'string', 'max:20'],
             'address' => ['required', 'string', 'max:1000'],
             'school' => ['nullable', 'string', 'max:255'],
+            'school_id' => ['nullable', 'exists:schools,id'],
             'designation' => ['nullable', 'string', 'max:255'],
             'remark' => ['nullable', 'string', 'max:1000'],
             'status' => ['nullable', 'integer', 'in:0,1'],
@@ -176,13 +202,31 @@ class AdminUserController extends Controller
 
             $user->update($userData);
 
+            $schoolName = $validated['school'] ?? null;
+            $schoolId = ! empty($validated['school_id']) ? (int) $validated['school_id'] : null;
+
+            if ($schoolId && empty($schoolName)) {
+                $schoolName = School::find($schoolId)?->name;
+            } elseif (! empty($schoolName) && empty($schoolId)) {
+                if (is_numeric($schoolName)) {
+                    $foundSchool = School::find($schoolName);
+                    if ($foundSchool) {
+                        $schoolId = $foundSchool->id;
+                        $schoolName = $foundSchool->name;
+                    }
+                } else {
+                    $schoolId = School::where('name', $schoolName)->value('id');
+                }
+            }
+
             $user->profile()->updateOrCreate(
                 ['user_id' => $user->id],
                 [
                     'name' => $validated['name'],
                     'mobile' => $validated['mobile'],
                     'address' => $validated['address'],
-                    'school' => $validated['school'] ?? null,
+                    'school' => $schoolName,
+                    'school_id' => $schoolId,
                     'designation' => $validated['designation'] ?? null,
                     'remark' => $validated['remark'] ?? null,
                     'type' => $type,
@@ -193,7 +237,16 @@ class AdminUserController extends Controller
                 $user->standards()->detach();
                 $stds = ! empty($validated['standards']) ? $validated['standards'] : (isset($validated['standard_id']) ? [$validated['standard_id']] : []);
                 if (! empty($stds)) {
-                    $user->studentStandards()->sync($stds);
+                    $otherAdminStdIds = Standard::adminCreated()
+                        ->whereNotIn('standards.id', $stds)
+                        ->pluck('standards.id')
+                        ->toArray();
+                    if (! empty($otherAdminStdIds)) {
+                        $user->studentStandards()->detach($otherAdminStdIds);
+                        Standard::removeStudentsFromRelatedCustomGroups([$user->id], $otherAdminStdIds);
+                    }
+                    $user->studentStandards()->syncWithoutDetaching($stds);
+
                     Student::updateOrCreate(
                         ['id' => $user->id],
                         [
@@ -201,17 +254,56 @@ class AdminUserController extends Controller
                             'standard_id' => $stds[0],
                         ]
                     );
+                } else {
+                    $adminStdIds = Standard::adminCreated()->pluck('standards.id')->toArray();
+                    $user->studentStandards()->detach($adminStdIds);
+                    Student::where('id', $user->id)->update(['standard_id' => null]);
+                    Standard::removeStudentsFromRelatedCustomGroups([$user->id], $adminStdIds);
                 }
             } elseif ($type === 1) { // Teacher: type = 1
                 Student::where('id', $user->id)->delete();
                 DB::table('student_standards')->where('student_id', $user->id)->delete();
                 $user->standards()->sync($validated['standards'] ?? []);
+
+                // If teacher has custom groups, ensure any enrolled students belong to the teacher's newly assigned standards
+                $teacherCustomGroupIds = Standard::where('created_by', $user->id)->pluck('id')->toArray();
+                if (! empty($teacherCustomGroupIds)) {
+                    $newTeacherStdIds = (array) ($validated['standards'] ?? []);
+                    if (empty($newTeacherStdIds)) {
+                        DB::table('student_standards')->whereIn('standard_id', $teacherCustomGroupIds)->delete();
+                    } else {
+                        $enrolledStudentIds = DB::table('student_standards')
+                            ->whereIn('standard_id', $teacherCustomGroupIds)
+                            ->pluck('student_id')
+                            ->unique()
+                            ->toArray();
+
+                        if (! empty($enrolledStudentIds)) {
+                            $ineligibleStudentIds = User::whereIn('id', $enrolledStudentIds)
+                                ->where(function ($q) use ($newTeacherStdIds) {
+                                    $q->whereDoesntHave('studentStandards', fn ($st) => $st->whereIn('standards.id', $newTeacherStdIds))
+                                        ->whereDoesntHave('student', fn ($st) => $st->whereIn('standard_id', $newTeacherStdIds));
+                                })
+                                ->pluck('id')
+                                ->toArray();
+
+                            if (! empty($ineligibleStudentIds)) {
+                                DB::table('student_standards')
+                                    ->whereIn('standard_id', $teacherCustomGroupIds)
+                                    ->whereIn('student_id', $ineligibleStudentIds)
+                                    ->delete();
+                            }
+                        }
+                    }
+                }
             } else { // Administrator: type = 3
                 Student::where('id', $user->id)->delete();
                 DB::table('student_standards')->where('student_id', $user->id)->delete();
                 $user->standards()->detach();
             }
         });
+
+        Standard::cleanUpAllIneligibleCustomGroupEnrollments();
 
         return redirect()->route('dashboard')->with('status', 'User updated successfully!');
     }

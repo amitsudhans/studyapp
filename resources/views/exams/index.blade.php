@@ -530,7 +530,7 @@
                                                         'marks' => $q->marks,
                                                         'standard' => $q->standard?->name ?? 'N/A',
                                                         'type_id' => $q->type,
-                                                        'type' => $q->type == 1 ? 'Single Option' : ($q->type == 2 ? 'Multiple Option' : ($q->type == 4 ? 'True / False' : ($q->type == 5 ? 'Match the Following' : 'Text Entry'))),
+                                                        'type' => $q->type == 1 ? 'Single Option' : ($q->type == 2 ? 'Multiple Option' : ($q->type == 4 ? 'True / False' : ($q->type == 5 ? 'Match the Following' : ($q->type == 6 ? 'Puzzle' : ($q->type == 7 ? 'Fill in the blanks' : 'Text Entry'))))),
                                                         'creator' => $q->creator?->name ?? 'System',
                                                         'answers' => $q->answers->map(fn($a) => ['id' => $a->id, 'name' => $a->name, 'match_answer' => $a->match_answer, 'is_correct' => $a->is_correct])->toArray(),
                                                         'hint' => $q->hint,
@@ -818,6 +818,8 @@
                                     <option value="3">3 - Text Entry</option>
                                     <option value="4">4 - True / False</option>
                                     <option value="5">5 - Match the Following</option>
+                                    <option value="6">6 - Puzzle</option>
+                                    <option value="7">7 - Fill in the blanks</option>
                                 </select>
                             </div>
                             <!-- Pagination Bar for Create Modal -->
@@ -888,7 +890,7 @@
                                             <span>&bull;</span>
                                             <span>By: {{ $q->creator?->name ?? 'System' }}</span>
                                             <span>&bull;</span>
-                                            <span>Type: @if($q->type == 1) Single Option @elseif($q->type == 2) Multiple Option @elseif($q->type == 4) True / False @elseif($q->type == 5) Match the Following @else Text Entry @endif</span>
+                                            <span>Type: @if($q->type == 1) Single Option @elseif($q->type == 2) Multiple Option @elseif($q->type == 4) True / False @elseif($q->type == 5) Match the Following @elseif($q->type == 6) Puzzle @elseif($q->type == 7) Fill in the blanks @else Text Entry @endif</span>
                                         </label>
                                     </div>
                                 </div>
@@ -1115,6 +1117,8 @@
                                         <option value="3">3 - Text Entry</option>
                                         <option value="4">4 - True / False</option>
                                         <option value="5">5 - Match the Following</option>
+                                        <option value="6">6 - Puzzle</option>
+                                        <option value="7">7 - Fill in the blanks</option>
                                     </select>
                                 </div>
                                 <!-- Pagination Bar for Edit Modal -->
@@ -1185,7 +1189,7 @@
                                                 <span>&bull;</span>
                                                 <span>By: {{ $q->creator?->name ?? 'System' }}</span>
                                                 <span>&bull;</span>
-                                                <span>Type: @if($q->type == 1) Single Option @elseif($q->type == 2) Multiple Option @elseif($q->type == 4) True / False @elseif($q->type == 5) Match the Following @else Text Entry @endif</span>
+                                                <span>Type: @if($q->type == 1) Single Option @elseif($q->type == 2) Multiple Option @elseif($q->type == 4) True / False @elseif($q->type == 5) Match the Following @elseif($q->type == 6) Puzzle @elseif($q->type == 7) Fill in the blanks @else Text Entry @endif</span>
                                             </label>
                                         </div>
                                     </div>
@@ -2074,6 +2078,8 @@
                 if (parseInt(data.type) === 3 || parseInt(data.type_id) === 3) typeStr = 'Text Entry';
                 if (parseInt(data.type) === 4 || parseInt(data.type_id) === 4) typeStr = 'True / False';
                 if (parseInt(data.type) === 5 || parseInt(data.type_id) === 5) typeStr = 'Match the Following';
+                if (parseInt(data.type) === 6 || parseInt(data.type_id) === 6) typeStr = 'Puzzle';
+                if (parseInt(data.type) === 7 || parseInt(data.type_id) === 7) typeStr = 'Fill in the blanks';
                 document.getElementById('preview_q_type').textContent = 'Type: ' + typeStr;
 
                 document.getElementById('preview_q_marks').textContent = (data.marks || 0) + ' Mark(s)';

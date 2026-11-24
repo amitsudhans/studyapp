@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['name', 'description', 'hint', 'solution', 'standard_id', 'subject_id', 'chapter_id', 'topic_id', 'type', 'created_by', 'marks', 'status'])]
+#[Fillable(['name', 'description', 'image', 'hint', 'solution', 'standard_id', 'subject_id', 'chapter_id', 'topic_id', 'type', 'created_by', 'marks', 'status'])]
 class Question extends Model
 {
     use HasFactory;
@@ -110,6 +110,14 @@ class Question extends Model
 
     public const TYPE_MATCH_THE_FOLLOWING = 5;
 
+    public const TYPE_PUZZLE = 6;
+
+    public const TYPE_FILL_IN_THE_BLANKS = 7;
+
+    public const TYPE_IMAGE_LABELING = 8;
+
+    public const TYPE_CASE_STUDY = 9;
+
     /**
      * Determine if the question is Text Entry.
      */
@@ -135,6 +143,54 @@ class Question extends Model
     }
 
     /**
+     * Determine if the question is Puzzle / Sequence.
+     */
+    public function isPuzzle(): bool
+    {
+        return (int) $this->type === self::TYPE_PUZZLE;
+    }
+
+    /**
+     * Determine if the question is Fill in the Blanks.
+     */
+    public function isFillInTheBlanks(): bool
+    {
+        return (int) $this->type === self::TYPE_FILL_IN_THE_BLANKS;
+    }
+
+    /**
+     * Determine if the question is Image Hotspot / Diagram Labeling.
+     */
+    public function isImageLabeling(): bool
+    {
+        return (int) $this->type === self::TYPE_IMAGE_LABELING;
+    }
+
+    /**
+     * Determine if the question is Case-Based / Source-Based Integrated.
+     */
+    public function isCaseStudy(): bool
+    {
+        return (int) $this->type === self::TYPE_CASE_STUDY;
+    }
+
+    /**
+     * Get the public URL for the question image.
+     */
+    public function getImageUrlAttribute(): ?string
+    {
+        if (empty($this->image)) {
+            return null;
+        }
+
+        if (str_starts_with($this->image, 'http://') || str_starts_with($this->image, 'https://') || str_starts_with($this->image, '/')) {
+            return $this->image;
+        }
+
+        return asset('storage/'.$this->image);
+    }
+
+    /**
      * Get human-readable question type name.
      */
     public function getTypeNameAttribute(): string
@@ -145,6 +201,10 @@ class Question extends Model
             self::TYPE_TEXT_ENTRY => 'Text Entry',
             self::TYPE_TRUE_FALSE => 'True / False',
             self::TYPE_MATCH_THE_FOLLOWING => 'Match the Following',
+            self::TYPE_PUZZLE => 'Puzzle',
+            self::TYPE_FILL_IN_THE_BLANKS => 'Fill in the blanks',
+            self::TYPE_IMAGE_LABELING => 'Image Hotspot',
+            self::TYPE_CASE_STUDY => 'Case-Based / Source-Based',
             default => 'Unknown',
         };
     }

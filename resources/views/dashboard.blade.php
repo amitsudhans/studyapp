@@ -108,14 +108,14 @@
                     <div>
                         <h3 class="text-lg font-semibold text-white flex items-center space-x-2">
                             <span>Users Directory</span>
-                            @if(request()->filled('role') || request()->filled('admin_search'))
+                            @if(request()->filled('role') || request()->filled('school_id') || request()->filled('school') || request()->filled('admin_search'))
                                 <span class="text-xs px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 font-medium">Filtered</span>
                             @endif
                         </h3>
-                        <p class="text-xs text-slate-400 mt-0.5">Filter by role (Teacher, Student, Admin) and search by keyword.</p>
+                        <p class="text-xs text-slate-400 mt-0.5">Filter by role, school, and search by keyword.</p>
                     </div>
 
-                    <!-- Role & Word Search Filter Form -->
+                    <!-- Role, School & Word Search Filter Form -->
                     <form method="GET" action="{{ route('dashboard') }}" class="flex flex-wrap items-center gap-2">
                         <!-- Role Filter -->
                         <select name="role" class="px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500">
@@ -125,9 +125,17 @@
                             <option value="3" {{ request('role') == '3' ? 'selected' : '' }}>Administrator</option>
                         </select>
 
+                        <!-- School Filter -->
+                        <select name="school_id" class="px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <option value="">All Schools</option>
+                            @foreach($schools as $sch)
+                                <option value="{{ $sch->id }}" {{ (string) request('school_id', request('school')) === (string) $sch->id ? 'selected' : '' }}>{{ $sch->name }}</option>
+                            @endforeach
+                        </select>
+
                         <!-- Keyword Search Input -->
                         <div class="relative">
-                            <input type="text" name="admin_search" value="{{ request('admin_search') }}" placeholder="Search name, email, mobile..." class="w-48 sm:w-64 pl-8 pr-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-slate-200 text-xs placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <input type="text" name="admin_search" value="{{ request('admin_search') }}" placeholder="Search name, email, mobile, school..." class="w-48 sm:w-64 pl-8 pr-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-slate-200 text-xs placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                             <svg class="w-4 h-4 text-slate-500 absolute left-2.5 top-2.5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                         </div>
 
@@ -138,7 +146,7 @@
                         </button>
 
                         <!-- Clear Filter Button -->
-                        @if(request()->filled('role') || request()->filled('admin_search'))
+                        @if(request()->filled('role') || request()->filled('school_id') || request()->filled('school') || request()->filled('admin_search'))
                             <a href="{{ route('dashboard') }}" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium border border-slate-700 transition-colors">
                                 Clear
                             </a>
@@ -175,7 +183,7 @@
                                     <td class="py-4 px-6">{{ $u->profile?->mobile ?? 'N/A' }}</td>
                                     <td class="py-4 px-6 max-w-xs truncate" title="{{ $u->profile?->address }}">{{ $u->profile?->address ?? 'N/A' }}</td>
                                     <td class="py-4 px-6">
-                                        <div class="font-medium text-slate-200">{{ $u->profile?->school ?? '-' }}</div>
+                                        <div class="font-medium text-slate-200">{{ $u->profile?->schoolRelation?->name ?? $u->profile?->school ?? '-' }}</div>
                                         <div class="text-xs text-slate-400">{{ $u->profile?->designation ?? '-' }}</div>
                                     </td>
                                     <td class="py-4 px-6">
@@ -240,6 +248,7 @@
                                             'address' => $u->profile?->address ?? '',
                                             'type' => $u->profile?->type ?? 1,
                                             'school' => $u->profile?->school ?? '',
+                                            'school_id' => $u->profile?->school_id ?? '',
                                             'designation' => $u->profile?->designation ?? '',
                                             'remark' => $u->profile?->remark ?? '',
                                             'status' => $u->status ?? 1,
@@ -474,7 +483,14 @@
                             <!-- School (Optional) -->
                             <div>
                                 <label for="create_school" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">School</label>
-                                <input type="text" id="create_school" name="school" value="{{ old('school') }}" placeholder="School Name" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm @error('school') border-red-500 focus:ring-red-500 @enderror">
+                                <select id="create_school" name="school" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm @error('school') border-red-500 focus:ring-red-500 @enderror">
+                                    <option value="">-- Select School (Optional) --</option>
+                                    @foreach($schools ?? [] as $sch)
+                                        <option value="{{ $sch->name }}" data-id="{{ $sch->id }}" {{ old('school') == $sch->name ? 'selected' : '' }}>
+                                            {{ $sch->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
                                 @error('school')
                                     <p class="mt-1 text-xs text-red-400">{{ $message }}</p>
                                 @enderror
@@ -643,7 +659,14 @@
                             <!-- School (Optional) -->
                             <div>
                                 <label for="edit_school" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">School</label>
-                                <input type="text" id="edit_school" name="school" value="{{ old('school') }}" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm @error('school') border-red-500 focus:ring-red-500 @enderror">
+                                <select id="edit_school" name="school" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm @error('school') border-red-500 focus:ring-red-500 @enderror">
+                                    <option value="">-- Select School (Optional) --</option>
+                                    @foreach($schools ?? [] as $sch)
+                                        <option value="{{ $sch->name }}" data-id="{{ $sch->id }}">
+                                            {{ $sch->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
                                 @error('school')
                                     <p class="mt-1 text-xs text-red-400">{{ $message }}</p>
                                 @enderror
@@ -814,7 +837,14 @@
                     document.getElementById('edit_email').value = data.email || '';
                     document.getElementById('edit_mobile').value = data.mobile || '';
                     document.getElementById('edit_address').value = data.address || '';
-                    document.getElementById('edit_school').value = data.school || '';
+                    if (data.school) {
+                        document.getElementById('edit_school').value = data.school;
+                    } else if (data.school_id) {
+                        const opt = document.querySelector('#edit_school option[data-id="' + data.school_id + '"]');
+                        if (opt) document.getElementById('edit_school').value = opt.value;
+                    } else {
+                        document.getElementById('edit_school').value = '';
+                    }
                     document.getElementById('edit_designation').value = data.designation || '';
                     document.getElementById('edit_remark').value = data.remark || '';
                     document.getElementById('edit_status').value = data.status !== undefined ? data.status : 1;
@@ -1153,7 +1183,7 @@
                             <div>
                                 <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/25 text-sky-300 text-[11px] font-semibold uppercase tracking-widest mb-2">
                                     <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse"></span>
-                                    <span>Student Portal</span>
+                                    <span>Student Dashboard</span>
                                 </div>
                                 <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-tight">
                                     Welcome back, <span class="text-sky-300">{{ $user->name }}</span>!
@@ -1324,6 +1354,11 @@
                                             'earned_marks' => $earnedMarks,
                                             'correct_answer' => $d->getCorrectAnswerDisplay(),
                                             'match_pairs' => $d->getMatchPairsReview(),
+                                            'puzzle_pieces' => $d->getPuzzleReview(),
+                                            'blanks' => $d->getBlanksReview(),
+                                            'hotspots' => $d->getHotspotsReview(),
+                                            'case_study' => $d->getCaseStudyReview(),
+                                            'image_url' => $d->question?->image_url,
                                             'hint' => $d->question?->hint,
                                             'solution' => $d->question?->solution,
                                         ];
@@ -1468,11 +1503,16 @@
                                                                 'solution' => $q->solution,
                                                                 'marks' => $q->marks,
                                                                 'type' => $q->type,
+                                                                'image' => $q->image,
+                                                                'image_url' => $q->image_url,
                                                                 'answers' => $q->answers->map(function($a) {
                                                                     return [
                                                                         'id' => $a->id,
                                                                         'name' => $a->name,
                                                                         'match_answer' => $a->match_answer,
+                                                                        'prompt' => $a->getCasePrompt(),
+                                                                        'options' => $a->getBlankOptions(),
+                                                                        'hotspot_coords' => $a->getHotspotCoordinates(),
                                                                     ];
                                                                 })->toArray(),
                                                             ];
@@ -2140,6 +2180,10 @@
                     const selectedAnsId = userSelectedAnswers[q.id] || null;
                     const isTrueFalse = parseInt(q.type) === 4;
                     const isMatch = parseInt(q.type) === 5;
+                    const isPuzzle = parseInt(q.type) === 6;
+                    const isFillInTheBlanks = parseInt(q.type) === 7;
+                    const isImageLabeling = parseInt(q.type) === 8;
+                    const isCaseStudy = parseInt(q.type) === 9;
                     const isTextEntry = parseInt(q.type) === 3;
 
                     if (isTextEntry) {
@@ -2246,6 +2290,374 @@
                         } else {
                             optionsHtml = '<p class="text-xs text-slate-500 italic mt-3">No matching pairs defined for this question.</p>';
                         }
+                    } else if (isPuzzle) {
+                        if (q.answers && q.answers.length > 0) {
+                            if (!userSelectedMatches[q.id]) {
+                                // Initialize with randomized sequence of answer IDs if not yet set
+                                const shuffledAnsIds = q.answers.map(a => a.id).sort(() => 0.5 - Math.random());
+                                userSelectedMatches[q.id] = {};
+                                shuffledAnsIds.forEach((id, idx) => {
+                                    userSelectedMatches[q.id][idx] = id;
+                                });
+                            }
+
+                            const answersById = {};
+                            q.answers.forEach(a => { answersById[a.id] = a; });
+
+                            const currentOrder = Object.keys(userSelectedMatches[q.id])
+                                .sort((a, b) => parseInt(a) - parseInt(b))
+                                .map(idx => userSelectedMatches[q.id][idx]);
+
+                            optionsHtml = `
+                                <div class="mt-4 space-y-3">
+                                    <div class="flex items-center justify-between text-xs text-slate-400 font-semibold px-1">
+                                        <span class="flex items-center gap-1.5 text-indigo-400">
+                                            <span>🧩</span> Arrange Puzzle Pieces in Correct Sequence:
+                                        </span>
+                                        <span class="text-slate-500 font-mono text-[11px]">(Use ▲ / ▼ buttons to reorder)</span>
+                                    </div>
+                                    <div class="space-y-2" id="puzzle_container_${q.id}">
+                            `;
+
+                            currentOrder.forEach((ansId, idx) => {
+                                const ans = answersById[ansId] || { name: 'Unknown' };
+                                const isFirst = idx === 0;
+                                const isLast = idx === currentOrder.length - 1;
+                                const disabledAttr = isExamTimerLocked ? 'disabled' : '';
+
+                                optionsHtml += `
+                                    <div class="p-3 sm:p-3.5 rounded-xl border bg-slate-900/90 border-indigo-500/30 flex items-center justify-between gap-3 shadow-md hover:border-indigo-500/60 transition-all">
+                                        <div class="flex items-center space-x-3 min-w-0">
+                                            <span class="w-8 h-8 rounded-xl bg-indigo-600/30 text-indigo-300 border border-indigo-500/40 flex items-center justify-center text-xs font-black shrink-0">
+                                                #${idx + 1}
+                                            </span>
+                                            <span class="text-sm font-semibold text-slate-100 break-words leading-snug">${escapeExamHtml(ans.name)}</span>
+                                        </div>
+                                        <div class="flex items-center space-x-1.5 shrink-0">
+                                            <button
+                                                type="button"
+                                                onclick="movePuzzleItem(${q.id}, ${idx}, -1)"
+                                                ${isFirst || isExamTimerLocked ? 'disabled' : ''}
+                                                class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold transition-all ${isFirst || isExamTimerLocked ? 'bg-slate-800/40 text-slate-600 cursor-not-allowed border border-slate-800' : 'bg-slate-800 text-slate-200 hover:bg-indigo-600 hover:text-white border border-slate-700 active:scale-95'}"
+                                                title="Move Up">
+                                                ▲
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onclick="movePuzzleItem(${q.id}, ${idx}, 1)"
+                                                ${isLast || isExamTimerLocked ? 'disabled' : ''}
+                                                class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold transition-all ${isLast || isExamTimerLocked ? 'bg-slate-800/40 text-slate-600 cursor-not-allowed border border-slate-800' : 'bg-slate-800 text-slate-200 hover:bg-indigo-600 hover:text-white border border-slate-700 active:scale-95'}"
+                                                title="Move Down">
+                                                ▼
+                                            </button>
+                                        </div>
+                                    </div>
+                                `;
+                            });
+
+                            optionsHtml += `
+                                    </div>
+                                </div>
+                            `;
+                        } else {
+                            optionsHtml = '<p class="text-xs text-slate-500 italic mt-3">No puzzle pieces defined for this question.</p>';
+                        }
+                    } else if (isFillInTheBlanks) {
+                        if (q.answers && q.answers.length > 0) {
+                            if (!userSelectedMatches[q.id]) {
+                                userSelectedMatches[q.id] = {};
+                            }
+
+                            const currentQMatches = userSelectedMatches[q.id] || {};
+                            let filledCount = 0;
+                            q.answers.forEach(a => {
+                                if (currentQMatches[a.id] && currentQMatches[a.id].trim() !== '') filledCount++;
+                            });
+
+                            optionsHtml = `
+                                <div class="mt-4 space-y-3">
+                                    <div class="flex items-center justify-between text-xs text-slate-400 font-semibold px-1">
+                                        <span class="flex items-center gap-1.5 text-teal-400">
+                                            <span>✍️</span> Fill in the Missing Blank(s):
+                                        </span>
+                                        <span class="text-teal-400 font-mono text-[11px]">${filledCount}/${q.answers.length} Filled</span>
+                                    </div>
+                                    <div class="space-y-3">
+                            `;
+
+                            q.answers.forEach((opt, idx) => {
+                                const currentVal = currentQMatches[opt.id] !== undefined ? currentQMatches[opt.id] : '';
+                                const disabledAttr = isExamTimerLocked ? 'disabled' : '';
+                                const choices = (opt.options && opt.options.length > 0 ? opt.options : (opt.name ? [opt.name] : []));
+
+                                optionsHtml += `
+                                    <div class="p-3.5 sm:p-4 rounded-xl border ${currentVal.trim() !== '' ? 'bg-slate-900/90 border-teal-500/50 shadow-md ring-1 ring-teal-500/30' : 'bg-slate-950/80 border-slate-800'} space-y-3 transition-all">
+                                        <div class="flex items-center justify-between gap-3">
+                                            <div class="flex items-center space-x-3 min-w-0">
+                                                <span class="w-8 h-8 rounded-xl ${currentVal.trim() !== '' ? 'bg-teal-600 text-white font-extrabold' : 'bg-slate-800 text-slate-300 border border-slate-700 font-bold'} flex items-center justify-center text-xs shrink-0 shadow-sm">
+                                                    (${idx + 1})
+                                                </span>
+                                                <div class="min-w-0">
+                                                    <span class="text-xs text-slate-400 font-mono font-medium block">Blank #${idx + 1}</span>
+                                                    <span class="text-xs text-slate-500">Click one option below to select it as the answer</span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                ${currentVal.trim() !== '' ? `
+                                                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-teal-500/20 text-teal-300 border border-teal-500/40">
+                                                        <span>Selected:</span>
+                                                        <span class="text-white font-extrabold underline">${escapeExamHtml(currentVal)}</span>
+                                                    </span>
+                                                ` : `
+                                                    <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium bg-slate-800/80 text-slate-400 border border-slate-700">
+                                                        Not Selected
+                                                    </span>
+                                                `}
+                                            </div>
+                                        </div>
+
+                                        <!-- Clickable Options (Max 4 per Blank) -->
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 pt-1">
+                                            ${choices.map((choice, choiceIdx) => {
+                                                const choiceLetter = String.fromCharCode(65 + choiceIdx);
+                                                const isSelected = currentVal === choice;
+                                                const btnClass = isSelected
+                                                    ? 'bg-teal-600 text-white border-teal-400 shadow-md ring-2 ring-teal-400/50'
+                                                    : 'bg-slate-900/90 hover:bg-slate-800 text-slate-200 border-slate-700/80 hover:border-teal-500/50';
+
+                                                return `
+                                                    <button
+                                                        type="button"
+                                                        ${disabledAttr}
+                                                        onclick="selectBlankOption(${q.id}, ${opt.id}, '${escapeExamHtml(choice).replace(/'/g, "\\'")}')"
+                                                        class="p-2.5 rounded-xl border text-left text-xs font-bold transition-all flex items-center space-x-2.5 group cursor-pointer ${btnClass} ${isExamTimerLocked ? 'cursor-not-allowed opacity-60' : ''}">
+                                                        <span class="w-6 h-6 rounded-lg ${isSelected ? 'bg-white text-teal-700 font-black' : 'bg-slate-800 text-slate-400 border border-slate-700 group-hover:bg-slate-700 group-hover:text-white'} flex items-center justify-center text-[11px] shrink-0 transition-colors">
+                                                            ${isSelected ? '✓' : choiceLetter}
+                                                        </span>
+                                                        <span class="truncate flex-1">${escapeExamHtml(choice)}</span>
+                                                    </button>
+                                                `;
+                                            }).join('')}
+                                        </div>
+                                    </div>
+                                `;
+                            });
+
+                            optionsHtml += `
+                                    </div>
+                                </div>
+                            `;
+                        } else {
+                            optionsHtml = '<p class="text-xs text-slate-500 italic mt-3">No blanks defined for this question.</p>';
+                        }
+                    } else if (isImageLabeling) {
+                        if (q.answers && q.answers.length > 0) {
+                            if (!userSelectedMatches[q.id]) {
+                                userSelectedMatches[q.id] = {};
+                            }
+
+                            const currentQMatches = userSelectedMatches[q.id] || {};
+                            let filledCount = 0;
+                            q.answers.forEach(a => {
+                                if (currentQMatches[a.id] && currentQMatches[a.id].trim() !== '') filledCount++;
+                            });
+
+                            const disabledAttr = isExamTimerLocked ? 'disabled' : '';
+
+                            optionsHtml = `
+                                <div class="mt-4 space-y-4">
+                                    <div class="flex items-center justify-between text-xs text-slate-400 font-semibold px-1">
+                                        <span class="flex items-center gap-1.5 text-amber-400">
+                                            <span>🏷️</span> Click Each Numbered Pin on the Diagram to Select its Correct Label:
+                                        </span>
+                                        <span class="text-amber-400 font-mono text-[11px]">${filledCount}/${q.answers.length} Pins Labeled</span>
+                                    </div>
+
+                                    ${(q.image_url || q.image) ? `
+                                        <div class="relative inline-block w-full max-w-2xl mx-auto rounded-2xl overflow-hidden border border-slate-700 bg-slate-900 shadow-xl group">
+                                            <img src="${escapeExamHtml(q.image_url || q.image)}" alt="Diagram" class="w-full max-h-80 object-contain mx-auto select-none">
+                                            ${q.answers.map((opt, idx) => {
+                                                const coords = opt.hotspot_coords || { x: 50, y: 50 };
+                                                const currentVal = currentQMatches[opt.id] !== undefined ? currentQMatches[opt.id] : '';
+                                                const isFilled = currentVal.trim() !== '';
+
+                                                return `
+                                                    <div style="left: ${coords.x}%; top: ${coords.y}%;" class="absolute -translate-x-1/2 -translate-y-1/2 transition-transform hover:scale-125 z-10">
+                                                        <div class="w-8 h-8 rounded-full bg-yellow-400 text-slate-950 ring-4 ring-yellow-300 font-black text-xs flex items-center justify-center shadow-2xl cursor-pointer">
+                                                            ${idx + 1}
+                                                        </div>
+                                                        ${isFilled ? `
+                                                            <span class="absolute top-9 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded text-[10px] font-black bg-slate-950 text-yellow-300 border border-yellow-400 shadow-yellow-500/20 shadow-lg whitespace-nowrap">
+                                                                ${escapeExamHtml(currentVal)}
+                                                            </span>
+                                                        ` : `
+                                                            <span class="absolute top-9 left-1/2 -translate-x-1/2 px-1.5 py-0.5 rounded text-[9px] font-black bg-yellow-400 text-slate-950 shadow-md whitespace-nowrap">
+                                                                Pin #${idx + 1}
+                                                            </span>
+                                                        `}
+                                                    </div>
+                                                `;
+                                            }).join('')}
+                                        </div>
+                                    ` : ''}
+
+                                    <!-- Pins Choices Section -->
+                                    <div class="space-y-3">
+                                        ${q.answers.map((opt, idx) => {
+                                            const currentVal = currentQMatches[opt.id] !== undefined ? currentQMatches[opt.id] : '';
+                                            const choices = (opt.options && opt.options.length > 0 ? opt.options : (opt.name ? [opt.name] : []));
+
+                                            return `
+                                                <div class="p-3.5 sm:p-4 rounded-xl border ${currentVal.trim() !== '' ? 'bg-slate-900/90 border-amber-500/50 shadow-md ring-1 ring-amber-500/30' : 'bg-slate-950/80 border-slate-800'} space-y-3 transition-all">
+                                                    <div class="flex items-center justify-between gap-3">
+                                                        <div class="flex items-center space-x-3 min-w-0">
+                                                            <span class="w-8 h-8 rounded-xl bg-yellow-400 text-slate-950 font-black ring-2 ring-yellow-400/80 shadow-yellow-500/30 flex items-center justify-center text-xs shrink-0 shadow-sm">
+                                                                Pin #${idx + 1}
+                                                            </span>
+                                                            <div class="min-w-0">
+                                                                <span class="text-xs text-yellow-400 font-black font-mono block">Diagram Pin #${idx + 1}</span>
+                                                                <span class="text-xs text-yellow-300/80 font-semibold">Click one option below to label Pin #${idx + 1}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            ${currentVal.trim() !== '' ? `
+                                                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">
+                                                                    <span>Selected:</span>
+                                                                    <span class="text-white font-extrabold underline">${escapeExamHtml(currentVal)}</span>
+                                                                </span>
+                                                            ` : `
+                                                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium bg-slate-800/80 text-slate-400 border border-slate-700">
+                                                                    Not Selected
+                                                                </span>
+                                                            `}
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Clickable Options (Max 4 Choices per Pin) -->
+                                                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 pt-1">
+                                                        ${choices.map((choice, choiceIdx) => {
+                                                            const choiceLetter = String.fromCharCode(65 + choiceIdx);
+                                                            const isSelected = currentVal === choice;
+                                                            const btnClass = isSelected
+                                                                ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-md ring-2 ring-amber-400/50'
+                                                                : 'bg-slate-900/90 hover:bg-slate-800 text-slate-200 border-slate-700/80 hover:border-amber-500/50';
+
+                                                            return `
+                                                                <button
+                                                                    type="button"
+                                                                    ${disabledAttr}
+                                                                    onclick="selectBlankOption(${q.id}, ${opt.id}, '${escapeExamHtml(choice).replace(/'/g, "\\'")}')"
+                                                                    class="p-2.5 rounded-xl border text-left text-xs font-bold transition-all flex items-center space-x-2.5 group cursor-pointer ${btnClass} ${isExamTimerLocked ? 'cursor-not-allowed opacity-60' : ''}">
+                                                                    <span class="w-6 h-6 rounded-lg ${isSelected ? 'bg-slate-950 text-amber-400 font-black' : 'bg-slate-800 text-slate-400 border border-slate-700 group-hover:bg-slate-700 group-hover:text-white'} flex items-center justify-center text-[11px] shrink-0 transition-colors">
+                                                                        ${isSelected ? '✓' : choiceLetter}
+                                                                    </span>
+                                                                    <span class="truncate flex-1">${escapeExamHtml(choice)}</span>
+                                                                </button>
+                                                            `;
+                                                        }).join('')}
+                                                    </div>
+                                                </div>
+                                            `;
+                                        }).join('')}
+                                    </div>
+                                </div>
+                            `;
+                        } else {
+                            optionsHtml = '<p class="text-xs text-slate-500 italic mt-3">No hotspot pins defined for this diagram.</p>';
+                        }
+                    } else if (isCaseStudy) {
+                        if (q.answers && q.answers.length > 0) {
+                            if (!userSelectedMatches[q.id]) {
+                                userSelectedMatches[q.id] = {};
+                            }
+
+                            const currentQMatches = userSelectedMatches[q.id] || {};
+                            let answeredCount = 0;
+                            q.answers.forEach(a => {
+                                if (currentQMatches[a.id] && currentQMatches[a.id].trim() !== '') answeredCount++;
+                            });
+
+                            const disabledAttr = isExamTimerLocked ? 'disabled' : '';
+
+                            optionsHtml = `
+                                <div class="mt-4 space-y-4">
+                                    <div class="flex items-center justify-between text-xs text-slate-400 font-semibold px-1">
+                                        <span class="flex items-center gap-1.5 text-blue-400">
+                                            <span>📚</span> Read the Case Study passage above and answer the sub-questions below:
+                                        </span>
+                                        <span class="text-blue-400 font-mono text-[11px]">${answeredCount}/${q.answers.length} Answered</span>
+                                    </div>
+
+                                    ${(q.image_url || q.image) ? `
+                                        <div class="relative inline-block w-full max-w-2xl mx-auto rounded-2xl overflow-hidden border border-slate-700 bg-slate-900 shadow-xl group">
+                                            <img src="${escapeExamHtml(q.image_url || q.image)}" alt="Case Study Diagram / Chart" class="w-full max-h-80 object-contain mx-auto select-none">
+                                        </div>
+                                    ` : ''}
+
+                                    <!-- Sub-Questions List -->
+                                    <div class="space-y-4">
+                                        ${q.answers.map((opt, idx) => {
+                                            const currentVal = currentQMatches[opt.id] !== undefined ? currentQMatches[opt.id] : '';
+                                            const subPrompt = opt.prompt || ('Sub-Question #' + (idx + 1));
+                                            const choices = (opt.options && opt.options.length > 0 ? opt.options : (opt.name ? [opt.name] : []));
+
+                                            return `
+                                                <div class="p-3.5 sm:p-4 rounded-xl border ${currentVal.trim() !== '' ? 'bg-slate-900/90 border-blue-500/50 shadow-md ring-1 ring-blue-500/30' : 'bg-slate-950/80 border-slate-800'} space-y-3 transition-all">
+                                                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                                        <div class="flex items-start space-x-3 min-w-0">
+                                                            <span class="w-7 h-7 rounded-xl bg-blue-500 text-white font-black ring-2 ring-blue-400/80 shadow-blue-500/30 flex items-center justify-center text-xs shrink-0 shadow-sm mt-0.5">
+                                                                Q${idx + 1}
+                                                            </span>
+                                                            <div class="min-w-0">
+                                                                <span class="text-xs sm:text-sm font-bold text-slate-100 block leading-snug">${escapeExamHtml(subPrompt)}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="shrink-0 pl-10 sm:pl-0">
+                                                            ${currentVal.trim() !== '' ? `
+                                                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40">
+                                                                    <span>Selected:</span>
+                                                                    <span class="text-white font-extrabold underline">${escapeExamHtml(currentVal)}</span>
+                                                                </span>
+                                                            ` : `
+                                                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium bg-slate-800/80 text-slate-400 border border-slate-700">
+                                                                    Not Answered
+                                                                </span>
+                                                            `}
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Clickable Options for Sub-Question -->
+                                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                                                        ${choices.map((choice, choiceIdx) => {
+                                                            const choiceLetter = String.fromCharCode(65 + choiceIdx);
+                                                            const isSelected = currentVal === choice;
+                                                            const btnClass = isSelected
+                                                                ? 'bg-blue-600 text-white border-blue-400 shadow-md ring-2 ring-blue-400/50 font-black'
+                                                                : 'bg-slate-900/90 hover:bg-slate-800 text-slate-200 border-slate-700/80 hover:border-blue-500/50 font-medium';
+
+                                                            return `
+                                                                <button
+                                                                    type="button"
+                                                                    ${disabledAttr}
+                                                                    onclick="selectBlankOption(${q.id}, ${opt.id}, '${escapeExamHtml(choice).replace(/'/g, "\\'")}')"
+                                                                    class="p-2.5 rounded-xl border text-left text-xs transition-all flex items-center space-x-2.5 group cursor-pointer ${btnClass} ${isExamTimerLocked ? 'cursor-not-allowed opacity-60' : ''}">
+                                                                    <span class="w-6 h-6 rounded-lg ${isSelected ? 'bg-slate-950 text-blue-300 font-black' : 'bg-slate-800 text-slate-400 border border-slate-700 group-hover:bg-slate-700 group-hover:text-white'} flex items-center justify-center text-[11px] shrink-0 transition-colors">
+                                                                        ${isSelected ? '✓' : choiceLetter}
+                                                                    </span>
+                                                                    <span class="truncate flex-1">${escapeExamHtml(choice)}</span>
+                                                                </button>
+                                                            `;
+                                                        }).join('')}
+                                                    </div>
+                                                </div>
+                                            `;
+                                        }).join('')}
+                                    </div>
+                                </div>
+                            `;
+                        } else {
+                            optionsHtml = '<p class="text-xs text-slate-500 italic mt-3">No sub-questions defined for this case study.</p>';
+                        }
                     } else if (q.answers && q.answers.length > 0) {
                         optionsHtml = `<div class="${isTrueFalse ? 'grid grid-cols-1 sm:grid-cols-2 gap-3' : 'space-y-2.5'} mt-4">`;
                         q.answers.forEach((opt, idx) => {
@@ -2313,6 +2725,14 @@
                         typeBadge = '<span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold">True / False</span>';
                     } else if (isMatch) {
                         typeBadge = '<span class="px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 text-[10px] font-bold">Match the Following</span>';
+                    } else if (isPuzzle) {
+                        typeBadge = '<span class="px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[10px] font-bold">🧩 Puzzle Sequence</span>';
+                    } else if (isFillInTheBlanks) {
+                        typeBadge = '<span class="px-2 py-0.5 rounded-full bg-teal-500/10 text-teal-400 border border-teal-500/20 text-[10px] font-bold">✍️ Fill in the Blanks</span>';
+                    } else if (isImageLabeling) {
+                        typeBadge = '<span class="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px] font-bold">🏷️ Diagram Hotspot</span>';
+                    } else if (isCaseStudy) {
+                        typeBadge = '<span class="px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-bold">📚 Case-Based / Source-Based</span>';
                     } else if (isTextEntry) {
                         typeBadge = '<span class="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px] font-bold">Text Entry</span>';
                     }
@@ -2439,6 +2859,48 @@
                         userSelectedMatches[qId] = {};
                     }
                     userSelectedMatches[qId][ansId] = chosenValue;
+                    renderExamStep();
+                }
+
+                function recordBlankAnswer(qId, ansId, value) {
+                    if (isExamTimerLocked) return;
+                    if (!userSelectedMatches[qId]) {
+                        userSelectedMatches[qId] = {};
+                    }
+                    userSelectedMatches[qId][ansId] = value;
+                    updateAllFormAnswers();
+                }
+
+                function selectBlankOption(qId, ansId, value) {
+                    if (isExamTimerLocked) return;
+                    if (!userSelectedMatches[qId]) {
+                        userSelectedMatches[qId] = {};
+                    }
+                    userSelectedMatches[qId][ansId] = value;
+                    updateAllFormAnswers();
+                    renderExamStep();
+                }
+
+                function movePuzzleItem(qId, fromIdx, direction) {
+                    if (isExamTimerLocked) return;
+                    if (!userSelectedMatches[qId]) return;
+
+                    const keys = Object.keys(userSelectedMatches[qId]).sort((a, b) => parseInt(a) - parseInt(b));
+                    const toIdx = fromIdx + direction;
+                    if (toIdx < 0 || toIdx >= keys.length) return;
+
+                    const list = keys.map(k => userSelectedMatches[qId][k]);
+                    // Swap elements
+                    const temp = list[fromIdx];
+                    list[fromIdx] = list[toIdx];
+                    list[toIdx] = temp;
+
+                    // Reassign
+                    userSelectedMatches[qId] = {};
+                    list.forEach((val, idx) => {
+                        userSelectedMatches[qId][idx] = val;
+                    });
+
                     renderExamStep();
                 }
 
@@ -2821,6 +3283,131 @@
                                 `;
                             }
 
+                            let puzzlePiecesMarkup = '';
+                            if (d.puzzle_pieces && d.puzzle_pieces.length > 0) {
+                                puzzlePiecesMarkup = `
+                                    <div class="mt-2 space-y-2">
+                                        <div class="flex items-center justify-between pb-1 border-b border-slate-100">
+                                            <span class="text-[10px] font-extrabold uppercase tracking-wider text-black">🧩 Puzzle Sequence Details:</span>
+                                            <span class="text-xs font-black text-black bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">${earnedMarks} / ${d.question_marks} Marks</span>
+                                        </div>
+                                        ${d.puzzle_pieces.map(pz => `
+                                            <div class="p-2.5 rounded-xl border ${pz.is_correct ? 'bg-emerald-50/90 border-emerald-300' : 'bg-rose-50/90 border-rose-300'} flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                                                <div class="flex items-center space-x-2">
+                                                    <span class="w-5 h-5 rounded-md ${pz.is_correct ? 'bg-emerald-600' : 'bg-rose-600'} text-white font-bold text-[10px] flex items-center justify-center shrink-0">
+                                                        ${pz.is_correct ? '✓' : '✕'}
+                                                    </span>
+                                                    <span class="font-extrabold text-black">Position #${pz.position}</span>
+                                                    <span class="text-black font-medium">Arranged: <span class="font-bold ${pz.is_correct ? 'text-emerald-950' : 'text-rose-950'}">${pz.student_piece}</span></span>
+                                                </div>
+                                                ${!pz.is_correct ? `
+                                                    <div class="text-emerald-900 font-bold pl-7 sm:pl-0">
+                                                        → Correct Piece: <span class="font-black underline">${pz.correct_piece}</span>
+                                                    </div>
+                                                ` : ''}
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                `;
+                            }
+
+                            let blanksMarkup = '';
+                            if (d.blanks && d.blanks.length > 0) {
+                                blanksMarkup = `
+                                    <div class="mt-2 space-y-2">
+                                        <div class="flex items-center justify-between pb-1 border-b border-slate-100">
+                                            <span class="text-[10px] font-extrabold uppercase tracking-wider text-black">✍️ Fill in the Blanks Details:</span>
+                                            <span class="text-xs font-black text-black bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">${earnedMarks} / ${d.question_marks} Marks</span>
+                                        </div>
+                                        ${d.blanks.map(b => `
+                                            <div class="p-2.5 rounded-xl border ${b.is_correct ? 'bg-emerald-50/90 border-emerald-300' : 'bg-rose-50/90 border-rose-300'} flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                                                <div class="flex items-center space-x-2">
+                                                    <span class="w-5 h-5 rounded-md ${b.is_correct ? 'bg-emerald-600' : 'bg-rose-600'} text-white font-bold text-[10px] flex items-center justify-center shrink-0">
+                                                        ${b.is_correct ? '✓' : '✕'}
+                                                    </span>
+                                                    <span class="font-extrabold text-black">Blank #${b.blank_number}</span>
+                                                    <span class="text-black font-medium">Your answer: <span class="font-bold ${b.is_correct ? 'text-emerald-950' : 'text-rose-950'}">${escapeExamHtml(b.student_answer)}</span></span>
+                                                </div>
+                                                ${!b.is_correct ? `
+                                                    <div class="text-emerald-900 font-bold pl-7 sm:pl-0">
+                                                        → Expected: <span class="font-black underline">${escapeExamHtml(b.correct_answer)}</span>
+                                                    </div>
+                                                ` : ''}
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                `;
+                            }
+
+                            let hotspotsMarkup = '';
+                            if (d.hotspots && d.hotspots.length > 0) {
+                                hotspotsMarkup = `
+                                    <div class="mt-2 space-y-2">
+                                        <div class="flex items-center justify-between pb-1 border-b border-slate-100">
+                                            <span class="text-[10px] font-extrabold uppercase tracking-wider text-black">🏷️ Diagram Hotspot Details:</span>
+                                            <span class="text-xs font-black text-black bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">${earnedMarks} / ${d.question_marks} Marks</span>
+                                        </div>
+                                        ${d.image_url ? `
+                                            <div class="p-2 rounded-xl bg-slate-900 border border-slate-700 flex justify-center">
+                                                <img src="${escapeExamHtml(d.image_url)}" alt="Diagram" class="max-h-48 object-contain rounded-lg">
+                                            </div>
+                                        ` : ''}
+                                        ${d.hotspots.map(h => `
+                                            <div class="p-2.5 rounded-xl border ${h.is_correct ? 'bg-emerald-50/90 border-emerald-300' : 'bg-rose-50/90 border-rose-300'} flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                                                <div class="flex items-center space-x-2">
+                                                    <span class="w-5 h-5 rounded-md ${h.is_correct ? 'bg-emerald-600' : 'bg-rose-600'} text-white font-bold text-[10px] flex items-center justify-center shrink-0">
+                                                        ${h.is_correct ? '✓' : '✕'}
+                                                    </span>
+                                                    <span class="font-black text-yellow-900 bg-yellow-300 px-2 py-0.5 rounded border border-yellow-400">Pin #${h.pin_number}</span>
+                                                    <span class="text-black font-medium">Your answer: <span class="font-bold ${h.is_correct ? 'text-emerald-950' : 'text-rose-950'}">${escapeExamHtml(h.student_answer)}</span></span>
+                                                </div>
+                                                ${!h.is_correct ? `
+                                                    <div class="text-emerald-900 font-bold pl-7 sm:pl-0">
+                                                        → Expected: <span class="font-black underline">${escapeExamHtml(h.correct_answer)}</span>
+                                                    </div>
+                                                ` : ''}
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                `;
+                            }
+
+                            let caseStudyMarkup = '';
+                            if (d.case_study && d.case_study.length > 0) {
+                                caseStudyMarkup = `
+                                    <div class="mt-2 space-y-2">
+                                        <div class="flex items-center justify-between pb-1 border-b border-slate-100">
+                                            <span class="text-[10px] font-extrabold uppercase tracking-wider text-black">📚 Case-Based Sub-Questions:</span>
+                                            <span class="text-xs font-black text-black bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">${earnedMarks} / ${d.question_marks} Marks</span>
+                                        </div>
+                                        ${d.image_url ? `
+                                            <div class="p-2 rounded-xl bg-slate-900 border border-slate-700 flex justify-center">
+                                                <img src="${escapeExamHtml(d.image_url)}" alt="Case Study Diagram" class="max-h-48 object-contain rounded-lg">
+                                            </div>
+                                        ` : ''}
+                                        ${d.case_study.map(c => `
+                                            <div class="p-2.5 rounded-xl border ${c.is_correct ? 'bg-emerald-50/90 border-emerald-300' : 'bg-rose-50/90 border-rose-300'} flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                                                <div class="flex items-start space-x-2">
+                                                    <span class="w-5 h-5 rounded-md ${c.is_correct ? 'bg-emerald-600' : 'bg-rose-600'} text-white font-bold text-[10px] flex items-center justify-center shrink-0 mt-0.5">
+                                                        ${c.is_correct ? '✓' : '✕'}
+                                                    </span>
+                                                    <div>
+                                                        <span class="font-extrabold text-blue-900 bg-blue-100 px-2 py-0.5 rounded border border-blue-200">Q${c.sub_question_number}</span>
+                                                        <span class="font-bold text-black ml-1">${escapeExamHtml(c.prompt)}</span>
+                                                        <div class="text-black font-medium mt-1">Your answer: <span class="font-bold ${c.is_correct ? 'text-emerald-950' : 'text-rose-950'}">${escapeExamHtml(c.student_answer)}</span></div>
+                                                    </div>
+                                                </div>
+                                                ${!c.is_correct ? `
+                                                    <div class="text-emerald-900 font-bold pl-7 sm:pl-0 shrink-0">
+                                                        → Expected: <span class="font-black underline">${escapeExamHtml(c.correct_answer)}</span>
+                                                    </div>
+                                                ` : ''}
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                `;
+                            }
+
                             let hintSolutionReviewMarkup = '';
                             if (d.hint || d.solution) {
                                 hintSolutionReviewMarkup = `
@@ -2874,7 +3461,7 @@
                                                     </div>
                                                 ` : ''}
                                             </div>
-                                        ` : (d.match_pairs && d.match_pairs.length > 0 ? matchPairsMarkup : `
+                                        ` : (d.match_pairs && d.match_pairs.length > 0 ? matchPairsMarkup : (d.puzzle_pieces && d.puzzle_pieces.length > 0 ? puzzlePiecesMarkup : (d.blanks && d.blanks.length > 0 ? blanksMarkup : (d.hotspots && d.hotspots.length > 0 ? hotspotsMarkup : (d.case_study && d.case_study.length > 0 ? caseStudyMarkup : `
                                             <div class="p-3 rounded-xl border ${ansBoxClass} flex items-center justify-between gap-3">
                                                 <div class="flex items-center space-x-2.5">
                                                     ${ansIcon}
@@ -2887,7 +3474,7 @@
                                             </div>
 
                                             ${correctAnswerMarkup}
-                                        `)}
+                                        `)))))}
                                         ${hintSolutionReviewMarkup}
                                     </div>
                                 </div>
@@ -3374,6 +3961,11 @@
                                                                     'earned_marks' => $earnedMarks,
                                                                     'correct_answer' => $d->getCorrectAnswerDisplay(),
                                                                     'match_pairs' => $d->getMatchPairsReview(),
+                                                                    'puzzle_pieces' => $d->getPuzzleReview(),
+                                                                    'blanks' => $d->getBlanksReview(),
+                                                                    'hotspots' => $d->getHotspotsReview(),
+                                                                    'case_study' => $d->getCaseStudyReview(),
+                                                                    'image_url' => $d->question?->image_url,
                                                                     'hint' => $d->question?->hint,
                                                                     'solution' => $d->question?->solution,
                                                                 ];
@@ -4074,6 +4666,7 @@
                                                 'id' => $std->id,
                                                 'name' => $std->name,
                                                 'student_ids' => $std->students->pluck('id')->toArray(),
+                                                'is_admin_created' => $std->isAdminCreated(),
                                             ]) }})" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow transition-all inline-flex items-center space-x-1 cursor-pointer">
                                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
                                                 <span>Assign Students</span>
@@ -4272,6 +4865,131 @@
                             `;
                         }
 
+                        let puzzlePiecesTeacherMarkup = '';
+                        if (d.puzzle_pieces && d.puzzle_pieces.length > 0) {
+                            puzzlePiecesTeacherMarkup = `
+                                <div class="mt-2 space-y-2">
+                                    <div class="flex items-center justify-between pb-1 border-b border-slate-100">
+                                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-black">🧩 Puzzle Sequence Details:</span>
+                                        <span class="text-xs font-black text-black bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">${escapeExamHtml(earnedMarks)} / ${escapeExamHtml(d.question_marks)} Marks</span>
+                                    </div>
+                                    ${d.puzzle_pieces.map(pz => `
+                                        <div class="p-2.5 rounded-xl border ${pz.is_correct ? 'bg-emerald-50/90 border-emerald-300' : 'bg-rose-50/90 border-rose-300'} flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                                            <div class="flex items-center space-x-2">
+                                                <span class="w-5 h-5 rounded-md ${pz.is_correct ? 'bg-emerald-600' : 'bg-rose-600'} text-white font-bold text-[10px] flex items-center justify-center shrink-0">
+                                                    ${pz.is_correct ? '✓' : '✕'}
+                                                </span>
+                                                <span class="font-extrabold text-black">Position #${pz.position}</span>
+                                                <span class="text-black font-medium">Arranged: <span class="font-bold ${pz.is_correct ? 'text-emerald-950' : 'text-rose-950'}">${pz.student_piece}</span></span>
+                                            </div>
+                                            ${!pz.is_correct ? `
+                                                <div class="text-emerald-900 font-bold pl-7 sm:pl-0">
+                                                    → Correct Piece: <span class="font-black underline">${pz.correct_piece}</span>
+                                                </div>
+                                            ` : ''}
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            `;
+                        }
+
+                        let blanksTeacherMarkup = '';
+                        if (d.blanks && d.blanks.length > 0) {
+                            blanksTeacherMarkup = `
+                                <div class="mt-2 space-y-2">
+                                    <div class="flex items-center justify-between pb-1 border-b border-slate-100">
+                                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-black">✍️ Fill in the Blanks Details:</span>
+                                        <span class="text-xs font-black text-black bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">${escapeExamHtml(earnedMarks)} / ${escapeExamHtml(d.question_marks)} Marks</span>
+                                    </div>
+                                    ${d.blanks.map(b => `
+                                        <div class="p-2.5 rounded-xl border ${b.is_correct ? 'bg-emerald-50/90 border-emerald-300' : 'bg-rose-50/90 border-rose-300'} flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                                            <div class="flex items-center space-x-2">
+                                                <span class="w-5 h-5 rounded-md ${b.is_correct ? 'bg-emerald-600' : 'bg-rose-600'} text-white font-bold text-[10px] flex items-center justify-center shrink-0">
+                                                    ${b.is_correct ? '✓' : '✕'}
+                                                </span>
+                                                <span class="font-extrabold text-black">Blank #${b.blank_number}</span>
+                                                <span class="text-black font-medium">Your answer: <span class="font-bold ${b.is_correct ? 'text-emerald-950' : 'text-rose-950'}">${escapeExamHtml(b.student_answer)}</span></span>
+                                            </div>
+                                            ${!b.is_correct ? `
+                                                <div class="text-emerald-900 font-bold pl-7 sm:pl-0">
+                                                    → Expected: <span class="font-black underline">${escapeExamHtml(b.correct_answer)}</span>
+                                                </div>
+                                            ` : ''}
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            `;
+                        }
+
+                        let hotspotsTeacherMarkup = '';
+                        if (d.hotspots && d.hotspots.length > 0) {
+                            hotspotsTeacherMarkup = `
+                                <div class="mt-2 space-y-2">
+                                    <div class="flex items-center justify-between pb-1 border-b border-slate-100">
+                                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-black">🏷️ Diagram Hotspot Details:</span>
+                                        <span class="text-xs font-black text-black bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">${escapeExamHtml(earnedMarks)} / ${escapeExamHtml(d.question_marks)} Marks</span>
+                                    </div>
+                                    ${d.image_url ? `
+                                        <div class="p-2 rounded-xl bg-slate-900 border border-slate-700 flex justify-center">
+                                            <img src="${escapeExamHtml(d.image_url)}" alt="Diagram" class="max-h-48 object-contain rounded-lg">
+                                        </div>
+                                    ` : ''}
+                                    ${d.hotspots.map(h => `
+                                        <div class="p-2.5 rounded-xl border ${h.is_correct ? 'bg-emerald-50/90 border-emerald-300' : 'bg-rose-50/90 border-rose-300'} flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                                            <div class="flex items-center space-x-2">
+                                                <span class="w-5 h-5 rounded-md ${h.is_correct ? 'bg-emerald-600' : 'bg-rose-600'} text-white font-bold text-[10px] flex items-center justify-center shrink-0">
+                                                    ${h.is_correct ? '✓' : '✕'}
+                                                </span>
+                                                <span class="font-black text-yellow-900 bg-yellow-300 px-2 py-0.5 rounded border border-yellow-400">Pin #${h.pin_number}</span>
+                                                <span class="text-black font-medium">Your answer: <span class="font-bold ${h.is_correct ? 'text-emerald-950' : 'text-rose-950'}">${escapeExamHtml(h.student_answer)}</span></span>
+                                            </div>
+                                            ${!h.is_correct ? `
+                                                <div class="text-emerald-900 font-bold pl-7 sm:pl-0">
+                                                    → Expected: <span class="font-black underline">${escapeExamHtml(h.correct_answer)}</span>
+                                                </div>
+                                            ` : ''}
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            `;
+                        }
+
+                        let caseStudyTeacherMarkup = '';
+                        if (d.case_study && d.case_study.length > 0) {
+                            caseStudyTeacherMarkup = `
+                                <div class="mt-2 space-y-2">
+                                    <div class="flex items-center justify-between pb-1 border-b border-slate-100">
+                                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-black">📚 Case-Based Sub-Questions:</span>
+                                        <span class="text-xs font-black text-black bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">${escapeExamHtml(earnedMarks)} / ${escapeExamHtml(d.question_marks)} Marks</span>
+                                    </div>
+                                    ${d.image_url ? `
+                                        <div class="p-2 rounded-xl bg-slate-900 border border-slate-700 flex justify-center">
+                                            <img src="${escapeExamHtml(d.image_url)}" alt="Case Study Diagram" class="max-h-48 object-contain rounded-lg">
+                                        </div>
+                                    ` : ''}
+                                    ${d.case_study.map(c => `
+                                        <div class="p-2.5 rounded-xl border ${c.is_correct ? 'bg-emerald-50/90 border-emerald-300' : 'bg-rose-50/90 border-rose-300'} flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                                            <div class="flex items-start space-x-2">
+                                                <span class="w-5 h-5 rounded-md ${c.is_correct ? 'bg-emerald-600' : 'bg-rose-600'} text-white font-bold text-[10px] flex items-center justify-center shrink-0 mt-0.5">
+                                                    ${c.is_correct ? '✓' : '✕'}
+                                                </span>
+                                                <div>
+                                                    <span class="font-extrabold text-blue-900 bg-blue-100 px-2 py-0.5 rounded border border-blue-200">Q${c.sub_question_number}</span>
+                                                    <span class="font-bold text-black ml-1">${escapeExamHtml(c.prompt)}</span>
+                                                    <div class="text-black font-medium mt-1">Student answer: <span class="font-bold ${c.is_correct ? 'text-emerald-950' : 'text-rose-950'}">${escapeExamHtml(c.student_answer)}</span></div>
+                                                </div>
+                                            </div>
+                                            ${!c.is_correct ? `
+                                                <div class="text-emerald-900 font-bold pl-7 sm:pl-0 shrink-0">
+                                                    → Expected: <span class="font-black underline">${escapeExamHtml(c.correct_answer)}</span>
+                                                </div>
+                                            ` : ''}
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            `;
+                        }
+
                         let textEntrySectionMarkup = '';
                         if (isTextEntry) {
                             let evalBox = '';
@@ -4353,7 +5071,7 @@
                                 </div>
 
                                 <div class="pt-1 space-y-2">
-                                    ${isTextEntry ? textEntrySectionMarkup : (d.match_pairs && d.match_pairs.length > 0 ? matchPairsMarkup : `
+                                    ${isTextEntry ? textEntrySectionMarkup : (d.match_pairs && d.match_pairs.length > 0 ? matchPairsMarkup : (d.puzzle_pieces && d.puzzle_pieces.length > 0 ? puzzlePiecesTeacherMarkup : (d.blanks && d.blanks.length > 0 ? blanksTeacherMarkup : (d.hotspots && d.hotspots.length > 0 ? hotspotsTeacherMarkup : (d.case_study && d.case_study.length > 0 ? caseStudyTeacherMarkup : `
                                         <div class="p-3 rounded-xl border ${ansBoxClass} flex items-center justify-between gap-3">
                                             <div class="flex items-center space-x-2.5">
                                                 ${ansIcon}
@@ -4366,7 +5084,7 @@
                                         </div>
 
                                         ${correctAnswerMarkup}
-                                    `)}
+                                    `)))))}
                                     ${hintSolutionReviewMarkup}
                                 </div>
                             </div>
@@ -4984,6 +5702,13 @@
                         </button>
                     </div>
 
+                    @if (! $isAdmin)
+                        <div class="px-6 py-2.5 bg-indigo-500/10 border-b border-indigo-500/20 text-xs text-indigo-300 flex items-center space-x-2">
+                            <svg class="w-4 h-4 text-indigo-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span>You can only assign students enrolled in your assigned classes{{ isset($teacherAdminStandards) && $teacherAdminStandards->isNotEmpty() ? ' ('.$teacherAdminStandards->pluck('name')->join(', ').')' : '' }}.</span>
+                        </div>
+                    @endif
+
                     <form id="assignStudentsForm" method="POST" action="" class="flex flex-col flex-1 overflow-hidden">
                         @csrf
                         <input type="hidden" name="_assign_mode" value="bulk">
@@ -5024,20 +5749,33 @@
                                     $stId = data_get($stUser, 'id');
                                     $stName = data_get($stUser, 'name', '');
                                     $stEmail = data_get($stUser, 'email', '');
-                                    $stStandardName = data_get($stUser, 'student.standard.name', 'Unassigned');
-                                    $stStandardId = data_get($stUser, 'student.standard_id');
+                                    $stAdminStd = $stUser->adminCreatedStandard();
+                                    $stAdminStdId = $stAdminStd?->id;
+                                    $stAdminStdName = $stAdminStd?->name;
+                                    $stStandardName = $stAdminStdName ?? 'Unassigned';
+                                    $stStandardId = $stAdminStdId;
                                 @endphp
-                                <label class="assign-student-item flex items-center justify-between p-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-colors cursor-pointer" data-name="{{ strtolower($stName) }}" data-email="{{ strtolower($stEmail) }}">
+                                <label class="assign-student-item flex items-center justify-between p-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-colors cursor-pointer"
+                                       data-name="{{ strtolower($stName) }}"
+                                       data-email="{{ strtolower($stEmail) }}"
+                                       data-student-id="{{ $stId }}"
+                                       data-admin-std-id="{{ $stAdminStdId ?? '' }}"
+                                       data-admin-std-name="{{ $stAdminStdName ?? '' }}">
                                     <div class="flex items-center space-x-3">
-                                        <input type="checkbox" name="student_ids[]" value="{{ $stId }}" data-std-id="{{ $stStandardId }}" onchange="updateAssignSelectedCount()" class="assign-student-checkbox w-4 h-4 rounded border-slate-700 bg-slate-950 text-emerald-600 focus:ring-emerald-500 focus:ring-offset-slate-900">
+                                        <input type="checkbox" name="student_ids[]" value="{{ $stId }}" data-std-id="{{ $stStandardId }}" data-admin-std-id="{{ $stAdminStdId ?? '' }}" onchange="updateAssignSelectedCount()" class="assign-student-checkbox w-4 h-4 rounded border-slate-700 bg-slate-950 text-emerald-600 focus:ring-emerald-500 focus:ring-offset-slate-900">
                                         <div>
                                             <span class="text-sm font-bold text-white block">{{ $stName }}</span>
                                             <span class="text-xs text-slate-400 font-mono">{{ $stEmail }}</span>
                                         </div>
                                     </div>
-                                    <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold {{ $stStandardId ? 'bg-indigo-500/10 text-indigo-300 border border-indigo-500/20' : 'bg-slate-800 text-slate-400 border border-slate-700' }}">
-                                        {{ $stStandardName }}
-                                    </span>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="student-conflict-badge hidden px-2 py-0.5 rounded text-[10px] font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20">
+                                            Already in <span class="student-conflict-std-name"></span> (Admin)
+                                        </span>
+                                        <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold {{ $stStandardId ? 'bg-indigo-500/10 text-indigo-300 border border-indigo-500/20' : 'bg-slate-800 text-slate-400 border border-slate-700' }}">
+                                            {{ $stStandardName }}
+                                        </span>
+                                    </div>
                                 </label>
                             @empty
                                 <div class="p-6 text-center text-slate-500 text-xs">No student accounts found.</div>
@@ -5083,7 +5821,7 @@
                                 <option value="">-- Choose Class Standard --</option>
                                 @foreach($allStandardsForSelect ?? $standards as $std)
                                     @if($isAdmin || (int) $std->created_by === (int) $user->id)
-                                        <option value="{{ $std->id }}">{{ $std->name }}</option>
+                                        <option value="{{ $std->id }}" data-is-admin="{{ $std->isAdminCreated() ? '1' : '0' }}">{{ $std->name }}</option>
                                     @endif
                                 @endforeach
                             </select>
@@ -5119,11 +5857,43 @@
                         title.textContent = 'Assign Students to ' + (data.name || 'Class');
                     }
 
-                    const checkboxes = document.querySelectorAll('.assign-student-checkbox');
+                    const isAdminCreated = Boolean(data.is_admin_created);
+                    const currentStandardId = parseInt(data.id);
                     const studentIds = (data.student_ids || []).map(id => parseInt(id));
-                    checkboxes.forEach(cb => {
+
+                    const items = document.querySelectorAll('.assign-student-item');
+                    items.forEach(item => {
+                        const cb = item.querySelector('.assign-student-checkbox');
+                        if (!cb) return;
                         const val = parseInt(cb.value);
-                        cb.checked = studentIds.includes(val);
+                        const isEnrolledInThis = studentIds.includes(val);
+                        const adminStdId = item.getAttribute('data-admin-std-id') ? parseInt(item.getAttribute('data-admin-std-id')) : null;
+                        const adminStdName = item.getAttribute('data-admin-std-name') || '';
+                        const conflictBadge = item.querySelector('.student-conflict-badge');
+                        const conflictNameSpan = item.querySelector('.student-conflict-std-name');
+
+                        const hasConflict = isAdminCreated && adminStdId && adminStdId !== currentStandardId && !isEnrolledInThis;
+
+                        if (hasConflict) {
+                            cb.checked = false;
+                            cb.disabled = true;
+                            item.classList.add('opacity-50', 'cursor-not-allowed', 'bg-slate-950/40');
+                            item.classList.remove('cursor-pointer', 'hover:border-slate-700');
+                            item.title = 'Cannot assign: Student is already assigned to admin-created standard "' + adminStdName + '"';
+                            if (conflictBadge && conflictNameSpan) {
+                                conflictNameSpan.textContent = adminStdName;
+                                conflictBadge.classList.remove('hidden');
+                            }
+                        } else {
+                            cb.disabled = false;
+                            cb.checked = isEnrolledInThis;
+                            item.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-slate-950/40');
+                            item.classList.add('cursor-pointer', 'hover:border-slate-700');
+                            item.title = '';
+                            if (conflictBadge) {
+                                conflictBadge.classList.add('hidden');
+                            }
+                        }
                     });
 
                     if (typeof window.updateAssignSelectedCount === 'function') {
@@ -5240,8 +6010,28 @@
                     if (studentIdInput) studentIdInput.value = data.id || '';
                     if (title) title.textContent = 'Assign ' + (data.name || 'Student') + ' to Class';
 
+                    const currentAdminStdId = data.admin_standard_id ? parseInt(data.admin_standard_id) : (data.standard_id ? parseInt(data.standard_id) : null);
+                    const currentAdminStdName = data.admin_standard_name || '';
+
                     if (select) {
                         select.value = data.standard_id || '';
+                        Array.from(select.options).forEach(opt => {
+                            if (!opt.value) return;
+                            const optIsAdmin = opt.getAttribute('data-is-admin') === '1';
+                            const optVal = parseInt(opt.value);
+                            const baseText = opt.getAttribute('data-base-text') || opt.textContent;
+                            if (!opt.getAttribute('data-base-text')) {
+                                opt.setAttribute('data-base-text', baseText);
+                            }
+
+                            if (optIsAdmin && currentAdminStdId && optVal !== currentAdminStdId) {
+                                opt.disabled = true;
+                                opt.textContent = baseText + ' (Already in ' + (currentAdminStdName || 'another admin class') + ')';
+                            } else {
+                                opt.disabled = false;
+                                opt.textContent = baseText;
+                            }
+                        });
                     }
 
                     if (form) {
@@ -5621,7 +6411,7 @@
                                     <select id="dashboard_edit_exam_standard" name="standard_id" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-100 text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none">
                                         <option value="">Select Class</option>
                                         @foreach($allStandardsForSelect ?? [] as $std)
-                                            <option value="{{ $std->id }}">{{ $std->name }}</option>
+                                            <option value="{{ $std->id }}" data-is-admin="{{ $std->isAdminCreated() ? '1' : '0' }}">{{ $std->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

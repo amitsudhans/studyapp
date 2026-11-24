@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
     'remark',
     'type',
     'school',
+    'school_id',
     'designation',
 ])]
 class UserProfile extends Model
@@ -29,5 +30,15 @@ class UserProfile extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the school associated with this profile.
+     *
+     * @return BelongsTo<School, $this>
+     */
+    public function schoolRelation(): BelongsTo
+    {
+        return $this->belongsTo(School::class, 'school_id');
     }
 }

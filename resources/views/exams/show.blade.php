@@ -214,6 +214,10 @@
                                     <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-medium">True / False</span>
                                 @elseif($q->type == 5)
                                     <span class="px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-medium">Match the Following</span>
+                                @elseif($q->type == 6)
+                                    <span class="px-2.5 py-0.5 rounded-full bg-pink-500/10 text-pink-400 border border-pink-500/20 font-medium">🧩 Puzzle</span>
+                                @elseif($q->type == 7)
+                                    <span class="px-2.5 py-0.5 rounded-full bg-teal-500/10 text-teal-400 border border-teal-500/20 font-medium">✍️ Fill in the blanks</span>
                                 @else
                                     <span class="px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 font-medium">Text Entry</span>
                                 @endif
@@ -376,6 +380,8 @@
                                 <option value="3">3 - Text Entry</option>
                                 <option value="4">4 - True / False</option>
                                 <option value="5">5 - Match the Following</option>
+                                <option value="6">6 - Puzzle</option>
+                                <option value="7">7 - Fill in the blanks</option>
                             </select>
                         </div>
                     </div>
@@ -473,7 +479,7 @@
                                             </span>
                                             <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
                                                 Type: 
-                                                @if($q->type == 1) Single Option @elseif($q->type == 2) Multiple Option @elseif($q->type == 4) True / False @elseif($q->type == 5) Match the Following @else Text Entry @endif
+                                                @if($q->type == 1) Single Option @elseif($q->type == 2) Multiple Option @elseif($q->type == 4) True / False @elseif($q->type == 5) Match the Following @elseif($q->type == 6) Puzzle @elseif($q->type == 7) Fill in the blanks @else Text Entry @endif
                                             </span>
                                         </div>
                                     </label>
@@ -1162,6 +1168,8 @@
                 if (parseInt(data.type) === 3) typeStr = 'Text Entry';
                 if (parseInt(data.type) === 4) typeStr = 'True / False';
                 if (parseInt(data.type) === 5) typeStr = 'Match the Following';
+                if (parseInt(data.type) === 6) typeStr = 'Puzzle';
+                if (parseInt(data.type) === 7) typeStr = 'Fill in the blanks';
                 document.getElementById('preview_q_type').textContent = 'Type: ' + typeStr;
 
                 document.getElementById('preview_q_marks').textContent = (data.marks || 0) + ' Mark(s)';

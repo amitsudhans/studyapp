@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Chapter;
 use App\Models\Exam;
+use App\Models\School;
 use App\Models\Standard;
 use App\Models\StudentExamDetail;
 use App\Models\Subject;
@@ -24,12 +25,14 @@ class DashboardController extends Controller
     public function index(Request $request): View
     {
         $user = Auth::user()->load(['profile', 'standards', 'student.standard']);
+        Standard::cleanUpAllIneligibleCustomGroupEnrollments();
 
         $type = (int) ($user->profile?->type ?? 1);
         $isStudent = ($type === 2);
         $isAdmin = ($type === 3 || $type === 0 || $type === 99 || $user->email === 'admin@example.com' || $user->profile?->designation === 'Administrator');
 
         $users = null;
+        $schools = School::orderBy('name')->get();
         $standards = collect();
         $studentExams = collect();
         $submittedExamIds = [];
@@ -48,7 +51,7 @@ class DashboardController extends Controller
         $studentTotalMarks = 0;
 
         if ($isAdmin) {
-            $adminQuery = User::with(['profile', 'standards', 'student.standard', 'curricula']);
+            $adminQuery = User::with(['profile.schoolRelation', 'standards', 'student.standard', 'curricula']);
 
             if ($request->filled('role')) {
                 $role = (int) $request->input('role');
@@ -64,6 +67,26 @@ class DashboardController extends Controller
                 }
             }
 
+            $schoolFilter = $request->input('school_id') ?: $request->input('school');
+            if (! empty($schoolFilter)) {
+                if (is_numeric($schoolFilter)) {
+                    $schoolId = (int) $schoolFilter;
+                    $schoolObj = $schools->firstWhere('id', $schoolId);
+                    $adminQuery->whereHas('profile', function ($p) use ($schoolId, $schoolObj) {
+                        $p->where('school_id', $schoolId);
+                        if ($schoolObj) {
+                            $p->orWhere('school', $schoolObj->name);
+                        }
+                    });
+                } else {
+                    $searchSchool = trim($schoolFilter);
+                    $adminQuery->whereHas('profile', function ($p) use ($searchSchool) {
+                        $p->where('school', 'like', "%{$searchSchool}%")
+                            ->orWhereHas('schoolRelation', fn ($s) => $s->where('name', 'like', "%{$searchSchool}%"));
+                    });
+                }
+            }
+
             if ($request->filled('admin_search')) {
                 $search = trim($request->input('admin_search'));
                 $adminQuery->where(function ($q) use ($search) {
@@ -73,7 +96,8 @@ class DashboardController extends Controller
                             $p->where('mobile', 'like', "%{$search}%")
                                 ->orWhere('designation', 'like', "%{$search}%")
                                 ->orWhere('school', 'like', "%{$search}%")
-                                ->orWhere('address', 'like', "%{$search}%");
+                                ->orWhere('address', 'like', "%{$search}%")
+                                ->orWhereHas('schoolRelation', fn ($s) => $s->where('name', 'like', "%{$search}%"));
                         });
                 });
             }
@@ -400,7 +424,17 @@ class DashboardController extends Controller
         $allStandardsForSelect = Standard::accessibleTo($user)->orderBy('name')->get();
 
         $syllabi = Syllabus::orderBy('name')->get();
-        $syllabusesData = Syllabus::with(['standards', 'subjects.chapters.topics'])->orderBy('name')->get();
+        $syllabusesData = Syllabus::with([
+            'standards' => fn ($sq) => $user->isAdmin() ? $sq : $sq->where(function ($q) use ($user) {
+                $q->whereNull('created_by')
+                    ->orWhere('created_by', $user->id)
+                    ->orWhereHas('creator', function ($cq) {
+                        $cq->where('email', 'admin@example.com')
+                            ->orWhereHas('profile', fn ($pq) => $pq->whereIn('type', [0, 3, 99])->orWhere('designation', 'Administrator'));
+                    });
+            }),
+            'subjects.chapters.topics',
+        ])->orderBy('name')->get();
         $subjects = Subject::orderBy('name')->get();
         $chapters = Chapter::orderBy('name')->get();
         $topics = Topic::orderBy('name')->get();
@@ -416,14 +450,39 @@ class DashboardController extends Controller
                         ->orWhereHas('student');
                 });
 
+                $teacherAdminStandards = collect();
                 if (! $isAdmin) {
-                    $tIds = isset($teacherStandardIds) ? $teacherStandardIds : [];
-                    if (! empty($tIds)) {
-                        $allStudentsQuery->whereHas('student', function ($q) use ($tIds) {
-                            $q->whereIn('standard_id', $tIds);
+                    $teacherAdminStandards = $user->standards()
+                        ->adminCreated()
+                        ->get(['standards.id', 'standards.name']);
+                    $teacherAdminStdIds = $teacherAdminStandards->pluck('id')->toArray();
+
+                    if (! empty($teacherAdminStdIds)) {
+                        $allStudentsQuery->where(function ($q) use ($teacherAdminStdIds) {
+                            $q->whereHas('studentStandards', fn ($st) => $st->whereIn('standards.id', $teacherAdminStdIds))
+                                ->orWhereHas('student', fn ($st) => $st->whereIn('standard_id', $teacherAdminStdIds));
                         });
                     } else {
                         $allStudentsQuery->whereRaw('1 = 0');
+                    }
+                }
+
+                if (! empty($schoolFilter)) {
+                    if (is_numeric($schoolFilter)) {
+                        $schoolId = (int) $schoolFilter;
+                        $schoolObj = $schools->firstWhere('id', $schoolId);
+                        $allStudentsQuery->whereHas('profile', function ($p) use ($schoolId, $schoolObj) {
+                            $p->where('school_id', $schoolId);
+                            if ($schoolObj) {
+                                $p->orWhere('school', $schoolObj->name);
+                            }
+                        });
+                    } else {
+                        $searchSchool = trim($schoolFilter);
+                        $allStudentsQuery->whereHas('profile', function ($p) use ($searchSchool) {
+                            $p->where('school', 'like', "%{$searchSchool}%")
+                                ->orWhereHas('schoolRelation', fn ($s) => $s->where('name', 'like', "%{$searchSchool}%"));
+                        });
                     }
                 }
 
@@ -436,7 +495,7 @@ class DashboardController extends Controller
                 }
 
                 $allStudents = $allStudentsQuery
-                    ->with(['profile', 'student.standard'])
+                    ->with(['profile', 'student.standard.creator.profile', 'studentStandards.creator.profile'])
                     ->orderBy('name')
                     ->get();
             }
@@ -474,10 +533,12 @@ class DashboardController extends Controller
             'teacherExamSubmissions' => $teacherExamSubmissions,
             'teacherStudentPerformanceMap' => $teacherStudentPerformanceMap,
             'allStudents' => $allStudents,
+            'teacherAdminStandards' => $teacherAdminStandards ?? collect(),
             'allStandardsForSelect' => $allStandardsForSelect,
             'curriculumSyllabuses' => CurriculumCatalog::syllabuses(),
             'curriculumSubjects' => CurriculumCatalog::subjects(),
             'curriculumClasses' => CurriculumCatalog::classes(),
+            'schools' => $schools,
         ]);
 
     }

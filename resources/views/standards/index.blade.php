@@ -202,6 +202,7 @@
                                             'id' => $std->id,
                                             'name' => $std->name,
                                             'student_ids' => $std->students->pluck('id')->toArray(),
+                                            'is_admin_created' => $std->isAdminCreated(),
                                         ]) }})" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow transition-all inline-flex items-center space-x-1 cursor-pointer">
                                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
                                             <span>Assign Students</span>
@@ -332,6 +333,13 @@
                 </button>
             </div>
 
+            @if (Auth::user()->isTeacher() && ! Auth::user()->isAdmin())
+                <div class="px-6 py-2.5 bg-indigo-500/10 border-b border-indigo-500/20 text-xs text-indigo-300 flex items-center space-x-2">
+                    <svg class="w-4 h-4 text-indigo-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span>You can only assign students enrolled in your assigned classes{{ isset($teacherAssignedAdminStandards) && $teacherAssignedAdminStandards->isNotEmpty() ? ' ('.$teacherAssignedAdminStandards->pluck('name')->join(', ').')' : '' }}.</span>
+                </div>
+            @endif
+
             <form id="assignStudentsForm" method="POST" action="" class="flex flex-col flex-1 overflow-hidden">
                 @csrf
                 <input type="hidden" name="_assign_mode" value="bulk">
@@ -344,18 +352,37 @@
                 </div>
 
                 <div class="p-6 overflow-y-auto space-y-2 flex-1 max-h-96" id="assign_students_checkbox_container">
-                    @foreach ($allStudents as $student)
-                        <label class="assign-student-item flex items-center justify-between p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-emerald-500/40 cursor-pointer transition-all" data-name="{{ strtolower($student->name) }}" data-email="{{ strtolower($student->email) }}">
+                    @forelse ($allStudents as $student)
+                        @php
+                            $stAdminStd = $student->adminCreatedStandard();
+                            $stAdminStdId = $stAdminStd?->id;
+                            $stAdminStdName = $stAdminStd?->name;
+                        @endphp
+                        <label class="assign-student-item flex items-center justify-between p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-emerald-500/40 cursor-pointer transition-all"
+                               data-name="{{ strtolower($student->name) }}"
+                               data-email="{{ strtolower($student->email) }}"
+                               data-student-id="{{ $student->id }}"
+                               data-admin-std-id="{{ $stAdminStdId ?? '' }}"
+                               data-admin-std-name="{{ $stAdminStdName ?? '' }}">
                             <div class="flex items-center space-x-3">
-                                <input type="checkbox" name="student_ids[]" value="{{ $student->id }}" onchange="updateAssignSelectedCount()" class="assign-student-checkbox rounded bg-slate-900 border-slate-700 text-emerald-600 focus:ring-emerald-500">
+                                <input type="checkbox" name="student_ids[]" value="{{ $student->id }}" data-admin-std-id="{{ $stAdminStdId ?? '' }}" onchange="updateAssignSelectedCount()" class="assign-student-checkbox rounded bg-slate-900 border-slate-700 text-emerald-600 focus:ring-emerald-500">
                                 <div>
                                     <span class="text-sm font-semibold text-white block">{{ $student->name }}</span>
                                     <span class="text-xs text-slate-400">{{ $student->email }}</span>
                                 </div>
                             </div>
-                            <span class="text-[11px] text-slate-500">#{{ str_pad($student->id, 4, '0', STR_PAD_LEFT) }}</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="student-conflict-badge hidden px-2 py-0.5 rounded text-[10px] font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20">
+                                    Already in <span class="student-conflict-std-name"></span> (Admin)
+                                </span>
+                                <span class="text-[11px] text-slate-500">#{{ str_pad($student->id, 4, '0', STR_PAD_LEFT) }}</span>
+                            </div>
                         </label>
-                    @endforeach
+                    @empty
+                        <div class="p-6 text-center text-slate-500 text-xs">
+                            No eligible students found in your assigned classes.
+                        </div>
+                    @endforelse
                 </div>
 
                 <div class="px-6 py-4 border-t border-slate-800 bg-slate-950/80 flex items-center justify-between shrink-0">
@@ -382,11 +409,45 @@
             if (form) form.action = '/standards/' + data.id + '/assign-students';
             document.getElementById('assign_modal_standard_title').textContent = 'Assign Students to ' + data.name;
 
-            const selectedIds = (data.student_ids || []).map(String);
-            const checkboxes = document.querySelectorAll('.assign-student-checkbox');
-            checkboxes.forEach(cb => {
-                cb.checked = selectedIds.includes(String(cb.value));
+            const isAdminCreated = Boolean(data.is_admin_created);
+            const currentStandardId = parseInt(data.id);
+            const selectedIds = (data.student_ids || []).map(id => parseInt(id));
+
+            const items = document.querySelectorAll('#assign_students_checkbox_container .assign-student-item');
+            items.forEach(item => {
+                const cb = item.querySelector('.assign-student-checkbox');
+                if (!cb) return;
+                const val = parseInt(cb.value);
+                const isEnrolledInThis = selectedIds.includes(val);
+                const adminStdId = item.getAttribute('data-admin-std-id') ? parseInt(item.getAttribute('data-admin-std-id')) : null;
+                const adminStdName = item.getAttribute('data-admin-std-name') || '';
+                const conflictBadge = item.querySelector('.student-conflict-badge');
+                const conflictNameSpan = item.querySelector('.student-conflict-std-name');
+
+                const hasConflict = isAdminCreated && adminStdId && adminStdId !== currentStandardId && !isEnrolledInThis;
+
+                if (hasConflict) {
+                    cb.checked = false;
+                    cb.disabled = true;
+                    item.classList.add('opacity-50', 'cursor-not-allowed', 'bg-slate-950/40');
+                    item.classList.remove('cursor-pointer', 'hover:border-emerald-500/40');
+                    item.title = 'Cannot assign: Student is already assigned to admin-created standard "' + adminStdName + '"';
+                    if (conflictBadge && conflictNameSpan) {
+                        conflictNameSpan.textContent = adminStdName;
+                        conflictBadge.classList.remove('hidden');
+                    }
+                } else {
+                    cb.disabled = false;
+                    cb.checked = isEnrolledInThis;
+                    item.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-slate-950/40');
+                    item.classList.add('cursor-pointer', 'hover:border-emerald-500/40');
+                    item.title = '';
+                    if (conflictBadge) {
+                        conflictBadge.classList.add('hidden');
+                    }
+                }
             });
+
             updateAssignSelectedCount();
             document.getElementById('assignStudentsModal').classList.remove('hidden');
         }

@@ -90,6 +90,18 @@ class QuestionController extends Controller
                 if (str_contains($searchLower, 'match')) {
                     $q->orWhere('type', 5);
                 }
+                if (str_contains($searchLower, 'puzzle')) {
+                    $q->orWhere('type', 6);
+                }
+                if (str_contains($searchLower, 'blank') || str_contains($searchLower, 'fill')) {
+                    $q->orWhere('type', 7);
+                }
+                if (str_contains($searchLower, 'hotspot') || str_contains($searchLower, 'diagram') || str_contains($searchLower, 'label')) {
+                    $q->orWhere('type', 8);
+                }
+                if (str_contains($searchLower, 'case') || str_contains($searchLower, 'source')) {
+                    $q->orWhere('type', 9);
+                }
             });
         }
 
@@ -165,20 +177,32 @@ class QuestionController extends Controller
             'subject_id' => ['nullable', 'exists:subjects,id'],
             'chapter_id' => ['nullable', 'exists:chapters,id'],
             'topic_id' => ['nullable', 'exists:topics,id'],
-            'type' => ['required', 'integer', 'in:1,2,3,4,5'],
-            'marks' => ['required', 'integer', 'min:0'],
-            'answers' => ['nullable', 'array', 'max:6'],
+            'type' => ['required', 'integer', 'in:1,2,3,4,5,6,7,8,9'],
+            'marks' => ['required', 'integer', 'min:1'],
+            'image_file' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,svg', 'max:5120'],
+            'image' => ['nullable', 'string', 'max:1000'],
+            'answers' => ['nullable', 'array', 'max:10'],
             'answers.*.name' => ['nullable', 'string', 'max:255'],
+            'answers.*.prompt' => ['nullable', 'string', 'max:1000'],
             'answers.*.match_answer' => ['nullable', 'string', 'max:255'],
+            'answers.*.options' => ['nullable'],
+            'answers.*.x' => ['nullable', 'numeric', 'min:0', 'max:100'],
+            'answers.*.y' => ['nullable', 'numeric', 'min:0', 'max:100'],
             'answers.*.is_correct' => ['nullable', 'in:0,1'],
         ]);
 
         $this->validateAnswers($validated);
 
         DB::transaction(function () use ($validated, $request) {
+            $imagePath = $validated['image'] ?? null;
+            if ($request->hasFile('image_file')) {
+                $imagePath = $request->file('image_file')->store('question-diagrams', 'public');
+            }
+
             $question = Question::create([
                 'name' => $validated['name'],
                 'description' => $validated['description'] ?? null,
+                'image' => $imagePath,
                 'hint' => $validated['hint'] ?? null,
                 'solution' => $validated['solution'] ?? null,
                 'standard_id' => $validated['standard_id'],
@@ -232,6 +256,167 @@ class QuestionController extends Controller
                 if ($count > 0) {
                     $question->update(['marks' => $count]);
                 }
+            } elseif ((int) $validated['type'] === 6 && ! empty($validated['answers'])) {
+                $count = 0;
+                foreach ($validated['answers'] as $ans) {
+                    $name = trim($ans['name'] ?? '');
+                    if ($name !== '') {
+                        if ($count >= 6) {
+                            break;
+                        }
+                        Answer::create([
+                            'question_id' => $question->id,
+                            'name' => $name,
+                            'is_correct' => 1,
+                            'status' => 1,
+                        ]);
+                        $count++;
+                    }
+                }
+
+                // 1 mark for each puzzle piece
+                if ($count > 0) {
+                    $question->update(['marks' => $count]);
+                }
+            } elseif ((int) $validated['type'] === 7 && ! empty($validated['answers'])) {
+                $count = 0;
+                foreach ($validated['answers'] as $ans) {
+                    $name = trim($ans['name'] ?? '');
+                    if ($name !== '') {
+                        if ($count >= 6) {
+                            break;
+                        }
+
+                        // Parse options for this blank
+                        $optionsList = [];
+                        if (! empty($ans['options'])) {
+                            if (is_array($ans['options'])) {
+                                $optionsList = array_values(array_filter(array_map('trim', $ans['options'])));
+                            } else {
+                                $optionsList = array_values(array_filter(array_map('trim', explode(',', (string) $ans['options']))));
+                            }
+                        }
+
+                        // Ensure correct answer is in options list
+                        if (! in_array($name, $optionsList, true)) {
+                            array_unshift($optionsList, $name);
+                        }
+
+                        $optionsList = array_slice($optionsList, 0, 4);
+
+                        Answer::create([
+                            'question_id' => $question->id,
+                            'name' => $name,
+                            'match_answer' => json_encode($optionsList),
+                            'is_correct' => 1,
+                            'status' => 1,
+                        ]);
+                        $count++;
+                    }
+                }
+
+                // 1 mark for each blank
+                if ($count > 0) {
+                    $question->update(['marks' => $count]);
+                }
+            } elseif ((int) $validated['type'] === 8 && ! empty($validated['answers'])) {
+                $count = 0;
+                foreach ($validated['answers'] as $ans) {
+                    $name = trim($ans['name'] ?? '');
+                    if ($name !== '') {
+                        if ($count >= 10) {
+                            break;
+                        }
+
+                        // Parse options for this pin
+                        $optionsList = [];
+                        if (! empty($ans['options'])) {
+                            if (is_array($ans['options'])) {
+                                $optionsList = array_values(array_filter(array_map('trim', $ans['options'])));
+                            } else {
+                                $optionsList = array_values(array_filter(array_map('trim', explode(',', (string) $ans['options']))));
+                            }
+                        }
+
+                        // Ensure correct answer is in options list
+                        if (! in_array($name, $optionsList, true)) {
+                            array_unshift($optionsList, $name);
+                        }
+
+                        $optionsList = array_slice($optionsList, 0, 4);
+
+                        // Coordinates x, y (percentage 0 to 100)
+                        $x = isset($ans['x']) && is_numeric($ans['x']) ? (float) $ans['x'] : 50.0;
+                        $y = isset($ans['y']) && is_numeric($ans['y']) ? (float) $ans['y'] : 50.0;
+
+                        $hotspotPayload = [
+                            'x' => round(max(0, min(100, $x)), 1),
+                            'y' => round(max(0, min(100, $y)), 1),
+                            'options' => $optionsList,
+                        ];
+
+                        Answer::create([
+                            'question_id' => $question->id,
+                            'name' => $name,
+                            'match_answer' => json_encode($hotspotPayload),
+                            'is_correct' => 1,
+                            'status' => 1,
+                        ]);
+                        $count++;
+                    }
+                }
+
+                // 1 mark for each labeled hotspot pin
+                if ($count > 0) {
+                    $question->update(['marks' => $count]);
+                }
+            } elseif ((int) $validated['type'] === 9 && ! empty($validated['answers'])) {
+                $count = 0;
+                foreach ($validated['answers'] as $ansIdx => $ans) {
+                    $name = trim($ans['name'] ?? '');
+                    $prompt = trim($ans['prompt'] ?? '');
+                    if ($name !== '' || $prompt !== '') {
+                        if ($count >= 5) {
+                            break;
+                        }
+
+                        // Parse options for this sub-question
+                        $optionsList = [];
+                        if (! empty($ans['options'])) {
+                            if (is_array($ans['options'])) {
+                                $optionsList = array_values(array_filter(array_map('trim', $ans['options'])));
+                            } else {
+                                $optionsList = array_values(array_filter(array_map('trim', explode(',', (string) $ans['options']))));
+                            }
+                        }
+
+                        // Ensure correct answer is in options list
+                        if ($name !== '' && ! in_array($name, $optionsList, true)) {
+                            array_unshift($optionsList, $name);
+                        }
+
+                        $optionsList = array_slice($optionsList, 0, 4);
+
+                        $casePayload = [
+                            'prompt' => $prompt !== '' ? $prompt : 'Sub-Question #'.($ansIdx + 1),
+                            'options' => $optionsList,
+                        ];
+
+                        Answer::create([
+                            'question_id' => $question->id,
+                            'name' => $name,
+                            'match_answer' => json_encode($casePayload),
+                            'is_correct' => 1,
+                            'status' => 1,
+                        ]);
+                        $count++;
+                    }
+                }
+
+                // 1 mark for each sub-question
+                if ($count > 0) {
+                    $question->update(['marks' => $count]);
+                }
             }
         });
 
@@ -252,18 +437,24 @@ class QuestionController extends Controller
             'subject_id' => ['nullable', 'exists:subjects,id'],
             'chapter_id' => ['nullable', 'exists:chapters,id'],
             'topic_id' => ['nullable', 'exists:topics,id'],
-            'type' => ['required', 'integer', 'in:1,2,3,4,5'],
-            'marks' => ['required', 'integer', 'min:0'],
-            'answers' => ['nullable', 'array', 'max:6'],
+            'type' => ['required', 'integer', 'in:1,2,3,4,5,6,7,8,9'],
+            'marks' => ['required', 'integer', 'min:1'],
+            'image_file' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,svg', 'max:5120'],
+            'image' => ['nullable', 'string', 'max:1000'],
+            'answers' => ['nullable', 'array', 'max:10'],
             'answers.*.name' => ['nullable', 'string', 'max:255'],
+            'answers.*.prompt' => ['nullable', 'string', 'max:1000'],
             'answers.*.match_answer' => ['nullable', 'string', 'max:255'],
+            'answers.*.options' => ['nullable'],
+            'answers.*.x' => ['nullable', 'numeric', 'min:0', 'max:100'],
+            'answers.*.y' => ['nullable', 'numeric', 'min:0', 'max:100'],
             'answers.*.is_correct' => ['nullable', 'in:0,1'],
         ]);
 
         $this->validateAnswers($validated);
 
-        DB::transaction(function () use ($question, $validated) {
-            $question->update([
+        DB::transaction(function () use ($question, $validated, $request) {
+            $updateData = [
                 'name' => $validated['name'],
                 'description' => $validated['description'] ?? null,
                 'hint' => $validated['hint'] ?? null,
@@ -274,7 +465,15 @@ class QuestionController extends Controller
                 'topic_id' => $validated['topic_id'] ?? null,
                 'type' => (int) $validated['type'],
                 'marks' => (int) $validated['marks'],
-            ]);
+            ];
+
+            if ($request->hasFile('image_file')) {
+                $updateData['image'] = $request->file('image_file')->store('question-diagrams', 'public');
+            } elseif (! empty($validated['image'])) {
+                $updateData['image'] = $validated['image'];
+            }
+
+            $question->update($updateData);
 
             // Remove existing answers and re-create updated answers
             $question->answers()->delete();
@@ -316,6 +515,167 @@ class QuestionController extends Controller
                 }
 
                 // 1 mark for each matching pair
+                if ($count > 0) {
+                    $question->update(['marks' => $count]);
+                }
+            } elseif ((int) $validated['type'] === 6 && ! empty($validated['answers'])) {
+                $count = 0;
+                foreach ($validated['answers'] as $ans) {
+                    $name = trim($ans['name'] ?? '');
+                    if ($name !== '') {
+                        if ($count >= 6) {
+                            break;
+                        }
+                        Answer::create([
+                            'question_id' => $question->id,
+                            'name' => $name,
+                            'is_correct' => 1,
+                            'status' => 1,
+                        ]);
+                        $count++;
+                    }
+                }
+
+                // 1 mark for each puzzle piece
+                if ($count > 0) {
+                    $question->update(['marks' => $count]);
+                }
+            } elseif ((int) $validated['type'] === 7 && ! empty($validated['answers'])) {
+                $count = 0;
+                foreach ($validated['answers'] as $ans) {
+                    $name = trim($ans['name'] ?? '');
+                    if ($name !== '') {
+                        if ($count >= 6) {
+                            break;
+                        }
+
+                        // Parse options for this blank
+                        $optionsList = [];
+                        if (! empty($ans['options'])) {
+                            if (is_array($ans['options'])) {
+                                $optionsList = array_values(array_filter(array_map('trim', $ans['options'])));
+                            } else {
+                                $optionsList = array_values(array_filter(array_map('trim', explode(',', (string) $ans['options']))));
+                            }
+                        }
+
+                        // Ensure correct answer is in options list
+                        if (! in_array($name, $optionsList, true)) {
+                            array_unshift($optionsList, $name);
+                        }
+
+                        $optionsList = array_slice($optionsList, 0, 4);
+
+                        Answer::create([
+                            'question_id' => $question->id,
+                            'name' => $name,
+                            'match_answer' => json_encode($optionsList),
+                            'is_correct' => 1,
+                            'status' => 1,
+                        ]);
+                        $count++;
+                    }
+                }
+
+                // 1 mark for each blank
+                if ($count > 0) {
+                    $question->update(['marks' => $count]);
+                }
+            } elseif ((int) $validated['type'] === 8 && ! empty($validated['answers'])) {
+                $count = 0;
+                foreach ($validated['answers'] as $ans) {
+                    $name = trim($ans['name'] ?? '');
+                    if ($name !== '') {
+                        if ($count >= 10) {
+                            break;
+                        }
+
+                        // Parse options for this pin
+                        $optionsList = [];
+                        if (! empty($ans['options'])) {
+                            if (is_array($ans['options'])) {
+                                $optionsList = array_values(array_filter(array_map('trim', $ans['options'])));
+                            } else {
+                                $optionsList = array_values(array_filter(array_map('trim', explode(',', (string) $ans['options']))));
+                            }
+                        }
+
+                        // Ensure correct answer is in options list
+                        if (! in_array($name, $optionsList, true)) {
+                            array_unshift($optionsList, $name);
+                        }
+
+                        $optionsList = array_slice($optionsList, 0, 4);
+
+                        // Coordinates x, y (percentage 0 to 100)
+                        $x = isset($ans['x']) && is_numeric($ans['x']) ? (float) $ans['x'] : 50.0;
+                        $y = isset($ans['y']) && is_numeric($ans['y']) ? (float) $ans['y'] : 50.0;
+
+                        $hotspotPayload = [
+                            'x' => round(max(0, min(100, $x)), 1),
+                            'y' => round(max(0, min(100, $y)), 1),
+                            'options' => $optionsList,
+                        ];
+
+                        Answer::create([
+                            'question_id' => $question->id,
+                            'name' => $name,
+                            'match_answer' => json_encode($hotspotPayload),
+                            'is_correct' => 1,
+                            'status' => 1,
+                        ]);
+                        $count++;
+                    }
+                }
+
+                // 1 mark for each labeled hotspot pin
+                if ($count > 0) {
+                    $question->update(['marks' => $count]);
+                }
+            } elseif ((int) $validated['type'] === 9 && ! empty($validated['answers'])) {
+                $count = 0;
+                foreach ($validated['answers'] as $ansIdx => $ans) {
+                    $name = trim($ans['name'] ?? '');
+                    $prompt = trim($ans['prompt'] ?? '');
+                    if ($name !== '' || $prompt !== '') {
+                        if ($count >= 5) {
+                            break;
+                        }
+
+                        // Parse options for this sub-question
+                        $optionsList = [];
+                        if (! empty($ans['options'])) {
+                            if (is_array($ans['options'])) {
+                                $optionsList = array_values(array_filter(array_map('trim', $ans['options'])));
+                            } else {
+                                $optionsList = array_values(array_filter(array_map('trim', explode(',', (string) $ans['options']))));
+                            }
+                        }
+
+                        // Ensure correct answer is in options list
+                        if ($name !== '' && ! in_array($name, $optionsList, true)) {
+                            array_unshift($optionsList, $name);
+                        }
+
+                        $optionsList = array_slice($optionsList, 0, 4);
+
+                        $casePayload = [
+                            'prompt' => $prompt !== '' ? $prompt : 'Sub-Question #'.($ansIdx + 1),
+                            'options' => $optionsList,
+                        ];
+
+                        Answer::create([
+                            'question_id' => $question->id,
+                            'name' => $name,
+                            'match_answer' => json_encode($casePayload),
+                            'is_correct' => 1,
+                            'status' => 1,
+                        ]);
+                        $count++;
+                    }
+                }
+
+                // 1 mark for each sub-question
                 if ($count > 0) {
                     $question->update(['marks' => $count]);
                 }
@@ -370,6 +730,147 @@ class QuestionController extends Controller
             if ($validPairsCount < 2) {
                 throw ValidationException::withMessages([
                     'answers' => ['Match the Following questions must have at least 2 matching pairs.'],
+                ]);
+            }
+
+            return;
+        }
+
+        if ($type === 6) {
+            $rawAnswers = $validated['answers'] ?? [];
+            $validPiecesCount = 0;
+
+            foreach ($rawAnswers as $ans) {
+                $name = trim($ans['name'] ?? '');
+                if ($name !== '') {
+                    $validPiecesCount++;
+                }
+            }
+
+            if ($validPiecesCount < 2) {
+                throw ValidationException::withMessages([
+                    'answers' => ['Puzzle questions must have at least 2 puzzle pieces entered in their correct sequence.'],
+                ]);
+            }
+
+            return;
+        }
+
+        if ($type === 7) {
+            $rawAnswers = $validated['answers'] ?? [];
+            $validBlanksCount = 0;
+
+            foreach ($rawAnswers as $ansIdx => $ans) {
+                $name = trim($ans['name'] ?? '');
+                if ($name !== '') {
+                    $validBlanksCount++;
+
+                    // Validate options for this blank
+                    $optionsList = [];
+                    if (! empty($ans['options'])) {
+                        if (is_array($ans['options'])) {
+                            $optionsList = array_values(array_filter(array_map('trim', $ans['options'])));
+                        } else {
+                            $optionsList = array_values(array_filter(array_map('trim', explode(',', (string) $ans['options']))));
+                        }
+                    }
+
+                    if (empty($optionsList)) {
+                        throw ValidationException::withMessages([
+                            'answers' => ['It is mandatory to enter options for Blank #'.($ansIdx + 1).'.'],
+                        ]);
+                    }
+                }
+            }
+
+            if ($validBlanksCount < 1) {
+                throw ValidationException::withMessages([
+                    'answers' => ['Fill in the blanks questions must have at least 1 correct blank answer entered.'],
+                ]);
+            }
+
+            return;
+        }
+
+        if ($type === 8) {
+            $rawAnswers = $validated['answers'] ?? [];
+            $validPinsCount = 0;
+
+            foreach ($rawAnswers as $ansIdx => $ans) {
+                $name = trim($ans['name'] ?? '');
+                if ($name !== '') {
+                    $validPinsCount++;
+
+                    // Validate options for this pin
+                    $optionsList = [];
+                    if (! empty($ans['options'])) {
+                        if (is_array($ans['options'])) {
+                            $optionsList = array_values(array_filter(array_map('trim', $ans['options'])));
+                        } else {
+                            $optionsList = array_values(array_filter(array_map('trim', explode(',', (string) $ans['options']))));
+                        }
+                    }
+
+                    if (empty($optionsList)) {
+                        throw ValidationException::withMessages([
+                            'answers' => ['It is mandatory to enter options for Pin #'.($ansIdx + 1).'.'],
+                        ]);
+                    }
+                }
+            }
+
+            if ($validPinsCount < 1) {
+                throw ValidationException::withMessages([
+                    'answers' => ['Image Hotspot questions must have at least 1 labeled pin entered.'],
+                ]);
+            }
+
+            return;
+        }
+
+        if ($type === 9) {
+            $rawAnswers = $validated['answers'] ?? [];
+            $validSubQuestionsCount = 0;
+
+            foreach ($rawAnswers as $ansIdx => $ans) {
+                $name = trim($ans['name'] ?? '');
+                $prompt = trim($ans['prompt'] ?? '');
+                if ($name !== '' || $prompt !== '') {
+                    $validSubQuestionsCount++;
+
+                    if ($prompt === '') {
+                        throw ValidationException::withMessages([
+                            'answers' => ['Sub-Question #'.($ansIdx + 1).' question text is required.'],
+                        ]);
+                    }
+
+                    if ($name === '') {
+                        throw ValidationException::withMessages([
+                            'answers' => ['Sub-Question #'.($ansIdx + 1).' correct answer is required.'],
+                        ]);
+                    }
+
+                    // Validate options for this sub-question
+                    $optionsList = [];
+                    if (! empty($ans['options'])) {
+                        if (is_array($ans['options'])) {
+                            $optionsList = array_values(array_filter(array_map('trim', $ans['options'])));
+                        } else {
+                            $optionsList = array_values(array_filter(array_map('trim', explode(',', (string) $ans['options']))));
+                        }
+                    }
+
+                    if (empty($optionsList)) {
+                        throw ValidationException::withMessages([
+                            'answers' => ['It is mandatory to enter options/choices for Sub-Question #'.($ansIdx + 1).'.'],
+                        ]);
+                    }
+                }
+            }
+
+            if ($validSubQuestionsCount < 3) {
+                throw ValidationException::withMessages([
+                    'answers' => ['Case-Based / Source-Based questions must have at least 3 sub-questions (up to 5) entered.'],
                 ]);
             }
 

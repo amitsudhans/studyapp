@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/standards/{standard}', [StandardController::class, 'update'])->name('standards.update');
     Route::delete('/standards/{standard}', [StandardController::class, 'destroy'])->name('standards.destroy');
     Route::post('/standards/{standard}/assign-students', [StandardController::class, 'assignStudents'])->name('standards.assign-students');
+    Route::post('/standards/{standard}/unassign-student', [StandardController::class, 'unassignStudent'])->name('standards.unassign-student');
 
     // Chapters Management Routes (Inside Standard)
     Route::get('/standards/{standard}/chapters', [ChapterController::class, 'index'])->name('standards.chapters.index');

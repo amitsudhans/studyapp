@@ -72,6 +72,38 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the student's admin-created standard (if any).
+     */
+    public function adminCreatedStandard(): ?Standard
+    {
+        if ($this->relationLoaded('studentStandards')) {
+            return $this->studentStandards->first(fn ($s) => $s->isAdminCreated());
+        }
+
+        $adminStd = $this->studentStandards()->adminCreated()->first();
+        if ($adminStd) {
+            return $adminStd;
+        }
+
+        if ($this->relationLoaded('student') && $this->student?->relationLoaded('standard')) {
+            if ($this->student?->standard && $this->student->standard->isAdminCreated()) {
+                if ($this->studentStandards()->where('standards.id', $this->student->standard_id)->exists()) {
+                    return $this->student->standard;
+                }
+            }
+        } elseif ($this->student?->standard_id) {
+            if ($this->studentStandards()->where('standards.id', $this->student->standard_id)->exists()) {
+                $std = Standard::find($this->student->standard_id);
+                if ($std && $std->isAdminCreated()) {
+                    return $std;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * Get messages sent by this user.
      *
      * @return HasMany<ChatMessage, $this>

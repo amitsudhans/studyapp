@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('student_exam_details', function (Blueprint $table) {
-            $table->integer('teacher_marks')->nullable()->after('student_text_answer');
-            $table->text('teacher_feedback')->nullable()->after('teacher_marks');
+            $table->integer('teacher_marks')->nullable();
+            $table->text('teacher_feedback')->nullable();
         });
     }
 

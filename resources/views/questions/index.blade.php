@@ -280,6 +280,10 @@
                                 <option value="3" {{ request('type') == '3' ? 'selected' : '' }}>Text Entry</option>
                                 <option value="4" {{ request('type') == '4' ? 'selected' : '' }}>True / False</option>
                                 <option value="5" {{ request('type') == '5' ? 'selected' : '' }}>Match the Following</option>
+                                <option value="6" {{ request('type') == '6' ? 'selected' : '' }}>Puzzle</option>
+                                <option value="7" {{ request('type') == '7' ? 'selected' : '' }}>Fill in the blanks</option>
+                                <option value="8" {{ request('type') == '8' ? 'selected' : '' }}>Image Hotspot</option>
+                                <option value="9" {{ request('type') == '9' ? 'selected' : '' }}>Case-Based / Source-Based</option>
                             </select>
                         </div>
 
@@ -353,6 +357,10 @@
                         3 => 'Text Entry',
                         4 => 'True / False',
                         5 => 'Match Following',
+                        6 => 'Puzzle',
+                        7 => 'Fill in the blanks',
+                        8 => 'Image Hotspot',
+                        9 => 'Case-Based',
                         default => null,
                     };
                     $sylObj = $syllabuses->firstWhere('id', request('syllabus_id'));
@@ -457,11 +465,15 @@
                             'creator_name' => $q->creator?->name ?? 'System',
                             'created_at' => $q->created_at?->format('M d, Y h:i A') ?? 'N/A',
                             'status' => $q->status ?? 1,
+                            'image' => $q->image,
+                            'image_url' => $q->image_url,
                             'answers' => $q->answers->map(fn($a) => [
                                 'id' => $a->id,
                                 'name' => $a->name,
                                 'match_answer' => $a->match_answer,
                                 'is_correct' => $a->is_correct,
+                                'hotspot_coords' => $a->getHotspotCoordinates(),
+                                'blank_options' => $a->getBlankOptions(),
                             ])->toArray(),
                         ];
                     @endphp
@@ -524,6 +536,36 @@
                                         <span class="text-cyan-300 font-medium truncate max-w-[45%]"><strong class="text-cyan-400">{{ chr(65 + $idx) }}.</strong> {{ $ans->name }}</span>
                                         <span class="text-slate-500">&harr;</span>
                                         <span class="text-emerald-300 font-medium truncate max-w-[45%]">{{ $ans->match_answer }}</span>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @elseif($q->type == 6)
+                            <div class="bg-slate-950/70 p-2.5 rounded-xl border border-slate-800/80 space-y-1 text-xs">
+                                <span class="text-[10px] font-bold text-indigo-400 uppercase tracking-wider block mb-1">🧩 Correct Puzzle Order:</span>
+                                @foreach($q->answers as $idx => $ans)
+                                    <div class="flex items-center space-x-2 py-0.5 border-b border-slate-800/40 last:border-0">
+                                        <span class="w-5 h-5 rounded-md bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 text-[10px] font-extrabold flex items-center justify-center shrink-0">#{{ $idx + 1 }}</span>
+                                        <span class="text-slate-200 font-medium truncate">{{ $ans->name }}</span>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @elseif($q->type == 7)
+                            <div class="bg-slate-950/70 p-2.5 rounded-xl border border-slate-800/80 space-y-1 text-xs">
+                                <span class="text-[10px] font-bold text-teal-400 uppercase tracking-wider block mb-1">✍️ Correct Blanks:</span>
+                                @foreach($q->answers as $idx => $ans)
+                                    <div class="flex items-center space-x-2 py-0.5 border-b border-slate-800/40 last:border-0">
+                                        <span class="w-5 h-5 rounded-md bg-teal-500/20 text-teal-300 border border-teal-500/30 text-[10px] font-extrabold flex items-center justify-center shrink-0">({{ $idx + 1 }})</span>
+                                        <span class="text-slate-200 font-medium truncate">{{ $ans->name }}</span>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @elseif($q->type == 8)
+                            <div class="bg-slate-950/70 p-2.5 rounded-xl border border-slate-800/80 space-y-1 text-xs">
+                                <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider block mb-1">🏷️ Diagram Hotspots:</span>
+                                @foreach($q->answers as $idx => $ans)
+                                    <div class="flex items-center space-x-2 py-0.5 border-b border-slate-800/40 last:border-0">
+                                        <span class="w-5 h-5 rounded-md bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[10px] font-extrabold flex items-center justify-center shrink-0">P{{ $idx + 1 }}</span>
+                                        <span class="text-slate-200 font-medium truncate">{{ $ans->name }}</span>
                                     </div>
                                 @endforeach
                             </div>
@@ -638,11 +680,15 @@
                                     'creator_name' => $q->creator?->name ?? 'System',
                                     'created_at' => $q->created_at?->format('M d, Y h:i A') ?? 'N/A',
                                     'status' => $q->status ?? 1,
+                                    'image' => $q->image,
+                                    'image_url' => $q->image_url,
                                     'answers' => $q->answers->map(fn($a) => [
                                         'id' => $a->id,
                                         'name' => $a->name,
                                         'match_answer' => $a->match_answer,
                                         'is_correct' => $a->is_correct,
+                                        'hotspot_coords' => $a->getHotspotCoordinates(),
+                                        'blank_options' => $a->getBlankOptions(),
                                     ])->toArray(),
                                 ];
                             @endphp
@@ -712,6 +758,14 @@
                                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">True / False</span>
                                     @elseif($q->type == 5)
                                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Match the Following</span>
+                                    @elseif($q->type == 6)
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-pink-500/10 text-pink-400 border border-pink-500/20">🧩 Puzzle</span>
+                                    @elseif($q->type == 7)
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-teal-500/10 text-teal-400 border border-teal-500/20">✍️ Fill in the blanks</span>
+                                    @elseif($q->type == 8)
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">🏷️ Image Hotspot</span>
+                                    @elseif($q->type == 9)
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20">📚 Case-Based</span>
                                     @else
                                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">Text Entry</span>
                                     @endif
@@ -730,6 +784,33 @@
                                                     <span class="text-slate-200 font-medium truncate max-w-[100px]">{{ $ans->name }}</span>
                                                     <span class="text-slate-500 shrink-0">&harr;</span>
                                                     <span class="text-emerald-400 font-semibold truncate max-w-[100px]">{{ $ans->match_answer }}</span>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    @elseif($q->type == 6)
+                                        <div class="flex flex-col gap-1 max-w-xs text-xs">
+                                            @foreach($q->answers as $idx => $ans)
+                                                <div class="flex items-center space-x-1.5 text-slate-300">
+                                                    <span class="w-4 h-4 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 text-[9px] font-extrabold flex items-center justify-center shrink-0">#{{ $idx + 1 }}</span>
+                                                    <span class="text-slate-200 font-medium truncate max-w-[180px]">{{ $ans->name }}</span>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    @elseif($q->type == 7)
+                                        <div class="flex flex-col gap-1 max-w-xs text-xs">
+                                            @foreach($q->answers as $idx => $ans)
+                                                <div class="flex items-center space-x-1.5 text-slate-300">
+                                                    <span class="w-4 h-4 rounded bg-teal-500/20 text-teal-300 border border-teal-500/30 text-[9px] font-extrabold flex items-center justify-center shrink-0">({{ $idx + 1 }})</span>
+                                                    <span class="text-teal-300 font-medium truncate max-w-[180px]">{{ $ans->name }}</span>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    @elseif($q->type == 8)
+                                        <div class="flex flex-col gap-1 max-w-xs text-xs">
+                                            @foreach($q->answers as $idx => $ans)
+                                                <div class="flex items-center space-x-1.5 text-slate-300">
+                                                    <span class="w-4 h-4 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[9px] font-extrabold flex items-center justify-center shrink-0">P{{ $idx + 1 }}</span>
+                                                    <span class="text-amber-300 font-medium truncate max-w-[180px]">{{ $ans->name }}</span>
                                                 </div>
                                             @endforeach
                                         </div>
@@ -807,7 +888,7 @@
                     </button>
                 </div>
 
-                <form id="createQuestionForm" method="POST" action="{{ route('questions.store') }}" class="flex flex-col flex-1 overflow-hidden">
+                <form id="createQuestionForm" method="POST" action="{{ route('questions.store') }}" enctype="multipart/form-data" class="flex flex-col flex-1 overflow-hidden">
                     @csrf
                     
                     <div class="p-4 sm:p-5 space-y-3 overflow-y-auto flex-1 scrollbar-thin">
@@ -946,6 +1027,10 @@
                                     <option value="2" {{ old('type') == '2' ? 'selected' : '' }}>2 - Multiple Option</option>
                                     <option value="4" {{ old('type') == '4' ? 'selected' : '' }}>4 - True / False</option>
                                     <option value="5" {{ old('type') == '5' ? 'selected' : '' }}>5 - Match the Following</option>
+                                    <option value="6" {{ old('type') == '6' ? 'selected' : '' }}>6 - Puzzle (Arrange Sequence)</option>
+                                    <option value="7" {{ old('type') == '7' ? 'selected' : '' }}>7 - Fill in the blanks (Cloze)</option>
+                                    <option value="8" {{ old('type') == '8' ? 'selected' : '' }}>8 - Image Hotspot / Diagram Labeling</option>
+                                    <option value="9" {{ old('type') == '9' ? 'selected' : '' }}>9 - Case-Based / Source-Based Integrated</option>
                                     <option value="3" {{ old('type') == '3' ? 'selected' : '' }}>3 - Text Entry</option>
                                 </select>
                                 @error('type')
@@ -956,8 +1041,8 @@
                             <!-- Marks (Required, Numbers Only) -->
                             <div>
                                 <label for="create_q_marks" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Marks <span class="text-red-400">*</span></label>
-                                <input type="number" id="create_q_marks" name="marks" required min="0" step="1" value="{{ old('marks', 1) }}" placeholder="1" class="w-full px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs @error('marks') border-red-500 focus:ring-red-500 @enderror">
-                                <p id="create_marks_hint" class="mt-1 text-[11px] text-amber-300 font-medium hidden">Auto-calculated: 1 mark per valid matching pair (e.g. 4 pairs = 4 marks)</p>
+                                <input type="number" id="create_q_marks" name="marks" required min="1" step="1" value="{{ old('marks', 1) }}" placeholder="1" class="w-full px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs @error('marks') border-red-500 focus:ring-red-500 @enderror">
+                                <p id="create_marks_hint" class="mt-1 text-[11px] text-amber-300 font-medium hidden">Auto-calculated: 1 mark per piece / blank / matching pair</p>
                                 @error('marks')
                                     <p class="mt-1 text-xs text-red-400">{{ $message }}</p>
                                 @enderror
@@ -971,6 +1056,35 @@
                             @error('description')
                                 <p class="mt-1 text-xs text-red-400">{{ $message }}</p>
                             @enderror
+                        </div>
+
+                        <!-- Diagram / Image Upload for Image Hotspot Type (Type 8) -->
+                        <div id="create_diagram_upload_container" class="hidden p-3.5 rounded-xl bg-slate-950/80 border border-amber-500/40 space-y-3">
+                            <div class="flex items-center justify-between">
+                                <label class="block text-xs font-bold text-amber-300 uppercase tracking-wider flex items-center gap-1.5">
+                                    <span>🖼️ Upload Diagram or Map</span>
+                                    <span class="text-red-400">*</span>
+                                </label>
+                                <span class="text-[11px] text-slate-400">PNG, JPG, SVG, WebP (Max 5MB)</span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row items-center gap-3">
+                                <input type="file" id="create_q_image_file" name="image_file" accept="image/*" onchange="handleDiagramImageChange('create', this)" class="w-full text-xs text-slate-300 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-amber-500/20 file:text-amber-300 hover:file:bg-amber-500/30 file:cursor-pointer cursor-pointer">
+                                <input type="hidden" id="create_q_image" name="image" value="{{ old('image') }}">
+                            </div>
+
+                            <!-- Interactive Hotspot Pin Placement Canvas -->
+                            <div id="create_hotspot_preview_box" class="hidden space-y-2 pt-2 border-t border-slate-800">
+                                <div class="flex items-center justify-between text-xs text-amber-300 font-semibold flex-wrap gap-2">
+                                    <span class="flex items-center gap-1.5">
+                                        <span>🖐️</span> Click or Drag any Pin onto the diagram to position it. Click "Quick Answer" to set its name!
+                                    </span>
+                                    <span id="create_active_pin_indicator" class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono text-[11px]">Active: Pin #1</span>
+                                </div>
+                                <div id="create_diagram_canvas_wrapper" class="relative inline-block w-full max-w-2xl mx-auto rounded-xl overflow-hidden border border-slate-700 bg-slate-900 group select-none">
+                                    <img id="create_diagram_preview_img" src="" alt="Diagram Preview" class="w-full max-h-96 object-contain mx-auto cursor-crosshair block" onclick="handleDiagramCanvasClick('create', event)">
+                                    <div id="create_pins_overlay" class="absolute inset-0"></div>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Hint / Solution (Optional) -->
@@ -1020,12 +1134,23 @@
                             @enderror
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="create_answers_grid">
-                                @for($i = 0; $i < 4; $i++)
+                                @for($i = 0; $i < 10; $i++)
                                     <div id="create_ans_slot_{{ $i }}" class="flex items-center space-x-2 bg-slate-950 p-2 rounded-lg border border-slate-800">
                                         <span id="create_ans_badge_{{ $i }}" class="text-xs font-bold text-slate-400 shrink-0 w-5">#{{ $i + 1 }}</span>
                                         <input type="text" id="create_ans_{{ $i }}_name" name="answers[{{ $i }}][name]" value="{{ old('answers.'.$i.'.name') }}" placeholder="Option {{ $i + 1 }} text" oninput="updateMatchMarks('create')" class="flex-1 px-2.5 py-1 rounded-md bg-slate-900 border border-slate-700 text-slate-100 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500">
                                         <span id="create_ans_arrow_{{ $i }}" class="hidden text-indigo-400 font-bold text-xs shrink-0">&harr;</span>
                                         <input type="text" id="create_ans_{{ $i }}_match" name="answers[{{ $i }}][match_answer]" value="{{ old('answers.'.$i.'.match_answer') }}" placeholder="Matching item..." oninput="updateMatchMarks('create')" class="hidden flex-1 px-2.5 py-1 rounded-md bg-slate-900 border border-slate-700 text-slate-100 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                                        <div id="create_ans_options_box_{{ $i }}" class="hidden flex-1">
+                                            <input type="text" id="create_ans_{{ $i }}_options" name="answers[{{ $i }}][options]" value="{{ old('answers.'.$i.'.options') }}" placeholder="Choices (e.g. Paris, London, Rome, Berlin)" class="w-full px-2.5 py-1 rounded-md bg-slate-900 border border-teal-600/70 text-teal-200 placeholder-slate-500 text-xs focus:outline-none focus:ring-1 focus:ring-teal-500">
+                                        </div>
+                                        <div id="create_ans_prompt_box_{{ $i }}" class="hidden flex-1">
+                                            <input type="text" id="create_ans_{{ $i }}_prompt" name="answers[{{ $i }}][prompt]" value="{{ old('answers.'.$i.'.prompt') }}" placeholder="Sub-Question #{{ $i + 1 }} prompt text..." class="w-full px-2.5 py-1 rounded-md bg-slate-900 border border-blue-600/70 text-blue-200 placeholder-slate-500 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                        </div>
+                                        <input type="hidden" id="create_ans_{{ $i }}_x" name="answers[{{ $i }}][x]" value="{{ old('answers.'.$i.'.x', 50) }}">
+                                        <input type="hidden" id="create_ans_{{ $i }}_y" name="answers[{{ $i }}][y]" value="{{ old('answers.'.$i.'.y', 50) }}">
+                                        <button type="button" id="create_ans_pin_btn_{{ $i }}" onclick="setActivePin('create', {{ $i }})" class="hidden px-2 py-1 rounded bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-[11px] font-bold shrink-0 transition-colors">
+                                            📍 Set Pin
+                                        </button>
                                         <label id="create_ans_correct_label_{{ $i }}" class="inline-flex items-center space-x-1 text-[11px] text-slate-300 cursor-pointer shrink-0">
                                             <input type="checkbox" id="create_ans_{{ $i }}_correct" name="answers[{{ $i }}][is_correct]" value="1" {{ old('answers.'.$i.'.is_correct') ? 'checked' : '' }} onchange="handleAnswerCorrectChange('create', {{ $i }})" class="rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500">
                                             <span class="text-emerald-400 font-medium">Correct</span>
@@ -1061,7 +1186,7 @@
                     </button>
                 </div>
 
-                <form id="editQuestionForm" method="POST" action="{{ old('_method') === 'PUT' ? old('_edit_action_url', '') : '' }}" class="flex flex-col flex-1 overflow-hidden">
+                <form id="editQuestionForm" method="POST" action="{{ old('_method') === 'PUT' ? old('_edit_action_url', '') : '' }}" enctype="multipart/form-data" class="flex flex-col flex-1 overflow-hidden">
                     @csrf
                     @method('PUT')
                     <input type="hidden" id="edit_action_url" name="_edit_action_url" value="{{ old('_method') === 'PUT' ? old('_edit_action_url', '') : '' }}">
@@ -1202,6 +1327,10 @@
                                     <option value="2" {{ old('_method') === 'PUT' && old('type') == '2' ? 'selected' : '' }}>2 - Multiple Option</option>
                                     <option value="4" {{ old('_method') === 'PUT' && old('type') == '4' ? 'selected' : '' }}>4 - True / False</option>
                                     <option value="5" {{ old('_method') === 'PUT' && old('type') == '5' ? 'selected' : '' }}>5 - Match the Following</option>
+                                    <option value="6" {{ old('_method') === 'PUT' && old('type') == '6' ? 'selected' : '' }}>6 - Puzzle (Arrange Sequence)</option>
+                                    <option value="7" {{ old('_method') === 'PUT' && old('type') == '7' ? 'selected' : '' }}>7 - Fill in the blanks (Cloze)</option>
+                                    <option value="8" {{ old('_method') === 'PUT' && old('type') == '8' ? 'selected' : '' }}>8 - Image Hotspot / Diagram Labeling</option>
+                                    <option value="9" {{ old('_method') === 'PUT' && old('type') == '9' ? 'selected' : '' }}>9 - Case-Based / Source-Based Integrated</option>
                                     <option value="3" {{ old('_method') === 'PUT' && old('type') == '3' ? 'selected' : '' }}>3 - Text Entry</option>
                                 </select>
                                 @error('type')
@@ -1212,8 +1341,8 @@
                             <!-- Marks (Required, Numbers Only) -->
                             <div>
                                 <label for="edit_q_marks" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Marks <span class="text-red-400">*</span></label>
-                                <input type="number" id="edit_q_marks" name="marks" required min="0" step="1" value="{{ old('_method') === 'PUT' ? old('marks') : '' }}" class="w-full px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs @error('marks') border-red-500 focus:ring-red-500 @enderror">
-                                <p id="edit_marks_hint" class="mt-1 text-[11px] text-amber-300 font-medium hidden">Auto-calculated: 1 mark per valid matching pair (e.g. 4 pairs = 4 marks)</p>
+                                <input type="number" id="edit_q_marks" name="marks" required min="1" step="1" value="{{ old('_method') === 'PUT' ? old('marks') : '' }}" class="w-full px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs @error('marks') border-red-500 focus:ring-red-500 @enderror">
+                                <p id="edit_marks_hint" class="mt-1 text-[11px] text-amber-300 font-medium hidden">Auto-calculated: 1 mark per piece / blank / matching pair</p>
                                 @error('marks')
                                     <p class="mt-1 text-xs text-red-400">{{ $message }}</p>
                                 @enderror
@@ -1227,6 +1356,35 @@
                             @error('description')
                                 <p class="mt-1 text-xs text-red-400">{{ $message }}</p>
                             @enderror
+                        </div>
+
+                        <!-- Diagram / Image Upload for Image Hotspot Type (Type 8) - Edit Modal -->
+                        <div id="edit_diagram_upload_container" class="hidden p-3.5 rounded-xl bg-slate-950/80 border border-amber-500/40 space-y-3">
+                            <div class="flex items-center justify-between">
+                                <label class="block text-xs font-bold text-amber-300 uppercase tracking-wider flex items-center gap-1.5">
+                                    <span>🖼️ Upload Diagram or Map</span>
+                                    <span class="text-red-400">*</span>
+                                </label>
+                                <span class="text-[11px] text-slate-400">PNG, JPG, SVG, WebP (Max 5MB)</span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row items-center gap-3">
+                                <input type="file" id="edit_q_image_file" name="image_file" accept="image/*" onchange="handleDiagramImageChange('edit', this)" class="w-full text-xs text-slate-300 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-amber-500/20 file:text-amber-300 hover:file:bg-amber-500/30 file:cursor-pointer cursor-pointer">
+                                <input type="hidden" id="edit_q_image" name="image" value="{{ old('_method') === 'PUT' ? old('image') : '' }}">
+                            </div>
+
+                            <!-- Interactive Hotspot Pin Placement Canvas -->
+                            <div id="edit_hotspot_preview_box" class="hidden space-y-2 pt-2 border-t border-slate-800">
+                                <div class="flex items-center justify-between text-xs text-amber-300 font-semibold">
+                                    <span class="flex items-center gap-1.5">
+                                        <span>📍 Drag pins or click anywhere to position:</span>
+                                    </span>
+                                    <span id="edit_active_pin_indicator" class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono text-[11px]">Placing: Pin #1</span>
+                                </div>
+                                <div id="edit_diagram_canvas_wrapper" class="relative inline-block w-full max-w-2xl mx-auto rounded-xl overflow-hidden border border-slate-700 bg-slate-900 group select-none">
+                                    <img id="edit_diagram_preview_img" src="" alt="Diagram Preview" class="w-full max-h-80 object-contain mx-auto cursor-crosshair" onclick="handleDiagramCanvasClick('edit', event)">
+                                    <div id="edit_pins_overlay" class="absolute inset-0"></div>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Hint / Solution (Optional) -->
@@ -1276,12 +1434,23 @@
                             @enderror
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="edit_answers_grid">
-                                @for($i = 0; $i < 4; $i++)
+                                @for($i = 0; $i < 10; $i++)
                                     <div id="edit_ans_slot_{{ $i }}" class="flex items-center space-x-2 bg-slate-950 p-2 rounded-lg border border-slate-800">
                                         <span id="edit_ans_badge_{{ $i }}" class="text-xs font-bold text-slate-400 shrink-0 w-5">#{{ $i + 1 }}</span>
                                         <input type="text" id="edit_ans_{{ $i }}_name" name="answers[{{ $i }}][name]" value="{{ old('_method') === 'PUT' ? old('answers.'.$i.'.name') : '' }}" placeholder="Option {{ $i + 1 }} text" oninput="updateMatchMarks('edit')" class="flex-1 px-2.5 py-1 rounded-md bg-slate-900 border border-slate-700 text-slate-100 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500">
                                         <span id="edit_ans_arrow_{{ $i }}" class="hidden text-indigo-400 font-bold text-xs shrink-0">&harr;</span>
                                         <input type="text" id="edit_ans_{{ $i }}_match" name="answers[{{ $i }}][match_answer]" value="{{ old('_method') === 'PUT' ? old('answers.'.$i.'.match_answer') : '' }}" placeholder="Matching item..." oninput="updateMatchMarks('edit')" class="hidden flex-1 px-2.5 py-1 rounded-md bg-slate-900 border border-slate-700 text-slate-100 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                                        <div id="edit_ans_options_box_{{ $i }}" class="hidden flex-1">
+                                            <input type="text" id="edit_ans_{{ $i }}_options" name="answers[{{ $i }}][options]" value="{{ old('_method') === 'PUT' ? old('answers.'.$i.'.options') : '' }}" placeholder="Choices (e.g. Paris, London, Rome, Berlin)" class="w-full px-2.5 py-1 rounded-md bg-slate-900 border border-teal-600/70 text-teal-200 placeholder-slate-500 text-xs focus:outline-none focus:ring-1 focus:ring-teal-500">
+                                        </div>
+                                        <div id="edit_ans_prompt_box_{{ $i }}" class="hidden flex-1">
+                                            <input type="text" id="edit_ans_{{ $i }}_prompt" name="answers[{{ $i }}][prompt]" value="{{ old('_method') === 'PUT' ? old('answers.'.$i.'.prompt') : '' }}" placeholder="Sub-Question #{{ $i + 1 }} prompt text..." class="w-full px-2.5 py-1 rounded-md bg-slate-900 border border-blue-600/70 text-blue-200 placeholder-slate-500 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                        </div>
+                                        <input type="hidden" id="edit_ans_{{ $i }}_x" name="answers[{{ $i }}][x]" value="{{ old('_method') === 'PUT' ? old('answers.'.$i.'.x', 50) : 50 }}">
+                                        <input type="hidden" id="edit_ans_{{ $i }}_y" name="answers[{{ $i }}][y]" value="{{ old('_method') === 'PUT' ? old('answers.'.$i.'.y', 50) : 50 }}">
+                                        <button type="button" id="edit_ans_pin_btn_{{ $i }}" onclick="setActivePin('edit', {{ $i }})" class="hidden px-2 py-1 rounded bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-[11px] font-bold shrink-0 transition-colors">
+                                            📍 Set Pin
+                                        </button>
                                         <label id="edit_ans_correct_label_{{ $i }}" class="inline-flex items-center space-x-1 text-[11px] text-slate-300 cursor-pointer shrink-0">
                                             <input type="checkbox" id="edit_ans_{{ $i }}_correct" name="answers[{{ $i }}][is_correct]" value="1" {{ old('_method') === 'PUT' && old('answers.'.$i.'.is_correct') ? 'checked' : '' }} onchange="handleAnswerCorrectChange('edit', {{ $i }})" class="rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500">
                                             <span class="text-emerald-400 font-medium">Correct</span>
@@ -1534,8 +1703,17 @@
                 const label = document.getElementById(prefix + '_answers_label');
                 const hint = document.getElementById(prefix + '_answers_hint');
                 const val = parseInt(typeVal);
+                const diagramContainer = document.getElementById(prefix + '_diagram_upload_container');
 
                 if (!container) return;
+
+                if (diagramContainer) {
+                    if (val === 8) {
+                        diagramContainer.classList.remove('hidden');
+                    } else {
+                        diagramContainer.classList.add('hidden');
+                    }
+                }
 
                 if (val === 3) {
                     container.classList.add('hidden');
@@ -1543,6 +1721,22 @@
                     container.classList.remove('hidden');
                     if (label) label.textContent = 'Answer Options (True / False)';
                     if (hint) hint.textContent = 'Select whether True or False is the correct answer';
+
+                    // Hide slots 4 through 9 if switching from Hotspot
+                    for (let i = 4; i < 10; i++) {
+                        const slot = document.getElementById(prefix + '_ans_slot_' + i);
+                        const inp = document.getElementById(prefix + '_ans_' + i + '_name');
+                        const chk = document.getElementById(prefix + '_ans_' + i + '_correct');
+                        const matchInp = document.getElementById(prefix + '_ans_' + i + '_match');
+                        const optBox = document.getElementById(prefix + '_ans_options_box_' + i);
+                        const pinBtn = document.getElementById(prefix + '_ans_pin_btn_' + i);
+                        if (slot) slot.classList.add('hidden');
+                        if (inp) { inp.value = ''; inp.classList.remove('border-yellow-500/60', 'text-yellow-200', 'font-bold'); }
+                        if (chk) chk.checked = false;
+                        if (matchInp) matchInp.value = '';
+                        if (optBox) optBox.classList.add('hidden');
+                        if (pinBtn) pinBtn.classList.add('hidden');
+                    }
 
                     // Reset Match inputs if previously opened
                     for (let i = 0; i < 4; i++) {
@@ -1626,6 +1820,176 @@
                     }
 
                     updateMatchMarks(prefix);
+                } else if (val === 6) {
+                    container.classList.remove('hidden');
+                    if (label) label.textContent = '🧩 Puzzle Pieces (In Correct Order - Min 2, Max 4)';
+                    if (hint) hint.textContent = 'Enter puzzle pieces in their CORRECT sequence. They will be shuffled for students in exams.';
+
+                    const marksHint = document.getElementById(prefix + '_marks_hint');
+                    if (marksHint) marksHint.classList.remove('hidden');
+
+                    for (let i = 0; i < 4; i++) {
+                        const slot = document.getElementById(prefix + '_ans_slot_' + i);
+                        const inp = document.getElementById(prefix + '_ans_' + i + '_name');
+                        const arrow = document.getElementById(prefix + '_ans_arrow_' + i);
+                        const matchInp = document.getElementById(prefix + '_ans_' + i + '_match');
+                        const optBox = document.getElementById(prefix + '_ans_options_box_' + i);
+                        const chkLabel = document.getElementById(prefix + '_ans_correct_label_' + i);
+                        const badge = document.getElementById(prefix + '_ans_badge_' + i);
+
+                        if (slot) slot.classList.remove('hidden');
+                        if (badge) badge.textContent = '#' + (i + 1);
+                        if (inp) {
+                            inp.readOnly = false;
+                            inp.placeholder = 'Step / Piece #' + (i + 1) + ' (Correct sequence)';
+                            if (inp.value === 'True' || inp.value === 'False') inp.value = '';
+                        }
+                        if (arrow) arrow.classList.add('hidden');
+                        if (matchInp) { matchInp.classList.add('hidden'); matchInp.value = ''; }
+                        if (optBox) optBox.classList.add('hidden');
+                        if (chkLabel) chkLabel.classList.add('hidden');
+                    }
+
+                    updateAutoMarks(prefix);
+                } else if (val === 7) {
+                    container.classList.remove('hidden');
+                    if (label) label.textContent = '✍️ Fill in the Blanks with Multiple Choices (Mandatory Options)';
+                    if (hint) hint.textContent = 'Enter the Correct Answer and comma-separated Choices for students (max 4 per dash).';
+
+                    const marksHint = document.getElementById(prefix + '_marks_hint');
+                    if (marksHint) marksHint.classList.remove('hidden');
+
+                    for (let i = 0; i < 4; i++) {
+                        const slot = document.getElementById(prefix + '_ans_slot_' + i);
+                        const inp = document.getElementById(prefix + '_ans_' + i + '_name');
+                        const arrow = document.getElementById(prefix + '_ans_arrow_' + i);
+                        const matchInp = document.getElementById(prefix + '_ans_' + i + '_match');
+                        const optBox = document.getElementById(prefix + '_ans_options_box_' + i);
+                        const optInp = document.getElementById(prefix + '_ans_' + i + '_options');
+                        const chkLabel = document.getElementById(prefix + '_ans_correct_label_' + i);
+                        const badge = document.getElementById(prefix + '_ans_badge_' + i);
+
+                        if (slot) slot.classList.remove('hidden');
+                        if (badge) badge.textContent = '(' + (i + 1) + ')';
+                        if (inp) {
+                            inp.readOnly = false;
+                            inp.placeholder = 'Correct Answer #' + (i + 1);
+                            if (inp.value === 'True' || inp.value === 'False') inp.value = '';
+                        }
+                        if (arrow) arrow.classList.add('hidden');
+                        if (matchInp) { matchInp.classList.add('hidden'); matchInp.value = ''; }
+                        if (optBox) optBox.classList.remove('hidden');
+                        if (optInp) {
+                            optInp.placeholder = 'Choices (e.g. Choice A, Choice B, Choice C, Choice D)';
+                        }
+                        if (chkLabel) chkLabel.classList.add('hidden');
+                        const pinBtn = document.getElementById(prefix + '_ans_pin_btn_' + i);
+                        if (pinBtn) pinBtn.classList.add('hidden');
+                    }
+
+                    updateAutoMarks(prefix);
+                } else if (val === 8) {
+                    container.classList.remove('hidden');
+                    if (label) label.textContent = '🏷️ Diagram Hotspot Labels & Pin Positions (Upto 10 Pins)';
+                    if (hint) hint.textContent = 'Enter correct label and comma-separated choices for each pin. Drag pin or click "Set Pin" to place on diagram.';
+
+                    const marksHint = document.getElementById(prefix + '_marks_hint');
+                    if (marksHint) marksHint.classList.remove('hidden');
+
+                    for (let i = 0; i < 10; i++) {
+                        const slot = document.getElementById(prefix + '_ans_slot_' + i);
+                        const inp = document.getElementById(prefix + '_ans_' + i + '_name');
+                        const arrow = document.getElementById(prefix + '_ans_arrow_' + i);
+                        const matchInp = document.getElementById(prefix + '_ans_' + i + '_match');
+                        const optBox = document.getElementById(prefix + '_ans_options_box_' + i);
+                        const optInp = document.getElementById(prefix + '_ans_' + i + '_options');
+                        const chkLabel = document.getElementById(prefix + '_ans_correct_label_' + i);
+                        const badge = document.getElementById(prefix + '_ans_badge_' + i);
+                        const pinBtn = document.getElementById(prefix + '_ans_pin_btn_' + i);
+
+                        if (slot) slot.classList.remove('hidden');
+                        if (badge) {
+                            badge.textContent = 'P' + (i + 1);
+                            badge.className = 'text-xs font-black text-yellow-400 shrink-0 w-6';
+                        }
+                        if (inp) {
+                            inp.readOnly = false;
+                            inp.placeholder = 'Pin #' + (i + 1) + ' Correct Label (e.g. Petal, Anther)';
+                            if (inp.value === 'True' || inp.value === 'False') inp.value = '';
+                            inp.classList.add('border-yellow-500/60', 'text-yellow-200', 'font-bold');
+                        }
+                        if (arrow) arrow.classList.add('hidden');
+                        if (matchInp) { matchInp.classList.add('hidden'); matchInp.value = ''; }
+                        if (optBox) optBox.classList.remove('hidden');
+                        if (optInp) {
+                            optInp.placeholder = 'Choices (e.g. Petal, Stamen, Sepal, Pistil)';
+                        }
+                        if (chkLabel) chkLabel.classList.add('hidden');
+                        if (pinBtn) pinBtn.classList.remove('hidden');
+                    }
+
+                    updateAutoMarks(prefix);
+                    renderDiagramPins(prefix);
+                } else if (val === 9) {
+                    container.classList.remove('hidden');
+                    if (label) label.textContent = '📚 Case-Based Sub-Questions (3 to 5 Sub-Questions)';
+                    if (hint) hint.textContent = 'Enter Sub-Question Prompt, Correct Answer, and Comma-Separated Choices. (1 mark per sub-question)';
+
+                    const marksHint = document.getElementById(prefix + '_marks_hint');
+                    if (marksHint) marksHint.classList.remove('hidden');
+
+                    for (let i = 0; i < 10; i++) {
+                        const slot = document.getElementById(prefix + '_ans_slot_' + i);
+                        const inp = document.getElementById(prefix + '_ans_' + i + '_name');
+                        const arrow = document.getElementById(prefix + '_ans_arrow_' + i);
+                        const matchInp = document.getElementById(prefix + '_ans_' + i + '_match');
+                        const optBox = document.getElementById(prefix + '_ans_options_box_' + i);
+                        const promptBox = document.getElementById(prefix + '_ans_prompt_box_' + i);
+                        const optInp = document.getElementById(prefix + '_ans_' + i + '_options');
+                        const promptInp = document.getElementById(prefix + '_ans_' + i + '_prompt');
+                        const chkLabel = document.getElementById(prefix + '_ans_correct_label_' + i);
+                        const badge = document.getElementById(prefix + '_ans_badge_' + i);
+                        const pinBtn = document.getElementById(prefix + '_ans_pin_btn_' + i);
+
+                        if (i < 5) {
+                            if (slot) slot.classList.remove('hidden');
+                            if (badge) {
+                                badge.textContent = 'Q' + (i + 1);
+                                badge.className = 'text-xs font-black text-blue-400 shrink-0 w-6';
+                            }
+                            if (promptBox) promptBox.classList.remove('hidden');
+                            if (promptInp) {
+                                promptInp.placeholder = 'Sub-Q #' + (i + 1) + ' Question text (e.g. What is the author\'s primary claim?)';
+                            }
+                            if (inp) {
+                                inp.readOnly = false;
+                                inp.placeholder = 'Correct Answer #' + (i + 1);
+                                if (inp.value === 'True' || inp.value === 'False') inp.value = '';
+                                inp.classList.remove('border-yellow-500/60', 'text-yellow-200', 'font-bold');
+                            }
+                            if (arrow) arrow.classList.add('hidden');
+                            if (matchInp) { matchInp.classList.add('hidden'); matchInp.value = ''; }
+                            if (optBox) optBox.classList.remove('hidden');
+                            if (optInp) {
+                                optInp.placeholder = 'Choices (e.g. Option A, Option B, Option C, Option D)';
+                            }
+                            if (chkLabel) chkLabel.classList.add('hidden');
+                            if (pinBtn) pinBtn.classList.add('hidden');
+                        } else {
+                            if (slot) slot.classList.add('hidden');
+                            if (inp) {
+                                inp.value = '';
+                                inp.classList.remove('border-yellow-500/60', 'text-yellow-200', 'font-bold');
+                            }
+                            if (promptBox) promptBox.classList.add('hidden');
+                            if (promptInp) promptInp.value = '';
+                            if (optBox) optBox.classList.add('hidden');
+                            if (optInp) optInp.value = '';
+                            if (matchInp) matchInp.value = '';
+                        }
+                    }
+
+                    updateAutoMarks(prefix);
                 } else {
                     container.classList.remove('hidden');
                     if (label) label.textContent = 'Answer Options (Min 2, Max 4)';
@@ -1634,44 +1998,113 @@
                     const marksHint = document.getElementById(prefix + '_marks_hint');
                     if (marksHint) marksHint.classList.add('hidden');
 
-                    for (let i = 0; i < 4; i++) {
+                    for (let i = 0; i < 10; i++) {
                         const slot = document.getElementById(prefix + '_ans_slot_' + i);
                         const inp = document.getElementById(prefix + '_ans_' + i + '_name');
                         const arrow = document.getElementById(prefix + '_ans_arrow_' + i);
                         const matchInp = document.getElementById(prefix + '_ans_' + i + '_match');
+                        const optBox = document.getElementById(prefix + '_ans_options_box_' + i);
+                        const promptBox = document.getElementById(prefix + '_ans_prompt_box_' + i);
                         const chkLabel = document.getElementById(prefix + '_ans_correct_label_' + i);
                         const badge = document.getElementById(prefix + '_ans_badge_' + i);
+                        const pinBtn = document.getElementById(prefix + '_ans_pin_btn_' + i);
 
-                        if (slot) slot.classList.remove('hidden');
-                        if (badge) badge.textContent = '#' + (i + 1);
-                        if (inp) {
-                            inp.readOnly = false;
-                            inp.placeholder = 'Option ' + (i + 1) + ' text';
-                            if (inp.value === 'True' || inp.value === 'False') inp.value = '';
+                        if (promptBox) promptBox.classList.add('hidden');
+
+                        if (i < 4) {
+                            if (slot) slot.classList.remove('hidden');
+                            if (badge) {
+                                badge.textContent = '#' + (i + 1);
+                                badge.className = 'text-xs font-bold text-slate-400 shrink-0 w-5';
+                            }
+                            if (inp) {
+                                inp.readOnly = false;
+                                inp.placeholder = 'Option ' + (i + 1) + ' text';
+                                if (inp.value === 'True' || inp.value === 'False') inp.value = '';
+                                inp.classList.remove('border-yellow-500/60', 'text-yellow-200', 'font-bold');
+                            }
+                            if (arrow) arrow.classList.add('hidden');
+                            if (matchInp) { matchInp.classList.add('hidden'); matchInp.value = ''; }
+                            if (optBox) optBox.classList.add('hidden');
+                            if (chkLabel) chkLabel.classList.remove('hidden');
+                            if (pinBtn) pinBtn.classList.add('hidden');
+                        } else {
+                            if (slot) slot.classList.add('hidden');
+                            if (inp) {
+                                inp.value = '';
+                                inp.classList.remove('border-yellow-500/60', 'text-yellow-200', 'font-bold');
+                            }
+                            if (matchInp) matchInp.value = '';
+                            if (chkLabel) {
+                                const chk = document.getElementById(prefix + '_ans_' + i + '_correct');
+                                if (chk) chk.checked = false;
+                            }
                         }
-                        if (arrow) arrow.classList.add('hidden');
-                        if (matchInp) { matchInp.classList.add('hidden'); matchInp.value = ''; }
-                        if (chkLabel) chkLabel.classList.remove('hidden');
                     }
                 }
             }
 
             function updateMatchMarks(prefix) {
+                updateAutoMarks(prefix);
+            }
+
+            function updateAutoMarks(prefix) {
                 const typeEl = document.getElementById(prefix + '_q_type');
-                if (!typeEl || parseInt(typeEl.value) !== 5) return;
-
-                let pairCount = 0;
-                for (let i = 0; i < 4; i++) {
-                    const inpName = document.getElementById(prefix + '_ans_' + i + '_name');
-                    const matchInp = document.getElementById(prefix + '_ans_' + i + '_match');
-                    if (inpName && matchInp && inpName.value.trim() !== '' && matchInp.value.trim() !== '') {
-                        pairCount++;
-                    }
-                }
-
+                if (!typeEl) return;
+                const typeVal = parseInt(typeEl.value);
                 const marksInput = document.getElementById(prefix + '_q_marks');
-                if (marksInput && (pairCount > 0 || prefix === 'create')) {
-                    marksInput.value = pairCount > 0 ? pairCount : 4;
+                if (!marksInput) return;
+
+                if (typeVal === 5) {
+                    // Match the Following
+                    let count = 0;
+                    for (let i = 0; i < 4; i++) {
+                        const inpName = document.getElementById(prefix + '_ans_' + i + '_name');
+                        const matchInp = document.getElementById(prefix + '_ans_' + i + '_match');
+                        if (inpName && matchInp && inpName.value.trim() !== '' && matchInp.value.trim() !== '') {
+                            count++;
+                        }
+                    }
+                    if (count > 0 || prefix === 'create') {
+                        marksInput.value = Math.max(1, count > 0 ? count : 4);
+                    }
+                } else if (typeVal === 6 || typeVal === 7) {
+                    // Puzzle or Fill in the Blanks: 1 mark per piece / blank
+                    let count = 0;
+                    for (let i = 0; i < 4; i++) {
+                        const inp = document.getElementById(prefix + '_ans_' + i + '_name');
+                        if (inp && inp.value.trim() !== '') {
+                            count++;
+                        }
+                    }
+                    if (count > 0 || prefix === 'create') {
+                        marksInput.value = Math.max(1, count > 0 ? count : (typeVal === 6 ? 4 : 2));
+                    }
+                } else if (typeVal === 8) {
+                    // Image Hotspot / Diagram Labeling: 1 mark per configured pin (up to 10)
+                    let count = 0;
+                    for (let i = 0; i < 10; i++) {
+                        const inp = document.getElementById(prefix + '_ans_' + i + '_name');
+                        if (inp && inp.value.trim() !== '') {
+                            count++;
+                        }
+                    }
+                    if (count > 0 || prefix === 'create') {
+                        marksInput.value = Math.max(1, count > 0 ? count : 4);
+                    }
+                } else if (typeVal === 9) {
+                    // Case-Based / Source-Based: 1 mark per sub-question (3 to 5)
+                    let count = 0;
+                    for (let i = 0; i < 5; i++) {
+                        const inp = document.getElementById(prefix + '_ans_' + i + '_name');
+                        const promptInp = document.getElementById(prefix + '_ans_' + i + '_prompt');
+                        if ((inp && inp.value.trim() !== '') || (promptInp && promptInp.value.trim() !== '')) {
+                            count++;
+                        }
+                    }
+                    if (count > 0 || prefix === 'create') {
+                        marksInput.value = Math.max(1, count > 0 ? count : 4);
+                    }
                 }
             }
 
@@ -1688,6 +2121,181 @@
                         }
                     }
                 }
+            }
+
+            let activeHotspotPinIndex = { create: 0, edit: 0 };
+            let isDraggingPin = false;
+            let currentDragPrefix = null;
+            let currentDragPinIdx = null;
+
+            function setActivePin(prefix, index) {
+                activeHotspotPinIndex[prefix] = index;
+                const indicator = document.getElementById(prefix + '_active_pin_indicator');
+                if (indicator) {
+                    indicator.textContent = 'Placing: Pin #' + (index + 1);
+                    indicator.className = 'px-2.5 py-0.5 rounded bg-yellow-400 text-slate-950 font-black font-mono text-[11px] ring-2 ring-yellow-400/50 shadow-sm shadow-yellow-500/30';
+                }
+                renderDiagramPins(prefix);
+            }
+
+            function handleDiagramImageChange(prefix, fileInput) {
+                if (!fileInput || !fileInput.files || !fileInput.files[0]) return;
+                const file = fileInput.files[0];
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById(prefix + '_diagram_preview_img');
+                    const box = document.getElementById(prefix + '_hotspot_preview_box');
+                    if (img) img.src = e.target.result;
+                    if (box) box.classList.remove('hidden');
+                    renderDiagramPins(prefix);
+                };
+                reader.readAsDataURL(file);
+            }
+
+            function handleDiagramCanvasClick(prefix, event) {
+                if (isDraggingPin) return;
+                const img = document.getElementById(prefix + '_diagram_preview_img');
+                if (!img) return;
+                const rect = img.getBoundingClientRect();
+                const clickX = event.clientX - rect.left;
+                const clickY = event.clientY - rect.top;
+
+                const pctX = Math.round(Math.max(0, Math.min(100, (clickX / rect.width) * 100)) * 10) / 10;
+                const pctY = Math.round(Math.max(0, Math.min(100, (clickY / rect.height) * 100)) * 10) / 10;
+
+                const curIdx = activeHotspotPinIndex[prefix] || 0;
+                updatePinCoordinates(prefix, curIdx, pctX, pctY);
+
+                // Prompt user to enter the answer directly for this pin
+                promptPinAnswer(prefix, curIdx);
+
+                // Auto-advance active pin index to next available pin if not set
+                if (curIdx < 9) {
+                    setActivePin(prefix, curIdx + 1);
+                }
+            }
+
+            function updatePinCoordinates(prefix, pinIdx, pctX, pctY) {
+                const xInp = document.getElementById(prefix + '_ans_' + pinIdx + '_x');
+                const yInp = document.getElementById(prefix + '_ans_' + pinIdx + '_y');
+                if (xInp) xInp.value = pctX;
+                if (yInp) yInp.value = pctY;
+                renderDiagramPins(prefix);
+            }
+
+            function startPinDrag(prefix, pinIdx, event) {
+                event.preventDefault();
+                event.stopPropagation();
+                isDraggingPin = true;
+                currentDragPrefix = prefix;
+                currentDragPinIdx = pinIdx;
+                setActivePin(prefix, pinIdx);
+
+                document.addEventListener('mousemove', onPinDragMove);
+                document.addEventListener('mouseup', onPinDragEnd);
+                document.addEventListener('touchmove', onPinDragMove, { passive: false });
+                document.addEventListener('touchend', onPinDragEnd);
+            }
+
+            function onPinDragMove(event) {
+                if (!isDraggingPin || currentDragPrefix === null || currentDragPinIdx === null) return;
+                const img = document.getElementById(currentDragPrefix + '_diagram_preview_img');
+                if (!img) return;
+
+                const clientX = event.touches ? event.touches[0].clientX : event.clientX;
+                const clientY = event.touches ? event.touches[0].clientY : event.clientY;
+
+                const rect = img.getBoundingClientRect();
+                const clickX = clientX - rect.left;
+                const clickY = clientY - rect.top;
+
+                const pctX = Math.round(Math.max(0, Math.min(100, (clickX / rect.width) * 100)) * 10) / 10;
+                const pctY = Math.round(Math.max(0, Math.min(100, (clickY / rect.height) * 100)) * 10) / 10;
+
+                updatePinCoordinates(currentDragPrefix, currentDragPinIdx, pctX, pctY);
+            }
+
+            function onPinDragEnd(event) {
+                if (!isDraggingPin) return;
+                const prefix = currentDragPrefix;
+                const pinIdx = currentDragPinIdx;
+
+                isDraggingPin = false;
+                currentDragPrefix = null;
+                currentDragPinIdx = null;
+
+                document.removeEventListener('mousemove', onPinDragMove);
+                document.removeEventListener('mouseup', onPinDragEnd);
+                document.removeEventListener('touchmove', onPinDragMove);
+                document.removeEventListener('touchend', onPinDragEnd);
+
+                if (prefix !== null && pinIdx !== null) {
+                    // Highlight the input in form or focus
+                    const nameInp = document.getElementById(prefix + '_ans_' + pinIdx + '_name');
+                    if (nameInp && !nameInp.value.trim()) {
+                        promptPinAnswer(prefix, pinIdx);
+                    }
+                }
+            }
+
+            function promptPinAnswer(prefix, pinIdx) {
+                const nameInp = document.getElementById(prefix + '_ans_' + pinIdx + '_name');
+                const optInp = document.getElementById(prefix + '_ans_' + pinIdx + '_options');
+                const currentLabel = nameInp ? nameInp.value : '';
+                const currentOpts = optInp ? optInp.value : '';
+
+                const newAnswer = window.prompt(`Enter correct answer for Pin #${pinIdx + 1}:`, currentLabel);
+                if (newAnswer !== null && newAnswer.trim() !== '') {
+                    if (nameInp) nameInp.value = newAnswer.trim();
+                    if (optInp && !optInp.value.trim()) {
+                        optInp.value = newAnswer.trim();
+                    }
+                    renderDiagramPins(prefix);
+                }
+            }
+
+            function renderDiagramPins(prefix) {
+                const overlay = document.getElementById(prefix + '_pins_overlay');
+                if (!overlay) return;
+
+                let html = '';
+                const activeIdx = activeHotspotPinIndex[prefix] || 0;
+
+                for (let i = 0; i < 10; i++) {
+                    const nameInp = document.getElementById(prefix + '_ans_' + i + '_name');
+                    const xInp = document.getElementById(prefix + '_ans_' + i + '_x');
+                    const yInp = document.getElementById(prefix + '_ans_' + i + '_y');
+
+                    const x = xInp ? parseFloat(xInp.value) : 50;
+                    const y = yInp ? parseFloat(yInp.value) : 50;
+                    const label = (nameInp && nameInp.value.trim() !== '') ? nameInp.value.trim() : ('Pin #' + (i + 1));
+                    const isActive = i === activeIdx;
+
+                    const pinColorClasses = isActive
+                        ? 'bg-yellow-400 text-slate-950 ring-4 ring-yellow-300 shadow-yellow-500/50 font-black'
+                        : 'bg-yellow-400 text-slate-950 border-2 border-yellow-300 shadow-yellow-400/40 font-black';
+
+                    html += `
+                        <div style="left: ${x}%; top: ${y}%;"
+                             onmousedown="startPinDrag('${prefix}', ${i}, event)"
+                             ontouchstart="startPinDrag('${prefix}', ${i}, event)"
+                             class="absolute -translate-x-1/2 -translate-y-1/2 flex items-center justify-center cursor-grab active:cursor-grabbing select-none transition-transform ${isActive ? 'scale-125 z-30' : 'scale-100 z-20 hover:scale-110'}">
+                            <span class="w-7 h-7 rounded-full ${pinColorClasses} text-xs flex items-center justify-center shadow-xl">
+                                ${i + 1}
+                            </span>
+                            <div class="absolute top-8 flex items-center gap-1">
+                                <span class="px-2 py-0.5 rounded text-[10px] bg-slate-950 text-yellow-300 border border-yellow-400 font-black shadow-yellow-500/20 shadow-md whitespace-nowrap">
+                                    ${label}
+                                </span>
+                                <button type="button" onclick="event.stopPropagation(); promptPinAnswer('${prefix}', ${i})" title="Edit Answer" class="p-1 rounded bg-yellow-500/30 hover:bg-yellow-500/50 text-yellow-300 border border-yellow-400 text-[10px] cursor-pointer">
+                                    ✏️
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                overlay.innerHTML = html;
             }
 
             let createQuill = null;
@@ -2265,6 +2873,119 @@
                     } else {
                         updateMatchMarks('edit');
                     }
+                } else if (parseInt(data.type) === 6) {
+                    for (let i = 0; i < 4; i++) {
+                        const ansInput = document.getElementById('edit_ans_' + i + '_name');
+                        if (i < answers.length) {
+                            if (ansInput) ansInput.value = answers[i].name || '';
+                        } else {
+                            if (ansInput) ansInput.value = '';
+                        }
+                    }
+                    if (data.marks !== undefined && parseInt(data.marks) > 0) {
+                        document.getElementById('edit_q_marks').value = data.marks;
+                    } else {
+                        updateAutoMarks('edit');
+                    }
+                } else if (parseInt(data.type) === 7) {
+                    for (let i = 0; i < 4; i++) {
+                        const ansInput = document.getElementById('edit_ans_' + i + '_name');
+                        const optInput = document.getElementById('edit_ans_' + i + '_options');
+                        if (i < answers.length) {
+                            if (ansInput) ansInput.value = answers[i].name || '';
+                            if (optInput) {
+                                let opts = answers[i].match_answer || '';
+                                try {
+                                    const parsed = JSON.parse(opts);
+                                    if (Array.isArray(parsed)) opts = parsed.join(', ');
+                                } catch (e) {}
+                                optInput.value = opts;
+                            }
+                        } else {
+                            if (ansInput) ansInput.value = '';
+                            if (optInput) optInput.value = '';
+                        }
+                    }
+                    if (data.marks !== undefined && parseInt(data.marks) > 0) {
+                        document.getElementById('edit_q_marks').value = data.marks;
+                    } else {
+                        updateAutoMarks('edit');
+                    }
+                } else if (parseInt(data.type) === 8) {
+                    for (let i = 0; i < 10; i++) {
+                        const ansInput = document.getElementById('edit_ans_' + i + '_name');
+                        const optInput = document.getElementById('edit_ans_' + i + '_options');
+                        const xInput = document.getElementById('edit_ans_' + i + '_x');
+                        const yInput = document.getElementById('edit_ans_' + i + '_y');
+                        if (i < answers.length) {
+                            if (ansInput) ansInput.value = answers[i].name || '';
+                            let coords = answers[i].hotspot_coords || { x: 50, y: 50 };
+                            let opts = answers[i].blank_options || [];
+                            if (ansInput && !answers[i].hotspot_coords && answers[i].match_answer) {
+                                try {
+                                    const parsed = JSON.parse(answers[i].match_answer);
+                                    if (parsed && typeof parsed === 'object') {
+                                        if (parsed.x !== undefined) coords.x = parsed.x;
+                                        if (parsed.y !== undefined) coords.y = parsed.y;
+                                        if (parsed.options) opts = parsed.options;
+                                    }
+                                } catch(e) {}
+                            }
+                            if (xInput) xInput.value = coords.x;
+                            if (yInput) yInput.value = coords.y;
+                            if (optInput) optInput.value = Array.isArray(opts) ? opts.join(', ') : opts;
+                        } else {
+                            if (ansInput) ansInput.value = '';
+                            if (optInput) optInput.value = '';
+                            if (xInput) xInput.value = 50;
+                            if (yInput) yInput.value = 50;
+                        }
+                    }
+                    if (data.image_url || data.image) {
+                        const previewImg = document.getElementById('edit_diagram_preview_img');
+                        const previewBox = document.getElementById('edit_hotspot_preview_box');
+                        const hiddenImgInput = document.getElementById('edit_q_image');
+                        if (previewImg) previewImg.src = data.image_url || data.image;
+                        if (hiddenImgInput) hiddenImgInput.value = data.image || '';
+                        if (previewBox) previewBox.classList.remove('hidden');
+                        renderDiagramPins('edit');
+                    }
+                    if (data.marks !== undefined && parseInt(data.marks) > 0) {
+                        document.getElementById('edit_q_marks').value = data.marks;
+                    } else {
+                        updateAutoMarks('edit');
+                    }
+                } else if (parseInt(data.type) === 9) {
+                    for (let i = 0; i < 5; i++) {
+                        const ansInput = document.getElementById('edit_ans_' + i + '_name');
+                        const promptInput = document.getElementById('edit_ans_' + i + '_prompt');
+                        const optInput = document.getElementById('edit_ans_' + i + '_options');
+                        if (i < answers.length) {
+                            if (ansInput) ansInput.value = answers[i].name || '';
+                            let prompt = '';
+                            let opts = answers[i].blank_options || [];
+                            if (answers[i].match_answer) {
+                                try {
+                                    const parsed = JSON.parse(answers[i].match_answer);
+                                    if (parsed && typeof parsed === 'object') {
+                                        if (parsed.prompt) prompt = parsed.prompt;
+                                        if (parsed.options) opts = parsed.options;
+                                    }
+                                } catch (e) {}
+                            }
+                            if (promptInput) promptInput.value = prompt;
+                            if (optInput) optInput.value = Array.isArray(opts) ? opts.join(', ') : opts;
+                        } else {
+                            if (ansInput) ansInput.value = '';
+                            if (promptInput) promptInput.value = '';
+                            if (optInput) optInput.value = '';
+                        }
+                    }
+                    if (data.marks !== undefined && parseInt(data.marks) > 0) {
+                        document.getElementById('edit_q_marks').value = data.marks;
+                    } else {
+                        updateAutoMarks('edit');
+                    }
                 } else {
                     for (let i = 0; i < 4; i++) {
                         const ansInput = document.getElementById('edit_ans_' + i + '_name');
@@ -2310,7 +3031,11 @@
                     2: 'Multiple Choice',
                     3: 'Text Entry',
                     4: 'True / False',
-                    5: 'Match the Following'
+                    5: 'Match the Following',
+                    6: 'Puzzle (Arrange Sequence)',
+                    7: 'Fill in the blanks',
+                    8: 'Image Hotspot / Diagram Labeling',
+                    9: 'Case-Based / Source-Based'
                 };
                 if (badgeType) badgeType.textContent = typeLabels[typeNum] || 'Single Choice';
 
@@ -2410,6 +3135,155 @@
                         }
                         pairsHtml += '</div>';
                         answersCont.innerHTML = pairsHtml;
+                    } else if (typeNum === 6) {
+                        let puzzleHtml = '<div class="space-y-2">';
+                        puzzleHtml += '<div class="text-xs font-semibold text-slate-400 mb-2">🧩 Correct Order / Sequence of Puzzle Pieces:</div>';
+                        if (answers.length === 0) {
+                            puzzleHtml += '<div class="p-4 rounded-xl bg-slate-950/40 border border-slate-800 text-xs text-slate-500 italic">No puzzle pieces configured.</div>';
+                        } else {
+                            answers.forEach((ans, idx) => {
+                                puzzleHtml += `
+                                    <div class="p-3 rounded-xl bg-slate-950/70 border border-indigo-500/30 flex items-center space-x-3">
+                                        <span class="w-7 h-7 rounded-xl font-black text-xs flex items-center justify-center bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">#${idx + 1}</span>
+                                        <span class="text-sm font-semibold text-slate-200">${ans.name || '<span class="text-slate-500 italic">Empty</span>'}</span>
+                                    </div>
+                                `;
+                            });
+                        }
+                        puzzleHtml += '</div>';
+                        answersCont.innerHTML = puzzleHtml;
+                    } else if (typeNum === 7) {
+                        let blanksHtml = '<div class="space-y-2">';
+                        blanksHtml += '<div class="text-xs font-semibold text-slate-400 mb-2">✍️ Fill in the Blanks with Choices:</div>';
+                        if (answers.length === 0) {
+                            blanksHtml += '<div class="p-4 rounded-xl bg-slate-950/40 border border-slate-800 text-xs text-slate-500 italic">No blanks configured.</div>';
+                        } else {
+                            answers.forEach((ans, idx) => {
+                                let optionsText = '';
+                                if (ans.match_answer) {
+                                    try {
+                                        const parsed = JSON.parse(ans.match_answer);
+                                        if (Array.isArray(parsed)) optionsText = parsed.join(', ');
+                                        else optionsText = ans.match_answer;
+                                    } catch (e) {
+                                        optionsText = ans.match_answer;
+                                    }
+                                }
+                                blanksHtml += `
+                                    <div class="p-3 rounded-xl bg-slate-950/70 border border-teal-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+                                        <div class="flex items-center space-x-3">
+                                            <span class="w-7 h-7 rounded-xl font-black text-xs flex items-center justify-center bg-teal-500/20 text-teal-300 border border-teal-500/30">(${idx + 1})</span>
+                                            <div>
+                                                <span class="text-[11px] text-slate-400 block font-mono">Blank #${idx + 1} Correct Answer:</span>
+                                                <span class="text-sm font-semibold text-teal-200">${ans.name || '<span class="text-slate-500 italic">Empty</span>'}</span>
+                                            </div>
+                                        </div>
+                                        <div class="text-xs bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 text-slate-300">
+                                            <span class="text-slate-500 font-medium">Choices: </span>
+                                            <span class="font-semibold text-teal-300">${optionsText || ans.name || 'None'}</span>
+                                        </div>
+                                    </div>
+                                `;
+                            });
+                        }
+                        blanksHtml += '</div>';
+                        answersCont.innerHTML = blanksHtml;
+                    } else if (typeNum === 8) {
+                        let hotspotHtml = '<div class="space-y-3">';
+                        if (data.image_url || data.image) {
+                            hotspotHtml += `
+                                <div class="relative inline-block w-full max-w-xl mx-auto rounded-xl overflow-hidden border border-slate-700 bg-slate-900">
+                                    <img src="${data.image_url || data.image}" alt="Diagram" class="w-full max-h-72 object-contain mx-auto">
+                                    ${answers.map((ans, idx) => {
+                                        let coords = ans.hotspot_coords || { x: 50, y: 50 };
+                                        if (!ans.hotspot_coords && ans.match_answer) {
+                                            try {
+                                                const p = JSON.parse(ans.match_answer);
+                                                if (p && p.x !== undefined) coords = p;
+                                            } catch(e) {}
+                                        }
+                                        return `
+                                            <div style="left: ${coords.x}%; top: ${coords.y}%;" class="absolute -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-7 h-7 rounded-full bg-amber-500 text-slate-950 font-black text-xs shadow-lg border-2 border-white pointer-events-none ring-2 ring-amber-500/50">
+                                                ${idx + 1}
+                                            </div>
+                                        `;
+                                    }).join('')}
+                                </div>
+                            `;
+                        }
+                        hotspotHtml += '<div class="space-y-2">';
+                        hotspotHtml += '<div class="text-xs font-semibold text-slate-400 mb-1">🏷️ Labeled Pins & Correct Answers:</div>';
+                        if (answers.length === 0) {
+                            hotspotHtml += '<div class="p-4 rounded-xl bg-slate-950/40 border border-slate-800 text-xs text-slate-500 italic">No pins configured.</div>';
+                        } else {
+                            answers.forEach((ans, idx) => {
+                                let opts = ans.blank_options || [];
+                                if (!ans.blank_options && ans.match_answer) {
+                                    try {
+                                        const p = JSON.parse(ans.match_answer);
+                                        if (p && p.options) opts = p.options;
+                                    } catch(e) {}
+                                }
+                                const optionsText = Array.isArray(opts) ? opts.join(', ') : opts;
+                                hotspotHtml += `
+                                    <div class="p-3 rounded-xl bg-slate-950/70 border border-amber-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+                                        <div class="flex items-center space-x-3">
+                                            <span class="w-7 h-7 rounded-xl font-black text-xs flex items-center justify-center bg-yellow-400 text-slate-950 border border-yellow-500 shadow-sm">P${idx + 1}</span>
+                                            <div>
+                                                <span class="text-[11px] text-yellow-400 block font-mono font-black">Pin #${idx + 1} Correct Label:</span>
+                                                <span class="text-sm font-bold text-yellow-200">${ans.name || '<span class="text-slate-500 italic">Empty</span>'}</span>
+                                            </div>
+                                        </div>
+                                        <div class="text-xs bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 text-slate-300">
+                                            <span class="text-slate-500 font-medium">Choices: </span>
+                                            <span class="font-semibold text-amber-300">${optionsText || ans.name || 'None'}</span>
+                                        </div>
+                                    </div>
+                                `;
+                            });
+                        }
+                        hotspotHtml += '</div></div>';
+                        answersCont.innerHTML = hotspotHtml;
+                    } else if (typeNum === 9) {
+                        let caseHtml = '<div class="space-y-3">';
+                        caseHtml += '<div class="text-xs font-semibold text-slate-400 mb-1">📚 Case-Based Sub-Questions & Options:</div>';
+                        if (answers.length === 0) {
+                            caseHtml += '<div class="p-4 rounded-xl bg-slate-950/40 border border-slate-800 text-xs text-slate-500 italic">No sub-questions configured.</div>';
+                        } else {
+                            answers.forEach((ans, idx) => {
+                                let prompt = '';
+                                let opts = ans.blank_options || [];
+                                if (ans.match_answer) {
+                                    try {
+                                        const p = JSON.parse(ans.match_answer);
+                                        if (p && typeof p === 'object') {
+                                            if (p.prompt) prompt = p.prompt;
+                                            if (p.options) opts = p.options;
+                                        }
+                                    } catch (e) {}
+                                }
+                                const optionsText = Array.isArray(opts) ? opts.join(', ') : opts;
+                                caseHtml += `
+                                    <div class="p-3.5 rounded-xl bg-slate-950/80 border border-blue-500/30 space-y-2">
+                                        <div class="flex items-start space-x-3">
+                                            <span class="w-7 h-7 rounded-xl font-black text-xs flex items-center justify-center bg-blue-500/20 text-blue-300 border border-blue-500/40 shrink-0">Q${idx + 1}</span>
+                                            <div class="flex-1">
+                                                <div class="text-xs font-bold text-slate-200">${prompt || ('Sub-Question #' + (idx + 1))}</div>
+                                                <div class="text-[11px] text-emerald-400 font-semibold mt-1">
+                                                    ✓ Correct Answer: <span class="text-slate-100 font-bold">${ans.name || '<span class="text-slate-500 italic">Empty</span>'}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-xs bg-slate-900/90 px-3 py-1.5 rounded-lg border border-slate-800 text-slate-300">
+                                            <span class="text-slate-500 font-medium">Choices: </span>
+                                            <span class="font-semibold text-blue-300">${optionsText || ans.name || 'None'}</span>
+                                        </div>
+                                    </div>
+                                `;
+                            });
+                        }
+                        caseHtml += '</div>';
+                        answersCont.innerHTML = caseHtml;
                     } else {
                         // Single (1) or Multiple (2) MCQ
                         let mcqHtml = '<div class="space-y-2.5">';

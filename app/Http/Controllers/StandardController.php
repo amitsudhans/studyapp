@@ -25,6 +25,8 @@ class StandardController extends Controller
             abort(403, 'Only teachers and administrators can view standards.');
         }
 
+        Standard::cleanUpAllIneligibleCustomGroupEnrollments();
+
         $query = Standard::with(['creator', 'syllabus', 'students', 'teachers', 'chapters.topics', 'chapters.subject'])->withCount(['students', 'chapters']);
 
         if ($user->isTeacher() && ! $user->isAdmin()) {
@@ -44,11 +46,30 @@ class StandardController extends Controller
         $syllabuses = Syllabus::orderBy('name')->get();
 
         // All active students for assigning to standards
-        $allStudents = User::where(function ($q) {
+        $allStudentsQuery = User::where(function ($q) {
             $q->whereHas('profile', fn ($p) => $p->where('type', 2))
                 ->orWhereHas('student');
-        })
-            ->with(['profile', 'standards', 'student.standard'])
+        });
+
+        $teacherAssignedAdminStandards = collect();
+        if ($user->isTeacher() && ! $user->isAdmin()) {
+            $teacherAssignedAdminStandards = $user->standards()
+                ->adminCreated()
+                ->get(['standards.id', 'standards.name']);
+            $teacherAdminStdIds = $teacherAssignedAdminStandards->pluck('id')->toArray();
+
+            if (! empty($teacherAdminStdIds)) {
+                $allStudentsQuery->where(function ($q) use ($teacherAdminStdIds) {
+                    $q->whereHas('studentStandards', fn ($st) => $st->whereIn('standards.id', $teacherAdminStdIds))
+                        ->orWhereHas('student', fn ($st) => $st->whereIn('standard_id', $teacherAdminStdIds));
+                });
+            } else {
+                $allStudentsQuery->whereRaw('1 = 0');
+            }
+        }
+
+        $allStudents = $allStudentsQuery
+            ->with(['profile', 'studentStandards.creator.profile', 'student.standard.creator.profile'])
             ->orderBy('name')
             ->get();
 
@@ -62,6 +83,7 @@ class StandardController extends Controller
             'standards',
             'syllabuses',
             'allStudents',
+            'teacherAssignedAdminStandards',
             'totalStandardsCount',
             'myStandardsCount',
             'subjects'
@@ -178,6 +200,62 @@ class StandardController extends Controller
             }
         }
 
+        // Teacher restriction: Teachers can only assign students belonging to their admin-assigned standards
+        if ($user->isTeacher() && ! $user->isAdmin() && ! empty($studentIds)) {
+            $teacherAdminStandards = $user->standards()
+                ->adminCreated()
+                ->get(['standards.id', 'standards.name']);
+            $teacherAdminStdIds = $teacherAdminStandards->pluck('id')->toArray();
+
+            if (empty($teacherAdminStdIds)) {
+                return back()->withErrors([
+                    'student_ids' => 'You have not been assigned any class standards by the administrator. You cannot assign students to your custom group until the administrator assigns you classes.',
+                ]);
+            }
+
+            $unauthorizedStudents = User::whereIn('id', $studentIds)
+                ->where(function ($q) use ($teacherAdminStdIds) {
+                    $q->whereDoesntHave('studentStandards', fn ($st) => $st->whereIn('standards.id', $teacherAdminStdIds))
+                        ->whereDoesntHave('student', fn ($st) => $st->whereIn('standard_id', $teacherAdminStdIds));
+                })
+                ->pluck('name')
+                ->toArray();
+
+            if (! empty($unauthorizedStudents)) {
+                $classNames = $teacherAdminStandards->pluck('name')->join(', ');
+
+                return back()->withErrors([
+                    'student_ids' => 'You can only assign students from your assigned classes ('.$classNames.') to your custom group. The following student(s) cannot be assigned: '.implode(', ', $unauthorizedStudents).'.',
+                ]);
+            }
+        }
+
+        // A student assigned to one admin-created standard cannot be assigned to another admin-created standard
+        if ($standard->isAdminCreated() && ! empty($studentIds)) {
+            $otherAdminStandardIds = Standard::adminCreated()
+                ->where('id', '!=', $standard->id)
+                ->pluck('id')
+                ->toArray();
+
+            if (! empty($otherAdminStandardIds)) {
+                $conflictsFromPivot = DB::table('student_standards')
+                    ->join('standards', 'student_standards.standard_id', '=', 'standards.id')
+                    ->join('users', 'student_standards.student_id', '=', 'users.id')
+                    ->whereIn('student_standards.student_id', $studentIds)
+                    ->whereIn('student_standards.standard_id', $otherAdminStandardIds)
+                    ->select('users.id as student_id', 'users.name as student_name', 'standards.name as standard_name')
+                    ->get();
+
+                if ($conflictsFromPivot->isNotEmpty()) {
+                    $messages = $conflictsFromPivot->map(fn ($c) => "{$c->student_name} is already assigned to admin-created standard '{$c->standard_name}'")->values()->all();
+
+                    return back()->withErrors([
+                        'student_ids' => 'Students assigned to one admin-created standard cannot be assigned to another admin-created standard: '.implode('; ', $messages).'.',
+                    ]);
+                }
+            }
+        }
+
         DB::transaction(function () use ($request, $standard, $studentIds) {
             foreach ($studentIds as $studentUserId) {
                 $studentUser = User::find($studentUserId);
@@ -193,25 +271,93 @@ class StandardController extends Controller
                         ]
                     );
 
+                    $existingStudent = Student::find($studentUser->id);
+                    $hasAdminStandard = $existingStudent && $existingStudent->standard && $existingStudent->standard->isAdminCreated();
+
+                    $stdIdToSet = ($standard->isAdminCreated() || ! $hasAdminStandard)
+                        ? $standard->id
+                        : $existingStudent->standard_id;
+
                     Student::updateOrCreate(
                         ['id' => $studentUser->id],
                         [
                             'name' => $studentUser->name,
-                            'standard_id' => $standard->id,
+                            'standard_id' => $stdIdToSet,
                         ]
                     );
                 }
             }
 
             if ($request->input('_assign_mode') === 'bulk') {
-                DB::table('student_standards')
-                    ->where('standard_id', $standard->id)
-                    ->whereNotIn('student_id', $studentIds)
-                    ->delete();
+                $unassignQuery = DB::table('student_standards')
+                    ->where('standard_id', $standard->id);
+
+                if (! empty($studentIds)) {
+                    $unassignQuery->whereNotIn('student_id', $studentIds);
+                }
+
+                $unassignedStudentIds = $unassignQuery->pluck('student_id')->toArray();
+
+                if (! empty($unassignedStudentIds)) {
+                    DB::table('student_standards')
+                        ->where('standard_id', $standard->id)
+                        ->whereIn('student_id', $unassignedStudentIds)
+                        ->delete();
+
+                    if ($standard->isAdminCreated()) {
+                        Student::whereIn('id', $unassignedStudentIds)
+                            ->where('standard_id', $standard->id)
+                            ->update(['standard_id' => null]);
+
+                        Standard::removeStudentsFromRelatedCustomGroups($unassignedStudentIds, $standard->id);
+                    }
+                }
             }
         });
 
+        Standard::cleanUpAllIneligibleCustomGroupEnrollments();
+
         return back()->with('status', 'Students assigned to standard successfully!');
+    }
+
+    /**
+     * Unassign a single student from the standard.
+     */
+    public function unassignStudent(Request $request, Standard $standard): RedirectResponse
+    {
+        $user = $request->user();
+
+        if (! $user->canAssignExams()) {
+            abort(403, 'Unauthorized.');
+        }
+
+        if (! $user->isAdmin() && (int) $standard->created_by !== (int) $user->id) {
+            abort(403, 'Teachers can only unassign students from standards created by themselves.');
+        }
+
+        $studentId = (int) $request->input('student_id');
+        if (! $studentId) {
+            return back()->withErrors(['student_id' => 'Invalid student.']);
+        }
+
+        DB::transaction(function () use ($standard, $studentId) {
+            DB::table('student_standards')
+                ->where('standard_id', $standard->id)
+                ->where('student_id', $studentId)
+                ->delete();
+
+            if ($standard->isAdminCreated()) {
+                Student::where('id', $studentId)
+                    ->where('standard_id', $standard->id)
+                    ->update(['standard_id' => null]);
+
+                Standard::removeStudentsFromRelatedCustomGroups([$studentId], $standard->id);
+            }
+        });
+
+        Standard::cleanUpAllIneligibleCustomGroupEnrollments();
+
+        return back()->with('status', 'Student unassigned successfully!');
     }
 
     /**
