@@ -297,6 +297,14 @@ class StudentExamDetail extends Model
     }
 
     /**
+     * Determine if this question is an Assertion & Reason question.
+     */
+    public function isAssertionReason(): bool
+    {
+        return (int) ($this->question?->type ?? 0) === 10;
+    }
+
+    /**
      * Determine if this Text Entry question has been evaluated by the teacher.
      */
     public function isEvaluated(): bool

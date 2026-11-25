@@ -118,6 +118,8 @@ class Question extends Model
 
     public const TYPE_CASE_STUDY = 9;
 
+    public const TYPE_ASSERTION_REASON = 10;
+
     /**
      * Determine if the question is Text Entry.
      */
@@ -175,6 +177,14 @@ class Question extends Model
     }
 
     /**
+     * Determine if the question is Assertion & Reason (A-R).
+     */
+    public function isAssertionReason(): bool
+    {
+        return (int) $this->type === self::TYPE_ASSERTION_REASON;
+    }
+
+    /**
      * Get the public URL for the question image.
      */
     public function getImageUrlAttribute(): ?string
@@ -205,6 +215,7 @@ class Question extends Model
             self::TYPE_FILL_IN_THE_BLANKS => 'Fill in the blanks',
             self::TYPE_IMAGE_LABELING => 'Image Hotspot',
             self::TYPE_CASE_STUDY => 'Case-Based / Source-Based',
+            self::TYPE_ASSERTION_REASON => 'Assertion & Reason',
             default => 'Unknown',
         };
     }

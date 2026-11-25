@@ -102,6 +102,9 @@ class QuestionController extends Controller
                 if (str_contains($searchLower, 'case') || str_contains($searchLower, 'source')) {
                     $q->orWhere('type', 9);
                 }
+                if (str_contains($searchLower, 'assertion') || str_contains($searchLower, 'reason') || str_contains($searchLower, 'a-r') || str_contains($searchLower, 'ar')) {
+                    $q->orWhere('type', 10);
+                }
             });
         }
 
@@ -177,7 +180,7 @@ class QuestionController extends Controller
             'subject_id' => ['nullable', 'exists:subjects,id'],
             'chapter_id' => ['nullable', 'exists:chapters,id'],
             'topic_id' => ['nullable', 'exists:topics,id'],
-            'type' => ['required', 'integer', 'in:1,2,3,4,5,6,7,8,9'],
+            'type' => ['required', 'integer', 'in:1,2,3,4,5,6,7,8,9,10'],
             'marks' => ['required', 'integer', 'min:1'],
             'image_file' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,svg', 'max:5120'],
             'image' => ['nullable', 'string', 'max:1000'],
@@ -215,8 +218,8 @@ class QuestionController extends Controller
                 'status' => 1,
             ]);
 
-            // Save answers if type is 1 (Single Option), 2 (Multiple Option), or 4 (True / False)
-            if (in_array((int) $validated['type'], [1, 2, 4]) && ! empty($validated['answers'])) {
+            // Save answers if type is 1 (Single Option), 2 (Multiple Option), 4 (True / False), or 10 (Assertion & Reason)
+            if (in_array((int) $validated['type'], [1, 2, 4, 10]) && ! empty($validated['answers'])) {
                 $count = 0;
                 foreach ($validated['answers'] as $ans) {
                     if (! empty(trim($ans['name'] ?? ''))) {
@@ -437,7 +440,7 @@ class QuestionController extends Controller
             'subject_id' => ['nullable', 'exists:subjects,id'],
             'chapter_id' => ['nullable', 'exists:chapters,id'],
             'topic_id' => ['nullable', 'exists:topics,id'],
-            'type' => ['required', 'integer', 'in:1,2,3,4,5,6,7,8,9'],
+            'type' => ['required', 'integer', 'in:1,2,3,4,5,6,7,8,9,10'],
             'marks' => ['required', 'integer', 'min:1'],
             'image_file' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,svg', 'max:5120'],
             'image' => ['nullable', 'string', 'max:1000'],
@@ -478,7 +481,7 @@ class QuestionController extends Controller
             // Remove existing answers and re-create updated answers
             $question->answers()->delete();
 
-            if (in_array((int) $validated['type'], [1, 2, 4]) && ! empty($validated['answers'])) {
+            if (in_array((int) $validated['type'], [1, 2, 4, 10]) && ! empty($validated['answers'])) {
                 $count = 0;
                 foreach ($validated['answers'] as $ans) {
                     if (! empty(trim($ans['name'] ?? ''))) {
@@ -877,7 +880,7 @@ class QuestionController extends Controller
             return;
         }
 
-        if (in_array($type, [1, 2, 4])) {
+        if (in_array($type, [1, 2, 4, 10])) {
             $rawAnswers = $validated['answers'] ?? [];
             $validAnswersCount = 0;
             $correctCount = 0;
@@ -890,6 +893,23 @@ class QuestionController extends Controller
                         $correctCount++;
                     }
                 }
+            }
+
+            // Rule for Assertion & Reason (Type 10): Exactly 4 standard options and exactly 1 correct answer
+            if ($type === 10) {
+                if ($validAnswersCount < 4) {
+                    throw ValidationException::withMessages([
+                        'answers' => ['Assertion & Reason questions must have all 4 options entered.'],
+                    ]);
+                }
+
+                if ($correctCount !== 1) {
+                    throw ValidationException::withMessages([
+                        'answers' => ['Assertion & Reason questions must have exactly ONE correct option selected.'],
+                    ]);
+                }
+
+                return;
             }
 
             // Rule for True/False: At least 2 options ("True" & "False"), exactly 1 correct answer

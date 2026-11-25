@@ -2184,6 +2184,7 @@
                     const isFillInTheBlanks = parseInt(q.type) === 7;
                     const isImageLabeling = parseInt(q.type) === 8;
                     const isCaseStudy = parseInt(q.type) === 9;
+                    const isAssertionReason = parseInt(q.type) === 10;
                     const isTextEntry = parseInt(q.type) === 3;
 
                     if (isTextEntry) {
@@ -2689,6 +2690,13 @@
                                         ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-extrabold'
                                         : 'bg-rose-500/20 text-rose-300 border border-rose-500/40 font-extrabold';
                                 }
+                            } else if (isAssertionReason) {
+                                containerClass = isSelected
+                                    ? 'bg-violet-950/50 border-violet-500/80 shadow-lg shadow-violet-950/50 ring-1 ring-violet-500/60'
+                                    : 'bg-slate-950 border-slate-800 hover:border-violet-500/60 hover:bg-slate-900/60';
+                                badgeClass = isSelected
+                                    ? 'bg-violet-500 text-white font-black'
+                                    : 'bg-violet-500/20 text-violet-300 border border-violet-500/40 font-extrabold';
                             } else {
                                 containerClass = isSelected
                                     ? 'bg-emerald-950/40 border-emerald-500/70 shadow-lg shadow-emerald-950/40 ring-1 ring-emerald-500/50'
@@ -2733,6 +2741,8 @@
                         typeBadge = '<span class="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px] font-bold">🏷️ Diagram Hotspot</span>';
                     } else if (isCaseStudy) {
                         typeBadge = '<span class="px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-bold">📚 Case-Based / Source-Based</span>';
+                    } else if (isAssertionReason) {
+                        typeBadge = '<span class="px-2 py-0.5 rounded-full bg-violet-500/10 text-violet-400 border border-violet-500/20 text-[10px] font-bold">⚖️ Assertion & Reason</span>';
                     } else if (isTextEntry) {
                         typeBadge = '<span class="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px] font-bold">Text Entry</span>';
                     }

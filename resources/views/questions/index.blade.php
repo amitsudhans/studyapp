@@ -284,6 +284,7 @@
                                 <option value="7" {{ request('type') == '7' ? 'selected' : '' }}>Fill in the blanks</option>
                                 <option value="8" {{ request('type') == '8' ? 'selected' : '' }}>Image Hotspot</option>
                                 <option value="9" {{ request('type') == '9' ? 'selected' : '' }}>Case-Based / Source-Based</option>
+                                <option value="10" {{ request('type') == '10' ? 'selected' : '' }}>Assertion & Reason (A-R)</option>
                             </select>
                         </div>
 
@@ -361,6 +362,7 @@
                         7 => 'Fill in the blanks',
                         8 => 'Image Hotspot',
                         9 => 'Case-Based',
+                        10 => 'Assertion & Reason',
                         default => null,
                     };
                     $sylObj = $syllabuses->firstWhere('id', request('syllabus_id'));
@@ -766,6 +768,8 @@
                                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">🏷️ Image Hotspot</span>
                                     @elseif($q->type == 9)
                                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20">📚 Case-Based</span>
+                                    @elseif($q->type == 10)
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-violet-500/10 text-violet-400 border border-violet-500/20">⚖️ Assertion & Reason</span>
                                     @else
                                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">Text Entry</span>
                                     @endif
@@ -1031,6 +1035,7 @@
                                     <option value="7" {{ old('type') == '7' ? 'selected' : '' }}>7 - Fill in the blanks (Cloze)</option>
                                     <option value="8" {{ old('type') == '8' ? 'selected' : '' }}>8 - Image Hotspot / Diagram Labeling</option>
                                     <option value="9" {{ old('type') == '9' ? 'selected' : '' }}>9 - Case-Based / Source-Based Integrated</option>
+                                    <option value="10" {{ old('type') == '10' ? 'selected' : '' }}>10 - Assertion & Reason (A-R)</option>
                                     <option value="3" {{ old('type') == '3' ? 'selected' : '' }}>3 - Text Entry</option>
                                 </select>
                                 @error('type')
@@ -1087,6 +1092,32 @@
                             </div>
                         </div>
 
+                        <!-- Case-Based / Source-Based Briefing Banner -->
+                        <div id="create_case_study_brief" class="hidden p-3.5 rounded-xl bg-gradient-to-r from-blue-950/70 via-indigo-950/60 to-slate-900 border border-blue-500/40 text-xs text-slate-200 space-y-1.5">
+                            <div class="flex items-center space-x-2 text-blue-300 font-bold">
+                                <span class="text-sm">📚</span>
+                                <span class="uppercase tracking-wider text-[11px]">Case-Based / Source-Based Integrated Question (CBSE Format)</span>
+                            </div>
+                            <p class="text-slate-300 leading-relaxed text-[11px]">
+                                • Provide a reading passage, real-world case study, lab experiment observation, or data excerpt in the <strong>Question / Passage</strong> field above.<br>
+                                • Create <strong>3 to 5 sub-questions</strong> below testing critical analysis based strictly on the passage.<br>
+                                • Each sub-question carries <strong>1 mark</strong> and is <strong>auto-graded</strong> against the student's selected choice.
+                            </p>
+                        </div>
+
+                        <!-- Assertion & Reason (A-R) Briefing Banner -->
+                        <div id="create_assertion_reason_brief" class="hidden p-3.5 rounded-xl bg-gradient-to-r from-violet-950/70 via-purple-950/60 to-slate-900 border border-violet-500/40 text-xs text-slate-200 space-y-1.5">
+                            <div class="flex items-center space-x-2 text-violet-300 font-bold">
+                                <span class="text-sm">⚖️</span>
+                                <span class="uppercase tracking-wider text-[11px]">Assertion & Reason (A-R) (Mandatory CBSE Format)</span>
+                            </div>
+                            <p class="text-slate-300 leading-relaxed text-[11px]">
+                                • Enter <strong>Assertion (A)</strong> and <strong>Reason (R)</strong> statements in the Question text box above.<br>
+                                • The 4 standard CBSE options (A, B, C, D) are pre-filled below for you.<br>
+                                • Simply select which single option is the <strong>Correct Answer</strong>.
+                            </p>
+                        </div>
+
                         <!-- Hint / Solution (Optional) -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 border-t border-slate-800/60">
                             <!-- Hint (Optional) -->
@@ -1132,6 +1163,25 @@
                                     {{ $message }}
                                 </div>
                             @enderror
+
+                            <!-- Column Headers for Case-Based Sub-Questions -->
+                            <div id="create_case_headers" class="hidden p-2 rounded-lg bg-blue-950/40 border border-blue-500/30 text-[11px] font-bold text-blue-200">
+                                <div class="grid grid-cols-1 md:grid-cols-12 gap-2 items-center">
+                                    <div class="md:col-span-1 text-center text-blue-400">#</div>
+                                    <div class="md:col-span-5 flex items-center space-x-1">
+                                        <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                                        <span>Sub-Question Prompt / Text</span>
+                                    </div>
+                                    <div class="md:col-span-3 flex items-center space-x-1">
+                                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                                        <span class="text-emerald-300">Correct Answer</span>
+                                    </div>
+                                    <div class="md:col-span-3 flex items-center space-x-1">
+                                        <span class="w-2 h-2 rounded-full bg-teal-400"></span>
+                                        <span class="text-teal-300">Choices (Comma-Separated)</span>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="create_answers_grid">
                                 @for($i = 0; $i < 10; $i++)
@@ -1331,6 +1381,7 @@
                                     <option value="7" {{ old('_method') === 'PUT' && old('type') == '7' ? 'selected' : '' }}>7 - Fill in the blanks (Cloze)</option>
                                     <option value="8" {{ old('_method') === 'PUT' && old('type') == '8' ? 'selected' : '' }}>8 - Image Hotspot / Diagram Labeling</option>
                                     <option value="9" {{ old('_method') === 'PUT' && old('type') == '9' ? 'selected' : '' }}>9 - Case-Based / Source-Based Integrated</option>
+                                    <option value="10" {{ old('_method') === 'PUT' && old('type') == '10' ? 'selected' : '' }}>10 - Assertion & Reason (A-R)</option>
                                     <option value="3" {{ old('_method') === 'PUT' && old('type') == '3' ? 'selected' : '' }}>3 - Text Entry</option>
                                 </select>
                                 @error('type')
@@ -1387,6 +1438,32 @@
                             </div>
                         </div>
 
+                        <!-- Case-Based / Source-Based Briefing Banner - Edit Modal -->
+                        <div id="edit_case_study_brief" class="hidden p-3.5 rounded-xl bg-gradient-to-r from-blue-950/70 via-indigo-950/60 to-slate-900 border border-blue-500/40 text-xs text-slate-200 space-y-1.5">
+                            <div class="flex items-center space-x-2 text-blue-300 font-bold">
+                                <span class="text-sm">📚</span>
+                                <span class="uppercase tracking-wider text-[11px]">Case-Based / Source-Based Integrated Question (CBSE Format)</span>
+                            </div>
+                            <p class="text-slate-300 leading-relaxed text-[11px]">
+                                • Provide a reading passage, real-world case study, lab experiment observation, or data excerpt in the <strong>Question / Passage</strong> field above.<br>
+                                • Create <strong>3 to 5 sub-questions</strong> below testing critical analysis based strictly on the passage.<br>
+                                • Each sub-question carries <strong>1 mark</strong> and is <strong>auto-graded</strong> against the student's selected choice.
+                            </p>
+                        </div>
+
+                        <!-- Assertion & Reason (A-R) Briefing Banner - Edit Modal -->
+                        <div id="edit_assertion_reason_brief" class="hidden p-3.5 rounded-xl bg-gradient-to-r from-violet-950/70 via-purple-950/60 to-slate-900 border border-violet-500/40 text-xs text-slate-200 space-y-1.5">
+                            <div class="flex items-center space-x-2 text-violet-300 font-bold">
+                                <span class="text-sm">⚖️</span>
+                                <span class="uppercase tracking-wider text-[11px]">Assertion & Reason (A-R) (Mandatory CBSE Format)</span>
+                            </div>
+                            <p class="text-slate-300 leading-relaxed text-[11px]">
+                                • Enter <strong>Assertion (A)</strong> and <strong>Reason (R)</strong> statements in the Question text box above.<br>
+                                • The 4 standard CBSE options (A, B, C, D) are pre-filled below for you.<br>
+                                • Simply select which single option is the <strong>Correct Answer</strong>.
+                            </p>
+                        </div>
+
                         <!-- Hint / Solution (Optional) -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 border-t border-slate-800/60">
                             <!-- Hint (Optional) -->
@@ -1432,6 +1509,25 @@
                                     {{ $message }}
                                 </div>
                             @enderror
+
+                            <!-- Column Headers for Case-Based Sub-Questions - Edit Modal -->
+                            <div id="edit_case_headers" class="hidden p-2 rounded-lg bg-blue-950/40 border border-blue-500/30 text-[11px] font-bold text-blue-200">
+                                <div class="grid grid-cols-1 md:grid-cols-12 gap-2 items-center">
+                                    <div class="md:col-span-1 text-center text-blue-400">#</div>
+                                    <div class="md:col-span-5 flex items-center space-x-1">
+                                        <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                                        <span>Sub-Question Prompt / Text</span>
+                                    </div>
+                                    <div class="md:col-span-3 flex items-center space-x-1">
+                                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                                        <span class="text-emerald-300">Correct Answer</span>
+                                    </div>
+                                    <div class="md:col-span-3 flex items-center space-x-1">
+                                        <span class="w-2 h-2 rounded-full bg-teal-400"></span>
+                                        <span class="text-teal-300">Choices (Comma-Separated)</span>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="edit_answers_grid">
                                 @for($i = 0; $i < 10; $i++)
@@ -1704,6 +1800,9 @@
                 const hint = document.getElementById(prefix + '_answers_hint');
                 const val = parseInt(typeVal);
                 const diagramContainer = document.getElementById(prefix + '_diagram_upload_container');
+                const caseBrief = document.getElementById(prefix + '_case_study_brief');
+                const caseHeaders = document.getElementById(prefix + '_case_headers');
+                const arBrief = document.getElementById(prefix + '_assertion_reason_brief');
 
                 if (!container) return;
 
@@ -1712,6 +1811,39 @@
                         diagramContainer.classList.remove('hidden');
                     } else {
                         diagramContainer.classList.add('hidden');
+                    }
+                }
+
+                if (caseBrief) {
+                    if (val === 9) {
+                        caseBrief.classList.remove('hidden');
+                    } else {
+                        caseBrief.classList.add('hidden');
+                    }
+                }
+
+                if (arBrief) {
+                    if (val === 10) {
+                        arBrief.classList.remove('hidden');
+                    } else {
+                        arBrief.classList.add('hidden');
+                    }
+                }
+
+                if (caseHeaders) {
+                    if (val === 9) {
+                        caseHeaders.classList.remove('hidden');
+                    } else {
+                        caseHeaders.classList.add('hidden');
+                    }
+                }
+
+                const answersGrid = document.getElementById(prefix + '_answers_grid');
+                if (answersGrid) {
+                    if (val === 9) {
+                        answersGrid.className = 'grid grid-cols-1 gap-2';
+                    } else {
+                        answersGrid.className = 'grid grid-cols-1 sm:grid-cols-2 gap-2';
                     }
                 }
 
@@ -1952,24 +2084,33 @@
                         const pinBtn = document.getElementById(prefix + '_ans_pin_btn_' + i);
 
                         if (i < 5) {
-                            if (slot) slot.classList.remove('hidden');
+                            if (slot) {
+                                slot.classList.remove('hidden');
+                                slot.className = 'flex flex-col md:flex-row md:items-center gap-2 bg-slate-950 p-2.5 rounded-xl border border-blue-500/20';
+                            }
                             if (badge) {
                                 badge.textContent = 'Q' + (i + 1);
-                                badge.className = 'text-xs font-black text-blue-400 shrink-0 w-6';
+                                badge.className = 'text-xs font-black text-blue-400 shrink-0 w-6 self-start md:self-center';
                             }
-                            if (promptBox) promptBox.classList.remove('hidden');
+                            if (promptBox) {
+                                promptBox.classList.remove('hidden');
+                                promptBox.className = 'flex-1 md:w-5/12';
+                            }
                             if (promptInp) {
-                                promptInp.placeholder = 'Sub-Q #' + (i + 1) + ' Question text (e.g. What is the author\'s primary claim?)';
+                                promptInp.placeholder = 'Sub-Q #' + (i + 1) + ' question text...';
                             }
                             if (inp) {
                                 inp.readOnly = false;
                                 inp.placeholder = 'Correct Answer #' + (i + 1);
                                 if (inp.value === 'True' || inp.value === 'False') inp.value = '';
-                                inp.classList.remove('border-yellow-500/60', 'text-yellow-200', 'font-bold');
+                                inp.className = 'flex-1 md:w-3/12 px-2.5 py-1 rounded-md bg-slate-900 border border-emerald-500/50 text-emerald-200 text-xs focus:outline-none focus:ring-1 focus:ring-emerald-500';
                             }
                             if (arrow) arrow.classList.add('hidden');
                             if (matchInp) { matchInp.classList.add('hidden'); matchInp.value = ''; }
-                            if (optBox) optBox.classList.remove('hidden');
+                            if (optBox) {
+                                optBox.classList.remove('hidden');
+                                optBox.className = 'flex-1 md:w-4/12';
+                            }
                             if (optInp) {
                                 optInp.placeholder = 'Choices (e.g. Option A, Option B, Option C, Option D)';
                             }
@@ -1990,6 +2131,80 @@
                     }
 
                     updateAutoMarks(prefix);
+                } else if (val === 10) {
+                    container.classList.remove('hidden');
+                    if (label) label.textContent = '⚖️ Standard CBSE Assertion & Reason Options (A, B, C, D)';
+                    if (hint) hint.textContent = 'Select which of the 4 standard CBSE statements is the single correct answer';
+
+                    const marksHint = document.getElementById(prefix + '_marks_hint');
+                    if (marksHint) marksHint.classList.add('hidden');
+
+                    const arOptions = [
+                        'Both (A) and (R) are true, and (R) is the correct explanation of (A).',
+                        'Both (A) and (R) are true, but (R) is not the correct explanation of (A).',
+                        '(A) is true, but (R) is false.',
+                        '(A) is false, but (R) is true.'
+                    ];
+
+                    for (let i = 0; i < 10; i++) {
+                        const slot = document.getElementById(prefix + '_ans_slot_' + i);
+                        const inp = document.getElementById(prefix + '_ans_' + i + '_name');
+                        const arrow = document.getElementById(prefix + '_ans_arrow_' + i);
+                        const matchInp = document.getElementById(prefix + '_ans_' + i + '_match');
+                        const optBox = document.getElementById(prefix + '_ans_options_box_' + i);
+                        const promptBox = document.getElementById(prefix + '_ans_prompt_box_' + i);
+                        const chkLabel = document.getElementById(prefix + '_ans_correct_label_' + i);
+                        const chk = document.getElementById(prefix + '_ans_' + i + '_correct');
+                        const badge = document.getElementById(prefix + '_ans_badge_' + i);
+                        const pinBtn = document.getElementById(prefix + '_ans_pin_btn_' + i);
+
+                        if (promptBox) promptBox.classList.add('hidden');
+
+                        if (i < 4) {
+                            if (slot) {
+                                slot.classList.remove('hidden');
+                                slot.className = 'flex items-center space-x-2 bg-slate-950 p-2 rounded-lg border border-violet-500/30';
+                            }
+                            if (badge) {
+                                badge.textContent = String.fromCharCode(65 + i);
+                                badge.className = 'text-xs font-black text-violet-400 shrink-0 w-5';
+                            }
+                            if (inp) {
+                                inp.readOnly = false;
+                                inp.value = arOptions[i];
+                                inp.placeholder = arOptions[i];
+                                inp.className = 'flex-1 px-2.5 py-1 rounded-md bg-slate-900 border border-slate-700 text-slate-100 text-xs focus:outline-none focus:ring-1 focus:ring-violet-500';
+                            }
+                            if (arrow) arrow.classList.add('hidden');
+                            if (matchInp) { matchInp.classList.add('hidden'); matchInp.value = ''; }
+                            if (optBox) {
+                                optBox.classList.add('hidden');
+                                optBox.className = 'hidden flex-1';
+                            }
+                            if (chkLabel) chkLabel.classList.remove('hidden');
+                            if (pinBtn) pinBtn.classList.add('hidden');
+                        } else {
+                            if (slot) slot.classList.add('hidden');
+                            if (inp) inp.value = '';
+                            if (matchInp) matchInp.value = '';
+                            if (chk) chk.checked = false;
+                        }
+                    }
+
+                    // Default to Option A if no correct choice is checked yet
+                    const chk0 = document.getElementById(prefix + '_ans_0_correct');
+                    const anyChecked = [0, 1, 2, 3].some(idx => {
+                        const c = document.getElementById(prefix + '_ans_' + idx + '_correct');
+                        return c && c.checked;
+                    });
+                    if (!anyChecked && chk0) {
+                        chk0.checked = true;
+                    }
+
+                    const marksInput = document.getElementById(prefix + '_q_marks');
+                    if (marksInput && (prefix === 'create' || !marksInput.value)) {
+                        marksInput.value = 1;
+                    }
                 } else {
                     container.classList.remove('hidden');
                     if (label) label.textContent = 'Answer Options (Min 2, Max 4)';
@@ -2012,7 +2227,10 @@
                         if (promptBox) promptBox.classList.add('hidden');
 
                         if (i < 4) {
-                            if (slot) slot.classList.remove('hidden');
+                            if (slot) {
+                                slot.classList.remove('hidden');
+                                slot.className = 'flex items-center space-x-2 bg-slate-950 p-2 rounded-lg border border-slate-800';
+                            }
                             if (badge) {
                                 badge.textContent = '#' + (i + 1);
                                 badge.className = 'text-xs font-bold text-slate-400 shrink-0 w-5';
@@ -2021,11 +2239,14 @@
                                 inp.readOnly = false;
                                 inp.placeholder = 'Option ' + (i + 1) + ' text';
                                 if (inp.value === 'True' || inp.value === 'False') inp.value = '';
-                                inp.classList.remove('border-yellow-500/60', 'text-yellow-200', 'font-bold');
+                                inp.className = 'flex-1 px-2.5 py-1 rounded-md bg-slate-900 border border-slate-700 text-slate-100 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500';
                             }
                             if (arrow) arrow.classList.add('hidden');
                             if (matchInp) { matchInp.classList.add('hidden'); matchInp.value = ''; }
-                            if (optBox) optBox.classList.add('hidden');
+                            if (optBox) {
+                                optBox.classList.add('hidden');
+                                optBox.className = 'hidden flex-1';
+                            }
                             if (chkLabel) chkLabel.classList.remove('hidden');
                             if (pinBtn) pinBtn.classList.add('hidden');
                         } else {
@@ -2113,7 +2334,7 @@
                 const typeVal = typeEl ? parseInt(typeEl.value) : 1;
                 const chk = document.getElementById(prefix + '_ans_' + index + '_correct');
 
-                if ((typeVal === 1 || typeVal === 4) && chk && chk.checked) {
+                if ((typeVal === 1 || typeVal === 4 || typeVal === 10) && chk && chk.checked) {
                     for (let i = 0; i < 4; i++) {
                         if (i !== index) {
                             const otherChk = document.getElementById(prefix + '_ans_' + i + '_correct');
@@ -3035,7 +3256,8 @@
                     6: 'Puzzle (Arrange Sequence)',
                     7: 'Fill in the blanks',
                     8: 'Image Hotspot / Diagram Labeling',
-                    9: 'Case-Based / Source-Based'
+                    9: 'Case-Based / Source-Based',
+                    10: 'Assertion & Reason (A-R)'
                 };
                 if (badgeType) badgeType.textContent = typeLabels[typeNum] || 'Single Choice';
 
@@ -3284,6 +3506,32 @@
                         }
                         caseHtml += '</div>';
                         answersCont.innerHTML = caseHtml;
+                    } else if (typeNum === 10) {
+                        let arHtml = '<div class="space-y-2.5">';
+                        arHtml += '<div class="text-xs font-semibold text-slate-400 mb-1 flex items-center space-x-1.5"><span class="text-violet-400">⚖️</span><span>Assertion & Reason Evaluation Options:</span></div>';
+                        answers.forEach((ans, idx) => {
+                            const letter = String.fromCharCode(65 + idx);
+                            const isCorrect = parseInt(ans.is_correct) === 1;
+                            arHtml += `
+                                <div class="p-3.5 sm:p-4 rounded-2xl border transition-all flex items-center justify-between gap-3 ${isCorrect ? 'bg-violet-500/10 border-violet-500/40 text-violet-200 shadow-md shadow-violet-500/5' : 'bg-slate-950/60 border-slate-800 text-slate-300'}">
+                                    <div class="flex items-center space-x-3.5 flex-1 min-w-0">
+                                        <span class="w-8 h-8 rounded-xl font-black text-xs shrink-0 flex items-center justify-center ${isCorrect ? 'bg-violet-500/20 text-violet-300 border border-violet-500/40' : 'bg-slate-800 text-slate-400 border border-slate-700/60'}">
+                                            ${letter}
+                                        </span>
+                                        <span class="text-sm font-medium break-words">${ans.name || ''}</span>
+                                    </div>
+                                    ${isCorrect ? `
+                                        <span class="shrink-0 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 inline-flex items-center space-x-1">
+                                            <span>✓</span>
+                                            <span class="hidden sm:inline">Correct Answer</span>
+                                            <span class="sm:hidden">Correct</span>
+                                        </span>
+                                    ` : ''}
+                                </div>
+                            `;
+                        });
+                        arHtml += '</div>';
+                        answersCont.innerHTML = arHtml;
                     } else {
                         // Single (1) or Multiple (2) MCQ
                         let mcqHtml = '<div class="space-y-2.5">';
